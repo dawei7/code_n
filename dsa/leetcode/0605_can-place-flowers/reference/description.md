@@ -9,6 +9,7 @@ Given an integer array `flowerbed` containing `0`'s and `1`'s, where `0` means e
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $flowerbed = [1,0,0,0,1], n = 1$

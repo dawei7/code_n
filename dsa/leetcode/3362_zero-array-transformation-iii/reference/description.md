@@ -17,6 +17,7 @@ Return the **maximum **number of elements that can be removed from `queries`, su
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

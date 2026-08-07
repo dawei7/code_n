@@ -2,7 +2,7 @@
 
 There is a tournament where `n` players are participating. The players are standing in a single row and are numbered from `1` to `n` based on their **initial** standing position (player `1` is the first player in the row, player `2` is the second player in the row, etc.).
 
-The tournament consists of multiple rounds (starting from round number `1`). In each round, the $$i^{\text{th}}$$player from the front of the row competes against the$$i^{\text{th}}$$ player from the end of the row, and the winner advances to the next round. When the number of players is odd for the current round, the player in the middle automatically advances to the next round.
+The tournament consists of multiple rounds (starting from round number `1`). In each round, the $$i^{\text{th}}$$ player from the front of the row competes against the $$i^{\text{th}}$$ player from the end of the row, and the winner advances to the next round. When the number of players is odd for the current round, the player in the middle automatically advances to the next round.
 
 - For example, if the row consists of players `1, 2, 4, 6, 7`
 
@@ -25,6 +25,7 @@ Given the integers `n`, `firstPlayer`, and `secondPlayer`, return *an integer ar
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 11, firstPlayer = 2, secondPlayer = 4$

@@ -11,6 +11,7 @@ Return *the maximum **area** of an island in *`grid`. If there is no island, ret
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/maxarea1-grid.jpg)

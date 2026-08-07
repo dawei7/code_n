@@ -19,6 +19,7 @@ Note that friendships are not transitive, meaning if `x` is a friend of `y` and 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 2, languages = [[1],[2],[1,2]], friendships = [[1,2],[1,3],[2,3]]$

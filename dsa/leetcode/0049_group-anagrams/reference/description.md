@@ -14,6 +14,7 @@ Let $m = \lvert\texttt{strs}\rvert$ and let $C$ be the total number of character
 Return groups in which every pair of strings are anagrams. The group order and the order within each group are unrestricted.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

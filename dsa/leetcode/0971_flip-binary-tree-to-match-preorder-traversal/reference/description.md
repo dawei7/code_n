@@ -15,6 +15,7 @@ Return *a list of the values of all **flipped** nodes. You may return the answer
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/1219-01.png)

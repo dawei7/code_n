@@ -20,6 +20,7 @@ A **Binary Search Tree (BST)** is a tree in which all the nodes follow the below
 Return the number of nodes in the largest complete subtree that satisfies the strict BST ordering rules.
 
 ### Examples
+
 #### Example 1
 
 **

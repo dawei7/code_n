@@ -10,6 +10,7 @@ Return *the string described above. If there is more than one string with the sa
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["k","ki","kir","kira", "kiran"]$

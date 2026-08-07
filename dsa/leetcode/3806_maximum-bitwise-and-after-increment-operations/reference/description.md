@@ -20,6 +20,7 @@ Let $N=\lvert\texttt{nums}\rvert$. Operations may be distributed among indices i
 Return the greatest integer that can equal the bitwise AND of some size-`m` subset after no more than `k` increments.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

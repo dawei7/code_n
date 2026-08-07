@@ -11,6 +11,7 @@ Each word would be put on only one column and that in one column there will be o
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "HOW ARE YOU"`

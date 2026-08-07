@@ -19,6 +19,7 @@ Return the **minimum** number of operations required to make every element in `n
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

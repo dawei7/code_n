@@ -22,6 +22,7 @@ Both query boundaries use the same `Year:Month:Day:Hour:Minute:Second` format as
 The result of each retrieval is a collection of every matching ID; no ordering among those IDs is required. In the app-local operation trace, construction and `put` produce `null`, while each `retrieve` produces its ID list in the corresponding result position.
 
 ### Examples
+
 #### Example 1
 
 ```

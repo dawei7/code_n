@@ -2,13 +2,13 @@
 
 #### Intuition
 
-According to the problem's constraints, the value range of $\textit{nums}\text{\_1}[i] \times \textit{nums}\text{\_2}[j]$ is $[-10^{10}, 10^{10}]$. We perform a binary search over this product range to find the $k$-th smallest product. Let the current binary search value be $v$. We need to compute the number of products less than or equal to $v$, denoted as $\textit{count}$. If $\textit{count} \lt k$, then $v$ is too small; otherwise, it is too large or just right.
+According to the problem's constraints, the value range of $\textit{nums}\text{_1}[i] \times \textit{nums}\text{_2}[j]$ is $[-10^{10}, 10^{10}]$. We perform a binary search over this product range to find the $k$-th smallest product. Let the current binary search value be $v$. We need to compute the number of products less than or equal to $v$, denoted as $\textit{count}$. If $\textit{count} \lt k$, then $v$ is too small; otherwise, it is too large or just right.
 
 To calculate the number of products less than or equal to $v$, we use another binary search. For each element $x_1$ in $\textit{nums}_1$, we proceed as follows:
 
-- If $x_1 \ge 0$, then $\textit{nums}\text{\_2}[j] \times x_1$ forms a non-decreasing sequence. We use binary search to count how many products are $\le v$.
+- If $x_1 \ge 0$, then $\textit{nums}\text{_2}[j] \times x_1$ forms a non-decreasing sequence. We use binary search to count how many products are $\le v$.
 
-- If $x_1 \lt 0$, then $\textit{nums}\text{\_2}[j] \times x_1$ forms a non-increasing sequence. In this case, we use binary search to find how many products are greater than $v$, denoted as $t$. Then, the number of products $\le v$ is $n_2 - t$, where $n_2$ is the length of $\textit{nums}_2$.
+- If $x_1 \lt 0$, then $\textit{nums}\text{_2}[j] \times x_1$ forms a non-increasing sequence. In this case, we use binary search to find how many products are greater than $v$, denoted as $t$. Then, the number of products $\le v$ is $n_2 - t$, where $n_2$ is the length of $\textit{nums}_2$.
 
 Summing these counts for all elements in $\textit{nums}_1$ gives the total number of products less than or equal to $v$.
 
@@ -59,7 +59,7 @@ Similar to Approach 1, we want to compute the number of products less than or eq
 
 For example, take the product of the interval $[0, \textit{pos}_1)$ from $\textit{nums}_1$ and the interval $[0, \textit{pos}_2)$ from $\textit{nums}_2$, and count how many resulting products are less than or equal to $v$. Repeat this process for the other three combinations.
 
-Each product combination forms a two-dimensional matrix where each cell is defined as $q(i, j) = \textit{nums}\text{\_1}[i] \times \textit{nums}\text{\_2}[j]$. In this matrix, $q(i, j)$ is non-increasing as either $i$ or $j$ increases (since both sequences are sorted). To efficiently count the number of elements in the matrix that are $\le v$, we traverse from the upper-right corner of the matrix. We initialize pointers $i_1 = 0$ and $i_2 = \textit{pos}_2 - 1$, and we stop when either index goes out of bounds:
+Each product combination forms a two-dimensional matrix where each cell is defined as $q(i, j) = \textit{nums}\text{_1}[i] \times \textit{nums}\text{_2}[j]$. In this matrix, $q(i, j)$ is non-increasing as either $i$ or $j$ increases (since both sequences are sorted). To efficiently count the number of elements in the matrix that are $\le v$, we traverse from the upper-right corner of the matrix. We initialize pointers $i_1 = 0$ and $i_2 = \textit{pos}_2 - 1$, and we stop when either index goes out of bounds:
 
 - If $q(i_1, i_2) > v$, then all elements in the current row to the left of $(i_1, i_2)$ are also greater than $v$, so we move down to the next row by setting $i_1 = i_1 + 1$.
 

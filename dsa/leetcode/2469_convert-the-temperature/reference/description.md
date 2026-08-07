@@ -17,6 +17,7 @@ Return *the array `ans`. *Answers within $10^{-5}$ of the actual answer will be 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $celsius = 36.50$

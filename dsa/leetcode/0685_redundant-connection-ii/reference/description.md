@@ -13,6 +13,7 @@ Return *an edge that can be removed so that the resulting graph is a rooted tree
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/graph1.jpg)

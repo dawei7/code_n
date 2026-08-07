@@ -12,6 +12,7 @@ Given `n` pairs of parentheses, write a function to *generate all combinations o
 Return all well-formed strings containing exactly $n$ opening and $n$ closing parentheses.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 3$

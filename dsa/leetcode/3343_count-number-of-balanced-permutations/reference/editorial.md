@@ -30,10 +30,12 @@ There are $m = \lceil \dfrac{n}{2} \rceil$ odd positions and $\lfloor \dfrac{n}{
 
 From these observations, the total number of arrangements for a valid $(k_0, \dots, k_9)$ configuration is:
 
-$$\begin{aligned}
-T \&= \binom{m}{k_0} \cdot \binom{n-m}{\textit{cnt}[0]-k_0} \cdot \binom{m-k_0}{k_1} \cdot \binom{n-m-(\textit{cnt}[0] - k_0)}{\textit{cnt}[1]-k_1} \cdots \\\\
-\&\quad \cdot \binom{m - \sum_{j=0}^{8}k_j}{k_9} \cdot \binom{n - m - \sum_{j=0}^{8}(\textit{cnt}[j] - k_j)}{\textit{cnt}[9]-k_9}
-\end{aligned}$$
+$$
+\begin{aligned}
+T &= \binom{m}{k_0} \cdot \binom{n-m}{\textit{cnt}[0]-k_0} \cdot \binom{m-k_0}{k_1} \cdot \binom{n-m-(\textit{cnt}[0] - k_0)}{\textit{cnt}[1]-k_1} \cdots \\\\
+&\quad \cdot \binom{m - \sum_{j=0}^{8}k_j}{k_9} \cdot \binom{n - m - \sum_{j=0}^{8}(\textit{cnt}[j] - k_j)}{\textit{cnt}[9]-k_9}
+\end{aligned}
+$$
 
 To compute this efficiently, we use a memoized search. Let $\text{dfs}(i, \textit{curr}, \textit{oddCnt})$ represent the number of valid ways to fill digits from $i$ to $9$, where $\textit{oddCnt}$ positions remain for odd indices, and the sum needed in those positions is $\textit{curr}$.
 

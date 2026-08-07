@@ -12,6 +12,7 @@ Given an integer `n`, return *the number of structurally unique **BST'**s (binar
 Return the count of structurally unique BSTs that use every value from `1` through `n` exactly once.
 
 ### Examples
+
 #### Example 1
 
 ![](images/uniquebstn3.jpg)

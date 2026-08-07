@@ -17,6 +17,7 @@ Return *the final grid*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `grid = [[1,1],[1,2]], row = 0, col = 0, color = 3`

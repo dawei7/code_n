@@ -9,6 +9,7 @@ Return the **minimum** possible area of the rectangle.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -10,6 +10,7 @@ Return the **maximum** possible value of `n` such that the **sum** of all elemen
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

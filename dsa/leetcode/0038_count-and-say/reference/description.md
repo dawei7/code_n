@@ -22,6 +22,7 @@ Let $L_n$ denote the number of characters in the $n$th term.
 Return the $n$th count-and-say term as a digit string.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

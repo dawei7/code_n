@@ -15,6 +15,7 @@ An array is said to be **non-decreasing** if each element is greater than or equ
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

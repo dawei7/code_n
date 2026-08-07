@@ -19,6 +19,7 @@ Return the count of **good** integers containing `n` digits.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

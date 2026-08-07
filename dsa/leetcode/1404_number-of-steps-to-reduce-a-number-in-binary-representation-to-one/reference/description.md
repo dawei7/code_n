@@ -13,6 +13,7 @@ It is guaranteed that you can always reach one for all test cases.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "1101"`

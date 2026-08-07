@@ -29,6 +29,7 @@ Given the encoded string `encodedText` and number of rows `rows`, return *the or
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $encodedText = "ch ie pr", rows = 3$

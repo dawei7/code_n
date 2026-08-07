@@ -10,6 +10,7 @@ Return a list of indices **(0-indexed)** of buildings that have an ocean view, s
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $heights = [4,2,3,1]$

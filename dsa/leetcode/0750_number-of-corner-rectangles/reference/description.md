@@ -5,7 +5,7 @@ Given an `m x n` integer matrix `grid` where each entry is only `0` or `1`, retu
 A **corner rectangle** is four distinct `1`'s on the grid that forms an axis-aligned rectangle. Note that only the corners need to have the value `1`. Also, all four `1`'s used must be distinct.
 ### Function Contract
 
-`solve(grid: list[list[int]]) -> int`
+$solve(grid: list[\text{list}[int]]) -> int$
 
 Let $m$ be the number of rows and $n$ be the number of columns.
 
@@ -15,9 +15,10 @@ Let $m$ be the number of rows and $n$ be the number of columns.
 
 **Return value**
 
-Return the number of choices of row indices $r_1 < r_2$ and column indices $c_1 < c_2$ for which all four cells `grid[r1][c1]`, `grid[r1][c2]`, `grid[r2][c1]`, and `grid[r2][c2]` equal `1`.
+Return the number of choices of row indices $r_1 < r_2$ and column indices $c_1 < c_2$ for which all four cells $\text{grid}[r1][c1]$, $\text{grid}[r1][c2]$, $\text{grid}[r2][c1]$, and $\text{grid}[r2][c2]$ equal `1`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/cornerrec1-grid.jpg)

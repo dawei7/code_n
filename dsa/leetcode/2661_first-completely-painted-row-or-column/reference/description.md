@@ -11,6 +11,7 @@ Return *the smallest index* `i` *at which either a row or a column will be compl
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![image explanation for example 1](images/grid1.jpg)

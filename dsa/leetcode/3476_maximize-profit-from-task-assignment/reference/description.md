@@ -14,6 +14,7 @@ Return the **maximum** total profit that can be earned by optimally assigning th
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

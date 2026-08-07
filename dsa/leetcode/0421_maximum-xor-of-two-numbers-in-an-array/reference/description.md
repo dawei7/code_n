@@ -9,11 +9,12 @@ Given an integer array `nums`, return *the maximum result of *$\text{nums}[i] XO
 
 **Return value**
 
-Return the maximum value of `nums[i] ^ nums[j]` among all valid position pairs with $i \le j$.
+Return the maximum value of $\text{nums}[i] ^ \text{nums}[j]$ among all valid position pairs with $i \le j$.
 
 Here, $n = \lvert\texttt{nums}\rvert$.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,10,5,25,2,8]`

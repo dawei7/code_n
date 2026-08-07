@@ -9,6 +9,7 @@ The distance used in this problem is the Manhattan distance: the distance betwee
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/1336_ex1.JPG)

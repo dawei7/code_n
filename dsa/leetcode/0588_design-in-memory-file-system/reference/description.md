@@ -38,6 +38,7 @@ Construct one `FileSystem` object and invoke `ls`, `mkdir`, `addContentToFile`, 
 For complexity notation, let $P$ be the number of path components traversed, $k$ the number of immediate names returned by a directory listing, $C$ the content length processed by an operation, and $S$ the total stored filesystem state.
 
 ### Examples
+
 #### Example 1
 
 ![](images/filesystem.png)

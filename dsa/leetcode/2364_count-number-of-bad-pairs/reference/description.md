@@ -9,6 +9,7 @@ Return* the total number of **bad pairs** in *`nums`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [4,1,3,3]`

@@ -15,6 +15,7 @@ Return *the resulting array *`arr`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [5,4,2,3]`

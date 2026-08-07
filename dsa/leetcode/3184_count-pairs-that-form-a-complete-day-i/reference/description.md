@@ -11,6 +11,7 @@ For example, 1 day is 24 hours, 2 days is 48 hours, 3 days is 72 hours, and so o
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

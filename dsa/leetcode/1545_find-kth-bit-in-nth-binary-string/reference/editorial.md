@@ -52,7 +52,7 @@ class Solution:
 
 - Time complexity: $O(2^n)$
 
-    In the worst case, we need to generate the entire `n`th string. The length of the string doubles (approximately) with each iteration: $S_1$ has length 1, $S_2$ has length 3 $($2^{2}$- 1)$ ... $S_n$ has length $2^n - 1$. Thus, the total number of operations is proportional to the sum of $2^i$ for $i$ from $1$ to $n-1$, which is $O(2^n)$.
+    In the worst case, we need to generate the entire `n`th string. The length of the string doubles (approximately) with each iteration: $S_1$ has length 1, $S_2$ has length 3 $($2^{2}$ - 1)$ ... $S_n$ has length $2^n - 1$. Thus, the total number of operations is proportional to the sum of $2^i$ for $i$ from $1$ to $n-1$, which is $O(2^n)$.
 
 - Space complexity: $O(2^n)$
 

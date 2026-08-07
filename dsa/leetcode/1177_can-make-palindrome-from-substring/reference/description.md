@@ -4,7 +4,7 @@ You are given a string `s` and array `queries` where $\text{queries}[i] = [\text
 
 If the substring is possible to be a palindrome string after the operations above, the result of the query is `true`. Otherwise, the result is `false`.
 
-Return a boolean array `answer` where $\text{answer}[i]$ is the result of the $$i^{\text{th}}$$query$\text{queries}[i]$.
+Return a boolean array `answer` where $\text{answer}[i]$ is the result of the $$i^{\text{th}}$$ query $\text{queries}[i]$.
 
 Note that each letter is counted individually for replacement, so if, for example $s[\text{left}_{i}...\text{right}_{i}] = "aaa"$, and $k_{i} = 2$, we can only replace two of the letters. Also, note that no query modifies the initial string `s`.
 

@@ -10,6 +10,7 @@ Return *the minimum number of operations to make *`grid`* **well-isolated***.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 ![](images/image-20211223181501-1.png)

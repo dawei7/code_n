@@ -9,6 +9,7 @@ Return *the length of the shortest path that visits every node*. You may start a
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/shortest1-graph.jpg)

@@ -17,6 +17,7 @@ Return *the **minimum number of skips required** to arrive at the meeting on tim
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $dist = [1,3,2], speed = 4, hoursBefore = 2$

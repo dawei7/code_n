@@ -11,6 +11,7 @@ Return `true` if Player 1 can win the game. If the scores of both players are eq
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,5,2]`

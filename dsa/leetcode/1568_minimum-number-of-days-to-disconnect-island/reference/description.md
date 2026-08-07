@@ -13,6 +13,7 @@ Return *the minimum number of days to disconnect the grid*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/land1.jpg)

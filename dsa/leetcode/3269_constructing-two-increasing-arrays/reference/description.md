@@ -10,6 +10,7 @@ Return the *minimum possible largest number* after applying the changes.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -16,6 +16,7 @@ Range sum `S(i, j)` is defined as the sum of the elements in `nums` between indi
 Return the number of pairs $(i,j)$ with $i \le j$ whose inclusive range sum is between `lower` and `upper`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [-2,5,-1], lower = -2, upper = 2`

@@ -563,7 +563,7 @@ class Solution:
 
 - We have avoided using `set` in C++ and `TreeSet` in Java because adding values to these data structures takes logarithmic time. However, it is possible to write a custom hash function so that $\text{unordered}_{set}$ in C++ and `HashSet` in Java can be used, which takes constant time. Here, we just use a `vector` in C++ and `List` in Java since we only need to look up once.
 - In Python, we have used `set` because adding to `set` takes constant time. And thus we can avoid linear time checks. Although, the overall time complexity will be the same.
-- In C++, we have used `unsigned long long` to avoid overflow. Notice that $\text{left}[1]$ can be at most $MOD_2 - 1 = (2^{31} - 1) - 1$. Since we need to left shift $7$ during hash, we may have $(2^{31}-2) \times$2^{7}$\approx 2^{38}$. Thus, we need a data type of size of at least $38$ bits. In [C++](https://en.cppreference.com/w/cpp/language/types), the standard ensures `unsigned long long` is at least $64$ bits, which can store $2^{64}-1$, and it is much larger than $2^{38}$.
+- In C++, we have used `unsigned long long` to avoid overflow. Notice that $\text{left}[1]$ can be at most $MOD_2 - 1 = (2^{31} - 1) - 1$. Since we need to left shift $7$ during hash, we may have $(2^{31}-2) \times $2^{7}$ \approx 2^{38}$. Thus, we need a data type of size of at least $38$ bits. In [C++](https://en.cppreference.com/w/cpp/language/types), the standard ensures `unsigned long long` is at least $64$ bits, which can store $2^{64}-1$, and it is much larger than $2^{38}$.
   Similar constraint is fulfilled by `long` in [Java](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html)
 
 #### Complexity Analysis

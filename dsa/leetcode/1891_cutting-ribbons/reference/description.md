@@ -22,6 +22,7 @@ Your task is to determine the **maximum** length of ribbon, `x`, that allows you
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $ribbons = [9,7,5], k = 3$

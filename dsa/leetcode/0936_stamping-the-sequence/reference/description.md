@@ -23,6 +23,7 @@ Return *an array of the index of the left-most letter being stamped at each turn
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $stamp = "abc", target = "ababc"$

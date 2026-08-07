@@ -17,6 +17,7 @@ Return *the smallest possible weight of the left stone*. If there are no stones 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $stones = [2,7,4,1,8,1]$

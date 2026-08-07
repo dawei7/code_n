@@ -9,6 +9,7 @@ Return the **maximum** number of non-intersecting **substrings** of word that ar
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

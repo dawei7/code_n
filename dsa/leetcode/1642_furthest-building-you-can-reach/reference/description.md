@@ -17,6 +17,7 @@ While moving from building `i` to building `i+1` (**0-indexed**),
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/q4.gif)

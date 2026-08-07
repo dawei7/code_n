@@ -11,6 +11,7 @@ Return the **maximum** number of `"LCT"` subsequences that can be formed in the 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -7,6 +7,7 @@ An integer divisible by the **sum** of its digits is said to be a **Harshad** nu
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

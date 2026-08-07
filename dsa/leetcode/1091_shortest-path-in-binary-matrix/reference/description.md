@@ -15,6 +15,7 @@ The **length of a clear path** is the number of visited cells of this path.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/example1_1.png)

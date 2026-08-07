@@ -9,6 +9,7 @@ Return *the number of good leaf node pairs* in the tree.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/e1.jpg)

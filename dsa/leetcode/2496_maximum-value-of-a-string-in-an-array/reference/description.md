@@ -13,6 +13,7 @@ Given an array `strs` of alphanumeric strings, return *the **maximum value** of 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $strs = ["alic3","bob","3","4","00000"]$

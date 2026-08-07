@@ -17,6 +17,7 @@ Return the **maximum** **total** you can obtain by choosing the activation order
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

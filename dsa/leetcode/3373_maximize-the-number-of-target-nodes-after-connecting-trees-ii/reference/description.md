@@ -15,6 +15,7 @@ Return an array of `n` integers `answer`, where $\text{answer}[i]$ is the **maxi
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -19,6 +19,7 @@ Note that there can be **multiple edges** between the same two nodes.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/winword_2021-06-08_00-58-39.png)

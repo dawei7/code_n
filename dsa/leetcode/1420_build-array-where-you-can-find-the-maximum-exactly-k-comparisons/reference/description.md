@@ -19,6 +19,7 @@ Return *the number of ways* to build the array `arr` under the mentioned conditi
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 2, m = 3, k = 1$

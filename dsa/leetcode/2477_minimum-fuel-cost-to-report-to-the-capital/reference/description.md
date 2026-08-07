@@ -15,6 +15,7 @@ Return *the minimum number of liters of fuel to reach the capital city*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/a4c380025e3ff0c379525e96a7d63a3.png)

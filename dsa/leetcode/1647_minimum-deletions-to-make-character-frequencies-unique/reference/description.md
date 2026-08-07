@@ -11,6 +11,7 @@ The **frequency** of a character in a string is the number of times it appears i
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "aab"`

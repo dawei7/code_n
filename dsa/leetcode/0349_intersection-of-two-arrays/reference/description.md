@@ -13,6 +13,7 @@ Given two integer arrays `nums1` and `nums2`, return *an array of their intersec
 Return each distinct integer that appears in both arrays exactly once, in any order.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [1,2,2,1], nums2 = [2,2]$

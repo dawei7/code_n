@@ -18,6 +18,7 @@ Removing zeros changes only a number's decimal digits; it does not remove or reo
 Return the number of distinct positive integers obtained after removing all decimal zeros from every `x` in the range $1 \leq x \leq n$.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

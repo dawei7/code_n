@@ -19,6 +19,7 @@ Let $n = \lvert\texttt{s1}\rvert$ and $m = \lvert\texttt{s2}\rvert$.
 Return the shortest qualifying substring of `s1`. On a length tie, return the window with the left-most starting index. Return `""` if no qualifying window exists.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $s1 = "abcdebdde", s2 = "bde"$

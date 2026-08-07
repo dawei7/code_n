@@ -14,26 +14,23 @@ Note that
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
-```
-**Input:** nums1 = [1,2,3,2,4], nums2 = [2,3,1,2,3]
-**Output:** [0,3]
-**Explanation:** Consider index 0 and index 3. The value of |nums1[i]-nums1[j]| + |nums2[i]-nums2[j]| is 1, which is the smallest value we can achieve.
-```
+- **Input:** $nums1 = [1,2,3,2,4], nums2 = [2,3,1,2,3]$
+- **Output:** `[0,3]`
+- **Explanation:** Consider index 0 and index 3. The value of |nums1[i]-nums1[j]| + |nums2[i]-nums2[j]| is 1, which is the smallest value we can achieve.
 #### Example 2
 
-```
-**Input:** nums1 = [1,2,4,3,2,5], nums2 = [1,4,2,3,5,1]
-**Output:** [1,4]
-**Explanation:** Consider index 1 and index 4. The value of |nums1[i]-nums1[j]| + |nums2[i]-nums2[j]| is 1, which is the smallest value we can achieve.
-```
+- **Input:** $nums1 = [1,2,4,3,2,5], nums2 = [1,4,2,3,5,1]$
+- **Output:** `[1,4]`
+- **Explanation:** Consider index 1 and index 4. The value of |nums1[i]-nums1[j]| + |nums2[i]-nums2[j]| is 1, which is the smallest value we can achieve.
 ### Constraints
 
 - $2 \le \text{nums1.length}, \text{nums2.length} \le 10^{5}$
 
 - $\text{nums1.length} = \text{nums2.length}$
 
-- $0 \le nums1_{i\_} \le \text{nums1.length}$
+- $0 \le nums1_i_ \le \text{nums1.length}$
 
 - $0 \le \text{nums2}_{i} \le \text{nums2.length}$

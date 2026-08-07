@@ -31,6 +31,7 @@ The result format is in the following example.
 Return one `id` column containing dates that are warmer than yesterday, in any order.
 
 ### Examples
+
 #### Example 1
 
 ```

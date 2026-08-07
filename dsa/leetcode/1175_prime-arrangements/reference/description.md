@@ -11,6 +11,7 @@ Since the answer may be large, return the answer **modulo $10^{9} + 7$**.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 5$

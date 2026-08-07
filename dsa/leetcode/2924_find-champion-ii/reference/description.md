@@ -21,6 +21,7 @@ Return *the team that will be the **champion** of the tournament if there is a *
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/graph-3.png)

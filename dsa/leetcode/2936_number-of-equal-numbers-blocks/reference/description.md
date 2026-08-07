@@ -18,6 +18,7 @@ Let's partition the array into **maximal** blocks such that each block contains 
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,3,3,3,3]`

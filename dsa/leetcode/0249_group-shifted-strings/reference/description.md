@@ -15,13 +15,14 @@ You are given an array of strings `strings`, group together all $\text{strings}[
 
 **Inputs**
 
-- `strings`: Array of strings `List[str]`.
+- `strings`: Array of strings $\text{List}[str]$.
 
 **Return value**
 
-Return `List[List[str]]` containing grouped strings belonging to the same shifting sequence.
+Return $List[\text{List}[str]]$ containing grouped strings belonging to the same shifting sequence.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

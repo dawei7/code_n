@@ -27,6 +27,7 @@ Let $p$ be the number of active players when `top(K)` is called. Tied scores bel
 For the app trace, return results in call order: `null` for each mutating operation and the requested score sum for each `top` call.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** ``

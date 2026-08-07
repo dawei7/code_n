@@ -23,6 +23,7 @@ Return `True` if some valid `(i, j, k)` makes the four retained subarray sums eq
 feasibility is returned, not the indices or shared sum.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,1,2,1,2,1]`

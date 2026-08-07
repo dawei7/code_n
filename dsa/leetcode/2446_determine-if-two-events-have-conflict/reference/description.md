@@ -17,6 +17,7 @@ Return `true`* if there is a conflict between two events. Otherwise, return *`fa
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $event1 = ["01:15","02:00"], event2 = ["02:00","03:00"]$

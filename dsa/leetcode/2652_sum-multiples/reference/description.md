@@ -9,6 +9,7 @@ Return *an integer denoting the sum of all numbers in the given range satisfying
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 7$

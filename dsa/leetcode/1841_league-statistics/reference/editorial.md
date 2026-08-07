@@ -508,7 +508,7 @@ Here's a breakdown of the logic:
    SUM(CASE WHEN m.home_team_id = t.team_id THEN m.home_team_goals ELSE m.away_team_goals END) AS goal_for,
    SUM(CASE WHEN m.home_team_id = t.team_id THEN m.away_team_goals ELSE m.home_team_goals END) AS goal_against
    ```
-   - The `CASE` expression checks whether the team is playing at home (if $\text{m.home\\\_team\\\_id} = t.\text{team}_{id}$).
+   - The `CASE` expression checks whether the team is playing at home (if $\text{m.home\\_team\\_id} = t.\text{team}_{id}$).
    - If true, $\text{goal}_{for}$ is `home_team_goals` (goals scored by the home team) and $\text{goal}_{against}$ is `away_team_goals` (goals conceded to the away team).
    - If false (meaning the team is playing away), $\text{goal}_{for}$ is `away_team_goals` (goals scored by the away team) and $\text{goal}_{against}$ is `home_team_goals` (goals conceded to the home team).
 

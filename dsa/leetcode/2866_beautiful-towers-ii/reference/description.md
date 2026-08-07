@@ -2,7 +2,7 @@
 
 You are given a **0-indexed** array `maxHeights` of `n` integers.
 
-You are tasked with building `n` towers in the coordinate line. The $$i^{\text{th}}$$tower is built at coordinate `i` and has a height of$\text{heights}[i]$.
+You are tasked with building `n` towers in the coordinate line. The $$i^{\text{th}}$$ tower is built at coordinate `i` and has a height of $\text{heights}[i]$.
 
 A configuration of towers is **beautiful** if the following conditions hold:
 
@@ -23,6 +23,7 @@ Return *the **maximum possible sum of heights** of a beautiful configuration of 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $maxHeights = [5,3,4,1,1]$

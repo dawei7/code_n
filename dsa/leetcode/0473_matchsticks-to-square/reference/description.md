@@ -18,6 +18,7 @@ Each array entry represents a separate physical stick. Every entry must contribu
 splitting or leaving any stick unused.
 
 ### Examples
+
 #### Example 1
 
 ![](images/matchsticks1-grid.jpg)

@@ -28,9 +28,11 @@ Objective: To ensure that our custom comparator for sorting numbers produces the
 
     We define the function:
 
-    $$\begin{aligned}
-        f(X) \&= 10^{\text{lg}(X) + 1}
-    \end{aligned}$$
+    $$
+    \begin{aligned}
+        f(X) &= 10^{\text{lg}(X) + 1}
+    \end{aligned}
+    $$
 
     where $\text{lg}(X)$ denotes the logarithm base 10 of $X$. This function helps in determining the power of 10 needed to position `X` correctly when concatenating.
 

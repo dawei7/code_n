@@ -14,7 +14,7 @@
 
 - No more moves can be played if the game is over.
 
-Given a 2D integer array `moves` where $\text{moves}[i] = [\text{row}_{i}, \text{col}_{i}]$ indicates that the $$i^{\text{th}}$$move will be played on$grid[\text{row}_{i}][\text{col}_{i}]$. return *the winner of the game if it exists* (`A` or `B`). In case the game ends in a draw return `"Draw"`. If there are still movements to play return `"Pending"`.
+Given a 2D integer array `moves` where $\text{moves}[i] = [\text{row}_{i}, \text{col}_{i}]$ indicates that the $$i^{\text{th}}$$ move will be played on $grid[\text{row}_{i}][\text{col}_{i}]$. return *the winner of the game if it exists* (`A` or `B`). In case the game ends in a draw return `"Draw"`. If there are still movements to play return `"Pending"`.
 
 You can assume that `moves` is valid (i.e., it follows the rules of **Tic-Tac-Toe**), the grid is initially empty, and `A` will play first.
 ### Function Contract
@@ -23,6 +23,7 @@ You can assume that `moves` is valid (i.e., it follows the rules of **Tic-Tac-To
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/xo1-grid.jpg)

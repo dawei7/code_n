@@ -9,6 +9,7 @@ Return *the **minimum number** of operations to reduce *`x` *to **exactly*** `0`
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,1,4,2,3], x = 5`

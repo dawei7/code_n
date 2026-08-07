@@ -9,6 +9,7 @@ Return `true` *if and only if we can do this so that the resulting number is a p
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 1$

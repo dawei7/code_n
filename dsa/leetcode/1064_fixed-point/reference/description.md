@@ -11,9 +11,10 @@ Let $N = \lvert\texttt{arr}\rvert$. Indices are zero-based, so the positions ran
 
 **Return value**
 
-- The smallest index `i` such that `arr[i] == i`, or `-1` when no such index exists.
+- The smallest index `i` such that $\text{arr}[i] = i$, or `-1` when no such index exists.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [-10,-5,0,3,7]`

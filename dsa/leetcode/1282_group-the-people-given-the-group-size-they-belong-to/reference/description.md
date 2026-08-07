@@ -13,6 +13,7 @@ Each person should appear in **exactly one group**, and every person must be in 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $groupSizes = [3,3,3,3,3,1,3]$

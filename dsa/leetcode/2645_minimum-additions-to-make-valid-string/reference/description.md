@@ -9,6 +9,7 @@ A string is called **valid **if it can be formed by concatenating the string "ab
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $word = "b"$

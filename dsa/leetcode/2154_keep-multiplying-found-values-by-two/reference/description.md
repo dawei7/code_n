@@ -17,6 +17,7 @@ Return *the **final** value of *`original`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [5,3,6,1,12], original = 3`

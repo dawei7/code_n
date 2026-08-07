@@ -15,6 +15,7 @@ Return* the **chair number** that the friend numbered *`targetFriend`* will sit 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $times = [[1,4],[2,3],[4,6]], targetFriend = 1$

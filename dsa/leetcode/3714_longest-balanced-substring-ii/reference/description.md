@@ -18,6 +18,7 @@ Only positive frequencies inside the chosen contiguous interval are compared. A 
 Return the maximum length of a balanced substring. At least one character can always be chosen, so the answer is at least `1`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

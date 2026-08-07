@@ -12,6 +12,7 @@ Return the final state of the array `windows`.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -21,6 +21,7 @@ Return *the **minimum difference** possible between the sums of the two parts af
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,1,2]`

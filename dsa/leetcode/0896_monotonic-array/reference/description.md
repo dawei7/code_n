@@ -11,6 +11,7 @@ Given an integer array `nums`, return `true`* if the given array is monotonic, o
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,2,3]`

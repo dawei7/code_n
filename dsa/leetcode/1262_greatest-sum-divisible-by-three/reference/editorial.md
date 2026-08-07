@@ -111,10 +111,12 @@ The initial state is $f(0, 0)=0$ and $f(0, 1)=f(0, 2)=-\infty$. This reflects th
 
 Since some languages may produce negative values in $(j-\text{nums}[i])\bmod 3$, it is convenient to write the transitions as
 
-$$\begin{cases}
+$$
+\begin{cases}
 f(i-1, j) \to f(i, j) \\
 f(i-1, j) + \textit{nums}[i] \to f(i, (j + \textit{nums}[i]) \bmod 3)
-\end{cases}$$
+\end{cases}
+$$
 
 Each row depends only on the previous row, so we store only two rows and reduce space usage.
 

@@ -11,6 +11,7 @@ For each cut you choose the direction: vertical or horizontal, then you choose a
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 **

@@ -17,6 +17,7 @@ Return *an integer denoting the maximum elegance of a subsequence of *`items`* w
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $items = [[3,2],[5,1],[10,1]], k = 2$

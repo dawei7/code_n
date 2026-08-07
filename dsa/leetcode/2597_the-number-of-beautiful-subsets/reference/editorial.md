@@ -264,13 +264,13 @@ $f(i) = take_{s[i]} \times f(i + 2) + skip_{s[i]} \times f(i + 1)$
 
 $f(0) = 7 \times f(2) + 1 \times f(1)$
 
-When i = 1, the value is 7. There are two options: $take_{7} =$2^{2}$- 1 = 3$ and $skip_{7} = 1$. The next element is 11 = 7 + 4 = 7 + 2k, so we can take it even if we took 7.
+When i = 1, the value is 7. There are two options: $take_{7} = $2^{2}$ - 1 = 3$ and $skip_{7} = 1$. The next element is 11 = 7 + 4 = 7 + 2k, so we can take it even if we took 7.
 
 $f(i) = take_{s[i]} \times f(i + 1) + skip_{s[i]} \times f(i + 1)$
 
 $f(1) = 3 \times f(2) + 1 \times f(2)$
 
-When i = 2, the value is 11. There are two options: $take_{11} =$2^{2}$- 1 = 3$ and $skip_{11} = 1$. There is not a next element. So, we will denote this as a base case $f(n) = 1$.
+When i = 2, the value is 11. There are two options: $take_{11} = $2^{2}$ - 1 = 3$ and $skip_{11} = 1$. There is not a next element. So, we will denote this as a base case $f(n) = 1$.
 
 $f(i) = take_{s[i]} \times f(i + 1) + skip_{s[i]} \times f(i + 1)$
 

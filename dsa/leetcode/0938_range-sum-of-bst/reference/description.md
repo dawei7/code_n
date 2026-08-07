@@ -7,6 +7,7 @@ Given the `root` node of a binary search tree and two integers `low` and `high`,
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/bst1.jpg)

@@ -19,6 +19,7 @@ Implement the `MovingAverage` class:
 The app adapter returns the sequence of moving averages. Each native `next` call returns only the new average after its value is added.
 
 ### Examples
+
 #### Example 1
 
 ```

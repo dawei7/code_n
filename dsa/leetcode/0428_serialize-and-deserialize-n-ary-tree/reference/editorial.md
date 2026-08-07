@@ -491,10 +491,10 @@ This approach is based on the suggestion given by the problem statement itself. 
 - Which node has what children since a level can contain a lot nodes and we need to know the parent of each one of them.
 - Second, and the more common information is the switch from one level to another. We need to add this information somehow in the string which helps the deserializer know that a level has finished and a new one has begun.
 
-For the first piece, we will be using a sentinel value of $$$$and whenever we start adding children of a different node, we add this sentinel value to the string and then start adding the children. For the next piece of information, we add another sentinel$\#$$to the string. Before we switch to the next level of the tree during serialization, we add this sentinel value to the string so that the deserializer knows that one level has ended and a new one has started. Let's look at what the serialized string looks like for the sample tree.
+For the first piece, we will be using a sentinel value of $$$ $and whenever we start adding children of a different node, we add this sentinel value to the string and then start adding the children. For the next piece of information, we add another sentinel$ \# $$ to the string. Before we switch to the next level of the tree during serialization, we add this sentinel value to the string so that the deserializer knows that one level has ended and a new one has started. Let's look at what the serialized string looks like for the sample tree.
 
 <center>
-<img src="images/img7_{fix}.png"/>
+<img src="images/img7_fix.png"/>
 </center>
 
 We can get rid of the extra, unwanted string in the end. However, instead of doing another iteration and performing a substring operation or using some other tricky logic to not add that to the final string, we decided to handle it in the deserializer itself. Sure, if we can get rid of that extra portion, the string length would reduce.
@@ -514,7 +514,7 @@ We can get rid of the extra, unwanted string in the end. However, instead of doi
 
 1. For deserialization, we will go one level at a time for reconstructing the tree.
 2. For this purpose, we maintain two lists `currentLevel` and `prevLevel`. The `prevLevel` contains the nodes from the previous level while we add the nodes on the current level to the corresponding list. Once we have these two lists figured out, we establish the corresponding connections.
-3. The sentinel values come in handy since whenever we encounter a$$$$, the child switch sentinel, we pop a new parent node from `prevLevel` and any children encountered from this point to the next$$$$ belong to this parent node.
+3. The sentinel values come in handy since whenever we encounter a $$$ $, the child switch sentinel, we pop a new parent node from `prevLevel` and any children encountered from this point to the next$ $$$ belong to this parent node.
 4. Similarly, whenever we encounter the level end sentinel $\#$, we assign `prevLevel` to `currentLevel` since the nodes in the current level now become parents for the next level.
 
 ```python

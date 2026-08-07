@@ -12,6 +12,7 @@ Given the `head` of a linked list, return *the list after sorting it in **ascend
 Return the head of the list after its nodes have been rearranged into ascending order, or `null` when the input is empty.
 
 ### Examples
+
 #### Example 1
 
 ![](images/sort_list_1.jpg)

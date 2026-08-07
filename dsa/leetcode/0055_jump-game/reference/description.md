@@ -16,6 +16,7 @@ Let $n = \lvert\texttt{nums}\rvert$.
 Return `true` if some sequence of permitted jumps reaches the final index; otherwise return `false`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,3,1,1,4]`

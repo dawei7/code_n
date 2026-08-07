@@ -23,6 +23,7 @@ Let $N=\lvert\texttt{nums1}\rvert=\lvert\texttt{nums2}\rvert$. A free operation 
 Return the minimum number of paid between-array swaps required to make the two arrays identical. Return `-1` if equality is impossible. Free swaps do not contribute to the returned cost.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -13,6 +13,7 @@ Given an integer `k`, return *the *$$k^{\text{th}}$$* letter (**1-indexed)** in 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "leet2code3", k = 10`

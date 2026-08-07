@@ -21,9 +21,7 @@ Return `true` if such a **permutation** exists, otherwise return `false`.
 
 For a decimal integer $x$ with digit multiset $D(x)$, define its digit-factorial sum as
 
-$$
-F(x)=\sum_{d\in D(x)} d!.
-$$
+$F(x)=\sum_{d\in D(x)} d!.$
 
 A candidate must use every digit of `n` exactly once and must have no leading zero. It is digitorial precisely when its numeric value $x$ satisfies $F(x)=x$.
 
@@ -34,6 +32,7 @@ Let $D$ be the number of decimal digits in `n`.
 Return `true` if some valid digit permutation $x$ satisfies $F(x)=x$; otherwise, return `false`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -72,7 +72,7 @@ This method uses a two-dimensional prefix sum and assumes the reader is already 
 
 We still need to quickly determine whether any other points lie inside the rectangle formed by two candidate points. A natural idea is to use a two-dimensional prefix sum. If we treat each point as a cell with value $1$ (and empty cells as $0$), then by building a 2D prefix sum over the grid we can quickly count the number of points inside any rectangle. If this count equals $2$, and the two points are not on the main diagonal, then the pair satisfies the problem requirements.
 
-However, the coordinate range is $[-$10^{9}$,$10^{9}$]$, which is far too large to apply a prefix sum directly. Fortunately, since $n$ is small, we can use **discretization**. The idea is to perform **coordinate remapping**: map the sparse integer coordinates into a dense 2D grid while preserving the relative order of the points. This allows us to apply a prefix sum efficiently.
+However, the coordinate range is $[-$10^{9}$, $10^{9}$]$, which is far too large to apply a prefix sum directly. Fortunately, since $n$ is small, we can use **discretization**. The idea is to perform **coordinate remapping**: map the sparse integer coordinates into a dense 2D grid while preserving the relative order of the points. This allows us to apply a prefix sum efficiently.
 
 To discretize, we first collect the sorted sets of unique $x$-coordinates and $y$-coordinates. Each original coordinate is then assigned a compact index in the new grid. For example, consider the points $[[3,1],[1,3],[1,1]]$:
 

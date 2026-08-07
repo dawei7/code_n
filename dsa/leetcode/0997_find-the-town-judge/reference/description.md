@@ -19,6 +19,7 @@ Return *the label of the town judge if the town judge exists and can be identifi
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 2, trust = [[1,2]]$

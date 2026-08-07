@@ -9,6 +9,7 @@ Given two integers n and k, return the number of different arrays consisting of 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 3, k = 0$

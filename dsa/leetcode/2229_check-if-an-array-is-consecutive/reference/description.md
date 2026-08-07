@@ -8,6 +8,7 @@ An array is **consecutive **if it contains every number in the range `[x, x + n 
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,3,4,2]`

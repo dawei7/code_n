@@ -14,6 +14,7 @@ For each step, you may move to an adjacent number of the row below. More formall
 Return the smallest sum obtainable by a valid adjacent path from the top entry to the bottom row.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $triangle = [[2],[3,4],[6,5,7],[4,1,8,3]]$

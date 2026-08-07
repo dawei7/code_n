@@ -16,9 +16,7 @@ The **value** of a subarray is defined as $sumArr * (sumArr + 1) / 2$, where `su
 
 Let $N=\lvert\texttt{nums}\rvert$ and let
 
-$$
-S=\sum_{x\in\texttt{nums}}x.
-$$
+$S=\sum_{x\in\texttt{nums}}x.$
 
 Each element is used exactly once. Cuts may be placed only between elements, and no resulting subarray may be empty.
 
@@ -27,6 +25,7 @@ Each element is used exactly once. Cuts may be placed only between elements, and
 Return an integer equal to the minimum possible sum of $T(s)=s(s+1)/2$ over the `k` subarray sums.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

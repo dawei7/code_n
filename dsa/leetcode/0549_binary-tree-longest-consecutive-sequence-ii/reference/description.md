@@ -23,6 +23,7 @@ Return the maximum number of nodes on a path whose values change by exactly one 
 numeric direction. The result is a length, not the path itself.
 
 ### Examples
+
 #### Example 1
 
 ![](images/consec2-1-tree.jpg)

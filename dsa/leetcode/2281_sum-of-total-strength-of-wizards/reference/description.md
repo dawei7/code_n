@@ -17,6 +17,7 @@ A **subarray** is a contiguous **non-empty** sequence of elements within an arra
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $strength = [1,3,1,2]$

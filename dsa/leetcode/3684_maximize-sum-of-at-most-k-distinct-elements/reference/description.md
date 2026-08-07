@@ -11,6 +11,7 @@ Return an array containing the chosen numbers in **strictly descending** order.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

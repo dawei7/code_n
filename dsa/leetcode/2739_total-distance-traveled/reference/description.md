@@ -13,6 +13,7 @@ Return *the maximum distance which can be traveled.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $mainTank = 5, additionalTank = 10$

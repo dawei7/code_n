@@ -16,6 +16,7 @@ Let $k = \lvert\texttt{lists}\rvert$.
 Return the head of one ascending-sorted list containing every input node.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $lists = [[1,4,5],[1,3,4],[2,6]]$

@@ -13,6 +13,7 @@ Given a **shuffled sentence** `s` containing no more than `9` words, reconstruct
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "is2 sentence4 This1 a3"`

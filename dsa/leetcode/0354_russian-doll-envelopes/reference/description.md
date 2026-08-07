@@ -18,6 +18,7 @@ Return *the maximum number of envelopes you can Russian doll (i.e., put one insi
 Return the maximum length of a chain in which both dimensions increase strictly from each inner envelope to the next outer envelope.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $envelopes = [[5,4],[6,4],[6,7],[2,3]]$

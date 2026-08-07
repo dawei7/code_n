@@ -12,6 +12,7 @@ A **substring** is a contiguous non-empty sequence of characters within a string
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "abcaab", queries = [[0,0],[1,4],[2,5],[0,5]]`

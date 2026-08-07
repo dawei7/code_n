@@ -7,6 +7,7 @@ Given a string array `words`, return *an array of all characters that show up in
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["bella","label","roller"]$

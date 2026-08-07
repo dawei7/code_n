@@ -9,6 +9,7 @@ Return *the *`head`* of the linked list after **doubling** it*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/example.png)

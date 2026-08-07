@@ -32,6 +32,7 @@ Let $N=\lvert\texttt{nums}\rvert$. Every chosen block must contain at least one 
 Return the number of complete partitions whose block XOR values follow `target1`, `target2`, `target1`, and so on. Reduce the count modulo $1{,}000{,}000{,}007$.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

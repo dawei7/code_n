@@ -9,6 +9,7 @@ The final result should be an <a href="https://en.wikipedia.org/wiki/Irreducible
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $expression = "-1/2+1/2"$

@@ -16,6 +16,7 @@ A **substring** is a contiguous sequence of characters in a string.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "000111000"`

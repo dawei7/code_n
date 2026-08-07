@@ -13,6 +13,7 @@ In case there is no path, return `[0, 0]`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $board = ["E23","2X2","12S"]$

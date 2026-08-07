@@ -24,11 +24,10 @@ Return the largest possible total sum of between one and `m` pairwise non-overla
 
 Let $n = \lvert\texttt{nums}\rvert$ and define
 
-$$
-S = 1 + \sum_{v \in \texttt{nums}} \max(v, 0).
-$$
+$S = 1 + \sum_{v \in \texttt{nums}} \max(v, 0).$
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

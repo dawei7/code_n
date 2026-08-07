@@ -10,6 +10,7 @@ Return the **maximum** number of *unique* students sitting on any single bench. 
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

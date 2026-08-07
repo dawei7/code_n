@@ -19,6 +19,7 @@ Return *the **minimum** number of operations required to make * `x` *and* `y` eq
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $x = 26, y = 1$

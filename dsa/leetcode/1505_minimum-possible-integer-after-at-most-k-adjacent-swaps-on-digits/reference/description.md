@@ -9,6 +9,7 @@ Return *the minimum integer you can obtain also as a string*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/q4_1.jpg)

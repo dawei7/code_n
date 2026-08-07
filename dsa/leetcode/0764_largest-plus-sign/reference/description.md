@@ -1,6 +1,6 @@
 ## Description
 
-You are given an integer `n`. You have an `n x n` binary grid `grid` with all values initially `1`'s except for some indices given in the array `mines`. The $$i^{\text{th}}$$element of the array `mines` is defined as$\text{mines}[i] = [x_{i}, y_{i}]$where$grid[x_{i}][y_{i}] = 0$.
+You are given an integer `n`. You have an `n x n` binary grid `grid` with all values initially `1`'s except for some indices given in the array `mines`. The $$i^{\text{th}}$$ element of the array `mines` is defined as $\text{mines}[i] = [x_{i}, y_{i}]$ where $grid[x_{i}][y_{i}] = 0$.
 
 Return *the order of the largest **axis-aligned** plus sign of *1*'s contained in *`grid`. If there is none, return `0`.
 
@@ -11,6 +11,7 @@ An **axis-aligned plus sign** of `1`'s of order `k` has some center $\text{grid}
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/plus1-grid.jpg)

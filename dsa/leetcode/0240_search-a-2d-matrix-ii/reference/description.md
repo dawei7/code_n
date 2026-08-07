@@ -17,6 +17,7 @@ Write an efficient algorithm that searches for a value `target` in an `m x n` in
 Return `true` if `target` occurs in the matrix; otherwise return `false`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/searchgrid2.jpg)

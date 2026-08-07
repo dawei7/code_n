@@ -12,9 +12,10 @@ Given a **sorted** integer array `nums` and three integers `a`, `b` and `c`, app
 
 **Return value**
 
-Return the ascending-order array containing `f(nums[i])` for every input position, with duplicate values preserved.
+Return the ascending-order array containing $f(\text{nums}[i])$ for every input position, with duplicate values preserved.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [-4,-2,2,4], a = 1, b = 3, c = 5`

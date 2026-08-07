@@ -16,6 +16,7 @@ Return `true` *if the starting player can **guarantee a win***, and `false` othe
 Return `True` exactly when the first player has a winning strategy under optimal play.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $currentState = "++++"$

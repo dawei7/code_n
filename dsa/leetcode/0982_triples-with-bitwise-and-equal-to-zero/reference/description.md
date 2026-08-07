@@ -17,6 +17,7 @@ An **AND triple** is a triple of indices `(i, j, k)` such that:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,1,3]`

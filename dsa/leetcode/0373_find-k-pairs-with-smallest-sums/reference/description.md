@@ -18,6 +18,7 @@ Return *the* `k` *pairs* $(u_{1}, v_{1}), (u_{2}, v_{2}), ..., (u_{k}, v_{k})$ *
 Return `k` value pairs formed by one occurrence from each array whose sums are the `k` smallest available sums.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [1,7,11], nums2 = [2,4,6], k = 3$

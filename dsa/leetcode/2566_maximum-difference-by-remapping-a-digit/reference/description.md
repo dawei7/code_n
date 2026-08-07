@@ -19,6 +19,7 @@ Return *the difference between the maximum and minimum values Bob can make by re
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num = 11891$

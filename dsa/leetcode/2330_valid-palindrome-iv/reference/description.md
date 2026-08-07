@@ -14,6 +14,7 @@ Return `true`* if you can make *`s`* a palindrome after performing **exactly** o
 Return `True` if the string can be transformed into a palindrome in exactly one or two character replacements; otherwise return `False`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "abcdba"`

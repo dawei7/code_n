@@ -11,6 +11,7 @@ Return *the **maximum** possible bitwise XOR of all elements of *`nums`* after a
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,2,4,6]`

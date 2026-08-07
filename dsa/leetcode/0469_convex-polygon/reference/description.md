@@ -9,7 +9,7 @@ You may assume the polygon formed by given points is always a <a href="http://en
 
 **Inputs**
 
-- `points`: The unique polygon vertices `[x_i, y_i]` in sequential boundary order.
+- `points`: The unique polygon vertices $[x_{i}, y_{i}]$ in sequential boundary order.
 
 **Return value**
 
@@ -18,6 +18,7 @@ You may assume the polygon formed by given points is always a <a href="http://en
 The given order already defines the polygon boundary, including the closing edge from the final point back to the first.
 
 ### Examples
+
 #### Example 1
 
 ![](images/covpoly1-plane.jpg)

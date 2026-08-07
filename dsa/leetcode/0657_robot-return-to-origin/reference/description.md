@@ -13,6 +13,7 @@ Return `true`* if the robot returns to the origin after it finishes all of its m
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $moves = "UD"$

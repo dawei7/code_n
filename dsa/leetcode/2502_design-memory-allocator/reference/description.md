@@ -27,6 +27,7 @@ Implement the `Allocator` class:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ```

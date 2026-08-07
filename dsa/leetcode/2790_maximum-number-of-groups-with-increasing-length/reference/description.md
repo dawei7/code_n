@@ -15,6 +15,7 @@ Return *an integer denoting the **maximum** number of groups you can create whil
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $usageLimits = [1,2,5]$

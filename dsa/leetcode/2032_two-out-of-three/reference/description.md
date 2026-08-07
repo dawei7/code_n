@@ -7,6 +7,7 @@ Given three integer arrays `nums1`, `nums2`, and `nums3`, return *a **distinct**
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [1,1,3,2], nums2 = [2,3], nums3 = [3]$

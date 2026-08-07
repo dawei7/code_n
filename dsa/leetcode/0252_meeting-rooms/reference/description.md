@@ -9,13 +9,14 @@ A person can attend all meetings if no two meeting intervals overlap. Meetings e
 
 **Inputs**
 
-- `intervals`: List of meeting intervals `List[List[int]]`.
+- `intervals`: List of meeting intervals $List[\text{List}[int]]$.
 
 **Return value**
 
 Return `true` if a person could attend all meetings without overlap, otherwise `false`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $intervals = [[0,30],[5,10],[15,20]]$

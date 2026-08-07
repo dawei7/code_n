@@ -331,11 +331,11 @@ Therefore, we need to modify the $dfs(\text{cur}_{index}, count)$ function by ad
 
 ![img](images/3.png)
 
-With the added parameter `prev_ending_time`, the function $dfs(\text{cur}_{index} = 1, count, prev_{ending\_time} = 2)$ ensures that we only consider valid events that can be attended after the previous event ends. This is accomplished by checking if `prev_ending_time` is smaller than the start time of the next event. If it is not, we skip the calculation of $dfs(\text{cur}_{index} + 1, count + 1, events[\text{cur}_{index}][1])$ and only consider the option of skipping the current event.
+With the added parameter `prev_ending_time`, the function $dfs(\text{cur}_{index} = 1, count, prev_ending_time = 2)$ ensures that we only consider valid events that can be attended after the previous event ends. This is accomplished by checking if `prev_ending_time` is smaller than the start time of the next event. If it is not, we skip the calculation of $dfs(\text{cur}_{index} + 1, count + 1, events[\text{cur}_{index}][1])$ and only consider the option of skipping the current event.
 
 ![img](images/4.png)
 
-> Let's define the complete function $dfs(\text{cur}_{index}, count, prev_{ending\_time})$ as the maximum value obtained by attending a maximum of `count` events in the range $events[\text{cur}_{index} ~ n - 1]$, where the previously attended event ends at `prev_ending_time`.
+> Let's define the complete function $dfs(\text{cur}_{index}, count, prev_ending_time)$ as the maximum value obtained by attending a maximum of `count` events in the range $events[\text{cur}_{index} ~ n - 1]$, where the previously attended event ends at `prev_ending_time`.
 
 Additionally, We use memoization to store the maximum value obtained by each state $(\text{cur}_{index}, count)$ to avoid re-solving the same subproblems multiple times, which significantly reduces the time complexity.
 
@@ -349,9 +349,9 @@ Additionally, We use memoization to store the maximum value obtained by each sta
 
 2) Build a 2D array `dp` of size $(k + 1) \times n$ as memory.
 
-3) Define $dfs(\text{cur}_{index}, count, prev_{ending\_time})$ as the maximum value obtained by attending `count` events in the range $events[\text{cur}_{index} ~ n - 1]$, if the previous attending meeting ends at `prev_ending_time`.
+3) Define $dfs(\text{cur}_{index}, count, prev_ending_time)$ as the maximum value obtained by attending `count` events in the range $events[\text{cur}_{index} ~ n - 1]$, if the previous attending meeting ends at `prev_ending_time`.
 - Return 0 if $count = 0$ or $\text{cur}_{index} = n$.
-- If $events[\text{cur}_{index}][0] \le pre_{ending\_time}$, we must skip this event and get a value of $dfs(\text{cur}_{index} + 1, count, prev_{ending\_time})$.
+- If $events[\text{cur}_{index}][0] \le pre_ending_time$, we must skip this event and get a value of $dfs(\text{cur}_{index} + 1, count, prev_ending_time)$.
 - If $(count, \text{cur}_{index})$ is already stored in `dp`, return $\text{dp}[count][\text{cur}_{index}]$.
 - Otherwise, we can also attend this event and get a value of $dfs(\text{cur}_{index} + 1, count - 1, events[\text{cur}_{index}][2])$ plus a value of this event $events[\text{cur}_{index}][2]$.
 - Assign the larger value between the two options mentioned above to $\text{dp}[count][\text{cur}_{index}]$ and return $\text{dp}[count][\text{cur}_{index}]$.

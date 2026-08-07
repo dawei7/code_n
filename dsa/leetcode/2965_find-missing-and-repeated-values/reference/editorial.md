@@ -144,9 +144,11 @@ $$
 
 Since we already know $x - y$ from $\text{sumDiff}$, we can substitute it into the equation:
 
-$$\begin{aligned}
+$$
+\begin{aligned}
     \text{sqrDiff} = (x + y) \cdot \text{sumDiff}
-\end{aligned}$$
+\end{aligned}
+$$
 
 Rearranging this equation, we can solve for $x + y$:
 
@@ -158,7 +160,9 @@ $Now, we have two simple equations:$
 \begin{aligned}
 x - y = \text{sumDiff}
 \end{aligned}
-$$$$
+$$
+
+$$
 \begin{aligned}
 x + y = \frac{\text{sqrDiff}}{\text{sumDiff}}
 \end{aligned}
@@ -166,13 +170,17 @@ $$
 
 Solving for $x$ and $y$:
 
-$$\begin{aligned}
+$$
+\begin{aligned}
 x = \frac{\text{sqrDiff}/\text{sumDiff} + \text{sumDiff}}{2}
-\end{aligned}$$
+\end{aligned}
+$$
 
-$$\begin{aligned}
+$$
+\begin{aligned}
 y = \frac{\text{sqrDiff}/\text{sumDiff} - \text{sumDiff}}{2}
-\end{aligned}$$
+\end{aligned}
+$$
 
 This mathematical derivation translates directly into our code. We first calculate the actual sums from our grid and then compute the perfect sums using the formulas. The differences between these give us $\text{sumDiff}$ and $\text{squareDifference}$, which we can plug into our final formulas to get the repeating and missing numbers.
 

@@ -9,6 +9,7 @@ Return* the number of seconds needed to complete this process.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "0110101"`

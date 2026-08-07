@@ -6,6 +6,7 @@ Write code that enhances all date objects such that you can call the `date.nextD
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $date = "2014-06-20"$

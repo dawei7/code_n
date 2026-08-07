@@ -13,6 +13,7 @@ Return *the array *`answer`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = ["cab","ad","bad","c"]`

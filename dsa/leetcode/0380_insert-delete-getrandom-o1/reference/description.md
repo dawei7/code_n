@@ -22,6 +22,7 @@ You must implement the functions of the class such that each function works in *
 The app adapter returns one result per call. On LeetCode, construct `RandomizedSet` and invoke its methods directly. Each successful `getRandom` outcome must give every stored value equal probability.
 
 ### Examples
+
 #### Example 1
 
 ```

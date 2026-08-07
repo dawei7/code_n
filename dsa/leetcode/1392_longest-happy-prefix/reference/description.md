@@ -9,6 +9,7 @@ Given a string `s`, return *the **longest happy prefix** of* `s`. Return an empt
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "level"`

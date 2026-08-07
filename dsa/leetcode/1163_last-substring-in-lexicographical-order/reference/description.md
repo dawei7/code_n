@@ -7,6 +7,7 @@ Given a string `s`, return *the last substring of* `s` *in lexicographical order
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "abab"`

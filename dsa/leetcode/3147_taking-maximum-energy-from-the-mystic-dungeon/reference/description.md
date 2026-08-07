@@ -15,6 +15,7 @@ You are given an array `energy` and an integer `k`. Return the **maximum** possi
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block" style="

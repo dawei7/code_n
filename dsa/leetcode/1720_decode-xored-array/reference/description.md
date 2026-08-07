@@ -13,6 +13,7 @@ Return *the original array* `arr`. It can be proved that the answer exists and i
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $encoded = [1,2,3], first = 1$

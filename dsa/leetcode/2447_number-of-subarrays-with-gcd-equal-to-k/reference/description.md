@@ -11,6 +11,7 @@ The **greatest common divisor of an array** is the largest integer that evenly d
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [9,3,1,2,6,3], k = 3`

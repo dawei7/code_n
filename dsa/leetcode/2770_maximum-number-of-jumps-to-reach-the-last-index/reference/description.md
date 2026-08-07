@@ -17,6 +17,7 @@ If there is no way to reach index $n - 1$, return `-1`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,3,6,4,1,2], target = 2`

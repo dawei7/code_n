@@ -25,6 +25,7 @@ For every index holding a negative value in the input, the output must contain t
 Return the array produced by rotating and reinserting only the non-negative values.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

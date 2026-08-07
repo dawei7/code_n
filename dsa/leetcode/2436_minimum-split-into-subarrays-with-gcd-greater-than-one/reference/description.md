@@ -20,6 +20,7 @@ Return *the minimum number of subarrays that can be obtained after the split*.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [12,6,3,14,8]`

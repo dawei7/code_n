@@ -18,6 +18,7 @@ Given a string `s` that represents a **DNA sequence**, return all the **`10`-let
 Return each repeated length-10 substring once, in any order.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"`

@@ -15,6 +15,7 @@ Return the number of indices `i` and `j` in `nums` where `i < j` such that $\tex
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

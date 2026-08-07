@@ -10,6 +10,7 @@ Placeholders `"_"` in the `args` should be replaced with values from `restArgs` 
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $fn = (...args) => args, args = [2,4,6], restArgs = [8,10]$

@@ -15,6 +15,7 @@ A black lonely pixel is a character `'B'` that located at a specific position wh
   one black pixel.
 
 ### Examples
+
 #### Example 1
 
 ![](images/pixel1.jpg)

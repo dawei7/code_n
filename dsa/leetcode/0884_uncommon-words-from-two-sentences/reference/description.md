@@ -11,6 +11,7 @@ Given two **sentences** `s1` and `s2`, return *a list of all the **uncommon word
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -29,6 +29,7 @@ Every possible start position for a length-`k` substring is considered. The reta
 Return the number of distinct endpoints produced by the valid substring removals.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

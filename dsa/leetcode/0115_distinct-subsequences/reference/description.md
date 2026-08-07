@@ -15,6 +15,7 @@ The test cases are generated so that the answer fits on a 32-bit signed integer.
 Return the number of distinct index selections in `s` whose characters, in order, form `t`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "rabbbit", t = "rabbit"`

@@ -21,6 +21,7 @@ Given two integers `maxChoosableInteger` and `desiredTotal`, return `true` if th
 Each integer may be chosen at most once, and the first player moves first.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $maxChoosableInteger = 10, desiredTotal = 11$

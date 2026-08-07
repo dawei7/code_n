@@ -4,13 +4,14 @@ You are given a sorted integer array `arr` containing `1` and **prime** numbers,
 
 For every `i` and `j` where $0 \le i < j < \text{arr.length}$, we consider the fraction $\text{arr}[i] / \text{arr}[j]$.
 
-Return *the* $$k^{\text{th}}$$*smallest fraction considered*. Return your answer as an array of integers of size `2`, where$\text{answer}[0] = \text{arr}[i]$and$\text{answer}[1] = \text{arr}[j]$.
+Return *the* $$k^{\text{th}}$$ *smallest fraction considered*. Return your answer as an array of integers of size `2`, where $\text{answer}[0] = \text{arr}[i]$ and $\text{answer}[1] = \text{arr}[j]$.
 ### Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [1,2,3,5], k = 3`

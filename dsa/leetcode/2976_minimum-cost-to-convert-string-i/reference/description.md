@@ -13,6 +13,7 @@ Return *the **minimum** cost to convert the string *`source`* to the string *`ta
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $source = "abcd", target = "acbe", original = ["a","b","c","c","e","d"], changed = ["b","c","b","e","b","e"], cost = [2,5,5,1,2,20]$

@@ -19,6 +19,7 @@ Implement the `StockSpanner` class:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ```

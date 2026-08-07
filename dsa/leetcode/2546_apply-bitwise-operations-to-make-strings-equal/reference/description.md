@@ -15,6 +15,7 @@ Return `true` *if you can make the string *`s`* equal to *`target`*, or *`false`
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "1010", target = "0110"`

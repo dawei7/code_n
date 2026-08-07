@@ -9,6 +9,7 @@ Given the string `s` and the integer `k`, return *the number of the possible arr
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "1000", k = 10000`

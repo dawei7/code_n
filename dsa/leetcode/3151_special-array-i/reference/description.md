@@ -9,6 +9,7 @@ You are given an array of integers `nums`. Return `true` if `nums` is a **specia
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

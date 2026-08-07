@@ -20,9 +20,11 @@ $\textit{rem}[0] = t,$
 
 and the transition is
 
-$$\textit{rem}[i + 1] =
+$$
+\textit{rem}[i + 1] =
 \frac{\textit{rem}[i]}
-{\gcd(\textit{rem}[i],\ \textit{num}[i])}.$$
+{\gcd(\textit{rem}[i],\ \textit{num}[i])}.
+$$
 
 Using this array, when enumerating positions from right to left, we immediately know the remaining factor that still needs to be constructed after fixing the prefix.
 
@@ -34,9 +36,11 @@ Assume that $\textit{num}$ does not contain any `'0'` characters. We start enume
 
 * First, try increasing $\textit{num}[n - 1]$. After increasing it, compute
 
-$$\textit{tNow} =
+$$
+\textit{tNow} =
 \frac{\textit{rem}[n - 1]}
-{\gcd(\textit{rem}[n - 1],\ \textit{num}[n - 1])}.$$
+{\gcd(\textit{rem}[n - 1],\ \textit{num}[n - 1])}.
+$$
 
 If $\textit{tNow} = 1$, then the modified number already satisfies the divisibility requirement, so we return it immediately.
 
@@ -44,9 +48,11 @@ If $\textit{tNow} = 1$, then the modified number already satisfies the divisibil
 
 * After increasing $\textit{num}[n - 2]$, compute
 
-$$\textit{tNow} =
+$$
+\textit{tNow} =
 \frac{\textit{rem}[n - 2]}
-{\gcd(\textit{rem}[n - 2],\ \textit{num}[n - 2])}.$$
+{\gcd(\textit{rem}[n - 2],\ \textit{num}[n - 2])}.
+$$
 
 At this point, the last digit can be chosen freely. We greedily enumerate digits from $9$ down to $1$. Whenever the current digit divides $\textit{tNow}$, we place it at the current position and update
 

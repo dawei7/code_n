@@ -19,6 +19,7 @@ Notice that for any integer `x` $(lo \le x \le hi)$ it is **guaranteed** that `x
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $lo = 12, hi = 15, k = 2$

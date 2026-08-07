@@ -13,6 +13,7 @@ The **diameter** of a tree is the length of the *longest* path between any two n
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/example11-transformed.png)

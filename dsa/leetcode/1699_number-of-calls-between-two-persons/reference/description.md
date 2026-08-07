@@ -28,17 +28,18 @@ The result format is in the following example.
 
 | Column | Type | Meaning |
 |---|---|---|
-| `from_id` | int | User ID of caller. |
-| `to_id` | int | User ID of recipient. |
+| $\text{from}_{id}$ | int | User ID of caller. |
+| $\text{to}_{id}$ | int | User ID of recipient. |
 | `duration` | int | Duration of call in seconds. |
 
-- `from_id != to_id`. Duplicate rows represent separate calls.
+- $\text{from}_{id} \neq \text{to}_{id}$. Duplicate rows represent separate calls.
 
 **Return value**
 
-Return a table with columns `person1`, `person2`, `call_count`, and `total_duration`. `person1 < person2` for every row. Include one row per distinct unordered pair of users who have called each other. Row order is unrestricted.
+Return a table with columns `person1`, `person2`, $\text{call}_{count}$, and $\text{total}_{duration}$. `person1 < person2` for every row. Include one row per distinct unordered pair of users who have called each other. Row order is unrestricted.
 
 ### Examples
+
 #### Example 1
 
 ```

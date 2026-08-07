@@ -29,6 +29,7 @@ Return the minimum number of permitted insertions, deletions, and replacements r
 condition.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $password = "a"$

@@ -15,6 +15,7 @@ Note that $\text{digit}_{sum}(x)$ denotes the sum of the digits of `x`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num1 = "1", num2 = "12", \text{min}_{sum} = 1, \text{max}_{sum} = 8$

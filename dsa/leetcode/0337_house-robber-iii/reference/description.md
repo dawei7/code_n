@@ -16,6 +16,7 @@ Given the `root` of the binary tree, return *the maximum amount of money the thi
 Return the maximum sum of values from houses chosen so that no selected node is directly connected to another selected node.
 
 ### Examples
+
 #### Example 1
 
 ![](images/rob1-tree.jpg)

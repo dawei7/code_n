@@ -11,6 +11,7 @@ Given the 2D array `wall` that contains the information about the wall, return *
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/a.png)

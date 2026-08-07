@@ -11,6 +11,7 @@ You need to implement the function `pickIndex()`, which **randomly** picks an in
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ```

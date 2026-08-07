@@ -18,6 +18,7 @@ A substring must occupy one contiguous interval of `s`. Only characters present 
 Return the maximum length among all balanced substrings. Any non-empty one-character substring is balanced, so the result is always at least `1`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

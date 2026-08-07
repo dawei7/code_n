@@ -13,6 +13,7 @@ A string `a` is lexicographically smaller than a string `b` (of the same length)
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $lcp = [[4,0,2,0],[0,3,0,1],[2,0,2,0],[0,1,0,1]]$

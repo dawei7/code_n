@@ -17,6 +17,7 @@ Return ***the maximum** points the mice can achieve if the first mouse eats exac
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $reward1 = [1,1,3,4], reward2 = [4,4,1,1], k = 2$

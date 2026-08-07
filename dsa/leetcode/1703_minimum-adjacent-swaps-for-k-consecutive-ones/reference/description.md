@@ -9,6 +9,7 @@ Return *the **minimum** number of moves required so that *`nums`* has *`k`* **co
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,0,0,1,0,1], k = 2`

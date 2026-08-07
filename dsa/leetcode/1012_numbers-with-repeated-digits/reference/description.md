@@ -7,6 +7,7 @@ Given an integer `n`, return *the number of positive integers in the range *`[1,
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 20$

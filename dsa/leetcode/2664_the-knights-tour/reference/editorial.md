@@ -56,11 +56,13 @@ We then examine all potential knight moves from the current cell, checking if ea
 
 The recurrence relation for the function `solveKnightsTour` can be described as follows:
 
-$$T(r, c, k) =
+$$
+T(r, c, k) =
 \begin{cases}
-1 \& \text{if } k = 0 \\
-\sum_{(r', c') \in \text{ValidMoves}(r, c)} T(r', c', k-1) \& \text{if } k > 0
-\end{cases}$$
+1 & \text{if } k = 0 \\
+\sum_{(r', c') \in \text{ValidMoves}(r, c)} T(r', c', k-1) & \text{if } k > 0
+\end{cases}
+$$
 
 Where:
 - $T(r, c, k)$ is the number of ways to complete the tour with `k` remaining cells unvisited from position `(r, c)`.

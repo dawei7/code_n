@@ -29,6 +29,7 @@ You must write an algorithm that uses only constant extra space.
 The in-place compression must use $O(1)$ auxiliary space.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $chars = ["a","a","b","b","c","c","c"]$

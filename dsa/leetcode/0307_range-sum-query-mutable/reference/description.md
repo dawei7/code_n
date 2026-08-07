@@ -27,6 +27,7 @@ Implement the `NumArray` class:
 Return the results of the executed `sum` operations in order. Updates change subsequent query results and produce no output.
 
 ### Examples
+
 #### Example 1
 
 ```

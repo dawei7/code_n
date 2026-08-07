@@ -49,10 +49,12 @@ Let $n$ be the given integer.
 First, focus on the numbers that are divisible by `m`.
 The *k-th* such number is *k × m*, so their sum is
 
-$$\text{num}_2
+$$
+\text{num}_2
   = m + 2m + \dots + k m
   = (1 + 2 + \dots + k)\,m
-  = \frac{k(k+1)}{2}\,m,$$ -------------- ( 1 )
+  = \frac{k(k+1)}{2}\,m,
+$$ -------------- ( 1 )
 
 where
 
@@ -63,20 +65,26 @@ is the count of multiples of `m` up to `n`.
 Next, look at the numbers **not** divisible by `m`.
 Their sum is simply the total of the first `n` integers minus $\text{num}_2$:
 
-$$\text{num}_1
+$$
+\text{num}_1
   = (1 + 2 + \dots + n) - \text{num}_2
-  = \frac{n(n+1)}{2} - \text{num}_2.$$  --------------- ( 2 )
+  = \frac{n(n+1)}{2} - \text{num}_2.
+$$  --------------- ( 2 )
 
 Putting the two pieces together, the quantity the problem asks for is
 
-$$\text{num}_1 - \text{num}_2
+$$
+\text{num}_1 - \text{num}_2
   = \left[\frac{n(n+1)}{2} - \text{num}_2\right] - \text{num}_2
-  = \frac{n(n+1)}{2} - 2\,\text{num}_2.$$
+  = \frac{n(n+1)}{2} - 2\,\text{num}_2.
+$$
 
 Finally, substitute the closed form of $\text{num}_2$:
 
-$$\boxed{\text{num}_1 - \text{num}_2
-       = \frac{n(n+1)}{2} \;-\; k(k+1)\,m.}$$
+$$
+\boxed{\text{num}_1 - \text{num}_2
+       = \frac{n(n+1)}{2} \;-\; k(k+1)\,m.}
+$$
 
 This single formula lets us compute the desired result directly, without any iteration.
 

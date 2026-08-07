@@ -17,6 +17,7 @@ Given two sentences `sentence1` and `sentence2`, return **true** if `sentence1` 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -15,6 +15,7 @@ Return `true` *if* `grid` *represents a valid configuration of the knight's move
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/yetgriddrawio-5.png)

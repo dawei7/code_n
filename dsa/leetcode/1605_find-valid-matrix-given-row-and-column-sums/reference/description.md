@@ -1,6 +1,6 @@
 ## Description
 
-You are given two arrays `rowSum` and `colSum` of non-negative integers where $\text{rowSum}[i]$ is the sum of the elements in the $$i^{\text{th}}$$row and$\text{colSum}[j]$is the sum of the elements of the$$j^{\text{th}}$$ column of a 2D matrix. In other words, you do not know the elements of the matrix, but you do know the sums of each row and column.
+You are given two arrays `rowSum` and `colSum` of non-negative integers where $\text{rowSum}[i]$ is the sum of the elements in the $$i^{\text{th}}$$ row and $\text{colSum}[j]$ is the sum of the elements of the $$j^{\text{th}}$$ column of a 2D matrix. In other words, you do not know the elements of the matrix, but you do know the sums of each row and column.
 
 Find any matrix of **non-negative** integers of size `rowSum.length x colSum.length` that satisfies the `rowSum` and `colSum` requirements.
 
@@ -11,6 +11,7 @@ Return *a 2D array representing **any** matrix that fulfills the requirements*. 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $rowSum = [3,8], colSum = [4,7]$

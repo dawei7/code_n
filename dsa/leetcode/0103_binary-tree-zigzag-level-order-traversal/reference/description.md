@@ -12,6 +12,7 @@ Given the `root` of a binary tree, return *the zigzag level order traversal of i
 Return one value list per tree depth, ordered from top to bottom and with the reading direction alternating at each level.
 
 ### Examples
+
 #### Example 1
 
 ![](images/tree1.jpg)

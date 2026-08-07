@@ -25,6 +25,7 @@ Return a list containing each length-`n` binary string with no consecutive ones 
 Let $R$ denote the number of strings in the returned list.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

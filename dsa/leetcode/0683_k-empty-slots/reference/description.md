@@ -7,11 +7,11 @@ You are given an array `bulbs` of length `n` where $\text{bulbs}[i] = x$ means t
 Given an integer `k`, return *the **minimum day number** such that there exists two **turned on** bulbs that have **exactly** `k` bulbs between them that are **all turned off**. If there isn't such day, return `-1`.*
 ### Function Contract
 
-`solve(bulbs: list[int], k: int) -> int`
+$solve(bulbs: \text{list}[int], k: int) -> int$
 
 **Inputs**
 
-- `bulbs`: a permutation of the one-based bulb positions. At zero-based index `i`, `bulbs[i]` is the position switched on during day `i + 1`.
+- `bulbs`: a permutation of the one-based bulb positions. At zero-based index `i`, $\text{bulbs}[i]$ is the position switched on during day $i + 1$.
 - `k`: the exact number of bulbs that must remain off strictly between two bulbs that are on.
 
 **Return value**
@@ -19,6 +19,7 @@ Given an integer `k`, return *the **minimum day number** such that there exists 
 Return the earliest one-based day when such a pair of lit endpoints exists. Return `-1` when no day satisfies the condition.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $bulbs = [1,3,2], k = 1$

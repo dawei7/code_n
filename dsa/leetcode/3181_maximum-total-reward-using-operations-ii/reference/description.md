@@ -15,6 +15,7 @@ Return an integer denoting the **maximum ***total reward* you can collect by per
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

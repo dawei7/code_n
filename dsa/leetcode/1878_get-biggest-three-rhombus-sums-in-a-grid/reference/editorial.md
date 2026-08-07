@@ -18,19 +18,19 @@ A rhombus has **three degrees of freedom**. For example:
 
 To quickly calculate each part mentioned in Hint 2, we can use prefix sums.
 
-* Let $\textit{sum}\text{\_1}[x][y]$ denote the sum of all elements along the diagonal from the cell $(x-1, y-1)$ toward the **top-left** direction.
+* Let $\textit{sum}\text{_1}[x][y]$ denote the sum of all elements along the diagonal from the cell $(x-1, y-1)$ toward the **top-left** direction.
 
-* Let $\textit{sum}\text{\_2}[x][y]$ denote the sum of all elements along the diagonal from the cell $(x-1, y-1)$ toward the **top-right** direction.
+* Let $\textit{sum}\text{_2}[x][y]$ denote the sum of all elements along the diagonal from the cell $(x-1, y-1)$ toward the **top-right** direction.
 
 #### Intuition
 
-First, we preprocess all values of $\textit{sum}\text{\_1}[i][j]$ and $\textit{sum}\text{\_2}[i][j]$ using a double loop. The recurrence relations are:
+First, we preprocess all values of $\textit{sum}\text{_1}[i][j]$ and $\textit{sum}\text{_2}[i][j]$ using a double loop. The recurrence relations are:
 
-$\textit{sum}\text{\_1}[i][j] = \textit{sum}_1[i-1][j-1] + \textit{grid}[i-1][j-1]$
+$\textit{sum}\text{_1}[i][j] = \textit{sum}_1[i-1][j-1] + \textit{grid}[i-1][j-1]$
 
 and
 
-$\textit{sum}\text{\_2}[i][j] = \textit{sum}_2[i-1][j+1] + \textit{grid}[i-1][j-1]$
+$\textit{sum}\text{_2}[i][j] = \textit{sum}_2[i-1][j+1] + \textit{grid}[i-1][j-1]$
 
 where the ranges of $i$ and $j$ are $[1, m]$ and $[1, n]$, respectively.
 
@@ -38,13 +38,15 @@ Next, we use a triple loop to enumerate the position of the **top vertex** of th
 
 Using these vertices, we can compute the border sum of the rhombus in $O(1)$ time. Specifically, the sum consists of the five parts shown in Hint 2:
 
-$$\begin{cases}
+$$
+\begin{cases}
 \textit{sum}_2[l_x + 1][l_y + 1] - \textit{sum}_2[u_x][u_y + 2] \
 \textit{sum}_1[r_x + 1][r_y + 1] - \textit{sum}_1[u_x][u_y] \
 \textit{sum}_1[d_x + 1][d_y + 1] - \textit{sum}_1[l_x][l_y] \
 \textit{sum}_2[d_x + 1][d_y + 1] - \textit{sum}_2[r_x][r_y + 2] \
 \textit{grid}[u_x][u_y] + \textit{grid}[d_x][d_y] + \textit{grid}[l_x][l_y] + \textit{grid}[r_x][r_y]
-\end{cases}$$
+\end{cases}
+$$
 
 In addition, we can design a small data structure that maintains the **top three distinct rhombus sums** dynamically as they are computed. The implementation is shown below.
 

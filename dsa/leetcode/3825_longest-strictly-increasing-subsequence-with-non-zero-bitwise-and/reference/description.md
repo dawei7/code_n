@@ -16,6 +16,7 @@ Let $N = \lvert\texttt{nums}\rvert$ and let $B = 30$, the number of bit position
 Return the maximum number of elements in a subsequence that is strictly increasing and whose cumulative bitwise AND is non-zero. A nonzero single element is a valid length-one subsequence. A zero by itself is not valid because its AND is zero.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

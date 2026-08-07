@@ -17,6 +17,7 @@ Return the number of complete repetitions of `sentence` that fit while filling t
 top to bottom under the word and spacing rules.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $sentence = ["hello","world"], rows = 2, cols = 8$

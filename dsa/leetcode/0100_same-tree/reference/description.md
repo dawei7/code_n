@@ -15,6 +15,7 @@ Two binary trees are considered the same if they are structurally identical, and
 Return `true` if `p` and `q` have identical structure and values; otherwise return `false`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1.jpg)

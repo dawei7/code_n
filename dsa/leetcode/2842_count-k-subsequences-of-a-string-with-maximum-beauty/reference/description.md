@@ -37,6 +37,7 @@ A subsequence of a string is a new string formed from the original string by del
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "bcca", k = 2`

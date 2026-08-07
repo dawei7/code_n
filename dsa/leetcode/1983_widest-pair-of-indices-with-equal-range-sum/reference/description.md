@@ -10,6 +10,7 @@ Return *the **distance** of the **widest** pair of indices. If no pair of indice
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [1,1,0,1], nums2 = [0,1,1,0]$

@@ -22,7 +22,7 @@ class Solution:
             # TODO
 ```
 
-The second subproblem is to convert $(101)_2$ into $1 \times$2^{2}$+ 0 \times$2^{1}$+ 1 \times$2^{0}$= 5$. It could be solved in two ways. Using classical arithmetic is more straightforward
+The second subproblem is to convert $(101)_2$ into $1 \times $2^{2}$ + 0 \times $2^{1}$ + 1 \times $2^{0}$ = 5$. It could be solved in two ways. Using classical arithmetic is more straightforward
 
 ![img](images/try1.png)
 *Figure 1. Approach 1: num = num * 2 + x*

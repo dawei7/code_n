@@ -13,6 +13,7 @@ Return *an array of booleans *`answer`* where *$\text{answer}[i]$* is *`true`* i
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [0,1,1]`

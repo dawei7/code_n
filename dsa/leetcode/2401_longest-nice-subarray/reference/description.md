@@ -15,6 +15,7 @@ A **subarray** is a **contiguous** part of an array.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,3,8,48,10]`

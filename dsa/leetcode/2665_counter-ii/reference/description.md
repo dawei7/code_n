@@ -15,6 +15,7 @@ The three functions are:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $init = 5, calls = ["increment","reset","decrement"]$

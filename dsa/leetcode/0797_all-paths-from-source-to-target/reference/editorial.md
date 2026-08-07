@@ -135,10 +135,12 @@ Given a node `currNode`, our target function is `allPathsToTarget(currNode)`, wh
 
 The target function could be calculated by iterating through the neighbor nodes of the current node, which we summarize with the following _recursive_ formula:
 
-$$\forall \text{nextNode} \in \text{neighbors}(\text{currNode}),
+$$
+\forall \text{nextNode} \in \text{neighbors}(\text{currNode}),
 \\
 \\
-\text{allPathsToTarget}(\text{currNode}) = \{ \text{currNode} + \text{allPathsToTarget}(\text{nextNode}) \}$$
+\text{allPathsToTarget}(\text{currNode}) = \{ \text{currNode} + \text{allPathsToTarget}(\text{nextNode}) \}
+$$
 
 The above formula can be read intuitively as: _"the paths from the current node to the target node consist of all the paths starting from each neighbor of the current node."_
 

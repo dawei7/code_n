@@ -18,6 +18,7 @@ A **subarray** is contiguous. A selected subarray is **palindromic** when its va
 Return the smallest number of valid palindromic-subarray removals that leaves `arr` empty.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [1,2]`

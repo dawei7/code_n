@@ -15,6 +15,7 @@ Return the number of teams you can form given the conditions. (soldiers can be p
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $rating = [2,5,3,4,1]$

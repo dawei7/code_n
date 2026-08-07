@@ -7,7 +7,7 @@ Given an array of strings `wordsDict` and two strings that already exist in the 
 
 **Inputs**
 
-- `wordsDict`: List of strings `List[str]`.
+- `wordsDict`: List of strings $\text{List}[str]$.
 - `word1`: Target word string (may equal `word2`).
 - `word2`: Target word string (may equal `word1`).
 
@@ -16,6 +16,7 @@ Given an array of strings `wordsDict` and two strings that already exist in the 
 Integer representing the shortest distance between occurrences of `word1` and `word2` in `wordsDict`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $wordsDict = ["practice", "makes", "perfect", "coding", "makes"], word1 = "makes", word2 = "coding"$

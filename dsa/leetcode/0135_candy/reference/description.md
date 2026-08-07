@@ -20,6 +20,7 @@ Return *the minimum number of candies you need to have to distribute the candies
 Return the minimum sum of candies over all assignments satisfying both neighbor directions.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $ratings = [1,0,2]$

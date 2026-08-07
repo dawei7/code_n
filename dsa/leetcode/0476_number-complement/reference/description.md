@@ -18,6 +18,7 @@ Given an integer `num`, return *its complement*.
 Do not complement implicit leading zeroes or apply a fixed signed-integer width.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num = 5$

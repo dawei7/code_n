@@ -34,6 +34,7 @@ The **digits** are defined as one or more digits.
 Return `true` exactly when the complete string conforms to one of the accepted integer-or-decimal forms with an optional exponent.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

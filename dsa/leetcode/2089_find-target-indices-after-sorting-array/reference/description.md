@@ -11,6 +11,7 @@ Return *a list of the target indices of* `nums` after* sorting *`nums`* in **non
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,5,2,3], target = 2`

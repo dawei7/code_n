@@ -11,6 +11,7 @@ Return *the `sentence`* after the replacement.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $dictionary = ["cat","bat","rat"], sentence = "the cattle was rattled by the battery"$

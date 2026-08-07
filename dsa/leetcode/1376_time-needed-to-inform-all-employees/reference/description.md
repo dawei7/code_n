@@ -15,6 +15,7 @@ Return *the number of minutes* needed to inform all the employees about the urge
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 1, headID = 0, manager = [-1], informTime = [0]$

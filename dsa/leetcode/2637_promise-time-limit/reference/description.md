@@ -13,6 +13,7 @@ The **time limited** function should follow these rules:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** ``

@@ -9,6 +9,7 @@ We call $k \ge 2$ a **good base** of `n`, if all digits of `n` base `k` are `1`'
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = "13"$

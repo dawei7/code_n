@@ -15,6 +15,7 @@ Given the `root` of a binary tree, *return *`true`* if the binary tree is **Even
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/sample_1_1966.png)

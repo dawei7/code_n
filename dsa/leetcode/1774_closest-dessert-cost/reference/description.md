@@ -25,6 +25,7 @@ Return *the closest possible cost of the dessert to *`target`. If there are mult
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $baseCosts = [1,7], toppingCosts = [3,4], target = 10$

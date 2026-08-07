@@ -19,6 +19,7 @@ Return *an array* `ans` *of length* `n`, *where* $\text{ans}[i]$ *is the length 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $obstacles = [1,2,3,2]$

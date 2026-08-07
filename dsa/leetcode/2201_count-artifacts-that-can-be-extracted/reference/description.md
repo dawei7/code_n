@@ -23,6 +23,7 @@ The test cases are generated such that:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/untitled-diagram.jpg)

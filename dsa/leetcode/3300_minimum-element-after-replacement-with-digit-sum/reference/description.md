@@ -11,6 +11,7 @@ Return the **minimum** element in `nums` after all replacements.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

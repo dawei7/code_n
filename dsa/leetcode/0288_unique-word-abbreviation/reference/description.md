@@ -33,6 +33,7 @@ Implement the `ValidWordAbbr` class:
 Return one boolean per query in `words`. A result is true exactly when the corresponding query meets the native uniqueness rule.
 
 ### Examples
+
 #### Example 1
 
 ```

@@ -19,6 +19,7 @@ Return a list containing the elements of `nums` in their original relative order
 The app-local function may resize and return `nums` itself. The returned list is judged by its values; internal capacity and discarded elements beyond its new logical length are irrelevant.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

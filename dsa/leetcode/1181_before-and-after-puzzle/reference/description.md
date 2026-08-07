@@ -17,9 +17,7 @@ You should return a list of **distinct** strings **sorted lexicographically**, a
 
 Define the total input character count as
 
-$$
-S = \sum_{x \in \texttt{phrases}} \lvert x \rvert.
-$$
+$S = \sum_{x \in \texttt{phrases}} \lvert x \rvert.$
 
 Let $G$ be the total number of characters across all compatible merged candidates before duplicate strings are removed, and let $R$ be the number of distinct returned puzzles.
 
@@ -28,6 +26,7 @@ Let $G$ be the total number of characters across all compatible merged candidate
 - Return the distinct valid merges as a lexicographically sorted list of strings. A phrase may not be paired with itself at the same index, even when its first and last words match.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

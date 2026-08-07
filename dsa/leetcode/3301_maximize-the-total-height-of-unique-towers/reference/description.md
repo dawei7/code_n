@@ -4,7 +4,7 @@ You are given an array `maximumHeight`, where $\text{maximumHeight}[i]$ denotes 
 
 Your task is to assign a height to each tower so that:
 
-- The height of the $$i^{\text{th}}$$tower is a positive integer and does not exceed$\text{maximumHeight}[i]$.
+- The height of the $$i^{\text{th}}$$ tower is a positive integer and does not exceed $\text{maximumHeight}[i]$.
 
 - No two towers have the same height.
 
@@ -15,6 +15,7 @@ Return the **maximum** possible total sum of the tower heights. If it's not poss
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

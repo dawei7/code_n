@@ -19,9 +19,7 @@ And your job is to find the lexicographically largest one among all the possible
 
 Let $m = \lvert\texttt{strs}\rvert$ and let
 
-$$
-L = \sum_{w \in \texttt{strs}} \lvert w \rvert.
-$$
+$L = \sum_{w \in \texttt{strs}} \lvert w \rvert.$
 
 Every legal result contains exactly $L$ characters. Reversal changes the order inside a block but not the circular
 order of the $m$ blocks.
@@ -32,6 +30,7 @@ Return the lexicographically largest length-$L$ string obtainable after choosing
 the resulting loop at one character boundary.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $strs = ["abc","xyz"]$

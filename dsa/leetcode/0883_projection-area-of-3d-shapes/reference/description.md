@@ -15,6 +15,7 @@ Return *the total area of all three projections*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/shadow.png)

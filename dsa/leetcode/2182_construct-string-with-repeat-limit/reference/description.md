@@ -11,6 +11,7 @@ A string `a` is **lexicographically larger** than a string `b` if in the first p
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "cczazcc", repeatLimit = 3`

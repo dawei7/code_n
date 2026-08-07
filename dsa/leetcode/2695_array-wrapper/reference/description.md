@@ -11,6 +11,7 @@ Create a class `ArrayWrapper` that accepts an array of integers in its construct
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [[1,2],[3,4]], operation = "Add"`

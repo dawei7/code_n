@@ -21,6 +21,7 @@ Note that `abs(x)` equals `x` if $x \ge 0$, and `-x` otherwise.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 4, index = 2, maxSum = 6$

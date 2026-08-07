@@ -10,6 +10,7 @@ Given two arrays `nums1` and `nums2` of length `n`, return *the **minimum produc
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [5,3,4,2], nums2 = [4,2,2,5]$

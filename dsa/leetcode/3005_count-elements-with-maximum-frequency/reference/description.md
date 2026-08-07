@@ -11,6 +11,7 @@ The **frequency** of an element is the number of occurrences of that element in 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,2,3,1,4]`

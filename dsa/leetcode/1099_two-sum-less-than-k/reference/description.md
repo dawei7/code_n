@@ -12,9 +12,10 @@ The two chosen values must occupy distinct positions ordered as $i < j$. Equal n
 
 **Return value**
 
-Return the maximum `nums[i] + nums[j]` that is strictly less than `k`. Return `-1` if no eligible pair exists.
+Return the maximum $\text{nums}[i] + \text{nums}[j]$ that is strictly less than `k`. Return `-1` if no eligible pair exists.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [34,23,1,24,75,33,54,8], k = 60`

@@ -4,24 +4,28 @@ Consider a function that implements an algorithm **similar** to <a href="https:/
 
 The pseudocode of the function is as follows:
 
-func(sequence, target)
-while sequence is not empty
-**randomly** choose an element from sequence as the pivot
-if pivot = target, return **true**
-else if pivot < target, remove pivot and all elements to its left from the sequence
-else, remove pivot and all elements to its right from the sequence
-end while
-return **false**
 ```
+func(sequence, target)
+  while sequence is not empty
+**randomly** choose an element from sequence as the pivot
+    if pivot = target, return **true**
+    else if pivot < target, remove pivot and all elements to its left from the sequence
+    else, remove pivot and all elements to its right from the sequence
+  end while
+  return **false**
+```
+
 When the `sequence` is sorted, the function works correctly for **all** values. When the `sequence` is not sorted, the function does not work for all values, but may still work for **some** values.
+
 Given an integer array `nums`, representing the `sequence`, that contains **unique** numbers and **may or may not be sorted**, return *the number of values that are **guaranteed** to be found using the function, for **every possible** pivot selection*.
 ### Function Contract
 
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
-```
+
 - **Input:** `nums = [7]`
 - **Output:** `1`
 **Explanation**:

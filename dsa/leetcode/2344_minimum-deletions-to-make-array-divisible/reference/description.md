@@ -11,6 +11,7 @@ Note that an integer `x` divides `y` if $y \% x = 0$.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,3,2,4,3], numsDivide = [9,6,9,3,15]`

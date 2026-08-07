@@ -18,6 +18,7 @@ Return the **minimum** total cost required to reach $(m - 1, n - 1)$. If it is i
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

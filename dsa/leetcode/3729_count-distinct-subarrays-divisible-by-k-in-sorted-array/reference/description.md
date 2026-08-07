@@ -21,6 +21,7 @@ A subarray is a nonempty contiguous sequence. Two occurrences with identical val
 Return the integer number of different subarray value sequences whose element sum is congruent to $0$ modulo `k`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

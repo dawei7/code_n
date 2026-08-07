@@ -17,6 +17,7 @@ Return *an array of the results of all range XOR queries* in the order they were
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

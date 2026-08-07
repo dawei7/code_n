@@ -26,6 +26,7 @@ Let $n=\lvert\texttt{nums1}\rvert$.
 Return `true` if one legal choice per index can make every constructed value odd or every constructed value even. Otherwise, return `false`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

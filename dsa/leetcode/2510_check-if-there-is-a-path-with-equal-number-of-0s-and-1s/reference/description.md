@@ -11,9 +11,10 @@ Return `true`* if there is a path from *`(0, 0)`* to *$(m - 1, n - 1)$* that vis
 
 **Return value**
 
-Return `True` if there exists at least one path from `(0, 0)` to `(r - 1, c - 1)` with equal numbers of `0`s and `1`s; otherwise return `False`.
+Return `True` if there exists at least one path from `(0, 0)` to $(r - 1, c - 1)$ with equal numbers of `0`s and `1`s; otherwise return `False`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/yetgriddrawio-4.png)

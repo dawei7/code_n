@@ -7,6 +7,7 @@ Given an integer `n`, return *a list of all **simplified** fractions between *`0
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 2$

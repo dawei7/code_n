@@ -7,6 +7,7 @@ Given an integer `n`, return **any** array containing `n` **unique** integers su
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 5$

@@ -17,6 +17,7 @@ Return *the head of the merged linked list*.
 Return the head of the merged non-decreasing linked list.
 
 ### Examples
+
 #### Example 1
 
 ![](images/merge_ex1.jpg)

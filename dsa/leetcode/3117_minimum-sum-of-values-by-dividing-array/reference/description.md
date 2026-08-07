@@ -4,7 +4,7 @@ You are given two arrays `nums` and `andValues` of length `n` and `m` respective
 
 The **value** of an array is equal to the **last** element of that array.
 
-You have to divide `nums` into `m` **disjoint contiguous** subarrays such that for the $$i^{\text{th}}$$subarray$[l_{i}, r_{i}]$, the bitwise `AND` of the subarray elements is equal to$\text{andValues}[i]$, in other words,$nums[l_{i}] \& nums[l_{i} + 1] \& ... \& nums[r_{i}] = \text{andValues}[i]$for all$1 \le i \le m$, where `&` represents the bitwise `AND` operator.
+You have to divide `nums` into `m` **disjoint contiguous** subarrays such that for the $$i^{\text{th}}$$ subarray $[l_{i}, r_{i}]$, the bitwise `AND` of the subarray elements is equal to $\text{andValues}[i]$, in other words, $nums[l_{i}] \& nums[l_{i} + 1] \& ... \& nums[r_{i}] = \text{andValues}[i]$ for all $1 \le i \le m$, where `&` represents the bitwise `AND` operator.
 
 Return *the **minimum** possible sum of the **values** of the *`m`* subarrays *`nums`* is divided into*. *If it is not possible to divide *`nums`* into *`m`* subarrays satisfying these conditions, return* `-1`.
 ### Function Contract
@@ -13,6 +13,7 @@ Return *the **minimum** possible sum of the **values** of the *`m`* subarrays *`
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -20,6 +20,7 @@ Let $n$ be the number of characters in `expression`.
 Return the single-character terminal selected by evaluating `expression`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $expression = "T?2:3"$

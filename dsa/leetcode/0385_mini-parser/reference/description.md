@@ -14,6 +14,7 @@ Each element is either an integer or a list whose elements may also be integers 
 Return one `NestedInteger` containing the parsed integer or list hierarchy. The runner serializes that object to ordinary integers and arrays for display and validation.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "324"`

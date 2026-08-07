@@ -7,6 +7,7 @@ Given the `root` of a binary tree, return *the average value of the nodes on eac
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/avg1-tree.jpg)

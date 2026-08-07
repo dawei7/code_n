@@ -17,6 +17,7 @@ A subarray must contain consecutive elements and cannot be empty. If a value occ
 Return the smallest positive subarray length whose set of values sums to at least `k`. Return `-1` if every subarray has a smaller distinct-value sum.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

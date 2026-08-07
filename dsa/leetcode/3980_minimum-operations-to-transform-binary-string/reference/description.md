@@ -27,6 +27,7 @@ The input strings contain only `'0'` and `'1'`. The function need not mutate eit
 Return the minimum number of legal operations needed to transform `s1` into `s2`. Return `-1` if no sequence of the permitted operations reaches the target.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

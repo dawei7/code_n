@@ -13,6 +13,7 @@ A **substring** is a contiguous sequence of characters in a string, possibly emp
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $word = "cbaaaabc", forbidden = ["aaa","cb"]$

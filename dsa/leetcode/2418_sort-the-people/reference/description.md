@@ -11,6 +11,7 @@ Return `names`* sorted in **descending** order by the people's heights*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $names = ["Mary","John","Emma"], heights = [180,165,170]$

@@ -11,6 +11,7 @@ Return *an array of coordinates representing the positions of the grid in the or
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/example_1.png)

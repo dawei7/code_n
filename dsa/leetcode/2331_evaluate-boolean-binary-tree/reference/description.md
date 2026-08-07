@@ -23,6 +23,7 @@ A **leaf node** is a node that has zero children.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/example1drawio1.png)

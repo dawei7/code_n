@@ -15,6 +15,7 @@ You must write an algorithm with `O(log n)` runtime complexity.
 Return the existing index of `target`, or its order-preserving insertion index if it is absent.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,3,5,6], target = 5`

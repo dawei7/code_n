@@ -13,6 +13,7 @@ Two ways are considered different if the order of the steps made is not exactly 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $startPos = 1, endPos = 2, k = 3$

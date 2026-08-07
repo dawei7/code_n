@@ -8,9 +8,9 @@ You have `k` servers numbered from `0` to `k-1` that are being used to handle mu
 
 - If the $(i \% k)^th$ server is available, assign the request to that server.
 
-- Otherwise, assign the request to the next available server (wrapping around the list of servers and starting from 0 if necessary). For example, if the $$i^{\text{th}}$$server is busy, try to assign the request to the$(i+1)^th$server, then the$(i+2)^th$ server, and so on.
+- Otherwise, assign the request to the next available server (wrapping around the list of servers and starting from 0 if necessary). For example, if the $$i^{\text{th}}$$ server is busy, try to assign the request to the $(i+1)^th$ server, then the $(i+2)^th$ server, and so on.
 
-You are given a **strictly increasing** array `arrival` of positive integers, where $\text{arrival}[i]$ represents the arrival time of the $$i^{\text{th}}$$request, and another array `load`, where$\text{load}[i]$represents the load of the$$i^{\text{th}}$$ request (the time it takes to complete). Your goal is to find the **busiest server(s)**. A server is considered **busiest** if it handled the most number of requests successfully among all the servers.
+You are given a **strictly increasing** array `arrival` of positive integers, where $\text{arrival}[i]$ represents the arrival time of the $$i^{\text{th}}$$ request, and another array `load`, where $\text{load}[i]$ represents the load of the $$i^{\text{th}}$$ request (the time it takes to complete). Your goal is to find the **busiest server(s)**. A server is considered **busiest** if it handled the most number of requests successfully among all the servers.
 
 Return *a list containing the IDs (0-indexed) of the **busiest server(s)***. You may return the IDs in any order.
 ### Function Contract
@@ -19,6 +19,7 @@ Return *a list containing the IDs (0-indexed) of the **busiest server(s)***. You
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/load-1.png)

@@ -23,6 +23,7 @@ The **edit distance** is defined as follows:
 Return a list of $m$ city indices forming a valid walk on the graph with minimum edit distance against `targetPath`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/e1.jpg)

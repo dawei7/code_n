@@ -11,6 +11,7 @@ Return *the **maximum total number** of fruits you can harvest*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/1.png)

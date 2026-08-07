@@ -17,6 +17,7 @@ Return *the **minimum** number of months needed to complete all the courses*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 **

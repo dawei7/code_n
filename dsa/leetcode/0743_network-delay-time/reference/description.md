@@ -9,6 +9,7 @@ We will send a signal from a given node `k`. Return *the **minimum** time it tak
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/931_example_1.png)

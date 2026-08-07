@@ -9,6 +9,7 @@ A subtree of a binary tree `tree` is a tree that consists of a node in `tree` an
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/subtree1-tree.jpg)

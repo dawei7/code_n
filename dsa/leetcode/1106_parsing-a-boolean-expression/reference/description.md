@@ -21,23 +21,20 @@ It is **guaranteed** that the given expression is valid and follows the given ru
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
-```
-**Input:** expression = "&(|(f))"
-**Output:** false
-**Explanation:**
+- **Input:** $expression = "\&(|(f))"$
+- **Output:** `false`
+- **Explanation:**
 First, evaluate |(f) --> f. The expression is now "&(f)".
 Then, evaluate &(f) --> f. The expression is now "f".
 Finally, return false.
-```
 #### Example 2
 
-```
-**Input:** expression = "|(f,f,f,t)"
-**Output:** true
-**Explanation:** The evaluation of (false OR false OR false OR true) is true.
-```
+- **Input:** $expression = "|(f,f,f,t)"$
+- **Output:** `true`
+- **Explanation:** The evaluation of (false OR false OR false OR true) is true.
 #### Example 3
 
 - **Input:** $expression = "!(\&(f,t))"$

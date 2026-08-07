@@ -26,6 +26,7 @@ After the binary tree rooted at `root` is parsed, the `TreeNode` with value of `
 Return the root `TreeNode` of the corrected binary tree with the invalid node and its entire subtree removed.
 
 ### Examples
+
 #### Example 1
 
 **

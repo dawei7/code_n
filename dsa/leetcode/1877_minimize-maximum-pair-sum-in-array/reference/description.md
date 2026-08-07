@@ -17,6 +17,7 @@ Return *the minimized **maximum pair sum** after optimally pairing up the elemen
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,5,2,3]`

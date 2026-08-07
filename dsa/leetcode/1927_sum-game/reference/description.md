@@ -21,6 +21,7 @@ Assuming Alice and Bob play **optimally**, return `true` *if Alice will win and 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num = "5023"$

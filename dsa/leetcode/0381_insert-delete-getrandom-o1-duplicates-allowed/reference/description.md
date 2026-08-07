@@ -26,6 +26,7 @@ You must implement the functions of the class such that each function works on *
 The app adapter returns one result per call. On LeetCode, construct `RandomizedCollection` and call its methods directly. Removal affects only one matching occurrence.
 
 ### Examples
+
 #### Example 1
 
 ```

@@ -22,6 +22,7 @@ Format each integer in ordinary decimal notation without leading zeros. Insert a
 Return the total number of commas in the formatted representations of all integers $x$ for which $1\le x\le n$.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -29,6 +29,7 @@ The result format is in the following example.
 Return a one-row table with a `median` column. Its value is the middle decompressed value when $T$ is odd or the average of the two middle values when $T$ is even, rounded to one decimal place.
 
 ### Examples
+
 #### Example 1
 
 ```

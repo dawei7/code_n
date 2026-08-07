@@ -17,6 +17,7 @@ Return *the minimum number of operations required to make *`nums`* similar to *`
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [8,12,6], target = [2,14,10]`

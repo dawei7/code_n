@@ -15,9 +15,10 @@ Return *the **shortest sorted** list of ranges that **exactly covers all the mis
 
 **Return value**
 
-Return `List[List[int]]` representing the shortest sorted list of ranges `[a, b]` covering all missing numbers.
+Return $List[\text{List}[int]]$ representing the shortest sorted list of ranges `[a, b]` covering all missing numbers.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [0,1,3,50,75], lower = 0, upper = 99`

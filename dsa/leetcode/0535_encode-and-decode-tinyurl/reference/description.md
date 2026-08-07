@@ -19,6 +19,7 @@ Implement the `Solution` class:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $url = "https://\text{leetcode.com}/problems/design-tinyurl"$

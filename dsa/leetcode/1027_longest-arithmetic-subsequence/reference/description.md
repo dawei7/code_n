@@ -13,6 +13,7 @@ Given an array `nums` of integers, return *the length of the longest arithmetic 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,6,9,12]`

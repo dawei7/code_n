@@ -96,7 +96,7 @@ $\text{arr}[i] = (int)\text{S.charAt}(i) - (int)'a'$
 
 So one could consider string `abcd` -> `[0, 1, 2, 3]` as a number in a [numeral system](https://en.wikipedia.org/wiki/Numeral_system) with the base 26. Hence `abcd` -> `[0, 1, 2, 3]` could be hashed as
 
-$h_0 = 0 \times$26^{3}$+ 1 \times$26^{2}$+ 2 \times$26^{1}$+ 3 \times 26^0$
+$h_0 = 0 \times $26^{3}$ + 1 \times $26^{2}$ + 2 \times $26^{1}$ + 3 \times 26^0$
 
 Let's write the same formula in a generalized way, where $c_i$ is an integer array element and $a = 26$ is a system base.
 
@@ -106,11 +106,11 @@ $h_0 = \sum_{i = 0}^{L - 1}{c_i a^{L - 1 - i}}$
 
 Now let's consider the slice `abcd` -> `bcde`. For int arrays that means `[0, 1, 2, 3]` -> `[1, 2, 3, 4]`, to remove the number 0 and to add the number 4.
 
-$h_1 = (h_0 - 0 \times$26^{3}$) \times 26 + 4 \times 26^0$
+$h_1 = (h_0 - 0 \times $26^{3}$) \times 26 + 4 \times 26^0$
 
-Let's look at what changed piece by piece. First, we subtracted $0 \times 26^3$ from $h_0$; this removed the contribution of the first element in the array from the hash. Then we multiplied the remaining hash value by $26$, which increased the power of the base value for each of the elements remaining in the array (i.e., $2 \times$26^{1}$) \times 26 = 2 \times 26^2$).  Finally, we add the contribution of the new element (`e`) to the hash. This results in:
+Let's look at what changed piece by piece. First, we subtracted $0 \times 26^3$ from $h_0$; this removed the contribution of the first element in the array from the hash. Then we multiplied the remaining hash value by $26$, which increased the power of the base value for each of the elements remaining in the array (i.e., $2 \times $26^{1}$) \times 26 = 2 \times 26^2$).  Finally, we add the contribution of the new element (`e`) to the hash. This results in:
 
-$h_1 = 1 \times$26^{3}$+ 2 \times$26^{2}$+ 3 \times$26^{1}$+ 4 \times 26^0$
+$h_1 = 1 \times $26^{3}$ + 2 \times $26^{2}$ + 3 \times $26^{1}$ + 4 \times 26^0$
 
 Thus after applying a constant amount of operations to the hash for `abcd`, we have obtained the hash for the next substring, `bcde`.
 

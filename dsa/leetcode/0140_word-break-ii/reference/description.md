@@ -15,6 +15,7 @@ Given a string `s` and a dictionary of strings `wordDict`, add spaces in `s` to 
 Return every complete dictionary-word sentence obtainable from `s`, in any order.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "catsanddog", wordDict = ["cat","cats","and","sand","dog"]`

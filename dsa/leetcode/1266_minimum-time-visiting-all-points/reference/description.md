@@ -22,6 +22,7 @@ You can move according to these rules:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/1626_example_1.PNG)

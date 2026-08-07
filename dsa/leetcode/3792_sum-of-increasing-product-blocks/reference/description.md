@@ -26,6 +26,7 @@ Block $i$ contains exactly $i$ values. Across the first `n` blocks, the integers
 Return the sum of the first `n` block products, reduced modulo $1{,}000{,}000{,}007$.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

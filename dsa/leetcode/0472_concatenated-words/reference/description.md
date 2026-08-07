@@ -18,6 +18,7 @@ Each component must consume one or more characters, components may be reused, an
 candidate without gaps or leftover characters.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["cat","cats","catsdogcats","dog","dogcatsdog","hippopotamuses","rat","ratcatdogcat"]$

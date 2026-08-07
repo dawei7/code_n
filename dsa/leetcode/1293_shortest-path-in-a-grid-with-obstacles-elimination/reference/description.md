@@ -9,6 +9,7 @@ Return *the minimum number of **steps** to walk from the upper left corner *`(0,
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/short1-grid.jpg)

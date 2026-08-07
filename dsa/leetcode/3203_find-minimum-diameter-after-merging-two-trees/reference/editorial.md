@@ -43,9 +43,11 @@ Let us consider the two ways that the longest path can be formed:
 
     By adding an edge between the two centers of the trees, the maximum distance between each of them and a node within the same tree is at most $\lceil \frac{\text{diameter}}{2} \rceil$. Thus, the combined diameter of the tree is the sum of the halves of the original diameters plus one for the extra edge:
 
-    $$\begin{aligned}
+    $$
+    \begin{aligned}
         \lceil \frac{\text{diameter}_1}{2} \rceil + \lceil \frac{\text{diameter}_2}{2} \rceil + 1.
-    \end{aligned}$$
+    \end{aligned}
+    $$
 
     Therefore, the problem simplifies to returning the maximum among the diameter of each tree and the above value.
 
@@ -85,10 +87,12 @@ Running a BFS for the longest path from $u$ will find an endpoint of the diamete
 
     We will prove this statement by contradiction. Let $v$ ($v \neq a, b$) be the farthest node from $u$, implying $\text{dist}(u, b) < \text{dist}(u, v)$. Assume $u$ is closer to $a$ than $b$, so $\text{dist}(u, a) \leq \text{dist}(u, b)$. Combining these inequalities gives us:
 
-    $$\begin{aligned}
-    \text{dist}(u, b) + \text{dist}(u, a) \&< \text{dist}(u, v) + \text{dist}(u, b)  \\
-    \text{dist}(a, b) \&< \text{dist}(v, b),
-    \end{aligned}$$
+    $$
+    \begin{aligned}
+    \text{dist}(u, b) + \text{dist}(u, a) &< \text{dist}(u, v) + \text{dist}(u, b)  \\
+    \text{dist}(a, b) &< \text{dist}(v, b),
+    \end{aligned}
+    $$
 
     which is a contradiction, since the diameter ($a \rightarrow b$) is the longest path in the tree.
     </details>
@@ -100,13 +104,15 @@ The path from $u$ to the farthest node passes through the diameter so the proble
 
     Let $v$ ($v \neq a, b$) be the farthest node from $u$, and $u^*$ the root of $u$'s subtree. The path $u \to v$ avoids the diameter only if $u$ and $v$ are within the same subtree. In this case:
 
-    $$\begin{aligned}
-    \text{dist}(u, v) \&> \text{dist}(u, b) \\
-    \text{dist}(u, u^*) + \text{dist}(u^*, v) \geq \text{dist}(u, v) \&> \text{dist}(u, u^*) + \text{dist}(u^*, b) \\
-    \text{dist}(u^*, v) \&> \text{dist}(u^*, b) \\
-    \text{dist}(a, u^*) + \text{dist}(u^*, v) \&> \text{dist}(a, u^*) + \text{dist}(u^*, b) \\
-    \text{dist}(a, v) \&> \text{dist}(a, b) \\
-    \end{aligned}$$
+    $$
+    \begin{aligned}
+    \text{dist}(u, v) &> \text{dist}(u, b) \\
+    \text{dist}(u, u^*) + \text{dist}(u^*, v) \geq \text{dist}(u, v) &> \text{dist}(u, u^*) + \text{dist}(u^*, b) \\
+    \text{dist}(u^*, v) &> \text{dist}(u^*, b) \\
+    \text{dist}(a, u^*) + \text{dist}(u^*, v) &> \text{dist}(a, u^*) + \text{dist}(u^*, b) \\
+    \text{dist}(a, v) &> \text{dist}(a, b) \\
+    \end{aligned}
+    $$
     which is a contradiction, since the diameter ($a \rightarrow b$) is the longest path in the tree.
     </details>
 

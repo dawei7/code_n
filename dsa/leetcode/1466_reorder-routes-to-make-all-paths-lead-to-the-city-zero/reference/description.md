@@ -15,6 +15,7 @@ It's **guaranteed** that each city can reach city `0` after reorder.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/sample_1_1819.png)

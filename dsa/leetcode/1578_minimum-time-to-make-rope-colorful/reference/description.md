@@ -11,6 +11,7 @@ Return *the **minimum time** Bob needs to make the rope **colorful***.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ballon1.jpg)

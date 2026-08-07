@@ -13,6 +13,7 @@ You do not need to use up all the given intervals. You can select pairs in any o
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $pairs = [[1,2],[2,3],[3,4]]$

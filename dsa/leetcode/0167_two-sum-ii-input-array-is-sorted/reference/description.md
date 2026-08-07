@@ -19,6 +19,7 @@ Your solution must use only constant extra space.
 Return the unique pair of 1-based indices `[index1, index2]`, with `index1 < index2`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $numbers = [<u>2</u>,<u>7</u>,11,15], target = 9$

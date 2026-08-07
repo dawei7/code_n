@@ -17,6 +17,7 @@ You may assume that you have an infinite number of each kind of coin.
 Return the minimum number of coins needed to total `amount`, or `-1` when the amount is unreachable.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $coins = [1,2,5], amount = 11$

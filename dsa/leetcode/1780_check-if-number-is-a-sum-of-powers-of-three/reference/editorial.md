@@ -6,7 +6,7 @@
 
 ### Overview
 
-We are given an integer `n` and need to determine if it can be written as a sum of **distinct** powers of $3$. In other words, we want to know if we can choose some of the numbers $3^0,$3^{1}$,$3^{2}$, ...$, each used at most once, such that their sum equals `n`. A generalized mathematical way to express this is:
+We are given an integer `n` and need to determine if it can be written as a sum of **distinct** powers of $3$. In other words, we want to know if we can choose some of the numbers $3^0, $3^{1}$, $3^{2}$, ...$, each used at most once, such that their sum equals `n`. A generalized mathematical way to express this is:
 
 $n = 3^{a_1} + 3^{a_2} + \dots + 3^{a_k}$
 
@@ -100,7 +100,7 @@ class Solution:
 
 To optimize the previous approach, we aim to reduce the number of cases the algorithm checks. We can simplify the process by working in reverse, starting with the larger powers of $3$. If $n$ is greater than or equal to the current power, skipping this power will always lead to a `false` result. This is because the largest sum we can achieve with smaller powers is the sum of all lower powers, which is always less than the current power. So, if we skip this power, we can’t form the sum $n$, and we must include it by subtracting it from $n$.
 
-> **Useful formula**: $3^0 +$3^{1}$+$3^{2}$+ ... + 3^{n - 1} = \frac{3^{n} - 1}{2} < 3^{n}$
+> **Useful formula**: $3^0 + $3^{1}$ + $3^{2}$ + ... + 3^{n - 1} = \frac{3^{n} - 1}{2} < 3^{n}$
 
 If $n$ is still greater than the current power after this, we would have to add it to the sum again. However, we can only use each power of $3$ once, so we return `false` in this case.
 

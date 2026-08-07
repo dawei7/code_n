@@ -7,6 +7,7 @@ Given a non-negative integer `c`, decide whether there're two integers `a` and `
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $c = 5$

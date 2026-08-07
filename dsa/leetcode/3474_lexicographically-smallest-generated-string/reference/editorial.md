@@ -8,7 +8,7 @@ We traverse all `'T'` positions in $\textit{str}_1$ and fill $\textit{str}_2$ in
 
 Next, for all positions that are not fixed, we assign the character `'a'` by default to ensure the lexicographically smallest result.
 
-We then process the `'F'` constraints. For each position $i$ where $\textit{str}\text{\_1}[i] = 'F'$, we check whether the substring $\textit{word}[i \dots i + m - 1]$ is exactly equal to $\textit{str}_2$. If it is not equal, no action is needed. However, if it is equal, we must modify at least one non-fixed character within this window to break the match.
+We then process the `'F'` constraints. For each position $i$ where $\textit{str}\text{_1}[i] = 'F'$, we check whether the substring $\textit{word}[i \dots i + m - 1]$ is exactly equal to $\textit{str}_2$. If it is not equal, no action is needed. However, if it is equal, we must modify at least one non-fixed character within this window to break the match.
 
 To maintain the smallest lexicographical order, we choose to modify the **rightmost non-fixed character** in the window, changing it to `'b'`.
 

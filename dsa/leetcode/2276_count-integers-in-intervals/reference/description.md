@@ -21,6 +21,7 @@ Implement the `CountIntervals` class:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ```

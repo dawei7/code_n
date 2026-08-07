@@ -21,6 +21,7 @@ The values in the two lists should be returned in **increasing** order.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $matches = [[1,3],[2,3],[3,6],[5,6],[5,7],[4,5],[4,8],[4,9],[10,4],[10,9]]$

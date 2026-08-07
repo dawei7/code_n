@@ -15,6 +15,7 @@ Return *the minimum number of patches required*.
 Return the minimum number of elements that must be added so every value from `1` through `n` can be formed as a sum of selected array elements.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,3], n = 6`

@@ -19,6 +19,7 @@ Both strings have the same length $n$ and contain only lowercase English letters
 - `true` if zero or more global conversions can transform `str1` into `str2`; otherwise, `false`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $str1 = "aabcc", str2 = "ccdee"$

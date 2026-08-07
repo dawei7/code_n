@@ -12,6 +12,7 @@ Given a string `s`, partition `s` such that every substring of the partition is 
 Return all partitions whose contiguous pieces are palindromes. Outer result order is not significant; substring order within a partition is.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "aab"`

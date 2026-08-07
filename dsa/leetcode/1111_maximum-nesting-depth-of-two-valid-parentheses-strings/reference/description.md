@@ -37,6 +37,7 @@ Return an `answer` array (of length `seq.length`) that encodes such a choice of 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $seq = "(()())"$

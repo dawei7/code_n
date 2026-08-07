@@ -13,6 +13,7 @@ Return *the minimal number of characters that you need to change to divide the s
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "abc", k = 2`

@@ -16,6 +16,7 @@ Return the **minimum** number of operations required to make all elements in `ar
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

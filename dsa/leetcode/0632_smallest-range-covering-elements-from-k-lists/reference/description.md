@@ -9,6 +9,7 @@ We define the range `[a, b]` is smaller than range `[c, d]` if $b - a < d - c$ *
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [[4,10,15,24,26],[0,9,12,20],[5,18,22,30]]`

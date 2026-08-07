@@ -24,13 +24,14 @@ The result format is in the following example.
 
 **Inputs**
 
-- `Orders`: Table with columns `order_id` (int), `order_date` (date), `customer_id` (int), `invoice` (int).
+- `Orders`: Table with columns $\text{order}_{id}$ (int), $\text{order}_{date}$ (date), $\text{customer}_{id}$ (int), `invoice` (int).
 
 **Return value**
 
-Return a table with columns `month` (varchar `YYYY-MM`), `order_count` (int), and `customer_count` (int) for orders with `invoice > 20`.
+Return a table with columns `month` (varchar `YYYY-MM`), $\text{order}_{count}$ (int), and $\text{customer}_{count}$ (int) for orders with `invoice > 20`.
 
 ### Examples
+
 #### Example 1
 
 ```

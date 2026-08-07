@@ -25,14 +25,15 @@ The result format is in the following example.
 
 **Input**
 
-- `Activity(player_id, device_id, event_date, games_played)`: login activity uniquely keyed by player and date
+- $Activity(\text{player}_{id}, \text{device}_{id}, \text{event}_{date}, \text{games}_{played})$: login activity uniquely keyed by player and date
 
 **Return value**
 
-- Return one row per player with columns `player_id` and `device_id`, where `device_id` comes from that player's
-  minimum `event_date` row. Result order is unrestricted.
+- Return one row per player with columns $\text{player}_{id}$ and $\text{device}_{id}$, where $\text{device}_{id}$ comes from that player's
+  minimum $\text{event}_{date}$ row. Result order is unrestricted.
 
 ### Examples
+
 #### Example 1
 
 ```

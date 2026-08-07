@@ -13,6 +13,7 @@ A quadruplet `(i, j, k, l)` is increasing if:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,3,2,4,5]`

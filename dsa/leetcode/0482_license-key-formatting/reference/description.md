@@ -11,6 +11,7 @@ Return *the reformatted license key*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "5F3Z-2e-9-w", k = 4`

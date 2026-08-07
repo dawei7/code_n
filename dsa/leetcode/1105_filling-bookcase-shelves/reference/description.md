@@ -17,6 +17,7 @@ Return *the minimum possible height that the total bookshelf can be after placin
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/shelves.png)

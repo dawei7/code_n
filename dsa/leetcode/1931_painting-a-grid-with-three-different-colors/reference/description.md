@@ -9,6 +9,7 @@ Return* the number of ways to color the grid with **no two adjacent cells having
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/colorthegrid.png)

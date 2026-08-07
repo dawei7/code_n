@@ -15,6 +15,7 @@ Find the lexicographically largest string from the box after all the rounds are 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

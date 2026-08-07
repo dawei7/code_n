@@ -17,6 +17,7 @@ The test cases are generated so that the answer always exists and is in the rang
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 6$

@@ -27,6 +27,7 @@ Return a sequence of moves that makes our answer equal to `target` in the minimu
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $target = "leet"$

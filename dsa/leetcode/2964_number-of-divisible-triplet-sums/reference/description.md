@@ -6,6 +6,7 @@ Given a **0-indexed** integer array `nums` and an integer `d`, return *the numbe
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,3,4,7,8], d = 5`

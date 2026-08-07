@@ -11,6 +11,7 @@ Return* the **minimum value** of *$\text{nums}[i]$* you can seed the machine wit
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,7,8,1,1,5], space = 2`

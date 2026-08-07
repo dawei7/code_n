@@ -11,6 +11,7 @@ Return *the **number of indices** where *$\text{heights}[i] \neq \text{expected}
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $heights = [1,1,4,2,1,3]$

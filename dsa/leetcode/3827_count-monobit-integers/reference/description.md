@@ -20,6 +20,7 @@ Binary representations are the ordinary forms without leading zeroes. In particu
 Return how many integers from `0` through `n`, including both endpoints, have a binary representation made entirely from one repeated bit.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

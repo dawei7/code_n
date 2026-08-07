@@ -9,6 +9,7 @@ Return the **maximum possible size** of the array after performing zero or more 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

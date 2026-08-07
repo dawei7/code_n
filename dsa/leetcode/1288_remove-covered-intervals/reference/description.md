@@ -11,6 +11,7 @@ Return *the number of remaining intervals*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $intervals = [[1,4],[3,6],[2,8]]$

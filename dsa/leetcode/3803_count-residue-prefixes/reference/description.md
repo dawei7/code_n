@@ -20,6 +20,7 @@ For every prefix length $k$ from $1$ through $\lvert\texttt{s}\rvert$, compare t
 Return an integer equal to the number of prefix lengths for which those two values are equal.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

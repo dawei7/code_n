@@ -12,13 +12,14 @@ Given two integers `low` and `high`, return *a sorted list of all the **stepping
 - `low`: The inclusive lower bound.
 - `high`: The inclusive upper bound.
 
-The bounds are nonnegative and satisfy `low <= high`. Let $S$ be the number of stepping numbers from $0$ through `high`, inclusive.
+The bounds are nonnegative and satisfy $low \le high$. Let $S$ be the number of stepping numbers from $0$ through `high`, inclusive.
 
 **Return value**
 
 Return all stepping numbers from `low` through `high`, including qualifying endpoints, in increasing order.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $low = 0, high = 21$

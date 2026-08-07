@@ -11,6 +11,7 @@ We define that a subsequence `a` is more **competitive** than a subsequence `b` 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,5,2,6], k = 2`

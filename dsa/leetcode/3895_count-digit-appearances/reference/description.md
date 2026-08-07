@@ -17,6 +17,7 @@ Let $S$ denote the total number of decimal digit positions across every value in
 Return the number of positions among those $S$ positions whose value equals `digit`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

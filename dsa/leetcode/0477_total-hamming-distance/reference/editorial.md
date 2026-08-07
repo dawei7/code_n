@@ -44,11 +44,11 @@ As an alternative, you can iterate over all the bits of the number and count the
 
 **Complexity Analysis**
 
-* Time complexity: $O(n^2 \cdot log_{2V}) \simeq O(n^2)$.
+* Time complexity: $O(n^2 \cdot log_2V) \simeq O(n^2)$.
 
     + There are exactly $\binom{n}{2} = {}^nC_2 = \frac{n \cdot (n-1)}{2}$ unique pairs of elements for an $n$ element array.
-    + Each of these pairs, when `xor`ed, result in a resultant number which is $\lceil log_{2V} \rceil$ bits long. Here $V$ is the largest value any of the elements can ever take.
-    + We iterate over these many bits to count the number of `1` bits.  In our case, since all elements are $\leq 10^9$, the value $\lceil log_{2V} \rceil = 30$ is a small constant. Hence counting the `1` bits takes place in nearly constant (i.e. $O(1)$) time.
+    + Each of these pairs, when `xor`ed, result in a resultant number which is $\lceil log_2V \rceil$ bits long. Here $V$ is the largest value any of the elements can ever take.
+    + We iterate over these many bits to count the number of `1` bits.  In our case, since all elements are $\leq 10^9$, the value $\lceil log_2V \rceil = 30$ is a small constant. Hence counting the `1` bits takes place in nearly constant (i.e. $O(1)$) time.
 
 * Space complexity: $O(1)$ constant space.
 
@@ -68,7 +68,7 @@ Certainly unique pairs of elements exists where one element has this particular 
 
 We know that the count of such unique pairs is ${}^kC_1 * {}^{n-k}C_1 = k \cdot (n-k)$ for this particular bit. Hence Hamming Distance for this particular bit is $k \cdot (n-k)$.
 
-For each of the $\lceil log_{2V} \rceil$ bits that we can check, we can calculate a Hamming Distance pertaining to that bit. Taking sum over the Hamming Distances of all these bits, we get the total Hamming Distance.
+For each of the $\lceil log_2V \rceil$ bits that we can check, we can calculate a Hamming Distance pertaining to that bit. Taking sum over the Hamming Distances of all these bits, we get the total Hamming Distance.
 
 ```cpp
 int totalHammingDistance(vector<int>& nums)
@@ -100,11 +100,11 @@ int totalHammingDistance(vector<int>& nums)
 
 **Complexity Analysis**
 
-* Time complexity: $O(n \cdot log_{2V}) \simeq O(n)$. Runtime performance is limited by the double loop where we are counting elements for particular bits. In our case, since all elements are $\leq 10^9$, the value $\lceil log_{2V} \rceil = 30$ is a small constant. Thus the inner loop runs in nearly constant time.
+* Time complexity: $O(n \cdot log_2V) \simeq O(n)$. Runtime performance is limited by the double loop where we are counting elements for particular bits. In our case, since all elements are $\leq 10^9$, the value $\lceil log_2V \rceil = 30$ is a small constant. Thus the inner loop runs in nearly constant time.
 
-* Space complexity: $O(log_{2V}) \to O(1)$ extra space.
+* Space complexity: $O(log_2V) \to O(1)$ extra space.
 
-    + For each of the $\lceil log_{2V} \rceil$ bits, we need to maintain a count which is later used to calculate the Hamming Distance for that bit. Since $\lceil log_{2V} \rceil \approx 32$ is a small constant in our case, that takes nearly constant extra space.
+    + For each of the $\lceil log_2V \rceil$ bits, we need to maintain a count which is later used to calculate the Hamming Distance for that bit. Since $\lceil log_2V \rceil \approx 32$ is a small constant in our case, that takes nearly constant extra space.
     + Another thing to notice, is that if we **switch the order of the double loop,** we can do away with storing the count and calculate the Hamming Distance for that bit then and there. That results in only constant extra space being used.
 
 ---

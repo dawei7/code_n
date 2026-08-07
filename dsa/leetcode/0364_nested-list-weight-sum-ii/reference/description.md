@@ -20,6 +20,7 @@ JSON cases use ordinary nested arrays and integers. The runner reconstructs the 
 Return the inverse-depth weighted sum.
 
 ### Examples
+
 #### Example 1
 
 ![](images/nestedlistweightsumiiex1.png)

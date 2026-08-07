@@ -10,6 +10,7 @@ Return the **minimum** number of operations required to *transform* `initial` in
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

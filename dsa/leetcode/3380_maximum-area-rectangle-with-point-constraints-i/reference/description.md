@@ -17,6 +17,7 @@ Return the **maximum area** that you can obtain or -1 if no such rectangle is po
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

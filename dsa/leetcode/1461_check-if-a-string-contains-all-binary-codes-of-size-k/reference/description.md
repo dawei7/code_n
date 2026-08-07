@@ -7,6 +7,7 @@ Given a binary string `s` and an integer `k`, return `true` *if every binary cod
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "00110110", k = 2`

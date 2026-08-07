@@ -14,6 +14,7 @@ Let $N = \lvert s \rvert$. Repetition requires equal contiguous contents at two 
 - The maximum length of a repeating substring, or `0` when no non-empty substring repeats.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "abcd"`

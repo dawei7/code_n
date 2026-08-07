@@ -13,6 +13,7 @@ Return *the probability that the *$$n^{\text{th}}$$* person gets his own seat*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 1$

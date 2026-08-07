@@ -21,6 +21,7 @@ Return the maximum number of coins that you can have.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $piles = [2,4,1,2,7,8]$

@@ -13,6 +13,7 @@ Given the `root` of a binary tree, return *the number of nodes where the value o
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/image-20220315203925-1.png)

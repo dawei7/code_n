@@ -17,6 +17,7 @@ Return an integer denoting the **maximum** number of resulting partitions after 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

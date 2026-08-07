@@ -8,7 +8,7 @@ A robot on an infinite XY-plane starts at point `(0, 0)` facing north. The robot
 
 - $1 \le k \le 9$: Move forward `k` units, one unit at a time.
 
-Some of the grid squares are `obstacles`. The $$i^{\text{th}}$$obstacle is at grid point$\text{obstacles}[i] = (x_{i}, y_{i})$. If the robot runs into an obstacle, it will stay in its current location (on the block adjacent to the obstacle) and move onto the next command.
+Some of the grid squares are `obstacles`. The $$i^{\text{th}}$$ obstacle is at grid point $\text{obstacles}[i] = (x_{i}, y_{i})$. If the robot runs into an obstacle, it will stay in its current location (on the block adjacent to the obstacle) and move onto the next command.
 
 Return the **maximum squared Euclidean distance** that the robot reaches at any point in its path (i.e. if the distance is `5`, return `25`).
 
@@ -29,6 +29,7 @@ Return the **maximum squared Euclidean distance** that the robot reaches at any 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

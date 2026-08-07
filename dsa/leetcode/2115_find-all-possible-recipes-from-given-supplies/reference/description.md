@@ -1,6 +1,6 @@
 ## Description
 
-You have information about `n` different recipes. You are given a string array `recipes` and a 2D string array `ingredients`. The $$i^{\text{th}}$$recipe has the name$\text{recipes}[i]$, and you can **create** it if you have **all** the needed ingredients from$\text{ingredients}[i]$. A recipe can also be an ingredient for **other **recipes, i.e.,$\text{ingredients}[i]$ may contain a string that is in `recipes`.
+You have information about `n` different recipes. You are given a string array `recipes` and a 2D string array `ingredients`. The $$i^{\text{th}}$$ recipe has the name $\text{recipes}[i]$, and you can **create** it if you have **all** the needed ingredients from $\text{ingredients}[i]$. A recipe can also be an ingredient for **other **recipes, i.e., $\text{ingredients}[i]$ may contain a string that is in `recipes`.
 
 You are also given a string array `supplies` containing all the ingredients that you initially have, and you have an infinite supply of all of them.
 
@@ -13,6 +13,7 @@ Note that two recipes may contain each other in their ingredients.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $recipes = ["bread"], ingredients = [["yeast","flour"]], supplies = ["yeast","flour","corn"]$

@@ -13,7 +13,7 @@ Return the list of finite intervals representing **common, positive-length free 
 
 - `schedule`: a list containing one busy-time schedule per employee. Each employee schedule is a nonempty, sorted list of pairwise non-overlapping `Interval` objects.
 
-In LeetCode's native interface, an interval is an object with integer fields `start` and `end`. The notation `[x, y]` is used only to display an interval compactly: for example, the first interval is read through `schedule[0][0].start` and `schedule[0][0].end`, not through `schedule[0][0][0]`. The cOde(n) adapter accepts the displayed nested-pair form and converts each pair to the corresponding local `Interval` object.
+In LeetCode's native interface, an interval is an object with integer fields `start` and `end`. The notation `[x, y]` is used only to display an interval compactly: for example, the first interval is read through $\text{schedule}[0][0].start$ and $\text{schedule}[0][0].end$, not through $\text{schedule}[0][0][0]$. The cOde(n) adapter accepts the displayed nested-pair form and converts each pair to the corresponding local `Interval` object.
 
 **Return value**
 
@@ -22,6 +22,7 @@ In LeetCode's native interface, an interval is an object with integer fields `st
 An endpoint-only meeting such as `[5, 5]` has zero length and must not be returned.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $schedule = [[[1,2],[5,6]],[[1,3]],[[4,10]]]$

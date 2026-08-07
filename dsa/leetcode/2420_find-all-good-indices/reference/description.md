@@ -15,6 +15,7 @@ Return *an array of all good indices sorted in **increasing** order*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,1,1,1,3,4,1], k = 2`

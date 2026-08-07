@@ -11,6 +11,7 @@ Return *the **minimum number of moves** required to place one stone in each cell
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/example1-3.svg)

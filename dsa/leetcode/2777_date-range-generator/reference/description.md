@@ -10,6 +10,7 @@ All yielded dates must be in the string format `YYYY-MM-DD`.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $start = "2023-04-01", end = "2023-04-04", step = 1$

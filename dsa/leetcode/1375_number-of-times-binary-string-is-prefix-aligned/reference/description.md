@@ -11,6 +11,7 @@ Return *the number of times the binary string is **prefix-aligned** during the f
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $flips = [3,2,4,1,5]$

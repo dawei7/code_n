@@ -13,6 +13,7 @@ Return *the **minimum** number of operations required to make *`nums1`* equal to
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [4,3,1,4], nums2 = [1,3,7,1], k = 3$

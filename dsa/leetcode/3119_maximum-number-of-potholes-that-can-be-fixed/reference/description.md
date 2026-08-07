@@ -10,6 +10,7 @@ Return the **maximum** number of potholes that can be fixed such that the sum of
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

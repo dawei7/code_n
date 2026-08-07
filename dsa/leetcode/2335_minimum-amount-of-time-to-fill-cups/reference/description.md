@@ -9,6 +9,7 @@ You are given a **0-indexed** integer array `amount` of length `3` where $\text{
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $amount = [1,4,2]$

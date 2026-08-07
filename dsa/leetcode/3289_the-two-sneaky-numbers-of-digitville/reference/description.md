@@ -9,6 +9,7 @@ As the town detective, your task is to find these two sneaky numbers. Return an 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

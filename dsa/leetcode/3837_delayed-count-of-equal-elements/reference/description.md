@@ -30,13 +30,14 @@ j \mid i+\texttt{k}<j\le N-1
 \right\rvert.
 $$
 
-The strict inequality excludes the position `i + k` as well as the `k` positions directly after `i`; the first eligible position is `i + k + 1`.
+The strict inequality excludes the position $i + k$ as well as the `k` positions directly after `i`; the first eligible position is $i + k + 1$.
 
 **Return value**
 
 Return the length-$N$ array containing the delayed count for every original index.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

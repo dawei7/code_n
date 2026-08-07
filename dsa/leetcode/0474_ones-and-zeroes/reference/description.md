@@ -22,6 +22,7 @@ Unused capacity is allowed. The objective counts selected strings, not their cha
 different array positions remain separate selectable elements.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $strs = ["10","0001","111001","1","0"], m = 5, n = 3$

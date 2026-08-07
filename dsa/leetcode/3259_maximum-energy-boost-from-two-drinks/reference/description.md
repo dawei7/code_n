@@ -13,6 +13,7 @@ Return the **maximum** total energy boost you can gain in the next `n` hours.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

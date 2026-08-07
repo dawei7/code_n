@@ -29,6 +29,7 @@ Implement the `MyQueue` class:
 Return an aligned result for every operation: `null` for `push`, the affected value for `peek` or `pop`, and a boolean for `empty`.
 
 ### Examples
+
 #### Example 1
 
 ```

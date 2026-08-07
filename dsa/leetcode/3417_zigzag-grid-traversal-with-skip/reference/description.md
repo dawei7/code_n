@@ -23,6 +23,7 @@ Return an array of integers `result` containing, **in order**, the value of the 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -25,6 +25,7 @@ Return the **minimum** total cost to cut the entire cake into `1 x 1` pieces.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

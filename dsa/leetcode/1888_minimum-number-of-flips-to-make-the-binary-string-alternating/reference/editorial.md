@@ -47,10 +47,12 @@ Now we define the dynamic programming states.
 
 Let $\textit{pre}[i][j]$ denote the minimum number of type $2$ operations required to transform the prefix $s[0..i]$ into an alternating string ending with digit $j$, where $j \in {0,1}$. According to this definition, it satisfies the recurrence relation:
 
-$$\begin{cases}
+$$
+\begin{cases}
 \textit{pre}[i][0] = \textit{pre}[i-1][1] + \mathbb{I}(s[i], 1) \
 \textit{pre}[i][1] = \textit{pre}[i-1][0] + \mathbb{I}(s[i], 0)
-\end{cases}$$
+\end{cases}
+$$
 
 Here, $\mathbb{I}(x, y)$ is the indicator function, which equals $1$ if $x = y$, and $0$ otherwise.
 
@@ -58,10 +60,12 @@ For example, $\mathbb{I}(s[i], 1)$ means that if $s[i] = 1$, we must flip it to 
 
 Similarly, let $\textit{suf}[i][j]$ denote the minimum number of type $2$ operations required to transform the suffix $s[i..n-1]$ into an alternating string starting with digit $j$. It satisfies the recurrence relation:
 
-$$\begin{cases}
+$$
+\begin{cases}
 \textit{suf}[i][0] = \textit{suf}[i+1][1] + \mathbb{I}(s[i], 1) \
 \textit{suf}[i][1] = \textit{suf}[i+1][0] + \mathbb{I}(s[i], 0)
-\end{cases}$$
+\end{cases}
+$$
 
 After computing the arrays $\textit{pre}$ and $\textit{suf}$:
 

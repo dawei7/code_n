@@ -11,6 +11,7 @@ Find out the state of the asteroids after all collisions. If two asteroids meet,
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $asteroids = [5,10,-5]$

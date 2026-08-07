@@ -13,6 +13,7 @@ Return `true`* if you can make the strings *`s1`* and *`s2`* equal, and *`false`
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $s1 = "abcdba", s2 = "cabdab"$

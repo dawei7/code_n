@@ -7,6 +7,7 @@ Given the array of integers `nums`, you will choose two different indices `i` an
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,4,5,2]`

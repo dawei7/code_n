@@ -15,6 +15,7 @@ Return *the number of minutes needed for the entire tree to be infected.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/image-20220625231744-1.png)

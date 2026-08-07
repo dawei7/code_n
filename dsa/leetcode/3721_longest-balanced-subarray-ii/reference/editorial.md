@@ -20,8 +20,10 @@ The remaining challenge is handling the removal of the contribution of the eleme
 
 Recall that in a difference array, a nonzero value at position $i$ contributes to all prefix sums from position $i$ onward. For example, if the contribution at position $1$ is `-1`, it decreases the values of $S_1, S_2, \dots, S_n$ by `1`. More generally, if an element appears at positions $p_1$ and $p_2$, its contribution at $p_1$ affects the interval $[p_1, p_2 - 1]$, while the contribution at $p_2$ affects the interval $[p_2, \dots]$.
 
-$$[ \dots, 0, \underbrace{1, 1, \dots, 1}*{\text{contributed by the first } x},
-\underbrace{1, 1, \dots, 1}*{\text{contributed by the second } x}, \dots ]$$
+$$
+[ \dots, 0, \underbrace{1, 1, \dots, 1}*{\text{contributed by the first } x},
+\underbrace{1, 1, \dots, 1}*{\text{contributed by the second } x}, \dots ]
+$$
 
 Therefore, we record all positions where each element appears using a queue. When the left boundary moves forward, we determine the interval over which the removed element contributes and subtract its effect from that interval. Since this is a range update, it can be efficiently handled using the segment tree with lazy propagation.
 

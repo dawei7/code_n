@@ -14,6 +14,7 @@ An **island** is surrounded by water and is formed by connecting adjacent lands 
 Return the number of horizontally or vertically connected land components.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $grid = [$

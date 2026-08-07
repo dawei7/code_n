@@ -20,6 +20,7 @@ Let $n$ be the length of `nums`. An arrangement has $\lceil n/2 \rceil$ even-ind
 Return the greatest integer score among all permutations of `nums`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

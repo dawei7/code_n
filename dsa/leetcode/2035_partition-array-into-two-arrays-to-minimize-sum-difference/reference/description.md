@@ -9,6 +9,7 @@ Return *the **minimum** possible absolute difference*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![example-1](images/ex1.png)

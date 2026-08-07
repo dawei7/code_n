@@ -29,6 +29,7 @@ The result format is in the following example.
 Return the $N$th-highest distinct salary under the column `getNthHighestSalary`, or null when that rank does not exist.
 
 ### Examples
+
 #### Example 1
 
 ```

@@ -21,6 +21,7 @@ Return *the sum of the points of the students*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/student_solving_math.png)

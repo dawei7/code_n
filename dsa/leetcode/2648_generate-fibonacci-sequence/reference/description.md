@@ -11,6 +11,7 @@ The first few numbers of the series are `0, 1, 1, 2, 3, 5, 8, 13`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $callCount = 5$

@@ -18,6 +18,7 @@ Repeated occurrences count only once within their parity group: balance compares
 Return the length of the longest balanced subarray. Return `0` if no non-empty subarray is balanced.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

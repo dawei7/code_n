@@ -11,6 +11,7 @@ Return an integer denoting the **maximum area** of a *square-shaped* hole in the
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/screenshot-from-2023-11-05-22-40-25.png)

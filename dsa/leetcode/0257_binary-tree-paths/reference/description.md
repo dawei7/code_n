@@ -14,6 +14,7 @@ A **leaf** is a node with no children.
 Return every root-to-leaf sequence as a string with `"->"` between adjacent node values; path order is unrestricted.
 
 ### Examples
+
 #### Example 1
 
 ![](images/paths-tree.jpg)

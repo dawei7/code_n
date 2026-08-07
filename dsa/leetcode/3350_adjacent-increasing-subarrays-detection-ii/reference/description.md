@@ -15,6 +15,7 @@ A **subarray** is a contiguous **non-empty** sequence of elements within an arra
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

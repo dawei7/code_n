@@ -17,6 +17,7 @@ Return** ***the **maximum** integer in the array *`nums`​​​.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 7$

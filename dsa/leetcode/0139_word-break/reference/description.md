@@ -15,6 +15,7 @@ Given a string `s` and a dictionary of strings `wordDict`, return `true` if `s` 
 Return `true` if a complete dictionary-word segmentation exists; otherwise return `false`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "leetcode", wordDict = ["leet","code"]`

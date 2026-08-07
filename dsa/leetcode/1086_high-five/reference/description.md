@@ -9,17 +9,18 @@ A student's **top five average** is calculated by taking the sum of their top fi
 
 **Input**
 
-- `items`: an array of pairs `[student_id, score]`.
+- `items`: an array of pairs $[\text{student}_{id}, score]$.
 
 Let $N$ be the number of score records and $S$ the number of distinct student identifiers. Every represented student has at least five records, and repeated score values are separate records.
 
 **Return value**
 
-- One row `[student_id, average]` for every distinct student.
+- One row $[\text{student}_{id}, average]$ for every distinct student.
 - `average` is the integer quotient obtained by summing that student's five highest scores and dividing by `5`.
-- Rows are ordered by `student_id` in increasing order.
+- Rows are ordered by $\text{student}_{id}$ in increasing order.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $items = [[1,91],[1,92],[2,93],[2,97],[1,60],[2,77],[1,65],[1,87],[1,100],[2,100],[2,76]]$

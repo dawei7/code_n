@@ -13,6 +13,7 @@ Return an array `result` of length `n`, where $\text{result}[i]$ denotes the num
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -17,6 +17,7 @@ Formally, a *parentheses string* is valid if and only if:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "lee(t(c)o)de)"`

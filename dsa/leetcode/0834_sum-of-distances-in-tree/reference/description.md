@@ -11,6 +11,7 @@ Return an array `answer` of length `n` where $\text{answer}[i]$ is the sum of th
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/lc-sumdist1.jpg)

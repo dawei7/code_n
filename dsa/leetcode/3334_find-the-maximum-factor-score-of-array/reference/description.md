@@ -13,6 +13,7 @@ Return the **maximum factor score** of `nums` after removing **at most** one ele
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

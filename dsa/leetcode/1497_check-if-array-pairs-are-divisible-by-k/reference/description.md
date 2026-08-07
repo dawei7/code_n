@@ -11,6 +11,7 @@ Return `true`* If you can find a way to do that or *`false`* otherwise*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [1,2,3,4,5,10,6,7,8,9], k = 5`

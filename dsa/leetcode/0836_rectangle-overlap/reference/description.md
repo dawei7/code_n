@@ -11,6 +11,7 @@ Given two axis-aligned rectangles `rec1` and `rec2`, return `true`* if they over
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $rec1 = [0,0,2,2], rec2 = [1,1,3,3]$

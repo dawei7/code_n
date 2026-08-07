@@ -10,14 +10,18 @@ Consider the number of *unique elements* in `nums` to be `k**​​​​​​�
 
 The judge will test your solution with the following code:
 
+```
 int[] nums = [...]; // Input array
 int[] expectedNums = [...]; // The expected answer with correct length
+
 int k = removeDuplicates(nums); // Calls your implementation
+
 assert k == expectedNums.length;
 for (int i = 0; i < k; i++) {
-assert nums[i] == expectedNums[i];
+    assert nums[i] == expectedNums[i];
 }
 ```
+
 If all assertions pass, then your solution will be **accepted**.
 ### Function Contract
 
@@ -30,8 +34,9 @@ If all assertions pass, then your solution will be **accepted**.
 Return $k$, the number of distinct values written to the start of `nums`. The same call mutates `nums` in place, and `nums[:k]` is the non-decreasing prefix containing each distinct value once. Values at indices $k$ and beyond are unspecified.
 
 ### Examples
+
 #### Example 1
-```
+
 - **Input:** `nums = [1,1,2]`
 - **Output:** $2, nums = [1,2,_]$
 - **Explanation:** Your function should return k = 2, with the first two elements of nums being 1 and 2 respectively.

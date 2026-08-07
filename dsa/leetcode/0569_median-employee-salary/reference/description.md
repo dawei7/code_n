@@ -30,6 +30,7 @@ The result format is in the following example.
 Return a table with columns `id`, `company`, and `salary`. For each company, include the single central row when its employee count is odd and the two central rows when its employee count is even, using ascending `(salary, id)` order to determine position.
 
 ### Examples
+
 #### Example 1
 
 ```

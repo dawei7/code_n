@@ -12,6 +12,7 @@ Given an integer `n`, return *all the structurally unique **BST'**s (binary sear
 Return all structurally unique BST roots using each value from `1` through `n` exactly once.
 
 ### Examples
+
 #### Example 1
 
 ![](images/uniquebstn3.jpg)

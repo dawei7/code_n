@@ -13,6 +13,7 @@ Return *the maximum possible **AND sum** of *`nums`* given *`numSlots`* slots.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3,4,5,6], numSlots = 3`

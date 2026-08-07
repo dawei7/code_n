@@ -13,6 +13,7 @@ Return `true` if `n` is divisible by this sum; otherwise, return `false`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -21,6 +21,7 @@ Given an integer array `stones` of length `n` where $\text{stones}[i]$ represent
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $stones = [-1,2,-3,4,-5]$

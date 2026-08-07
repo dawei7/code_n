@@ -11,6 +11,7 @@ A **valid square** has four equal sides with positive length and four equal angl
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $p1 = [0,0], p2 = [1,1], p3 = [1,0], p4 = [0,1]$

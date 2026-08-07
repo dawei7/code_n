@@ -36,7 +36,7 @@ The result format is in the following example.
 
 **Inputs**
 
-`Candidate(id, name)` identifies every candidate. `Vote(id, candidateId)` records one selected candidate per ballot through the foreign-key relationship `Vote.candidateId = Candidate.id`.
+`Candidate(id, name)` identifies every candidate. `Vote(id, candidateId)` records one selected candidate per ballot through the foreign-key relationship $\text{Vote.candidateId} = \text{Candidate.id}$.
 
 Let $V$ be the number of rows in `Vote` and $C$ the number of rows in `Candidate`.
 
@@ -45,6 +45,7 @@ Let $V$ be the number of rows in `Vote` and $C$ the number of rows in `Candidate
 Return a one-row table with a `name` column containing the unique candidate with the greatest vote count.
 
 ### Examples
+
 #### Example 1
 
 ```

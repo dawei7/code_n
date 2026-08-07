@@ -14,6 +14,7 @@ Given a signed 32-bit integer `x`, return `x`* with its digits reversed*. If rev
 Return the digit-reversed integer, or `0` when that result would overflow the signed 32-bit range.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $x = 123$

@@ -11,6 +11,7 @@ You are given an `n x n` square matrix of integers `grid`. Return the matrix suc
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

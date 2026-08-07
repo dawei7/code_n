@@ -455,7 +455,7 @@ Moreover, we have used following logic for checking if we have to loop around.
                 source_iterator = char_to_indices[char][index] + 1
 ```
 
-Above code finds an index of "proper index of `char` in `source` which is not less than $\text{source}_{iterator}$" in the $\text{char\\_to\\_indices}[char]$ array. If the index is equal to the length of the array, it means that we have to loop around. This looping around condition can **also** be checked using the fact that if the last index of `char` in `source` is less than $\text{source}_{iterator}$, then we have to loop around because no index of `char` in `source` is ahead of $\text{source}_{iterator}$.
+Above code finds an index of "proper index of `char` in `source` which is not less than $\text{source}_{iterator}$" in the $\text{char\_to\_indices}[char]$ array. If the index is equal to the length of the array, it means that we have to loop around. This looping around condition can **also** be checked using the fact that if the last index of `char` in `source` is less than $\text{source}_{iterator}$, then we have to loop around because no index of `char` in `source` is ahead of $\text{source}_{iterator}$.
 
 ```python
             if char_to_indices[char][-1] < source_iterator:

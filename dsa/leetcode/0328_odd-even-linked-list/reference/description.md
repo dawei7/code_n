@@ -18,6 +18,7 @@ You must solve the problem in `O(1)` extra space complexity and `O(n)` time comp
 Return the head of the same nodes linked with all original odd-position nodes before all original even-position nodes, while preserving order inside both groups.
 
 ### Examples
+
 #### Example 1
 
 ![](images/oddeven-linked-list.jpg)

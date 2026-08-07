@@ -19,6 +19,7 @@ Return the **maximum** path score (i.e., the largest **minimum**-edge cost) amon
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

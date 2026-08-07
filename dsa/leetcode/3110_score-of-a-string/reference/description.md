@@ -9,6 +9,7 @@ Return the **score** of* *`s`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

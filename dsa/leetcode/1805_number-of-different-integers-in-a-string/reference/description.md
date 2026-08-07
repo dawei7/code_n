@@ -13,6 +13,7 @@ Two integers are considered different if their decimal representations **without
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $word = "a<u>123</u>bc<u>34</u>d<u>8</u>ef<u>34</u>"$

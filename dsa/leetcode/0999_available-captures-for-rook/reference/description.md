@@ -13,6 +13,7 @@ Return the **number of pawns** the white rook is **attacking**.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/1253_example_1_improved.PNG)

@@ -9,6 +9,7 @@ If there is exactly one solution for the equation, we ensure that the value of `
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $equation = "x+5-3+x=6+x-2"$

@@ -20,11 +20,13 @@ Thus, we can conclude that in our collection of ranges, all those that overlap c
 
 To efficiently count overlapping ranges, consider two numbers $x$ and $y$, where $x \leq y$. Now, $x$ and $y$ can be converted to the same number as long as the maximum possible value of the changed $x$ is greater than or equal to the minimum possible value of the changed $y$, i.e.:
 
-$$\begin{aligned}
- \&x + k \geq y - k  \\
-\implies\& y - x \leq 2 \cdot k \\
-\implies\& y \leq x + 2 \cdot k
-\end{aligned}$$
+$$
+\begin{aligned}
+ &x + k \geq y - k  \\
+\implies& y - x \leq 2 \cdot k \\
+\implies& y \leq x + 2 \cdot k
+\end{aligned}
+$$
 
 In simpler terms, for any number $x$, it can form a subsequence with all numbers that fall within the range from $x$ to $x + 2k$. To efficiently find these numbers, we can use [Binary Search 🔗](https://leetcode.com/explore/learn/card/binary-search/), but first, we need to sort the array.
 

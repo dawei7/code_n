@@ -13,6 +13,7 @@ Given a string `s`, return *the minimum number of turns the printer needed to pr
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "aaabbb"`

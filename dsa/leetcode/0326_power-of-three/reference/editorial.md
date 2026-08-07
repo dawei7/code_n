@@ -11,10 +11,12 @@ In this article we will look into ways of speeding up simple computations and wh
 
 One simple way of finding out if a number `n` is a power of a number `b` is to keep dividing `n` by `b` as long as the remainder is **0**. This is because we can write
 
-$$\begin{aligned}
-n \&= b^x \\
-n \&= b \times b \times \ldots \times b
-\end{aligned}$$
+$$
+\begin{aligned}
+n &= b^x \\
+n &= b \times b \times \ldots \times b
+\end{aligned}
+$$
 
 Hence it should be possible to divide `n` by `b` `x` times, every time with a remainder of **0** and the end result to be **1**.
 
@@ -38,7 +40,7 @@ Notice that we need a guard to check that $n \neq 0$, otherwise the while loop w
 
 **Complexity Analysis**
 
-* Time complexity : $O(\log_b(n))$. In our case that is $O(\log_{3n})$. The number of divisions is given by that logarithm.
+* Time complexity : $O(\log_b(n))$. In our case that is $O(\log_3n)$. The number of divisions is given by that logarithm.
 
 * Space complexity : $O(1)$. We are not using any additional memory.
 <br>
@@ -91,18 +93,18 @@ public class Solution {
 
 **Complexity Analysis**
 
-* Time complexity : $O(\log_{3n})$.
+* Time complexity : $O(\log_3n)$.
 
     Assumptions:
 
-* `Integer.toString()` - Base conversion is generally implemented as a repeated division. The complexity of  should be similar to our Approach 1: $O(\log_{3n})$.
-* `String.matches()` - Method iterates over the entire string. The number of digits in the base 3 representation of `n` is $O(\log_{3n})$.
+* `Integer.toString()` - Base conversion is generally implemented as a repeated division. The complexity of  should be similar to our Approach 1: $O(\log_3n)$.
+* `String.matches()` - Method iterates over the entire string. The number of digits in the base 3 representation of `n` is $O(\log_3n)$.
 
-* Space complexity : $O(\log_{3n})$.
+* Space complexity : $O(\log_3n)$.
 
     We are using two additional variables,
 
-* The string of the base 3 representation of the number (size $\log_{3n}$)
+* The string of the base 3 representation of the number (size $\log_3n$)
 * The string of the regular expression (constant size)
 <br>
 <br>
@@ -112,9 +114,11 @@ public class Solution {
 
 We can use mathematics as follows
 
-$$n = 3^i \\
+$$
+n = 3^i \\
 i = \log_3(n) \\
-i = \frac{\log_b(n)}{\log_b(3)}$$
+i = \frac{\log_b(n)}{\log_b(3)}
+$$
 
 `n` is a power of three if and only if `i` is an integer. In Java, we check if a number is an integer by taking the decimal part (using `% 1`) and checking if it is 0.
 

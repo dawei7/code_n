@@ -15,6 +15,7 @@ Return the resulting string after removing all digits.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

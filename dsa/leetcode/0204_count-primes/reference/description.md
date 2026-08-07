@@ -12,6 +12,7 @@ Given an integer `n`, return *the number of prime numbers that are strictly less
 Return the number of primes in the half-open interval $[0,n)$.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 10$

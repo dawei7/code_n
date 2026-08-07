@@ -23,6 +23,7 @@ Return *the integer array* `result`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,1,3,3]`

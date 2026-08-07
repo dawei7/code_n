@@ -22,6 +22,7 @@ Return *an integer denoting the number of devices that will be tested after perf
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $batteryPercentages = [1,1,2,1,3]$

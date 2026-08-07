@@ -17,6 +17,7 @@ Return *the **minimum** number of operations to make *`nums`* ****continuous***.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [4,2,5,3]`

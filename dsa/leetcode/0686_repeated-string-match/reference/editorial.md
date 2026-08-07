@@ -86,6 +86,6 @@ class Solution(object):
 
 **Complexity Analysis**
 
-* Time Complexity: $O(M+N)$ (at these sizes), where $M, N$ are the lengths of strings `A, B`. As in *Approach #1*, we justify that $A * (q+1)$ will be of length $O(M + N)$, and computing the rolling hashes was linear work. We will also do a linear $O(N)$ final check of our answer $1 +$\mathcal{O}(M)$/ \mathcal{M}$ times. In total, this is $O(M+N + N(1 + \frac{M}{\mathcal{M}}))$ work. Since $M \leq 10000 < \mathcal{M} =$10^{9}$+ 7$, we can consider this to be linear behavior.
+* Time Complexity: $O(M+N)$ (at these sizes), where $M, N$ are the lengths of strings `A, B`. As in *Approach #1*, we justify that $A * (q+1)$ will be of length $O(M + N)$, and computing the rolling hashes was linear work. We will also do a linear $O(N)$ final check of our answer $1 +$\mathcal{O}(M)$/ \mathcal{M}$ times. In total, this is $O(M+N + N(1 + \frac{M}{\mathcal{M}}))$ work. Since $M \leq 10000 < \mathcal{M} = $10^{9}$ + 7$, we can consider this to be linear behavior.
 
 * Space complexity: $O(1)$. Only integers were stored with additional memory.

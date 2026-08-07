@@ -195,9 +195,11 @@ However, we need to account for cases where there are multiple occurrences of th
 
 To account for this, we modify our formula to the following: if we have 3 characters with frequencies $n_1$, $n_2$, and $n_3$, the number of $3$ length sequences are:
 
-$$\begin{aligned}
+$$
+\begin{aligned}
     \frac{(n_1 + n_2 + n_3)!}{(n_1)! \cdot (n_2)! \cdot (n_3)!}
-\end{aligned}$$
+\end{aligned}
+$$
 
 The above formula can be extended to $m$ characters of different frequencies.
 

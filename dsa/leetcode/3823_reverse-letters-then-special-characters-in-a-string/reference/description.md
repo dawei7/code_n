@@ -22,6 +22,7 @@ Let $N = \lvert\texttt{s}\rvert$.
 Return a string of length $N$. Every original letter position must still contain a letter, with the left-to-right letter sequence reversed. Every original special-character position must still contain a special character, with that left-to-right sequence reversed.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

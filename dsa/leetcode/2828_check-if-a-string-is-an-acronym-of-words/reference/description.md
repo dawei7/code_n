@@ -11,6 +11,7 @@ Return `true`* if *`s`* is an acronym of *`words`*, and *`false`* otherwise. *
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["alice","bob","charlie"], s = "abc"$

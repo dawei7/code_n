@@ -17,6 +17,7 @@ Return *the weight of the last remaining stone*. If there are no stones left, re
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $stones = [2,7,4,1,8,1]$

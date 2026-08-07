@@ -21,6 +21,7 @@ Let $n$ be the length of `nums`, and let $M$ be the number of distinct values in
 Return the maximum possible sum of a nonempty contiguous subarray after performing at most `k` swaps. The result may be negative when every array value is negative.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

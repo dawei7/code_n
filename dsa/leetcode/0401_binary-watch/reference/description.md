@@ -26,6 +26,7 @@ The minute must consist of two digits and may contain a leading zero.
 Return all valid formatted times in any order, with an unpadded hour and a two-digit minute.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $turnedOn = 1$

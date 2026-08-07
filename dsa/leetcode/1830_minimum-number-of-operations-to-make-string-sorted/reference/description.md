@@ -17,6 +17,7 @@ Return *the number of operations needed to make the string sorted.* Since the an
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "cba"`

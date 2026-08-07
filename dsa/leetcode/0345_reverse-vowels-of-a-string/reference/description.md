@@ -14,6 +14,7 @@ The vowels are `'a'`, `'e'`, `'i'`, `'o'`, and `'u'`, and they can appear in bot
 Return `s` with the vowel characters placed in reverse occurrence order and every non-vowel character left in its original position.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

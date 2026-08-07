@@ -14,6 +14,7 @@ The columns in the matrix should be in **lexographically ascending** order.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** ``

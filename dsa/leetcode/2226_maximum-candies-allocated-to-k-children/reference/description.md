@@ -11,6 +11,7 @@ Return *the **maximum number of candies** each child can get.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $candies = [5,8,6], k = 3$

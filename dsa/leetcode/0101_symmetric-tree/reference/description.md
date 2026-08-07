@@ -12,6 +12,7 @@ Given the `root` of a binary tree, *check whether it is a mirror of itself* (i.e
 Return `true` when the tree mirrors itself around its center; otherwise return `false`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/symtree1.jpg)

@@ -20,6 +20,7 @@ Reversing uses the usual decimal representation. Any zeros that become leading d
 Return the absolute difference between `n` and the integer represented by its reversed decimal digits.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -18,6 +18,7 @@ Return the **minimum** cost to make `s` equal to `target`. If it's not possible,
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

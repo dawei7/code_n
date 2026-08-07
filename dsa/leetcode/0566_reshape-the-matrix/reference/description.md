@@ -13,6 +13,7 @@ If the `reshape` operation with given parameters is possible and legal, output t
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/reshape1-grid.jpg)

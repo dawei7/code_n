@@ -11,6 +11,7 @@ The maximum depth is the number of nodes along the longest path from the root no
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/narytreeexample.png)

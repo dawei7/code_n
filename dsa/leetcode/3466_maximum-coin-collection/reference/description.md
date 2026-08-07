@@ -1,6 +1,6 @@
 ## Description
 
-Mario drives on a two-lane freeway with coins every mile. You are given two integer arrays, `lane1` and `lane2`, where the value at the $$i^{\text{th}}$$index represents the number of coins he *gains or loses* in the$$i^{\text{th}}$$ mile in that lane.
+Mario drives on a two-lane freeway with coins every mile. You are given two integer arrays, `lane1` and `lane2`, where the value at the $$i^{\text{th}}$$ index represents the number of coins he *gains or loses* in the $$i^{\text{th}}$$ mile in that lane.
 
 - If Mario is in lane 1 at mile `i` and $\text{lane1}[i] > 0$, Mario gains $\text{lane1}[i]$ coins.
 
@@ -20,6 +20,7 @@ Return the **maximum** number of coins Mario can earn after performing **at most
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

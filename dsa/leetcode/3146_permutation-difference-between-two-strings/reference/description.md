@@ -11,6 +11,7 @@ Return the **permutation difference** between `s` and `t`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

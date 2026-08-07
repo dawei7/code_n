@@ -25,6 +25,7 @@ Return *the maximum number of boxes you can put into the warehouse.*
 Return an integer representing the maximum number of boxes that can be placed into the warehouse.
 
 ### Examples
+
 #### Example 1
 
 ![](images/22.png)

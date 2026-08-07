@@ -9,6 +9,7 @@ A **falling path with non-zero shifts** is a choice of exactly one element from 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/falling-grid.jpg)

@@ -11,6 +11,7 @@ Return *the **minimum Hamming distance** of *`source`* and *`target`* after perf
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $source = [1,2,3,4], target = [2,1,4,5], allowedSwaps = [[0,1],[2,3]]$

@@ -23,7 +23,7 @@ Let `dfs(nums)` denote the number of permutations of `nums` that result in the s
 ![img](images/6.png)
 
 Therefore, we obtain the following recursive relation:
-$\text{dfs(nums)} = \text{dfs(left\\\_nodes)} \cdot \text{dfs(right\\\_nodes)}$
+$\text{dfs(nums)} = \text{dfs(left\\_nodes)} \cdot \text{dfs(right\\_nodes)}$
 
 However, it is important to note that the actual number of valid permutations may exceed the calculated number from above. This is because there are some permutations that do not alter the relative order of the nodes in $\text{left}_{nodes}$ and $\text{right}_{nodes}$ thus resulting in the same BST.
 
@@ -35,7 +35,7 @@ For instance, let's consider the original array `[3,4,5,1,2]`. Here, we use `[1,
 
 This implies that we need to adjust the formula by multiplying it with a coefficient ($P$) that represents the number of permutations that preserve the relative order of nodes in the two subsequence $\text{left}_{nodes}$ and $\text{right}_{nodes}$. This leads to the modified equation:
 
-$\text{dfs(nums)} = P\cdot \text{dfs(left\\\_nodes)} \cdot \text{dfs(right\\\_nodes)}$
+$\text{dfs(nums)} = P\cdot \text{dfs(left\\_nodes)} \cdot \text{dfs(right\\_nodes)}$
 
 It is possible to arbitrarily select two cells to hold the nodes of the left subtree, and there are 6 permutations that generate the same $\text{left}_{nodes}$ and $\text{right}_{nodes}$. Therefore, we set $P=6$ in the above equation.
 
@@ -63,7 +63,7 @@ After building the table, we can efficiently compute the value of $C_n^k$ by dir
 <br>
 
 Now we can recursively solve this problem by dividing `nums` into two subsequences $\text{left}_{nodes}$ (of length `k`) and $\text{right}_{nodes}$, and the number of valid permutations is denoted as
-$\text{dfs(nums)} \\= P\cdot \text{dfs(left\\\_nodes)} \cdot \text{dfs(right\\\_nodes)} \\= C_{n}^{k}\cdot \text{dfs(left\\\_nodes)} \cdot \text{dfs(right\\\_nodes)}$.
+$\text{dfs(nums)} \\= P\cdot \text{dfs(left\\_nodes)} \cdot \text{dfs(right\\_nodes)} \\= C_{n}^{k}\cdot \text{dfs(left\\_nodes)} \cdot \text{dfs(right\\_nodes)}$.
 
 where $C_{n}^{k}$ can be obtained by using the precomputed table we discussed before or built-in functions. We treat the calls to `dfs` on the two subsequences as subproblems, and recursively solve them. The algorithm always selects the first element as the root value, and the size of the input array gradually decreases as the recursion progresses.
 
@@ -85,7 +85,7 @@ and so on.
 
 Therefore, the number of permutations is equal to the product of all coefficients, which is $\text{answer} = C_8^4 \cdot C_3^0 \cdot C_3^2 \cdot C_2^1  \cdot 1 \cdot 1 \cdot 1$.
 
-Lastly, don't forget to return $(\text{answer} - 1) \% ($10^{9}$+7)$ as we don't count the original `nums` as a valid permutation.
+Lastly, don't forget to return $(\text{answer} - 1) \% ($10^{9}$ +7)$ as we don't count the original `nums` as a valid permutation.
 
 <br>
 
@@ -102,7 +102,7 @@ Lastly, don't forget to return $(\text{answer} - 1) \% ($10^{9}$+7)$ as we don't
 
     Return $\text{table}[n][k]$ if we need to compute $C_n^k$.
 
-3) Return $(dfs(nums) - 1) \% (1_{000\_000\_007})$.
+3) Return $(dfs(nums) - 1) \% (1_000_000_007)$.
 
 #### Implementation
 

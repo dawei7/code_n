@@ -21,6 +21,7 @@ Return *the total number of friend requests made*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $ages = [16,16]$

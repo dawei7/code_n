@@ -13,6 +13,7 @@ Given a string `s`, reconstruct the permutation `perm` and return it. If there a
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "IDID"`

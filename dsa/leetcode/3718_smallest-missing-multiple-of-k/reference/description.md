@@ -15,6 +15,7 @@ A **multiple** of `k` is any positive integer divisible by `k`.
 Return the first value in the sequence $k, 2k, 3k, \ldots$ that is absent from `nums`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

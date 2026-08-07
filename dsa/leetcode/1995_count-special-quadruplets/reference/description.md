@@ -11,6 +11,7 @@ Given a **0-indexed** integer array `nums`, return *the number of **distinct** q
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3,6]`

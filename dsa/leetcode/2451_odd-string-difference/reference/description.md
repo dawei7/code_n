@@ -15,6 +15,7 @@ Return* the string in *`words`* that has different **difference integer array**.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["adc","wzy","abc"]$

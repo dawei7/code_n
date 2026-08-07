@@ -17,6 +17,7 @@ Return the count of these cells.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/gridtwosubstringsdrawio.png)

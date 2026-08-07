@@ -8,6 +8,7 @@ A **subsequence** is a sequence that can be derived from another sequence by del
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $arrays = [[<u>1</u>,3,<u>4</u>],$

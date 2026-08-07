@@ -21,6 +21,7 @@ Return the **maximum** amount of `initialCurrency` you can have after performing
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

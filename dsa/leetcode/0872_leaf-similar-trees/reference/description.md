@@ -15,6 +15,7 @@ Return `true` if and only if the two given trees with head nodes `root1` and `ro
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/leaf-similar-1.jpg)

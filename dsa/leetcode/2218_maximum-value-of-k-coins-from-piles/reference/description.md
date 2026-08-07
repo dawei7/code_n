@@ -11,6 +11,7 @@ Given a list `piles`, where $\text{piles}[i]$ is a list of integers denoting the
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/e1.png)

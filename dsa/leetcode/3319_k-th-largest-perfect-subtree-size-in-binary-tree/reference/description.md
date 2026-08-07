@@ -11,6 +11,7 @@ A **perfect binary tree** is a tree where all leaves are on the same level, and 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

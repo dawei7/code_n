@@ -17,6 +17,7 @@ All occurrences of a character must be replaced with another character while pre
 Return `true` exactly when a consistent one-to-one character mapping transforms `s` into `t`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

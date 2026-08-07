@@ -20,6 +20,7 @@ Given the integer `n`, return *the last number that remains in* `arr`.
 Return the sole integer left after alternating left-to-right and right-to-left elimination passes.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 9$

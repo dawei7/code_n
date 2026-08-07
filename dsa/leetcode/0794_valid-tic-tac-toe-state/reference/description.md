@@ -23,6 +23,7 @@ Here are the rules of Tic-Tac-Toe:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/tictactoe1-grid.jpg)

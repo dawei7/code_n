@@ -25,6 +25,7 @@ JSON cases encode `root` as a level-order array. The runner reconstructs the tre
 Return one result per operation: `null` for construction, the next integer for `next`, and a boolean for `hasNext`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/bst-tree.png)

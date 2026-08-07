@@ -23,6 +23,7 @@ Return the **minimum** possible stability factor of the array after at most `max
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

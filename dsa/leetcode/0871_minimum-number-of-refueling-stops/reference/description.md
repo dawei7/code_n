@@ -2,7 +2,7 @@
 
 A car travels from a starting position to a destination which is `target` miles east of the starting position.
 
-There are gas stations along the way. The gas stations are represented as an array `stations` where $\text{stations}[i] = [\text{position}_{i}, \text{fuel}_{i}]$ indicates that the $$i^{\text{th}}$$gas station is$\text{position}_{i}$miles east of the starting position and has$\text{fuel}_{i}$ liters of gas.
+There are gas stations along the way. The gas stations are represented as an array `stations` where $\text{stations}[i] = [\text{position}_{i}, \text{fuel}_{i}]$ indicates that the $$i^{\text{th}}$$ gas station is $\text{position}_{i}$ miles east of the starting position and has $\text{fuel}_{i}$ liters of gas.
 
 The car starts with an infinite tank of gas, which initially has `startFuel` liters of fuel in it. It uses one liter of gas per one mile that it drives. When the car reaches a gas station, it may stop and refuel, transferring all the gas from the station into the car.
 
@@ -15,6 +15,7 @@ Note that if the car reaches a gas station with `0` fuel left, the car can still
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $target = 1, startFuel = 1, stations = []$

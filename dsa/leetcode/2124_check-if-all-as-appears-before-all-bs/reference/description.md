@@ -7,6 +7,7 @@ Given a string `s` consisting of **only** the characters `'a'` and `'b'`, return
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "aaabbb"`

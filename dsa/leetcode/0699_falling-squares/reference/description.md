@@ -2,7 +2,7 @@
 
 There are several squares being dropped onto the X-axis of a 2D plane.
 
-You are given a 2D integer array `positions` where $\text{positions}[i] = [\text{left}_{i}, \text{sideLength}_{i}]$ represents the $$i^{\text{th}}$$square with a side length of$\text{sideLength}_{i}$that is dropped with its left edge aligned with X-coordinate$\text{left}_{i}$.
+You are given a 2D integer array `positions` where $\text{positions}[i] = [\text{left}_{i}, \text{sideLength}_{i}]$ represents the $$i^{\text{th}}$$ square with a side length of $\text{sideLength}_{i}$ that is dropped with its left edge aligned with X-coordinate $\text{left}_{i}$.
 
 Each square is dropped one at a time from a height above any landed squares. It then falls downward (negative Y direction) until it either lands **on the top side of another square** or **on the X-axis**. A square brushing the left/right side of another square does not count as landing on it. Once it lands, it freezes in place and cannot be moved.
 
@@ -15,6 +15,7 @@ Return *an integer array *`ans`* where *$\text{ans}[i]$* represents the height d
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/fallingsq1-plane.jpg)

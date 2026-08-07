@@ -18,9 +18,11 @@ Let $S$ be the sum of all indices in the group, and let $P_i = \sum_{j=0}^{i-1} 
 
 **Left side** ($j < i$, total of $i$ terms):
 
-$$\sum_{j=0}^{i-1}(a_i - a_j)
+$$
+\sum_{j=0}^{i-1}(a_i - a_j)
 = \sum_{j=0}^{i-1} a_i - \sum_{j=0}^{i-1} a_j
-= i \times a_i - P_i$$
+= i \times a_i - P_i
+$$
 
 **Right side** ($j > i$, total of $m - i - 1$ terms):
 

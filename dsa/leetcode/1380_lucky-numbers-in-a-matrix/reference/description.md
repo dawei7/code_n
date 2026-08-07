@@ -9,6 +9,7 @@ A **lucky number** is an element of the matrix such that it is the minimum eleme
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $matrix = [[3,7,8],[9,11,13],[15,16,17]]$

@@ -13,6 +13,7 @@ Return the* minimum possible score *that you can achieve with some* ***triangula
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 **

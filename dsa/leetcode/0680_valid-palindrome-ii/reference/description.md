@@ -7,6 +7,7 @@ Given a string `s`, return `true` *if the *`s`* can be palindrome after deleting
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "aba"`

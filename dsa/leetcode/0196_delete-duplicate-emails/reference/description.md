@@ -33,6 +33,7 @@ The result format is in the following example.
 Modify `Person` so each email remains exactly once at its smallest original `id`. The final row order does not matter.
 
 ### Examples
+
 #### Example 1
 
 ```

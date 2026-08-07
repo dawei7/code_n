@@ -9,6 +9,7 @@ A **boomerang** is a set of three points that are **all distinct** and **not in 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $points = [[1,1],[2,3],[3,2]]$

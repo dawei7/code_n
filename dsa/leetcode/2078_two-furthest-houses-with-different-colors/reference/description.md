@@ -4,13 +4,14 @@ There are `n` houses evenly lined up on the street, and each house is beautifull
 
 Return *the **maximum** distance between **two** houses with **different** colors*.
 
-The distance between the $$i^{\text{th}}$$and$$j^{\text{th}}$$houses is$abs(i - j)$, where `abs(x)` is the **absolute value** of `x`.
+The distance between the $$i^{\text{th}}$$ and $$j^{\text{th}}$$ houses is $abs(i - j)$, where `abs(x)` is the **absolute value** of `x`.
 ### Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/eg1.png)

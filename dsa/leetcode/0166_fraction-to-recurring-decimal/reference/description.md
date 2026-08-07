@@ -21,6 +21,7 @@ It is **guaranteed** that the length of the answer string is less than $10^{4}$ 
 Return the exact finite or recurring decimal representation of the fraction.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $numerator = 1, denominator = 2$

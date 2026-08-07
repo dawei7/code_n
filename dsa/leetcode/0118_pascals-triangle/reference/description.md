@@ -16,6 +16,7 @@ In **Pascal's triangle**, each number is the sum of the two numbers directly abo
 Return the requested rows as a top-to-bottom list of integer lists.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $numRows = 5$

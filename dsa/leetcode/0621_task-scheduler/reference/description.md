@@ -9,6 +9,7 @@ Return the **minimum** number of CPU intervals required to complete all tasks.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block" style="

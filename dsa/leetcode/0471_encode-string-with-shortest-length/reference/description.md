@@ -15,11 +15,12 @@ If an encoding process does not make the string shorter, then do not encode it. 
 
 - Return a minimum-length valid encoding whose decoded value is exactly `s`.
 
-An encoded region has the form `k[encoded_string]`, where positive integer `k` is the number of consecutive copies
+An encoded region has the form $k[\text{encoded}_{string}]$, where positive integer `k` is the number of consecutive copies
 of the decoded bracketed string. Do not use that form for a region unless it is strictly shorter than leaving the
 same region literal.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "aaa"`

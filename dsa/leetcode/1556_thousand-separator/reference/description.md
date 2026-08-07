@@ -7,6 +7,7 @@ Given an integer `n`, add a dot (".") as the thousands separator and return it i
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 987$

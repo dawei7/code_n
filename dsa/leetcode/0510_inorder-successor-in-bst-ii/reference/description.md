@@ -6,11 +6,12 @@ The successor of a `node` is the node with the smallest key greater than `node.v
 
 You will have direct access to the node but not to the root of the tree. Each node will have a reference to its parent node. Below is the definition for `Node`:
 
+```
 class Node {
-public int val;
-public Node left;
-public Node right;
-public Node parent;
+    public int val;
+    public Node left;
+    public Node right;
+    public Node parent;
 }
 ```
 ### Function Contract
@@ -33,9 +34,11 @@ Each `Node` contains these fields:
 The caller supplies `node`, not the tree root. Returning only the successor's value does not satisfy the contract.
 
 ### Examples
+
 #### Example 1
+
 ![](images/285_example_1.PNG)
-```
+
 - **Input:** $tree = [2,1,3], node = 1$
 - **Output:** `2`
 - **Explanation:** 1's in-order successor node is 2. Note that both the node and the return value is of Node type.

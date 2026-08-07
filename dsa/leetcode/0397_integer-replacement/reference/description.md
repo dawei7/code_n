@@ -18,6 +18,7 @@ Return *the minimum number of operations needed for* `n` *to become* `1`.
 Return the fewest legal replacements required to transform `n` into `1`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 8$

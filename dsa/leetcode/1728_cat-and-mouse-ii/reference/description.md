@@ -43,6 +43,7 @@ Given a `rows x cols` matrix `grid` and two integers `catJump` and `mouseJump`, 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/sample_111_1955.png)

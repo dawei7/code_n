@@ -25,6 +25,7 @@ Return *a **0-indexed** array *`answer`*, where *$\text{answer}[i] = true$* if i
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "abcabc", queries = [[1,1,3,5],[0,2,5,5]]`

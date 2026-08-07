@@ -11,6 +11,7 @@ Return *the **minimum** number of deletions needed to make *`s`* **balanced***.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "aababbab"`

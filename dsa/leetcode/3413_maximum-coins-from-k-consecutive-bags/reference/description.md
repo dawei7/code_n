@@ -15,6 +15,7 @@ Return the **maximum** amount of coins you can obtain by collecting `k` consecut
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -1,6 +1,6 @@
 ## Description
 
-You are given two integer arrays `costs` and `capacity`, both of length `n`, where $\text{costs}[i]$ represents the purchase cost of the $$i^{\text{th}}$$machine and$\text{capacity}[i]$ represents its performance capacity.
+You are given two integer arrays `costs` and `capacity`, both of length `n`, where $\text{costs}[i]$ represents the purchase cost of the $$i^{\text{th}}$$ machine and $\text{capacity}[i]$ represents its performance capacity.
 
 You are also given an integer `budget`.
 
@@ -12,16 +12,17 @@ Return the **maximum** achievable total capacity of the selected machines.
 **Inputs**
 
 - `costs`: The purchase costs of the machines.
-- `capacity`: The corresponding performance capacities; `capacity[i]` belongs to the same machine as `costs[i]`.
+- `capacity`: The corresponding performance capacities; $\text{capacity}[i]$ belongs to the same machine as $\text{costs}[i]$.
 - `budget`: The exclusive upper bound on the total purchase cost.
 
-Let $N=\lvert\texttt{costs}\rvert=\lvert\texttt{capacity}\rvert$. A valid choice contains zero, one, or two different indices. For a two-machine choice `{i, j}`, validity requires $i\ne j$ and `costs[i] + costs[j] < budget`; equality with `budget` is not allowed.
+Let $N=\lvert\texttt{costs}\rvert=\lvert\texttt{capacity}\rvert$. A valid choice contains zero, one, or two different indices. For a two-machine choice `{i, j}`, validity requires $i\ne j$ and $\text{costs}[i] + \text{costs}[j] < budget$; equality with `budget` is not allowed.
 
 **Return value**
 
 Return the maximum sum of capacities among all valid choices. Return `0` if no individual machine costs strictly less than `budget`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

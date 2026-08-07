@@ -27,7 +27,7 @@ A **valid path** is a sequence of free cells that:
 Return any grid such that there are **exactly `k` valid paths** from the top-left cell to the bottom-right cell. If no such grid exists, return an empty array.
 ### Function Contract
 
-`solve(k) -> list[str]`
+$solve(k) -> \text{list}[str]$
 
 **Inputs**
 
@@ -37,9 +37,10 @@ Rows and columns use zero-based indices. The dimensions $m$ and $n$ are selected
 
 **Output**
 
-Return a non-empty list of at most 25 strings, each having the same positive length of at most 25. Every character must be `.` or `#`, both corner cells must be usable by the required paths, and the grid must contain exactly `k` paths from `(0, 0)` to `(m - 1, n - 1)` using only right and down moves. Different valid constructions are equivalent answers. Return `[]` only when no permitted grid exists.
+Return a non-empty list of at most 25 strings, each having the same positive length of at most 25. Every character must be `.` or `#`, both corner cells must be usable by the required paths, and the grid must contain exactly `k` paths from `(0, 0)` to $(m - 1, n - 1)$ using only right and down moves. Different valid constructions are equivalent answers. Return `[]` only when no permitted grid exists.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

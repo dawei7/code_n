@@ -17,6 +17,7 @@ Return *an array of strings containing the new strings formed after the splits, 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["\text{one.two}.three","\text{four.five}","six"], separator = "."$
@@ -36,11 +37,9 @@ Hence, the resulting array is ["one","two","three","four","five","six"].
 Hence, the resulting array is ["easy","problem"].
 #### Example 3
 
-```
-**Input:** words = ["|||"], separator = "|"
-**Output:** []
-**Explanation:** In this example the resulting split of "|||" will contain only empty strings, so we return an empty array [].
-```
+- **Input:** $words = ["|||"], separator = "|"$
+- **Output:** `[]`
+- **Explanation:** In this example the resulting split of "|||" will contain only empty strings, so we return an empty array [].
 ### Constraints
 
 - $1 \le \text{words.length} \le 100$

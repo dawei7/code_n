@@ -11,6 +11,7 @@ Given an integer `n`, return* the number of people who know the secret at the en
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 6, delay = 2, forget = 4$

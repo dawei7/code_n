@@ -17,6 +17,7 @@ Return *the **maximum points** you can get after collecting the coins from **all
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1-copy.png)

@@ -14,6 +14,7 @@ Please solve it without using the built-in `JSON.stringify` method.
 Return a compact JSON string representing `object` without invoking `JSON.stringify`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $object = {"y":1,"x":2}$

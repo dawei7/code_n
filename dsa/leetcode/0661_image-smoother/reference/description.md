@@ -11,6 +11,7 @@ Given an `m x n` integer matrix `img` representing the grayscale of an image, re
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/smooth-grid.jpg)

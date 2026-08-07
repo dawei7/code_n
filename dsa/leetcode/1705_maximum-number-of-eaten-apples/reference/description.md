@@ -1,6 +1,6 @@
 ## Description
 
-There is a special kind of apple tree that grows apples every day for `n` days. On the $$i^{\text{th}}$$day, the tree grows$\text{apples}[i]$apples that will rot after$\text{days}[i]$days, that is on day$i + \text{days}[i]$the apples will be rotten and cannot be eaten. On some days, the apple tree does not grow any apples, which are denoted by$\text{apples}[i] = 0$and$\text{days}[i] = 0$.
+There is a special kind of apple tree that grows apples every day for `n` days. On the $$i^{\text{th}}$$ day, the tree grows $\text{apples}[i]$ apples that will rot after $\text{days}[i]$ days, that is on day $i + \text{days}[i]$ the apples will be rotten and cannot be eaten. On some days, the apple tree does not grow any apples, which are denoted by $\text{apples}[i] = 0$ and $\text{days}[i] = 0$.
 
 You decided to eat **at most** one apple a day (to keep the doctors away). Note that you can keep eating after the first `n` days.
 
@@ -11,6 +11,7 @@ Given two integer arrays `days` and `apples` of length `n`, return *the maximum 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $apples = [1,2,3,5,2], days = [3,2,1,4,2]$

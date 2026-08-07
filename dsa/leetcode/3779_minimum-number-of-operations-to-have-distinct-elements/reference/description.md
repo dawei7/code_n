@@ -20,6 +20,7 @@ Let $N=\lvert\texttt{nums}\rvert$. Each operation discards one prefix of length 
 Return the minimum—and, because the operation is fixed, uniquely determined—number of prefix-removal operations needed until the remaining suffix is empty or has pairwise-distinct values.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

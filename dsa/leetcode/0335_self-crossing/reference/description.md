@@ -16,6 +16,7 @@ Return `true` *if your path crosses itself or *`false`* if it does not*.
 Return `true` if any part of the path crosses an earlier part; otherwise return `false`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/11.jpg)

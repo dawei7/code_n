@@ -13,6 +13,7 @@ A pair `(i, j)` is **fair **if:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [0,1,7,4,4,5], lower = 3, upper = 6`

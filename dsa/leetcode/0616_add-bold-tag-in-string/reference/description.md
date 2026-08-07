@@ -18,9 +18,7 @@ Return `s` *after adding the bold tags*.
 
 Let $N = \lvert\texttt{s}\rvert$ and let
 
-$$
-D = \sum_{w \in \texttt{words}} \lvert w \rvert.
-$$
+$D = \sum_{w \in \texttt{words}} \lvert w \rvert.$
 
 **Return value**
 
@@ -30,6 +28,7 @@ $$
 - If no dictionary word occurs, return `s` unchanged.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "abcxyz123", words = ["abc","123"]`

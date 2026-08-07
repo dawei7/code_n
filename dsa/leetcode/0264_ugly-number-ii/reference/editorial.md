@@ -10,7 +10,7 @@ An ugly number is a positive integer whose prime factors are limited to `2`, `3`
 
 In Example 2, we observe that the number `1` is considered an ugly number, even though it lacks any prime factors of `2`, `3`, or `5`. This might seem confusing initially, but the explanation clarifies that "`1` has no prime factors; therefore, all of its prime factors are limited to `2`, `3`, and `5`." This statement can be somewhat misleading if not properly understood. It implies that since `1` has no prime factors, it doesn't violate the rule that ugly numbers can only have prime factors of `2`, `3`, or `5`. In essence, `1` automatically meets the condition, as there are no prime factors to contradict the rule.
 
-> In short `1` is an ugly number because it can be expressed as $2^0 \times$3^{0}$\times 5^0$
+> In short `1` is an ugly number because it can be expressed as $2^0 \times $3^{0}$ \times 5^0$
 
 ### Approach 1: Using Set
 
@@ -171,7 +171,7 @@ By always selecting the smallest number first from the available multiplications
 **Proof:**
 
 1. Base Case:
-   - We start with `1`, which is an ugly number because it can be expressed as $2^0 \times$3^{0}$\times 5^0$. This is our starting point and is correctly included in the list.
+   - We start with `1`, which is an ugly number because it can be expressed as $2^0 \times $3^{0}$ \times 5^0$. This is our starting point and is correctly included in the list.
 
 2. Inductive Hypothesis:
    - Assume that after generating $k$ ugly numbers, denoted as $U_1, U_2, \ldots, U_k$, our list contains all ugly numbers up to the $k$-th position in ascending order.

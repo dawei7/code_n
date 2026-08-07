@@ -56,31 +56,32 @@ The result format is in the following example.
 
 | Column | Type | Meaning |
 |---|---|---|
-| `customer_id` | int | Unique customer identifier. |
-| `customer_name` | varchar | Customer's name. |
+| $\text{customer}_{id}$ | int | Unique customer identifier. |
+| $\text{customer}_{name}$ | varchar | Customer's name. |
 
 **`Seller`**
 
 | Column | Type | Meaning |
 |---|---|---|
-| `seller_id` | int | Unique seller identifier. |
-| `seller_name` | varchar | Seller's name. |
+| $\text{seller}_{id}$ | int | Unique seller identifier. |
+| $\text{seller}_{name}$ | varchar | Seller's name. |
 
 **`Orders`**
 
 | Column | Type | Meaning |
 |---|---|---|
-| `order_id` | int | Unique order identifier. |
-| `sale_date` | date | Date of the sale. |
-| `order_cost` | int | Cost of the order. |
-| `customer_id` | int | Customer who placed the order. |
-| `seller_id` | int | Seller who made the sale. |
+| $\text{order}_{id}$ | int | Unique order identifier. |
+| $\text{sale}_{date}$ | date | Date of the sale. |
+| $\text{order}_{cost}$ | int | Cost of the order. |
+| $\text{customer}_{id}$ | int | Customer who placed the order. |
+| $\text{seller}_{id}$ | int | Seller who made the sale. |
 
 **Return value**
 
-Return a table with the single column `seller_name`. Include sellers for whom no matching order has `sale_date` between `2020-01-01` and `2020-12-31`, ordered by `seller_name` ASC.
+Return a table with the single column $\text{seller}_{name}$. Include sellers for whom no matching order has $\text{sale}_{date}$ between `2020-01-01` and `2020-12-31`, ordered by $\text{seller}_{name}$ ASC.
 
 ### Examples
+
 #### Example 1
 
 ```

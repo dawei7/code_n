@@ -11,6 +11,7 @@ If there is no way to make `arr1` strictly increasing, return `-1`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $arr1 = [1,5,3,6,7], arr2 = [1,3,2,4]$

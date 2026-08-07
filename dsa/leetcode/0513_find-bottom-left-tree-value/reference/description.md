@@ -7,6 +7,7 @@ Given the `root` of a binary tree, return the leftmost value in the last row of 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/tree1.jpg)

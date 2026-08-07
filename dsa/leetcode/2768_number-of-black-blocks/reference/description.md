@@ -13,6 +13,7 @@ Return *a **0-indexed** integer array* `arr` *of size* `5` *such that* $\text{ar
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $m = 3, n = 3, coordinates = [[0,0]]$

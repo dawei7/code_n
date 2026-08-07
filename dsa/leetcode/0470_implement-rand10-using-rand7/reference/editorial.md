@@ -111,10 +111,12 @@ The [expected value](https://en.wikipedia.org/wiki/Expected_value) $E$ for the n
 
 Either we succeed in one try (with at most four `rand7()`), or we need to continue:
 
-$$\begin{aligned}
-E = \frac{40}{49}2 + (1-\frac{40}{49})\frac{60}{63}3 \&+ (1-\frac{40}{49})(1-\frac{60}{63})\frac{20}{21}4 \\
-   \&+ (1-\frac{40}{49})(1-\frac{60}{63})(1-\frac{20}{21})(4+E)
-\end{aligned}$$
+$$
+\begin{aligned}
+E = \frac{40}{49}2 + (1-\frac{40}{49})\frac{60}{63}3 &+ (1-\frac{40}{49})(1-\frac{60}{63})\frac{20}{21}4 \\
+   &+ (1-\frac{40}{49})(1-\frac{60}{63})(1-\frac{20}{21})(4+E)
+\end{aligned}
+$$
 
 $E = \frac{329}{150} \approx 2.19333$
 

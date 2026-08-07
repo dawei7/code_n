@@ -24,6 +24,7 @@ The mentioned steps are done level by level. It is **guaranteed** that every rig
 Return the new root `TreeNode` of the upside-down transformed binary tree.
 
 ### Examples
+
 #### Example 1
 
 ![](images/updown.jpg)

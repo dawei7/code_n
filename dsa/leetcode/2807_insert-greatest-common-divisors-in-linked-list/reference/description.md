@@ -13,6 +13,7 @@ The **greatest common divisor** of two numbers is the largest positive integer t
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1_copy.png)

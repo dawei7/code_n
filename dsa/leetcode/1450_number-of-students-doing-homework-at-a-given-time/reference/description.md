@@ -11,6 +11,7 @@ Return *the number of students* doing their homework at time `queryTime`. More f
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $startTime = [1,2,3], endTime = [3,2,7], queryTime = 4$

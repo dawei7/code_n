@@ -24,6 +24,7 @@ Given an integer `n`, return *any valid **n-bit gray code sequence***.
 Return any sequence containing every value from `0` through $2^n-1$ exactly once and satisfying the one-bit adjacency and wraparound rules.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 2$

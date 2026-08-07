@@ -17,6 +17,7 @@ A returned positive integer has no leading zero. The integer `0` is a valid non-
 Return the largest non-negative integer with at most `n` digits and digit sum `s`. Return `-1` when no such integer exists.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

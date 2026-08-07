@@ -26,6 +26,7 @@ The **skyline** should be represented as a list of "key points" **sorted by thei
 Return the left-to-right key points where the visible height changes, including the final drop to `0`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/merged.jpg)

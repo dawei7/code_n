@@ -24,6 +24,7 @@ For the Required Complexity bound, let $U$ be the number of distinct entries, le
 Return the minimum number of permitted multiplication and division operations required to make all entries equal.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

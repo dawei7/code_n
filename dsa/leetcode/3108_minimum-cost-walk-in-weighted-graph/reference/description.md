@@ -17,6 +17,7 @@ Return *the array *`answer`*, where *$\text{answer}[i]$* denotes the **minimum**
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

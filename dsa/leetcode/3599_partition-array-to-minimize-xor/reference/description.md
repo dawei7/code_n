@@ -11,6 +11,7 @@ Return the **minimum** possible value of the **maximum XOR** among these `k` sub
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

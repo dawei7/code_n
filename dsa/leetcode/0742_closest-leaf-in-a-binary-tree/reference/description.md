@@ -19,6 +19,7 @@ Let $n$ be the number of nodes in the tree.
 Return the value of a leaf at minimum edge distance from the node whose value is `k`. If several leaves tie at that distance, returning any of their values is valid.
 
 ### Examples
+
 #### Example 1
 
 ![](images/closest1-tree.jpg)

@@ -13,6 +13,7 @@ In a tiling, every square must be covered by a tile. Two tilings are different i
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/lc-domino1.jpg)

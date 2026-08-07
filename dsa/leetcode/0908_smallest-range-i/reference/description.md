@@ -13,6 +13,7 @@ Return *the minimum **score** of *`nums`* after applying the mentioned operation
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1], k = 0`

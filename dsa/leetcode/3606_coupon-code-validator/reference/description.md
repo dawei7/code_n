@@ -23,6 +23,7 @@ Return an array of the **codes** of all valid coupons, **sorted** first by their
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

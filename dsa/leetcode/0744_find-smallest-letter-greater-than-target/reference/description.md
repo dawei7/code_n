@@ -9,6 +9,7 @@ Return *the smallest character in *`letters`* that is lexicographically greater 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $letters = ["c","f","j"], target = "a"$

@@ -30,6 +30,7 @@ Return *the index of the array `arr` which has the largest integer*.
 Return the zero-based index of the unique larger value while making at most 20 calls to `compareSub`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [7,7,7,7,10,7,7,7]`

@@ -15,6 +15,7 @@ Return a boolean array `answer`, where $\text{answer}[i]$ is `true` if there exi
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

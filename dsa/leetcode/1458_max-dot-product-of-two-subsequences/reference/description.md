@@ -11,6 +11,7 @@ A subsequence of an array is a new array which is formed from the original array
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [2,1,-2,5], nums2 = [3,0,-6]$

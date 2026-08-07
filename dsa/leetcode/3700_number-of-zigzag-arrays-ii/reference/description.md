@@ -32,6 +32,7 @@ Every element must lie in the inclusive integer interval `[l, r]`. Adjacent valu
 Return the total number of valid length-`n` ZigZag arrays, reduced modulo $10^9+7$.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

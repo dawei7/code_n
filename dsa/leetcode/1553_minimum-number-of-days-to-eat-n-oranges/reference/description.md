@@ -17,6 +17,7 @@ Given the integer `n`, return *the minimum number of days to eat* `n` *oranges*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 10$

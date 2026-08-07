@@ -13,6 +13,7 @@ Return *the total surface area of the resulting shapes*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/tmp-grid2.jpg)

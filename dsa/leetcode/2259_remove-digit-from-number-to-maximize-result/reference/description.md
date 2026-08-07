@@ -9,6 +9,7 @@ Return *the resulting string after removing **exactly one occurrence** of *`digi
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $number = "123", digit = "3"$

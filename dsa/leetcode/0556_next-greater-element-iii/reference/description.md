@@ -9,6 +9,7 @@ Given a positive integer `n`, find *the smallest integer which has exactly the s
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 12$

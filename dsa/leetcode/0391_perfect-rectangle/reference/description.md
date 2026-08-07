@@ -14,6 +14,7 @@ Return `true` *if all the rectangles together form an exact cover of a rectangul
 Return `true` when the rectangles collectively cover one larger rectangle exactly once at every interior point; otherwise return `false`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/perectrec1-plane.jpg)

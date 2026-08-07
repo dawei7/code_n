@@ -13,6 +13,7 @@ Return `true`* if it is possible to escape regardless of how the ghosts move, ot
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $ghosts = [[1,0],[0,3]], target = [0,1]$

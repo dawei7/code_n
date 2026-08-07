@@ -13,15 +13,14 @@ The **average** value of a tree is the sum of its values, divided by the number 
 
 Let $N$ be the number of nodes in the tree. For a node $u$, its subtree contains $u$ and every node descended from $u$ through left- or right-child links. Its average is
 
-$$
-\frac{\text{sum of values in the subtree rooted at }u}{\text{number of nodes in that subtree}}.
-$$
+$\frac{\text{sum of values in the subtree rooted at }u}{\text{number of nodes in that subtree}}.$
 
 **Return value**
 
 - The maximum subtree average over all $N$ possible roots. Answers within $10^{-5}$ of the exact value are accepted.
 
 ### Examples
+
 #### Example 1
 
 ![](images/1308_example_1.png)

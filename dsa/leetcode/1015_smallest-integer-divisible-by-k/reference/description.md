@@ -11,6 +11,7 @@ Return *the **length** of *`n`. If there is no such `n`, return -1.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $k = 1$

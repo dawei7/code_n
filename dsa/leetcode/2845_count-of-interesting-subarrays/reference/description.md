@@ -17,6 +17,7 @@ Return *an integer denoting the count of interesting subarrays. *
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,2,4], modulo = 2, k = 1`

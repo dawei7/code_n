@@ -38,11 +38,11 @@ The result format is in the following example.
 **Inputs**
 
 - `Accounts(id, name)`: account IDs and their associated user names;
-- `Logins(id, login_date)`: login events, including possible duplicate events
+- $Logins(id, \text{login}_{date})$: login events, including possible duplicate events
   for one account on one date.
 
 Let $A$ be the number of rows in `Accounts`, and let $L$ be the number of
-distinct `(id, login_date)` pairs in `Logins`.
+distinct $(id, \text{login}_{date})$ pairs in `Logins`.
 
 **Return value**
 
@@ -51,6 +51,7 @@ when at least five of its distinct login dates form an unbroken sequence of
 calendar days. Sort the rows by `id` ascending.
 
 ### Examples
+
 #### Example 1
 
 ```

@@ -9,6 +9,7 @@ A string is said to be palindrome if it the same string when reversed.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "abcbdd"`

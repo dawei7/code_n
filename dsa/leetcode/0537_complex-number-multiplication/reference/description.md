@@ -15,6 +15,7 @@ Given two complex numbers `num1` and `num2` as strings, return *a string of the 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num1 = "1+1i", num2 = "1+1i"$

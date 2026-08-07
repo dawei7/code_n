@@ -11,6 +11,7 @@ A cycle is a path that starts and ends at the same node, and each edge in the pa
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/cropped.png)

@@ -13,6 +13,7 @@ Return the number of different infection sequences possible, modulo $10^{9}+7$.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

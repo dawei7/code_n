@@ -9,6 +9,7 @@ Given two strings `str1` and `str2`, return *the largest string *`x`* such that 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

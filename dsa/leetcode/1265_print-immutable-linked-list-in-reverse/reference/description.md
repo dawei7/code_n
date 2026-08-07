@@ -26,6 +26,7 @@ Return `None`. Produce the answer as a side effect by calling `printValue()` on 
 The linked list must remain unchanged, and the implementation may operate only through `getNext()` and `printValue()`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $head = [1,2,3,4]$

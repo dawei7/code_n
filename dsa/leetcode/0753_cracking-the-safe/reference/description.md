@@ -27,6 +27,7 @@ Return *any string of **minimum length** that will unlock the safe **at some poi
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 1, k = 2$

@@ -15,6 +15,7 @@ Return the **minimum score** after **changing two elements** of `nums`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

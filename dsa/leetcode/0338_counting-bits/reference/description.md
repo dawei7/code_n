@@ -11,9 +11,10 @@ Do not solve it with built-in functions (i.e., like `__builtin_popcount` in C++)
 
 **Return value**
 
-Return an array of length `n + 1` whose value at index `i` is the count of `1` bits in $i$.
+Return an array of length $n + 1$ whose value at index `i` is the count of `1` bits in $i$.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 2$

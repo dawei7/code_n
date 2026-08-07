@@ -19,6 +19,7 @@ Return *the **quotient** after dividing *`dividend`* by *`divisor`.
 Return the quotient truncated toward zero and clamped to the signed 32-bit range.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $dividend = 10, divisor = 3$

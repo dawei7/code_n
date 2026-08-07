@@ -11,6 +11,7 @@ Return the earliest time at which at least one task is finished.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -17,6 +17,7 @@ Return *the maximum number of connecting lines we can draw in this way*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/142.png)

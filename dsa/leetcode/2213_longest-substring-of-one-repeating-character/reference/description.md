@@ -2,7 +2,7 @@
 
 You are given a **0-indexed** string `s`. You are also given a **0-indexed** string `queryCharacters` of length `k` and a **0-indexed** array of integer **indices** `queryIndices` of length `k`, both of which are used to describe `k` queries.
 
-The $$i^{\text{th}}$$query updates the character in `s` at index$\text{queryIndices}[i]$to the character$\text{queryCharacters}[i]$.
+The $$i^{\text{th}}$$ query updates the character in `s` at index $\text{queryIndices}[i]$ to the character $\text{queryCharacters}[i]$.
 
 Return *an array* `lengths` *of length *`k`* where* $\text{lengths}[i]$ *is the **length** of the **longest substring** of *`s`* consisting of **only one repeating** character **after** the* $$i^{\text{th}}$$ *query** is performed.*
 ### Function Contract
@@ -11,6 +11,7 @@ Return *an array* `lengths` *of length *`k`* where* $\text{lengths}[i]$ *is the 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "babacc", queryCharacters = "bcb", queryIndices = [1,3,3]`

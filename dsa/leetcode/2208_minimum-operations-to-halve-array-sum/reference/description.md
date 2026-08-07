@@ -9,6 +9,7 @@ Return* the **minimum** number of operations to reduce the sum of *`nums`* by **
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [5,19,8,1]`

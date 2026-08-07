@@ -2,7 +2,7 @@
 
 You are given a 2D integer array `logs` where each $\text{logs}[i] = [\text{birth}_{i}, \text{death}_{i}]$ indicates the birth and death years of the $$i^{\text{th}}$$ person.
 
-The **population** of some year `x` is the number of people alive during that year. The $$i^{\text{th}}$$person is counted in year `x`'s population if `x` is in the **inclusive** range$[\text{birth}_{i}, \text{death}_{i} - 1]$. Note that the person is **not** counted in the year that they die.
+The **population** of some year `x` is the number of people alive during that year. The $$i^{\text{th}}$$ person is counted in year `x`'s population if `x` is in the **inclusive** range $[\text{birth}_{i}, \text{death}_{i} - 1]$. Note that the person is **not** counted in the year that they die.
 
 Return *the **earliest** year with the **maximum population***.
 ### Function Contract
@@ -11,6 +11,7 @@ Return *the **earliest** year with the **maximum population***.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $logs = [[1993,1999],[2000,2010]]$

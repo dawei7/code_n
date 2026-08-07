@@ -11,6 +11,7 @@ An integer `x` is covered by an interval $\text{ranges}[i] = [\text{start}_{i}, 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $ranges = [[1,2],[3,4],[5,6]], left = 2, right = 5$

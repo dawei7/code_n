@@ -17,6 +17,7 @@ Return *an integer denoting the **minimum** **length** of *`nums`* after perform
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,4,3,1]`

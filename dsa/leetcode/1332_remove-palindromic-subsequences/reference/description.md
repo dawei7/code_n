@@ -13,6 +13,7 @@ A string is called **palindrome** if is one that reads the same backward as well
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "ababa"`

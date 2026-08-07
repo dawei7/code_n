@@ -11,7 +11,7 @@ Two intervals touch if the second interval starts **immediately after** the firs
 Return the **remaining** occupied intervals in **sorted** order. The returned intervals must be **non-overlapping** and must contain the **minimum** number of intervals possible. If there are no remaining occupied points, return an empty list.
 ### Function Contract
 
-`solve(occupiedIntervals, freeStart, freeEnd) -> list[list[int]]`
+$solve(occupiedIntervals, freeStart, freeEnd) -> list[\text{list}[int]]$
 
 **Inputs**
 
@@ -24,6 +24,7 @@ Return the **remaining** occupied intervals in **sorted** order. The returned in
 Return all integer points covered by at least one occupied interval but not by `[freeStart, freeEnd]`, encoded as sorted inclusive intervals. Consecutive remaining integer points belong to the same output interval, so the result is non-overlapping and uses the minimum possible number of intervals.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -13,6 +13,7 @@ A **palindrome** is a string that is the same forward and backward. A **substrin
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "ababbb"`

@@ -35,14 +35,13 @@ The **centre** is the middle value in an ordered integer list. More formally, if
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
-```
-**Input:** arr = [1,2,3,4,5], k = 2
-**Output:** [5,1]
-**Explanation:** Centre is 3, the elements of the array sorted by the strongest are [5,1,4,2,3]. The strongest 2 elements are [5, 1]. [1, 5] is also **accepted** answer.
+- **Input:** `arr = [1,2,3,4,5], k = 2`
+- **Output:** `[5,1]`
+- **Explanation:** Centre is 3, the elements of the array sorted by the strongest are [5,1,4,2,3]. The strongest 2 elements are [5, 1]. [1, 5] is also **accepted** answer.
 Please note that although |5 - 3| == |1 - 3| but 5 is stronger than 1 because 5 > 1.
-```
 #### Example 2
 
 - **Input:** `arr = [1,1,3,5,5], k = 2`

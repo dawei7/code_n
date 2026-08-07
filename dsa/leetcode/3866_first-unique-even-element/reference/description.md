@@ -18,6 +18,7 @@ Let $N=\lvert\texttt{nums}\rvert$. Uniqueness is determined from each value's fr
 Return the earliest-by-index even integer that appears exactly once. Return `-1` when no such integer exists.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

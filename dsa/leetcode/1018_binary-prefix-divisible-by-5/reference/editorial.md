@@ -14,15 +14,17 @@ When $i = 0$, since $\textit{num}_0 = \textit{nums}[0] < 5$, we have $\textit{re
 
 When $i > 0$, assume that $\textit{remain}{i-1} = \textit{num}{i-1} \bmod 5$ holds. Consider $\textit{num}_i \bmod 5$ and $\textit{remain}_i$:
 
-$$\begin{aligned}
-\textit{num}_i\bmod 5=\&(\textit{num}_{i-1} \times 2+\textit{nums}[i])\bmod 5 \\
-=\&(\textit{num}_{i-1} \times 2)\bmod 5+\textit{nums}[i]\bmod 5 \\
+$$
+\begin{aligned}
+\textit{num}_i\bmod 5=&(\textit{num}_{i-1} \times 2+\textit{nums}[i])\bmod 5 \\
+=&(\textit{num}_{i-1} \times 2)\bmod 5+\textit{nums}[i]\bmod 5 \\
 \\
-\textit{remain}_i=\&(\textit{remain}_{i-1} \times 2+\textit{nums}[i])\bmod 5 \\
-=\&(\textit{num}_{i-1}\bmod 5 \times 2+\textit{nums}[i])\bmod 5 \\
-=\&(\textit{num}_{i-1}\bmod 5 \times 2)\bmod 5+\textit{nums}[i]\bmod 5 \\
-=\&(\textit{num}_{i-1} \times 2)\bmod 5+\textit{nums}[i]\bmod 5
-\end{aligned}$$
+\textit{remain}_i=&(\textit{remain}_{i-1} \times 2+\textit{nums}[i])\bmod 5 \\
+=&(\textit{num}_{i-1}\bmod 5 \times 2+\textit{nums}[i])\bmod 5 \\
+=&(\textit{num}_{i-1}\bmod 5 \times 2)\bmod 5+\textit{nums}[i]\bmod 5 \\
+=&(\textit{num}_{i-1} \times 2)\bmod 5+\textit{nums}[i]\bmod 5
+\end{aligned}
+$$
 
 Thus $\textit{remain}_i = \textit{num}_i \bmod 5$.
 

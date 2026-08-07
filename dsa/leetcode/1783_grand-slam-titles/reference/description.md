@@ -42,8 +42,8 @@ The result format is in the following example.
 
 | Column | Type | Meaning |
 |---|---|---|
-| `player_id` | int | Unique player identifier. |
-| `player_name` | varchar | Display name of the player. |
+| $\text{player}_{id}$ | int | Unique player identifier. |
+| $\text{player}_{name}$ | varchar | Display name of the player. |
 
 **`Championships`**
 
@@ -51,15 +51,16 @@ The result format is in the following example.
 |---|---|---|
 | `year` | int | Year of the championships. |
 | `Wimbledon` | int | Player ID of the Wimbledon winner. |
-| `Fr_open` | int | Player ID of the French Open winner. |
-| `US_open` | int | Player ID of the US Open winner. |
-| `Au_open` | int | Player ID of the Australian Open winner. |
+| $\text{Fr}_{open}$ | int | Player ID of the French Open winner. |
+| $\text{US}_{open}$ | int | Player ID of the US Open winner. |
+| $\text{Au}_{open}$ | int | Player ID of the Australian Open winner. |
 
 **Return value**
 
-Return columns `player_id`, `player_name`, and `grand_slams_count`. Include only players who won at least one Grand Slam tournament. `grand_slams_count` is the total number of titles won across all four tournament columns and years. Row order is unrestricted.
+Return columns $\text{player}_{id}$, $\text{player}_{name}$, and `grand_slams_count`. Include only players who won at least one Grand Slam tournament. `grand_slams_count` is the total number of titles won across all four tournament columns and years. Row order is unrestricted.
 
 ### Examples
+
 #### Example 1
 
 ```

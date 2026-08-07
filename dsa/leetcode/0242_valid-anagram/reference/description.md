@@ -13,6 +13,7 @@ Given two strings `s` and `t`, return `true` if `t` is an anagram of `s`, and `f
 Return `true` exactly when both strings have identical character counts; otherwise return `false`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

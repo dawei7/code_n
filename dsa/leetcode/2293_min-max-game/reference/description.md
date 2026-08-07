@@ -21,6 +21,7 @@ Return *the last number that remains in *`nums`* after applying the algorithm.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/example1drawio-1.png)

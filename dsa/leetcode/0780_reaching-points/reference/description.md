@@ -9,6 +9,7 @@ The allowed operation on some point `(x, y)` is to convert it to either $(x, x +
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $sx = 1, sy = 1, tx = 3, ty = 5$

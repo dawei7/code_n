@@ -11,6 +11,7 @@ Return the *number of changes* needed to make `n` equal to `k`. If it is impossi
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

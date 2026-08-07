@@ -7,6 +7,7 @@ Given a string `date` representing a <a href="https://en.wikipedia.org/wiki/Greg
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $date = "2019-01-09"$

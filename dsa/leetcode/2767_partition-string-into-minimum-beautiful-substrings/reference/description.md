@@ -17,6 +17,7 @@ A **substring** is a contiguous sequence of characters in a string.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "1011"`

@@ -17,6 +17,7 @@ Given the integer array `fruits`, return *the **maximum** number of fruits you c
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $fruits = [<u>1,2,1</u>]$

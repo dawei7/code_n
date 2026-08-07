@@ -9,6 +9,7 @@ Since the answer may not fit in an integer data type, return the answer as a str
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $digits = [8,1,9]$

@@ -17,6 +17,7 @@ Return the letter that was added to `t`.
 Return the extra character occurrence found in `t`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "abcd", t = "abcde"`

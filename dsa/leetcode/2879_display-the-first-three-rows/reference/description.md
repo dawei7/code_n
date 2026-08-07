@@ -19,6 +19,7 @@ Write a solution to display the **first `3` **rows** **of this DataFrame.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ```

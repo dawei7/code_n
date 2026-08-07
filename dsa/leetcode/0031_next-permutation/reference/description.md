@@ -26,6 +26,7 @@ The replacement must be **<a href="http://en.wikipedia.org/wiki/In-place_algorit
 No value is returned. Mutate `nums` in place to its next lexicographic permutation.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3]`

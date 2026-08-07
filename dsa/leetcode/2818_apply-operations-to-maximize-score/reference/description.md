@@ -23,6 +23,7 @@ Since the answer may be large, return it modulo $10^{9} + 7$.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [8,3,9,3,8], k = 2`

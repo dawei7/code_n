@@ -17,6 +17,7 @@ Return the **shift distance** from `s` to `t`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

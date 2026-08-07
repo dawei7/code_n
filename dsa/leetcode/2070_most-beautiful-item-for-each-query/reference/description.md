@@ -11,6 +11,7 @@ Return *an array *`answer`* of the same length as *`queries`* where *$\text{answ
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $items = [[1,2],[3,2],[2,4],[5,6],[3,5]], queries = [1,2,3,4,5,6]$

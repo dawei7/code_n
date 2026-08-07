@@ -10,6 +10,7 @@ Return `true`* if it is possible to remove all *`1`*'s from *`grid` using **any*
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 ![](images/image-20220103191300-1.png)

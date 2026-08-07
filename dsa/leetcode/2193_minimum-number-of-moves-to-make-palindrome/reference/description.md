@@ -13,6 +13,7 @@ Return *the **minimum number of moves** needed to make* `s` *a palindrome*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "aabb"`

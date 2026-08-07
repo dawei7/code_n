@@ -16,6 +16,7 @@ Let $n = \lvert\texttt{nums}\rvert$.
 Return the least integer greater than zero that is absent from `nums`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,0]`

@@ -11,6 +11,7 @@ Given the integer `r`, return *the maximum number of darts that can lie on the d
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/sample_1_1806.png)

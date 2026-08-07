@@ -86,7 +86,7 @@ S = (n - 1) + (n - 3) + ... + 1 = (2k - 1) + (2k - 3) + ... + 1 =
 \sum\limits_{i = 0}^{i = \frac{n}{2} - 1}{(2i + 1)}, \qquad n = 2k \qquad(5)
 $As before, we could split this sum into two parts$
 S = 2\sum\limits_{i = 0}^{i = \frac{n}{2} - 1}{i} + \sum\limits_{i = 0}^{i = \frac{n}{2} - 1}{1}, \qquad n = 2k \qquad(6)
-$where the first term is a [sum of natural numbers](https://en.wikipedia.org/wiki/1_\%2B_{2\_}\%2B_{3\_}\%2B_{4\_}\%2B_\%E2\%8B\%AF) and the second one is easy to compute$
+$where the first term is a [sum of natural numbers](https://en.wikipedia.org/wiki/1_\%2B_2_\%2B_3_\%2B_4_\%2B_\%E2\%8B\%AF) and the second one is easy to compute$
 S = 2\frac{\frac{n}{2}\left(\frac{n}{2} - 1\right)}{2} + \frac{n}{2} = \frac{n^2}{4}, \qquad n = 2k \qquad(7)
 $> Case 2.$n$is odd$n = 2k + 1$$.
 
@@ -103,10 +103,12 @@ $S = 2 \frac{\frac{n - 1}{2}\frac{n + 1}{2}}{2} = \frac{n^2 - 1}{4}, \qquad n = 
 
 Now we simply merge the formulas (7) and (9) to get the answer
 
-$$S = \begin{cases}
-\frac{n^2}{4} \& n = 2k\\
-\frac{n^2 - 1}{4} \& n = 2k + 1
-\end{cases}$$
+$$
+S = \begin{cases}
+\frac{n^2}{4} & n = 2k\\
+\frac{n^2 - 1}{4} & n = 2k + 1
+\end{cases}
+$$
 
 **Implementation**
 

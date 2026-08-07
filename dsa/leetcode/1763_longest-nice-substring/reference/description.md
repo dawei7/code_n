@@ -9,6 +9,7 @@ Given a string `s`, return *the longest **substring** of `s` that is **nice**. I
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "YazaAay"`

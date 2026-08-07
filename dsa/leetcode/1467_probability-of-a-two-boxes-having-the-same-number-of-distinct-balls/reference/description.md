@@ -13,6 +13,7 @@ Return* the probability* that the two boxes have the same number of distinct bal
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $balls = [1,1]$

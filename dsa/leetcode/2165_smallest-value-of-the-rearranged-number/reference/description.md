@@ -11,6 +11,7 @@ Note that the sign of the number does not change after rearranging the digits.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num = 310$

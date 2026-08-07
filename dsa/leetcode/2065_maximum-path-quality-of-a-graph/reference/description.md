@@ -1,6 +1,6 @@
 ## Description
 
-There is an **undirected** graph with `n` nodes numbered from `0` to $n - 1$ (**inclusive**). You are given a **0-indexed** integer array `values` where $\text{values}[i]$ is the **value **of the $$i^{\text{th}}$$node. You are also given a **0-indexed** 2D integer array `edges`, where each$\text{edges}[j] = [u_{j}, v_{j}, \text{time}_{j}]$indicates that there is an undirected edge between the nodes$u_{j}$and$v_{j}$,_ and it takes$\text{time}_{j}$ seconds to travel between the two nodes. Finally, you are given an integer `maxTime`.
+There is an **undirected** graph with `n` nodes numbered from `0` to $n - 1$ (**inclusive**). You are given a **0-indexed** integer array `values` where $\text{values}[i]$ is the **value **of the $$i^{\text{th}}$$ node. You are also given a **0-indexed** 2D integer array `edges`, where each $\text{edges}[j] = [u_{j}, v_{j}, \text{time}_{j}]$ indicates that there is an undirected edge between the nodes $u_{j}$ and $v_{j}$,_ and it takes $\text{time}_{j}$ seconds to travel between the two nodes. Finally, you are given an integer `maxTime`.
 
 A **valid** **path** in the graph is any path that starts at node `0`, ends at node `0`, and takes **at most** `maxTime` seconds to complete. You may visit the same node multiple times. The **quality** of a valid path is the **sum** of the values of the **unique nodes** visited in the path (each node's value is added **at most once** to the sum).
 
@@ -13,6 +13,7 @@ Return *the **maximum** quality of a valid path*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1drawio.png)

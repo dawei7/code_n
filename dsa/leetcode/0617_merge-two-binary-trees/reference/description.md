@@ -13,6 +13,7 @@ Return *the merged tree*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/merge.jpg)

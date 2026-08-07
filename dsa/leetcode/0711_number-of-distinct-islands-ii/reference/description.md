@@ -7,7 +7,7 @@ An island is considered to be the same as another if they have the same shape, o
 Return *the number of **distinct** islands*.
 ### Function Contract
 
-`solve(grid: list[list[int]]) -> int`
+$solve(grid: list[\text{list}[int]]) -> int$
 
 Let $m$ be the number of rows and $n$ the number of columns.
 
@@ -20,6 +20,7 @@ Let $m$ be the number of rows and $n$ the number of columns.
 Return the number of island equivalence classes when absolute position, the permitted quarter-turn rotations, and horizontal or vertical reflection do not distinguish shapes. Only horizontal and vertical adjacency connects land cells.
 
 ### Examples
+
 #### Example 1
 
 ![](images/distinctisland2-1-grid.jpg)

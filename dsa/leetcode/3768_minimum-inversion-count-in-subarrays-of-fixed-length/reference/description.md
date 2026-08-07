@@ -18,9 +18,10 @@ Let $N=\lvert\texttt{nums}\rvert$. A subarray is contiguous, and there are $N-K+
 
 **Return value**
 
-Return the minimum number of pairs $(i,j)$ satisfying $i<j$ and `window[i] > window[j]` among all length-`k` windows. The result is an integer and may exceed the range of a signed 32-bit value.
+Return the minimum number of pairs $(i,j)$ satisfying $i<j$ and $\text{window}[i] > \text{window}[j]$ among all length-`k` windows. The result is an integer and may exceed the range of a signed 32-bit value.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

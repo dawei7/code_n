@@ -127,7 +127,7 @@ public class Solution {
 
 Let `N` be the number of element in the array, and `range` be the difference between the maximal and minimal values in the array, _i.e._ $range = \text{max}_{val} - \text{min}_{val}$, and finally the `error` be the precision required in the problem.
 
-* Time complexity : $O\big(N \cdot \log_2{\frac{(\text{max\\\_val} - \text{min\\\_val})}{0.00001}} \big)$.
+* Time complexity : $O\big(N \cdot \log_2{\frac{(\text{max\\_val} - \text{min\\_val})}{0.00001}} \big)$.
 
 - The algorithm consists of a binary search loop in the function of `findMaxAverage()`.
 
@@ -137,8 +137,8 @@ Let `N` be the number of element in the array, and `range` be the difference bet
 
 - After the first iteration, the $\text{error}$ would be $\frac{\text{range}}{2}$, as one can see. Further on, at each iteration, the $\text{error}$ would be reduced into half. For example, after the second iteration, we would have the $\text{error}$ as $\frac{\text{range}}{2}\cdot \frac{1}{2}$.
 
-- As a result, after $K$ iterations, the error would become $\text{error} = \text{range}\cdot 2^{-K}$. Given the condition of the loop, _i.e._ $\text{error} < 0.00001$, we can deduct that $K > \log_2{\frac{\text{range}}{0.00001}} = \log_2{\frac{(\text{max\\\_val} - \text{min\\\_val})}{0.00001}}$
+- As a result, after $K$ iterations, the error would become $\text{error} = \text{range}\cdot 2^{-K}$. Given the condition of the loop, _i.e._ $\text{error} < 0.00001$, we can deduct that $K > \log_2{\frac{\text{range}}{0.00001}} = \log_2{\frac{(\text{max\\_val} - \text{min\\_val})}{0.00001}}$
 
-- To sum up, the time complexity of the algorithm would be $O\big( N \cdot K \big) = O\big(N \cdot \log_2{\frac{(\text{max\\\_val} - \text{min\\\_val})}{0.00001}} \big)$.
+- To sum up, the time complexity of the algorithm would be $O\big( N \cdot K \big) = O\big(N \cdot \log_2{\frac{(\text{max\\_val} - \text{min\\_val})}{0.00001}} \big)$.
 
 * Space complexity : $O(1)$. Constant Space is used.

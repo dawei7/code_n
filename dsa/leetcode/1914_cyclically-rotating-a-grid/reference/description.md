@@ -17,6 +17,7 @@ Return *the matrix after applying *`k` *cyclic rotations to it*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/rod2.png)

@@ -12,6 +12,7 @@ Return `true` *if the given array **represents the preorder traversal of some tr
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nodes = [[0,-1],[1,0],[2,0],[3,2],[4,2]]$

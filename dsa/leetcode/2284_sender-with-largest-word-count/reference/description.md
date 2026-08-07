@@ -17,6 +17,7 @@ Return *the sender with the **largest** word count*. If there is more than one s
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $messages = ["Hello userTwooo","Hi userThree","Wonderful day Alice","Nice day userThree"], senders = ["Alice","userTwo","userThree","Alice"]$

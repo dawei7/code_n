@@ -21,6 +21,7 @@ Let $N = \lvert\texttt{nums}\rvert$ and $K = \texttt{k}$. A partition places $K-
 Return the minimum integer score over all partitions of `nums` into exactly $K$ subarrays. Each subarray contributes the triangular number determined by the sum of its elements.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -1,6 +1,6 @@
 ## Description
 
-Given `n` points on a 1-D plane, where the $$i^{\text{th}}$$point (from `0` to `n-1`) is at$x = i$, find the number of ways we can draw **exactly** `k` **non-overlapping** line segments such that each segment covers two or more points. The endpoints of each segment must have **integral coordinates**. The `k` line segments **do not** have to cover all `n` points, and they are **allowed** to share endpoints.
+Given `n` points on a 1-D plane, where the $$i^{\text{th}}$$ point (from `0` to `n-1`) is at $x = i$, find the number of ways we can draw **exactly** `k` **non-overlapping** line segments such that each segment covers two or more points. The endpoints of each segment must have **integral coordinates**. The `k` line segments **do not** have to cover all `n` points, and they are **allowed** to share endpoints.
 
 Return *the number of ways we can draw *`k`* non-overlapping line segments**.* Since this number can be huge, return it **modulo** $10^{9} + 7$.
 ### Function Contract
@@ -9,6 +9,7 @@ Return *the number of ways we can draw *`k`* non-overlapping line segments**.* S
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1.png)

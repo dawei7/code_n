@@ -17,6 +17,7 @@ Return *the probability that the knight remains on the board after it has stoppe
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 3, k = 2, row = 0, column = 0$

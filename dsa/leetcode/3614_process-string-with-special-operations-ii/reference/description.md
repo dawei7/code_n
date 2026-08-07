@@ -21,6 +21,7 @@ Return the $$k^{\text{th}}$$ character of the final string `result`. If `k` is o
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

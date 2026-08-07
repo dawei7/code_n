@@ -17,6 +17,7 @@ Return *the minimum total cost* of the cuts.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/e1.jpg)

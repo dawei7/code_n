@@ -21,6 +21,7 @@ Return `true`* if the student is eligible for an attendance award, or *`false`* 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "PPALLP"`

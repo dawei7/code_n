@@ -15,6 +15,7 @@ Return *an array of size* `n-1` *where the *$$d^{\text{th}}$$* **element **(1-in
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 **

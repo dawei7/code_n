@@ -6,13 +6,15 @@ According to the problem statement, starting from any index $i$ in the array $\t
 
 The most direct approach is to enumerate all possible starting points, which requires $n$ enumerations. However, we can reverse our perspective and instead enumerate all end points $i$ of these paths. In this case, the reverse traversal of a path becomes $[i, i - k, i - 2k, \cdots]$. The corresponding sequence of prefix enumerations in this reverse path is:
 
-$$\begin{aligned}
-\& [i] \\
-\& [i,i-k] \\
-\& [i,i-k,i-2k] \\
-\& [i,i-k,i-2k,i-3k] \\
-\& \cdots
-\end{aligned}$$
+$$
+\begin{aligned}
+& [i] \\
+& [i,i-k] \\
+& [i,i-k,i-2k] \\
+& [i,i-k,i-2k,i-3k] \\
+& \cdots
+\end{aligned}
+$$
 
 By observation, the sum of all prefixes in the reverse path represents the total possible energy absorption. We then find and return the maximum of these values.
 

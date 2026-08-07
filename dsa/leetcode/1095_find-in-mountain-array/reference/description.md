@@ -29,6 +29,7 @@ Submissions making more than `100` calls to `MountainArray.get` will be judged *
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $mountainArr = [1,2,3,4,5,3,1], target = 3$

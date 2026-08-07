@@ -11,6 +11,7 @@ The median of an array is defined as the middle element of the array when it is 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

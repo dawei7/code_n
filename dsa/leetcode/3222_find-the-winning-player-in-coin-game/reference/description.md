@@ -11,6 +11,7 @@ Return the *name* of the player who wins the game if both players play **optimal
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

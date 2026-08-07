@@ -13,6 +13,7 @@ An array `arr` is **non-increasing** if $arr[i-1] \ge \text{arr}[i]$ for every $
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [55,30,5,4,2], nums2 = [100,20,10,10,5]$

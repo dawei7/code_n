@@ -13,6 +13,7 @@ Return *the **minimum total cost** such that *`nums1` and `nums2`* satisfy the a
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [1,2,3,4,5], nums2 = [1,2,3,4,5]$

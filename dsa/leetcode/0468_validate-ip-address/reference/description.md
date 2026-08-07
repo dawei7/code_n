@@ -26,6 +26,7 @@ For example, "`2001:0db8:85a3:0000:0000:8a2e:0370:7334"` and "`2001:db8:85a3:0:0
 IPv6 compression such as `::` is not part of the accepted grammar because all eight fields must be present and nonempty.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $queryIP = "172.16.254.1"$

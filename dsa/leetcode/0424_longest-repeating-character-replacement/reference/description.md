@@ -16,6 +16,7 @@ Return the greatest length of a contiguous substring that can be transformed int
 at most `k` replacements.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "ABAB", k = 2`

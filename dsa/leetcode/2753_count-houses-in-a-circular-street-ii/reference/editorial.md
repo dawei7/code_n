@@ -46,7 +46,7 @@ Instead, if we skip the first open door and proceed to close all the open doors 
 
 <br>
 
-In essence, our approach is as follows: We perform `moveRight()` to update our current index (let's name it `x`, and start with $x = 0$). When we encounter the first open door, we designate its index as $\text{first}_{open} = x$. We leave it open and proceed to close all the open doors from now on. For each door we close, we calculate the number of steps taken from the first open door to this door as $x_{from\_first} = x - \text{first}_{open}$. As we close the last door, which is also the first open oor, `x` becomes equal to $\text{first}_{open}$ plus the total number of houses, so $x - \text{first}_{open}$ precisely equals the number of steps taken in a circle as well as the total number of houses.
+In essence, our approach is as follows: We perform `moveRight()` to update our current index (let's name it `x`, and start with $x = 0$). When we encounter the first open door, we designate its index as $\text{first}_{open} = x$. We leave it open and proceed to close all the open doors from now on. For each door we close, we calculate the number of steps taken from the first open door to this door as $x_from_first = x - \text{first}_{open}$. As we close the last door, which is also the first open oor, `x` becomes equal to $\text{first}_{open}$ plus the total number of houses, so $x - \text{first}_{open}$ precisely equals the number of steps taken in a circle as well as the total number of houses.
 
 But when should we stop the `moveRight()` operations? We can still take advantage of the condition "the number of houses is less than or equal to k". After we skip the first open door, we have covered the entire circle before moving back again, which requires at most additional `k` steps. Therefore, the total number of `moveRight()` operations will not exceed $\text{first}_{open} + k$.
 
@@ -79,7 +79,7 @@ Please refer to the following slides for a detailed example:
 3) Circle around the houses for at most $2 * k$ steps. At each step, perform `isDoorOpen` to check the state of each door, if the current door is open:
 
 - If $\text{find}_{first} = False$, set $\text{find}_{first} = True$ and $x_{first} = x$.
-- Otherwise, set $dist_{from\_first} = x - x_{first}$, and close this door via `closeDoor()`.
+- Otherwise, set $dist_from_first = x - x_{first}$, and close this door via `closeDoor()`.
 
     Increment `x` by 1 and move to the next house on the right by performing `moveRight()`.
 

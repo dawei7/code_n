@@ -4,7 +4,7 @@ You have `n` jobs and `m` workers. You are given three arrays: `difficulty`, `pr
 
 - $\text{difficulty}[i]$ and $\text{profit}[i]$ are the difficulty and the profit of the $$i^{\text{th}}$$ job, and
 
-- $\text{worker}[j]$ is the ability of $$j^{\text{th}}$$worker (i.e., the$$j^{\text{th}}$$worker can only complete a job with difficulty at most$\text{worker}[j]$).
+- $\text{worker}[j]$ is the ability of $$j^{\text{th}}$$ worker (i.e., the $$j^{\text{th}}$$ worker can only complete a job with difficulty at most $\text{worker}[j]$).
 
 Every worker can be assigned **at most one job**, but one job can be **completed multiple times**.
 
@@ -17,6 +17,7 @@ Return the maximum profit we can achieve after assigning the workers to the jobs
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $difficulty = [2,4,6,8,10], profit = [10,20,30,40,50], worker = [4,5,6,7]$

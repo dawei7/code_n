@@ -7,6 +7,7 @@ Given an integer array `nums` of `2n` integers, group these integers into `n` pa
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,4,3,2]`

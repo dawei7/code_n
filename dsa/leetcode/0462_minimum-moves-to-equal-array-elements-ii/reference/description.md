@@ -16,6 +16,7 @@ Test cases are designed so that the answer will fit in a **32-bit** integer.
 - Return the minimum number of single-element `+1` or `-1` moves needed to make every value equal.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3]`

@@ -9,6 +9,7 @@ Return *the **minimum** rounds required to complete all the tasks, or *`-1`* if 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $tasks = [2,2,3,3,2,4,4,4,4,4]$

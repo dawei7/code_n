@@ -24,7 +24,7 @@ What we can do is extract the digits from the integer and count them. If the num
 
 Let's see how to extract the digits from an integer using $37$ as an example. It can be written as
 
-$37 = 3 \cdot$10^{1}$+ 7 \cdot 10^0$, or
+$37 = 3 \cdot $10^{1}$ + 7 \cdot 10^0$, or
 $37 = 3 \cdot 10 + 7$
 
 We can say that to extract $7$ from $37$, we have to divide $37$ by $10$ and take the remainder.
@@ -37,16 +37,16 @@ We can use [modulo operator](https://en.wikipedia.org/wiki/Modulo_operation) to 
 In this way, we have extracted the last digit from an integer. How we can extract the second last digit? We can shift the integer by one place to the right to make the current second last digit the last digit, and then extract it again using the modulo operator.
 
 Now,
-$37 = 3 \cdot$10^{1}$+ 7 \cdot 10^0$
+$37 = 3 \cdot $10^{1}$ + 7 \cdot 10^0$
 
 The required $3$ can be written as
-$3 = 0 \cdot$10^{1}$+ 3 \cdot 10^0$
+$3 = 0 \cdot $10^{1}$ + 3 \cdot 10^0$
 
 Thus, the weight of each digit is reduced by $10$ times. Hence, we can divide the integer by $10$ to obtain the second last digit.
 
 > We can take large integers as an example to convince ourselves. Let's take $7329$. Now, we can write it as
 >
-> $7329 = 7 \cdot$10^{3}$+ 3 \cdot$10^{2}$+ 2 \cdot$10^{1}$+ 9 \cdot 10^0$
+> $7329 = 7 \cdot $10^{3}$ + 3 \cdot $10^{2}$ + 2 \cdot $10^{1}$ + 9 \cdot 10^0$
 >
 > To shift right and obtain $732$, we can divide it by $10$ and obtain the **quotient** as $732$.
 > $7329 = 732 \cdot 10 + 9$

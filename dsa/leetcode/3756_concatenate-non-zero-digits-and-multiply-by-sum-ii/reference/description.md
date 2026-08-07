@@ -16,7 +16,7 @@ Since the answers may be very large, return them **modulo** $10^{9} + 7$.
 **Inputs**
 
 - `s`: A nonempty string whose characters are decimal digits.
-- `queries`: An array of inclusive index pairs `[l_i, r_i]` into `s`.
+- `queries`: An array of inclusive index pairs $[l_{i}, r_{i}]$ into `s`.
 
 Let $m = \lvert\texttt{s}\rvert$ and $q = \lvert\texttt{queries}\rvert$. Each query is evaluated independently against the original string; removing zeros does not modify `s` or shift later query indices.
 
@@ -25,6 +25,7 @@ Let $m = \lvert\texttt{s}\rvert$ and $q = \lvert\texttt{queries}\rvert$. Each qu
 Return an array of $q$ integers. For each query, concatenate its nonzero digits in order, multiply that value by their digit sum, and return the product modulo $10^9+7$.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

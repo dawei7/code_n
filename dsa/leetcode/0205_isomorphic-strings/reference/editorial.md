@@ -54,7 +54,7 @@ We will need two dictionaries instead of one since we need `one-to-one` mapping 
 2. Next, we iterate over the two strings one character at a time.
 3. Let's assume the character in the first string is `c1` and the corresponding character in the second string is `c2`.
    1. If `c1` does not have a mapping in `mapping_s_t` and `c2` does not have a mapping in `mapping_t_s`, we add the corresponding mappings in both the dictionaries and move on to the next character.
-   2. At this point, we expect both the character mappings to exist in the dictionaries and their values should be $\text{mapping\\_s\\_t}[c1] = c2$ and $\text{mapping\\_t\\_s}[c2] = c1$. If either of these conditions fails (`c1` is not in the dictionary, `c2` is not in the dictionary, unexpected mapping), we return `false`.
+   2. At this point, we expect both the character mappings to exist in the dictionaries and their values should be $\text{mapping\_s\_t}[c1] = c2$ and $\text{mapping\_t\_s}[c2] = c1$. If either of these conditions fails (`c1` is not in the dictionary, `c2` is not in the dictionary, unexpected mapping), we return `false`.
 4. Return `true` once both the strings have been exhausted.
 
 #### Implementation

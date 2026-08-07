@@ -208,7 +208,9 @@ T(x) &= \sum_{i = x + 1}^{n} T(i) \\
 &= T(x + 1) + T(x + 1) \\
 &= 2 \cdot T(x + 1)
 \end{aligned}
-$Now by induction, assume$T(x) = 2^{n - x - 1}$and prove$T(x - 1) = 2^{n - (x - 1) - 1}$$$$
+$Now by induction, assume$T(x) = 2^{n - x - 1}$and prove$T(x - 1) = 2^{n - (x - 1) - 1}$$
+
+$$
 \begin{aligned}
 T(x - 1) &= 2 \cdot T(x) \\
 &= 2 \cdot 2^{n - x - 1} \\

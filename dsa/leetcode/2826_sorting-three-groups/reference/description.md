@@ -7,6 +7,7 @@ You are given an integer array `nums`. Each element in `nums` is 1, 2 or 3. In e
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -1,8 +1,8 @@
 ## Description
 
-We have `n` chips, where the position of the $$i^{\text{th}}$$chip is$\text{position}[i]$.
+We have `n` chips, where the position of the $$i^{\text{th}}$$ chip is $\text{position}[i]$.
 
-We need to move all the chips to **the same position**. In one step, we can change the position of the $$i^{\text{th}}$$chip from$\text{position}[i]$ to:
+We need to move all the chips to **the same position**. In one step, we can change the position of the $$i^{\text{th}}$$ chip from $\text{position}[i]$ to:
 
 - $\text{position}[i] + 2$ or $\text{position}[i] - 2$ with $cost = 0$.
 
@@ -15,6 +15,7 @@ Return *the minimum cost* needed to move all the chips to the same position.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/chips_e1.jpg)

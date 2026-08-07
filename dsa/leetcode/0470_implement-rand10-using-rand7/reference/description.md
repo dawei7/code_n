@@ -7,7 +7,7 @@ Each test case will have one **internal** argument `n`, the number of times that
 
 **Inputs**
 
-- `rand7_values`: A nonempty deterministic cyclic stream of integers from `1` through `7` that the app adapter uses in place of LeetCode's random API. When `draws` is positive, the stream must eventually produce an accepted pair on every requested output.
+- $\text{rand7}_{values}$: A nonempty deterministic cyclic stream of integers from `1` through `7` that the app adapter uses in place of LeetCode's random API. When `draws` is positive, the stream must eventually produce an accepted pair on every requested output.
 - `draws`: The nonnegative number of deterministic `rand10` outputs to generate for the app trace.
 
 **Return value**
@@ -17,6 +17,7 @@ Each test case will have one **internal** argument `n`, the number of times that
 The immutable native form instead exposes `Solution.rand10()` with no arguments and calls LeetCode's independently uniform `rand7()` API. The app stream exists only to make the same control flow reproducible.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 1$

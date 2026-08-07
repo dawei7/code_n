@@ -28,6 +28,7 @@ N-ary `Node`. The immutable native artifact exposes the source-required `Codec.e
 `Codec.decode(data)` methods.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `root = [1,null,3,2,4,null,5,6]`

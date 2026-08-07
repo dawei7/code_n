@@ -7,6 +7,7 @@ Given an integer number `n`, return the difference between the product of its di
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 234$

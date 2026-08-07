@@ -9,6 +9,7 @@ The graph is given as follows: $\text{graph}[i]$ is a list of all nodes you can 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/all_1.jpg)

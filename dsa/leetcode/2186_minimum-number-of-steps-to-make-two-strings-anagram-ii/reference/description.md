@@ -11,6 +11,7 @@ An **anagram** of a string is a string that contains the same characters with a 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "**<u>lee</u>**tco<u>**de**</u>", t = "co<u>**a**</u>t<u>**s**</u>"`

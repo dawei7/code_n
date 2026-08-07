@@ -26,6 +26,7 @@ Return *the **minimum number of operations** required to make the array K-increa
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [5,4,3,2,1], k = 1`

@@ -10,6 +10,7 @@ Given a **0-indexed** integer array `nums`, return *the **maximum alternating su
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,-1,1,2]`

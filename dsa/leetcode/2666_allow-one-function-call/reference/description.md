@@ -11,6 +11,7 @@ Given a function `fn`, return a new function that is identical to the original f
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $fn = (a,b,c) => (a + b + c), calls = [[1,2,3],[2,3,6]]$

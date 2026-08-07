@@ -15,6 +15,7 @@ Return the **minimum** cost to paint the houses such that they look **beautiful*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

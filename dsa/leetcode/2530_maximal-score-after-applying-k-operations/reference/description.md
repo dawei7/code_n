@@ -19,6 +19,7 @@ The ceiling function `ceil(val)` is the least integer greater than or equal to `
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [10,10,10,10,10], k = 5`

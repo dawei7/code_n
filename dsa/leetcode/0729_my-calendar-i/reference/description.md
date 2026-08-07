@@ -17,6 +17,7 @@ Implement the `MyCalendar` class:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ```

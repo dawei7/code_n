@@ -10,7 +10,7 @@ Say $P = R^2$ is a superpalindrome.
 
 Because $R$ is a palindrome, the first half of the digits in $R$ determine $R$ up to two possibilities.  We can iterate through these digits: let $k$ be the first half of the digits in $R$.  For example, if $k = 1234$, then $R = 1234321$ or $R = 12344321$.  Each possibility has either an odd or an even number of digits in $R$.
 
-Notice because $P < 10^{18}$, $R < (10^{18})^{\frac{1}{2}} = 10^9$, and $R = k \| k'$ (concatenation), where $k'$ is $k$ reversed (and also possibly truncated by one digit); so that $k <$10^{5}$= \small\text{MAGIC}$, our magic constant.
+Notice because $P < 10^{18}$, $R < (10^{18})^{\frac{1}{2}} = 10^9$, and $R = k \| k'$ (concatenation), where $k'$ is $k$ reversed (and also possibly truncated by one digit); so that $k < $10^{5}$ = \small\text{MAGIC}$, our magic constant.
 
 **Algorithm**
 

@@ -9,6 +9,7 @@ Given a string `n` that represents a positive decimal integer, return *the **min
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = "32"$

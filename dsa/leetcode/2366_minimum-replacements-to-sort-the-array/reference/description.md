@@ -11,6 +11,7 @@ Return *the minimum number of operations to make an array that is sorted in **no
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,9,3]`

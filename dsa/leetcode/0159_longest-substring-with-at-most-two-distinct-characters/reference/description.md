@@ -12,6 +12,7 @@ Given a string `s`, return *the length of the longest **substring** that contain
 Return an integer representing the maximum length of a contiguous substring containing at most two distinct characters.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "eceba"`

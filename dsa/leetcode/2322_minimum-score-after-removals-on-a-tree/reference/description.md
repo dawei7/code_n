@@ -2,7 +2,7 @@
 
 There is an undirected connected tree with `n` nodes labeled from `0` to $n - 1$ and $n - 1$ edges.
 
-You are given a **0-indexed** integer array `nums` of length `n` where $\text{nums}[i]$ represents the value of the $$i^{\text{th}}$$node. You are also given a 2D integer array `edges` of length$n - 1$where$\text{edges}[i] = [a_{i}, b_{i}]$indicates that there is an edge between nodes$a_{i}$and$b_{i}$ in the tree.
+You are given a **0-indexed** integer array `nums` of length `n` where $\text{nums}[i]$ represents the value of the $$i^{\text{th}}$$ node. You are also given a 2D integer array `edges` of length $n - 1$ where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates that there is an edge between nodes $a_{i}$ and $b_{i}$ in the tree.
 
 Remove two **distinct** edges of the tree to form three connected components. For a pair of removed edges, the following steps are defined:
 
@@ -19,6 +19,7 @@ Return *the **minimum** score of any possible pair of edge removals on the given
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1drawio.png)

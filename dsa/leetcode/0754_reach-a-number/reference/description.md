@@ -6,7 +6,7 @@ You can make some number of moves `numMoves` so that:
 
 - On each move, you can either go left or right.
 
-- During the $$i^{\text{th}}$$move (starting from$i = 1$to$i = numMoves$), you take `i` steps in the chosen direction.
+- During the $$i^{\text{th}}$$ move (starting from $i = 1$ to $i = numMoves$), you take `i` steps in the chosen direction.
 
 Given the integer `target`, return *the **minimum** number of moves required (i.e., the minimum *`numMoves`*) to reach the destination*.
 ### Function Contract
@@ -15,6 +15,7 @@ Given the integer `target`, return *the **minimum** number of moves required (i.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $target = 2$

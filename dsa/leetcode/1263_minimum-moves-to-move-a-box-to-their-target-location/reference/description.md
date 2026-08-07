@@ -25,6 +25,7 @@ Return *the minimum number of **pushes** to move the box to the target*. If ther
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/sample_1_1620.png)

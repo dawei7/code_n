@@ -19,6 +19,7 @@ Return *the score you get after applying the above algorithm*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,1,3,4,5,2]`

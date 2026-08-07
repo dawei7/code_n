@@ -4,7 +4,7 @@ You are given an array `start` where $start = [startX, startY]$ represents your 
 
 The **cost** of going from a position `(x1, y1)` to any other position in the space `(x2, y2)` is $|x2 - x1| + |y2 - y1|$.
 
-There are also some **special roads**. You are given a 2D array `specialRoads` where $\text{specialRoads}[i] = [\text{x1}_{i}, \text{y1}_{i}, \text{x2}_{i}, \text{y2}_{i}, \text{cost}_{i}]$ indicates that the $$i^{\text{th}}$$special road goes in **one direction** from$(\text{x1}_{i}, \text{y1}_{i})$to$(\text{x2}_{i}, \text{y2}_{i})$with a cost equal to$\text{cost}_{i}$. You can use each special road any number of times.
+There are also some **special roads**. You are given a 2D array `specialRoads` where $\text{specialRoads}[i] = [\text{x1}_{i}, \text{y1}_{i}, \text{x2}_{i}, \text{y2}_{i}, \text{cost}_{i}]$ indicates that the $$i^{\text{th}}$$ special road goes in **one direction** from $(\text{x1}_{i}, \text{y1}_{i})$ to $(\text{x2}_{i}, \text{y2}_{i})$ with a cost equal to $\text{cost}_{i}$. You can use each special road any number of times.
 
 Return the **minimum** cost required to go from `(startX, startY)` to `(targetX, targetY)`.
 ### Function Contract
@@ -13,6 +13,7 @@ Return the **minimum** cost required to go from `(startX, startY)` to `(targetX,
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

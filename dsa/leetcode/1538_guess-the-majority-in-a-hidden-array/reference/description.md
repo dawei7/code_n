@@ -29,6 +29,7 @@ Return **any** index of the most frequent value in `nums`, in case of tie, retur
 Return any valid index of the majority bit in `nums`, or `-1` when the counts of zeros and ones are equal. The solution may make at most $2N$ calls to `query`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [0,0,1,0,1,1,1,1]`

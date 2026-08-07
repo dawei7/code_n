@@ -11,9 +11,7 @@ The `k`-digit number `n` is an Armstrong number if and only if the $$k^{\text{th
 
 The Armstrong sum is
 
-$$
-\sum_{i=1}^{k} d_i^k.
-$$
+$\sum_{i=1}^{k} d_i^k.$
 
 **Return value**
 
@@ -22,6 +20,7 @@ $$
 Repeated digits contribute separately, and a zero digit contributes $0^k = 0$.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 153$

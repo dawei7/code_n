@@ -19,6 +19,7 @@ Return *an array *`answer`* of size *`m`* where *$\text{answer}[i]$* is the heig
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/binaryytreeedrawio-1.png)

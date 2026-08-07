@@ -7,6 +7,7 @@ Given a 2D integer array `nums` where $\text{nums}[i]$ is a non-empty array of *
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [[<u>**3**</u>,1,2,<u>**4**</u>,5],[1,2,<u>**3**</u>,<u>**4**</u>],[<u>**3**</u>,<u>**4**</u>,5,6]]`

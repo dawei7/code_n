@@ -11,24 +11,21 @@ Return *the **maximum** tastiness of a candy basket.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
-```
-**Input:** price = [13,5,1,8,21,2], k = 3
-**Output:** 8
-**Explanation:** Choose the candies with the prices [13,5,21].
+- **Input:** $price = [13,5,1,8,21,2], k = 3$
+- **Output:** `8`
+- **Explanation:** Choose the candies with the prices [13,5,21].
 The tastiness of the candy basket is: min(|13 - 5|, |13 - 21|, |5 - 21|) = min(8, 8, 16) = 8.
 It can be proven that 8 is the maximum tastiness that can be achieved.
-```
 #### Example 2
 
-```
-**Input:** price = [1,3,1], k = 2
-**Output:** 2
-**Explanation:** Choose the candies with the prices [1,3].
+- **Input:** $price = [1,3,1], k = 2$
+- **Output:** `2`
+- **Explanation:** Choose the candies with the prices [1,3].
 The tastiness of the candy basket is: min(|1 - 3|) = min(2) = 2.
 It can be proven that 2 is the maximum tastiness that can be achieved.
-```
 #### Example 3
 
 - **Input:** $price = [7,7,7,7], k = 2$

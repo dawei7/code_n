@@ -15,6 +15,7 @@ if no such substring exists, return 0.
 Return the maximum length of a contiguous substring satisfying the frequency requirement, or `0` when none exists.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "aaabb", k = 3`

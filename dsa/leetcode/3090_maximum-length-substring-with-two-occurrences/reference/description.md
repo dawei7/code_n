@@ -7,6 +7,7 @@ Given a string `s`, return the **maximum** length of a substring such that it co
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

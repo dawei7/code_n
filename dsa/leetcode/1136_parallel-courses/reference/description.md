@@ -10,7 +10,7 @@ Return *the **minimum** number of semesters needed to take all courses*. If ther
 **Inputs**
 
 - `n`: the number of courses, labeled with the consecutive integers from `1` through `n`.
-- `relations`: the directed prerequisite relationships. Each unique entry `[prevCourse_i, nextCourse_i]` requires `prevCourse_i` to be completed before `nextCourse_i` may be taken.
+- `relations`: the directed prerequisite relationships. Each unique entry $[\text{prevCourse}_{i}, \text{nextCourse}_{i}]$ requires $\text{prevCourse}_{i}$ to be completed before $\text{nextCourse}_{i}$ may be taken.
 
 Let $r = \lvert\texttt{relations}\rvert$.
 
@@ -21,6 +21,7 @@ There is no limit on how many currently eligible courses can be taken together. 
 - The least number of semesters needed to take every course, or `-1` if no valid completion schedule exists.
 
 ### Examples
+
 #### Example 1
 
 ![](images/course1graph.jpg)

@@ -14,6 +14,7 @@ Given an integer n, return *the **largest palindromic integer** that can be repr
 Determine the largest original palindrome before applying the modulo operation.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 2$

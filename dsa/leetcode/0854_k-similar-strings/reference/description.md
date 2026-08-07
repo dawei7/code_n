@@ -9,6 +9,7 @@ Given two anagrams `s1` and `s2`, return the smallest `k` for which `s1` and `s2
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $s1 = "ab", s2 = "ba"$

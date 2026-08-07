@@ -12,12 +12,14 @@ Implement the `NestedIterator` class:
 
 Your code will be tested with the following pseudocode:
 
+```
 initialize iterator with nestedList
 res = []
 while iterator.hasNext()
-append iterator.next() to the end of res
+    append iterator.next() to the end of res
 return res
 ```
+
 If `res` matches the expected flattened list, then your code will be judged as correct.
 ### Function Contract
 
@@ -32,8 +34,9 @@ JSON cases use ordinary nested arrays and integers. The runner reconstructs the 
 `NestedIterator.next()` returns the next integer, while `hasNext()` reports whether one remains. The app's `solve` dispatcher exhausts that same iterator so validated cases can display the complete sequence.
 
 ### Examples
+
 #### Example 1
-```
+
 - **Input:** $nestedList = [[1,1],2,[1,1]]$
 - **Output:** `[1,1,2,1,1]`
 - **Explanation:** By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,1,2,1,1].

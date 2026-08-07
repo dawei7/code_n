@@ -12,6 +12,7 @@ Given a string `s`, find the **first** non-repeating character in it and return 
 Return the smallest index whose character has total frequency one, or `-1` if every character repeats.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

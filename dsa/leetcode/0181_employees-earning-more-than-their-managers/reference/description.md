@@ -31,6 +31,7 @@ The result format is in the following example.
 Return one column named `Employee` containing the names of employees who earn more than their managers.
 
 ### Examples
+
 #### Example 1
 
 ```

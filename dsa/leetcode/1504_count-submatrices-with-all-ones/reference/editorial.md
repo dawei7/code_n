@@ -6,10 +6,12 @@ A straightforward idea is to enumerate each position $(i,j)$ in the matrix and c
 
 We preprocess a $\textit{row}$ array, where $\textit{row}[i][j]$ represents the number of consecutive $1$s extending to the left from position $(i,j)$ in the matrix. The recursive formula is straightforward:
 
-$$row[i][j]=\begin{cases}
-0, \& \quad mat[i][j]= 0 \\
-row[i][j-1]+1, \& \quad mat[i][j]= 1
-\end{cases}$$
+$$
+row[i][j]=\begin{cases}
+0, & \quad mat[i][j]= 0 \\
+row[i][j-1]+1, & \quad mat[i][j]= 1
+\end{cases}
+$$
 
 Once we have the $\textit{row}$ array, if we want to count the number of subrectangles with $(i,j)$ as the bottom-right corner that satisfy the condition, we can enumerate the height of the subrectangles and check how many of them are valid. We start this enumeration from the $i$-th row and move upward. For the $i$-th row, there are $\textit{row}[i][j]$ subrectangles that satisfy the condition. For the $i-1$-th row, there are $\texttt{min}(\textit{row}[i][j], \textit{row}[i-1][j])$ subrectangles, because both rows must consist entirely of $1$s to satisfy the condition. The same logic applies to higher rows, where we continuously take the minimum value to ensure the condition holds. Enumerating from bottom to top allows us to update the minimum in constant time.
 

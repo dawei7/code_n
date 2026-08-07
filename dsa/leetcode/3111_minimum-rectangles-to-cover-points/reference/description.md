@@ -15,6 +15,7 @@ Return an integer denoting the **minimum** number of rectangles needed so that e
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/screenshot-from-2024-03-04-20-33-05.png)

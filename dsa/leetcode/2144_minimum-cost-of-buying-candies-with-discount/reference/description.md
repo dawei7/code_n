@@ -13,6 +13,7 @@ Given a **0-indexed** integer array `cost`, where $\text{cost}[i]$ denotes the c
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $cost = [1,2,3]$

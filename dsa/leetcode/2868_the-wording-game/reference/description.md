@@ -26,6 +26,7 @@ A string `s` is **lexicographically ****greater** than a string `t` if in the fi
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $a = ["avokado","dabar"], b = ["brazil"]$

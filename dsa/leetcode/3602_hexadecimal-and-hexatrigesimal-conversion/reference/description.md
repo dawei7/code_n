@@ -13,6 +13,7 @@ A **hexatrigesimal** number is defined as a base-36 numeral system that uses the
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

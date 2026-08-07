@@ -22,11 +22,12 @@ Return *the maximum integer *`m`* such that *$str = [str2, m]$* can be obtained 
 
 **Return value**
 
-- Return the maximum integer `m` such that `s2` repeated `n2 * m` times is a subsequence of `s1` repeated `n1` times.
+- Return the maximum integer `m` such that `s2` repeated $n2 * m$ times is a subsequence of `s1` repeated `n1` times.
 
 Characters selected for the subsequence must keep their order, but matches may cross the boundary between consecutive copies of `s1`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $s1 = "acb", n1 = 4, s2 = "ab", n2 = 2$

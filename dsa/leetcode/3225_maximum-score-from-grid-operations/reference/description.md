@@ -1,6 +1,6 @@
 ## Description
 
-You are given a 2D matrix `grid` of size `n x n`. Initially, all cells of the grid are colored white. In one operation, you can select any cell of indices `(i, j)`, and color black all the cells of the $$j^{\text{th}}$$column starting from the top row down to the$$i^{\text{th}}$$ row.
+You are given a 2D matrix `grid` of size `n x n`. Initially, all cells of the grid are colored white. In one operation, you can select any cell of indices `(i, j)`, and color black all the cells of the $$j^{\text{th}}$$ column starting from the top row down to the $$i^{\text{th}}$$ row.
 
 The grid score is the sum of all $\text{grid}[i][j]$ such that cell `(i, j)` is white and it has a horizontally adjacent black cell.
 
@@ -11,6 +11,7 @@ Return the **maximum** score that can be achieved after some number of operation
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

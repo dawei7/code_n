@@ -17,6 +17,7 @@ Return `true` if `nums` is trionic, otherwise return `false`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

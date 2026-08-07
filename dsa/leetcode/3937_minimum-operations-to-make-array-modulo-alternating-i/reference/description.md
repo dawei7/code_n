@@ -25,6 +25,7 @@ Let $N=\lvert\texttt{nums}\rvert$ and $K=k$. A feasible result chooses residues 
 Return the minimum number of single-element increments and decrements required over all feasible distinct residue pairs.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

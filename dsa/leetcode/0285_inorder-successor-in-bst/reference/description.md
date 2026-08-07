@@ -17,6 +17,7 @@ JSON cases encode `root` in level order and identify `p` by its unique value. Th
 Return the successor `TreeNode`, or `None` when `p` has no successor. The runner displays and validates the returned node's value.
 
 ### Examples
+
 #### Example 1
 
 ![](images/285_example_1.PNG)

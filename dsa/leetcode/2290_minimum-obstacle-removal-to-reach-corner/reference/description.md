@@ -15,6 +15,7 @@ Return *the **minimum** number of **obstacles** to **remove** so you can move fr
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/example1drawio-1.png)

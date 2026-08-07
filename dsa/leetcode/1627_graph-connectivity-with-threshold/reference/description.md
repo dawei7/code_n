@@ -17,6 +17,7 @@ Return *an array *`answer`*, where *$\text{answer.length} = \text{queries.length
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1.jpg)

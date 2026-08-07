@@ -17,6 +17,7 @@ Return the **maximum** possible value of `X XOR Y`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

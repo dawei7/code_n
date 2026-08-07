@@ -23,6 +23,7 @@ Return *the **maximum** number of people who can be **good** based on the statem
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/logic1.jpg)

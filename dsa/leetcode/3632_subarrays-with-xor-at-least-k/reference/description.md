@@ -8,6 +8,7 @@ Return the number of **contiguous subarrays** whose bitwise XOR of all elements 
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

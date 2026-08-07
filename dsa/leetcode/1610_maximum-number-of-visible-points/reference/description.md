@@ -17,6 +17,7 @@ Return *the maximum number of points you can see*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/89a07e9b-00ab-4967-976a-c723b2aa8656.png)

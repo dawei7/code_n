@@ -11,6 +11,7 @@ Return *the string that represents the *$$k^{\text{th}}$$*** largest integer** i
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = ["3","6","7","10"], k = 4`

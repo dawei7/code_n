@@ -13,6 +13,7 @@ Notice that some substrings can be repeated so in this case you have to count th
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "ABC"`

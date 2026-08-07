@@ -25,6 +25,7 @@ Let $N=\lvert s\rvert$ and $Q=\lvert\texttt{queries}\rvert$. All indices are zer
 Return one integer for each type-2 query, in the same relative order as those queries. Each integer is the fewest deletions needed to leave an alternating subsequence of the requested current substring.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

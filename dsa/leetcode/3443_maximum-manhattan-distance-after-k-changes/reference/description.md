@@ -21,6 +21,7 @@ The **Manhattan Distance** between two cells $(x_{i}, y_{i})$ and $(x_{j}, y_{j}
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -15,6 +15,7 @@ Return *the sum of integers in the matrix after all queries are applied*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/exm1.png)

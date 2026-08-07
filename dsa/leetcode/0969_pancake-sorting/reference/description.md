@@ -17,6 +17,7 @@ Return *an array of the *`k`*-values corresponding to a sequence of pancake flip
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [3,2,4,1]`

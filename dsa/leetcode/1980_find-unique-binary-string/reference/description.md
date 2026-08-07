@@ -7,6 +7,7 @@ Given an array of strings `nums` containing `n` **unique** binary strings each o
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = ["01","10"]`

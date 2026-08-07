@@ -11,6 +11,7 @@ Please solve it without using lodash's `_.chunk` function.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [1,2,3,4,5], size = 1`

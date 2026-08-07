@@ -15,6 +15,7 @@ Return *the number of pairs *`(i, j)`* such that *$0 \le i < j \le \text{word.le
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["aba","aabb","abcd","bac","aabc"]$

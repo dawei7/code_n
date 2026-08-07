@@ -9,6 +9,7 @@ Given the `root` of a binary tree, return `true`* if the given tree is **uni-val
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/unival_bst_1.png)

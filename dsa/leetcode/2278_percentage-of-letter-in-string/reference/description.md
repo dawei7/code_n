@@ -7,6 +7,7 @@ Given a string `s` and a character `letter`, return* the **percentage** of chara
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "foobar", letter = "o"`

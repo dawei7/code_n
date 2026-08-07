@@ -28,6 +28,7 @@ Let $D$ be the number of decimal digits in `n`, with zero having one digit.
 - `true` when the rotation is valid and its numeric value is different from `n`; otherwise, `false`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/1268_1.png)

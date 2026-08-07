@@ -11,6 +11,7 @@ Given an array `rooms` where $\text{rooms}[i]$ is the set of keys that you can o
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $rooms = [[1],[2],[3],[]]$

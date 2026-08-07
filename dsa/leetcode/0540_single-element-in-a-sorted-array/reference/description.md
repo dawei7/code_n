@@ -11,6 +11,7 @@ Your solution must run in `O(log n)` time and `O(1)` space.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,1,2,3,3,4,4,8,8]`

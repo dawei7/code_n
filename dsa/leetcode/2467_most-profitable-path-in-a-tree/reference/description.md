@@ -30,6 +30,7 @@ Return* the **maximum** net income Alice can have if she travels towards the opt
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/eg1.png)

@@ -14,13 +14,12 @@ Find a contiguous subarray whose **length is greater than or equal to** `k` that
 
 Return the maximum value of
 
-$$
-\frac{\text{sum of the selected contiguous subarray}}{\text{length of that subarray}}
-$$
+$\frac{\text{sum of the selected contiguous subarray}}{\text{length of that subarray}}$
 
 over all contiguous subarrays of length at least `k`. The returned floating-point value must have calculation error less than $10^{-5}$.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,12,-5,-6,50,3], k = 4`

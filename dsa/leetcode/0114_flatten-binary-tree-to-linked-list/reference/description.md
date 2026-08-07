@@ -16,6 +16,7 @@ Given the `root` of a binary tree, flatten the tree into a "linked list":
 Return `None`; modify the tree rooted at `root` so its nodes form the required right-child chain. The app runner serializes the mutated root in level order.
 
 ### Examples
+
 #### Example 1
 
 ![](images/flaten.jpg)

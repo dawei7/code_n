@@ -10,6 +10,7 @@ Return *the **minimum** possible length of *`nums`* after any number of operatio
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,3,3,7,3,5], k = 20`

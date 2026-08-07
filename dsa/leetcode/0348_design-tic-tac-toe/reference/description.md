@@ -33,6 +33,7 @@ Implement the `TicTacToe` class:
 The app adapter returns the status from every move. Each native call returns `0` without a winner or the ID of the player who has just won.
 
 ### Examples
+
 #### Example 1
 
 ```

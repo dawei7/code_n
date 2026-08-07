@@ -11,6 +11,7 @@ Given a string `s`, return *the sum of **beauty** of all of its substrings.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "aabcb"`

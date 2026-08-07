@@ -12,6 +12,7 @@ Return *the center and radius of the circle as a length 3 array *`[x, y, r]`*.* 
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 **

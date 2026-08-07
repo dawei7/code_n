@@ -13,6 +13,7 @@ Given two integers `a` and `b`, return **any** string `s` such that:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $a = 1, b = 2$

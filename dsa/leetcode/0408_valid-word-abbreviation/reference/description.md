@@ -38,6 +38,7 @@ Return `true` exactly when every literal and replacement length in `abbr` consum
 abbreviation rules; otherwise, return `false`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $word = "internationalization", abbr = "i12iz4n"$

@@ -13,6 +13,7 @@ Return the length of the **shortest** substring in `s` that matches `p`. If ther
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -7,6 +7,7 @@ Given a string `s` and a string array `dictionary`, return *the longest string i
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "abpcplea", dictionary = ["ale","apple","monkey","plea"]`

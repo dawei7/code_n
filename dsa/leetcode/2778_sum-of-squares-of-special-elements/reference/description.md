@@ -11,6 +11,7 @@ Return *the **sum of the squares** of all **special** elements of *`nums`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3,4]`

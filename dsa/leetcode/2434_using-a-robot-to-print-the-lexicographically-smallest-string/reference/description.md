@@ -13,6 +13,7 @@ Return *the lexicographically smallest string that can be written on the paper.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "zza"`

@@ -27,6 +27,7 @@ You must implement a solution with `O(1)` time complexity for each function.
 Return one result per operation: `null` for construction, `push`, and `pop`; the requested integer for `top` and `getMin`.
 
 ### Examples
+
 #### Example 1
 
 ```

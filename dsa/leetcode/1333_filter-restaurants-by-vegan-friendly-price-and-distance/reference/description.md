@@ -11,6 +11,7 @@ Return the array of restaurant ***IDs*** after filtering, ordered by **rating** 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $restaurants = [[1,4,1,40,10],[2,8,0,50,5],[3,8,1,30,4],[4,10,0,10,3],[5,1,1,15,1]], veganFriendly = 1, maxPrice = 50, maxDistance = 10$

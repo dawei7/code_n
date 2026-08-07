@@ -1,6 +1,6 @@
 ## Description
 
-You are given two string arrays, `names` and `columns`, both of size `n`. The $$i^{\text{th}}$$table is represented by the name$\text{names}[i]$and contains$\text{columns}[i]$ number of columns.
+You are given two string arrays, `names` and `columns`, both of size `n`. The $$i^{\text{th}}$$ table is represented by the name $\text{names}[i]$ and contains $\text{columns}[i]$ number of columns.
 
 You need to implement a class that supports the following **operations**:
 
@@ -51,58 +51,74 @@ Implement the `SQL` class:
 
 **Inputs**
 
-- `SQL(names: List[str], columns: List[int])`: Initializes database tables with matching names and column counts.
-- `ins(name: str, row: List[str]) -> bool`: Inserts `row` into table `name` if valid; returns `True` if inserted, `False` otherwise.
+- $SQL(names: \text{List}[str], columns: \text{List}[int])$: Initializes database tables with matching names and column counts.
+- $ins(name: str, row: \text{List}[str]) -> bool$: Inserts `row` into table `name` if valid; returns `True` if inserted, `False` otherwise.
 - `rmv(name: str, rowId: int) -> None`: Removes row `rowId` from table `name`.
 - `sel(name: str, rowId: int, columnId: int) -> str`: Returns string value at 1-indexed `columnId` of row `rowId` in table `name`, or `"<null>"` if missing/invalid.
-- `exp(name: str) -> List[str]`: Returns list of CSV-formatted strings `"id,val1,val2,..."` for surviving rows in table `name`, or `[]` if unknown.
+- $exp(name: str) -> \text{List}[str]$: Returns list of CSV-formatted strings `"id,val1,val2,..."` for surviving rows in table `name`, or `[]` if unknown.
 
 **Return value**
 
-Each operation returns its specified type (`None`, `bool`, `str`, or `List[str]`).
+Each operation returns its specified type (`None`, `bool`, `str`, or $\text{List}[str]$).
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">
 **Input:**
 
+```
 ["SQL","ins","sel","ins","exp","rmv","sel","exp"]
 [[["one","two","three"],[2,3,1]],["two",["first","second","third"]],["two",1,3],["two",["fourth","fifth","sixth"]],["two"],["two",1],["two",2,2],["two"]]
 ```
-- **Output:** ``
+
+**Output:**
+
 ```
 [null,true,"third",true,["1,first,second,third","2,fourth,fifth,sixth"],null,"fifth",["2,fourth,fifth,sixth"]]
 ```
-- **Explanation:**
+
+**Explanation:**
+
 ```
 // Creates three tables.
 SQL sql = new SQL(["one", "two", "three"], [2, 3, 1]);
+
 // Adds a row to the table "two" with id 1. Returns True.
 sql.ins("two", ["first", "second", "third"]);
+
 // Returns the value "third" from the third column
 // in the row with id 1 of the table "two".
 sql.sel("two", 1, 3);
+
 // Adds another row to the table "two" with id 2. Returns True.
 sql.ins("two", ["fourth", "fifth", "sixth"]);
+
 // Exports the rows of the table "two".
 // Currently, the table has 2 rows with ids 1 and 2.
 sql.exp("two");
+
 // Removes the first row of the table "two". Note that the second row
 // will still have the id 2.
 sql.rmv("two", 1);
+
 // Returns the value "fifth" from the second column
 // in the row with id 2 of the table "two".
 sql.sel("two", 2, 2);
+
 // Exports the rows of the table "two".
 // Currently, the table has 1 row with id 2.
 sql.exp("two");
 ```
+
 </div>
 #### Example 2
-<div class="example-block">
-- **Input:** ``
 
+<div class="example-block">
+**Input:**
+
+```
 ["SQL","ins","sel","rmv","sel","ins","ins"]
 [[["one","two","three"],[2,3,1]],["two",["first","second","third"]],["two",1,3],["two",1],["two",1,2],["two",["fourth","fifth"]],["two",["fourth","fifth","sixth"]]]
 ```

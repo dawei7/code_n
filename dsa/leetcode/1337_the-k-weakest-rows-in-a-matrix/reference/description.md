@@ -15,6 +15,7 @@ Return *the indices of the *`k`* **weakest** rows in the matrix ordered from wea
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `mat =`

@@ -21,6 +21,7 @@ Recall that arr is a mountain array if and only if:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [2,1]`

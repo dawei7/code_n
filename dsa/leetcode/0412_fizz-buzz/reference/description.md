@@ -21,6 +21,7 @@ Return the `n` required strings in increasing integer order, so the first list e
 represents `n`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 3$

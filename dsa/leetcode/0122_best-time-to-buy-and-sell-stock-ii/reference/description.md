@@ -16,6 +16,7 @@ Find and return *the **maximum** profit you can achieve*.
 Return the maximum profit from any valid sequence of purchases and sales while holding at most one share.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $prices = [7,1,5,3,6,4]$

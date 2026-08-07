@@ -19,6 +19,7 @@ A sequence `a` is lexicographically larger than a sequence `b` (of the same leng
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 3$

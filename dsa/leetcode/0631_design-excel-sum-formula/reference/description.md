@@ -50,6 +50,7 @@ Implement the `Excel` class:
 The app-local operation trace returns `null` for construction and `set`, and returns the requested integer for every `get` and `sum` call.
 
 ### Examples
+
 #### Example 1
 
 ```

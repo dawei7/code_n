@@ -13,6 +13,7 @@ Return *the number of ways to divide the corridor*. Since the answer may be very
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/1.png)

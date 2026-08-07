@@ -18,6 +18,7 @@ Let $n$ be the number of elements in `weight`.
 Return the greatest possible number of selected apples whose combined weight is at most `5000`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $weight = [100,200,150,1000]$

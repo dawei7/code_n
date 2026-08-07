@@ -9,6 +9,7 @@ An integer `y` is a power of three if there exists an integer `x` such that $y =
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 12$

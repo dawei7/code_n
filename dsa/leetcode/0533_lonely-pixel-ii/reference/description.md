@@ -20,6 +20,7 @@ A black lonely pixel is a character `'B'` that located at a specific position `(
   all occur in rows identical to that coordinate's row.
 
 ### Examples
+
 #### Example 1
 
 ![](images/pixel2-1-grid.jpg)

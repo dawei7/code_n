@@ -8,6 +8,7 @@ The **Hamming distance** between two binary integers is defined as the number of
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

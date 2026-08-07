@@ -13,6 +13,7 @@ An array `arr` is **strictly increasing** if and only if $\text{arr}[0] < \text{
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [1,3,5,4], nums2 = [1,2,3,7]$

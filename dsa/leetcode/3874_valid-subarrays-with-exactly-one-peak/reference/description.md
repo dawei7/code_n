@@ -33,6 +33,7 @@ Let $n=\lvert\texttt{nums}\rvert$.
 Return the total number of index intervals `[l, r]` that contain exactly one original-array peak `i` and satisfy both distance bounds.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

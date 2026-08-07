@@ -11,6 +11,7 @@ Return the **maximum** number of containers that can be loaded onto the ship.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

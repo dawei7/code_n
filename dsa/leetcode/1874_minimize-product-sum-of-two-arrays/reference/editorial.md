@@ -6,7 +6,7 @@
 ### Overview
 
 In this problem, we are given two arrays $\text{nums1}$ and $\text{nums2}$ of the same length. Let's assume that $\text{nums1} = [a_1, a_2, ... , a_n]$, $\text{nums2} = [b_1, b_2, ... , b_n]$, their **product sum** is defined as:
-$\text{product\\\_sum} = a_1 \cdot b_1 + a_2 \cdot b_2 + ... + a_n \cdot b_n$.
+$\text{product\\_sum} = a_1 \cdot b_1 + a_2 \cdot b_2 + ... + a_n \cdot b_n$.
 
 We are allowed to freely rearrange the order of the elements in $\text{nums1}$. After doing so, this operation might result in a different **product sum**. Take the figure below as an example:
 

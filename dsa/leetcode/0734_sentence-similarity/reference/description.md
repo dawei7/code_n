@@ -15,7 +15,7 @@ Two sentences are similar if:
 Notice that a word is always similar to itself, also notice that the similarity relation is not transitive. For example, if the words `a` and `b` are similar, and the words `b` and `c` are similar, `a` and `c` are **not necessarily similar**.
 ### Function Contract
 
-`solve(sentence1: list[str], sentence2: list[str], similarPairs: list[list[str]]) -> bool`
+$solve(sentence1: \text{list}[str], sentence2: \text{list}[str], similarPairs: list[\text{list}[str]]) -> bool$
 
 Let $n$ be the common sentence length when the two lengths match, and let $p = \lvert\texttt{similarPairs}\rvert$.
 
@@ -30,6 +30,7 @@ Let $n$ be the common sentence length when the two lengths match, and let $p = \
 Return `True` exactly when the sentences have the same length and every pair of words at a matching position is either identical or directly similar in either listed orientation. Otherwise, return `False`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $sentence1 = ["great","acting","skills"], sentence2 = ["fine","drama","talent"], similarPairs = [["great","fine"],["drama","acting"],["skills","talent"]]$

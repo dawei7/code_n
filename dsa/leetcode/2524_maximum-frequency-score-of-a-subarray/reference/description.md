@@ -14,6 +14,7 @@ A **subarray** is a contiguous part of an array.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,1,1,2,1,2], k = 3`

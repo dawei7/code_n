@@ -4,7 +4,7 @@ This is an ***interactive problem***.
 
 You have a sorted array of **unique** elements and an **unknown size**. You do not have an access to the array but you can use the `ArrayReader` interface to access it. You can call `ArrayReader.get(i)` that:
 
-- returns the value at the $$i^{\text{th}}$$index (**0-indexed**) of the secret array (i.e.,$\text{secret}[i]$), or
+- returns the value at the $$i^{\text{th}}$$ index (**0-indexed**) of the secret array (i.e., $\text{secret}[i]$), or
 
 - returns $2^{31} - 1$ if the `i` is out of the boundary of the array.
 
@@ -15,7 +15,7 @@ Return the index `k` of the hidden array where $\text{secret}[k] = target$ or re
 You must write an algorithm with `O(log n)` runtime complexity.
 ### Function Contract
 
-`solve(reader: list[int], target: int) -> int`
+$solve(reader: \text{list}[int], target: int) -> int$
 
 The source-native method is `Solution.search(reader: ArrayReader, target: int) -> int`. The standalone app receives the hidden values as the list `reader` and wraps them in a local equivalent of LeetCode's `ArrayReader`; callers of the search logic still access values only through `get`.
 
@@ -29,6 +29,7 @@ The source-native method is `Solution.search(reader: ArrayReader, target: int) -
 Return the target's unique zero-based index, or `-1` if it does not occur. An out-of-bound reader access yields $2^{31} - 1$, which is greater than every legal value and target.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $secret = [-1,0,3,5,9,12], target = 9$

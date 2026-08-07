@@ -17,6 +17,7 @@ Return the **minimum** length of the final string `s` that you can achieve.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

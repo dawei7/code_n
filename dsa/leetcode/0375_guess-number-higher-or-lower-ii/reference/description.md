@@ -24,6 +24,7 @@ Given a particular `n`, return *the minimum amount of money you need to **guaran
 Return the smallest initial budget sufficient to guarantee finding any hidden number in `[1,n]` under the stated payment rule.
 
 ### Examples
+
 #### Example 1
 
 ![](images/graph.png)

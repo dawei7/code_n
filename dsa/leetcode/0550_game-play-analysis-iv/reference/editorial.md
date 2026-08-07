@@ -55,7 +55,7 @@ first_login = activity.groupby('player_id')['event_date'].min().reset_index()
 
 **Step 2: Calculating the Day Before Each Event Date**
    - **Objective**: To facilitate identifying consecutive logins.
-   - **Intuition**: Note that in the question, consecutive dates actually represent two adjacent dates with a one-day difference. Therefore, we create a column that represents the day before each $\text{event}_{date}$ to help us identify consecutive logins in the subsequent steps. This column will essentially allow us to match it with the first login date to see if a player logged in consecutively. For instance, if a player first logged in on `2016-03-02` and had consecutive logins on `2016-03-03`, we would add a value of $day_{before\_event} = 2016-03-02$ to the second record, which matches the first login date.
+   - **Intuition**: Note that in the question, consecutive dates actually represent two adjacent dates with a one-day difference. Therefore, we create a column that represents the day before each $\text{event}_{date}$ to help us identify consecutive logins in the subsequent steps. This column will essentially allow us to match it with the first login date to see if a player logged in consecutively. For instance, if a player first logged in on `2016-03-02` and had consecutive logins on `2016-03-03`, we would add a value of $day_before_event = 2016-03-02$ to the second record, which matches the first login date.
 
 ```python
 activity['day_before_event'] = activity['event_date'] - pd.to_timedelta(1, unit='D')

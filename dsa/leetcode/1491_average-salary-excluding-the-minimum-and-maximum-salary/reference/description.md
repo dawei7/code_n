@@ -9,6 +9,7 @@ Return *the average salary of employees excluding the minimum and maximum salary
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $salary = [4000,3000,1000,2000]$

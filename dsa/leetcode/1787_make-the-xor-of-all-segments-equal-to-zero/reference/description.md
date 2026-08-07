@@ -9,6 +9,7 @@ Return *the minimum number of elements to change in the array *such that the `XO
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,0,3,0], k = 1`

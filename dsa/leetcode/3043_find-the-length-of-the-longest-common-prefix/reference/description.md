@@ -15,6 +15,7 @@ Return *the length of the **longest** common prefix among all pairs*.* If no com
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $arr1 = [1,10,100], arr2 = [1000]$

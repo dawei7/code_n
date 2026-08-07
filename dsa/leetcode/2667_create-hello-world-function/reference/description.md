@@ -7,6 +7,7 @@ Write a function `createHelloWorld`. It should return a new function that always
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $args = []$

@@ -19,6 +19,7 @@ Return *the **total number of collisions** that will happen on the road*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $directions = "RLRSLL"$

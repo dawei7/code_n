@@ -26,9 +26,10 @@ Let $n = \lvert\texttt{nums}\rvert$ and $q = \lvert\texttt{queries}\rvert$.
 
 **Return value**
 
-Return an array of length $q$. Its $i$-th value is the $k_i$-th smallest positive even integer left after removing the even values present in `nums[l_i..r_i]`.
+Return an array of length $q$. Its $i$-th value is the $k_i$-th smallest positive even integer left after removing the even values present in $nums[l_{i}..r_{i}]$.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -1,8 +1,8 @@
 ## Description
 
-You are given an integer `n`. Consider an equilateral triangle of side length `n`, broken up into $n^{2}$ unit equilateral triangles. The triangle has `n` **1-indexed** rows where the $$i^{\text{th}}$$row has$2i - 1$ unit equilateral triangles.
+You are given an integer `n`. Consider an equilateral triangle of side length `n`, broken up into $n^{2}$ unit equilateral triangles. The triangle has `n` **1-indexed** rows where the $$i^{\text{th}}$$ row has $2i - 1$ unit equilateral triangles.
 
-The triangles in the $$i^{\text{th}}$$row are also **1-indexed** with coordinates from `(i, 1)` to$(i, 2i - 1)$. The following image shows a triangle of side length `4` with the indexing of its triangle.
+The triangles in the $$i^{\text{th}}$$ row are also **1-indexed** with coordinates from `(i, 1)` to $(i, 2i - 1)$. The following image shows a triangle of side length `4` with the indexing of its triangle.
 
 ![](images/triangle4.jpg)
 
@@ -33,6 +33,7 @@ Return *a 2D list of the coordinates of the triangles that you will color red in
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 ![](images/example1.jpg)

@@ -11,6 +11,7 @@ Return *the minimum number of flips to make *`s`* monotone increasing*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "00110"`

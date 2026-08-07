@@ -11,6 +11,7 @@ Return *an **array of indices** representing the words that contain the characte
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["leet","code"], x = "e"$

@@ -57,15 +57,16 @@ The result format is in the following example.
 
 **Inputs**
 
-- `Drivers`: Table containing `driver_id` and `join_date`.
-- `Rides`: Table containing `ride_id`, `user_id`, and `requested_at`.
-- `AcceptedRides`: Table containing `ride_id`, `driver_id`, `ride_distance`, and `ride_duration`.
+- `Drivers`: Table containing $\text{driver}_{id}$ and $\text{join}_{date}$.
+- `Rides`: Table containing $\text{ride}_{id}$, $\text{user}_{id}$, and $\text{requested}_{at}$.
+- `AcceptedRides`: Table containing $\text{ride}_{id}$, $\text{driver}_{id}$, $\text{ride}_{distance}$, and $\text{ride}_{duration}$.
 
 **Return value**
 
-Return a table with columns `month`, `active_drivers`, and `accepted_rides` for each month of 2020 (1 through 12) ordered by `month` ascending.
+Return a table with columns `month`, $\text{active}_{drivers}$, and $\text{accepted}_{rides}$ for each month of 2020 (1 through 12) ordered by `month` ascending.
 
 ### Examples
+
 #### Example 1
 
 ```

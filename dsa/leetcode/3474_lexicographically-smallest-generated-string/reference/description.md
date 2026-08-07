@@ -15,6 +15,7 @@ Return the **lexicographically smallest** possible string that can be **generate
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -11,6 +11,7 @@ Return *the **index** of the student that will **replace** the chalk pieces*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $chalk = [5,1,5], k = 22$

@@ -15,6 +15,7 @@ Return a boolean array `results`, where $\text{results}[i]$ is `true` if you can
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

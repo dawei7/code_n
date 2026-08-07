@@ -34,14 +34,13 @@ Number of Bytes   |        UTF-8 Octet Sequence
 Return `true` if the complete byte sequence can be partitioned into valid one- through four-byte UTF-8 patterns; otherwise return `false`.
 
 ### Examples
+
 #### Example 1
 
-```
-**Input:** data = [197,130,1]
-**Output:** true
-**Explanation:** data represents the octet sequence: 11000101 10000010 00000001.
+- **Input:** $data = [197,130,1]$
+- **Output:** `true`
+- **Explanation:** data represents the octet sequence: 11000101 10000010 00000001.
 It is a valid utf-8 encoding for a 2-bytes character followed by a 1-byte character.
-```
 #### Example 2
 
 - **Input:** $data = [235,140,4]$

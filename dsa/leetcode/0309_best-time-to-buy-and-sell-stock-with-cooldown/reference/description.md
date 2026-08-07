@@ -18,6 +18,7 @@ Find the maximum profit you can achieve. You may complete as many transactions a
 Return the maximum total profit achievable while respecting the cooldown and single-position rules.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $prices = [1,2,3,0,2]$

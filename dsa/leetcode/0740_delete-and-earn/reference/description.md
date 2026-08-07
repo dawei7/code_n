@@ -11,6 +11,7 @@ Return *the **maximum number of points** you can earn by applying the above oper
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,4,2]`

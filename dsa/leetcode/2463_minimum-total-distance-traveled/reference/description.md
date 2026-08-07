@@ -1,6 +1,6 @@
 ## Description
 
-There are some robots and factories on the X-axis. You are given an integer array `robot` where $\text{robot}[i]$ is the position of the $$i^{\text{th}}$$robot. You are also given a 2D integer array `factory` where$\text{factory}[j] = [\text{position}_{j}, \text{limit}_{j}]$indicates that$\text{position}_{j}$is the position of the$$j^{\text{th}}$$factory and that the$$j^{\text{th}}$$factory can repair at most$\text{limit}_{j}$ robots.
+There are some robots and factories on the X-axis. You are given an integer array `robot` where $\text{robot}[i]$ is the position of the $$i^{\text{th}}$$ robot. You are also given a 2D integer array `factory` where $\text{factory}[j] = [\text{position}_{j}, \text{limit}_{j}]$ indicates that $\text{position}_{j}$ is the position of the $$j^{\text{th}}$$ factory and that the $$j^{\text{th}}$$ factory can repair at most $\text{limit}_{j}$ robots.
 
 The positions of each robot are **unique**. The positions of each factory are also **unique**. Note that a robot can be **in the same position** as a factory initially.
 
@@ -27,35 +27,32 @@ Return *the minimum total distance traveled by all the robots*. The test cases a
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/example1.jpg)
 
-```
-**Input:** robot = [0,4,6], factory = [[2,2],[6,2]]
-**Output:** 4
-**Explanation:** As shown in the figure:
+- **Input:** $robot = [0,4,6], factory = [[2,2],[6,2]]$
+- **Output:** `4`
+- **Explanation:** As shown in the figure:
 - The first robot at position 0 moves in the positive direction. It will be repaired at the first factory.
 - The second robot at position 4 moves in the negative direction. It will be repaired at the first factory.
 - The third robot at position 6 will be repaired at the second factory. It does not need to move.
 The limit of the first factory is 2, and it fixed 2 robots.
 The limit of the second factory is 2, and it fixed 1 robot.
 The total distance is |2 - 0| + |2 - 4| + |6 - 6| = 4. It can be shown that we cannot achieve a better total distance than 4.
-```
 #### Example 2
 
 ![](images/example-2.jpg)
 
-```
-**Input:** robot = [1,-1], factory = [[-2,1],[2,1]]
-**Output:** 2
-**Explanation:** As shown in the figure:
+- **Input:** $robot = [1,-1], factory = [[-2,1],[2,1]]$
+- **Output:** `2`
+- **Explanation:** As shown in the figure:
 - The first robot at position 1 moves in the positive direction. It will be repaired at the second factory.
 - The second robot at position -1 moves in the negative direction. It will be repaired at the first factory.
 The limit of the first factory is 1, and it fixed 1 robot.
 The limit of the second factory is 1, and it fixed 1 robot.
 The total distance is |2 - 1| + |(-2) - (-1)| = 2. It can be shown that we cannot achieve a better total distance than 2.
-```
 ### Constraints
 
 - $1 \le \text{robot.length}, \text{factory.length} \le 100$

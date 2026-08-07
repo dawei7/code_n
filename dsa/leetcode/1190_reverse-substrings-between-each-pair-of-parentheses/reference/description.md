@@ -11,6 +11,7 @@ Your result should **not** contain any brackets.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "(abcd)"`

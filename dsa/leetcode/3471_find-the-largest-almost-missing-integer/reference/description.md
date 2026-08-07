@@ -13,6 +13,7 @@ A **subarray** is a contiguous sequence of elements within an array.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

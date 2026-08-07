@@ -9,6 +9,7 @@ A row and column pair is considered equal if they contain the same elements in t
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1.jpg)

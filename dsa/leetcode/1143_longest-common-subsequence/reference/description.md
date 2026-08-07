@@ -13,6 +13,7 @@ A **common subsequence** of two strings is a subsequence that is common to both 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $text1 = "abcde", text2 = "ace"$

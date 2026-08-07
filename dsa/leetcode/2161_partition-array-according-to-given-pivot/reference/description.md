@@ -8,7 +8,7 @@ You are given a **0-indexed** integer array `nums` and an integer `pivot`. Rearr
 
 - The **relative order** of the elements less than `pivot` and the elements greater than `pivot` is maintained.
 
-		<li>More formally, consider every $p_{i}$, $p_{j}$ where $p_{i}$ is the new position of the $$i^{\text{th}}$$element and$p_{j}$is the new position of the$$j^{\text{th}}$$element. If `i < j` and **both** elements are smaller (*or larger*) than `pivot`, then$p_{i} < p_{j}$.
+		<li>More formally, consider every $p_{i}$, $p_{j}$ where $p_{i}$ is the new position of the $$i^{\text{th}}$$ element and $p_{j}$ is the new position of the $$j^{\text{th}}$$ element. If `i < j` and **both** elements are smaller (*or larger*) than `pivot`, then $p_{i} < p_{j}$.
 
 	</li>
 
@@ -19,6 +19,7 @@ Return `nums`* after the rearrangement.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [9,12,5,10,14,3,10], pivot = 10`

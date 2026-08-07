@@ -9,6 +9,7 @@ Return `true`* if the circle and rectangle are overlapped otherwise return *`fal
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/sample_4_1728.png)

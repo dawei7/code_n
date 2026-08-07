@@ -11,6 +11,7 @@ A **prefix** of a string is a substring that occurs at the beginning of the stri
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["a","b","c","ab","bc","abc"], s = "abc"$

@@ -9,6 +9,7 @@ The two dates are given as strings, their format is `YYYY-MM-DD` as shown in the
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $date1 = "2019-06-29", date2 = "2019-06-30"$

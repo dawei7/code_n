@@ -23,6 +23,7 @@ Return the following:
 Return `-1` when the first version is smaller, `1` when it is larger, and `0` when their revision values are equal.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -56,7 +56,7 @@ We can get the number of distinct suffixes by first getting the number of mutual
 
 2) Iterate over every pair of groups. For each group `i` and `j`, get the number of suffixes `num_of_mutual` that appears in both groups.
 
-3) We can swap every distinct suffix in group `i` with every distinct suffix in group `j`, increment `answer` by $2 * (len(\text{group}[i]) - num_{of\_mutual}) * (len(\text{group}[j]) - num_{of\_mutual})$
+3) We can swap every distinct suffix in group `i` with every distinct suffix in group `j`, increment `answer` by $2 * (len(\text{group}[i]) - num_of_mutual) * (len(\text{group}[j]) - num_of_mutual)$
 
 4) Return `answer`.
 

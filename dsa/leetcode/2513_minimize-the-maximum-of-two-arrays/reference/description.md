@@ -15,6 +15,7 @@ Given `divisor1`, `divisor2`, `uniqueCnt1`, and `uniqueCnt2`, return *the **mini
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $divisor1 = 2, divisor2 = 7, uniqueCnt1 = 1, uniqueCnt2 = 3$

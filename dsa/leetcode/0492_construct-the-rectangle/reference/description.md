@@ -15,6 +15,7 @@ Return *an array `[L, W]` where `L` and `W` are the length and width of the web 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $area = 4$

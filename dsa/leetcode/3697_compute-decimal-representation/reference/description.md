@@ -20,6 +20,7 @@ Every returned value must have exactly one nonzero decimal digit and must equal 
 Return the minimum-cardinality list of base-10 components in descending order.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

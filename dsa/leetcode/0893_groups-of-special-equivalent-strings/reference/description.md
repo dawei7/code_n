@@ -21,6 +21,7 @@ Return *the number of **groups of special-equivalent strings** from *`words`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["abcd","cdab","cbad","xyzz","zzxy","zzyx"]$

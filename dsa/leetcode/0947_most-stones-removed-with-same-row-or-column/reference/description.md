@@ -11,6 +11,7 @@ Given an array `stones` of length `n` where $\text{stones}[i] = [x_{i}, y_{i}]$ 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $stones = [[0,0],[0,1],[1,0],[1,2],[2,1],[2,2]]$

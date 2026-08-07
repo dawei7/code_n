@@ -13,6 +13,7 @@ The degree of a node is the number of edges connected to it.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/agraphdrawio.png)

@@ -26,6 +26,7 @@ The test cases are generated so that the answer fits in **32-bit** integer.
 Different selections of indices count as different subsequences, even if they produce the same values.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,4,6,8,10]`

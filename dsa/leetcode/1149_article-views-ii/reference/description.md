@@ -25,17 +25,18 @@ The result format is in the following example.
 
 **Input table**
 
-- `Views(article_id, author_id, viewer_id, view_date)`: article-view events. Duplicate rows are permitted, and an author may also be the viewer.
+- $Views(\text{article}_{id}, \text{author}_{id}, \text{viewer}_{id}, \text{view}_{date})$: article-view events. Duplicate rows are permitted, and an author may also be the viewer.
 
 Let $R$ be the number of rows in `Views`.
 
-A person qualifies if there is at least one `view_date` on which that `viewer_id` is associated with two or more distinct `article_id` values. Author identity does not affect qualification.
+A person qualifies if there is at least one $\text{view}_{date}$ on which that $\text{viewer}_{id}$ is associated with two or more distinct $\text{article}_{id}$ values. Author identity does not affect qualification.
 
 **Return value**
 
-- A one-column table named `id` containing each qualifying `viewer_id` exactly once, in ascending order. If no person qualifies, return the same column with no rows.
+- A one-column table named `id` containing each qualifying $\text{viewer}_{id}$ exactly once, in ascending order. If no person qualifies, return the same column with no rows.
 
 ### Examples
+
 #### Example 1
 
 ```

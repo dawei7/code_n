@@ -20,6 +20,7 @@ Every position belongs to exactly one run. Run identity depends on maximal bound
 Return the highest frequency of any run length in `s`. Runs may contain different letters; they need only have the same number of characters.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

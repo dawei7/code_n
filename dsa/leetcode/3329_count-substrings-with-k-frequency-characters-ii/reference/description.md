@@ -6,6 +6,7 @@ Given a string `s` and an integer `k`, return the total number of substrings of 
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

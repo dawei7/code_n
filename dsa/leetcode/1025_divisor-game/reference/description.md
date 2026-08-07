@@ -17,6 +17,7 @@ Return `true` *if and only if Alice wins the game, assuming both players play op
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 2$

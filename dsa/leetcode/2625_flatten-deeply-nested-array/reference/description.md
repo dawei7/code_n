@@ -13,6 +13,7 @@ Please solve it without the built-in `Array.flat` method.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ```

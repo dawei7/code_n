@@ -10,6 +10,7 @@ The factorial of 0 is defined as 1.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 5$

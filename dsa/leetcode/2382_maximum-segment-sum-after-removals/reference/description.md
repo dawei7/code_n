@@ -1,6 +1,6 @@
 ## Description
 
-You are given two **0-indexed** integer arrays `nums` and `removeQueries`, both of length `n`. For the $$i^{\text{th}}$$query, the element in `nums` at the index$\text{removeQueries}[i]$ is removed, splitting `nums` into different segments.
+You are given two **0-indexed** integer arrays `nums` and `removeQueries`, both of length `n`. For the $$i^{\text{th}}$$ query, the element in `nums` at the index $\text{removeQueries}[i]$ is removed, splitting `nums` into different segments.
 
 A **segment** is a contiguous sequence of **positive** integers in `nums`. A **segment sum** is the sum of every element in a segment.
 
@@ -13,6 +13,7 @@ Return* an integer array *`answer`*, of length *`n`*, where *$\text{answer}[i]$*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,5,6,1], removeQueries = [0,3,2,4,1]`

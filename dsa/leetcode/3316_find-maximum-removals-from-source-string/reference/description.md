@@ -17,6 +17,7 @@ Return the **maximum** number of *operations* that can be performed.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

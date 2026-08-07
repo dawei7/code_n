@@ -17,6 +17,7 @@ Return *an array *`answer`* of size *`n`* where *$\text{answer}[i]$* is the colu
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 **

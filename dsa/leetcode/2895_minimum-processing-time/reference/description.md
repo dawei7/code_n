@@ -9,6 +9,7 @@ You are given an array `processorTime` representing the time each processor beco
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

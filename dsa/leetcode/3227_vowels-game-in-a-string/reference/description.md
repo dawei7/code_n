@@ -19,6 +19,7 @@ The English vowels are: `a`, `e`, `i`, `o`, and `u`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

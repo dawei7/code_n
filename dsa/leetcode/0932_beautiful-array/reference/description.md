@@ -13,6 +13,7 @@ Given the integer `n`, return *any **beautiful** array *`nums`* of length *`n`. 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 4$

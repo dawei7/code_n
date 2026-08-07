@@ -43,6 +43,7 @@ Return one row per user with these columns:
 For a user with at least two distinct activity periods, select the second period in descending chronological order. For a user with one distinct period, select that period. Identical stored rows describe one logical period, and the result order is unrestricted.
 
 ### Examples
+
 #### Example 1
 
 ```

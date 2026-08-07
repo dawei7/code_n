@@ -20,6 +20,7 @@ Given an integer array `nums`, return *the length of the longest **wiggle subseq
 Return the length of the longest subsequence whose nonzero adjacent differences alternate between positive and negative.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,7,4,9,2,5]`

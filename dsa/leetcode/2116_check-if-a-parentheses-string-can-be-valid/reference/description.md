@@ -21,6 +21,7 @@ Return `true` *if you can make `s` a valid parentheses string*. Otherwise, retur
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/eg1.png)

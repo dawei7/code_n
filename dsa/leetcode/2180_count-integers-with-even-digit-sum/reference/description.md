@@ -9,6 +9,7 @@ The **digit sum** of a positive integer is the sum of all its digits.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num = 4$

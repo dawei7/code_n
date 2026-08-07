@@ -18,6 +18,7 @@ Let $n = \texttt{citations.length}$.
 Return the greatest $h$ such that at least $h$ entries in `citations` are at least $h$.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $citations = [0,1,3,5,6]$

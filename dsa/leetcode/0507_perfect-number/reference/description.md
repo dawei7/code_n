@@ -9,6 +9,7 @@ Given an integer `n`, return `true`* if *`n`* is a perfect number, otherwise ret
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num = 28$

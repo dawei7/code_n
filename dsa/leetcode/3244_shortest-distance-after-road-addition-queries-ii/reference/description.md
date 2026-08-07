@@ -15,6 +15,7 @@ Return an array `answer` where for each `i` in the range `[0, queries.length - 1
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

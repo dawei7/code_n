@@ -13,6 +13,7 @@ Given two <a href="https://en.wikipedia.org/wiki/Sparse_matrix" target="_blank">
 Return the dense $m \times n$ product matrix `mat1 x mat2`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/mult-grid.jpg)

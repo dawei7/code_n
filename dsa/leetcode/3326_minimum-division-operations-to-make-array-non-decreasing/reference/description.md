@@ -15,6 +15,7 @@ If it is **not** possible to make the array *non-decreasing* using any number of
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

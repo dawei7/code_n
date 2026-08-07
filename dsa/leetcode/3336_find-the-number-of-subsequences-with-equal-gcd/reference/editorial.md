@@ -30,21 +30,25 @@ Both GCDs remain unchanged, so $\textit{dp}[i][j][k]$  receives $\textit{dp}[i-1
 
 These three choices are mutually exclusive and cover all possible assignments of the current element. Hence, the recurrence can be written as
 
-$$\begin{aligned}
-\textit{dp}[i][j][k] = \&\ \textit{dp}[i-1][j][k] \
-\&+ \sum_{j'} \textit{dp}[i-1][j'][k]
+$$
+\begin{aligned}
+\textit{dp}[i][j][k] = &\ \textit{dp}[i-1][j][k] \
+&+ \sum_{j'} \textit{dp}[i-1][j'][k]
 \quad (\text{where } j=\gcd(j',\textit{nums}[i])) \
-\&+ \sum_{k'} \textit{dp}[i-1][j][k']
+&+ \sum_{k'} \textit{dp}[i-1][j][k']
 \quad (\text{where } k=\gcd(k',\textit{nums}[i])).
-\end{aligned}$$
+\end{aligned}
+$$
 
 In practice, it is more convenient to iterate over every state $\textit{dp}[i-1][j][k]$ and distribute its value to the three destination states:
 
-$$\begin{cases}
+$$
+\begin{cases}
 \textit{dp}[i][j][k] += \textit{dp}[i-1][j][k],\
 \textit{dp}[i][\gcd(j,\textit{nums}[i])][k] += \textit{dp}[i-1][j][k],\
 \textit{dp}[i][j][\gcd(k,\textit{nums}[i])] += \textit{dp}[i-1][j][k].
-\end{cases}$$
+\end{cases}
+$$
 
 Since the answer is required modulo $10^9+7$, all additions are performed modulo $10^9+7$.
 

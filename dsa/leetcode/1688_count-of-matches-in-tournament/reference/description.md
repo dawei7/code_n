@@ -13,6 +13,7 @@ Return *the number of matches played in the tournament until a winner is decided
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 7$

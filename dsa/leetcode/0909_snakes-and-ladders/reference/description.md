@@ -26,6 +26,7 @@ Return *the least number of dice rolls required to reach the square *$n^{2}$*. I
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/snakes.png)

@@ -18,6 +18,7 @@ Given the array `points`, return *the **minimum** number of arrows that must be 
 Each interval is closed: an arrow fired at either endpoint bursts that balloon.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $points = [[10,16],[2,8],[1,6],[7,12]]$

@@ -11,6 +11,7 @@ Return *the **number** of nodes that have the **highest score***.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![example-1](images/example-1.png)

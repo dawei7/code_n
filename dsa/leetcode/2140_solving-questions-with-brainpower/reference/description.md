@@ -19,6 +19,7 @@ Return *the **maximum** points you can earn for the exam*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $questions = [[3,2],[4,3],[4,4],[2,5]]$

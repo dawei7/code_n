@@ -7,6 +7,7 @@ Given two promises `promise1` and `promise2`, return a new promise. `promise1` a
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** ``

@@ -17,6 +17,7 @@ Return *the minimum **non-zero** number of operations you need to perform on *`p
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 2$

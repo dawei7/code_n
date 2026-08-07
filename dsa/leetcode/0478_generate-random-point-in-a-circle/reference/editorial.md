@@ -91,7 +91,9 @@ $$
 \end{aligned}
 $Now, to generate a uniform random point on$C$, we just need to compute a random distance$D$from origin using$F^{-1}$and a uniform random angle$\theta$over the range$[0, 2 \cdot PI)$$.
 
-The points will be generated as [polar coordinates](https://en.wikipedia.org/wiki/Polar_{coordinate\_system}). To convert to [cartesian coordinates](https://en.wikipedia.org/wiki/Cartesian_{coordinate\_system}), we can use the following formulas.$$
+The points will be generated as [polar coordinates](https://en.wikipedia.org/wiki/Polar_coordinate_system). To convert to [cartesian coordinates](https://en.wikipedia.org/wiki/Cartesian_coordinate_system), we can use the following formulas.
+
+$$
 X = D \cdot \cos(\theta) \\
 Y = D \cdot \sin(\theta)
 $$

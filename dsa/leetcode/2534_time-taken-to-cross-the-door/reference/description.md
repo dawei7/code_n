@@ -2,7 +2,7 @@
 
 There are `n` persons numbered from `0` to $n - 1$ and a door. Each person can enter or exit through the door once, taking one second.
 
-You are given a **non-decreasing** integer array `arrival` of size `n`, where $\text{arrival}[i]$ is the arrival time of the $$i^{\text{th}}$$person at the door. You are also given an array `state` of size `n`, where$\text{state}[i]$ is `0` if person `i` wants to enter through the door or `1` if they want to exit through the door.
+You are given a **non-decreasing** integer array `arrival` of size `n`, where $\text{arrival}[i]$ is the arrival time of the $$i^{\text{th}}$$ person at the door. You are also given an array `state` of size `n`, where $\text{state}[i]$ is `0` if person `i` wants to enter through the door or `1` if they want to exit through the door.
 
 If two or more persons want to use the door at the **same** time, they follow the following rules:
 
@@ -30,9 +30,10 @@ Return *an array *`answer`* of size *`n`* where *$\text{answer}[i]$* is the seco
 
 **Return value**
 
-Return an array `answer` of length $n$ where `answer[i]` is the exact second person $i$ crosses the door.
+Return an array `answer` of length $n$ where $\text{answer}[i]$ is the exact second person $i$ crosses the door.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $arrival = [0,1,1,2,4], state = [0,1,0,0,1]$

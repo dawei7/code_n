@@ -21,6 +21,7 @@ Given an array of strings `emails` where we send one email to each $\text{emails
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $emails = ["\text{test.email}+alex@\text{leetcode.com}","\text{test.e}.mail+\text{bob.cathy}@\text{leetcode.com}","testemail+david@\text{lee.tcode}.com"]$

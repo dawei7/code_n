@@ -11,6 +11,7 @@ Return the **maximum** possible number whose *binary representation* can be form
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

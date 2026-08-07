@@ -9,6 +9,7 @@ Return *the largest sum of the given array after partitioning. Test cases are ge
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [1,15,7,9,2,5,10], k = 3`

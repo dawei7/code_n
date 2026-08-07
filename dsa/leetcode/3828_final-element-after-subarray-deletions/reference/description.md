@@ -26,6 +26,7 @@ Every move acts on the current array: it removes one nonempty, proper, contiguou
 Return the value of the sole remaining element when Alice maximizes the outcome and Bob minimizes it.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

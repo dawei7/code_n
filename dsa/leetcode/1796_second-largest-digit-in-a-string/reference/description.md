@@ -9,6 +9,7 @@ An **alphanumeric**** **string is a string consisting of lowercase English lette
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "dfa12321afd"`

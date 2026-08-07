@@ -22,6 +22,7 @@ Given two strings, `word1` and `word2`, return `true`* if *`word1`* and *`word2`
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $word1 = "abc", word2 = "bca"$

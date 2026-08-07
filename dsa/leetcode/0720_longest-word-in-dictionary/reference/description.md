@@ -11,6 +11,7 @@ Note that the word should be built from left to right with each additional chara
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["w","wo","wor","worl","world"]$

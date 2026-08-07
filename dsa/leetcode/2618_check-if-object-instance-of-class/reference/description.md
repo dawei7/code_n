@@ -9,6 +9,7 @@ There are no constraints on the data types that can be passed to the function. F
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $func = () => checkIfInstanceOf(new Date(), Date)$

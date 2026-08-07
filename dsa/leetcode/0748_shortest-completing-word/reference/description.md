@@ -13,6 +13,7 @@ Return *the shortest **completing** word in *`words`*.* It is guaranteed an answ
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $licensePlate = "1s3 PSt", words = ["step","steps","stripe","stepple"]$

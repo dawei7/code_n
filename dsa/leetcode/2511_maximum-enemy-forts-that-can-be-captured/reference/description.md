@@ -23,6 +23,7 @@ Return* the **maximum** number of enemy forts that can be captured*. In case it 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $forts = [1,0,0,-1,0,0,0,0,1]$

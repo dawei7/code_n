@@ -11,6 +11,7 @@ Return `true` *if there exists a pattern of length* `m` *that is repeated* `k` *
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [1,2,4,4,4,4], m = 1, k = 3`

@@ -21,6 +21,7 @@ A **substring** is a contiguous sequence of characters in a string.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num = 240, k = 2$

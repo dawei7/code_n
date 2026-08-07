@@ -26,6 +26,7 @@ Let $m$ be the number of intervals.
 Return the minimum sum of on-bulb time units needed over the union of all intervals.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -11,6 +11,7 @@ Given a **binary** **circular** array `nums`, return *the minimum number of swap
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [0,1,0,1,1,0,0]`

@@ -15,6 +15,7 @@ Return *the **minimum** number of operations required to make the array empty, o
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,3,3,2,2,4,2,3,4]`

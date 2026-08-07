@@ -19,7 +19,7 @@ Return the **minimum integer **`threshold` such that **at least** one **valid** 
 
 **Inputs**
 
-- `n`: The number of nodes, labelled from `0` to `n - 1`.
+- `n`: The number of nodes, labelled from `0` to $n - 1$.
 - `edges`: The undirected weighted edges. Each entry `[u, v, w]` joins `u` and `v` with weight `w`.
 - `source`: The starting node.
 - `target`: The destination node.
@@ -29,9 +29,10 @@ Let $m$ be `edges.length`. For a chosen integer threshold $T$, an edge of weight
 
 **Return value**
 
-Return the minimum integer $T$ for which some `source`-to-`target` path contains at most `k` heavy edges. Return `-1` if no such path exists. When `source == target`, the empty path is valid and the minimum threshold is `0`.
+Return the minimum integer $T$ for which some `source`-to-`target` path contains at most `k` heavy edges. Return `-1` if no such path exists. When $source = target$, the empty path is valid and the minimum threshold is `0`.
 
 ### Examples
+
 #### Example 1​​​​​​​​​​​​​​
 
 ​​​​​​​

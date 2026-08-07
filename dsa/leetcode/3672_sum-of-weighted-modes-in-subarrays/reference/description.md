@@ -20,6 +20,7 @@ Return the **sum** of the weights of all **subarrays** of length `k`.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

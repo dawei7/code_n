@@ -16,6 +16,7 @@ In practical terms, if you called the original function like `sum(1,2,3)`, you w
 Return a curried function that collects arguments over multiple calls and evaluates `fn` with all collected arguments once `fn.length` arguments have been accumulated.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** ``

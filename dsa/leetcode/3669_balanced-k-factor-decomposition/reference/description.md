@@ -9,6 +9,7 @@ Return *any* *one* split in which the **maximum** difference between any two num
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

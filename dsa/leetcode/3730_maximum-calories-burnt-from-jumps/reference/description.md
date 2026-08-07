@@ -21,9 +21,10 @@ The order in the input does not restrict the visiting order. The ground at heigh
 
 **Return value**
 
-Return the greatest possible sum of squared height differences over the initial ground-to-block jump and the subsequent `n - 1` block-to-block jumps.
+Return the greatest possible sum of squared height differences over the initial ground-to-block jump and the subsequent $n - 1$ block-to-block jumps.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

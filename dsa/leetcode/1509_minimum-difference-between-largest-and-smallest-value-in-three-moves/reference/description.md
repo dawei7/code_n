@@ -11,6 +11,7 @@ Return *the minimum difference between the largest and smallest value of `nums` 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [5,3,2,4]`

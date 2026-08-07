@@ -12,6 +12,7 @@ Given a string `s`, find the length of the **longest** **substring** without dup
 Return the greatest length of a substring containing no duplicate character.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "abcabcbb"`

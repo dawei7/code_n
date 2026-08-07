@@ -13,6 +13,7 @@ The coordinate will always represent a valid chessboard square. The coordinate w
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $coordinates = "a1"$

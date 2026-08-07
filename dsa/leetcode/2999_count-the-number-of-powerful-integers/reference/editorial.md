@@ -20,12 +20,14 @@ The function $\text{dfs}(i,\textit{limitLow},\textit{limitHigh})$ represents the
 
 We use recursive enumeration for the digits filled in the $i$th position, so the transfer equations for the prefix and suffix parts are as follows, where $|s|$ denotes the length of $s$:
 
-$$\text{dfs}(i,\textit{limitLow},\textit{limitHigh}) =
+$$
+\text{dfs}(i,\textit{limitLow},\textit{limitHigh}) =
 \begin{cases}
-1, \& i = n \\
-\sum\limits_{d=\textit{lo}}^{\min(\textit{hi}, \textit{limit})} \text{dfs}(i+1,\textit{limitLow} \land (d =\textit{lo}),\textit{limitHigh} \land (d = \textit{hi})), \& i < n-|s| \\
-\text{dfs}(i+1,\textit{limitLow} \land (d = \textit{lo}),\textit{limitHigh} \land (d = \textit{hi})), \& i \geq n-|s|, d = s[i - (n-|s|)]
-\end{cases}$$
+1, & i = n \\
+\sum\limits_{d=\textit{lo}}^{\min(\textit{hi}, \textit{limit})} \text{dfs}(i+1,\textit{limitLow} \land (d =\textit{lo}),\textit{limitHigh} \land (d = \textit{hi})), & i < n-|s| \\
+\text{dfs}(i+1,\textit{limitLow} \land (d = \textit{lo}),\textit{limitHigh} \land (d = \textit{hi})), & i \geq n-|s|, d = s[i - (n-|s|)]
+\end{cases}
+$$
 
 At first, we start from $\text{dfs}(0,\textit{true},\textit{true})$, indicating that we start from the highest position and are constrained by $\textit{start}$ and $\textit{finish}$. According to the description, we can fill in any number that meets the constraints in the prefix part, but each digit in the suffix part is fixed.
 

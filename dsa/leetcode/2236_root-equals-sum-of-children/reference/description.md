@@ -9,6 +9,7 @@ Return `true` *if the value of the root is equal to the **sum** of the values of
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/graph3drawio.png)

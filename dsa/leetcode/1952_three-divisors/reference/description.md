@@ -9,6 +9,7 @@ An integer `m` is a **divisor** of `n` if there exists an integer `k` such that 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 2$

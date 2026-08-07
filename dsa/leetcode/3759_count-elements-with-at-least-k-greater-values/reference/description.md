@@ -19,6 +19,7 @@ Let $n=\lvert\texttt{nums}\rvert$. Comparisons are against every element of the 
 Return the number of occurrences in `nums` for which at least `k` other array values are strictly greater.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

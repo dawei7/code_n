@@ -30,6 +30,7 @@ Return the maximum possible integer total after exactly `k` selected elements ha
 At each step, adding the original value and adding its product with the current multiplier are both permitted. No modulus is applied to the result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

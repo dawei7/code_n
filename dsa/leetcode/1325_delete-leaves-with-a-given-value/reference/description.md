@@ -9,6 +9,7 @@ Note that once you delete a leaf node with value `target`**, **if its parent nod
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 **

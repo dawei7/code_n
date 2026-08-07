@@ -8,15 +8,15 @@ You are given two integer arrays `value` and `decay`, and an integer `m`.
 
 You may select any index **multiple** times. The total number of selections across all indices must not exceed `m`.
 
-If you select index `i` for the $$t^{\text{th}}$$time, where `t` is 1-indexed, the value gained is$\text{value}[i] - \text{decay}[i] * (t - 1)$.
+If you select index `i` for the $$t^{\text{th}}$$ time, where `t` is 1-indexed, the value gained is $\text{value}[i] - \text{decay}[i] * (t - 1)$.
 
 Return the **maximum** total value you can obtain. Since the answer may be large, return it **modulo** $10^{9} + 7$.
 ### Function Contract
 
 **Inputs**
 
-- `value`: A nonempty list whose entry `value[i]` is the first gain available from index `i`.
-- `decay`: A list of the same length; `decay[i]` is the fixed amount subtracted after each selection of index `i`.
+- `value`: A nonempty list whose entry $\text{value}[i]$ is the first gain available from index `i`.
+- `decay`: A list of the same length; $\text{decay}[i]$ is the fixed amount subtracted after each selection of index `i`.
 - `m`: The maximum total number of selections allowed across all indices.
 
 Let $n = \lvert\texttt{value}\rvert = \lvert\texttt{decay}\rvert$ and let $A = \max(\texttt{value})$. Each index can be selected any number of times, and selections at one index do not change the progression belonging to another index.
@@ -26,6 +26,7 @@ Let $n = \lvert\texttt{value}\rvert = \lvert\texttt{decay}\rvert$ and let $A = \
 Return the greatest total obtainable with at most `m` selections, reduced modulo $10^9 + 7$. Maximization is performed on the actual gains before applying the modulus.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -29,6 +29,7 @@ Let $n=\lvert\texttt{series1}\rvert$ and $m=\lvert\texttt{series2}\rvert$. For a
 Return one `[timestamp, summedValue]` pair for every distinct timestamp present in either series, sorted in strictly increasing timestamp order.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

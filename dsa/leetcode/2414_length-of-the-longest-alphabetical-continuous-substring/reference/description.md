@@ -11,6 +11,7 @@ Given a string `s` consisting of lowercase letters only, return the *length of t
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "abacaba"`

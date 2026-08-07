@@ -9,6 +9,7 @@ The **distance** between two indices `i` and `j` is $abs(i - j)$, where `abs` is
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "loveleetcode", c = "e"`

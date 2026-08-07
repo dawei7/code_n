@@ -21,6 +21,7 @@ Return *the number of full chess rounds you have played in the tournament*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $loginTime = "09:31", logoutTime = "10:14"$

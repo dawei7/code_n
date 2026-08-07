@@ -13,6 +13,7 @@ Given a string `s` and an integer `k`, rearrange `s` such that the same characte
 Return a permutation of every character in `s` that satisfies the distance requirement, or `""` if constructing one is impossible.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "aabbcc", k = 3`

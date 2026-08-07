@@ -12,6 +12,7 @@ Given an integer array `nums`, return `true`* if there exists a triple of indice
 Return `true` when `nums` contains a strictly increasing subsequence of length three; otherwise return `false`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3,4,5]`

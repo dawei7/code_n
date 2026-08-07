@@ -25,6 +25,7 @@ Please solve it without using lodash's `_.isEqual()` function
 Return `true` if `o1` and `o2` are deeply equal according to JSON semantics; otherwise return `false`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $o1 = {"x":1,"y":2}, o2 = {"x":1,"y":2}$

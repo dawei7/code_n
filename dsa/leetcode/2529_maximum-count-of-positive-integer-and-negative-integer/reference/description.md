@@ -11,6 +11,7 @@ Given an array `nums` sorted in **non-decreasing** order, return *the maximum be
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [-2,-1,-1,1,2,3]`

@@ -15,6 +15,7 @@ Return an array (of length $\text{num}_{people}$ and sum `candies`) that represe
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $candies = 7, \text{num}_{people} = 4$

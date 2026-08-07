@@ -12,9 +12,11 @@ First, let's understand what makes a pair "good" rather than "bad". For any two 
 
 Rearranging this equation gives us:
 
-$$\begin{aligned}
+$$
+\begin{aligned}
 j - nums[j] = i - nums[i]
-\end{aligned}$$
+\end{aligned}
+$$
 
 This transformation highlights a key insight: for two positions to form a good pair, the difference between their position and their value ($position - value$) must be the same. In other words, the value of $j - \text{nums}[j]$ must match the value of $i - \text{nums}[i]$. This "$position - value$" difference is the key to identifying good pairs.
 

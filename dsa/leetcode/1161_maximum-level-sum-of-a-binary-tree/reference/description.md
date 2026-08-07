@@ -9,6 +9,7 @@ Return the **smallest** level `x` such that the sum of all the values of nodes a
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/capture.JPG)

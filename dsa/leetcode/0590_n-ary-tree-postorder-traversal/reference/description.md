@@ -9,6 +9,7 @@ Nary-Tree input serialization is represented in their level order traversal. Eac
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/narytreeexample.png)

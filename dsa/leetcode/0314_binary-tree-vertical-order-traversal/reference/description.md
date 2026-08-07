@@ -14,6 +14,7 @@ If two nodes are in the same row and column, the order should be from **left to 
 Return the vertical columns from leftmost to rightmost, with every column ordered top-to-bottom and same-position ties ordered left-to-right.
 
 ### Examples
+
 #### Example 1
 
 ![](images/image1.png)

@@ -1,6 +1,6 @@
 ## Description
 
-Alice and Bob want to water `n` plants in their garden. The plants are arranged in a row and are labeled from `0` to $n - 1$ from left to right where the $$i^{\text{th}}$$plant is located at$x = i$.
+Alice and Bob want to water `n` plants in their garden. The plants are arranged in a row and are labeled from `0` to $n - 1$ from left to right where the $$i^{\text{th}}$$ plant is located at $x = i$.
 
 Each plant needs a specific amount of water. Alice and Bob have a watering can each, **initially full**. They water the plants in the following way:
 
@@ -19,6 +19,7 @@ Given a **0-indexed** integer array `plants` of `n` integers, where $\text{plant
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $plants = [2,2,3,3], capacityA = 5, capacityB = 5$

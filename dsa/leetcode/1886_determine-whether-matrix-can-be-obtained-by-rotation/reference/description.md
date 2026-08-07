@@ -7,6 +7,7 @@ Given two `n x n` binary matrices `mat` and `target`, return `true`* if it is po
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/grid3.png)

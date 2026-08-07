@@ -14,13 +14,13 @@ We will maintain the structure as a *list* $\text{self.ranges} = []$.
 
 *Adding a Range*
 
-When we want to add a range, we first find the indices $i, j = \text{self.\\\_bounds}(left, right)$ for which `self.ranges[i: j+1]` touches (in a closed sense - not half open) the given interval `[left, right]`. We can find this in log time by making steps of size 100, 10, then 1 in our linear search from both sides.
+When we want to add a range, we first find the indices $i, j = \text{self.\\_bounds}(left, right)$ for which `self.ranges[i: j+1]` touches (in a closed sense - not half open) the given interval `[left, right]`. We can find this in log time by making steps of size 100, 10, then 1 in our linear search from both sides.
 
 Every interval touched by `[left, right]` will be replaced by the single interval `[min(left, self.ranges[i][0]), max(right, self.ranges[j][1])]`.
 
 *Removing a Range*
 
-Again, we use $i, j = \text{self.\\\_bounds}(...)$ to only work in the relevant subset of `self.ranges` that is in the neighborhood of our given range `[left, right)`. For each interval `[x, y)` from `self.ranges[i:j+1]`, we may have some subset of that interval to the left and/or right of `[left, right)`. We replace our current interval `[x, y)` with those (up to 2) new intervals.
+Again, we use $i, j = \text{self.\\_bounds}(...)$ to only work in the relevant subset of `self.ranges` that is in the neighborhood of our given range `[left, right)`. For each interval `[x, y)` from `self.ranges[i:j+1]`, we may have some subset of that interval to the left and/or right of `[left, right)`. We replace our current interval `[x, y)` with those (up to 2) new intervals.
 
 *Querying a Range*
 

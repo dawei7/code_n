@@ -13,6 +13,7 @@ Return the number of ways the monkeys can move so that at least **one collision*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -9,6 +9,7 @@ Return *any permutation of *`nums1`* that maximizes its **advantage** with respe
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [2,7,11,15], nums2 = [1,10,4,11]$

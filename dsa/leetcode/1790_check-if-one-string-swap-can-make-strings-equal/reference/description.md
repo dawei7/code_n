@@ -9,6 +9,7 @@ Return `true` *if it is possible to make both strings equal by performing **at m
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $s1 = "bank", s2 = "kanb"$

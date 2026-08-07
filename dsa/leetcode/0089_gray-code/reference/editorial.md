@@ -398,17 +398,22 @@ $From the above observation we can say that$G(i) \oplus G(i + 1) = X \oplus Y$$ 
 
 2. No number is repeated in the sequence i.e, `G(i)` is bijective, $G(i) = G(j)$ if and only if $i = j$.
 
-$$\begin{aligned}
+$$
+\begin{aligned}
 
 \text{Let} \hspace{3pt}G(i) = i \oplus (i >> 1) \hspace{3pt} \text{and} \hspace{3pt} G(j) = j \oplus (j >> 1) \\
 \end{aligned}\\
- \text{If} \hspace{3pt} G(i) = G(j) \hspace{3pt} \text{then}\\$$
-$$\begin{aligned}
-\&=>G(i) \oplus G(j) \&= 0 \\
-                    \&= (i \oplus (i >> 1)) \oplus (j \oplus (j >> 1)) \&= 0 \\
-                    \&= (i \oplus j) \oplus ((i \oplus j) >> 1) \&= 0\\
+ \text{If} \hspace{3pt} G(i) = G(j) \hspace{3pt} \text{then}\\
+$$
+$$
+\begin{aligned}
+&=>G(i) \oplus G(j) &= 0 \\
+                    &= (i \oplus (i >> 1)) \oplus (j \oplus (j >> 1)) &= 0 \\
+                    &= (i \oplus j) \oplus ((i \oplus j) >> 1) &= 0\\
 \end{aligned}\\
-\text{Let} \hspace{3pt} X = i \oplus j = b^{n - 1} b^{n - 2} ... b ^{0}$$
+\text{Let} \hspace{3pt} X = i \oplus j = b^{n - 1} b^{n - 2} ... b ^{0}
+
+$$
 
 $$\text{(binary }\hspace{3pt}\text{representation} \hspace{3pt}\text{of} \hspace{3pt}\text{the} \hspace{3pt}\text{XOR} \hspace{3pt}\text{product)} \hspace{3pt}\\
 X >> 1 = 0 b^{n - 1} b^{n - 2} ... b ^{1}\\

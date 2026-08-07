@@ -33,6 +33,7 @@ Given a string `word`, return *a list of all the possible **generalized abbrevia
 Return all generalized abbreviations of `word` in any order.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $word = "word"$

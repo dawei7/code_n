@@ -15,6 +15,7 @@ Given the string `s`, the size of each group `k` and the character `fill`, retur
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "abcdefghi", k = 3, fill = "x"`

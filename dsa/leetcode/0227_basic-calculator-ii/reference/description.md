@@ -18,6 +18,7 @@ You may assume that the given expression is always valid. All intermediate resul
 Return the expression's integer result, with division truncated toward zero.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "3+2*2"`

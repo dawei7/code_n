@@ -13,6 +13,7 @@ Since the answer may be too large, return it modulo $10^{9} + 7$.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $hats = [[3,4],[4,5],[5]]$

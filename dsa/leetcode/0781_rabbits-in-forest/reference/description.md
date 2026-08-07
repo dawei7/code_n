@@ -9,6 +9,7 @@ Given the array `answers`, return *the minimum number of rabbits that could be i
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $answers = [1,1,2]$

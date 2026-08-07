@@ -21,6 +21,7 @@ Return an array of integers representing the results of each query of type `[1, 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -19,6 +19,7 @@ Return the final string `result` after processing all characters in `s`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

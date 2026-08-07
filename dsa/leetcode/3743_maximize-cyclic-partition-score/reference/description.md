@@ -18,9 +18,7 @@ Using fewer than `k` parts is permitted. A one-element part has range `0`.
 
 For complexity notation, let $n=\texttt{nums.length}$ and
 
-$$
-q=\min\left(k,\left\lfloor\frac{n}{2}\right\rfloor\right).
-$$
+$q=\min\left(k,\left\lfloor\frac{n}{2}\right\rfloor\right).$
 
 Only $q$ positive-range parts can matter because each such part needs at least two positions.
 
@@ -29,6 +27,7 @@ Only $q$ positive-range parts can matter because each such part needs at least t
 Return the maximum sum of subarray ranges over all cyclic partitions containing at most `k` parts.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

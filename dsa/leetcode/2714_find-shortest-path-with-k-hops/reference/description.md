@@ -10,6 +10,7 @@ Return *the length of the **shortest** path from *`s`* to *`d`* with the given c
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 4, edges = [[0,1,4],[0,2,2],[2,3,6]], s = 1, d = 3, k = 2$

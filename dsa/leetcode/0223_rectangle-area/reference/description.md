@@ -23,6 +23,7 @@ The second rectangle is defined by its **bottom-left** corner `(bx1, by1)` and i
 Return the area covered by at least one rectangle, counting their overlap only once.
 
 ### Examples
+
 #### Example 1
 
 ![Rectangle Area](images/rectangle-plane.png)

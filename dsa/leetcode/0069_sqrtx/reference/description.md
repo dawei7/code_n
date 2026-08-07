@@ -16,6 +16,7 @@ You **must not use** any built-in exponent function or operator.
 Return $\lfloor\sqrt{x}\rfloor$ as a non-negative integer.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $x = 4$

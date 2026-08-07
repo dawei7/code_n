@@ -17,6 +17,7 @@ Return the **maximum** possible sum of weights for such a path. If no such path 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -13,9 +13,10 @@ Return `true` *if it is possible to obtain the string* `target`* by moving the p
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
-- **Input:** $start = "_L_{\_R\_\_R\_}", target = "L_{\_\_\_\_\_RR}"$
+- **Input:** $start = "_L__R__R_", target = "L______RR"$
 - **Output:** `true`
 - **Explanation:** We can obtain the string target from start by doing the following moves:
 - Move the first piece one step to the left, start becomes equal to "**L**___R__R_".
@@ -24,7 +25,7 @@ Return `true` *if it is possible to obtain the string* `target`* by moving the p
 Since it is possible to get the string target from start, we return true.
 #### Example 2
 
-- **Input:** $start = "R_{L\_}", target = "__LR"$
+- **Input:** $start = "R_L_", target = "__LR"$
 - **Output:** `false`
 - **Explanation:** The 'R' piece in the string start can move one step to the right to obtain "_**R**L_".
 After that, no pieces can move anymore, so it is impossible to obtain the string target from start.

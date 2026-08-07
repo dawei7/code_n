@@ -13,6 +13,7 @@ Given an array of integers `stones` where $\text{stones}[i]$ represents the valu
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $stones = [5,3,1,4,2]$

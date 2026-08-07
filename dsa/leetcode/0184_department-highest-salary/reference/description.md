@@ -45,6 +45,7 @@ The result format is in the following example.
 Return `Department`, `Employee`, and `Salary` for every employee tied at a department's highest salary.
 
 ### Examples
+
 #### Example 1
 
 ```

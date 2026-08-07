@@ -25,6 +25,7 @@ Every magnitude in the inclusive range $1$ through $n$ must occur once. Lexicogr
 Return the lexicographically smallest valid signed permutation, or `[]` if no assignment of signs can produce `target`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -11,6 +11,7 @@ Return *a list of lists of the suggested products after each character of *`sear
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $products = ["mobile","mouse","moneypot","monitor","mousepad"], searchWord = "mouse"$

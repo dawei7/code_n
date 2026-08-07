@@ -22,6 +22,7 @@ Let $N=\lvert\texttt{nums}\rvert$. Each operation is evaluated on the current ar
 Return the remaining values in their current order after every possible leftmost adjacent-equal merge has been applied.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

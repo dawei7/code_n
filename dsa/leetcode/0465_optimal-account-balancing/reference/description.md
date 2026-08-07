@@ -7,7 +7,7 @@ Return *the minimum number of transactions required to settle the debt*.
 
 **Inputs**
 
-- `transactions`: A list of entries `[from_i, to_i, amount_i]`, each describing one completed transfer between two distinct people.
+- `transactions`: A list of entries $[\text{from}_{i}, \text{to}_{i}, \text{amount}_{i}]$, each describing one completed transfer between two distinct people.
 
 Let $n$ be the number of input transactions, $p$ the number of distinct person identifiers in those transactions, and $k$ the number of people whose net balance is nonzero after all transactions are combined.
 
@@ -18,6 +18,7 @@ Let $n$ be the number of input transactions, $p$ the number of distinct person i
 Person identifiers label accounts; they need not form a contiguous range.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $transactions = [[0,1,10],[2,0,5]]$

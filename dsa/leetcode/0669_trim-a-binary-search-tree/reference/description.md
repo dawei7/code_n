@@ -9,6 +9,7 @@ Return *the root of the trimmed binary search tree*. Note that the root may chan
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/trim1.jpg)

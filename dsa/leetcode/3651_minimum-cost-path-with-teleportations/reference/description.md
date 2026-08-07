@@ -15,6 +15,7 @@ Return the **minimum** total cost to reach cell $(m - 1, n - 1)$ from `(0, 0)`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

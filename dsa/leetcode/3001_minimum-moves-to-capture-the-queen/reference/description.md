@@ -27,6 +27,7 @@ Given that you can only move the white pieces, return *the **minimum** number of
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1.png)

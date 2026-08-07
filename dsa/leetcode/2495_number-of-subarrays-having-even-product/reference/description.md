@@ -6,6 +6,7 @@ Given a **0-indexed** integer array `nums`, return *the number of subarrays of *
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [9,6,7,13]`

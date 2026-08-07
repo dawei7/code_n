@@ -24,6 +24,7 @@ Return *the maximum total tastiness that can be purchased*.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $price = [10,20,20], tastiness = [5,8,8], maxAmount = 20, maxCoupons = 1$

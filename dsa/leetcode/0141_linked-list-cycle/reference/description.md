@@ -16,6 +16,7 @@ Return `true`* if there is a cycle in the linked list*. Otherwise, return `false
 Return `true` if following `next` pointers enters a cycle; otherwise return `false`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/circularlinkedlist.png)

@@ -12,6 +12,7 @@ Reverse bits of a given 32 bits signed integer.
 Return the integer obtained by reversing all 32 binary positions of `n`, including leading zero positions.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -15,6 +15,7 @@ Given an array of strings `operations` containing a list of operations, return *
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $operations = ["--X","X++","X++"]$

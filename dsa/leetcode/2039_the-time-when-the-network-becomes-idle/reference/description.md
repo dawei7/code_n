@@ -21,6 +21,7 @@ Return *the **earliest second** starting from which the network becomes **idle**
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![example 1](images/quiet-place-example1.png)

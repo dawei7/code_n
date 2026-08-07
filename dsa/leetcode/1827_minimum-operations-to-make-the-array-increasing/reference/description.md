@@ -13,6 +13,7 @@ An array `nums` is **strictly increasing** if $\text{nums}[i] < nums[i+1]$ for a
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,1,1]`

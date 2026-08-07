@@ -14,6 +14,7 @@ Return the **maximum** total weight that can be packed into the two bags.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

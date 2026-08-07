@@ -130,7 +130,7 @@ To better explain the above intuition, let us first define a function called `is
 $$
 \text{numSquares}(n) = \argmin_{\text{count} \in [1, 2, ...n]} \Big(
 \text{is\_divided\_by}(n, \text{count}) \Big)
-$In addition, the function `is_{divided\_by}(n, count)` could also assume the form of recursion as follows:$
+$In addition, the function `is_divided_by(n, count)` could also assume the form of recursion as follows:$
 \text{is\_divided\_by}(n, \text{count}) = \text{is\_divided\_by}(n-k, \text{count}-1) \quad \exists{k} \in \{\text{square numbers}\}
 $$
 
@@ -152,7 +152,7 @@ With this trick of reformulation, we could dramatically reduce the risk of stack
 <br>
 - The function `is_divided_by(n, count)` can be implemented in the form of recursion as we defined in the intuition section.
 <br/>
-- In the bottom case, we have `count==1`, we just need to check if the number `n` is a square number itself. We could use the inclusion test with the list $\text{square}_{nums}$ that we prepared before, _i.e._ $n \in \text{square\\\_nums}$. And if we use the `set` data structure for $\text{square}_{nums}$, we could obtain a faster running time than the approach of $n = int(sqrt(n)) ^ 2$.
+- In the bottom case, we have `count==1`, we just need to check if the number `n` is a square number itself. We could use the inclusion test with the list $\text{square}_{nums}$ that we prepared before, _i.e._ $n \in \text{square\\_nums}$. And if we use the `set` data structure for $\text{square}_{nums}$, we could obtain a faster running time than the approach of $n = int(sqrt(n)) ^ 2$.
 
 Concerning the correctness of the algorithm, often the case we could prove the Greedy algorithm by **contradiction**. This is no exception. Suppose we find a `count=m` that can divide the number `n`, and suppose in the later iterations there exists another number `count=p` that can also divide the number and the combination is smaller than the found one _i.e._ `p < m`. Given the order of the iteration, the `count=p` would have been discovered before `count=m` which is contradict to the fact that `p` comes later than `m`. Therefore, we can say that the algorithm works as expected, which always finds the minimal size of combination.
 

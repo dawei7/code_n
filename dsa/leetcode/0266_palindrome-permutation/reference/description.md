@@ -14,6 +14,7 @@ Let $n = \texttt{s.length}$, and let $k$ be the number of distinct characters in
 Return `true` exactly when some permutation of `s` reads the same from left to right and right to left.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "code"`

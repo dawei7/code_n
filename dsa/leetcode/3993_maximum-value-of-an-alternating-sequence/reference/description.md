@@ -33,6 +33,7 @@ All sequence elements are integers. Alternation is strict, so adjacent values ca
 Return the maximum integer that can appear in any valid length-`n` alternating sequence beginning with `s` and respecting the adjacent-difference limit.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

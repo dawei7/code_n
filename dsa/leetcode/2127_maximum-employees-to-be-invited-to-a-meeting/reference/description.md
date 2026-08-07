@@ -11,6 +11,7 @@ Given a **0-indexed** integer array `favorite`, where $\text{favorite}[i]$ denot
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1.png)

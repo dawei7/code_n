@@ -22,6 +22,7 @@ Return the *maximum possible area* under all the pistons.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

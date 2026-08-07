@@ -19,6 +19,7 @@ The final sorted array should not be returned by the function, but instead be *s
 Return `None`; merge the two non-decreasing sequences in place into `nums1`, using its trailing capacity for the final $m+n$ values.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3$

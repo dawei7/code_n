@@ -14,6 +14,7 @@ The majority element is the element that appears more than $⌊n / 2⌋$ times. 
 Return the value that appears more than $\lfloor n / 2 \rfloor$ times.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,2,3]`

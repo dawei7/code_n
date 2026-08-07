@@ -11,6 +11,7 @@ Return *the latest 24-hour time in `"HH:MM"` format*. If no valid time can be ma
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [1,2,3,4]`

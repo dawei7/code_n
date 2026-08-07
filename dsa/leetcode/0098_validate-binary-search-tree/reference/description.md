@@ -20,6 +20,7 @@ A **valid BST** is defined as follows:
 Return `true` exactly when every node satisfies the strict, recursive BST ordering rules.
 
 ### Examples
+
 #### Example 1
 
 ![](images/tree1.jpg)

@@ -9,6 +9,7 @@ Given the array `nums` consisting of `2n` elements in the form `[x_1,x_2,...,x_n
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,5,1,3,4,7], n = 3`

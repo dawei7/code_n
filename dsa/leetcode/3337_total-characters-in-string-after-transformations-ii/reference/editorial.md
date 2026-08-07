@@ -18,45 +18,49 @@ Here, the value of $T(c, c')$ is either 0 or 1. If $c'$ is included in the subst
 
 The time complexity of directly using the recurrence is high, so optimization is necessary. Notice that $T(c, c')$ is independent of $i$; it remains fixed in each round of iteration. Therefore, if we express $f(i, c)$ and $f(i-1, c')$ as $n \times 1$ column vectors, and $T(c, c')$ as an $n \times n$ matrix, the recurrence becomes a matrix multiplication:
 
-$$\begin{pmatrix}
+$$
+\begin{pmatrix}
 f(i, 0) \\
 f(i, 1) \\
 \vdots \\
 f(i, 25)
 \end{pmatrix}
 =\begin{pmatrix}
-T(0, 0) \& T(0, 1) \& \cdots \& T(0, 25) \\
-T(1, 0) \& T(1, 1) \& \cdots \& T(1, 25) \\
-\vdots \& \vdots \& \ddots \& \vdots \\
-T(25, 0) \& T(25, 1) \& \cdots \& T(25, 25)
+T(0, 0) & T(0, 1) & \cdots & T(0, 25) \\
+T(1, 0) & T(1, 1) & \cdots & T(1, 25) \\
+\vdots & \vdots & \ddots & \vdots \\
+T(25, 0) & T(25, 1) & \cdots & T(25, 25)
 \end{pmatrix}
 \begin{pmatrix}
 f(i-1, 0) \\
 f(i-1, 1) \\
 \vdots \\
 f(i-1, 25)
-\end{pmatrix}$$
+\end{pmatrix}
+$$
 
 So, after $t$ iterations:
 
-$$\begin{pmatrix}
+$$
+\begin{pmatrix}
 f(t, 0) \\
 f(t, 1) \\
 \vdots \\
 f(t, 25)
 \end{pmatrix}
 =\begin{pmatrix}
-T(0, 0) \& T(0, 1) \& \cdots \& T(0, 25) \\
-T(1, 0) \& T(1, 1) \& \cdots \& T(1, 25) \\
-\vdots \& \vdots \& \ddots \& \vdots \\
-T(25, 0) \& T(25, 1) \& \cdots \& T(25, 25)
+T(0, 0) & T(0, 1) & \cdots & T(0, 25) \\
+T(1, 0) & T(1, 1) & \cdots & T(1, 25) \\
+\vdots & \vdots & \ddots & \vdots \\
+T(25, 0) & T(25, 1) & \cdots & T(25, 25)
 \end{pmatrix}^t
 \begin{pmatrix}
 f(0, 0) \\
 f(0, 1) \\
 \vdots \\
 f(0, 25)
-\end{pmatrix}$$
+\end{pmatrix}
+$$
 
 Thus, we can first compute the $t$-th power of the matrix corresponding to $T(c, c')$, and then multiply it by the initial column vector $f(0, \cdots)$ to obtain all values $f(t, \cdots)$. The sum of these values gives the final answer.
 

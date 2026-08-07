@@ -11,6 +11,7 @@ An **Anagram** of a string is a string that contains the same characters with a 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "bab", t = "aba"`

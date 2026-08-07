@@ -17,6 +17,7 @@ Find the maximum profit you can achieve. You may complete at most `k` transactio
 Return the greatest total profit achievable under the transaction limit.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $k = 2, prices = [2,4,1]$

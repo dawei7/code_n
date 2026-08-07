@@ -15,6 +15,7 @@ It is **guaranteed** that every call to `ping` uses a strictly larger value of `
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ```

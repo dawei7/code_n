@@ -15,6 +15,7 @@ Find the maximum profit you can achieve. You may complete as many transactions a
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $prices = [1,3,2,8,4,9], fee = 2$

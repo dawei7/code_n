@@ -15,6 +15,7 @@ The **score** of a balanced parentheses string is based on the following rule:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "()"`

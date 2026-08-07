@@ -9,6 +9,7 @@ In one **step**, you can delete exactly one character in either string.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $word1 = "sea", word2 = "eat"$

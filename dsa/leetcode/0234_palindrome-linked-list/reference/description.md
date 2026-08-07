@@ -12,6 +12,7 @@ Given the `head` of a singly linked list, return `true`* if it is a **palindrome
 Return `true` when the node values read identically forward and backward; otherwise return `false`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/pal1linked-list.jpg)

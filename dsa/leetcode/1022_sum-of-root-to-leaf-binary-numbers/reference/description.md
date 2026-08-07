@@ -13,6 +13,7 @@ The test cases are generated so that the answer fits in a **32-bits** integer.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/sum-of-root-to-leaf-binary-numbers.png)

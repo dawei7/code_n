@@ -10,6 +10,7 @@ Return the length of the *longest** **self-contained *substring of `s` if it exi
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

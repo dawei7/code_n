@@ -10,6 +10,7 @@ Return* the **maximum** cost of your trip. If there is no trip that meets the re
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 ![](images/image-20220418173304-1.png)

@@ -12,6 +12,7 @@ Given an array of `points` where $\text{points}[i] = [x_{i}, y_{i}]$ represents 
 Return the maximum number of input points that are collinear.
 
 ### Examples
+
 #### Example 1
 
 ![](images/plane1.jpg)

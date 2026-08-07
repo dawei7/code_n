@@ -26,6 +26,7 @@ The screen is initially empty. Every use of `A`, `Ctrl-A`, `Ctrl-C`, or `Ctrl-V`
 Return the maximum attainable number of `A` characters on the screen after at most `n` keypresses.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 3$

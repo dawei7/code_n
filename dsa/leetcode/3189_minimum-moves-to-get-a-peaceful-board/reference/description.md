@@ -12,6 +12,7 @@ Return the **minimum** number of moves required to get a *peaceful board*.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

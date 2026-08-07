@@ -2,13 +2,14 @@
 
 You are given the `head` of a linked list, and an integer `k`.
 
-Return *the head of the linked list after **swapping** the values of the *$$k^{\text{th}}$$*node from the beginning and the *$$k^{\text{th}}$$ *node from the end (the list is **1-indexed**).*
+Return *the head of the linked list after **swapping** the values of the *$$k^{\text{th}}$$ *node from the beginning and the *$$k^{\text{th}}$$ *node from the end (the list is **1-indexed**).*
 ### Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/linked1.jpg)

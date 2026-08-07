@@ -26,6 +26,7 @@ Let $n$ be the number of road positions.
 Return the smallest number of additional radius-one bulbs whose combined coverage, together with the existing working bulbs, makes all `n` positions visible.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

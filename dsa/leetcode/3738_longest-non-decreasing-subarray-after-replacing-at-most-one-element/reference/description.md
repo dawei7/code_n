@@ -20,6 +20,7 @@ The replacement value may be any integer; it is not restricted to values already
 Return the maximum length of a non-decreasing subarray achievable with zero or one replacement.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

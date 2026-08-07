@@ -13,6 +13,7 @@ Two rooms are **adjacent** if they share a common wall, either *horizontally* or
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

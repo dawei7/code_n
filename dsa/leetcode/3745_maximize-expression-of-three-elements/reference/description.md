@@ -15,9 +15,10 @@ The same index cannot fill two roles. Duplicate values at separate indices remai
 
 **Return value**
 
-Return the maximum value of `a + b - c` over all choices of three distinct indices.
+Return the maximum value of $a + b - c$ over all choices of three distinct indices.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

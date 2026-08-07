@@ -24,6 +24,7 @@ The source describes slot endpoints as inclusive. Meeting length follows elapsed
 Return `[start, start + duration]` for the feasible meeting with the earliest `start`. Return `[]` if no pair of slots shares at least `duration` time units.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $slots1 = [[10,50],[60,120],[140,210]], slots2 = [[0,15],[60,70]], duration = 8$

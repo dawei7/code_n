@@ -37,8 +37,10 @@ $\textit{area} + \textit{width} \cdot (y^{''} - y^{'})$
 
 If the following conditions hold:
 
-$$\textit{area} < \dfrac{\textit{totalArea}}{2} \\
-\textit{area} + \textit{width} \cdot (y^{''} - y{'}) \ge \dfrac{\textit{totalArea}}{2}$$
+$$
+\textit{area} < \dfrac{\textit{totalArea}}{2} \\
+\textit{area} + \textit{width} \cdot (y^{''} - y{'}) \ge \dfrac{\textit{totalArea}}{2}
+$$
 
 then the target value of $y$ lies within the interval $[y', y'']$.
 

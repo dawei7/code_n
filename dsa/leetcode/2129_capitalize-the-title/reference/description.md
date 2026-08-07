@@ -13,6 +13,7 @@ Return *the **capitalized** *`title`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $title = "capiTalIze tHe titLe"$

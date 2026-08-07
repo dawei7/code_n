@@ -19,6 +19,7 @@ Return the **maximum** number of rows that can be **covered** by a set of `numSe
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/rowscovered.png)

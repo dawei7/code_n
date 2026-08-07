@@ -15,6 +15,7 @@ Return *an array consisting of **good** indices in **any order***.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $variables = [[2,3,3,10],[3,3,3,1],[6,1,1,4]], target = 2$

@@ -34,9 +34,9 @@ $\dfrac{L}{2^k} \le 10^{-5}$
 
 Solving this inequality gives:
 
-$k \ge \log_2 (L \cdot$10^{5}$)$
+$k \ge \log_2 (L \cdot $10^{5}$)$
 
-Under the data range of this problem, $0 \le L \le 10^9$, at this time $k \ge \log_2 (L \cdot$10^{5}$) \ge \log_2 (10^{14}) = 14 \log_2 (10) \approx 46.506993328423076$. The upper limit of the number of binary search iterations is $47$.
+Under the data range of this problem, $0 \le L \le 10^9$, at this time $k \ge \log_2 (L \cdot $10^{5}$) \ge \log_2 (10^{14}) = 14 \log_2 (10) \approx 46.506993328423076$. The upper limit of the number of binary search iterations is $47$.
 
 #### Implementation
 
@@ -97,8 +97,10 @@ $\textit{area} + \textit{width} \cdot (y^{''} - y^{'})$
 
 At this time, the following conditions must be met:
 
-$$\textit{area} < \dfrac{\textit{totalArea}}{2} \\
-\textit{area} + \textit{width} \cdot (y^{''} - y^{'}) \ge \dfrac{\textit{totalArea}}{2}$$
+$$
+\textit{area} < \dfrac{\textit{totalArea}}{2} \\
+\textit{area} + \textit{width} \cdot (y^{''} - y^{'}) \ge \dfrac{\textit{totalArea}}{2}
+$$
 
 It can be known that the target value $y$ must be within the interval $[y^{'}, y^{''}]$.
 

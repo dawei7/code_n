@@ -13,6 +13,7 @@ Return the total number of **valid** substrings of `word1`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -18,6 +18,7 @@ JSON cases use ordinary nested arrays and integers. The runner reconstructs the 
 Return the sum of each stored integer multiplied by the number of enclosing lists around it.
 
 ### Examples
+
 #### Example 1
 
 ![](images/nestedlistweightsumex1.png)

@@ -14,6 +14,7 @@ Note that $n! = n * (n - 1) * (n - 2) * ... * 3 * 2 * 1$.
 Return the number of zero digits at the end of the decimal representation of `n!`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 3$

@@ -19,6 +19,7 @@ Given the two integers `r` and `k`, return *the **maximum possible minimum power
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $stations = [1,2,4,5,0], r = 1, k = 2$

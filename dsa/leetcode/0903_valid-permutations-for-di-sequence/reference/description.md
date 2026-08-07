@@ -19,6 +19,7 @@ Return *the number of **valid permutations** *`perm`. Since the answer may be la
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "DID"`

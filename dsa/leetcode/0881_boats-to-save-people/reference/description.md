@@ -9,6 +9,7 @@ Return *the minimum number of boats to carry every given person*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $people = [1,2], limit = 3$

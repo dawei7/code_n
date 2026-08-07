@@ -9,6 +9,7 @@ Return the *sorted array*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,1,2,2,2,3]`

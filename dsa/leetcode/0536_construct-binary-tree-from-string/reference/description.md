@@ -19,6 +19,7 @@ Each returned `TreeNode` has an integer `val` and optional `left` and `right` ch
 negative values form one node value; the first child expression belongs to `left` and the second to `right`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/butree.jpg)

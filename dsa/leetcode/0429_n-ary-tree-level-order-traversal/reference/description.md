@@ -19,6 +19,7 @@ Return one list of node values per occupied depth, ordered from the root downwar
 level.
 
 ### Examples
+
 #### Example 1
 
 ![](images/narytreeexample.png)

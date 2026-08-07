@@ -13,6 +13,7 @@ Return *the **minimum** number of steps to group all the black balls to the righ
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "101"`

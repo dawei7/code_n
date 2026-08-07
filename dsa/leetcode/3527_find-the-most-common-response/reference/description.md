@@ -9,6 +9,7 @@ Return the **most common** response across all days after removing **duplicate**
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

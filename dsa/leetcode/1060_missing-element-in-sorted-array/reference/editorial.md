@@ -18,7 +18,7 @@ We have filled in the missing numbers and can see that the third missing number 
 
 So we cannot traverse all integers one by one. Instead, we can traverse the `nums` array. Of course, the difference between two adjacent numbers in "nums" may not necessarily be `1`. Therefore, we can calculate how many missing elements exist between these two numbers.
 
-For each index `i`, we can set $missed_{in\_gap} = \text{nums}[i] - nums[i - 1] - 1$ to get the number of missing elements between the interval `[nums[i], nums[i - 1]]`.
+For each index `i`, we can set $missed_in_gap = \text{nums}[i] - nums[i - 1] - 1$ to get the number of missing elements between the interval `[nums[i], nums[i - 1]]`.
 
 ![img](images/1.png)
 
@@ -42,11 +42,11 @@ If we have finished the iteration while there is still `k` left, the $k^{th}$ mi
 
 <br>
 
-Otherwise ($missed_{in\_gap} \ge k$,), the $k^{th}$ missing element must be between $nums[i - 1]$ and $\text{nums}[i]$. The $k^{th}$ missing element is at the $k^{th}$ position to the right of $nums[i - 1]$, which is $answer = nums[i - 1] + k$.
+Otherwise ($missed_in_gap \ge k$,), the $k^{th}$ missing element must be between $nums[i - 1]$ and $\text{nums}[i]$. The $k^{th}$ missing element is at the $k^{th}$ position to the right of $nums[i - 1]$, which is $answer = nums[i - 1] + k$.
 
 ![img](images/7.png)
 
-As shown in the picture above, $i = 1$, the count is $missed_{in\_gap} = \text{nums}[1] - \text{nums}[0] - 1 = 2 = k$, which means the $2^{nd}$ missing element is within the range `(4, 7)`. We can get it using $answer = \text{nums}[0] + 2 = 6$.
+As shown in the picture above, $i = 1$, the count is $missed_in_gap = \text{nums}[1] - \text{nums}[0] - 1 = 2 = k$, which means the $2^{nd}$ missing element is within the range `(4, 7)`. We can get it using $answer = \text{nums}[0] + 2 = 6$.
 
 <br>
 
@@ -54,7 +54,7 @@ As shown in the picture above, $i = 1$, the count is $missed_{in\_gap} = \text{n
 
 1) Let `n` be the size of `nums`.
 2) Iterate over index `i` from `1` to `n`, for each index:
-- Calculate the number of missing elements between $nums[i - 1]$ and $\text{nums}[i]$ as $missed_{in\_gap} = \text{nums}[i] - nums[i - 1] - 1$.
+- Calculate the number of missing elements between $nums[i - 1]$ and $\text{nums}[i]$ as $missed_in_gap = \text{nums}[i] - nums[i - 1] - 1$.
 - If `missed_in_gap` is greater than or equal to `k`, return $nums[i - 1] + k$. Otherwise, reduce `k` by `missed_in_gap` and repeat step 2.
 - Otherwise, return $nums[i - 1] + k$.
 3) If we have reached the end of `nums` and `k` is still larger than 0, return $nums[-1] + k$.

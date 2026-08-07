@@ -11,6 +11,7 @@ Return `true` *if you can make** every** string in *`words`* **equal **using **a
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["abc","aabc","bc"]$

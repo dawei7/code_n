@@ -23,6 +23,7 @@ Return *the lexicographically smallest equivalent string of *`baseStr`* by using
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $s1 = "parker", s2 = "morris", baseStr = "parser"$

@@ -18,9 +18,10 @@ Let $N=\lvert\texttt{nums}\rvert=\lvert\texttt{forbidden}\rvert$. A swap must us
 
 **Return value**
 
-Return the fewest swaps that produce `nums[i] != forbidden[i]` for every `0 <= i < N`. Return `-1` when no permutation of the available `nums` values can meet that condition.
+Return the fewest swaps that produce $\text{nums}[i] \neq \text{forbidden}[i]$ for every $0 \le i < N$. Return `-1` when no permutation of the available `nums` values can meet that condition.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

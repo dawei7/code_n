@@ -13,6 +13,7 @@ The value of `|x|` is defined as:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,2,1], k = 1`

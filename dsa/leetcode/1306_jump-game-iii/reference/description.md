@@ -9,6 +9,7 @@ Notice that you can not jump outside of the array at any time.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [4,2,3,0,3,1,2], start = 5`

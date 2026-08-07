@@ -9,6 +9,7 @@ Answers within $10^{-5}$ of the **actual answer** will be considered accepted.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3]`

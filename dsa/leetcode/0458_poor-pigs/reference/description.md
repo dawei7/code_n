@@ -30,6 +30,7 @@ Given `buckets`, `minutesToDie`, and `minutesToTest`, return *the **minimum** nu
 Only complete `minutesToDie` intervals create additional observable death outcomes.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $buckets = 4, minutesToDie = 15, minutesToTest = 15$

@@ -9,6 +9,7 @@ Flip operation consists of change **any** single bit 1 to 0 or change the bit 0 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/sample_3_1676.png)

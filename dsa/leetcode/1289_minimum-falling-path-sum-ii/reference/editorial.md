@@ -66,7 +66,7 @@ To formulate this, let's define a function `optimal(row, col)` which returns the
     >
     > We are sure that `optimal` will terminate because there exists a row whose next row is not present.
 
-    Thus, `optimal(row, col)` will return $\text{grid}[row][col] + min(optimal(row + 1, next_{row\_col}))$ where $0 \le next_{row\_col} < n$ and $next_{row\_col} \neq col$.
+    Thus, `optimal(row, col)` will return $\text{grid}[row][col] + min(optimal(row + 1, next_row_col))$ where $0 \le next_row_col < n$ and $next_row_col \neq col$.
 
 Thus, using these observations, we can formulate the recursive solution. We are trying all the possible combinations by performing a depth-first search on the `grid`.
 
@@ -98,13 +98,13 @@ It's worth noting that we need to call `optimal` from every element of the first
        element from the next row.
 
        Thus traverse linearly in the $row + 1$ using the variable
-       `next_row_col`. If $next_{row\_col} \neq col$, then we can select
-       $grid[row + 1][next_{row\_col}]$.
+       `next_row_col`. If $next_row_col \neq col$, then we can select
+       $grid[row + 1][next_row_col]$.
 
         We need to select `next_row_col` for which $\text{next}_{minimum}$ is the
         minimum. Thus, $\text{next}_{minimum}$ will be
-        $min(optimal(row + 1, next_{row\_col}))$ where
-        $0 \le next_{row\_col} < n$ and $next_{row\_col} \neq col$.
+        $min(optimal(row + 1, next_row_col))$ where
+        $0 \le next_row_col < n$ and $next_row_col \neq col$.
 
     d. From this cell, the minimum sum of a falling path with non-zero
        shifts is $\text{grid}[row][col] + \text{next}_{minimum}$. Return this value.

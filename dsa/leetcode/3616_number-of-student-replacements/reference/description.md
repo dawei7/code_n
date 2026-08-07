@@ -12,6 +12,7 @@ Return the total number of replacements made.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

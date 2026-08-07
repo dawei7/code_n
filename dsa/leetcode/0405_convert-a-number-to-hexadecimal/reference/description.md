@@ -16,6 +16,7 @@ All the letters in the answer string should be lowercase characters, and there s
 Return the lowercase hexadecimal representation without unnecessary leading zeroes; negative inputs use their full 32-bit two's-complement bit pattern.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num = 26$

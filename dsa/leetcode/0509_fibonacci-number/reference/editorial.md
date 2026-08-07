@@ -177,13 +177,15 @@ class Solution:
 Use Matrix Exponentiation to get the Fibonacci number from the element at (0, 0) in the resultant matrix.
 
 In order to do this we can rely on the matrix equation for the Fibonacci sequence, to find the `Nth` Fibonacci number:
-$$\begin{pmatrix}
+$$
+\begin{pmatrix}
  1\,\,1 \\
  1\,\,0
 \end{pmatrix}^{n}=\begin{pmatrix}
  \: F_{(n+1)}\;\;\:F_{(n)}\\
  \: F_{(n)}\;\;\:F_{(n-1)}
-\end{pmatrix}$$
+\end{pmatrix}
+$$
 
 **Algorithm**
 

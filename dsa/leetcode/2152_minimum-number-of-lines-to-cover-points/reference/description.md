@@ -10,6 +10,7 @@ Return *the **minimum **number of **straight lines** needed to cover all the poi
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 ![](images/image-20220123200023-1.png)

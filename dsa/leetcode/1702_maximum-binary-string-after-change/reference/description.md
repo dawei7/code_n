@@ -20,6 +20,7 @@ You are given a binary string `binary` consisting of only `0`'s or `1`'s. You ca
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $binary = "000110"$

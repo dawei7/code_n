@@ -31,6 +31,7 @@ Note that the subarray chosen for the operation and the subarray chosen for the 
 Return the maximum sum of a nonempty contiguous subarray after performing exactly one permitted operation. When division is chosen, each transformed value is independently truncated toward zero. The operation range and the range whose sum is returned may be different.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -18,6 +18,7 @@ Let $n = \lvert\texttt{nums}\rvert$.
 Return `true` if `nums[n // 2]` has total frequency exactly one in `nums`; otherwise return `false`. The odd-length guarantee means the middle position always exists and is unique, including when $n = 1$.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

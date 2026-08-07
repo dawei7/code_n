@@ -9,6 +9,7 @@ Given an integer `n`, return *the largest number that is less than or equal to *
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 10$

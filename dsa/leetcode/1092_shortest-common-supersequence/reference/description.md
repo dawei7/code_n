@@ -9,6 +9,7 @@ A string `s` is a **subsequence** of string `t` if deleting some number of chara
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $str1 = "abac", str2 = "cab"$

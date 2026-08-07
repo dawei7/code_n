@@ -13,6 +13,7 @@ Return *the minimum time until you can reach the bottom right square *$(n - 1, n
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/swim1-grid.jpg)

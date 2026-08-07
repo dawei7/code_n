@@ -14,6 +14,7 @@ The parity count treats zero as even. Both the zero-XOR and equal-parity-count r
 Return the maximum valid subarray length, or `0` when no nonempty subarray satisfies both requirements.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -9,6 +9,7 @@ Given an `m x n` integer `grid`, return *the **size** (i.e., the side length *`k
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/magicsquare-grid.jpg)

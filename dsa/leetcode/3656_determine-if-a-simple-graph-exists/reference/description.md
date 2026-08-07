@@ -12,6 +12,7 @@ Return `true` if such a graph exists, otherwise return `false`.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

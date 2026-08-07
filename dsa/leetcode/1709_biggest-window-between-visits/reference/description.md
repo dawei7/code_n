@@ -28,16 +28,17 @@ The query result format is in the following example.
 
 | Column | Type | Meaning |
 |---|---|---|
-| `user_id` | int | Unique user identifier; composite primary key with `visit_date`. |
-| `visit_date` | date | Date of the visit during 2020. |
+| $\text{user}_{id}$ | int | Unique user identifier; composite primary key with $\text{visit}_{date}$. |
+| $\text{visit}_{date}$ | date | Date of the visit during 2020. |
 
-- `(user_id, visit_date)` is unique.
+- $(\text{user}_{id}, \text{visit}_{date})$ is unique.
 
 **Return value**
 
-Return a table with columns `user_id` and `biggest_window`. For each user, `biggest_window` is the maximum number of days between consecutive visits, using `2021-01-01` as the default next visit date for the last visit. Row order is unrestricted.
+Return a table with columns $\text{user}_{id}$ and $\text{biggest}_{window}$. For each user, $\text{biggest}_{window}$ is the maximum number of days between consecutive visits, using `2021-01-01` as the default next visit date for the last visit. Row order is unrestricted.
 
 ### Examples
+
 #### Example 1
 
 ```

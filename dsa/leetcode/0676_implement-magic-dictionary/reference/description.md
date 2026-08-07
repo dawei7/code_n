@@ -15,6 +15,7 @@ Implement the `MagicDictionary` class:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ```

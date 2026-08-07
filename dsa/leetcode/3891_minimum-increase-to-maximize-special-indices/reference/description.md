@@ -26,6 +26,7 @@ An operation may increase any one element by exactly $1$. Elements cannot be dec
 Return the minimum total number of unit increases needed to attain the greatest possible number of special indices.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -9,6 +9,7 @@ A **subsequence** is a sequence that can be derived from `arr` by deleting some 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [1,2,3,4], difference = 1`

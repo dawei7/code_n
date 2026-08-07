@@ -10,6 +10,7 @@ Return *an integer denoting the minimum distance from *`s`* to any node in *`mar
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 4, edges = [[0,1,1],[1,2,3],[2,3,2],[0,3,4]], s = 0, marked = [2,3]$

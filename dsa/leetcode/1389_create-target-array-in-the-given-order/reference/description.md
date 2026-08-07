@@ -17,6 +17,7 @@ It is guaranteed that the insertion operations will be valid.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [0,1,2,3,4], index = [0,1,2,2,1]`

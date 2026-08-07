@@ -29,6 +29,7 @@ Return an array `answer`, where $\text{answer}[i]$ is the result for $\text{quer
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -17,6 +17,7 @@ It is guaranteed that for the given constraints we can always find such Fibonacc
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $k = 7$

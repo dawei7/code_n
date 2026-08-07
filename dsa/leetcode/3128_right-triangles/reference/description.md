@@ -11,6 +11,7 @@ Return an integer that is the number of **right triangles** that can be made wit
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div style="display:flex; gap: 12px;">

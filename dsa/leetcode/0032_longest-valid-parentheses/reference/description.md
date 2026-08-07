@@ -12,6 +12,7 @@ Given a string containing just the characters `'('` and `')'`, return *the lengt
 Return the maximum length of a well-formed parenthesis substring.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "(()"`

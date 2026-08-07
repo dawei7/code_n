@@ -11,6 +11,7 @@ To separate the digits of an integer is to get all the digits it has in the same
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [13,25,83,77]`

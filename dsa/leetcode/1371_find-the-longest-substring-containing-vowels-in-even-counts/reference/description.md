@@ -7,6 +7,7 @@ Given the string `s`, return the size of the longest substring containing each v
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "eleetminicoworoep"`

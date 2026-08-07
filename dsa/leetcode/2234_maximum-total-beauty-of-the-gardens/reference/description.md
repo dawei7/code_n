@@ -17,6 +17,7 @@ Return *the **maximum** total beauty that Alice can obtain after planting at mos
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $flowers = [1,3,1,1], newFlowers = 7, target = 6, full = 12, partial = 1$

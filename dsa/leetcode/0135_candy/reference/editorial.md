@@ -53,7 +53,7 @@ In this approach, we make use of two 1-d arrays `left2right` and `right2left`. T
 
 Now, for the `i'th` student in the array, we need to give $max(\text{left2right}[i], \text{right2left}[i])$ to them, in order to satisfy both the left and the right neighbor relationship. Thus, at the end, we obtain the minimum number of candies required as:
 
-$$\text{minimum\\_candies}=\sum_{i=0}^{n-1} \text{max}(\text{left2right}[i], \text{right2left}[i])
+$$\text{minimum\_candies}=\sum_{i=0}^{n-1} \text{max}(\text{left2right}[i], \text{right2left}[i])
 \\
 \text{where } n = \text{length of the ratings array.}$$
 
@@ -98,9 +98,11 @@ $\text{candies}[i]$ satisfy both the left neighbor and the right neighbor criter
 
 Again, we need to sum up all the elements of the `candies` array to obtain the required result.
 
-$$\text{minimum\\_candies} = \sum_{i=0}^{n-1} candies[i],
+$$
+\text{minimum\_candies} = \sum_{i=0}^{n-1} candies[i],
 \\
-\text{where } n = \text{length of the ratings array.}$$
+\text{where } n = \text{length of the ratings array.}
+$$
 
 ```python
 class Solution:

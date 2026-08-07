@@ -9,6 +9,7 @@ Given three integers `m`, `n`, and `k`, return *the *$$k^{\text{th}}$$* smallest
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/multtable1-grid.jpg)

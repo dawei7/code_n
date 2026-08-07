@@ -17,6 +17,7 @@ Given the integer `n`, return *the **minimum** number of cuts needed to divide a
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/11drawio.png)

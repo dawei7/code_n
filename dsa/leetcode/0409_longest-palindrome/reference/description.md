@@ -14,6 +14,7 @@ Letters are **case sensitive**, for example, `"Aa"` is not considered a palindro
 Return the maximum number of available characters that can be rearranged into a palindrome.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "abccccdd"`

@@ -13,6 +13,7 @@ Return the **minimum** possible value of the **maximum** cost among all componen
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

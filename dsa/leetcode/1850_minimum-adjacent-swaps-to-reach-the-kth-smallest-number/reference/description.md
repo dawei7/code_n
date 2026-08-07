@@ -25,6 +25,7 @@ The tests are generated in such a way that $$k^{\text{th}}$$ smallest wonderful 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num = "5489355142", k = 4$

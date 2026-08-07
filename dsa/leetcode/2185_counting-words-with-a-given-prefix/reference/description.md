@@ -11,6 +11,7 @@ A **prefix** of a string `s` is any leading contiguous substring of `s`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["pay","**<u>at</u>**tention","practice","<u>**at**</u>tend"], pref = "at"$

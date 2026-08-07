@@ -9,13 +9,14 @@ Your code must solve the problem **in-place,** i.e. without allocating extra spa
 
 **Inputs**
 
-- `s`: Character array `List[str]`.
+- `s`: Character array $\text{List}[str]$.
 
 **Return value**
 
 `None`. Modify `s` in-place by reversing the order of words.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $s = ["t","h","e"," ","s","k","y"," ","i","s"," ","b","l","u","e"]$

@@ -22,6 +22,7 @@ The initial sequence is `[1, 2, ..., n]`. A sweep keeps the first number visited
 Return the sole integer left after all alternating deletion operations finish.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

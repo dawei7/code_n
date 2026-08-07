@@ -12,12 +12,17 @@ Note that `read4()` has its own file pointer, much like `FILE *fp` in C.
 
 **Definition of read4:**
 
+```
 Parameter:  char[] buf4
-Returns:    int
+    Returns:    int
+
 buf4[] is a destination, not a source. The results from read4 will be copied to buf4[].
 ```
+
 Below is a high-level example of how `read4` works:
+
 ![](images/157_example.png)
+
 ```
 File file("abcde"); // File is "abcde", initially file pointer (fp) points to 'a'
 char[] buf4 = new char[4]; // Create buffer with enough space to store characters
@@ -25,24 +30,34 @@ read4(buf4); // read4 returns 4. Now buf4 = "abcd", fp points to 'e'
 read4(buf4); // read4 returns 1. Now buf4 = "e", fp points to end of file
 read4(buf4); // read4 returns 0. Now buf4 = "", fp points to end of file
 ```
+
 **Method read:**
+
 By using the `read4` method, implement the method read that reads `n` characters from `file` and store it in the buffer array `buf`. Consider that you cannot manipulate `file` directly.
+
 The return value is the number of actual characters read.
+
 **Definition of read: **
+
 ```
 Parameters:	char[] buf, int n
-Returns:	int
+    Returns:	int
+
 buf[] is a destination, not a source. You will need to write the results to buf[].
 ```
+
 **Note:**
+
 - Consider that you cannot manipulate the file directly. The file is only accessible for `read4` but not for `read`.
+
 - The `read` function will only be called once for each test case.
+
 - You may assume the destination buffer array, `buf`, is guaranteed to have enough space for storing `n` characters.
 ### Function Contract
 
 **Inputs**
 
-- `buf`: A destination buffer array (`List[str]`).
+- `buf`: A destination buffer array ($\text{List}[str]$).
 - `n`: An integer representing the target number of characters to read ($1 \le n \le 1000$).
 
 **Return value**
@@ -50,8 +65,9 @@ buf[] is a destination, not a source. You will need to write the results to buf[
 Return an integer representing the total number of actual characters read into `buf`.
 
 ### Examples
+
 #### Example 1
-```
+
 - **Input:** $file = "abc", n = 4$
 - **Output:** `3`
 - **Explanation:** After calling your read method, buf should contain "abc". We read a total of 3 characters from the file, so return 3.

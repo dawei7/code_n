@@ -11,6 +11,7 @@ Given the two integers `numBottles` and `numExchange`, return *the **maximum** n
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/sample_1_1875.png)

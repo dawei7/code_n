@@ -25,6 +25,7 @@ Let $n = \lvert\texttt{nums}\rvert$. Increasing or decreasing one element by `1`
 Return the minimum total number of unit increment or decrement operations needed to make all even-index elements share one residue and all odd-index elements share a different residue.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

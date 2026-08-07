@@ -7,6 +7,7 @@ You are given an array of integers `nums` and the `head` of a linked list. Retur
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

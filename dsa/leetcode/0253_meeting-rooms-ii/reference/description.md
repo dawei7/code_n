@@ -5,13 +5,14 @@ Given an array of meeting time intervals `intervals` where $\text{intervals}[i] 
 
 **Inputs**
 
-- `intervals`: List of meeting intervals `List[List[int]]`.
+- `intervals`: List of meeting intervals $List[\text{List}[int]]$.
 
 **Return value**
 
 Return integer minimum number of conference rooms required.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $intervals = [[0,30],[5,10],[15,20]]$

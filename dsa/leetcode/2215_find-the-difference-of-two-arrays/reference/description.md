@@ -13,6 +13,7 @@ Given two **0-indexed** integer arrays `nums1` and `nums2`, return *a list* `ans
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [1,2,3], nums2 = [2,4,6]$

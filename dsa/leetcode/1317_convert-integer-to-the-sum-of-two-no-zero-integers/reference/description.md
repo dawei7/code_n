@@ -15,6 +15,7 @@ The test cases are generated so that there is at least one valid solution. If th
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 2$

@@ -13,6 +13,7 @@ A connected component is said to be **complete** if there exists an edge between
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 **

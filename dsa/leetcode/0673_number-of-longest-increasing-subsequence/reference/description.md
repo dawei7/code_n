@@ -9,6 +9,7 @@ Given an integer array `nums`, return *the number of longest increasing subseque
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,3,5,4,7]`

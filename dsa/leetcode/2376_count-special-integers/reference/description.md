@@ -9,6 +9,7 @@ Given a **positive** integer `n`, return *the number of special integers that be
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 20$

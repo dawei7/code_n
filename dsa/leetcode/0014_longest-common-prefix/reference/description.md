@@ -14,6 +14,7 @@ If there is no common prefix, return an empty string `""`.
 Return the longest common prefix, or `""` when no non-empty prefix is shared.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $strs = ["flower","flow","flight"]$

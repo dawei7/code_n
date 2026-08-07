@@ -20,6 +20,7 @@ Note that a string literal should be thrown, not an `Error`.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** ``

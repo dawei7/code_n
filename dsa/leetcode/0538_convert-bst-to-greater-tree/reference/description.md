@@ -15,6 +15,7 @@ As a reminder, a *binary search tree* is a tree that satisfies these constraints
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/tree.png)

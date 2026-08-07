@@ -6,7 +6,7 @@ You are given a **1-indexed** array `prices`, where $\text{prices}[i]$ denotes t
 
 The fruit market has the following offer:
 
-- If you purchase the $$i^{\text{th}}$$fruit at$\text{prices}[i]$ coins, you can get the next `i` fruits for free.
+- If you purchase the $$i^{\text{th}}$$ fruit at $\text{prices}[i]$ coins, you can get the next `i` fruits for free.
 
 **Note** that even if you **can** take fruit `j` for free, you can still purchase it for $\text{prices}[j]$ coins to receive a new offer.
 
@@ -16,6 +16,7 @@ Return *the **minimum** number of coins needed to acquire all the fruits*.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $prices = [3,1,2]$

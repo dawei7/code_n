@@ -14,6 +14,7 @@ Return *the **minimum** cuts needed for a palindrome partitioning of* `s`.
 Return the fewest boundaries that must be inserted so every resulting substring is a palindrome.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "aab"`

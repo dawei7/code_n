@@ -20,12 +20,15 @@ As shown in the example url above, the hostname is `example.org`. For simplicity
 
 The `HtmlParser` interface is defined as such:
 
+```
 interface HtmlParser {
-// Return a list of all urls from a webpage of given *url*.
-public List<String> getUrls(String url);
+  // Return a list of all urls from a webpage of given *url*.
+  public List<String> getUrls(String url);
 }
 ```
+
 Below are two examples explaining the functionality of the problem, for custom testing purposes you'll have three variables `urls`, `edges` and `startUrl`. Notice that you will only have access to `startUrl` in your code, while `urls` and `edges` are not directly accessible to you in code.
+
 Note: Consider the same URL with the trailing slash "/" as a different URL. For example, "http://news.yahoo.com", and "http://news.yahoo.com/" are different urls.
 ### Function Contract
 
@@ -43,9 +46,11 @@ Let $V$ be the number of same-host URLs reachable from `startUrl`, and let $E$ b
 Return every URL reachable from `startUrl` through a path containing only URLs with the starting hostname. Include `startUrl`, include each qualifying URL exactly once, exclude every off-host URL, and return the result in any order.
 
 ### Examples
+
 #### Example 1
+
 ![](images/sample_2_1497.png)
-```
+
 - **Input:** ``
 **urls = [
 "http://news.yahoo.com",

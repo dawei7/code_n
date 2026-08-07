@@ -19,6 +19,7 @@ Given a string `word`, return `true`* if *`word`* can be placed in *`board`*, or
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/crossword-ex1-1.png)

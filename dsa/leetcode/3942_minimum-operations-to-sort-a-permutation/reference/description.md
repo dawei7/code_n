@@ -22,6 +22,7 @@ Return the fewest whole-array reversals and one-position left rotations needed t
 The function observes `nums` without modifying it.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

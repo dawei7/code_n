@@ -13,8 +13,8 @@ Return `true` if and only if all roads from `source` lead to `destination`.
 
 **Inputs**
 
-- `n`: the number of nodes, labeled from `0` through `n - 1`.
-- `edges`: the directed edges, where each row `[a_i, b_i]` points from `a_i` to `b_i`.
+- `n`: the number of nodes, labeled from `0` through $n - 1$.
+- `edges`: the directed edges, where each row $[a_{i}, b_{i}]$ points from $a_{i}$ to $b_{i}$.
 - `source`: the node at which every considered path begins.
 - `destination`: the node at which every considered path must terminate.
 
@@ -27,6 +27,7 @@ Let $V = n$ and let $E = \lvert\texttt{edges}\rvert$.
 - `true` exactly when at least one path runs from `source` to `destination`, every reachable terminal is `destination`, and the source-reachable subgraph contains no directed cycle; otherwise, `false`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/485_example_1.png)

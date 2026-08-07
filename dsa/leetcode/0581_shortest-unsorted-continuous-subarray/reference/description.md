@@ -9,6 +9,7 @@ Return *the shortest such subarray and output its length*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,6,4,8,10,9,15]`

@@ -11,6 +11,7 @@ Return *the number of **weak** characters*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $properties = [[5,5],[6,3],[3,6]]$

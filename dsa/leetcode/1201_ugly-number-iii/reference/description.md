@@ -9,6 +9,7 @@ Given four integers `n`, `a`, `b`, and `c`, return the $$n^{\text{th}}$$ **ugly 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 3, a = 2, b = 3, c = 5$

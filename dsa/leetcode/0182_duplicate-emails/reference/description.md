@@ -29,6 +29,7 @@ The result format is in the following example.
 Return one row for each duplicated address under the column `Email`, in any order.
 
 ### Examples
+
 #### Example 1
 
 ```

@@ -15,6 +15,7 @@ The vowels are `'a'`, `'e'`, `'i'`, `'o'`, and `'u'`, and they can appear in low
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "lEetcOde"`

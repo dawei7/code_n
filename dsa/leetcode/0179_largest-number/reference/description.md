@@ -14,6 +14,7 @@ Since the result may be very large, so you need to return a string instead of an
 Return the lexically represented decimal number produced by the largest possible concatenation.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [10,2]`

@@ -29,6 +29,7 @@ The canonical class API constructs one `ExamTracker` object and applies the list
 Return one result per operation: `null` for construction and `record`, and the inclusive interval sum for `totalScore`. A query with no recorded time in its interval contributes `0`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -32,6 +32,7 @@ available nodes and then removes up to `n` available nodes. Retained nodes keep
 their original relative order and identity.
 
 ### Examples
+
 #### Example 1
 
 ![](images/sample_1_1848.png)

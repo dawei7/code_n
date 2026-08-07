@@ -19,6 +19,7 @@ Return* the **minimum number of side jumps** the frog needs to reach **any lane*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ic234-q3-ex1.png)

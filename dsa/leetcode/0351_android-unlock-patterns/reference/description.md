@@ -39,6 +39,7 @@ Two unlock patterns are considered **unique** if there is a dot in one sequence 
 Return the number of unique valid dot sequences whose lengths lie in the inclusive range `[m,n]`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $m = 1, n = 1$

@@ -18,6 +18,7 @@ If the first `min(a.length, b.length)` characters do not differ, then the shorte
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -11,6 +11,7 @@ Return *the minimum cost to make all points connected.* All points are connected
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/d.png)

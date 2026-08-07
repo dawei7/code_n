@@ -19,6 +19,7 @@ Assuming Alice and Bob play optimally, return `true`* if Alice wins, or return *
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $colors = "AAABABB"$

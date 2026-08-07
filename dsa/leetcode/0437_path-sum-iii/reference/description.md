@@ -18,6 +18,7 @@ local `TreeNode` objects before calling `solve(root, targetSum)`; LeetCode suppl
 Return the number of downward paths whose node values sum to `targetSum`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/pathsum3-1-tree.jpg)

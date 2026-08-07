@@ -14,6 +14,7 @@ Return *the* ***confusion**** score** of the maze.*
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 ![](images/image-20211114164827-1.png)

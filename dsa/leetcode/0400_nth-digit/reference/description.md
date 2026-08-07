@@ -12,6 +12,7 @@ Given an integer `n`, return the $$n^{\text{th}}$$ digit of the infinite integer
 Return the decimal digit occupying position `n` as an integer from `0` through `9`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 3$

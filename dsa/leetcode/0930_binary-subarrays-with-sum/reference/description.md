@@ -9,6 +9,7 @@ A **subarray** is a contiguous part of the array.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,0,1,0,1], goal = 2`

@@ -30,6 +30,7 @@ For each complete tree level, use left-to-right node order when its one-based le
 Return the level sums from the root level through the deepest level. A level contributes `0` when its first inspected node already lacks the required child.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

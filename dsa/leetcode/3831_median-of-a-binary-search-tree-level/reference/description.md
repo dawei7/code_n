@@ -23,6 +23,7 @@ The tree obeys the BST ordering property. Values at the requested level are inte
 Return the requested level's median value, using the upper median when $K$ is even. Return `-1` when $K=0$.
 
 ### Examples
+
 #### Example 1
 
 ![](images/screenshot-2026-01-27-at-20801pm.png)

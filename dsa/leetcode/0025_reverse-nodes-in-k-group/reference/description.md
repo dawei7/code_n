@@ -19,6 +19,7 @@ Let $n$ be the number of nodes in `head`.
 Return the head after reversing every complete group of $k$ nodes and retaining any incomplete suffix.
 
 ### Examples
+
 #### Example 1
 
 ![](images/reverse_ex1.jpg)

@@ -13,6 +13,7 @@ A cell's **adjacent cells** are the 8 cells around it that share at least one co
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/example2.svg)

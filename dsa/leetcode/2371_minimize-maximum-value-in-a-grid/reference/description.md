@@ -24,6 +24,7 @@ Return *the **resulting** matrix.* If there are multiple answers, return **any**
 Return an $m \times n$ matrix of positive integers that preserves row-wise and column-wise relative order while minimizing the maximum value in the matrix.
 
 ### Examples
+
 #### Example 1
 
 ![](images/grid2drawio.png)

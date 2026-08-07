@@ -22,6 +22,7 @@ The `'.'` character indicates empty cells.
 Return `None`; modify `board` in place to contain the completed grid while preserving every original clue.
 
 ### Examples
+
 #### Example 1
 
 ![](images/250px-Sudoku-by-L2G-20050714.svg.png)

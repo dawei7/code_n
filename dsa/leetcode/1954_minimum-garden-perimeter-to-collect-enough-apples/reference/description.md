@@ -17,6 +17,7 @@ The value of `|x|` is defined as:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/1527_example_1_2.png)

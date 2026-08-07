@@ -19,6 +19,7 @@ Return *the **maximum** number of operations possible that satisfy the condition
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,2,1,2,3,4]`

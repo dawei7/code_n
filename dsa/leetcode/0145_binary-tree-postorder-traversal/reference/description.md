@@ -12,6 +12,7 @@ Given the `root` of a binary tree, return *the postorder traversal of its nodes'
 Return the node values in left-right-root postorder.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

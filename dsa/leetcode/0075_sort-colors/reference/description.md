@@ -16,6 +16,7 @@ You must solve this problem without using the library's sort function.
 Return `None`; reorder `nums` in place so all `0` values come first, followed by all `1` values and then all `2` values.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,0,2,1,1,0]`

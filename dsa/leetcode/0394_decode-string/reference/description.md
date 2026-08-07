@@ -18,6 +18,7 @@ The test cases are generated so that the length of the output will never exceed 
 Return the fully expanded string after decoding every nested repetition.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "3[a]2[bc]"`

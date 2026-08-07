@@ -18,6 +18,7 @@ Given a string containing only digits, return `true` if it is an **additive numb
 Return `True` when `num` admits a valid additive partition that consumes every digit; otherwise return `False`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `"112358"`

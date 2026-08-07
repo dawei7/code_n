@@ -19,6 +19,7 @@ Return `true` if such cuts can be made; otherwise, return `false`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

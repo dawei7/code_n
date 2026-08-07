@@ -22,6 +22,7 @@ A heater covers positions whose distance from it is at most the shared radius. D
 different heaters.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $houses = [1,2,3], heaters = [2]$

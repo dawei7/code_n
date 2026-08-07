@@ -11,6 +11,7 @@ The **average** of an array is defined as the sum of all its elements divided by
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

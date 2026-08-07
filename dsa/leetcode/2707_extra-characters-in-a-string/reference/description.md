@@ -9,6 +9,7 @@ Return *the **minimum** number of extra characters left over if you break up *`s
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "leetscode", dictionary = ["leet","code","leetcode"]`

@@ -15,6 +15,7 @@ Let $n$ be the number of nodes in the tree, and let $h$ be its height.
 Return the node value with minimum absolute distance from `target`, choosing the smaller value if there is a tie.
 
 ### Examples
+
 #### Example 1
 
 ![](images/closest1-1-tree.jpg)

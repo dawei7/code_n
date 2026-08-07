@@ -13,6 +13,7 @@ Return the **minimum **number of chairs needed so that a chair is available for 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

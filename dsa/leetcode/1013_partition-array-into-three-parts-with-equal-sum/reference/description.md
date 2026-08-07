@@ -9,6 +9,7 @@ Formally, we can partition the array if we can find indexes $i + 1 < j$ with $(\
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [0,2,1,-6,6,-7,9,1,2,0,1]`

@@ -11,6 +11,7 @@ Return *the **minimum** unfairness of all distributions*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $cookies = [8,15,10,20,8], k = 2$

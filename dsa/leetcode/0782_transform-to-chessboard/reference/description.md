@@ -11,6 +11,7 @@ A **chessboard board** is a board where no `0`'s and no `1`'s are 4-directionall
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/chessboard1-grid.jpg)

@@ -11,6 +11,7 @@ A string is **palindromic** if it reads the same forward and backward.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 9$

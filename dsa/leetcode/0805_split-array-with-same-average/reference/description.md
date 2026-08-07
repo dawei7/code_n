@@ -13,6 +13,7 @@ Return `true` if it is possible to achieve that and `false` otherwise.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3,4,5,6,7,8]`

@@ -11,6 +11,7 @@ Return *the resulting string*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $word = "<u>abcd</u>efd", ch = "d"$

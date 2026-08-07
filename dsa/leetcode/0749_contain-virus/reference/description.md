@@ -13,6 +13,7 @@ Return *the number of walls used to quarantine all the infected regions*. If the
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/virus11-grid.jpg)

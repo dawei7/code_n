@@ -11,6 +11,7 @@ Given `n`, return the value of T_n.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 4$

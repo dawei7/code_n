@@ -47,7 +47,7 @@ To switch to a smaller letter, we need to have one available as a "breaker". If 
   - Append `use` instances of the character to the `result` list.
   - Subtract `use` from the frequency of the current character in `freq`.
   - If the current character still has remaining occurrences:
-- Find a smaller character to act as a breaker (`smaller_char_index`), starting from $current_{char\_index} - 1$.
+- Find a smaller character to act as a breaker (`smaller_char_index`), starting from $current_char_index - 1$.
 - Decrement `smaller_char_index` until a character with a non-zero frequency is found.
 - If no such smaller character exists (all smaller frequencies are zero), break the loop as further construction of the result is not possible.
 - Append one instance of the smaller character to the `result`.

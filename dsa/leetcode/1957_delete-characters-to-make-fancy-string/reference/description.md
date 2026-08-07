@@ -11,6 +11,7 @@ Return *the final string after the deletion*. It can be shown that the answer wi
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "le<u>e</u>etcode"`

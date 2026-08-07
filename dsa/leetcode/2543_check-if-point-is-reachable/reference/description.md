@@ -19,6 +19,7 @@ Given two integers `targetX` and `targetY` representing the X-coordinate and Y-c
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $targetX = 6, targetY = 9$

@@ -22,6 +22,7 @@ Given two words, `beginWord` and `endWord`, and a dictionary `wordList`, return 
 Return every shortest valid transformation sequence. The order of the returned sequences is not significant, but word order within each sequence is.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $beginWord = "hit", endWord = "cog", wordList = ["hot","dot","dog","lot","log","cog"]$

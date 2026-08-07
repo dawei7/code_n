@@ -19,6 +19,7 @@ Return *the phone number after formatting.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $number = "1-23-45 6"$

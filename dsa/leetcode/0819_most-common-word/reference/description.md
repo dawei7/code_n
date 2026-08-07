@@ -11,6 +11,7 @@ The words in `paragraph` are **case-insensitive** and the answer should be retur
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $paragraph = "Bob hit a ball, the hit BALL flew far after it was hit.", banned = ["hit"]$

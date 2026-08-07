@@ -13,6 +13,7 @@ You may assume each function in the array accepts one integer as input and retur
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $functions = [x => x + 1, x => x * x, x => 2 * x], x = 4$

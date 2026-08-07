@@ -19,6 +19,7 @@ Given an integer array `destination` and an integer `k`, return *the *$$k^{\text
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1.png)

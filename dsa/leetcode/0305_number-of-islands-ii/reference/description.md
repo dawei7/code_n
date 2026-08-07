@@ -20,6 +20,7 @@ An **island** is surrounded by water and is formed by connecting adjacent lands 
 Return the number of four-directionally connected land components after each operation, in operation order.
 
 ### Examples
+
 #### Example 1
 
 ![](images/tmp-grid.jpg)

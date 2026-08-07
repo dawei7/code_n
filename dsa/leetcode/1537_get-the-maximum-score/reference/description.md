@@ -19,6 +19,7 @@ Return *the maximum score you can obtain of all possible **valid paths***. Since
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/sample_1_1893.png)

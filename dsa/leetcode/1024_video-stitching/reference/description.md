@@ -15,6 +15,7 @@ Return *the minimum number of clips needed so that we can cut the clips into seg
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $clips = [[0,2],[4,6],[8,10],[1,9],[1,5],[5,9]], time = 10$

@@ -4,7 +4,7 @@
 
 We need to simulate the operations as described in the problem statement.
 
-First, record the length of the array $\textit{nums}$ as $n$. We perform $n-1$ iterations. In the $i^{\text{th}}$ iteration ($0 \leq i < n$), we compute $(\textit{nums}[i] + \textit{nums}[i+1]) \bmod 10$ and store it in a new array $\textit{new_{nums}}$. After completing the iteration, we overwrite $\textit{nums}$ with $\textit{new_{nums}}$.
+First, record the length of the array $\textit{nums}$ as $n$. We perform $n-1$ iterations. In the $i^{\text{th}}$ iteration ($0 \leq i < n$), we compute $(\textit{nums}[i] + \textit{nums}[i+1]) \bmod 10$ and store it in a new array $\textit{new_nums}$. After completing the iteration, we overwrite $\textit{nums}$ with $\textit{new_nums}$.
 
 When $n = 1$, the operations end, and we can return $\textit{nums}[0]$.
 

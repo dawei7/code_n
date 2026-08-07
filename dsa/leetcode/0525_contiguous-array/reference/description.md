@@ -7,6 +7,7 @@ Given a binary array `nums`, return *the maximum length of a contiguous subarray
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [0,1]`

@@ -12,6 +12,7 @@ Given the `root` of a binary tree, return *the level order traversal of its node
 Return a list containing one list of values for each depth, ordered from the root level downward. Values at the same depth appear from left to right.
 
 ### Examples
+
 #### Example 1
 
 ![](images/tree1.jpg)

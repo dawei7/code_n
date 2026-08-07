@@ -37,6 +37,7 @@ Let $n=\lvert\texttt{nums}\rvert$.
 Return the maximum total of the final node values over every inversion-node subset whose distinct members are pairwise at distance at least `k`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

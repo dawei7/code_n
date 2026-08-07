@@ -15,9 +15,10 @@ Let $D=\lfloor\log_{10} n\rfloor+1$ be the number of decimal digits in `n`.
 
 **Return value**
 
-Return the sum of `d * freq(d)` over every distinct decimal digit `d` present in `n`.
+Return the sum of $d * freq(d)$ over every distinct decimal digit `d` present in `n`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

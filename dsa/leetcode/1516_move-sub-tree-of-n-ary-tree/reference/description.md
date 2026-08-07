@@ -34,6 +34,7 @@ For example, the above tree is serialized as `[1,null,2,3,4,5,null,null,6,7,null
 Return the root `Node` of the adjusted N-ary tree after detaching `p` and appending it as `q`'s last child (handling ancestor/descendant relationships and root replacement as required).
 
 ### Examples
+
 #### Example 1
 
 ![](images/move_e1.jpg)

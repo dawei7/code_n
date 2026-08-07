@@ -27,6 +27,7 @@ the hole ends the entire route immediately. The instruction alphabet is `u` for 
 `r` for right.
 
 ### Examples
+
 #### Example 1
 
 ![](images/maze3-1-grid.jpg)

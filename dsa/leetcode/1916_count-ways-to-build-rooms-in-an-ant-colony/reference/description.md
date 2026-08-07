@@ -11,6 +11,7 @@ Return *the **number of different orders** you can build all the rooms in*. Sinc
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/d1.JPG)

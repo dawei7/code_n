@@ -9,6 +9,7 @@ Return the bitwise* *`XOR` of all the numbers that appear twice in the array, or
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

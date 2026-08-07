@@ -32,6 +32,7 @@ $$
 for every $0 \le i < n$.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

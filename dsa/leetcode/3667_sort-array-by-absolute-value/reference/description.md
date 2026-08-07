@@ -16,6 +16,7 @@ Return **any** rearranged array that satisfies this condition.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

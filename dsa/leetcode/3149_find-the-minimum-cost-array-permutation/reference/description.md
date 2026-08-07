@@ -11,6 +11,7 @@ Return the permutation `perm` which has the **minimum** possible score. If *mult
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -13,6 +13,7 @@ Return *the **vertical order traversal** of the binary tree*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/vtree1.jpg)

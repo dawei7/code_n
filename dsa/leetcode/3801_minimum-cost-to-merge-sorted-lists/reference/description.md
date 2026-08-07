@@ -24,6 +24,7 @@ After every operation, the chosen pair is replaced by its complete sorted merge.
 Return an integer equal to the smallest attainable sum of merge costs after combining all input lists into one sorted list.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

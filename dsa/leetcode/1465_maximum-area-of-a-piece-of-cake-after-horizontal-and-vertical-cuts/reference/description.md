@@ -13,6 +13,7 @@ Return *the maximum area of a piece of cake after you cut at each horizontal and
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/leetcode_max_area_2.png)

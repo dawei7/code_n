@@ -1,6 +1,6 @@
 ## Description
 
-There is a long and thin painting that can be represented by a number line. You are given a **0-indexed** 2D integer array `paint` of length `n`, where $\text{paint}[i] = [\text{start}_{i}, \text{end}_{i}]$. This means that on the $$i^{\text{th}}$$day you need to paint the area **between**$\text{start}_{i}$and$\text{end}_{i}$.
+There is a long and thin painting that can be represented by a number line. You are given a **0-indexed** 2D integer array `paint` of length `n`, where $\text{paint}[i] = [\text{start}_{i}, \text{end}_{i}]$. This means that on the $$i^{\text{th}}$$ day you need to paint the area **between** $\text{start}_{i}$ and $\text{end}_{i}$.
 
 Painting the same area multiple times will create an uneven painting so you only want to paint each area of the painting at most **once**.
 
@@ -10,6 +10,7 @@ Return *an integer array *`worklog`* of length *`n`*, where *$\text{worklog}[i]$
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 ![](images/screenshot-2022-02-01-at-17-16-16-diagram-drawio-diagrams-net.png)

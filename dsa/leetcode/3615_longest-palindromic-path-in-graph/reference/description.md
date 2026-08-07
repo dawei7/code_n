@@ -13,6 +13,7 @@ Return the **maximum** possible length of a **palindrome** that can be formed by
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

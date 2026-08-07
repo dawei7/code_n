@@ -9,6 +9,7 @@ You need to find the **maximum** area of a **square** that can fit inside the in
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/example12.png)

@@ -7,6 +7,7 @@ Given two arrays of **unique** digits `nums1` and `nums2`, return *the **smalles
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [4,1,3], nums2 = [5,7]$

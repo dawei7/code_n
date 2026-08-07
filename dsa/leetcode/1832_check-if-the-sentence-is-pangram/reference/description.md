@@ -9,6 +9,7 @@ Given a string `sentence` containing only lowercase English letters, return* *`t
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $sentence = "thequickbrownfoxjumpsoverthelazydog"$

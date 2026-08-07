@@ -15,6 +15,7 @@ A **strictly increasing array** is an array whose each element is strictly great
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [4,9,6,10]`

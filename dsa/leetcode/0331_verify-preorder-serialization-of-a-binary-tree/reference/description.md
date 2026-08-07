@@ -26,6 +26,7 @@ You may assume that the input format is always valid.
 Return `true` if the entire token sequence is exactly one valid binary-tree preorder serialization; otherwise return `false`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $preorder = "9,3,4,#,#,1,#,#,2,#,6,#,#"$

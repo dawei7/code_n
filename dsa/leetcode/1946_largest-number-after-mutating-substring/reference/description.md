@@ -13,6 +13,7 @@ A **substring** is a contiguous sequence of characters within the string.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num = "<u>1</u>32", change = [9,8,5,0,3,6,4,2,6,8]$

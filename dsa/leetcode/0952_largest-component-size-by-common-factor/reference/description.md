@@ -13,6 +13,7 @@ Return *the size of the largest connected component in the graph*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1.png)

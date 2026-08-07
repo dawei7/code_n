@@ -23,6 +23,7 @@ A replacement changes one chosen position of `s` to any lowercase English letter
 Return `true` if an allowed version of `s` is a subsequence of `t`; otherwise, return `false`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

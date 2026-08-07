@@ -14,9 +14,10 @@ Let $n = \lvert\texttt{prob}\rvert$ and $t = \texttt{target}$. Every coin is tos
 
 **Return value**
 
-Return the probability that exactly $t$ of the $n$ coins land heads. Floating-point answers within `10^-5` of the correct probability are accepted.
+Return the probability that exactly $t$ of the $n$ coins land heads. Floating-point answers within $10^{-5}$ of the correct probability are accepted.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $prob = [0.4], target = 1$

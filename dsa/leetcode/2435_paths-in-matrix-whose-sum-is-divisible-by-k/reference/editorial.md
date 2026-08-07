@@ -6,29 +6,33 @@ It can be seen that this is a typical counting problem, which is generally solve
 
 Considering the scale of $k$ is $1 \le k \le 50$, let the state $\textit{dp}(i,\, j,\, \textit{r})$ represent the number of ways to have a path sum with remainder $r$ when divided by $k$ at position $(i,\, j)$ in the matrix. Then, the initial state is:
 
-$$\begin{aligned}
+$$
+\begin{aligned}
 
 \textit{dp}(i,\, j,\, \textit{r}) =
     \begin{cases}
-    1, \& (i,\, j,\, r) = (0,\, 0,\, \textit{grid}_{0,0} \bmod k)\\
-    0, \& (i,\, j,\, r) \ne (0,\, 0,\, \textit{grid}_{0,0} \bmod k)
+    1, & (i,\, j,\, r) = (0,\, 0,\, \textit{grid}_{0,0} \bmod k)\\
+    0, & (i,\, j,\, r) \ne (0,\, 0,\, \textit{grid}_{0,0} \bmod k)
     \end{cases}
 
-\end{aligned}$$
+\end{aligned}
+$$
 
 Then consider the state transition. $dp(i,\, j,\, r)$ can be derived from the states above and to the left, that is:
 
-$$\begin{aligned}
+$$
+\begin{aligned}
 
 \textit{dp}(i,\, j,\, r) =
 
     \begin{cases}
-    \textit{dp}(i - 1,\, j,\, \textit{prevMod}), \& i \gt 0, \& j = 0\\
-    \textit{dp}(i,\, j - 1,\, \textit{prevMod}), \& i = 0, \& j \gt 0\\
-    \textit{dp}(i - 1,\, j,\, \textit{prevMod}) + dp(i,\, j - 1,\, \textit{prevMod}), \& i \gt 0, \& j \gt 0
+    \textit{dp}(i - 1,\, j,\, \textit{prevMod}), & i \gt 0, & j = 0\\
+    \textit{dp}(i,\, j - 1,\, \textit{prevMod}), & i = 0, & j \gt 0\\
+    \textit{dp}(i - 1,\, j,\, \textit{prevMod}) + dp(i,\, j - 1,\, \textit{prevMod}), & i \gt 0, & j \gt 0
     \end{cases}
 
-\end{aligned}$$
+\end{aligned}
+$$
 
 The key is $\textit{prevMod}$, which represents the remainder component of the previous state. Considering the relationship between $\textit{prevMod}$ and $r$, we have:
 
@@ -50,28 +54,32 @@ This is a typical counting problem that is well suited to a dynamic programming 
 
 Given that $1 \le k \le 50$, let the state $\textit{dp}(i, j, r)$ represent the number of ways to obtain a path sum whose remainder modulo $k$ is $r$ at position $(i, j)$ in the matrix. The initial state is:
 
-$$\begin{aligned}
+$$
+\begin{aligned}
 
 \textit{dp}(i, j, r) =
 \begin{cases}
-1, \& (i, j, r) = (0, 0,, \textit{grid}_{0,0} \bmod k)\
-0, \& \text{otherwise}
+1, & (i, j, r) = (0, 0,, \textit{grid}_{0,0} \bmod k)\
+0, & \text{otherwise}
 \end{cases}
 
-\end{aligned}$$
+\end{aligned}
+$$
 
 For the transition, $\textit{dp}(i, j, r)$ can be derived from the cell above or the cell to the left:
 
-$$\begin{aligned}
+$$
+\begin{aligned}
 
 \textit{dp}(i, j, r) =
 \begin{cases}
-\textit{dp}(i - 1, j, \textit{prevMod}), \& i > 0,, j = 0\
-\textit{dp}(i, j - 1, \textit{prevMod}), \& i = 0,, j > 0\
-\textit{dp}(i - 1, j, \textit{prevMod}) + \textit{dp}(i, j - 1, \textit{prevMod}), \& i > 0,, j > 0
+\textit{dp}(i - 1, j, \textit{prevMod}), & i > 0,, j = 0\
+\textit{dp}(i, j - 1, \textit{prevMod}), & i = 0,, j > 0\
+\textit{dp}(i - 1, j, \textit{prevMod}) + \textit{dp}(i, j - 1, \textit{prevMod}), & i > 0,, j > 0
 \end{cases}
 
-\end{aligned}$$
+\end{aligned}
+$$
 
 The term $\textit{prevMod}$ is the remainder needed from the preceding state. From the congruence relation
 

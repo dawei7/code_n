@@ -24,10 +24,12 @@ Let's say we had a function `getNum(rowIndex, colIndex)`, which gave us the `col
 
 We can formulate our intuition into the following recursion:
 
-$$\begin{aligned}
-\text{getNum}(\text{rowIndex}, \text{colIndex}) \&= \text{getNum}(\text{rowIndex}-1, \text{colIndex}-1) \\
-\&\quad + \text{getNum}(\text{rowIndex}-1, \text{colIndex})
-\end{aligned}$$
+$$
+\begin{aligned}
+\text{getNum}(\text{rowIndex}, \text{colIndex}) &= \text{getNum}(\text{rowIndex}-1, \text{colIndex}-1) \\
+&\quad + \text{getNum}(\text{rowIndex}-1, \text{colIndex})
+\end{aligned}
+$$
 
 The recursion ends in some known base cases:
 1. The first row is just a single $1$, i.e. $\text{getNum(0, ...) = 1}$
@@ -262,8 +264,10 @@ While knowing Pascal's rule does not give us any benefits over previous approach
 
 Successive binomial coefficients ${n \choose r-1}$ and ${n \choose r}$ differ by a factor of:
 
-$$\dfrac {n \choose r}{n \choose r-1} =
-\dfrac {\dfrac {n!}{r! \cdot (n-r)!}}{\dfrac {n!}{(r-1)! \cdot (n-r+1)!}} = \dfrac {n-r+1}{r}$$
+$$
+\dfrac {n \choose r}{n \choose r-1} =
+\dfrac {\dfrac {n!}{r! \cdot (n-r)!}}{\dfrac {n!}{(r-1)! \cdot (n-r+1)!}} = \dfrac {n-r+1}{r}
+$$
 
 Thus, we can derive the next term in a row in Pascal's triangle, from a preceding term. Running a loop should give us the required row.
 

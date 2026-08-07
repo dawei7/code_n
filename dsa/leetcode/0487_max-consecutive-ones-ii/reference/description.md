@@ -14,6 +14,7 @@ Given a binary array `nums`, return *the maximum number of consecutive *`1`*'s i
 The flip is optional, so an existing all-`1` run is a valid choice without modifying the array.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,0,1,1,0]`

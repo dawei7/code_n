@@ -11,6 +11,7 @@ Return the length of the **longest** palindrome that can be formed this way.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

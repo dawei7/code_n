@@ -1,6 +1,6 @@
 ## Description
 
-You are given a list of songs where the $$i^{\text{th}}$$song has a duration of$\text{time}[i]$ seconds.
+You are given a list of songs where the $$i^{\text{th}}$$ song has a duration of $\text{time}[i]$ seconds.
 
 Return *the number of pairs of songs for which their total duration in seconds is divisible by* `60`. Formally, we want the number of indices `i`, `j` such that `i < j` with $(\text{time}[i] + \text{time}[j]) \% 60 = 0$.
 ### Function Contract
@@ -9,6 +9,7 @@ Return *the number of pairs of songs for which their total duration in seconds i
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $time = [30,20,150,100,40]$

@@ -11,6 +11,7 @@ Return `true` if Alice can win this game, otherwise, return `false`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

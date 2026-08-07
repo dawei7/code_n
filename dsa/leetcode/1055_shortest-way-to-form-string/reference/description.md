@@ -17,6 +17,7 @@ Each selected piece may delete different characters from a fresh use of `source`
 - The smallest number of subsequences of `source` whose concatenation is `target`, or `-1` when construction is impossible.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $source = "abc", target = "abcbc"$

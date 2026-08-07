@@ -9,6 +9,7 @@ An integer `val` divides `nums` if $nums \% val = 0$.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num = 7$

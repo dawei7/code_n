@@ -18,6 +18,7 @@ A subtree of a binary tree `tree` is a tree that consists of a node in `tree` an
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 ![](images/image-20210914173520-3.png)

@@ -6,7 +6,7 @@ Each node has an associated price. You are given an integer array `price`, where
 
 The **price sum** of a given path is the sum of the prices of all nodes lying on that path.
 
-Additionally, you are given a 2D integer array `trips`, where $\text{trips}[i] = [\text{start}_{i}, \text{end}_{i}]$ indicates that you start the $$i^{\text{th}}$$trip from the node$\text{start}_{i}$and travel to the node$\text{end}_{i}$ by any path you like.
+Additionally, you are given a 2D integer array `trips`, where $\text{trips}[i] = [\text{start}_{i}, \text{end}_{i}]$ indicates that you start the $$i^{\text{th}}$$ trip from the node $\text{start}_{i}$ and travel to the node $\text{end}_{i}$ by any path you like.
 
 Before performing your first trip, you can choose some **non-adjacent** nodes and halve the prices.
 
@@ -17,6 +17,7 @@ Return *the minimum total price sum to perform all the given trips*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/diagram2.png)

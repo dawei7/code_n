@@ -13,6 +13,7 @@ It can be proven that the answer is **unique**.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $pref = [5,2,0,3,1]$

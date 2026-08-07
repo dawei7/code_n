@@ -31,6 +31,7 @@ Let $N=\lvert\texttt{nums}\rvert$. Represent a reachable rational value by its s
 Return the number of distinct length-$N$ action sequences whose final rational value is exactly `k`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

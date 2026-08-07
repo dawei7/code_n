@@ -19,6 +19,7 @@ Return the **special** $2^n x 2^n$ grid.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

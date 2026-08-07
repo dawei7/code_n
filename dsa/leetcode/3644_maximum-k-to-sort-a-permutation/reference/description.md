@@ -11,6 +11,7 @@ Return the **maximum** value of `k` such that the array can be sorted in **non-d
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

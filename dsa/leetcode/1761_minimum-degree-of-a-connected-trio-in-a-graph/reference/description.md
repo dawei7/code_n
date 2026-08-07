@@ -13,6 +13,7 @@ Return *the **minimum** degree of a connected trio in the graph, or* `-1` *if th
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/trios1.png)

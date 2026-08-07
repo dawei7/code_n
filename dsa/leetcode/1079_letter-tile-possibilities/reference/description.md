@@ -9,6 +9,7 @@ Return *the number of possible non-empty sequences of letters* you can make usin
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $tiles = "AAB"$

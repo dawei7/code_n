@@ -22,6 +22,7 @@ Let $B$ be the number of bits in the representation of `n`. The representation h
 Return the fewest single-position flips that make the original $B$-character binary string equal to its $B$-character reversal.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

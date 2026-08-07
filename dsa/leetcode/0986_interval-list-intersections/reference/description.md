@@ -13,6 +13,7 @@ The **intersection** of two closed intervals is a set of real numbers that are e
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/interval1.png)

@@ -4,7 +4,7 @@ You are given a **0-indexed** integer array `nums`. In one operation, you can:
 
 - Choose two different indices `i` and `j` such that $0 \le i, j < \text{nums.length}$.
 
-- Choose a non-negative integer `k` such that the $$k^{\text{th}}$$bit (**0-indexed**) in the binary representation of$\text{nums}[i]$and$\text{nums}[j]$ is `1`.
+- Choose a non-negative integer `k` such that the $$k^{\text{th}}$$ bit (**0-indexed**) in the binary representation of $\text{nums}[i]$ and $\text{nums}[j]$ is `1`.
 
 - Subtract $2^k$ from $\text{nums}[i]$ and $\text{nums}[j]$.
 
@@ -21,6 +21,7 @@ A subarray is a contiguous **non-empty** sequence of elements within an array.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [4,3,1,2,4]`

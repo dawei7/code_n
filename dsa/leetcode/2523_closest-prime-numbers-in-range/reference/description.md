@@ -15,6 +15,7 @@ Return the positive integer array $ans = [num1, num2]$. If there are multiple pa
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $left = 10, right = 19$

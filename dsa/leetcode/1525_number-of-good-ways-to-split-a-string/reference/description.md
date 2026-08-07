@@ -11,6 +11,7 @@ Return *the number of **good splits** you can make in `s`*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "aacaba"`

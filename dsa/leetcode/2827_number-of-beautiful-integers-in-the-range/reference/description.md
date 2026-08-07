@@ -15,6 +15,7 @@ Return *the number of beautiful integers in the range* `[low, high]`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $low = 10, high = 20, k = 3$

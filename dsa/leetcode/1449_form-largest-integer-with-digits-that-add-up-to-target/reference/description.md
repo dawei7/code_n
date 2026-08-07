@@ -15,6 +15,7 @@ Since the answer may be very large, return it as a string. If there is no way to
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $cost = [4,3,2,5,6,7,2,5,5], target = 9$

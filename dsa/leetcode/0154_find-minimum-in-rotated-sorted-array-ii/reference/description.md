@@ -22,6 +22,7 @@ You must decrease the overall operation steps as much as possible.
 Return the minimum value in `nums`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,3,5]`

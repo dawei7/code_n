@@ -119,7 +119,7 @@ class Solution:
 
 Let $q$ be the length of $\textit{queries}$, $k$ be the length of $\textit{dictionary}$, and $n$ be the length of each string.
 
-- Time complexity: $O(k \cdot n + q \cdot n^2 \cdot$25^{2}$)$.
+- Time complexity: $O(k \cdot n + q \cdot n^2 \cdot $25^{2}$)$.
 
   Building the trie takes $O(kn)$. During querying, for each position we can either modify or not modify the character. Since at most two modifications are allowed, we have up to $O(n^2)$ ways to choose modification positions, and each modification introduces up to 25 branching choices.
 

@@ -45,6 +45,7 @@ The result format is in the following example.
 Return a table with columns `firstName`, `lastName`, `city`, and `state`, preserving every person and using null location values when no address matches.
 
 ### Examples
+
 #### Example 1
 
 ```

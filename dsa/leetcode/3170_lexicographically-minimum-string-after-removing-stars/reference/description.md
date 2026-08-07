@@ -13,6 +13,7 @@ Return the lexicographically smallest resulting string after removing all `'*'` 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

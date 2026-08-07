@@ -22,6 +22,7 @@ Let $N=\lvert\texttt{nums}\rvert$. For an eligible index $i<N-1$, its right suff
 Return the number of indices `i` whose value is strictly greater than the average of all elements at indices greater than `i`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

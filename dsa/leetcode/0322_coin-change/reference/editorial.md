@@ -22,8 +22,10 @@
 #### Intuition
 
 The problem could be modeled as the following optimization problem :
-$$\min_{x} \sum_{i=0}^{n - 1} x_i \\
-\text{subject to} \sum_{i=0}^{n - 1} x_i*c_i = S$$
+$$
+\min_{x} \sum_{i=0}^{n - 1} x_i \\
+\text{subject to} \sum_{i=0}^{n - 1} x_i*c_i = S
+$$
 
 , where $S$ is the amount,    $c_i$ is the coin denominations, $x_i$  is the number of coins with denominations $c_i$ used in change of amount $S$. We could easily see that $x_i = [{0, \frac{S}{c_i}}]$.
 
@@ -85,11 +87,15 @@ $F(S) = F(S - C) + 1$
 
 But we don't know which is the denomination of the last coin $C$. We compute  $F(S - c_i)$ for each possible denomination $c_0, c_1, c_2 \ldots c_{n -1}$ and choose the minimum among them. The following recurrence relation holds:
 
-$$F(S) = \min_{i=0 ... n-1} { F(S - c_i) } + 1 \\
-\text{subject to} \ \  S-c_i \geq 0 \\$$
+$$
+F(S) = \min_{i=0 ... n-1} { F(S - c_i) } + 1 \\
+\text{subject to} \ \  S-c_i \geq 0 \\
+$$
 
-$$F(S) = 0 \ , \text{when} \ S = 0 \\
-F(S) = -1 \ , \text{when} \ n = 0$$
+$$
+F(S) = 0 \ , \text{when} \ S = 0 \\
+F(S) = -1 \ , \text{when} \ n = 0
+$$
 
 ![Recursion tree for finding coin change of amount 6 with coin denominations {1,2,3}.](images/322_coin_change_tree.png)
 
@@ -143,13 +149,15 @@ For the iterative solution, we think in bottom-up manner. Before calculating *$F
 
 In the example above you can see that:
 
-$$\begin{aligned}
-F(3) \&= \min\{{F(3- c_1), F(3-c_2), F(3-c_3)}\} + 1 \\
-\&= \min\{{F(3- 1), F(3-2), F(3-3)}\} + 1 \\
-\&= \min\{{F(2), F(1), F(0)}\} + 1 \\
-\&= \min\{{1, 1, 0}\} + 1 \\
-\&= 1
-\end{aligned}$$
+$$
+\begin{aligned}
+F(3) &= \min\{{F(3- c_1), F(3-c_2), F(3-c_3)}\} + 1 \\
+&= \min\{{F(3- 1), F(3-2), F(3-3)}\} + 1 \\
+&= \min\{{F(2), F(1), F(0)}\} + 1 \\
+&= \min\{{1, 1, 0}\} + 1 \\
+&= 1
+\end{aligned}
+$$
 
 #### Implementation
 

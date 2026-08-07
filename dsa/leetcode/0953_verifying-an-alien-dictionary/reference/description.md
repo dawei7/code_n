@@ -9,6 +9,7 @@ Given a sequence of `words` written in the alien language, and the `order` of th
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["hello","leetcode"], order = "hlabcdefgijkmnopqrstuvwxyz"$

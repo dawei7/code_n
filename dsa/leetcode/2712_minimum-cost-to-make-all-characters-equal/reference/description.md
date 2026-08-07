@@ -15,6 +15,7 @@ Return *the **minimum cost **to make all characters of the string **equal***.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "0011"`

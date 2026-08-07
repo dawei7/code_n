@@ -7,6 +7,7 @@ Given an integer array **sorted** in non-decreasing order, there is exactly one 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [1,2,2,6,6,6,6,7,10]`

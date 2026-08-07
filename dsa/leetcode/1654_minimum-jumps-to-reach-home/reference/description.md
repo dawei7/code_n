@@ -21,6 +21,7 @@ Given an array of integers `forbidden`, where $\text{forbidden}[i]$ means that t
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $forbidden = [14,4,18,1,15], a = 3, b = 15, x = 9$

@@ -9,6 +9,7 @@ Return the number of servers that communicate with any other server.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/untitled-diagram-6.jpg)

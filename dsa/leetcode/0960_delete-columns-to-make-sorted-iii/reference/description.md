@@ -13,6 +13,7 @@ Suppose we chose a set of deletion indices `answer` such that after deletions, t
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $strs = ["babca","bbazb"]$

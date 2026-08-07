@@ -23,6 +23,7 @@ You must design an algorithm where `sumRegion` works on `O(1)` time complexity.
 Return one region sum per entry in `queries`, in order. The native interface returns each value from a separate `sumRegion` call.
 
 ### Examples
+
 #### Example 1
 
 ![](images/sum-grid.jpg)

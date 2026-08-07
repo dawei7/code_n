@@ -14,6 +14,7 @@ Increment the large integer by one and return *the resulting array of digits*.
 Return the most-significant-first digit array representing the input value plus one.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $digits = [1,2,3]$

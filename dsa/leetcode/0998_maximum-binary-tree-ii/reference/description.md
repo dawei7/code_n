@@ -27,6 +27,7 @@ Return `Construct(b)`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/maxtree1.JPG)

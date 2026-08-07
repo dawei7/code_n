@@ -9,6 +9,7 @@ A binary search tree is **balanced** if the depth of the two subtrees of every n
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/balance1-tree.jpg)

@@ -9,6 +9,7 @@ Return *the number of pairs *`(i, j)`* for which *$0 \le i < j < \text{dominoes.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $dominoes = [[1,2],[2,1],[3,4],[5,6]]$

@@ -24,6 +24,7 @@ Return* the **minimum** time it takes you to reach the destination in seconds, o
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $land = [["D",".","*"],[".",".","."],[".","S","."]]$

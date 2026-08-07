@@ -73,7 +73,7 @@ What's more, we can get the current hash from the last one. This method is calle
 >
 > We can start from the binary form of our hash, which is `110`. First, we shift left, resulting `1100`. We do not need the first digit, so it is a good idea to do $1100 \& 111 = 100$. The all-one `111` helps us to align the digits. Now we need to apply the lowest digit of `"101"`, which is `1`, to our hash, and by using `|`, we get $100 | \text{last}_{digit} = 100 | 1 = 101$.
 
-Write them together, we have: $\text{new}_{hash} = ((\text{old}_{hash} << 1) \& \text{all}_{one}) | last_{digit\_of\_new\_hash}$.
+Write them together, we have: $\text{new}_{hash} = ((\text{old}_{hash} << 1) \& \text{all}_{one}) | last_digit_of_new_hash$.
 
 With rolling hash method, we only need $\mathcal{O}(1)$ to calculate the next hash, because bitwise operations (`&`, `<<`, `|`, etc.) are only cost $\mathcal{O}(1)$.
 

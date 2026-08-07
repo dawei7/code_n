@@ -16,6 +16,7 @@ Design an algorithm to serialize and deserialize a binary tree. There is no rest
 The app adapter serializes `root`, deserializes the resulting string, and returns the reconstructed root for level-order comparison. The native `Codec` exposes separate `serialize(root)` and `deserialize(data)` operations.
 
 ### Examples
+
 #### Example 1
 
 ![](images/serdeser.jpg)

@@ -26,6 +26,7 @@ Given four integers `length`, `width`, `height`, and `mass`, representing the di
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $length = 1000, width = 35, height = 700, mass = 300$

@@ -1,6 +1,6 @@
 ## Description
 
-In a linked list of size `n`, where `n` is **even**, the $$i^{\text{th}}$$node (**0-indexed**) of the linked list is known as the **twin** of the$(n-1-i)^th$node, if$0 \le i \le (n / 2) - 1$.
+In a linked list of size `n`, where `n` is **even**, the $$i^{\text{th}}$$ node (**0-indexed**) of the linked list is known as the **twin** of the $(n-1-i)^th$ node, if $0 \le i \le (n / 2) - 1$.
 
 - For example, if $n = 4$, then node `0` is the twin of node `3`, and node `1` is the twin of node `2`. These are the only nodes with twins for $n = 4$.
 
@@ -13,6 +13,7 @@ Given the `head` of a linked list with even length, return *the **maximum twin s
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/eg1drawio.png)

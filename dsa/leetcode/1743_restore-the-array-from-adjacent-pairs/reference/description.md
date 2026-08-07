@@ -13,6 +13,7 @@ Return *the original array *`nums`*. If there are multiple solutions, return **a
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $adjacentPairs = [[2,1],[3,4],[3,2]]$

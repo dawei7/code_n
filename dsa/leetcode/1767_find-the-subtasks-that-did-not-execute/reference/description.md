@@ -41,23 +41,24 @@ The result format is in the following example.
 
 | Column | Type | Meaning |
 |---|---|---|
-| `task_id` | int | Unique task identifier. |
-| `subtasks_count` | int | Total number of subtasks for the task (numbered 1..subtasks_count). |
+| $\text{task}_{id}$ | int | Unique task identifier. |
+| $\text{subtasks}_{count}$ | int | Total number of subtasks for the task (numbered 1..subtasks_count). |
 
 **`Executed`**
 
 | Column | Type | Meaning |
 |---|---|---|
-| `task_id` | int | Task identifier. |
-| `subtask_id` | int | Subtask identifier that executed. |
+| $\text{task}_{id}$ | int | Task identifier. |
+| $\text{subtask}_{id}$ | int | Subtask identifier that executed. |
 
-- `(task_id, subtask_id)` in `Executed` is unique.
+- $(\text{task}_{id}, \text{subtask}_{id})$ in `Executed` is unique.
 
 **Return value**
 
-Return a table with columns `task_id` and `subtask_id`. Include every valid subtask `1 <= subtask_id <= subtasks_count` for each task that is absent from `Executed`. Sort the output by `task_id` ASC, `subtask_id` ASC.
+Return a table with columns $\text{task}_{id}$ and $\text{subtask}_{id}$. Include every valid subtask $1 \le \text{subtask}_{id} \le \text{subtasks}_{count}$ for each task that is absent from `Executed`. Sort the output by $\text{task}_{id}$ ASC, $\text{subtask}_{id}$ ASC.
 
 ### Examples
+
 #### Example 1
 
 ```

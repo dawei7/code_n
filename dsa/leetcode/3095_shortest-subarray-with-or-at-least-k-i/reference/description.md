@@ -11,6 +11,7 @@ Return *the length of the **shortest** **special** **non-empty** subarray of* `n
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

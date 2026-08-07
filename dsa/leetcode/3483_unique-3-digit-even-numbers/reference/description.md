@@ -9,6 +9,7 @@ You are given an array of digits called `digits`. Your task is to determine the 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

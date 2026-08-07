@@ -12,6 +12,7 @@ Given an integer `n`, count *the total number of digit *`1`* appearing in all no
 Return the number of digit-`1` occurrences in the ordinary decimal representations of all integers in `[0,n]`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 13$

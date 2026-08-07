@@ -15,6 +15,7 @@ Return *the **maximum** possible **cost*** *amongst all possible root choices*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/example14.png)

@@ -12,6 +12,7 @@ Return the number of **distinct** characters in `s` that appear an **odd** numbe
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

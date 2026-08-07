@@ -19,6 +19,7 @@ Return *the number of query strings that are **stretchy***.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "heeellooo", words = ["hello", "hi", "helo"]`

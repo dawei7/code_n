@@ -10,20 +10,26 @@ When the robot tries to move into a wall cell, its bumper sensor detects the obs
 
 Design an algorithm to clean the entire room using the following APIs:
 
+```
 interface Robot {
-// returns true if next cell is open and robot moves into the cell.
-// returns false if next cell is obstacle and robot stays on the current cell.
-boolean move();
-// Robot will stay on the same cell after calling turnLeft/turnRight.
-// Each turn will be 90 degrees.
-void turnLeft();
-void turnRight();
-// Clean the current cell.
-void clean();
+  // returns true if next cell is open and robot moves into the cell.
+  // returns false if next cell is obstacle and robot stays on the current cell.
+  boolean move();
+
+  // Robot will stay on the same cell after calling turnLeft/turnRight.
+  // Each turn will be 90 degrees.
+  void turnLeft();
+  void turnRight();
+
+  // Clean the current cell.
+  void clean();
 }
 ```
+
 **Note** that the initial direction of the robot will be facing up. You can assume all four edges of the grid are all surrounded by a wall.
+
 **Custom testing:**
+
 The input is only given to initialize the room and the robot's position internally. You must solve this problem "blindfolded". In other words, you must control the robot using only the four mentioned APIs without knowing the room layout and the initial robot's position.
 ### Function Contract
 
@@ -46,9 +52,11 @@ The interface provides four operations:
 The solution must operate only through this interface and must not inspect the hidden grid.
 
 ### Examples
+
 #### Example 1
+
 ![](images/lc-grid.jpg)
-```
+
 - **Input:** $room = [[1,1,1,1,1,0,1,1],[1,1,1,1,1,0,1,1],[1,0,1,1,1,1,1,1],[0,0,0,1,0,0,0,0],[1,1,1,1,1,1,1,1]], row = 1, col = 3$
 - **Output:** `Robot cleaned all rooms.`
 - **Explanation:** All grids in the room are marked by either 0 or 1.

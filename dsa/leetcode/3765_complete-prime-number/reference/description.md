@@ -26,6 +26,7 @@ For every length $k$ from 1 through the number of decimal digits, take both the 
 Return `true` if every required prefix and suffix is prime. Return `false` as soon as any one of them is nonprime.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

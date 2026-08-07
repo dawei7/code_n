@@ -30,12 +30,13 @@ Let $n$ be the number of employees and $t$ the number of distinct team identifie
 
 Return a table with these columns:
 
-- `employee_id`: an identifier from the input table.
-- `team_size`: the number of input rows having that employee's `team_id`.
+- $\text{employee}_{id}$: an identifier from the input table.
+- $\text{team}_{size}$: the number of input rows having that employee's $\text{team}_{id}$.
 
 Return exactly $n$ rows—one for every employee. Team identifiers and employee identifiers need not be contiguous, and result order is unrestricted.
 
 ### Examples
+
 #### Example 1
 
 ```

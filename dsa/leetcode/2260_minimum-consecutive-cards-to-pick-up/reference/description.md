@@ -9,6 +9,7 @@ Return* the **minimum** number of **consecutive** cards you have to pick up to h
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $cards = [3,4,2,3,4,7]$

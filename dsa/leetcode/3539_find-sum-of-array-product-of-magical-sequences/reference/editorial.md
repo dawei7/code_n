@@ -12,8 +12,10 @@ $\frac{m!}{\prod_{t=0}^{n - 1} r_t!}$
 
 Each arrangement contributes a product value of $\prod_{t=0}^{n - 1}\textit{nums}[t]^{r_t}$, so the overall contribution from all such arrangements can be expressed as:
 
-$$\frac{m!}{\prod_{t=0}^{n - 1}r_t!} \times \prod_{t=0}^{n - 1}\textit{nums}[t]^{r_t}
-= m! \times \prod_{t=0}^{n - 1}\frac{\textit{nums}[t]^{r_t}}{r_t!}$$
+$$
+\frac{m!}{\prod_{t=0}^{n - 1}r_t!} \times \prod_{t=0}^{n - 1}\textit{nums}[t]^{r_t}
+= m! \times \prod_{t=0}^{n - 1}\frac{\textit{nums}[t]^{r_t}}{r_t!}
+$$
 
 To model this process, note that each sequence corresponds to a binary-like number $T$ defined as:
 

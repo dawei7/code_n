@@ -9,6 +9,7 @@ Return the total number of substrings of `word` that contain every vowel (`'a'`,
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -7,6 +7,7 @@ Given a string `s`, return *the **lexicographically smallest* *subsequence** of*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "bcabc"`

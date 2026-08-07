@@ -48,6 +48,7 @@ class TreeNode:
 Return an integer representing the minimum number of leaf flips required so that the root evaluates to `result`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/operationstree.png)

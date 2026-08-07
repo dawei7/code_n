@@ -21,6 +21,7 @@ Return the **minimum** number of arrivals to be discarded so that every `w`-day 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

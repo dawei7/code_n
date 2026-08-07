@@ -15,6 +15,7 @@ Return *the **total cost** to insert all elements from *`instructions`* into *`n
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $instructions = [1,5,6,2]$

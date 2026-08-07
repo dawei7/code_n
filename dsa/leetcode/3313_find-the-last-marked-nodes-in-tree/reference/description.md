@@ -10,6 +10,7 @@ Return an array `nodes` where $\text{nodes}[i]$ is the last node to get marked i
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

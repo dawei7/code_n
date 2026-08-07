@@ -25,6 +25,7 @@ Let $n$ be `blocks.length`.
 Return the smallest possible time by which all $n$ blocks have been built, starting with one worker.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $blocks = [1], split = 1$

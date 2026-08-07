@@ -30,6 +30,7 @@ Return any abbreviation of `target` having minimum token length among those that
 `dictionary`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $target = "apple", dictionary = ["blade"]$

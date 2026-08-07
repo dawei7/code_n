@@ -19,9 +19,10 @@ For any subarray, each indexed occurrence is retained when testing whether its a
 
 **Return value**
 
-Return the number of index intervals $[l,r]$ whose bitwise OR equals `nums[k]` for at least one index $k$ with $l\le k\le r$.
+Return the number of index intervals $[l,r]$ whose bitwise OR equals $\text{nums}[k]$ for at least one index $k$ with $l\le k\le r$.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -14,6 +14,7 @@ Given the `head` of a singly linked list and two integers `left` and `right` whe
 Return the head after reversing the inclusive segment `[left, right]` and leaving all other nodes in place.
 
 ### Examples
+
 #### Example 1
 
 ![](images/rev2ex2.jpg)

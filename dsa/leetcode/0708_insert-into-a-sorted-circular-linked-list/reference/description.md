@@ -21,6 +21,7 @@ If the list is empty (i.e., the given node is `null`), you should create a new s
 Insert exactly one node and preserve the circular, non-descending cyclic order. Return the original linked-list head node when the input is nonempty; otherwise return the newly created self-linked node. Any insertion location satisfying the order contract is valid.
 
 ### Examples
+
 #### Example 1
 
 ![](images/example_1_before_65p.jpg)

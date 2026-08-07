@@ -47,6 +47,7 @@ The result format is in the following example.
 Return `Department`, `Employee`, and `Salary` for every employee whose salary is among the department's three highest distinct values.
 
 ### Examples
+
 #### Example 1
 
 ```

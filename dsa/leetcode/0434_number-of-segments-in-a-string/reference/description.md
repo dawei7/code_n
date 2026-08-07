@@ -14,6 +14,7 @@ A **segment** is defined to be a contiguous sequence of **non-space characters**
 Return the number of contiguous non-space segments in `s`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "Hello, my name is John"`

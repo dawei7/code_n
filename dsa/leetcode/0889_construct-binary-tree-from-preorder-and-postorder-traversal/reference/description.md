@@ -9,6 +9,7 @@ If there exist multiple answers, you can **return any** of them.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/lc-prepost.jpg)

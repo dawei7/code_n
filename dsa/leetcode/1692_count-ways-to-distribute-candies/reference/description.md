@@ -19,6 +19,7 @@ Given two integers, `n` and `k`, return *the **number** of different ways to dis
 Return an integer representing the number of ways to distribute `n` candies into `k` bags modulo $10^9 + 7$.
 
 ### Examples
+
 #### Example 1
 
 ![](images/candies-1.png)

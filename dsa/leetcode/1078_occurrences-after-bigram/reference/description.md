@@ -9,6 +9,7 @@ Return *an array of all the words* `third` *for each occurrence of* `"first seco
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $text = "alice is a good girl she is a good student", first = "a", second = "good"$

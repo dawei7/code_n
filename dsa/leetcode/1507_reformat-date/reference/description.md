@@ -21,6 +21,7 @@ Convert the date string to the format `YYYY-MM-DD`, where:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $date = "20th Oct 2052"$

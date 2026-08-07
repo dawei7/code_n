@@ -13,6 +13,7 @@ A number `x` is power of `2` if $x = 2^i$ where $i \ge 0$*.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 39$

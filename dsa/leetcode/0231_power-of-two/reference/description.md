@@ -14,6 +14,7 @@ An integer `n` is a power of two, if there exists an integer `x` such that $n = 
 Return `true` exactly when `n` equals $2^x$ for some integer `x`; otherwise return `false`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 1$

@@ -13,6 +13,7 @@ Return *the **maximum total sum** that the height of the buildings can be increa
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/807-ex1.png)

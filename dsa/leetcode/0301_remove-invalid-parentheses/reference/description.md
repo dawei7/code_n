@@ -14,6 +14,7 @@ Return *a list of **unique strings** that are valid with the minimum number of r
 Return all distinct valid strings that use the minimum possible number of parenthesis deletions, in any order.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "()())()"`

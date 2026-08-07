@@ -11,6 +11,7 @@ Return *an integer array *`answer`* where *$\text{answer}[i]$* is the answer to 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3,4], queries = [[1,0],[-3,1],[-4,0],[2,3]]`

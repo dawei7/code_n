@@ -44,7 +44,7 @@ For example, by shifting the matrix A to one step on the right, is same as shift
 **Algorithm**
 
 Based on the above intuition, we could implement the solution step by step.
-First we define the function $shift_{and\_count}(x_{shift}, y_{shift}, M, R)$ where we shift the matrix `M` with reference to the matrix `R` with the shifting coordinate $(x_{shift}, y_{shift})$ and then we count the overlapping ones in the overlapping zone.
+First we define the function $shift_and_count(x_{shift}, y_{shift}, M, R)$ where we shift the matrix `M` with reference to the matrix `R` with the shifting coordinate $(x_{shift}, y_{shift})$ and then we count the overlapping ones in the overlapping zone.
 
 - The algorithm is organized as a loop over all possible combinations of shifting coordinates $(x_{shift}, y_{shift})$.
 

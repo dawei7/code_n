@@ -4,13 +4,13 @@ You are given a **0-indexed** `m x n` binary matrix `grid`.
 
 A **0-indexed** `m x n` difference matrix `diff` is created with the following procedure:
 
-- Let the number of ones in the $$i^{\text{th}}$$row be$\text{onesRow}_{i}$.
+- Let the number of ones in the $$i^{\text{th}}$$ row be $\text{onesRow}_{i}$.
 
-- Let the number of ones in the $$j^{\text{th}}$$column be$\text{onesCol}_{j}$.
+- Let the number of ones in the $$j^{\text{th}}$$ column be $\text{onesCol}_{j}$.
 
-- Let the number of zeros in the $$i^{\text{th}}$$row be$\text{zerosRow}_{i}$.
+- Let the number of zeros in the $$i^{\text{th}}$$ row be $\text{zerosRow}_{i}$.
 
-- Let the number of zeros in the $$j^{\text{th}}$$column be$\text{zerosCol}_{j}$.
+- Let the number of zeros in the $$j^{\text{th}}$$ column be $\text{zerosCol}_{j}$.
 
 - $\text{diff}[i][j] = \text{onesRow}_{i} + \text{onesCol}_{j} - \text{zerosRow}_{i} - \text{zerosCol}_{j}$
 
@@ -21,6 +21,7 @@ Return *the difference matrix *`diff`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/image-20221106171729-5.png)

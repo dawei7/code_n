@@ -18,10 +18,12 @@ At this stage, the constructed string is the only possible candidate that satisf
 
 The $\textit{lcp}$ matrix can be derived using dynamic programming with the following recurrence:
 
-$$\begin{cases}
+$$
+\begin{cases}
 \textit{lcp}[i][j] = \textit{lcp}[i+1][j+1] + 1 \quad \text{if } \textit{word}[i] = \textit{word}[j] \
 \textit{lcp}[i][j] = 0 \quad \text{if } \textit{word}[i] \ne \textit{word}[j]
-\end{cases}$$
+\end{cases}
+$$
 
 We iterate over all pairs $(i, j)$ and verify that the constructed string satisfies the $\textit{lcp}$ values using the following conditions:
 

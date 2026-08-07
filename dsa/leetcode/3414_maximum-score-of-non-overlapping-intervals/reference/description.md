@@ -11,6 +11,7 @@ Two intervals are said to be **non-overlapping** if they do not share any points
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

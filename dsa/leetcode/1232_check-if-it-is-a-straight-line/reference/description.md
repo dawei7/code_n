@@ -7,6 +7,7 @@ You are given an integer array `coordinates`, $\text{coordinates}[i] = [x, y]$, 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/untitled-diagram-2.jpg)

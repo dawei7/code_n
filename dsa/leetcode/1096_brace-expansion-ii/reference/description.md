@@ -41,6 +41,7 @@ Given an expression representing a set of words under the given grammar, return 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $expression = "{a,b}{c,{d,e}}"$

@@ -21,9 +21,10 @@ Let $n=\lvert\texttt{nums}\rvert$. Each score is based only on positions $j$ wit
 
 **Return value**
 
-Return an integer array `answer` of length $n$, where `answer[i]` counts the indices $j$ to the right of $i$ for which `nums[j] < nums[i]` and exactly one of `nums[i]` and `nums[j]` is even.
+Return an integer array `answer` of length $n$, where $\text{answer}[i]$ counts the indices $j$ to the right of $i$ for which $\text{nums}[j] < \text{nums}[i]$ and exactly one of $\text{nums}[i]$ and $\text{nums}[j]$ is even.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

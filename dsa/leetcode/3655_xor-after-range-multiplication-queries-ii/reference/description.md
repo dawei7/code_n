@@ -23,6 +23,7 @@ Return the **bitwise XOR** of all elements in `nums` after processing all querie
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -41,6 +41,7 @@ The format of the output is as follows:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $expression = "e + 8 - a + 5", evalvars = ["e"], evalints = [1]$

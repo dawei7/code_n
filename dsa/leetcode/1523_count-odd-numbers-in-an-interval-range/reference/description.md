@@ -7,6 +7,7 @@ Given two non-negative integers `low` and `high`. Return the *count of odd numbe
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $low = 3, high = 7$

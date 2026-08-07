@@ -1,6 +1,6 @@
 ## Description
 
-You are given a **0-indexed** 2D integer array `brackets` where $\text{brackets}[i] = [\text{upper}_{i}, \text{percent}_{i}]$ means that the $$i^{\text{th}}$$tax bracket has an upper bound of$\text{upper}_{i}$and is taxed at a rate of$\text{percent}_{i}$. The brackets are **sorted** by upper bound (i.e.$\text{upper}_{i}-1 < \text{upper}_{i}$ for `0 < i < brackets.length`).
+You are given a **0-indexed** 2D integer array `brackets` where $\text{brackets}[i] = [\text{upper}_{i}, \text{percent}_{i}]$ means that the $$i^{\text{th}}$$ tax bracket has an upper bound of $\text{upper}_{i}$ and is taxed at a rate of $\text{percent}_{i}$. The brackets are **sorted** by upper bound (i.e. $\text{upper}_{i}-1 < \text{upper}_{i}$ for `0 < i < brackets.length`).
 
 Tax is calculated as follows:
 
@@ -19,6 +19,7 @@ You are given an integer `income` representing the amount of money you earned. R
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $brackets = [[3,50],[7,10],[12,25]], income = 10$

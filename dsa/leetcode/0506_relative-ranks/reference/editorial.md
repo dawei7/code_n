@@ -70,7 +70,7 @@ For places 1st, 2nd, and 3rd, we assign medals.
 - If `i` is `0`, assign the athlete the "Gold Medal".
 - If `i` is `1`, assign the athlete the "Silver Medal".
 - If `i` is `2`, assign the athlete the "Bronze Medal".
-- Otherwise, set $rank[score_{to\_index}[\text{score}[i]]] = str(i + 1)$.
+- Otherwise, set $rank[score_to_index[\text{score}[i]]] = str(i + 1)$.
 6. Return `rank`.
 
 #### Implementation

@@ -1,6 +1,6 @@
 ## Description
 
-You are given a 2D integer array `units` of size `m × n` where $\text{units}[i][j]$ represents the capacity of the $$j^{\text{th}}$$unit in the$$i^{\text{th}}$$ device. Each device contains **exactly** `n` units.
+You are given a 2D integer array `units` of size `m × n` where $\text{units}[i][j]$ represents the capacity of the $$j^{\text{th}}$$ unit in the $$i^{\text{th}}$$ device. Each device contains **exactly** `n` units.
 
 The **rating** of a device is the **minimum** capacity among all its units.
 
@@ -32,6 +32,7 @@ Let $m$ be the number of devices, $n$ the units per device, and $U=mn$ the total
 Return the maximum possible sum of final device ratings after zero or more legal transfers. The total may exceed the range of a signed 32-bit integer.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

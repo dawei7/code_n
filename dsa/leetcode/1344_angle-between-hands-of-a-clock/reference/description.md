@@ -9,6 +9,7 @@ Answers within $10^{-5}$ of the actual value will be accepted as correct.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/sample_1_1673.png)

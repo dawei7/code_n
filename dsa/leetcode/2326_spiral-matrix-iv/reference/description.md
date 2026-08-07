@@ -13,6 +13,7 @@ Return *the generated matrix*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1new.jpg)

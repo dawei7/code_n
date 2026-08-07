@@ -17,6 +17,7 @@ Return an array `times` where $\text{times}[i]$ is the time when all nodes get m
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -149,7 +149,7 @@ We flatten the circle in the picture into a straight line for a better understan
 
 There does not exist a balanced sequence corresponding to this example. The bracket at position $i_1$ must correspond to the one at $j_1$. The same holds for $i_2$ and $j_2$. The pairs $(i_1, j_1)$ and $(i_2, j_2)$ must intersect, but it is impossible in a balanced sequence.
 
-Let $n$ denote $numPeople / 2$ and $m =$10^{9}$+ 7$.
+Let $n$ denote $numPeople / 2$ and $m = $10^{9}$ + 7$.
 
 Due to the bijection, the number of ways for $2n$ people to shake hands without crossings is equal to the number of balanced bracket sequences containing $n$ pairs of parentheses, which equals $C_n$ – the $n$-th [Catalan number](https://en.wikipedia.org/wiki/Catalan_number).
 

@@ -11,6 +11,7 @@ Return *the **maximum number of words** that appear in a single sentence*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $sentences = ["alice and bob love leetcode", "i think so too", <u>"this is great thanks very much"</u>]$

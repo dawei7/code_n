@@ -13,6 +13,7 @@ Note that you can cut the piece of wood as many times as you want.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1.png)

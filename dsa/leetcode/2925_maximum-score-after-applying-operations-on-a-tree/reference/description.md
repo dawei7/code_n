@@ -21,6 +21,7 @@ Return *the **maximum score** you can obtain after performing these operations o
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/graph-13-1.png)

@@ -30,6 +30,7 @@ pointer targeting another copied node rather than an original object. Return
 `null` when `root` is `null`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/clone_1.png)

@@ -13,6 +13,7 @@ Given two binary strings `a` and `b`, return *their sum as a binary string*.
 Return the exact sum of `a` and `b` in binary string form.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $a = "11", b = "1"$

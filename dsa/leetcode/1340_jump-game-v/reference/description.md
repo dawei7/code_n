@@ -17,6 +17,7 @@ Notice that you can not jump outside of the array at any time.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/meta-chart.jpeg)

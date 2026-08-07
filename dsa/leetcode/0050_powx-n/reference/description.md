@@ -13,6 +13,7 @@ Implement <a href="http://www.cplusplus.com/reference/valarray/pow/" target="_bl
 Return $x^n$ as a floating-point number.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $x = 2.00000, n = 10$

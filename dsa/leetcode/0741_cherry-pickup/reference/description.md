@@ -23,6 +23,7 @@ Return *the maximum number of cherries you can collect by following the rules be
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/grid.jpg)

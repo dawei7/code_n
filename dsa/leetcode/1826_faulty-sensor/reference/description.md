@@ -12,6 +12,7 @@ We know that there is a defect in **at most one** of the sensors. Return *the se
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $sensor1 = [2,3,4,5], sensor2 = [2,1,3,4]$

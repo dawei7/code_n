@@ -9,6 +9,7 @@ Return *the number of **nice** sub-arrays*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,1,2,1,1], k = 3`

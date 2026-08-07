@@ -27,6 +27,7 @@ Return `true` if and only if there exists a circle in the plane such that the ro
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $instructions = "GGLLGG"$

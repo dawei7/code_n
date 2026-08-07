@@ -8,6 +8,7 @@ A **substring** is a contiguous sequence of characters within a string.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

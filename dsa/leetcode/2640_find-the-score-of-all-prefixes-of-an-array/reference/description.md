@@ -13,6 +13,7 @@ Given a **0-indexed** integer array `nums` of length `n`, return *an array *`ans
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,3,7,5,10]`

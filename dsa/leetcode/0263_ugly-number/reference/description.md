@@ -14,6 +14,7 @@ Given an integer `n`, return `true` *if* `n` *is an **ugly number***.
 Return `true` exactly when `n` is positive and has no prime factor other than `2`, `3`, or `5`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 6$

@@ -11,6 +11,7 @@ Return *the **maximum** number of white tiles that can be covered by the carpet*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/example1drawio3.png)

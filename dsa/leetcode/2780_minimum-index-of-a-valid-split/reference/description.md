@@ -19,6 +19,7 @@ Return *the **minimum** index of a **valid split***. If no valid split exists, r
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,2,2]`

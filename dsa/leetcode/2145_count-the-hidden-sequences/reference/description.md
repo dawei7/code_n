@@ -21,6 +21,7 @@ Return *the number of **possible** hidden sequences there are.* If there are no 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $differences = [1,-3,4], lower = 1, upper = 6$

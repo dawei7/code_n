@@ -35,6 +35,7 @@ Let $Q$ be the number of method calls after construction, $A$ the maximum number
 Return one result for every entry in `operations`: `null` for construction and every mutating operation, and a list of matching active IDs for each `getOrdersAtPrice` call. A lookup with no matches contributes an empty list.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

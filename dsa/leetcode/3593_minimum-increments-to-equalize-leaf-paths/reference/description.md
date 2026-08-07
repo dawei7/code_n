@@ -15,6 +15,7 @@ Return the **minimum** number of nodes whose cost must be increased to make all 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

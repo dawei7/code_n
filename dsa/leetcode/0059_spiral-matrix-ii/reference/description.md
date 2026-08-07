@@ -12,6 +12,7 @@ Given a positive integer `n`, generate an `n x n` `matrix` filled with elements 
 Return the $n \times n$ matrix filled from `1` to $n^2$ along a clockwise inward spiral.
 
 ### Examples
+
 #### Example 1
 
 ![](images/spiraln.jpg)

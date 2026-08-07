@@ -13,6 +13,7 @@ Given an array of `n` integers `nums` and an integer `target`, find the number o
 Return the number of qualifying index triplets.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [-2,0,1,3], target = 2`

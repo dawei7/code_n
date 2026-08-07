@@ -11,6 +11,7 @@ Return *the maximum points you can get*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $boxes = [1,3,2,2,2,3,4,3,1]$

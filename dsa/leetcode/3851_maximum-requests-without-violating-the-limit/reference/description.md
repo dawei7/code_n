@@ -21,9 +21,7 @@ Records may arrive in any order, different users are checked independently, and 
 
 For a user's sorted retained times $a_0\le a_1\le\cdots$, validity is equivalent to
 
-$$
-a_{i+k}-a_i>\texttt{window}
-$$
+$a_{i+k}-a_i>\texttt{window}$
 
 whenever both indexed times exist. Equality does not suffice because both interval endpoints are included.
 
@@ -32,6 +30,7 @@ whenever both indexed times exist. Equality does not suffice because both interv
 Return the maximum possible total number of retained request records across all users.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

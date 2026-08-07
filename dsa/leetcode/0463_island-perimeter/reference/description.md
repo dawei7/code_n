@@ -18,6 +18,7 @@ The island doesn't have "lakes", meaning the water inside isn't connected to the
 Diagonal contact does not join cells and does not hide an edge.
 
 ### Examples
+
 #### Example 1
 
 ![](images/island.png)

@@ -13,6 +13,7 @@ Return `true` *if it is possible to select two or more elements whose bitwise* `
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3,4,5]`

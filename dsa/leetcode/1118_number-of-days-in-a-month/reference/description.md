@@ -15,6 +15,7 @@ April, June, September, and November have 30 days. Every other non-February mont
 - The integer number of days in the specified month and year.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $year = 1992, month = 7$

@@ -79,7 +79,7 @@ $f(k) = f(k - 1) + 1 + f(k - 1)$
 
 $f(k) = 2 \cdot f(k - 1) + 1$
 
-The base case of this recurrence is when $k = 0$. We have $n =$2^{0}$= 1$, which requires using the first operation once. Thus, $f(0) = 1$.
+The base case of this recurrence is when $k = 0$. We have $n = $2^{0}$ = 1$, which requires using the first operation once. Thus, $f(0) = 1$.
 
 ```python
 def f(k):
@@ -101,12 +101,12 @@ We can easily verify this formula by looking at values of $f$.
 
 | k | breakdown | value of f(k) |
 |:---:|:---:|:--------:|
-|  0  | base case  | $1 =$2^{1}$- 1$ |
-|  1  | 2 * f(0) + 1  | $3 =$2^{2}$- 1$ |
-|  2  | 2 * f(1) + 1 = 2 * 3 + 1  | $7 =$2^{3}$- 1$ |
-|  3  | 2 * f(2) + 1 = 2 * 7 + 1  | $15 =$2^{4}$- 1$ |
-|  4  | 2 * f(3) + 1 = 2 * 15 + 1 | $31 =$2^{5}$- 1$ |
-|  5  | 2 * f(4) + 1 = 2 * 31 + 1  | $63 =$2^{6}$- 1$ |
+|  0  | base case  | $1 = $2^{1}$ - 1$ |
+|  1  | 2 * f(0) + 1  | $3 = $2^{2}$ - 1$ |
+|  2  | 2 * f(1) + 1 = 2 * 3 + 1  | $7 = $2^{3}$ - 1$ |
+|  3  | 2 * f(2) + 1 = 2 * 7 + 1  | $15 = $2^{4}$ - 1$ |
+|  4  | 2 * f(3) + 1 = 2 * 15 + 1 | $31 = $2^{5}$ - 1$ |
+|  5  | 2 * f(4) + 1 = 2 * 31 + 1  | $63 = $2^{6}$ - 1$ |
 
 <br>
 

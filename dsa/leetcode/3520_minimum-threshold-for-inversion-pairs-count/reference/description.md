@@ -18,6 +18,7 @@ If no such integer exists, return `-1`.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

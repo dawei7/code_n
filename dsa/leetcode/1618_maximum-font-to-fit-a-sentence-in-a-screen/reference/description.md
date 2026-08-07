@@ -6,20 +6,28 @@ You can use the `FontInfo` interface to get the width and height of any characte
 
 The `FontInfo` interface is defined as such:
 
+```
 interface FontInfo {
-// Returns the width of character ch on the screen using font size fontSize.
-// $\mathcal{O}(1)$ per call
-public int getWidth(int fontSize, char ch);
-// Returns the height of any character on the screen using font size fontSize.
-// $\mathcal{O}(1)$ per call
-public int getHeight(int fontSize);
+  // Returns the width of character ch on the screen using font size fontSize.
+  // O(1) per call
+  public int getWidth(int fontSize, char ch);
+
+  // Returns the height of any character on the screen using font size fontSize.
+  // O(1) per call
+  public int getHeight(int fontSize);
 }
 ```
-The calculated width of `text` for some `fontSize` is the **sum** of every `getWidth(fontSize, text[i])` call for each `0 <= i < text.length` (**0-indexed**). The calculated height of `text` for some `fontSize` is `getHeight(fontSize)`. Note that `text` is displayed on a **single line**.
+
+The calculated width of `text` for some `fontSize` is the **sum** of every $getWidth(fontSize, \text{text}[i])$ call for each $0 \le i < \text{text.length}$ (**0-indexed**). The calculated height of `text` for some `fontSize` is `getHeight(fontSize)`. Note that `text` is displayed on a **single line**.
+
 It is guaranteed that `FontInfo` will return the same value if you call `getHeight` or `getWidth` with the same parameters.
+
 It is also guaranteed that for any font size `fontSize` and any character `ch`:
-- `getHeight(fontSize) <= getHeight(fontSize+1)`
-- `getWidth(fontSize, ch) <= getWidth(fontSize+1, ch)`
+
+- $getHeight(fontSize) \le getHeight(fontSize+1)$
+
+- $getWidth(fontSize, ch) \le getWidth(fontSize+1, ch)$
+
 Return *the maximum font size you can use to display *`text`* on the screen*. If `text` cannot fit on the display with any font size, return `-1`.
 ### Function Contract
 
@@ -36,8 +44,9 @@ Return *the maximum font size you can use to display *`text`* on the screen*. If
 Return the maximum integer font size from `fonts` that allows `text` to fit within `w` and `h` on a single line, or `-1` if no font size fits.
 
 ### Examples
+
 #### Example 1
-```
+
 - **Input:** $text = "helloworld", w = 80, h = 20, fonts = [6,8,10,12,14,16,18,24,36]$
 - **Output:** `6`
 #### Example 2

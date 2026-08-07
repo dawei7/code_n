@@ -11,6 +11,7 @@ Return an array containing the indices of *all* **stable** mountains in **any** 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

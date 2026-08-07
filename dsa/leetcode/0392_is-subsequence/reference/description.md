@@ -15,6 +15,7 @@ A **subsequence** of a string is a new string that is formed from the original s
 Return `true` if the characters of `s` can be matched in order within `t`; otherwise return `false`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "abc", t = "ahbgdc"`

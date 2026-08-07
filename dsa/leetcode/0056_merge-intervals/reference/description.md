@@ -12,6 +12,7 @@ Given an array of `intervals` where $\text{intervals}[i] = [\text{start}_{i}, \t
 Return the merged, mutually non-overlapping intervals covering the complete input union.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $intervals = [[1,3],[2,6],[8,10],[15,18]]$

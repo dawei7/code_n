@@ -16,6 +16,7 @@ Given the `root` of a binary tree, return *the maximum **path sum** of any **non
 Return the maximum sum of the node values along any valid non-empty path.
 
 ### Examples
+
 #### Example 1
 
 ![](images/exx1.jpg)

@@ -9,6 +9,7 @@ Return *the number of **non-empty** subsequences of *`nums`* such that the sum o
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,5,6,7], target = 9`

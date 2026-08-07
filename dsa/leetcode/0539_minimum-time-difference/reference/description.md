@@ -7,6 +7,7 @@ Given a list of 24-hour clock time points in **"HH:MM"** format, return *the min
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $timePoints = ["23:59","00:00"]$

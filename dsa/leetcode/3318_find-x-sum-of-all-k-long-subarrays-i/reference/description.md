@@ -19,6 +19,7 @@ Return an integer array `answer` of length $n - k + 1$ where $\text{answer}[i]$ 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

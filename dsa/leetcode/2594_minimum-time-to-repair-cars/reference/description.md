@@ -13,6 +13,7 @@ Return *the **minimum** time taken to repair all the cars.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $ranks = [4,2,3,1], cars = 10$

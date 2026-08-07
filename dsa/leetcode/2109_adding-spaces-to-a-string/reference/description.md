@@ -11,6 +11,7 @@ Return** ***the modified string **after** the spaces have been added.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "LeetcodeHelpsMeLearn", spaces = [8,13,15]`

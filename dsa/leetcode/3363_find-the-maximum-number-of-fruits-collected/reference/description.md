@@ -21,6 +21,7 @@ Return the **maximum** number of fruits the children can collect from the dungeo
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

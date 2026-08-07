@@ -12,8 +12,8 @@ Return the **minimum** number of operations required to make `s` sorted in **non
 - `s`: A nonempty string of lowercase English letters.
 
 Let $N = \lvert\texttt{s}\rvert$. An operation selects indices `left` and
-`right` with `0 <= left <= right < N`, except that `left = 0` and
-`right = N - 1` may not both hold. It replaces `s[left:right + 1]` by those
+`right` with $0 \le left \le right < N$, except that $left = 0$ and
+$right = N - 1$ may not both hold. It replaces $s[left:right + 1]$ by those
 same characters sorted in non-descending alphabetical order.
 
 **Return value**
@@ -23,6 +23,7 @@ string non-descending. Return `-1` if no sequence of permitted operations can
 do so.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

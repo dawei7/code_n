@@ -4,7 +4,7 @@ You are given an integer `numberOfUsers` representing the total number of users 
 
 Each $\text{events}[i]$ can be either of the following two types:
 
-- **Message Event:** $["MESSAGE", "\text{timestamp}_{i}", "mentions_{string\_i}"]$
+- **Message Event:** $["MESSAGE", "\text{timestamp}_{i}", "mentions_string_i"]$
 
 		<li>This event indicates that a set of users was mentioned in a message at $\text{timestamp}_{i}$.
 
@@ -36,6 +36,7 @@ All users are initially online, and if a user goes offline or comes back online,
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

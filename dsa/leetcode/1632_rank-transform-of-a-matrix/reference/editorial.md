@@ -153,7 +153,7 @@ while q is not empty:
 
 This search costs $\mathcal{O}(V + E)$, where $V$ is the number of points and $E$ is the number of edges in the graph, since we visit each point and each edge constant times.
 
-We have $\mathcal{O}(NM)$ points, and if every two points are connected, the number of edges are $\mathcal{O}((NM)^2)$.  Therefore, in worst case, $\mathcal{O}(V + E) = \mathcal{O}((NM)^2) =$500^{4}$= 6.25 * 10^{10}$. This will absolutely cause *Time Limit Exceeded*.
+We have $\mathcal{O}(NM)$ points, and if every two points are connected, the number of edges are $\mathcal{O}((NM)^2)$.  Therefore, in worst case, $\mathcal{O}(V + E) = \mathcal{O}((NM)^2) = $500^{4}$ = 6.25 * 10^{10}$. This will absolutely cause *Time Limit Exceeded*.
 
 Can we simplify it?
 

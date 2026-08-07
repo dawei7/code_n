@@ -13,6 +13,7 @@ The format of a path is one or more concatenated strings of the form: `'/'` foll
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $folder = ["/a","/a/b","/c/d","/c/d/e","/c/f"]$

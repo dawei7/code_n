@@ -14,6 +14,7 @@ Given an integer array `nums` representing the amount of money of each house, re
 Return the maximum total obtainable from a set of pairwise non-adjacent houses.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3,1]`

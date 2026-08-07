@@ -12,6 +12,7 @@ Given a binary tree, determine if it is **height-balanced**.
 Return `true` if the height-balance condition holds at every node; otherwise return `false`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/balance_1.jpg)

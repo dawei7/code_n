@@ -12,19 +12,23 @@ We precompute the prefix sums $\textit{sum}$ of the $n$ meeting durations to mak
 
 - The start time of the first available time slot before the $k$ meetings:
 
-$$\textit{left}_i =
+$$
+\textit{left}_i =
 \begin{cases}
-0 \& \text{if } i \le k - 1 \\
-\textit{endTime}[i - k] \& \text{if } i > k - 1 \\
-\end{cases}$$
+0 & \text{if } i \le k - 1 \\
+\textit{endTime}[i - k] & \text{if } i > k - 1 \\
+\end{cases}
+$$
 
 - The end time of the last available time slot after the $k$ meetings:
 
-$$\textit{right}_i =
+$$
+\textit{right}_i =
 \begin{cases}
-\textit{eventTime} \& \text{if } i = n - 1 \\
-\textit{startTime}[i + 1] \& \text{otherwise} \\
-\end{cases}$$
+\textit{eventTime} & \text{if } i = n - 1 \\
+\textit{startTime}[i + 1] & \text{otherwise} \\
+\end{cases}
+$$
 
 So the total length of the merged $k + 1$ free time intervals is:
 

@@ -8,7 +8,7 @@ The **path XOR sum** from the root to a node `u` is defined as the bitwise XOR o
 
 You are given a 2D integer array `queries`, where $\text{queries}[j] = [u_{j}, k_{j}]$. For each query, find the $k_{j}^th$ **smallest distinct** path XOR sum among all nodes in the **subtree** rooted at $u_{j}$. If there are fewer than $k_{j}$ **distinct** path XOR sums in that subtree, the answer is -1.
 
-Return an integer array where the $$j^{\text{th}}$$element is the answer to the$$j^{\text{th}}$$ query.
+Return an integer array where the $$j^{\text{th}}$$ element is the answer to the $$j^{\text{th}}$$ query.
 
 In a rooted tree, the subtree of a node `v` includes `v` and all nodes whose path to the root passes through `v`, that is, `v` and its descendants.
 ### Function Contract
@@ -17,6 +17,7 @@ In a rooted tree, the subtree of a node `v` includes `v` and all nodes whose pat
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

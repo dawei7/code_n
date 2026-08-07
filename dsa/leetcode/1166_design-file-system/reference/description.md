@@ -23,9 +23,7 @@ Implement the `FileSystem` class:
 
 Let
 
-$$
-S = \sum_{o \in \text{operations}} \lvert \operatorname{path}(o) \rvert
-$$
+$S = \sum_{o \in \text{operations}} \lvert \operatorname{path}(o) \rvert$
 
 be the total number of path characters processed across all calls.
 
@@ -34,6 +32,7 @@ be the total number of path characters processed across all calls.
 - A list containing each operation's boolean or integer result in execution order.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** ``

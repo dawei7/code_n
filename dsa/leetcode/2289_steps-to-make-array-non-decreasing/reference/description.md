@@ -9,6 +9,7 @@ Return *the number of steps performed until *`nums`* becomes a **non-decreasing*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [5,3,4,4,7,3,6,11,8,5,11]`

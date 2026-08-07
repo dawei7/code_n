@@ -12,17 +12,21 @@ Consider the number of elements in `nums` which are not equal to `val` be `k`, t
 
 The judge will test your solution with the following code:
 
+```
 int[] nums = [...]; // Input array
 int val = ...; // Value to remove
 int[] expectedNums = [...]; // The expected answer with correct length.
-// It is sorted with no values equaling val.
+                            // It is sorted with no values equaling val.
+
 int k = removeElement(nums, val); // Calls your implementation
+
 assert k == expectedNums.length;
 sort(nums, 0, k); // Sort the first k elements of nums
 for (int i = 0; i < actualLength; i++) {
-assert nums[i] == expectedNums[i];
+    assert nums[i] == expectedNums[i];
 }
 ```
+
 If all assertions pass, then your solution will be **accepted**.
 ### Function Contract
 
@@ -36,8 +40,9 @@ If all assertions pass, then your solution will be **accepted**.
 Return $k$, the count of values not equal to `val`. The same call mutates `nums` in place so that `nums[:k]` contains exactly those retained values; their order is not constrained. Values at indices $k$ and beyond are unspecified.
 
 ### Examples
+
 #### Example 1
-```
+
 - **Input:** `nums = [3,2,2,3], val = 3`
 - **Output:** $2, nums = [2,2,_,_]$
 - **Explanation:** Your function should return k = 2, with the first two elements of nums being 2.

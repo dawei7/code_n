@@ -17,6 +17,7 @@ Return *the **maximum** number of water bottles you can drink*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/exampleone1.png)

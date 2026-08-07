@@ -21,6 +21,7 @@ Because every candidate result has the same length, comparing the represented in
 Return the length-$N$ binary string representing the maximum possible XOR value.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

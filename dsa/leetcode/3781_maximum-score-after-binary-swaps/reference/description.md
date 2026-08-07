@@ -18,9 +18,10 @@ Let $N=\lvert\texttt{nums}\rvert=\lvert s\rvert$. Swaps change only the position
 
 **Return value**
 
-Return the maximum sum of `nums[i]` over positions that can contain `'1'` after any number of legal `"01" -> "10"` swaps, including no swaps.
+Return the maximum sum of $\text{nums}[i]$ over positions that can contain `'1'` after any number of legal `"01" -> "10"` swaps, including no swaps.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

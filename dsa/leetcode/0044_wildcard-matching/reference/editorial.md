@@ -38,7 +38,7 @@ The problem with this algorithm is that it doesn't pass all test cases because o
 
 Here is the algorithm.
 
-- Clean up the input by replacing more than one star in a row with a single star: $p = remove_{duplicate\_stars}(p)$.
+- Clean up the input by replacing more than one star in a row with a single star: $p = remove_duplicate_stars(p)$.
 
 - Initiate the memoization hashmap `dp`.
 
@@ -264,7 +264,7 @@ Here is the algorithm.
 
 - If there were no stars in the pattern, i.e., no $\text{star}_{idx}$, return `False`.
 
-- If there was a star, then backtrack: set pattern pointer just after the last star $p_{idx} = \text{star}_{idx} + 1$, and string pointer $s_{idx} = s_{tmp\_idx} + 1$, i.e., assume that this time the star matches _one more character_. Save the current string pointer for the possible backtrack $s_{tmp\_idx} = s_{idx}$.
+- If there was a star, then backtrack: set pattern pointer just after the last star $p_{idx} = \text{star}_{idx} + 1$, and string pointer $s_{idx} = s_tmp_idx + 1$, i.e., assume that this time the star matches _one more character_. Save the current string pointer for the possible backtrack $s_tmp_idx = s_{idx}$.
 
 - Return `True` if all remaining characters in the pattern are stars.
 

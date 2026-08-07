@@ -13,6 +13,7 @@ Note that items with different indices are considered different even if they hav
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $deliciousness = [1,3,5,7,9]$

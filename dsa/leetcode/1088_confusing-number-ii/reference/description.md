@@ -36,6 +36,7 @@ Let $D$ be the number of decimal digits in `n`.
 - The number of integers in `[1, n]` whose rotated value is valid and different from the original integer.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 20$

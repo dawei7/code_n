@@ -15,6 +15,7 @@ Return the largest possible value of `k`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $text = "ghiabcdefhelloadamhelloabcdefghi"$

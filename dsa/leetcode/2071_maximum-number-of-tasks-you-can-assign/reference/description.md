@@ -1,6 +1,6 @@
 ## Description
 
-You have `n` tasks and `m` workers. Each task has a strength requirement stored in a **0-indexed** integer array `tasks`, with the $$i^{\text{th}}$$task requiring$\text{tasks}[i]$strength to complete. The strength of each worker is stored in a **0-indexed** integer array `workers`, with the$$j^{\text{th}}$$worker having$\text{workers}[j]$strength. Each worker can only be assigned to a **single** task and must have a strength **greater than or equal** to the task's strength requirement (i.e.,$\text{workers}[j] \ge \text{tasks}[i]$).
+You have `n` tasks and `m` workers. Each task has a strength requirement stored in a **0-indexed** integer array `tasks`, with the $$i^{\text{th}}$$ task requiring $\text{tasks}[i]$ strength to complete. The strength of each worker is stored in a **0-indexed** integer array `workers`, with the $$j^{\text{th}}$$ worker having $\text{workers}[j]$ strength. Each worker can only be assigned to a **single** task and must have a strength **greater than or equal** to the task's strength requirement (i.e., $\text{workers}[j] \ge \text{tasks}[i]$).
 
 Additionally, you have `pills` magical pills that will **increase a worker's strength** by `strength`. You can decide which workers receive the magical pills, however, you may only give each worker **at most one** magical pill.
 
@@ -11,6 +11,7 @@ Given the **0-indexed **integer arrays `tasks` and `workers` and the integers `p
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $tasks = [<u>**3**</u>,<u>**2**</u>,<u>**1**</u>], workers = [<u>**0**</u>,<u>**3**</u>,<u>**3**</u>], pills = 1, strength = 1$

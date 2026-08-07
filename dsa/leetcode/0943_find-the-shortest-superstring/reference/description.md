@@ -9,6 +9,7 @@ You may assume that no string in `words` is a substring of another string in `wo
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["alex","loves","leetcode"]$

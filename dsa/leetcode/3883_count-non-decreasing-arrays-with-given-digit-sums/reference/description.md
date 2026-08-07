@@ -17,9 +17,9 @@ An array is said to be **non-decreasing** if each element is greater than or equ
 
 **Inputs**
 
-- `digitSum`: An array whose entry at index `i` is the required decimal digit sum of `arr[i]`.
+- `digitSum`: An array whose entry at index `i` is the required decimal digit sum of $\text{arr}[i]$.
 
-Let $n=\lvert\texttt{digitSum}\rvert$, let $U=5001$ be the number of permitted values, and let $D(x)$ denote the sum of the decimal digits of $x$. A candidate array must satisfy $0\le\texttt{arr[i]}\le5000$, $\texttt{arr[i-1]}\le\texttt{arr[i]}$ whenever $i>0$, and $D(\texttt{arr[i]})=\texttt{digitSum[i]}$ at every index.
+Let $n=\lvert\texttt{digitSum}\rvert$, let $U=5001$ be the number of permitted values, and let $D(x)$ denote the sum of the decimal digits of $x$. A candidate array must satisfy $0\le\texttt{\text{arr}[i]}\le5000$, $\texttt{arr[i-1]}\le\texttt{\text{arr}[i]}$ whenever $i>0$, and $D(\texttt{\text{arr}[i]})=\texttt{\text{digitSum}[i]}$ at every index.
 
 Arrays are distinct when they differ at one or more positions.
 
@@ -28,6 +28,7 @@ Arrays are distinct when they differ at one or more positions.
 Return the number of distinct valid arrays, reduced modulo $1{,}000{,}000{,}007$.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

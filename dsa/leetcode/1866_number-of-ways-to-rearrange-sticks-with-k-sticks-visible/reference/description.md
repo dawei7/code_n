@@ -11,6 +11,7 @@ Given `n` and `k`, return *the **number** of such arrangements*. Since the answe
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 3, k = 2$

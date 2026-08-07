@@ -21,6 +21,7 @@ You have the following three operations permitted on a word:
 Return the smallest number of permitted character operations that converts `word1` exactly into `word2`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $word1 = "horse", word2 = "ros"$

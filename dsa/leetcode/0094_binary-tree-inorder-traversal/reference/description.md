@@ -12,6 +12,7 @@ Given the `root` of a binary tree, return *the inorder traversal of its nodes' v
 Return all node values in left-subtree, node, right-subtree order.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

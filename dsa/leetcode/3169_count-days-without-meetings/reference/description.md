@@ -11,6 +11,7 @@ Return the count of days when the employee is available for work but no meetings
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

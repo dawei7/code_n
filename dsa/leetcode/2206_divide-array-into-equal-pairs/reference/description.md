@@ -15,6 +15,7 @@ Return `true` *if nums can be divided into* `n` *pairs, otherwise return* `false
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,2,3,2,2,2]`

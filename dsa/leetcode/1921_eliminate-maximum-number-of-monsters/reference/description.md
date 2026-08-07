@@ -15,6 +15,7 @@ Return *the **maximum** number of monsters that you can eliminate before you los
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $dist = [1,3,4], speed = [1,1,1]$

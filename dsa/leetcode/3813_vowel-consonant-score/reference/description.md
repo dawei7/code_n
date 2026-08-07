@@ -26,6 +26,7 @@ Let $N=\lvert\texttt{s}\rvert$. A character contributes to the consonant count o
 Return $\lfloor v/c\rfloor$ when the consonant count $c$ is positive. Return `0` when $c=0$.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

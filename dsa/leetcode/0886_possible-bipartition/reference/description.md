@@ -9,6 +9,7 @@ Given the integer `n` and the array `dislikes` where $\text{dislikes}[i] = [a_{i
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 4, dislikes = [[1,2],[1,3],[2,4]]$

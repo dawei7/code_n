@@ -27,6 +27,7 @@ The result format is in the following example.
 Return exactly one row and one column named `SecondHighestSalary`, containing the requested distinct salary or null.
 
 ### Examples
+
 #### Example 1
 
 ```

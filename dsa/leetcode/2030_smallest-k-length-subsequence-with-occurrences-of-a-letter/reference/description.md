@@ -13,6 +13,7 @@ A string `a` is **lexicographically smaller** than a string `b` if in the first 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "leet", k = 3, letter = "e", repetition = 1`

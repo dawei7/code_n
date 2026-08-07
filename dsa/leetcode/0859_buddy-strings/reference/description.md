@@ -11,6 +11,7 @@ Swapping letters is defined as taking two indices `i` and `j` (0-indexed) such t
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "ab", goal = "ba"`

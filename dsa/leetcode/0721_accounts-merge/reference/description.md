@@ -11,6 +11,7 @@ After merging the accounts, return the accounts in the following format: the fir
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $accounts = [["John","johnsmith@\text{mail.com}","\text{john}_{newyork}@\text{mail.com}"],["John","johnsmith@\text{mail.com}","john00@\text{mail.com}"],["Mary","mary@\text{mail.com}"],["John","johnnybravo@\text{mail.com}"]]$

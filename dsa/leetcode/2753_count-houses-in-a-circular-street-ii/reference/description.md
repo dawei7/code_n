@@ -20,6 +20,7 @@ Return `ans` *which represents the number of houses on this street.*
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $street = [1,1,1,1], k = 10$

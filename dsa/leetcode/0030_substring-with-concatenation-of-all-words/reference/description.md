@@ -19,6 +19,7 @@ Return an array of *the starting indices* of all the concatenated substrings in 
 Return all zero-based starting indices whose substring is a permutation-concatenation of every entry in `words`, in any order.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

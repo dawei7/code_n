@@ -27,6 +27,7 @@ Return *the number of possible pairs* `(x, y)` *that satisfy the conditions ment
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 3, m = 2$

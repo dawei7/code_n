@@ -12,12 +12,14 @@ We can use dynamic programming to calculate the number of smooth descending peri
 
 In summary:
 
-$$\textit{dp}[i] =
+$$
+\textit{dp}[i] =
 \begin{cases}
-1, \& i = 0 \\
-1, \& i > 0,\ \textit{prices}[i] \ne \textit{prices}[i-1] - 1 \\
-\textit{dp}[i-1] + 1, \& i > 0,\ \textit{prices}[i] = \textit{prices}[i-1] - 1
-\end{cases}$$
+1, & i = 0 \\
+1, & i > 0,\ \textit{prices}[i] \ne \textit{prices}[i-1] - 1 \\
+\textit{dp}[i-1] + 1, & i > 0,\ \textit{prices}[i] = \textit{prices}[i-1] - 1
+\end{cases}
+$$
 
 We just need to traverse $\textit{prices}$ using the above recurrence relation and maintain the corresponding $\textit{dp}$ array, while using $\textit{res}$ to maintain the sum of the elements in the $\textit{dp}$ array, which represents the total number of smooth descending periods.
 

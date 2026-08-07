@@ -19,6 +19,7 @@ Implement the `Solution` class:
 The app adapter returns `draws` selected values. On LeetCode, construct `Solution(head)` and call `getRandom()` once for each desired selection.
 
 ### Examples
+
 #### Example 1
 
 ![](images/getrand-linked-list.jpg)

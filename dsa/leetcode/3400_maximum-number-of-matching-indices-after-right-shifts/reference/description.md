@@ -12,6 +12,7 @@ A **right shift** is defined as shifting the element at index `i` to index $(i +
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

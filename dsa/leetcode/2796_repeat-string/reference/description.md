@@ -8,6 +8,7 @@ Try to implement it without using the built-in method `string.repeat`.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $str = "hello", times = 2$

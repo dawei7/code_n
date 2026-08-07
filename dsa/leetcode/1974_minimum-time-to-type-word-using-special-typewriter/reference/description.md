@@ -17,6 +17,7 @@ Given a string `word`, return the** minimum** number of seconds to type out the 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $word = "abc"$

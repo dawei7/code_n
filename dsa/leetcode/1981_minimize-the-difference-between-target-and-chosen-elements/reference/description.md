@@ -13,6 +13,7 @@ The **absolute difference** between two numbers `a` and `b` is the absolute valu
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/matrix1.png)

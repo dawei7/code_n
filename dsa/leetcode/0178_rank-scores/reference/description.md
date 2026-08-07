@@ -35,6 +35,7 @@ The result format is in the following example.
 Return a table with columns `score` and `rank`, retaining every input row and ordering the rows by score descending.
 
 ### Examples
+
 #### Example 1
 
 ```

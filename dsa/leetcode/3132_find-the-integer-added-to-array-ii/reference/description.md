@@ -13,6 +13,7 @@ Return the **minimum** possible integer* *`x`* *that achieves this equivalence.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

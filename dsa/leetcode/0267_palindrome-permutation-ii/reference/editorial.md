@@ -7,7 +7,7 @@
 
 The simplest solution is generate every possible permutation of the given string $s$ and check if the generated permutation is a palindrome. After this, the palindromic permuations can be added to a $set$ in order to eliminate the duplicates. At the end, we can return an array comprised of the elements of this $set$ as the resultant array.
 
-Let's look at the way these permutations are generated. We make use of a recursive function `permute` which  takes the index of the current element $current_{index}$ as one of the arguments. Then, it swaps the current element with every other element in the array, lying towards its right, so as to generate a new ordering of the array elements. After the swapping has been done, it makes another call to `permute` but this time with the index of the next element in the array. While returning back, we reverse the swapping done in the current function call. Thus, when we reach the end of the array, a new ordering of the array's elements is generated.
+Let's look at the way these permutations are generated. We make use of a recursive function `permute` which  takes the index of the current element $current_index$ as one of the arguments. Then, it swaps the current element with every other element in the array, lying towards its right, so as to generate a new ordering of the array elements. After the swapping has been done, it makes another call to `permute` but this time with the index of the next element in the array. While returning back, we reverse the swapping done in the current function call. Thus, when we reach the end of the array, a new ordering of the array's elements is generated.
 
 The animation below depicts the ways the permutations are generated.
 

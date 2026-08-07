@@ -14,17 +14,17 @@ The fundamental concept behind this approach is that a cycle in a linked list me
 
 A hash set is a data structure that allows us to efficiently check if an element is already present (visited) and also to insert new elements (mark as visited).
 
-So, our strategy here is to traverse the linked list one node at a time and, for each $\text{node}$, check if it is in our hash set $\text{nodes\\\_seen}$. If we come across a node that is already in our set, then we have encountered a cycle. If not, we add this new node to the set $\text{nodes\\\_seen}$ and proceed to the next one.
+So, our strategy here is to traverse the linked list one node at a time and, for each $\text{node}$, check if it is in our hash set $\text{nodes\\_seen}$. If we come across a node that is already in our set, then we have encountered a cycle. If not, we add this new node to the set $\text{nodes\\_seen}$ and proceed to the next one.
 
 If we manage to reach the end of the list (a null node), then we can conclude that no cycle exists. This is because we would have been stuck in a loop and wouldn't reach the end if there was a cycle.
 
 #### Algorithm
 
-1. Initialize the $\text{node}$ to the head of the linked list and an empty hash set, $\text{nodes\\\_seen}$.
+1. Initialize the $\text{node}$ to the head of the linked list and an empty hash set, $\text{nodes\\_seen}$.
 2. Start from the head of the linked list, and move the $\text{node}$ one step at a time.
-3. For each $\text{node}$ that we visit, check if it's already in the $\text{nodes\\\_seen}$.
+3. For each $\text{node}$ that we visit, check if it's already in the $\text{nodes\\_seen}$.
 * If it is, it means we've found a cycle. Return the current node as the entry point of the cycle.
-* If it's not in $\text{nodes\\\_seen}$, then add the current node to $\text{nodes\\\_seen}$, and move on to the next node.
+* If it's not in $\text{nodes\\_seen}$, then add the current node to $\text{nodes\\_seen}$, and move on to the next node.
 4. If $\text{node}$ becomes `null` (the end of the list), then return `null`. There's no cycle in the list because we would have been stuck in a loop and wouldn't reach the end if there was a cycle.
 
 #### Implementation

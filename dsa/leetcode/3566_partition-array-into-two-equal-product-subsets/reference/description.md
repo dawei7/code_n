@@ -13,6 +13,7 @@ A **subset** of an array is a selection of elements of the array.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

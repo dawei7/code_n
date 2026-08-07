@@ -15,6 +15,7 @@ Please solve it without lodash's `_.groupBy` function.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** ``

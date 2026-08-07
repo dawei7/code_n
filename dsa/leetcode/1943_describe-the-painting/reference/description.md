@@ -27,6 +27,7 @@ A **half-closed segment** `[a, b)` is the section of the number line between poi
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/1.png)

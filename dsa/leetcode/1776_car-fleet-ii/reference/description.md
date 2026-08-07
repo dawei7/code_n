@@ -2,19 +2,20 @@
 
 There are `n` cars traveling at different speeds in the same direction along a one-lane road. You are given an array `cars` of length `n`, where $\text{cars}[i] = [\text{position}_{i}, \text{speed}_{i}]$ represents:
 
-- $\text{position}_{i}$ is the distance between the $$i^{\text{th}}$$car and the beginning of the road in meters. It is guaranteed that$\text{position}_{i} < \text{position}_{i}+1$.
+- $\text{position}_{i}$ is the distance between the $$i^{\text{th}}$$ car and the beginning of the road in meters. It is guaranteed that $\text{position}_{i} < \text{position}_{i}+1$.
 
 - $\text{speed}_{i}$ is the initial speed of the $$i^{\text{th}}$$ car in meters per second.
 
 For simplicity, cars can be considered as points moving along the number line. Two cars collide when they occupy the same position. Once a car collides with another car, they unite and form a single car fleet. The cars in the formed fleet will have the same position and the same speed, which is the initial speed of the **slowest** car in the fleet.
 
-Return an array `answer`, where $\text{answer}[i]$ is the time, in seconds, at which the $$i^{\text{th}}$$car collides with the next car, or `-1` if the car does not collide with the next car. Answers within$10^{-5}$ of the actual answers are accepted.
+Return an array `answer`, where $\text{answer}[i]$ is the time, in seconds, at which the $$i^{\text{th}}$$ car collides with the next car, or `-1` if the car does not collide with the next car. Answers within $10^{-5}$ of the actual answers are accepted.
 ### Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $cars = [[1,2],[2,1],[4,3],[7,2]]$

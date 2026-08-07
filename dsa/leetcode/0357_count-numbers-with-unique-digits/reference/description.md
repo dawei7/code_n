@@ -9,9 +9,10 @@ Given an integer `n`, return the count of all numbers with unique digits, `x`, w
 
 **Return value**
 
-Return the number of integers in `[0,10^n)` that contain no repeated decimal digit.
+Return the number of integers in $[0,10^n)$ that contain no repeated decimal digit.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 2$

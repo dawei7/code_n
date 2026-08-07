@@ -15,6 +15,7 @@ Given a linked list `head`, return *an array of length 2 containing *`[minDistan
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/a1.png)

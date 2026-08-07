@@ -22,6 +22,7 @@ The performed transactions form a subsequence of this array. Starting from zero,
 Return the largest possible number of performed transactions. The selected amounts themselves do not need to be returned.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

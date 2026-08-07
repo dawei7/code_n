@@ -15,6 +15,7 @@ A **strobogrammatic number** is a number that looks the same when rotated `180` 
 Return integer count of strobogrammatic numbers in `[low, high]`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $low = "50", high = "100"$

@@ -12,6 +12,7 @@ Return *the **first starting** index where the pattern matches the bits read fro
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $stream = [1,1,1,0,1,1,1,...], pattern = [0,1]$

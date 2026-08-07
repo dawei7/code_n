@@ -8,6 +8,7 @@ Return *the **total number** of ways to distribute *`n` *candies among *`3`* chi
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 5, limit = 2$

@@ -7,6 +7,7 @@ Given a rectangle of size `n` x `m`, return *the minimum number of integer-sided
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/sample_11_1592.png)

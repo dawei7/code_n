@@ -13,6 +13,7 @@ Return *the number of restricted paths from node* `1` *to node* `n`. Since that 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/restricted_paths_ex1.png)

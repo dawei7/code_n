@@ -13,6 +13,7 @@ Return *the **maximum number of components** in any valid split*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/example12-cropped2svg.jpg)

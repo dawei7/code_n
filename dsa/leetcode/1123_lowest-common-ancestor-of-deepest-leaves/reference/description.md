@@ -15,6 +15,7 @@ Recall that:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/sketch1.png)

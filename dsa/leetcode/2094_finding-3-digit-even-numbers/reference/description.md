@@ -19,6 +19,7 @@ Return *a **sorted** array of the unique integers.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $digits = [2,1,3,0]$

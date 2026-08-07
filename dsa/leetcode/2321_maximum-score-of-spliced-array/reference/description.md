@@ -19,6 +19,7 @@ A **subarray** is a contiguous sequence of elements within an array. `arr[left..
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [60,60,60], nums2 = [10,90,10]$

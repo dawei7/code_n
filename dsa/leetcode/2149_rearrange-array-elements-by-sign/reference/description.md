@@ -17,6 +17,7 @@ Return *the modified array after rearranging the elements to satisfy the aforeme
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,1,-2,-5,2,-4]`

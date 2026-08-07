@@ -14,6 +14,7 @@ A submatrix `(x1, y1, x2, y2)` is a matrix that forms by choosing all cells $\te
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

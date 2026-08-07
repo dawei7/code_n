@@ -2,7 +2,7 @@
 
 There is a survey that consists of `n` questions where each question's answer is either `0` (no) or `1` (yes).
 
-The survey was given to `m` students numbered from `0` to $m - 1$ and `m` mentors numbered from `0` to $m - 1$. The answers of the students are represented by a 2D integer array `students` where $\text{students}[i]$ is an integer array that contains the answers of the $$i^{\text{th}}$$student (**0-indexed**). The answers of the mentors are represented by a 2D integer array `mentors` where$\text{mentors}[j]$is an integer array that contains the answers of the$$j^{\text{th}}$$ mentor (**0-indexed**).
+The survey was given to `m` students numbered from `0` to $m - 1$ and `m` mentors numbered from `0` to $m - 1$. The answers of the students are represented by a 2D integer array `students` where $\text{students}[i]$ is an integer array that contains the answers of the $$i^{\text{th}}$$ student (**0-indexed**). The answers of the mentors are represented by a 2D integer array `mentors` where $\text{mentors}[j]$ is an integer array that contains the answers of the $$j^{\text{th}}$$ mentor (**0-indexed**).
 
 Each student will be assigned to **one** mentor, and each mentor will have **one** student assigned to them. The **compatibility score** of a student-mentor pair is the number of answers that are the same for both the student and the mentor.
 
@@ -17,6 +17,7 @@ Given `students` and `mentors`, return *the **maximum compatibility score sum** 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $students = [[1,1,0],[1,0,1],[0,0,1]], mentors = [[1,0,0],[0,0,1],[1,1,0]]$

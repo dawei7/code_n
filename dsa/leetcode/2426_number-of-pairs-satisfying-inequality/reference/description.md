@@ -13,6 +13,7 @@ Return* the **number of pairs** that satisfy the conditions.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [3,2,5], nums2 = [2,2,1], diff = 1$

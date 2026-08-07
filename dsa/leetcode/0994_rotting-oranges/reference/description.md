@@ -17,6 +17,7 @@ Return *the minimum number of minutes that must elapse until no cell has a fresh
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/oranges.png)

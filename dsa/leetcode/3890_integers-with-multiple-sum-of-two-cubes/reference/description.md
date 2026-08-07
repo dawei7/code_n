@@ -26,6 +26,7 @@ Only positive cube bases are permitted. Each representation must use its non-dec
 Return all integers at most `n` that have at least two distinct canonical cube-sum representations, sorted in strictly increasing order. Return an empty array if none exist.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

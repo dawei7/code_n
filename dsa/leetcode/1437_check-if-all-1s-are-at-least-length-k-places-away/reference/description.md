@@ -7,6 +7,7 @@ Given an binary array `nums` and an integer `k`, return `true`* if all *`1`*'s a
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/sample_1_1791.png)

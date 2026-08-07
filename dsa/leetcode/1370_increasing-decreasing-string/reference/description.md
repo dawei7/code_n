@@ -25,6 +25,7 @@ Return the resulting string after reordering `s` using this algorithm.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "aaaabbbbcccc"`

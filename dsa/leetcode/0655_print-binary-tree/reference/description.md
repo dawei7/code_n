@@ -21,6 +21,7 @@ Return *the constructed matrix *`res`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/print1-tree.jpg)

@@ -50,8 +50,10 @@ Now one could compute the number of complete turns when all N persons received a
 
 During complete turns person, the number `i` received in total
 
-$$d[i] = i + (i + N) + (i + 2N) + ... (i + (\textrm{rows} - 1) N) =
-i \times \textrm{rows} + N \frac{\textrm{rows}(\textrm{rows} - 1)}{2}$$
+$$
+d[i] = i + (i + N) + (i + 2N) + ... (i + (\textrm{rows} - 1) N) =
+i \times \textrm{rows} + N \frac{\textrm{rows}(\textrm{rows} - 1)}{2}
+$$
 
 ![fig](images/complete.png)
 

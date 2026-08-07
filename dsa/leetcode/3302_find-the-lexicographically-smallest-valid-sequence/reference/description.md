@@ -19,6 +19,7 @@ Return an array of size `word2.length` representing the lexicographically smalle
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

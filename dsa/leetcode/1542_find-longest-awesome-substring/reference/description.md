@@ -9,6 +9,7 @@ Return *the length of the maximum length **awesome substring** of* `s`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "3242415"`

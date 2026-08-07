@@ -18,6 +18,7 @@ Try to implement it without using the built-in method `Promise.allSettled()`.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $functions = [$

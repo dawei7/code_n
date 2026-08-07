@@ -14,6 +14,7 @@ The node `u` is in the **subtree** of the node `v`, if $u = v$ or `v` is an ance
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `root = [7,6,5,4,3,2,1], k = 2`

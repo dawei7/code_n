@@ -6,6 +6,7 @@ Given a **positive** integer `n`, return *a string representing the **smallest p
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 105$

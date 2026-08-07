@@ -22,6 +22,7 @@ A **permutation** of an array is a rearrangement of the elements of that array, 
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 1$

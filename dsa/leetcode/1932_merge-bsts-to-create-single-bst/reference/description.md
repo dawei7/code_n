@@ -23,6 +23,7 @@ A leaf is a node that has no children.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/d1.png)

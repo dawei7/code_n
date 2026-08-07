@@ -109,9 +109,11 @@ For instance, the element $\text{sold}[2]$ represents the maximal profits we gai
 
 According to the state machine we defined before, we can then deduce the formulas to calculate the values for the state arrays, as follows:
 
-$$\text{sold}[i] = \text{hold}[i-1] + \text{price}[i] \\
+$$
+    \text{sold}[i] = \text{hold}[i-1] + \text{price}[i] \\
     \text{held}[i] = \max{(\text{held}[i-1], \quad \text{reset}[i-1] - \text{price}[i])} \\
-    \text{reset}[i] = \max{(\text{reset}[i-1], \quad \text{sold}[i-1])}$$
+    \text{reset}[i] = \max{(\text{reset}[i-1], \quad \text{sold}[i-1])}
+$$
 
 Here is how we interpret each formulas:
 

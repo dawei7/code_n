@@ -11,6 +11,7 @@ Return `true` *if you can sort the array in ascending order, else return *`false
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [8,4,2,30,15]`

@@ -13,6 +13,7 @@ Your task is to calculate $a^b$ mod `1337` where `a` is a positive integer and `
 Return the remainder of $a^b$ after division by `1337`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $a = 2, b = [3]$

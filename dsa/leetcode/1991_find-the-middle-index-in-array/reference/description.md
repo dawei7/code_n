@@ -13,6 +13,7 @@ Return *the **leftmost** *`middleIndex`* that satisfies the condition, or *`-1`*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,3,-1,<u>8</u>,4]`

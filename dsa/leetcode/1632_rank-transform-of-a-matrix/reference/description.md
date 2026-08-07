@@ -24,6 +24,7 @@ The test cases are generated so that `answer` is unique under the given rules.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/rank1.jpg)

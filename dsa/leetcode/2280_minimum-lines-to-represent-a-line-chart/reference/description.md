@@ -11,6 +11,7 @@ Return *the **minimum number of lines** needed to represent the line chart*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex0.png)

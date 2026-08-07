@@ -26,6 +26,7 @@ An **interleaving** of two strings `s` and `t` is a configuration where `s` and 
 Return `true` if `s3` preserves the character order of both source strings under a valid alternating chunk decomposition; otherwise return `false`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/interleave.jpg)

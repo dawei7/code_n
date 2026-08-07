@@ -35,6 +35,7 @@ You may assume all calls to the `checkIn` and `checkOut` methods are consistent.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ```

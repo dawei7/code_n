@@ -15,6 +15,7 @@ Return the **minimum** time `t` at which the string `s` becomes **active**. If i
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

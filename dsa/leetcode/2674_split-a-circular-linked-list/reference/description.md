@@ -10,6 +10,7 @@ Return *an array answer of length 2 in which the first element is a **circular l
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,5,7]`

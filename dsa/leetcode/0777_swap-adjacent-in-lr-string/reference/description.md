@@ -7,6 +7,7 @@ In a string composed of `'L'`, `'R'`, and `'X'` characters, like `"RXXLRXRXL"`, 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $start = "RXXLRXRXL", result = "XRLXXRRLX"$

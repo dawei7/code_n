@@ -7,6 +7,7 @@ Given an array `nums` of **distinct** positive integers, return *the number of t
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,3,4,6]`

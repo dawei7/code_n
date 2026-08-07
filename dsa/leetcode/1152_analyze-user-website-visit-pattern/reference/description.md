@@ -29,9 +29,7 @@ All three lists have the same length $m$. Each complete visit tuple is unique, b
 
 For a user $u$ with $\ell_u$ records, define the total number of candidate visit triples by
 
-$$
-C = \sum_u \binom{\ell_u}{3}.
-$$
+$C = \sum_u \binom{\ell_u}{3}.$
 
 The input guarantees that at least one user has visited at least three websites.
 
@@ -40,6 +38,7 @@ The input guarantees that at least one user has visited at least three websites.
 - A list containing the three website names of the maximum-score pattern, with lexicographic order resolving a score tie.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $username = ["joe","joe","joe","james","james","james","james","mary","mary","mary"], timestamp = [1,2,3,4,5,6,7,8,9,10], website = ["home","about","career","home","cart","maps","home","home","about","career"]$

@@ -14,6 +14,7 @@ Each subsequent time `gen.next()` is called, an integer `jump` will be passed in
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [1,2,3,4,5], steps = [1,2,6], startIndex = 0`

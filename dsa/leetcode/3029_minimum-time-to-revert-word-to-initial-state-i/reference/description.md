@@ -17,6 +17,7 @@ Return *the **minimum** time greater than zero required for* `word` *to revert t
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $word = "abacaba", k = 3$

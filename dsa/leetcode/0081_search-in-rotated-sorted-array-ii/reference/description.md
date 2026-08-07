@@ -19,6 +19,7 @@ You must decrease the overall operation steps as much as possible.
 Return `true` if `target` appears in `nums`; otherwise return `false`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,5,6,0,0,1,2], target = 0`

@@ -22,11 +22,10 @@ A **sparse vector** is a vector that has mostly zero values, you should store th
 
 Return the dot product integer sum:
 
-$$
-\sum_{i=0}^{N-1} \text{nums1}[i] \times \text{nums2}[i].
-$$
+$\sum_{i=0}^{N-1} \text{nums1}[i] \times \text{nums2}[i].$
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [1,0,0,2,3], nums2 = [0,3,0,4,0]$

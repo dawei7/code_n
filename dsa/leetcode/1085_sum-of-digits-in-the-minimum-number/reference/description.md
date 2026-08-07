@@ -17,6 +17,7 @@ Let $n$ be the length of `nums`, and let $D$ be the number of decimal digits in 
 Repeated occurrences of the minimum do not change the answer because the contract uses the minimum value, not its frequency.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [34,23,1,24,75,33,54,8]`

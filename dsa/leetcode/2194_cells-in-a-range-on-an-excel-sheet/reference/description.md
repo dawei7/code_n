@@ -18,6 +18,7 @@ Return *the **list of cells*** `(x, y)` *such that* $r1 \le x \le r2$ *and* $c1 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1drawio.png)

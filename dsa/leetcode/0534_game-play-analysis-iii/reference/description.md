@@ -25,15 +25,16 @@ The result format is in the following example.
 
 **Input**
 
-- `Activity(player_id, device_id, event_date, games_played)`: login activity uniquely keyed by player and date
+- $Activity(\text{player}_{id}, \text{device}_{id}, \text{event}_{date}, \text{games}_{played})$: login activity uniquely keyed by player and date
 
 **Return value**
 
-- Return one row per activity record with columns `player_id`, `event_date`, and `games_played_so_far`.
-  `games_played_so_far` is the sum of that player's `games_played` values on dates no later than the row's
-  `event_date`. Result order is unrestricted.
+- Return one row per activity record with columns $\text{player}_{id}$, $\text{event}_{date}$, and `games_played_so_far`.
+  `games_played_so_far` is the sum of that player's $\text{games}_{played}$ values on dates no later than the row's
+  $\text{event}_{date}$. Result order is unrestricted.
 
 ### Examples
+
 #### Example 1
 
 ```

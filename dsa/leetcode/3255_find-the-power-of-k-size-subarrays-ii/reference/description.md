@@ -17,6 +17,7 @@ Return an integer array `results` of size $n - k + 1$, where $\text{results}[i]$
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

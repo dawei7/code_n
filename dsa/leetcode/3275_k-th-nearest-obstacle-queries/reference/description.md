@@ -8,7 +8,7 @@ You are given a positive integer `k`. You are also given a 2D array `queries`, w
 
 After each query, you need to find the **distance** of the $$k^{\text{th}}$$ **nearest** obstacle from the origin.
 
-Return an integer array `results` where $\text{results}[i]$ denotes the $$k^{\text{th}}$$nearest obstacle after query `i`, or$\text{results}[i] = -1$ if there are less than `k` obstacles.
+Return an integer array `results` where $\text{results}[i]$ denotes the $$k^{\text{th}}$$ nearest obstacle after query `i`, or $\text{results}[i] = -1$ if there are less than `k` obstacles.
 
 **Note** that initially there are **no** obstacles anywhere.
 
@@ -19,6 +19,7 @@ The **distance** of an obstacle at coordinate `(x, y)` from the origin is given 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

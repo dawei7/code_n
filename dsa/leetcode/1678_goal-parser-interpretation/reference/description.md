@@ -9,6 +9,7 @@ Given the string `command`, return *the **Goal Parser**'s interpretation of *`co
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $command = "G()(al)"$

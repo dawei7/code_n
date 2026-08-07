@@ -1,6 +1,6 @@
 ## Description
 
-Given the **0-indexed** arrays `prices` and `profits` of length `n`. There are `n` items in an store where the $$i^{\text{th}}$$item has a price of$\text{prices}[i]$and a profit of$\text{profits}[i]$.
+Given the **0-indexed** arrays `prices` and `profits` of length `n`. There are `n` items in an store where the $$i^{\text{th}}$$ item has a price of $\text{prices}[i]$ and a profit of $\text{profits}[i]$.
 
 We have to pick three items with the following condition:
 
@@ -14,6 +14,7 @@ Return* the **maximum profit** we can get, and *`-1`* if it's not possible to pi
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $prices = [10,2,3,4], profits = [100,2,7,10]$

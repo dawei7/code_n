@@ -17,6 +17,7 @@ Return an array of strings `segments`, where $\text{segments}[i]$ is the $$i^{\t
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

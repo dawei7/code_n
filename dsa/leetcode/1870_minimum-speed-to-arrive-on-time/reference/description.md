@@ -15,6 +15,7 @@ Tests are generated such that the answer will not exceed $10^{7}$ and `hour` wil
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $dist = [1,3,2], hour = 6$

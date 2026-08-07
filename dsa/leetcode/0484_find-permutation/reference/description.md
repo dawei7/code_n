@@ -21,6 +21,7 @@ Given a string `s`, reconstruct the lexicographically smallest permutation `perm
 The result has length $\lvert \texttt{s} \rvert + 1$ and uses every integer in that range exactly once.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "I"`

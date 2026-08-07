@@ -13,6 +13,7 @@ The gcd of two integers is the greatest common divisor of the two integers.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,6,3,4]`

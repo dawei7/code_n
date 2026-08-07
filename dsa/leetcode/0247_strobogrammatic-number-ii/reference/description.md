@@ -11,9 +11,10 @@ A **strobogrammatic number** is a number that looks the same when rotated `180` 
 
 **Return value**
 
-Return `List[str]` containing all strobogrammatic numbers of length `n`.
+Return $\text{List}[str]$ containing all strobogrammatic numbers of length `n`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 2$

@@ -17,6 +17,7 @@ Return *the **number** of **different** GCDs among all **non-empty** subsequence
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/image-1.png)

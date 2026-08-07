@@ -26,6 +26,7 @@ More formally, a subarray `[arr[i], arr[i + 1], ..., arr[j]]` of `arr` is said t
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [9,4,2,10,7,8,8,1,9]`

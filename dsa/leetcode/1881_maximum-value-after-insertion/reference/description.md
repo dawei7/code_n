@@ -15,6 +15,7 @@ Return *a string representing the **maximum** value of *`n`*​​​​​​ a
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = "99", x = 9$

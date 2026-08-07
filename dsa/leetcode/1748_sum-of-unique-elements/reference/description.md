@@ -9,6 +9,7 @@ Return *the **sum** of all the unique elements of *`nums`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3,2]`

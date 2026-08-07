@@ -11,6 +11,7 @@ Return the **minimum** number of substrings that you can partition `s` into.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -14,6 +14,7 @@ A binary tree's **maximum depth** is the number of nodes along the longest path 
 Return the number of nodes on the longest root-to-leaf path. An empty tree has depth `0`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/tmp-tree.jpg)

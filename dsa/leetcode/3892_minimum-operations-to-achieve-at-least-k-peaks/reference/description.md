@@ -27,6 +27,7 @@ Each operation increases one chosen array element by $1$. Values may become larg
 Return the fewest unit increases that can produce at least `k` peaks, or $-1$ if the requested count is impossible.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -19,6 +19,7 @@ Return a boolean indicating whether the matching covers the entire input string 
 Return `True` when `p` matches all of `s`; otherwise return `False`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "aa", p = "a"`

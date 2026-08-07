@@ -21,6 +21,7 @@ Return the **minimum** total cost required to reach $(m - 1, n - 1)$.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

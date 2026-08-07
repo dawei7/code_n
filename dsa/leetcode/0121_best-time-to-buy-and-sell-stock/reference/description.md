@@ -16,6 +16,7 @@ Return *the maximum profit you can achieve from this transaction*. If you cannot
 Return the maximum profit from at most one purchase followed by one later sale.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $prices = [7,1,5,3,6,4]$

@@ -21,6 +21,7 @@ Both coordinates of both cells are between `0` and `7`, inclusive.
 Return `true` when at least one legal knight route from `start` to `target` contains an even number of moves, including the zero-move route when the cells are equal. Return `false` otherwise.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

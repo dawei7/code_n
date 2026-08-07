@@ -13,7 +13,7 @@ You are given a start IP address `ip` and the number of IP addresses we need to 
 Return *the **shortest** list of **CIDR blocks** that covers the range of IP addresses. If there are multiple answers, return **any** of them*.
 ### Function Contract
 
-`solve(ip: str, n: int) -> list[str]`
+$solve(ip: str, n: int) -> \text{list}[str]$
 
 **Inputs**
 
@@ -25,6 +25,7 @@ Return *the **shortest** list of **CIDR blocks** that covers the range of IP add
 Return a minimum-length list of strings in `"base-address/prefix-length"` form whose CIDR ranges together cover exactly the inclusive interval `[ip, ip + n - 1]`. No returned block may cover an address outside that interval. If several minimum-length covers are possible, any of them is valid.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $ip = "255.0.0.7", n = 10$

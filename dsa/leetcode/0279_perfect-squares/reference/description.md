@@ -14,6 +14,7 @@ A **perfect square** is an integer that is the square of an integer; in other wo
 Return the least number of perfect-square terms that sum to `n`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 12$

@@ -13,6 +13,7 @@ Given string num representing a non-negative integer `num`, and an integer `k`, 
 Return the smallest attainable value as a normalized decimal string, using `"0"` for an empty or all-zero remainder.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num = "1432219", k = 3$

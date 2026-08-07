@@ -17,6 +17,7 @@ A **subarray** is a contiguous sequence of elements within an array. `arr[left..
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ```

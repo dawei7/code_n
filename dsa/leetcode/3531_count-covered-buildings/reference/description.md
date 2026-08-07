@@ -11,6 +11,7 @@ Return the number of **covered** buildings.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/telegram-cloud-photo-size-5-6212982906394101085-m.jpg)

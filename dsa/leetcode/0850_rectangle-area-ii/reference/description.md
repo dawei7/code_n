@@ -1,6 +1,6 @@
 ## Description
 
-You are given a 2D array of axis-aligned `rectangles`. Each $\text{rectangle}[i] = [x_{i1}, y_{i1}, x_{i2}, y_{i2}]$ denotes the $$i^{\text{th}}$$rectangle where$(x_{i1}, y_{i1})$are the coordinates of the **bottom-left corner**, and$(x_{i2}, y_{i2})$ are the coordinates of the **top-right corner**.
+You are given a 2D array of axis-aligned `rectangles`. Each $\text{rectangle}[i] = [x_{i1}, y_{i1}, x_{i2}, y_{i2}]$ denotes the $$i^{\text{th}}$$ rectangle where $(x_{i1}, y_{i1})$ are the coordinates of the **bottom-left corner**, and $(x_{i2}, y_{i2})$ are the coordinates of the **top-right corner**.
 
 Calculate the **total area** covered by all `rectangles` in the plane. Any area covered by two or more rectangles should only be counted **once**.
 
@@ -11,6 +11,7 @@ Return *the **total area***. Since the answer may be too large, return it **modu
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/rectangle_area_ii_pic.png)

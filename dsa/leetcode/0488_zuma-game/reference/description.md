@@ -24,6 +24,7 @@ Given a string `board`, representing the row of balls on the board, and a string
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $board = "WRRBBW", hand = "RB"$

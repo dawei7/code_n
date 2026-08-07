@@ -19,6 +19,7 @@ Return ***true** if such an array exists or **false** otherwise.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $derived = [1,1,0]$

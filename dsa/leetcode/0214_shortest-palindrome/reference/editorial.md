@@ -333,9 +333,9 @@ $\text{Character } 'a':$
 
 $\text{Update hash:}$
 
-$\text{hash} = (\text{hash} \times \text{base} + \text{character\\\_value}) \% \text{mod}$
+$\text{hash} = (\text{hash} \times \text{base} + \text{character\\_value}) \% \text{mod}$
 
-$\text{Suppose } \text{character\\\_value} \text{ for } 'a' \text{ is } 1.$
+$\text{Suppose } \text{character\\_value} \text{ for } 'a' \text{ is } 1.$
 
 $\text{hash} = (0 \times 29 + 1) \%  1000000007 = 1$
 

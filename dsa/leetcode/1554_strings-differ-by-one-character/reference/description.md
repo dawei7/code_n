@@ -14,6 +14,7 @@ Return `true` if there are 2 strings that only differ by 1 character in the same
 Return `true` if there exist two strings in `dict` with Hamming distance exactly 1; otherwise return `false`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $dict = ["abcd","acbd", "aacd"]$

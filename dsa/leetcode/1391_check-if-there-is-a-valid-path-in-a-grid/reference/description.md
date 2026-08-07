@@ -27,6 +27,7 @@ Return `true`* if there is a valid path in the grid or *`false`* otherwise*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/e1.png)

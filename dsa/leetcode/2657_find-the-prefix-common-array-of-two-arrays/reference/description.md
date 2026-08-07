@@ -13,6 +13,7 @@ A sequence of `n` integers is called a **permutation** if it contains all intege
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $A = [1,3,2,4], B = [3,1,2,4]$

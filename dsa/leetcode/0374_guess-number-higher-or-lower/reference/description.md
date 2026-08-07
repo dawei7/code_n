@@ -27,6 +27,7 @@ Return *the number that I picked*.
 Return the fixed hidden number identified through the `guess(num)` responses.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 10, pick = 6$

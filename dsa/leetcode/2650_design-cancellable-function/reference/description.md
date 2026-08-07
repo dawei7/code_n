@@ -10,15 +10,17 @@ When the generator is done, the promise your function returned should resolve th
 
 An example of how your code would be used:
 
+```
 function* tasks() {
-const val = yield new Promise(resolve => resolve(2 + 2));
-yield new Promise(resolve => setTimeout(resolve, 100));
-return val + 1; // calculation shouldn't be done.
+  const val = yield new Promise(resolve => resolve(2 + 2));
+  yield new Promise(resolve => setTimeout(resolve, 100));
+  return val + 1; // calculation shouldn't be done.
 }
 const [cancel, promise] = cancellable(tasks());
 setTimeout(cancel, 50);
 promise.catch(console.log); // logs "Cancelled" at t=50ms
 ```
+
 If instead `cancel()` was not called or was called after `t=100ms`, the promise would have resolved `5`.
 ### Function Contract
 
@@ -26,8 +28,9 @@ If instead `cancel()` was not called or was called after `t=100ms`, the promise 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
-```
+
 - **Input:** ``
 generatorFunction = function*() {
 return 42;

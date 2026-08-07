@@ -18,7 +18,7 @@ To handle this efficiently, we use a difference array $\textit{dif}$ initialized
 * $\textit{dif}[l] = \textit{dif}[l] \times v$
 * $\textit{dif}[R] = \textit{dif}[R] \times v^{-1}$
 
-Here, $v^{-1}$ is the modular inverse of $v$ under modulo $\textit{M} =$10^{9}$+ 7$, which can be computed using Fermat's Little Theorem as $v^{\textit{M} - 2}$. Each query is processed in $O(\log \textit{M})$ time.
+Here, $v^{-1}$ is the modular inverse of $v$ under modulo $\textit{M} = $10^{9}$ + 7$, which can be computed using Fermat's Little Theorem as $v^{\textit{M} - 2}$. Each query is processed in $O(\log \textit{M})$ time.
 
 After processing all queries for a fixed $k$, we traverse the difference array and compute prefix products:
 $\textit{dif}[i] = \textit{dif}[i] \times \textit{dif}[i - k]$.

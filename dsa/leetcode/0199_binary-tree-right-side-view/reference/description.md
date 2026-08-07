@@ -12,6 +12,7 @@ Given the `root` of a binary tree, imagine yourself standing on the **right side
 Return one visible value per occupied level, ordered from top to bottom.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

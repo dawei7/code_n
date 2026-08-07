@@ -24,9 +24,10 @@ Let $n=\lvert\texttt{s}\rvert$ for the complexity bounds.
 
 **Return value**
 
-Return the one-character string `t[k]` without requiring `t` to be materialized.
+Return the one-character string $t[k]$ without requiring `t` to be materialized.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

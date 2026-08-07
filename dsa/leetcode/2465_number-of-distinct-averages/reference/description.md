@@ -23,6 +23,7 @@ Return* the number of **distinct** averages calculated using the above process*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [4,1,4,0,3,5]`

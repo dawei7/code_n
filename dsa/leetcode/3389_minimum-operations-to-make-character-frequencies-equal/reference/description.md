@@ -21,6 +21,7 @@ Return* *the **minimum** number of operations required to make `s` **good**.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

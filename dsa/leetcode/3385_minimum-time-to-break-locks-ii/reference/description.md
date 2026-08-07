@@ -10,7 +10,7 @@ To break a lock, Bob uses a sword with the following characteristics:
 
 - Every minute, the energy of the sword increases by the current factor `X`.
 
-- To break the $$i^{\text{th}}$$lock, the energy of the sword must reach at least$\text{strength}[i]$.
+- To break the $$i^{\text{th}}$$ lock, the energy of the sword must reach at least $\text{strength}[i]$.
 
 - After breaking a lock, the energy of the sword resets to 0, and the factor `X` increases by 1.
 
@@ -22,6 +22,7 @@ Return the **minimum **time required for Bob to break all `n` locks.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

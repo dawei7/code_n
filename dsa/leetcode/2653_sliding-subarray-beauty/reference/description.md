@@ -13,6 +13,7 @@ Return *an integer array containing *$n - k + 1$ *integers, which denote the ***
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,-1,-3,-2,3], k = 3, x = 2`

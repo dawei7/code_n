@@ -14,6 +14,7 @@ Return the integer occupying position `k` when the decimal representations of $1
 lexicographically.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 13, k = 2$

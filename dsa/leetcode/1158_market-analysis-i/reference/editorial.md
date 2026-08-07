@@ -130,7 +130,7 @@ The query aims to capture the purchasing behavior of each user in 2019 by levera
    The following columns are selected for the final output:
    - $u.\text{user}_{id}$ (aliased as $\text{buyer}_{id}$): The ID of the user.
    - $\text{join}_{date}$: The date the user joined.
-   - $COUNT(o.\text{order}_{id}) AS orders_{in\_2019}$: This counts the number of orders (from 2019) for each user. If a user didn't make any orders in 2019, this value will be 0, thanks to the nature of the LEFT JOIN.
+   - $COUNT(o.\text{order}_{id}) AS orders_in_2019$: This counts the number of orders (from 2019) for each user. If a user didn't make any orders in 2019, this value will be 0, thanks to the nature of the LEFT JOIN.
 
 5. **Ordering the Output**:
    ```sql

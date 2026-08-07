@@ -77,9 +77,11 @@ For each position, we enumerate all possible digits:
 2. Enumerate each candidate digit $\textit{digit}$.
 3. Update the leading-zero state:
 
-$$\textit{isLeading}
+$$
+\textit{isLeading}
 \land
-(\textit{digit} = 0).$$
+(\textit{digit} = 0).
+$$
 
 4. Update the previous two digits:
   - $\textit{newPrev} = \textit{curr}$

@@ -17,6 +17,7 @@ Return *the maximum number of groups (i.e., maximum *`m`*) into which you can di
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/example1.png)

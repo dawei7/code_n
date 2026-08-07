@@ -16,6 +16,7 @@ Return ***the maximum total price** to fill a bag of capacity* `capacity` *with 
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $items = [[50,1],[10,8]], capacity = 5$

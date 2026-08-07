@@ -12,6 +12,7 @@ Return *the **minimum** number of operations to make *`nums`* **non-decreasing**
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,2,4,5,0]`

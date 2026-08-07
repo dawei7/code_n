@@ -27,9 +27,10 @@ Return `true`* if there is a **cycle** in *`nums`*, or *`false`* otherwise*.
 
 - Return `True` if some repeated route contains more than one position and uses jumps of one consistent sign; otherwise, return `False`.
 
-The destination of position `i` is `(i + nums[i]) % len(nums)`. A one-position self-loop is not a valid cycle.
+The destination of position `i` is $(i + \text{nums}[i]) \% len(nums)$. A one-position self-loop is not a valid cycle.
 
 ### Examples
+
 #### Example 1
 
 ![](images/img1.jpg)

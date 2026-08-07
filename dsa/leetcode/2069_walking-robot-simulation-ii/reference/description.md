@@ -25,6 +25,7 @@ Implement the `Robot` class:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![example-1](images/example-1.png)

@@ -19,6 +19,7 @@ Implement the `Solution` class:
 The app adapter returns one selected index per target. On LeetCode, construct `Solution(nums)` and call `pick(target)` directly; every matching index must have equal probability.
 
 ### Examples
+
 #### Example 1
 
 ```

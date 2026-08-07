@@ -17,6 +17,7 @@ Two binary expression trees are equivalent if they **evaluate to the same value*
 Return `true` if `root1` and `root2` represent equivalent addition expressions (same variable multiset/counts), otherwise `false`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $root1 = [x], root2 = [x]$

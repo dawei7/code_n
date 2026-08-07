@@ -56,12 +56,13 @@ Let $V$ be the number of visit rows, $T$ the number of transaction rows, and $N=
 
 Return a table with these columns:
 
-- `transactions_count`: a consecutive integer bucket beginning at `0` and ending at the maximum number of transactions attached to one visit.
-- `visits_count`: the number of distinct visit rows whose transaction total equals that bucket.
+- $\text{transactions}_{count}$: a consecutive integer bucket beginning at `0` and ending at the maximum number of transactions attached to one visit.
+- $\text{visits}_{count}$: the number of distinct visit rows whose transaction total equals that bucket.
 
-Count visits rather than distinct users: one user may have several visits on different dates. Return the buckets by ascending `transactions_count`.
+Count visits rather than distinct users: one user may have several visits on different dates. Return the buckets by ascending $\text{transactions}_{count}$.
 
 ### Examples
+
 #### Example 1
 
 ![](images/chart.png)

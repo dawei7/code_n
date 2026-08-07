@@ -11,6 +11,7 @@ Return *the final string after all such shifts to *`s`* are applied*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "abc", shifts = [[0,1,0],[1,2,1],[0,2,1]]`

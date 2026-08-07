@@ -10,6 +10,7 @@ Return *the **maximum** number of people that the people who are "it" can catch*
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $team = [0,1,0,1,0], dist = 3$

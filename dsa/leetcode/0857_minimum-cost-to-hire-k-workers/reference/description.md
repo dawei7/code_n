@@ -1,6 +1,6 @@
 ## Description
 
-There are `n` workers. You are given two integer arrays `quality` and `wage` where $\text{quality}[i]$ is the quality of the $$i^{\text{th}}$$worker and$\text{wage}[i]$is the minimum wage expectation for the$$i^{\text{th}}$$ worker.
+There are `n` workers. You are given two integer arrays `quality` and `wage` where $\text{quality}[i]$ is the quality of the $$i^{\text{th}}$$ worker and $\text{wage}[i]$ is the minimum wage expectation for the $$i^{\text{th}}$$ worker.
 
 We want to hire exactly `k` workers to form a **paid group**. To hire a group of `k` workers, we must pay them according to the following rules:
 
@@ -15,6 +15,7 @@ Given the integer `k`, return *the least amount of money needed to form a paid g
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $quality = [10,20,5], wage = [70,50,30], k = 2$

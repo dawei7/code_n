@@ -16,6 +16,7 @@ The distance is calculated using <a href="http://en.wikipedia.org/wiki/Taxicab_g
 Return the smallest possible sum of Manhattan distances from all `1` cells to one meeting point.
 
 ### Examples
+
 #### Example 1
 
 ![](images/meetingpoint-grid.jpg)

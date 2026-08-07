@@ -19,6 +19,7 @@ We would like to write an expression with the least number of operators such tha
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $x = 3, target = 19$

@@ -17,9 +17,10 @@ Let $n=\lvert\texttt{nums}\rvert$. Indices are zero-based. A valid pair is order
 
 **Return value**
 
-Return $\min \lvert i-j\rvert$ over all indices satisfying `nums[i] == 1` and `nums[j] == 2`. Return `-1` when that set of pairs is empty.
+Return $\min \lvert i-j\rvert$ over all indices satisfying $\text{nums}[i] = 1$ and $\text{nums}[j] = 2$. Return `-1` when that set of pairs is empty.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

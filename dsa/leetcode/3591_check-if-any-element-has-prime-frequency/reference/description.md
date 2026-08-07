@@ -13,6 +13,7 @@ A prime number is a natural number greater than 1 with only two factors, 1 and i
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

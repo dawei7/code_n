@@ -6,6 +6,7 @@ Given two **positive** integers `a` and `b`, return *the count of numbers having
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $a = 1, b = 20$

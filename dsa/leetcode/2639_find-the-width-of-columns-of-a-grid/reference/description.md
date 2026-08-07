@@ -13,6 +13,7 @@ The **length** of an integer `x` with `len` digits is equal to `len` if `x` is n
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `grid = [[1],[22],[333]]`

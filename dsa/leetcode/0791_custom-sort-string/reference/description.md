@@ -11,6 +11,7 @@ Return *any permutation of *`s`* that satisfies this property*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">

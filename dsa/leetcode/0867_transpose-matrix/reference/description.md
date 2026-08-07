@@ -11,6 +11,7 @@ The **transpose** of a matrix is the matrix flipped over its main diagonal, swit
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $matrix = [[1,2,3],[4,5,6],[7,8,9]]$

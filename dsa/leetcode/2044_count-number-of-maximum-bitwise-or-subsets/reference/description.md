@@ -11,6 +11,7 @@ The bitwise OR of an array `a` is equal to $a[0] **OR** a[1] **OR** ... **OR** a
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,1]`

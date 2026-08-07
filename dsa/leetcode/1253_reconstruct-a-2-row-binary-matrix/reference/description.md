@@ -23,6 +23,7 @@ If no valid solution exists, return an empty 2-D array.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $upper = 2, lower = 1, colsum = [1,1,1]$

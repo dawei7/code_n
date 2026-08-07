@@ -9,6 +9,7 @@ In one step, if the current number is even, you have to divide it by `2`, otherw
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num = 14$

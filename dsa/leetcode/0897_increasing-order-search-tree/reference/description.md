@@ -7,6 +7,7 @@ Given the `root` of a binary search tree, rearrange the tree in **in-order** so 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1.jpg)

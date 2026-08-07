@@ -9,6 +9,7 @@ Given an array of positive integers `arr` (not necessarily distinct), return *th
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [3,2,1]`

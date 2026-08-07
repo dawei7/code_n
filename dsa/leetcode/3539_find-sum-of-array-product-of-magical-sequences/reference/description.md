@@ -23,6 +23,7 @@ A **set bit** refers to a bit in the binary representation of a number that has 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

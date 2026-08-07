@@ -12,6 +12,7 @@ You are given the `root` of a binary search tree (BST), where the values of **ex
 Return `None`; repair the supplied tree rooted at `root` in place. The app runner serializes the mutated root for validation.
 
 ### Examples
+
 #### Example 1
 
 ![](images/recover1.jpg)

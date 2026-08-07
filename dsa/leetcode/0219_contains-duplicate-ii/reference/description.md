@@ -13,6 +13,7 @@ Given an integer array `nums` and an integer `k`, return `true` *if there are tw
 Return `true` if equal values occur at distinct indices at most `k` positions apart; otherwise return `false`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3,1], k = 3`

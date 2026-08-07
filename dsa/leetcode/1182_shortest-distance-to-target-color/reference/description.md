@@ -14,9 +14,10 @@ Let $n = \lvert\texttt{colors}\rvert$ and $q = \lvert\texttt{queries}\rvert$. Fo
 
 **Return value**
 
-- Return a list of $q$ integers in query order. For each `[i, c]`, return the minimum distance to a position `j` satisfying `colors[j] == c`, or `-1` when no such position exists.
+- Return a list of $q$ integers in query order. For each `[i, c]`, return the minimum distance to a position `j` satisfying $\text{colors}[j] = c$, or `-1` when no such position exists.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $colors = [1,1,2,1,3,2,2,3,3], queries = [[1,3],[2,2],[6,1]]$

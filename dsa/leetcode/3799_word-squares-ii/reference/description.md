@@ -32,6 +32,7 @@ Each returned square must use four different entries from `words`; a word cannot
 Return a list of all valid four-word arrays in the role order `[top, left, right, bottom]`. Order that outer list lexicographically by those four positions. Return an empty list when no valid square exists.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

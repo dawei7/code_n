@@ -15,6 +15,7 @@ Each word must be constructed from letters of sequentially adjacent cells, where
 Return all candidates that have a valid board path. Their output order does not affect correctness.
 
 ### Examples
+
 #### Example 1
 
 ![](images/search1.jpg)

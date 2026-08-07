@@ -17,6 +17,7 @@ The test cases are generated so that the answer will be less than or equal to $2
 Return the number of unique right-and-down paths from the top-left cell to the bottom-right cell.
 
 ### Examples
+
 #### Example 1
 
 ![](images/robot_maze.png)

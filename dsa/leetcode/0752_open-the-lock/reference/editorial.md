@@ -181,11 +181,11 @@ class Solution:
 
 Here, $n = 10$ is the number of slots on a wheel, $w = 4$ is the number of wheels, and $d$ is the number of elements in the `deadends` array.
 
-* Time complexity: $O(4(d +$10^{4}$))$
+* Time complexity: $O(4(d + $10^{4}$))$
 - Initializing the hash maps with $n$ key-value pairs, and the hash set with $d$ combinations of length $w$ will take $O(2 \cdot n)$ and $O(d \cdot w)$ time respectively.
 - In the worst case, we might iterate on all $n^w$ unique combinations, and for each combination, we perform $2 \cdot w$ turns. Thus, it will take $O(n^w \cdot 2 \cdot w) = O(n^w \cdot w)$ time.
 - So, this approach will take $O(n + (d + n^w) \cdot w) =$\mathcal{O}(10 + (d + 10^{4})$\cdot 4) =$\mathcal{O}(4(d + 10^{4})$)$ time.
-* Space complexity: $O(4(d +$10^{4}$))$
+* Space complexity: $O(4(d + $10^{4}$))$
 - The hash maps with $n$ key-value pairs, and the hash set with $d$ combinations of length $w$ will take $O(2 \cdot n)$ and $O(d \cdot w)$ space respectively.
 - In the worst case, we might push all $n^w$ unique combinations of length $w$ in the queue and the hash set. Thus, it will take $O(n^w \cdot w)$ space.
 - So, this approach will take $O(n + (d + n^w) \cdot w) =$\mathcal{O}(4(d + 10^{4})$)$ space.

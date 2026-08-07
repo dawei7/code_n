@@ -12,6 +12,7 @@ Given the `head` of a singly linked list where elements are sorted in **ascendin
 Return the root of any height-balanced binary search tree representing the list. App results display a returned tree in level order.
 
 ### Examples
+
 #### Example 1
 
 ![](images/linked.jpg)

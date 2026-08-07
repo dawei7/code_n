@@ -13,6 +13,7 @@ Return *the **minimum** time in which you can make the sum of all elements of *`
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [1,2,3], nums2 = [1,2,3], x = 4$

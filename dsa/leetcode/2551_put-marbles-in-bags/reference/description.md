@@ -6,7 +6,7 @@ Divide the marbles into the `k` bags according to the following rules:
 
 - No bag is empty.
 
-- If the $$i^{\text{th}}$$marble and$$j^{\text{th}}$$marble are in a bag, then all marbles with an index between the$$i^{\text{th}}$$and$$j^{\text{th}}$$ indices should also be in that same bag.
+- If the $$i^{\text{th}}$$ marble and $$j^{\text{th}}$$ marble are in a bag, then all marbles with an index between the $$i^{\text{th}}$$ and $$j^{\text{th}}$$ indices should also be in that same bag.
 
 - If a bag consists of all the marbles with an index from `i` to `j` inclusively, then the cost of the bag is $\text{weights}[i] + \text{weights}[j]$.
 
@@ -19,6 +19,7 @@ Return *the **difference** between the **maximum** and **minimum** scores among 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $weights = [1,3,5,1], k = 2$

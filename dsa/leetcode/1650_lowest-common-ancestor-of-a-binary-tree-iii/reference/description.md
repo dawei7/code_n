@@ -4,13 +4,15 @@ Given two nodes of a binary tree `p` and `q`, return *their lowest common ancest
 
 Each node will have a reference to its parent node. The definition for `Node` is below:
 
+```
 class Node {
-public int val;
-public Node left;
-public Node right;
-public Node parent;
+    public int val;
+    public Node left;
+    public Node right;
+    public Node parent;
 }
 ```
+
 According to the **<a href="https://en.wikipedia.org/wiki/Lowest_common_ancestor" target="_blank">definition of LCA on Wikipedia</a>**: "The lowest common ancestor of two nodes p and q in a tree T is the lowest node that has both p and q as descendants (where we allow **a node to be a descendant of itself**)."
 ### Function Contract
 
@@ -40,9 +42,11 @@ class Node:
 Return the `Node` object that is the lowest common ancestor of `p` and `q`.
 
 ### Examples
+
 #### Example 1
+
 ![](images/binarytree.png)
-```
+
 - **Input:** `root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1`
 - **Output:** `3`
 - **Explanation:** The LCA of nodes 5 and 1 is 3.

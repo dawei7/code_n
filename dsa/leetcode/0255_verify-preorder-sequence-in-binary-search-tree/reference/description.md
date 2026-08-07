@@ -5,13 +5,14 @@ Given an array of **unique** integers `preorder`, return `true` *if it is the co
 
 **Inputs**
 
-- `preorder`: Array of unique integers `List[int]`.
+- `preorder`: Array of unique integers $\text{List}[int]$.
 
 **Return value**
 
 Return `true` if `preorder` is a valid preorder traversal of a BST, otherwise `false`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/preorder-tree.jpg)

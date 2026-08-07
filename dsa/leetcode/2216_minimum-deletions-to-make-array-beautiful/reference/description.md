@@ -17,6 +17,7 @@ Return *the **minimum** number of elements to delete from *`nums`* to make it **
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,1,2,3,5]`

@@ -11,6 +11,7 @@ Return *the **minimum** number of semesters needed to take all courses*. The tes
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/leetcode_parallel_courses_1.png)

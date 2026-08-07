@@ -49,15 +49,17 @@ Let's dive deep into the condition $(\text{time}[i] + \text{time}[j]) \% 60 = 0$
 
 <div align="center">
 
-$$(a+b)\space \% \space60=0 \\
+$$
+  (a+b)\space \% \space60=0 \\
   \Downarrow \\
   ((a \space \% \space 60)+(b \space \% \space 60))\space \% \space 60=0 \\
   \Downarrow \\
   \text{Therefore, either }\begin{cases}
-    a \space \% \space60 \&= 0\\
-    b \space \% \space60 \&= 0
+    a \space \% \space60 &= 0\\
+    b \space \% \space60 &= 0
   \end{cases}
-  \text{, or }  (a\space\%\space60)+(b\space\%\space60)=60 \\$$
+  \text{, or }  (a\space\%\space60)+(b\space\%\space60)=60 \\
+$$
 
 </div>
 

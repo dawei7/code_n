@@ -22,6 +22,7 @@ Given `n`, the number of stones in the heap, return `true`* if you can win the g
 Return `true` when the first player can force a win under optimal play; otherwise, return `false`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 4$

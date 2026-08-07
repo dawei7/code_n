@@ -21,6 +21,7 @@ Given a string `password`, return `true`* if it is a **strong** password*. Other
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $password = "IloveLe3tcode!"$

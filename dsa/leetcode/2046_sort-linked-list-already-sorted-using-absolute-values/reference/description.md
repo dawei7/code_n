@@ -20,6 +20,7 @@ class ListNode:
 Return the `ListNode` head of the relinked list sorted in non-decreasing order by signed values.
 
 ### Examples
+
 #### Example 1
 
 ![](images/image-20211017201240-3.png)

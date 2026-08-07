@@ -53,6 +53,7 @@ Return one column:
 If several activities share either extreme, exclude all of them. The result order is unrestricted.
 
 ### Examples
+
 #### Example 1
 
 ```

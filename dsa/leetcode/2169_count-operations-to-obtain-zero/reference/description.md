@@ -13,6 +13,7 @@ Return *the **number of operations** required to make either* $num1 = 0$ *or* $n
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num1 = 2, num2 = 3$

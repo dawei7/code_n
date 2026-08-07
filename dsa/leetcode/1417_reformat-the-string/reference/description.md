@@ -11,6 +11,7 @@ Return *the reformatted string* or return **an empty string** if it is impossibl
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "a0b1c2"`

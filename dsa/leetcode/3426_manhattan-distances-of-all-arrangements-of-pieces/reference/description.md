@@ -15,6 +15,7 @@ The Manhattan Distance between two cells $(x_{i}, y_{i})$ and $(x_{j}, y_{j})$ i
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

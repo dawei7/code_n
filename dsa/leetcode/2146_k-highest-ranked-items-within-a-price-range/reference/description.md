@@ -29,6 +29,7 @@ Return *the *`k`* highest-ranked items within the price range **sorted** by thei
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/example1drawio.png)

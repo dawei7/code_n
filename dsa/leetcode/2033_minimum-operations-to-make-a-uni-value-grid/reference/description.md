@@ -11,6 +11,7 @@ Return *the **minimum** number of operations to make the grid **uni-value***. If
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/gridtxt.png)

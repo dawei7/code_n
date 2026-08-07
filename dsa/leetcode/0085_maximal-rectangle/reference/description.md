@@ -12,6 +12,7 @@ Given a `rows x cols` binary `matrix` filled with `0`'s and `1`'s, find the larg
 Return the maximum number of cells in an axis-aligned all-`1` rectangle.
 
 ### Examples
+
 #### Example 1
 
 ![](images/maximal.jpg)

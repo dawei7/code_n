@@ -19,6 +19,7 @@ Return the smallest node of the resulting in-place sorted circular sequence. In 
 sorted predecessor and `right` points to the sorted successor. Return `None` when the tree is empty.
 
 ### Examples
+
 #### Example 1
 
 ![](images/bstdlloriginalbst.png)

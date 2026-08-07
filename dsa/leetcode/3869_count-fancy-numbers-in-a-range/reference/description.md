@@ -16,7 +16,7 @@ A sequence is said to be **strictly decreasing** if each element is **strictly l
 **Inputs**
 
 - `l`: The inclusive lower endpoint of the integer range.
-- `r`: The inclusive upper endpoint, with `l <= r`.
+- `r`: The inclusive upper endpoint, with $l \le r$.
 
 Use each integer's ordinary decimal representation without leading zeros. For a number with digits $d_1,d_2,\ldots,d_k$, its digit sum is $d_1+d_2+\cdots+d_k$. A multi-digit sequence is strictly monotone only when every adjacent comparison points in the same strict direction; equal adjacent digits invalidate both directions.
 
@@ -25,6 +25,7 @@ Use each integer's ordinary decimal representation without leading zeros. For a 
 Return an integer equal to the number of values $x$ satisfying $l\le x\le r$ for which $x$ is good, its digit sum is good, or both.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

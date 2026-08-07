@@ -11,6 +11,7 @@ Return *the *$$k^{\text{th}}$$* smallest array sum among all possible arrays*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $mat = [[1,3,11],[2,4,6]], k = 5$

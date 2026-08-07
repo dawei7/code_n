@@ -37,18 +37,19 @@ The result format is in the following example.
 
 **Input tables**
 
-`Failed(fail_date)` and `Succeeded(success_date)` contain unique dates for the corresponding task outcomes. Let $d$ be the combined number of rows whose dates fall from `2019-01-01` through `2019-12-31`, inclusive.
+$Failed(\text{fail}_{date})$ and $Succeeded(\text{success}_{date})$ contain unique dates for the corresponding task outcomes. Let $d$ be the combined number of rows whose dates fall from `2019-01-01` through `2019-12-31`, inclusive.
 
 **Return value**
 
-- Return exactly the columns `period_state`, `start_date`, and `end_date`.
+- Return exactly the columns $\text{period}_{state}$, $\text{start}_{date}$, and $\text{end}_{date}$.
 - Produce one row for every maximal continuous interval of recorded days having the same state.
 - Use only the lowercase labels `failed` and `succeeded`.
 - For a one-day interval, return the same date as both endpoints.
 - Ignore dates outside 2019 when forming the reported intervals.
-- Order the rows by `start_date` in ascending order.
+- Order the rows by $\text{start}_{date}$ in ascending order.
 
 ### Examples
+
 #### Example 1
 
 ```

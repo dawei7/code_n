@@ -34,9 +34,7 @@ For an ordered query rectangle, `sea.hasShips(topRight, bottomLeft)` returns `tr
 
 Let $s$ be the number of ships in the target rectangle, and let
 
-$$
-C = \max(x_2 - x_1 + 1,\ y_2 - y_1 + 1)
-$$
+$C = \max(x_2 - x_1 + 1,\ y_2 - y_1 + 1)$
 
 be the larger inclusive side length.
 

@@ -9,6 +9,7 @@ Return the **minimum** possible value of $nums[n - 1]$.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -15,6 +15,7 @@ Return *the number of operations to make all elements in *`nums`* equal*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [5,1,3]`

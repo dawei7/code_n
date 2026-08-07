@@ -13,6 +13,7 @@ Return *the minimum number of stickers that you need to spell out *`target`. If 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $stickers = ["with","example","science"], target = "thehat"$

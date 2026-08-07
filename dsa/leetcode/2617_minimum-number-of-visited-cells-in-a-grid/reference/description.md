@@ -15,6 +15,7 @@ Return *the minimum number of cells you need to visit to reach the **bottom-righ
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1.png)

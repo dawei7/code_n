@@ -11,6 +11,7 @@ Return *the maximum number of rows that have all values equal after some number 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $matrix = [[0,1],[1,1]]$

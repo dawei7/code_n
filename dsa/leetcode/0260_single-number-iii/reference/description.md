@@ -14,6 +14,7 @@ You must write an algorithm that runs in linear runtime complexity and uses only
 Return the two singleton values in either order.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,1,3,2,5]`

@@ -22,6 +22,7 @@ Return *the knight's minimum initial health so that he can rescue the princess*.
 Return the smallest positive initial health for which at least one right-and-down path reaches the bottom-right room without health ever falling below `1`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/dungeon-grid-1.jpg)

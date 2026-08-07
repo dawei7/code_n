@@ -25,6 +25,7 @@ Return the minimum number of one-character mutations from `startGene` to `endGen
 unreachable through valid bank genes.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $startGene = "AACCGGTT", endGene = "AACCGGTA", bank = ["AACCGGTA"]$

@@ -15,14 +15,15 @@ Return *the **distance from the origin** of the **furthest** point you can get t
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
-- **Input:** $moves = "L_{RL\_\_R}"$
+- **Input:** $moves = "L_RL__R"$
 - **Output:** `3`
 - **Explanation:** The furthest point we can reach from the origin 0 is point -3 through the following sequence of moves "LLRLLLR".
 #### Example 2
 
-- **Input:** $moves = "_R_{\_LL\_}"$
+- **Input:** $moves = "_R__LL_"$
 - **Output:** `5`
 - **Explanation:** The furthest point we can reach from the origin 0 is point -5 through the following sequence of moves "LRLLLLL".
 #### Example 3

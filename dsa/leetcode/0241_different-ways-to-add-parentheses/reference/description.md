@@ -14,6 +14,7 @@ The test cases are generated such that the output values fit in a 32-bit integer
 Return one integer for each possible full grouping, in any order and with duplicate results preserved.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $expression = "2-1-1"$

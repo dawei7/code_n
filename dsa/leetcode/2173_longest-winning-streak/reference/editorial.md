@@ -232,13 +232,13 @@ Here's a step-by-step breakdown on building the query:
 **Step 2. The `Streaks` CTE**
 
 - Calculating Streak Lengths
-  - Using the `SUM()` window function with the $1 - is_{not\_win}$ expression, we accumulate a count for each player's match, partitioned by $\text{player}_{id}$ and $\text{streak}_{group}$. Since `is_not_win` is `0` for wins and `1` for non-wins, $1 - is_{not\_win}$ will be `1` for a win and `0` otherwise.
+  - Using the `SUM()` window function with the $1 - is_not_win$ expression, we accumulate a count for each player's match, partitioned by $\text{player}_{id}$ and $\text{streak}_{group}$. Since `is_not_win` is `0` for wins and `1` for non-wins, $1 - is_not_win$ will be `1` for a win and `0` otherwise.
   - This sum effectively counts the number of wins in the current streak group. It works because the sum is cumulative only within the current group of consecutive wins - as soon as a non-win is encountered, a new streak group starts, and the sum starts over.
 
 **Step 3. The Main Query**
 
 - Finding the Longest Streak
-  - Finally, we select the $\text{player}_{id}$ and the maximum streak length they've achieved. We ensure that we only consider streaks of wins by checking $is_{not\_win} = 0$ before taking the maximum.
+  - Finally, we select the $\text{player}_{id}$ and the maximum streak length they've achieved. We ensure that we only consider streaks of wins by checking $is_not_win = 0$ before taking the maximum.
   - We group by $\text{player}_{id}$ because we want to find the longest streak for each player individually.
 
 #### Implementation

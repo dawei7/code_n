@@ -19,6 +19,7 @@ Return *the **maximum** total score you can get*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,3,6,1,9,2], x = 5`

@@ -9,6 +9,7 @@ In a **<a href="http://en.wikipedia.org/wiki/Binary_tree#Types_of_binary_trees" 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/complete-binary-tree-1.png)

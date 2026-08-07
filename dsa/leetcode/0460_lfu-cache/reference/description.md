@@ -29,6 +29,7 @@ The functions `get` and `put` must each run in `O(1)` average time complexity.
 The native interface exposes the `LFUCache` class directly. The app-local `solve` adapter executes the supplied operation trace in order.
 
 ### Examples
+
 #### Example 1
 
 ```

@@ -20,6 +20,7 @@ A qualifying substring must be contiguous and must end at the index it represent
 Return an integer array containing precisely the good indices in increasing order.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

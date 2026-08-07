@@ -9,6 +9,7 @@ Return the number of substrings containing **at least** one occurrence of all th
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "abcabc"`

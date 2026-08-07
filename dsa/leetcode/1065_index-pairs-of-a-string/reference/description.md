@@ -12,17 +12,16 @@ Return the pairs `[i, j]` in sorted order (i.e., sort them by their first coordi
 
 Let $N = \lvert\texttt{text}\rvert$, let $W = \lvert\texttt{words}\rvert$, and let
 
-$$
-L = \max_{w \in \texttt{words}} \lvert w \rvert.
-$$
+$L = \max_{w \in \texttt{words}} \lvert w \rvert.$
 
-Each returned pair `[i, j]` uses inclusive zero-based boundaries and therefore represents `text[i:j + 1]`.
+Each returned pair `[i, j]` uses inclusive zero-based boundaries and therefore represents $text[i:j + 1]$.
 
 **Return value**
 
 - Every pair `[i, j]` whose represented substring is a member of `words`, sorted first by `i` and then by `j`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $text = "thestoryofleetcodeandme", words = ["story","fleet","leetcode"]$

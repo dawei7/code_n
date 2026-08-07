@@ -9,6 +9,7 @@ Return *the area of the largest submatrix within *`matrix`* where **every** elem
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/screenshot-2020-12-30-at-40536-pm.png)

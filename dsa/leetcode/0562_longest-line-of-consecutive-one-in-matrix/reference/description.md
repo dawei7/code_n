@@ -9,7 +9,7 @@ The line could be horizontal, vertical, diagonal, or anti-diagonal.
 
 - `mat`: a nonempty rectangular matrix whose entries are `0` or `1`.
 
-Let $r = \lvert\texttt{mat}\rvert$ be the number of rows and $c = \lvert\texttt{mat[0]}\rvert$ be the number of
+Let $r = \lvert\texttt{mat}\rvert$ be the number of rows and $c = \lvert\texttt{\text{mat}[0]}\rvert$ be the number of
 columns. A line's length is its number of cells, and every consecutive step must remain inside the matrix while using
 one unchanged direction.
 
@@ -19,6 +19,7 @@ Return the maximum length among all horizontal, vertical, diagonal, and anti-dia
 the matrix contains no `1`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/long1-grid.jpg)

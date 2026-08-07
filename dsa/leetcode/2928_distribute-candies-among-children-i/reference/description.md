@@ -9,6 +9,7 @@ Return *the **total number** of ways to distribute *`n` *candies among *`3`* chi
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 5, limit = 2$

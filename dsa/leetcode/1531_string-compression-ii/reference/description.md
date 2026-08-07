@@ -13,6 +13,7 @@ Find the *minimum length of the run-length encoded version of *`s`* after deleti
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "aaabcccd", k = 2`

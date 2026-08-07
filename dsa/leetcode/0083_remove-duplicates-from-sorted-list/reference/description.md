@@ -12,6 +12,7 @@ Given the `head` of a sorted linked list, *delete all duplicates such that each 
 Return the head of the sorted list with one retained node for each distinct value.
 
 ### Examples
+
 #### Example 1
 
 ![](images/list1.jpg)

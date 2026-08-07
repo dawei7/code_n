@@ -5,7 +5,7 @@ Given an array of keywords `words` and a string `s`, make all appearances of all
 Return `s` *after adding the bold tags*. The returned string should use the least number of tags possible, and the tags should form a valid combination.
 ### Function Contract
 
-`solve(words: list[str], s: str) -> str`
+$solve(words: \text{list}[str], s: str) -> str$
 
 Let $n$ be the length of `s`.
 
@@ -19,6 +19,7 @@ Let $n$ be the length of `s`.
 Return `s` with each maximal consecutive range covered by at least one complete keyword appearance enclosed in `<b>` and `</b>`. The tags must be properly paired and ordered, and the result must use the minimum possible number of tags.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["ab","bc"], s = "aabcd"$

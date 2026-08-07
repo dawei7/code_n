@@ -15,6 +15,7 @@ If it is impossible to rearrange `nums` such that no two adjacent elements have 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

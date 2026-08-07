@@ -17,6 +17,7 @@ Return *the **number of valid ways** to select 3 buildings.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "001101"`

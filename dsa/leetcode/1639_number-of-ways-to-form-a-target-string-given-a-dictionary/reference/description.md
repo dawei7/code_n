@@ -6,9 +6,9 @@ Your task is to form `target` using the given `words` under the following rules:
 
 - `target` should be formed from left to right.
 
-- To form the $$i^{\text{th}}$$character (**0-indexed**) of `target`, you can choose the$$k^{\text{th}}$$character of the$$j^{\text{th}}$$string in `words` if$\text{target}[i] = \text{words}[j][k]$.
+- To form the $$i^{\text{th}}$$ character (**0-indexed**) of `target`, you can choose the $$k^{\text{th}}$$ character of the $$j^{\text{th}}$$ string in `words` if $\text{target}[i] = \text{words}[j][k]$.
 
-- Once you use the $$k^{\text{th}}$$character of the$$j^{\text{th}}$$string of `words`, you **can no longer** use the$$x^{\text{th}}$$character of any string in `words` where$x \le k$. In other words, all characters to the left of or at index `k` become unusuable for every string.
+- Once you use the $$k^{\text{th}}$$ character of the $$j^{\text{th}}$$ string of `words`, you **can no longer** use the $$x^{\text{th}}$$ character of any string in `words` where $x \le k$. In other words, all characters to the left of or at index `k` become unusuable for every string.
 
 - Repeat the process until you form the string `target`.
 
@@ -21,6 +21,7 @@ Return *the number of ways to form `target` from `words`*. Since the answer may 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["acca","bbbb","caca"], target = "aba"$

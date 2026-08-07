@@ -12,6 +12,7 @@ Return *the **minimum** time to eat all grains if the hens act optimally.*
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $hens = [3,6,7], grains = [2,4,7,9]$

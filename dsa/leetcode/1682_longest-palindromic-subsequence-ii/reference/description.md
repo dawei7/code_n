@@ -24,6 +24,7 @@ Given a string `s`, return *the **length** of the **longest good palindromic sub
 Return an integer representing the maximum length of a good palindromic subsequence of `s`, or `0` if no such subsequence exists.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "bbabab"`

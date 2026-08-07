@@ -17,6 +17,7 @@ A path `(a, b)` is **valid** if there exists **exactly one** prime number among 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/example1.png)

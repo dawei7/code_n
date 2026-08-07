@@ -8,6 +8,7 @@ A **descendant** of a node `x` is any node that is on the path from node `x` to 
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 ![](images/screenshot-2021-08-17-at-17-16-50-diagram-drawio-diagrams-net.png)

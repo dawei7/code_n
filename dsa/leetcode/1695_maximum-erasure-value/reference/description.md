@@ -11,6 +11,7 @@ An array `b` is called to be a subarray of `a` if it forms a contiguous subseque
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [4,2,4,5,6]`

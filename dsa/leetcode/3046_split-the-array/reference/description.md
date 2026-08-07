@@ -15,6 +15,7 @@ Return `true`* if it is possible to split the array, and *`false` *otherwise**.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,1,2,2,3,4]`

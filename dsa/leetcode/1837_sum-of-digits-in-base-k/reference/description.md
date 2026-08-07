@@ -9,6 +9,7 @@ After converting, each digit should be interpreted as a base `10` number, and th
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 34, k = 6$

@@ -22,6 +22,7 @@ Operands must also appear in the **same order** in both `s` and the in-order tra
 Return the root `Node` of the constructed binary expression tree. Operands are leaf nodes and operators are internal nodes with left and right children.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1-4.png)

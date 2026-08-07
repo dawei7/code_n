@@ -13,7 +13,7 @@ Return the **sum** of **all paths** from the **root** towards the **leaves**.
 It is **guaranteed** that the given array represents a valid connected binary tree.
 ### Function Contract
 
-`solve(nums: list[int]) -> int`
+$solve(nums: \text{list}[int]) -> int$
 
 **Inputs**
 
@@ -24,6 +24,7 @@ It is **guaranteed** that the given array represents a valid connected binary tr
 Return the sum of the node-value sums of every path from the root to a leaf.
 
 ### Examples
+
 #### Example 1
 
 ![](images/pathsum4-1-tree.jpg)

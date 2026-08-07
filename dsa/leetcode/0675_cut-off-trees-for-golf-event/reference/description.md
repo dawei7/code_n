@@ -21,6 +21,7 @@ Starting from the point `(0, 0)`, return *the minimum steps you need to walk to 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/trees1.jpg)

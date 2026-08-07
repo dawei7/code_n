@@ -13,6 +13,7 @@ The **subtree** rooted at a node `x` contains node `x` and all of its **descenda
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/case-1.png)

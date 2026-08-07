@@ -23,6 +23,7 @@ Return the **minimum** number of moves required to collect all litter items, or 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

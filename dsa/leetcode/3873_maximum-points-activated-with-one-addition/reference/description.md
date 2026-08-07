@@ -24,6 +24,7 @@ Let $n=\lvert\texttt{points}\rvert$.
 Return the largest number of activated points achievable after adding and initially activating one valid point. Include the newly added point in the count.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

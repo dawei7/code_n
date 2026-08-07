@@ -14,6 +14,7 @@ The bomb kills all the enemies in the same row and column from the planted point
 Return the maximum number of enemies visible horizontally or vertically from a single empty cell without crossing a wall.
 
 ### Examples
+
 #### Example 1
 
 ![](images/bomb1-grid.jpg)

@@ -13,6 +13,7 @@ Return *the **maximum** number of prizes you can win if you choose the two segme
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $prizePositions = [1,1,2,2,3,3,5], k = 2$

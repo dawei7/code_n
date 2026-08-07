@@ -2,7 +2,7 @@
 
 Given an array of strings `words`, return `true` *if it forms a valid **word square***.
 
-A sequence of strings forms a valid **word square** if the $$k^{\text{th}}$$row and column read the same string, where$0 \le k < max(numRows, numColumns)$.
+A sequence of strings forms a valid **word square** if the $$k^{\text{th}}$$ row and column read the same string, where $0 \le k < max(numRows, numColumns)$.
 ### Function Contract
 
 **Inputs**
@@ -15,6 +15,7 @@ Return `True` exactly when every row is identical to the column at the same zero
 `False`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/validsq1-grid.jpg)

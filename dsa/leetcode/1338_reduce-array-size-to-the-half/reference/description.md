@@ -9,6 +9,7 @@ Return *the minimum size of the set so that **at least** half of the integers of
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [3,3,3,3,5,5,5,2,2,7]`

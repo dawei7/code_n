@@ -11,6 +11,7 @@ Two submatrices `(x1, y1, x2, y2)` and `(x1', y1', x2', y2')` are different if t
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/mate1.jpg)

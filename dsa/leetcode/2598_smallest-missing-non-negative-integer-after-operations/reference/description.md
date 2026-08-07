@@ -17,6 +17,7 @@ Return *the maximum MEX of *`nums`* after applying the mentioned operation **any
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,-10,7,13,6,8], value = 5`

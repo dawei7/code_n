@@ -14,6 +14,7 @@ The `delayAll` function should ensure that each promise from `functions` is exec
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** ``

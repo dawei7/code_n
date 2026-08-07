@@ -7,6 +7,7 @@ Given a binary array `nums` and an integer `k`, return *the maximum number of co
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,1,1,0,0,0,1,1,1,1,0], k = 2`

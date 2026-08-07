@@ -133,7 +133,7 @@ class Solution:
 
 * Time complexity: $\mathcal{O}(N)$, still we visit each node once and only once.
 
-* Space complexity: $\mathcal{O}(2^{(log_{2N}-1)})=\mathcal{O}(N/2)=\mathcal{O}(N)$, *i.e.* the maximum number of nodes at the same level (the number of leaf nodes in a full binary tree), since we traverse the tree in the **BFS** manner.
+* Space complexity: $\mathcal{O}(2^{(log_2N-1)})=\mathcal{O}(N/2)=\mathcal{O}(N)$, *i.e.* the maximum number of nodes at the same level (the number of leaf nodes in a full binary tree), since we traverse the tree in the **BFS** manner.
 
 As one can see, this probably is not the best example to apply the *tail recursion* technique. Because though we did gain the constant space complexity for the recursive calls, we pay the price of $\mathcal{O}(N)$ complexity to maintain the state information for recursive calls. This defeats the purpose of applying tail recursion.
 

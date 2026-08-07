@@ -1,6 +1,6 @@
 ## Description
 
-Your country has $10^{9}$ lakes. Initially, all the lakes are empty, but when it rains over the $$n^{\text{th}}$$lake, the$$n^{\text{th}}$$ lake becomes full of water. If it rains over a lake that is **full of water**, there will be a **flood**. Your goal is to avoid floods in any lake.
+Your country has $10^{9}$ lakes. Initially, all the lakes are empty, but when it rains over the $$n^{\text{th}}$$ lake, the $$n^{\text{th}}$$ lake becomes full of water. If it rains over a lake that is **full of water**, there will be a **flood**. Your goal is to avoid floods in any lake.
 
 Given an integer array `rains` where:
 
@@ -25,6 +25,7 @@ Notice that if you chose to dry a full lake, it becomes empty, but if you chose 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $rains = [1,2,3,4]$

@@ -9,6 +9,7 @@ Given three integers `n`, `k`, and `target`, return *the number of possible ways
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 1, k = 6, target = 3$

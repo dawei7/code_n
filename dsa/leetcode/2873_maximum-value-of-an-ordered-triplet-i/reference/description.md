@@ -11,6 +11,7 @@ The **value of a triplet of indices** `(i, j, k)` is equal to $(\text{nums}[i] -
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [12,6,1,2,7]`

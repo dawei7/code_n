@@ -11,6 +11,7 @@ Return the number of **unique** XOR triplet values from all possible triplets `(
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

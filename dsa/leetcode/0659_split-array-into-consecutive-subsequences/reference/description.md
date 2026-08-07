@@ -17,6 +17,7 @@ A **subsequence** of an array is a new array that is formed from the original ar
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3,3,4,5]`

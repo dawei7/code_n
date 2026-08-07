@@ -22,6 +22,7 @@ Given two words, `beginWord` and `endWord`, and a dictionary `wordList`, return 
 Return the number of words in the shortest valid sequence, including both endpoints, or `0` when none exists.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $beginWord = "hit", endWord = "cog", wordList = ["hot","dot","dog","lot","log","cog"]$

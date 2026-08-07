@@ -1,6 +1,6 @@
 ## Description
 
-You are given an integer array `nums` where the $$i^{\text{th}}$$bag contains$\text{nums}[i]$ balls. You are also given an integer `maxOperations`.
+You are given an integer array `nums` where the $$i^{\text{th}}$$ bag contains $\text{nums}[i]$ balls. You are also given an integer `maxOperations`.
 
 You can perform the following operation at most `maxOperations` times:
 
@@ -19,6 +19,7 @@ Return *the minimum possible penalty after performing the operations*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [9], maxOperations = 2`

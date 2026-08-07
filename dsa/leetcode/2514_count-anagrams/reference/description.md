@@ -2,7 +2,7 @@
 
 You are given a string `s` containing one or more words. Every consecutive pair of words is separated by a single space `' '`.
 
-A string `t` is an **anagram** of string `s` if the $$i^{\text{th}}$$word of `t` is a **permutation** of the$$i^{\text{th}}$$ word of `s`.
+A string `t` is an **anagram** of string `s` if the $$i^{\text{th}}$$ word of `t` is a **permutation** of the $$i^{\text{th}}$$ word of `s`.
 
 - For example, `"acb dfe"` is an anagram of `"abc def"`, but `"def cab"` and `"adc bef"` are not.
 
@@ -13,6 +13,7 @@ Return *the number of **distinct anagrams** of *`s`. Since the answer may be ver
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "too hot"`

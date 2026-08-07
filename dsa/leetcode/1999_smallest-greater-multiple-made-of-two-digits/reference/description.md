@@ -14,6 +14,7 @@ Return *the **smallest** such integer. If no such integer exists or the integer 
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $k = 2, digit1 = 0, digit2 = 2$

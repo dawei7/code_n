@@ -10,7 +10,7 @@ Looking at the second example of the problem description, we can see that we get
 
 We call this 'running total' of sums a prefix sum array. In other words, the prefix sum at index `i` is the sum of the first $i + 1$ elements of the array:
 
-$\text{prefix\\\_sum}[i] = \sum_{j=0}^{i} \text{nums}[j]$
+$\text{prefix\\_sum}[i] = \sum_{j=0}^{i} \text{nums}[j]$
 
 A solution is **guaranteed to exist**, meaning that it is always possible to rearrange the array in a way that satisfies the condition.
 

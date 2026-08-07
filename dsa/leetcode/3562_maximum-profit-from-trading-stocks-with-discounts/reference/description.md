@@ -25,6 +25,7 @@ Return the **maximum** profit that can be achieved without exceeding the given b
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

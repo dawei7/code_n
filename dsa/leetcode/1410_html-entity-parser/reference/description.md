@@ -25,6 +25,7 @@ Return *the text after replacing the entities by the special characters*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $text = "\& is an HTML entity but \&ambassador; is not."$

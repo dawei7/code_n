@@ -20,6 +20,7 @@ Return *the maximum points you can gain after applying the above operations on* 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "cdbcbbaaabab", x = 4, y = 5`

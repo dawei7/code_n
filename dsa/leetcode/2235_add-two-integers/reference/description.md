@@ -7,6 +7,7 @@ Given two integers `num1` and `num2`, return *the **sum** of the two integers*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num1 = 12, num2 = 5$

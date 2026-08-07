@@ -19,6 +19,7 @@ Design an algorithm to serialize and deserialize a **binary search tree**. There
 The standalone app defines a minimal local equivalent of LeetCode's injected `TreeNode` model.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `root = [2,1,3]`

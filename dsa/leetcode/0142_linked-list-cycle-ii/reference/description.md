@@ -16,6 +16,7 @@ There is a cycle in a linked list if there is some node in the list that can be 
 The app-local function returns the cycle-entry node's zero-based index, or `-1` if no cycle exists. The native LeetCode function returns the entry node itself, or `null`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/circularlinkedlist.png)

@@ -1,18 +1,19 @@
 ## Description
 
-You are given a 2D integer array `rectangles` where $\text{rectangles}[i] = [l_{i}, h_{i}]$ indicates that $$i^{\text{th}}$$rectangle has a length of$l_{i}$and a height of$h_{i}$. You are also given a 2D integer array `points` where$\text{points}[j] = [x_{j}, y_{j}]$is a point with coordinates$(x_{j}, y_{j})$.
+You are given a 2D integer array `rectangles` where $\text{rectangles}[i] = [l_{i}, h_{i}]$ indicates that $$i^{\text{th}}$$ rectangle has a length of $l_{i}$ and a height of $h_{i}$. You are also given a 2D integer array `points` where $\text{points}[j] = [x_{j}, y_{j}]$ is a point with coordinates $(x_{j}, y_{j})$.
 
-The $$i^{\text{th}}$$rectangle has its **bottom-left corner** point at the coordinates `(0, 0)` and its **top-right corner** point at$(l_{i}, h_{i})$.
+The $$i^{\text{th}}$$ rectangle has its **bottom-left corner** point at the coordinates `(0, 0)` and its **top-right corner** point at $(l_{i}, h_{i})$.
 
 Return* an integer array *`count`* of length *`points.length`* where *$\text{count}[j]$* is the number of rectangles that **contain** the *$$j^{\text{th}}$$* point.*
 
-The $$i^{\text{th}}$$rectangle **contains** the$$j^{\text{th}}$$point if$0 \le x_{j} \le l_{i}$and$0 \le y_{j} \le h_{i}$. Note that points that lie on the **edges** of a rectangle are also considered to be contained by that rectangle.
+The $$i^{\text{th}}$$ rectangle **contains** the $$j^{\text{th}}$$ point if $0 \le x_{j} \le l_{i}$ and $0 \le y_{j} \le h_{i}$. Note that points that lie on the **edges** of a rectangle are also considered to be contained by that rectangle.
 ### Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/example1.png)

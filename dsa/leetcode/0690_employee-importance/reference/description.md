@@ -17,6 +17,7 @@ Given an integer `id` that represents an employee's ID, return *the **total** im
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/emp1-tree.jpg)

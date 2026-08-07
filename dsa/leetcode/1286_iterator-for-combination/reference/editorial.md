@@ -76,13 +76,15 @@ The character $\text{characters}[i]$ is present in the combination if bit at the
 
 ![pic](images/present22.png)
 
-$$(1111)_2 - abcd \\
+$$
+(1111)_2 - abcd \\
 (0011)_2 - cd \\
 (0101)_2 - bd \\
 (0110)_2 - bc \\
 (1001)_2 - ad \\
 (1010)_2 - ac \\
-(1100)_2 - ab$$
+(1100)_2 - ab
+$$
 
 ![pic](images/bitmasks2.png)
 
@@ -224,13 +226,15 @@ Algorithm L is an efficient BFS that generates one by one the _combinations of i
 
 ![pic](images/algorithm_l2.png)
 
-$$3210 - abcd \\
+$$
+3210 - abcd \\
 01 - cd \\
 02 - bd \\
 12 - bc \\
 03 - ad \\
 13 - ac \\
-23 - ab \\$$
+23 - ab \\
+$$
 
 **Algorithm**
 

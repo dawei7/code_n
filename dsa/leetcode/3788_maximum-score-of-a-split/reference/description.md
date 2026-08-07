@@ -21,13 +21,14 @@ Return an integer denoting the **maximum** score over all valid split indices.
 
 - `nums`: An integer array containing at least two elements.
 
-A valid split includes index `i` in the prefix and starts the suffix at `i + 1`. The suffix minimum is a value, not a sum. Scores and the maximum score may be negative.
+A valid split includes index `i` in the prefix and starts the suffix at $i + 1$. The suffix minimum is a value, not a sum. Scores and the maximum score may be negative.
 
 **Return value**
 
-Return the maximum of `sum(nums[0:i+1]) - min(nums[i+1:n])` over every `0 <= i < n - 1`.
+Return the maximum of $sum(nums[0:i+1]) - min(nums[i+1:n])$ over every $0 \le i < n - 1$.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

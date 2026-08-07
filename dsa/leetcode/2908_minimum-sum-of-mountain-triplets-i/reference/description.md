@@ -15,6 +15,7 @@ Return *the **minimum possible sum** of a mountain triplet of* `nums`. *If no su
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [8,6,1,5,3]`

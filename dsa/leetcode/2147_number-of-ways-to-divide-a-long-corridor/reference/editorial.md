@@ -715,11 +715,11 @@ Hence, what eventually matters is the difference between indices of non-paired `
 - `current_pair_first` to `2`
 
 6. While `current_pair_first` is less than the length of `indices`, do the following
-- update `count` as $count = (count * (\text{indices}[current_{pair\_first}] - \text{indices}[previous_{pair\_last}])) \% MOD$
+- update `count` as $count = (count * (\text{indices}[current_pair_first] - \text{indices}[previous_pair_last])) \% MOD$
 - increment `previous_pair_last` by `2`
 - increment `current_pair_first` by `2`
 
-    > The loop invariant ensures that `current_pair_first` is equal to $previous_{pair\_last} + 1$. Thus, instead of two variables, we can use a single variable as well.
+    > The loop invariant ensures that `current_pair_first` is equal to $previous_pair_last + 1$. Thus, instead of two variables, we can use a single variable as well.
 
 7. Return `count`. Make sure to return `count` as `int` as required by the function signature.
 
@@ -822,7 +822,7 @@ Readers are encouraged to implement this approach. Make sure to handle corner ca
 - if $seats = 2$, then
 - update `previous_pair_last` as `index`
 - reset `seats` to `0`
-- else if $seats = 1$ and there exists a previous section, then update `count` as $count = (count * (index - previous_{pair\_last})) \% MOD$
+- else if $seats = 1$ and there exists a previous section, then update `count` as $count = (count * (index - previous_pair_last)) \% MOD$
 
 5. If $seats = 1$, it means there are an odd number of `S` in the `corridor`. Thus, return `0`.
 

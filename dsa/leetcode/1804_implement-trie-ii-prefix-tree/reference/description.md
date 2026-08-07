@@ -18,6 +18,7 @@ Implement the Trie class:
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 ```

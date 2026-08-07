@@ -13,6 +13,7 @@ Return *the node with the highest **edge score***. If multiple nodes have the sa
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/image-20220620195403-1.png)

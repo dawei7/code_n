@@ -19,6 +19,7 @@ A **good subarray** is a subarray where:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [23,<u>2,4</u>,6,7], k = 6`

@@ -11,6 +11,7 @@ Return *the minimum length of the substring that can be replaced with **any** ot
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "QWER"`

@@ -8,10 +8,12 @@ Therefore, we first use depth-first search to compute the depth $\textit{max\_de
 
 Let $d[i][0]$ denote the number of ways to choose an even number of edges from $i$ edges and assign them a weight of $1$, and let $d[i][1]$ denote the number of ways to choose an odd number of edges from $i$ edges and assign them a weight of $1$. For $i \ge 1$, we have the following recurrence relations:
 
-$$\begin{align}
-d[i][1] \&= d[i - 1][0] + d[i - 1][1] \\
-d[i][0] \&= d[i - 1][0] + d[i - 1][1]
-\end{align}$$
+$$
+\begin{align}
+d[i][1] &= d[i - 1][0] + d[i - 1][1] \\
+d[i][0] &= d[i - 1][0] + d[i - 1][1]
+\end{align}
+$$
 
 Consider $d[i][1]$ as an example. If the $i$-th edge is assigned a weight of $1$, then the first $i - 1$ edges must contain an even number of edges assigned a weight of $1$, contributing $d[i - 1][0]$ ways. If the $i$-th edge is assigned a weight of $2$, then the parity remains unchanged, contributing $d[i - 1][1]$ ways. The same reasoning applies to $d[i][0]$.
 

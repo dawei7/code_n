@@ -30,6 +30,7 @@ Return an integer denoting the **maximum** points you can get in the end by opti
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

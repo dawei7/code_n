@@ -9,6 +9,7 @@ It is guaranteed that the graph of paths forms a line without any loop, therefor
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $paths = [["London","New York"],["New York","Lima"],["Lima","Sao Paulo"]]$

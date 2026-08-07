@@ -15,7 +15,7 @@ Here, **"eventually fall"** means that the droplet will eventually be at a lower
 We can assume there is infinitely high terrain on the two sides out of bounds of the array. Also, there could not be partial water being spread out evenly on more than one grid block, and each unit of water has to be in exactly one block.
 ### Function Contract
 
-`solve(heights: list[int], volume: int, k: int) -> list[int]`
+$solve(heights: \text{list}[int], volume: int, k: int) -> \text{list}[int]$
 
 Let $n$ be the number of terrain columns.
 
@@ -30,6 +30,7 @@ Let $n$ be the number of terrain columns.
 Return the $n$ final column levels after all `volume` droplets have settled sequentially according to the left-before-right eventual-fall rule. Each result entry equals the original terrain height plus the water accumulated in that column.
 
 ### Examples
+
 #### Example 1
 
 ![](images/pour11-grid.jpg)

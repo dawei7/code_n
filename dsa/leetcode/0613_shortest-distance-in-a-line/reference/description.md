@@ -28,6 +28,7 @@ The result format is in the following example.
 Return one row with one column named `shortest`, containing the minimum absolute difference between two distinct stored positions.
 
 ### Examples
+
 #### Example 1
 
 ```

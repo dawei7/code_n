@@ -104,7 +104,7 @@ Let's look at the algorithm in detail.
 **Algorithm**
 
 -  We use a `differenceMatrix` of size $\text{row} \cdot \text{col}$ where each cell represents the minimum effort required to reach that cell from all the possible paths.
-Also, initialize we all the cells in the `differenceMatrix` to infinity $\text{(MAX\\\_INT)}$ since none of the cells are reachable initially.
+Also, initialize we all the cells in the `differenceMatrix` to infinity $\text{(MAX\\_INT)}$ since none of the cells are reachable initially.
 
 - As we start visiting each cell, all the adjacent cells are now reachable. We update the _absolute difference_ between the current cell and adjacent cells in the `differenceMatrix`. At the same time, we also push all the adjacent cells in a priority queue. The priority queue holds all the reachable cells sorted by its value in `differenceMatrix`, i.e the cell with  _minimum absolute difference_ with its adjacent cells would be at the top of the queue.
 - We begin by adding the source cell `(x=0, y=0)` in the queue. Now, until we have visited the destination cell or the queue is not empty, we visit each cell in the queue sorted in the order of priority. The less is the difference value(absolute difference with adjacent cell) of a cell, the higher is its priority.

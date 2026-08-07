@@ -4,28 +4,38 @@ Design an algorithm to encode **a list of strings** to **a string**. The encoded
 
 Machine 1 (sender) has the function:
 
+```
 string encode(vector<string> strs) {
-// ... your code
-return encoded_string;
+  // ... your code
+  return encoded_string;
 }
 ```
+
 Machine 2 (receiver) has the function:
+
 ```
 vector<string> decode(string s) {
-//... your code
-return strs;
+  //... your code
+  return strs;
 }
 ```
+
 So Machine 1 does:
+
 ```
 string encoded_string = encode(strs);
 ```
+
 and Machine 2 does:
+
 ```
 vector<string> strs2 = decode(encoded_string);
 ```
+
 `strs2` in Machine 2 should be the same as `strs` in Machine 1.
+
 Implement the `encode` and `decode` methods.
+
 You are not allowed to solve the problem using any serialize methods (such as `eval`).
 ### Function Contract
 
@@ -42,8 +52,9 @@ the encoded string's length.
 For `"encode"`, return the codec's transport string. For `"decode"`, return the represented list of strings. The native interface exposes `Codec.encode(strs)` and `Codec.decode(s)` directly.
 
 ### Examples
+
 #### Example 1
-```
+
 - **Input:** $\text{dummy}_{input} = ["Hello","World"]$
 - **Output:** `["Hello","World"]`
 - **Explanation:**

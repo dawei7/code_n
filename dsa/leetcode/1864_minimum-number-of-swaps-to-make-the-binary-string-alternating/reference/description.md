@@ -11,6 +11,7 @@ Any two characters may be swapped, even if they are **not adjacent**.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "111000"`

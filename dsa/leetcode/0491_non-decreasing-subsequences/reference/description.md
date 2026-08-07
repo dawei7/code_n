@@ -7,6 +7,7 @@ Given an integer array `nums`, return *all the different possible non-decreasing
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [4,6,7,7]`

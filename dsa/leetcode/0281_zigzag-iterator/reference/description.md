@@ -21,6 +21,7 @@ Implement the `ZigzagIterator` class:
 The app adapter repeatedly calls the native iterator's `next()` method while `hasNext()` is true and returns the resulting list of integers.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $v1 = [1,2], v2 = [3,4,5,6]$

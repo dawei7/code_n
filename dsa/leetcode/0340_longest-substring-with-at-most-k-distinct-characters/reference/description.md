@@ -13,6 +13,7 @@ Given a string `s` and an integer `k`, return *the length of the longest **subst
 Return the maximum length of a contiguous substring with no more than `k` distinct characters.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "eceba", k = 2`

@@ -15,6 +15,7 @@ Return an integer denoting the length of the **minimized** string.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

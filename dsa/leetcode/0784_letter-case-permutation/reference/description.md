@@ -9,6 +9,7 @@ Return *a list of all possible strings we could create*. Return the output in **
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "a1b2"`

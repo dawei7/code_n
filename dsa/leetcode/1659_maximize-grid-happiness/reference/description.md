@@ -19,6 +19,7 @@ The **grid happiness** is the **sum** of each person's happiness. Return* the **
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/grid_happiness.png)

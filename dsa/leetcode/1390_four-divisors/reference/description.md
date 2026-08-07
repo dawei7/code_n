@@ -7,6 +7,7 @@ Given an integer array `nums`, return *the sum of divisors of the integers in th
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [21,4,7]`

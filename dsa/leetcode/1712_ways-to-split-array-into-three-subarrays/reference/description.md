@@ -13,6 +13,7 @@ Given `nums`, an array of **non-negative** integers, return *the number of **goo
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,1,1]`

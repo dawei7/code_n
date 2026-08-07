@@ -9,6 +9,7 @@ Two `1`'s are **adjacent** if there are only `0`'s separating them (possibly no 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 22$

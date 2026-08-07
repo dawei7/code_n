@@ -13,6 +13,7 @@ Given an array of positive integers `nums`, return *the number of **distinct pri
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,4,3,7,10,6]`

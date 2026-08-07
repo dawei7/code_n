@@ -18,7 +18,7 @@ Let's start from the minute hand. The whole circle is equal to $360°$ or 60 min
 
 ![fig](images/one_min2.png)
 
-Now one could easily find an angle between the 0-minute vertical line and a minute hand: $\text{minutes\\\_angle} = \text{minutes} \times 6°$.
+Now one could easily find an angle between the 0-minute vertical line and a minute hand: $\text{minutes\\_angle} = \text{minutes} \times 6°$.
 
 ![fig](images/qq_min2.png)
 
@@ -28,25 +28,25 @@ Similarly, with the minute hand angle, the whole circle is equal to $360°$ or 1
 
 ![fig](images/hour.png)
 
-Now for the "minutes = 0" case, one could easily find an angle between the 12-hour vertical line and an hour hand: $\text{hour\\\_angle} = \text{hour} \times 30°$.
+Now for the "minutes = 0" case, one could easily find an angle between the 12-hour vertical line and an hour hand: $\text{hour\\_angle} = \text{hour} \times 30°$.
 
 ![fig](images/qq_h.png)
 
-Note that for 12 hours, the actual angle is zero, therefore the expression has to be corrected $\text{hour\\\_angle} = (\text{hour mod } 12) \ \times 30°$.
+Note that for 12 hours, the actual angle is zero, therefore the expression has to be corrected $\text{hour\\_angle} = (\text{hour mod } 12) \ \times 30°$.
 
 In a more general case where "minutes > 0", one has to take into account an additional movement of hour hand: it doesn't jump between the integer values but follows the movement of the minute hand as well
 
-$\text{hour\\\_angle} = \left(\text{hour mod } 12 + \text{minutes} / 60 \right)\times 30°$
+$\text{hour\\_angle} = \left(\text{hour mod } 12 + \text{minutes} / 60 \right)\times 30°$
 
 ![fig](images/minutes_corr2.png)
 
 **Algorithm**
 
-- Initialize the constants: $one_{min\_angle} = 6$, $one_{hour\_angle} = 30$.
+- Initialize the constants: $one_min_angle = 6$, $one_hour_angle = 30$.
 
-- The angle between the minute hand and the 0-minute vertical line is $\text{minutes}_{angle} = one_{min\_angle} * minutes$.
+- The angle between the minute hand and the 0-minute vertical line is $\text{minutes}_{angle} = one_min_angle * minutes$.
 
-- The angle between the hour hand and the 12-hour vertical line is $\text{hour}_{angle} = (hour \% 12 + minutes / 60) * one_{hour\_angle}$.
+- The angle between the hour hand and the 12-hour vertical line is $\text{hour}_{angle} = (hour \% 12 + minutes / 60) * one_hour_angle$.
 
 - Find the difference: $diff = abs(\text{hour}_{angle} - \text{minutes}_{angle})$.
 

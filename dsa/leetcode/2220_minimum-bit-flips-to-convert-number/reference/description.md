@@ -11,6 +11,7 @@ Given two integers `start` and `goal`, return* the **minimum** number of **bit f
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $start = 10, goal = 7$

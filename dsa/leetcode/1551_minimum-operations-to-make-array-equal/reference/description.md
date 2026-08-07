@@ -11,6 +11,7 @@ Given an integer `n`, the length of the array, return *the minimum number of ope
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 3$

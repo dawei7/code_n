@@ -22,6 +22,7 @@ Implement the Trie class:
 Return the boolean result of every `search` and `startsWith` command in command order; `insert` commands produce no result.
 
 ### Examples
+
 #### Example 1
 
 ```

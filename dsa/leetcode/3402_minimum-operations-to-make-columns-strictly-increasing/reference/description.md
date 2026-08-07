@@ -11,6 +11,7 @@ Return the **minimum** number of operations needed to make all columns of `grid`
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

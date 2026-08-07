@@ -1,6 +1,6 @@
 ## Description
 
-Given an array of strings `names` of size `n`. You will create `n` folders in your file system **such that**, at the $$i^{\text{th}}$$minute, you will create a folder with the name$\text{names}[i]$.
+Given an array of strings `names` of size `n`. You will create `n` folders in your file system **such that**, at the $$i^{\text{th}}$$ minute, you will create a folder with the name $\text{names}[i]$.
 
 Since two files **cannot** have the same name, if you enter a folder name that was previously used, the system will have a suffix addition to its name in the form of `(k)`, where, `k` is the **smallest positive integer** such that the obtained name remains unique.
 
@@ -11,6 +11,7 @@ Return *an array of strings of length *`n` where $\text{ans}[i]$ is the actual n
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $names = ["pes","fifa","gta","pes(2019)"]$

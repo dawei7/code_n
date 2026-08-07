@@ -11,6 +11,7 @@ Return the length of the **longest semi-repetitive substring** of `s`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

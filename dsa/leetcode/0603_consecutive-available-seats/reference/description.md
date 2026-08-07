@@ -24,13 +24,14 @@ The result format is in the following example.
 
 **Input**
 
-`Cinema(seat_id, free)` contains the seat availability rows. Let $n$ be its row count.
+$Cinema(\text{seat}_{id}, free)$ contains the seat availability rows. Let $n$ be its row count.
 
 **Return value**
 
-Return a one-column table containing each free `seat_id` that has a free seat at `seat_id - 1` or `seat_id + 1`. Sort the result by `seat_id` in ascending order.
+Return a one-column table containing each free $\text{seat}_{id}$ that has a free seat at $\text{seat}_{id} - 1$ or $\text{seat}_{id} + 1$. Sort the result by $\text{seat}_{id}$ in ascending order.
 
 ### Examples
+
 #### Example 1
 
 ```

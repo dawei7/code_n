@@ -21,6 +21,7 @@ Return* an integer array *`answer`*, where *$\text{answer}[i]$* is the second gr
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,4,0,9,6]`

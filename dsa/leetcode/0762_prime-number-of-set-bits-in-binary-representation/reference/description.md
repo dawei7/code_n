@@ -11,6 +11,7 @@ Recall that the **number of set bits** an integer has is the number of `1`'s pre
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $left = 6, right = 10$

@@ -14,6 +14,7 @@ Let $n = \lvert s\rvert$. Each candidate substring is identified by an interval 
 - Return the integer number of qualifying non-empty intervals. Occurrences at different positions count separately even when their substring text is identical.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "aaaba"`

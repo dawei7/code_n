@@ -6,6 +6,7 @@ Given a digit string `s`, return *the number of **unique substrings **of *`s`* w
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "1212"`

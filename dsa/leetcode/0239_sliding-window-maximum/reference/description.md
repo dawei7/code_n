@@ -12,9 +12,10 @@ Return *the max sliding window*.
 
 **Return value**
 
-Return the maximum of each of the `nums.length - k + 1` windows from left to right.
+Return the maximum of each of the $\text{nums.length} - k + 1$ windows from left to right.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,3,-1,-3,5,3,6,7], k = 3`

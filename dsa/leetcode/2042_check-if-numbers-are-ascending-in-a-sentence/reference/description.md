@@ -13,6 +13,7 @@ Return `true`* if so, or *`false`* otherwise*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![example-1](images/example1.png)

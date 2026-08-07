@@ -11,6 +11,7 @@ Return *an array containing all the **safe nodes** of the graph*. The answer sho
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![Illustration of graph](images/picture1.png)

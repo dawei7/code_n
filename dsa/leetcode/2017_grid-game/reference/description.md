@@ -13,6 +13,7 @@ The **first** robot wants to **minimize** the number of points collected by the 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/a1.png)

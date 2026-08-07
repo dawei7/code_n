@@ -7,6 +7,7 @@ Given a **0-indexed** integer array `nums` of length `n` and an integer `k`, ret
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,1,2,2,2,1,3], k = 2`

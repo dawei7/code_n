@@ -9,6 +9,7 @@ A string is **palindromic** if it reads the same forward and backward.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["abc","car","ada","racecar","cool"]$

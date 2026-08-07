@@ -7,6 +7,7 @@ Return the number of **distinct** non-empty substrings of `text` that can be wri
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $text = "abcabcabc"$

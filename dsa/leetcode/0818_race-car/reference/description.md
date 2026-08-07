@@ -26,6 +26,7 @@ Given a target position `target`, return *the length of the shortest sequence of
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $target = 3$

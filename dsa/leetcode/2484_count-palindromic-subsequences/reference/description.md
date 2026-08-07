@@ -13,6 +13,7 @@ Given a string of digits `s`, return *the number of **palindromic subsequences**
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "103301"`

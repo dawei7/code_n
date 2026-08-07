@@ -7,6 +7,7 @@ Given a **positive** integer `num` represented as a string, return *the integer 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num = "51230100"$

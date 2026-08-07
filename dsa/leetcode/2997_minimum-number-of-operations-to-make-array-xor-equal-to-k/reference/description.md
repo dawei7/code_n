@@ -15,6 +15,7 @@ Return *the **minimum** number of operations required to make the bitwise *`XOR`
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,1,3,4], k = 1`

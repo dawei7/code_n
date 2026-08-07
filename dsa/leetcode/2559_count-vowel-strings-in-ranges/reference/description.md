@@ -13,6 +13,7 @@ Return *an array *`ans`* of size *`queries.length`*, where *$\text{ans}[i]$* is 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["aba","bcb","ece","aa","e"], queries = [[0,2],[1,4],[1,1]]$

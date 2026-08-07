@@ -21,9 +21,7 @@ The lists describe one rooted containment hierarchy: a region has at most one di
 
 For the complexity discussion, let
 
-$$
-R = \sum_{g \in \texttt{regions}} \lvert g \rvert
-$$
+$R = \sum_{g \in \texttt{regions}} \lvert g \rvert$
 
 be the total number of region-name occurrences across all lists.
 
@@ -32,6 +30,7 @@ be the total number of region-name occurrences across all lists.
 Return the smallest region that contains both queried regions. Containment includes the region itself.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** ``

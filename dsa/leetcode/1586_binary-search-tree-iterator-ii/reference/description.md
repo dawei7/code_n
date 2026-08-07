@@ -32,6 +32,7 @@ You may assume that `next()` and `prev()` calls will always be valid. That is, t
 - `next` / `prev`: integer.
 
 ### Examples
+
 #### Example 1
 
 **

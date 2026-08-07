@@ -11,6 +11,7 @@ Given the roots of two binary trees `root1` and `root2`, return `true` if the tw
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![Flipped Trees Diagram](images/tree_ex.png)

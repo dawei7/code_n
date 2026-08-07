@@ -19,6 +19,7 @@ Note:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num = "6**<u>777</u>**133339"$

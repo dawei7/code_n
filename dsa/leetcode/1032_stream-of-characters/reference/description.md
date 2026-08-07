@@ -15,6 +15,7 @@ Implement the `StreamChecker` class:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ```

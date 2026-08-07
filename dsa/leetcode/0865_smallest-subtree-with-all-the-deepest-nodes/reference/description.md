@@ -13,6 +13,7 @@ The **subtree** of a node is a tree consisting of that node, plus the set of all
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/sketch1.png)

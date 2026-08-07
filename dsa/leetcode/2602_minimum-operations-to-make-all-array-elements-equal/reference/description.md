@@ -2,7 +2,7 @@
 
 You are given an array `nums` consisting of positive integers.
 
-You are also given an integer array `queries` of size `m`. For the $$i^{\text{th}}$$query, you want to make all of the elements of `nums` equal to$\text{queries}[i]$. You can perform the following operation on the array **any** number of times:
+You are also given an integer array `queries` of size `m`. For the $$i^{\text{th}}$$ query, you want to make all of the elements of `nums` equal to$\text{queries}[i]$. You can perform the following operation on the array **any** number of times:
 
 - **Increase** or **decrease** an element of the array by `1`.
 
@@ -15,6 +15,7 @@ Return *an array *`answer`* of size *`m`* where *$\text{answer}[i]$* is the **mi
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,1,6,8], queries = [1,5]`

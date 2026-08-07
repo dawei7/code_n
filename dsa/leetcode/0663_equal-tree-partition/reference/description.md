@@ -14,6 +14,7 @@ Given the `root` of a binary tree, return `true`* if you can partition the tree 
 Return `true` if removing exactly one parent-child edge produces two trees with equal sums of node values. Return `false` if no existing edge has that property.
 
 ### Examples
+
 #### Example 1
 
 ![](images/split1-tree.jpg)

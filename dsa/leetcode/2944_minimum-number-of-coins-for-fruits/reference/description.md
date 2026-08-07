@@ -15,6 +15,7 @@ Return the **minimum** number of coins needed to acquire all the fruits.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

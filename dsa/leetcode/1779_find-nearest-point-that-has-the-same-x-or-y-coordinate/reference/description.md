@@ -11,6 +11,7 @@ The **Manhattan distance** between two points $(x_{1}, y_{1})$ and $(x_{2}, y_{2
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $x = 3, y = 4, points = [[1,2],[3,1],[2,4],[2,3],[4,4]]$

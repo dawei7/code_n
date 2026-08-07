@@ -24,9 +24,10 @@ A subsequence keeps the selected indices in their original order; the operation 
 
 **Return value**
 
-Return a length-$m$ boolean array. Its element at index `i` is `true` exactly when at least one complete binary replacement of `strs[i]` is reachable from `s`; otherwise it is `false`.
+Return a length-$m$ boolean array. Its element at index `i` is `true` exactly when at least one complete binary replacement of $\text{strs}[i]$ is reachable from `s`; otherwise it is `false`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

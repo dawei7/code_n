@@ -17,6 +17,7 @@ Please solve it without using the built-in `Promise.all` function.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $functions = [$

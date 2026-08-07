@@ -21,6 +21,7 @@ Implement the `Solution` class:
 The app adapter returns one array per operation. On LeetCode, construct `Solution(nums)` and call `reset()` or `shuffle()` directly; each possible shuffled ordering must have equal probability.
 
 ### Examples
+
 #### Example 1
 
 ```

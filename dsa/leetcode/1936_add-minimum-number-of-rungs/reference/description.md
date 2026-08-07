@@ -11,6 +11,7 @@ Return *the **minimum** number of rungs that must be added to the ladder in orde
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $rungs = [1,3,5,10], dist = 2$

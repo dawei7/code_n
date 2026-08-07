@@ -15,6 +15,7 @@ Given a positive integer `n`, return `true` if Alice wins the game and `false` o
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

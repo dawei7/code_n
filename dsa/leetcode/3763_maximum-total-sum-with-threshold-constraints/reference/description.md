@@ -28,6 +28,7 @@ The arrays have the same length $n$. Each index can be chosen at most once, and 
 Return the greatest running total achievable when the required process terminates.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

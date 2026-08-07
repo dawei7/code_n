@@ -13,6 +13,7 @@ Two sequences $a_{1}, a_{2}, ...$ and $b_{1}, b_{2}, ...$ are different if there
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "bccb"`

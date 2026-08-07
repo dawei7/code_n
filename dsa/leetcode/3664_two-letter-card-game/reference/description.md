@@ -21,6 +21,7 @@ Two cards are **compatible** if the strings differ in **exactly** 1 position.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

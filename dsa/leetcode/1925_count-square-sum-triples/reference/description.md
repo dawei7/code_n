@@ -9,6 +9,7 @@ Given an integer `n`, return *the number of **square triples** such that *$1 \le
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 5$

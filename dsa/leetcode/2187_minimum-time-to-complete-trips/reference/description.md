@@ -11,6 +11,7 @@ You are also given an integer `totalTrips`, which denotes the number of trips al
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $time = [1,2,3], totalTrips = 5$

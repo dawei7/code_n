@@ -11,6 +11,7 @@ A **subsequence** is a sequence that can be derived from another sequence by del
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,6,1,2,5], k = 2`

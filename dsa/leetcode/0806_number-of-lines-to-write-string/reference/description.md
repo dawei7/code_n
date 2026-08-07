@@ -15,6 +15,7 @@ Return *an array *`result`* of length 2 where:*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $widths = [10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10], s = "abcdefghijklmnopqrstuvwxyz"$

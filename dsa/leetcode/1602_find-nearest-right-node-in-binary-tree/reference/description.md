@@ -13,6 +13,7 @@ Given the `root` of a binary tree and a node `u` in the tree, return *the **near
 Return the nearest `TreeNode` to the right of `u` at the same depth level, or `null` if `u` is the rightmost node on its level.
 
 ### Examples
+
 #### Example 1
 
 ![](images/p3.png)

@@ -22,6 +22,7 @@ Note that the money from one data center **cannot** be used for another data cen
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

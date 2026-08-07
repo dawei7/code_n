@@ -55,15 +55,16 @@ The result format is in the following example.
 
 **Inputs**
 
-- `Drivers`: Table with columns `driver_id` (int), `join_date` (date).
-- `Rides`: Table with columns `ride_id` (int), `user_id` (int), `requested_at` (date).
-- `AcceptedRides`: Table with columns `ride_id` (int), `driver_id` (int), `ride_distance` (int), `ride_duration` (int).
+- `Drivers`: Table with columns $\text{driver}_{id}$ (int), $\text{join}_{date}$ (date).
+- `Rides`: Table with columns $\text{ride}_{id}$ (int), $\text{user}_{id}$ (int), $\text{requested}_{at}$ (date).
+- `AcceptedRides`: Table with columns $\text{ride}_{id}$ (int), $\text{driver}_{id}$ (int), $\text{ride}_{distance}$ (int), $\text{ride}_{duration}$ (int).
 
 **Return value**
 
 Return a table with columns `month` (int from 1 to 10), `average_ride_distance` (decimal rounded to 2 decimal places), and `average_ride_duration` (decimal rounded to 2 decimal places) for each 3-month rolling window in 2020.
 
 ### Examples
+
 #### Example 1
 
 ```

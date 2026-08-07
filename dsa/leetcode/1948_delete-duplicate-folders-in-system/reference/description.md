@@ -36,6 +36,7 @@ Return *the 2D array *`ans` *containing the paths of the **remaining** folders a
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/lc-dupfolder1.jpg)

@@ -15,6 +15,7 @@ Implement the class `SubrectangleQueries` which receives a `rows x cols` rectang
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ```

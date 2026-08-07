@@ -4,29 +4,36 @@ Enhance all functions to have the `bindPolyfill` method. When `bindPolyfill` is 
 
 For example, if you had the code:
 
+```
 function f() {
-console.log('My context is ' + this.ctx);
+  console.log('My context is ' + this.ctx);
 }
 f();
 ```
+
 The output would be `"My context is undefined"`. However, if you bound the function:
+
 ```
 function f() {
-console.log('My context is ' + this.ctx);
+  console.log('My context is ' + this.ctx);
 }
 const boundFunc = f.boundPolyfill({ "ctx": "My Object" })
 boundFunc();
 ```
+
 The output should be `"My context is My Object"`.
+
 You may assume that a single non-null object will be passed to the `bindPolyfill` method.
+
 Please solve it without the built-in `Function.bind` method.
 ### Function Contract
 
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
-```
+
 - **Input:** ``
 fn = function f(multiplier) {
 return this.x * multiplier;

@@ -16,6 +16,7 @@ In one move, you can increment $n - 1$ elements of the array by `1`.
 The result is guaranteed to fit in a 32-bit integer.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3]`

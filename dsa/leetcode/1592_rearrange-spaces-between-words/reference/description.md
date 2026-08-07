@@ -11,6 +11,7 @@ Return *the string after rearranging the spaces*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $text = " this is a sentence "$

@@ -11,6 +11,7 @@ Return all critical connections in the network in any order.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/1537_ex1_2.png)

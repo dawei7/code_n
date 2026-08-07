@@ -11,6 +11,7 @@ Two paths are considered different if they do not have exactly the same sequence
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/griddrawio-4.png)

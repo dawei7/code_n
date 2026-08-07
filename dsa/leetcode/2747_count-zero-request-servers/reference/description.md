@@ -13,6 +13,7 @@ Note that the time intervals are inclusive.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 3, logs = [[1,3],[2,6],[1,5]], x = 5, queries = [10,11]$

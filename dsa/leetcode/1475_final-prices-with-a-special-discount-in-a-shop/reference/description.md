@@ -2,7 +2,7 @@
 
 You are given an integer array `prices` where $\text{prices}[i]$ is the price of the $$i^{\text{th}}$$ item in a shop.
 
-There is a special discount for items in the shop. If you buy the $$i^{\text{th}}$$item, then you will receive a discount equivalent to$\text{prices}[j]$where `j` is the minimum index such that `j > i` and$\text{prices}[j] \le \text{prices}[i]$. Otherwise, you will not receive any discount at all.
+There is a special discount for items in the shop. If you buy the $$i^{\text{th}}$$ item, then you will receive a discount equivalent to $\text{prices}[j]$ where `j` is the minimum index such that `j > i` and $\text{prices}[j] \le \text{prices}[i]$. Otherwise, you will not receive any discount at all.
 
 Return an integer array `answer` where $\text{answer}[i]$ is the final price you will pay for the $$i^{\text{th}}$$ item of the shop, considering the special discount.
 ### Function Contract
@@ -11,6 +11,7 @@ Return an integer array `answer` where $\text{answer}[i]$ is the final price you
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $prices = [8,4,6,2,3]$

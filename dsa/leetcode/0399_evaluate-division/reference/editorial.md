@@ -183,9 +183,9 @@ The entry is defined as $key -> (\text{group}_{id}, weight)$.
 For example, initially, given a node `a`, its entry in the table would look like `'a' -> ('a', 1)`, where the first `'a'`indicates the id of the node, the second `'a'` indicates the id of the group that the node belongs to, and finally the value `1` indicates the weight of the node.
 
 With the above definitions, the tasks become simple.
-Given two nodes (variables `a` and `b`) with entries as $(a_{group\_id}, a_{weight})$ and $(b_{group\_id}, b_{weight})$ respectively, to evaluate the query of $\frac{a}{b} = ?$, we only need to perform the following two calculations:
+Given two nodes (variables `a` and `b`) with entries as $(a_group_id, a_{weight})$ and $(b_group_id, b_{weight})$ respectively, to evaluate the query of $\frac{a}{b} = ?$, we only need to perform the following two calculations:
 
-- $a_{group\_id} = b_{group\_id}$: If so, they belong to the same group, _i.e._ there exists a path between them.
+- $a_group_id = b_group_id$: If so, they belong to the same group, _i.e._ there exists a path between them.
 
 - $a_{weight} / b_{weight}$: If the above condition holds, by dividing over the **_relative_** weights that are assigned to the variables, we then can obtain the result of $\frac{a}{b}$ at the end.
 

@@ -13,6 +13,7 @@ If it is impossible to make `num1` equal to `0`, return `-1`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num1 = 3, num2 = -2$

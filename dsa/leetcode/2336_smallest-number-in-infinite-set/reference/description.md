@@ -15,6 +15,7 @@ Implement the `SmallestInfiniteSet` class:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ```

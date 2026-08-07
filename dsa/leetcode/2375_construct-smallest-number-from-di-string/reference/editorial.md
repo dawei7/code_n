@@ -435,7 +435,7 @@ Let $n$ be the length of the input string `pattern`.
 
     The algorithm iterates through the input string `pattern` once, which takes $O(n)$ time. During each iteration, when the character is 'I' or the end of the string is reached, the algorithm reverses a contiguous segment of the `result` string. While reversing a substring of length $k$ takes $$\mathcal{O}(k)$$ time, each position in the array is reversed at most once throughout the entire process.
 
-    Since each element participates in at most one reversal, the total number of operations across all reversals is at most $$\mathcal{O}(n)$$. Thus, the overall time complexity is$O(n)$.
+    Since each element participates in at most one reversal, the total number of operations across all reversals is at most $$\mathcal{O}(n)$$. Thus, the overall time complexity is $O(n)$.
 
 - Space complexity: $O(n)$
 

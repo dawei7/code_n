@@ -13,6 +13,7 @@ Each $\text{answer}[i]$ is calculated considering the **initial** state of the b
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $boxes = "110"$

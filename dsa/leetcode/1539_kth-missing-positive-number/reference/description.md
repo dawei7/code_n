@@ -9,6 +9,7 @@ Return *the* $$k^{\text{th}}$$ ***positive** integer that is **missing** from th
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [2,3,4,7,11], k = 5`

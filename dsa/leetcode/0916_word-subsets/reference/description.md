@@ -15,6 +15,7 @@ Return an array of all the **universal** strings in `words1`. You may return the
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

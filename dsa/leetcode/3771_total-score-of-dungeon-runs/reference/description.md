@@ -24,6 +24,7 @@ The two arrays have the same nonzero length $N$. Each run resets health to `hp`,
 Return the sum of the points earned over all $N$ starting positions. A single room can contribute to several runs, and the total may require a 64-bit integer in fixed-width languages.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

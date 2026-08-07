@@ -22,6 +22,7 @@ Return *the number of **different** ranges that are balanced. *Since the answer 
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [1,2,5], nums2 = [2,6,3]$

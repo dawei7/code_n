@@ -9,11 +9,12 @@ Given an integer array `arr`, count how many elements `x` there are, such that $
 
 **Return value**
 
-Return the number of positions whose value `x` has `x + 1` present anywhere in `arr`.
+Return the number of positions whose value `x` has $x + 1$ present anywhere in `arr`.
 
-The test is based on presence, not one-to-one pairing. A single occurrence of `x + 1` can make every occurrence of `x` qualify, while extra copies of `x + 1` do not increase the contribution of one `x`.
+The test is based on presence, not one-to-one pairing. A single occurrence of $x + 1$ can make every occurrence of `x` qualify, while extra copies of $x + 1$ do not increase the contribution of one `x`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [1,2,3]`

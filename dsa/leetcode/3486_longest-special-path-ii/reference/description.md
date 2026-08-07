@@ -11,6 +11,7 @@ Return an array `result` of size 2, where $\text{result}[0]$ is the **length** o
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

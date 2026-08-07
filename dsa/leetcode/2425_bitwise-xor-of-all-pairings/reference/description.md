@@ -9,6 +9,7 @@ Return* the **bitwise XOR** of all integers in *`nums3`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [2,1,3], nums2 = [10,2,5,0]$

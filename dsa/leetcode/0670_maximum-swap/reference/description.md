@@ -9,6 +9,7 @@ Return *the maximum valued number you can get*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num = 2736$

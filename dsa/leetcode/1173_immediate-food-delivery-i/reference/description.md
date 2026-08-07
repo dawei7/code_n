@@ -26,13 +26,14 @@ The result format is in the following example.
 
 **Table Schema**
 
-`Delivery` (`delivery_id`: `int`, `customer_id`: `int`, `order_date`: `date`, `customer_pref_delivery_date`: `date`)
+`Delivery` ($\text{delivery}_{id}$: `int`, $\text{customer}_{id}$: `int`, $\text{order}_{date}$: `date`, `customer_pref_delivery_date`: `date`)
 
 **Return Table Schema**
 
-`Result` (`immediate_percentage`: `decimal(5,2)`)
+`Result` ($\text{immediate}_{percentage}$: `decimal(5,2)`)
 
 ### Examples
+
 #### Example 1
 
 ```

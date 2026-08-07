@@ -9,6 +9,7 @@ A customer's **wealth** is the amount of money they have in all their bank accou
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $accounts = [[1,2,3],[3,2,1]]$

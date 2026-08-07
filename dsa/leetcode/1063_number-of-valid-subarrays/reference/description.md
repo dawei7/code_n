@@ -16,6 +16,7 @@ Let $N = \lvert\texttt{nums}\rvert$. Each pair of inclusive left and right bound
 - The total number of valid subarrays.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,4,2,5,3]`

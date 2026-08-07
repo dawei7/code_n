@@ -2,7 +2,7 @@
 
 On a campus represented on the X-Y plane, there are `n` workers and `m` bikes, with $n \le m$.
 
-You are given an array `workers` of length `n` where $\text{workers}[i] = [x_{i}, y_{i}]$ is the position of the $$i^{\text{th}}$$worker. You are also given an array `bikes` of length `m` where$\text{bikes}[j] = [x_{j}, y_{j}]$is the position of the$$j^{\text{th}}$$ bike. All the given positions are **unique**.
+You are given an array `workers` of length `n` where $\text{workers}[i] = [x_{i}, y_{i}]$ is the position of the $$i^{\text{th}}$$ worker. You are also given an array `bikes` of length `m` where $\text{bikes}[j] = [x_{j}, y_{j}]$ is the position of the $$j^{\text{th}}$$ bike. All the given positions are **unique**.
 
 Assign a bike to each worker. Among the available bikes and workers, we choose the $(\text{worker}_{i}, \text{bike}_{j})$ pair with the shortest **Manhattan distance** between each other and assign the bike to that worker.
 
@@ -24,9 +24,10 @@ Let $D$ denote the largest possible Manhattan distance between two legal coordin
 
 **Return value**
 
-- An integer array `answer` of length $W$, where `answer[i]` is the 0-indexed bike assigned to worker `i`.
+- An integer array `answer` of length $W$, where $\text{answer}[i]$ is the 0-indexed bike assigned to worker `i`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/1261_example_1_v2.png)

@@ -6,16 +6,16 @@ The problem requires that every subarray of length greater than $\textit{limit}$
 
 We need to construct the binary array $\textit{arr}$ using exactly $\textit{zero}$ zeros and $\textit{one}$ ones.
 
-Let $\textit{dp}\text{\_0}[i][j]$ denote the number of valid schemes in which we have used $i$ zeros and $j$ ones, and the last placed number is $0$.
-Let $\textit{dp}\text{\_1}[i][j]$ denote the number of valid schemes in which we have used $i$ zeros and $j$ ones, and the last placed number is $1$.
+Let $\textit{dp}\text{_0}[i][j]$ denote the number of valid schemes in which we have used $i$ zeros and $j$ ones, and the last placed number is $0$.
+Let $\textit{dp}\text{_1}[i][j]$ denote the number of valid schemes in which we have used $i$ zeros and $j$ ones, and the last placed number is $1$.
 
-We first analyze the transition for $\textit{dp}\text{\_0}[i][j]$.
+We first analyze the transition for $\textit{dp}\text{_0}[i][j]$.
 
-* When $j = 0$ and $i \in [0, \min(\textit{zero}, \textit{limit})]$, we can keep placing $0$s without violating the constraint. Thus, $\textit{dp}\text{\_0}[i][j] = 1$.
+* When $j = 0$ and $i \in [0, \min(\textit{zero}, \textit{limit})]$, we can keep placing $0$s without violating the constraint. Thus, $\textit{dp}\text{_0}[i][j] = 1$.
 
-* When $i = 0$, or when $j = 0$ but $i \notin [0, \min(\textit{zero}, \textit{limit})]$, no valid scheme exists. Thus, $\textit{dp}\text{\_0}[i][j] = 0$.
+* When $i = 0$, or when $j = 0$ but $i \notin [0, \min(\textit{zero}, \textit{limit})]$, no valid scheme exists. Thus, $\textit{dp}\text{_0}[i][j] = 0$.
 
-* When $i > 0$ and $j > 0$, $\textit{dp}\text{\_0}[i][j]$ can be derived from $\textit{dp}_0[i - 1][j]$ and $\textit{dp}_1[i - 1][j]$:
+* When $i > 0$ and $j > 0$, $\textit{dp}\text{_0}[i][j]$ can be derived from $\textit{dp}_0[i - 1][j]$ and $\textit{dp}_1[i - 1][j]$:
 
   * From $\textit{dp}_1[i - 1][j]$: we can always append a $0$ to these schemes, since the previous number was $1$.
 
@@ -23,17 +23,19 @@ We first analyze the transition for $\textit{dp}\text{\_0}[i][j]$.
     If $i \le \textit{limit}$, appending another $0$ does not violate the constraint.
     If $i > \textit{limit}$, appending $0$ may create more than $\textit{limit}$ consecutive zeros. In this case, we must subtract the invalid schemes where the previous $\textit{limit}$ elements were all zeros. These correspond to $\textit{dp}_1[i - \textit{limit} - 1][j]$.
 
-Therefore, the transition for $\textit{dp}\text{\_0}[i][j]$ is:
+Therefore, the transition for $\textit{dp}\text{_0}[i][j]$ is:
 
-$$\textit{dp}_0[i][j] =
+$$
+\textit{dp}_0[i][j] =
 \begin{cases}
-1, \& i \in [0, \min(\textit{zero}, \textit{limit})],\ j = 0 \
-\textit{dp}_1[i - 1][j] + \textit{dp}_0[i - 1][j] - \textit{dp}_1[i - \textit{limit} - 1][j], \& i > \textit{limit},\ j > 0 \
-\textit{dp}_1[i - 1][j] + \textit{dp}_0[i - 1][j], \& i \le \textit{limit},\ j > 0 \
-0, \& \text{otherwise}
-\end{cases}$$
+1, & i \in [0, \min(\textit{zero}, \textit{limit})],\ j = 0 \
+\textit{dp}_1[i - 1][j] + \textit{dp}_0[i - 1][j] - \textit{dp}_1[i - \textit{limit} - 1][j], & i > \textit{limit},\ j > 0 \
+\textit{dp}_1[i - 1][j] + \textit{dp}_0[i - 1][j], & i \le \textit{limit},\ j > 0 \
+0, & \text{otherwise}
+\end{cases}
+$$
 
-Similarly, we derive the transition for $\textit{dp}\text{\_1}[i][j]$:
+Similarly, we derive the transition for $\textit{dp}\text{_1}[i][j]$:
 
 $$
 \textit{dp}_1[i][j] =

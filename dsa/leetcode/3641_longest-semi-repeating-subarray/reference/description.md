@@ -10,6 +10,7 @@ Return the length of the longest **semi‑repeating** subarray in `nums`.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

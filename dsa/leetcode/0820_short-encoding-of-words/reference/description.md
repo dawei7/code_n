@@ -15,6 +15,7 @@ Given an array of `words`, return *the **length of the shortest reference string
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["time", "me", "bell"]$

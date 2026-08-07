@@ -9,6 +9,7 @@ You are given a 2D integer array `edges` where each $\text{edges}[i] = [u_{i}, v
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/star_graph.png)

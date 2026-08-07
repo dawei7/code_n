@@ -11,6 +11,7 @@ Return *the minimum **effort** required to travel from the top-left cell to the 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1.png)

@@ -15,6 +15,7 @@ Notice that `"10:00"` - `"11:00"` is considered to be within a one-hour period, 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $keyName = ["daniel","daniel","daniel","luis","luis","luis","luis"], keyTime = ["10:00","10:40","11:00","09:00","11:00","13:00","15:00"]$

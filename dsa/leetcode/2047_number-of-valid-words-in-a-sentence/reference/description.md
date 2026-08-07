@@ -19,6 +19,7 @@ Given a string `sentence`, return *the **number** of valid words in *`sentence`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $sentence = "<u>cat</u> <u>and</u> <u>dog</u>"$

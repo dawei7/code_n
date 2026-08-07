@@ -17,7 +17,7 @@ The given board represents the state of the game following the player's move. No
 You need to perform the above rules until the board becomes stable, then return *the stable board*.
 ### Function Contract
 
-`solve(board: list[list[int]]) -> list[list[int]]`
+$solve(board: list[\text{list}[int]]) -> list[\text{list}[int]]$
 
 Let $m$ be the number of rows and $n$ the number of columns.
 
@@ -30,6 +30,7 @@ Let $m$ be the number of rows and $n$ the number of columns.
 Return the stable matrix after every required simultaneous crush and gravity round. A returned `0` denotes an empty cell; empty cells remain above all surviving candies in their column because no new candies enter the board.
 
 ### Examples
+
 #### Example 1
 
 ![](images/candy_crush_example_2.png)

@@ -9,13 +9,14 @@ You must solve the problem **without** modifying the array `nums` and using only
 
 **Inputs**
 
-- `nums`: An array of `n + 1` integers from `[1,n]` containing exactly one distinct repeated value.
+- `nums`: An array of $n + 1$ integers from `[1,n]` containing exactly one distinct repeated value.
 
 **Return value**
 
 Return the value that occurs more than once.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,3,4,2,2]`

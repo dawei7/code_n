@@ -29,6 +29,7 @@ The repeating portion of a decimal expansion is conventionally denoted within a 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "0.(52)", t = "0.5(25)"`

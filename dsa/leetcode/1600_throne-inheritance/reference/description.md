@@ -41,6 +41,7 @@ Implement the `ThroneInheritance` class:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ```

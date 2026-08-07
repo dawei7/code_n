@@ -12,6 +12,7 @@ Given an integer array `nums`, return `true` if any value appears **at least twi
 Return `true` if any two positions contain the same value; otherwise return `false`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

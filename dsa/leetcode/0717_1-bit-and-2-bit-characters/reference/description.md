@@ -13,6 +13,7 @@ Given a binary array `bits` that ends with `0`, return `true` if the last charac
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $bits = [1,0,0]$

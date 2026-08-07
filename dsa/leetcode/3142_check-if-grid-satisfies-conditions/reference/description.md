@@ -13,6 +13,7 @@ Return `true` if **all** the cells satisfy these conditions, otherwise, return `
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

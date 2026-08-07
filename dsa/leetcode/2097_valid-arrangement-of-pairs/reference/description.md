@@ -11,6 +11,7 @@ Return ***any** valid arrangement of *`pairs`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $pairs = [[5,1],[4,5],[11,9],[9,4]]$

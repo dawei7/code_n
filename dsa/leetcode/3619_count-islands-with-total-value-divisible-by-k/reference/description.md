@@ -11,6 +11,7 @@ Return the number of islands with a total value **divisible by** `k`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/example1griddrawio-1.png)

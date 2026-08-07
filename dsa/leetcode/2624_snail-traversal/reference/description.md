@@ -11,6 +11,7 @@ Write code that enhances all arrays such that you can call the `snail(rowsCount,
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** ``

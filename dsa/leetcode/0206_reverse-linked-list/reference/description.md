@@ -12,6 +12,7 @@ Given the `head` of a singly linked list, reverse the list, and return *the reve
 Return the head whose traversal visits all original nodes in reverse order.
 
 ### Examples
+
 #### Example 1
 
 ![](images/rev1ex1.jpg)

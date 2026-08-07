@@ -17,6 +17,7 @@ Your `EventEmitter` class should have the following two methods:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** ``

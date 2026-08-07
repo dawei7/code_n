@@ -12,6 +12,7 @@ Note that a **knight** can **move** from cell `(r1, c1)` to cell `(r2, c2)` if $
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $m = 1, n = 1, r = 0, c = 0$

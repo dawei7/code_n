@@ -17,6 +17,7 @@ Return *the lexicographically **smallest** possible string *`num`* that meets th
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $pattern = "IIIDIDDD"$

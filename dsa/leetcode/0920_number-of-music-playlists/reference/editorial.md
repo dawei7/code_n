@@ -227,11 +227,11 @@ In general, for each $i$ from $k$ to $n$, we calculate $(-1)^{n-i} \binom{n}{i} 
 
 Finally, the total number of valid playlists that contain exactly $n$ unique songs is the sum of these corrected counts: $\sum_{i=k}^n (-1)^{n - i} \binom{n}{i} f(i) = \sum_{i=k}^n (-1)^{n - i} \frac{n!}{i!(n-i)!} \frac{i!}{(i - k)!} (i - k)^{\text{goal} - k} = n! \sum_{i=k}^n (-1)^{n - i} \frac{(i - k)^{\text{goal} - k}}{(n-i)!(i - k)!}$.
 
-To calculate each summand quickly, we precalculate factorials and inverse factorials modulo $10^9 + 7$ in the arrays $\text{factorial}$ and $\text{inv\\\_factorial}$ respectively.
+To calculate each summand quickly, we precalculate factorials and inverse factorials modulo $10^9 + 7$ in the arrays $\text{factorial}$ and $\text{inv\\_factorial}$ respectively.
 
 #### Algorithm
 
-1. Initialize the $\text{factorial}$ and $\text{inv\\\_factorial}$ arrays to precalculate the factorial and inverse factorial values modulo $10^9 + 7$ up to $n$.
+1. Initialize the $\text{factorial}$ and $\text{inv\\_factorial}$ arrays to precalculate the factorial and inverse factorial values modulo $10^9 + 7$ up to $n$.
 2. Calculate the factorial and inverse factorial values using the formula $\text{factorial}[i] = \text{factorial}[i - 1] \cdot i$ and the [Fermat's Little Theorem](https://en.wikipedia.org/wiki/Fermat%27s_little_theorem) respectively.
 3. Initialize variables $\text{sign}$ to $1$ and $\text{answer}$ to $0$. These variables will be used to apply the principle of inclusion-exclusion.
 4. Iterate $i$ from $n$ down to $k$.

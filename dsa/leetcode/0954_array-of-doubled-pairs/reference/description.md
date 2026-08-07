@@ -7,6 +7,7 @@ Given an integer array of even length `arr`, return `true`* if it is possible to
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [3,1,3,6]`

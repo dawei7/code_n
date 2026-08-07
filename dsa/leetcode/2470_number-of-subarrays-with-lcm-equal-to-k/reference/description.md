@@ -11,6 +11,7 @@ The **least common multiple of an array** is the smallest positive integer that 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,6,2,7,1], k = 6`

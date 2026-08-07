@@ -15,6 +15,7 @@ Return *the **maximum** total number of **units** that can be put on the truck.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $boxTypes = [[1,3],[2,2],[3,1]], truckSize = 4$

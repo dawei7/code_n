@@ -22,6 +22,7 @@ Let $n=\lvert\texttt{nums}\rvert$.
 Return the maximum attainable length of an arithmetic subarray. The result counts elements, not adjacent differences.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

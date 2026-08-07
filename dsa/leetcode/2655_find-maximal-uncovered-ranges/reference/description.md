@@ -22,6 +22,7 @@ By all of the **uncovered** ranges with **maximal** length, we mean satisfying t
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 10, ranges = [[3,5],[7,8]]$

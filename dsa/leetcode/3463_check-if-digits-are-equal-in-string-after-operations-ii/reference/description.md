@@ -13,6 +13,7 @@ Return `true` if the final two digits in `s` are the **same**; otherwise, return
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -17,6 +17,7 @@ Return *the **maximum** number of weeks you would be able to work on the project
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $milestones = [1,2,3]$

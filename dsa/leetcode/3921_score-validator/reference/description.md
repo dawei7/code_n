@@ -36,6 +36,7 @@ Let $n=\lvert\texttt{events}\rvert$. Only the prefix ending at the tenth `"W"`, 
 Return `[score, counter]`, where `score` is the sum contributed by processed numeric, `"WD"`, and `"NB"` events, and `counter` is the number of processed `"W"` events. The counter never exceeds `10`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

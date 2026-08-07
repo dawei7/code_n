@@ -13,6 +13,7 @@ Determine the **minimum** total amount of damage points that will be dealt to Bo
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

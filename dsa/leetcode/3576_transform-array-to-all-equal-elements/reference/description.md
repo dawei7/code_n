@@ -15,6 +15,7 @@ Return `true` if it is possible to make all elements of the array **equal** afte
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

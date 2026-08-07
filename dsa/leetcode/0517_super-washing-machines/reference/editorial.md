@@ -54,7 +54,7 @@ Here is the algorithm.
 
 1. Check if the problem could be solved: `len(machines)` should be a divisor of `sum(machines)`. Otherwise, the answer is `-1`.
 
-2. Compute the number of dresses each machine should finally have: $dresses_{per\_machine} = sum(machines)/len(machines)$.
+2. Compute the number of dresses each machine should finally have: $dresses_per_machine = sum(machines)/len(machines)$.
 
 3. [Normalize](https://en.wikipedia.org/wiki/Normalization#Technology_and_computer_science) the problem by replacing the _number of dresses_ in each machine by the _number of dresses to be removed_ from this machine (could be negative).
 

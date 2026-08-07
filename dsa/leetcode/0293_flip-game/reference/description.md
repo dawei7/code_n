@@ -16,6 +16,7 @@ Return all possible states of the string `currentState` after **one valid move**
 Return one next-state string for each adjacent `"++"` pair. The app implementation emits these states in left-to-right pair order, although any order satisfies the problem contract.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $currentState = "++++"$

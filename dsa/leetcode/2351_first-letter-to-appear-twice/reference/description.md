@@ -13,6 +13,7 @@ Given a string `s` consisting of lowercase English letters, return *the first le
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "abccbaacz"`

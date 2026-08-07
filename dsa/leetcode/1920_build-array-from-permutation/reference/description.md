@@ -9,6 +9,7 @@ A **zero-based permutation** `nums` is an array of **distinct** integers from `0
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [0,2,1,5,3,4]`

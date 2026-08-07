@@ -32,6 +32,7 @@ Return your score at the end of the process.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -28,6 +28,7 @@ Given the current state of the `board`, **update** the `board` to reflect its ne
 Return `None`. Mutate `board` in place to the next simultaneously computed generation.
 
 ### Examples
+
 #### Example 1
 
 ![](images/grid1.jpg)

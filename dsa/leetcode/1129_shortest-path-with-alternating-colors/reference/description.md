@@ -15,6 +15,7 @@ Return an array `answer` of length `n`, where each $\text{answer}[x]$ is the len
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 3, redEdges = [[0,1],[1,2]], blueEdges = []$

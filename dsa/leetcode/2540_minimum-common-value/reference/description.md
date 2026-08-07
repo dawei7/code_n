@@ -9,6 +9,7 @@ Note that an integer is said to be **common** to `nums1` and `nums2` if both arr
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [1,2,3], nums2 = [2,4]$

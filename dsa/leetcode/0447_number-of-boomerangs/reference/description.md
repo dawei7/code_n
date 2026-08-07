@@ -14,6 +14,7 @@ Return *the number of boomerangs*.
 - Return the number of ordered boomerangs. The first point is the pivot, and the remaining two points are different equidistant endpoints.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $points = [[0,0],[1,0],[2,0]]$

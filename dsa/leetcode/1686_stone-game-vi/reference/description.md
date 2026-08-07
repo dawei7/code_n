@@ -21,6 +21,7 @@ Determine the result of the game, and:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $aliceValues = [1,3], bobValues = [2,1]$

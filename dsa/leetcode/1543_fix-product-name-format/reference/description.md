@@ -31,13 +31,14 @@ The result format is in the following example.
 
 **Inputs**
 
-- `Sales`: A table with columns `sale_id` (int), `product_name` (varchar), `sale_date` (date).
+- `Sales`: A table with columns $\text{sale}_{id}$ (int), $\text{product}_{name}$ (varchar), $\text{sale}_{date}$ (date).
 
 **Return value**
 
-Return a table with columns `product_name` (varchar), `sale_date` (varchar `YYYY-MM`), and `total` (int). Results must be grouped by normalized `product_name` and `sale_date` month, and ordered ascending by `product_name` then `sale_date`.
+Return a table with columns $\text{product}_{name}$ (varchar), $\text{sale}_{date}$ (varchar `YYYY-MM`), and `total` (int). Results must be grouped by normalized $\text{product}_{name}$ and $\text{sale}_{date}$ month, and ordered ascending by $\text{product}_{name}$ then $\text{sale}_{date}$.
 
 ### Examples
+
 #### Example 1
 
 ```

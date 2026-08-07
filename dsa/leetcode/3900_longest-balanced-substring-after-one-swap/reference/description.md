@@ -20,6 +20,7 @@ One operation may exchange the characters at any two indices in the complete str
 Return the maximum length of a substring containing equal numbers of zeros and ones after at most one swap. Return `0` when no non-empty balanced substring can be produced.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

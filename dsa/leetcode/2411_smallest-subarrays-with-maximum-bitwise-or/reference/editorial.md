@@ -2,7 +2,7 @@
 
 #### Intuition
 
-For the elements $\textit{nums}[i]$ in the array, their range is $[0,$10^{9}$]$, and they can contain up to $31$ binary bits.
+For the elements $\textit{nums}[i]$ in the array, their range is $[0, $10^{9}$]$, and they can contain up to $31$ binary bits.
 
 For the $\textit{bit}$-th binary digit:
 

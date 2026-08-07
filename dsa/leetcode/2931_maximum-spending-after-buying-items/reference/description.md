@@ -1,6 +1,6 @@
 ## Description
 
-You are given a **0-indexed** $m * n$ integer matrix `values`, representing the values of $m * n$ different items in `m` different shops. Each shop has `n` items where the $$j^{\text{th}}$$item in the$$i^{\text{th}}$$shop has a value of$\text{values}[i][j]$. Additionally, the items in the$$i^{\text{th}}$$shop are sorted in non-increasing order of value. That is,$\text{values}[i][j] \ge \text{values}[i][j + 1]$for all$0 \le j < n - 1$.
+You are given a **0-indexed** $m * n$ integer matrix `values`, representing the values of $m * n$ different items in `m` different shops. Each shop has `n` items where the $$j^{\text{th}}$$ item in the $$i^{\text{th}}$$ shop has a value of $\text{values}[i][j]$. Additionally, the items in the $$i^{\text{th}}$$ shop are sorted in non-increasing order of value. That is, $\text{values}[i][j] \ge \text{values}[i][j + 1]$ for all $0 \le j < n - 1$.
 
 On each day, you would like to buy a single item from one of the shops. Specifically, On the $$d^{\text{th}}$$ day you can:
 
@@ -17,6 +17,7 @@ Return *the **maximum amount of money that can be spent** on buying all * $m * n
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $values = [[8,5,2],[6,4,1],[9,7,3]]$

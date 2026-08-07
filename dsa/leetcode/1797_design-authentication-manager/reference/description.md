@@ -19,6 +19,7 @@ Note that if a token expires at time `t`, and another action happens on time `t`
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/copy-of-pc68_q2.png)

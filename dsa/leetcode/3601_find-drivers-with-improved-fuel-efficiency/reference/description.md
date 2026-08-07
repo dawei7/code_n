@@ -37,7 +37,7 @@ Write a solution to find drivers whose **fuel efficiency has improved** by **com
 
 - Only include drivers who have trips in **both halves** of the year
 
-- Calculate the **efficiency improvement** as ($second_{half\_avg} - first_{half\_avg}$)
+- Calculate the **efficiency improvement** as ($second_half_avg - first_half_avg$)
 
 - **Round **all** **results** **to** `2` **decimal** **places
 

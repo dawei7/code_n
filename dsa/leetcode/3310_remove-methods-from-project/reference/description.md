@@ -15,6 +15,7 @@ Return an array containing all the remaining methods after removing all the **su
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

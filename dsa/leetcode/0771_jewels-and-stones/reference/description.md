@@ -9,6 +9,7 @@ Letters are case sensitive, so `"a"` is considered a different type of stone fro
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $jewels = "aA", stones = "aAAbbbb"$

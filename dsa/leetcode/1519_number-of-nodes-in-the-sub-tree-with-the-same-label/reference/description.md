@@ -13,6 +13,7 @@ A subtree of a tree `T` is the tree consisting of a node in `T` and all of its d
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/q3e1.jpg)

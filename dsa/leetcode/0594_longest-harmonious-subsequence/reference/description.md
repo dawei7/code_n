@@ -9,6 +9,7 @@ Given an integer array `nums`, return the length of its longest harmonious subse
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

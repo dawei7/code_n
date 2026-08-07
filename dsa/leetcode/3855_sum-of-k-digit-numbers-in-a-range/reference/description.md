@@ -15,9 +15,7 @@ Return an integer representing the **sum of all such numbers.**​​​​​�
 
 For digits $d_{k-1},d_{k-2},\ldots,d_0$, the represented integer is
 
-$$
-\sum_{p=0}^{k-1} d_p10^p.
-$$
+$\sum_{p=0}^{k-1} d_p10^p.$
 
 Every one of the $(r-l+1)^k$ digit sequences contributes once, including sequences whose first digit is zero.
 
@@ -26,6 +24,7 @@ Every one of the $(r-l+1)^k$ digit sequences contributes once, including sequenc
 Return the sum of all represented integers reduced modulo $1{,}000{,}000{,}007$.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

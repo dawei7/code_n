@@ -10,6 +10,7 @@ A **subarray** is a **contiguous** part of an array.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,3,5,4,4,6]`

@@ -9,6 +9,7 @@ A **right shift** is defined as shifting the element at index `i` to index $(i +
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,4,5,1,2]`

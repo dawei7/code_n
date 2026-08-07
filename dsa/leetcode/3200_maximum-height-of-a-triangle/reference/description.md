@@ -11,6 +11,7 @@ Return the **maximum*** height of the triangle* that can be achieved.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

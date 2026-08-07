@@ -17,6 +17,7 @@ Return *the** count** of subarrays in* `nums` *that match the* `pattern`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3,4,5,6], pattern = [1,1]`

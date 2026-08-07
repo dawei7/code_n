@@ -20,6 +20,7 @@ Return *the **length** of the shortest path for you to reach **any** food cell*.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 ![](images/img1.jpg)

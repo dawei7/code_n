@@ -20,6 +20,7 @@ The string has no leading or trailing spaces. A word's vowel count includes ever
 Return a string with the same words and spacing structure, except that each word after the first is character-reversed exactly when its vowel count matches the first word's count.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

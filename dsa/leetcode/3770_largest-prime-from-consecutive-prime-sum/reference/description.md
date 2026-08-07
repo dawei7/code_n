@@ -13,9 +13,10 @@ Let $N=\texttt{n}$, and list the primes as $p_1=2,p_2=3,p_3=5,\ldots$. The only 
 
 **Return value**
 
-Return the largest $S_j\leq N$ that is prime. Return `0` when no such prefix sum exists; in particular, this occurs when `n = 1`.
+Return the largest $S_j\leq N$ that is prime. Return `0` when no such prefix sum exists; in particular, this occurs when $n = 1$.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

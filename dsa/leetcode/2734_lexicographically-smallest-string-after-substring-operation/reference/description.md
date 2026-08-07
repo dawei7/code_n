@@ -11,6 +11,7 @@ Return the **lexicographically smallest** string **after performing the operatio
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

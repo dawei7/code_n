@@ -34,13 +34,12 @@ For each candidate integer, use its 16-character zero-padded decimal form. Chara
 
 Return the number of integers $x$ satisfying $l\le x\le r$ for which the seven path digits obey
 
-$$
-d_0\le d_1\le\cdots\le d_6.
-$$
+$d_0\le d_1\le\cdots\le d_6.$
 
 Leading zeros are actual grid digits and participate in this comparison.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

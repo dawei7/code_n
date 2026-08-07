@@ -9,6 +9,7 @@ A **falling path** starts at any element in the first row and chooses the elemen
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/failing1-grid.jpg)

@@ -19,6 +19,7 @@ Return *the **maximum score** of a valid node sequence with a length of *`4`*. *
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1new3.png)

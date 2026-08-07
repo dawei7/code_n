@@ -15,6 +15,7 @@ Return the **maximum** number of customers that can be *satisfied* throughout th
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

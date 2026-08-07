@@ -13,6 +13,7 @@ Return *the **maximum** number of balanced strings you can obtain.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "RLRRLLRLRL"`

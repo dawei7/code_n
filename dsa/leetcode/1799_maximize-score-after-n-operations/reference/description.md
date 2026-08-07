@@ -19,6 +19,7 @@ The function `gcd(x, y)` is the greatest common divisor of `x` and `y`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2]`

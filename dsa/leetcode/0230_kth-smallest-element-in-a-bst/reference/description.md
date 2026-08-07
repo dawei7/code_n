@@ -13,6 +13,7 @@ Given the `root` of a binary search tree, and an integer `k`, return *the* $$k^{
 Return the value occupying rank `k` in ascending order.
 
 ### Examples
+
 #### Example 1
 
 ![](images/kthtree1.jpg)

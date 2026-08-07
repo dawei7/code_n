@@ -13,6 +13,7 @@ Return *the highest possible **score** after making any number of **moves** (inc
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/lc-toogle1.jpg)

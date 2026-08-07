@@ -2,7 +2,7 @@
 
 You are given a **0-indexed** integer array `nums` representing the initial positions of some marbles. You are also given two **0-indexed **integer arrays `moveFrom` and `moveTo` of **equal** length.
 
-Throughout `moveFrom.length` steps, you will change the positions of the marbles. On the $$i^{\text{th}}$$step, you will move **all** marbles at position$\text{moveFrom}[i]$to position$\text{moveTo}[i]$.
+Throughout `moveFrom.length` steps, you will change the positions of the marbles. On the $$i^{\text{th}}$$ step, you will move **all** marbles at position $\text{moveFrom}[i]$ to position $\text{moveTo}[i]$.
 
 After completing all the steps, return *the sorted list of **occupied** positions*.
 
@@ -17,6 +17,7 @@ After completing all the steps, return *the sorted list of **occupied** position
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,6,7,8], moveFrom = [1,7,2], moveTo = [2,9,5]`

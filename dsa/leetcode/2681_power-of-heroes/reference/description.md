@@ -11,6 +11,7 @@ Return *the sum of the **power** of all **non-empty** groups of heroes possible.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,1,4]`

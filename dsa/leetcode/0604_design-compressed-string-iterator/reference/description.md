@@ -23,6 +23,7 @@ Construct `StringIterator(compressedString)`, then call `next()` and `hasNext()`
 Let $C$ be the encoded string length, $q$ the operation count, and $E$ the potentially much larger uncompressed length.
 
 ### Examples
+
 #### Example 1
 
 ```

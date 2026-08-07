@@ -11,6 +11,7 @@ A **subarray** is defined as a contiguous block of elements in the array.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,1,4,2], p = 6`

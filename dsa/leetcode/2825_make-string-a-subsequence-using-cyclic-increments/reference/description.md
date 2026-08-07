@@ -13,6 +13,7 @@ Return `true` *if it is possible to make *`str2` *a subsequence of *`str1` *by p
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $str1 = "abc", str2 = "ad"$

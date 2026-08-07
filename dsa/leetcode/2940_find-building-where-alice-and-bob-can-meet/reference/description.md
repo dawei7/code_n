@@ -4,15 +4,16 @@ You are given a **0-indexed** array `heights` of positive integers, where $\text
 
 If a person is in building `i`, they can move to any other building `j` if and only if `i < j` and $\text{heights}[i] < \text{heights}[j]$.
 
-You are also given another array `queries` where $\text{queries}[i] = [a_{i}, b_{i}]$. On the $$i^{\text{th}}$$query, Alice is in building$a_{i}$while Bob is in building$b_{i}$.
+You are also given another array `queries` where $\text{queries}[i] = [a_{i}, b_{i}]$. On the $$i^{\text{th}}$$ query, Alice is in building $a_{i}$ while Bob is in building $b_{i}$.
 
-Return *an array* `ans` *where* $\text{ans}[i]$ *is **the index of the leftmost building** where Alice and Bob can meet on the* $$i^{\text{th}}$$*query*. *If Alice and Bob cannot move to a common building on query* `i`, *set*$\text{ans}[i]$ *to* `-1`.
+Return *an array* `ans` *where* $\text{ans}[i]$ *is **the index of the leftmost building** where Alice and Bob can meet on the* $$i^{\text{th}}$$ *query*. *If Alice and Bob cannot move to a common building on query* `i`, *set* $\text{ans}[i]$ *to* `-1`.
 ### Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $heights = [6,4,8,5,2,7], queries = [[0,1],[0,3],[2,4],[3,4],[2,2]]$

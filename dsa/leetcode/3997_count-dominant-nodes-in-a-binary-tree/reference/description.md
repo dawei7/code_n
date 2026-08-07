@@ -18,6 +18,7 @@ The level-order arrays shown in the examples serialize the tree from top to bott
 Return the number of nodes whose value is equal to the maximum value in the subtree rooted at that same node.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -11,7 +11,7 @@ In the brute force method, we can find out all the arrays that can be formed usi
 
 In order to generate all the possible pairings, we make use of a function $permute(nums, \text{current}_{index})$. This function creates all the possible permutations of the elements of the given array.
 
-To do so, `permute` takes the index of the current element $current_{index}$ as one of the arguments. Then, it swaps the current element with every other element in the array, lying towards its right, so as to generate a new ordering of the array elements. After the swapping has been done, it makes another call to permute but this time with the index of the next element in the array. While returning back, we reverse the swapping done in the current function call.
+To do so, `permute` takes the index of the current element $current_index$ as one of the arguments. Then, it swaps the current element with every other element in the array, lying towards its right, so as to generate a new ordering of the array elements. After the swapping has been done, it makes another call to permute but this time with the index of the next element in the array. While returning back, we reverse the swapping done in the current function call.
 
 Thus, when we reach the end of the array, a new ordering of the array's elements is generated. The following animation depicts the process of generating the permutations.
 

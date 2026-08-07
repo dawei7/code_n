@@ -9,6 +9,7 @@ Return *the minimum area of a rectangle formed from these points, with sides par
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/rec1.JPG)

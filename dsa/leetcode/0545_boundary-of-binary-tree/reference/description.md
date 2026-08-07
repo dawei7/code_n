@@ -34,6 +34,7 @@ Return a list of node values ordered as root, non-leaf left boundary from top to
 right, and non-leaf right boundary from bottom to top. No physical node is included in more than one portion.
 
 ### Examples
+
 #### Example 1
 
 ![](images/boundary1.jpg)

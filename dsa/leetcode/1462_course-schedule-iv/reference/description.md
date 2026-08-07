@@ -6,7 +6,7 @@ There are a total of `numCourses` courses you have to take, labeled from `0` to 
 
 Prerequisites can also be **indirect**. If course `a` is a prerequisite of course `b`, and course `b` is a prerequisite of course `c`, then course `a` is a prerequisite of course `c`.
 
-You are also given an array `queries` where $\text{queries}[j] = [u_{j}, v_{j}]$. For the $$j^{\text{th}}$$query, you should answer whether course$u_{j}$is a prerequisite of course$v_{j}$ or not.
+You are also given an array `queries` where $\text{queries}[j] = [u_{j}, v_{j}]$. For the $$j^{\text{th}}$$ query, you should answer whether course $u_{j}$ is a prerequisite of course $v_{j}$ or not.
 
 Return *a boolean array *`answer`*, where *$\text{answer}[j]$* is the answer to the *$$j^{\text{th}}$$* query.*
 ### Function Contract
@@ -15,6 +15,7 @@ Return *a boolean array *`answer`*, where *$\text{answer}[j]$* is the answer to 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/courses4-1-graph.jpg)

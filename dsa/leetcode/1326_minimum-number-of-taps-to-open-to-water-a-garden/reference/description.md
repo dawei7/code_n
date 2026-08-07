@@ -13,6 +13,7 @@ Return *the minimum number of taps* that should be open to water the whole garde
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/1685_example_1.png)

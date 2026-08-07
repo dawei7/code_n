@@ -13,6 +13,7 @@ Given `maxTime`, `edges`, and `passingFees`, return *the **minimum cost** to com
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/leetgraph1-1.png)

@@ -15,9 +15,10 @@ Given an integer `n`, return *all possible combinations of its factors*. You may
 
 **Return value**
 
-Return `List[List[int]]` containing all possible factor combinations of `n` (factors in range $[2, n-1]$).
+Return $List[\text{List}[int]]$ containing all possible factor combinations of `n` (factors in range $[2, n-1]$).
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 1$

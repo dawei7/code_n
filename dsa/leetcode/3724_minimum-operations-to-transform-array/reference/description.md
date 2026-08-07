@@ -27,6 +27,7 @@ Incrementing or decrementing changes one selected value by exactly one. Appendin
 Return the minimum number of increments, decrements, and append operations required to transform `nums1` exactly into `nums2`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

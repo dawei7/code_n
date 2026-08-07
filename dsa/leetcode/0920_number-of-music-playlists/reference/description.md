@@ -13,6 +13,7 @@ Given `n`, `goal`, and `k`, return *the number of possible playlists that you ca
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 3, goal = 3, k = 1$

@@ -13,6 +13,7 @@ Return* an integer denoting the **minimum** absolute difference between two elem
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [4,3,2,4], x = 2`

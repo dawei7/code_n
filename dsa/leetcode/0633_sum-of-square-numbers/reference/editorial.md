@@ -47,15 +47,17 @@ $n^2 = 1 + 3 + 5 + ... + (2 \cdot n-1) = \sum_{i=1}^{n} (2 \cdot i - 1)$
 
 To look at the proof of this statement, look at the L.H.S. of the above statement.
 
-$$\begin{aligned}
-\&1 + 3 + 5 + \ldots + (2 \cdot n-1) \\
-= \; \&(2 \cdot 1-1) + (2 \cdot 2-1) + (2 \cdot 3-1) + \ldots + (2 \cdot n-1) \\
-= \; \&2 \cdot (1+2+3+....+n) - (\underbrace{1+1+ \ldots +1}_{n\text{ times}}) \\
-= \; \&2 \cdot \frac{n\;(n+1)}{2} - n \\
-= \; \&n\;(n+1) - n \\
-= \; \&n^2 + n - n \\
-= \; \&n^2
-\end{aligned}$$
+$$
+\begin{aligned}
+&1 + 3 + 5 + \ldots + (2 \cdot n-1) \\
+= \; &(2 \cdot 1-1) + (2 \cdot 2-1) + (2 \cdot 3-1) + \ldots + (2 \cdot n-1) \\
+= \; &2 \cdot (1+2+3+....+n) - (\underbrace{1+1+ \ldots +1}_{n\text{ times}}) \\
+= \; &2 \cdot \frac{n\;(n+1)}{2} - n \\
+= \; &n\;(n+1) - n \\
+= \; &n^2 + n - n \\
+= \; &n^2
+\end{aligned}
+$$
 
 This completes the proof of the above statement.
 

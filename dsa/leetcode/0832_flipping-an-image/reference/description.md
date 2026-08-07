@@ -15,6 +15,7 @@ To invert an image means that each `0` is replaced by `1`, and each `1` is repla
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $image = [[1,1,0],[1,0,1],[0,0,0]]$

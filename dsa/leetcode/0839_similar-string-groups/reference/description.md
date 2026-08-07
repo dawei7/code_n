@@ -13,6 +13,7 @@ We are given a list `strs` of strings where every string in `strs` is an anagram
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $strs = ["tars","rats","arts","star"]$

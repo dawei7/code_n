@@ -17,6 +17,7 @@ Return *the **minimum** cost of a path for the frog*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/2498_ex0.png)

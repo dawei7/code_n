@@ -21,6 +21,7 @@ Return *the string after **all** stars have been removed*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "leet**cod*e"`

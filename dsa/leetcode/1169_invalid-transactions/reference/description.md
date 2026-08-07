@@ -15,6 +15,7 @@ Return a list of `transactions` that are possibly invalid. You may return the an
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $transactions = ["alice,20,800,mtv","alice,50,100,beijing"]$

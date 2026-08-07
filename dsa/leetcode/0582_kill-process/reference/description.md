@@ -1,6 +1,6 @@
 ## Description
 
-You have `n` processes forming a rooted tree structure. You are given two integer arrays `pid` and `ppid`, where $\text{pid}[i]$ is the ID of the $$i^{\text{th}}$$process and$\text{ppid}[i]$is the ID of the$$i^{\text{th}}$$ process's parent process.
+You have `n` processes forming a rooted tree structure. You are given two integer arrays `pid` and `ppid`, where $\text{pid}[i]$ is the ID of the $$i^{\text{th}}$$ process and $\text{ppid}[i]$ is the ID of the $$i^{\text{th}}$$ process's parent process.
 
 Each process has only **one parent process** but may have multiple children processes. Only one process has $\text{ppid}[i] = 0$, which means this process has **no parent process** (the root of the tree).
 
@@ -12,7 +12,7 @@ Given an integer `kill` representing the ID of a process you want to kill, retur
 **Inputs**
 
 - `pid`: the unique process identifiers.
-- `ppid`: the parallel parent identifiers, where `ppid[i]` is the parent of `pid[i]`.
+- `ppid`: the parallel parent identifiers, where $\text{ppid}[i]$ is the parent of $\text{pid}[i]$.
 - `kill`: an identifier present in `pid` whose entire subtree must be terminated.
 
 Let $n = \lvert\texttt{pid}\rvert = \lvert\texttt{ppid}\rvert$.
@@ -22,6 +22,7 @@ Let $n = \lvert\texttt{pid}\rvert = \lvert\texttt{ppid}\rvert$.
 Return a list containing `kill` and every direct or indirect descendant of that process. List order is unrestricted.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ptree.jpg)

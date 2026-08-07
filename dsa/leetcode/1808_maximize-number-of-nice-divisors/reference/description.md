@@ -15,6 +15,7 @@ Note that a prime number is a natural number greater than `1` that is not a prod
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $primeFactors = 5$

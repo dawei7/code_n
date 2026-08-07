@@ -21,6 +21,7 @@ Return *the total **amount** of orders in the backlog after placing all the orde
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1.png)

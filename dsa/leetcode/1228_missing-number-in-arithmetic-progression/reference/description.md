@@ -15,9 +15,10 @@ Let $n = \lvert\texttt{arr}\rvert$. The original progression contained $n+1$ val
 
 **Return value**
 
-Return the removed integer value. Because neither original endpoint was removed, `arr[0]` and `arr[-1]` are the original first and last values.
+Return the removed integer value. Because neither original endpoint was removed, $\text{arr}[0]$ and `arr[-1]` are the original first and last values.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [5,7,11,13]`

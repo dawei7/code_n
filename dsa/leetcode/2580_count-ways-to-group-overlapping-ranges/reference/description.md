@@ -19,6 +19,7 @@ Return *the **total number** of ways to split* `ranges` *into two groups*. Since
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $ranges = [[6,10],[5,15]]$

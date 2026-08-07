@@ -15,6 +15,7 @@ Return the minimum number of moves to transform the given array `nums` into a zi
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3]`

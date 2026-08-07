@@ -34,6 +34,7 @@ Let $N$ be the total number of nodes in the tree.
 Return the root `Node` object. The root is the unique node in `tree` that does not appear in any other node's `children` list.
 
 ### Examples
+
 #### Example 1
 
 ![](images/narytreeexample.png)

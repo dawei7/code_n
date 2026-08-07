@@ -21,6 +21,7 @@ Return* the number of good triplets*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [3,0,1,1,9,7], a = 7, b = 2, c = 3`

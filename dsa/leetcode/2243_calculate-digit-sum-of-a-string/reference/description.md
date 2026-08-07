@@ -17,6 +17,7 @@ Return `s` *after all rounds have been completed*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "11111222223", k = 3`

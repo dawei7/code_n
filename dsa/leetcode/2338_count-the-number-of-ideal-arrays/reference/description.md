@@ -15,6 +15,7 @@ Return *the number of **distinct** ideal arrays of length *`n`. Since the answer
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 2, maxValue = 5$

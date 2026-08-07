@@ -11,6 +11,7 @@ Return *the minimum number of operations required to make the sum of values in *
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [1,2,3,4,5,6], nums2 = [1,1,2,2,2,2]$

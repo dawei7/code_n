@@ -18,6 +18,7 @@ Given a string `s`, return *the number of **unique non-empty substrings** of *`s
 Equal substring text is counted once even if it occurs at multiple positions in `p`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "a"`

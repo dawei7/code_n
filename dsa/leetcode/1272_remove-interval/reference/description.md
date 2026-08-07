@@ -9,7 +9,7 @@ Return *the set of real numbers with the interval *`toBeRemoved`* **removed** fr
 
 **Inputs**
 
-- `intervals`: a sorted list of $n$ disjoint pairs `[a_i,b_i]`, each representing $[a_i,b_i)$.
+- `intervals`: a sorted list of $n$ disjoint pairs $[a_{i},b_{i}]$, each representing $[a_i,b_i)$.
 - `toBeRemoved`: a pair representing the half-open interval to subtract.
 
 **Return value**
@@ -19,6 +19,7 @@ Return *the set of real numbers with the interval *`toBeRemoved`* **removed** fr
 Because right endpoints are excluded, two intervals that meet only at one interval's right endpoint do not overlap. Every returned interval must be nonempty.
 
 ### Examples
+
 #### Example 1
 
 ![](images/removeintervalex1.png)

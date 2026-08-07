@@ -15,6 +15,7 @@ Return *the **maximum** number of operations needed to delete all of *`s`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "abcabcdabc"`

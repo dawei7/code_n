@@ -9,6 +9,7 @@ Return *the lexicographically smallest string you could have after applying the 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "cba", k = 1`

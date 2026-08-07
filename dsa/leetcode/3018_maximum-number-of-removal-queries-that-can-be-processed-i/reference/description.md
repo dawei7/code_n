@@ -18,6 +18,7 @@ Return *the **maximum** number of queries that can be processed by doing the ope
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3,4,5], queries = [1,2,3,4,6]`

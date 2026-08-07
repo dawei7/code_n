@@ -4,13 +4,14 @@ An undirected graph of `n` nodes is defined by `edgeList`, where $\text{edgeList
 
 Given an array `queries`, where $\text{queries}[j] = [p_{j}, q_{j}, \text{limit}_{j}]$, your task is to determine for each $\text{queries}[j]$ whether there is a path between $p_{j}$ and $q_{j}$_ such that each edge on the path has a distance **strictly less than** $\text{limit}_{j}$ .
 
-Return *a **boolean array** *`answer`*, where *$\text{answer.length} = \text{queries.length}$ *and the *$$j^{\text{th}}$$*value of *`answer` *is *`true`* if there is a path for *$\text{queries}[j]$* is *`true`*, and *`false`* otherwise*.
+Return *a **boolean array** *`answer`*, where *$\text{answer.length} = \text{queries.length}$ *and the *$$j^{\text{th}}$$ *value of *`answer` *is *`true`* if there is a path for *$\text{queries}[j]$* is *`true`*, and *`false`* otherwise*.
 ### Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/h.png)

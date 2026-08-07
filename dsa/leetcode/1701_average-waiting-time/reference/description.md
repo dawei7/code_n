@@ -15,6 +15,7 @@ Return *the **average** waiting time of all customers*. Solutions within $10^{-5
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $customers = [[1,2],[2,5],[4,3]]$

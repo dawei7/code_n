@@ -18,6 +18,7 @@ JSON cases encode `root` in level order and identify `p` and `q` by their unique
 Return the lowest common ancestor `TreeNode`. The runner displays and validates its value.
 
 ### Examples
+
 #### Example 1
 
 ![](images/binarytree.png)

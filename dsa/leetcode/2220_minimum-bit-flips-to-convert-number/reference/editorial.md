@@ -245,8 +245,8 @@ class Solution:
 
 The problem can also be solved using built-in functions in different programming languages. These functions count the number of `1` bits in an integer, which directly gives us the number of bit flips needed.
 
-1. C++: Use $__builtin_{popcount}(start ^ goal)$. This function counts the `1` bits in the result of $start ^ goal$.
-- The code looks like this: $return __builtin_{popcount}(start ^ goal);$.
+1. C++: Use $__builtin_popcount(start ^ goal)$. This function counts the `1` bits in the result of $start ^ goal$.
+- The code looks like this: $return __builtin_popcount(start ^ goal);$.
 
 2. Java: Use $\text{Integer.bitCount}(start ^ goal)$. This method counts the `1` bits in the integer result of $start ^ goal$.
 - The code looks like this: $return \text{Integer.bitCount}(start ^ goal);$.

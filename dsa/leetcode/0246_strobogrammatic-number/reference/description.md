@@ -14,6 +14,7 @@ A **strobogrammatic number** is a number that looks the same when rotated `180` 
 Return `true` if `num` looks identical when rotated 180 degrees, otherwise `false`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num = "69"$

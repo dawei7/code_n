@@ -13,6 +13,7 @@ A **subsequence** of an array is a new array generated from the original array b
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [<u>4</u>,<u>2</u>,<u>5</u>,3]`

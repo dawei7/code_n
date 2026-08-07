@@ -13,6 +13,7 @@ Given a 2D character matrix `grid`, where $\text{grid}[i][j]$ is either `'X'`, `
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

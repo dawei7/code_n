@@ -19,6 +19,7 @@ Return the **maximum** profit the robot can gain on the route.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

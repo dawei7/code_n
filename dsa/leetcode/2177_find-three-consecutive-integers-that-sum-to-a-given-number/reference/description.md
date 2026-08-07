@@ -7,6 +7,7 @@ Given an integer `num`, return *three consecutive integers (as a sorted array)**
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num = 33$

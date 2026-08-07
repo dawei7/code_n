@@ -31,6 +31,7 @@ The result format is in the following example.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 **Input:
 **+----+---------+----------+-----+

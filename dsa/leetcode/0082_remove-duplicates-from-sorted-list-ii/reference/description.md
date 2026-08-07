@@ -12,6 +12,7 @@ Given the `head` of a sorted linked list, *delete all nodes that have duplicate 
 Return the head of the sorted list containing exactly those original values that occurred once.
 
 ### Examples
+
 #### Example 1
 
 ![](images/linkedlist1.jpg)

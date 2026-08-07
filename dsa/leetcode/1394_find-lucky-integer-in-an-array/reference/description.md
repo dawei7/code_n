@@ -9,6 +9,7 @@ Return *the largest **lucky integer** in the array*. If there is no **lucky inte
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [2,2,3,4]`

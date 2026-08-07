@@ -14,6 +14,7 @@ You must do it <a href="https://en.wikipedia.org/wiki/In-place_algorithm" target
 Return `None`; mutate `matrix` in place so every row and column containing an original zero is filled with zeroes.
 
 ### Examples
+
 #### Example 1
 
 ![](images/mat1.jpg)

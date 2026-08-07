@@ -17,6 +17,7 @@ Return *the kth string* of this list or return an **empty string** if there are 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 1, k = 3$

@@ -22,6 +22,7 @@ You must write an algorithm that runs in `O(log n) time`.
 Return the minimum value in `nums`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,4,5,1,2]`

@@ -11,6 +11,7 @@ Note that the time in this problem is in 24-hours format.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $arrivalTime = 15, delayedTime = 5$

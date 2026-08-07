@@ -20,6 +20,7 @@ Let $N=\lvert\texttt{s}\rvert$. Every result is a subsequence of `s`. An occurre
 Return the lexicographically smallest subsequence reachable under the deletion rule.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

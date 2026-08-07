@@ -9,6 +9,7 @@ Given a string `text` of words separated by a single space (no leading or traili
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $text = "hello world", brokenLetters = "ad"$

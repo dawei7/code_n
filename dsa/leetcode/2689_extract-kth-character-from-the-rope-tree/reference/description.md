@@ -20,6 +20,7 @@ Return* k-th character of the string* $S[root]$.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `root = [10,4,"abcpoe","g","rta"], k = 6`

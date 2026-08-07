@@ -13,6 +13,7 @@ Return *a string of all teams **sorted** by the ranking system*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $votes = ["ABC","ACB","ABC","ACB","ACB"]$

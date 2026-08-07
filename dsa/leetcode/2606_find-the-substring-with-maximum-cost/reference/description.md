@@ -20,6 +20,7 @@ Return *the maximum cost among all substrings of the string* `s`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "adaa", chars = "d", vals = [-1000]`

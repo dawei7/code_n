@@ -140,10 +140,10 @@ We can overcome both the limitations (Spurious Hits and Computing Hash Value aga
 
 1. To overcome spurious hits, we can assign position weight to each index of the string. For example, the last character of the string is assigned a weight of $1$, the second last character of the string is assigned a weight of $10$, the third last character of the string is assigned a weight of $10^2$, and so on.
 
-    In this way `aca` will be mapped to $1\cdot$10^{2}$+ 3\cdot$10^{1}$+ 1\cdot$10^{0}$= 100+30+1 = 131$, while `abb` will be mapped to $1\cdot$10^{2}$+ 2\cdot$10^{1}$+ 2\cdot$10^{0}$= 100+20+2 = 122$.
+    In this way `aca` will be mapped to $1\cdot $10^{2}$ + 3\cdot $10^{1}$ + 1\cdot $10^{0}$ = 100+30+1 = 131$, while `abb` will be mapped to $1\cdot $10^{2}$ + 2\cdot $10^{1}$ + 2\cdot $10^{0}$ = 100+20+2 = 122$.
     Thus, both strings, which were being mapped to $5$ using traditional hash, are now being mapped to different values, thereby reducing the number of spurious hits.
 
-    However, the approach is still not fool-proof. `aal` will also be mapped to $1\cdot$10^{2}$+ 1\cdot$10^{1}$+ 12\cdot$10^{0}$= 100+10+12 = 122$. Thus, we still can have spurious hits. The reason being our chosen position weight $10$ is not enough to overcome spurious hits.
+    However, the approach is still not fool-proof. `aal` will also be mapped to $1\cdot $10^{2}$ + 1\cdot $10^{1}$ + 12\cdot $10^{0}$ = 100+10+12 = 122$. Thus, we still can have spurious hits. The reason being our chosen position weight $10$ is not enough to overcome spurious hits.
 
     Mathematically, it turns out that to have a unique hash value for every m-substring, positional weight should be greater than or equal to the number of characters in the set, which is $26$ in our case. Any number (preferably, a prime number) no less than $26$ is a workable base. To have a lower hash value, we can map `a` to $0$, `b` to $1$, `c` to $2$, and so on.
 
@@ -219,7 +219,7 @@ Finally, to reduce the re-computing of hash values again and again, we will use 
 > Let `m` be the length of `needle` and `n` be the length of `haystack`. Thus, $m = 3$ and $n = 11$. Let `RADIX` be $26$ and `MOD` be $10^9 + 7$. Therefore, $\text{MAX}_{WEIGHT}$  will be $26^3 = 17576$.
 >
 > Let's compute the hash value of `needle` "dba". Please note that 'a' is mapped to $0$, 'b' to $1$ and 'c' to $2$, and so on.
-> $\text{dba} =$26^{2}$\cdot 3 +$26^{1}$\cdot 1 +$26^{0}$\cdot 0 = 2054$.
+> $\text{dba} = $26^{2}$ \cdot 3 + $26^{1}$ \cdot 1 + $26^{0}$ \cdot 0 = 2054$.
 > We are interested in finding a substring in `haystack` which has the same hash value as `needle`, i.e. $2054$.
 >
 > The slides illustrates the process of computing the hash value of every m-substring of `haystack` and comparing it with the hash value of `needle`.
@@ -532,7 +532,7 @@ Now, for `needle`, we generate a $\text{longest}_{border}$ array. (Often called 
 > $\text{longest}_{border}[0] = 0$ because for a single character, the only border is `""`, whose length is 0. Remember, we are only considering proper prefixes and proper suffixes.
 >
 > Mathematically, we can say that
-> $\text{longest\\\text{\_border}[i]} = \max_{k = 0 \dots i} \{ k \text{ such that } s[0 \dots k-1] = s[i-(k-1) \dots i]  \}$
+> $\text{longest\\\text{_border}[i]} = \max_{k = 0 \dots i} \{ k \text{ such that } s[0 \dots k-1] = s[i-(k-1) \dots i]  \}$
 
 >
 > Let's construct `LPS` for `"abcdabeeabf"`

@@ -24,6 +24,7 @@ A binary tree's **depth** is the number of **nodes** along the **longest path** 
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 ![](images/1.png)

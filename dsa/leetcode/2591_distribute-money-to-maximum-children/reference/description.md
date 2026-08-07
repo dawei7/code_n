@@ -17,6 +17,7 @@ Return *the **maximum** number of children who may receive **exactly** *`8` *dol
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $money = 20, children = 3$

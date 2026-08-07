@@ -13,6 +13,7 @@ Notice that the modulo is performed after getting the maximum product.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/product1.jpg)

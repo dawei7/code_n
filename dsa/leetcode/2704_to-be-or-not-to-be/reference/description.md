@@ -11,6 +11,7 @@ Write a function `expect` that helps developers test their code. It should take 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $func = () => expect(5).toBe(5)$

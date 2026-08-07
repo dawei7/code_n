@@ -9,6 +9,7 @@ The **next greater number** of a number `x` is the first greater number to its t
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,1]`

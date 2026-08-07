@@ -17,6 +17,7 @@ The number of **set bits** of an integer is the number of `1`'s in its binary re
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num1 = 3, num2 = 5$

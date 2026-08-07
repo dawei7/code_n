@@ -9,6 +9,7 @@ A query word $\text{queries}[i]$ matches `pattern` if you can insert lowercase E
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $queries = ["FooBar","FooBarTest","FootBall","FrameBuffer","ForceFeedBack"], pattern = "FB"$

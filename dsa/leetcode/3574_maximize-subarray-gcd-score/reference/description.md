@@ -17,6 +17,7 @@ Your task is to return the **maximum** **score** that can be achieved by selecti
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

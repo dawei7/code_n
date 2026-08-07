@@ -10,7 +10,7 @@ The athletes are **placed** based on their scores, where the $1^st$ place athlet
 
 - The $3^rd$ place athlete's rank is `"Bronze Medal"`.
 
-- For the $4^th$ place to the $$n^{\text{th}}$$place athlete, their rank is their placement number (i.e., the$$x^{\text{th}}$$ place athlete's rank is `"x"`).
+- For the $4^th$ place to the $$n^{\text{th}}$$ place athlete, their rank is their placement number (i.e., the $$x^{\text{th}}$$ place athlete's rank is `"x"`).
 
 Return an array `answer` of size `n` where $\text{answer}[i]$ is the **rank** of the $$i^{\text{th}}$$ athlete.
 ### Function Contract
@@ -19,6 +19,7 @@ Return an array `answer` of size `n` where $\text{answer}[i]$ is the **rank** of
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $score = [5,4,3,2,1]$

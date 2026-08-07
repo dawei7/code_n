@@ -18,6 +18,7 @@ Return an integer denoting the **number of digits** in the decimal representatio
 Return the minimum positive length $L$ for which the $L$-digit repunit is divisible by `k`, or `-1` if no such length exists.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

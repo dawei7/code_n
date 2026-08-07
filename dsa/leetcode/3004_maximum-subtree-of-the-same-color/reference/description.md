@@ -18,6 +18,7 @@ Return *the size of such subtree with the **maximum** number of nodes possible.*
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $edges = [[0,1],[0,2],[0,3]], colors = [1,1,2,3]$

@@ -30,14 +30,16 @@ Each subtree rooted at child node $v$ is treated as an item in a knapsack. For e
 
 Alternatively, each child node $v$ can be considered as a group containing the maximum obtainable value for budgets from $0$ to $\textit{sub}$. When traversing the children, we essentially perform the transition of the **grouped knapsack** problem:
 
-$$\textit{subProfit}(\textit{state}, i)
+$$
+\textit{subProfit}(\textit{state}, i)
 =
 \max_{0 \le \textit{sub} \le i}
 \Big(
 \textit{subProfit}(\textit{state}, i - \textit{sub})
 +
 \textit{dp}(v, \textit{state}, \textit{sub})
-\Big)$$
+\Big)
+$$
 
 After merging all child information, we compute $\textit{dp}(u, \textit{state}, b)$ based on whether node $u$ itself is purchased. Again, we treat node $u$ as an item in a knapsack. Note that here the variable $\textit{state}$ indicates whether the parent of $u$ must be purchased, which differs from the meaning of $\textit{state}$ in $\textit{subProfit}$.
 

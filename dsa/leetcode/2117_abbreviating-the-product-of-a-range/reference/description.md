@@ -27,6 +27,7 @@ Return *a string denoting the **abbreviated product** of all integers in the **i
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $left = 1, right = 4$

@@ -17,6 +17,7 @@ A **subset** of rows of the matrix `grid` is any matrix that can be obtained by 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `grid = [[0,1,1,0],[0,0,0,1],[1,1,1,1]]`

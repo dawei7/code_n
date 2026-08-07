@@ -216,7 +216,7 @@ As shown in the picture below, at most $\log k$ cells are updated at each step. 
 
 ![img](images/k3.png)
 
-We can create $\text{new}_{dp}$ of size $\log k + 1$. For distinction, let's call the previous array $\text{old}_{dp}$. Since the $\text{new}_{dp}$ might be shorter than `s`, whenever we need to update $\text{new}_{dp}[x]$ as we did for $\text{old}_{dp}[x]$, we can get the remainder of the index `x` for modulo $\log k + 1$ as $x\ \% \ (\log k + 1)$ and update $\text{new\\\_dp} [x\ \% \ (\log k + 1)]$ to avoid the case of index out of range.
+We can create $\text{new}_{dp}$ of size $\log k + 1$. For distinction, let's call the previous array $\text{old}_{dp}$. Since the $\text{new}_{dp}$ might be shorter than `s`, whenever we need to update $\text{new}_{dp}[x]$ as we did for $\text{old}_{dp}[x]$, we can get the remainder of the index `x` for modulo $\log k + 1$ as $x\ \% \ (\log k + 1)$ and update $\text{new\\_dp} [x\ \% \ (\log k + 1)]$ to avoid the case of index out of range.
 
 ![img](images/k2.png)
 
@@ -224,11 +224,11 @@ In the example below, the size of 'live' window is `4`. If we move to the next s
 
 ![img](images/k4.png)
 
-Before we move on to the next starting index $start + 1$, we need to reset the value representing the current starting index `start` as `0`, that is, $\text{new\\\_dp} [\text{start}\ \% \ (\log k + 1)] = 0$. The reasons are as we said before:
+Before we move on to the next starting index $start + 1$, we need to reset the value representing the current starting index `start` as `0`, that is, $\text{new\\_dp} [\text{start}\ \% \ (\log k + 1)] = 0$. The reasons are as we said before:
 
 > Once we pass the index `start` and move on to the next index, we will never need the value of $\text{dp}[start]$ anymore.
 
-Thus $\text{new\\\_dp} [\text{start}\ \% \ (\log k + 1)]$ doesn't represent the cell $\text{old\\\_dp} [\text{start}]$ anymore, but the cell with a larger index $\text{old\\\_dp} [\text{start} +  \log k + 1]$, so we need to reset it as `0` and update it in the further steps.
+Thus $\text{new\\_dp} [\text{start}\ \% \ (\log k + 1)]$ doesn't represent the cell $\text{old\\_dp} [\text{start}]$ anymore, but the cell with a larger index $\text{old\\_dp} [\text{start} +  \log k + 1]$, so we need to reset it as `0` and update it in the further steps.
 
 <br>
 

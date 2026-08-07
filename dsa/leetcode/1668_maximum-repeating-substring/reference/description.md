@@ -9,6 +9,7 @@ Given strings `sequence` and `word`, return *the **maximum `k`-repeating value**
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $sequence = "ababc", word = "ab"$

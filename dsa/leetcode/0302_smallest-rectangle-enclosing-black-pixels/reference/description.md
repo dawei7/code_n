@@ -20,6 +20,7 @@ You must write an algorithm with less than `O(mn)` runtime complexity
 Return the area of the tightest axis-aligned rectangle enclosing all black pixels.
 
 ### Examples
+
 #### Example 1
 
 ![](images/pixel-grid.jpg)

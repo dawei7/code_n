@@ -19,6 +19,7 @@ Return any Fibonacci-like sequence split from `num`, or return `[]` if it cannot
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num = "1101111"$

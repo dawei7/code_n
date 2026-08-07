@@ -24,6 +24,7 @@ The two distinguished letters are different. Let $n=\lvert\texttt{s}\rvert$.
 Return any permutation `t` of `s` for which the last occurrence of `y` is before the first occurrence of `x` whenever both letters occur. If either letter is absent, every permutation automatically satisfies the relative-order condition.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

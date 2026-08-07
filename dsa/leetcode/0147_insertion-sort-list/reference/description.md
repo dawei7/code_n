@@ -24,6 +24,7 @@ The following is a graphical example of the insertion sort algorithm. The partia
 Return the head of the list after its nodes have been rearranged into non-decreasing order.
 
 ### Examples
+
 #### Example 1
 
 ![](images/sort1linked-list.jpg)

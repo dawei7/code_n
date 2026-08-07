@@ -19,12 +19,12 @@ Return *the xor-beauty of* `nums`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
-```
-**Input:** nums = [1,4]
-**Output:** 5
-**Explanation:**
+- **Input:** `nums = [1,4]`
+- **Output:** `5`
+- **Explanation:**
 The triplets and their corresponding effective values are listed below:
 - (0,0,0) with effective value ((1 | 1) & 1) = 1
 - (0,0,1) with effective value ((1 | 1) & 4) = 0
@@ -35,7 +35,6 @@ The triplets and their corresponding effective values are listed below:
 - (1,1,0) with effective value ((4 | 4) & 1) = 0
 - (1,1,1) with effective value ((4 | 4) & 4) = 4
 Xor-beauty of array will be bitwise XOR of all beauties = 1 ^ 0 ^ 1 ^ 4 ^ 1 ^ 4 ^ 0 ^ 4 = 5.
-```
 #### Example 2
 
 - **Input:** `nums = [15,45,20,2,34,35,5,44,32,30]`

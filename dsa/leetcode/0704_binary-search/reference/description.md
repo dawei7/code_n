@@ -9,6 +9,7 @@ You must write an algorithm with `O(log n)` runtime complexity.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [-1,0,3,5,9,12], target = 9`

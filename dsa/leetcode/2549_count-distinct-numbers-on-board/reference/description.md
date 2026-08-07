@@ -19,6 +19,7 @@ Return* the number of **distinct** integers present on the board after* $10^{9}$
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 5$

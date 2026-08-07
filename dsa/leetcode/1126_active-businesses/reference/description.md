@@ -27,16 +27,17 @@ The result format is in the following example.
 
 **Inputs**
 
-`Events(business_id, event_type, occurrences)` contains $R$ rows at the unique business-event grain. For each event type, compute its average only from rows recorded for that event type.
+$Events(\text{business}_{id}, \text{event}_{type}, occurrences)$ contains $R$ rows at the unique business-event grain. For each event type, compute its average only from rows recorded for that event type.
 
 **Return value**
 
-- Return exactly one column named `business_id`.
+- Return exactly one column named $\text{business}_{id}$.
 - Include a business when it is strictly above the matching event-type average for at least two distinct event types.
 - Exclude equality and businesses that qualify for only one event type.
 - Result row order is unrestricted.
 
 ### Examples
+
 #### Example 1
 
 ```

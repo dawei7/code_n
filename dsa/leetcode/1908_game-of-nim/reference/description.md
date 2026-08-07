@@ -12,6 +12,7 @@ Both Alice and Bob play **optimally**.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $piles = [1]$

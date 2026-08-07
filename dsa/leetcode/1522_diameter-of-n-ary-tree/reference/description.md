@@ -18,6 +18,7 @@ Let $N$ be the total number of nodes in the tree and $H$ the tree depth.
 Return the maximum number of edges on a simple path between any two nodes in the tree. A single-node tree has diameter 0.
 
 ### Examples
+
 #### Example 1
 
 ![](images/sample_2_1897.png)

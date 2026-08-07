@@ -22,6 +22,7 @@ Both addends must be positive and must use only decimal digits from `1` through 
 Return the number of ordered no-zero pairs whose sum is exactly `n`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

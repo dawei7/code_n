@@ -13,6 +13,7 @@ Return *an integer denoting the number of operations it takes to make *`nums`* e
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,4,-1]`

@@ -19,6 +19,7 @@ Given the two integers `n` and `k`, return *the **number of ways** you can paint
 Return the number of color assignments in which no three consecutive posts have the same color.
 
 ### Examples
+
 #### Example 1
 
 ![](images/paintfenceex1.png)

@@ -15,6 +15,7 @@ Return *an integer denoting the **number** of index pairs *`(i, j)`* such that *
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["a","aba","ababa","aa"]$

@@ -29,6 +29,7 @@ The constructor takes no arguments. `addRider` and `cancelRider` each receive on
 Return one result for every operation. The constructor and methods without a return value contribute `null`. Each matching call contributes `[driverId, riderId]` for the FIFO pair it removes, or `[-1, -1]` if a pair cannot be formed.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -21,6 +21,7 @@ distinct precedence edges inferred from adjacent words.
 Return any valid order of all distinct letters found in `words`, or `""` if the supplied word order is impossible.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["wrt","wrf","er","ett","rftt"]$

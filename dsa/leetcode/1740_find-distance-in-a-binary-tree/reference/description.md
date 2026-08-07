@@ -8,6 +8,7 @@ The **distance** between two nodes is the number of edges on the path from one t
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 ![](images/binarytree.png)

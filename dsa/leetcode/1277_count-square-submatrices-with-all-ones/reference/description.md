@@ -7,6 +7,7 @@ Given a $m * n$ matrix of ones and zeros, return how many **square** submatrices
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `matrix =`

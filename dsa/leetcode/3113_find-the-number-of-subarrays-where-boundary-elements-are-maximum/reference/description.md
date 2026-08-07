@@ -9,6 +9,7 @@ Return the number of subarrays of `nums`, where the **first** and the **last** e
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -13,6 +13,7 @@ Return the number of integers `k` such that $0 \le k \le n$ and the binary repre
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

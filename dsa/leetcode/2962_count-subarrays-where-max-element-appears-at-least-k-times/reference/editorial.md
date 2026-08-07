@@ -189,7 +189,7 @@ Therefore, for any `index` where we've observed more than `k` maximum elements, 
 
 5. **Checking condition for subarrays:**
    - Check if the frequency of the maximum element is greater than or equal to `k`.
-   - If true, increment `ans` by the index of the $(len(indexes_{of\_max\_elements}) - k)$-th occurrence of the maximum element plus 1.
+   - If true, increment `ans` by the index of the $(len(indexes_of_max_elements) - k)$-th occurrence of the maximum element plus 1.
    - This step counts the number of subarrays ending at the current index where the maximum element appears at least `k` times.
 
 6. **Returning the result:**

@@ -11,6 +11,7 @@ Return `true` if the array `message` is spam, and `false` otherwise.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

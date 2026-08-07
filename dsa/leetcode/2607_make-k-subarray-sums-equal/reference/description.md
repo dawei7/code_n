@@ -15,6 +15,7 @@ A **subarray** is a contiguous part of the array.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [1,4,1,3], k = 2`

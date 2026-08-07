@@ -31,6 +31,7 @@ Let $n = \lvert\texttt{nums}\rvert$.
 Return the maximum sum of a non-empty subsequence whose consecutive selected indices differ by at least `k` and whose consecutive value comparisons are strict and alternate direction. A singleton is always valid.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

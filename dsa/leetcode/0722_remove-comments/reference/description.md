@@ -33,6 +33,7 @@ After removing the comments from the source code, return *the source code in the
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $source = ["/*Test program */", "int main()", "{ ", " // variable declaration ", "int a, b, c;", "/* This is a test", " multiline ", " comment for ", " testing */", "a = b + c;", "}"]$

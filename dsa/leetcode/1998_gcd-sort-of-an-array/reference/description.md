@@ -11,6 +11,7 @@ Return `true` *if it is possible to sort *`nums`* in **non-decreasing** order us
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [7,21,3]`

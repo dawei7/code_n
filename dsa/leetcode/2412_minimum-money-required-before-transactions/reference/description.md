@@ -11,6 +11,7 @@ Return* the minimum amount of *`money`* required before any transaction so that 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $transactions = [[2,1],[5,0],[4,2]]$

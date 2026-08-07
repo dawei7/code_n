@@ -41,7 +41,7 @@ How to derive it? Probably, you already know the following proof from school, wh
 
 The input number could be presented in a standard way, where $d_0, d_1, .. d_k$ are digits of n:
 
-$n = d_0 + d_1 \cdot$10^{1}$+ d_2 \cdot$10^{2}$+ ... + d_k \cdot 10^k$
+$n = d_0 + d_1 \cdot $10^{1}$ + d_2 \cdot $10^{2}$ + ... + d_k \cdot 10^k$
 
 One could expand each power of ten, using the following:
 

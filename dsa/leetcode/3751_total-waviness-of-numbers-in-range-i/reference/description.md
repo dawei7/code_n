@@ -27,6 +27,7 @@ Let $R=\texttt{num2}-\texttt{num1}+1$ be the number of values in the range, and 
 Return the sum of the peak-and-valley counts of all $R$ integers.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

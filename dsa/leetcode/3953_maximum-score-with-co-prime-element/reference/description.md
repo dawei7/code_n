@@ -26,15 +26,14 @@ Return the **maximum** possible score.
 
 Let $n=\texttt{nums.length}$ and define
 
-$$
-U=\max(\texttt{maxVal},\max(\texttt{nums})).
-$$
+$U=\max(\texttt{maxVal},\max(\texttt{nums})).$
 
 **Return value**
 
 Return the maximum possible final selected value minus the number of changed array elements, subject to the selected value being co-prime with every other final element.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

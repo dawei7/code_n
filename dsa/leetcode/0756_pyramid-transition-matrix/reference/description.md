@@ -15,6 +15,7 @@ Given `bottom` and `allowed`, return `true`* if you can build the pyramid all th
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/pyramid1-grid.jpg)

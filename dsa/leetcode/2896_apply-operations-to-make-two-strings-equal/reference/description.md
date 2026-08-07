@@ -17,6 +17,7 @@ Return *the **minimum** cost needed to make the strings *`s1`* and *`s2`* equal,
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $s1 = "1100011000", s2 = "0101001010", x = 2$

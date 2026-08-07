@@ -15,6 +15,7 @@ Answers within $10^{-5}$ of the actual answer are considered accepted.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 10, k = 1, maxPts = 10$

@@ -1,8 +1,8 @@
 ## Description
 
-You are given a tree with `n` nodes numbered from `0` to $n - 1$ in the form of a parent array `parent` where $\text{parent}[i]$ is the parent of $$i^{\text{th}}$$node. The root of the tree is node `0`. Find the$$k^{\text{th}}$$ ancestor of a given node.
+You are given a tree with `n` nodes numbered from `0` to $n - 1$ in the form of a parent array `parent` where $\text{parent}[i]$ is the parent of $$i^{\text{th}}$$ node. The root of the tree is node `0`. Find the $$k^{\text{th}}$$ ancestor of a given node.
 
-The $$k^{\text{th}}$$ancestor of a tree node is the$$k^{\text{th}}$$ node in the path from that node to the root node.
+The $$k^{\text{th}}$$ ancestor of a tree node is the $$k^{\text{th}}$$ node in the path from that node to the root node.
 
 Implement the `TreeAncestor` class:
 
@@ -15,6 +15,7 @@ Implement the `TreeAncestor` class:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/1528_ex1.png)

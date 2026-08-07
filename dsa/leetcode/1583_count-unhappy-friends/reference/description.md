@@ -19,6 +19,7 @@ Return *the number of unhappy friends*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 4, preferences = [[1, 2, 3], [3, 2, 0], [3, 1, 0], [1, 2, 0]], pairs = [[0, 1], [2, 3]]$

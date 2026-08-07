@@ -15,6 +15,7 @@ Return `true`* if it is possible to print the matrix *`targetGrid`*,** otherwise
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/print1.jpg)

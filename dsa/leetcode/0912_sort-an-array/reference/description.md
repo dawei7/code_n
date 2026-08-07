@@ -9,6 +9,7 @@ You must solve the problem **without using any built-in** functions in `O(nlog(n
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [5,2,3,1]`

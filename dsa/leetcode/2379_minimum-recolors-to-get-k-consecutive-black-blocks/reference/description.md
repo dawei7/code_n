@@ -13,6 +13,7 @@ Return* the **minimum** number of operations needed such that there is at least 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $blocks = "WBBWWBBWBW", k = 7$

@@ -9,6 +9,7 @@ A **grandparent** of a node is the parent of its parent if it exists.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/even1-tree.jpg)

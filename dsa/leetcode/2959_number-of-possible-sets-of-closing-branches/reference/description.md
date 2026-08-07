@@ -19,6 +19,7 @@ Return *the number of possible sets of closing branches, so that any branch has 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/example11.png)

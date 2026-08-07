@@ -13,6 +13,7 @@ Return the **maximum** possible sum of the medians computed from the selected el
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

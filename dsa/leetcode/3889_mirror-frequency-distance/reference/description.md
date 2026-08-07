@@ -39,6 +39,7 @@ Letters are mirrored only within `a` through `z`, while digits are mirrored only
 Return the sum of the absolute frequency differences for all distinct mirror pairs. Each unordered pair is included at most once.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -21,6 +21,7 @@ Return *an integer denoting the **earliest second** in the range *`[1, m]`* when
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,2,3], changeIndices = [1,3,2,2,2,2,3]`

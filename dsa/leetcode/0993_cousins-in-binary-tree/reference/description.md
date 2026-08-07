@@ -11,6 +11,7 @@ Note that in a binary tree, the root node is at the depth `0`, and children of e
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/q1248-01.png)

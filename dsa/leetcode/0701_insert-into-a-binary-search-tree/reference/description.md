@@ -9,6 +9,7 @@ You are given the `root` node of a binary search tree (BST) and a `value` to ins
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/insertbst.jpg)

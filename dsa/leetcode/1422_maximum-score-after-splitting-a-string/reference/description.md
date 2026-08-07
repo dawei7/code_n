@@ -9,6 +9,7 @@ The score after splitting a string is the number of **zeros** in the **left** su
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "011101"`

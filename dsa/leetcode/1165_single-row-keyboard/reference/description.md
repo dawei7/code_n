@@ -19,6 +19,7 @@ Let $m = \lvert\texttt{word}\rvert$. The finger starts at keyboard position `0`;
 - The integer sum of the absolute distances for all $m$ moves.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $keyboard = "abcdefghijklmnopqrstuvwxyz", word = "cba"$

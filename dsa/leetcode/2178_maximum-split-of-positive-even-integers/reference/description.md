@@ -11,6 +11,7 @@ Return *a list of integers that represent a valid split containing a **maximum**
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $finalSum = 12$

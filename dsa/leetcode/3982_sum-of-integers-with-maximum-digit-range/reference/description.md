@@ -13,9 +13,7 @@ Return the sum of all integers in `nums` whose **digit range** is equal to the *
 
 Let $S$ be the total number of decimal digits across the input values:
 
-$$
-S = \sum_{x \in \texttt{nums}} \operatorname{digits}(x).
-$$
+$S = \sum_{x \in \texttt{nums}} \operatorname{digits}(x).$
 
 **Inputs**
 
@@ -28,6 +26,7 @@ Each array position is a separate contribution candidate. The digit range of a v
 Return the sum of all values whose digit range equals the largest digit range present anywhere in `nums`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

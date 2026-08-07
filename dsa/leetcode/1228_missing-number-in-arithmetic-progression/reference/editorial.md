@@ -30,18 +30,20 @@ $\text{difference} = \dfrac{\text{last value} - \text{first value}}{\text{number
 
 Once we have the difference we can use it to know what the value at each index is supposed to be. Using the `difference` as calculated above, and defining `initial` to be the value at index 0, we have the following:
 
-$$\text{index 0} = \text{initial} \\
+$$
+  \text{index 0} = \text{initial} \\
   \text{index 1} = \text{initial} + \text{difference} \\
   \text{index 2} = \text{initial} + 2 \cdot  \text{difference} \\
   \text{index 3} = \text{initial} + 3 \cdot  \text{difference} \\
   \dots \\
-  \text{index n} = \text{initial} + \text{n} \cdot \text{difference}$$
+  \text{index n} = \text{initial} + \text{n} \cdot \text{difference}
+$$
 
 Let's use this to figure out the first missing value in the Arithmetic Progression.
 
 **Algorithm**
 
-1. Get the value of `difference` using first and the last element, $difference = \text{last}_{value} - \text{first}_{value} / number_{of\_values}$.
+1. Get the value of `difference` using first and the last element, $difference = \text{last}_{value} - \text{first}_{value} / number_of_values$.
 2. Start with the first element as expected value $expected = \text{first}_{element}$
 3. Run a loop from the first value to the last while checking if the current value is equal to `expected`. If it is not, then increase `expected` by `difference` for the next iteration.
 4. Return the first `expected` value that doesn't match value in the array`.
@@ -92,7 +94,7 @@ This fact can be used to find the index which has the first incorrect number usi
 
 **Algorithm**
 
-1. Get the value of `difference` using first and the last element, $difference = \text{last}_{value} - \text{first}_{value} / number_{of\_values}$.
+1. Get the value of `difference` using first and the last element, $difference = \text{last}_{value} - \text{first}_{value} / number_of_values$.
 2. Start with left index $lo = 0$ and right index $hi = \text{arr.size}() - 1$.
 3. Pick a mid point index $mid = (lo + hi) / 2$.
 4. If $\text{arr}[mid] = \text{first}_{element} + mid * difference$. Binary search on the right of `mid` else binary search on left side of `mid` including `mid` itself.

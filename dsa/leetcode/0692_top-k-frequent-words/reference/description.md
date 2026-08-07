@@ -9,6 +9,7 @@ Return the answer **sorted** by **the frequency** from highest to lowest. Sort t
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["i","love","leetcode","i","love","coding"], k = 2$

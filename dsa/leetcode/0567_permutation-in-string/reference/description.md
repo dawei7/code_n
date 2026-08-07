@@ -9,6 +9,7 @@ In other words, return `true` if one of `s1`'s permutations is the substring of 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $s1 = "ab", s2 = "eidbaooo"$

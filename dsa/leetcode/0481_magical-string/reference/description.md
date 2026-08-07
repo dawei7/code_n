@@ -15,6 +15,7 @@ Given an integer `n`, return the number of `1`'s in the first `n` number in the 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 6$

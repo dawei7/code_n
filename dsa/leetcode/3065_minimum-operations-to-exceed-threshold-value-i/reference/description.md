@@ -11,6 +11,7 @@ Return *the **minimum** number of operations needed so that all elements of the 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,11,10,1,3], k = 10`

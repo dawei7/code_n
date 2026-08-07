@@ -15,6 +15,7 @@ A **subarray** is defined as a **non-empty** contiguous sequence of elements in 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [<u>**2**</u>,3,3,<u>**2**</u>,<u>**2**</u>], k = 2, p = 2`

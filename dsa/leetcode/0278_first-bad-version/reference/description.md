@@ -17,6 +17,7 @@ You are given an API `bool isBadVersion(version)` which returns whether `version
 Return the first bad version. The native interface receives only `n` and queries the supplied `isBadVersion(version)` API.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 5, bad = 4$

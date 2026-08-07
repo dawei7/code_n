@@ -17,6 +17,7 @@ Return an integer array denoting the *final state* of `nums` after performing al
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

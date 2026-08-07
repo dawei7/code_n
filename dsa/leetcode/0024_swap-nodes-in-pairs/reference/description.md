@@ -12,6 +12,7 @@ Given a linked list, swap every two adjacent nodes and return its head. You must
 Return the head after swapping the first node with the second, the third with the fourth, and so on. Leave an unpaired final node in place.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

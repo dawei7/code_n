@@ -13,6 +13,7 @@ Given the output `traversal` of this traversal, recover the tree and return *its
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/recover_tree_ex1.png)

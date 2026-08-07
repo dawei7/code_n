@@ -13,6 +13,7 @@ Return *the resulting palindrome string.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "egcfe"`

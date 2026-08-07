@@ -23,6 +23,7 @@ Return *the minimum cost to make the grid have at least one valid path*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/grid1.png)

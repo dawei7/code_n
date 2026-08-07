@@ -21,6 +21,7 @@ Let $N=\lvert\texttt{nums}\rvert$ and $B=N/k$. The divisibility guarantee makes 
 Return the length-$N$ array formed by reversing each of the `k` blocks and concatenating the blocks from left to right.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -2,7 +2,7 @@
 
 You are given a binary string `s` and two integers `encCost` and `flatCost`.
 
-For each index `i`, $s[i] = '1'$ indicates that the $$i^{\text{th}}$$element is sensitive, and$s[i] = '0'$ indicates that it is not.
+For each index `i`, $s[i] = '1'$ indicates that the $$i^{\text{th}}$$ element is sensitive, and $s[i] = '0'$ indicates that it is not.
 
 The string must be partitioned into **segments**. Initially, the entire string forms a single segment.
 
@@ -44,6 +44,7 @@ Return the minimum possible sum of final-segment costs over every valid
 recursive equal-halving partition.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

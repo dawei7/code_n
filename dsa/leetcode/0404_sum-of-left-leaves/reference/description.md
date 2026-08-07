@@ -14,6 +14,7 @@ A **leaf** is a node with no children. A **left leaf** is a leaf that is the lef
 Return the sum of values belonging to leaf nodes reached through a parent's left edge.
 
 ### Examples
+
 #### Example 1
 
 ![](images/leftsum-tree.jpg)

@@ -13,6 +13,7 @@ Your task is to return the **minimum** number of sensors required to cover every
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

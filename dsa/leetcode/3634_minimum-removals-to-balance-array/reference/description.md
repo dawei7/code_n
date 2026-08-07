@@ -15,6 +15,7 @@ Return the **minimum** number of elements to remove so that the remaining array 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

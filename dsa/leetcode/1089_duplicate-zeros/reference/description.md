@@ -9,6 +9,7 @@ Given a fixed-length integer array `arr`, duplicate each occurrence of zero, shi
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [1,0,2,3,0,4,5,0]`

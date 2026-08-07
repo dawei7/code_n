@@ -33,6 +33,7 @@ Return the **maximum** possible profit you can achieve.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

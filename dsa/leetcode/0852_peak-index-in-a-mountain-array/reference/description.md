@@ -11,6 +11,7 @@ Your task is to solve it in `O(log(n))` time complexity.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

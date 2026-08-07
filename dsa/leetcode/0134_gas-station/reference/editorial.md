@@ -69,9 +69,9 @@ We have verified that none of the segments is crossable. However, with the addit
 
 Fortunately, we do not need another iteration to calculate the gas gained in segment 1. We can simply calculate $\text{total}_{gain}$, which is the sum of `gain`. Note that $\text{total}_{gain}$ also represents the sum of gained gas from each segment:
 
-$\text{total\\\_gain} = \text{gain}_1 + \text{gain}_2 + \text{gain}_3 + ...$
+$\text{total\\_gain} = \text{gain}_1 + \text{gain}_2 + \text{gain}_3 + ...$
 
-If $\text{total\\\_gain} \ge 0$ holds, there is:
+If $\text{total\\_gain} \ge 0$ holds, there is:
 
 $\text{gain}_1 + \text{gain}_2 + \text{gain}_3 + ... \ge 0 \\$
 
@@ -81,7 +81,7 @@ This implies that the gas gained in the segment 1 is enough to support us passin
 
 ![img](images/n9.png)
 
-Otherwise, $\text{total\\\_gain} \lt 0$ indicates that the gas gained after traversing segment 1 isn't enough to support us passing through the remaining segments, and there is no valid station.
+Otherwise, $\text{total\\_gain} \lt 0$ indicates that the gas gained after traversing segment 1 isn't enough to support us passing through the remaining segments, and there is no valid station.
 
 > Note: We don't need to create a separate `gain` array; instead, we can calculate the gas gained for each station as we iterate through them. This way, we avoid the need for additional space of size $O(n)$.
 

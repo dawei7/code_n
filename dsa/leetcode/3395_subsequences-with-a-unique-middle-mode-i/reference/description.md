@@ -15,6 +15,7 @@ A sequence of numbers `seq` of size 5 contains a **unique middle mode** if the *
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -126,12 +126,14 @@ class Solution:
     Then, we can leverage the log multiplication rule ($\log(a)+\log(b)=\log(ab)$)
     to rewrite the complexity as:
 
-    $$\begin{aligned}
-        (2) \quad \mathcal{O}(\log(n) + \log(n-1) + \log(n-2) + \ldots + \log(1)) \&=
-                  \mathcal{O}(\log(n \cdot (n-1) \cdot (n-2) \cdot \ldots \cdot 1)) \\ \&=
+    $$
+    \begin{aligned}
+        (2) \quad \mathcal{O}(\log(n) + \log(n-1) + \log(n-2) + \ldots + \log(1)) &=
+                  \mathcal{O}(\log(n \cdot (n-1) \cdot (n-2) \cdot \ldots \cdot 1)) \\ &=
                   \mathcal{O}(\log(1 \cdot \ldots \cdot (n-2) \cdot (n-1) \cdot n)) \\
-                                                             \&= \mathcal{O}(\log(n!))
-    \end{aligned}$$
+                                                             &= \mathcal{O}(\log(n!))
+    \end{aligned}
+    $$
 
     Because this time complexity is fairly uncommon, it is worth thinking about
     its relation to the usual analyses. For one, $\log(n!) = \mathcal{O}(n\log n)$.
@@ -243,14 +245,16 @@ Here is a visualization for the above code.
     recurrence falls under case 2 of the master method, and the following
     falls out:
 
-    $$\begin{aligned}
-        T(x) \&= \mathcal{O}(x^c \cdot \log x) \\
-             \&= \mathcal{O}(x^{0.5} \cdot \log x) \\
-             \&= \mathcal{O}((n^2)^{0.5} \cdot \log(n^2)) \\
-             \&= \mathcal{O}(n \cdot \log(n^2)) \\
-             \&= \mathcal{O}(2n \cdot \log n) \\
-             \&= \mathcal{O}(n \cdot \log n) \\
-    \end{aligned}$$
+    $$
+    \begin{aligned}
+        T(x) &= \mathcal{O}(x^c \cdot \log x) \\
+             &= \mathcal{O}(x^{0.5} \cdot \log x) \\
+             &= \mathcal{O}((n^2)^{0.5} \cdot \log(n^2)) \\
+             &= \mathcal{O}(n \cdot \log(n^2)) \\
+             &= \mathcal{O}(2n \cdot \log n) \\
+             &= \mathcal{O}(n \cdot \log n) \\
+    \end{aligned}
+    $$
 
     Extension: what would happen to the complexity if we binary searched for
     the partition point, rather than used a linear scan?

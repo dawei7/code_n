@@ -9,6 +9,7 @@ Return *the merged string.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $word1 = "abc", word2 = "pqr"$

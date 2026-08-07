@@ -12,6 +12,7 @@ Given `n` non-negative integers representing an elevation map where the width of
 Return the total volume of trapped rain water in unit squares.
 
 ### Examples
+
 #### Example 1
 
 ![](images/rainwatertrap.png)

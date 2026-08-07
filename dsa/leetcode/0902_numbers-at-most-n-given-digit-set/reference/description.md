@@ -9,6 +9,7 @@ Return *the number of positive integers that can be generated *that are less tha
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $digits = ["1","3","5","7"], n = 100$

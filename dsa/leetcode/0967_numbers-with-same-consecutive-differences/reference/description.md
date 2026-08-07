@@ -9,6 +9,7 @@ Note that the integers should not have leading zeros. Integers as `02` and `043`
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 3, k = 7$

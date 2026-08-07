@@ -23,6 +23,7 @@ Let $n=\lvert\texttt{nums}\rvert$ and let $b=14$, the number of bits needed to r
 Return the smallest number of removed indices whose complementary retained subset has XOR `target`. Return `-1` when no retained subset—including the empty subset—has that XOR.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -11,6 +11,7 @@ Note: while a magic square can only contain numbers from 1 to 9, `grid` may cont
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/magic_main.jpg)

@@ -16,6 +16,7 @@ The minimum depth is the number of nodes along the shortest path from the root n
 Return the number of nodes on the shortest root-to-leaf path. Return `0` for an empty tree.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex_depth.jpg)

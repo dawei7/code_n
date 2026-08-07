@@ -1,6 +1,6 @@
 ## Description
 
-You are given an array representing a row of `seats` where $\text{seats}[i] = 1$ represents a person sitting in the $$i^{\text{th}}$$seat, and$\text{seats}[i] = 0$represents that the$$i^{\text{th}}$$ seat is empty **(0-indexed)**.
+You are given an array representing a row of `seats` where $\text{seats}[i] = 1$ represents a person sitting in the $$i^{\text{th}}$$ seat, and $\text{seats}[i] = 0$ represents that the $$i^{\text{th}}$$ seat is empty **(0-indexed)**.
 
 There is at least one empty seat, and at least one person sitting.
 
@@ -13,6 +13,7 @@ Return *that maximum distance to the closest person*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/distance.jpg)

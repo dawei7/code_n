@@ -13,6 +13,7 @@ Your goal is to **maximize** the summation of the matrix's elements. Return *the
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/pc79-q2ex1.png)

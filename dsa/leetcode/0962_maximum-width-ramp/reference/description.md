@@ -9,6 +9,7 @@ Given an integer array `nums`, return *the maximum width of a **ramp** in *`nums
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [6,0,8,2,1,5]`

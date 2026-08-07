@@ -17,6 +17,7 @@ Return *the number of 4-directional walks from the starting square to the ending
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/lc-unique1.jpg)

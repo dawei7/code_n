@@ -16,6 +16,7 @@ Return* the height of the given tree.*
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `root = [1,2,3,null,null,4,5]`

@@ -18,6 +18,7 @@ Indices are zero-based. Values at indices $0,2,4,\ldots$ have positive signs, wh
 Return the signed sum of all elements under that alternating sign pattern.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

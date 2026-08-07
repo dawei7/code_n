@@ -16,6 +16,7 @@ Return *an integer array `ans` of size *`n` *where *$\text{ans}[j]$* is the answ
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [0,1,2], queries = [[0,2],[2,0],[3,2],[5,0]]`

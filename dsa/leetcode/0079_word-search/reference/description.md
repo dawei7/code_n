@@ -15,6 +15,7 @@ The word can be constructed from letters of sequentially adjacent cells, where a
 Return `true` if one non-reusing, horizontally or vertically adjacent cell path spells `word`; otherwise return `false`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/word2.jpg)

@@ -12,6 +12,7 @@ Given a string `s`, remove duplicate letters so that every letter appears once a
 Return the lexicographically smallest subsequence that contains each distinct letter from `s` exactly once.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "bcabc"`

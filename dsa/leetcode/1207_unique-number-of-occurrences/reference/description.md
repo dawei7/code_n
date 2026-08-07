@@ -7,6 +7,7 @@ Given an array of integers `arr`, return `true` *if the number of occurrences of
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [1,2,2,1,1,3]`

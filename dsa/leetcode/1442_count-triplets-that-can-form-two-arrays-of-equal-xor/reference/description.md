@@ -19,6 +19,7 @@ Return *the number of triplets* (`i`, `j` and `k`) Where $a = b$.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [2,3,1,6,7]`

@@ -14,6 +14,7 @@ You must write an algorithm that runs in `O(n)` time.
 Return the number of distinct consecutive integers in the longest sequence present in `nums`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [100,4,200,1,3,2]`

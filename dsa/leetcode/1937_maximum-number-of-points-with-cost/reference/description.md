@@ -19,6 +19,7 @@ Return *the **maximum** number of points you can achieve*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1** **
 
 ![](images/screenshot-2021-07-12-at-13-40-26-diagram-drawio-diagrams-net.png)

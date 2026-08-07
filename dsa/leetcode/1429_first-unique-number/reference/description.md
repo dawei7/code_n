@@ -29,6 +29,7 @@ Let $n = \lvert\texttt{nums}\rvert$ and let $q$ be the number of calls after con
 Return one result per operation. Construction and `add` produce `null`; each `showFirstUnique` entry produces the requested integer or `-1`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** ``

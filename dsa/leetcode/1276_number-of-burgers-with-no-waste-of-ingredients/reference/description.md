@@ -13,6 +13,7 @@ Return $[\text{total}_{jumbo}, \text{total}_{small}]$ so that the number of rema
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $tomatoSlices = 16, cheeseSlices = 7$

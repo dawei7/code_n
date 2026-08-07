@@ -16,6 +16,7 @@ Return the **minimum** total time taken to visit the houses.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -22,13 +22,13 @@ To do this, we can use a priority queue for selection. For the first part, we st
 
 For the second part, we perform a similar process in reverse. We begin by placing $\textit{nums}[2n .. 3n-1]$ into a min heap, and then iterate through indices $i$ in reverse from $2n-1$ down to $n$. At each step, we insert $\textit{nums}[i]$ into the heap and remove the smallest element. The heap will then contain the $n$ largest elements in $\textit{nums}[i .. 3n-1]$.
 
-While modifying the heaps, we maintain the sum of the elements currently in each heap. When an element is inserted, we add its value; when the top element is removed, we subtract its value. This lets us compute $\textit{part}_1[n-1], \dots, \textit{part}_1[2n-1]$ and $\textit{part}\text{\_2}[n], \dots, \textit{part}\text{\_2}[2n]$, where:
+While modifying the heaps, we maintain the sum of the elements currently in each heap. When an element is inserted, we add its value; when the top element is removed, we subtract its value. This lets us compute $\textit{part}_1[n-1], \dots, \textit{part}_1[2n-1]$ and $\textit{part}\text{_2}[n], \dots, \textit{part}\text{_2}[2n]$, where:
 
-- $\textit{part}\text{\_1}[i]$ is the sum of the $n$ smallest elements in $\textit{nums}[0 .. i]$,
+- $\textit{part}\text{_1}[i]$ is the sum of the $n$ smallest elements in $\textit{nums}[0 .. i]$,
 
-- $\textit{part}\text{\_2}[i]$ is the sum of the $n$ largest elements in $\textit{nums}[i .. 3n-1]$.
+- $\textit{part}\text{_2}[i]$ is the sum of the $n$ largest elements in $\textit{nums}[i .. 3n-1]$.
 
-The final answer is the minimum value of all expressions $\textit{part}\text{\_1}[i] - \textit{part}_2[i+1]$ where $i \in [n-1, 2n)$.
+The final answer is the minimum value of all expressions $\textit{part}\text{_1}[i] - \textit{part}_2[i+1]$ where $i \in [n-1, 2n)$.
 
 We can simplify the indexing by subtracting $n-1$ from all subscripts in $\textit{part}_1$ and $n$ from all subscripts in $\textit{part}_2$, so that both have index ranges in $[0, n)$. This means we only need two arrays of length $n+1$ to store these values.
 

@@ -25,6 +25,7 @@ The first digit cannot be zero because the result represents a positive integer 
 Return the maximum good integer among those attaining the maximum digit-square score, encoded as a string. Return the empty string when `sum` cannot be distributed among `num` decimal digits.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

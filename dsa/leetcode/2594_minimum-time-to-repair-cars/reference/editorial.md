@@ -7,10 +7,10 @@
 We are given an array `ranks`, where $\text{ranks}[i]$ represents the efficiency of the `i`-th mechanic. A mechanic with a rank `r` repairs `n` cars in $r * n^{2}$ minutes, meaning the time required increases quadratically as more cars are assigned to a single mechanic. We also have an integer `cars`, representing the total number of cars that need to be repaired. The goal is to determine the minimum possible time required to repair all cars if all mechanics work simultaneously.
 
 To understand the problem, consider the example where $ranks = [4,2,3,1]$ and $cars = 10$. The optimal allocation would be:
-- The first mechanic (rank `4`) repairs `2` cars, taking $4 *$2^{2}$= 16$ minutes.
-- The second mechanic (rank `2`) repairs `2` cars, taking $2 *$2^{2}$= 8$ minutes.
-- The third mechanic (rank `3`) repairs `2` cars, taking $3 *$2^{2}$= 12$ minutes.
-- The fourth mechanic (rank `1`) repairs `4` cars, taking $1 *$4^{2}$= 16$ minutes.
+- The first mechanic (rank `4`) repairs `2` cars, taking $4 * $2^{2}$ = 16$ minutes.
+- The second mechanic (rank `2`) repairs `2` cars, taking $2 * $2^{2}$ = 8$ minutes.
+- The third mechanic (rank `3`) repairs `2` cars, taking $3 * $2^{2}$ = 12$ minutes.
+- The fourth mechanic (rank `1`) repairs `4` cars, taking $1 * $4^{2}$ = 16$ minutes.
 
 Since all mechanics work in parallel, the total time required is determined by the slowest mechanic in the optimal assignment, which is `16` minutes.
 
@@ -24,7 +24,7 @@ In this problem, we are given:
 - `ranks.length` can be up to $10^5$
 - `cars` can be up to $10^6$
 
-A typical DP solution would require a state representation like $\text{dp}[mechanic][car]$. The time complexity would then be $O(n \cdot cars)$, which in the worst case is $10^5 ×$10^{6}$= 10^{11}$ operations. This is far too large to be computationally feasible.
+A typical DP solution would require a state representation like $\text{dp}[mechanic][car]$. The time complexity would then be $O(n \cdot cars)$, which in the worst case is $10^5 × $10^{6}$ = 10^{11}$ operations. This is far too large to be computationally feasible.
 
 A good approach here can be to use binary search, as it provides a more natural way to minimize the maximum time while still efficiently distributing cars. We will talk about it more in [approach one](#approach-1-binary-search-on-time).
 
@@ -156,15 +156,15 @@ class Solution:
 
 Let $n$ be the size of the `ranks` array, $m$ be the number of cars (`cars`).
 
-- Time Complexity: $O(n + \text{max\\\_rank} \log (m \cdot \text{max\\\_rank}))$
+- Time Complexity: $O(n + \text{max\\_rank} \log (m \cdot \text{max\\_rank}))$
 
-    The algorithm starts by iterating through the `ranks` array to compute the minimum rank and build a frequency array. This step takes $O(n)$ time, as it involves a single pass over the array. Next, the algorithm performs a binary search over the possible time range, which spans from 1 to $1L \cdot \text{minRank} \cdot m \cdot m$. The binary search runs in $O(\log (m \cdot \text{max\\\_rank}))$ iterations, where $\text{max\\\_rank}$ is the maximum rank in the `ranks` array.
+    The algorithm starts by iterating through the `ranks` array to compute the minimum rank and build a frequency array. This step takes $O(n)$ time, as it involves a single pass over the array. Next, the algorithm performs a binary search over the possible time range, which spans from 1 to $1L \cdot \text{minRank} \cdot m \cdot m$. The binary search runs in $O(\log (m \cdot \text{max\\_rank}))$ iterations, where $\text{max\\_rank}$ is the maximum rank in the `ranks` array.
 
-    For each iteration of the binary search, the algorithm calculates the total number of cars that can be repaired in `mid` time. This involves iterating over the frequency array which has a fixed size of $\text{max\\\_rank}$ and computing the square root of the ratio of `mid` to the rank for each entry. This computation takes $O(\text{max\\\_rank})$ time per iteration. Combining these steps, the overall time complexity is $O(n + \text{max\\\_rank} \log (m \cdot \text{max\\\_rank}))$.
+    For each iteration of the binary search, the algorithm calculates the total number of cars that can be repaired in `mid` time. This involves iterating over the frequency array which has a fixed size of $\text{max\\_rank}$ and computing the square root of the ratio of `mid` to the rank for each entry. This computation takes $O(\text{max\\_rank})$ time per iteration. Combining these steps, the overall time complexity is $O(n + \text{max\\_rank} \log (m \cdot \text{max\\_rank}))$.
 
-- Space Complexity: $O(\text{max\\\_rank})$
+- Space Complexity: $O(\text{max\\_rank})$
 
-    The algorithm uses a frequency array of size $\text{max\\\_rank}$ to store the count of mechanics for each rank. This array occupies $O(\text{max\\\_rank})$ space. Additionally, a few variables are used for the binary search (`low`, `high`, `mid`, `carsRepaired`) and for storing the minimum rank, all of which require constant space, $O(1)$. Thus, the overall space complexity is $O(\text{max\\\_rank})$.
+    The algorithm uses a frequency array of size $\text{max\\_rank}$ to store the count of mechanics for each rank. This array occupies $O(\text{max\\_rank})$ space. Additionally, a few variables are used for the binary search (`low`, `high`, `mid`, `carsRepaired`) and for storing the minimum rank, all of which require constant space, $O(1)$. Thus, the overall space complexity is $O(\text{max\\_rank})$.
 
 ---
 
@@ -227,9 +227,9 @@ class Solution:
 
 Let $n$ be the size of the `ranks` array, $m$ be the number of cars (`cars`), and $k$ be the maximum possible rank (`100` in this case).
 
-- Time Complexity: $O(n \cdot \log (m \cdot \text{max\\\_rank}))$
+- Time Complexity: $O(n \cdot \log (m \cdot \text{max\\_rank}))$
 
-    The algorithm performs a binary search over the possible time range, which takes $O(\log (m \cdot \text{max\\\_rank}))$ iterations. For each iteration, it calculates the number of cars that can be repaired in $O(n)$ time by iterating over the `ranks` array. The overall time complexity is $O(n \cdot \log (m \cdot \text{max\\\_rank}))$.
+    The algorithm performs a binary search over the possible time range, which takes $O(\log (m \cdot \text{max\\_rank}))$ iterations. For each iteration, it calculates the number of cars that can be repaired in $O(n)$ time by iterating over the `ranks` array. The overall time complexity is $O(n \cdot \log (m \cdot \text{max\\_rank}))$.
 
 - Space Complexity: $O(1)$
 

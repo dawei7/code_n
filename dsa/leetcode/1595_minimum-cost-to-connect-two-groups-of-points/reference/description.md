@@ -11,6 +11,7 @@ Return *the minimum cost it takes to connect the two groups*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1.jpg)

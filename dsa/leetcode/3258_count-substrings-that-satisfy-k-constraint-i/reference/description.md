@@ -15,6 +15,7 @@ Return an integer denoting the number of substrings of `s` that satisfy the **k-
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -20,6 +20,7 @@ The replaced index may be one of the three selected indices. All three factors i
 Return the greatest integer product obtainable after choosing both the replacement and the three selected indices optimally.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -17,7 +17,7 @@ Return an integer representing the number of **non-empty** subsets `s` of nodes 
 
 **Inputs**
 
-- `nums`: The binary value assigned to each node; `nums[i]` belongs to node `i`.
+- `nums`: The binary value assigned to each node; $\text{nums}[i]$ belongs to node `i`.
 - `edges`: The distinct undirected edges, each written as `[u, v]` with `u < v`.
 
 Let $n = \lvert\texttt{nums}\rvert$ denote the number of graph nodes.
@@ -27,6 +27,7 @@ Let $n = \lvert\texttt{nums}\rvert$ denote the number of graph nodes.
 Return the number of non-empty node subsets whose induced subgraph is connected and whose node-value sum is even.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

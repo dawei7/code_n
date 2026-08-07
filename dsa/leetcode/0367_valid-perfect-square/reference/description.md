@@ -16,6 +16,7 @@ You must not use any built-in library function, such as `sqrt`.
 Return `true` exactly when an integer $r$ exists with $r^2=\texttt{num}$; otherwise return `false`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num = 16$

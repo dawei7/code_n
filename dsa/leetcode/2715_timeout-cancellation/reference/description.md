@@ -4,9 +4,12 @@ Given a function `fn`, an array of arguments `args`, and a timeout `t` in millis
 
 After a delay of `cancelTimeMs`, the returned cancel function `cancelFn` will be invoked.
 
+```
 setTimeout(cancelFn, cancelTimeMs)
 ```
+
 Initially, the execution of the function `fn` should be delayed by `t` milliseconds.
+
 If, before the delay of `t` milliseconds, the function `cancelFn` is invoked, it should cancel the delayed execution of `fn`. Otherwise, if `cancelFn` is not invoked within the specified delay `t`, `fn` should be executed with the provided `args` as arguments.
 ### Function Contract
 
@@ -14,8 +17,9 @@ If, before the delay of `t` milliseconds, the function `cancelFn` is invoked, it
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
-```
+
 - **Input:** $fn = (x) => x * 5, args = [2], t = 20$
 - **Output:** `[{"time": 20, "returned": 10}]`
 - **Explanation:**

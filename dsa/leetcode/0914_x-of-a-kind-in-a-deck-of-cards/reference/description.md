@@ -15,6 +15,7 @@ Return `true`* if such partition is possible, or *`false`* otherwise*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $deck = [1,2,3,4,4,3,2,1]$

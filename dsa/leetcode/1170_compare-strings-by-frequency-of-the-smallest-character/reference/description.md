@@ -11,6 +11,7 @@ Return *an integer array *`answer`*, where each *$\text{answer}[i]$* is the answ
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $queries = ["cbd"], words = ["zaaaz"]$

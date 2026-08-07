@@ -15,6 +15,7 @@ Return the `index` of the button that took the **longest** time to push. If mult
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

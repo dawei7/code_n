@@ -19,6 +19,7 @@ For a subarray of length $L$, let $f$ be the number of positions whose value equ
 Return the total number of subarrays for which `target` satisfies that strict-majority condition.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

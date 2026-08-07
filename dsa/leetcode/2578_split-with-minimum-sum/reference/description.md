@@ -22,6 +22,7 @@ Return *the **minimum** possible sum of* `num1` *and* `num2`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num = 4325$

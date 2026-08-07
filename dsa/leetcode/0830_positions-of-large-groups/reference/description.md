@@ -15,6 +15,7 @@ Return *the intervals of every **large** group sorted in **increasing order by s
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "abbxxxxzzy"`

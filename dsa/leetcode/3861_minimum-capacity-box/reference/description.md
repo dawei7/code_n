@@ -2,7 +2,7 @@
 
 You are given an integer array `capacity`, where $\text{capacity}[i]$ represents the capacity of the $$i^{\text{th}}$$ box, and an integer `itemSize` representing the size of an item.
 
-The $$i^{\text{th}}$$box can store the item if$\text{capacity}[i] \ge itemSize$.
+The $$i^{\text{th}}$$ box can store the item if $\text{capacity}[i] \ge itemSize$.
 
 Return an integer denoting the index of the box with the **minimum** capacity that can store the item. If multiple such boxes exist, return the **smallest index**.
 
@@ -16,7 +16,7 @@ If no box can store the item, return -1.
 - `itemSize`: The minimum capacity a box needs in order to store the item.
 
 Let $N = \lvert\texttt{capacity}\rvert$. An index `i` is eligible when
-`capacity[i] >= itemSize`. Indexing is zero-based.
+$\text{capacity}[i] \ge itemSize$. Indexing is zero-based.
 
 **Return value**
 
@@ -24,6 +24,7 @@ Return the smallest index among the eligible boxes having minimum capacity.
 Return `-1` when no eligible box exists.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

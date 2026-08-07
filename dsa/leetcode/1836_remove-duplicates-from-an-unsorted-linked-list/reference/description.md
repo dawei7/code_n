@@ -8,6 +8,7 @@ Return *the linked list after the deletions.*
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 ![](images/tmp-linked-list.jpg)

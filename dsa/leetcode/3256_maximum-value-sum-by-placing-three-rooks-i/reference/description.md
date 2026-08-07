@@ -11,6 +11,7 @@ Return the **maximum** sum of the cell **values** on which the rooks are placed.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

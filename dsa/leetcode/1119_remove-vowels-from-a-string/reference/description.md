@@ -14,6 +14,7 @@ Process every character from left to right. Discard a character exactly when it 
 - The new string formed by concatenating all retained characters. Its length may be zero when every input character is a vowel.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "leetcodeisacommunityforcoders"`

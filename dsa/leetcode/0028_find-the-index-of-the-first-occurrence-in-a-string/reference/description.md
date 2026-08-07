@@ -13,6 +13,7 @@ Given two strings `needle` and `haystack`, return the index of the first occurre
 Return the zero-based index of the first match, or `-1` if no match exists.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $haystack = "sadbutsad", needle = "sad"$

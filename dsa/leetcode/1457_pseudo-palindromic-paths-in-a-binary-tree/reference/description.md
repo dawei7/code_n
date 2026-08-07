@@ -9,6 +9,7 @@ Given a binary tree where node values are digits from 1 to 9. A path in the bina
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/palindromic_paths_1.png)

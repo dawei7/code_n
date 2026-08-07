@@ -29,6 +29,7 @@ The following are the rules for a string abbreviation:
   rules, with each word retaining the shortest prefix that resolves its collisions.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["like","god","internal","me","internet","interval","intension","face","intrusion"]$

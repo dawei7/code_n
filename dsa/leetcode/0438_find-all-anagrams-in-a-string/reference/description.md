@@ -14,6 +14,7 @@ Return all zero-based start positions where the length-`len(p)` substring has ex
 multiplicities as `p`. Any order is valid; the reviewed implementation produces increasing positions.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "cbaebabacd", p = "abc"`

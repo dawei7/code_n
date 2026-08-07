@@ -26,6 +26,7 @@ Return an integer denoting the strength of the password.
 Return the integer sum of the category weight for every distinct character present in `password`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -9,6 +9,7 @@ The array `nums` is **strictly increasing** if $nums[i - 1] < \text{nums}[i]$ fo
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,<u>10</u>,5,7]`

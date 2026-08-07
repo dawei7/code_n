@@ -15,6 +15,7 @@ Return *the **maximum** *`XOR`* value out of all possible strong pairs in the ar
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3,4,5]`

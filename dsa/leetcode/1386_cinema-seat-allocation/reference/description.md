@@ -23,6 +23,7 @@ Return an integer denoting the **maximum** number of four-person groups that can
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/cinema_seats_3.png)

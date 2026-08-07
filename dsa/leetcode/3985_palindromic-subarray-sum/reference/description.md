@@ -13,13 +13,14 @@ Let $n = \lvert\texttt{nums}\rvert$.
 
 - `nums`: A nonempty array of positive integers.
 
-For indices $0 \le l \le r < n$, the subarray `nums[l..r]` is palindromic exactly when `nums[l + j] == nums[r - j]` for every valid offset $j$.
+For indices $0 \le l \le r < n$, the subarray `nums[l..r]` is palindromic exactly when $nums[l + j] = nums[r - j]$ for every valid offset $j$.
 
 **Output**
 
 Return the maximum element sum among all palindromic subarrays of `nums`. The result may exceed a 32-bit signed integer.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

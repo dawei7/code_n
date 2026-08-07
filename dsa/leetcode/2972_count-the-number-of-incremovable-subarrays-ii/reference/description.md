@@ -15,6 +15,7 @@ A **subarray** is a contiguous non-empty sequence of elements within an array.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3,4]`

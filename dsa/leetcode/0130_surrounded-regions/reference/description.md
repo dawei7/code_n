@@ -20,6 +20,7 @@ To capture a **surrounded region**, replace all `'O'`s with `'X'`s **in-place** 
 Return nothing; mutate `board` in place so that all and only surrounded `'O'` regions are captured.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

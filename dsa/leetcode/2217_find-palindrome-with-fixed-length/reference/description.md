@@ -9,6 +9,7 @@ A **palindrome** is a number that reads the same backwards and forwards. Palindr
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $queries = [1,2,3,4,5,90], intLength = 3$

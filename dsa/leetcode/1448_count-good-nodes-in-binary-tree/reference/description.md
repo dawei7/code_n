@@ -9,6 +9,7 @@ Return the number of **good** nodes in the binary tree.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 **

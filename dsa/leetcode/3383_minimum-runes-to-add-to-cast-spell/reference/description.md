@@ -2,7 +2,7 @@
 
 Alice has just graduated from wizard school, and wishes to cast a magic spell to celebrate. The magic spell contains certain **focus points** where magic needs to be concentrated, and some of these focus points contain **magic crystals** which serve as the spell's energy source. Focus points can be linked through **directed runes**, which channel magic flow from one focus point to another.
 
-You are given a integer `n` denoting the *number* of focus points and an array of integers `crystals` where $\text{crystals}[i]$ indicates a focus point which holds a magic crystal. You are also given two integer arrays `flowFrom` and `flowTo`, which represent the existing **directed runes**. The $$i^{\text{th}}$$rune allows magic to freely flow from focus point$\text{flowFrom}[i]$to focus point$\text{flowTo}[i]$.
+You are given a integer `n` denoting the *number* of focus points and an array of integers `crystals` where $\text{crystals}[i]$ indicates a focus point which holds a magic crystal. You are also given two integer arrays `flowFrom` and `flowTo`, which represent the existing **directed runes**. The $$i^{\text{th}}$$ rune allows magic to freely flow from focus point $\text{flowFrom}[i]$ to focus point $\text{flowTo}[i]$.
 
 You need to find the number of directed runes Alice must add to her spell, such that *each* focus point either:
 
@@ -16,6 +16,7 @@ Return the **minimum** number of directed runes that she should add.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

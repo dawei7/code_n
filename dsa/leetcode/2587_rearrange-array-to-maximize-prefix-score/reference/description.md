@@ -11,6 +11,7 @@ Return *the maximum score you can achieve*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,-1,0,1,-3,3,-3]`

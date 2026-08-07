@@ -11,6 +11,7 @@ Return *the sum of lengths of all good strings in words*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["cat","bt","hat","tree"], chars = "atach"$

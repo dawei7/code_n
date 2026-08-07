@@ -13,6 +13,7 @@ Return *the **minimum** possible length of the resulting string that you can obt
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "ABFCACDB"`

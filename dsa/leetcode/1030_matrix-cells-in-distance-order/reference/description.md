@@ -11,6 +11,7 @@ The **distance** between two cells $(r_{1}, c_{1})$ and $(r_{2}, c_{2})$ is $|r_
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $rows = 1, cols = 2, rCenter = 0, cCenter = 0$

@@ -17,6 +17,7 @@ Find the **minimum non-zero** product of `nums` after performing the above opera
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $p = 1$

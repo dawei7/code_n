@@ -19,6 +19,7 @@ Return *a list of **all** days **(0-indexed) **that are good days to rob the ban
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $security = [5,3,3,3,5,6,2], time = 2$

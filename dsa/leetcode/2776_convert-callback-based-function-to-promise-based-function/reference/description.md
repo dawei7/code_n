@@ -35,21 +35,19 @@ async function sum(a, b) {
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
-```
-**Input:**
+- **Input:** ``
 fn = (callback, a, b, c) => {
-    callback(a * b * c);
+callback(a * b * c);
 }
 args = [1, 2, 3]
-**Output:** {"resolved": 6}
-**Explanation:**
+- **Output:** `{"resolved": 6}`
+- **Explanation:**
 const asyncFunc = promisify(fn);
 asyncFunc(1, 2, 3).then(console.log); // 6
-
 fn is called with a callback as the first argument and args as the rest. The promise based version of fn resolves a value of 6 when called with (1, 2, 3).
-```
 #### Example 2
 
 - **Input:** ``

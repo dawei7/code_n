@@ -10,6 +10,7 @@ Return *the features in sorted order.*
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $features = ["cooler","lock","touch"], responses = ["i like cooler cooler","lock touch cool","locker like touch"]$

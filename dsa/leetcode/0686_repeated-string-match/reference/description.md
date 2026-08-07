@@ -9,6 +9,7 @@ Given two strings `a` and `b`, return *the minimum number of times you should re
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $a = "abcd", b = "cdabcdab"$

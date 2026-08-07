@@ -18,6 +18,7 @@ Return an array of the `k` digits representing the answer.
 Return the lexicographically greatest valid array of exactly `k` digits while preserving each source array's internal order.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [3,4,6,5], nums2 = [9,1,2,5,8,3], k = 5$

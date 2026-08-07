@@ -9,6 +9,7 @@ Return *the **number of distinct ways** you can buy some number of pens and penc
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $total = 20, cost1 = 10, cost2 = 5$

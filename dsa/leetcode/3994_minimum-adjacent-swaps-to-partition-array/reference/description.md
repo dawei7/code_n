@@ -30,6 +30,7 @@ The boundaries satisfy `a < b`. Let $n=\lvert\texttt{nums}\rvert$.
 Return the minimum number of neighboring-element swaps that can arrange all values less than `a` first, all values in `[a, b]` next, and all values greater than `b` last. Return the count modulo $10^9+7$.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

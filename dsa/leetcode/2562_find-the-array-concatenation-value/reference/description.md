@@ -19,6 +19,7 @@ Return* the concatenation value of `nums`*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [7,52,2,4]`

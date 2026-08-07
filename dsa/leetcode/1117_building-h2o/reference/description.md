@@ -19,6 +19,7 @@ Write synchronization code for oxygen and hydrogen molecules that enforces these
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $water = "HOH"$

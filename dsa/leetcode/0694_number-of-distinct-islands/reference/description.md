@@ -7,7 +7,7 @@ An island is considered to be the same as another if and only if one island can 
 Return *the number of **distinct** islands*.
 ### Function Contract
 
-`solve(grid: list[list[int]]) -> int`
+$solve(grid: list[\text{list}[int]]) -> int$
 
 **Inputs**
 
@@ -18,6 +18,7 @@ Return *the number of **distinct** islands*.
 Return the number of island shape classes under translation alone. Horizontal and vertical contact joins land; rotation and reflection do not make two shapes equivalent.
 
 ### Examples
+
 #### Example 1
 
 ![](images/distinctisland1-1-grid.jpg)

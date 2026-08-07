@@ -9,6 +9,7 @@ The **subtree sum** of a node is defined as the sum of all the node values forme
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/freq1-tree.jpg)

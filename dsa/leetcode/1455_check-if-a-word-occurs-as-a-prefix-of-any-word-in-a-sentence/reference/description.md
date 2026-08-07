@@ -11,6 +11,7 @@ A **prefix** of a string `s` is any leading contiguous substring of `s`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $sentence = "i love eating burger", searchWord = "burg"$

@@ -23,6 +23,7 @@ Return *a string representing the final state*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $dominoes = "\text{RR.L}"$

@@ -9,6 +9,7 @@ Given an integer `n`, return *a binary string representing its representation in
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 2$

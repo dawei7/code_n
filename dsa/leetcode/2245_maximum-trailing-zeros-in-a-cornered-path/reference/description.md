@@ -19,6 +19,7 @@ Note:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1new2.jpg)

@@ -11,6 +11,7 @@ Return *the largest possible height of your billboard installation*. If you cann
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $rods = [1,2,3,6]$

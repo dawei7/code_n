@@ -9,6 +9,7 @@ Given the array `favoriteCompanies` where $\text{favoriteCompanies}[i]$ is the l
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $favoriteCompanies = [["leetcode","google","facebook"],["google","microsoft"],["google","facebook"],["google"],["amazon"]]$

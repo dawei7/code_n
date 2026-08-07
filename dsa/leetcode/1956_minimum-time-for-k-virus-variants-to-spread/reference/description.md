@@ -10,6 +10,7 @@ Given an integer `k`, return *the **minimum integer** number of days for **any**
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 ![](images/case-1.png)

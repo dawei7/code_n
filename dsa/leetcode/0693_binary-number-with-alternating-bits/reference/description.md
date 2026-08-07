@@ -7,6 +7,7 @@ Given a positive integer, check whether it has alternating bits: namely, if two 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 5$

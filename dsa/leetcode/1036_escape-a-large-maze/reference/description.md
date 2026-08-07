@@ -13,6 +13,7 @@ Return `true`* if and only if it is possible to reach the *`target`* square from
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $blocked = [[0,1],[1,0]], source = [0,0], target = [0,2]$

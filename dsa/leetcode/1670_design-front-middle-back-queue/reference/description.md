@@ -29,6 +29,7 @@ Implement the `FrontMiddleBack` class:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** ``

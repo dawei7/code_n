@@ -17,6 +17,7 @@ The string is called **alternating** if no two adjacent characters are equal.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "111000"`

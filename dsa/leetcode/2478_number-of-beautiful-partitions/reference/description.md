@@ -19,30 +19,25 @@ A **substring** is a contiguous sequence of characters within a string.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
-```
-**Input:** s = "23542185131", k = 3, minLength = 2
-**Output:** 3
-**Explanation:** There exists three ways to create a beautiful partition:
+- **Input:** `s = "23542185131", k = 3, minLength = 2`
+- **Output:** `3`
+- **Explanation:** There exists three ways to create a beautiful partition:
 "2354 | 218 | 5131"
 "2354 | 21851 | 31"
 "2354218 | 51 | 31"
-```
 #### Example 2
 
-```
-**Input:** s = "23542185131", k = 3, minLength = 3
-**Output:** 1
-**Explanation:** There exists one way to create a beautiful partition: "2354 | 218 | 5131".
-```
+- **Input:** `s = "23542185131", k = 3, minLength = 3`
+- **Output:** `1`
+- **Explanation:** There exists one way to create a beautiful partition: "2354 | 218 | 5131".
 #### Example 3
 
-```
-**Input:** s = "3312958", k = 3, minLength = 1
-**Output:** 1
-**Explanation:** There exists one way to create a beautiful partition: "331 | 29 | 58".
-```
+- **Input:** `s = "3312958", k = 3, minLength = 1`
+- **Output:** `1`
+- **Explanation:** There exists one way to create a beautiful partition: "331 | 29 | 58".
 ### Constraints
 
 - $1 \le k, minLength \le \text{s.length} \le 1000$

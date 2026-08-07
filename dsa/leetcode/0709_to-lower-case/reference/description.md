@@ -7,6 +7,7 @@ Given a string `s`, return *the string after replacing every uppercase letter wi
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "Hello"`

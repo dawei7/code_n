@@ -21,10 +21,11 @@ window is nonempty and there are exactly $n-k+1$ window positions.
 
 **Return value**
 
-Return a floating-point list of length $n-k+1$. Entry $i$ is the median of `nums[i:i + k]`: the central ordered value
+Return a floating-point list of length $n-k+1$. Entry $i$ is the median of $nums[i:i + k]$: the central ordered value
 when `k` is odd, or the mean of the two central ordered values when `k` is even.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,3,-1,-3,5,3,6,7], k = 3`

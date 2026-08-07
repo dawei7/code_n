@@ -17,6 +17,7 @@ Return the **minimum** possible **non-negative** value of `k`, such that after p
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

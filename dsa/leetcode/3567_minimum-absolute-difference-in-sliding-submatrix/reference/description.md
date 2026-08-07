@@ -15,6 +15,7 @@ A submatrix `(x1, y1, x2, y2)` is a matrix that is formed by choosing all cells 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

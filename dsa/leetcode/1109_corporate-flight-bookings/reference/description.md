@@ -11,6 +11,7 @@ Return *an array *`answer`* of length *`n`*, where *$\text{answer}[i]$* is the t
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $bookings = [[1,2,10],[2,3,20],[2,5,25]], n = 5$

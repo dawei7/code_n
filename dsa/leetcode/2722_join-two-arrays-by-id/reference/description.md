@@ -17,6 +17,7 @@ If two objects share an `id`, their properties should be merged into a single ob
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** ``

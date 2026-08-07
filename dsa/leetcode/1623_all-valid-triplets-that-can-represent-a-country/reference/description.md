@@ -61,15 +61,16 @@ The result format is in the following example.
 
 **Inputs**
 
-- `SchoolA`: Table with columns `student_id` (int), `student_name` (varchar).
-- `SchoolB`: Table with columns `student_id` (int), `student_name` (varchar).
-- `SchoolC`: Table with columns `student_id` (int), `student_name` (varchar).
+- `SchoolA`: Table with columns $\text{student}_{id}$ (int), $\text{student}_{name}$ (varchar).
+- `SchoolB`: Table with columns $\text{student}_{id}$ (int), $\text{student}_{name}$ (varchar).
+- `SchoolC`: Table with columns $\text{student}_{id}$ (int), $\text{student}_{name}$ (varchar).
 
 **Return value**
 
-Return a table with columns `member_A`, `member_B`, and `member_C` representing all valid combinations of one student from each school where all 3 `student_id`s are pairwise distinct and all 3 `student_name`s are pairwise distinct.
+Return a table with columns $\text{member}_{A}$, $\text{member}_{B}$, and $\text{member}_{C}$ representing all valid combinations of one student from each school where all 3 $\text{student}_{id}$s are pairwise distinct and all 3 $\text{student}_{name}$s are pairwise distinct.
 
 ### Examples
+
 #### Example 1
 
 ```

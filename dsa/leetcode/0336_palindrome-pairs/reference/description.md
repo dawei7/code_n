@@ -24,6 +24,7 @@ You must write an algorithm with $O(sum of \text{words}[i].length)$ runtime comp
 Return all ordered index pairs `[i,j]` with distinct indices whose corresponding concatenation is a palindrome.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["abcd","dcba","lls","s","sssll"]$

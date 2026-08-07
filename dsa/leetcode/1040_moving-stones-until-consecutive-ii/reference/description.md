@@ -19,6 +19,7 @@ Return *an integer array *`answer`* of length *`2`* where*:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $stones = [7,4,9]$

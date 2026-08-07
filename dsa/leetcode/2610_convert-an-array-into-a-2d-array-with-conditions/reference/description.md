@@ -17,6 +17,7 @@ Return *the resulting array*. If there are multiple answers, return any of them.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,3,4,1,2,3,1]`

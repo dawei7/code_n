@@ -4,7 +4,7 @@ You are given two **0-indexed** integer arrays `servers` and `tasks` of lengths 
 
 Tasks are assigned to the servers using a **task queue**. Initially, all servers are free, and the queue is **empty**.
 
-At second `j`, the $$j^{\text{th}}$$task is **inserted** into the queue (starting with the$0^th$ task being inserted at second `0`). As long as there are free servers and the queue is not empty, the task in the front of the queue will be assigned to a free server with the **smallest weight**, and in case of a tie, it is assigned to a free server with the **smallest index**.
+At second `j`, the $$j^{\text{th}}$$ task is **inserted** into the queue (starting with the $0^th$ task being inserted at second `0`). As long as there are free servers and the queue is not empty, the task in the front of the queue will be assigned to a free server with the **smallest weight**, and in case of a tie, it is assigned to a free server with the **smallest index**.
 
 If there are no free servers and the queue is not empty, we wait until a server becomes free and immediately assign the next task. If multiple servers become free at the same time, then multiple tasks from the queue will be assigned **in order of insertion** following the weight and index priorities above.
 
@@ -19,6 +19,7 @@ Return *the array *`ans`​​​​.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $servers = [3,3,2], tasks = [1,2,3,2,1,2]$

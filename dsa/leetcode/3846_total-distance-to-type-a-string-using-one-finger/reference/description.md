@@ -53,9 +53,7 @@ The **distance** between two keys at `(r1, c1)` and `(r2, c2)` is $|r1 - r2| + |
 
 Let $P(x)=(r_x,c_x)$ be the coordinate of letter $x$ in the keyboard table. For $N=\lvert\texttt{s}\rvert$, define $p_0=P(\texttt{a})$ and $p_i=P(\texttt{s[i - 1]})$ for $1\le i\le N$. The distance paid for character $i$ is
 
-$$
-d_i=\lvert p_i.r-p_{i-1}.r\rvert+\lvert p_i.c-p_{i-1}.c\rvert.
-$$
+$d_i=\lvert p_i.r-p_{i-1}.r\rvert+\lvert p_i.c-p_{i-1}.c\rvert.$
 
 After a character is typed, the finger remains on that character's key and becomes the starting position for the next move.
 
@@ -63,13 +61,12 @@ After a character is typed, the finger remains on that character's key and becom
 
 Return the integer total
 
-$$
-\sum_{i=1}^{N}d_i.
-$$
+$\sum_{i=1}^{N}d_i.$
 
 Typing a character already under the finger contributes zero distance.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

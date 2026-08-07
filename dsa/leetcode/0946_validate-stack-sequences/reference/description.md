@@ -7,6 +7,7 @@ Given two integer arrays `pushed` and `popped` each with distinct values, return
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $pushed = [1,2,3,4,5], popped = [4,5,3,2,1]$

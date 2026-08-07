@@ -93,23 +93,29 @@ Now consider the transitions:
   * If $k > 0$: $\textit{dp}[0][0][k] = \max(\textit{coins}[0][0], 0)$
 
 * **First row $(i = 0, j > 0)$**:
-  $$\textit{dp}[0][j][k] =
+  $$
+  \textit{dp}[0][j][k] =
   \max(\textit{dp}[0][j-1][k] + \textit{coins}[0][j],
-  \textit{dp}[0][j-1][k-1])$$
+  \textit{dp}[0][j-1][k-1])
+  $$
 
 * **First column $(i > 0, j = 0)$**:
-  $$\textit{dp}[i][0][k] =
+  $$
+  \textit{dp}[i][0][k] =
   \max(\textit{dp}[i-1][0][k] + \textit{coins}[i][0],
-  \textit{dp}[i-1][0][k-1])$$
+  \textit{dp}[i-1][0][k-1])
+  $$
 
 * **General case $(i > 0, j > 0)$**:
-  $$\textit{dp}[i][j][k] =
+  $$
+  \textit{dp}[i][j][k] =
   \max(
   \textit{dp}[i-1][j][k] + \textit{coins}[i][j],
   \textit{dp}[i][j-1][k] + \textit{coins}[i][j],
   \textit{dp}[i-1][j][k-1],
   \textit{dp}[i][j-1][k-1]
-  )$$
+  )
+  $$
 
 The final answer is $\textit{dp}[m - 1][n - 1][2]$.
 

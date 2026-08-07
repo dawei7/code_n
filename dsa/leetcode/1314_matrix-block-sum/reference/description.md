@@ -13,6 +13,7 @@ Given a `m x n` matrix `mat` and an integer `k`, return *a matrix* `answer` *whe
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $mat = [[1,2,3],[4,5,6],[7,8,9]], k = 1$

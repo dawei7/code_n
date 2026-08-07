@@ -18,6 +18,7 @@ Return *an integer array* `ans` *where* $\text{ans}[i]$ *is Bob's **minimum rela
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $prices = [1,9,22,10,19], queries = [[18,4],[5,2]]$

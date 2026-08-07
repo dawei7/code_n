@@ -180,7 +180,7 @@ In order to distinguish between the various kinds of nodes, we make use of a $fl
 
 * Flag=3: Others(Middle Node).
 
-We make use of three lists $\text{left\\\_boundary}$, $\text{right\\\_boundary}$, $\text{leaves}$ to store the appropriate nodes and append the three lists at the end.
+We make use of three lists $\text{left\\_boundary}$, $\text{right\\_boundary}$, $\text{leaves}$ to store the appropriate nodes and append the three lists at the end.
 
 We go for the normal preorder traversal, but while calling the recursive function for preorder traversal using the left child or the right child of the current node, we also pass the $flag$ information indicating the type of node that the current child behaves like.
 
@@ -272,6 +272,6 @@ public class Solution {
 
 * Time complexity : $O(n)$ One complete traversal of the tree is done.
 
-* Space complexity : $O(n)$ The recursive stack can grow upto a depth of $n$. Further, $\text{left\\\_boundary}$, $\text{right\\\_boundary}$ and $\text{leaves}$ combined together can be of size $n$.
+* Space complexity : $O(n)$ The recursive stack can grow upto a depth of $n$. Further, $\text{left\\_boundary}$, $\text{right\\_boundary}$ and $\text{leaves}$ combined together can be of size $n$.
 
 ---

@@ -7,6 +7,7 @@ Given a positive integer `n`, return the number of the integers in the range `[0
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 5$

@@ -24,9 +24,11 @@ A key observation here is that a split is valid if and only if each segment cont
 
 Building on the above observation, we further notice that for each number in the array, we have two options: we can either include it in the same chunk as the previous number or create a new chunk for it. However, we must consider the limitation that a new chunk at index $i$ can only be created if all the numbers in the current and previous chunks (the "prefix" of the array) are smaller than all the numbers in the following chunks (the "suffix" of the array). This is equivalent to checking whether:
 
-$$\begin{aligned}
+$$
+\begin{aligned}
 max(prefix[0:i]) < min(suffix[i:n]).
-\end{aligned}$$
+\end{aligned}
+$$
 
 Since we aim to find the largest possible number of chunks, we will choose the second option (i.e., create a new chunk) whenever the above condition is satisfied. Therefore, the problem reduces to counting how many indices in the array satisfy this condition.
 

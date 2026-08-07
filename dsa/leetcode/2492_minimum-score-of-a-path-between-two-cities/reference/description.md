@@ -19,6 +19,7 @@ Return the **minimum **possible score of a path between cities 1 and `n`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/graph11.png)

@@ -9,6 +9,7 @@ A *defanged IP address* replaces every period `"."` with `"[.]"`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $address = "1.1.1.1"$

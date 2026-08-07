@@ -16,6 +16,7 @@ You must write an algorithm that runs in `O(n)` time and uses only *constant* au
 The required complexity is $O(n)$ time and $O(1)$ auxiliary space, not counting the output array.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [4,3,2,7,8,2,3,1]`

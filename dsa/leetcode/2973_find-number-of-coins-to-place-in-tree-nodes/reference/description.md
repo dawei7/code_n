@@ -17,6 +17,7 @@ Return *an array *`coin`* of size *`n`* such that *$\text{coin}[i]$* is the numb
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/screenshot-2023-11-10-012641.png)

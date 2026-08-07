@@ -17,6 +17,7 @@ Return `"Alice"`* if Alice will win, *`"Bob"`* if Bob will win, or *`"Tie"`* if 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $stoneValue = [1,2,3,7]$

@@ -20,6 +20,7 @@ Return the **minimum** number of connected groups after adding **exactly one** n
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

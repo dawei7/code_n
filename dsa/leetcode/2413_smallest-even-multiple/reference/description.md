@@ -7,6 +7,7 @@ Given a **positive** integer `n`, return *the smallest positive integer that is 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 5$

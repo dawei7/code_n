@@ -15,6 +15,7 @@ Let $sz$ be the number of nodes in `head`.
 Return the head of the linked list after removing its $n$th node from the end.
 
 ### Examples
+
 #### Example 1
 
 ![](images/remove_ex1.jpg)

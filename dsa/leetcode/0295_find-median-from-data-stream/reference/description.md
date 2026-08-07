@@ -24,6 +24,7 @@ Implement the MedianFinder class:
 The app adapter returns the median after each successive insertion. The native `MedianFinder` exposes its constructor, `addNum`, and `findMedian` as separate operations.
 
 ### Examples
+
 #### Example 1
 
 ```

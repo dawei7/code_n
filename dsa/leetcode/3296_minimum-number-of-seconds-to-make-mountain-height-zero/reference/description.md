@@ -23,6 +23,7 @@ Return an integer representing the **minimum** number of seconds required for th
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -21,6 +21,7 @@ Return the **maximum** number of active sections in `s` after making the optimal
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

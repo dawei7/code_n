@@ -1,8 +1,8 @@
 ## Description
 
-There are `n` gas stations along a circular route, where the amount of gas at the $$i^{\text{th}}$$station is$\text{gas}[i]$.
+There are `n` gas stations along a circular route, where the amount of gas at the $$i^{\text{th}}$$ station is $\text{gas}[i]$.
 
-You have a car with an unlimited gas tank and it costs $\text{cost}[i]$ of gas to travel from the $$i^{\text{th}}$$station to its next$(i + 1)^th$ station. You begin the journey with an empty tank at one of the gas stations.
+You have a car with an unlimited gas tank and it costs $\text{cost}[i]$ of gas to travel from the $$i^{\text{th}}$$ station to its next $(i + 1)^th$ station. You begin the journey with an empty tank at one of the gas stations.
 
 Given two integer arrays `gas` and `cost`, return *the starting gas station's index if you can travel around the circuit once in the clockwise direction, otherwise return* `-1`. If there exists a solution, it is **guaranteed** to be **unique**.
 ### Function Contract
@@ -17,6 +17,7 @@ Given two integer arrays `gas` and `cost`, return *the starting gas station's in
 Return the unique feasible zero-based starting index, or `-1` if no start can complete the circuit.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $gas = [1,2,3,4,5], cost = [3,4,5,1,2]$

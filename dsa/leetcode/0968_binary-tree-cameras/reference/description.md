@@ -9,6 +9,7 @@ Return *the minimum number of cameras needed to monitor all nodes of the tree*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/bst_cameras_01.png)

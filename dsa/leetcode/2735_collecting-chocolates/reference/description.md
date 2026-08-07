@@ -4,7 +4,7 @@ You are given a **0-indexed** integer array `nums` of size `n` representing the 
 
 In one operation, you can do the following with an incurred **cost** of `x`:
 
-- Simultaneously change the chocolate of $$i^{\text{th}}$$type to$((i + 1) mod n)^th$ type for all chocolates.
+- Simultaneously change the chocolate of $$i^{\text{th}}$$ type to $((i + 1) mod n)^th$ type for all chocolates.
 
 Return *the minimum cost to collect chocolates of all types, given that you can perform as many operations as you would like.*
 ### Function Contract
@@ -13,6 +13,7 @@ Return *the minimum cost to collect chocolates of all types, given that you can 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [20,1,15], x = 5`

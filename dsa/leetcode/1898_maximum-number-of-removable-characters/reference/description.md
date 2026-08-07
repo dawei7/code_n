@@ -13,6 +13,7 @@ A **subsequence** of a string is a new string generated from the original string
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "abcacb", p = "ab", removable = [3,1,0]`

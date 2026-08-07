@@ -22,6 +22,7 @@ Return *the **minimum** number of operations needed to turn the array into a **p
 Return an integer representing the minimum number of adjacent pair merges required to transform `nums` into a palindrome.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [4,3,2,1,2,3,1]`

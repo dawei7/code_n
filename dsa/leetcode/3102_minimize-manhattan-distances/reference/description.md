@@ -11,6 +11,7 @@ Return *the **minimum** possible value for **maximum** distance between any two 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -11,6 +11,7 @@ Return the number of groups that have the largest size, i.e. the **maximum** num
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 13$

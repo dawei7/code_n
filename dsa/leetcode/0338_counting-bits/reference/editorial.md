@@ -41,7 +41,7 @@ class Solution:
 
 **Complexity Analysis**
 
-* Time complexity: $O(n)$. Since $n \leq$10^{5}$< 2^{17}$, every integer $x$ in $[0, n]$ has at most $17$ bits. The `popCount` function clears one set bit per iteration, so it performs at most $17$ iterations per call, which is $O(1)$. Calling it once per integer in $[0, n]$ gives a total time of $O(n)$.
+* Time complexity: $O(n)$. Since $n \leq $10^{5}$ < 2^{17}$, every integer $x$ in $[0, n]$ has at most $17$ bits. The `popCount` function clears one set bit per iteration, so it performs at most $17$ iterations per call, which is $O(1)$. Calling it once per integer in $[0, n]$ gives a total time of $O(n)$.
 
 * Space complexity: $O(1)$. Since the output array does not count towards the space complexity.
 

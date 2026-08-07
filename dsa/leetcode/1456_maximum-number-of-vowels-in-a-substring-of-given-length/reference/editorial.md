@@ -20,7 +20,7 @@ We can use a sliding window to solve this problem. The term "subarray of length 
 
 ![img](images/1.png)
 
-The problem is that if we count the number of vowels in each window by iteration every time, it would result in a time complexity of $O(\text{length\\\_of\\\_s}\cdot k)$ which could be expensive. However, by observation, we can see that two adjacent windows only differ by two characters. When we move the index of the right boundary of the window from $i - 1$ to `i`, only one character is added to the window while one is removed, Therefore, we can represent the new window by keeping track of the changes between adjacent windows
+The problem is that if we count the number of vowels in each window by iteration every time, it would result in a time complexity of $O(\text{length\\_of\\_s}\cdot k)$ which could be expensive. However, by observation, we can see that two adjacent windows only differ by two characters. When we move the index of the right boundary of the window from $i - 1$ to `i`, only one character is added to the window while one is removed, Therefore, we can represent the new window by keeping track of the changes between adjacent windows
 
 > Let `count` be the number of vowels in the current window `[i - k, i - 1]`. If we move the window one character to the right as `[i - k + 1, i]`.
 > - If the newly added character $s[i]$ is a vowel, we increase `count` by 1.

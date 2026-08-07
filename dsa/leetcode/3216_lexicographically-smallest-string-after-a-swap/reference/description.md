@@ -9,6 +9,7 @@ Digits have the same parity if both are odd or both are even. For example, 5 and
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

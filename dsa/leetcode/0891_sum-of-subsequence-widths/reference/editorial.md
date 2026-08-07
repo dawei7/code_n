@@ -18,9 +18,9 @@ $\sum\limits_{j > i} (2^{j-i-1}) (A_j - A_i)$
 
 $= \big( \sum\limits_{i = 0}^{n-2} \sum\limits_{j = i+1}^{n-1} (2^{j-i-1}) (A_j) \big) - \big( \sum\limits_{i = 0}^{n-2} \sum\limits_{j = i+1}^{n-1} (2^{j-i-1}) (A_i) \big)$
 
-$= \big( ($2^{0}$A_1 +$2^{1}$A_2 +$2^{2}$A_3 + \cdots) + ($2^{0}$A_2 +$2^{1}$A_3 + \cdots) + ($2^{0}$A_3 +$2^{1}$A_4 + \cdots) + \cdots \big)$
+$= \big( ($2^{0}$ A_1 + $2^{1}$ A_2 + $2^{2}$ A_3 + \cdots) + ($2^{0}$ A_2 + $2^{1}$ A_3 + \cdots) + ($2^{0}$ A_3 + $2^{1}$ A_4 + \cdots) + \cdots \big)$
 
-$- \big( \sum\limits_{i = 0}^{n-2} ($2^{0}$+$2^{1}$+ \cdots + 2^{N-i-2}) (A_i) \big)$
+$- \big( \sum\limits_{i = 0}^{n-2} ($2^{0}$ + $2^{1}$ + \cdots + 2^{N-i-2}) (A_i) \big)$
 
 $= \big( \sum\limits_{j = 1}^{n-1} (2^j - 1) A_j \big) - \big( \sum\limits_{i = 0}^{n-2} (2^{N-i-1} - 1) A_i \big)$
 

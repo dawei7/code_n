@@ -16,6 +16,7 @@ You may assume the given input string is always valid. For example, `"01:34"`, `
 Return the first valid `"HH:MM"` display reached by moving forward in time whose four digits all come from the input display. Digits may be reused any number of times.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $time = "19:34"$

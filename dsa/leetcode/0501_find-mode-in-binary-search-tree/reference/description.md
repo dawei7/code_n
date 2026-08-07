@@ -17,6 +17,7 @@ Assume a BST is defined as follows:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/mode-tree.jpg)

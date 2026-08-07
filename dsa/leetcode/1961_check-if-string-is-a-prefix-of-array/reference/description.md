@@ -11,6 +11,7 @@ Return `true`* if *`s`* is a **prefix string** of *`words`*, or *`false`* otherw
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "iloveleetcode", words = ["i","love","leetcode","apples"]`

@@ -66,7 +66,7 @@ Invoices DataFrame (`invoices`):
     ```
    - $\text{pd.merge}(contacts, customers, \text{left}_{on}="\text{contact}_{email}", \text{right}_{on}="email", how="left")$: This line merges the `contacts` DataFrame with the `customers` DataFrame. The merge is done based on the $\text{contact}_{email}$ from the `contacts` DataFrame and the `email` from the `customers` DataFrame. The `left` join ensures all records from `contacts` are included, even if there's no matching email in `customers`.
    - $.groupby("\text{user}_{id}")$: After merging, the data is grouped by $\text{user}_{id}$. This is because we want to count contacts and trusted contacts for each user (customer).
-   - $.agg(\text{contacts}_{cnt}=("\text{user}_{id}", "count"), trusted_{contacts\_cnt}=("email", "count"))$: This aggregation counts the total number of contacts ($\text{contacts}_{cnt}$) and the number of trusted contacts (`trusted_contacts_cnt`, indicated by a non-null email after the merge) for each user.
+   - $.agg(\text{contacts}_{cnt}=("\text{user}_{id}", "count"), trusted_contacts_cnt=("email", "count"))$: This aggregation counts the total number of contacts ($\text{contacts}_{cnt}$) and the number of trusted contacts (`trusted_contacts_cnt`, indicated by a non-null email after the merge) for each user.
    - $.\text{reset}_{index}()$: Resets the index of the DataFrame, turning $\text{user}_{id}$ back into a column.
 
  $\text{contact}_{customer}$:
@@ -185,7 +185,7 @@ Invoices DataFrame (`invoices`):
         ["invoice_id", "customer_name", "price", "contacts_cnt", "trusted_contacts_cnt"]
     ]
    ```
-   - The final step selects only the relevant columns: $["\text{invoice}_{id}", "\text{customer}_{name}", "price", "\text{contacts}_{cnt}", "trusted_{contacts\_cnt}"]$.
+   - The final step selects only the relevant columns: $["\text{invoice}_{id}", "\text{customer}_{name}", "price", "\text{contacts}_{cnt}", "trusted_contacts_cnt"]$.
    - This produces a DataFrame that matches the desired output format, providing a summary for each invoice with the customer's name, invoice price, number of contacts, and number of trusted contacts.
 
  <table>
@@ -257,7 +257,7 @@ Here's a breakdown of the logic:
    - $Cust.\text{customer}_{name}$: Selects the name of the customer associated with each invoice.
    - `I.price`: Selects the price amount of each invoice.
    - $COUNT(DISTINCT C.\text{contact}_{name}) AS \text{contacts}_{cnt}$: Counts the number of unique contact names associated with the customer of each invoice. This gives the total number of contacts for each customer.
-   - $COUNT(DISTINCT Nme.\text{customer}_{name}) AS trusted_{contacts\_cnt}$: Counts the number of unique customer names that match the contact names. This indicates how many of the customer's contacts are also customers themselves (i.e., "trusted" contacts).
+   - $COUNT(DISTINCT Nme.\text{customer}_{name}) AS trusted_contacts_cnt$: Counts the number of unique customer names that match the contact names. This indicates how many of the customer's contacts are also customers themselves (i.e., "trusted" contacts).
 
 2. **FROM and JOIN Clauses:**
    - `FROM Invoices I`: The query begins with the `Invoices` table as the base.

@@ -25,6 +25,7 @@ Let $n$ be the length of `s`, $L$ the number of output positions after each brac
 - Every returned word has length $L$.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "{a,b}c{d,e}f"`

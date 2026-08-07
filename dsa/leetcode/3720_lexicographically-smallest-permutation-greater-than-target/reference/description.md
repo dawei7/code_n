@@ -17,6 +17,7 @@ A string `a` is **lexicographically strictly greater **than a string `b` (of the
 Return the lexicographically smallest qualifying permutation of `s`, or `""` when even the greatest permutation of `s` is not strictly greater than `target`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -17,6 +17,7 @@ A **substring** is a contiguous non-empty sequence of characters within a string
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "leetcode", power = 7, modulo = 20, k = 2, hashValue = 0`

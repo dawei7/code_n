@@ -9,6 +9,7 @@ Return `true` *if the path crosses itself at any point, that is, if at any time 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/screen-shot-2020-06-10-at-123929-pm.png)

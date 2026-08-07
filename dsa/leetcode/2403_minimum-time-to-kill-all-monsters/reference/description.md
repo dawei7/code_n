@@ -16,6 +16,7 @@ Return *the **minimum** number of days needed to defeat all the monsters.*
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $power = [3,1,4]$

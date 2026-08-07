@@ -13,6 +13,7 @@ A **preorder traversal** of a binary tree displays the value of the node first, 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/1266.png)

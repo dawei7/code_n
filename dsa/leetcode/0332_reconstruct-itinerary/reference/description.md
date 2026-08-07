@@ -18,6 +18,7 @@ You may assume all tickets form at least one valid itinerary. You must use all t
 Return the lexically smallest airport sequence that starts at `"JFK"` and uses every ticket exactly once.
 
 ### Examples
+
 #### Example 1
 
 ![](images/itinerary1-graph.jpg)

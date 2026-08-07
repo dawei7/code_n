@@ -17,6 +17,7 @@ You are given two integer arrays `students` and `sandwiches` where $\text{sandwi
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $students = [1,1,0,0], sandwiches = [0,1,0,1]$

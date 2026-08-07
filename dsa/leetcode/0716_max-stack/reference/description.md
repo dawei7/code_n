@@ -19,7 +19,7 @@ Implement the `MaxStack` class:
 You must come up with a solution that supports `O(1)` for each `top` call and `O(logn)` for each other call.
 ### Function Contract
 
-`solve(operations: list[list]) -> list[int]`
+$solve(operations: \text{list}[list]) -> \text{list}[int]$
 
 **Inputs**
 
@@ -39,6 +39,7 @@ You must come up with a solution that supports `O(1)` for each `top` call and `O
 The app adapter constructs one `MaxStack`, executes the rows in order, and returns the result of every call other than `push`. Source-style constructor and `push` results are `null`; the app omits those entries from its returned list.
 
 ### Examples
+
 #### Example 1
 
 ```

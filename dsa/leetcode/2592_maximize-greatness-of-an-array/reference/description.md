@@ -11,6 +11,7 @@ Return *the **maximum** possible greatness you can achieve after permuting* `num
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,3,5,2,1,3,1]`

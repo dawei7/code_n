@@ -19,9 +19,10 @@ Let $n=\lvert\texttt{nums}\rvert$.
 
 **Return value**
 
-Return a length-$n$ integer array. At each index `i`, store the number of indices strictly to its right whose values have parity different from `nums[i]`.
+Return a length-$n$ integer array. At each index `i`, store the number of indices strictly to its right whose values have parity different from $\text{nums}[i]$.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

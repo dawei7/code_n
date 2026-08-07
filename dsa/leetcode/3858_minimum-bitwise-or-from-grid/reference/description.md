@@ -13,9 +13,7 @@ Return an integer denoting the **minimum possible bitwise OR** of the selected i
 
 If row $i$ contributes the selected value $x_i$, a valid selection contains exactly $m$ values and produces
 
-$$
-x_0\mathbin{\vert}x_1\mathbin{\vert}\cdots\mathbin{\vert}x_{m-1}.
-$$
+$x_0\mathbin{\vert}x_1\mathbin{\vert}\cdots\mathbin{\vert}x_{m-1}.$
 
 No column consistency is required: each row may contribute a value from any of its columns.
 
@@ -24,6 +22,7 @@ No column consistency is required: each row may contribute a value from any of i
 Return the minimum numerical value of the combined bitwise OR among all selections.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

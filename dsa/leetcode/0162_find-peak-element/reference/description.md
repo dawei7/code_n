@@ -18,6 +18,7 @@ You must write an algorithm that runs in `O(log n)` time.
 Return the index of any peak element. The app validates the peak property rather than requiring one predetermined index when multiple answers are possible.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3,1]`

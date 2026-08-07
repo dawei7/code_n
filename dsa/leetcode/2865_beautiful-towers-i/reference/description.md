@@ -9,6 +9,7 @@ Return the **maximum possible sum** of heights of a mountain-shaped tower arrang
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

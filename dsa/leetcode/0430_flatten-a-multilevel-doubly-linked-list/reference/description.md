@@ -21,6 +21,7 @@ Return the first flattened `Node`. All `child` links must be `None`, and adjacen
 reciprocal.
 
 ### Examples
+
 #### Example 1
 
 ![](images/flatten11.jpg)

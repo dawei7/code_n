@@ -14,6 +14,7 @@ The digits are stored such that the most significant digit is at the `head` of t
 Return the head of a linked list representing the original nonnegative integer plus one, including any carry that creates a new leading digit.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $head = [1,2,3]$

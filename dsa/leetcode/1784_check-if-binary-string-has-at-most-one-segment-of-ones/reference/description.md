@@ -7,6 +7,7 @@ Given a binary string `s` **​​​​​without leading zeros**, return `true
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "1001"`

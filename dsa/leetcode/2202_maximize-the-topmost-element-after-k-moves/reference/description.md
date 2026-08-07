@@ -17,6 +17,7 @@ Return *the **maximum value** of the topmost element of the pile possible after 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [5,2,2,4,0,6], k = 4`

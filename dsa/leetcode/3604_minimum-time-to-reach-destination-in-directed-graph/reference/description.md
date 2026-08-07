@@ -17,6 +17,7 @@ Return the **minimum** time required to reach node $n - 1$. If it is impossible,
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

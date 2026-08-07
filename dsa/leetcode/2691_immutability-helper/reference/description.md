@@ -8,28 +8,37 @@ The class has a single method `produce` which accepts a function `mutator`. The 
 
 For example, a user could write code like this:
 
+```
 const originalObj = {"x": 5};
 const helper = new ImmutableHelper(originalObj);
 const newObj = helper.produce((proxy) => {
-proxy.x = proxy.x + 1;
+  proxy.x = proxy.x + 1;
 });
 console.log(originalObj); // {"x": 5}
 console.log(newObj); // {"x": 6}
 ```
+
 Properties of the `mutator` function:
+
 - It will always return `undefined`.
+
 - It will never access keys that don't exist.
+
 - It will never delete keys (`delete obj.key`)
+
 - It will never call methods on a proxied object (`push`, `shift`, etc).
-- It will never set keys to objects (`proxy.x = {}`)
+
+- It will never set keys to objects ($\text{proxy.x} = {}$)
+
 **Note on how the solution will be tested:** the solution validator will only analyze differences between what was returned and the original `obj`. Doing a full comparison would be too computationally expensive. Also, any mutations to the original object will result in a wrong answer.
 ### Function Contract
 
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
-```
+
 - **Input:** ``
 obj = {"val": 10},
 mutators = [

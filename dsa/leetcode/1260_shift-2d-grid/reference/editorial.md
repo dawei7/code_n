@@ -198,7 +198,7 @@ For the column, we calculated what column it'd end up in if the grid was infinit
 new_col = (j + k) % num_cols
 ```
 
-Where $j$ is the column the value starts in and $num_{cols}$ is the total number of columns in the grid.
+Where $j$ is the column the value starts in and $num_cols$ is the total number of columns in the grid.
 
 The row was a little more complicated; we needed to tackle it in several parts. Firstly, we calculated how many times it would move down by 1 row. Secondly, we calculated what the infinite row would be and then took that modulo the number of rows. This gives us the following formula:
 

@@ -2,7 +2,7 @@
 
 You are given two integer arrays, `technique1` and `technique2`, each of length `n`, where `n` represents the number of tasks to complete.
 
-- If the $$i^{\text{th}}$$task is completed using technique 1, you earn$\text{technique1}[i]$ points.
+- If the $$i^{\text{th}}$$ task is completed using technique 1, you earn $\text{technique1}[i]$ points.
 
 - If it is completed using technique 2, you earn $\text{technique2}[i]$ points.
 
@@ -28,6 +28,7 @@ The arrays have the same nonzero length. Choices are independent across indices 
 Return the greatest possible sum of the selected point values. More than `k` tasks may—and should—use technique 1 whenever doing so increases the total.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -14,6 +14,7 @@ Each time you can either climb `1` or `2` steps. In how many distinct ways can y
 Return the number of ordered sequences of one-step and two-step moves whose total is `n`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 2$

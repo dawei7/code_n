@@ -9,6 +9,7 @@ The `floor()` function returns the integer part of the division.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,5,9]`

@@ -21,6 +21,7 @@ Note that the entire part is used when considering what binary value it represen
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [1,0,1,0,1]`

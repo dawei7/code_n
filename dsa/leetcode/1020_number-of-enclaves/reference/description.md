@@ -11,6 +11,7 @@ Return *the number of land cells in* `grid` *for which we cannot walk off the bo
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/enclaves1.jpg)

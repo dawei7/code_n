@@ -11,6 +11,7 @@ Return *the **smallest** integer* `x` *missing from* `nums` *such that* `x` *is 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3,2,5]`

@@ -52,6 +52,7 @@ To mask a phone number:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "LeetCode@LeetCode.com"`

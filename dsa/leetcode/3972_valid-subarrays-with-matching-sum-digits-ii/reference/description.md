@@ -18,17 +18,16 @@ Return the number of valid subarrays.
 
 Let $n = \lvert\texttt{nums}\rvert$ and
 
-$$
-S = \sum_{v \in \texttt{nums}} v.
-$$
+$S = \sum_{v \in \texttt{nums}} v.$
 
 For $0 \le l \le r < n$, `nums[l..r]` is the contiguous nonempty interval from index `l` through index `r`. Positivity guarantees that every such sum has a well-defined leading digit and that prefix sums are strictly increasing.
 
 **Return value**
 
-Return the number of pairs $(l,r)$ for which the decimal representation of $\sum_{i=l}^{r}\texttt{nums[i]}$ starts with `x` and ends with `x`.
+Return the number of pairs $(l,r)$ for which the decimal representation of $\sum_{i=l}^{r}\texttt{\text{nums}[i]}$ starts with `x` and ends with `x`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

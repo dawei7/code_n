@@ -23,6 +23,7 @@ Given an integer array `nums` of **distinct** integers, return the **largest** s
 Return an integer array representing the lexicographically largest contiguous subarray of `nums` of length `k`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,4,5,2,3], k = 3`

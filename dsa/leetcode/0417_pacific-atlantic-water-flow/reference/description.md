@@ -21,6 +21,7 @@ Return a two-dimensional list of coordinates `[r, c]` whose cells have a valid r
 coordinates may be returned in any order.
 
 ### Examples
+
 #### Example 1
 
 ![](images/waterflow-grid.jpg)

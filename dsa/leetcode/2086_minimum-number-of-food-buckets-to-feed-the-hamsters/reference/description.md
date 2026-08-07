@@ -15,6 +15,7 @@ Return *the minimum number of food buckets you should **place at empty indices**
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/example1.png)

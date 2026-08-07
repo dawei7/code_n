@@ -22,6 +22,7 @@ Let $N=\texttt{matrix.length}$. Vertex labels and both matrix indices range from
 Return an array of length $N$ whose entry at index $i$ is the number of edges connected to vertex $i$.
 
 ### Examples
+
 #### Example 1
 
 ![](images/g41f.png)

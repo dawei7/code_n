@@ -22,6 +22,7 @@ Let $n = \lvert\texttt{nums}\rvert$, and let $b$ be the number of set-bit positi
 Return the number of nonempty subsequences whose removal strictly lowers the bitwise OR of the remaining elements, reduced modulo $10^9+7$.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

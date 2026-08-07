@@ -21,6 +21,7 @@ Here **follow** means a full match, such that there is a bijection between a let
 Return `true` exactly when the pattern letters and words form the required position-by-position bijection.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

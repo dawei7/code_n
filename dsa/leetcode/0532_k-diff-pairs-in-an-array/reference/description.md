@@ -17,6 +17,7 @@ A **k-diff** pair is an integer pair $(\text{nums}[i], \text{nums}[j])$, where t
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,1,4,1,5], k = 2`

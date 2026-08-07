@@ -11,6 +11,7 @@ Return *an array *`ans`* where *$\text{ans}[i]$* is the answer to the *$$i^{\tex
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/c1.png)

@@ -7,6 +7,7 @@ Given an integer array `nums`, return *the number of triplets chosen from the ar
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,2,3,4]`

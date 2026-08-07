@@ -20,13 +20,16 @@ As shown in the example URL above, the hostname is `example.org`. For simplicity
 
 The `HtmlParser` interface is defined as such:
 
+```
 interface HtmlParser {
-// Return a list of all urls from a webpage of given *url*.
-// This is a blocking call, that means it will do HTTP request and return when this request is finished.
-public List<String> getUrls(String url);
+  // Return a list of all urls from a webpage of given *url*.
+  // This is a blocking call, that means it will do HTTP request and return when this request is finished.
+  public List<String> getUrls(String url);
 }
 ```
+
 Note that `getUrls(String url)` simulates performing an HTTP request. You can treat it as a blocking function call that waits for an HTTP request to finish. It is guaranteed that `getUrls(String url)` will return the URLs within **15ms. ** Single-threaded solutions will exceed the time limit so, can your multi-threaded web crawler do better?
+
 Below are two examples explaining the functionality of the problem. For custom testing purposes, you'll have three variables `urls`, `edges` and `startUrl`. Notice that you will only have access to `startUrl` in your code, while `urls` and `edges` are not directly accessible to you in code.
 ### Function Contract
 
@@ -52,9 +55,11 @@ Let $V$ be the number of same-host URLs reachable from `startUrl`, and let $E$ b
 Return every URL reachable from `startUrl` through a path consisting only of URLs with the starting hostname. Include `startUrl`, include every qualifying URL exactly once, exclude all off-host URLs, and return the result in any order.
 
 ### Examples
+
 #### Example 1
+
 ![](images/sample_2_1497.png)
-```
+
 - **Input:** ``
 **urls = [
 "http://news.yahoo.com",

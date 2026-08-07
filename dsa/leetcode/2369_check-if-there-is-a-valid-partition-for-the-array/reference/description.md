@@ -17,6 +17,7 @@ Return `true`* if the array has **at least** one valid partition*. Otherwise, re
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [4,4,4,5,6]`

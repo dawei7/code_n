@@ -9,6 +9,7 @@ A **continuous increasing subsequence** is defined by two indices `l` and `r` (`
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,3,5,4,7]`

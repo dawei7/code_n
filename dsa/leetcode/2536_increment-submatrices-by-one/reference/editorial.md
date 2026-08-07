@@ -4,12 +4,14 @@
 
 The problem asks us to perform multiple “increment all elements in a rectangle” operations on an $n \times n$ integer matrix $\textit{mat}$, and return the matrix $\textit{mat}$ after all operations have been applied. In the two-dimensional case, if we want to increment all elements within a rectangular submatrix, we can update a two-dimensional difference array $\textit{diff}$ as follows:
 
-$$\begin{aligned}
-diff[row_1][col_1] \&+= 1 \\
-diff[row_2 + 1][col_1] \&-= 1 \\
-diff[row_1][col_2 + 1] \&-= 1 \\
-diff[row_2 + 1][col_2 + 1] \&+= 1
-\end{aligned}$$
+$$
+\begin{aligned}
+diff[row_1][col_1] &+= 1 \\
+diff[row_2 + 1][col_1] &-= 1 \\
+diff[row_1][col_2 + 1] &-= 1 \\
+diff[row_2 + 1][col_2 + 1] &+= 1
+\end{aligned}
+$$
 
 After processing all queries, the final matrix $\textit{mat}$ can be obtained by computing the prefix sum over the two-dimensional difference array:
 

@@ -25,6 +25,7 @@ The test cases are generated so that all the values in the output fit in a **32-
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $formula = "H2O"$

@@ -15,15 +15,11 @@ Return an integer denoting the **smallest** balanced index. If no balanced index
 
 Let $N = \lvert\texttt{nums}\rvert$. For an index `i`, define its left sum as
 
-$$
-L_i = \sum_{j=0}^{i-1} \texttt{nums[j]},
-$$
+$L_i = \sum_{j=0}^{i-1} \texttt{\text{nums}[j]},$
 
 where $L_0 = 0$. Define its right product as
 
-$$
-R_i = \prod_{j=i+1}^{N-1} \texttt{nums[j]},
-$$
+$R_i = \prod_{j=i+1}^{N-1} \texttt{\text{nums}[j]},$
 
 where $R_{N-1} = 1$. Index `i` is balanced exactly when $L_i = R_i$.
 
@@ -33,6 +29,7 @@ Return the smallest balanced index. Return `-1` when no index satisfies the
 equality.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

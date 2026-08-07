@@ -19,6 +19,7 @@ You can assume all `functions` never reject. It is acceptable for `promisePool` 
 Return a promise that resolves when all $m$ functions have resolved, executing at most `n` functions concurrently.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** ``

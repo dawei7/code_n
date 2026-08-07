@@ -8,6 +8,7 @@ Please solve it without using the built-in `JSON.parse` method.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $str = '{"a":2,"b":[1,2,3]}'$

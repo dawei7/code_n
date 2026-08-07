@@ -19,6 +19,7 @@ Return *the **maximum** possible **sum** of the **values** Alice can achieve by 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/screenshot-2023-11-10-012513.png)

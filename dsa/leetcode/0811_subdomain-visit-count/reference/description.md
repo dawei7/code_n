@@ -13,6 +13,7 @@ Given an array of **count-paired domains** `cpdomains`, return *an array of the 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $cpdomains = ["9001 \text{discuss.leetcode}.com"]$

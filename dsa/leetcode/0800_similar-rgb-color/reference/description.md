@@ -22,6 +22,7 @@ The leading character is `#`; the remaining six characters encode the red, green
 - A six-digit shorthand-expressible color with maximum similarity to `color`. Any co-optimal answer is valid.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $color = "#09f166"$

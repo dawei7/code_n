@@ -17,6 +17,7 @@ At the stage of rotating the ring to spell the key character $\text{key}[i]$:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ring.jpg)

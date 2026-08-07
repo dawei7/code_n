@@ -11,6 +11,7 @@ Return `true`* if **all** asteroids can be destroyed. Otherwise, return *`false`
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $mass = 10, asteroids = [3,9,19,5,21]$

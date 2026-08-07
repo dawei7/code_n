@@ -62,15 +62,15 @@ This probability takes into account all the possible paths and movements of the 
 
 Finally, to calculate the total probability of the knight remaining on the board after $k$ moves, we sum up the probabilities for all cells $(i, j)$ on the chessboard.
 
-Let $\text{total\\\_probability}$ represent the overall probability that the knight remains on the chessboard after $k$ moves. To calculate this probability, we need to consider each cell on the chessboard.
+Let $\text{total\\_probability}$ represent the overall probability that the knight remains on the chessboard after $k$ moves. To calculate this probability, we need to consider each cell on the chessboard.
 
 We iterate over all the cells $(i, j)$ on the chessboard, starting from the top-left cell and moving row by row. For each cell, we sum up $\text{dp}[k][i][j]$. These $\text{dp}$ values represent the probabilities of the knight being at that cell after $k$ moves.
 
-By summing up these probabilities for all cells on the chessboard, we obtain the $\text{total\\\_probability}$. This value reflects the cumulative likelihood that the knight will remain on the chessboard after $k$ moves. The higher the $\text{total\\\_probability}$, the greater the chance that the knight will still be on the board.
+By summing up these probabilities for all cells on the chessboard, we obtain the $\text{total\\_probability}$. This value reflects the cumulative likelihood that the knight will remain on the chessboard after $k$ moves. The higher the $\text{total\\_probability}$, the greater the chance that the knight will still be on the board.
 
-One can write this in mathematical notation: $\text{{total\\\_probability}} = \sum_{i=0}^{n-1} \sum_{j=0}^{n-1} \text{dp}[k][i][j]$.
+One can write this in mathematical notation: $\text{{total\\_probability}} = \sum_{i=0}^{n-1} \sum_{j=0}^{n-1} \text{dp}[k][i][j]$.
 
-The $\text{total\\\_probability}$ represents the probability that the knight remains on the board after $k$ moves, and you can return this value as the result.
+The $\text{total\\_probability}$ represents the probability that the knight remains on the board after $k$ moves, and you can return this value as the result.
 
 #### Algorithm
 
@@ -90,7 +90,7 @@ The $\text{total\\\_probability}$ represents the probability that the knight rem
 
 #### Implementation
 
-In code, the variables $i'$ and $j'$ are denoted as $\text{prev\\\_i}$ and $\text{prev\\\_j}$, respectively.
+In code, the variables $i'$ and $j'$ are denoted as $\text{prev\\_i}$ and $\text{prev\\_j}$, respectively.
 
 ```python
 class Solution:
@@ -147,9 +147,9 @@ We use a three-dimensional dynamic programming table $\text{dp}$ of size $(k+1) 
 
 In the original approach, we used a 3D dynamic programming table $\text{dp}$ to store the probabilities of being at each cell after a certain number of moves. However, this approach requires $O(k \cdot n^2)$ space complexity.
 
-To reduce the space complexity, we can observe that we only need the probabilities from the previous move $\text{moves} - 1$ to calculate the probabilities for the current move $\text{moves}$. Therefore, we can maintain two 2D arrays $\text{prev\\\_dp}$ and $\text{curr\\\_dp}$, each of size $n \times n$, to store the probabilities for the previous move and the current move, respectively.
+To reduce the space complexity, we can observe that we only need the probabilities from the previous move $\text{moves} - 1$ to calculate the probabilities for the current move $\text{moves}$. Therefore, we can maintain two 2D arrays $\text{prev\\_dp}$ and $\text{curr\\_dp}$, each of size $n \times n$, to store the probabilities for the previous move and the current move, respectively.
 
-During the iteration, we update the values in $\text{curr\\\_dp}$ based on the values in $\text{prev\\\_dp}$. After each iteration, we swap the arrays $\text{prev\\\_dp}$ and $\text{curr\\\_dp}$ to reuse the space for the next iteration.
+During the iteration, we update the values in $\text{curr\\_dp}$ based on the values in $\text{prev\\_dp}$. After each iteration, we swap the arrays $\text{prev\\_dp}$ and $\text{curr\\_dp}$ to reuse the space for the next iteration.
 
 This way, we only need $O(n^2)$ space to store the probabilities for the current and previous moves, resulting in an optimized space complexity of $O(n^2)$.
 
@@ -158,19 +158,19 @@ By using this optimized memory approach, we can solve the problem efficiently wh
 #### Algorithm
 
 1. Define possible directions for the knight's moves in $\text{directions}$.
-2. Initialize the dynamic programming tables $\text{prev\\\_dp}$ and $\text{curr\\\_dp}$ with zeros.
-3. Set $\text{prev\\\_dp}[\text{row}][\text{column}]$ to $1$, representing the starting position of the knight.
+2. Initialize the dynamic programming tables $\text{prev\\_dp}$ and $\text{curr\\_dp}$ with zeros.
+3. Set $\text{prev\\_dp}[\text{row}][\text{column}]$ to $1$, representing the starting position of the knight.
 4. Iterate $\text{moves}$ from $1$ to $k$.
 - Iterate $i$ from $0$ to $n-1$ (rows on the chessboard).
 - Iterate $j$ from $0$ to $n-1$ (columns on the chessboard).
-- Reset the probability for the current square before calculating it $\text{curr\\\_dp}[i][j] = 0$.
+- Reset the probability for the current square before calculating it $\text{curr\\_dp}[i][j] = 0$.
 - Iterate over possible directions:
 - Calculate $i'$ as $i$ minus the vertical component of the direction.
 - Calculate $j'$ as $j$ minus the horizontal component of the direction.
 - Check if $i'$ and $j'$ are within the range $[0, n-1]$.
-- If within range, add $\frac{1}{8} \text{prev\\\_dp}[i'][j']$ to $\text{curr\\\_dp}[i][j]$.
-- Swap $\text{prev\\\_dp}$ and $\text{curr\\\_dp}$.
-5. Calculate the total probability by summing all values in $\text{prev\\\_dp}$.
+- If within range, add $\frac{1}{8} \text{prev\\_dp}[i'][j']$ to $\text{curr\\_dp}[i][j]$.
+- Swap $\text{prev\\_dp}$ and $\text{curr\\_dp}$.
+5. Calculate the total probability by summing all values in $\text{prev\\_dp}$.
 6. Return the total probability.
 
 #### Implementation
@@ -225,7 +225,7 @@ It is the same as in the previous approach.
 
 * Space complexity: $O(n^2)$.
 
-We use two dynamic programming tables: $\text{prev\\\_dp}$ and $\text{curr\\\_dp}$, each of size $n \times n$. Therefore, the space complexity is $O(n^2)$. The space complexity does not depend on the number of moves $k$, as we only keep track of the probabilities of being at each cell after the previous and current moves.
+We use two dynamic programming tables: $\text{prev\\_dp}$ and $\text{curr\\_dp}$, each of size $n \times n$. Therefore, the space complexity is $O(n^2)$. The space complexity does not depend on the number of moves $k$, as we only keep track of the probabilities of being at each cell after the previous and current moves.
 
 ---
 

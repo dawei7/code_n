@@ -15,6 +15,7 @@ Return *the **minimum total cost** for this robot to return home*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/eg-1.png)

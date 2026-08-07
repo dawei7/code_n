@@ -2,9 +2,9 @@
 
 You are given a **binary string** `s`, and a **2D** integer array `queries` where $\text{queries}[i] = [\text{first}_{i}, \text{second}_{i}]$.
 
-For the $$i^{\text{th}}$$query, find the **shortest substring** of `s` whose **decimal value**, `val`, yields$\text{second}_{i}$when **bitwise XORed** with$\text{first}_{i}$. In other words,$val ^ \text{first}_{i} = \text{second}_{i}$.
+For the $$i^{\text{th}}$$ query, find the **shortest substring** of `s` whose **decimal value**, `val`, yields $\text{second}_{i}$ when **bitwise XORed** with $\text{first}_{i}$. In other words, $val ^ \text{first}_{i} = \text{second}_{i}$.
 
-The answer to the $$i^{\text{th}}$$query is the endpoints (**0-indexed**) of the substring$[\text{left}_{i}, \text{right}_{i}]$or `[-1, -1]` if no such substring exists. If there are multiple answers, choose the one with the **minimum**$\text{left}_{i}$.
+The answer to the $$i^{\text{th}}$$ query is the endpoints (**0-indexed**) of the substring $[\text{left}_{i}, \text{right}_{i}]$ or `[-1, -1]` if no such substring exists. If there are multiple answers, choose the one with the **minimum** $\text{left}_{i}$.
 
 *Return an array* `ans` *where* $\text{ans}[i] = [\text{left}_{i}, \text{right}_{i}]$ *is the answer to the* $$i^{\text{th}}$$ *query.*
 
@@ -15,6 +15,7 @@ A **substring** is a contiguous non-empty sequence of characters within a string
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "101101", queries = [[0,5],[1,2]]`

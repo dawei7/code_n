@@ -11,6 +11,7 @@ Return *the **number of ways** you can arrive at your destination in the **short
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/1976_corrected.png)

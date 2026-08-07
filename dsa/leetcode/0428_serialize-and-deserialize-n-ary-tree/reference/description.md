@@ -33,6 +33,7 @@ The app adapter serializes `root`, deserializes that string, and returns the rec
 native artifact exposes the source-required `Codec.serialize(root)` and `Codec.deserialize(data)` methods.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]`

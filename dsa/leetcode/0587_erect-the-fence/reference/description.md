@@ -11,6 +11,7 @@ Return *the coordinates of trees that are exactly located on the fence perimeter
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/erect2-plane.jpg)

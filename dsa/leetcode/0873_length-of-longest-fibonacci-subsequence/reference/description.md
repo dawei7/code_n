@@ -15,6 +15,7 @@ A **subsequence** is derived from another sequence `arr` by deleting any number 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [1,2,3,4,5,6,7,8]`

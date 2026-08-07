@@ -12,6 +12,7 @@ Given a positive integer num, return *the smallest positive integer *`x`* whose 
 Return the smallest positive integer whose decimal digits multiply to `a`. Return `0` when no such positive integer exists or when the smallest valid result is greater than $2^{31} - 1$.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num = 48$

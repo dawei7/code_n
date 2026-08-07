@@ -7,6 +7,7 @@ Write a function `argumentsLength` that returns the count of arguments passed to
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $args = [5]$

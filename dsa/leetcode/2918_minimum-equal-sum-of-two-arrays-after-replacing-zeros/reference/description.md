@@ -11,6 +11,7 @@ Return *the **minimum** equal sum you can obtain, or *`-1`* if it is impossible*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [3,2,0,1,0], nums2 = [6,5,0]$

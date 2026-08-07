@@ -91,10 +91,12 @@ $\binom{n}{x} = \frac{n(n-1)\cdots(n-x+1)} {x(x-1)\cdots1} = \prod_{j=0}^{x-1}\f
 
 Since $n\ge2m\ge2x$, every term satisfies
 
-$$\frac{n-j}{x-j}
+$$
+\frac{n-j}{x-j}
 \ge
 \frac{2x-j}{x-j} = 1+\frac{x}{x-j}
-\ge2.$$
+\ge2.
+$$
 
 Therefore, the intermediate result at least doubles in every iteration. Because the computation stops as soon as the value exceeds $k$, the number of iterations is bounded by $O(\log k)$.
 

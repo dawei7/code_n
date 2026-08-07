@@ -9,6 +9,7 @@ Given an array of numbers `arr`, return `true` *if the array can be rearranged t
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [3,5,1]`

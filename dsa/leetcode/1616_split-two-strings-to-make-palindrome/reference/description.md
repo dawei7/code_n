@@ -13,6 +13,7 @@ Return `true`* if it is possible to form** a palindrome string, otherwise return
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $a = "x", b = "y"$

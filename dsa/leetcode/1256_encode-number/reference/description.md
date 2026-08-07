@@ -18,6 +18,7 @@ For the complexity discussion, let $q = \texttt{num} + 1$.
 Return the binary-character string assigned to `num` by the deduced function. Leading zeros are part of an encoding, and the encoding of `0` is the empty string.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num = 23$

@@ -9,6 +9,7 @@ Return* the number of **consistent** strings in the array *`words`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $allowed = "ab", words = ["ad","bd","aaab","baa","badab"]$

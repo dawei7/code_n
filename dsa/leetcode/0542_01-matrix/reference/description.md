@@ -9,6 +9,7 @@ The distance between two cells sharing a common edge is `1`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/01-1-grid.jpg)

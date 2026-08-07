@@ -22,6 +22,7 @@ Return `true` *if* `n` *is a happy number, and* `false` *if not*.
 Return `true` if repeated digit-square sums reach `1`; otherwise return `false`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 19$

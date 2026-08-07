@@ -13,6 +13,7 @@ Given the `head` of a linked list and an integer `val`, remove all the nodes of 
 Return the new head after removing every matching node while retaining the other nodes in their original order.
 
 ### Examples
+
 #### Example 1
 
 ![](images/removelinked-list.jpg)

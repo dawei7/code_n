@@ -16,6 +16,7 @@ Return *the **maximum** number of books you can take from the bookshelf.*
 Return an integer representing the maximum total number of books obtainable from a contiguous section under strictly increasing quantities.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $books = [8,5,2,7,9]$

@@ -21,9 +21,7 @@ An array of length 1 is considered parity alternating.
 
 If $N=\lvert\texttt{nums}\rvert$, the resulting array must satisfy
 
-$$
-\texttt{nums[i]}\bmod 2 \ne \texttt{nums[i+1]}\bmod 2
-$$
+$\texttt{\text{nums}[i]}\bmod 2 \ne \texttt{nums[i+1]}\bmod 2$
 
 for every $0\le i<N-1$. Each operation adds either `1` or `-1` to one chosen element.
 
@@ -34,6 +32,7 @@ The operation count is optimized first. Only arrays obtained with exactly that o
 Return `[minimum operations, minimum final range]`, where the range is the final maximum element minus the final minimum element.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -16,6 +16,7 @@ Return the total penalty for all books.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

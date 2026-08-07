@@ -19,6 +19,7 @@ Return *the triangular sum of* `nums`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1drawio.png)

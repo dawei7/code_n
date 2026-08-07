@@ -10,6 +10,7 @@ Return an array of length $n − k + 1$ where each element corresponds to the an
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

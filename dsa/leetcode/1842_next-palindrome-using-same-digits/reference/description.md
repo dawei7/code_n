@@ -10,6 +10,7 @@ A **palindrome** is a number that reads the same backward as forward.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num = "1221"$

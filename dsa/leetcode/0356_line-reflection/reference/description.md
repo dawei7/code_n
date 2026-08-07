@@ -16,6 +16,7 @@ In other words, answer whether or not if there exists a line that after reflecti
 Return `true` if reflection across some vertical line preserves the complete point set; otherwise return `false`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/356_example_1.PNG)

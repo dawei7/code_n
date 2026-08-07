@@ -16,6 +16,7 @@ Return *the sorted string*. If there are multiple answers, return *any of them*.
 Uppercase and lowercase forms are distinct characters.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "tree"`

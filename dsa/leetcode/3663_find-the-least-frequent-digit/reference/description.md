@@ -11,6 +11,7 @@ The **frequency** of a digit `x` is the number of times it appears in the decima
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

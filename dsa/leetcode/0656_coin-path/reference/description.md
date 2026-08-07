@@ -9,11 +9,11 @@ Return an integer array of the indices that you will visit in order so that you 
 A path $p1 = [\text{Pa}_{1}, \text{Pa}_{2}, ..., \text{Pa}_{x}]$ of length `x` is **lexicographically smaller** than $p2 = [\text{Pb}_{1}, \text{Pb}_{2}, ..., \text{Pb}_{x}]$ of length `y`, if and only if at the first `j` where $\text{Pa}_{j}$ and $\text{Pb}_{j}$ differ, $\text{Pa}_{j} < \text{Pb}_{j}$; when no such `j` exists, then `x < y`.
 ### Function Contract
 
-`solve(coins: list[int], maxJump: int) -> list[int]`
+$solve(coins: \text{list}[int], maxJump: int) -> \text{list}[int]$
 
 **Inputs**
 
-- `coins`: visit costs in source position order; `coins[0]` represents source index `1`, and `-1` marks a position that cannot be visited.
+- `coins`: visit costs in source position order; $\text{coins}[0]$ represents source index `1`, and `-1` marks a position that cannot be visited.
 - `maxJump`: the inclusive maximum number of positions one forward jump may cross.
 
 The path starts at source index `1` and must end at source index `n`. Each jump advances by at least one and at most `maxJump`. The total cost includes every visited position, including the start and destination. The first position is guaranteed to be valid, but the destination may be blocked or otherwise unreachable.
@@ -23,6 +23,7 @@ The path starts at source index `1` and must end at source index `n`. Each jump 
 Return the one-based indices of the lexicographically smallest minimum-cost path. Return `[]` when no valid path reaches index `n`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $coins = [1,2,4,-1,2], maxJump = 2$

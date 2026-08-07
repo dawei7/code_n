@@ -11,6 +11,7 @@ Two sequences are considered different if at least one element differs from each
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 2, rollMax = [1,1,2,2,2,3]$

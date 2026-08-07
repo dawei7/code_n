@@ -15,6 +15,7 @@ Return *the **length** of the **longest possible word chain** with words chosen 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["a","b","ba","bca","bda","bdca"]$

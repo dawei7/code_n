@@ -16,9 +16,10 @@ Let $s = \texttt{sideLength}$. A square submatrix is contiguous in both rows and
 
 **Return value**
 
-- Return the maximum total number of ones achievable across all `width * height` cells of `M`. Only the count is returned; no matrix construction is required.
+- Return the maximum total number of ones achievable across all $width * height$ cells of `M`. Only the count is returned; no matrix construction is required.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $width = 3, height = 3, sideLength = 2, maxOnes = 1$

@@ -8,7 +8,7 @@
 
 **Intuition**
 
-A good way to get started with a question like this is to make a couple of examples. Let's start with the number $7$. The next number will be $49$ (as $7^2 = 49$), and then the next after that will be $97$ (as $4^2 +$9^{2}$= 97$). We can continually repeat the process of squaring and then adding the digits until we get to $1$. Because we got to $1$, we know that $7$ is a happy number, and the function should return ```true```.
+A good way to get started with a question like this is to make a couple of examples. Let's start with the number $7$. The next number will be $49$ (as $7^2 = 49$), and then the next after that will be $97$ (as $4^2 + $9^{2}$ = 97$). We can continually repeat the process of squaring and then adding the digits until we get to $1$. Because we got to $1$, we know that $7$ is a happy number, and the function should return ```true```.
 
 ![The chain of numbers starting with 7. It has the numbers 7, 49, 97, 130, 10 and 1.](images/image1.png)
 

@@ -9,6 +9,7 @@ Return an integer that is the **maximum** distance between the **indices** of tw
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

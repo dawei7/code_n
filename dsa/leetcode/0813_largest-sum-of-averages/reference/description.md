@@ -11,6 +11,7 @@ Return *the maximum **score** you can achieve of all the possible partitions*. A
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [9,1,2,3,9], k = 3`

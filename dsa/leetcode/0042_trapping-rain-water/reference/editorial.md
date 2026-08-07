@@ -14,12 +14,12 @@ Do as directed in question. For each element in the array, we find the maximum l
 
 * Initialize $ans=0$
 * Iterate the array from left to right:
-  + Initialize $\text{left\\\_max}=0$ and $\text{right\\\_max}=0$
+  + Initialize $\text{left\\_max}=0$ and $\text{right\\_max}=0$
   + Iterate from the current element to the beginning of array updating:
-* $\text{left\\\_max}=\max(\text{left\\\_max},\text{height}[j])$
+* $\text{left\\_max}=\max(\text{left\\_max},\text{height}[j])$
   + Iterate from the current element to the end of array updating:
-* $\text{right\\\_max}=\max(\text{right\\\_max},\text{height}[j])$
-  + Add $\min(\text{left\\\_max},\text{right\\\_max}) - \text{height}[i]$ to $\text{ans}$
+* $\text{right\\_max}=\max(\text{right\\_max},\text{height}[j])$
+  + Add $\min(\text{left\\_max},\text{right\\_max}) - \text{height}[i]$ to $\text{ans}$
 
 #### Implementation
 
@@ -61,10 +61,10 @@ The concept is illustrated as shown:
 
 #### Algorithm
 
-* Find maximum height of bar from the left end upto an index i in the array $\text{left\\\_max}$.
-* Find maximum height of bar from the right end upto an index i in the array $\text{right\\\_max}$.
+* Find maximum height of bar from the left end upto an index i in the array $\text{left\\_max}$.
+* Find maximum height of bar from the right end upto an index i in the array $\text{right\\_max}$.
 * Iterate over the $\text{height}$ array and update ans:
-    + Add $\min(\text{left\\\_max}[i],\text{right\\\_max}[i]) - \text{height}[i]$ to $\text{ans}$
+    + Add $\min(\text{left\\_max}[i],\text{right\\_max}[i]) - \text{height}[i]$ to $\text{ans}$
 
 #### Implementation
 
@@ -102,7 +102,7 @@ class Solution:
     + We finally update $\text{ans}$ using the stored values in $O(n)$.
 
 * Space complexity: $O(n)$ extra space.
-    + Additional $O(n)$ space for $\text{left\\\_max}$ and $\text{right\\\_max}$ arrays than in [Approach 1](#approach-1-brute-force).
+    + Additional $O(n)$ space for $\text{left\\_max}$ and $\text{right\\_max}$ arrays than in [Approach 1](#approach-1-brute-force).
 
 ---
 
@@ -123,8 +123,8 @@ We keep a stack and iterate over the array. We add the index of the bar to the s
 * Find the distance between the current element and the element at top of stack, which is to be filled.
         $\text{distance} = \text{current} - \text{st.top}() - 1$
 * Find the bounded height
-        $\text{bounded\\\_height} = \min(\text{\text{height}[current]}, \text{height[st.top()]}) - \text{\text{height}[top]}$
-* Add resulting trapped water to answer $\text{ans} \mathrel{+}= \text{distance} \times \text{bounded\\\_height}$
+        $\text{bounded\\_height} = \min(\text{\text{height}[current]}, \text{height[st.top()]}) - \text{\text{height}[top]}$
+* Add resulting trapped water to answer $\text{ans} \mathrel{+}= \text{distance} \times \text{bounded\\_height}$
     + Push current index to top of the stack
     + Move $\text{current}$ to the next position
 
@@ -165,21 +165,21 @@ class Solution:
 #### Intuition
 
 As in [Approach 2](#approach-2-dynamic-programming), instead of computing the left and right parts separately, we may think of some way to do it in one iteration.
-From the figure in dynamic programming approach, notice that as long as $\text{right\\\_max}[i]>\text{left\\\_max}[i]$ (from element 0 to 6), the water trapped depends upon the left_max, and similar is the case when $\text{left\\\_max}[i]>\text{right\\\_max}[i]$ (from element 8 to 11).
+From the figure in dynamic programming approach, notice that as long as $\text{right\\_max}[i]>\text{left\\_max}[i]$ (from element 0 to 6), the water trapped depends upon the left_max, and similar is the case when $\text{left\\_max}[i]>\text{right\\_max}[i]$ (from element 8 to 11).
 So, we can say that if there is a larger bar at one end (say right), we are assured that the water trapped would be dependant on height of bar in current direction (from left to right). As soon as we find the bar at other end (right) is smaller, we start iterating in opposite direction (from right to left).
-We must maintain $\text{left\\\_max}$ and $\text{right\\\_max}$ during the iteration, but now we can do it in one iteration using 2 pointers, switching between the two.
+We must maintain $\text{left\\_max}$ and $\text{right\\_max}$ during the iteration, but now we can do it in one iteration using 2 pointers, switching between the two.
 
 #### Algorithm
 
 * Initialize $\text{left}$ pointer to 0 and $\text{right}$ pointer to size-1
 * While $\text{left}< \text{right}$, do:
     + If $\text{\text{height}[left]}$ is smaller than $\text{\text{height}[right]}$
-* If $\text{\text{height}[left]} \geq \text{left\\\_max}$, update $\text{left\\\_max}$
-* Else add $\text{left\\\_max}-\text{\text{height}[left]}$ to $\text{ans}$
+* If $\text{\text{height}[left]} \geq \text{left\\_max}$, update $\text{left\\_max}$
+* Else add $\text{left\\_max}-\text{\text{height}[left]}$ to $\text{ans}$
 * Add 1 to $\text{left}$.
     + Else
-* If $\text{\text{height}[right]} \geq \text{right\\\_max}$, update $\text{right\\\_max}$
-* Else add $\text{right\\\_max}-\text{\text{height}[right]}$ to $\text{ans}$
+* If $\text{\text{height}[right]} \geq \text{right\\_max}$, update $\text{right\\_max}$
+* Else add $\text{right\\_max}-\text{\text{height}[right]}$ to $\text{ans}$
 * Subtract 1 from $\text{right}$.
 
 Refer to the example for better understanding:
@@ -212,4 +212,4 @@ class Solution:
 #### Complexity Analysis
 
 * Time complexity: $O(n)$. Single iteration of $O(n)$.
-* Space complexity: $O(1)$ extra space. Only constant space required for $\text{left}$, $\text{right}$, $\text{left\\\_max}$ and $\text{right\\\_max}$.
+* Space complexity: $O(1)$ extra space. Only constant space required for $\text{left}$, $\text{right}$, $\text{left\\_max}$ and $\text{right\\_max}$.

@@ -9,6 +9,7 @@ Return `true` *if for **every** index *`i`* in the range *$0 \le i < n$*, the di
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num = "1210"$

@@ -11,6 +11,7 @@ Return the roots of the trees in the remaining forest. You may return the result
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/screen-shot-2019-07-01-at-53836-pm.png)

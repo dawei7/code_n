@@ -11,6 +11,7 @@ Return the **maximum** total score you can achieve.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/grid1.png)

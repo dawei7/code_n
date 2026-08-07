@@ -1,6 +1,6 @@
 ## Description
 
-You are given two integer arrays `persons` and `times`. In an election, the $$i^{\text{th}}$$vote was cast for$\text{persons}[i]$at time$\text{times}[i]$.
+You are given two integer arrays `persons` and `times`. In an election, the $$i^{\text{th}}$$ vote was cast for $\text{persons}[i]$ at time $\text{times}[i]$.
 
 For each query at a time `t`, find the person that was leading the election at time `t`. Votes cast at time `t` will count towards our query. In the case of a tie, the most recent vote (among tied candidates) wins.
 
@@ -15,6 +15,7 @@ Implement the `TopVotedCandidate` class:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ```

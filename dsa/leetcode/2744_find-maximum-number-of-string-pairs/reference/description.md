@@ -17,6 +17,7 @@ Note that each string can belong in **at most one** pair.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["cd","ac","dc","ca","zz"]$

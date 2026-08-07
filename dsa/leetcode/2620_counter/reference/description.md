@@ -7,6 +7,7 @@ Given an integer `n`, return a `counter` function. This `counter` function initi
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** ``

@@ -20,6 +20,7 @@ An input string is valid if:
 Return `True` when every bracket is correctly matched and nested; otherwise return `False`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

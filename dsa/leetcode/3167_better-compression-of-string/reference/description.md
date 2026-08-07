@@ -16,6 +16,7 @@ Return the *better compression* of `compressed`.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

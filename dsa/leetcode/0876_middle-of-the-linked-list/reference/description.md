@@ -9,6 +9,7 @@ If there are two middle nodes, return **the second middle** node.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/lc-midlist1.jpg)

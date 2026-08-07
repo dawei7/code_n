@@ -24,6 +24,7 @@ Determine if a `9 x 9` Sudoku board is valid. Only the filled cells need to be v
 Return `true` when every filled cell respects the row, column, and sub-box rules; otherwise return `false`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/250px-Sudoku-by-L2G-20050714.svg.png)

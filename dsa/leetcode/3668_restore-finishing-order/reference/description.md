@@ -13,6 +13,7 @@ Return an array containing your friends' IDs in their **finishing** order.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

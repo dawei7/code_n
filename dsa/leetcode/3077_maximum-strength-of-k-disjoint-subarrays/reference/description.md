@@ -19,6 +19,7 @@ Return the **maximum** possible strength that can be obtained from selecting exa
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 **Input:** nums = [1,2,3,-1,2], k = 3

@@ -21,6 +21,7 @@ Let $n = \lvert s \rvert$ and $m = \lvert p \rvert$.
 Return `true` if `p` matches all of `s` under the wildcard rules; otherwise return `false`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "aa", p = "a"`

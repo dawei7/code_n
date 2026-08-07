@@ -9,6 +9,7 @@ Return *the **number of possible lists of integers** that you could have written
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num = "327"$

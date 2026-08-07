@@ -87,7 +87,7 @@ As a result, one can order the input array in descending order, rather than iter
 
 **Intuition**
 
-We are asked to generate permutations of four digits, _i.e._ $D_{1D\_2D\_3D\_4}$ from a given array _e.g._ $A=[1, 2, 3, 4]$.
+We are asked to generate permutations of four digits, _i.e._ $D_1D_2D_3D_4$ from a given array _e.g._ $A=[1, 2, 3, 4]$.
 
 Each of the digit in the permutation, say $D_1$, can come from any of the elements in the input array, _e.g._ $D_1 = 1$ or $D_1 = 2$ _etc_.
 

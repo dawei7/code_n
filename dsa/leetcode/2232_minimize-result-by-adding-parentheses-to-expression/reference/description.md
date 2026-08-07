@@ -13,6 +13,7 @@ The input has been generated such that the original value of `expression`, and t
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $expression = "247+38"$

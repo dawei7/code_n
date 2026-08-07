@@ -13,6 +13,7 @@ Return *the maximum possible number of marked indices in `nums` using the above 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,5,2,4]`

@@ -9,6 +9,7 @@ Return `True` if the array is **good **otherwise return `False`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [12,5,7,23]`

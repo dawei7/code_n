@@ -23,6 +23,7 @@ Implement the `MKAverage` class:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ```

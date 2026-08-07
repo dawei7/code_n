@@ -36,6 +36,7 @@ The result format is in the following example.
 For each user who appears as both a `follower` and a `followee`, return that user's identifier as `follower` and their number of direct followers as `num`. Sort the result by `follower` in ascending alphabetical order.
 
 ### Examples
+
 #### Example 1
 
 ```

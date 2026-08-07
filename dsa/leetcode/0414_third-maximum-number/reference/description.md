@@ -12,6 +12,7 @@ Given an integer array `nums`, return *the **third distinct maximum** number in 
 Return the third-largest distinct value when it exists; otherwise, return the largest value.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,2,1]`

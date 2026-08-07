@@ -9,6 +9,7 @@ Return *the size of the longest non-empty subarray containing only *`1`*'s in th
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,1,0,1]`

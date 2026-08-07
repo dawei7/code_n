@@ -15,6 +15,7 @@ Return the resulting array after performing these operations.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -20,6 +20,7 @@ All three selected indices must be different. Their order in the tuple does not 
 Return the minimum good-tuple distance, or `-1` when no value occurs at least three times.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

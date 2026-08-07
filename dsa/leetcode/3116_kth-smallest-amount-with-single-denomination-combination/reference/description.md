@@ -11,6 +11,7 @@ Return the $$k^{\text{th}}$$ **smallest** amount that can be made using these co
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block" style="

@@ -9,6 +9,7 @@ If after removing one element there are no remaining elements, it's still consid
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,2,1,1,5,3,3,5]`

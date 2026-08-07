@@ -9,6 +9,7 @@ A **nice pair** is a pair `(i, j)` where $0 \le i < j < \text{nums.length}$ and 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,4,2,7], low = 2, high = 6`

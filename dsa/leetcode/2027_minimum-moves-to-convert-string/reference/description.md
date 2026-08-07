@@ -11,6 +11,7 @@ Return *the **minimum** number of moves required so that all the characters of *
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "XXX"`

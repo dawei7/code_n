@@ -7,6 +7,7 @@ Given an integer array `nums`, return *the number of elements that have **both**
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [11,7,2,15]`

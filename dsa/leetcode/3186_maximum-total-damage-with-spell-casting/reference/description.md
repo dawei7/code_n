@@ -15,6 +15,7 @@ Return the **maximum** possible *total damage* that a magician can cast.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

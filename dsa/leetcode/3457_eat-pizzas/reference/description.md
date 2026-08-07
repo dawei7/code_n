@@ -1,6 +1,6 @@
 ## Description
 
-You are given an integer array `pizzas` of size `n`, where $\text{pizzas}[i]$ represents the weight of the $$i^{\text{th}}$$pizza. Every day, you eat **exactly** 4 pizzas. Due to your incredible metabolism, when you eat pizzas of weights `W`, `X`, `Y`, and `Z`, where$W \le X \le Y \le Z$, you gain the weight of only 1 pizza!
+You are given an integer array `pizzas` of size `n`, where $\text{pizzas}[i]$ represents the weight of the $$i^{\text{th}}$$ pizza. Every day, you eat **exactly** 4 pizzas. Due to your incredible metabolism, when you eat pizzas of weights `W`, `X`, `Y`, and `Z`, where $W \le X \le Y \le Z$, you gain the weight of only 1 pizza!
 
 - On **odd-numbered** days **(1-indexed)**, you gain a weight of `Z`.
 
@@ -15,6 +15,7 @@ Find the **maximum** total weight you can gain by eating **all** pizzas optimall
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

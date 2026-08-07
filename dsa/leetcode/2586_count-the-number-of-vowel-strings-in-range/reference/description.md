@@ -11,6 +11,7 @@ Return *the number of vowel strings *$\text{words}[i]$* where *`i`* belongs to t
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["are","amy","u"], left = 0, right = 2$

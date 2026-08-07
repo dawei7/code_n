@@ -11,6 +11,7 @@ Return *the maximum number of operations you can perform on the array*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3,4], k = 5`

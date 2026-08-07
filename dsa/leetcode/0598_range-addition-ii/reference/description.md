@@ -9,6 +9,7 @@ Count and return *the number of maximum integers in the matrix after performing 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1.jpg)

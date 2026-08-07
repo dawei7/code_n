@@ -13,6 +13,7 @@ The test cases are guaranteed so that the ray will meet a receptor eventually.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/reflection.png)

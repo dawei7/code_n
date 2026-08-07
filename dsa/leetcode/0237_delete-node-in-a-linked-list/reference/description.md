@@ -36,6 +36,7 @@ JSON cases encode the suffix beginning at `node` as an array of values. The runn
 Return nothing and mutate the linked list in place. The runner serializes the suffix after mutation so the removed value and one-node reduction can be judged.
 
 ### Examples
+
 #### Example 1
 
 ![](images/node1.jpg)

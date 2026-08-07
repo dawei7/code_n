@@ -9,6 +9,7 @@ Your task is to find the smallest possible length of a (contiguous) subarray of 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,2,3,1]`

@@ -13,6 +13,7 @@ You can assume that all dates occur in the **same** calendar year, which is **no
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $arriveAlice = "08-15", leaveAlice = "08-18", arriveBob = "08-16", leaveBob = "08-19"$

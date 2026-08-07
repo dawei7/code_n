@@ -11,6 +11,7 @@ Return *an array containing *`[crashTime, memory1_crash, memory2_crash]`*, where
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $memory1 = 2, memory2 = 2$

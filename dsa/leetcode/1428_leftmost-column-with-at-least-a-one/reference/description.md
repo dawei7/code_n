@@ -31,6 +31,7 @@ The solution may call `get` at most 1,000 times and may not inspect the hidden m
 Return the smallest column index containing a `1` in any row. Return `-1` if every cell is `0`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/untitled-diagram-5.jpg)

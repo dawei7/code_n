@@ -17,6 +17,7 @@ Return *the **minimum** number of increments you need to make the cost of paths 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/binaryytreeedrawio-4.png)

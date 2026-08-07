@@ -7,13 +7,14 @@ Given an array of intervals `intervals` where $\text{intervals}[i] = [\text{star
 
 **Inputs**
 
-- `intervals`: A list of two-element intervals `[start_i, end_i]` with `start_i < end_i`.
+- `intervals`: A list of two-element intervals $[\text{start}_{i}, \text{end}_{i}]$ with $\text{start}_{i} < \text{end}_{i}$.
 
 **Return value**
 
 Return the minimum number of intervals that must be removed to leave a non-overlapping collection.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $intervals = [[1,2],[2,3],[3,4],[1,3]]$

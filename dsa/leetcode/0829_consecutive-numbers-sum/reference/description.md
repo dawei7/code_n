@@ -7,6 +7,7 @@ Given an integer `n`, return *the number of ways you can write *`n`* as the sum 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 5$

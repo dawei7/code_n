@@ -18,6 +18,7 @@ The testcases are generated so that the answer will be less than or equal to $2 
 Return the number of right-and-down paths from the top-left to the bottom-right that avoid every obstacle.
 
 ### Examples
+
 #### Example 1
 
 ![](images/robot1.jpg)

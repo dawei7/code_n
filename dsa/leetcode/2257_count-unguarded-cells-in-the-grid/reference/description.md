@@ -1,6 +1,6 @@
 ## Description
 
-You are given two integers `m` and `n` representing a **0-indexed** `m x n` grid. You are also given two 2D integer arrays `guards` and `walls` where $\text{guards}[i] = [\text{row}_{i}, \text{col}_{i}]$ and $\text{walls}[j] = [\text{row}_{j}, \text{col}_{j}]$ represent the positions of the $$i^{\text{th}}$$guard and$$j^{\text{th}}$$ wall respectively.
+You are given two integers `m` and `n` representing a **0-indexed** `m x n` grid. You are also given two 2D integer arrays `guards` and `walls` where $\text{guards}[i] = [\text{row}_{i}, \text{col}_{i}]$ and $\text{walls}[j] = [\text{row}_{j}, \text{col}_{j}]$ represent the positions of the $$i^{\text{th}}$$ guard and $$j^{\text{th}}$$ wall respectively.
 
 A guard can see **every** cell in the four cardinal directions (north, east, south, or west) starting from their position unless **obstructed** by a wall or another guard. A cell is **guarded** if there is **at least** one guard that can see it.
 
@@ -11,6 +11,7 @@ Return* the number of unoccupied cells that are **not** **guarded**.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/example1drawio2.png)

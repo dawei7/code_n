@@ -13,6 +13,7 @@ Two partitions are considered distinct if some element $\text{nums}[i]$ is in di
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3,4], k = 4`

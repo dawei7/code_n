@@ -16,6 +16,7 @@ The relative order of every nonzero digit must remain unchanged. Because `n` is 
 Return the base-ten integer formed by concatenating all nonzero digits of `n` in their original order.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

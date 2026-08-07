@@ -13,6 +13,7 @@ Given the integer array `cardPoints` and the integer `k`, return the *maximum sc
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $cardPoints = [1,2,3,4,5,6,1], k = 3$

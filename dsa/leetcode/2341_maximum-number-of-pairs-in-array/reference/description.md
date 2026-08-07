@@ -15,6 +15,7 @@ Return *a **0-indexed** integer array *`answer`* of size *`2`* where *$\text{ans
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,3,2,1,3,2,2]`

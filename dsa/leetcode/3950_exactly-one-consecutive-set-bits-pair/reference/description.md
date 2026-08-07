@@ -16,6 +16,7 @@ The representation of zero is `0`; positive values use their usual binary repres
 Return `true` if exactly one neighboring pair of binary digits is `11`; otherwise, return `false`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

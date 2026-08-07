@@ -31,6 +31,7 @@ Five threads, each representing a philosopher, will simultaneously use one objec
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 1$

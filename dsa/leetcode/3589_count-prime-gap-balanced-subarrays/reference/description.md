@@ -23,6 +23,7 @@ Return the count of **prime-gap balanced subarrays** in `nums`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

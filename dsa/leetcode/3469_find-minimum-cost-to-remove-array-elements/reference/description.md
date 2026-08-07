@@ -13,6 +13,7 @@ Return the **minimum** cost required to remove all the elements.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

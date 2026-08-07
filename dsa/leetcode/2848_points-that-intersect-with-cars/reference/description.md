@@ -1,6 +1,6 @@
 ## Description
 
-You are given a **0-indexed** 2D integer array `nums` representing the coordinates of the cars parking on a number line. For any index `i`, $\text{nums}[i] = [\text{start}_{i}, \text{end}_{i}]$ where $\text{start}_{i}$ is the starting point of the $$i^{\text{th}}$$car and$\text{end}_{i}$is the ending point of the$$i^{\text{th}}$$ car.
+You are given a **0-indexed** 2D integer array `nums` representing the coordinates of the cars parking on a number line. For any index `i`, $\text{nums}[i] = [\text{start}_{i}, \text{end}_{i}]$ where $\text{start}_{i}$ is the starting point of the $$i^{\text{th}}$$ car and $\text{end}_{i}$ is the ending point of the $$i^{\text{th}}$$ car.
 
 Return *the number of integer points on the line that are covered with **any part** of a car.*
 ### Function Contract
@@ -9,6 +9,7 @@ Return *the number of integer points on the line that are covered with **any par
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [[3,6],[1,5],[4,7]]`

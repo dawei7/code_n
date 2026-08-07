@@ -35,11 +35,13 @@ The state transition can be derived as follows:
 
 The resulting transition is:
 
-$$\textit{dp}[i][h_\textit{curr}][h_\textit{prev}] =
+$$
+\textit{dp}[i][h_\textit{curr}][h_\textit{prev}] =
 \begin{cases}
-\max\limits_{0 \le k \le n} \{ \textit{dp}[i-1][h_\textit{prev}][k] \} + S_{i, h_\textit{prev}} - S_{i, h_\textit{curr}}, \& h_\textit{curr} \le h_\textit{prev} \\
-\max\limits_{0 \le k \le n} \{ \textit{dp}[i-1][h_\textit{prev}][k] + \max(0, S_{i-1, h_\textit{curr}} - S_{i-1, \max(h_\textit{prev}, k)}) \}, \& h_\textit{curr} \gt h_\textit{prev}
-\end{cases}$$
+\max\limits_{0 \le k \le n} \{ \textit{dp}[i-1][h_\textit{prev}][k] \} + S_{i, h_\textit{prev}} - S_{i, h_\textit{curr}}, & h_\textit{curr} \le h_\textit{prev} \\
+\max\limits_{0 \le k \le n} \{ \textit{dp}[i-1][h_\textit{prev}][k] + \max(0, S_{i-1, h_\textit{curr}} - S_{i-1, \max(h_\textit{prev}, k)}) \}, & h_\textit{curr} \gt h_\textit{prev}
+\end{cases}
+$$
 
 Additionally, we need to handle edge case for the first and last columns:
 
@@ -70,14 +72,16 @@ $\textit{prevSuffixMax}[h_\textit{prev}][j] = \max\limits_{j \le k \le n} { \tex
 
 The optimized transition becomes:
 
-$$\textit{dp}[i][h_\textit{curr}][h_\textit{prev}] =
+$$
+\textit{dp}[i][h_\textit{curr}][h_\textit{prev}] =
 \begin{cases}
-\textit{prevSuffixMax}[h_\textit{prev}][0] + S_{i, h_\textit{prev}} - S_{i, h_\textit{curr}}, \& h_\textit{curr} \le h_\textit{prev} \
+\textit{prevSuffixMax}[h_\textit{prev}][0] + S_{i, h_\textit{prev}} - S_{i, h_\textit{curr}}, & h_\textit{curr} \le h_\textit{prev} \
 \max\left(
 \textit{prevSuffixMax}[h_\textit{prev}][h_\textit{curr}],
 \textit{prevMax}[h_\textit{prev}][h_\textit{curr}] + S_{i-1, h_\textit{curr}} - S_{i-1, h_\textit{prev}}
-\right), \& h_\textit{curr} > h_\textit{prev}
-\end{cases}$$
+\right), & h_\textit{curr} > h_\textit{prev}
+\end{cases}
+$$
 
 #### Implementation
 

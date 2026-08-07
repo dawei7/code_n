@@ -15,6 +15,7 @@ Return *the **minimum** number of white tiles still visible.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1-1.png)

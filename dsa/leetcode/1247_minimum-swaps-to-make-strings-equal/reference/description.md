@@ -9,6 +9,7 @@ Return the minimum number of swaps required to make `s1` and `s2` equal, or retu
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $s1 = "xx", s2 = "yy"$

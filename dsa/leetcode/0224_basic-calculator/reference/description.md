@@ -14,6 +14,7 @@ Given a string `s` representing a valid expression, implement a basic calculator
 Return the integer value of the complete expression.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "1 + 1"`

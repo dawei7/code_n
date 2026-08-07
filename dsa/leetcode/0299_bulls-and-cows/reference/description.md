@@ -23,27 +23,24 @@ The hint should be formatted as `"xAyB"`, where `x` is the number of bulls and `
 Return a string formatted as `"xAyB"`, using the number of correct-position digits for `x` and the number of additional wrong-position matches for `y`.
 
 ### Examples
+
 #### Example 1
 
-```
-**Input:** secret = "1807", guess = "7810"
-**Output:** "1A3B"
-**Explanation:** Bulls are connected with a '|' and cows are underlined:
+- **Input:** $secret = "1807", guess = "7810"$
+- **Output:** `"1A3B"`
+- **Explanation:** Bulls are connected with a '|' and cows are underlined:
 "1807"
-  |
+|
 "<u>7</u>8<u>10</u>"
-```
 #### Example 2
 
-```
-**Input:** secret = "1123", guess = "0111"
-**Output:** "1A1B"
-**Explanation:** Bulls are connected with a '|' and cows are underlined:
+- **Input:** $secret = "1123", guess = "0111"$
+- **Output:** `"1A1B"`
+- **Explanation:** Bulls are connected with a '|' and cows are underlined:
 "1123"        "1123"
-  |      or     |
+|      or     |
 "01<u>1</u>1"        "011<u>1</u>"
 Note that only one of the two unmatched 1s is counted as a cow since the non-bull digits can only be rearranged to allow one 1 to be a bull.
-```
 ### Constraints
 
 - $1 \le \text{secret.length}, \text{guess.length} \le 1000$

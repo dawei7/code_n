@@ -21,6 +21,7 @@ Let $n = \lvert\texttt{nums}\rvert$.
 Return the zero-based target index, or `-1` when `target` is absent.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [4,5,6,7,0,1,2], target = 0`

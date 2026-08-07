@@ -11,6 +11,7 @@ Return the **minimum** number of deletions required to achieve this.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -15,6 +15,7 @@ Return *a 2D integer array* `ret` *where* $\text{ret}[i] = [\text{value}_{i}, \t
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $items1 = [[1,1],[4,5],[3,8]], items2 = [[3,1],[1,5]]$

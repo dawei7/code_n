@@ -19,6 +19,7 @@ Return the number of contiguous subarrays of `nums` that contain at least three 
 difference.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3,4]`

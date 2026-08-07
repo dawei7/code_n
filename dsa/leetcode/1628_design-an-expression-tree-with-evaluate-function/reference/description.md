@@ -23,6 +23,7 @@ It's guaranteed that no subtree will yield a value that exceeds $10^{9}$ in abso
 `evaluate()` returns an integer value representing the evaluated result of the expression.
 
 ### Examples
+
 #### Example 1
 
 ![](images/untitled-diagram.png)

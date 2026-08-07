@@ -9,6 +9,7 @@ Given a string `s` and an integer `k`, return *the maximum number of vowel lette
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "abciiidef", k = 3`

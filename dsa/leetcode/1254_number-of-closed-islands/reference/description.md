@@ -9,6 +9,7 @@ Return the number of *closed islands*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/sample_3_1610.png)

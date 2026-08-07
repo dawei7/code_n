@@ -17,6 +17,7 @@ Return the value of the $$k^{\text{th}}$$ character in `word`, after enough oper
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

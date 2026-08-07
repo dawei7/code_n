@@ -13,6 +13,7 @@ Return `true` *if the given array is good, otherwise return** *`false`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2, 1, 3]`

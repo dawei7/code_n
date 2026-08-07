@@ -9,6 +9,7 @@ Return the number of **connected** **components** in `nums`. A connected compone
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/lc-linkedlistcom1.jpg)

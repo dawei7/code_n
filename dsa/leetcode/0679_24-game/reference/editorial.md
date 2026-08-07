@@ -160,7 +160,7 @@ If $N$ is the number of cards in the input array.
 
   - As the number of nodes more than doubles at every level, the total number of nodes can be approximated by the number of nodes in the last level, $N! \cdot (N-1)! \cdot 3^{N-1}$.
 
-  - And the maximum time required for any node will be $O( \text{outer\\\_two\\\_for\\\_loops} ) \cdot$\mathcal{O}(\text{array\_copy + inner\_for\_loop})$=$\mathcal{O}(N(N-1)$/2) \cdot$\mathcal{O}(N + 6)$= O(N^{3})$
+  - And the maximum time required for any node will be $O( \text{outer\\_two\\_for\\_loops} ) \cdot$\mathcal{O}(\text{array\_copy + inner\_for\_loop})$=$\mathcal{O}(N(N-1)$/2) \cdot$\mathcal{O}(N + 6)$= O(N^{3})$
 
   - So, we can say the time complexity is $O(N^{3} \cdot 3^{N - 1} \cdot N! \cdot (N - 1)!)$.
 

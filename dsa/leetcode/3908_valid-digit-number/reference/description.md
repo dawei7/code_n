@@ -23,6 +23,7 @@ The decimal representation has no leading zeros. In particular, the representati
 Return `true` when the decimal representation of `n` contains `x` at least once and its first digit is not `x`. Return `false` in every other case.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

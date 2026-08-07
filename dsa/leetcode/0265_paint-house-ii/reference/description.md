@@ -11,13 +11,14 @@ Return *the minimum cost to paint all houses*.
 
 **Inputs**
 
-- `costs`: An `n x k` matrix in which `costs[i][j]` is the price of painting house `i` with color `j`.
+- `costs`: An `n x k` matrix in which $\text{costs}[i][j]$ is the price of painting house `i` with color `j`.
 
 **Return value**
 
 Return the minimum cost of painting all `n` houses so that adjacent houses have different colors.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $costs = [[1,5,3],[2,9,4]]$

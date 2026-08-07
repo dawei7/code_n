@@ -9,6 +9,7 @@ Given two integers `steps` and `arrLen`, return the number of ways such that you
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $steps = 3, arrLen = 2$

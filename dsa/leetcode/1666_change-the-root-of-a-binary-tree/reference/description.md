@@ -23,6 +23,7 @@ Return *the new root **of the rerooted tree.*
 Return the supplied `leaf` node as the new root of the rerooted tree with `leaf.parent` set to `null`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/bt_image_1.png)

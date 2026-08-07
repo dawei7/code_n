@@ -140,12 +140,14 @@ for intuitive convenience, but need not be):
   </tr>
 </table>
 
-$$\begin{aligned}
-    missing \&= 4 \wedge (0 \wedge 0) \wedge (1 \wedge 1) \wedge (2 \wedge 3) \wedge (3 \wedge 4) \\
-            \&= (4 \wedge 4) \wedge (0 \wedge 0) \wedge (1 \wedge 1) \wedge (3 \wedge 3) \wedge 2 \\
-            \&= 0 \wedge 0 \wedge 0 \wedge 0 \wedge 2 \\
-            \&= 2
-\end{aligned}$$
+$$
+\begin{aligned}
+    missing &= 4 \wedge (0 \wedge 0) \wedge (1 \wedge 1) \wedge (2 \wedge 3) \wedge (3 \wedge 4) \\
+            &= (4 \wedge 4) \wedge (0 \wedge 0) \wedge (1 \wedge 1) \wedge (3 \wedge 3) \wedge 2 \\
+            &= 0 \wedge 0 \wedge 0 \wedge 0 \wedge 2 \\
+            &= 2
+\end{aligned}
+$$
 
 ```python
 class Solution:

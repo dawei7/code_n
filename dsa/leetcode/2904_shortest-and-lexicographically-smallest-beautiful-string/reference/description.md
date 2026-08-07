@@ -17,6 +17,7 @@ A string `a` is lexicographically **larger** than a string `b` (of the same leng
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "100011001", k = 3`

@@ -2,7 +2,7 @@
 
 There are `n` points on a road you are driving your taxi on. The `n` points on the road are labeled from `1` to `n` in the direction you are going, and you want to drive from point `1` to point `n` to make money by picking up passengers. You cannot change the direction of the taxi.
 
-The passengers are represented by a **0-indexed** 2D integer array `rides`, where $\text{rides}[i] = [\text{start}_{i}, \text{end}_{i}, \text{tip}_{i}]$ denotes the $$i^{\text{th}}$$passenger requesting a ride from point$\text{start}_{i}$to point$\text{end}_{i}$who is willing to give a$\text{tip}_{i}$ dollar tip.
+The passengers are represented by a **0-indexed** 2D integer array `rides`, where $\text{rides}[i] = [\text{start}_{i}, \text{end}_{i}, \text{tip}_{i}]$ denotes the $$i^{\text{th}}$$ passenger requesting a ride from point $\text{start}_{i}$ to point $\text{end}_{i}$ who is willing to give a $\text{tip}_{i}$ dollar tip.
 
 For** each **passenger `i` you pick up, you **earn** $\text{end}_{i} - \text{start}_{i} + \text{tip}_{i}$ dollars. You may only drive **at most one **passenger at a time.
 
@@ -15,6 +15,7 @@ Given `n` and `rides`, return *the **maximum** number of dollars you can earn by
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 5, rides = [<u>[2,5,4]</u>,[1,5,1]]$

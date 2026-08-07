@@ -2,7 +2,7 @@
 
 Given an array of **unique** strings `words`, return *all the ***<a href="https://en.wikipedia.org/wiki/Word_square" target="_blank">word squares</a>*** you can build from *`words`. The same word from `words` can be used **multiple times**. You can return the answer in **any order**.
 
-A sequence of strings forms a valid **word square** if the $$k^{\text{th}}$$row and column read the same string, where$0 \le k < max(numRows, numColumns)$.
+A sequence of strings forms a valid **word square** if the $$k^{\text{th}}$$ row and column read the same string, where $0 \le k < max(numRows, numColumns)$.
 
 - For example, the word sequence `["ball","area","lead","lady"]` forms a word square because each word reads the same both horizontally and vertically.
 ### Function Contract
@@ -17,6 +17,7 @@ Return every word square constructible from `words`. The same input word may occ
 list may use any order.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["area","lead","wall","lady","ball"]$

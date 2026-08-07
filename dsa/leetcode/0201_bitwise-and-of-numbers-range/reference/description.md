@@ -10,9 +10,10 @@ Given two integers `left` and `right` that represent the range `[left, right]`, 
 
 **Return value**
 
-Return `left & (left + 1) & ... & right`.
+Return $left \& (left + 1) \& ... \& right$.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $left = 5, right = 7$

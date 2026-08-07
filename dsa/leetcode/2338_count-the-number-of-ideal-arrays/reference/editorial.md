@@ -17,7 +17,7 @@ To approach this, let's fix the **last** element of the array to be some number 
 
 Now, we can represent each element in the array as a product of multiplicative steps. That is, we can write:
 
-$\text{arr}[0] = k_0,\quad \text{arr}[1] = k_{0k\_1},\quad \ldots,\quad \text{arr}[n-1] = k_{0k\_1}\cdots k_{n-1} = x$
+$\text{arr}[0] = k_0,\quad \text{arr}[1] = k_0k_1,\quad \ldots,\quad \text{arr}[n-1] = k_0k_1\cdots k_{n-1} = x$
 
 So we’re looking for sequences of $n$ natural numbers $k_0, k_1, \dots, k_{n-1}$ whose product is exactly $x$.
 

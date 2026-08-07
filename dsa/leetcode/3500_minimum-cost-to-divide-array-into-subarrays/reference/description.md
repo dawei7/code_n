@@ -15,6 +15,7 @@ Return the **minimum** total cost possible from any valid division.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

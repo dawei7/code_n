@@ -15,6 +15,7 @@ A **substring** is a contiguous non-empty sequence of characters within a string
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "fool3e7bar", sub = "leet", mappings = [["e","3"],["t","7"],["t","8"]]`

@@ -12,6 +12,7 @@ Given an array `nums` of `n` integers where $\text{nums}[i]$ is in the range `[1
 - Return an array containing every value in $[1, n]$ that is absent from `nums`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [4,3,2,7,8,2,3,1]`

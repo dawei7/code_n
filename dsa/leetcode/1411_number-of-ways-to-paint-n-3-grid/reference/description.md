@@ -9,6 +9,7 @@ Given `n` the number of rows of the grid, return *the number of ways* you can pa
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/e1.png)

@@ -17,6 +17,7 @@ Since the answer may be large, return it **modulo** $10^{9} + 7$.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/screenshot-2025-03-24-at-060006.png)

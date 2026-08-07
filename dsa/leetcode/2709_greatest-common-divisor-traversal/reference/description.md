@@ -11,6 +11,7 @@ Return `true`* if it is possible to traverse between all such pairs of indices,*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,3,6]`

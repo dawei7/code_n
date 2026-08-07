@@ -12,6 +12,7 @@ Return *the **minimum** health you need to start with to beat the game.*
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $damage = [2,7,4,3], armor = 4$

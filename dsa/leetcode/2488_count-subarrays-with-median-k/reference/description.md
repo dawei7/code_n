@@ -18,6 +18,7 @@ Return *the number of non-empty subarrays in *`nums`* that have a **median** equ
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,2,1,4,5], k = 4`

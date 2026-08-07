@@ -25,6 +25,7 @@ Return *the **minimum** number of operations needed to write the letter Y on the
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/y2.png)

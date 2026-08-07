@@ -9,6 +9,7 @@ The distance value is defined as the number of elements $\text{arr1}[i]$ such th
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ```

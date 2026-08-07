@@ -13,6 +13,7 @@ Return the **minimum** total cost to travel from node 0 to node $n - 1$. If it i
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

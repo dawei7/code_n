@@ -31,7 +31,7 @@ Consider the case where we need to find the $21^{st}$ node in $6^{th}$ row.
 
 ![6_rows](images/Slide2.PNG)
 
-The number of nodes in the $6^{th}$ row will be $2^{6 - 1} =$2^{5}$= 32$.
+The number of nodes in the $6^{th}$ row will be $2^{6 - 1} = $2^{5}$ = 32$.
 Therefore, the $21^{st}$ node will be present in the right half of the last row in our current binary tree.
 
 ![last_row](images/Slide3.PNG)
@@ -44,28 +44,28 @@ This simplifies our problem to finding the $21 - 16$ (current position - half sk
 ![5_rows](images/Slide4.PNG)
 
 Within this subtree of $5$ rows, we have to find the $5^{th}$ node in the $5^{th}$ row.
-The number of nodes in the $5^{th}$ row is given by $2^{5 - 1} =$2^{4}$= 16$. Therefore, the $5^{th}$ node will be present in the left sub-tree and we can discard the right sub-tree, and this time the position of the target node will remain unchanged.
+The number of nodes in the $5^{th}$ row is given by $2^{5 - 1} = $2^{4}$ = 16$. Therefore, the $5^{th}$ node will be present in the left sub-tree and we can discard the right sub-tree, and this time the position of the target node will remain unchanged.
 
 <br />
 
 ![4_rows](images/Slide5.PNG)
 
 Within the subtree of $4$ rows, we have to find the $5^{th}$ node in the $4^{th}$ row.
-The number of nodes in the $4^{th}$ row will be $2^{4 - 1} =$2^{3}$= 8$. Thus, the $5^{th}$ node will be present in the right sub-tree and we can discard the left sub-tree.
+The number of nodes in the $4^{th}$ row will be $2^{4 - 1} = $2^{3}$ = 8$. Thus, the $5^{th}$ node will be present in the right sub-tree and we can discard the left sub-tree.
 
 <br />
 
 ![3_rows](images/Slide6.PNG)
 
 Within this subtree of $3$ rows, we have to find the $1^{st}$ node in the $3^{rd}$ row.
-The number of nodes in the $3^{rd}$ row will be $2^{3 - 1} =$2^{2}$= 4$. Therefore, the $1^{st}$ node will be present in the left sub-tree and we can discard the right sub-tree.
+The number of nodes in the $3^{rd}$ row will be $2^{3 - 1} = $2^{2}$ = 4$. Therefore, the $1^{st}$ node will be present in the left sub-tree and we can discard the right sub-tree.
 
 <br />
 
 ![2_rows](images/Slide7.PNG)
 
 Within this subtree of $2$ rows, we have to find the $1^{st}$ node in the $2^{nd}$ row.
-The number of nodes in the $2^{nd}$ row will be $2^{2 - 1} =$2^{1}$= 2$. Hence, the $1^{st}$ node will be present in the left sub-tree and we can discard the right sub-tree.
+The number of nodes in the $2^{nd}$ row will be $2^{2 - 1} = $2^{1}$ = 2$. Hence, the $1^{st}$ node will be present in the left sub-tree and we can discard the right sub-tree.
 
 <br />
 
@@ -197,7 +197,7 @@ Now, suppose we want to find the $21^{st}$ symbol of the $6^{th}$ row.
 
 <br />
 
-The number of nodes in the $6^{th}$ row will be $2^{6 - 1} =$2^{5}$= 32$.
+The number of nodes in the $6^{th}$ row will be $2^{6 - 1} = $2^{5}$ = 32$.
 As we discussed the symbols of the first half of any row are opposite of the second half.
 $\implies$ $21^{st}$ symbol of the $6^{th}$ row will be equal to $(1 - 5^{th}$ symbol of the $6^{th}$ row $)$.
 
@@ -221,7 +221,7 @@ $\implies$ $21^{st}$ symbol of the $6^{th}$ row will be equal to $(1 - 5^{th}$ s
 
 <br />
 
-The number of nodes in the $4^{th}$ row will be $2^{4 - 1} =$2^{3}$= 8$. As the symbols of the first half of any row are opposite of the second half.
+The number of nodes in the $4^{th}$ row will be $2^{4 - 1} = $2^{3}$ = 8$. As the symbols of the first half of any row are opposite of the second half.
 So, $5^{th}$ symbol of the $4^{th}$ row will be equal to $(1 - 1^{st}$ symbol of the $4^{th}$ row $)$.
 $\implies$ $21^{st}$ symbol of the $6^{th}$ row will be equal to $(1 - (1 - 1^{st}$ symbol of the $4^{th}$ row $))$.
 
@@ -427,17 +427,17 @@ $(k - 1) = 2^b + 2^c + 2^d + 2^e + .... \space \space$   (remember this expressi
 
 Now, we all know that every decimal number $d$ can be expressed as,
 
-$d = (A \cdot$2^{0}$) +  (B \cdot$2^{1}$) + (C \cdot$2^{2}$) + (D \cdot$2^{3}$) + (E \cdot$2^{4}$) + (F \cdot$2^{5}$) + ....$
+$d = (A \cdot $2^{0}$) +  (B \cdot $2^{1}$) + (C \cdot $2^{2}$) + (D \cdot $2^{3}$) + (E \cdot $2^{4}$) + (F \cdot $2^{5}$) + ....$
 where, $A, B, C, D, E, F, .... \in (0, 1)$
 and, the binary representation of $d$ is, $(d)_2 = \space ...FEDCBA$
 
 For example: $(25)_2 = 11001$, and
-$25 =$2^{0}$+$2^{3}$+ 2^4$
-$25 = 1.$2^{0}$+ 0.$2^{1}$+ 0.$2^{2}$+ 1.$2^{3}$+ 1.2^4$
+$25 = $2^{0}$ + $2^{3}$ + 2^4$
+$25 = 1.$2^{0}$ + 0.$2^{1}$ + 0.$2^{2}$ + 1.$2^{3}$ + 1.2^4$
 
 <br />
 
-$(k - 1)$ can also be expressed as $(A \cdot$2^{0}$) +  (B \cdot$2^{1}$) + (C \cdot$2^{2}$) + (D \cdot$2^{3}$) + (E \cdot$2^{4}$) + (F \cdot$2^{5}$) + ....$
+$(k - 1)$ can also be expressed as $(A \cdot $2^{0}$) +  (B \cdot $2^{1}$) + (C \cdot $2^{2}$) + (D \cdot $2^{3}$) + (E \cdot $2^{4}$) + (F \cdot $2^{5}$) + ....$
 We just need to find which all coefficients $A, B, C, D, E, F, ....$ will be $1$ to convert it to $2^b + 2^c + 2^d + 2^e + ....$.
 
 Thus, the number of flips required will be the number of $1s$ present in the binary representation of the number $(k - 1)$.

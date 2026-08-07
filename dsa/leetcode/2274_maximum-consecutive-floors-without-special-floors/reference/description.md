@@ -11,6 +11,7 @@ Return *the **maximum** number of consecutive floors without a special floor*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $bottom = 2, top = 9, special = [4,6]$

@@ -14,6 +14,7 @@ Let $n = \lvert\texttt{nums}\rvert$.
 Return all complete orderings of `nums`, in any order.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3]`

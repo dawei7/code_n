@@ -12,10 +12,12 @@ Our goal here is to efficiently count how many strings start and end with the sa
 
 Let’s say there are `x` occurrences of a character within a range. Any pair of these characters can form a substring, and each character can also form a substring by itself. To calculate the total number of substrings, we use the combination formula:
 
-$$\begin{aligned}
-    ^xC_2 + x \&= \frac{x \cdot (x - 1)}{2} + x \\
-    \&= \frac{x \cdot (x + 1)}{2}
-\end{aligned}$$
+$$
+\begin{aligned}
+    ^xC_2 + x &= \frac{x \cdot (x - 1)}{2} + x \\
+    &= \frac{x \cdot (x + 1)}{2}
+\end{aligned}
+$$
 This gives us the total number of substrings that start and end with that character. The below illustration could be helpful to visualize this concept:
 
 ![](images/same_end.png)

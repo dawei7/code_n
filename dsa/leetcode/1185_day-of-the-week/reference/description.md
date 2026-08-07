@@ -13,6 +13,7 @@ Return the answer as one of the following values `{"Sunday", "Monday", "Tuesday"
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $day = 31, month = 8, year = 2019$

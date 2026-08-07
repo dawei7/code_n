@@ -20,6 +20,7 @@ Let $n=\lvert\texttt{s}\rvert$.
 Return the minimum number of character flips that transform `s` into a string containing neither `"011"` nor `"110"` as a subsequence.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

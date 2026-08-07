@@ -15,6 +15,7 @@ Return a list of pairs in ascending order(with respect to pairs), each pair `[a,
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [4,2,1,3]`

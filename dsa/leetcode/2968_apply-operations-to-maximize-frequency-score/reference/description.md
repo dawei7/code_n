@@ -17,6 +17,7 @@ The frequency of an element is the number of occurences of that element in the a
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,6,4], k = 3`

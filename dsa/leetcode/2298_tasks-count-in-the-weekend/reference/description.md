@@ -28,6 +28,7 @@ The result format is shown in the following example.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 ```

@@ -17,6 +17,7 @@ A **subsequence** is a string that can be derived from another string by deletin
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "acfgbd", k = 2`

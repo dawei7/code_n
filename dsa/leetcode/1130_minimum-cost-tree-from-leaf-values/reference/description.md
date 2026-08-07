@@ -17,6 +17,7 @@ A node is a **leaf** if and only if it has zero children.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/tree1.jpg)

@@ -107,7 +107,7 @@ Results are ordered by transition_count in descending order, then by first_cours
 
 **Inputs**
 
-- `course_completions`: The course-completion table described above.
+- $\text{course}_{completions}$: The course-completion table described above.
 
 Qualification is evaluated per user across that user's complete history. Both boundaries are inclusive: exactly 5 completions and an average rating exactly equal to 4 qualify.
 
@@ -117,8 +117,8 @@ Consecutive pairs never cross between users. Within a qualifying user's history,
 
 Return an ordered table with columns:
 
-- `first_course`
-- `second_course`
-- `transition_count`
+- $\text{first}_{course}$
+- $\text{second}_{course}$
+- $\text{transition}_{count}$
 
-`transition_count` is the number of qualifying-user histories in which the named adjacency occurs, counting every occurrence. Rows are ordered by `transition_count` descending, then `first_course` ascending, then `second_course` ascending.
+$\text{transition}_{count}$ is the number of qualifying-user histories in which the named adjacency occurs, counting every occurrence. Rows are ordered by $\text{transition}_{count}$ descending, then $\text{first}_{course}$ ascending, then $\text{second}_{course}$ ascending.

@@ -15,6 +15,7 @@ Return `true`* if *`n`* is fascinating, or *`false`* otherwise*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 192$

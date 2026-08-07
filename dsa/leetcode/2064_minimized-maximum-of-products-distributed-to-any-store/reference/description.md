@@ -15,6 +15,7 @@ Return *the minimum possible* `x`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 6, quantities = [11,6]$

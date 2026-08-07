@@ -9,6 +9,7 @@ Return *the selected integer.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,2,1,4]`

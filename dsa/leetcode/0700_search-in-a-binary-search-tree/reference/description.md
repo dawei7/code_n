@@ -9,6 +9,7 @@ Find the node in the BST that the node's value equals `val` and return the subtr
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/tree1.jpg)

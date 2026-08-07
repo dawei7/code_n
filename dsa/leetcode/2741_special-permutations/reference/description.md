@@ -11,6 +11,7 @@ Return *the total number of special permutations. *As the answer could be large,
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,3,6]`

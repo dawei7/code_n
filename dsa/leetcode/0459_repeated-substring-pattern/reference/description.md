@@ -12,6 +12,7 @@ Given a string `s`, check if it can be constructed by taking a substring of it a
 - Return `True` if one proper nonempty substring repeated at least twice equals all of `s`; otherwise, return `False`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "abab"`

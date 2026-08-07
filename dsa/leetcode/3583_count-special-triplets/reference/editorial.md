@@ -8,7 +8,7 @@ Enumerating numbers on both sides, for example enumerating $\textit{nums}[i]$, a
 
 Instead, consider enumerating the middle element $\textit{nums}[j]$. At this point, we only need to know how many numbers on both sides are equal to $\textit{nums}[j] \times 2$ so that we can compute the contribution of $\textit{nums}[j]$ to the answer.
 
-Suppose there are $\textit{LeftCnt}$ indices that meet the condition on the left side of the current position and $\textit{RightCnt}$ indices that meet the condition on the right side. According to the multiplication principle for counting problems, their contribution to the answer is $\textit{LeftCnt} \times \textit{RightCnt} \bmod ($10^{9}$+ 7)$.
+Suppose there are $\textit{LeftCnt}$ indices that meet the condition on the left side of the current position and $\textit{RightCnt}$ indices that meet the condition on the right side. According to the multiplication principle for counting problems, their contribution to the answer is $\textit{LeftCnt} \times \textit{RightCnt} \bmod ($10^{9}$ + 7)$.
 
 Now consider how to calculate $\textit{LeftCnt}$ and $\textit{RightCnt}$.
 

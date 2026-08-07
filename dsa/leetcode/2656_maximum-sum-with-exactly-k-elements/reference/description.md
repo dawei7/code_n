@@ -17,6 +17,7 @@ Return *the maximum score you can achieve after performing the operation exactly
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3,4,5], k = 3`

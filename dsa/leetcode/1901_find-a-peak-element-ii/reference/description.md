@@ -13,6 +13,7 @@ You must write an algorithm that runs in `O(m log(n))` or `O(n log(m))` time.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/1.png)

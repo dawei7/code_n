@@ -14,6 +14,7 @@ Given the integer `n`, return *the number of **complete rows** of the staircase 
 Return the greatest number of initial staircase rows that can each receive their required number of coins.
 
 ### Examples
+
 #### Example 1
 
 ![](images/arrangecoins1-grid.jpg)

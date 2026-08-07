@@ -15,6 +15,7 @@ A leaf of a node is a node that has no children.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/tree1.png)

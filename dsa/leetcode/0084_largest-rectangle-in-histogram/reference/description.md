@@ -12,6 +12,7 @@ Given an array of integers `heights` representing the histogram's bar height whe
 Return the maximum area of an axis-aligned rectangle covered by consecutive histogram bars.
 
 ### Examples
+
 #### Example 1
 
 ![](images/histogram.jpg)

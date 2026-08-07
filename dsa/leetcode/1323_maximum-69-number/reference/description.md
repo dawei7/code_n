@@ -9,6 +9,7 @@ Return *the maximum number you can get by changing **at most** one digit (*`6`* 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num = 9669$

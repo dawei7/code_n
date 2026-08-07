@@ -11,6 +11,7 @@ Return the *minimum **non-negative** integer *`x`* such that *$n + x$* is beauti
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 16, target = 6$

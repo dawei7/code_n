@@ -16,9 +16,11 @@ Since applying each shift involves iterating over a substring of `s`, and this a
 
 Instead of applying each shift directly, we can optimize by focusing on the net effect of all shifts on each character. This means that rather than updating the string multiple times for each operation, we calculate how many total shifts each character undergoes. Once the total shifts `numberOfShifts` for each character have been calculated, we can use the following formula to create the final string in one pass:
 
-$$\begin{aligned}
+$$
+\begin{aligned}
 \text{newChar} = \text{'a'} + (\text{oldChar} - \text{'a'} + \text{numberOfShifts}) \text{ mod } 26.
-\end{aligned}$$
+\end{aligned}
+$$
 
 Here,
 -   $\text{oldChar} - \text{'a'}$: Converts the character to a 0-based index in the range [0, 25] (e.g., 'a' = 0, 'b' = 1, ..., 'z' = 25).

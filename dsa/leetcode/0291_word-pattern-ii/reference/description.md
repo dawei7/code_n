@@ -15,6 +15,7 @@ A string `s` **matches** a `pattern` if there is some **bijective mapping** of s
 Return `True` if a bijective character-to-nonempty-substring assignment makes `pattern` expand to exactly `s`; otherwise return `False`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $pattern = "abab", s = "redblueredblue"$

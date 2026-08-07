@@ -11,6 +11,7 @@ Return *the **minimum** time required in which you can visit the bottom-right ce
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/yetgriddrawio-8.png)

@@ -20,6 +20,7 @@ Let $N=\lvert\texttt{nums}\rvert$. For each value $x$, let $R(x)$ denote the dec
 Return an array containing every input occurrence, ordered by the key $(R(x),x)$ in ascending lexicographic order. Repeated equal values remain repeated in the result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

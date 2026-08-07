@@ -9,6 +9,7 @@ Return the **maximum** product of the first and last elements of any **subsequen
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

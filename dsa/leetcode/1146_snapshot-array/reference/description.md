@@ -15,6 +15,7 @@ Implement a SnapshotArray that supports the following interface:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `["SnapshotArray","set","snap","set","get"]`

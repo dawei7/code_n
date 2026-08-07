@@ -16,6 +16,7 @@ Let $m$ and $n$ denote the board's row and column counts.
 Return the number of distinct horizontal or vertical battleships on `board`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/image.png)

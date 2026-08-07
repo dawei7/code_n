@@ -18,6 +18,7 @@ Return *a string of the words in reverse order concatenated by a single space.*
 Return the words in reverse order with one space between adjacent words and no spaces at either end.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "the sky is blue"`

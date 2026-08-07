@@ -21,6 +21,7 @@ Return *an array containing the health of the remaining robots (in the order the
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/image-20230516011718-12.png)

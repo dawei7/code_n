@@ -16,6 +16,7 @@ Design an algorithm that runs in less than `O(n)` time complexity.
 Return the number of existing nodes in the tree.
 
 ### Examples
+
 #### Example 1
 
 ![](images/complete.jpg)

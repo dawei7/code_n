@@ -20,6 +20,7 @@ Let $D$ be the number of decimal digits in `n`, treating `0` as a one-digit repr
 Return the concatenation of all nonzero digits multiplied by the sum of those same digits. If there are no retained digits, both the concatenated value and the result are `0`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

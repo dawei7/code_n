@@ -13,6 +13,7 @@ Return the length of the longest well-performing interval.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $hours = [9,9,6,0,6,6,9]$

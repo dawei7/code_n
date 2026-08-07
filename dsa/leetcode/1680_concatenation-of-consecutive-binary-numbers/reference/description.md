@@ -7,6 +7,7 @@ Given an integer `n`, return *the **decimal value** of the binary string formed 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 1$

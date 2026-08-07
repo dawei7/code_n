@@ -12,6 +12,7 @@ Given an `m x n` binary `matrix` filled with `0`'s and `1`'s, *find the largest 
 Return the area of the largest axis-aligned square consisting entirely of `"1"` cells.
 
 ### Examples
+
 #### Example 1
 
 ![](images/max1grid.jpg)

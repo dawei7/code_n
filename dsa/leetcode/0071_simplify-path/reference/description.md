@@ -34,6 +34,7 @@ Return the **simplified canonical path**.
 Return the equivalent simplified canonical path.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

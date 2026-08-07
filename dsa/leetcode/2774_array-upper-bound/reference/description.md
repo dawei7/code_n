@@ -6,6 +6,7 @@ Write code that enhances all arrays such that you can call the `upperBound()` me
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,4,5], target = 5`

@@ -19,6 +19,7 @@ Return *the **minimum** number of swaps to make *`s` ***balanced***.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "][]["`

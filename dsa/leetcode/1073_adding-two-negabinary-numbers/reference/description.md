@@ -11,6 +11,7 @@ Return the result of adding `arr1` and `arr2` in the same format: as an array of
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $arr1 = [1,1,1,1,1], arr2 = [1,0,1]$

@@ -24,6 +24,7 @@ Implement the `Twitter` class:
 The app adapter returns the feed produced by each `getNewsFeed` operation, in query order. Each native call returns at most ten eligible tweet IDs from newest to oldest.
 
 ### Examples
+
 #### Example 1
 
 ```

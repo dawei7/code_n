@@ -48,7 +48,7 @@ This problem is notorious for its edge cases, which often cause issues when subm
 
 To understand why, we need to analyze the constraints. The number of nodes (`n`) is at most $200$, and the edge weights ($\text{time}[i]$) can be as large as $10^9$. The worst-case scenario occurs when the shortest path to a node involves traversing `199` edges, forming a nearly linear path. In such a case, the total shortest path value can reach:
 
-$199 \times$10^{9}$= 1.99 \times 10^{11}$
+$199 \times $10^{9}$ = 1.99 \times 10^{11}$
 
 This is far greater than $\text{INT}_{MAX}$ (which is $2.1 × 10^9$). If we initialize our distances with $\text{INT}_{MAX}$, adding even a single edge weight ($10^9$) could exceed this limit, causing integer overflow. As a result, the algorithm may produce incorrect results when comparing distances, leading to failures in large test cases like test case 53.
 

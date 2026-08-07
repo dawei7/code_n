@@ -11,6 +11,7 @@ Return *the array *`ans`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,1]`

@@ -9,6 +9,7 @@ You may assume the array is the output of `JSON.parse`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [null, {}, 3]`

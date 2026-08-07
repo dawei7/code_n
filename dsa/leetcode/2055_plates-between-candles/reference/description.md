@@ -13,28 +13,25 @@ Return *an integer array* `answer` *where* $\text{answer}[i]$ *is the answer to 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![ex-1](images/ex-1.png)
 
-```
-**Input:** s = "**|**|***|", queries = [[2,5],[5,9]]
-**Output:** [2,3]
-**Explanation:**
+- **Input:** `s = "**|**|***|", queries = [[2,5],[5,9]]`
+- **Output:** `[2,3]`
+- **Explanation:**
 - queries[0] has two plates between candles.
 - queries[1] has three plates between candles.
-```
 #### Example 2
 
 ![ex-2](images/ex-2.png)
 
-```
-**Input:** s = "***|**|*****|**||**|*", queries = [[1,17],[4,5],[14,17],[5,11],[15,16]]
-**Output:** [9,0,0,0,0]
-**Explanation:**
+- **Input:** `s = "***|**|*****|**||**|*", queries = [[1,17],[4,5],[14,17],[5,11],[15,16]]`
+- **Output:** `[9,0,0,0,0]`
+- **Explanation:**
 - queries[0] has nine plates between candles.
 - The other queries have zero plates between candles.
-```
 ### Constraints
 
 - $3 \le \text{s.length} \le 10^{5}$

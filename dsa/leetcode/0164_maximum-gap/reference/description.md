@@ -14,6 +14,7 @@ You must write an algorithm that runs in linear time and uses linear extra space
 Return the largest difference between successive values in sorted order, or `0` when fewer than two values exist.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,6,9,1]`

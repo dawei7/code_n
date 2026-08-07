@@ -27,6 +27,7 @@ If there are multiple ways for Bob to earn the maximum total points, return **an
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1.jpg)

@@ -11,6 +11,7 @@ Return *the **minimum** number of magic beans that you have to remove*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $beans = [4,1,6,5]$

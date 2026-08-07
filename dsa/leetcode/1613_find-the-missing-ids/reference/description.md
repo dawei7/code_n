@@ -24,13 +24,14 @@ The result format is in the following example.
 
 **Inputs**
 
-- `Customers`: Table with columns `customer_id` (int), `customer_name` (varchar).
+- `Customers`: Table with columns $\text{customer}_{id}$ (int), $\text{customer}_{name}$ (varchar).
 
 **Return value**
 
-Return a table with single column `ids` (int) containing all missing integers in $[1, \max(\text{customer\_id})]$ sorted ascending.
+Return a table with single column `ids` (int) containing all missing integers in $[1, \max(\text{customer\\_id})]$ sorted ascending.
 
 ### Examples
+
 #### Example 1
 
 ```

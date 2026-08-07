@@ -11,6 +11,7 @@ Return *the rotation index *`k`* that corresponds to the highest score we can ac
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,3,1,4,0]`

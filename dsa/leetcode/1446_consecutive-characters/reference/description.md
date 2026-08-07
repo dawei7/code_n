@@ -9,6 +9,7 @@ Given a string `s`, return *the **power** of* `s`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "leetcode"`

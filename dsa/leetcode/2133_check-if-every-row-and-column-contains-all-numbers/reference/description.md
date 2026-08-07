@@ -9,6 +9,7 @@ Given an `n x n` integer matrix `matrix`, return `true` *if the matrix is **vali
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/example1drawio.png)

@@ -11,6 +11,7 @@ Return *the product matrix of* `grid`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `grid = [[1,2],[3,4]]`

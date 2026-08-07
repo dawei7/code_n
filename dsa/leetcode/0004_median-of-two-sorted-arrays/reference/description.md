@@ -17,6 +17,7 @@ Let $m = \lvert\texttt{nums1}\rvert$ and $n = \lvert\texttt{nums2}\rvert$.
 Return the median of all values from both arrays as a floating-point number.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [1,3], nums2 = [2]$

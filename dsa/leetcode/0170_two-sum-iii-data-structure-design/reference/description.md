@@ -22,6 +22,7 @@ Implement the `TwoSum` class:
 - `find(value: int) -> bool`: Returns `true` if any pair of stored numbers sums to `value`, otherwise `false`.
 
 ### Examples
+
 #### Example 1
 
 ```

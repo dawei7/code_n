@@ -11,6 +11,7 @@ Return *the **minimum** possible value of the bitwise *`OR`* of the remaining el
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,5,3,2,7], k = 2`

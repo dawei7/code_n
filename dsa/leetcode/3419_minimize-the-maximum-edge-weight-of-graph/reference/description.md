@@ -17,6 +17,7 @@ Return the **minimum** possible value of the **maximum** edge weight after remov
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

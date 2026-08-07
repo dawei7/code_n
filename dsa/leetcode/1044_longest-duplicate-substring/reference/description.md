@@ -9,6 +9,7 @@ Return **any** duplicated substring that has the longest possible length. If `s`
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "banana"`

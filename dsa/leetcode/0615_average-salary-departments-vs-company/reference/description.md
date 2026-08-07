@@ -38,19 +38,20 @@ The result format is in the following example.
 
 **Inputs**
 
-`Salary(id, employee_id, amount, pay_date)` contains the dated payments, and `Employee(employee_id, department_id)` supplies each employee's department. Let $S$ and $E$ be the respective row counts.
+$Salary(id, \text{employee}_{id}, amount, \text{pay}_{date})$ contains the dated payments, and $Employee(\text{employee}_{id}, \text{department}_{id})$ supplies each employee's department. Let $S$ and $E$ be the respective row counts.
 
 **Return value**
 
 Return one row for each department-month present in `Salary`:
 
-- `pay_month`: the payment month formatted as `YYYY-MM`;
-- `department_id`: the department being compared;
+- $\text{pay}_{month}$: the payment month formatted as `YYYY-MM`;
+- $\text{department}_{id}$: the department being compared;
 - `comparison`: `higher`, `lower`, or `same` relative to the average of every company payment in that same month.
 
 Result order is unrestricted.
 
 ### Examples
+
 #### Example 1
 
 ```

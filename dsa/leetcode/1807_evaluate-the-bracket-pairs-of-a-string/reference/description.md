@@ -21,6 +21,7 @@ Return *the resulting string after evaluating **all** of the bracket pairs.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "(name)is(age)yearsold", knowledge = [["name","bob"],["age","two"]]`

@@ -21,6 +21,7 @@ Given a string `sentence`, return `true`* if it is circular*. Otherwise, return 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $sentence = "leetcode exercises sound delightful"$

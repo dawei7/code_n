@@ -139,9 +139,9 @@ class Solution:
 Here, $n$ is the length of the input string, and $numRows$ is the number of rows of the zig-zag pattern.
 
 * Time complexity: $O(numRows \cdot n)$.
-  - We initialize an empty 2-dimensional matrix of size $numRows \times numCols$, where $$\mathcal{O}(numCols)$=$\mathcal{O}(n)$$. So it takes$$\mathcal{O}(numRows \cdot n)$$time.
-  - Then we iterate on the input string, which takes$$\mathcal{O}(n)$$time, and again traverse on the matrix to generate the final string, which takes$$\mathcal{O}(numRows \cdot n)$$time.
-  - Thus, overall we take$$\mathcal{O}(2 (numRows \cdot n)$+ n) =$\mathcal{O}(numRows \cdot n)$$ time.
+  - We initialize an empty 2-dimensional matrix of size $numRows \times numCols$, where $$\mathcal{O}(numCols)$=$\mathcal{O}(n)$$. So it takes  $$\mathcal{O}(numRows \cdot n)$$ time.
+  - Then we iterate on the input string, which takes $$\mathcal{O}(n)$$ time, and again traverse on the matrix to generate the final string, which takes $$\mathcal{O}(numRows \cdot n)$$ time.
+  - Thus, overall we take $$\mathcal{O}(2 (numRows \cdot n)$+ n) =$\mathcal{O}(numRows \cdot n)$$ time.
 
 * Space complexity: $O(numRows \cdot n)$.
   - We use an additional 2-dimensional array of size $numRows \times numCols$, where $$\mathcal{O}(numCols)$=$\mathcal{O}(n)$$

@@ -1,6 +1,6 @@
 ## Description
 
-You are given an array `points` of size `n` and an integer `m`. There is another array `gameScore` of size `n`, where $\text{gameScore}[i]$ represents the score achieved at the $$i^{\text{th}}$$game. Initially,$\text{gameScore}[i] = 0$ for all `i`.
+You are given an array `points` of size `n` and an integer `m`. There is another array `gameScore` of size `n`, where $\text{gameScore}[i]$ represents the score achieved at the $$i^{\text{th}}$$ game. Initially, $\text{gameScore}[i] = 0$ for all `i`.
 
 You start at index -1, which is outside the array (before the first position at index 0). You can make **at most** `m` moves. In each move, you can either:
 
@@ -17,6 +17,7 @@ Return the **maximum possible minimum** value in `gameScore` after **at most** `
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

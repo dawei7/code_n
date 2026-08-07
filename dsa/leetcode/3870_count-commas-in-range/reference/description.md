@@ -22,6 +22,7 @@ Write each value in its ordinary decimal representation without leading zeros. S
 Return an integer equal to the total number of commas appearing in the standard representations of all integers $x$ satisfying $1\le x\le n$.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

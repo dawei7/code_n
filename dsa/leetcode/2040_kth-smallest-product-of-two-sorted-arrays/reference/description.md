@@ -7,6 +7,7 @@ Given two **sorted 0-indexed** integer arrays `nums1` and `nums2` as well as an 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [2,5], nums2 = [3,4], k = 2$

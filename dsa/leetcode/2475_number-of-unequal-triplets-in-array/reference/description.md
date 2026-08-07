@@ -17,6 +17,7 @@ Return *the number of triplets that meet the conditions.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [4,4,2,4,3]`

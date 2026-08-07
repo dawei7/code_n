@@ -14,6 +14,7 @@ Given an integer array `nums`, move all `0`'s to the end of it while maintaining
 Return `None`. After mutation, the nonzero values retain their original relative order and all zeroes occupy the final positions.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [0,1,0,3,12]`

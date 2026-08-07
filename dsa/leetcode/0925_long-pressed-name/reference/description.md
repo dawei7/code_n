@@ -9,6 +9,7 @@ You examine the `typed` characters of the keyboard. Return `True` if it is possi
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $name = "alex", typed = "aaleex"$

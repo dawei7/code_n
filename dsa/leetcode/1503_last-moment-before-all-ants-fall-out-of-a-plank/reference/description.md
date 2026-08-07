@@ -13,6 +13,7 @@ Given an integer `n` and two integer arrays `left` and `right`, the positions of
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ants.jpg)

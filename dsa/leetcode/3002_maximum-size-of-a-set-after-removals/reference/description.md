@@ -11,6 +11,7 @@ Return *the **maximum** possible size of the set* `s`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [1,2,1,2], nums2 = [1,1,1,1]$

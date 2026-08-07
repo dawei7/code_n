@@ -14,6 +14,7 @@ Return *the maximum product you can get*.
 Return the maximum product of the positive integers in a valid sum decomposition of `n`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 2$

@@ -11,6 +11,7 @@ A string has **dominant** ones if the number of ones in the string is **greater 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -7,6 +7,7 @@ Given the `root` of a binary tree, return *an array of the largest value in each
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/largest_e1.jpg)

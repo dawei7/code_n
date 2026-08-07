@@ -21,6 +21,7 @@ Let $n=\lvert\texttt{workers}\rvert$ and $m=\lvert\texttt{bikes}\rvert$. The inp
 - The minimum sum of Manhattan distances obtained by assigning a distinct bike to every worker.
 
 ### Examples
+
 #### Example 1
 
 ![](images/1261_example_1_v2.png)

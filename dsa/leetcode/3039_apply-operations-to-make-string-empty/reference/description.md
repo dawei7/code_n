@@ -21,6 +21,7 @@ Return *the value of the string *`s`* right **before** applying the **last** ope
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "aabcbbca"`

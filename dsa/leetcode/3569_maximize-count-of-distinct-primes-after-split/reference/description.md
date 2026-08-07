@@ -17,6 +17,7 @@ Return an array containing the result for each query, in the order they are give
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

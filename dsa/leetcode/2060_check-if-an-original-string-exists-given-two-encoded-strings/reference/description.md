@@ -25,6 +25,7 @@ Given two encoded strings `s1` and `s2`, consisting of lowercase English letters
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $s1 = "internationalization", s2 = "i18n"$

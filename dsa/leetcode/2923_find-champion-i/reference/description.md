@@ -13,6 +13,7 @@ Return *the team that will be the champion of the tournament.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `grid = [[0,1],[0,0]]`

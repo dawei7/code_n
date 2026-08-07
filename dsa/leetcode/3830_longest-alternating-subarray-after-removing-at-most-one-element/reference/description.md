@@ -30,6 +30,7 @@ The selected elements must form one contiguous subarray after the optional remov
 Return the maximum length of an alternating subarray obtainable after removing zero or one element from `nums`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

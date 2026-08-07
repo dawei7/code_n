@@ -2,7 +2,7 @@
 
 You have `n` boxes labeled from `0` to $n - 1$. You are given four arrays: `status`, `candies`, `keys`, and `containedBoxes` where:
 
-- $\text{status}[i]$ is `1` if the $$i^{\text{th}}$$box is open and `0` if the$$i^{\text{th}}$$ box is closed,
+- $\text{status}[i]$ is `1` if the $$i^{\text{th}}$$ box is open and `0` if the $$i^{\text{th}}$$ box is closed,
 
 - $\text{candies}[i]$ is the number of candies in the $$i^{\text{th}}$$ box,
 
@@ -19,6 +19,7 @@ Return *the maximum number of candies you can get following the rules above*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $status = [1,0,1,0], candies = [7,5,4,100], keys = [[],[],[1],[]], containedBoxes = [[1,2],[3],[],[]], initialBoxes = [0]$

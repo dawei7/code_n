@@ -17,6 +17,7 @@ The $$n^{\text{th}}$$ **super ugly number** is **guaranteed** to fit in a **32-b
 Return the $n$th positive integer whose prime factors all occur in `primes`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 12, primes = [2,7,13,19]$

@@ -21,6 +21,7 @@ Return *the resulting array*. The returned array must be sorted in ascending ord
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [[1,2],[2,3],[4,5]], nums2 = [[1,4],[3,2],[4,1]]$

@@ -11,6 +11,7 @@ Given a string `word`, return *the number of **vowel substrings** in* `word`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $word = "aeiouu"$

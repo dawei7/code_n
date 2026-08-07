@@ -8,7 +8,7 @@ Initially, only one **white blood cell** (**WBC**) is deployed to eliminate the 
 
 The WBC devises a clever strategy to fight the bacteria:
 
-- The $$i^{\text{th}}$$bacterial strain takes$\text{timeReq}[i]$ units of time to be eliminated.
+- The $$i^{\text{th}}$$ bacterial strain takes $\text{timeReq}[i]$ units of time to be eliminated.
 
 - A single WBC can eliminate **only one** bacterial strain. Afterwards, the WBC is exhausted and cannot perform any other tasks.
 
@@ -24,6 +24,7 @@ You must determine the **minimum** time required to eliminate all the bacterial 
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -13,6 +13,7 @@ An integer `x` is considered **special** if it is divisible by `25`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num = "2245047"$

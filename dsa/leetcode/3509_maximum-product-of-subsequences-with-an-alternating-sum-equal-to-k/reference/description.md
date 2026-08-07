@@ -15,6 +15,7 @@ The **alternating sum** of a **0-indexed** array is defined as the **sum** of th
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

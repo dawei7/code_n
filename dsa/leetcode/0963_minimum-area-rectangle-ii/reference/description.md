@@ -11,6 +11,7 @@ Answers within $10^{-5}$ of the actual answer will be accepted.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/1a.png)

@@ -13,6 +13,7 @@ Return *the **shortest** distance needed to reach the string* `target`. If the s
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["hello","i","am","leetcode","hello"], target = "hello", startIndex = 1$

@@ -15,6 +15,7 @@ Return *an array *`answer`* where *$\text{answer}[i]$* is the number of **differ
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/graaphdrawio-1.png)

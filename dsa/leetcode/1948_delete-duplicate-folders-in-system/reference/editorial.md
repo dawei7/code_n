@@ -130,8 +130,9 @@ To do this, we use an important and intuitive result from tree theory:
 > - $\textit{size}[x]$: the size of the subtree rooted at $x$
 > Then:
 >
-> $$> \sum_{x \in T} \textit{dist}[x] = \sum_{x \in T} \textit{size}[x]
->$$
+> $$
+> \sum_{x \in T} \textit{dist}[x] = \sum_{x \in T} \textit{size}[x]
+> $$
 
 **Why this holds:**
 For any node $x'$, it contributes to the subtree size of each of its ancestors (including itself). Therefore, $x'$ appears once in the subtree size of every node along its path from the root. So the total number of appearances of all nodes across all subtree sizes equals the sum of all distances from the root.
@@ -156,7 +157,7 @@ $12 \cdot \textit{size}[x]$
 
 So the total length of all serialized strings across the entire tree is:
 
-$12 \cdot \sum_{x \in T} \textit{size}[x] \leq 12 \cdot 2 \times$10^{5}$= 2.4 \times 10^6$
+$12 \cdot \sum_{x \in T} \textit{size}[x] \leq 12 \cdot 2 \times $10^{5}$ = 2.4 \times 10^6$
 
 Hence, the space complexity is $\mathcal{O}($10^{6}$)$ in the worst case.
 

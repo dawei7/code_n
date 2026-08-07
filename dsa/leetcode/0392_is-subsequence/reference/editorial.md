@@ -58,13 +58,15 @@ $\text{isSubsequence(source, target)} = \text{isSubsequence(source, target[1:])}
 
 Let us combine the above two cases as follows, which consists of our baby steps of _divide and conquer_, by looking at the first characters of each string.
 
-$$\text{isSubsequence(source, target)} =
+$$
+\text{isSubsequence(source, target)} =
   \left\{
     \begin{array}{l}
       \text{isSubsequence(source[1:], target[1:])} \\
       \text{isSubsequence(source, target[1:])}
     \end{array}
-  \right.$$
+  \right.
+$$
 
 It should be intuitive to implement a recursive solution with the above formulas.
 
@@ -104,13 +106,15 @@ Following the recursive formulas that we presented before, it should be intuitiv
 
 As a reminder, here is the formulas:
 
-$$\text{isSubsequence(source, target)} =
+$$
+\text{isSubsequence(source, target)} =
   \left\{
     \begin{array}{l}
       \text{isSubsequence(source[1:], target[1:])} \\
       \text{isSubsequence(source, target[1:])}
     \end{array}
-  \right.$$
+  \right.
+$$
 
 ```python
 class Solution:

@@ -9,6 +9,7 @@ A node `a` is an ancestor of `b` if either: any child of `a` is equal to `b` or 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/tmp-tree.jpg)

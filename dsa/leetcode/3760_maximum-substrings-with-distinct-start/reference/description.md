@@ -16,6 +16,7 @@ The pieces must concatenate back to exactly `s`. Only their starting characters 
 Return the greatest possible number of substrings in a valid complete partition of `s`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -13,6 +13,7 @@ Return ***any** such a choice as an array *`answer`*, where *$\text{answer}[i]$*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 3, paths = [[1,2],[2,3],[3,1]]$

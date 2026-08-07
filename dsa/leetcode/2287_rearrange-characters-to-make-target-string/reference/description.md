@@ -9,6 +9,7 @@ Return* the **maximum** number of copies of *`target`* that can be formed by tak
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "ilovecodingonleetcode", target = "code"`

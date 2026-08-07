@@ -11,6 +11,7 @@ The **middle node** of a linked list of size `n` is the $⌊n / 2⌋^th$ node fr
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/eg1drawio.png)

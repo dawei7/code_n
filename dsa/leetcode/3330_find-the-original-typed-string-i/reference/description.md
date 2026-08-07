@@ -13,6 +13,7 @@ Return the total number of *possible* original strings that Alice *might* have i
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

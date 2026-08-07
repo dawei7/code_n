@@ -24,6 +24,7 @@ Return *the **minimum** number of operations needed to sort *`nums`.
 Return an integer representing the minimum number of operations into the empty space needed to obtain either `[0, 1, ..., n - 1]` or `[1, 2, ..., n - 1, 0]`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [4,2,0,3,1]`

@@ -13,6 +13,7 @@ Return *an array of the *`k`* parts*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/split1-lc.jpg)

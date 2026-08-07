@@ -22,6 +22,7 @@ Return *the **maximum** sum of the chosen edges*.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 ![](images/treedrawio.png)

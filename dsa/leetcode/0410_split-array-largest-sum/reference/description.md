@@ -17,6 +17,7 @@ A **subarray** is a contiguous part of the array.
 Return the smallest achievable value of the largest subarray sum among all valid splits into `k` groups.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [7,2,5,10,8], k = 2`

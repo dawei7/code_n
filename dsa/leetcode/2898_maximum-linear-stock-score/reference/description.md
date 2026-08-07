@@ -16,6 +16,7 @@ Return *the **maximum** **score** that a linear selection can have*.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $prices = [1,5,3,7,8]$

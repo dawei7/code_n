@@ -13,6 +13,7 @@ Return *an array* `answer`*, where *$\text{answer}[i]$* is the answer to the *$$
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [0,1,1,3], maximumBit = 2`

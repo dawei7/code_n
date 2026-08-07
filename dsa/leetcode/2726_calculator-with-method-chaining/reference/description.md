@@ -23,6 +23,7 @@ Solutions within $10^{-5}$ of the actual result are considered correct.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** ``

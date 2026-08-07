@@ -17,6 +17,7 @@ Return *the **minimum** number of levels Alice should play to gain more points*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

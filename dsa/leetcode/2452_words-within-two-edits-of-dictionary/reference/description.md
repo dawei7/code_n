@@ -11,6 +11,7 @@ Return* a list of all words from *`queries`*, **that match with some word from *
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $queries = ["word","note","ants","wood"], dictionary = ["wood","joke","moat"]$

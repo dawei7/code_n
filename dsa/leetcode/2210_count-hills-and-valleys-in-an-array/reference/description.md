@@ -11,6 +11,7 @@ Return *the number of hills and valleys in *`nums`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,4,1,1,6,5]`

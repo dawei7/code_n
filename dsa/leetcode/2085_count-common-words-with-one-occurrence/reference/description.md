@@ -7,6 +7,7 @@ Given two string arrays `words1` and `words2`, return *the number of strings tha
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words1 = ["leetcode","is","amazing","as","is"], words2 = ["amazing","leetcode","is"]$

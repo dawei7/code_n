@@ -9,6 +9,7 @@ Given three integers `a`​​​​​, `b`,​​​​​ and `c`​​​​
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $a = 2, b = 4, c = 6$

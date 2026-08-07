@@ -9,6 +9,7 @@ Return *the **number of pairs** of different nodes that are **unreachable** from
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/tc-3.png)

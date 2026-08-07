@@ -17,6 +17,7 @@ Return *an array *`answer`* of length *`k`* where *$\text{answer}[j]$* contains 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $rooms = [[2,2],[1,2],[3,2]], queries = [[3,1],[3,3],[5,2]]$

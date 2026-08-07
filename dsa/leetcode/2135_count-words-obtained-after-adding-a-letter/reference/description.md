@@ -26,6 +26,7 @@ Return *the **number of strings** in *`targetWords`* that can be obtained by per
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $startWords = ["ant","act","tack"], targetWords = ["tack","act","acti"]$

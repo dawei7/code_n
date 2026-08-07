@@ -1,6 +1,6 @@
 ## Description
 
-In a warehouse, there is a row of barcodes, where the $$i^{\text{th}}$$barcode is$\text{barcodes}[i]$.
+In a warehouse, there is a row of barcodes, where the $$i^{\text{th}}$$ barcode is $\text{barcodes}[i]$.
 
 Rearrange the barcodes so that no two adjacent barcodes are equal. You may return any answer, and it is guaranteed an answer exists.
 ### Function Contract
@@ -9,6 +9,7 @@ Rearrange the barcodes so that no two adjacent barcodes are equal. You may retur
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $barcodes = [1,1,1,2,2,2]$

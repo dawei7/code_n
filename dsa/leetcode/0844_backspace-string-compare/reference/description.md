@@ -9,6 +9,7 @@ Note that after backspacing an empty text, the text will continue empty.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "ab#c", t = "ad#c"`

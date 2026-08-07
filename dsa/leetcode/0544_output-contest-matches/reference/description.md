@@ -19,6 +19,7 @@ We will use parentheses `'('`, and `')'` and commas `','` to represent the conte
   group occupies the left side of its pair.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 4$

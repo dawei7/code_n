@@ -11,6 +11,7 @@ Return a 2D array of integers `freqs` that represent all the SCSs. Each $\text{f
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

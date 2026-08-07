@@ -9,6 +9,7 @@ Return *a **0-indexed **integer array *`ans`* of size *`2`* where *$\text{ans}[0
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `grid = [[1,3],[2,2]]`

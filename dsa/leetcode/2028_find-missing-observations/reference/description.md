@@ -15,6 +15,7 @@ Note that `mean` is an integer, so the sum of the $n + m$ rolls should be divisi
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $rolls = [3,2,4,3], mean = 4, n = 2$

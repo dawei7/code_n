@@ -17,6 +17,7 @@ Return* the **minimum** possible value of the **maximum** integer of *`nums`* af
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,7,1,6]`

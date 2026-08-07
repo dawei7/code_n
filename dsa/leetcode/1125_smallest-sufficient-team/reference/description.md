@@ -1,6 +1,6 @@
 ## Description
 
-In a project, you have a list of required skills $\text{req}_{skills}$, and a list of people. The $$i^{\text{th}}$$person$\text{people}[i]$ contains a list of skills that the person has.
+In a project, you have a list of required skills $\text{req}_{skills}$, and a list of people. The $$i^{\text{th}}$$ person $\text{people}[i]$ contains a list of skills that the person has.
 
 Consider a sufficient team: a set of people such that for every required skill in $\text{req}_{skills}$, there is at least one person in the team who has that skill. We can represent these teams by the index of each person.
 
@@ -15,6 +15,7 @@ It is **guaranteed** an answer exists.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $\text{req}_{skills} = ["java","nodejs","reactjs"], people = [["java"],["nodejs"],["nodejs","reactjs"]]$

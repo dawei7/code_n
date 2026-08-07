@@ -22,6 +22,7 @@ Return *the **minimum** swaps required to make *`nums`* a valid array*.
 Return an integer representing the minimum number of adjacent swaps required to move a smallest element to the first index and a largest element to the last index.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,4,5,5,3,1]`

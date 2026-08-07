@@ -586,7 +586,7 @@ HAVING
 ```
 - In the final SELECT statement, we filter out rows from `RankedCalls` where the rank is either 1 in ascending order (`rank_earliest_call`) or 1 in descending order (`rank_latest_call`). This effectively selects the first and last calls of each user for each day.
 - We then group the results by $\text{user}_{id}$ and $\text{call}_{date}$.
-- The $HAVING COUNT(DISTINCT other_{participant\_id}) = 1$ clause is crucial. It ensures that for each group (user-day combination), there is only one distinct `other_participant_id` for both the first and last calls. In other words, the user's first and last calls of the day were with the same person.
+- The $HAVING COUNT(DISTINCT other_participant_id) = 1$ clause is crucial. It ensures that for each group (user-day combination), there is only one distinct `other_participant_id` for both the first and last calls. In other words, the user's first and last calls of the day were with the same person.
 
 #### Implementation
 

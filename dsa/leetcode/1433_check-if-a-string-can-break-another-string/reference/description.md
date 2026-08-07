@@ -9,6 +9,7 @@ A string `x` can break string `y` (both of size `n`) if $x[i] \ge y[i]$ (in alph
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $s1 = "abc", s2 = "xya"$

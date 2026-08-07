@@ -11,6 +11,7 @@ Given two arrays of integers `nums1` and `nums2`, return the number of triplets 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [7,4], nums2 = [5,2,8,9]$

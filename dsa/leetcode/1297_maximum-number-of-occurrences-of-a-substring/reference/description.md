@@ -11,6 +11,7 @@ Given a string `s`, return the maximum number of occurrences of **any** substrin
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "aababcaab", maxLetters = 2, minSize = 3, maxSize = 4`

@@ -1,6 +1,6 @@
 ## Description
 
-You are given a **0-indexed** integer array `buses` of length `n`, where $\text{buses}[i]$ represents the departure time of the $$i^{\text{th}}$$bus. You are also given a **0-indexed** integer array `passengers` of length `m`, where$\text{passengers}[j]$represents the arrival time of the$$j^{\text{th}}$$ passenger. All bus departure times are unique. All passenger arrival times are unique.
+You are given a **0-indexed** integer array `buses` of length `n`, where $\text{buses}[i]$ represents the departure time of the $$i^{\text{th}}$$ bus. You are also given a **0-indexed** integer array `passengers` of length `m`, where $\text{passengers}[j]$ represents the arrival time of the $$j^{\text{th}}$$ passenger. All bus departure times are unique. All passenger arrival times are unique.
 
 You are given an integer `capacity`, which represents the **maximum** number of passengers that can get on each bus.
 
@@ -21,6 +21,7 @@ Return *the latest time you may arrive at the bus station to catch a bus*. You *
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $buses = [10,20], passengers = [2,17,18,19], capacity = 2$

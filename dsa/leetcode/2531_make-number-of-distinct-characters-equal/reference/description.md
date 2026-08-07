@@ -11,6 +11,7 @@ Return `true` *if it is possible to get the number of distinct characters in* `w
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $word1 = "ac", word2 = "b"$

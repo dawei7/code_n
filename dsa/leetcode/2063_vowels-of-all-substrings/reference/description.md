@@ -11,6 +11,7 @@ A **substring** is a contiguous (non-empty) sequence of characters within a stri
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $word = "aba"$

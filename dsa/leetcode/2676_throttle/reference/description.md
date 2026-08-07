@@ -27,6 +27,7 @@ The above diagram shows how throttle will transform events. Each rectangle repre
 Return a throttled function that executes `fn` immediately on leading calls and coalesces intermediate calls into a single trailing execution per interval `t`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** ``

@@ -1,6 +1,6 @@
 ## Description
 
-Given `n` `cuboids` where the dimensions of the $$i^{\text{th}}$$cuboid is$\text{cuboids}[i] = [\text{width}_{i}, \text{length}_{i}, \text{height}_{i}]$ (**0-indexed**). Choose a **subset** of `cuboids` and place them on each other.
+Given `n` `cuboids` where the dimensions of the $$i^{\text{th}}$$ cuboid is $\text{cuboids}[i] = [\text{width}_{i}, \text{length}_{i}, \text{height}_{i}]$ (**0-indexed**). Choose a **subset** of `cuboids` and place them on each other.
 
 You can place cuboid `i` on cuboid `j` if $\text{width}_{i} \le \text{width}_{j}$ and $\text{length}_{i} \le \text{length}_{j}$ and $\text{height}_{i} \le \text{height}_{j}$. You can rearrange any cuboid's dimensions by rotating it to put it on another cuboid.
 
@@ -11,6 +11,7 @@ Return *the **maximum height** of the stacked* `cuboids`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 **

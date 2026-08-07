@@ -269,7 +269,7 @@ Here we create two arrays: $\text{dp}_{rob}$ and `dp_not_rob`.
 
 $\text{dp}_{rob}[i]$ represents the max money we can rob if we start from node `i` and rob this node.
 
-$\text{dp\\_not\\_rob}[i]$ represents the max money we can rob if we start from node `i` and do not rob this node.
+$\text{dp\_not\_rob}[i]$ represents the max money we can rob if we start from node `i` and do not rob this node.
 
 Here comes a question: what is node `i`? We do not have an index `i` for each node.
 
@@ -295,19 +295,19 @@ Also, we need to build a graph to store the relationships between those integers
 
 OK. Now we have two questions remained: the basic cases of our DP, and the transition equations.
 
-For the first question, the basic cases should be leaf nodes. For those leaf nodes, $\text{dp}_{rob}[i]$ is just `node.val`, and $\text{dp\\_not\\_rob}[i]$ is 0.
+For the first question, the basic cases should be leaf nodes. For those leaf nodes, $\text{dp}_{rob}[i]$ is just `node.val`, and $\text{dp\_not\_rob}[i]$ is 0.
 
-For the the transition equations, let's say we need to calculate $\text{dp}_{rob}[i]$ and $\text{dp\\_not\\_rob}[i]$.
+For the the transition equations, let's say we need to calculate $\text{dp}_{rob}[i]$ and $\text{dp\_not\_rob}[i]$.
 
-If we want to rob node `i`, then we can not rob its children. Each child provides $\text{dp\\_not\\_rob}[child]$. Therefore:
+If we want to rob node `i`, then we can not rob its children. Each child provides $\text{dp\_not\_rob}[child]$. Therefore:
 
-$\text{dp\\\_rob}_i = \text{tree}_i + \sum_{\text{child} \in \text{graph}_i}\text{dp\\\_not\\\_rob}_{\text{child}}$
+$\text{dp\\_rob}_i = \text{tree}_i + \sum_{\text{child} \in \text{graph}_i}\text{dp\\_not\\_rob}_{\text{child}}$
 
-If we do not want to rob node `i`, then we can choose to rob its children or not. In this case, each child provides the maximum of $\text{dp}_{rob}[child]$ and $\text{dp\\_not\\_rob}[child]$.
+If we do not want to rob node `i`, then we can choose to rob its children or not. In this case, each child provides the maximum of $\text{dp}_{rob}[child]$ and $\text{dp\_not\_rob}[child]$.
 
 Therefore:
 
-$\text{dp\\\_not\\\_rob}_i = \sum_{\text{child} \in \text{graph}_i}\max(\text{dp\\\_rob}_{\text{child}}, \text{dp\\\_not\\\_rob}_{\text{child}})$
+$\text{dp\\_not\\_rob}_i = \sum_{\text{child} \in \text{graph}_i}\max(\text{dp\\_rob}_{\text{child}}, \text{dp\\_not\\_rob}_{\text{child}})$
 
 Note that the child's index is always larger than the parent's index in our mapping, so we should iterate the dp arrays backward.
 
@@ -315,15 +315,15 @@ Note that the child's index is always larger than the parent's index in our mapp
 
 Transform the tree from node-based into an array-based `tree` and a map `graph`.
 
-Then create two DP arrays, where $\text{dp}_{rob}[i]$ represents the maximum amount of money the thief can rob if starting from node `i` with robbing this node, and $\text{dp\\_not\\_rob}[i]$ represents the maximum amount of money the thief can rob if starting from node `i` without robbing this node.
+Then create two DP arrays, where $\text{dp}_{rob}[i]$ represents the maximum amount of money the thief can rob if starting from node `i` with robbing this node, and $\text{dp\_not\_rob}[i]$ represents the maximum amount of money the thief can rob if starting from node `i` without robbing this node.
 
 The transition equations is:
 
-$\text{dp\\\_rob}_i = \text{tree}_i + \sum_{\text{child} \in \text{graph}_i}\text{dp\\\_not\\\_rob}_{\text{child}}$
+$\text{dp\\_rob}_i = \text{tree}_i + \sum_{\text{child} \in \text{graph}_i}\text{dp\\_not\\_rob}_{\text{child}}$
 
-$\text{dp\\\_not\\\_rob}_i = \sum_{\text{child} \in \text{graph}_i}\max(\text{dp\\\_rob}_{\text{child}}, \text{dp\\\_not\\\_rob}_{\text{child}})$
+$\text{dp\\_not\\_rob}_i = \sum_{\text{child} \in \text{graph}_i}\max(\text{dp\\_rob}_{\text{child}}, \text{dp\\_not\\_rob}_{\text{child}})$
 
-Finally, return the maximum of $\text{dp}_{rob}[0]$ and $\text{dp\\_not\\_rob}[0]$.
+Finally, return the maximum of $\text{dp}_{rob}[0]$ and $\text{dp\_not\_rob}[0]$.
 
 **Implementation**
 

@@ -19,6 +19,7 @@ A **palindrome** is a string that reads the same forward as well as backward.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $word1 = "cacb", word2 = "cbba"$

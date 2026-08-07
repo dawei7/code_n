@@ -5,13 +5,14 @@ Given an array `nums` containing `n` distinct numbers in the range `[0, n]`, ret
 
 **Inputs**
 
-- `nums`: Distinct integers from `[0,n]` with exactly one value omitted, where `n == nums.length`.
+- `nums`: Distinct integers from `[0,n]` with exactly one value omitted, where $n = \text{nums.length}$.
 
 **Return value**
 
 Return the one value in `[0,n]` that does not occur in `nums`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

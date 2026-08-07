@@ -13,6 +13,7 @@ A **zero matrix** is a matrix with all cells equal to `0`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/matrix.png)

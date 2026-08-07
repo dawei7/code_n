@@ -50,7 +50,7 @@ After computing the result for all queries, return the **bitwise XOR** of those 
 **Inputs**
 
 - `n`: The number of nodes in the rooted tree.
-- `parent`: An array describing each node's parent; the root uses `parent[0] = -1`.
+- `parent`: An array describing each node's parent; the root uses $\text{parent}[0] = -1$.
 - `gates`: For each node, `[red, blue, white]` gives the number of separate gate instances of each color.
 - `queries`: Query quadruples `[alice_node, alice_card, bob_node, bob_card]`, where card `0` is blue and card `1` is red.
 
@@ -63,6 +63,7 @@ Return one integer: the bitwise XOR of the $q$ per-query joint route counts afte
 For one query, Alice's and Bob's route counts are independent and are multiplied modulo $10^9 + 7$. A zero-length route from a starting node already equal to the LCA has count one.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

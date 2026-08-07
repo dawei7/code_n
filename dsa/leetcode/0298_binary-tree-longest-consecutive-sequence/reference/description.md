@@ -16,6 +16,7 @@ Note that the path can start **at any node** in the tree, and you cannot go from
 Return the number of nodes in the longest downward path whose values increase by exactly one at every edge.
 
 ### Examples
+
 #### Example 1
 
 ![](images/consec1-1-tree.jpg)

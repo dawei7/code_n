@@ -19,6 +19,7 @@ Given an integer `k`, return *the **maximum star sum** of a star graph containin
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/max-star-sum-example1drawio.png)

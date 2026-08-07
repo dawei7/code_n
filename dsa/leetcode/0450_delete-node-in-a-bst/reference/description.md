@@ -21,6 +21,7 @@ Basically, the deletion can be divided into two stages:
 The standalone app defines a minimal local equivalent of LeetCode's injected `TreeNode` model. It accepts and returns level-order tree values, using `None` for a missing child.
 
 ### Examples
+
 #### Example 1
 
 ![](images/del_node_1.jpg)

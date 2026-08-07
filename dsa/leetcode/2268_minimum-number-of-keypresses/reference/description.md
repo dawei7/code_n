@@ -24,6 +24,7 @@ Given a string `s`, return *the **minimum** number of keypresses needed to type 
 Return an integer representing the minimum number of total keypresses required to type `s` under an optimal assignment of all 26 letters to the 9 buttons.
 
 ### Examples
+
 #### Example 1
 
 ![](images/image-20220505184346-1.png)

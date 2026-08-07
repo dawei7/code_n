@@ -17,6 +17,7 @@ Return `true` if such a substring exists. Otherwise, return `false`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

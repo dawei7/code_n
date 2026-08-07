@@ -13,6 +13,7 @@ Given an integer `n`, return* the **minimum** possible number of boxes touching 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/3-boxes.png)

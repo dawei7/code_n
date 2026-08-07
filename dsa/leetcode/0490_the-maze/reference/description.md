@@ -21,6 +21,7 @@ Each chosen direction is committed until a wall stops the ball. Intermediate cel
 decision points.
 
 ### Examples
+
 #### Example 1
 
 ![](images/maze1-1-grid.jpg)

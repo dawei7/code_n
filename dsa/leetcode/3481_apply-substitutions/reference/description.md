@@ -8,6 +8,7 @@ Return the fully substituted `text` string which **does not** contain any **plac
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -9,7 +9,7 @@ Return *the ordering of courses you should take to finish all courses*. If there
 
 **Inputs**
 
-- `numCourses`: The number of courses, labeled from `0` through `numCourses - 1`.
+- `numCourses`: The number of courses, labeled from `0` through $numCourses - 1$.
 - `prerequisites`: Pairs `[course, prerequisite]` describing the required order.
 
 **Return value**
@@ -17,6 +17,7 @@ Return *the ordering of courses you should take to finish all courses*. If there
 Return any ordering containing every course and respecting all prerequisites, or an empty list if no such ordering exists.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $numCourses = 2, prerequisites = [[1,0]]$

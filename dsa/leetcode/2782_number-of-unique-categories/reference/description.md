@@ -14,6 +14,7 @@ Return *the number of unique categories.*
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 6, categoryHandler = [1,1,2,2,3,3]$

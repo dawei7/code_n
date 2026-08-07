@@ -13,6 +13,7 @@ A **subset** of `nums` is an array that can be obtained by deleting some (possib
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,4,6], k = 2`

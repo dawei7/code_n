@@ -11,6 +11,7 @@ Note that each character should belong to exactly one substring in a partition.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "abacaba"`

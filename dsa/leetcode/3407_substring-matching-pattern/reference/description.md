@@ -11,6 +11,7 @@ Return `true` if `p` can be made a substring of `s`, and `false` otherwise.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

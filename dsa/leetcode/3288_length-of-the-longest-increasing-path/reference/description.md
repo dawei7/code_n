@@ -17,6 +17,7 @@ Return the **maximum** length of an **increasing path** that contains $\text{coo
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

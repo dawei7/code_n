@@ -48,9 +48,10 @@ Return a table with these columns:
 - `id`: the primary-key ID from an invalid student's `Students` row.
 - `name`: that student's name from the same row.
 
-A row qualifies exactly when its `department_id` does not equal the `id` of any current department. The result order is unrestricted.
+A row qualifies exactly when its $\text{department}_{id}$ does not equal the `id` of any current department. The result order is unrestricted.
 
 ### Examples
+
 #### Example 1
 
 ```

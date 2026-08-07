@@ -12,6 +12,7 @@ Given an integer array `nums` where the elements are sorted in **ascending order
 Return the root of any height-balanced binary search tree containing the values of `nums`. App results display a returned tree in level order.
 
 ### Examples
+
 #### Example 1
 
 ![](images/btree1.jpg)

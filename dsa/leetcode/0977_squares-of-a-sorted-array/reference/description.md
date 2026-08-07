@@ -7,6 +7,7 @@ Given an integer array `nums` sorted in **non-decreasing** order, return *an arr
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [-4,-1,0,3,10]`

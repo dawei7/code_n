@@ -138,8 +138,10 @@ To compute Case 3, define
 $\textit{tmpSum}_k = z_k+z_{k+1}.$
 
 Then
-$$val_3 = \max_{i+1\le k\le j-2}
-\textit{tmpSum}_k.$$
+$$
+val_3 = \max_{i+1\le k\le j-2}
+\textit{tmpSum}_k.
+$$
 
 This becomes a standard range maximum query on the array $\textit{tmpSum}$, which can be answered using a segment tree.
 

@@ -17,6 +17,7 @@ Let $n = \lvert\texttt{s}\rvert$. Removing characters retains a subsequence of `
 Return `true` if some palindromic subsequence of `s` has length at least $n-k$. Otherwise, return `false`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "abcdeca", k = 2`

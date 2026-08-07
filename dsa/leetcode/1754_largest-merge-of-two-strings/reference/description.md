@@ -22,6 +22,7 @@ A string `a` is lexicographically larger than a string `b` (of the same length) 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $word1 = "cabaa", word2 = "bcaaa"$

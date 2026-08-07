@@ -34,6 +34,7 @@ All indices with the same prefix form one maximal connected group. The requested
 Return the number of distinct valid length-$K$ prefixes that occur at two or more indices.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -11,6 +11,7 @@ Return *the final string that will be present on your laptop screen.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "string"`

@@ -21,6 +21,7 @@ Return an integer denoting the *maximum total cost* of the subarrays after split
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

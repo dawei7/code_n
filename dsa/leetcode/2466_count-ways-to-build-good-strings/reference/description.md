@@ -17,6 +17,7 @@ Return *the number of **different** good strings that can be constructed satisfy
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $low = 3, high = 3, zero = 1, one = 1$

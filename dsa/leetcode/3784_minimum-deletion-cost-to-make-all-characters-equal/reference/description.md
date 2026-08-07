@@ -19,6 +19,7 @@ Let $N=\lvert s\rvert=\lvert\texttt{cost}\rvert$. A deletion removes a character
 Return the minimum total cost of deletions that leaves a nonempty string containing only one distinct character.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

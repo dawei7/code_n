@@ -14,6 +14,7 @@ Return *the **maximum** **sum ****score** of *`nums`* at any index.*
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [4,3,-2,5]`

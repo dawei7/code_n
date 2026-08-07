@@ -11,6 +11,7 @@ Return the **sum** of the **digit differences** between **all** pairs of integer
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

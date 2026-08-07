@@ -32,9 +32,10 @@ Return any grid such that there is **exactly one valid path** from the top-left 
 
 **Return value**
 
-Return a list of `m` strings, each of length `n`, containing only `.` and `#`. The free cells must admit exactly one right-or-down path from `(0, 0)` to `(m - 1, n - 1)`.
+Return a list of `m` strings, each of length `n`, containing only `.` and `#`. The free cells must admit exactly one right-or-down path from `(0, 0)` to $(m - 1, n - 1)$.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

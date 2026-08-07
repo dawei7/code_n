@@ -4,9 +4,9 @@
 
 According to the problem, the cost $x$ of any fruit must appear an even number of times across the two fruit baskets; otherwise, it is impossible to evenly distribute the fruit with cost $x$ between the two baskets. To compute the imbalance in fruit costs between the two baskets, we can use two hash tables, $\textit{count}_1$ and $\textit{count}_2$, to count the number of times each fruit cost appears in $\textit{basket}_1$ and $\textit{basket}_2$, respectively. For a given fruit cost $x$:
 
-1. If $\textit{count}\text{\_1}[x] + \textit{count}\text{\_2}[x]$ is odd, we return $-1$ immediately, since balancing is impossible.
+1. If $\textit{count}\text{_1}[x] + \textit{count}\text{_2}[x]$ is odd, we return $-1$ immediately, since balancing is impossible.
 
-2. If $\textit{count}\text{\_1}[x] > \textit{count}\text{\_2}[x]$, then $\frac{\textit{count}\text{\_1}[x] - \textit{count}\text{\_2}[x]}{2}$ fruits with cost $x$ must be moved from $\textit{basket}_1$ to $\textit{basket}_2$, and vice versa.
+2. If $\textit{count}\text{_1}[x] > \textit{count}\text{_2}[x]$, then $\frac{\textit{count}\text{_1}[x] - \textit{count}\text{_2}[x]}{2}$ fruits with cost $x$ must be moved from $\textit{basket}_1$ to $\textit{basket}_2$, and vice versa.
 
 Following point 2, we enumerate all such costs $x$ and add each to a list called $\textit{merge}$ with a count equal to the number of excess fruits that need to be exchanged. We then sort $\textit{merge}$ in increasing order. According to the greedy strategy, we pair the smallest values from the first half of the list with the largest from the second half to minimize the overall exchange cost. For each pair of costs $x_1$ and $x_2$ ($x_1 \lt x_2$), there are two possible exchange strategies:
 

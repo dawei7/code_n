@@ -17,6 +17,7 @@ Each child `i` has a greed factor $g[i]$, which is the minimum size of a cookie 
 A cookie whose size exactly equals a child's greed factor is sufficient.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $g = [1,2,3], s = [1,1]$

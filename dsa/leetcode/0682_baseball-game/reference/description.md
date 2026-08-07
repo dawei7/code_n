@@ -34,6 +34,7 @@ The test cases are generated such that the answer and all intermediate calculati
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $ops = ["5","2","C","D","+"]$

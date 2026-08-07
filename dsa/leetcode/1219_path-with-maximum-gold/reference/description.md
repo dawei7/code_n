@@ -19,6 +19,7 @@ Return the maximum amount of gold you can collect under the conditions:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `grid = [[0,6,0],[5,8,7],[0,9,0]]`

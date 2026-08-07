@@ -17,6 +17,7 @@ Return *the number of items that match the given rule*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $items = [["phone","blue","pixel"],["computer","silver","lenovo"],["phone","gold","iphone"]], ruleKey = "color", ruleValue = "silver"$

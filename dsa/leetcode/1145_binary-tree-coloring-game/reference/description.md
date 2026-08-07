@@ -15,6 +15,7 @@ You are the second player. If it is possible to choose such a `y` to ensure you 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/1480-binary-tree-coloring-game.png)

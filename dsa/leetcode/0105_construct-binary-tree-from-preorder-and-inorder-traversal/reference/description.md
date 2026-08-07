@@ -13,6 +13,7 @@ Given two integer arrays `preorder` and `inorder` where `preorder` is the preord
 Return the root of the binary tree represented by both traversals. App results display the returned tree in level order.
 
 ### Examples
+
 #### Example 1
 
 ![](images/tree.jpg)

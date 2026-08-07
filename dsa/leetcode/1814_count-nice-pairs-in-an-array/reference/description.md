@@ -13,6 +13,7 @@ Return *the number of nice pairs of indices*. Since that number can be too large
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [42,11,1,97]`

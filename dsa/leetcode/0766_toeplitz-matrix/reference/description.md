@@ -9,6 +9,7 @@ A matrix is **Toeplitz** if every diagonal from top-left to bottom-right has the
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1.jpg)

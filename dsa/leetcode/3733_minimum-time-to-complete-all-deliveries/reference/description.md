@@ -13,8 +13,8 @@ Return an integer denoting the **minimum** total time (in hours) required to com
 
 **Inputs**
 
-- `d`: A length-two array where `d[i]` is drone `i`'s required delivery count.
-- `r`: A length-two array where `r[i]` is drone `i`'s recharge interval.
+- `d`: A length-two array where $d[i]$ is drone `i`'s required delivery count.
+- `r`: A length-two array where $r[i]$ is drone `i`'s recharge interval.
 
 Hours are numbered from `1`. A drone is unavailable at hours divisible by its recharge interval. The drones may recharge simultaneously, but the single-delivery-per-hour rule applies whenever either could deliver.
 
@@ -23,6 +23,7 @@ Hours are numbered from `1`. A drone is unavailable at hours divisible by its re
 Return the smallest final hour by which both delivery quotas can be assigned legally.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

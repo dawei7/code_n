@@ -11,6 +11,7 @@ Return the **maximum** score you can achieve.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

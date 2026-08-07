@@ -14,6 +14,7 @@ Given an integer array `nums` representing the amount of money of each house, re
 Return the maximum sum obtainable without choosing adjacent houses, including the first-last adjacency.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,3,2]`

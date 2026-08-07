@@ -15,6 +15,7 @@ Two values `val1` and `val2` are coprime if $gcd(val1, val2) = 1$ where `gcd(val
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/second.PNG)

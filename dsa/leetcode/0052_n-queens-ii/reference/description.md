@@ -14,6 +14,7 @@ Given an integer `n`, return *the number of distinct solutions to the **n-queens
 Return the number of distinct valid n-queens configurations.
 
 ### Examples
+
 #### Example 1
 
 ![](images/queens.jpg)

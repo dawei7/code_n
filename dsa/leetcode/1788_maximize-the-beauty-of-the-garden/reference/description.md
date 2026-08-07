@@ -16,6 +16,7 @@ Return the maximum possible beauty of some **valid** garden after you have remov
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $flowers = [1,2,3,1,2]$

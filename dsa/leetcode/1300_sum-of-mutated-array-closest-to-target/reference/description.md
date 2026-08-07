@@ -11,6 +11,7 @@ Notice that the answer is not neccesarilly a number from `arr`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [4,9,3], target = 10`

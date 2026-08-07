@@ -1,6 +1,6 @@
 ## Description
 
-You are given an array of non-overlapping intervals `intervals` where $\text{intervals}[i] = [\text{start}_{i}, \text{end}_{i}]$ represent the start and the end of the $$i^{\text{th}}$$interval and `intervals` is sorted in ascending order by$\text{start}_{i}$. You are also given an interval$newInterval = [start, end]$ that represents the start and end of another interval.
+You are given an array of non-overlapping intervals `intervals` where $\text{intervals}[i] = [\text{start}_{i}, \text{end}_{i}]$ represent the start and the end of the $$i^{\text{th}}$$ interval and `intervals` is sorted in ascending order by $\text{start}_{i}$. You are also given an interval $newInterval = [start, end]$ that represents the start and end of another interval.
 
 Two intervals are considered overlapping if they share **at least** one point.
 
@@ -21,6 +21,7 @@ Return `intervals`* after the insertion*.
 Return the sorted, non-overlapping intervals after insertion.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $intervals = [[1,3],[6,9]], newInterval = [2,5]$

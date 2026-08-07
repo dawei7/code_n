@@ -1,6 +1,6 @@
 ## Description
 
-**Run-length encoding** is a compression algorithm that allows for an integer array `nums` with many segments of **consecutive repeated** numbers to be represented by a (generally smaller) 2D array `encoded`. Each $\text{encoded}[i] = [\text{val}_{i}, \text{freq}_{i}]$ describes the $$i^{\text{th}}$$segment of repeated numbers in `nums` where$\text{val}_{i}$is the value that is repeated$\text{freq}_{i}$ times.
+**Run-length encoding** is a compression algorithm that allows for an integer array `nums` with many segments of **consecutive repeated** numbers to be represented by a (generally smaller) 2D array `encoded`. Each $\text{encoded}[i] = [\text{val}_{i}, \text{freq}_{i}]$ describes the $$i^{\text{th}}$$ segment of repeated numbers in `nums` where $\text{val}_{i}$ is the value that is repeated $\text{freq}_{i}$ times.
 
 - For example, `nums = [1,1,1,2,2,2,2,2]` is represented by the **run-length encoded** array $encoded = [[1,3],[2,5]]$. Another way to read this is "three `1`'s followed by five `2`'s".
 
@@ -12,7 +12,7 @@ The **product** of two run-length encoded arrays `encoded1` and `encoded2` can b
 
 - **Compress** `prodNums` into a run-length encoded array and return it.
 
-You are given two **run-length encoded** arrays `encoded1` and `encoded2` representing full arrays `nums1` and `nums2` respectively. Both `nums1` and `nums2` have the **same length**. Each $\text{encoded1}[i] = [\text{val}_{i}, \text{freq}_{i}]$ describes the $$i^{\text{th}}$$segment of `nums1`, and each$\text{encoded2}[j] = [\text{val}_{j}, \text{freq}_{j}]$describes the$$j^{\text{th}}$$ segment of `nums2`.
+You are given two **run-length encoded** arrays `encoded1` and `encoded2` representing full arrays `nums1` and `nums2` respectively. Both `nums1` and `nums2` have the **same length**. Each $\text{encoded1}[i] = [\text{val}_{i}, \text{freq}_{i}]$ describes the $$i^{\text{th}}$$ segment of `nums1`, and each $\text{encoded2}[j] = [\text{val}_{j}, \text{freq}_{j}]$ describes the $$j^{\text{th}}$$ segment of `nums2`.
 
 Return *the **product** of *`encoded1`* and *`encoded2`.
 
@@ -22,6 +22,7 @@ Return *the **product** of *`encoded1`* and *`encoded2`.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $encoded1 = [[1,3],[2,3]], encoded2 = [[6,3],[3,3]]$

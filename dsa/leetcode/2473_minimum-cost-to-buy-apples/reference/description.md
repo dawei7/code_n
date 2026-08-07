@@ -12,6 +12,7 @@ Given the integer `k`, return *a 1-based array *`answer`* of size *`n`* where *$
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 ![](images/graph55.png)

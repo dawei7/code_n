@@ -140,9 +140,11 @@ To minimize the load on any single store, the products of type $i$ should be dis
 
 Thus, our objective is to minimize the maximum number of products any store receives. The function should return:
 
-$$\begin{aligned}
-    f(i) \&= \max_{i \in [0, m-1]} \left\lceil \frac{\text{quantities}_i}{s_i} \right\rceil
-\end{aligned}$$
+$$
+\begin{aligned}
+    f(i) &= \max_{i \in [0, m-1]} \left\lceil \frac{\text{quantities}_i}{s_i} \right\rceil
+\end{aligned}
+$$
 
 Now, consider the greedy approach: If at any point in the algorithm, we fail to assign the next available store to the product type with the highest ratio $\text{quantity}[i]$ to $\text{assigned}_{stores}[i]$, that ratio will remain the largest, leading to a non-optimal distribution. This would cause the highest ratio to dominate, violating our goal of minimizing the maximum number of products per store.
 

@@ -12,7 +12,7 @@ The system should support the following functions:
 
 - **Drop**: Drops off a **previously rented copy** of a given movie at a given shop.
 
-- **Report**: Returns the **cheapest 5 rented movies** (possibly of the same movie ID) as a 2D list `res` where $\text{res}[j] = [\text{shop}_{j}, \text{movie}_{j}]$ describes that the $$j^{\text{th}}$$cheapest rented movie$\text{movie}_{j}$was rented from the shop$\text{shop}_{j}$. The movies in `res` should be sorted by **price **in ascending order, and in case of a tie, the one with the **smaller **$\text{shop}_{j}$should appear first, and if there is still tie, the one with the **smaller **$\text{movie}_{j}$ should appear first. If there are fewer than 5 rented movies, then all of them should be returned. If no movies are currently being rented, then an empty list should be returned.
+- **Report**: Returns the **cheapest 5 rented movies** (possibly of the same movie ID) as a 2D list `res` where $\text{res}[j] = [\text{shop}_{j}, \text{movie}_{j}]$ describes that the $$j^{\text{th}}$$ cheapest rented movie $\text{movie}_{j}$ was rented from the shop $\text{shop}_{j}$. The movies in `res` should be sorted by **price **in ascending order, and in case of a tie, the one with the **smaller **$\text{shop}_{j}$ should appear first, and if there is still tie, the one with the **smaller **$\text{movie}_{j}$ should appear first. If there are fewer than 5 rented movies, then all of them should be returned. If no movies are currently being rented, then an empty list should be returned.
 
 Implement the `MovieRentingSystem` class:
 
@@ -33,6 +33,7 @@ Implement the `MovieRentingSystem` class:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ```

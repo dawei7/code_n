@@ -11,6 +11,7 @@ It is **guaranteed** that `target` exists in `nums`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3,4,5], target = 5, start = 3`

@@ -9,8 +9,8 @@ Return *the earliest time for which every person became acquainted with every ot
 
 **Inputs**
 
-- `logs`: friendship events `[timestamp_i, x_i, y_i]`; the input order need not be chronological.
-- `n`: the number of people, labeled consecutively from `0` to `n - 1`.
+- `logs`: friendship events $[\text{timestamp}_{i}, x_{i}, y_{i}]$; the input order need not be chronological.
+- `n`: the number of people, labeled consecutively from `0` to $n - 1$.
 
 At each timestamp, the event adds an undirected friendship between its two distinct people. Existing friendships persist. After any chronological prefix of the events, acquaintance groups are the connected components formed by all friendships in that prefix.
 
@@ -19,6 +19,7 @@ At each timestamp, the event adds an undirected friendship between its two disti
 Return the earliest event timestamp whose chronological prefix leaves exactly one acquaintance group containing all `n` people. Return `-1` if more than one group remains after every event.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $logs = [[20190101,0,1],[20190104,3,4],[20190107,2,3],[20190211,1,5],[20190224,2,4],[20190301,0,3],[20190312,1,2],[20190322,4,5]], n = 6$

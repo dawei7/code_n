@@ -13,6 +13,7 @@ A string is a **palindrome** when it reads the same backwards as forwards.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/treedrawio-8drawio.png)

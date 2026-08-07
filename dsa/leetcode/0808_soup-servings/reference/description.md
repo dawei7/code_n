@@ -27,6 +27,7 @@ Return the probability that A is used up *before* B, plus half the probability t
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 50$

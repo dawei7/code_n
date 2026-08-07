@@ -15,6 +15,7 @@ A **permutation** is a rearrangement of all the characters of a string.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

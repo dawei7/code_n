@@ -11,6 +11,7 @@ Return *a list of integers representing the size of these parts*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "ababcbacadefegdehijhklij"`

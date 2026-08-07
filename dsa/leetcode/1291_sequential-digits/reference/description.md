@@ -9,6 +9,7 @@ Return a **sorted** list of all the integers in the range `[low, high]` inclusiv
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $low = 100, high = 300$

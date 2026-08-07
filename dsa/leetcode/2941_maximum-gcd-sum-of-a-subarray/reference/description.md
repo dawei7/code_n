@@ -16,6 +16,7 @@ Return *the **maximum gcd-sum** of a subarray of* `nums` *with at least* `k` *el
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,1,4,4,4,2], k = 2`

@@ -9,6 +9,7 @@ Return the **k-th** **alternating permutation** sorted in *lexicographical order
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

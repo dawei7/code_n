@@ -12,6 +12,7 @@ Given the `root` of a binary tree, invert the tree, and return *its root*.
 Return the root after exchanging the left and right subtrees at every node.
 
 ### Examples
+
 #### Example 1
 
 ![](images/invert1-tree.jpg)

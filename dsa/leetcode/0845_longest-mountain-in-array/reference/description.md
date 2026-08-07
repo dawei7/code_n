@@ -19,6 +19,7 @@ Given an integer array `arr`, return *the length of the longest subarray, which 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [2,1,4,7,3,2,5]`

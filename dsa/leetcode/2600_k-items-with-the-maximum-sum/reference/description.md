@@ -19,6 +19,7 @@ We want to pick exactly `k` items among the available items. Return *the **maxim
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $numOnes = 3, numZeros = 2, numNegOnes = 0, k = 2$

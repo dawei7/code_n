@@ -17,6 +17,7 @@ Return *the number of **colored cells** at the end of *`n` *minutes*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 1$

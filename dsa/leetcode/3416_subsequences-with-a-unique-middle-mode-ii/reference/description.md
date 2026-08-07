@@ -14,6 +14,7 @@ A sequence of numbers `seq` of size 5 contains a **unique middle mode** if the *
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 **Input:** nums = [1,1,1,1,1,1]

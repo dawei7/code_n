@@ -20,6 +20,7 @@ Every split must produce two positive integers, so neither part may be zero.
 Return the minimum possible sum of operation costs after every remaining piece equals one. The result can exceed the range of a signed 32-bit integer.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

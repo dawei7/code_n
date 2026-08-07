@@ -15,6 +15,7 @@ Return the **maximum** possible frequency of any element in `nums` after perform
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -19,6 +19,7 @@ Return `true`* if and only if it is **bipartite***.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/bi2.jpg)

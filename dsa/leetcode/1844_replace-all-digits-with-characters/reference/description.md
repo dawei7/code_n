@@ -17,6 +17,7 @@ Return `s`* *after replacing all digits. It is **guaranteed** that* *$shift(s[i-
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "a1c1e1"`

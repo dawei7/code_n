@@ -10,6 +10,7 @@ Return *the number of positions *`i`* on the street between *`0`* and *$n - 1$* 
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 ![](images/screenshot-2022-04-11-at-22-24-43-diagramdrawio-diagramsnet.png)

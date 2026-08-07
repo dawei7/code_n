@@ -16,6 +16,7 @@ Let $n_1$, $n_2$, and $n_3$ be the respective array lengths.
 Return every value present in `arr1`, `arr2`, and `arr3`, in increasing order. If no integer belongs to all three arrays, return `[]`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $arr1 = [1,2,3,4,5], arr2 = [1,2,5,7,9], arr3 = [1,3,4,5,8]$

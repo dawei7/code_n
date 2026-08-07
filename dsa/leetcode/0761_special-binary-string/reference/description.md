@@ -17,6 +17,7 @@ Return *the lexicographically largest resulting string possible after applying t
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "11011000"`

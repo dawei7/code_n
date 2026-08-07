@@ -15,6 +15,7 @@ Each letter in `magazine` can only be used once in `ransomNote`.
 Return `true` when every required character occurrence can be supplied by `magazine`; otherwise return `false`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $ransomNote = "a", magazine = "b"$

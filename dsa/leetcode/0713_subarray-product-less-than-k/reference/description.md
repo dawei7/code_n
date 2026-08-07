@@ -7,6 +7,7 @@ Given an array of integers `nums` and an integer `k`, return *the number of cont
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [10,5,2,6], k = 100`

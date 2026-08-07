@@ -156,7 +156,7 @@ Starting from the least significant bit, we enumerate each bit to determine whic
 
 #### Implementation
 
-Because all numbers are in the range $[-$10^{9}$,$10^{9}$]$, which can be represented in 32-bit, we only need to enumerate 32 bits.
+Because all numbers are in the range $[-$10^{9}$, $10^{9}$]$, which can be represented in 32-bit, we only need to enumerate 32 bits.
 
 For Python solution, notice that the sign of an integer is not represented in its bits. To check if the majority element is positive or negative, we need to figure out the majority sign additionally.
 
@@ -250,11 +250,13 @@ class Solution:
     Therefore, we can calculate the expected number of iterations for this
     modified version of the problem and assert that our version is easier.
 
-    $$\begin{aligned}
-        EV(iters_{prob}) \&\leq EV(iters_{mod}) \\
-                         \&= \lim_{n\to\infty} \sum_{i=1}^{n} i \cdot \frac{1}{2^i} \\
-                         \&= 2
-    \end{aligned}$$
+    $$
+    \begin{aligned}
+        EV(iters_{prob}) &\leq EV(iters_{mod}) \\
+                         &= \lim_{n\to\infty} \sum_{i=1}^{n} i \cdot \frac{1}{2^i} \\
+                         &= 2
+    \end{aligned}
+    $$
 
     Because the series converges, the expected number of iterations for the
     modified problem is constant. Based on an expected-constant number of

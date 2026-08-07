@@ -13,6 +13,7 @@ It is **guaranteed** that the answer will in the range of a **32-bit** signed in
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/width1-tree.jpg)

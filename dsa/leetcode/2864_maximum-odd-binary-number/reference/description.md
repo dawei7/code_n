@@ -13,6 +13,7 @@ Return *a string representing the maximum odd binary number that can be created 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "010"`

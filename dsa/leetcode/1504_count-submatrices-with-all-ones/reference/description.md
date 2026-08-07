@@ -7,6 +7,7 @@ Given an `m x n` binary matrix `mat`, *return the number of **submatrices** that
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ones1-grid.jpg)

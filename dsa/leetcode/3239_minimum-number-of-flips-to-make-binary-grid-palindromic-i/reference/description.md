@@ -13,6 +13,7 @@ Return the **minimum** number of cells that need to be flipped to make **either*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

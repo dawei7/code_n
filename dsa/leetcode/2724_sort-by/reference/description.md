@@ -9,6 +9,7 @@ You may assume that `fn` will never duplicate numbers for a given array.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [5, 4, 1, 2, 3], fn = (x) => x`

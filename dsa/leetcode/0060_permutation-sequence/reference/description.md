@@ -29,6 +29,7 @@ Given `n` and `k`, return the $$k^{\text{th}}$$ permutation sequence.
 Return the $k$th lexicographically ordered permutation as a string.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 3, k = 3$

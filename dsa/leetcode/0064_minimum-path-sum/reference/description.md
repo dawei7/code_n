@@ -14,6 +14,7 @@ Given a `m x n` `grid` filled with non-negative numbers, find a path from top le
 Return the smallest sum attainable along an allowed top-left-to-bottom-right path, including both endpoints.
 
 ### Examples
+
 #### Example 1
 
 ![](images/minpath.jpg)

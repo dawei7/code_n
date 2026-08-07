@@ -11,6 +11,7 @@ Return *the length of the **shortest** subarray of the array *$\text{infinite}_{
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3], target = 5`

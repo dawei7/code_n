@@ -10,6 +10,7 @@ Return *the price of the **most expensive** item which Alice can not gift to Bob
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $primeOne = 2, primeTwo = 5$

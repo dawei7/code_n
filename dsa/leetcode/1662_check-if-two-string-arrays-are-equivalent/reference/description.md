@@ -9,6 +9,7 @@ A string is **represented** by an array if the array elements concatenated **in 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $word1 = ["ab", "c"], word2 = ["a", "bc"]$

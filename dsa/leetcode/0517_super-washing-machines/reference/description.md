@@ -11,6 +11,7 @@ Given an integer array `machines` representing the number of dresses in each was
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $machines = [1,0,5]$

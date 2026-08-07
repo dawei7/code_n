@@ -17,6 +17,7 @@ Return `true` if such a partition is possible, otherwise return `false`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -19,6 +19,7 @@ Suppose every senator is smart enough and will play the best strategy for his ow
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $senate = "RD"$

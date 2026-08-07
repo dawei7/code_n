@@ -11,6 +11,7 @@ Return *the maximum possible **score** of a **good** subarray.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,4,3,7,4,5], k = 3`

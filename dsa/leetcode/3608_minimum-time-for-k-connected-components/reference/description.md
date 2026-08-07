@@ -15,6 +15,7 @@ A **connected component** is a subgraph of a graph in which there exists a path 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

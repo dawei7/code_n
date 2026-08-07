@@ -20,6 +20,7 @@ Let $n=\texttt{nums.length}$. Every nonempty interval of consecutive indices def
 Return the minimum length of a subarray sequence that occurs exactly once in `nums`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

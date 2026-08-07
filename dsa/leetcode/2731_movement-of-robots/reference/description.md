@@ -27,6 +27,7 @@ Return *the sum of distances between all the pairs of robots *`d` *seconds after
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [-2,0,2], s = "RLL", d = 3`

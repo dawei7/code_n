@@ -15,6 +15,7 @@ Return *an array that consists of *indices<!-- notionvc: c9879de8-88bd-43b0-8224
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $mountain = [2,4,4]$

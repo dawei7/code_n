@@ -21,9 +21,7 @@ Return the number of ways. Since the answer may be very large, return it **modul
 
 Let $n = \lvert\texttt{word1}\rvert$, $m = \lvert\texttt{word2}\rvert$, and $t = \lvert\texttt{target}\rvert$. Define the state-volume measure
 
-$$
-P = tnm.
-$$
+$P = tnm.$
 
 **Inputs**
 
@@ -38,6 +36,7 @@ The selected indices must increase separately within each source. There is no or
 Return, modulo $10^9+7$, the number of distinct constructions that use at least one character from each source word.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

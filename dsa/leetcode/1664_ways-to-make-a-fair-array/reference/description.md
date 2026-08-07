@@ -19,6 +19,7 @@ Return the ***number** of indices that you could choose such that after the remo
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,1,6,4]`

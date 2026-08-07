@@ -15,6 +15,7 @@ Given two non-negative integers `num1` and `num2` represented as strings, return
 Return the exact product of `num1` and `num2` as a decimal string.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num1 = "2", num2 = "3"$

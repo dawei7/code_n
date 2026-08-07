@@ -6,6 +6,7 @@ Given an integer `n`, return the **maximum** integer `x` such that $x \le n$, an
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

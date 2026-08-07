@@ -386,7 +386,7 @@ class Solution:
 
 - Time complexity : $O(\log \, n)$.
 
-    In this approach, we divide $n$ by each power of $5$. By definition, there are $\log_{5n}$ powers of $5$ less-than-or-equal-to $n$. Because the multiplications and divisions are within the 32-bit integer range, we treat these calculations as $O(1)$. Therefore, we are doing $\log_5 n \cdot$\mathcal{O}(1)$= \log \, n$ operations (keeping in mind that $\log$ bases are insignificant in big-oh notation).
+    In this approach, we divide $n$ by each power of $5$. By definition, there are $\log_5n$ powers of $5$ less-than-or-equal-to $n$. Because the multiplications and divisions are within the 32-bit integer range, we treat these calculations as $O(1)$. Therefore, we are doing $\log_5 n \cdot$\mathcal{O}(1)$= \log \, n$ operations (keeping in mind that $\log$ bases are insignificant in big-oh notation).
 
 - Space complexity : $O(1)$.
 

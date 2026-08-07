@@ -11,6 +11,7 @@ Given two integers `lowLimit` and `highLimit`, return* the number of balls in th
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $lowLimit = 1, highLimit = 10$

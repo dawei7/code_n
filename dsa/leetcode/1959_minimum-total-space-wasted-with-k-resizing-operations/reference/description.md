@@ -13,6 +13,7 @@ Return *the **minimum** **total space wasted** if you can resize the array at mo
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [10,20], k = 0`

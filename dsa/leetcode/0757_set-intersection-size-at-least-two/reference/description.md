@@ -13,6 +13,7 @@ Return *the minimum possible size of a containing set*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $intervals = [[1,3],[3,7],[8,9]]$

@@ -11,6 +11,7 @@ Return the total number of **good** pairs.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

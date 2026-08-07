@@ -29,6 +29,7 @@ Remember that one minute consists of `60` seconds.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/1.png)

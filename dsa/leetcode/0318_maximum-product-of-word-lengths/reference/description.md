@@ -12,6 +12,7 @@ Given a string array `words`, return *the maximum value of* $length(\text{word}[
 Return the largest product of lengths over two words with disjoint letter sets, or `0` if every pair shares a letter.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["abcw","baz","foo","bar","xtfn","abcdef"]$

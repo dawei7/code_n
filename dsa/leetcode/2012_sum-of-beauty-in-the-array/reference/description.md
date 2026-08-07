@@ -15,6 +15,7 @@ Return* the **sum of beauty** of all *$\text{nums}[i]$* where *$1 \le i \le \tex
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3]`

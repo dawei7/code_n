@@ -7,6 +7,7 @@ Given a string `s` and an integer `k`, return `true` if you can use all the char
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "annabelle", k = 2`

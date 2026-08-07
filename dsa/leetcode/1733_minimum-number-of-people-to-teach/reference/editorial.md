@@ -15,7 +15,7 @@ Next, we need to find a language that all of these friends could potentially lea
 
 How do we select such a language? We count how many of the non-communicating friends already know each language, and then greedily choose the language known by the largest number of them. This minimizes the number of additional people who need to learn it. It can be proven that choosing any other language would result in teaching at least as many, if not more, people. Therefore, this greedy strategy is correct.
 
-For the implementation, we use a hash table $\textit{mp}$ to check whether each pair of friends can already communicate. We then use a set $\textit{cncon}$ to store all friends who cannot communicate. We also maintain an array $\textit{cnt}$ of length $n$ to count how many of these friends know each language. Finally, we find the maximum value $\textit{max_{cnt}}$ in this array. The minimum number of people to teach is then given by the size of the $\textit{cncon}$ set minus $\textit{max_{cnt}}$.
+For the implementation, we use a hash table $\textit{mp}$ to check whether each pair of friends can already communicate. We then use a set $\textit{cncon}$ to store all friends who cannot communicate. We also maintain an array $\textit{cnt}$ of length $n$ to count how many of these friends know each language. Finally, we find the maximum value $\textit{max_cnt}$ in this array. The minimum number of people to teach is then given by the size of the $\textit{cncon}$ set minus $\textit{max_cnt}$.
 
 #### Implementation
 

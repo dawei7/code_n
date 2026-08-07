@@ -13,6 +13,7 @@ A cycle is a path that starts and ends at the **same** node.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/graph4drawio-5.png)

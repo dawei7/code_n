@@ -13,6 +13,7 @@ Return the **maximum** **value** of any subsequence of `nums` having size $2 * k
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

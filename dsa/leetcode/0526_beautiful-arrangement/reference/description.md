@@ -13,6 +13,7 @@ Given an integer `n`, return *the **number** of the **beautiful arrangements** t
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 2$

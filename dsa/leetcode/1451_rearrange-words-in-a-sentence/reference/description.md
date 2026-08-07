@@ -15,6 +15,7 @@ Return the new text following the format shown above.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $text = "Leetcode is cool"$

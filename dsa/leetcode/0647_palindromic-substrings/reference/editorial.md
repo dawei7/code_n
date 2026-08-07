@@ -86,25 +86,29 @@ class Solution {
 
     Total time taken to traverse all of these strings is in the order of
 
-    $$\begin{aligned}
+    $$
+    \begin{aligned}
 
-    \&1 \cdot (N) + 2 \cdot (N-1) + 3 \cdot (N-2) + ... + N \cdot (1) \\
-    \&= N + 2(N-1) + 3(N-2) + ... + N(N - (N-1)) \\
-    \&= (N + 2N + 3N + ... + N^2) - (2 + (3 \times 2) + (4 \times 3) + ... + (N \times (N-1))) \\
-    \&= N \sum_{i = 1}^{N} i \ - \ \sum_{i=1}^{N} i \cdot (i-1) \\
+    &1 \cdot (N) + 2 \cdot (N-1) + 3 \cdot (N-2) + ... + N \cdot (1) \\
+    &= N + 2(N-1) + 3(N-2) + ... + N(N - (N-1)) \\
+    &= (N + 2N + 3N + ... + N^2) - (2 + (3 \times 2) + (4 \times 3) + ... + (N \times (N-1))) \\
+    &= N \sum_{i = 1}^{N} i \ - \ \sum_{i=1}^{N} i \cdot (i-1) \\
 
-    \end{aligned}$$
+    \end{aligned}
+    $$
 
     The term $\sum_{i=1}^{N} i \cdot (i-1)$  can we written as $\sum_{i=1}^{N} i^2 - \sum_{i=1}^{N} i$, which transforms the aforementioned expression to
 
-    $$\begin{aligned}
+    $$
+    \begin{aligned}
 
-    \&N \sum_{i = 1}^{N} i \ - \ \sum_{i=1}^{N} i^2 \ + \ \sum_{i=1}^{N} i \\
-    \&= (N+1) \sum_{i = 1}^{N} i \ - \ \sum_{i=1}^{N} i^2 \\
-    \&= \frac{N(N+1)^2}{2} \ - \ \frac{N(N+1)(2N+1)}{6} \\
-    \&= \frac{N(N+1)^2}{6} \simeq N^3
+    &N \sum_{i = 1}^{N} i \ - \ \sum_{i=1}^{N} i^2 \ + \ \sum_{i=1}^{N} i \\
+    &= (N+1) \sum_{i = 1}^{N} i \ - \ \sum_{i=1}^{N} i^2 \\
+    &= \frac{N(N+1)^2}{2} \ - \ \frac{N(N+1)(2N+1)}{6} \\
+    &= \frac{N(N+1)^2}{6} \simeq N^3
 
-    \end{aligned}$$
+    \end{aligned}
+    $$
 
 * Space Complexity: $O(1)$. We don't need to allocate any extra space since we are repeatedly iterating on the input string itself.
 
@@ -143,20 +147,24 @@ Here's the simple framework for our dynamic programming solution:
 2. Identify the _base cases_. There are essentially two base-cases:
     + Single letter substrings are palindromes by definition. i.e. $dp(i, i) = true$
     + Double letter substrings composed of the same character are palindromes. i.e.
-    $$dp(i,i+1) = \begin{cases}
-        true \&\text{if \space \space} s_i = s_{i+1} \\
-        false \&\text{otherwise}
-    \end{cases}$$
+    $$
+    dp(i,i+1) = \begin{cases}
+        true &\text{if \space \space} s_i = s_{i+1} \\
+        false &\text{otherwise}
+    \end{cases}
+    $$
 
 3. Identify the *optimal substructure*. A string is considered a palindrome if:
     + Its first and last characters are equal, and
     + The rest of the string (excluding the boundary characters) is also a palindrome.
 
     This optimal substructure can be formulated into a recurrence rule:
-    $$dp(i,j) = \begin{cases}
-        true \&\text{if \space \space} dp(i+1, j-1) \land (s_i = s_j) \\
-        false \&\text{otherwise}
-    \end{cases}$$
+    $$
+    dp(i,j) = \begin{cases}
+        true &\text{if \space \space} dp(i+1, j-1) \land (s_i = s_j) \\
+        false &\text{otherwise}
+    \end{cases}
+    $$
 
 4. Identify *overlapping sub-problems* and compute them only once. The optimal substructure mentioned above ensures that the state for a string depends only on the state for a single substring. If we compute (and save) the states for all smaller strings first, larger strings can be processed by reusing previously saved states. The base cases that we have identified already define states for single and double letter strings. We can use those to compute states for three character (and subsequently larger) strings.
 

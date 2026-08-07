@@ -1,6 +1,6 @@
 ## Description
 
-You are given a **0-indexed** binary string `s` which represents a sequence of train cars. $s[i] = '0'$ denotes that the $$i^{\text{th}}$$car does **not** contain illegal goods and$s[i] = '1'$denotes that the$$i^{\text{th}}$$ car does contain illegal goods.
+You are given a **0-indexed** binary string `s` which represents a sequence of train cars. $s[i] = '0'$ denotes that the $$i^{\text{th}}$$ car does **not** contain illegal goods and $s[i] = '1'$ denotes that the $$i^{\text{th}}$$ car does contain illegal goods.
 
 As the train conductor, you would like to get rid of all the cars containing illegal goods. You can do any of the following three operations **any** number of times:
 
@@ -19,6 +19,7 @@ Note that an empty sequence of cars is considered to have no cars containing ill
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "**<u>11</u>**00**<u>1</u>**0**<u>1</u>**"`

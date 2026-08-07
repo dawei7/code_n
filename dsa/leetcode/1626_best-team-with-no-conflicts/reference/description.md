@@ -11,6 +11,7 @@ Given two lists, `scores` and `ages`, where each $\text{scores}[i]$ and $\text{a
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $scores = [1,3,5,10,15], ages = [1,2,3,4,5]$

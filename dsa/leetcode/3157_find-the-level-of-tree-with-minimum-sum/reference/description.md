@@ -8,6 +8,7 @@ Given the root of a binary tree `root` where each node has a value, return the l
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

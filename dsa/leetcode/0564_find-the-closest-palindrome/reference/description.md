@@ -9,6 +9,7 @@ The closest is defined as the absolute difference minimized between two integers
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = "123"$

@@ -18,6 +18,7 @@ Return the **minimum number of operations** required to make the array beautiful
 Return the minimum total number of single-unit increments that can make every element after the first divisible by its predecessor.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

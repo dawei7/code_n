@@ -12,6 +12,7 @@ Return *the minimum number of operations to make all the integers in *`nums` ***
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,4,1,7,6], x = 4, y = 2`

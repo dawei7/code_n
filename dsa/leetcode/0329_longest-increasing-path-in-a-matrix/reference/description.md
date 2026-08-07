@@ -14,6 +14,7 @@ From each cell, you can either move in four directions: left, right, up, or down
 Return the number of cells in the longest path whose orthogonally adjacent values are strictly increasing.
 
 ### Examples
+
 #### Example 1
 
 ![](images/grid1.jpg)

@@ -25,6 +25,7 @@ Return `true` *if there exists a **valid parentheses string path** in the grid.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/example1drawio.png)

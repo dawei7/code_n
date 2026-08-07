@@ -9,6 +9,7 @@ You are given an integer array `gain` of length `n` where $\text{gain}[i]$ is th
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $gain = [-5,1,5,0,-7]$

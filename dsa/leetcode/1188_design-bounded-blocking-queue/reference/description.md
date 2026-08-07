@@ -29,6 +29,7 @@ Multiple threads can invoke the instance concurrently. Each producer thread call
 After each test case, the judge calls `size()`. Enqueue has no return value; dequeue returns the removed integer; and size returns an integer from $0$ through `capacity`. When multiple producers or consumers are runnable together, the operating system may choose their relative order.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** ``

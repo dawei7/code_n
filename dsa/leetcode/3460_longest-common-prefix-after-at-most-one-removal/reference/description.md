@@ -10,6 +10,7 @@ Return the **length** of the **longest common prefix** between `s` and `t` after
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

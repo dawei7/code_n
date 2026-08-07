@@ -15,6 +15,7 @@ Return *the number of gifts remaining after *`k`* seconds.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $gifts = [25,64,9,4,100], k = 4$

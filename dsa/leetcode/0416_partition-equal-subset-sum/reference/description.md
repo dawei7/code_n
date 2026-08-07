@@ -12,6 +12,7 @@ Given an integer array `nums`, return `true` *if you can partition the array int
 Return `true` when `nums` can be partitioned into two subsets with equal sums; otherwise, return `false`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,5,11,5]`

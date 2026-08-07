@@ -11,6 +11,7 @@ Return the **minimum** number of operations needed to have **at least** `k` *non
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -23,6 +23,7 @@ Your task is to convert the given `caption` into a **good** caption using the **
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

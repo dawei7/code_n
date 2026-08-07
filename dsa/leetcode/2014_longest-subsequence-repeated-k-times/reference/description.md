@@ -15,6 +15,7 @@ Return *the **longest subsequence repeated** *`k`* times in string *`s`*. If mul
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![example 1](images/longest-subsequence-repeat-k-times.png)

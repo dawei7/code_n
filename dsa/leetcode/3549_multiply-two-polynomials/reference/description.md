@@ -10,6 +10,7 @@ Return an integer array `result` of length $(\text{poly1.length} + \text{poly2.l
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -21,6 +21,7 @@ Return *the **minimum** cost to jump to the index *$n - 1$.
 Return an integer representing the minimum total landing cost to reach index $n-1$ starting from index $0$. Return 0 if $n = 1$.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,2,4,4,1], costs = [3,7,6,4,2]`

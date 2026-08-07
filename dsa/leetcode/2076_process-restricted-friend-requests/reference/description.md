@@ -17,6 +17,7 @@ Return *a **boolean array** *`result`,* where each *$\text{result}[j]$* is *`tru
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 3, restrictions = [[0,1]], requests = [[0,2],[2,1]]$

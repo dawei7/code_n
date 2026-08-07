@@ -11,6 +11,7 @@ Given the `encoded` array, return *the original array* `perm`. It is guaranteed 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $encoded = [3,1]$

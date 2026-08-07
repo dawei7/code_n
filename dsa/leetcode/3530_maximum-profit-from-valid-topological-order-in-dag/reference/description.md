@@ -15,6 +15,7 @@ A **topological order** of a DAG is a linear ordering of its nodes such that for
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -21,6 +21,7 @@ Given `n`, `edges`, `time`, and `change`, return *the **second minimum time** it
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/e1.png)

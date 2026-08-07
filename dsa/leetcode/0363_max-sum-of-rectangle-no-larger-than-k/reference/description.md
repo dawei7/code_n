@@ -15,6 +15,7 @@ It is **guaranteed** that there will be a rectangle with a sum no larger than `k
 Return the maximum sum among all contiguous axis-aligned matrix rectangles whose sums do not exceed `k`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/sum-grid.jpg)

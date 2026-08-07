@@ -11,6 +11,7 @@ Note that the strings are considered in the **order in which they appear** in th
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = ["d","b","c","b","c","a"], k = 2`

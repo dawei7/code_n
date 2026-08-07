@@ -11,9 +11,10 @@ You may assume the input array always has a valid answer.
 
 **Return value**
 
-Return `None`. The function mutates `nums` in place so adjacent comparisons alternate between `<=` and `>=`, beginning with `nums[0] <= nums[1]`.
+Return `None`. The function mutates `nums` in place so adjacent comparisons alternate between $\le$ and $\ge$, beginning with $\text{nums}[0] \le \text{nums}[1]$.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,5,2,1,6,4]`

@@ -17,6 +17,7 @@ Given the two integers `target` and `maxDoubles`, return *the minimum number of 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $target = 5, maxDoubles = 0$

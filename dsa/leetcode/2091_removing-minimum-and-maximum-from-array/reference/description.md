@@ -13,6 +13,7 @@ Return *the **minimum** number of deletions it would take to remove **both** the
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,<u>**10**</u>,7,5,4,<u>**1**</u>,8,6]`

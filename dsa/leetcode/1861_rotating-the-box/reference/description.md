@@ -19,6 +19,7 @@ Return *an *`n x m`* matrix representing the box after the rotation described ab
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/rotatingtheboxleetcodewithstones.png)

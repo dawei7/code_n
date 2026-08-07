@@ -11,6 +11,7 @@ Note that points **on the edge** of a vertical area **are not** considered inclu
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/points3.png)

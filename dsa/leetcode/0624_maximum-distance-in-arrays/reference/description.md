@@ -11,6 +11,7 @@ Return *the maximum distance*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $arrays = [[1,2,3],[4,5],[1,2,3]]$

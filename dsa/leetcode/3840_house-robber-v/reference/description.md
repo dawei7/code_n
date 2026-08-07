@@ -2,7 +2,7 @@
 
 You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed and is protected by a security system with a color code.
 
-You are given two integer arrays `nums` and `colors`, both of length `n`, where $\text{nums}[i]$ is the amount of money in the $$i^{\text{th}}$$house and$\text{colors}[i]$ is the color code of that house.
+You are given two integer arrays `nums` and `colors`, both of length `n`, where $\text{nums}[i]$ is the amount of money in the $$i^{\text{th}}$$ house and $\text{colors}[i]$ is the color code of that house.
 
 You **cannot rob two adjacent** houses if they share the **same color** code.
 
@@ -29,6 +29,7 @@ Thus, equality of color codes matters only for two consecutive selected indices 
 Return the maximum possible value of $\sum_{i\in S}\texttt{nums}[i]$ over all valid choices $S$.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

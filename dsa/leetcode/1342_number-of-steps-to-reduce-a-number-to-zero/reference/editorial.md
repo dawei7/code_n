@@ -9,7 +9,7 @@
   </div>
 </div>
 
-> At 4:57, the power of two labels are missing. From left to right, the labels should say: $2^7, \;$2^{6}$, \;$2^{5}$, \;$2^{4}$, \;$2^{3}$, \;$2^{2}$, \;$2^{1}$, \; 2^0$
+> At 4:57, the power of two labels are missing. From left to right, the labels should say: $2^7, \; $2^{6}$, \; $2^{5}$, \; $2^{4}$, \; $2^{3}$, \; $2^{2}$, \; $2^{1}$, \; 2^0$
 
 ## Solution
 

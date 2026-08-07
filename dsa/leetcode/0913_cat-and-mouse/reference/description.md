@@ -31,6 +31,7 @@ Given a `graph`, and assuming both players play optimally, return
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/cat1.jpg)

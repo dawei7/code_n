@@ -21,6 +21,7 @@ A cell is **adjacent** to another cell if the former is directly north, east, so
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1new.jpg)

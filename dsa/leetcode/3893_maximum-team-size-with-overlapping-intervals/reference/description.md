@@ -25,6 +25,7 @@ The two values at the same index form one employee's closed interval. Every star
 Return the maximum team size for which some member's interval overlaps every other member's interval.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -16,6 +16,7 @@ Let $m$ be `mat.length` and let $n$ be the length of each row. An element is com
 Return the smallest integer present in every row of `mat`, or `-1` when no such integer exists.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $mat = [[1,2,3,4,5],[2,4,5,8,10],[3,5,7,9,11],[1,3,5,7,9]]$

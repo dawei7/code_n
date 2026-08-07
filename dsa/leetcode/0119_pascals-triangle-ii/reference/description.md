@@ -16,6 +16,7 @@ In **Pascal's triangle**, each number is the sum of the two numbers directly abo
 Return the values of the requested row from left to right.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $rowIndex = 3$

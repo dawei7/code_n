@@ -17,6 +17,7 @@ Return *the resulting array* `answer`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/image1.png)

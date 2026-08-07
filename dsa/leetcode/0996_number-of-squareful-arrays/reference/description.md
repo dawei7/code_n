@@ -11,6 +11,7 @@ Two permutations `perm1` and `perm2` are different if there is some index `i` su
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,17,8]`

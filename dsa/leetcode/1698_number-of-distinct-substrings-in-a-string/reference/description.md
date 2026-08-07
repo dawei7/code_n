@@ -14,6 +14,7 @@ A **substring** of a string is obtained by deleting any number of characters (po
 Return an integer representing the number of distinct nonempty substrings in `s`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "aabbaba"`

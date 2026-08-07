@@ -28,10 +28,12 @@ For convenience, let us denote the array $\textit{target}$ as $a$.
 
 The “difference array” $d[0..n-1]$ of an array $a[0..n-1]$ of length $n$ is defined as:
 
-$$d[i] = \begin{cases}
-a[i], \& i = 0 \
-a[i] - a[i-1], \& i > 0
-\end{cases}$$
+$$
+d[i] = \begin{cases}
+a[i], & i = 0 \
+a[i] - a[i-1], & i > 0
+\end{cases}
+$$
 
 For example, when $a = [1, 2, 3, 2, 1]$, the difference array is $d = [1, 1, 1, -1, -1]$.
 
@@ -39,11 +41,13 @@ For example, when $a = [1, 2, 3, 2, 1]$, the difference array is $d = [1, 1, 1, 
 >
 > **Proof**: The “difference array” and “prefix sum” array are closely related. In fact, “difference” and “prefix sum” are inverse operations. The prefix sum array of $d$ is precisely $a$:
 
-$$\begin{aligned}
-a[i] \&= (a[i] - a[i-1]) + (a[i-1] - a[i-2]) + \cdots + (a[1] - a[0]) + a[0] \
-\&= d[i] + d[i-1] + \cdots + d[1] + d[0] \
-\&= \sum_{k=0}^i d[k]
-\end{aligned}$$
+$$
+\begin{aligned}
+a[i] &= (a[i] - a[i-1]) + (a[i-1] - a[i-2]) + \cdots + (a[1] - a[0]) + a[0] \
+&= d[i] + d[i-1] + \cdots + d[1] + d[0] \
+&= \sum_{k=0}^i d[k]
+\end{aligned}
+$$
 
 > Since all elements of array $a$ are positive integers in this problem, the conclusion follows.
 

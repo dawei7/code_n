@@ -8,6 +8,7 @@ Given a deeply nested object or array `obj`, return the object `obj` with any `u
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $obj = {"a": undefined, "b": 3}$

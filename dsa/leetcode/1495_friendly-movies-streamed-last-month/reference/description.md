@@ -45,26 +45,27 @@ The result format is in the following example.
 
 | Column | Type | Meaning |
 |---|---|---|
-| `program_date` | date/datetime | Date and optional time when the program was streamed. |
-| `content_id` | int | Identifier of the streamed content item. |
+| $\text{program}_{date}$ | date/datetime | Date and optional time when the program was streamed. |
+| $\text{content}_{id}$ | int | Identifier of the streamed content item. |
 | `channel` | varchar | Channel carrying the program. |
 
-- The composite key is (`program_date`, `content_id`).
+- The composite key is ($\text{program}_{date}$, $\text{content}_{id}$).
 
 **`Content`**
 
 | Column | Type | Meaning |
 |---|---|---|
-| `content_id` | varchar | Primary identifier joined to `TVProgram.content_id`. |
+| $\text{content}_{id}$ | varchar | Primary identifier joined to $TVProgram.\text{content}_{id}$. |
 | `title` | varchar | Display title of the content. |
-| `Kids_content` | enum | `Y` for kid-friendly content and `N` otherwise. |
-| `content_type` | varchar | Category such as `Movies` or `Series`. |
+| $\text{Kids}_{content}$ | enum | `Y` for kid-friendly content and `N` otherwise. |
+| $\text{content}_{type}$ | varchar | Category such as `Movies` or `Series`. |
 
 **Return value**
 
-Return one column named `title`, containing each distinct title of a `Kids_content = 'Y'`, `content_type = 'Movies'` item with at least one matching stream timestamp from June 1, 2020 inclusive through July 1, 2020 exclusive. Output order is unrestricted.
+Return one column named `title`, containing each distinct title of a $\text{Kids}_{content} = 'Y'$, $\text{content}_{type} = 'Movies'$ item with at least one matching stream timestamp from June 1, 2020 inclusive through July 1, 2020 exclusive. Output order is unrestricted.
 
 ### Examples
+
 #### Example 1
 
 ```

@@ -7,6 +7,7 @@ You are given an integer array `nums` and a **positive** integer `k`. Return the
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -12,6 +12,7 @@ Given an `m x n` integer matrix `heightMap` representing the height of each unit
 Return the number of unit cubes of water trapped above the terrain after levels stabilize.
 
 ### Examples
+
 #### Example 1
 
 ![](images/trap1-3d.jpg)

@@ -13,6 +13,7 @@ Return *the largest possible overlap*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/overlap1.jpg)

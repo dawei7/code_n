@@ -15,6 +15,7 @@ Return *the **XOR sum** of the aforementioned list*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $arr1 = [1,2,3], arr2 = [6,5]$

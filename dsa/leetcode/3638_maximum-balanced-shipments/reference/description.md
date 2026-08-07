@@ -11,6 +11,7 @@ Return the **maximum possible number** of balanced shipments that can be formed.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

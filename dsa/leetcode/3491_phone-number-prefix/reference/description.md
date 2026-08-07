@@ -6,6 +6,7 @@ You are given a string array `numbers` that represents phone numbers. Return `tr
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

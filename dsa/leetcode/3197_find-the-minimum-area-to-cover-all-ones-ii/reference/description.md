@@ -11,6 +11,7 @@ Return the **minimum** possible sum of the area of these rectangles.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -11,6 +11,7 @@ Return *the number of times the user had to change the key. *
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "aAbBcC"`

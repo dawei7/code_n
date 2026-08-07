@@ -13,6 +13,7 @@ Return *the **maximum** number of consecutive* `'T'`s or `'F'`s *in the answer k
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $answerKey = "TTFF", k = 2$

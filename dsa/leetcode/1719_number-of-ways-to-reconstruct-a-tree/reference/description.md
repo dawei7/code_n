@@ -33,6 +33,7 @@ An **ancestor** of a node is any node on the path from the root to that node (ex
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/trees2.png)

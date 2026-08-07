@@ -31,6 +31,7 @@ $$
 Return the number of index pairs $(l,r)$ for which $\operatorname{cost}(l,r)\le\texttt{k}$.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

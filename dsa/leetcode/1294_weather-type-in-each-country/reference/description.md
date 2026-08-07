@@ -53,12 +53,13 @@ Let $C$ be the number of rows in `Countries`, $W$ the number of rows in `Weather
 
 Return a table with these columns:
 
-- `country_name`: the name belonging to a qualifying country identifier.
-- `weather_type`: exactly `Cold`, `Warm`, or `Hot`, according to that country's November 2019 average.
+- $\text{country}_{name}$: the name belonging to a qualifying country identifier.
+- $\text{weather}_{type}$: exactly `Cold`, `Warm`, or `Hot`, according to that country's November 2019 average.
 
 Return exactly one row for each of the $K$ qualifying countries. A country without a November 2019 observation contributes no row. Result order is unrestricted.
 
 ### Examples
+
 #### Example 1
 
 ```

@@ -21,6 +21,7 @@ Return *an integer denoting the minimum possible length of* $\text{str}_{n} - 1$
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["aa","ab","bc"]$

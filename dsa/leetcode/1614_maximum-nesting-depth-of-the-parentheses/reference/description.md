@@ -7,6 +7,7 @@ Given a **valid parentheses string** `s`, return the **nesting depth** of* *`s`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

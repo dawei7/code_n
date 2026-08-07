@@ -11,6 +11,7 @@ Return *the **minimum** possible sum of a k-avoiding array of length *`n`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 5, k = 4$

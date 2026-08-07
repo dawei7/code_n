@@ -17,6 +17,7 @@ Return *the longest length of a set* $s[k]$.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [5,4,0,3,1,6,2]`

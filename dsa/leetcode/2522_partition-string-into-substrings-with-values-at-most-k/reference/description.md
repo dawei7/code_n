@@ -21,6 +21,7 @@ Return *the **minimum** number of substrings in a **good** partition of* `s`. If
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "165462", k = 60`

@@ -13,6 +13,7 @@ A **substring** is a contiguous **non-empty** sequence of characters within a st
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $x = 2, y = 5, z = 1$

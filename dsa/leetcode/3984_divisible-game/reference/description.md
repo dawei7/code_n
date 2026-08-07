@@ -35,9 +35,10 @@ Alice also chooses an integer $k>1$. Within her selected range, each multiple of
 
 **Output**
 
-Return `(maximum score difference * smallest maximizing k) mod 1_000_000_007`. The maximum difference can be negative, but the returned residue is in the usual nonnegative modulo range.
+Return $(maximum score difference * smallest maximizing k) mod 1_000_000_007$. The maximum difference can be negative, but the returned residue is in the usual nonnegative modulo range.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

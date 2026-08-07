@@ -25,6 +25,7 @@ Implement the NumMatrix class:
 Return the results of all `sum` operations in order. An update changes subsequent sums and contributes no item to the returned list.
 
 ### Examples
+
 #### Example 1
 
 ![](images/summut-grid.jpg)

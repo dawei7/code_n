@@ -11,6 +11,7 @@ Return *the **number** of pairs of **interchangeable** rectangles in *`rectangle
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $rectangles = [[4,8],[3,6],[10,20],[15,30]]$

@@ -19,6 +19,7 @@ Two pairs `(a, b)` and `(c, d)` are considered distinct if either $a \neq c$ or 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3,1], k = 3`

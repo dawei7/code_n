@@ -38,16 +38,17 @@ The result format is in the following example.
 
 **Inputs**
 
-- `Student(student_id, student_name)` contains $S$ students keyed by `student_id`.
-- `Exam(exam_id, student_id, score)` contains $E$ exam-participation rows keyed by `(exam_id, student_id)`.
+- $Student(\text{student}_{id}, \text{student}_{name})$ contains $S$ students keyed by $\text{student}_{id}$.
+- $Exam(\text{exam}_{id}, \text{student}_{id}, score)$ contains $E$ exam-participation rows keyed by $(\text{exam}_{id}, \text{student}_{id})$.
 
 **Return value**
 
-Return exactly the columns `student_id` and `student_name`. A returned student must have at least one row in `Exam`, and every one of that student's scores must be strictly greater than the minimum score and strictly less than the maximum score within its own exam. Consequently, a score tied at either extreme disqualifies the student, and the sole participant in an exam is both extremes.
+Return exactly the columns $\text{student}_{id}$ and $\text{student}_{name}$. A returned student must have at least one row in `Exam`, and every one of that student's scores must be strictly greater than the minimum score and strictly less than the maximum score within its own exam. Consequently, a score tied at either extreme disqualifies the student, and the sole participant in an exam is both extremes.
 
-One extreme result in any exam disqualifies an otherwise quiet student. Exclude students who never participated and order qualifying rows by `student_id`.
+One extreme result in any exam disqualifies an otherwise quiet student. Exclude students who never participated and order qualifying rows by $\text{student}_{id}$.
 
 ### Examples
+
 #### Example 1
 
 ```

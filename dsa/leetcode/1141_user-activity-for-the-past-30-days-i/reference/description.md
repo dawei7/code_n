@@ -30,6 +30,7 @@ Note: **Any** activity from ($'\text{open}_{session}'$, $'\text{end}_{session}'$
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ```

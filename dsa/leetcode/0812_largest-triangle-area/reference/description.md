@@ -7,6 +7,7 @@ Given an array of points on the **X-Y** plane `points` where $\text{points}[i] =
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/1027.png)

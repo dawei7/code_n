@@ -11,6 +11,7 @@ You can freely rearrange the ordering of the groups. Return *the **maximum** pos
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $batchSize = 3, groups = [1,2,3,4,5,6]$

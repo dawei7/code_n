@@ -21,6 +21,7 @@ New stations may be placed at arbitrary real-valued positions. Once the existing
 - The smallest possible maximum adjacent-station distance after all `k` additions, returned as a floating-point value accurate within $10^{-6}$.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $stations = [1,2,3,4,5,6,7,8,9,10], k = 9$

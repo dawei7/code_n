@@ -9,6 +9,7 @@ Return the total sum of all elements from the subarray defined for each index in
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -15,6 +15,7 @@ Return *the **minimum** number of seconds needed to make all elements in the arr
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,1,2]`

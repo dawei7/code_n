@@ -30,6 +30,7 @@ Let $n=\lvert\texttt{nums}\rvert$.
 Return the lexicographically maximum array of prefix MEX values obtainable by removing one nonempty prefix after another until `nums` is empty.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -31,6 +31,7 @@ Implement the `SnakeGame` class:
 The app adapter returns every move's score or `-1` result. The native method returns the result of one move.
 
 ### Examples
+
 #### Example 1
 
 ![](images/snake.jpg)

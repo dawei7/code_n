@@ -20,26 +20,23 @@ Return *the **minimum** number of subarrays in a **valid** subarray splitting of
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
-```
-**Input:** nums = [2,6,3,4,3]
-**Output:** 2
-**Explanation:** We can create a valid split in the following way: [2,6] | [3,4,3].
+- **Input:** `nums = [2,6,3,4,3]`
+- **Output:** `2`
+- **Explanation:** We can create a valid split in the following way: [2,6] | [3,4,3].
 - The starting element of the 1^st subarray is 2 and the ending is 6. Their greatest common divisor is 2, which is greater than 1.
 - The starting element of the 2^nd subarray is 3 and the ending is 3. Their greatest common divisor is 3, which is greater than 1.
 It can be proved that 2 is the minimum number of subarrays that we can obtain in a valid split.
-```
 #### Example 2
 
-```
-**Input:** nums = [3,5]
-**Output:** 2
-**Explanation:** We can create a valid split in the following way: [3] | [5].
+- **Input:** `nums = [3,5]`
+- **Output:** `2`
+- **Explanation:** We can create a valid split in the following way: [3] | [5].
 - The starting element of the 1^st subarray is 3 and the ending is 3. Their greatest common divisor is 3, which is greater than 1.
 - The starting element of the 2^nd subarray is 5 and the ending is 5. Their greatest common divisor is 5, which is greater than 1.
 It can be proved that 2 is the minimum number of subarrays that we can obtain in a valid split.
-```
 #### Example 3
 
 - **Input:** `nums = [1,2,1]`

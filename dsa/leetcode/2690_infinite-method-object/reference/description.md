@@ -10,6 +10,7 @@ For example, if you execute `obj.abc123()`, it will return `"abc123"`.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $method = "abc123"$
@@ -20,11 +21,9 @@ obj['abc123'](); // "abc123"
 The returned string should always match the method name.
 #### Example 2
 
-```
-**Input:** method = ".-qw73n|^2It"
-**Output:** ".-qw73n|^2It"
-**Explanation:** The returned string should always match the method name.
-```
+- **Input:** $method = ".-qw73n|^2It"$
+- **Output:** $".-qw73n|^2It"$
+- **Explanation:** The returned string should always match the method name.
 ### Constraints
 
 - $0 \le \text{method.length} \le 1000$

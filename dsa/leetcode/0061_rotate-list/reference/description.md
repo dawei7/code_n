@@ -13,6 +13,7 @@ Given the `head` of a linked list, rotate the list to the right by `k` places.
 Return the head of the rotated list.
 
 ### Examples
+
 #### Example 1
 
 ![](images/rotate1.jpg)

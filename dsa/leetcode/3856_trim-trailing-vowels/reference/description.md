@@ -17,9 +17,10 @@ Only the contiguous vowel suffix after $j$ is removed. A vowel at or before a la
 
 **Return value**
 
-Return `s[:j + 1]` when a non-vowel exists, or the empty string when all characters are vowels.
+Return $s[:j + 1]$ when a non-vowel exists, or the empty string when all characters are vowels.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -15,6 +15,7 @@ Since the answer can be large, return it **modulo** $10^{9} + 7$.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "abcd", t = "cdab", k = 2`

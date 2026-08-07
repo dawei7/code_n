@@ -15,6 +15,7 @@ Return `true` *if the **summation** of the **numerical values** of *`firstWord`*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $firstWord = "acb", secondWord = "cba", targetWord = "cdb"$

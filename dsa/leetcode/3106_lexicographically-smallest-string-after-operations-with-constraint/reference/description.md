@@ -17,6 +17,7 @@ Return a string denoting the **lexicographically smallest** string `t` you can g
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

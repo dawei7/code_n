@@ -24,6 +24,7 @@ Let $n = \lvert\texttt{s}\rvert$.
 Return a string of length $n$ in which every consonant remains at its original index and the vowels occupy the original vowel indices in non-increasing order of frequency. Break an equal-frequency tie by the tied vowel types' first-occurrence positions in `s`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

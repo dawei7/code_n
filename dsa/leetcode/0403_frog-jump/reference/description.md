@@ -16,6 +16,7 @@ If the frog's last jump was `k` units, its next jump must be either $k - 1$, `k`
 Return `true` if the frog can land on the last stone under the initial- and subsequent-jump rules; otherwise return `false`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $stones = [0,1,3,5,6,8,12,17]$

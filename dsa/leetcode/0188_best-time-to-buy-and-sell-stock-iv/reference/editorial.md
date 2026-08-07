@@ -56,7 +56,7 @@ Hence, we can use three characteristics to store the profit: the day number, the
 In the previous part, we introduced an intuitive idea from brute force to dp method, and here we need to decide the details of the algorithm.
 
 We can either store the dp results in a dictionary or an array. An array costs less time to access and update than a dictionary, so we always prefer an array when possible. Because of three needed characteristics (day number, transaction number used, stock holding status), a three-dimensional array is our choice. We can use
-$dp[\text{day}_{number}][used_{transaction\_number}][stock_{holding\_status}]$ to represent our states, where `stock_holding_status` is a 0/1 number representing whether you hold the stock or not.
+$dp[\text{day}_{number}][used_transaction_number][stock_holding_status]$ to represent our states, where `stock_holding_status` is a 0/1 number representing whether you hold the stock or not.
 
 > The value of $\text{dp}[i][j][l]$ represents the best profit we can have at the end of the `i`-th day, with `j` remaining transactions to make and `l` stocks.
 

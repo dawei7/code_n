@@ -15,6 +15,7 @@ Return *the minimum **sum of squared difference** after modifying array *`nums1`
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [1,2,3,4], nums2 = [2,10,20,19], k1 = 0, k2 = 0$

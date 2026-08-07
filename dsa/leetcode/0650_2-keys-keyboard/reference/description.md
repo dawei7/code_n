@@ -13,6 +13,7 @@ Given an integer `n`, return *the minimum number of operations to get the charac
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 3$

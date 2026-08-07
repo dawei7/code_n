@@ -27,6 +27,7 @@ Let $E$ be the number of initial events and let $Q$ be the number of subsequent 
 Return one result for every operation: `null` for construction and priority updates, the removed `eventId` for a nonempty `pollHighest`, and `-1` for a poll on an empty manager.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

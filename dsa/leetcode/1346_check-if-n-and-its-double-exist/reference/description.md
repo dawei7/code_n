@@ -13,6 +13,7 @@ Given an array `arr` of integers, check if there exist two indices `i` and `j` s
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [10,2,5,3]`

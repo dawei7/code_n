@@ -12,6 +12,7 @@ Note: **Every occurrence** of a character that occurs fewer than `k` times is ke
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

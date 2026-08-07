@@ -86,10 +86,10 @@ For example, for the right subsequence of `[3, 6, 4]`, the corresponding $\text{
 
 Now, if we divide the sequence of prices around the element at the index `i`, into two subsequences, with left subsequences as $\text{Prices}[0], \text{Prices}[1], ... \text{Prices}[i]$ and the right subsequence as `Prices[i+1], ... Prices[N-1]`,
 then the total maximum profits that we obtain from this division (denoted as $\text{max}_{profits}[i]$) can be expressed as follows:
-$\text{max\\\text{\_profits}[i]} = \text{left\\\text{\_profits}[i]} + \text{right\\\_profits[i+1]}$
+$\text{max\\\text{_profits}[i]} = \text{left\\\text{_profits}[i]} + \text{right\\_profits[i+1]}$
 
 >Then if we exhaust all possible divisions, _i.e._ we place the two transactions in all possible combinations of subsequences, we would then obtain the global maximum profits that we could gain from this sequence of stock prices, which can be expressed as follows:
-$\max_{i=[0, N)}{(\text{max\\\text{\_profits}[i]})}$
+$\max_{i=[0, N)}{(\text{max\\\text{_profits}[i]})}$
 
 We demonstrate how the DP arrays are calculated in the following animation.
 

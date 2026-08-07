@@ -9,6 +9,7 @@ Consider a list of all factors of `n` sorted in **ascending order**, return *the
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 12, k = 3$

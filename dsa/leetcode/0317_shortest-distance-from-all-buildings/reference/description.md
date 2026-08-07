@@ -24,6 +24,7 @@ The **total travel distance** is the sum of the distances between the houses of 
 Return the minimum sum of distances from one reachable empty cell to every building, or `-1` when no such cell exists.
 
 ### Examples
+
 #### Example 1
 
 ![](images/buildings-grid.jpg)

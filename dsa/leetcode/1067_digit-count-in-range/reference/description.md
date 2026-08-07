@@ -16,6 +16,7 @@ Every integer in the closed interval from `low` through `high` is interpreted us
 - The total number of written occurrences of `d` across all integers in the inclusive range.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $d = 1, low = 1, high = 13$

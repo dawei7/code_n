@@ -15,6 +15,7 @@ Return the **maximum **possible sum of weights for the remaining edges after mak
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

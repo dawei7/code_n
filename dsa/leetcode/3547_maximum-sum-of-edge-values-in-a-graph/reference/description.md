@@ -15,6 +15,7 @@ Return the **maximum** score you can achieve.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/screenshot-from-2025-05-13-01-27-52.png)

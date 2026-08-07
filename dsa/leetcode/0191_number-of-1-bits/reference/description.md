@@ -12,6 +12,7 @@ Given a positive integer `n`, write a function that returns the number of set bi
 Return the count of binary positions whose value is `1`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

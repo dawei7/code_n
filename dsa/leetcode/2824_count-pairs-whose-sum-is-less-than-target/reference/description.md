@@ -7,6 +7,7 @@ Given a **0-indexed** integer array `nums` of length `n` and an integer `target`
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [-1,1,2,3,1], target = 2`

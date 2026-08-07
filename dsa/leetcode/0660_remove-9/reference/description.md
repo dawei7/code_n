@@ -18,6 +18,7 @@ Given an integer `n`, return *the* $$n^{\text{th}}$$ (**1-indexed**) integer in 
 Return the positive integer at sequence position `n`. The returned integer must contain no decimal digit `9`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 9$

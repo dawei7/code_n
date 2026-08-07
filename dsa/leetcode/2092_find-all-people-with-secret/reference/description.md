@@ -13,6 +13,7 @@ Return *a list of all the people that have the secret after all the meetings hav
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 6, meetings = [[1,2,5],[2,3,8],[1,5,10]], firstPerson = 1$

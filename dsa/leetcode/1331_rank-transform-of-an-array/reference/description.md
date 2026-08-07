@@ -15,6 +15,7 @@ The rank represents how large the element is. The rank has the following rules:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [40,10,20,30]`

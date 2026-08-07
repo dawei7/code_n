@@ -11,6 +11,7 @@ Return *the minimum cost to reach the top of the floor*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $cost = [10,<u>15</u>,20]$

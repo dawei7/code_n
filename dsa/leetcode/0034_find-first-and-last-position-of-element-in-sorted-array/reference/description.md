@@ -17,6 +17,7 @@ You must write an algorithm with `O(log n)` runtime complexity.
 Return `[first, last]`, where `first` and `last` are the target's earliest and latest indices. Return `[-1, -1]` when the target is absent.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [5,7,7,8,8,10], target = 8`

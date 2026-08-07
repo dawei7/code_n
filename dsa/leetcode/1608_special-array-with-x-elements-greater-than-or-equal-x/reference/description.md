@@ -11,6 +11,7 @@ Return `x` *if the array is **special**, otherwise, return *`-1`. It can be prov
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,5]`

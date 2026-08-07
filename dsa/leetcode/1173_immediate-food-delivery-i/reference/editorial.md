@@ -139,7 +139,7 @@ Regarding the percentage formula, we first need to derive the ratio of immediate
 AVG(order_date = customer_pref_delivery_date)
 ```
 
-The keyword `AVG` is used to calculate the average value of a numeric column or an expression that evaluates to a numeric value. It takes a single argument, which can be a column name, a mathematical expression, or a combination of both. In our case, `AVG()` takes a logical expression $\text{order}_{date} = customer_{pref\_delivery\_date}$ which compares $\text{order}_{date}$ with `customer_pref_delivery_date`, and if they are equal, it returns 1 (`True`), otherwise 0 (`False`). Then `AVG()` calculates the average of these 1s and 0s, which gives us the decimal percentage of rows where $\text{order}_{date}$ is equal to `customer_pref_delivery_date`.
+The keyword `AVG` is used to calculate the average value of a numeric column or an expression that evaluates to a numeric value. It takes a single argument, which can be a column name, a mathematical expression, or a combination of both. In our case, `AVG()` takes a logical expression $\text{order}_{date} = customer_pref_delivery_date$ which compares $\text{order}_{date}$ with `customer_pref_delivery_date`, and if they are equal, it returns 1 (`True`), otherwise 0 (`False`). Then `AVG()` calculates the average of these 1s and 0s, which gives us the decimal percentage of rows where $\text{order}_{date}$ is equal to `customer_pref_delivery_date`.
 
 According to the formula at the beginning, we need to multiply the average value after the decimal point by 100, convert it to a percentage value, and then round to 2 decimal places, which can be achieved this way:
 

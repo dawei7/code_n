@@ -19,6 +19,7 @@ Return the order in which the CPU will process the tasks.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $tasks = [[1,2],[2,4],[3,2],[4,1]]$

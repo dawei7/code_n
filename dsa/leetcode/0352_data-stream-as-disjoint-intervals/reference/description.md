@@ -20,6 +20,7 @@ Implement the `SummaryRanges` class:
 The app adapter returns the current interval summary after each addition. In the native class, `getIntervals()` returns one such summary whenever queried.
 
 ### Examples
+
 #### Example 1
 
 ```

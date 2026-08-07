@@ -27,6 +27,7 @@ Let $D$ be the maximum decimal digit count of either endpoint. Both peak and val
 Return the sum of the peak-and-valley counts of all integers from `num1` through `num2`, inclusive.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

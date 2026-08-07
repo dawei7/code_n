@@ -15,13 +15,14 @@ Return the maximum distance among all such pairs. If no valid pair exists, retur
 
 - `words`: A nonempty array of lowercase English strings.
 
-A candidate uses two distinct indices $i<j$. The candidate is valid only when `words[i] != words[j]`, and its distance is $j-i+1$, not merely the index difference.
+A candidate uses two distinct indices $i<j$. The candidate is valid only when $\text{words}[i] \neq \text{words}[j]$, and its distance is $j-i+1$, not merely the index difference.
 
 **Return value**
 
 Return the maximum distance among all valid pairs, or `0` when no unequal pair exists.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

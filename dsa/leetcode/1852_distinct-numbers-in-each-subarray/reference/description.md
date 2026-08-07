@@ -8,6 +8,7 @@ Return an array `ans` such that $\text{ans}[i]$ is the count of distinct element
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3,2,2,1,3], k = 3`

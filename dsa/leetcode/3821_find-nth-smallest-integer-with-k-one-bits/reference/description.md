@@ -2,7 +2,7 @@
 
 You are given two positive integers `n` and `k`.
 
-Return an integer denoting the $$n^{\text{th}}$$smallest positive integer that has **exactly** `k` ones in its binary representation. It is guaranteed that the answer is **strictly less** than$2^{50}$.
+Return an integer denoting the $$n^{\text{th}}$$ smallest positive integer that has **exactly** `k` ones in its binary representation. It is guaranteed that the answer is **strictly less** than $2^{50}$.
 ### Function Contract
 
 **Inputs**
@@ -19,6 +19,7 @@ The source guarantee ensures that `n` does not exceed the number of qualifying v
 Return the `n`th smallest positive integer whose binary representation contains exactly `k` ones.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

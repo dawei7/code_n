@@ -15,6 +15,7 @@ Return *the **maximum** sum of the elements of an hourglass*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/1.jpg)

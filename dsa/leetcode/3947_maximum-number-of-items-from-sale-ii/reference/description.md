@@ -19,7 +19,7 @@ Return the **maximum total number of item copies** you can obtain, including bot
 
 **Inputs**
 
-- `items`: A nonempty list of rows `[factor_i, price_i]`, one for each indexed item type.
+- `items`: A nonempty list of rows $[\text{factor}_{i}, \text{price}_{i}]$, one for each indexed item type.
 - `budget`: The maximum amount that may be spent on purchased copies.
 
 Let $n=\lvert\texttt{items}\rvert$.
@@ -29,6 +29,7 @@ Let $n=\lvert\texttt{items}\rvert$.
 Return the maximum number of purchased plus awarded free copies achievable with total purchase cost at most `budget`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

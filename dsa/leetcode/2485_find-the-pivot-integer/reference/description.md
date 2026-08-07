@@ -11,6 +11,7 @@ Return *the pivot integer *`x`. If no such integer exists, return `-1`. It is gu
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 8$

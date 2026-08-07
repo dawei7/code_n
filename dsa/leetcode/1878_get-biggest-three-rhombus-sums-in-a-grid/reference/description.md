@@ -15,6 +15,7 @@ Return *the biggest three **distinct rhombus sums** in the *`grid`* in **descend
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/pc73-q4-ex1.png)

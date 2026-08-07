@@ -21,6 +21,7 @@ The knight always starts at `[0,0]`. Each move changes the coordinate pair by on
 Return the smallest number of legal knight moves in any route from `[0,0]` to `[x,y]`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $x = 2, y = 1$

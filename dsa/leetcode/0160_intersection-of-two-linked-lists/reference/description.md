@@ -37,6 +37,7 @@ The judge will then create the linked structure based on these inputs and pass t
 Return the first shared `ListNode`. The app displays that node as its suffix values; a `null` result is displayed as `[]`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/160_example_1_1.png)

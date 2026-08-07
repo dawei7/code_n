@@ -17,6 +17,7 @@ Return ***all distinct indices** that have the **highest** possible **division s
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [0,0,1,0]`

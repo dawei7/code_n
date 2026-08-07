@@ -42,18 +42,19 @@ The result format is in the following example.
 
 **Input tables**
 
-- `Players(player_id, group_id)` supplies every player and that player's group.
-- `Matches(match_id, first_player, second_player, first_score, second_score)` supplies both participants and their corresponding points for every match.
+- $Players(\text{player}_{id}, \text{group}_{id})$ supplies every player and that player's group.
+- $Matches(\text{match}_{id}, \text{first}_{player}, \text{second}_{player}, \text{first}_{score}, \text{second}_{score})$ supplies both participants and their corresponding points for every match.
 
-Each match contributes `first_score` to `first_player` and `second_score` to `second_player`. Contributions from repeated matches and from both participant positions all belong in the same player total. Match opponents are guaranteed to belong to the same group.
+Each match contributes $\text{first}_{score}$ to $\text{first}_{player}$ and $\text{second}_{score}$ to $\text{second}_{player}$. Contributions from repeated matches and from both participant positions all belong in the same player total. Match opponents are guaranteed to belong to the same group.
 
 Let $p$ be the number of players, $m$ the number of matches, and $g$ the number of groups.
 
 **Return value**
 
-Return exactly one row per group with columns `group_id` and `player_id`. Select the maximum-total player independently within each group and break a maximum-total tie by the lowest `player_id`. The result rows may appear in any order.
+Return exactly one row per group with columns $\text{group}_{id}$ and $\text{player}_{id}$. Select the maximum-total player independently within each group and break a maximum-total tie by the lowest $\text{player}_{id}$. The result rows may appear in any order.
 
 ### Examples
+
 #### Example 1
 
 ```

@@ -11,6 +11,7 @@ The **length** of a path between two nodes is represented by the number of edges
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/diamtree.jpg)

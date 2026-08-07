@@ -17,6 +17,7 @@ Let $d = \lfloor \log_{16} n \rfloor + 1$ be the number of digits in the upperca
 - Return `"ERROR"` when any hexadecimal digit is from `2` through `9`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num = "257"$

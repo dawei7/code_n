@@ -12,6 +12,7 @@ Given the `root` of a binary tree, return *the preorder traversal of its nodes' 
 Return the node values in root-left-right preorder.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

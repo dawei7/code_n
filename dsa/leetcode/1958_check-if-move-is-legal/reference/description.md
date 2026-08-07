@@ -15,6 +15,7 @@ Given two integers `rMove` and `cMove` and a character `color` representing the 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/grid11.png)

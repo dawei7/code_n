@@ -30,6 +30,7 @@ Contributions may exceed either requirement; exact equality is not required. Any
 Return the least total purchase cost whose contributions meet or exceed both required amounts.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -7,6 +7,7 @@ Given the `root` of a binary tree, return *the sum of values of its deepest leav
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/1483_ex1.png)

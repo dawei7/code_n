@@ -14,6 +14,7 @@ You may assume the input array always has a valid answer.
 Return `None`. Mutate `nums` in place into any permutation satisfying the strict wiggle inequalities.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,5,1,1,6,4]`

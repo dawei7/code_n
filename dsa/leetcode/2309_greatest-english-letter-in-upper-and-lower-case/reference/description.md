@@ -9,6 +9,7 @@ An English letter `b` is **greater** than another letter `a` if `b` appears **af
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "l**<u>Ee</u>**TcOd<u>**E**</u>"`

@@ -14,6 +14,7 @@ Return *the shortest palindrome you can find by performing this transformation*.
 Return the shortest palindrome formed solely by prepending characters to `s`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "aacecaaa"`

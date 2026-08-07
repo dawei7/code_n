@@ -24,6 +24,7 @@ For a candidate $k$, the partition consists of `nums[0:k]`, `nums[k:2*k]`, and s
 Return the sum of all positive divisors $k$ of $n$ for which the permitted block rotations can make `nums` non-decreasing.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

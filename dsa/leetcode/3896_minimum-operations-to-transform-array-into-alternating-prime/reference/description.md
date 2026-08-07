@@ -26,6 +26,7 @@ Index parity is zero-based. Let $N=\texttt{nums.length}$ and let $M=\max(\texttt
 Return the minimum number of unit increments required so every even-indexed value is prime and every odd-indexed value is non-prime.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -9,6 +9,7 @@ Return *any possible rearrangement of* `s` *or return* `""` *if not possible*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "aab"`

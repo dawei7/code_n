@@ -29,6 +29,7 @@ Implement the `Encrypter` class:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ```

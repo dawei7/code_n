@@ -4,7 +4,7 @@ Given an integer `n`, you must transform it into `0` using the following operati
 
 - Change the rightmost ($0^th$) bit in the binary representation of `n`.
 
-- Change the $$i^{\text{th}}$$bit in the binary representation of `n` if the$(i-1)^th$bit is set to `1` and the$(i-2)^th$through$0^th$ bits are set to `0`.
+- Change the $$i^{\text{th}}$$ bit in the binary representation of `n` if the $(i-1)^th$ bit is set to `1` and the $(i-2)^th$ through $0^th$ bits are set to `0`.
 
 Return *the minimum number of operations to transform *`n`* into *`0`*.*
 ### Function Contract
@@ -13,6 +13,7 @@ Return *the minimum number of operations to transform *`n`* into *`0`*.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 3$

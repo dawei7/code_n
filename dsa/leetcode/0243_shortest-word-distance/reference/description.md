@@ -5,7 +5,7 @@ Given an array of strings `wordsDict` and two different strings that already exi
 
 **Inputs**
 
-- `wordsDict`: List of strings `List[str]`.
+- `wordsDict`: List of strings $\text{List}[str]$.
 - `word1`: Target word string.
 - `word2`: Target word string.
 
@@ -14,6 +14,7 @@ Given an array of strings `wordsDict` and two different strings that already exi
 Integer representing the shortest distance between `word1` and `word2` in `wordsDict`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $wordsDict = ["practice", "makes", "perfect", "coding", "makes"], word1 = "coding", word2 = "practice"$

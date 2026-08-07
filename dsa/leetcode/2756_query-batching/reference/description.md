@@ -20,6 +20,7 @@ The following diagram illustrates how the throttling algorithm works. Each recta
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** ``

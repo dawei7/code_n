@@ -43,6 +43,7 @@ The result format is in the following example.
 Return one column named `Customers` containing the names of customers with no matching order.
 
 ### Examples
+
 #### Example 1
 
 ```

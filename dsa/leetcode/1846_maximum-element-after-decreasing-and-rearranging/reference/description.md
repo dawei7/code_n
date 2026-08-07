@@ -19,6 +19,7 @@ Return *the **maximum** possible value of an element in *`arr`* after performing
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [2,2,1,2,1]`

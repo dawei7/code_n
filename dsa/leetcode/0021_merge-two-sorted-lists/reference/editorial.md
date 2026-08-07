@@ -22,12 +22,14 @@
 We can recursively define the result of a `merge` operation on two lists as
 the following (avoiding the corner case logic surrounding empty lists):
 
-$$\left\{
+$$
+\left\{
 \begin{array}{ll}
-      list1[0] + merge(list1[1:], list2) \& list1[0] < list2[0] \\
-      list2[0] + merge(list1, list2[1:]) \& otherwise
+      list1[0] + merge(list1[1:], list2) & list1[0] < list2[0] \\
+      list2[0] + merge(list1, list2[1:]) & otherwise
 \end{array}
-\right.$$
+\right.
+$$
 
 Namely, the smaller of the two lists' heads plus the result of a `merge` on
 the rest of the elements.

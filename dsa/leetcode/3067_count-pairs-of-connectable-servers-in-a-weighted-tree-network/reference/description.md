@@ -19,6 +19,7 @@ Return *an integer array* `count` *of length* `n` *where* $\text{count}[i]$ *is 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/example22.png)

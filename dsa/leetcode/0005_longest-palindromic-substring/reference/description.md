@@ -12,6 +12,7 @@ Given a string `s`, return *the longest* *palindromic* *substring* in `s`.
 Return one longest palindromic substring of `s`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "babad"`

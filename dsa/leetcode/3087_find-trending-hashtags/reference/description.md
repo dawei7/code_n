@@ -25,6 +25,7 @@ The result format is in the following example.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

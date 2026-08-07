@@ -24,9 +24,10 @@ Return the sum of all **compatible** integers `x`.
 
 **Return value**
 
-Return the integer sum of all positive values `x` satisfying both `abs(n - x) <= k` and `(n & x) == 0`. Return `0` when no such value exists.
+Return the integer sum of all positive values `x` satisfying both $abs(n - x) \le k$ and $(n \& x) = 0$. Return `0` when no such value exists.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

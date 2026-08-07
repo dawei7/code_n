@@ -12,14 +12,14 @@ According to the problem statement, for the $i$-th query, when we connect the $i
 
 We must therefore compute:
 
-* $\textit{count}\text{\_1}[i]$: the number of nodes in the **first** tree within distance $\le k$ of node $i$;
-* $\textit{count}\text{\_2}[j]$: the number of nodes in the **second** tree within distance $\le k-1$ of node $j$.
+* $\textit{count}\text{_1}[i]$: the number of nodes in the **first** tree within distance $\le k$ of node $i$;
+* $\textit{count}\text{_2}[j]$: the number of nodes in the **second** tree within distance $\le k-1$ of node $j$.
 
-Because $\textit{count}\text{\_2}[j]$ does not depend on the specific query, we can pre-compute it with a depth-first search (DFS) on the second tree. Afterward, we take the maximum value over all $j$, denoted $\textit{maxCount}_2 = \max_j \textit{count}\text{\_2}[j]$.
+Because $\textit{count}\text{_2}[j]$ does not depend on the specific query, we can pre-compute it with a depth-first search (DFS) on the second tree. Afterward, we take the maximum value over all $j$, denoted $\textit{maxCount}_2 = \max_j \textit{count}\text{_2}[j]$.
 
-For each query $i$, we run a DFS on the first tree to obtain $\textit{count}\text{\_1}[i]$ and then return
+For each query $i$, we run a DFS on the first tree to obtain $\textit{count}\text{_1}[i]$ and then return
 
-$\textit{count}\text{\_1}[i] + \textit{maxCount}_2$
+$\textit{count}\text{_1}[i] + \textit{maxCount}_2$
 
 as the answer.
 

@@ -13,6 +13,7 @@ Return *the **minimum number of moves** that you need to determine **with certai
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $k = 1, n = 2$

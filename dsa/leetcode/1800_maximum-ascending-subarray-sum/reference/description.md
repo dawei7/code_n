@@ -9,6 +9,7 @@ A subarray is defined as a contiguous sequence of numbers in an array.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [10,20,30,5,10,50]`

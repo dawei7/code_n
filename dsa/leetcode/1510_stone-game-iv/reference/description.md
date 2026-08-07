@@ -13,6 +13,7 @@ Given a positive integer `n`, return `true` if and only if Alice wins the game o
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 1$

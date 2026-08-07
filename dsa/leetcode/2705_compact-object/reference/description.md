@@ -11,6 +11,7 @@ You may assume the `obj` is the output of `JSON.parse`. In other words, it is va
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $obj = [null, 0, false, 1]$

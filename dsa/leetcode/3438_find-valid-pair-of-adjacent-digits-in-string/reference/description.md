@@ -13,6 +13,7 @@ Return the first **valid pair** found in the string `s` when traversing from lef
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

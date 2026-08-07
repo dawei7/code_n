@@ -15,6 +15,7 @@ A **permutation** is a sequence of integers from `1` to `n` of length `n` contai
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,1,4,3]`

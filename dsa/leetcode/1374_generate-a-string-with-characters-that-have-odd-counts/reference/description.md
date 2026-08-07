@@ -9,6 +9,7 @@ The returned string must contain only lowercase English letters. If there are mu
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 4$

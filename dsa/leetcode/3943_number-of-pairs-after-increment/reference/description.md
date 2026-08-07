@@ -21,9 +21,10 @@ Queries are processed from left to right. A type-2 query observes every type-1 u
 
 **Return value**
 
-Return one integer for every type-2 query, in query order. Each integer is the number of index pairs `(j, k)` for which the current sum `nums1[j] + nums2[k]` equals that query's target.
+Return one integer for every type-2 query, in query order. Each integer is the number of index pairs `(j, k)` for which the current sum $\text{nums1}[j] + \text{nums2}[k]$ equals that query's target.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

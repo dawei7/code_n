@@ -25,6 +25,7 @@ Implement the `FindElements` class:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/untitled-diagram-4-1.jpg)

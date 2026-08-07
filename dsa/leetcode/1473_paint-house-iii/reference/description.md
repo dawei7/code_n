@@ -19,6 +19,7 @@ Return *the minimum cost of painting all the remaining houses in such a way that
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $houses = [0,0,0,0,0], cost = [[1,10],[10,1],[10,1],[1,10],[5,1]], m = 5, n = 2, target = 3$

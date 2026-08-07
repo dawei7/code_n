@@ -70,9 +70,9 @@ Words contain only lower case letters and hence an absence or presence of each l
 
 ![fig](images/n_th.png)
 
-> How to set the n-th bit? Use standard bitwise trick : $n_{th\_bit} = 1 << n$.
+> How to set the n-th bit? Use standard bitwise trick : $n_th_bit = 1 << n$.
 
-> How to compute bitmask for a word? Iterate over the word, letter by letter, compute bit number corresponding to that letter $n = (int)ch - (int)'a'$, and add this n-th bit $n_{th\_bit} = 1 << n$ into bitmask `bitmask |= n_th_bit`.
+> How to compute bitmask for a word? Iterate over the word, letter by letter, compute bit number corresponding to that letter $n = (int)ch - (int)'a'$, and add this n-th bit $n_th_bit = 1 << n$ into bitmask `bitmask |= n_th_bit`.
 
 ![fig](images/bitmask.png)
 

@@ -15,6 +15,7 @@ Note that all prices will contain **at most** `10` digits.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $sentence = "there are$1 $2 and 5$ candies in the shop", discount = 50$
@@ -25,7 +26,7 @@ The words which represent prices are "$1" and "$2".
 - A 50% discount on "$2" yields "$1". Since we need to have exactly 2 decimal places after a price, we replace "$2" with "$1.00".
 #### Example 2
 
-- **Input:** $sentence = "1 2$3 4 $5$6 7 8$$9$10$", discount = 100$
+- **Input:** $sentence = "1 2$3 4 $5$6 7 8$$9 $10$", discount = 100$
 - **Output:** `"1 2 $0.00 4$0.00 $0.00 7 8$ $0.00$10$"`
 - **Explanation:**
 Applying a 100% discount on any price will result in 0.

@@ -7,6 +7,7 @@ Given an array of integers arr, find the sum of `min(b)`, where `b` ranges over 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [3,1,2,4]`

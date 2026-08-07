@@ -14,6 +14,7 @@ Given an integer `n`, return *the* $$n^{\text{th}}$$ ***ugly number***.
 Return the ugly number at position `n`, counting `1` as the first value.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 10$

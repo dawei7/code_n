@@ -17,6 +17,7 @@ Return *the **minimum** possible sum that a beautiful array could have modulo *$
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 2, target = 3$

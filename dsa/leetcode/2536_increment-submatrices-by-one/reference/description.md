@@ -13,6 +13,7 @@ Return* the matrix* `mat`* after performing every query.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/p2example11.png)

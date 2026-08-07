@@ -8,6 +8,7 @@ You are given an integer `k`, return* the *$$k^{\text{th}}$$* lucky number repre
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $k = 4$

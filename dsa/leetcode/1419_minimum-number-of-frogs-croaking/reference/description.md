@@ -11,6 +11,7 @@ A valid `"croak"` means a frog is printing five letters `'c'`, `'r'`, `'o'`, `'a
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $croakOfFrogs = "croakcroak"$

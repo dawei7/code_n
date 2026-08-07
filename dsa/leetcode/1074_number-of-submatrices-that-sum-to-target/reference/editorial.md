@@ -22,10 +22,12 @@ Many problems could be solved using the so-called [prefix sum](https://en.wikipe
 
 In one dimension it's simple: there is an array of numbers $x_0, x_1, x_2, ..., x_n$ and we're building a second array which is a sum of prefixes of the input array:
 
-$$P_0 = x_0 \\
+$$
+P_0 = x_0 \\
 P_1 = x_0 + x_1 \\
 ... \\
-P_n = x_0 + x_1 + x_2 + ... + x_n$$
+P_n = x_0 + x_1 + x_2 + ... + x_n
+$$
 
 Here is how it looks like, we sum up the current value with all values on the left:
 

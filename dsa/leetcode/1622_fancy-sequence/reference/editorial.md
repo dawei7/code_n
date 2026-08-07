@@ -26,10 +26,12 @@ $$
 
 How do we solve for $a_o$ and $b_o$? From the equations above, we obtain
 
-$$\begin{cases}
+$$
+\begin{cases}
 a_o = \dfrac{a_l}{a_\textit{idx}} \
 b_o = b_l - b_\textit{idx} \cdot \dfrac{a_l}{a_\textit{idx}}
-\end{cases}$$
+\end{cases}
+$$
 
 At first glance this seems straightforward, but we must note that after many `addAll` and `multAll` operations, $(a, b)$ may become very large, exceeding the range of integer types in most programming languages. One solution would be to use high-precision arithmetic, but that would make the implementation significantly more complex.
 
@@ -39,7 +41,7 @@ Fortunately, the problem only requires the result modulo $10^9 + 7$, which allow
 
 # Prerequisites
 
-Let the modulus be $m$ (where $m =$10^{9}$+ 7$ in this problem). For an integer $a$, if there exists another integer $a^{-1}$ $(0 < a^{-1} < m)$ such that
+Let the modulus be $m$ (where $m = $10^{9}$ + 7$ in this problem). For an integer $a$, if there exists another integer $a^{-1}$ $(0 < a^{-1} < m)$ such that
 
 $a a^{-1} \equiv 1 \pmod m$
 
@@ -71,11 +73,13 @@ $a^{m-1} \equiv 1 \pmod m$
 
 Thus,
 
-$$\begin{aligned}
-\& a^{m-1} a^{-1} \equiv a^{-1} \pmod m \
-\Rightarrow \& a^{m-2} a a^{-1} \equiv a^{-1} \pmod m \
-\Rightarrow \& a^{m-2} \equiv a^{-1} \pmod m
-\end{aligned}$$
+$$
+\begin{aligned}
+& a^{m-1} a^{-1} \equiv a^{-1} \pmod m \
+\Rightarrow & a^{m-2} a a^{-1} \equiv a^{-1} \pmod m \
+\Rightarrow & a^{m-2} \equiv a^{-1} \pmod m
+\end{aligned}
+$$
 
 Therefore, the multiplicative inverse of $a$ is
 
@@ -89,8 +93,10 @@ $\frac{b}{a} \equiv b \cdot a^{-1} \pmod m$
 
 This works because multiplication satisfies the distributive property under modulo:
 
-$$(a \times b) \bmod m =
-((a \bmod m) \times (b \bmod m)) \bmod m$$
+$$
+(a \times b) \bmod m =
+((a \bmod m) \times (b \bmod m)) \bmod m
+$$
 
 Division, however, does not satisfy this property directly. Using the multiplicative inverse allows us to safely perform division under modulo arithmetic.
 

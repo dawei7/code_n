@@ -15,6 +15,7 @@ A **majority** element in an array `nums` is an element that appears more than $
 - `true` if the number of occurrences of `target` is strictly greater than $n/2$; otherwise `false`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,4,5,5,5,5,5,6,6], target = 5`

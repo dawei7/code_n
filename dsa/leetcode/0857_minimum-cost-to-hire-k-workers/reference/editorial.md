@@ -42,17 +42,17 @@ The cost of the paid group is $$70 + 35 = \$105$$.
 
 The task is to find the least amount of money needed to form such a paid group. We can calculate the cost of each possible group as follows.
 
-The wage to quality ratio, for worker `0` is$$\$7 $$per unit ($\frac{\text{wage}}{\text{quality}} = \frac{70}{10}$), and for worker `2`, its ($\frac{\text{wage}}{\text{quality}} = \frac{30}{5}$) per unit.
+The wage to quality ratio, for worker `0` is $$\$7 $$per unit ($\frac{\text{wage}}{\text{quality}} = \frac{70}{10}$), and for worker `2`, its ($\frac{\text{wage}}{\text{quality}} = \frac{30}{5}$) per unit.
 
 Thus, to satisfy both conditions, we must pay each worker at least $$\$7 $$ per unit to meet the minimum wage and quality requirements. This internal selection process ensures that both quality and wage requirements are met.
 
 Now, to determine the optimal worker pool, we compute the maximum quality per unit multiplied by the total quality ($\frac{\text{max quality}}{\text{unit}} \times \text{total quality}$) for every pair of $$\$2 $$($k$) workers. This gives the minimum expected wage that fulfills both conditions.
 
 - For worker `0` and `1`: $$7 \times 30 (\frac{70}{10} \times [10 + 20]) = \$210$$.
-- For worker `0` and `2`:$$7 \times 15 (\frac{70}{10} \times [10 + 5]) = \$105$$.
-- For worker `1` and `2`:$$6 \times 25 (\frac{30}{5} \times [20 + 5]) = \$150$$.
+- For worker `0` and `2`: $$7 \times 15 (\frac{70}{10} \times [10 + 5]) = \$105$$.
+- For worker `1` and `2`: $$6 \times 25 (\frac{30}{5} \times [20 + 5]) = \$150$$.
 
-The cost of the cheapest paid group is$$\$105$$.
+The cost of the cheapest paid group is $$\$105$$.
 
 ---
 

@@ -33,6 +33,7 @@ The bottom and top rows coincide when `grid` has one row. In that case, selectin
 Return the number of cell sequences satisfying the start, finish, availability, distance, row-direction, and consecutive-same-row rules, reduced modulo $1{,}000{,}000{,}007$.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">
@@ -44,46 +45,69 @@ Return the number of cell sequences satisfying the start, finish, availability, 
 
 We label the cells we visit in the routes sequentially, starting from 1. The two routes are:
 
+```
 .2
 #1
 ```
+
 ```
 32
 #1
 ```
-We can move from the cell (1, 1) to the cell (0, 1) because the Euclidean distance is `sqrt((1 - 0)^2 + (1 - 1)^2) = sqrt(1) <= d`.
-However, we cannot move from the cell (1, 1) to the cell (0, 0) because the Euclidean distance is `sqrt((1 - 0)^2 + (1 - 0)^2) = sqrt(2) > d`.
+
+We can move from the cell (1, 1) to the cell (0, 1) because the Euclidean distance is $sqrt((1 - 0)^2 + (1 - 1)^2) = sqrt(1) \le d$.
+
+However, we cannot move from the cell (1, 1) to the cell (0, 0) because the Euclidean distance is $sqrt((1 - 0)^2 + (1 - 0)^2) = sqrt(2) > d$.
+
 </div>
 #### Example 2
+
 <div class="example-block">
-- **Input:** `grid = ["..","#."], d = 2`
-- **Output:** `4`
-- **Explanation:**
+**Input:** grid = ["..","#."], d = 2
+
+**Output:** 4
+
+**Explanation:**
+
 Two of the routes are given in example 1. The other two routes are:
 
+```
 2.
 #1
+```
 
 ```
 23
 #1
 ```
-Note that we can move from (1, 1) to (0, 0) because the Euclidean distance is `sqrt(2) <= d`.
+
+Note that we can move from (1, 1) to (0, 0) because the Euclidean distance is $sqrt(2) \le d$.
+
 </div>
 #### Example 3
+
 <div class="example-block">
-- **Input:** `grid = ["#"], d = 750`
-- **Output:** `0`
-- **Explanation:**
+**Input:** grid = ["#"], d = 750
+
+**Output:** 0
+
+**Explanation:**
+
 We cannot choose any cell as the starting cell. Therefore, there are no routes.
+
 </div>
 #### Example 4
+
 <div class="example-block">
-- **Input:** `grid = [".."], d = 1`
-- **Output:** `4`
-- **Explanation:**
+**Input:** grid = [".."], d = 1
+
+**Output:** 4
+
+**Explanation:**
+
 The possible routes are:
 
+```
 .1
 ```
 

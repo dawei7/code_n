@@ -19,6 +19,7 @@ Return *the decoded message*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1new4.jpg)

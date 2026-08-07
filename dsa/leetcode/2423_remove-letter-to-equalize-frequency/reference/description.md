@@ -15,6 +15,7 @@ Return* *`true`* if it is possible to remove one letter so that the frequency of
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $word = "abcc"$

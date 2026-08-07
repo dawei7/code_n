@@ -9,6 +9,7 @@ A position `(i, j)` is called **special** if $\text{mat}[i][j] = 1$ and all othe
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/special1.jpg)

@@ -12,7 +12,7 @@ There are two main observations we can make from the *remoteness* and *not reach
 
 1. Reachable vs. Unreachable Cells
 
-   The sum of all cells reachable from a given cell is simply the total sum of all cells in the grid minus the sum of all unreachable cells. Thus, for any cell, its remoteness can be expressed as: $\text{remoteness} = \text{total\\\_sum} - \text{reachable\\\_sum}$
+   The sum of all cells reachable from a given cell is simply the total sum of all cells in the grid minus the sum of all unreachable cells. Thus, for any cell, its remoteness can be expressed as: $\text{remoteness} = \text{total\\_sum} - \text{reachable\\_sum}$
 
 2. Isolated Islands in the Grid
 

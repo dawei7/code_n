@@ -9,9 +9,10 @@ Given an integer array `nums`, return* an integer array *`counts`* where *$\text
 
 **Return value**
 
-Return an equally long integer array whose position `i` counts indices $j>i$ for which `nums[j] < nums[i]`.
+Return an equally long integer array whose position `i` counts indices $j>i$ for which $\text{nums}[j] < \text{nums}[i]$.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [5,2,6,1]`

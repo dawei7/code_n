@@ -13,6 +13,7 @@ Given the `label` of a node in this tree, return the labels in the path from the
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $label = 14$

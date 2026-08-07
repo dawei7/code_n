@@ -25,6 +25,7 @@ Return an array `answer` containing the results of the queries of the first type
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

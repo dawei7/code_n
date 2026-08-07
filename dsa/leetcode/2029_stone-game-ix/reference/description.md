@@ -11,6 +11,7 @@ Assuming both players play **optimally**, return `true` *if Alice wins and* `fal
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $stones = [2,1]$

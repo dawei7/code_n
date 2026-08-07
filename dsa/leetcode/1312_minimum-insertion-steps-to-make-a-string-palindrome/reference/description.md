@@ -11,6 +11,7 @@ A **Palindrome String** is one that reads the same backward as well as forward.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "zzazz"`

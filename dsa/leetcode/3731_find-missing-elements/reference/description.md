@@ -20,6 +20,7 @@ The input order is arbitrary. Let $L=\min(\texttt{nums})$ and $H=\max(\texttt{nu
 Return a list containing each integer in $[L,H]$ that does not occur in `nums`, ordered from smallest to largest.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

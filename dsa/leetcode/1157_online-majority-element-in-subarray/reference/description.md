@@ -15,6 +15,7 @@ Implementing the `MajorityChecker` class:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ```

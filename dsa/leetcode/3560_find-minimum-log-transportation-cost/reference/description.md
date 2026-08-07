@@ -13,6 +13,7 @@ Return the **minimum total cost** to distribute the logs onto the trucks. If the
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

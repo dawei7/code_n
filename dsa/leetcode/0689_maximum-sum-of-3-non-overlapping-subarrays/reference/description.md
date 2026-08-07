@@ -9,6 +9,7 @@ Return the result as a list of indices representing the starting position of eac
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,1,2,6,7,5,1], k = 2`

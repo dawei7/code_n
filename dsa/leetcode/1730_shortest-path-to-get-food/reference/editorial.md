@@ -147,9 +147,11 @@ This heuristic allows us to focus on paths that are more likely to lead to food 
 
 The heuristic we use is the Manhattan distance, which calculates the sum of the horizontal and vertical distances between the current cell and the food cell. It estimates how far a food cell is from the current position without considering obstacles.
 
-$$\begin{aligned}
+$$
+\begin{aligned}
     \text{Manhattan Distance} = |r_{\text{current}} - r_{\text{food}}| + |c_{\text{current}} - c_{\text{food}}|
-\end{aligned}$$
+\end{aligned}
+$$
 
 Each cell has a total cost, which is the sum of the number of steps taken so far (*actual cost*) and the Manhattan distance to the nearest food cell (*heuristic cost*). This total cost represents the estimated effort to reach a food cell starting from the initial position and passing through the current cell.
 

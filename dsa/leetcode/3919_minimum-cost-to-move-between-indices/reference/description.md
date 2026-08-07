@@ -28,9 +28,10 @@ Let $n=\lvert\texttt{nums}\rvert$ and $q=\lvert\texttt{queries}\rvert$. For an i
 
 **Return value**
 
-Return a list of $q$ integers in the same order as `queries`. Entry `i` is the minimum total cost of moving from `queries[i][0]` to `queries[i][1]`. A query whose endpoints are equal has cost `0`.
+Return a list of $q$ integers in the same order as `queries`. Entry `i` is the minimum total cost of moving from $\text{queries}[i][0]$ to $\text{queries}[i][1]$. A query whose endpoints are equal has cost `0`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -6,29 +6,36 @@ Return a <a href="https://en.wikipedia.org/wiki/Object_copying#Deep_copy" target
 
 Each node in the graph contains a value (`int`) and a list ($\text{List}[Node]$) of its neighbors.
 
+```
 class Node {
-public int val;
-public List<Node> neighbors;
+    public int val;
+    public List<Node> neighbors;
 }
 ```
+
 **Test case format:**
-For simplicity, each node's value is the same as the node's index (1-indexed). For example, the first node with `val == 1`, the second node with `val == 2`, and so on. The graph is represented in the test case using an adjacency list.
+
+For simplicity, each node's value is the same as the node's index (1-indexed). For example, the first node with $val = 1$, the second node with $val = 2$, and so on. The graph is represented in the test case using an adjacency list.
+
 **An adjacency list** is a collection of unordered **lists** used to represent a finite graph. Each list describes the set of neighbors of a node in the graph.
-The given node will always be the first node with `val = 1`. You must return the **copy of the given node** as a reference to the cloned graph.
+
+The given node will always be the first node with $val = 1$. You must return the **copy of the given node** as a reference to the cloned graph.
 ### Function Contract
 
 **Inputs**
 
-- `adj_list`: The app's adjacency-list representation, where row `i` lists the one-based neighbors of node $i + 1$; `[]` represents an empty graph.
+- $\text{adj}_{list}$: The app's adjacency-list representation, where row `i` lists the one-based neighbors of node $i + 1$; `[]` represents an empty graph.
 
 **Return value**
 
 Return independent adjacency data for a deep copy. The native LeetCode interface returns the cloned `Node` corresponding to the supplied node.
 
 ### Examples
+
 #### Example 1
+
 ![](images/133_clone_graph_question.png)
-```
+
 - **Input:** $adjList = [[2,4],[1,3],[2,4],[1,3]]$
 - **Output:** `[[2,4],[1,3],[2,4],[1,3]]`
 - **Explanation:** There are 4 nodes in the graph.

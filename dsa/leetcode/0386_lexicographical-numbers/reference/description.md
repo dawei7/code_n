@@ -14,6 +14,7 @@ You must write an algorithm that runs in `O(n)` time and uses `O(1)` extra space
 Return each integer from `1` through `n` exactly once in lexicographical order.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 13$

@@ -24,9 +24,11 @@ We want to identify the **volume** (the number of cubic feet) of inventory that 
 
 First, let's create a new column to represent **cubic_ft** of each product. We can achieve this by utilizing the volume formula:
 
-$$\begin{aligned}
+$$
+\begin{aligned}
 \text{volume} = \text{width} \times \text{height} \times \text{length}
-\end{aligned}$$
+\end{aligned}
+$$
 
 Given the volume formula, we can set a new column **cubic_ft** that is calculated from columns **width**, **height**, and **length**.
 

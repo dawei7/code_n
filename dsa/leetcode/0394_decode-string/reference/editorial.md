@@ -142,7 +142,7 @@ public:
 
   The worst case occurs when there are multiple nested patterns. Suppose all $k$ values ($\text{maxK}$) are `10` and all encoded strings ($n$) are of size `2`.
 
-  For $s = \texttt{10[\text{ab10}[cd]]\text{10}[ef]}$, the time complexity is roughly: $10 \cdot \texttt{cd} \cdot 10 \cdot \texttt{ab} + 10 \cdot 2 =$10^{2}$\cdot 2$
+  For $s = \texttt{10[\text{ab10}[cd]]\text{10}[ef]}$, the time complexity is roughly: $10 \cdot \texttt{cd} \cdot 10 \cdot \texttt{ab} + 10 \cdot 2 = $10^{2}$ \cdot 2$
 
   Hence, for an encoded pattern of the form $\text{maxK[\text{nmaxK}[n]]}$, the time complexity to decode is: $\mathcal{O}(\text{maxK}^{\text{countK}} \cdot n)$
 

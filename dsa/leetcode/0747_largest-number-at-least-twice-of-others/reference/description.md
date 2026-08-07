@@ -9,6 +9,7 @@ Determine whether the largest element in the array is **at least twice** as much
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,6,1,0]`

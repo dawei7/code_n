@@ -7,6 +7,7 @@ Given an array of string `words`, return all strings in* *`words`* *that are a s
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["mass","as","hero","superhero"]$

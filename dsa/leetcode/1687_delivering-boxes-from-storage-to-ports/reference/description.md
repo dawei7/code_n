@@ -4,7 +4,7 @@ You have the task of delivering some boxes from storage to their ports using onl
 
 You are given an array `boxes`, where $\text{boxes}[i] = [ports_​​i​, \text{weight}_{i}]$, and three integers `portsCount`, `maxBoxes`, and `maxWeight`.
 
-- `ports_​​i` is the port where you need to deliver the $$i^{\text{th}}$$box and$\text{weights}_{i}$is the weight of the$$i^{\text{th}}$$ box.
+- `ports_​​i` is the port where you need to deliver the $$i^{\text{th}}$$ box and $\text{weights}_{i}$ is the weight of the $$i^{\text{th}}$$ box.
 
 - `portsCount` is the number of ports.
 
@@ -27,6 +27,7 @@ Return *the **minimum** number of **trips** the ship needs to make to deliver al
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $boxes = [[1,1],[2,1],[1,1]], portsCount = 2, maxBoxes = 3, maxWeight = 3$

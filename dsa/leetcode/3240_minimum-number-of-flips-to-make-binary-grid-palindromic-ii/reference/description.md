@@ -13,6 +13,7 @@ Return the **minimum** number of cells that need to be flipped to make **all** r
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

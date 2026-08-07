@@ -17,6 +17,7 @@ Return *the label of the **first** day where you have been in **all** the rooms*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nextVisit = [0,0]$

@@ -9,6 +9,7 @@ Return *the maximum strength of a group the teacher can create*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,-1,-5,2,5,-9]`

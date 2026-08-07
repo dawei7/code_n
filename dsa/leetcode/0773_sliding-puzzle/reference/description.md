@@ -11,6 +11,7 @@ Given the puzzle board `board`, return *the least number of moves required so th
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/slide1-grid.jpg)

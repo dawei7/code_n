@@ -39,8 +39,8 @@ The result format is in the following example.
 
 **Inputs**
 
-- `Product(product_id, product_name)` contains $P$ products keyed by `product_id`.
-- `Sales(product_id, period_start, period_end, average_daily_sales)` contains $S$ product sales intervals keyed by `product_id`.
+- $Product(\text{product}_{id}, \text{product}_{name})$ contains $P$ products keyed by $\text{product}_{id}$.
+- $Sales(\text{product}_{id}, \text{period}_{start}, \text{period}_{end}, average_daily_sales)$ contains $S$ product sales intervals keyed by $\text{product}_{id}$.
 
 Both endpoints of every sales interval count as sales days. The only report years are 2018, 2019, and 2020.
 
@@ -48,14 +48,15 @@ Both endpoints of every sales interval count as sales days. The only report year
 
 Return a table with these columns:
 
-- `product_id`: the product's primary-key ID.
-- `product_name`: the name from the matching `Product` row.
-- `report_year`: a year whose closed calendar interval overlaps the product's sales interval.
-- `total_amount`: the number of overlapping calendar days multiplied by `average_daily_sales`.
+- $\text{product}_{id}$: the product's primary-key ID.
+- $\text{product}_{name}$: the name from the matching `Product` row.
+- $\text{report}_{year}$: a year whose closed calendar interval overlaps the product's sales interval.
+- $\text{total}_{amount}$: the number of overlapping calendar days multiplied by `average_daily_sales`.
 
-Emit one row for each product-year overlap and no row for a product without a sales interval. Order rows by `product_id` and then by `report_year`. Let $R$ be the number of returned rows.
+Emit one row for each product-year overlap and no row for a product without a sales interval. Order rows by $\text{product}_{id}$ and then by $\text{report}_{year}$. Let $R$ be the number of returned rows.
 
 ### Examples
+
 #### Example 1
 
 ```

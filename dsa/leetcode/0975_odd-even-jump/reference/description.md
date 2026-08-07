@@ -19,6 +19,7 @@ Return *the number of **good** starting indices*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [10,13,12,14,15]`

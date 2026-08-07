@@ -15,6 +15,7 @@ The term `gcd(a, b)` denotes the **greatest common divisor** of `a` and `b`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

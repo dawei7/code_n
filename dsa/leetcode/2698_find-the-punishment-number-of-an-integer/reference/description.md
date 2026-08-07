@@ -13,6 +13,7 @@ The **punishment number** of `n` is defined as the sum of the squares of all int
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 10$

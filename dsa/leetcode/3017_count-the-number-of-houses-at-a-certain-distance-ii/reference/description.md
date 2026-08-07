@@ -15,6 +15,7 @@ Return *a **1-indexed** array *`result`* of length *`n`* where *$\text{result}[k
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/example2.png)

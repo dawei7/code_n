@@ -17,6 +17,7 @@ Let $N$ be the number of tree nodes and let $h$ be the tree height. A leaf is a 
 Return `true` if some connected path starts at `root`, ends at a leaf, and has exactly the values of `arr` in the same order. Return `false` otherwise.
 
 ### Examples
+
 #### Example 1
 
 **

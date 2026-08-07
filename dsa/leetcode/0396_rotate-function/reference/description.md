@@ -20,6 +20,7 @@ The test cases are generated so that the answer fits in a **32-bit** integer.
 Return the greatest rotation-function value over all `n` possible clockwise rotations.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [4,3,2,6]`

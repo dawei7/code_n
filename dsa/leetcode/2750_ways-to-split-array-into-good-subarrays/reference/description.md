@@ -13,6 +13,7 @@ A subarray is a contiguous **non-empty** sequence of elements within an array.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [0,1,0,0,1]`

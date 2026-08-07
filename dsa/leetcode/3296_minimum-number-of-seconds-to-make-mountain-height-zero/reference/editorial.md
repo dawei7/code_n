@@ -8,7 +8,12 @@ During each step of the binary search, suppose the current guess for the time is
 
 For the $i$-th worker, the time required to reduce the mountain's height by $k$ units is
 
-$$\textit{workerTimes}[i] \cdot (1 + 2 + \cdots + k) =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  = \textit{workerTimes}[i] \cdot \frac{k(k+1)}{2}$$
+$$
+\textit{workerTimes}[i] \cdot (1 + 2 + \cdots + k)
+==================================================
+
+\textit{workerTimes}[i] \cdot \frac{k(k+1)}{2}
+$$
 
 Thus, within $\textit{mid}$ seconds, the maximum height that the $i$-th worker can reduce is the largest positive integer $k$ satisfying
 
@@ -24,9 +29,11 @@ $\frac{k(k+1)}{2} \le \textit{work}$
 
 Solving this inequality using the quadratic formula gives
 
-$$k = \left\lfloor
+$$
+k = \left\lfloor
 \frac{-1 + \sqrt{1 + 8 \cdot \textit{work}}}{2}
-\right\rfloor$$
+\right\rfloor
+$$
 
 We compute this value for every worker and sum the resulting $k$ values. If the total is greater than or equal to $H$, then the mountain can be reduced within $\textit{mid}$ seconds, and we attempt to find a smaller feasible time. Otherwise, we need to increase the allowed time.
 

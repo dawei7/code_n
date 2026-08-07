@@ -20,16 +20,18 @@ Each state vector has its own transition matrix. Let:
 
 The transitions can then be written as
 
-$$\begin{aligned}
+$$
+\begin{aligned}
 \textit{dp}_0[i] = \textit{dp}_1[i-1] \cdot B \\
 \textit{dp}_1[i] = \textit{dp}_0[i-1] \cdot A
-\end{aligned}$$
+\end{aligned}
+$$
 
 Using block matrices, we can merge the two state vectors into a single state vector of length $2m$:
-$[\textit{dp}\text{\_0}[i],, \textit{dp}\text{\_1}[i]]$
+$[\textit{dp}\text{_0}[i],, \textit{dp}\text{_1}[i]]$
 This yields the unified transition equation
 
-$\begin{bmatrix} \textit{dp}\text{\_0}[i] \& \textit{dp}\text{\_1}[i] \end{bmatrix} = \begin{bmatrix} \textit{dp}_0[i-1] \& \textit{dp}_1[i-1] \end{bmatrix} \cdot \begin{bmatrix} O \& A \\ B \& O \end{bmatrix}$
+$\begin{bmatrix} \textit{dp}\text{_0}[i] \& \textit{dp}\text{_1}[i] \end{bmatrix} = \begin{bmatrix} \textit{dp}_0[i-1] \& \textit{dp}_1[i-1] \end{bmatrix} \cdot \begin{bmatrix} O \& A \\ B \& O \end{bmatrix}$
 
 Among them, the large square matrix $U = \begin{bmatrix} O \& A \\ B \& O \end{bmatrix}$ is the merged state transition matrix, of size $(2 \cdot m) \times (2 \cdot m)$, where $O$ is the $m \times m$ zero matrix. The block anti-diagonal structure arises because the two state vectors transition into each other alternately: $\textit{dp}_0$ depends only on the previous $\textit{dp}_1$, and vice versa.
 
@@ -52,17 +54,19 @@ $A = \begin{bmatrix} 0 \& 1 \& 1 \\ 0 \& 0 \& 1 \\ 0 \& 0 \& 0 \end{bmatrix}, \q
 
 Assemble them into a complete $6 \times 6$ state transition matrix $U$ according to the rules of block matrices, as follows:
 
-$$U = \left[
+$$
+U = \left[
 \begin{array}{ccc:ccc}
-0 \& 0 \& 0 \& 0 \& 1 \& 1 \\
-0 \& 0 \& 0 \& 0 \& 0 \& 1 \\
-0 \& 0 \& 0 \& 0 \& 0 \& 0 \\
+0 & 0 & 0 & 0 & 1 & 1 \\
+0 & 0 & 0 & 0 & 0 & 1 \\
+0 & 0 & 0 & 0 & 0 & 0 \\
 \hdashline
-0 \& 0 \& 0 \& 0 \& 0 \& 0 \\
-1 \& 0 \& 0 \& 0 \& 0 \& 0 \\
-1 \& 1 \& 0 \& 0 \& 0 \& 0
+0 & 0 & 0 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 & 0 & 0 \\
+1 & 1 & 0 & 0 & 0 & 0
 \end{array}
-\right]$$
+\right]
+$$
 
 Suppose the length of the target zigzag array is $n$, then the final state is $\textit{dp}[n-1]$, and the solution process is as follows:
 

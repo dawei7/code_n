@@ -13,6 +13,7 @@ Return *the smallest value *`n`* will take on.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 15$

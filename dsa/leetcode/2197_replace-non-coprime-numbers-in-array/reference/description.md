@@ -21,6 +21,7 @@ Two values `x` and `y` are **non-coprime** if `GCD(x, y) > 1` where `GCD(x, y)` 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [6,4,3,2,7,6,2]`

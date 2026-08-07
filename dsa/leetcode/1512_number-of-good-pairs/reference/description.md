@@ -9,6 +9,7 @@ A pair `(i, j)` is called *good* if $\text{nums}[i] = \text{nums}[j]$ and `i` < 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3,1,1,3]`

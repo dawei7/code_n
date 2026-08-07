@@ -14,6 +14,7 @@ You are given an integer `n`. There is originally an array consisting of `n` int
 Return the number of permutations in which every integer occupies a position different from its original one, reduced modulo $10^9 + 7$.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 3$

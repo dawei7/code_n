@@ -48,6 +48,7 @@ Construct one `TrafficLight` instance for an intersection whose initial green ro
 - `carArrived` returns no value. Across concurrent calls, every car must cross, different roads must never cross simultaneously, redundant green changes are forbidden, and all calls must finish without deadlock.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $cars = [1,3,5,2,4], directions = [2,1,2,4,3], arrivalTimes = [10,20,30,40,50]$

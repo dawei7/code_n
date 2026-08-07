@@ -15,7 +15,7 @@ Return an array `ans`, where $\text{ans}[i]$ is the answer for the $$i^{\text{th
 
 - `nums`: The source integer array whose inclusive subarrays are queried.
 - `k`: The exact positive amount added or subtracted in one operation.
-- `queries`: An array of inclusive index pairs `[l_i, r_i]`.
+- `queries`: An array of inclusive index pairs $[l_{i}, r_{i}]$.
 
 Let $n=\lvert\texttt{nums}\rvert$ and $q=\lvert\texttt{queries}\rvert$. Each query is hypothetical and independent: its operations do not mutate `nums` for later queries.
 
@@ -24,6 +24,7 @@ Let $n=\lvert\texttt{nums}\rvert$ and $q=\lvert\texttt{queries}\rvert$. Each que
 Return an array of $q$ integers containing the minimum operation count for each query, or `-1` wherever equalization is impossible.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -22,6 +22,7 @@ Return *the **minimum** possible total cost of separating** *`sentence`* into ro
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $sentence = "i love leetcode", k = 12$

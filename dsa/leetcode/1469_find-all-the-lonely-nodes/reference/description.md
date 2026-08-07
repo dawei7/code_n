@@ -19,6 +19,7 @@ Return the value of each non-root node whose parent has exactly one child.
 Result order is unrestricted.
 
 ### Examples
+
 #### Example 1
 
 ![](images/e1.png)

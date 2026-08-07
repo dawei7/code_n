@@ -13,6 +13,7 @@ Return the **maximum** possible **total score** by the time you reach the last i
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -12,6 +12,7 @@ Return *the length of the **longest semi-decreasing** subarray of *`nums`*, and 
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [7,6,5,4,3,2,1,6,10,11]`

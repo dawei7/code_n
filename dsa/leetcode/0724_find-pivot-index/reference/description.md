@@ -13,6 +13,7 @@ Return *the **leftmost pivot index***. If no such index exists, return `-1`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,7,3,6,5,6]`

@@ -11,6 +11,7 @@ Return an array of booleans `answer` such that $\text{answer}[i]$ is `true` if $
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

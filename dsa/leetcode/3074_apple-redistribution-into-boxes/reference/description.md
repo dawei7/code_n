@@ -2,7 +2,7 @@
 
 You are given an array `apple` of size `n` and an array `capacity` of size `m`.
 
-There are `n` packs where the $$i^{\text{th}}$$pack contains$\text{apple}[i]$apples. There are `m` boxes as well, and the$$i^{\text{th}}$$box has a capacity of$\text{capacity}[i]$ apples.
+There are `n` packs where the $$i^{\text{th}}$$ pack contains $\text{apple}[i]$ apples. There are `m` boxes as well, and the $$i^{\text{th}}$$ box has a capacity of $\text{capacity}[i]$ apples.
 
 Return *the **minimum** number of boxes you need to select to redistribute these *`n`* packs of apples into boxes*.
 
@@ -13,6 +13,7 @@ Return *the **minimum** number of boxes you need to select to redistribute these
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $apple = [1,3,2], capacity = [4,3,1,5,2]$

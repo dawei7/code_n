@@ -15,6 +15,7 @@ Return *the **maximum** possible score you can achieve after playing **any** num
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block" style="

@@ -30,9 +30,10 @@ Hyphen classification uses neighboring characters in the fully concatenated `s`,
 
 **Return value**
 
-Return an integer array `ans` with `ans[i]` equal to the number of maximal words in `s` that exactly equal `queries[i]`.
+Return an integer array `ans` with $\text{ans}[i]$ equal to the number of maximal words in `s` that exactly equal $\text{queries}[i]$.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

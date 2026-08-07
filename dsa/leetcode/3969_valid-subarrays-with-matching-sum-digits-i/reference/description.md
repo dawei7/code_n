@@ -20,9 +20,10 @@ For indices $0 \le l \le r < n$, `nums[l..r]` denotes the contiguous, nonempty i
 
 **Return value**
 
-Return the number of index pairs $(l,r)$ for which the decimal representation of $\sum_{i=l}^{r}\texttt{nums[i]}$ begins with `x` and ends with `x`.
+Return the number of index pairs $(l,r)$ for which the decimal representation of $\sum_{i=l}^{r}\texttt{\text{nums}[i]}$ begins with `x` and ends with `x`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

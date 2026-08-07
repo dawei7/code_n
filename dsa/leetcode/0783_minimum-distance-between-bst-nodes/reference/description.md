@@ -7,6 +7,7 @@ Given the `root` of a Binary Search Tree (BST), return *the minimum difference b
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/bst1.jpg)

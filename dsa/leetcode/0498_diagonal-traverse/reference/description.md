@@ -7,6 +7,7 @@ Given an `m x n` matrix `mat`, return *an array of all the elements of the array
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/diag1-grid.jpg)

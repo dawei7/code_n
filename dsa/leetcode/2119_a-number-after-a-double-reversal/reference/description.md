@@ -11,6 +11,7 @@ Given an integer `num`, **reverse** `num` to get `reversed1`, **then reverse** `
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num = 526$

@@ -10,6 +10,7 @@ Return the **minimum index sum** $i + j$ among all possible good pairs. If no su
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

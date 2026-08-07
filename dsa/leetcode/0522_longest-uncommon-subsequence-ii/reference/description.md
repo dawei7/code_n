@@ -13,6 +13,7 @@ A **subsequence** of a string `s` is a string that can be obtained after deletin
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $strs = ["aba","cdc","eae"]$

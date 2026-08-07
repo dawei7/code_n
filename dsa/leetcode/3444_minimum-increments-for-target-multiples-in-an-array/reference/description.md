@@ -11,6 +11,7 @@ Return **the minimum number** of operations required so that each element in `ta
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -9,6 +9,7 @@ Return* the number of paths where the sum of the elements on the path is divisib
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/image-20220813183124-1.png)

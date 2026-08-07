@@ -18,6 +18,7 @@ Choices are based on cell positions. If the same value occurs more than once in 
 Return the number of row-by-row selections whose overall greatest common divisor equals `1`, reduced modulo $1{,}000{,}000{,}007$.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

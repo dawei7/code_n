@@ -11,6 +11,7 @@ Return* an array containing the index of the row, and the number of ones in it.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $mat = [[0,1],[1,0]]$

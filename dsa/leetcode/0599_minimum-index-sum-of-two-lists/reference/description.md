@@ -13,6 +13,7 @@ Return *all the **common strings with the least index sum***. Return the answer 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $list1 = ["Shogun","Tapioca Express","Burger King","KFC"], list2 = ["Piatti","The Grill at Torrey Pines","Hungry Hunter Steakhouse","Shogun"]$

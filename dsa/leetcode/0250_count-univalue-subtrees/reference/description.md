@@ -7,13 +7,14 @@ A **uni-value subtree** means all nodes of the subtree have the same value.
 
 **Inputs**
 
-- `root`: Binary tree root node (`Optional[TreeNode]`).
+- `root`: Binary tree root node ($\text{Optional}[TreeNode]$).
 
 **Return value**
 
 Integer count of uni-value subtrees in the given binary tree.
 
 ### Examples
+
 #### Example 1
 
 ![](images/unival_e1.jpg)

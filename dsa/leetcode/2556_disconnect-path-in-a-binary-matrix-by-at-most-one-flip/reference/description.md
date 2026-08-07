@@ -13,6 +13,7 @@ Return `true` *if it is possible to make the matrix disconnect or *`false`* othe
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/yetgrid2drawio.png)

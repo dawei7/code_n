@@ -11,6 +11,7 @@ Return the **maximum** number of subarrays possible after removing **exactly** o
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

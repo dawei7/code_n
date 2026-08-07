@@ -11,6 +11,7 @@ A string `a` is lexicographically smaller than a string `b` (of the same length)
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $palindrome = "abccba"$

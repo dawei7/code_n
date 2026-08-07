@@ -13,6 +13,7 @@ Please solve it without using the built-in `Array.reduce` method.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** ``

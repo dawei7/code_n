@@ -11,6 +11,7 @@ If no such second minimum value exists, output -1 instead.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/smbt1.jpg)

@@ -22,6 +22,7 @@ Return the current state of the signal. If none of the above conditions are met,
 Return `"Green"`, `"Orange"`, or `"Red"` when the corresponding timer rule applies. Return `"Invalid"` for every other legal timer value. The returned strings are case-sensitive.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

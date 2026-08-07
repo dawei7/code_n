@@ -21,6 +21,7 @@ A **subsequence** of an array is a new array generated from the original array b
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [4,6,1,2], k = 2`

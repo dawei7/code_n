@@ -25,6 +25,7 @@ A code snippet is valid if all the following rules hold:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $code = "<DIV>This is the first line <![CDATA[<div>]]></DIV>"$
@@ -36,10 +37,9 @@ Although CDATA_CONTENT has an unmatched start tag with invalid TAG_NAME, it shou
 So TAG_CONTENT is valid, and then the code is valid. Thus return true.
 #### Example 2
 
-```
-**Input:** code = "<DIV>>>  ![cdata[]] <![CDATA[<div>]>]]>]]>>]</DIV>"
-**Output:** true
-**Explanation:**
+- **Input:** $code = "<DIV>>> ![cdata[]] <![CDATA[<div>]>]]>]]>>]</DIV>"$
+- **Output:** `true`
+- **Explanation:**
 We first separate the code into : start_tag|tag_content|end_tag.
 start_tag -> **"<DIV>"**
 end_tag -> **"</DIV>"**
@@ -49,7 +49,6 @@ cdata -> **"<![CDATA[<div>]>]]>"**, where the CDATA_CONTENT is **"<div>]>"**
 text2 -> **"]]>>]"**
 The reason why start_tag is NOT **"<DIV>>>"** is because of the rule 6.
 The reason why cdata is NOT **"<![CDATA[<div>]>]]>]]>"** is because of the rule 7.
-```
 #### Example 3
 
 - **Input:** $code = "<A> ** </A> **"$

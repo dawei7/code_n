@@ -22,9 +22,10 @@ Let $n = \lvert\texttt{nums}\rvert$.
 
 **Output**
 
-Return the maximum `nums[i] + nums[j]` over all indices satisfying $0 \le i < j < n$ and $j - i \ge k$. Indices, rather than value differences, determine validity.
+Return the maximum $\text{nums}[i] + \text{nums}[j]$ over all indices satisfying $0 \le i < j < n$ and $j - i \ge k$. Indices, rather than value differences, determine validity.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

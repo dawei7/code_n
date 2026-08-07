@@ -9,6 +9,7 @@ Return *the length of the longest substring with repeated characters*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $text = "ababa"$

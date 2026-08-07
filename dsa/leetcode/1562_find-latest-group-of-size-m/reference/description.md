@@ -13,6 +13,7 @@ Return *the latest step at which there exists a group of ones of length **exactl
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [3,5,1,2,4], m = 1`

@@ -17,6 +17,7 @@ Return the **maximum** total profit you can earn by making **at most** `k` trans
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

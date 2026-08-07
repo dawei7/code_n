@@ -9,6 +9,7 @@ Given a **circular** array `nums`, find the **maximum** absolute difference betw
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

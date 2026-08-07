@@ -4,31 +4,32 @@ You are given an integer array `nums` and an integer `k`.
 
 Initially, you have `k` units of resources.
 
-You must process the elements of `nums` from left to right. To process the $$i^{\text{th}}$$element, you need$\text{nums}[i]$ resources.
+You must process the elements of `nums` from left to right. To process the $$i^{\text{th}}$$ element, you need $\text{nums}[i]$ resources.
 
 If your available resources are less than $\text{nums}[i]$, you may perform an operation that increases your available resources by `k`. The value of `k` is fixed and does not change throughout the process. The first such operation incurs a cost of 1, the second incurs a cost of 2, and so on.
 
-After processing the $$i^{\text{th}}$$element, your available resources decrease by$\text{nums}[i]$.
+After processing the $$i^{\text{th}}$$ element, your available resources decrease by $\text{nums}[i]$.
 
 Return an integer denoting the **minimum total cost** required to process all elements. Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 ### Function Contract
 
 `solve(nums, k) -> int`
 
-Let $n=\lvert\texttt{nums}\rvert$ and let $M=10^9+7$.
+Let $n=\lvert\texttt{nums}\rvert$ and let $M=$10^{9}$+7$.
 
 **Inputs**
 
 - `nums`: A nonempty array of positive resource requirements, processed in index order.
 - `k`: The positive number of resource units initially available and added by every operation.
 
-Before processing element `i`, one or more operations may be performed only when the current resource is less than `nums[i]`. If the operation being performed is the $j$-th operation overall, it costs $j$. Processing the element then decreases the resource by `nums[i]`.
+Before processing element `i`, one or more operations may be performed only when the current resource is less than $\text{nums}[i]$. If the operation being performed is the $j$-th operation overall, it costs $j$. Processing the element then decreases the resource by $\text{nums}[i]$.
 
 **Output**
 
 Return the minimum total cost of all operations needed to process every element, reduced modulo $M$.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

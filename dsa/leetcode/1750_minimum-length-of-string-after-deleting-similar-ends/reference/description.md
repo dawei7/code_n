@@ -19,6 +19,7 @@ Return *the **minimum length** of *`s` *after performing the above operation any
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "ca"`

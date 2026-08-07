@@ -11,6 +11,7 @@ A **shift** on `s` consists of moving the leftmost character of `s` to the right
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "abcde", goal = "cdeab"`

@@ -37,6 +37,7 @@ Let $n=\lvert\texttt{source}\rvert$, $R=\lvert\texttt{rules}\rvert$, and let $L$
 Return the minimum sum of application costs that transforms `source` into `target` using pairwise disjoint ranges. Each application's charge is its base cost plus its pattern's wildcard count. Return `-1` if the transformation is impossible.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

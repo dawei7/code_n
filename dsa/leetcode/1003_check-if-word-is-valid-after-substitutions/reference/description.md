@@ -13,6 +13,7 @@ Return `true` *if *`s`* is a **valid** string, otherwise, return* `false`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "aabcbc"`

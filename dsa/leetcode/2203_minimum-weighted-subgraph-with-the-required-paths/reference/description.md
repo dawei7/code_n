@@ -15,6 +15,7 @@ A **subgraph** is a graph whose vertices and edges are subsets of the original g
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/example1drawio.png)

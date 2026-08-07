@@ -15,6 +15,7 @@ The test cases will be generated such that the binary tree is **valid**.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/example1drawio.png)

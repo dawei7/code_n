@@ -20,6 +20,7 @@ A **leaf** node is a node with no children.
 Return the sum of all decimal numbers formed by complete root-to-leaf paths.
 
 ### Examples
+
 #### Example 1
 
 ![](images/num1tree.jpg)

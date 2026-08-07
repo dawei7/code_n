@@ -11,6 +11,7 @@ Note that if there are no `0`'s, then the longest continuous segment of `0`'s is
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "1101"`

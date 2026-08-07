@@ -9,6 +9,7 @@ Return* the **minimum** number of minutes needed for you to take **at least** *`
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "aabaaaacaabc", k = 2`

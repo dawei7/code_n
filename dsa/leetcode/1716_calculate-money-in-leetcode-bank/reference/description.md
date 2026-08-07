@@ -11,6 +11,7 @@ Given `n`, return *the total amount of money he will have in the Leetcode bank a
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 4$

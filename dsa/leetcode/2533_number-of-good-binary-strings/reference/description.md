@@ -25,6 +25,7 @@ Return *the number of **good** binary strings*. Since the answer may be too larg
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $minLength = 2, maxLength = 3, oneGroup = 1, zeroGroup = 2$

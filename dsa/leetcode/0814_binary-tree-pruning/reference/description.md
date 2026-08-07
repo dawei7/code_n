@@ -9,6 +9,7 @@ A subtree of a node `node` is `node` plus every node that is a descendant of `no
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/1028_2.png)

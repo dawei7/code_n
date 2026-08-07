@@ -16,6 +16,7 @@ Return* the sum of *$R[i][j]$* over all cells.*
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 ![](images/1-new.png)

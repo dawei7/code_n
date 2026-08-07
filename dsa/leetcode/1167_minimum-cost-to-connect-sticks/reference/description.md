@@ -18,6 +18,7 @@ Each connection removes two current lengths, adds their sum to the cost, and ins
 - The minimum possible integer sum of all connection costs. A one-stick input requires no connection and therefore returns `0`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $sticks = [2,4,3]$

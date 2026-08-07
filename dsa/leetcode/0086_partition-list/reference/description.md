@@ -15,6 +15,7 @@ You should **preserve** the original relative order of the nodes in each of the 
 Return the head of the stable partitioned list.
 
 ### Examples
+
 #### Example 1
 
 ![](images/partition.jpg)

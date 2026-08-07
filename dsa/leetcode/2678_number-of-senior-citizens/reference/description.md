@@ -17,6 +17,7 @@ Return *the number of passengers who are **strictly ****more than 60 years old**
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $details = ["7868190130M7522","5303914400F9211","9273338290F4010"]$

@@ -14,11 +14,12 @@ An array `a` is **an anagram** of an array `b` means `b` is made by randomizing 
 
 **Return value**
 
-- A list `mapping` of the same length as the inputs such that `nums1[i] = nums2[mapping[i]]` for every valid position `i`.
+- A list `mapping` of the same length as the inputs such that $\text{nums1}[i] = nums2[\text{mapping}[i]]$ for every valid position `i`.
 
 When a value occurs more than once, the contract requires only value equality at the selected position. It does not require different occurrences in `nums1` to use distinct positions in `nums2`, so any matching index is acceptable for each output entry.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [12,28,46,32,50], nums2 = [50,12,32,46,28]$

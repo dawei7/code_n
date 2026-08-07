@@ -9,6 +9,7 @@ A string `s` is **lexicographically sorted** if for all valid `i`, $s[i]$ is the
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 1$

@@ -15,6 +15,7 @@ The test cases are generated so that a unique mapping will always exist.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "10#11#12"`

@@ -17,6 +17,7 @@ A **subsequence** is an array that can be derived from another array by deleting
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [4,2,1,4,3,4,5,8,15], k = 3`

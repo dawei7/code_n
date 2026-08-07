@@ -15,6 +15,7 @@ Return *an integer denoting the **maximum** number of palindromes *`words`* can 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["abbb","ba","aa"]$

@@ -13,6 +13,7 @@ Given the final string `s`, return* the **sum** of the **score** of every *$s_{i
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "babab"`

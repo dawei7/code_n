@@ -17,6 +17,7 @@ Return the **maximum** amount of free time possible after rearranging the meetin
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

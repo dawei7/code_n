@@ -9,6 +9,7 @@ Return `true` *if it is possible*.** **Otherwise, return `false`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3,3,4,4,5,6], k = 4`

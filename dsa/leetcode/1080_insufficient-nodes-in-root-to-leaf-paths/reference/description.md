@@ -11,6 +11,7 @@ A **leaf** is a node with no children.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/insufficient-11.png)

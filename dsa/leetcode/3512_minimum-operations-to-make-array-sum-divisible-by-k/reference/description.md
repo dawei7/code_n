@@ -11,6 +11,7 @@ Return the **minimum** number of operations required to make the sum of the arra
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

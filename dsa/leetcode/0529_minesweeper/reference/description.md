@@ -31,6 +31,7 @@ Return *the board after revealing this position according to the following rules
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/untitled.jpeg)

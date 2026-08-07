@@ -28,6 +28,7 @@ Implement the `MyStack` class:
 Return the result of each `pop`, `top`, and `empty` command in command order; `push` produces no result.
 
 ### Examples
+
 #### Example 1
 
 ```

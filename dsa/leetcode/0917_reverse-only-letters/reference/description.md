@@ -13,6 +13,7 @@ Return `s`* after reversing it*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "ab-cd"`

@@ -30,6 +30,7 @@ Return `true` if it is possible to create a `2 x 2` square of the same color, ot
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="grid-container">

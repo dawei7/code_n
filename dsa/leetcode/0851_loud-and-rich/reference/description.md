@@ -11,6 +11,7 @@ Return *an integer array *`answer`* where *$\text{answer}[x] = y$* if *`y`* is t
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $richer = [[1,0],[2,1],[3,1],[3,7],[4,3],[5,3],[6,3]], quiet = [3,2,5,4,6,1,7,0]$

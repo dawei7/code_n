@@ -17,6 +17,7 @@ Return *the most frequent prime number **greater** than *`10`* out of all the nu
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 **

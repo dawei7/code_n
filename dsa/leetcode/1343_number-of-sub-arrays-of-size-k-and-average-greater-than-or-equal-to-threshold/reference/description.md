@@ -7,6 +7,7 @@ Given an array of integers `arr` and two integers `k` and `threshold`, return *t
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [2,2,2,2,5,5,5,8], k = 3, threshold = 4`

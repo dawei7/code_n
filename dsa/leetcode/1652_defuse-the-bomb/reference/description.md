@@ -19,6 +19,7 @@ Given the **circular** array `code` and an integer key `k`, return *the decrypte
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $code = [5,7,1,4], k = 3$

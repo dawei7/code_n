@@ -2,7 +2,7 @@
 
 There are `n` bulbs that are initially off. You first turn on all the bulbs, then you turn off every second bulb.
 
-On the third round, you toggle every third bulb (turning on if it's off or turning off if it's on). For the $$i^{\text{th}}$$round, you toggle every `i` bulb. For the$$n^{\text{th}}$$ round, you only toggle the last bulb.
+On the third round, you toggle every third bulb (turning on if it's off or turning off if it's on). For the $$i^{\text{th}}$$ round, you toggle every `i` bulb. For the $$n^{\text{th}}$$ round, you only toggle the last bulb.
 
 Return *the number of bulbs that are on after `n` rounds*.
 ### Function Contract
@@ -16,6 +16,7 @@ Return *the number of bulbs that are on after `n` rounds*.
 Return the count of bulbs that remain on after rounds `1` through `n`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/bulb.jpg)

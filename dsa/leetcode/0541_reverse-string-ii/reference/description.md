@@ -9,6 +9,7 @@ If there are fewer than `k` characters left, reverse all of them. If there are l
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "abcdefg", k = 2`

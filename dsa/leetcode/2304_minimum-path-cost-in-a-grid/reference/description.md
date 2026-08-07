@@ -11,6 +11,7 @@ The cost of a path in `grid` is the **sum** of all values of cells visited plus 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/griddrawio-2.png)

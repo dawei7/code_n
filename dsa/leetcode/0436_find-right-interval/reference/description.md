@@ -9,7 +9,7 @@ Return *an array of **right interval** indices for each interval `i`*. If no **r
 
 **Inputs**
 
-- `intervals`: A list of two-element intervals `[start_i, end_i]` with unique start points.
+- `intervals`: A list of two-element intervals $[\text{start}_{i}, \text{end}_{i}]$ with unique start points.
 
 **Return value**
 
@@ -17,6 +17,7 @@ Return one integer per input interval in the same order. Each value is the origi
 with the smallest start, or `-1` when none exists.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $intervals = [[1,2]]$

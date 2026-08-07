@@ -24,6 +24,7 @@ Return *the **minimum deviation** the array can have after performing some numbe
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3,4]`

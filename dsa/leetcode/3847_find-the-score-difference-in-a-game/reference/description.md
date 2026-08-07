@@ -10,30 +10,29 @@ The following rules apply **sequentially** for each game `i`:
 
 - In every 6th game (that is, game indices `5, 11, 17, ...`), the active and inactive players swap roles.
 
-- The active player plays the $$i^{\text{th}}$$game and gains$\text{nums}[i]$ points.
+- The active player plays the $$i^{\text{th}}$$ game and gains $\text{nums}[i]$ points.
 
 Return the **score difference**, defined as the first player's **total** score **minus** the second player's **total** score.
 ### Function Contract
 
 **Inputs**
 
-- `nums`: A nonempty array in which `nums[i]` is the positive point value of zero-indexed game $i$.
+- `nums`: A nonempty array in which $\text{nums}[i]$ is the positive point value of zero-indexed game $i$.
 
 The active-player state persists between games. An odd point value toggles that state first. A game whose one-based number $i+1$ is divisible by $6$ toggles it second. Therefore, an odd-valued sixth game performs two swaps and leaves the same player active as before that game's rules began.
 
-Let $S_1$ and $S_2$ be the accumulated scores of the first and second players. Exactly one of them receives `nums[i]` in each game, after the two swap conditions have been evaluated in the required order.
+Let $S_1$ and $S_2$ be the accumulated scores of the first and second players. Exactly one of them receives $\text{nums}[i]$ in each game, after the two swap conditions have been evaluated in the required order.
 
 **Return value**
 
 Return the signed integer difference
 
-$$
-S_1-S_2.
-$$
+$S_1-S_2.$
 
 The result may be negative when the second player finishes with more points.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

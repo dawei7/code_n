@@ -13,6 +13,7 @@ Return *the maximum score that Alice can obtain*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $stoneValue = [6,2,3,4,5,5]$

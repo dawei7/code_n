@@ -38,7 +38,7 @@ Let us start from a simple example. Given a sequence of digits, _e.g._ `425`, if
 Imagine if we keep the digit `4`, then all the possible solutions are lead with the digit `4` (_i.e._ 42, 45). While in one of the opposite cases, _e.g._ removing `4` and keeping `2`, we have solutions lead with `2` (_i.e._ 25), which is obviously less than any of the solutions of keeping the digit `4`.
 
 We could summarize the above scenario of removing a digit, as a rule below:
-> Given a sequence of digits $[D_{1D\_2D\_3}...D_n]$, if the digit $D_2$ is less than its left neighbor $D_1$, then we should remove the left neighbor ($D_1$) in order to obtain the minimum result.
+> Given a sequence of digits $[D_1D_2D_3...D_n]$, if the digit $D_2$ is less than its left neighbor $D_1$, then we should remove the left neighbor ($D_1$) in order to obtain the minimum result.
 
 **Algorithm**
 

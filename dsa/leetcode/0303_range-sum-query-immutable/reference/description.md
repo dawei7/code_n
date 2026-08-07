@@ -21,6 +21,7 @@ Implement the `NumArray` class:
 Return one range sum per entry in `queries`, in the same order. The native interface returns each value from a separate `sumRange` call.
 
 ### Examples
+
 #### Example 1
 
 ```

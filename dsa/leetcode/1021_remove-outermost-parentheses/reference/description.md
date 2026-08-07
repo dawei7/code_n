@@ -15,6 +15,7 @@ Return `s` *after removing the outermost parentheses of every primitive string i
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "(()())(())"`

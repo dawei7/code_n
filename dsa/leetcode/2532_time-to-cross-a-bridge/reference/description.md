@@ -12,7 +12,7 @@ The warehouses are separated by a river and connected by a bridge. Initially, al
 
 - Put the box into the left warehouse in $\text{put}_{i}$ minutes.
 
-The $$i^{\text{th}}$$worker is **less efficient** than the j$^th$ worker if either condition is met:
+The $$i^{\text{th}}$$ worker is **less efficient** than the j$^th$ worker if either condition is met:
 
 - $\text{left}_{i} + \text{right}_{i} > \text{left}_{j} + \text{right}_{j}$
 
@@ -33,6 +33,7 @@ Return the **elapsed minutes** at which the last box reaches the **left side of 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">
@@ -42,19 +43,25 @@ Return the **elapsed minutes** at which the last box reaches the **left side of 
 
 **Explanation:**
 
+```
 From 0 to 1 minutes: worker 2 crosses the bridge to the right.
 From 1 to 2 minutes: worker 2 picks up a box from the right warehouse.
 From 2 to 6 minutes: worker 2 crosses the bridge to the left.
 From 6 to 7 minutes: worker 2 puts a box at the left warehouse.
 The whole process ends after 7 minutes. We return 6 because the problem asks for the instance of time at which the last worker reaches the left side of the bridge.
 ```
+
 </div>
 #### Example 2
-<div class="example-block">
-- **Input:** `n = 3, k = 2, time = [[1,5,1,8],[10,10,10,10]]`
-- **Output:** `37`
-- **Explanation:**
 
+<div class="example-block">
+**Input:** n = 3, k = 2, time = [[1,5,1,8],[10,10,10,10]]
+
+**Output:** 37
+
+**Explanation:**
+
+```
 ![](images/378539249-c6ce3c73-40e7-4670-a8b5-7ddb9abede11.png)
 ```
 

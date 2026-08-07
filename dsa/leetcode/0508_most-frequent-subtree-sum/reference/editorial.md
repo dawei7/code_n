@@ -119,13 +119,13 @@ Here, $N$ is the number of nodes in the binary tree.
 
 * Time complexity: $O(N^{2})$.
   - We iterate over each node of the tree and then calculate the sum of the node's subtree.
-  - For finding the sum of a subtree, we traverse each node of that subtree, in worst-case, tree can be skew thus it is $$\mathcal{O}(N)$$time operation. Thus, for finding the sum of subtree for$N$nodes, it will take$$\mathcal{O}(N^2)$$ time.
+  - For finding the sum of a subtree, we traverse each node of that subtree, in worst-case, tree can be skew thus it is $$\mathcal{O}(N)$$ time operation. Thus, for finding the sum of subtree for $N$ nodes, it will take $$\mathcal{O}(N^2)$$ time.
   - In the end we traverse on all the unique sums, and as there are $N$ subtrees, $N$ different sums are possible, thus in worst-case we will iterate on $N$ elements.
   - Thus, overall we take $$\mathcal{O}(N^2 + N)$=$\mathcal{O}(N^2)$$ time.
 
 * Space complexity: $O(N)$.
   - Our hashmap, stores all different possible subtree sums. There are $N$ nodes, which means $N$ different subtrees are possible with different sums, thus requiring $$\mathcal{O}(N)$$ space.
-  - Both function's recursion call stack can take at most $$\mathcal{O}(N)$$space in case of a skew tree. Thus, in the worst-case scenario, the recursive stack space used will be$$\mathcal{O}(N + N)$=$\mathcal{O}(N)$$.
+  - Both function's recursion call stack can take at most $$\mathcal{O}(N)$$ space in case of a skew tree. Thus, in the worst-case scenario, the recursive stack space used will be $$\mathcal{O}(N + N)$=$\mathcal{O}(N)$$.
 
 ---
 
@@ -206,7 +206,7 @@ class Solution:
 Here, $N$ is the number of nodes in the binary tree.
 
 * Time complexity: $O(N)$.
-  - We iterate over each node of the tree only once and find its subtree sum in $$\mathcal{O}(1)$$time. Thus, it takes$$\mathcal{O}(N)$$time to find all the subtree sums of a tree with$N$ nodes.
+  - We iterate over each node of the tree only once and find its subtree sum in $$\mathcal{O}(1)$$ time. Thus, it takes $$\mathcal{O}(N)$$ time to find all the subtree sums of a tree with $N$ nodes.
   - In the end we traverse on all the unique sums, and as there are $N$ subtrees, $N$ different sums are possible, thus in worst-case we will iterate on $N$ elements.
   - Thus, overall we take $$\mathcal{O}(N + N)$=$\mathcal{O}(N)$$ time.
 

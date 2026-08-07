@@ -7,6 +7,7 @@ Given an array of integers `arr` and an integer `k`. Find the *least number of u
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [5,5,4], k = 1`

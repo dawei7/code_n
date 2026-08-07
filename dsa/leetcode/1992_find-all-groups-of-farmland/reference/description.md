@@ -13,6 +13,7 @@ Return *a 2D array containing the 4-length arrays described above for each **gro
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/screenshot-2021-07-27-at-12-23-15-copy-of-diagram-drawio-diagrams-net.png)

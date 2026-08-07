@@ -12,6 +12,7 @@ Return *the resulting string. If multiple strings meet the conditions, return th
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

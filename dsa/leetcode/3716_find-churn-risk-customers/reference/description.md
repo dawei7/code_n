@@ -152,7 +152,7 @@ Result table is ordered by days_as_subscriber DESC, then user_id ASC.
 
 **Inputs**
 
-- `subscription_events`: The table of chronological subscription-state changes described above.
+- $\text{subscription}_{events}$: The table of chronological subscription-state changes described above.
 
 The current plan and amount come from the latest event for each user. Historical maximum and downgrade presence use the user's complete event history. The 50% comparison is strict: an amount equal to half the historical maximum does not qualify.
 
@@ -160,8 +160,8 @@ The current plan and amount come from the latest event for each user. Historical
 
 Return an ordered table with columns:
 
-- `user_id`
-- `current_plan`
+- $\text{user}_{id}$
+- $\text{current}_{plan}$
 - `current_monthly_amount`
 - `max_historical_amount`
 - `days_as_subscriber`

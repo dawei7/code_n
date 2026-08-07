@@ -18,6 +18,7 @@ Let $n$ be the number of nodes in the tree, and let $h$ be its height.
 Return the unique set of `k` closest BST values in any order.
 
 ### Examples
+
 #### Example 1
 
 ![](images/closest1-1-tree.jpg)

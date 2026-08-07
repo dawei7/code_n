@@ -21,6 +21,7 @@ Return the **maximum** possible stability of any valid spanning tree. If it is i
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

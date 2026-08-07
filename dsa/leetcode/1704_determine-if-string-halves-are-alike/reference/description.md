@@ -11,6 +11,7 @@ Return `true`* if *`a`* and *`b`* are **alike***. Otherwise, return `false`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "book"`

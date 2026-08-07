@@ -13,6 +13,7 @@ The **final** answer is **guaranteed** to fit into a signed **32-bit** integer.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $amount = 5, coins = [1,2,5]$

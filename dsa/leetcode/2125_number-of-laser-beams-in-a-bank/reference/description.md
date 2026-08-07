@@ -17,6 +17,7 @@ Return *the total number of laser beams in the bank*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/laser1.jpg)

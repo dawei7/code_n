@@ -11,6 +11,7 @@ A **multi-dimensional array** is a recursive data structure that contains both i
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [[[6]],[1,3],[]]`

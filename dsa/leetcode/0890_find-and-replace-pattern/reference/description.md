@@ -11,6 +11,7 @@ Recall that a permutation of letters is a bijection from letters to letters: eve
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["abc","deq","mee","aqq","dkd","ccc"], pattern = "abb"$

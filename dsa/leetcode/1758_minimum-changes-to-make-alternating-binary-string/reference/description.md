@@ -11,6 +11,7 @@ Return *the **minimum** number of operations needed to make* `s` *alternating*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "0100"`

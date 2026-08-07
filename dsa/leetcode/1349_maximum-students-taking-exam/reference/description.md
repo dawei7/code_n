@@ -11,6 +11,7 @@ Students must be placed in seats in good condition.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/image.png)

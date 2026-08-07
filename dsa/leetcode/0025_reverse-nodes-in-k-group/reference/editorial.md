@@ -34,7 +34,7 @@ We also need to make sure we are hooking up the right connections as recursion b
 2. In every recursive call, we first count the number of nodes in the linked list. As soon as the count reaches `k`, we break.
 3. If there are less than `k` nodes left in the list, we return the head of the list.
 4. However, if there are at least `k` nodes in the list, then we reverse these nodes by calling our `reverse()` function defined in the first step.
-5. Our recursion function needs to return the head of the reversed linked list. This would simply be the $$k^{\text{th}}$$nodes in the list passed to the recursion function because after reversing the first `k` nodes, the$$k^{\text{th}}$$ node will become the new head and so on.
+5. Our recursion function needs to return the head of the reversed linked list. This would simply be the $$k^{\text{th}}$$ nodes in the list passed to the recursion function because after reversing the first `k` nodes, the $$k^{\text{th}}$$ node will become the new head and so on.
 6. So, in every recursive call, we first reverse `k` nodes, then recurse on the rest of the linked list. When recursion returns, we establish the proper connections.
 
 Let's look at a quick example of the algorithm's dry run. So, in the first recursive step, we process the first two nodes of the list and then make a recursive call.

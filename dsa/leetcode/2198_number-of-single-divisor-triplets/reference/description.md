@@ -8,6 +8,7 @@ Return *the number of **single divisor triplets** of *`nums`*.*
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [4,6,7,3,2]`

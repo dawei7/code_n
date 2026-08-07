@@ -10,6 +10,7 @@ Return the **minimum** number of prime numbers needed to sum up to `n`, or -1 if
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

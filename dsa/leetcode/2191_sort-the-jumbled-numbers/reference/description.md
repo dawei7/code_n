@@ -17,6 +17,7 @@ You are also given another integer array `nums`. Return *the array *`nums`* sort
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $mapping = [8,9,4,0,2,1,3,5,7,6], nums = [991,338,38]$

@@ -9,6 +9,7 @@ Find a contiguous subarray whose **length is equal to** `k` that has the maximum
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,12,-5,-6,50,3], k = 4`

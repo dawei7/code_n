@@ -16,6 +16,7 @@ The test cases are generated so that the answer will fit in a **32-bit** integer
 Return the maximum product among all non-empty contiguous subarrays of `nums`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,3,-2,4]`

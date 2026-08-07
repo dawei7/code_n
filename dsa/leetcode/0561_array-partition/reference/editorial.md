@@ -70,7 +70,7 @@ In this approach, we will be sorting the list `nums` using counting sort. We wil
 
 After sorting, we will iterate over all of the elements in sorted order, and add even indexed elements to `maxSum`. After that, we will iterate over the frequency array and use a boolean variable that flips at each element and is only true when we are on an even indexed element.
 
-Since we are using an array where the element values will be used as indices, we need to ensure that we don't have any negative elements. The elements in the list `nums` can be negative with a value down to $-10^4$. Hence, we will add $10^4$ to each element so that all the elements convert to a non-negative value. Therefore, our `elementToCount` array will need to be of size $2 *$10^{4}$+ 1$ to account for the full range of possible values in `nums`.
+Since we are using an array where the element values will be used as indices, we need to ensure that we don't have any negative elements. The elements in the list `nums` can be negative with a value down to $-10^4$. Hence, we will add $10^4$ to each element so that all the elements convert to a non-negative value. Therefore, our `elementToCount` array will need to be of size $2 * $10^{4}$ + 1$ to account for the full range of possible values in `nums`.
 
 **Note:**
 

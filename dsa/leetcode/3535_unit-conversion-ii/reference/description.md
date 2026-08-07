@@ -12,6 +12,7 @@ Return an array `answer` of length `q` where $\text{answer}[i]$ is the number of
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -11,6 +11,7 @@ Return *the **area** of the rectangle having the **longest** diagonal. If there 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $dimensions = [[9,3],[8,6]]$

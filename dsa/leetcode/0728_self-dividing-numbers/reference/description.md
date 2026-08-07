@@ -13,6 +13,7 @@ Given two integers `left` and `right`, return *a list of all the **self-dividing
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $left = 1, right = 22$

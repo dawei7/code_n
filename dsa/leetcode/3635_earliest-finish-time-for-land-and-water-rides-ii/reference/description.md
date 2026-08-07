@@ -32,6 +32,7 @@ Return the **earliest possible time** at which the tourist can finish both rides
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -17,9 +17,10 @@ Leading zeroes are not part of the integer's decimal representation. Zeroes that
 
 **Return value**
 
-Return `true` when `squareSum - digitSum >= 50`; otherwise, return `false`.
+Return `true` when $squareSum - digitSum \ge 50$; otherwise, return `false`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

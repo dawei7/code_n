@@ -9,6 +9,7 @@ The edges of the undirected tree are given in the array `edges`, where $\text{ed
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/min_time_collect_apple_1.png)

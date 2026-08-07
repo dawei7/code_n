@@ -25,6 +25,7 @@ Each operation chooses one value `x` from `pre` and replaces the prefix `nums[:x
 Return the fewest operations that transform `nums` into `[0, 1, ..., n - 1]`. Return `-1` if the target is unreachable.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -17,6 +17,7 @@ A palindromic permutation uses every character occurrence from `s` and reads ide
 Return the smallest qualifying palindrome in lexicographic order, or `""` when no qualifying palindromic permutation exists.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -11,6 +11,7 @@ Return *the **maximum** sum of a **good** subarray of *`nums`. *If there are no 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3,4,5,6], k = 1`

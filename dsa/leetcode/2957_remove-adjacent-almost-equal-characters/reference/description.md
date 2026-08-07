@@ -13,6 +13,7 @@ Two characters `a` and `b` are **almost-equal** if $a = b$ or `a` and `b` are ad
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $word = "aaaaa"$

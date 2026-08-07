@@ -20,6 +20,7 @@ Return *the minimum number of jumps to reach index *$n - 1$. The test cases are 
 Return the fewest jumps needed to travel from index `0` to the final index.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,3,1,1,4]`

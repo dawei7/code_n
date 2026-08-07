@@ -9,6 +9,7 @@ Return `true`* if it is possible to assign integers to variable names so as to s
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $equations = ["a = b","b\neq a"]$

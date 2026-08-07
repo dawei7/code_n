@@ -24,6 +24,7 @@ The valid words are `zero`, `one`, `two`, `three`, `four`, `five`, `six`, `seven
 Return the string formed by the corresponding digits of all matched number words, in discovery order, or `""` if there are no matches.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

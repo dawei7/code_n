@@ -21,7 +21,7 @@ The result format is in the following example.
 
 **Input**
 
-- `Logs`: a table containing one row for each unique integer `log_id`.
+- `Logs`: a table containing one row for each unique integer $\text{log}_{id}$.
 
 Let $n$ be the number of input rows and $r$ the number of maximal continuous ranges.
 
@@ -29,12 +29,13 @@ Let $n$ be the number of input rows and $r$ the number of maximal continuous ran
 
 Return a table with these columns:
 
-- `start_id`: the smallest identifier in a maximal range.
-- `end_id`: the largest identifier in that same range.
+- $\text{start}_{id}$: the smallest identifier in a maximal range.
+- $\text{end}_{id}$: the largest identifier in that same range.
 
-Return exactly one row for each of the $r$ ranges, ordered by `start_id` in ascending order. A range containing one identifier has equal start and end values.
+Return exactly one row for each of the $r$ ranges, ordered by $\text{start}_{id}$ in ascending order. A range containing one identifier has equal start and end values.
 
 ### Examples
+
 #### Example 1
 
 ```

@@ -11,6 +11,7 @@ Given an integer `k`, return the number of non-negative integers `x` have the pr
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $k = 0$

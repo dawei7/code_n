@@ -1,6 +1,6 @@
 ## Description
 
-You are given a **0-indexed** array `nums` that consists of `n` **distinct** positive integers. Apply `m` operations to this array, where in the $$i^{\text{th}}$$operation you replace the number$\text{operations}[i][0]$with$\text{operations}[i][1]$.
+You are given a **0-indexed** array `nums` that consists of `n` **distinct** positive integers. Apply `m` operations to this array, where in the $$i^{\text{th}}$$ operation you replace the number $\text{operations}[i][0]$ with $\text{operations}[i][1]$.
 
 It is guaranteed that in the $$i^{\text{th}}$$ operation:
 
@@ -15,6 +15,7 @@ Return *the array obtained after applying all the operations*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,4,6], operations = [[1,3],[4,7],[6,1]]`

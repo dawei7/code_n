@@ -11,6 +11,7 @@ You are given a sentence `s`​​​​​​ and an integer `k`​​​​​
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "Hello how are you Contestant", k = 4`

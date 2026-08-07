@@ -9,6 +9,7 @@ Return *the **maximum difference**. *If no such `i` and `j` exists, return `-1`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [7,**<u>1</u>**,**<u>5</u>**,4]`

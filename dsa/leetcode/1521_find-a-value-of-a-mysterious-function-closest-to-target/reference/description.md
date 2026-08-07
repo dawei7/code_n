@@ -13,6 +13,7 @@ Notice that `func` should be called with the values `l` and `r` where $0 \le l, 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [9,12,3,7,15], target = 5`

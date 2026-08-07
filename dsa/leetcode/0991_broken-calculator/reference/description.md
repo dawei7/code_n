@@ -13,6 +13,7 @@ Given two integers `startValue` and `target`, return *the minimum number of oper
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $startValue = 2, target = 3$

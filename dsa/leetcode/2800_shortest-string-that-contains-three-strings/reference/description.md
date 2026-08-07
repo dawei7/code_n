@@ -16,6 +16,7 @@ Return *a string denoting the answer to the problem.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $a = "abc", b = "bca", c = "aaa"$

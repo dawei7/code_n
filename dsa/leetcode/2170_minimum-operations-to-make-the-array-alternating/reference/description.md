@@ -17,6 +17,7 @@ Return *the **minimum number of operations** required to make the array alternat
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [3,1,3,2,4,3]`

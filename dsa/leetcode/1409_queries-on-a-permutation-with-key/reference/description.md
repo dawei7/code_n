@@ -13,6 +13,7 @@ Return an array containing the result for the given `queries`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $queries = [3,1,2,1], m = 5$

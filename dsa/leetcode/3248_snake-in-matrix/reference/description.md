@@ -13,6 +13,7 @@ Return the position of the final cell where the snake ends up after executing `c
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

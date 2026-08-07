@@ -16,6 +16,7 @@ Each solution contains a distinct board configuration of the n-queens' placement
 Return all distinct non-attacking board configurations, in any order, using `Q` and `.` characters.
 
 ### Examples
+
 #### Example 1
 
 ![](images/queens.jpg)

@@ -16,6 +16,7 @@ Let $n = \texttt{s.length}$, and let $p$ be the number of palindromes in the ret
 Return all distinct palindromic permutations of `s` in any order, or an empty list if none exist.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "aabb"`

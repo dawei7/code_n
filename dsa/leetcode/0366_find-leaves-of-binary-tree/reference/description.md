@@ -18,6 +18,7 @@ Given the `root` of a binary tree, collect a tree's nodes as if you were doing t
 Return one list of node values for each simultaneous leaf-removal round, beginning with the original leaves and ending with the original root. Values within the same round may appear in any order.
 
 ### Examples
+
 #### Example 1
 
 ![](images/remleaves-tree.jpg)

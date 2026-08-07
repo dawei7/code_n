@@ -20,6 +20,7 @@ Given the `root` node of a binary tree, your task is to create a string represen
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/cons1-tree.jpg)

@@ -12,6 +12,7 @@ Return *an integer array `answer`** of size *`n`*, where *$\text{answer}[i]$* is
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 ![](images/image-20220315154238-1.png)

@@ -27,7 +27,7 @@ In the end, we return $totalDamage - min(armor, maxDamage) + 1$ as the answer. T
 #### Algorithm
 
 1. Initialize an integer variable, $maxDamage = 0$ to store the largest element of the `damage` array.
-2. Initialize another variable, $totalDamage = 0$ to store the sum of all the elements of the `damage` array. This will be a `long` type variable because the sum of all the elements of `damage` can exceed the `integer` limit. It could go up to $10^5 \cdot$10^{5}$= 10^{10}$ because, as stated in the problem constraints, the length of `damage` array and value of damage at each level can be $10^5$.
+2. Initialize another variable, $totalDamage = 0$ to store the sum of all the elements of the `damage` array. This will be a `long` type variable because the sum of all the elements of `damage` can exceed the `integer` limit. It could go up to $10^5 \cdot $10^{5}$ = 10^{10}$ because, as stated in the problem constraints, the length of `damage` array and value of damage at each level can be $10^5$.
 - To compute `totalDamage` and `maxDamage`, perform $totalDamage = totalDamage + d$ and $maxDamage = max(maxDamage, d)$ for each element `d` in the `damage` array.
 3. Return $totalDamage - min(armor, maxDamage) + 1$ as the answer. The `+ 1` is needed so that health does not become zero.
 

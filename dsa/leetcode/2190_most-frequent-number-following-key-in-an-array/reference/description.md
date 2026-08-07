@@ -17,6 +17,7 @@ Return *the *`target`* with the **maximum** count*. The test cases will be gener
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,100,200,1,100], key = 1`

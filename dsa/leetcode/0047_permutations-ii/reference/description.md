@@ -14,6 +14,7 @@ Let $n = \lvert\texttt{nums}\rvert$.
 Return every unique complete ordering of the input multiset, in any order.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,1,2]`

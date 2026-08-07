@@ -11,6 +11,7 @@ Return *an edge that can be removed so that the resulting graph is a tree of *`n
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/reduntant1-1-graph.jpg)

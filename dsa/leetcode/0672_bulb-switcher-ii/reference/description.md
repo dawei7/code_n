@@ -19,6 +19,7 @@ Given the two integers `n` and `presses`, return *the number of **different poss
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 1, presses = 1$

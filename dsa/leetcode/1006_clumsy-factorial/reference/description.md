@@ -19,6 +19,7 @@ Given an integer `n`, return *the clumsy factorial of *`n`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 4$

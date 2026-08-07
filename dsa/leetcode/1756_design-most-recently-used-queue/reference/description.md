@@ -12,6 +12,7 @@ Implement the `MRUQueue` class:
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** ``

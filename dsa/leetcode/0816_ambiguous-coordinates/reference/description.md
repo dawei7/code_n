@@ -15,6 +15,7 @@ The final answer list can be returned in any order. All coordinates in the final
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "(123)"`

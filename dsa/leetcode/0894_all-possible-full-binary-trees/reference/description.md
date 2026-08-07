@@ -11,6 +11,7 @@ A **full binary tree** is a binary tree where each node has exactly `0` or `2` c
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/fivetrees.png)

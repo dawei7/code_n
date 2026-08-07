@@ -17,6 +17,7 @@ Given an array `nums` consisting of `2n` integers, where **exactly** `n` of the 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,10,6,4,8,12]`

@@ -15,6 +15,7 @@ Return *the number of unique **arithmetic triplets**.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [0,1,4,6,7,10], diff = 3`

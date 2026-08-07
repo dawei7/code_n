@@ -23,12 +23,12 @@ Given the two matrices `flights` and `days`, return *the maximum vacation days y
 
 **Inputs**
 
-- `flights`: the square directed-flight matrix. `flights[i][j]` indicates whether city `j` can be reached directly
+- `flights`: the square directed-flight matrix. $\text{flights}[i][j]$ indicates whether city `j` can be reached directly
   from city `i` on a Monday.
-- `days`: the per-city, per-week vacation allowances. `days[i][w]` is the maximum vacation time in city `i` during
+- `days`: the per-city, per-week vacation allowances. $\text{days}[i][w]$ is the maximum vacation time in city `i` during
   week `w`.
 
-Let $n = \lvert\texttt{flights}\rvert$ be the city count and let $k = \lvert\texttt{days[0]}\rvert$ be the week
+Let $n = \lvert\texttt{flights}\rvert$ be the city count and let $k = \lvert\texttt{\text{days}[0]}\rvert$ be the week
 count. Staying in the current city is always permitted even though the flight-matrix diagonal is zero. A location
 chosen for one week becomes the origin for the next Monday.
 
@@ -38,6 +38,7 @@ Return the maximum total vacation days across all $k$ weeks. The result counts o
 where the traveler spends each week; flight time and work days add nothing.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $flights = [[0,1,1],[1,0,1],[1,1,0]], days = [[1,3,1],[6,0,3],[3,3,3]]$

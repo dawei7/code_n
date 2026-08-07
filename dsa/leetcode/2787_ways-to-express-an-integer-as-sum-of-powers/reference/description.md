@@ -13,6 +13,7 @@ For example, if $n = 160$ and $x = 3$, one way to express `n` is $n = 2^{3} + 3^
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 10, x = 2$

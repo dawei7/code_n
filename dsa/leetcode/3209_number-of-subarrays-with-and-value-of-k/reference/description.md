@@ -7,6 +7,7 @@ Given an array of integers `nums` and an integer `k`, return the number of subar
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

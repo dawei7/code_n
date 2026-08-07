@@ -17,6 +17,7 @@ Return *an array *`result`*, where each *$\text{result}[i]$* is the number of br
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `grid = [[1,0,0,0],[1,1,1,0]], hits = [[1,0]]`

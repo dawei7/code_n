@@ -9,6 +9,7 @@ Return the **smallest** number `x` **greater than** or **equal to** `n`, such th
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

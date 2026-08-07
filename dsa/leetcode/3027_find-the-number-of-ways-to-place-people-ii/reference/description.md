@@ -21,6 +21,7 @@ Return *the number of **pairs of points** where you can place Alice and Bob, suc
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/example1alicebob.png)

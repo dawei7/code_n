@@ -9,6 +9,7 @@ Given an integer array `hand` where $\text{hand}[i]$ is the value written on the
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $hand = [1,2,3,6,2,3,4,7,8], groupSize = 3$

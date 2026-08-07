@@ -21,6 +21,7 @@ Return *the **maximum possible height** of the **tallest** building*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ic236-q4-ex1-1.png)

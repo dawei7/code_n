@@ -17,6 +17,7 @@ A **subsequence** of indices of an array is a set that can be derived from the s
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [1,3,3,2], nums2 = [2,1,3,4], k = 3$

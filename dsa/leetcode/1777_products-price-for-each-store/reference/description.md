@@ -24,13 +24,14 @@ The result format is in the following example.
 
 **Table Schema**
 
-`Products` (`product_id`: `int`, `store`: `enum`, `price`: `int`)
+`Products` ($\text{product}_{id}$: `int`, `store`: `enum`, `price`: `int`)
 
 **Return Table Schema**
 
-`Result` (`product_id`: `int`, `store1`: `int`, `store2`: `int`, `store3`: `int`)
+`Result` ($\text{product}_{id}$: `int`, `store1`: `int`, `store2`: `int`, `store3`: `int`)
 
 ### Examples
+
 #### Example 1
 
 ```

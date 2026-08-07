@@ -13,6 +13,7 @@ Return *the **maximum** such product difference*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [5,6,2,7,4]`

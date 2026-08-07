@@ -7,6 +7,7 @@ Given two integer arrays `nums1` and `nums2`, return *the maximum length of a su
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [1,2,3,2,1], nums2 = [3,2,1,4,7]$

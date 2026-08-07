@@ -37,17 +37,18 @@ The result format is in the following example.
 
 **Inputs**
 
-`Project(project_id, employee_id)` contains $R$ distinct project-employee assignments. `Employee(employee_id, name, experience_years)` contains $E$ employee records keyed by `employee_id`, and each assignment refers to one of those records.
+$Project(\text{project}_{id}, \text{employee}_{id})$ contains $R$ distinct project-employee assignments. $Employee(\text{employee}_{id}, name, \text{experience}_{years})$ contains $E$ employee records keyed by $\text{employee}_{id}$, and each assignment refers to one of those records.
 
 **Return value**
 
-- Return exactly the columns `project_id` and `employee_id`.
-- For each project present in `Project`, include every assigned employee whose `experience_years` equals that project's maximum.
+- Return exactly the columns $\text{project}_{id}$ and $\text{employee}_{id}$.
+- For each project present in `Project`, include every assigned employee whose $\text{experience}_{years}$ equals that project's maximum.
 - Rank an employee independently in every project to which that employee is assigned.
 - Do not use `name` to select or break ties.
 - Result order is unrestricted; the local reference orders both output columns only to make validation deterministic.
 
 ### Examples
+
 #### Example 1
 
 ```

@@ -36,20 +36,21 @@ The result format is in the following example.
 
 **Inputs**
 
-- `Customers(customer_id, customer_name)` contains $C$ customer rows, with unique `customer_id` values.
-- `Orders(order_id, customer_id, product_name)` contains $O$ purchase rows, with unique `order_id` values.
+- $Customers(\text{customer}_{id}, \text{customer}_{name})$ contains $C$ customer rows, with unique $\text{customer}_{id}$ values.
+- $Orders(\text{order}_{id}, \text{customer}_{id}, \text{product}_{name})$ contains $O$ purchase rows, with unique $\text{order}_{id}$ values.
 
 **Return value**
 
-Return exactly the columns `customer_id` and `customer_name`. A customer qualifies if and only if all three conditions hold:
+Return exactly the columns $\text{customer}_{id}$ and $\text{customer}_{name}$. A customer qualifies if and only if all three conditions hold:
 
-- at least one of that customer's orders has `product_name = "A"`;
-- at least one has `product_name = "B"`;
-- none has `product_name = "C"`.
+- at least one of that customer's orders has $\text{product}_{name} = "A"$;
+- at least one has $\text{product}_{name} = "B"$;
+- none has $\text{product}_{name} = "C"$.
 
-Other product names and repeated purchases do not change those presence conditions. Customers without orders or without either required product do not qualify. Order the result rows by `customer_id`. Let $R$ be the number of qualifying customers.
+Other product names and repeated purchases do not change those presence conditions. Customers without orders or without either required product do not qualify. Order the result rows by $\text{customer}_{id}$. Let $R$ be the number of qualifying customers.
 
 ### Examples
+
 #### Example 1
 
 ```

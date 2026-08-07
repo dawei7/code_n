@@ -25,6 +25,7 @@ Return *the stack operations needed to build *`target` following the mentioned r
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $target = [1,3], n = 3$

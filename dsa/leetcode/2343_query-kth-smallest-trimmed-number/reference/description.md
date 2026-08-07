@@ -23,6 +23,7 @@ Return *an array *`answer`* of the same length as *`queries`,* where *$\text{ans
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = ["102","473","251","814"], queries = [[1,1],[2,3],[4,2],[1,2]]`

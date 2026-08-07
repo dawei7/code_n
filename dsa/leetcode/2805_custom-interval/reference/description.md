@@ -20,6 +20,7 @@ Given the `id`. `id` is the returned value from the function `customInterval`.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $delay = 50, period = 20, cancelTime = 225$

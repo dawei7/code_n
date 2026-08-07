@@ -11,6 +11,7 @@ Return *the number of **smooth descent periods***.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $prices = [3,2,1,4]$

@@ -13,6 +13,7 @@ Two intervals **intersect** if there is at least one common number between them.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $intervals = [[5,10],[6,8],[1,5],[2,3],[1,10]]$

@@ -29,6 +29,7 @@ Return *an array* `ans` *of size* `2` *where:*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["a","b","ab","cde"]$

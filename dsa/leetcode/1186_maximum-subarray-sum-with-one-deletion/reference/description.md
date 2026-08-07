@@ -9,6 +9,7 @@ Note that the subarray needs to be **non-empty** after deleting one element.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [1,-2,0,3]`

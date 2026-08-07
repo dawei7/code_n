@@ -7,6 +7,7 @@ Given the `root` of a binary search tree and an integer `k`, return `true` *if t
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/sum_tree_1.jpg)

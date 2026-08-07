@@ -8,6 +8,7 @@ Return *the **number of pairs** satisfying the condition.*
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [2,1,2,1], nums2 = [1,2,1,2]$

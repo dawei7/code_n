@@ -38,6 +38,7 @@ The test cases are generated so that the answer fits in a **32-bit** integer.
 Return the number of complete valid segmentations of `s` into codes from `1` through `26`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -11,6 +11,7 @@ Return *the number of pairs *`(i, j)`* such that *`i < j`* and the distance betw
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $coordinates = [[1,2],[4,2],[1,3],[5,2]], k = 5$

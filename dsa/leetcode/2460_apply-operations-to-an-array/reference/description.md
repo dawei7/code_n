@@ -2,7 +2,7 @@
 
 You are given a **0-indexed** array `nums` of size `n` consisting of **non-negative** integers.
 
-You need to apply $n - 1$ operations to this array where, in the $$i^{\text{th}}$$operation (**0-indexed**), you will apply the following on the$$i^{\text{th}}$$ element of `nums`:
+You need to apply $n - 1$ operations to this array where, in the $$i^{\text{th}}$$ operation (**0-indexed**), you will apply the following on the $$i^{\text{th}}$$ element of `nums`:
 
 - If $\text{nums}[i] = nums[i + 1]$, then multiply $\text{nums}[i]$ by `2` and set $nums[i + 1]$ to `0`. Otherwise, you skip this operation.
 
@@ -19,6 +19,7 @@ Return *the resulting array*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,2,1,1,0]`

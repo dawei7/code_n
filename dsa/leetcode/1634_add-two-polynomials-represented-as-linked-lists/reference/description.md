@@ -33,6 +33,7 @@ The input/output format is as a list of `n` nodes, where each node is represente
 Return the head `PolyNode` of the summed polynomial linked list in strictly decreasing order of powers with all zero-coefficient terms removed.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1.png)

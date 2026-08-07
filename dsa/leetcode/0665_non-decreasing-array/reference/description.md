@@ -9,6 +9,7 @@ We define an array is non-decreasing if $\text{nums}[i] \le nums[i + 1]$ holds f
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [4,2,3]`

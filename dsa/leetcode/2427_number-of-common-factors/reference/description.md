@@ -9,6 +9,7 @@ An integer `x` is a **common factor** of `a` and `b` if `x` divides both `a` and
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $a = 12, b = 6$

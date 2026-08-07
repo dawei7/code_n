@@ -9,6 +9,7 @@ Note that the **average** of `n` elements is the **sum** of the `n` elements div
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,3,6,10,12,15]`

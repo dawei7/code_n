@@ -9,6 +9,7 @@ If there is a tie, return the **smallest** one. If there is no such element, ret
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [0,1,2,2,4,4,1]`

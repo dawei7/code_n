@@ -15,6 +15,7 @@ Return *the number of **valid splits** in* `nums`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [10,4,-8,7]`

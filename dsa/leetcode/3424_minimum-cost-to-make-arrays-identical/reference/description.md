@@ -13,6 +13,7 @@ Return the **minimum **total cost to make `arr` **equal** to `brr`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -20,7 +20,7 @@ Let $n$ be the number of people and $m$ be the number of required skills.
 
 In this problem, $m$ is very small – up to $16$. It alludes to track which skills have been covered so far, which is possible to do efficiently with a bitmask.
 
-First, let's make our lives easier by dealing with indices instead of strings for the required skills. We use a hash map `skillId` that keeps the index for each skill. We initialize $\text{skillId}[\text{req\\\_skills}[i]] = i$ for all $i$ from $0$ to $m - 1$.
+First, let's make our lives easier by dealing with indices instead of strings for the required skills. We use a hash map `skillId` that keeps the index for each skill. We initialize $\text{skillId}[\text{req\\_skills}[i]] = i$ for all $i$ from $0$ to $m - 1$.
 
 Now, when each skill has its number, we can represent every set of skills with a bitmask – an integer between $0$ and $2^m - 1$.
 
@@ -50,10 +50,10 @@ We are using bitmasks to represent `skillsMask`, but we can also use bitmasks to
 >* Person $4$: $0100$.
 >
 > Consider values of $\text{dp}$ for several different $\text{skillsMask}$.
->* To obtain $\text{skillsMask} = 0110$, it is sufficient to take only the person $0$ to a team. The mask representing the team containing only the person $0$ is $00001_2 =$2^{0}$= 1$. Thus $\text{dp}[0110] = 00001$.
->* Similarly, $\text{dp}[0101] = 01000_2 =$2^{3}$= 8$ – the person $3$ can cover the skills mask $0101$ by themselves.
->* To cover $1110$, one person is insufficient, and we need two people with indices $0$ and $1$: $\text{dp}[1110] = 00011_2 =$2^{0}$+$2^{1}$= 3$.
->* Two people $1$ and $3$ can cover $1111$ together which implies $\text{dp}[1111] = 01010_2 =$2^{1}$+$2^{3}$= 10$.
+>* To obtain $\text{skillsMask} = 0110$, it is sufficient to take only the person $0$ to a team. The mask representing the team containing only the person $0$ is $00001_2 = $2^{0}$ = 1$. Thus $\text{dp}[0110] = 00001$.
+>* Similarly, $\text{dp}[0101] = 01000_2 = $2^{3}$ = 8$ – the person $3$ can cover the skills mask $0101$ by themselves.
+>* To cover $1110$, one person is insufficient, and we need two people with indices $0$ and $1$: $\text{dp}[1110] = 00011_2 = $2^{0}$ + $2^{1}$ = 3$.
+>* Two people $1$ and $3$ can cover $1111$ together which implies $\text{dp}[1111] = 01010_2 = $2^{1}$ + $2^{3}$ = 10$.
 
 The base case of this dynamic programming (DP) problem is when $\text{skillsMask} = 0$, which represents an empty set of skills. When no skills are required, we can form an empty team, and thus, we set $\text{dp}[0] = 0$ – a bitmask representing an empty set of people.
 
@@ -73,7 +73,7 @@ Although the other team members may possess the skills from $\text{skillsMaskOfP
 
 The set $\text{smallerSkillsMask} = \text{skillsMask} \setminus \text{skillsMaskOfPerson}[i]$, where $\setminus$ denotes the set difference, contains the required skills that the $i^\text{th}$ person does not possess. The other team members must possess these skills.
 
-In a code, a neat trick to calculate $\text{smallerSkillsMask}$ is $\text{skills}_{mask} \& ~\text{skills\\_mask\\_of\\_person}[i]$. Alternatively, one could calculate it manually by checking each bit one by one, but this trick is cleaner.
+In a code, a neat trick to calculate $\text{smallerSkillsMask}$ is $\text{skills}_{mask} \& ~\text{skills\_mask\_of\_person}[i]$. Alternatively, one could calculate it manually by checking each bit one by one, but this trick is cleaner.
 
 We will update $\text{dp}[\text{skillsMask}]$ with the bitmask $\text{dp}[\text{smallerSkillsMask}] \text{ OR } 2^i$ – add the $i^\text{th}$ person to the team and cover the remaining skills with the smallest possible set of people, which is defined as  $\text{dp}[\text{smallerSkillsMask}]$. This update only makes sense if $\text{smallerSkillsMask} \ne \text{skillsMask}$ because otherwise, the $i^\text{th}$ person would not contribute any new skills to the team.
 
@@ -85,7 +85,7 @@ The answer to the problem is $\text{dp}[2^m - 1]$ – the smallest team that pos
 2. Set $m$ to the number of required skills.
 3. Declare the hash map $\text{skillId}$.
 4. Iterate $i$ from $0$ to $m - 1$.
-* Set $\text{skillId}[\text{req\\\_skills}[i]] = i$.
+* Set $\text{skillId}[\text{req\\_skills}[i]] = i$.
 5. Declare and initialize the array $\text{skillsMaskOfPerson}$.
 6. Iterate $i$ from $0$ to $n - 1$.
 * Iterate $\text{skill}$ over $\text{people}[i]$.

@@ -12,6 +12,7 @@ Given an integer `num`, repeatedly add all its digits until the result has only 
 Return the one-digit value obtained by repeatedly summing decimal digits.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num = 38$

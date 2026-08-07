@@ -4,8 +4,10 @@ Given a function `fn`, an array of arguments `args`, and an interval time `t`, r
 
 After a delay of `cancelTimeMs`, the returned cancel function `cancelFn` will be invoked.
 
+```
 setTimeout(cancelFn, cancelTimeMs)
 ```
+
 The function `fn` should be called with `args` immediately and then called again every `t` milliseconds until `cancelFn` is called at `cancelTimeMs` ms.
 ### Function Contract
 
@@ -13,8 +15,9 @@ The function `fn` should be called with `args` immediately and then called again
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
-```
+
 - **Input:** $fn = (x) => x * 2, args = [4], t = 35$
 - **Output:** ``
 [

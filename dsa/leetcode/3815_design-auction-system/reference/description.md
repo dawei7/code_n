@@ -31,6 +31,7 @@ Let $Q$ be the number of method calls after construction.
 Return one result for every operation: `null` for construction, addition, update, and removal; the selected `userId` for a nonempty `getHighestBidder` query; and `-1` for a queried item with no current bids.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

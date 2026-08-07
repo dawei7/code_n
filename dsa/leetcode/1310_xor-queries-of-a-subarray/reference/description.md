@@ -11,6 +11,7 @@ Return an array `answer` where $\text{answer}[i]$ is the answer to the $$i^{\tex
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `arr = [1,3,4,8], queries = [[0,1],[1,2],[0,3],[3,3]]`

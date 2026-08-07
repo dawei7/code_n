@@ -19,6 +19,7 @@ Return *an array *`answer`*, where *$\text{answer}[i]$* is the number of words i
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["aaaa","asas","able","ability","actt","actor","access"], puzzles = ["aboveyz","abrodyz","abslute","absoryz","actresz","gaswxyz"]$

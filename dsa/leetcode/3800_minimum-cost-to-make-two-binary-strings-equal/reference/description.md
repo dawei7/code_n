@@ -28,6 +28,7 @@ Both strings may be changed, and the permitted operations may be repeated and in
 Return an integer equal to the smallest possible sum of operation costs that leaves `s` and `t` identical at every index.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -13,9 +13,10 @@ You must write an algorithm that runs in `O(n)` time and without using the divis
 
 **Return value**
 
-Return an equally sized array whose element `i` is the product of all `nums[j]` for $j \ne i$.
+Return an equally sized array whose element `i` is the product of all $\text{nums}[j]$ for $j \ne i$.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3,4]`

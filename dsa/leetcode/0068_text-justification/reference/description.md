@@ -27,6 +27,7 @@ For the last line of text, it should be left-justified, and no extra space is in
 Return the greedily packed and justified lines. Every returned string has length `maxWidth`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["This", "is", "an", "example", "of", "text", "justification."], maxWidth = 16$

@@ -11,6 +11,7 @@ where the maximum is taken over all $0 \le i, j < \text{arr1.length}$.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $arr1 = [1,2,3,4], arr2 = [-1,4,5,6]$

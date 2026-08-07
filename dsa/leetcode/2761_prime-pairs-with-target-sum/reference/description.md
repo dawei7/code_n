@@ -17,6 +17,7 @@ Return *the 2D sorted list of prime number pairs* $[x_{i}, y_{i}]$. The list sho
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 10$

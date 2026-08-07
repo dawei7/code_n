@@ -17,6 +17,7 @@ Return an array `answer` of size `q` where $\text{answer}[i]$ is the answer to q
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

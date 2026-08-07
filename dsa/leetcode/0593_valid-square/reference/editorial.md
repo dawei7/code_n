@@ -62,11 +62,11 @@ Consider the only possible cases as shown in the figure below:
 
 In each case, after sorting, we obtain the following conclusion regarding the connections of the points:
 
-1. $p_{0p\_1}$, $p_{1p\_3}$, $p_{3p\_2}$ and $p_{2p\_0}$ form the four sides of any valid square.
+1. $p_0p_1$, $p_1p_3$, $p_3p_2$ and $p_2p_0$ form the four sides of any valid square.
 
-2. $p_{0p\_3}$ and $p_{1p\_2}$ form the diagonals of the square.
+2. $p_0p_3$ and $p_1p_2$ form the diagonals of the square.
 
-Thus, once the sorting of the points is done, based on the above knowledge, we can directly compare $p_{0p\_1}$, $p_{1p\_3}$, $p_{3p\_2}$ and $p_{2p\_0}$ for equality of lengths(corresponding to the sides); and $p_{0p\_3}$ and $p_{1p\_2}$ for equality of lengths(corresponding to the diagonals).
+Thus, once the sorting of the points is done, based on the above knowledge, we can directly compare $p_0p_1$, $p_1p_3$, $p_3p_2$ and $p_2p_0$ for equality of lengths(corresponding to the sides); and $p_0p_3$ and $p_1p_2$ for equality of lengths(corresponding to the diagonals).
 
 ```python
 class Solution:

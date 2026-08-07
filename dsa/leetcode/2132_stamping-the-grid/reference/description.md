@@ -23,6 +23,7 @@ Return `true` *if it is possible to fit the stamps while following the given res
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1.png)

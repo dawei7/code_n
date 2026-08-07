@@ -17,6 +17,7 @@ Return a list of *all* strings that appear on the screen as Alice types `target`
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

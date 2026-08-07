@@ -19,6 +19,7 @@ Frequency is computed over the complete array and independently for each distinc
 Return the sum of every occurrence whose value's total frequency is divisible by `k`, or `0` when no frequency passes that test.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

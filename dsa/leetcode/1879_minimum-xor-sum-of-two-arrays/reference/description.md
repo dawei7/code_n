@@ -15,6 +15,7 @@ Return *the **XOR sum** after the rearrangement*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $nums1 = [1,2], nums2 = [2,3]$

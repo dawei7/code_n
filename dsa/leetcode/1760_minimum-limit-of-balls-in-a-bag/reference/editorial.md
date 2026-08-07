@@ -18,9 +18,11 @@ An intuitive but incorrect strategy would be to use all `maxOperations` operatio
 
 According to this strategy, we would attempt to evenly distribute all balls across the $n + maxOperations$ available bags. Therefore, the expected result would be:
 
-$$\begin{aligned}
+$$
+\begin{aligned}
     \frac{\text{Total balls}}{n  + \text{maxOperations}}.
-\end{aligned}$$
+\end{aligned}
+$$
 
 However, this approach fails because we are only permitted to split an existing bag into two new bags. We are not permitted to distribute balls into other existing bags.
 
@@ -53,15 +55,19 @@ Now, how will we determine whether a particular target is achievable?
 
 2. Checking if the target is achievable: After all operations have been applied, all bags must have a number of balls less than or equal to the target we are testing. Mathematically:
 
-    $$\begin{aligned}
+    $$
+    \begin{aligned}
         \text{nums}[i] \leq (\text{operations}_i + 1) \cdot \text{maxBallsInBag}
-    \end{aligned}$$
+    \end{aligned}
+    $$
 
 3. Calculating the number of splits ($\text{operations}_{i}$) required to achieve the target: Solving for $operations_i$, we get:
 
-    $$\begin{aligned}
+    $$
+    \begin{aligned}
         \text{operations}_i = \lceil \frac{\text{nums}[i]}{\text{maxBallsInBag}} \rceil - 1
-    \end{aligned}$$
+    \end{aligned}
+    $$
 
     This tells us the minimum splits needed to ensure no smaller bag exceeds `maxBallsInBag`.
 

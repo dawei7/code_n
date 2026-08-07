@@ -7,6 +7,7 @@ Given an integer `num`, return *a string of its **base 7** representation*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num = 100$

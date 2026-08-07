@@ -17,6 +17,7 @@ Return the **lexicographically smallest** string that can be obtained after perf
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

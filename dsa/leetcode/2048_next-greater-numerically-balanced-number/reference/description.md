@@ -9,6 +9,7 @@ Given an integer `n`, return *the **smallest numerically balanced** number **str
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 1$

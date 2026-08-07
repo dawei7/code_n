@@ -186,7 +186,7 @@ In this approach, we will use the same strategy as in the previous approach, but
 - if $\text{grid}[x][y] = 1$, it means we have reached the second island, return `distance`.
 - Otherwise, we look for its unvisited water neighbors (cells with value of `0`), mark them as `-1` and add them to $\text{new}_{bfs}$.
 
-5) Once the iteration ends, set $second_{bfs\_queue} = \text{new}_{bfs}$, increment `distance` by 1, and repeat the step 6.
+5) Once the iteration ends, set $second_bfs_queue = \text{new}_{bfs}$, increment `distance` by 1, and repeat the step 6.
 
 #### Implementation
 

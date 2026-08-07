@@ -15,6 +15,7 @@ Return `true` if you can reach the final cell with a health value of 1 or more, 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -20,6 +20,7 @@ Return *the **maximum** score after performing *`m` *operations.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3], multipliers = [3,2,1]`

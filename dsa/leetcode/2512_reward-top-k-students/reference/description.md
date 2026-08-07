@@ -13,6 +13,7 @@ Given an integer `k`, return *the top *`k`* students after ranking them in **non
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $\text{positive}_{feedback} = ["smart","brilliant","studious"], \text{negative}_{feedback} = ["not"], report = ["this student is studious","the student is smart"], \text{student}_{id} = [1,2], k = 2$

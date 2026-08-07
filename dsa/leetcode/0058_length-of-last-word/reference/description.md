@@ -14,6 +14,7 @@ A **word** is a maximal substring consisting of non-space characters only.
 Return the character count of the final maximal non-space substring.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "Hello World"`

@@ -14,6 +14,7 @@ The solution set **must not** contain duplicate subsets. Return the solution in 
 Return the complete power set of `nums`, including the empty subset and `nums` itself, without duplicates.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3]`

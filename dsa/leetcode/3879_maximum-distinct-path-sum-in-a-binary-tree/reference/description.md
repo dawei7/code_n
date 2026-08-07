@@ -24,6 +24,7 @@ Let $n$ be the number of non-null nodes. A path follows tree edges and may move 
 Return the maximum sum over every non-empty connected path whose node values are pairwise distinct. A one-node path is valid, so the result remains well-defined when every value is negative.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

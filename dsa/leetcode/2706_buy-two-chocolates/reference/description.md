@@ -11,6 +11,7 @@ Return *the amount of money you will have leftover after buying the two chocolat
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $prices = [1,2,2], money = 3$

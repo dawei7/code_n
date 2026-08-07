@@ -24,6 +24,7 @@ Return `true`* if such pair exists or *`false`* otherwise*.
 Return `true` when a distinct pair satisfies both distance bounds; otherwise return `false`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3,1], indexDiff = 3, valueDiff = 0`

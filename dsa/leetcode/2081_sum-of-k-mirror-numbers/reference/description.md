@@ -13,6 +13,7 @@ Given the base `k` and the number `n`, return *the **sum** of the* `n` ***smalle
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $k = 2, n = 5$

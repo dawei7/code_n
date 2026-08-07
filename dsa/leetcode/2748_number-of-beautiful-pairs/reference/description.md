@@ -11,6 +11,7 @@ Two integers `x` and `y` are **coprime** if there is no integer greater than 1 t
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,5,1,4]`

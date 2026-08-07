@@ -29,6 +29,7 @@ The result format is in the following example.
 Return one row with one column named `shortest`. Its value is the minimum Euclidean distance over all unordered pairs of distinct rows, rounded to two digits after the decimal point.
 
 ### Examples
+
 #### Example 1
 
 ```

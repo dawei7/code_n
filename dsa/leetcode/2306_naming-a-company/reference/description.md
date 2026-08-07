@@ -17,6 +17,7 @@ Return *the number of **distinct** valid names for the company*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $ideas = ["coffee","donuts","time","toffee"]$

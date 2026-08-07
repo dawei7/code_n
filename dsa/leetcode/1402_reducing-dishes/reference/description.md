@@ -13,6 +13,7 @@ Dishes can be prepared in **any **order and the chef can discard some dishes to 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $satisfaction = [-1,-8,0,5,-9]$

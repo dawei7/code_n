@@ -17,6 +17,7 @@ Given an integer array `nums`, return *the sum of **Hamming distances** between 
 Equal values at different positions still form a pair, although their mutual contribution is zero.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [4,14,2]`

@@ -11,6 +11,7 @@ Return the lexicographically smallest string that `s` can be changed to after us
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "dcab", pairs = [[0,3],[1,2]]`

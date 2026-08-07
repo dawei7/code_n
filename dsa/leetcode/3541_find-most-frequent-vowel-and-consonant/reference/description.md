@@ -19,6 +19,7 @@ The **frequency** of a letter `x` is the number of times it occurs in the string
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

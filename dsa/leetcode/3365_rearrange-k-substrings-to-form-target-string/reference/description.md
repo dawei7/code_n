@@ -15,6 +15,7 @@ A **substring** is a contiguous **non-empty** sequence of characters within a st
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

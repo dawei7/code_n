@@ -17,6 +17,7 @@ Every price must be rounded independently to either its floor or its ceiling. Le
 - The minimum total absolute rounding error, formatted as a string with exactly three decimal places, or `"-1"` when no permitted choices sum to `target`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $prices = ["0.700","2.800","4.900"], target = 8$

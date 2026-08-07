@@ -18,6 +18,7 @@ Return *the* ***maximum*** *possible **score** you can achieve*. *If it is impos
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 ![](images/treemaxxor.png)

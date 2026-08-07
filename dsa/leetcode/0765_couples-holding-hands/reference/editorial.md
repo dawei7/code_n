@@ -75,7 +75,7 @@ This leads to the following idea: for each couple sitting at couches X and Y (po
 </center>
 <br />
 
-Then, making a swap for $X_1$ to meet their partner $X_2$ has a corresponding move on the couples graph equivalent to contracting the corresponding edge to $X_{1X\_2}$ plus having a node with a single self edge.
+Then, making a swap for $X_1$ to meet their partner $X_2$ has a corresponding move on the couples graph equivalent to contracting the corresponding edge to $X_1X_2$ plus having a node with a single self edge.
 Our goal is to have `N` connected components in the graph, one for each couch.  Every swap (allowed by the scheme above) always increases that number by exactly 1, so under HSA, the answer is just `N` minus the number of connected components in the couples graph.
 
 Now to prove HSA, observe that it is impossible with *any* swap to create more than 1 additional connected component in the couples graph.  So any optimal solution must have at least the number of moves in the answer we've constructed.  (This also proves the ordering assumption made in Approach #1, as we can make edge contractions of a cycle in any order without changing the answer.)

@@ -15,6 +15,7 @@ Return *the number of ways to select a group of students so that everyone remain
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,1]`

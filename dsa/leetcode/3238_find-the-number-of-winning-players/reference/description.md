@@ -21,6 +21,7 @@ Return the number of players who **win** the game.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

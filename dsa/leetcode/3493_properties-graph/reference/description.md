@@ -13,6 +13,7 @@ Return the number of **connected components** in the resulting graph.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

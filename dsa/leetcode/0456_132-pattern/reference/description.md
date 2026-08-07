@@ -11,11 +11,12 @@ Return `true`* if there is a **132 pattern** in *`nums`*, otherwise, return *`fa
 
 **Return value**
 
-- Return `True` when there are positions $i < j < k$ with `nums[i] < nums[k] < nums[j]`; otherwise, return `False`.
+- Return `True` when there are positions $i < j < k$ with $\text{nums}[i] < \text{nums}[k] < \text{nums}[j]$; otherwise, return `False`.
 
 Equal values cannot satisfy either strict inequality.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,2,3,4]`

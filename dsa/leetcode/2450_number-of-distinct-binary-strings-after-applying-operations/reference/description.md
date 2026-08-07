@@ -18,6 +18,7 @@ Return *the number of **distinct** strings you can obtain*. Since the answer may
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "1001", k = 3`

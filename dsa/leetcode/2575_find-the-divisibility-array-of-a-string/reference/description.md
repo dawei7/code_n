@@ -15,6 +15,7 @@ Return* the divisibility array of** *`word`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $word = "998244353", m = 3$

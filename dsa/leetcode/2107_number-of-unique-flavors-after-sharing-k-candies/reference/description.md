@@ -8,6 +8,7 @@ Return *the **maximum** number of **unique** flavors of candy you can keep after
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $candies = [1,<u>2,2,3</u>,4,3], k = 3$

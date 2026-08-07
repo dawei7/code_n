@@ -23,9 +23,10 @@ Let $N = \lvert\texttt{nums}\rvert$ and let $V = \max(\texttt{nums})$.
 
 **Return value**
 
-Return `ans`, where `ans[i]` is the smallest absolute difference between `nums[i]` and any nonnegative integer whose ordinary binary representation is palindromic. Preserve the input order.
+Return `ans`, where $\text{ans}[i]$ is the smallest absolute difference between $\text{nums}[i]$ and any nonnegative integer whose ordinary binary representation is palindromic. Preserve the input order.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

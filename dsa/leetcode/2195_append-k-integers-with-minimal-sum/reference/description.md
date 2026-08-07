@@ -9,6 +9,7 @@ Return* the sum of the* `k` *integers appended to* `nums`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,4,25,10,25], k = 2`

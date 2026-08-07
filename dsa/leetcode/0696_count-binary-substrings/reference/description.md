@@ -9,6 +9,7 @@ Substrings that occur multiple times are counted the number of times they occur.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "00110011"`

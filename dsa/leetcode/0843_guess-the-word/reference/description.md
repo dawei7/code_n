@@ -23,6 +23,7 @@ The test cases are generated such that you can guess the secret word with a reas
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $secret = "acckzz", words = ["acckzz","ccbazz","eiowzz","abcczz"], allowedGuesses = 10$

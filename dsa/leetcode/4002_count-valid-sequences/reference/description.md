@@ -20,9 +20,7 @@ Two sequences are considered **different** if they differ at any index. For exam
 
 A candidate sequence $(a_1,a_2,\ldots,a_k)$ is valid when every $a_i$ is positive,
 
-$$
-\sum_{i=1}^{k} a_i=n,
-$$
+$\sum_{i=1}^{k} a_i=n,$
 
 and $\prod_{i=1}^{k}a_i$ is even.
 
@@ -31,6 +29,7 @@ and $\prod_{i=1}^{k}a_i$ is even.
 Return the number of distinct valid ordered sequences, reduced modulo $10^9+7$.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

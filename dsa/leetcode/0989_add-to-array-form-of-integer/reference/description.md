@@ -11,6 +11,7 @@ Given `num`, the **array-form** of an integer, and an integer `k`, return *the *
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $num = [1,2,0,0], k = 34$

@@ -9,6 +9,7 @@ Given two positive integers `left` and `right` represented as strings, return *t
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $left = "4", right = "1000"$

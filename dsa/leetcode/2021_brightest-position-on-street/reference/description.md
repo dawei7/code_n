@@ -10,6 +10,7 @@ Given `lights`, return *the **brightest** position on the** street. If there are
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 ![](images/image-20210928155140-1.png)

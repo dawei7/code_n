@@ -11,6 +11,7 @@ The **most significant bit** is at the head of the linked list.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/graph-1.png)

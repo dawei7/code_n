@@ -13,6 +13,7 @@ We say that `word` is **k-periodic** if there is some string `s` of length `k` s
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

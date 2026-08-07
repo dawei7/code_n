@@ -17,6 +17,7 @@ Return the **minimum** number of jumps required to reach index $n - 1$.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

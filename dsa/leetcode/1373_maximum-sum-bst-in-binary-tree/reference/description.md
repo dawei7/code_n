@@ -15,6 +15,7 @@ Assume a BST is defined as follows:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/sample_1_1709.png)

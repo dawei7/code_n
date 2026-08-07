@@ -15,6 +15,7 @@ You must solve the problem by counting sort.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $costs = [1,3,2,4,1], coins = 7$

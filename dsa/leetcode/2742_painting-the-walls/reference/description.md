@@ -2,7 +2,7 @@
 
 You are given two **0-indexed** integer arrays, `cost` and `time`, of size `n` representing the costs and the time taken to paint `n` different walls respectively. There are two painters available:
 
-- A** paid painter** that paints the $$i^{\text{th}}$$wall in$\text{time}[i]$units of time and takes$\text{cost}[i]$ units of money.
+- A** paid painter** that paints the $$i^{\text{th}}$$ wall in $\text{time}[i]$ units of time and takes $\text{cost}[i]$ units of money.
 
 - A** free painter** that paints **any** wall in `1` unit of time at a cost of `0`. But the free painter can only be used if the paid painter is already **occupied**.
 
@@ -13,6 +13,7 @@ Return *the minimum amount of money required to paint the *`n`* walls.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $cost = [1,2,3,2], time = [1,2,3,2]$

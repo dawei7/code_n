@@ -15,6 +15,7 @@ Given two integers `x` and `y`, return *the **Hamming distance** between them*.
 - Return the number of corresponding binary positions where `x` and `y` have different bits.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $x = 1, y = 4$

@@ -13,6 +13,7 @@ Return *the final **score**.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [[7,2,1],[6,4,2],[6,5,3],[3,2,1]]`

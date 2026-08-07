@@ -16,6 +16,7 @@ You can assume `obj1` and `obj2` are the output of `JSON.parse()`.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $obj1 = {"a": 1, "c": 3}, obj2 = {"a": 2, "b": 2}$

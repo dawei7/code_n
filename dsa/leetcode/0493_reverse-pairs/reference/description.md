@@ -13,6 +13,7 @@ A **reverse pair** is a pair `(i, j)` where:
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,3,2,3,1]`

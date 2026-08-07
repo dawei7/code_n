@@ -23,9 +23,7 @@ Return an integer array `[x, y]`. If no valid pair exists, return `[-1, -1]`.
 
 For every value $v$ that occurs in `nums`, let $f(v)$ denote its frequency. A candidate pair must consist of two distinct present values and satisfy
 
-$$
-x < y \quad\text{and}\quad f(x) \ne f(y).
-$$
+$x < y \quad\text{and}\quad f(x) \ne f(y).$
 
 Pairs are ordered lexicographically: a smaller `x` takes priority, and `y` breaks ties only when `x` is equal.
 
@@ -34,6 +32,7 @@ Pairs are ordered lexicographically: a smaller `x` takes priority, and `y` break
 Return `[x, y]` for the lexicographically smallest valid pair. Return `[-1, -1]` when no valid pair exists.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

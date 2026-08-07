@@ -10,6 +10,7 @@ Return the *maximum score* you can get.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

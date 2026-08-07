@@ -24,6 +24,7 @@ Return *the total cost to hire exactly *`k`* workers.*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $costs = [17,12,10,2,7,2,11,20,8], k = 3, candidates = 4$

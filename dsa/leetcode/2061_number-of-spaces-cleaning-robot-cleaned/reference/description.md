@@ -10,6 +10,7 @@ Return *the number of **clean** spaces in the room if the robot runs indefinitel
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 ![](images/image-20211101204703-1.png)

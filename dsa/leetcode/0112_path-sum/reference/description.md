@@ -15,6 +15,7 @@ A **leaf** is a node with no children.
 Return `true` if at least one root-to-leaf path sums to `targetSum`; otherwise return `false`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/pathsum1.jpg)

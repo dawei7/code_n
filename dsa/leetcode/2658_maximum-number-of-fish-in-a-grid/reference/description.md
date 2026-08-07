@@ -21,6 +21,7 @@ An **adjacent** cell of the cell `(r, c)`, is one of the cells $(r, c + 1)$, $(r
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/example.png)

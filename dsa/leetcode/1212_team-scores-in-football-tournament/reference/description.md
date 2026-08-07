@@ -47,18 +47,19 @@ The result format is in the following example.
 
 **Input tables**
 
-- `Teams(team_id, team_name)` supplies the complete team catalog.
-- `Matches(match_id, host_team, guest_team, host_goals, guest_goals)` supplies each finished match, its two distinct participants, and their respective scores.
+- $Teams(\text{team}_{id}, \text{team}_{name})$ supplies the complete team catalog.
+- $Matches(\text{match}_{id}, \text{host}_{team}, \text{guest}_{team}, \text{host}_{goals}, \text{guest}_{goals})$ supplies each finished match, its two distinct participants, and their respective scores.
 
 Let $t$ be the number of teams and $m$ the number of matches.
 
 **Return value**
 
-Return exactly one row per team with columns `team_id`, `team_name`, and `num_points`, where `num_points` is that team's sum of three-point wins and one-point draws across all matches.
+Return exactly one row per team with columns $\text{team}_{id}$, $\text{team}_{name}$, and $\text{num}_{points}$, where $\text{num}_{points}$ is that team's sum of three-point wins and one-point draws across all matches.
 
-Sort the result by `num_points` in decreasing order. When totals tie, sort those rows by `team_id` in increasing order.
+Sort the result by $\text{num}_{points}$ in decreasing order. When totals tie, sort those rows by $\text{team}_{id}$ in increasing order.
 
 ### Examples
+
 #### Example 1
 
 ```

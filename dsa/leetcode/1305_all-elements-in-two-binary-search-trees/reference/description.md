@@ -7,6 +7,7 @@ Given two binary search trees `root1` and `root2`, return *a list containing all
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/q2-e1.png)

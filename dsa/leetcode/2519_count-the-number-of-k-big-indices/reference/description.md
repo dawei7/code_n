@@ -21,6 +21,7 @@ Return *the number of k-big indices*.
 Return an integer representing the number of `k`-big indices in `nums`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [2,3,6,5,2,3], k = 2`

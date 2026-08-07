@@ -11,6 +11,7 @@ Return the number of the child who receives the ball after `k` seconds.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -11,6 +11,7 @@ Return *the **total** number of seconds that Ashe is poisoned*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $timeSeries = [1,4], duration = 2$

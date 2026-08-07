@@ -18,6 +18,7 @@ A removable selection must be a contiguous substring of the current string and m
 Return the smallest possible length of the string after any number of valid removals.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

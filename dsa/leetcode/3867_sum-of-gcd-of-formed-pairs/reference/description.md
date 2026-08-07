@@ -44,6 +44,7 @@ The pairing rule applies to the non-decreasing ordering of all $P_i$ values, not
 Return an integer equal to the sum of the GCD of every formed pair. A singleton input forms no pair and therefore returns `0`.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

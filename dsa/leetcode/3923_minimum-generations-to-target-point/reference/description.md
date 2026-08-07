@@ -33,6 +33,7 @@ Let $n=\lvert\texttt{points}\rvert$. Let $U$ be the number of distinct coordinat
 Return the smallest generation number in which `target` is available. Return `-1` if the closure stabilizes without the target.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

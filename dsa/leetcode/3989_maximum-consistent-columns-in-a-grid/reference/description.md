@@ -11,7 +11,7 @@ Return the **maximum** number of columns that can remain such that the resulting
 
 `solve(grid, limit) -> int`
 
-Let $m=\lvert\texttt{grid}\rvert$ and $n=\lvert\texttt{grid[0]}\rvert$.
+Let $m=\lvert\texttt{grid}\rvert$ and $n=\lvert\texttt{\text{grid}[0]}\rvert$.
 
 **Inputs**
 
@@ -25,6 +25,7 @@ Column removal preserves relative order, and at least one column must remain. A 
 Return the largest number of columns that can be retained while every adjacent retained pair is compatible.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

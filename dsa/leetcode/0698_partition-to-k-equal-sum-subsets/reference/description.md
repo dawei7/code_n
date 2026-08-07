@@ -7,6 +7,7 @@ Given an integer array `nums` and an integer `k`, return `true` if it is possibl
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [4,3,2,3,5,2,1], k = 4`

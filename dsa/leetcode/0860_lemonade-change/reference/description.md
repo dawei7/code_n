@@ -11,6 +11,7 @@ Given an integer array `bills` where $\text{bills}[i]$ is the bill the $$i^{\tex
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $bills = [5,5,5,10,20]$

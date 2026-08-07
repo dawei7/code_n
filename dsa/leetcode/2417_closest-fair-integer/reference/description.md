@@ -10,6 +10,7 @@ Return *the **smallest** fair integer that is **greater than or equal** to *`n`.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 2$

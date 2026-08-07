@@ -17,6 +17,7 @@ Return *the **minimum** initial amount of energy you will need* *to finish all t
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $tasks = [[1,2],[2,4],[4,8]]$

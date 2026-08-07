@@ -19,6 +19,7 @@ The operation reuses the original nodes. For every original parent-child edge wh
 - A two-element list `[smaller, greater]`. `smaller` contains exactly the nodes with values smaller than or equal to `target`, and `greater` contains exactly the nodes with values greater than `target`. Either root may be `None`.
 
 ### Examples
+
 #### Example 1
 
 ![](images/split-tree.jpg)

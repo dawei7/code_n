@@ -11,6 +11,7 @@ Return *the number of **distinct** integers in the final array*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,13,10,12,31]`

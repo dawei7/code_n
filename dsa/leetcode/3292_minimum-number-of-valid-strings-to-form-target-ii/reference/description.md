@@ -11,6 +11,7 @@ Return the **minimum** number of **valid** strings that can be *concatenated* to
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

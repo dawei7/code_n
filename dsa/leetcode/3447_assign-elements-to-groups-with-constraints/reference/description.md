@@ -19,6 +19,7 @@ Return an integer array `assigned`, where $\text{assigned}[i]$ is the index of t
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

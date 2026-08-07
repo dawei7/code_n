@@ -7,6 +7,7 @@ Given a binary string `s`, return *the number of substrings with all characters*
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "0110111"`

@@ -20,6 +20,7 @@ Fill each empty room with the distance to *its nearest gate*. If it is impossibl
 Return `None`. Update `rooms` in place so each reachable empty room stores the minimum number of horizontal or vertical steps to a gate.
 
 ### Examples
+
 #### Example 1
 
 ![](images/grid.jpg)

@@ -13,6 +13,7 @@ Return *the **minimum** possible sum of the cost of these* *subarrays*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [1,3,2,6,4,2], k = 3, dist = 3`

@@ -25,15 +25,16 @@ The result format is in the following example.
 
 | Column | Type | Meaning |
 |---|---|---|
-| `bill_id` | int | Unique bill identifier. |
-| `customer_id` | int | Customer identifier. |
+| $\text{bill}_{id}$ | int | Unique bill identifier. |
+| $\text{customer}_{id}$ | int | Customer identifier. |
 | `amount` | int | Amount of the bill. |
 
 **Return value**
 
-Return a single-row table with column `rich_count`. `rich_count` is the count of distinct `customer_id` values having at least one bill with `amount > 500`.
+Return a single-row table with column $\text{rich}_{count}$. $\text{rich}_{count}$ is the count of distinct $\text{customer}_{id}$ values having at least one bill with `amount > 500`.
 
 ### Examples
+
 #### Example 1
 
 ```

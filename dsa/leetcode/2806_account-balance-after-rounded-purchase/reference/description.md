@@ -19,6 +19,7 @@ Return an integer denoting your final bank account balance after this purchase.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

@@ -13,6 +13,7 @@ Return an array `answer` of the **same** size as `queries`, where $\text{answer}
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

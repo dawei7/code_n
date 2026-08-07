@@ -9,6 +9,7 @@ Return the **sum** of all the **good** elements in the array.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 <div class="example-block">

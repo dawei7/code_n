@@ -9,6 +9,7 @@ A **subsequence** of a string is a new string that is formed from the original s
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "abc"`

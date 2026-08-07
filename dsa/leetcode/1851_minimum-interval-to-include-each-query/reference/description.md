@@ -1,8 +1,8 @@
 ## Description
 
-You are given a 2D integer array `intervals`, where $\text{intervals}[i] = [\text{left}_{i}, \text{right}_{i}]$ describes the $$i^{\text{th}}$$interval starting at$\text{left}_{i}$and ending at$\text{right}_{i}$**(inclusive)**. The **size** of an interval is defined as the number of integers it contains, or more formally$\text{right}_{i} - \text{left}_{i} + 1$.
+You are given a 2D integer array `intervals`, where $\text{intervals}[i] = [\text{left}_{i}, \text{right}_{i}]$ describes the $$i^{\text{th}}$$ interval starting at $\text{left}_{i}$ and ending at $\text{right}_{i}$ **(inclusive)**. The **size** of an interval is defined as the number of integers it contains, or more formally $\text{right}_{i} - \text{left}_{i} + 1$.
 
-You are also given an integer array `queries`. The answer to the $$j^{\text{th}}$$query is the **size of the smallest interval** `i` such that$\text{left}_{i} \le \text{queries}[j] \le \text{right}_{i}$. If no such interval exists, the answer is `-1`.
+You are also given an integer array `queries`. The answer to the $$j^{\text{th}}$$ query is the **size of the smallest interval** `i` such that $\text{left}_{i} \le \text{queries}[j] \le \text{right}_{i}$. If no such interval exists, the answer is `-1`.
 
 Return *an array containing the answers to the queries*.
 ### Function Contract
@@ -11,6 +11,7 @@ Return *an array containing the answers to the queries*.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $intervals = [[1,4],[2,4],[3,6],[4,4]], queries = [2,3,4,5]$

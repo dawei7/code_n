@@ -15,6 +15,7 @@ The **average** of `x` elements is the sum of the `x` elements divided by `x`, u
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/eg1.png)

@@ -15,6 +15,7 @@ Return *the **minimum** possible total number of stones remaining after applying
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $piles = [5,4,9], k = 2$

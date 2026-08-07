@@ -9,6 +9,7 @@ Given the `root` of a binary tree, return *the length of the longest path, where
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1.jpg)

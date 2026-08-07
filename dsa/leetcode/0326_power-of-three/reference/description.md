@@ -14,6 +14,7 @@ An integer `n` is a power of three, if there exists an integer `x` such that $n 
 Return `True` exactly when `n` is an integral power of three; otherwise return `False`.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $n = 27$

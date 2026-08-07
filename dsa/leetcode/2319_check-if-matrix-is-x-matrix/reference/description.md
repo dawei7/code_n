@@ -13,6 +13,7 @@ Given a 2D integer array `grid` of size `n x n` representing a square matrix, re
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/ex1.jpg)

@@ -18,6 +18,7 @@ Return *the number of **non-empty** ratio substrings of *`s`.
 - Refer to method signature.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "0110011", num1 = 1, num2 = 2`

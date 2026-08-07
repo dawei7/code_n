@@ -13,6 +13,7 @@ The **set bits** in an integer are the `1`'s present when it is written in binar
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `nums = [5,10,1,5,2], k = 1`

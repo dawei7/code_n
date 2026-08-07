@@ -14,6 +14,7 @@ You must do this by modifying the input array <a href="https://en.wikipedia.org/
 Return nothing; after the call, `s` itself must contain the characters in reverse order.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $s = ["h","e","l","l","o"]$

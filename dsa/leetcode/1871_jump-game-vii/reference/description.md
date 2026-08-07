@@ -13,6 +13,7 @@ Return `true`* if you can reach index *$\text{s.length} - 1$* in *`s`*, or *`fal
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** `s = "<u>0</u>11<u>0</u>1<u>0</u>", minJump = 2, maxJump = 3`

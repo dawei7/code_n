@@ -19,6 +19,7 @@ Return `true` *if the equation is solvable, otherwise return* `false`.
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 - **Input:** $words = ["SEND","MORE"], result = "MONEY"$

@@ -17,6 +17,7 @@ Given an integer array `slices` that represent the sizes of the pizza slices in 
 - Returns expected result.
 
 ### Examples
+
 #### Example 1
 
 ![](images/sample_3_1723.png)

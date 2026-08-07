@@ -21,10 +21,12 @@ For $\textit{dp}[i][0][j]$, the last two elements must form a strictly decreasin
 
 This gives the following transition equations. For convenience, we shift the original interval $[l,r]$ to $[0,m-1]$, where $m=r-l+1$. Some implementations may use the original interval directly, but the underlying idea remains the same.
 
-$$\begin{aligned}
-\textit{dp}[i][0][j] \&= \sum_{k=j+1}^{m-1} \textit{dp}[i-1][1][k] \\
-\textit{dp}[i][1][j] \&= \sum_{k=0}^{j-1} \textit{dp}[i-1][0][k]
-\end{aligned}$$
+$$
+\begin{aligned}
+\textit{dp}[i][0][j] &= \sum_{k=j+1}^{m-1} \textit{dp}[i-1][1][k] \\
+\textit{dp}[i][1][j] &= \sum_{k=0}^{j-1} \textit{dp}[i-1][0][k]
+\end{aligned}
+$$
 
 The two summations above can be optimized using prefix sums.
 
@@ -41,10 +43,12 @@ $$
 
 With prefix sums, each state transition can be computed in $O(1)$ time. The optimized transition equations become
 
-$$\begin{aligned}
-\textit{dp}[i][0][j] \&= \textit{sum}[i-1][1][m] - \textit{sum}[i-1][1][j+1] \\
-\textit{dp}[i][1][j] \&= \textit{sum}[i-1][0][j]
-\end{aligned}$$
+$$
+\begin{aligned}
+\textit{dp}[i][0][j] &= \textit{sum}[i-1][1][m] - \textit{sum}[i-1][1][j+1] \\
+\textit{dp}[i][1][j] &= \textit{sum}[i-1][0][j]
+\end{aligned}
+$$
 
 For initialization, set every element of $\textit{dp}[0]$ to $1$, since there is exactly one valid sequence of length $1$ for each possible value.
 
