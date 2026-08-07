@@ -2,19 +2,72 @@
 
 You are given `n` **BST (binary search tree) root nodes** for `n` separate BSTs stored in an array `trees` (**0-indexed**). Each BST in `trees` has **at most 3 nodes**, and no two roots have the same value. In one operation, you can:
 
-<ul>
-	<li>Select two **distinct** indices `i` and `j` such that the value stored at one of the **leaves **of `trees[i]` is equal to the **root value** of `trees[j]`.</li>
-	<li>Replace the leaf node in `trees[i]` with `trees[j]`.</li>
-	<li>Remove `trees[j]` from `trees`.</li>
-</ul>
+- Select two **distinct** indices `i` and `j` such that the value stored at one of the **leaves **of $\text{trees}[i]$ is equal to the **root value** of $\text{trees}[j]$.
 
-Return* the **root** of the resulting BST if it is possible to form a valid BST after performing *`n - 1`* operations, or** *`null` *if it is impossible to create a valid BST*.
+- Replace the leaf node in $\text{trees}[i]$ with $\text{trees}[j]$.
+
+- Remove $\text{trees}[j]$ from `trees`.
+
+Return* the **root** of the resulting BST if it is possible to form a valid BST after performing *$n - 1$* operations, or** *`null` *if it is impossible to create a valid BST*.
 
 A BST (binary search tree) is a binary tree where each node satisfies the following property:
 
-<ul>
-	<li>Every node in the node's left subtree has a value **strictly less** than the node's value.</li>
-	<li>Every node in the node's right subtree has a value **strictly greater** than the node's value.</li>
-</ul>
+- Every node in the node's left subtree has a value **strictly less** than the node's value.
+
+- Every node in the node's right subtree has a value **strictly greater** than the node's value.
 
 A leaf is a node that has no children.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+![](images/d1.png)
+
+- **Input:** $trees = [[2,1],[3,2,5],[5,4]]$
+- **Output:** `[3,2,5,1,null,4]`
+- **Explanation:**
+In the first operation, pick i=1 and j=0, and merge trees[0] into trees[1].
+Delete trees[0], so trees = [[3,2,5,1],[5,4]].
+![](images/diagram.png)
+In the second operation, pick i=0 and j=1, and merge trees[1] into trees[0].
+Delete trees[1], so trees = [[3,2,5,1,null,4]].
+![](images/diagram-2.png)
+The resulting tree, shown above, is a valid BST, so return its root.
+#### Example 2
+
+![](images/d2.png)
+
+- **Input:** $trees = [[5,3,8],[3,2,6]]$
+- **Output:** `[]`
+- **Explanation:**
+Pick i=0 and j=1 and merge trees[1] into trees[0].
+Delete trees[1], so trees = [[5,3,8,2,6]].
+![](images/diagram-3.png)
+The resulting tree is shown above. This is the only valid operation that can be performed, but the resulting tree is not a valid BST, so return null.
+#### Example 3
+
+![](images/d3.png)
+
+- **Input:** $trees = [[5,4],[3]]$
+- **Output:** `[]`
+- **Explanation:** It is impossible to perform any operations.
+### Constraints
+
+- $n = \text{trees.length}$
+
+- $1 \le n \le 5 * 10^{4}$
+
+- The number of nodes in each tree is in the range `[1, 3]`.
+
+- Each node in the input may have children but no grandchildren.
+
+- No two roots of `trees` have the same value.
+
+- All the trees in the input are **valid BSTs**.
+
+- $1 \le \text{TreeNode.val} \le 5 * 10^{4}$.

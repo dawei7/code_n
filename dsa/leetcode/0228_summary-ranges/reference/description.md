@@ -8,7 +8,44 @@ Return *the **smallest sorted** list of ranges that **cover all the numbers in t
 
 Each range `[a,b]` in the list should be output as:
 
-<ul>
-	<li>`"a->b"` if `a != b`</li>
-	<li>`"a"` if `a == b`</li>
-</ul>
+- `"a->b"` if $a \neq b$
+
+- `"a"` if $a = b$
+### Function Contract
+
+**Inputs**
+
+- `nums`: A unique integer array sorted in ascending order.
+
+**Return value**
+
+Return the minimal sorted list of strings that represents every maximal consecutive range in `nums`.
+
+### Examples
+
+#### Example 1
+
+- **Input:** `nums = [0,1,2,4,5,7]`
+- **Output:** `["0->2","4->5","7"]`
+- **Explanation:** The ranges are:
+[0,2] --> "0->2"
+[4,5] --> "4->5"
+[7,7] --> "7"
+#### Example 2
+
+- **Input:** `nums = [0,2,3,4,6,8,9]`
+- **Output:** `["0","2->4","6","8->9"]`
+- **Explanation:** The ranges are:
+[0,0] --> "0"
+[2,4] --> "2->4"
+[6,6] --> "6"
+[8,9] --> "8->9"
+### Constraints
+
+- $0 \le \text{nums.length} \le 20$
+
+- $-2^{31} \le \text{nums}[i] \le 2^{31} - 1$
+
+- All the values of `nums` are **unique**.
+
+- `nums` is sorted in ascending order.

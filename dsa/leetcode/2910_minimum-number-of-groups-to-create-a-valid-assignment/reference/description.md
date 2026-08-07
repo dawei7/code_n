@@ -2,9 +2,60 @@
 
 You are given a collection of numbered `balls` and instructed to sort them into boxes for a nearly balanced distribution. There are two rules you must follow:
 
-<ul>
-	<li>Balls with the same box must have the same value. But, if you have more than one ball with the same number, you can put them in different boxes.</li>
-	<li>The biggest box can only have one more ball than the smallest box.</li>
-</ul>
+- Balls with the same box must have the same value. But, if you have more than one ball with the same number, you can put them in different boxes.
+
+- The biggest box can only have one more ball than the smallest box.
 
 ​Return the *fewest number of boxes* to sort these balls following these rules.
+
+**Example 1: **
+
+<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
+**Input: **  balls = [3,2,3,2,3]
+
+**Output: **  2
+
+**Explanation:**
+
+We can sort `balls` into boxes as follows:
+
+- `[3,3,3]`
+
+- `[2,2]`
+
+The size difference between the two boxes doesn't exceed one.
+
+</div>
+
+**Example 2: **
+
+<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
+**Input: **  balls = [10,10,10,3,1,1]
+
+**Output: **  4
+
+**Explanation:**
+
+We can sort `balls` into boxes as follows:
+
+- `[10]`
+
+- `[10,10]`
+
+- `[3]`
+
+- `[1,1]`
+
+You can't use fewer than four boxes while still following the rules. For example, putting all three balls numbered 10 in one box would break the rule about the maximum size difference between boxes.
+
+</div>
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Constraints
+
+- $1 \le \text{nums.length} \le 10^{5}$
+
+- $1 \le \text{nums}[i] \le 10^{9}$

@@ -4,9 +4,42 @@ You are given 2 **positive** integers `l` and `r`. For any number `x`, all posit
 
 A number is called **special** if it has exactly 2 **proper divisors**. For example:
 
-<ul>
-	<li>The number 4 is *special* because it has proper divisors 1 and 2.</li>
-	<li>The number 6 is *not special* because it has proper divisors 1, 2, and 3.</li>
-</ul>
+- The number 4 is *special* because it has proper divisors 1 and 2.
+
+- The number 6 is *not special* because it has proper divisors 1, 2, and 3.
 
 Return the count of numbers in the range `[l, r]` that are **not** **special**.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+<div class="example-block">
+**Input:** l = 5, r = 7
+
+**Output:** 3
+
+**Explanation:**
+
+There are no special numbers in the range `[5, 7]`.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** l = 4, r = 16
+
+**Output:** 11
+
+**Explanation:**
+
+The special numbers in the range `[4, 16]` are 4 and 9.
+
+</div>
+### Constraints
+
+- $1 \le l \le r \le 10^{9}$

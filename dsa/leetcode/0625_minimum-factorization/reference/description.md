@@ -1,5 +1,26 @@
 ## Description
 
-For a positive integer `num`, consider every positive integer `x` whose decimal digits, multiplied together, equal exactly `num`. Different digit sequences may have the same product, so the requested result is the candidate with the smallest numerical value.
+Given a positive integer num, return *the smallest positive integer *`x`* whose multiplication of each digit equals *`num`. If there is no answer or the answer is not fit in **32-bit** signed integer, return `0`.
+### Function Contract
 
-Return that smallest `x` when it can be represented as a signed 32-bit integer. If no positive integer has the required digit product, or if even the smallest valid candidate lies outside the signed 32-bit range, return `0`.
+**Inputs**
+
+- `a`: The positive digit-product target called `num` in the source statement.
+
+**Return value**
+
+Return the smallest positive integer whose decimal digits multiply to `a`. Return `0` when no such positive integer exists or when the smallest valid result is greater than $2^{31} - 1$.
+
+### Examples
+
+#### Example 1
+
+- **Input:** $num = 48$
+- **Output:** `68`
+#### Example 2
+
+- **Input:** $num = 15$
+- **Output:** `35`
+### Constraints
+
+- $1 \le num \le 2^{31} - 1$

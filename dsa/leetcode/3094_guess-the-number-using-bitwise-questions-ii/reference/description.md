@@ -1,7 +1,28 @@
 ## Description
 
-An unknown integer $n$ lies in the inclusive interval $[0, 2^{30}-1]$. The task is to recover and return the **initial** value of this 30-bit number through a predefined interactive API, even though every query changes the hidden state.
+There is a number `n` between `0` and $2^{30} - 1$ (both inclusive) that you have to find.
 
-Calling `commonBits(num)` first counts the bit positions at which the current $n$ and the query value `num` contain the same binary digit. Only the first 30 positions participate in this comparison. The API then performs `n = n XOR num` before returning the count, so later calls observe the mutated value of $n$.
+There is a pre-defined API `int commonBits(int num)` that helps you with your mission. But here is the challenge, every time you call this function, `n` changes in some way. But keep in mind, that you have to find the **initial value of **`n`.
 
-Every query must also satisfy $0 \le \texttt{num} \le 2^{30}-1$; a result obtained with an out-of-range query is not guaranteed to be reliable. Use legal queries and account for every mutation to determine the original hidden number.
+`commonBits(int num)` acts as follows:
+
+- Calculate `count` which is the number of bits where both `n` and `num` have the same value in that position of their binary representation.
+
+- $n = n XOR num$
+
+- Return `count`.
+
+Return *the number* `n`.
+
+**Note:** In this world, all numbers are between `0` and $2^{30} - 1$ (both inclusive), thus for counting common bits, we see only the first 30 bits of those numbers.
+### Function Contract
+
+- Refer to method signature.
+
+### Constraints
+
+- $0 \le n \le 2^{30} - 1$
+
+- $0 \le num \le 2^{30} - 1$
+
+- If you ask for some `num` out of the given range, the output wouldn't be reliable.

@@ -1,5 +1,29 @@
 ## Description
 
-Create an object that behaves as though it has a method for every possible string property name. Accessing any property must yield a callable function, and invoking that function must return the exact property name that was accessed.
+Write a function that returns an **infinite-method**** object**.
 
-The property does not need to have been declared in advance. Names may be empty, ordinary identifiers, or strings containing punctuation and other characters that require bracket notation. For example, calling `obj.abc123()` returns `"abc123"`, while `obj[".-qw73n|^2It"]()` returns that exact punctuation-heavy name.
+An **infinite-method**** object** is defined as an object that allows you to call any method and it will always return the name of the method.
+
+For example, if you execute `obj.abc123()`, it will return `"abc123"`.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+
+#### Example 1
+
+- **Input:** $method = "abc123"$
+- **Output:** `"abc123"`
+- **Explanation:**
+const obj = createInfiniteObject();
+obj['abc123'](); // "abc123"
+The returned string should always match the method name.
+#### Example 2
+
+- **Input:** $method = ".-qw73n|^2It"$
+- **Output:** $".-qw73n|^2It"$
+- **Explanation:** The returned string should always match the method name.
+### Constraints
+
+- $0 \le \text{method.length} \le 1000$

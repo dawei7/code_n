@@ -1,5 +1,56 @@
 ## Description
 
-Consider an `m`-by-`n` grid whose rows and columns are zero-indexed. Entering cell `(i, j)` costs `(i + 1) * (j + 1)`. A path starts at `(0, 0)`, includes that cell's entrance cost, and aims to reach the bottom-right cell `(m - 1, n - 1)`.
+You are given two integers `m` and `n` representing the number of rows and columns of a grid, respectively.
 
-Movement directions alternate. On the first, third, and every subsequent odd-numbered transition, move to an adjacent cell either right or down. On each even-numbered transition, move to an adjacent cell either left or up. Every move must remain inside the grid. Return the least possible sum of entrance costs along a valid path to the destination, or `-1` when the alternating rules make the destination unreachable.
+The cost to enter cell `(i, j)` is defined as $(i + 1) * (j + 1)$.
+
+The path will always begin by entering cell `(0, 0)` on move 1 and paying the entrance cost.
+
+At each step, you move to an **adjacent** cell, following an alternating pattern:
+
+- On **odd-numbered** moves, you must move either **right** or **down**.
+
+- On **even-numbered** moves, you must move either** left** or **up**.
+
+Return the **minimum** total cost required to reach $(m - 1, n - 1)$. If it is impossible, return -1.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+
+#### Example 1
+
+<div class="example-block">
+**Input:** m = 1, n = 1
+
+**Output:** 1
+
+**Explanation:**
+
+- You start at cell `(0, 0)`.
+
+- The cost to enter `(0, 0)` is $(0 + 1) * (0 + 1) = 1$.
+
+- Since you're at the destination, the total cost is 1.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** m = 2, n = 1
+
+**Output:** 3
+
+**Explanation:**
+
+- You start at cell `(0, 0)` with cost $(0 + 1) * (0 + 1) = 1$.
+
+- Move 1 (odd): You can move down to `(1, 0)` with cost $(1 + 1) * (0 + 1) = 2$.
+
+- Thus, the total cost is $1 + 2 = 3$.
+
+</div>
+### Constraints
+
+- $1 \le m, n \le 10^{6}$

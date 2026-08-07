@@ -1,5 +1,55 @@
 ## Description
 
-`order` is a permutation of the integers from $1$ through $n$ and describes how those keys are inserted into an initially empty binary search tree. The first key becomes the root. Each later key follows left links while it is smaller than the current node and right links while it is larger, becoming a leaf at the first empty child position.
+You are given a **0-indexed** integer array `order` of length `n`, a **permutation** of integers from `1` to `n` representing the **order** of insertion into a **binary search tree**.
 
-Return the resulting tree's depth: the number of nodes on its longest root-to-leaf path. The root alone has depth one. The task asks only for this depth; the tree does not need to be returned.
+A binary search tree is defined as follows:
+
+- The left subtree of a node contains only nodes with keys **less than** the node's key.
+
+- The right subtree of a node contains only nodes with keys **greater than** the node's key.
+
+- Both the left and right subtrees must also be binary search trees.
+
+The binary search tree is constructed as follows:
+
+- $\text{order}[0]$ will be the **root** of the binary search tree.
+
+- All subsequent elements are inserted as the **child** of **any** existing node such that the binary search tree properties hold.
+
+Return *the **depth** of the binary search tree*.
+
+A binary tree's **depth** is the number of **nodes** along the **longest path** from the root node down to the farthest leaf node.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+
+#### Example 1
+
+![](images/1.png)
+
+- **Input:** $order = [2,1,4,3]$
+- **Output:** `3`
+- **Explanation:** The binary search tree has a depth of 3 with path 2->3->4.
+#### Example 2
+
+![](images/2.png)
+
+- **Input:** $order = [2,1,3,4]$
+- **Output:** `3`
+- **Explanation:** The binary search tree has a depth of 3 with path 2->3->4.
+#### Example 3
+
+![](images/3.png)
+
+- **Input:** $order = [1,2,3,4]$
+- **Output:** `4`
+- **Explanation:** The binary search tree has a depth of 4 with path 1->2->3->4.
+### Constraints
+
+- $n = \text{order.length}$
+
+- $1 \le n \le 10^{5}$
+
+- `order` is a permutation of integers between `1` and `n`.

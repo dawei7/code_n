@@ -2,10 +2,30 @@
 
 We define the usage of capitals in a word to be right when one of the following cases holds:
 
-<ul>
-	<li>All letters in this word are capitals, like `"USA"`.</li>
-	<li>All letters in this word are not capitals, like `"leetcode"`.</li>
-	<li>Only the first letter in this word is capital, like `"Google"`.</li>
-</ul>
+- All letters in this word are capitals, like `"USA"`.
+
+- All letters in this word are not capitals, like `"leetcode"`.
+
+- Only the first letter in this word is capital, like `"Google"`.
 
 Given a string `word`, return `true` if the usage of capitals in it is right.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+- **Input:** $word = "USA"$
+- **Output:** `true`
+#### Example 2
+
+- **Input:** $word = "FlaG"$
+- **Output:** `false`
+### Constraints
+
+- $1 \le \text{word.length} \le 100$
+
+- `word` consists of lowercase and uppercase English letters.

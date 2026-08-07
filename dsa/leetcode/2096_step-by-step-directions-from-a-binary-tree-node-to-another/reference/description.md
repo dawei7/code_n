@@ -4,10 +4,44 @@ You are given the `root` of a **binary tree** with `n` nodes. Each node is uniqu
 
 Find the **shortest path** starting from node `s` and ending at node `t`. Generate step-by-step directions of such path as a string consisting of only the **uppercase** letters `'L'`, `'R'`, and `'U'`. Each letter indicates a specific direction:
 
-<ul>
-	<li>`'L'` means to go from a node to its **left child** node.</li>
-	<li>`'R'` means to go from a node to its **right child** node.</li>
-	<li>`'U'` means to go from a node to its **parent** node.</li>
-</ul>
+- `'L'` means to go from a node to its **left child** node.
+
+- `'R'` means to go from a node to its **right child** node.
+
+- `'U'` means to go from a node to its **parent** node.
 
 Return *the step-by-step directions of the **shortest path** from node *`s`* to node* `t`.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+![](images/eg1.png)
+
+- **Input:** `root = [5,1,2,3,null,6,4], startValue = 3, destValue = 6`
+- **Output:** `"UURL"`
+- **Explanation:** The shortest path is: 3 → 1 → 5 → 2 → 6.
+#### Example 2
+
+![](images/eg2.png)
+
+- **Input:** `root = [2,1], startValue = 2, destValue = 1`
+- **Output:** `"L"`
+- **Explanation:** The shortest path is: 2 → 1.
+### Constraints
+
+- The number of nodes in the tree is `n`.
+
+- $2 \le n \le 10^{5}$
+
+- $1 \le \text{Node.val} \le n$
+
+- All the values in the tree are **unique**.
+
+- $1 \le startValue, destValue \le n$
+
+- $startValue \neq destValue$

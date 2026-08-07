@@ -4,12 +4,56 @@ You are given an array `nums` of `n` integers and two integers `k` and `x`.
 
 The **x-sum** of an array is calculated by the following procedure:
 
-<ul>
-	<li>Count the occurrences of all elements in the array.</li>
-	<li>Keep only the occurrences of the top `x` most frequent elements. If two elements have the same number of occurrences, the element with the **bigger** value is considered more frequent.</li>
-	<li>Calculate the sum of the resulting array.</li>
-</ul>
+- Count the occurrences of all elements in the array.
+
+- Keep only the occurrences of the top `x` most frequent elements. If two elements have the same number of occurrences, the element with the **bigger** value is considered more frequent.
+
+- Calculate the sum of the resulting array.
 
 **Note** that if an array has less than `x` distinct elements, its **x-sum** is the sum of the array.
 
-Return an integer array `answer` of length `n - k + 1` where `answer[i]` is the **x-sum** of the <span data-keyword="subarray-nonempty">subarray</span> `nums[i..i + k - 1]`.
+Return an integer array `answer` of length $n - k + 1$ where $\text{answer}[i]$ is the **x-sum** of the subarray $nums[i..i + k - 1]$.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+<div class="example-block">
+**Input:** nums = [1,1,2,2,3,4,2,3], k = 6, x = 2
+
+**Output:** [6,10,12]
+
+**Explanation:**
+
+- For subarray `[1, 1, 2, 2, 3, 4]`, only elements 1 and 2 will be kept in the resulting array. Hence, $\text{answer}[0] = 1 + 1 + 2 + 2$.
+
+- For subarray `[1, 2, 2, 3, 4, 2]`, only elements 2 and 4 will be kept in the resulting array. Hence, $\text{answer}[1] = 2 + 2 + 2 + 4$. Note that 4 is kept in the array since it is bigger than 3 and 1 which occur the same number of times.
+
+- For subarray `[2, 2, 3, 4, 2, 3]`, only elements 2 and 3 are kept in the resulting array. Hence, $\text{answer}[2] = 2 + 2 + 2 + 3 + 3$.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** nums = [3,8,7,8,7,5], k = 2, x = 2
+
+**Output:** [11,15,15,15,12]
+
+**Explanation:**
+
+Since $k = x$, $\text{answer}[i]$ is equal to the sum of the subarray $nums[i..i + k - 1]$.
+
+</div>
+### Constraints
+
+- $\text{nums.length} = n$
+
+- $1 \le n \le 10^{5}$
+
+- $1 \le \text{nums}[i] \le 10^{9}$
+
+- $1 \le x \le k \le \text{nums.length}$

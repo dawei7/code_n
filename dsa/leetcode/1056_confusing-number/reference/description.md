@@ -1,12 +1,55 @@
 ## Description
 
-A **confusing number** becomes a different valid number when its display is rotated by $180$ degrees. Rotating the display reverses the positional order of its digits while transforming each digit individually.
+A **confusing number** is a number that when rotated `180` degrees becomes a different number with **each digit valid**.
 
-Only five digits remain valid under this rotation:
+We can rotate digits of a number by `180` degrees to form new digits.
 
-- `0`, `1`, `6`, `8`, and `9` become `0`, `1`, `9`, `8`, and `6`, respectively.
-- `2`, `3`, `4`, `5`, and `7` become invalid.
+- When `0`, `1`, `6`, `8`, and `9` are rotated `180` degrees, they become `0`, `1`, `9`, `8`, and `6` respectively.
 
-Leading zeros in the rotated display do not affect its numeric value. For example, rotating `8000` produces the display `0008`, which represents the number `8`.
+- When `2`, `3`, `4`, `5`, and `7` are rotated `180` degrees, they become **invalid**.
 
-Given an integer `n`, determine whether every rotated digit is valid and the resulting number differs from `n`.
+Note that after rotating a number, we can ignore leading zeros.
+
+- For example, after rotating `8000`, we have `0008` which is considered as just `8`.
+
+Given an integer `n`, return `true`* if it is a **confusing number**, or *`false`* otherwise*.
+### Function Contract
+
+**Inputs**
+
+- `n`: a non-negative integer to rotate.
+
+The complete decimal representation is rotated by $180$ degrees. Its digit positions reverse, each digit must have a valid rotated image, and leading zeros in the rotated representation are ignored when interpreting the result as an integer.
+
+Let $D$ be the number of decimal digits in `n`, with zero having one digit.
+
+**Return value**
+
+- `true` when the rotation is valid and its numeric value is different from `n`; otherwise, `false`.
+
+### Examples
+
+#### Example 1
+
+![](images/1268_1.png)
+
+- **Input:** $n = 6$
+- **Output:** `true`
+- **Explanation:** We get 9 after rotating 6, 9 is a valid number, and 9 != 6.
+#### Example 2
+
+![](images/1268_2.png)
+
+- **Input:** $n = 89$
+- **Output:** `true`
+- **Explanation:** We get 68 after rotating 89, 68 is a valid number and 68 != 89.
+#### Example 3
+
+![](images/1268_3.png)
+
+- **Input:** $n = 11$
+- **Output:** `false`
+- **Explanation:** We get 11 after rotating 11, 11 is a valid number but the value remains the same, thus 11 is not a confusing number
+### Constraints
+
+- $0 \le n \le 10^{9}$

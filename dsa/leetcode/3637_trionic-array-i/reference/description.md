@@ -1,13 +1,55 @@
 ## Description
 
-<p data-end="128" data-start="0">You are given an integer array <code data-end="37" data-start="31">nums</code> of length <code data-end="51" data-start="48">n</code>.
+You are given an integer array `nums` of length `n`.
 
-<p data-end="128" data-start="0">An array is <strong data-end="76" data-start="65">trionic</strong> if there exist indices <code data-end="117" data-start="100">0 < p < q < n − 1</code> such that:
+An array is **trionic** if there exist indices `0 < p < q < n − 1` such that:
 
-<ul>
-	<li data-end="170" data-start="132"><code data-end="144" data-start="132">nums[0...p]</code> is **strictly** increasing,</li>
-	<li data-end="211" data-start="173"><code data-end="185" data-start="173">nums[p...q]</code> is **strictly** decreasing,</li>
-	<li data-end="252" data-start="214"><code data-end="228" data-start="214">nums[q...n − 1]</code> is **strictly** increasing.</li>
-</ul>
+- `nums[0...p]` is **strictly** increasing,
 
-<p data-end="315" data-is-last-node="" data-is-only-node="" data-start="254">Return <code data-end="267" data-start="261">true</code> if <code data-end="277" data-start="271">nums</code> is trionic, otherwise return <code data-end="314" data-start="307">false</code>.
+- `nums[p...q]` is **strictly** decreasing,
+
+- `nums[q...n − 1]` is **strictly** increasing.
+
+Return `true` if `nums` is trionic, otherwise return `false`.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+<div class="example-block">
+**Input:** nums = [1,3,5,4,2,6]
+
+**Output:** true
+
+**Explanation:**
+
+Pick $p = 2$, $q = 4$:
+
+- $nums[0...2] = [1, 3, 5]$ is strictly increasing (`1 < 3 < 5`).
+
+- $nums[2...4] = [5, 4, 2]$ is strictly decreasing (`5 > 4 > 2`).
+
+- $nums[4...5] = [2, 6]$ is strictly increasing (`2 < 6`).
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** nums = [2,1,3]
+
+**Output:** false
+
+**Explanation:**
+
+There is no way to pick `p` and `q` to form the required three segments.
+
+</div>
+### Constraints
+
+- $3 \le n \le 100$
+
+- $-1000 \le \text{nums}[i] \le 1000$

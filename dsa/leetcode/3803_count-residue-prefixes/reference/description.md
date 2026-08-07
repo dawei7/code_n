@@ -7,3 +7,66 @@ A **prefix** of `s` is called a **residue** if the number of **distinct characte
 Return the count of **residue** prefixes in `s`.
 
 A **prefix** of a string is a **non-empty substring** that starts from the beginning of the string and extends to any point within it.
+### Function Contract
+
+**Inputs**
+
+- `s`: A nonempty string of lowercase English letters.
+
+For every prefix length $k$ from $1$ through $\lvert\texttt{s}\rvert$, compare the number of distinct letters among `s[0:k]` with $k \bmod 3$.
+
+**Return value**
+
+Return an integer equal to the number of prefix lengths for which those two values are equal.
+
+### Examples
+
+#### Example 1
+
+<div class="example-block">
+**Input:** s = "abc"
+
+**Output:** 2
+
+**Explanation:**​​​​​​​
+
+- Prefix `"a"` has 1 distinct character and length modulo 3 is 1, so it is a residue.
+
+- Prefix `"ab"` has 2 distinct characters and length modulo 3 is 2, so it is a residue.
+
+- Prefix `"abc"` does not satisfy the condition. Thus, the answer is 2.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** s = "dd"
+
+**Output:** 1
+
+**Explanation:**
+
+- Prefix `"d"` has 1 distinct character and length modulo 3 is 1, so it is a residue.
+
+- Prefix `"dd"` has 1 distinct character but length modulo 3 is 2, so it is not a residue. Thus, the answer is 1.
+
+</div>
+#### Example 3
+
+<div class="example-block">
+**Input:** s = "bob"
+
+**Output:** 2
+
+**Explanation:**
+
+- Prefix `"b"` has 1 distinct character and length modulo 3 is 1, so it is a residue.
+
+- Prefix `"bo"` has 2 distinct characters and length mod 3 is 2, so it is a residue. Thus, the answer is 2.
+
+</div>
+### Constraints
+
+- $1 \le \text{s.length} \le 100$
+
+- `s` contains only lowercase English letters.

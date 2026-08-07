@@ -1,7 +1,6 @@
 ## Description
 
 ```
-
 DataFrame students
 +-------------+--------+
 | Column Name | Type   |
@@ -10,7 +9,6 @@ DataFrame students
 | name        | object |
 | age         | int    |
 +-------------+--------+
-
 ```
 
 There are some rows having missing values in the `name` column.
@@ -18,3 +16,33 @@ There are some rows having missing values in the `name` column.
 Write a solution to remove the rows with missing values.
 
 The result format is in the following example.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+```
+**Input:
+**+------------+---------+-----+
+| student_id | name    | age |
++------------+---------+-----+
+| 32         | Piper   | 5   |
+| 217        | None    | 19  |
+| 779        | Georgia | 20  |
+| 849        | Willow  | 14  |
++------------+---------+-----+
+**Output:
+**+------------+---------+-----+
+| student_id | name    | age |
++------------+---------+-----+
+| 32         | Piper   | 5   |
+| 779        | Georgia | 20  |
+| 849        | Willow  | 14  |
++------------+---------+-----+
+**Explanation:**
+Student with id 217 havs empty value in the name column, so it will be removed.
+```

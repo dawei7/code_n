@@ -1,5 +1,40 @@
 ## Description
 
-Determine whether the integer array `nums` is consecutive. If $x$ is its minimum value and $n$ is its length, being consecutive means that the array contains every integer in the inclusive range $[x,x+n-1]$.
+Given an integer array `nums`, return `true` *if *`nums`* is **consecutive**, otherwise return *`false`*.*
 
-The input order does not matter, but every required value must occur. Because the array itself has exactly $n$ positions and the target range has exactly $n$ distinct integers, a duplicated value necessarily leaves another value missing and makes the result false. Return a boolean expressing whether the complete range is present.
+An array is **consecutive **if it contains every number in the range `[x, x + n - 1]` (**inclusive**), where `x` is the minimum number in the array and `n` is the length of the array.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+
+#### Example 1
+
+- **Input:** `nums = [1,3,4,2]`
+- **Output:** `true`
+- **Explanation:**
+The minimum value is 1 and the length of nums is 4.
+All of the values in the range [x, x + n - 1] = [1, 1 + 4 - 1] = [1, 4] = (1, 2, 3, 4) occur in nums.
+Therefore, nums is consecutive.
+#### Example 2
+
+- **Input:** `nums = [1,3]`
+- **Output:** `false`
+- **Explanation:**
+The minimum value is 1 and the length of nums is 2.
+The value 2 in the range [x, x + n - 1] = [1, 1 + 2 - 1], = [1, 2] = (1, 2) does not occur in nums.
+Therefore, nums is not consecutive.
+#### Example 3
+
+- **Input:** `nums = [3,5,4]`
+- **Output:** `true`
+- **Explanation:**
+The minimum value is 3 and the length of nums is 3.
+All of the values in the range [x, x + n - 1] = [3, 3 + 3 - 1] = [3, 5] = (3, 4, 5) occur in nums.
+Therefore, nums is consecutive.
+### Constraints
+
+- $1 \le \text{nums.length} \le 10^{5}$
+
+- $0 \le \text{nums}[i] \le 10^{5}$

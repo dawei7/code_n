@@ -8,8 +8,28 @@ There is no restriction on how your encode/decode algorithm should work. You jus
 
 Implement the `Solution` class:
 
-<ul>
-	<li>`Solution()` Initializes the object of the system.</li>
-	<li>`String encode(String longUrl)` Returns a tiny URL for the given `longUrl`.</li>
-	<li>`String decode(String shortUrl)` Returns the original long URL for the given `shortUrl`. It is guaranteed that the given `shortUrl` was encoded by the same object.</li>
-</ul>
+- `Solution()` Initializes the object of the system.
+
+- `String encode(String longUrl)` Returns a tiny URL for the given `longUrl`.
+
+- `String decode(String shortUrl)` Returns the original long URL for the given `shortUrl`. It is guaranteed that the given `shortUrl` was encoded by the same object.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+- **Input:** $url = "https://\text{leetcode.com}/problems/design-tinyurl"$
+- **Output:** `"https://leetcode.com/problems/design-tinyurl"`
+- **Explanation:**
+Solution obj = new Solution();
+string tiny = obj.encode(url); // returns the encoded tiny url.
+string ans = obj.decode(tiny); // returns the original url after decoding it.
+### Constraints
+
+- $1 \le \text{url.length} \le 10^{4}$
+
+- `url` is guranteed to be a valid URL.

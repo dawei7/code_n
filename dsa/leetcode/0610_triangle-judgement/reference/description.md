@@ -3,7 +3,6 @@
 Table: `Triangle`
 
 ```
-
 +-------------+------+
 | Column Name | Type |
 +-------------+------+
@@ -13,13 +12,36 @@ Table: `Triangle`
 +-------------+------+
 In SQL, (x, y, z) is the primary key column for this table.
 Each row of this table contains the lengths of three line segments.
-
 ```
-
- 
 
 Report for every three line segments whether they can form a triangle.
 
 Return the result table in **any order**.
 
 The result format is in the following example.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+```
+**Input:**
+Triangle table:
++----+----+----+
+| x  | y  | z  |
++----+----+----+
+| 13 | 15 | 30 |
+| 10 | 20 | 15 |
++----+----+----+
+**Output:**
++----+----+----+----------+
+| x  | y  | z  | triangle |
++----+----+----+----------+
+| 13 | 15 | 30 | No       |
+| 10 | 20 | 15 | Yes      |
++----+----+----+----------+
+```

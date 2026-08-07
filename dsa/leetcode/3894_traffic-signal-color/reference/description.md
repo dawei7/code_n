@@ -4,10 +4,49 @@ You are given an integer `timer` representing the remaining time (in seconds) on
 
 The signal follows these rules:
 
-<ul>
-	<li>If `timer == 0`, the signal is `"Green"`</li>
-	<li>If `timer == 30`, the signal is `"Orange"`</li>
-	<li>If `30 < timer <= 90`, the signal is `"Red"`</li>
-</ul>
+- If $timer = 0$, the signal is `"Green"`
+
+- If $timer = 30$, the signal is `"Orange"`
+
+- If $30 < timer \le 90$, the signal is `"Red"`
 
 Return the current state of the signal. If none of the above conditions are met, return `"Invalid"`.
+### Function Contract
+
+**Inputs**
+
+- `timer`: An integer representing the remaining time, in seconds, on the traffic signal.
+
+**Return value**
+
+Return `"Green"`, `"Orange"`, or `"Red"` when the corresponding timer rule applies. Return `"Invalid"` for every other legal timer value. The returned strings are case-sensitive.
+
+### Examples
+
+#### Example 1
+
+<div class="example-block">
+**Input:** timer = 60
+
+**Output:** "Red"
+
+**Explanation:**
+
+Since $timer = 60$, and $30 < timer \le 90$, the answer is `"Red"`.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** timer = 5
+
+**Output:** "Invalid"
+
+**Explanation:**
+
+Since $timer = 5$, it does not satisfy any of the given conditions, the answer is `"Invalid"`.
+
+</div>
+### Constraints
+
+- $0 \le timer \le 1000$

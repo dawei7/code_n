@@ -2,13 +2,43 @@
 
 You are given three integers `n`, `m` and `k`. Consider the following algorithm to find the maximum element of an array of positive integers:
 
-<img alt="" src="https://assets.leetcode.com/uploads/2020/04/02/e.png" style="width: 424px; height: 372px;" />
+![](images/e.png)
+
 You should build the array arr which has the following properties:
 
-<ul>
-	<li>`arr` has exactly `n` integers.</li>
-	<li>`1 <= arr[i] <= m` where `(0 <= i < n)`.</li>
-	<li>After applying the mentioned algorithm to `arr`, the value `search_cost` is equal to `k`.</li>
-</ul>
+- `arr` has exactly `n` integers.
 
-Return *the number of ways* to build the array `arr` under the mentioned conditions. As the answer may grow large, the answer **must be** computed modulo `10^9 + 7`.
+- $1 \le \text{arr}[i] \le m$ where $(0 \le i < n)$.
+
+- After applying the mentioned algorithm to `arr`, the value $\text{search}_{cost}$ is equal to `k`.
+
+Return *the number of ways* to build the array `arr` under the mentioned conditions. As the answer may grow large, the answer **must be** computed modulo $10^{9} + 7$.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+- **Input:** $n = 2, m = 3, k = 1$
+- **Output:** `6`
+- **Explanation:** The possible arrays are [1, 1], [2, 1], [2, 2], [3, 1], [3, 2] [3, 3]
+#### Example 2
+
+- **Input:** $n = 5, m = 2, k = 3$
+- **Output:** `0`
+- **Explanation:** There are no possible arrays that satisfy the mentioned conditions.
+#### Example 3
+
+- **Input:** $n = 9, m = 1, k = 1$
+- **Output:** `1`
+- **Explanation:** The only possible array is [1, 1, 1, 1, 1, 1, 1, 1, 1]
+### Constraints
+
+- $1 \le n \le 50$
+
+- $1 \le m \le 100$
+
+- $0 \le k \le n$

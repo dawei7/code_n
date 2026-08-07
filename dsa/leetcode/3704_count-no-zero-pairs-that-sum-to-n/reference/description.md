@@ -4,9 +4,61 @@ A **no-zero** integer is a **positive** integer that **does not contain the digi
 
 Given an integer `n`, count the number of pairs `(a, b)` where:
 
-<ul>
-	<li>`a` and `b` are **no-zero** integers.</li>
-	<li>`a + b = n`</li>
-</ul>
+- `a` and `b` are **no-zero** integers.
+
+- $a + b = n$
 
 Return an integer denoting the number of such pairs.
+### Function Contract
+
+**Inputs**
+
+- `n`: The target positive integer sum.
+
+Both addends must be positive and must use only decimal digits from `1` through `9`. Pair order matters: `(a, b)` and `(b, a)` are counted separately when $a\ne b$.
+
+**Return value**
+
+Return the number of ordered no-zero pairs whose sum is exactly `n`.
+
+### Examples
+
+#### Example 1
+
+<div class="example-block">
+**Input:** n = 2
+
+**Output:** 1
+
+**Explanation:**
+
+The only pair is `(1, 1)`.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** n = 3
+
+**Output:** 2
+
+**Explanation:**
+
+The pairs are `(1, 2)` and `(2, 1)`.
+
+</div>
+#### Example 3
+
+<div class="example-block">
+**Input:** n = 11
+
+**Output:** 8
+
+**Explanation:**
+
+The pairs are `(2, 9)`, `(3, 8)`, `(4, 7)`, `(5, 6)`, `(6, 5)`, `(7, 4)`, `(8, 3)`, and `(9, 2)`. Note that `(1, 10)` and `(10, 1)` do not satisfy the conditions because 10 contains 0 in its decimal representation.
+
+</div>
+### Constraints
+
+- $2 \le n \le 10^{15}$

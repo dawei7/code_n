@@ -3,7 +3,6 @@
 Table: ` logs`
 
 ```
-
 +-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
@@ -13,17 +12,66 @@ Table: ` logs`
 +-------------+---------+
 log_id is the unique key for this table.
 Each row contains server access log information including IP address and HTTP status code.
-
 ```
 
 Write a solution to find **invalid IP addresses**. An IPv4 address is invalid if it meets any of these conditions:
 
-<ul>
-	<li>Contains numbers **greater than** `255` in any octet</li>
-	<li>Has **leading zeros** in any octet (like `01.02.03.04`)</li>
-	<li>Has **less or more** than `4` octets</li>
-</ul>
+- Contains numbers **greater than** `255` in any octet
 
-Return *the result table **ordered by* `invalid_count`, `ip` *in **descending** order respectively*. 
+- Has **leading zeros** in any octet (like `01.02.03.04`)
+
+- Has **less or more** than `4` octets
+
+Return *the result table **ordered by* $\text{invalid}_{count}$, `ip` *in **descending** order respectively*.
 
 The result format is in the following example.
+
+**Example:**
+
+<div class="example-block">
+**Input:**
+
+logs table:
+
+```
++--------+---------------+-------------+
+| log_id | ip            | status_code |
++--------+---------------+-------------+
+| 1      | 192.168.1.1   | 200         |
+| 2      | 256.1.2.3     | 404         |
+| 3      | 192.168.001.1 | 200         |
+| 4      | 192.168.1.1   | 200         |
+| 5      | 192.168.1     | 500         |
+| 6      | 256.1.2.3     | 404         |
+| 7      | 192.168.001.1 | 200         |
++--------+---------------+-------------+
+```
+
+**Output:**
+
+```
++---------------+--------------+
+| ip            | invalid_count|
++---------------+--------------+
+| 256.1.2.3     | 2            |
+| 192.168.001.1 | 2            |
+| 192.168.1     | 1            |
++---------------+--------------+
+```
+
+**Explanation:**
+
+- 256.1.2.3 is invalid because 256 > 255
+
+- 192.168.001.1 is invalid because of leading zeros
+
+- 192.168.1 is invalid because it has only 3 octets
+
+The output table is ordered by invalid_count, ip in descending order respectively.
+
+</div>
+
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.

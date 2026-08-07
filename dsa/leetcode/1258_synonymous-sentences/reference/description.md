@@ -1,5 +1,43 @@
 ## Description
 
-You are given a list `synonyms` of equivalent string pairs. Each entry `[s_i, t_i]` declares that its two strings are synonymous. Words connected through a chain of equivalent pairs belong to the same synonym group and may be used interchangeably when forming a sentence.
+You are given a list of equivalent string pairs `synonyms` where $\text{synonyms}[i] = [s_{i}, t_{i}]$ indicates that $s_{i}$ and $t_{i}$ are equivalent strings. You are also given a sentence `text`.
 
-You are also given a sentence `text`. Generate every sentence obtainable by choosing an equivalent form for each replaceable word while preserving the word positions and spacing. Words with no listed equivalent remain unchanged. Return all possible synonymous sentences sorted lexicographically.
+Return *all possible synonymous sentences **sorted lexicographically***.
+### Function Contract
+
+### Inputs
+
+- `synonyms`: A list of unique two-string pairs $[s_{i}, t_{i}]$, each declaring its distinct strings equivalent.
+- `text`: A sentence containing at most ten words, separated by single spaces.
+
+For the complexity discussion, let $P$ be the number of synonym pairs, $V$ the number of distinct strings appearing in those pairs, $W$ the number of words in `text`, and $K$ the number of returned sentences.
+
+### Return value
+
+Return every possible synonymous sentence in lexicographically ascending order. Each output preserves the number and order of word positions from `text`.
+
+### Examples
+
+#### Example 1
+
+- **Input:** $synonyms = [["happy","joy"],["sad","sorrow"],["joy","cheerful"]], text = "I am happy today but was sad yesterday"$
+- **Output:** `["I am cheerful today but was sad yesterday","I am cheerful today but was sorrow yesterday","I am happy today but was sad yesterday","I am happy today but was sorrow yesterday","I am joy today but was sad yesterday","I am joy today but was sorrow yesterday"]`
+#### Example 2
+
+- **Input:** $synonyms = [["happy","joy"],["cheerful","glad"]], text = "I am happy today but was sad yesterday"$
+- **Output:** `["I am happy today but was sad yesterday","I am joy today but was sad yesterday"]`
+### Constraints
+
+- $0 \le \text{synonyms.length} \le 10$
+
+- $\text{synonyms}[i].length = 2$
+
+- $1 \le s_{i}.length,_ t_{i}.length \le 10$
+
+- $s_{i} \neq t_{i}$
+
+- `text` consists of at most `10` words.
+
+- All the pairs of `synonyms` are **unique**.
+
+- The words of `text` are separated by single spaces.

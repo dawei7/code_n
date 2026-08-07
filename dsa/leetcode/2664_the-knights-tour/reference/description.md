@@ -1,13 +1,35 @@
 ## Description
 
-You are given the positive dimensions `m` and `n` of a 0-indexed rectangular board, together with the knight's starting cell `(r, c)`. Construct a sequence of legal chess-knight moves that visits every board cell exactly once. The starting cell counts as the first visit and must not be visited again.
+Given two positive integers `m` and `n` which are the height and width of a **0-indexed** 2D-array `board`, a pair of positive integers `(r, c)` which is the starting position of the knight on the board.
 
-A move from `(r1, c1)` to `(r2, c2)` is legal when the destination remains inside the board and the absolute row and column differences are $1$ and $2$ in either order. Equivalently,
+Your task is to find an order of movements for the knight, in a manner that every cell of the `board` gets visited **exactly** once (the starting cell is considered visited and you **shouldn't** visit it again).
 
-$$
-\min(\lvert r_1-r_2 \rvert,\lvert c_1-c_2 \rvert)=1
-\quad\text{and}\quad
-\max(\lvert r_1-r_2 \rvert,\lvert c_1-c_2 \rvert)=2.
-$$
+Return *the array* `board` *in which the cells' values show the order of visiting the cell starting from 0 (the initial place of the knight).*
 
-Return an `m` by `n` matrix whose value at each cell is its visit index, beginning with `0` at `(r, c)` and ending with `m * n - 1`. The input guarantee ensures that at least one complete tour exists. More than one output can therefore be valid.
+Note that a **knight** can **move** from cell `(r1, c1)` to cell `(r2, c2)` if $0 \le r2 \le m - 1$ and $0 \le c2 \le n - 1$ and $min(abs(r1 - r2), abs(c1 - c2)) = 1$ and $max(abs(r1 - r2), abs(c1 - c2)) = 2$.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+
+#### Example 1
+
+- **Input:** $m = 1, n = 1, r = 0, c = 0$
+- **Output:** `[[0]]`
+- **Explanation:** There is only 1 cell and the knight is initially on it so there is only a 0 inside the 1x1 grid.
+#### Example 2
+
+- **Input:** $m = 3, n = 4, r = 0, c = 0$
+- **Output:** `[[0,3,6,9],[11,8,1,4],[2,5,10,7]]`
+- **Explanation:** By the following order of movements we can visit the entire board.
+(0,0)->(1,2)->(2,0)->(0,1)->(1,3)->(2,1)->(0,2)->(2,3)->(1,1)->(0,3)->(2,2)->(1,0)
+### Constraints
+
+- $1 \le m, n \le 5$
+
+- $0 \le r \le m - 1$
+
+- $0 \le c \le n - 1$
+
+- The inputs will be generated such that there exists **at least** one possible order of movements with the given condition

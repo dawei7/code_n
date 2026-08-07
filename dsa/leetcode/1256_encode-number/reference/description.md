@@ -1,18 +1,32 @@
 ## Description
 
-Given a non-negative integer `num`, return its encoding string.
+Given a non-negative integer `num`, Return its *encoding* string.
 
-The encoding is produced by a secret integer-to-string function. Deduce that function from the following source mappings:
+The encoding is done by converting the integer to a string using a secret function that you should deduce from the following table:
 
-Treat every displayed string literally, including an empty result or zeros at the beginning. The table supplies the function's initial values; infer one consistent rule from that pattern and apply the same rule to inputs beyond the rows shown. The returned value must be the corresponding binary-character string, not an integer with visually similar digits.
+![](images/encode_number.png)
+### Function Contract
 
-| $n$ | $f(n)$ |
-|---:|:---|
-| `0` | `""` |
-| `1` | `"0"` |
-| `2` | `"1"` |
-| `3` | `"00"` |
-| `4` | `"01"` |
-| `5` | `"10"` |
-| `6` | `"11"` |
-| `7` | `"000"` |
+### Inputs
+
+- `num`: A non-negative integer whose encoding must be determined from the supplied mapping pattern.
+
+For the complexity discussion, let $q = \texttt{num} + 1$.
+
+### Return value
+
+Return the binary-character string assigned to `num` by the deduced function. Leading zeros are part of an encoding, and the encoding of `0` is the empty string.
+
+### Examples
+
+#### Example 1
+
+- **Input:** $num = 23$
+- **Output:** `"1000"`
+#### Example 2
+
+- **Input:** $num = 107$
+- **Output:** `"101100"`
+### Constraints
+
+- $0 \le num \le 10^{9}$

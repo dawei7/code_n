@@ -2,6 +2,66 @@
 
 You are given two strings `s` and `target`, both having length `n`, consisting of lowercase English letters.
 
-Return the **lexicographically smallest <span data-keyword="permutation-string">permutation</span>** of `s` that is **strictly** greater than `target`. If no permutation of `s` is lexicographically strictly greater than `target`, return an empty string.
+Return the **lexicographically smallest permutation** of `s` that is **strictly** greater than `target`. If no permutation of `s` is lexicographically strictly greater than `target`, return an empty string.
 
 A string `a` is **lexicographically strictly greater **than a string `b` (of the same length) if in the first position where `a` and `b` differ, string `a` has a letter that appears later in the alphabet than the corresponding letter in `b`.
+### Function Contract
+
+**Inputs**
+
+- `s`: The multiset of lowercase letters that must all appear in the result, including their original multiplicities.
+- `target`: The equal-length lowercase string that the result must exceed strictly.
+
+**Return value**
+
+Return the lexicographically smallest qualifying permutation of `s`, or `""` when even the greatest permutation of `s` is not strictly greater than `target`.
+
+### Examples
+
+#### Example 1
+
+<div class="example-block">
+**Input:** s = "abc", target = "bba"
+
+**Output:** "bca"
+
+**Explanation:**
+
+- The permutations of `s` (in lexicographical order) are `"abc"`, `"acb"`, `"bac"`, `"bca"`, `"cab"`, and `"cba"`.
+
+- The lexicographically smallest permutation that is strictly greater than `target` is `"bca"`.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** s = "leet", target = "code"
+
+**Output:** "eelt"
+
+**Explanation:**
+
+- The permutations of `s` (in lexicographical order) are `"eelt"`, `"eetl"`, `"elet"`, `"elte"`, `"etel"`, `"etle"`, `"leet"`, `"lete"`, `"ltee"`, `"teel"`, `"tele"`, and `"tlee"`.
+
+- The lexicographically smallest permutation that is strictly greater than `target` is `"eelt"`.
+
+</div>
+#### Example 3
+
+<div class="example-block">
+**Input:** s = "baba", target = "bbaa"
+
+**Output:** ""
+
+**Explanation:**
+
+- The permutations of `s` (in lexicographical order) are `"aabb"`, `"abab"`, `"abba"`, `"baab"`, `"baba"`, and `"bbaa"`.
+
+- None of them is lexicographically strictly greater than `target`. Therefore, the answer is `""`.
+
+</div>
+### Constraints
+
+- $1 \le \text{s.length} = \text{target.length} \le 300$
+
+- `s` and `target` consist of only lowercase English letters.

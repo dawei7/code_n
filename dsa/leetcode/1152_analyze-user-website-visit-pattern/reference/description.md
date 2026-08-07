@@ -1,9 +1,76 @@
 ## Description
 
-Three parallel arrays describe a website-visit log. At index `i`, `username[i]` names the visitor, `website[i]` names the visited site, and `timestamp[i]` gives the visit time.
+You are given two string arrays `username` and `website` and an integer array `timestamp`. All the given arrays are of the same length and the tuple `[username[i], website[i], timestamp[i]]` indicates that the user $\text{username}[i]$ visited the website $\text{website}[i]$ at time $\text{timestamp}[i]$.
 
-A pattern is an ordered list of exactly three website names. Its entries do not have to be distinct: `["home","away","love"]`, `["leetcode","love","leetcode"]`, and `["luffy","luffy","luffy"]` are all possible patterns. A user matches a pattern when that user visits its first site, then its second site at a later time, and then its third site later still. The chosen visits need not be consecutive in the user's history; unrelated visits may occur between them.
+A **pattern** is a list of three websites (not necessarily distinct).
 
-The score of a pattern is the number of distinct users who match it. Several different choices of visits by one user still add only one to that pattern's score.
+- For example, `["home", "away", "love"]`, `["leetcode", "love", "leetcode"]`, and `["luffy", "luffy", "luffy"]` are all patterns.
 
-Return the three-site pattern with the greatest score. If more than one pattern reaches that score, choose the lexicographically smallest pattern.
+The **score** of a **pattern** is the number of users that visited all the websites in the pattern in the same order they appeared in the pattern.
+
+- For example, if the pattern is `["home", "away", "love"]`, the score is the number of users `x` such that `x` visited `"home"` then visited `"away"` and visited `"love"` after that.
+
+- Similarly, if the pattern is `["leetcode", "love", "leetcode"]`, the score is the number of users `x` such that `x` visited `"leetcode"` then visited `"love"` and visited `"leetcode"` **one more time** after that.
+
+- Also, if the pattern is `["luffy", "luffy", "luffy"]`, the score is the number of users `x` such that `x` visited `"luffy"` three different times at different timestamps.
+
+Return the **pattern** with the largest **score**. If there is more than one pattern with the same largest score, return the lexicographically smallest such pattern.
+
+Note that the websites in a pattern **do not** need to be visited *contiguously*, they only need to be visited in the order they appeared in the pattern.
+### Function Contract
+
+**Inputs**
+
+- `username`: A list of lowercase user names, one for each visit record.
+- `timestamp`: A list of visit times aligned with `username`.
+- `website`: A list of lowercase website names aligned with the other two lists.
+
+All three lists have the same length $m$. Each complete visit tuple is unique, but individual timestamp values are not promised to be unique. Chronological pattern order therefore requires three strictly increasing visit times.
+
+For a user $u$ with $\ell_u$ records, define the total number of candidate visit triples by
+
+$C = \sum_u \binom{\ell_u}{3}.$
+
+The input guarantees that at least one user has visited at least three websites.
+
+**Return value**
+
+- A list containing the three website names of the maximum-score pattern, with lexicographic order resolving a score tie.
+
+### Examples
+
+#### Example 1
+
+- **Input:** $username = ["joe","joe","joe","james","james","james","james","mary","mary","mary"], timestamp = [1,2,3,4,5,6,7,8,9,10], website = ["home","about","career","home","cart","maps","home","home","about","career"]$
+- **Output:** `["home","about","career"]`
+- **Explanation:** The tuples in this example are:
+["joe","home",1],["joe","about",2],["joe","career",3],["james","home",4],["james","cart",5],["james","maps",6],["james","home",7],["mary","home",8],["mary","about",9], and ["mary","career",10].
+The pattern ("home", "about", "career") has score 2 (joe and mary).
+The pattern ("home", "cart", "maps") has score 1 (james).
+The pattern ("home", "cart", "home") has score 1 (james).
+The pattern ("home", "maps", "home") has score 1 (james).
+The pattern ("cart", "maps", "home") has score 1 (james).
+The pattern ("home", "home", "home") has score 0 (no user visited home 3 times).
+#### Example 2
+
+- **Input:** $username = ["ua","ua","ua","ub","ub","ub"], timestamp = [1,2,3,4,5,6], website = ["a","b","a","a","b","c"]$
+- **Output:** `["a","b","a"]`
+### Constraints
+
+- $3 \le \text{username.length} \le 50$
+
+- $1 \le \text{username}[i].length \le 10$
+
+- $\text{timestamp.length} = \text{username.length}$
+
+- $1 \le \text{timestamp}[i] \le 10^{9}$
+
+- $\text{website.length} = \text{username.length}$
+
+- $1 \le \text{website}[i].length \le 10$
+
+- $\text{username}[i]$ and $\text{website}[i]$ consist of lowercase English letters.
+
+- It is guaranteed that there is at least one user who visited at least three websites.
+
+- All the tuples `[username[i], timestamp[i], website[i]]` are **unique**.

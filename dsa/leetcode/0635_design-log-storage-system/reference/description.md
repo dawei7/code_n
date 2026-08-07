@@ -1,7 +1,64 @@
 ## Description
 
-A log consists of a unique integer ID and a timestamp. Every timestamp is written as `Year:Month:Day:Hour:Minute:Second`; for example, `2017:01:01:23:59:59`. Each field is a zero-padded decimal number, so all timestamps have the same fixed-width layout.
+You are given several logs, where each log contains a unique ID and timestamp. Timestamp is a string that has the following format: `Year:Month:Day:Hour:Minute:Second`, for example, `2017:01:01:23:59:59`. All domains are zero-padded decimal numbers.
 
-Implement a `LogSystem` that begins empty. A `put` operation stores one ID and timestamp pair so that later queries can inspect it.
+Implement the `LogSystem` class:
 
-A `retrieve` operation receives two timestamps and a granularity. Return the IDs whose timestamps lie in the inclusive range from `start` through `end` when both boundaries and stored timestamps are considered only through that granularity. The supported granularities are `Year`, `Month`, `Day`, `Hour`, `Minute`, and `Second`; fields less precise than the selected granularity do not affect membership in the range.
+- `LogSystem()` Initializes the `LogSystem`** **object.
+
+- `void put(int id, string timestamp)` Stores the given log `(id, timestamp)` in your storage system.
+
+- `int[] retrieve(string start, string end, string granularity)` Returns the IDs of the logs whose timestamps are within the range from `start` to `end` inclusive. `start` and `end` all have the same format as `timestamp`, and `granularity` means how precise the range should be (i.e. to the exact `Day`, `Minute`, etc.). For example, $start = "2017:01:01:23:59:59"$, $end = "2017:01:02:23:59:59"$, and $granularity = "Day"$ means that we need to find the logs within the inclusive range from **Jan. 1st 2017** to **Jan. 2nd 2017**, and the `Hour`, `Minute`, and `Second` for each log entry can be ignored.
+### Function Contract
+
+**Class operations**
+
+- `LogSystem()`: Create an empty log storage system.
+- `put(id, timestamp)`: Store the log identified by `id` at `timestamp`.
+- `retrieve(start, end, granularity)`: Return all stored IDs whose timestamps fall within the inclusive range at the requested precision.
+
+Both query boundaries use the same `Year:Month:Day:Hour:Minute:Second` format as stored timestamps. When `granularity` is, for example, `Day`, compare the year, month, and day fields and ignore hour, minute, and second. Apply the same rule to every other supported precision.
+
+The result of each retrieval is a collection of every matching ID; no ordering among those IDs is required. In the app-local operation trace, construction and `put` produce `null`, while each `retrieve` produces its ID list in the corresponding result position.
+
+### Examples
+
+#### Example 1
+
+```
+**Input**
+["LogSystem", "put", "put", "put", "retrieve", "retrieve"]
+[[], [1, "2017:01:01:23:59:59"], [2, "2017:01:01:22:59:59"], [3, "2016:01:01:00:00:00"], ["2016:01:01:01:01:01", "2017:01:01:23:00:00", "Year"], ["2016:01:01:01:01:01", "2017:01:01:23:00:00", "Hour"]]
+**Output**
+[null, null, null, null, [3, 2, 1], [2, 1]]
+
+**Explanation**
+LogSystem logSystem = new LogSystem();
+logSystem.put(1, "2017:01:01:23:59:59");
+logSystem.put(2, "2017:01:01:22:59:59");
+logSystem.put(3, "2016:01:01:00:00:00");
+
+// return [3,2,1], because you need to return all logs between 2016 and 2017.
+logSystem.retrieve("2016:01:01:01:01:01", "2017:01:01:23:00:00", "Year");
+
+// return [2,1], because you need to return all logs between Jan. 1, 2016 01:XX:XX and Jan. 1, 2017 23:XX:XX.
+// Log 3 is not returned because Jan. 1, 2016 00:00:00 comes before the start of the range.
+logSystem.retrieve("2016:01:01:01:01:01", "2017:01:01:23:00:00", "Hour");
+```
+### Constraints
+
+- $1 \le id \le 500$
+
+- $2000 \le Year \le 2017$
+
+- $1 \le Month \le 12$
+
+- $1 \le Day \le 31$
+
+- $0 \le Hour \le 23$
+
+- $0 \le Minute, Second \le 59$
+
+- `granularity` is one of the values `["Year", "Month", "Day", "Hour", "Minute", "Second"]`.
+
+- At most `500` calls will be made to `put` and `retrieve`.

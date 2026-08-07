@@ -4,8 +4,44 @@ Given two strings `word1` and `word2`, return *the minimum number of operations 
 
 You have the following three operations permitted on a word:
 
-<ul>
-	<li>Insert a character</li>
-	<li>Delete a character</li>
-	<li>Replace a character</li>
-</ul>
+- Insert a character
+
+- Delete a character
+
+- Replace a character
+### Function Contract
+
+**Inputs**
+
+- `word1`: The source string.
+- `word2`: The desired destination string.
+
+**Return value**
+
+Return the smallest number of permitted character operations that converts `word1` exactly into `word2`.
+
+### Examples
+
+#### Example 1
+
+- **Input:** $word1 = "horse", word2 = "ros"$
+- **Output:** `3`
+- **Explanation:**
+horse -> rorse (replace 'h' with 'r')
+rorse -> rose (remove 'r')
+rose -> ros (remove 'e')
+#### Example 2
+
+- **Input:** $word1 = "intention", word2 = "execution"$
+- **Output:** `5`
+- **Explanation:**
+intention -> inention (remove 't')
+inention -> enention (replace 'i' with 'e')
+enention -> exention (replace 'n' with 'x')
+exention -> exection (replace 'n' with 'c')
+exection -> execution (insert 'u')
+### Constraints
+
+- $0 \le \text{word1.length}, \text{word2.length} \le 500$
+
+- `word1` and `word2` consist of lowercase English letters.

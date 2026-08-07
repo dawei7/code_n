@@ -1,44 +1,57 @@
 ## Description
 
-Serialization converts a data structure into a sequence that can be stored in a file or memory buffer, sent over a
-network, and later reconstructed in the same or another computing environment.
+Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.
 
-Design algorithms to serialize and deserialize an N-ary tree. Each node in this rooted tree has at most $N$
-children. `serialize(root)` must turn the tree into a string, and `deserialize(data)` must rebuild the original tree
-structure from that string.
+Design an algorithm to serialize and deserialize an N-ary tree. An N-ary tree is a rooted tree in which each node has no more than N children. There is no restriction on how your serialization/deserialization algorithm should work. You just need to ensure that an N-ary tree can be serialized to a string and this string can be deserialized to the original tree structure.
 
-The encoding format is unrestricted as long as the round trip is exact. For example, the first source diagram is
-the following 3-ary tree, which could be written as `[1 [3[5 6] 2 4]]`:
+For example, you may serialize the following `3-ary` tree
 
-| Parent | Ordered children |
-|---:|---|
-| 1 | 3, 2, 4 |
-| 3 | 5, 6 |
-| 2 | none |
-| 4 | none |
-| 5 | none |
-| 6 | none |
+![](images/narytreeexample.png)
 
-Another valid choice is LeetCode's level-order format, in which `null` separates consecutive child groups. The
-second source diagram is completely represented here:
+as `[1 [3[5 6] 2 4]]`. Note that this is just an example, you do not necessarily need to follow this format.
 
-| Parent | Ordered children |
-|---:|---|
-| 1 | 2, 3, 4, 5 |
-| 2 | none |
-| 3 | 6, 7 |
-| 4 | 8 |
-| 5 | 9, 10 |
-| 6 | none |
-| 7 | 11 |
-| 8 | 12 |
-| 9 | 13 |
-| 10 | none |
-| 11 | 14 |
-| 12 | none |
-| 13 | none |
-| 14 | none |
+Or you can follow LeetCode's level order traversal serialization format, where each group of children is separated by the null value.
 
-That tree can be serialized as
-`[1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]`. Neither suggested
-format is mandatory; any unambiguous stateless representation is acceptable.
+![](images/sample_4_964.png)
+
+For example, the above tree may be serialized as `[1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]`.
+
+You do not necessarily need to follow the above-suggested formats, there are many more different formats that work so please be creative and come up with different approaches yourself.
+### Function Contract
+
+**Inputs**
+
+- `root`: An N-ary `Node` that begins the structure, or `None` for an empty tree. Each node exposes `val` and an ordered
+  `children` list.
+
+Canonical JSON fixtures encode an app-local node recursively as `[value, children]`; the runner constructs `Node`
+objects before calling `solve`.
+
+**Return value**
+
+The app adapter serializes `root`, deserializes that string, and returns the reconstructed `Node`. The immutable
+native artifact exposes the source-required `Codec.serialize(root)` and `Codec.deserialize(data)` methods.
+
+### Examples
+
+#### Example 1
+
+- **Input:** `root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]`
+- **Output:** `[1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]`
+#### Example 2
+
+- **Input:** `root = [1,null,3,2,4,null,5,6]`
+- **Output:** `[1,null,3,2,4,null,5,6]`
+#### Example 3
+
+- **Input:** `root = []`
+- **Output:** `[]`
+### Constraints
+
+- The number of nodes in the tree is in the range $[0, 10^{4}]$.
+
+- $0 \le \text{Node.val} \le 10^{4}$
+
+- The height of the n-ary tree is less than or equal to `1000`
+
+- Do not use class member/global/static variables to store states. Your encode and decode algorithms should be stateless.

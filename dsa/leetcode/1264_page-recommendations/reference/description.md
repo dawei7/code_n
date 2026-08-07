@@ -1,7 +1,91 @@
 ## Description
 
-`Friendship` records pairs of users who are friends, while `Likes` records the pages liked by each user. A friendship with user `1` may place that user in either friendship column, because both identifiers participate in the same relation.
+Table: `Friendship`
 
-Recommend pages to user `1` from the pages liked by any of that user's friends. A page must be excluded when user `1` already likes it, even if one or several friends also like it.
+```
++---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| user1_id      | int     |
+| user2_id      | int     |
++---------------+---------+
+(user1_id, user2_id) is the primary key (combination of columns with unique values) for this table.
+Each row of this table indicates that there is a friendship relation between user1_id and user2_id.
+```
 
-Return every eligible page exactly once. The result rows may appear in any order.
+Table: `Likes`
+
+```
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| user_id     | int     |
+| page_id     | int     |
++-------------+---------+
+(user_id, page_id) is the primary key (combination of columns with unique values) for this table.
+Each row of this table indicates that user_id likes page_id.
+```
+
+Write a solution to recommend pages to the user with $\text{user}_{id} = 1$ using the pages that your friends liked. It should not recommend pages you already liked.
+
+Return result table in **any order** without duplicates.
+
+The result format is in the following example.
+### Function Contract
+
+### Inputs
+
+$Friendship(\text{user1}_{id}, \text{user2}_{id})$ contains $F$ unique friendship rows, and $Likes(\text{user}_{id}, \text{page}_{id})$ contains $L$ unique user-page likes. Let $R=F+L$ be the total number of input rows.
+
+### Return value
+
+Return one column named $\text{recommended}_{page}$. Include a page exactly when at least one friend of user `1` likes it and user `1` does not. Do not return duplicate page identifiers; result order is unrestricted.
+
+### Examples
+
+#### Example 1
+
+```
+**Input:**
+Friendship table:
++----------+----------+
+| user1_id | user2_id |
++----------+----------+
+| 1        | 2        |
+| 1        | 3        |
+| 1        | 4        |
+| 2        | 3        |
+| 2        | 4        |
+| 2        | 5        |
+| 6        | 1        |
++----------+----------+
+Likes table:
++---------+---------+
+| user_id | page_id |
++---------+---------+
+| 1       | 88      |
+| 2       | 23      |
+| 3       | 24      |
+| 4       | 56      |
+| 5       | 11      |
+| 6       | 33      |
+| 2       | 77      |
+| 3       | 77      |
+| 6       | 88      |
++---------+---------+
+**Output:**
++------------------+
+| recommended_page |
++------------------+
+| 23               |
+| 24               |
+| 56               |
+| 33               |
+| 77               |
++------------------+
+**Explanation:**
+User one is friend with users 2, 3, 4 and 6.
+Suggested pages are 23 from user 2, 24 from user 3, 56 from user 3 and 33 from user 6.
+Page 77 is suggested from both user 2 and user 3.
+Page 88 is not suggested because user 1 already likes it.
+```

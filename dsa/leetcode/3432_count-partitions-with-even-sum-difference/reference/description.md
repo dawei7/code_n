@@ -2,11 +2,66 @@
 
 You are given an integer array `nums` of length `n`.
 
-A **partition** is defined as an index `i` where `0 <= i < n - 1`, splitting the array into two **non-empty** subarrays such that:
+A **partition** is defined as an index `i` where $0 \le i < n - 1$, splitting the array into two **non-empty** subarrays such that:
 
-<ul>
-	<li>Left subarray contains indices `[0, i]`.</li>
-	<li>Right subarray contains indices `[i + 1, n - 1]`.</li>
-</ul>
+- Left subarray contains indices `[0, i]`.
+
+- Right subarray contains indices `[i + 1, n - 1]`.
 
 Return the number of **partitions** where the **difference** between the **sum** of the left and right subarrays is **even**.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+<div class="example-block">
+**Input:** nums = [10,10,3,7,6]
+
+**Output:** 4
+
+**Explanation:**
+
+The 4 partitions are:
+
+- `[10]`, `[10, 3, 7, 6]` with a sum difference of $10 - 26 = -16$, which is even.
+
+- `[10, 10]`, `[3, 7, 6]` with a sum difference of $20 - 16 = 4$, which is even.
+
+- `[10, 10, 3]`, `[7, 6]` with a sum difference of $23 - 13 = 10$, which is even.
+
+- `[10, 10, 3, 7]`, `[6]` with a sum difference of $30 - 6 = 24$, which is even.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** nums = [1,2,2]
+
+**Output:** 0
+
+**Explanation:**
+
+No partition results in an even sum difference.
+
+</div>
+#### Example 3
+
+<div class="example-block">
+**Input:** nums = [2,4,6,8]
+
+**Output:** 3
+
+**Explanation:**
+
+All partitions result in an even sum difference.
+
+</div>
+### Constraints
+
+- $2 \le n = \text{nums.length} \le 100$
+
+- $1 \le \text{nums}[i] \le 100$

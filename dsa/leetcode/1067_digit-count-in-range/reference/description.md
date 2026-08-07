@@ -1,5 +1,35 @@
 ## Description
 
-Given a single decimal digit `d` and two integers `low` and `high`, consider every integer from `low` through `high`, including both endpoints. Count each position in the ordinary decimal representation of those integers whose written digit equals `d`.
+Given a single-digit integer `d` and two integers `low` and `high`, return *the number of times that *`d`* occurs as a digit in all integers in the inclusive range *`[low, high]`.
+### Function Contract
 
-Return the total number of matching positions across the whole range. A number that contains `d` more than once contributes once for each occurrence. Decimal positions that are not written are not digits of the number, so shorter representations do not acquire leading zeros.
+**Inputs**
+
+- `d`: the single decimal digit whose occurrences are counted.
+- `low`: the inclusive lower bound of the positive-integer range.
+- `high`: the inclusive upper bound of the positive-integer range.
+
+Every integer in the closed interval from `low` through `high` is interpreted using its ordinary base-ten representation. Both endpoints contribute, repeated appearances within one representation contribute separately, and omitted leading zeros do not contribute.
+
+**Return value**
+
+- The total number of written occurrences of `d` across all integers in the inclusive range.
+
+### Examples
+
+#### Example 1
+
+- **Input:** $d = 1, low = 1, high = 13$
+- **Output:** `6`
+- **Explanation:** The digit d = 1 occurs 6 times in 1, 10, 11, 12, 13.
+Note that the digit d = 1 occurs twice in the number 11.
+#### Example 2
+
+- **Input:** $d = 3, low = 100, high = 250$
+- **Output:** `35`
+- **Explanation:** The digit d = 3 occurs 35 times in 103,113,123,130,131,...,238,239,243.
+### Constraints
+
+- $0 \le d \le 9$
+
+- $1 \le low \le high \le 2 * 10^{8}$

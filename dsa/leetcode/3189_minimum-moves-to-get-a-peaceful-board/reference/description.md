@@ -1,10 +1,46 @@
 ## Description
 
-An $n \times n$ chessboard contains exactly $n$ rooks. The position
-`rooks[i] = [x_i, y_i]` gives the row and column of the $i$-th rook, and the
-input never places two rooks in the same cell.
+Given a 2D array `rooks` of length `n`, where $\text{rooks}[i] = [x_{i}, y_{i}]$ indicates the position of a rook on an `n x n` chess board. Your task is to move the rooks **1 cell **at a time vertically or horizontally (to an *adjacent* cell) such that the board becomes **peaceful**.
 
-One move shifts one rook by one cell to a vertically or horizontally adjacent
-cell. Transform the position into a peaceful board, meaning that every row and
-every column contains exactly one rook. Two rooks may not occupy the same cell
-at any intermediate point. Return the minimum total number of unit moves needed.
+A board is **peaceful** if there is **exactly** one rook in each row and each column.
+
+Return the **minimum** number of moves required to get a *peaceful board*.
+
+**Note** that **at no point** can there be two rooks in the same cell.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+
+#### Example 1
+
+<div class="example-block">
+**Input:** rooks = [[0,0],[1,0],[1,1]]
+
+**Output:** 3
+
+**Explanation:**
+
+![](images/ex1-edited.gif)
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** rooks = [[0,0],[0,1],[0,2],[0,3]]
+
+**Output:** 6
+
+**Explanation:**
+
+![](images/ex2-edited.gif)
+
+</div>
+### Constraints
+
+- $1 \le n = \text{rooks.length} \le 500$
+
+- $0 \le x_{i}, y_{i} \le n - 1$
+
+- The input is generated such that there are no 2 rooks in the same cell.

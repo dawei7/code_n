@@ -6,14 +6,45 @@ The **cost of the substring **is the sum of the values of each character in the 
 
 The **value of the character **is defined in the following way:
 
-<ul>
-	<li>If the character is not in the string `chars`, then its value is its corresponding position **(1-indexed)** in the alphabet.
+- If the character is not in the string `chars`, then its value is its corresponding position **(1-indexed)** in the alphabet.
 
-	<ul>
-		<li>For example, the value of `'a'` is `1`, the value of `'b'` is `2`, and so on. The value of `'z'` is `26`.</li>
-	</ul>
+		<li>For example, the value of `'a'` is `1`, the value of `'b'` is `2`, and so on. The value of `'z'` is `26`.
+
 	</li>
-	<li>Otherwise, assuming `i` is the index where the character occurs in the string `chars`, then its value is `vals[i]`.</li>
-</ul>
+- Otherwise, assuming `i` is the index where the character occurs in the string `chars`, then its value is $\text{vals}[i]$.
 
 Return *the maximum cost among all substrings of the string* `s`.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+- **Input:** `s = "adaa", chars = "d", vals = [-1000]`
+- **Output:** `2`
+- **Explanation:** The value of the characters "a" and "d" is 1 and -1000 respectively.
+The substring with the maximum cost is "aa" and its cost is 1 + 1 = 2.
+It can be proven that 2 is the maximum cost.
+#### Example 2
+
+- **Input:** `s = "abc", chars = "abc", vals = [-1,-1,-1]`
+- **Output:** `0`
+- **Explanation:** The value of the characters "a", "b" and "c" is -1, -1, and -1 respectively.
+The substring with the maximum cost is the empty substring "" and its cost is 0.
+It can be proven that 0 is the maximum cost.
+### Constraints
+
+- $1 \le \text{s.length} \le 10^{5}$
+
+- `s` consist of lowercase English letters.
+
+- $1 \le \text{chars.length} \le 26$
+
+- `chars` consist of **distinct** lowercase English letters.
+
+- $\text{vals.length} = \text{chars.length}$
+
+- $-1000 \le \text{vals}[i] \le 1000$

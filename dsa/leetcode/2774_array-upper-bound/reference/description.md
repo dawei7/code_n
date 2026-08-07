@@ -1,5 +1,33 @@
 ## Description
 
-Extend JavaScript's `Array` prototype with a method named `upperBound`. The receiving array contains numbers sorted in ascending order and may include duplicate values. Calling `nums.upperBound(target)` must locate the final occurrence of the supplied target number.
+Write code that enhances all arrays such that you can call the `upperBound()` method on any array and it will return the last index of a given `target` number. `nums` is a sorted ascending array of numbers that may contain duplicates. If the `target` number is not found in the array, return `-1`.
+### Function Contract
 
-Return that occurrence's zero-based index. If no array element equals `target`, return `-1`. The method must work on every valid numeric array, including arrays whose matching values occupy the first or last positions, and it should exploit the sorted order to meet the requested logarithmic running time.
+- Refer to method signature.
+
+### Examples
+
+#### Example 1
+
+- **Input:** `nums = [3,4,5], target = 5`
+- **Output:** `2`
+- **Explanation:** Last index of target value is 2
+#### Example 2
+
+- **Input:** `nums = [1,4,5], target = 2`
+- **Output:** `-1`
+- **Explanation:** Because there is no digit 2 in the array, return -1.
+#### Example 3
+
+- **Input:** `nums = [3,4,6,6,6,6,7], target = 6`
+- **Output:** `5`
+- **Explanation:** Last index of target value is 5
+### Constraints
+
+- $1 \le \text{nums.length} \le 10^{4}$
+
+- $-10^{4} \le \text{nums}[i], target \le 10^{4}$
+
+- `nums` is sorted in ascending order.
+
+**Follow up: **Can you write an algorithm with $\mathcal{O}(\log n)$ runtime complexity?

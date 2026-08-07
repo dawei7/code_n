@@ -6,9 +6,52 @@ Given an array of strings `words`, return *the words that can be typed using let
 
 In the **American keyboard**:
 
-<ul>
-	<li>the first row consists of the characters `"qwertyuiop"`,</li>
-	<li>the second row consists of the characters `"asdfghjkl"`, and</li>
-	<li>the third row consists of the characters `"zxcvbnm"`.</li>
-</ul>
-<img alt="" src="https://assets.leetcode.com/uploads/2018/10/12/keyboard.png" style="width: 800px; max-width: 600px; height: 267px;" />
+- the first row consists of the characters `"qwertyuiop"`,
+
+- the second row consists of the characters `"asdfghjkl"`, and
+
+- the third row consists of the characters `"zxcvbnm"`.
+
+![](images/keyboard.png)
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+<div class="example-block">
+**Input:** words = ["Hello","Alaska","Dad","Peace"]
+
+**Output:** ["Alaska","Dad"]
+
+**Explanation:**
+
+Both `"a"` and `"A"` are in the 2nd row of the American keyboard due to case insensitivity.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** words = ["omk"]
+
+**Output:** []
+
+</div>
+#### Example 3
+
+<div class="example-block">
+**Input:** words = ["adsdf","sfd"]
+
+**Output:** ["adsdf","sfd"]
+
+</div>
+### Constraints
+
+- $1 \le \text{words.length} \le 20$
+
+- $1 \le \text{words}[i].length \le 100$
+
+- $\text{words}[i]$ consists of English letters (both lowercase and uppercase).

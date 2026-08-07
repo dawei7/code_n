@@ -6,10 +6,96 @@ You are allowed to perform an operation **once** on `nums`, where in each operat
 
 You need to find the **x-value** of `nums`, which is the number of ways to perform this operation so that the **product** of the remaining elements leaves a *remainder* of `x` when divided by `k`.
 
-Return an array `result` of size `k` where `result[x]` is the **x-value** of `nums` for `0 <= x <= k - 1`.
+Return an array `result` of size `k` where $\text{result}[x]$ is the **x-value** of `nums` for $0 \le x \le k - 1$.
 
-A **prefix** of an array is a <span data-keyword="subarray">subarray</span> that starts from the beginning of the array and extends to any point within it.
+A **prefix** of an array is a subarray that starts from the beginning of the array and extends to any point within it.
 
-A **suffix** of an array is a <span data-keyword="subarray">subarray</span> that starts at any point within the array and extends to the end of the array.
+A **suffix** of an array is a subarray that starts at any point within the array and extends to the end of the array.
 
 **Note** that the prefix and suffix to be chosen for the operation can be **empty**.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+<div class="example-block">
+**Input:** nums = [1,2,3,4,5], k = 3
+
+**Output:** [9,2,4]
+
+**Explanation:**
+
+- For $x = 0$, the possible operations include all possible ways to remove non-overlapping prefix/suffix that do not remove $\text{nums}[2] = 3$.
+
+- For $x = 1$, the possible operations are:
+
+		<li>Remove the empty prefix and the suffix `[2, 3, 4, 5]`. `nums` becomes `[1]`.
+
+- Remove the prefix `[1, 2, 3]` and the suffix `[5]`. `nums` becomes `[4]`.
+
+	</li>
+- For $x = 2$, the possible operations are:
+
+		<li>Remove the empty prefix and the suffix `[3, 4, 5]`. `nums` becomes `[1, 2]`.
+
+- Remove the prefix `[1]` and the suffix `[3, 4, 5]`. `nums` becomes `[2]`.
+
+- Remove the prefix `[1, 2, 3]` and the empty suffix. `nums` becomes `[4, 5]`.
+
+- Remove the prefix `[1, 2, 3, 4]` and the empty suffix. `nums` becomes `[5]`.
+
+	</li>
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** nums = [1,2,4,8,16,32], k = 4
+
+**Output:** [18,1,2,0]
+
+**Explanation:**
+
+- For $x = 0$, the only operations that **do not** result in $x = 0$ are:
+
+		<li>Remove the empty prefix and the suffix `[4, 8, 16, 32]`. `nums` becomes `[1, 2]`.
+
+- Remove the empty prefix and the suffix `[2, 4, 8, 16, 32]`. `nums` becomes `[1]`.
+
+- Remove the prefix `[1]` and the suffix `[4, 8, 16, 32]`. `nums` becomes `[2]`.
+
+	</li>
+- For $x = 1$, the only possible operation is:
+
+		<li>Remove the empty prefix and the suffix `[2, 4, 8, 16, 32]`. `nums` becomes `[1]`.
+
+	</li>
+- For $x = 2$, the possible operations are:
+
+		<li>Remove the empty prefix and the suffix `[4, 8, 16, 32]`. `nums` becomes `[1, 2]`.
+
+- Remove the prefix `[1]` and the suffix `[4, 8, 16, 32]`. `nums` becomes `[2]`.
+
+	</li>
+- For $x = 3$, there is no possible way to perform the operation.
+
+</div>
+#### Example 3
+
+<div class="example-block">
+**Input:** nums = [1,1,2,1,1], k = 2
+
+**Output:** [9,6]
+
+</div>
+### Constraints
+
+- $1 \le \text{nums}[i] \le 10^{9}$
+
+- $1 \le \text{nums.length} \le 10^{5}$
+
+- $1 \le k \le 5$

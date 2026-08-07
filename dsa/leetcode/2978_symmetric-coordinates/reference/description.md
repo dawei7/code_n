@@ -1,11 +1,56 @@
 ## Description
 
-The `Coordinates` table stores integer ordered pairs `(X, Y)` and may contain
-duplicate rows. Two physical rows form a symmetric pair when one stores
-`(X1, Y1)` and the other stores `(Y1, X1)`.
+Table: `Coordinates`
 
-Return each unique symmetric coordinate once, using only the orientation that
-satisfies `X <= Y`. A diagonal coordinate `(X, X)` is symmetric only when that
-row occurs at least twice, because the pair must use two rows.
+```
++-------------+------+
+| Column Name | Type |
++-------------+------+
+| X           | int  |
+| Y           | int  |
++-------------+------+
+Each row includes X and Y, where both are integers. Table may contain duplicate values.
+```
 
-Order the result first by `X` and then by `Y`, both ascending.
+Two coordindates `(X1, Y1)` and `(X2, Y2)` are said to be **symmetric** coordintes if $X1 = Y2$ and $X2 = Y1$.
+
+Write a solution that outputs, among all these **symmetric** **coordintes**, only those **unique** coordinates that satisfy the condition $X1 \le Y1$.
+
+Return *the result table ordered by *`X` *and * `Y` *(respectively)* *in **ascending order***.
+
+The result format is in the following example.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+
+#### Example 1
+
+```
+**Input:**
+Coordinates table:
++----+----+
+| X  | Y  |
++----+----+
+| 20 | 20 |
+| 20 | 20 |
+| 20 | 21 |
+| 23 | 22 |
+| 22 | 23 |
+| 21 | 20 |
++----+----+
+**Output:**
++----+----+
+| x  | y  |
++----+----+
+| 20 | 20 |
+| 20 | 21 |
+| 22 | 23 |
++----+----+
+**Explanation:**
+- (20, 20) and (20, 20) are symmetric coordinates because, X1 == Y2 and X2 == Y1. This results in displaying (20, 20) as a distinctive coordinates.
+- (20, 21) and (21, 20) are symmetric coordinates because, X1 == Y2 and X2 == Y1. However, only (20, 21) will be displayed because X1 <= Y1.
+- (23, 22) and (22, 23) are symmetric coordinates because, X1 == Y2 and X2 == Y1. However, only (22, 23) will be displayed because X1 <= Y1.
+The output table is sorted by X and Y in ascending order.
+```

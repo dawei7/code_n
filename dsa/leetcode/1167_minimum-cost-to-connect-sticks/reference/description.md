@@ -1,7 +1,48 @@
 ## Description
 
-The positive integers in `sticks` give the lengths of a collection of sticks.
+You have some number of sticks with positive integer lengths. These lengths are given as an array `sticks`, where $\text{sticks}[i]$ is the length of the $$i^{\text{th}}$$ stick.
 
-At each step, choose any two current sticks of lengths $x$ and $y$. Connecting them costs $x+y$ and replaces both selected sticks with one new stick of that same combined length. The new stick may participate in later connections.
+You can connect any two sticks of lengths `x` and `y` into one stick by paying a cost of $x + y$. You must connect all the sticks until there is only one stick remaining.
 
-Continue until only one stick remains. Return the smallest total connection cost achievable over all possible choices of pairs.
+Return *the minimum cost of connecting all the given sticks into one stick in this way*.
+### Function Contract
+
+**Inputs**
+
+- `sticks`: An array of $n$ positive integer stick lengths.
+
+Each connection removes two current lengths, adds their sum to the cost, and inserts that sum as the replacement stick. The operation is repeated until the collection contains one stick.
+
+**Return value**
+
+- The minimum possible integer sum of all connection costs. A one-stick input requires no connection and therefore returns `0`.
+
+### Examples
+
+#### Example 1
+
+- **Input:** $sticks = [2,4,3]$
+- **Output:** `14`
+- **Explanation:** You start with sticks = [2,4,3].
+1. Combine sticks 2 and 3 for a cost of 2 + 3 = 5. Now you have sticks = [5,4].
+2. Combine sticks 5 and 4 for a cost of 5 + 4 = 9. Now you have sticks = [9].
+There is only one stick left, so you are done. The total cost is 5 + 9 = 14.
+#### Example 2
+
+- **Input:** $sticks = [1,8,3,5]$
+- **Output:** `30`
+- **Explanation:** You start with sticks = [1,8,3,5].
+1. Combine sticks 1 and 3 for a cost of 1 + 3 = 4. Now you have sticks = [4,8,5].
+2. Combine sticks 4 and 5 for a cost of 4 + 5 = 9. Now you have sticks = [9,8].
+3. Combine sticks 9 and 8 for a cost of 9 + 8 = 17. Now you have sticks = [17].
+There is only one stick left, so you are done. The total cost is 4 + 9 + 17 = 30.
+#### Example 3
+
+- **Input:** $sticks = [5]$
+- **Output:** `0`
+- **Explanation:** There is only one stick, so you don't need to do anything. The total cost is 0.
+### Constraints
+
+- $1 \le \text{sticks.length} \le 10^{4}$
+
+- $1 \le \text{sticks}[i] \le 10^{4}$

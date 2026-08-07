@@ -1,13 +1,43 @@
 ## Description
 
-Given an array of unique strings `words`, construct every **word square** available from those strings. A word from
-the input may be used more than once within a square, and the completed squares may be returned in any order.
+Given an array of **unique** strings `words`, return *all the ***<a href="https://en.wikipedia.org/wiki/Word_square" target="_blank">word squares</a>*** you can build from *`words`. The same word from `words` can be used **multiple times**. You can return the answer in **any order**.
 
-A sequence is a valid word square when its $k$th row and $k$th column read as the same string for every
+A sequence of strings forms a valid **word square** if the $$k^{\text{th}}$$ row and column read the same string, where $0 \le k < max(numRows, numColumns)$.
 
-$$
-0 \le k < \max(\text{number of rows}, \text{number of columns}).
-$$
+- For example, the word sequence `["ball","area","lead","lady"]` forms a word square because each word reads the same both horizontally and vertically.
+### Function Contract
 
-For example, `["ball", "area", "lead", "lady"]` is a word square: reading at each position horizontally produces
-the same word as reading vertically.
+**Inputs**
+
+- `words`: An array of unique lowercase-English words that all have the same length.
+
+**Return value**
+
+Return every word square constructible from `words`. The same input word may occupy multiple rows, and the outer
+list may use any order.
+
+### Examples
+
+#### Example 1
+
+- **Input:** $words = ["area","lead","wall","lady","ball"]$
+- **Output:** `[["ball","area","lead","lady"],["wall","area","lead","lady"]]`
+- **Explanation:**
+The output consists of two word squares. The order of output does not matter (just the order of words in each word square matters).
+#### Example 2
+
+- **Input:** $words = ["abat","baba","atan","atal"]$
+- **Output:** `[["baba","abat","baba","atal"],["baba","abat","baba","atan"]]`
+- **Explanation:**
+The output consists of two word squares. The order of output does not matter (just the order of words in each word square matters).
+### Constraints
+
+- $1 \le \text{words.length} \le 1000$
+
+- $1 \le \text{words}[i].length \le 4$
+
+- All $\text{words}[i]$ have the same length.
+
+- $\text{words}[i]$ consists of only lowercase English letters.
+
+- All $\text{words}[i]$ are **unique**.

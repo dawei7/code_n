@@ -1,5 +1,42 @@
 ## Description
 
-You are given an array of keywords `words` and a lowercase string `s`. Every appearance of every `words[i]` as a contiguous substring of `s` must be made bold by placing its covered letters between `<b>` and `</b>` tags.
+Given an array of keywords `words` and a string `s`, make all appearances of all keywords $\text{words}[i]$ in `s` bold. Any letters between `<b>` and `</b>` tags become bold.
 
-Return `s` after inserting a valid combination of bold tags. Use the least possible number of tags: positions covered by overlapping or directly adjacent keyword appearances belong to one maximal bold region and therefore share one tag pair. Characters outside all keyword appearances remain unchanged.
+Return `s` *after adding the bold tags*. The returned string should use the least number of tags possible, and the tags should form a valid combination.
+### Function Contract
+
+$solve(words: \text{list}[str], s: str) -> str$
+
+Let $n$ be the length of `s`.
+
+**Inputs**
+
+- `words`: an array of lowercase keywords whose appearances must be bolded.
+- `s`: the lowercase source string to annotate.
+
+**Return value**
+
+Return `s` with each maximal consecutive range covered by at least one complete keyword appearance enclosed in `<b>` and `</b>`. The tags must be properly paired and ordered, and the result must use the minimum possible number of tags.
+
+### Examples
+
+#### Example 1
+
+- **Input:** $words = ["ab","bc"], s = "aabcd"$
+- **Output:** `"a**abc**d"`
+- **Explanation:** Note that returning "a**a<b>b**c</b>d" would use more tags, so it is incorrect.
+#### Example 2
+
+- **Input:** $words = ["ab","cb"], s = "aabcd"$
+- **Output:** `"a**ab**cd"`
+### Constraints
+
+- $1 \le \text{s.length} \le 500$
+
+- $0 \le \text{words.length} \le 50$
+
+- $1 \le \text{words}[i].length \le 10$
+
+- `s` and $\text{words}[i]$ consist of lowercase English letters.
+
+**Note:** This question is the same as <a href="https://leetcode.com/problems/add-bold-tag-in-string/description/" target="_blank">616. Add Bold Tag in String</a>.

@@ -1,21 +1,52 @@
 ## Description
 
-Design a reversible mapping between an N-ary tree and a binary tree. An N-ary tree is rooted and allows each node
-to have at most $N$ children, whereas a binary-tree node has at most two children.
+Design an algorithm to encode an N-ary tree into a binary tree and decode the binary tree to get the original N-ary tree. An N-ary tree is a rooted tree in which each node has no more than N children. Similarly, a binary tree is a rooted tree in which each node has no more than 2 children. There is no restriction on how your encode/decode algorithm should work. You just need to ensure that an N-ary tree can be encoded to a binary tree and this binary tree can be decoded to the original N-nary tree structure.
 
-The encoding convention is unrestricted. It only needs to preserve every value and enough structure for decoding
-the binary tree back into the original N-ary tree. LeetCode displays N-ary inputs in level order, placing `null`
-between consecutive groups of children.
+*Nary-Tree input serialization is represented in their level order traversal, each group of children is separated by the null value (See following example).*
 
-For example, the source diagram shows the N-ary tree rooted at `1`, with ordered children `3`, `2`, and `4`; node
-`3` in turn has children `5` and `6`. It illustrates this possible binary encoding:
+For example, you may encode the following `3-ary` tree to a binary tree in this way:
 
-| N-ary relationship | Binary representation |
-|---|---|
-| First child of `1` is `3` | `1.left = 3` |
-| Later children of `1` are `2` and `4` | `3.right = 2`, then `2.right = 4` |
-| First child of `3` is `5` | `3.left = 5` |
-| Later child of `3` is `6` | `5.right = 6` |
+![](images/narytreebinarytreeexample.png)
 
-The corresponding N-ary level-order serialization is `[1,null,3,2,4,null,5,6]`. This layout is only an example
-and is not guaranteed to be the required convention; any stateless design that round-trips the exact tree is valid.
+- **Input:** `root = [1,null,3,2,4,null,5,6]`
+
+Note that the above is just an example which *might or might not* work. You do not necessarily need to follow this format, so please be creative and come up with different approaches yourself.
+### Function Contract
+
+**Inputs**
+
+- `root`: An N-ary `Node` that begins the structure, or `None` for an empty tree. Each node exposes `val` and an
+  ordered `children` list.
+
+Canonical JSON fixtures encode an app-local node recursively as `[value, children]`; the runner constructs `Node`
+objects before calling `solve`.
+
+**Return value**
+
+The app adapter encodes `root` as a binary `TreeNode`, decodes that representation, and returns the reconstructed
+N-ary `Node`. The immutable native artifact exposes the source-required `Codec.encode(root)` and
+`Codec.decode(data)` methods.
+
+### Examples
+
+#### Example 1
+
+- **Input:** `root = [1,null,3,2,4,null,5,6]`
+- **Output:** `[1,null,3,2,4,null,5,6]`
+#### Example 2
+
+- **Input:** `root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]`
+- **Output:** `[1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]`
+#### Example 3
+
+- **Input:** `root = []`
+- **Output:** `[]`
+### Constraints
+
+- The number of nodes in the tree is in the range $[0, 10^{4}]$.
+
+- $0 \le \text{Node.val} \le 10^{4}$
+
+- The height of the n-ary tree is less than or equal to `1000`
+
+- Do not use class member/global/static variables to store states. Your encode and decode algorithms should be stateless.

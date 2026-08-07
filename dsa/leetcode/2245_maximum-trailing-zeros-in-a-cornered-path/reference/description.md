@@ -10,7 +10,43 @@ Return *the **maximum** number of **trailing zeros** in the product of a cornere
 
 Note:
 
-<ul>
-	<li>**Horizontal** movement means moving in either the left or right direction.</li>
-	<li>**Vertical** movement means moving in either the up or down direction.</li>
-</ul>
+- **Horizontal** movement means moving in either the left or right direction.
+
+- **Vertical** movement means moving in either the up or down direction.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+![](images/ex1new2.jpg)
+
+- **Input:** `grid = [[23,17,15,3,20],[8,1,20,27,11],[9,4,6,2,21],[40,9,1,10,6],[22,7,4,5,3]]`
+- **Output:** `3`
+- **Explanation:** The grid on the left shows a valid cornered path.
+It has a product of 15 * 20 * 6 * 1 * 10 = 18000 which has 3 trailing zeros.
+It can be shown that this is the maximum trailing zeros in the product of a cornered path.
+The grid in the middle is not a cornered path as it has more than one turn.
+The grid on the right is not a cornered path as it requires a return to a previously visited cell.
+#### Example 2
+
+![](images/ex2.jpg)
+
+- **Input:** `grid = [[4,3,2],[7,6,1],[8,8,8]]`
+- **Output:** `0`
+- **Explanation:** The grid is shown in the figure above.
+There are no cornered paths in the grid that result in a product with a trailing zero.
+### Constraints
+
+- $m = \text{grid.length}$
+
+- $n = \text{grid}[i].length$
+
+- $1 \le m, n \le 10^{5}$
+
+- $1 \le m * n \le 10^{5}$
+
+- $1 \le \text{grid}[i][j] \le 1000$

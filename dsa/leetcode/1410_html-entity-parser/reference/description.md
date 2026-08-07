@@ -4,15 +4,39 @@
 
 The special characters and their entities for HTML are:
 
-<ul>
-	<li>**Quotation Mark:** the entity is `&quot;` and symbol character is `"`.</li>
-	<li>**Single Quote Mark:** the entity is `&apos;` and symbol character is `'`.</li>
-	<li>**Ampersand:** the entity is `&amp;` and symbol character is `&`.</li>
-	<li>**Greater Than Sign:** the entity is `&gt;` and symbol character is `>`.</li>
-	<li>**Less Than Sign:** the entity is `&lt;` and symbol character is `<`.</li>
-	<li>**Slash:** the entity is `&frasl;` and symbol character is `/`.</li>
-</ul>
+- **Quotation Mark:** the entity is `"` and symbol character is `"`.
+
+- **Single Quote Mark:** the entity is `'` and symbol character is `'`.
+
+- **Ampersand:** the entity is `&` and symbol character is `&`.
+
+- **Greater Than Sign:** the entity is `>` and symbol character is `>`.
+
+- **Less Than Sign:** the entity is `<` and symbol character is `<`.
+
+- **Slash:** the entity is `⁄` and symbol character is `/`.
 
 Given the input `text` string to the HTML parser, you have to implement the entity parser.
 
 Return *the text after replacing the entities by the special characters*.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+- **Input:** $text = "\& is an HTML entity but \&ambassador; is not."$
+- **Output:** `"& is an HTML entity but &ambassador; is not."`
+- **Explanation:** The parser will replace the & entity by &
+#### Example 2
+
+- **Input:** $text = "and I quote: "...""$
+- **Output:** `"and I quote: \"...\""`
+### Constraints
+
+- $1 \le \text{text.length} \le 10^{5}$
+
+- The string may contain any possible characters out of all the 256 ASCII characters.

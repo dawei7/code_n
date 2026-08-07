@@ -3,7 +3,6 @@
 Table: `Customer`
 
 ```
-
 +-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
@@ -13,18 +12,46 @@ Table: `Customer`
 +-------------+---------+
 In SQL, id is the primary key column for this table.
 Each row of this table indicates the id of a customer, their name, and the id of the customer who referred them.
-
 ```
-
- 
 
 Find the names of the customer that are either:
 
-<ol>
-	<li>**referred by** any customer with `id != 2`.</li>
-	<li>**not referred by** any customer.</li>
-</ol>
+- **referred by** any customer with $id \neq 2$.
+
+- **not referred by** any customer.
 
 Return the result table in **any order**.
 
 The result format is in the following example.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+```
+**Input:**
+Customer table:
++----+------+------------+
+| id | name | referee_id |
++----+------+------------+
+| 1  | Will | null       |
+| 2  | Jane | null       |
+| 3  | Alex | 2          |
+| 4  | Bill | null       |
+| 5  | Zack | 1          |
+| 6  | Mark | 2          |
++----+------+------------+
+**Output:**
++------+
+| name |
++------+
+| Will |
+| Jane |
+| Bill |
+| Zack |
++------+
+```

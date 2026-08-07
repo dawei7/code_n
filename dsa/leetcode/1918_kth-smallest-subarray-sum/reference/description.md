@@ -1,7 +1,48 @@
 ## Description
 
-You are given an integer array `nums` containing only positive values. Every non-empty contiguous subarray contributes one sum, and equal sums from different subarray positions remain separate entries.
+Given an integer array `nums` of length `n` and an integer `k`, return *the *$$k^{\text{th}}$$ ***smallest subarray sum**.*
 
-Arrange all $N(N+1)/2$ subarray sums in non-decreasing order and return the value at rank `k`, where ranks are one-based.
+A **subarray** is defined as a **non-empty** contiguous sequence of elements in an array. A **subarray sum** is the sum of all elements in the subarray.
+### Function Contract
 
-The choice concerns values rather than intervals: the function returns only the selected sum, not the subarray that produced it. If several subarrays have the same sum, each occurrence keeps its own place in the ordering.
+- Refer to method signature.
+
+### Examples
+
+#### Example 1
+
+- **Input:** `nums = [2,1,3], k = 4`
+- **Output:** `3`
+- **Explanation:** The subarrays of [2,1,3] are:
+- [2] with sum 2
+- [1] with sum 1
+- [3] with sum 3
+- [2,1] with sum 3
+- [1,3] with sum 4
+- [2,1,3] with sum 6
+Ordering the sums from smallest to largest gives 1, 2, 3, <u>3</u>, 4, 6. The 4th smallest is 3.
+#### Example 2
+
+- **Input:** `nums = [3,3,5,5], k = 7`
+- **Output:** `10`
+- **Explanation:** The subarrays of [3,3,5,5] are:
+- [3] with sum 3
+- [3] with sum 3
+- [5] with sum 5
+- [5] with sum 5
+- [3,3] with sum 6
+- [3,5] with sum 8
+- [5,5] with sum 10
+- [3,3,5], with sum 11
+- [3,5,5] with sum 13
+- [3,3,5,5] with sum 16
+Ordering the sums from smallest to largest gives 3, 3, 5, 5, 6, 8, <u>10</u>, 11, 13, 16. The 7th smallest is 10.
+### Constraints
+
+- $n = \text{nums.length}$
+
+- $1 \le n \le 2 * 10^{4}$
+
+- $1 \le \text{nums}[i] \le 5 * 10^{4}$
+
+- $1 \le k \le n * (n + 1) / 2$

@@ -1,5 +1,56 @@
 ## Description
 
-You are given a string `road` containing only `x` and `.`. Each `x` represents a pothole, while each `.` represents a smooth section of road. You also have an integer `budget` available for repairs.
+You are given a string `road`, consisting only of characters `"x"` and `"."`, where each `"x"` denotes a *pothole* and each `"."` denotes a smooth road, and an integer `budget`.
 
-One repair operation may fix $k$ consecutive potholes for a price of $k+1$. You may perform multiple operations, provided their total price does not exceed `budget`. Return the maximum number of potholes that can be fixed. Repaired positions must come from consecutive potholes within the same uninterrupted `x` block; an operation cannot cross a smooth section.
+In one repair operation, you can repair `n` **consecutive** potholes for a price of $n + 1$.
+
+Return the **maximum** number of potholes that can be fixed such that the sum of the prices of all of the fixes **doesn't go over** the given budget.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+
+#### Example 1
+
+<div class="example-block">
+**Input:** road = "..", budget = 5
+
+**Output:** 0
+
+**Explanation:**
+
+There are no potholes to be fixed.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** road = "..xxxxx", budget = 4
+
+**Output:** 3
+
+**Explanation:**
+
+We fix the first three potholes (they are consecutive). The budget needed for this task is $3 + 1 = 4$.
+
+</div>
+#### Example 3
+
+<div class="example-block">
+**Input:** road = "x.x.xxx...x", budget = 14
+
+**Output:** 6
+
+**Explanation:**
+
+We can fix all the potholes. The total cost would be $(1 + 1) + (1 + 1) + (3 + 1) + (1 + 1) = 10$ which is within our budget of 14.
+
+</div>
+### Constraints
+
+- $1 \le \text{road.length} \le 10^{5}$
+
+- $1 \le budget \le 10^{5} + 1$
+
+- `road` consists only of characters `'.'` and `'x'`.

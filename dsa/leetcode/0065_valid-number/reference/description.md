@@ -6,21 +6,61 @@ For example, all the following are valid numbers: `"2", "0089", "-0.1", "+3.14",
 
 Formally, a **valid number** is defined using one of the following definitions:
 
-<ol>
-	<li>An **integer number** followed by an **optional exponent**.</li>
-	<li>A **decimal number** followed by an **optional exponent**.</li>
-</ol>
+- An **integer number** followed by an **optional exponent**.
+
+- A **decimal number** followed by an **optional exponent**.
 
 An **integer number** is defined with an **optional sign** `'-'` or `'+'` followed by **digits**.
 
 A **decimal number** is defined with an **optional sign** `'-'` or `'+'` followed by one of the following definitions:
 
-<ol>
-	<li>**Digits** followed by a **dot** `'.'`.</li>
-	<li>**Digits** followed by a **dot** `'.'` followed by **digits**.</li>
-	<li>A **dot** `'.'` followed by **digits**.</li>
-</ol>
+- **Digits** followed by a **dot** `'.'`.
+
+- **Digits** followed by a **dot** `'.'` followed by **digits**.
+
+- A **dot** `'.'` followed by **digits**.
 
 An **exponent** is defined with an **exponent notation** `'e'` or `'E'` followed by an **integer number**.
 
 The **digits** are defined as one or more digits.
+### Function Contract
+
+**Inputs**
+
+- `s`: The candidate numeric string.
+
+**Return value**
+
+Return `true` exactly when the complete string conforms to one of the accepted integer-or-decimal forms with an optional exponent.
+
+### Examples
+
+#### Example 1
+
+<div class="example-block">
+**Input:** s = "0"
+
+**Output:** true
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** s = "e"
+
+**Output:** false
+
+</div>
+#### Example 3
+
+<div class="example-block">
+**Input:** s = "."
+
+**Output:** false
+
+</div>
+### Constraints
+
+- $1 \le \text{s.length} \le 20$
+
+- `s` consists of only English letters (both uppercase and lowercase), digits (`0-9`), plus `'+'`, minus `'-'`, or dot `'.'`.

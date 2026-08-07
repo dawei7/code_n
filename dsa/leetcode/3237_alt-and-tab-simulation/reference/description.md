@@ -1,5 +1,64 @@
 ## Description
 
-There are $n$ open windows numbered from $1$ through $n$. The permutation `windows` gives their initial front-to-back order: its first entry is on top and its last entry is at the bottom.
+There are `n` windows open numbered from `1` to `n`, we want to simulate using alt + tab to navigate between the windows.
 
-Process `queries` from left to right. Each query names a window and moves that window to the top, preserving the relative order of every other window. Repeatedly selecting the window already on top leaves the order unchanged. Return the complete final front-to-back ordering after all queries.
+You are given an array `windows` which contains the initial order of the windows (the first element is at the top and the last one is at the bottom).
+
+You are also given an array `queries` where for each query, the window $\text{queries}[i]$ is brought to the top.
+
+Return the final state of the array `windows`.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+
+#### Example 1
+
+<div class="example-block">
+**Input:** windows = [1,2,3], queries = [3,3,2]
+
+**Output:** [2,3,1]
+
+**Explanation:**
+
+Here is the window array after each query:
+
+- Initial order: `[1,2,3]`
+
+- After the first query: `[<u>**3**</u>,1,2]`
+
+- After the second query: `[<u>**3**</u>,1,2]`
+
+- After the last query: `[<u>**2**</u>,3,1]`
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** windows = [1,4,2,3], queries = [4,1,3]
+
+**Output:** [3,1,4,2]
+
+**Explanation:**
+
+Here is the window array after each query:
+
+- Initial order: `[1,4,2,3]`
+
+- After the first query: `[<u>**4**</u>,1,2,3]`
+
+- After the second query: `[<u>**1**</u>,4,2,3]`
+
+- After the last query: `[<u>**3**</u>,1,4,2]`
+
+</div>
+### Constraints
+
+- $1 \le n = \text{windows.length} \le 10^{5}$
+
+- `windows` is a permutation of `[1, n]`.
+
+- $1 \le \text{queries.length} \le 10^{5}$
+
+- $1 \le \text{queries}[i] \le n$

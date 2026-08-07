@@ -2,23 +2,48 @@
 
 International Morse Code defines a standard encoding where each letter is mapped to a series of dots and dashes, as follows:
 
-<ul>
-	<li>`'a'` maps to `".-"`,</li>
-	<li>`'b'` maps to `"-..."`,</li>
-	<li>`'c'` maps to `"-.-."`, and so on.</li>
-</ul>
+- `'a'` maps to `".-"`,
+
+- `'b'` maps to `"-..."`,
+
+- `'c'` maps to `"-.-."`, and so on.
 
 For convenience, the full table for the `26` letters of the English alphabet is given below:
 
 ```
-
 [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."]
 ```
 
 Given an array of strings `words` where each word can be written as a concatenation of the Morse code of each letter.
 
-<ul>
-	<li>For example, `"cab"` can be written as `"-.-..--..."`, which is the concatenation of `"-.-."`, `".-"`, and `"-..."`. We will call such a concatenation the **transformation** of a word.</li>
-</ul>
+- For example, `"cab"` can be written as `"-.-..--..."`, which is the concatenation of `"-.-."`, `".-"`, and `"-..."`. We will call such a concatenation the **transformation** of a word.
 
 Return *the number of different **transformations** among all words we have*.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+- **Input:** $words = ["gin","zen","gig","msg"]$
+- **Output:** `2`
+- **Explanation:** The transformation of each word is:
+"gin" -> "--...-."
+"zen" -> "--...-."
+"gig" -> "--...--."
+"msg" -> "--...--."
+There are 2 different transformations: "--...-." and "--...--.".
+#### Example 2
+
+- **Input:** $words = ["a"]$
+- **Output:** `1`
+### Constraints
+
+- $1 \le \text{words.length} \le 100$
+
+- $1 \le \text{words}[i].length \le 12$
+
+- $\text{words}[i]$ consists of lowercase English letters.

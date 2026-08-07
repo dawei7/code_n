@@ -1,5 +1,65 @@
 ## Description
 
-The list `replacements` defines a mapping from one-letter keys to string values. A placeholder has the form `%X%`, where `X` is a mapped key. Replacement values may themselves contain placeholders, so resolving one key can depend on resolving other keys first.
+You are given a `replacements` mapping and a `text` string that may contain **placeholders** formatted as `%var%`, where each `var` corresponds to a key in the `replacements` mapping. Each replacement value may itself contain **one or more** such **placeholders**. Each **placeholder** is replaced by the value associated with its corresponding replacement key.
 
-Expand every placeholder recursively and return the fully substituted `text`. Every referenced key is present, replacement dependencies contain no cycle, and the returned string must contain no placeholders. A key's expansion has the same meaning wherever that key is referenced.
+Return the fully substituted `text` string which **does not** contain any **placeholders**.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+
+#### Example 1
+
+<div class="example-block">
+**Input:** replacements = [["A","abc"],["B","def"]], text = "%A%_%B%"
+
+**Output:** "abc_def"
+
+**Explanation:**
+
+- The mapping associates `"A"` with `"abc"` and `"B"` with `"def"`.
+
+- Replace `%A%` with `"abc"` and `%B%` with `"def"` in the text.
+
+- The final text becomes $"\text{abc}_{def}"$.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** replacements = [["A","bce"],["B","ace"],["C","abc%B%"]], text = "%A%_%B%_%C%"
+
+**Output:** "bce_ace_abcace"
+
+**Explanation:**
+
+- The mapping associates `"A"` with `"bce"`, `"B"` with `"ace"`, and `"C"` with `"abc%B%"`.
+
+- Replace `%A%` with `"bce"` and `%B%` with `"ace"` in the text.
+
+- Then, for `%C%`, substitute `%B%` in `"abc%B%"` with `"ace"` to obtain `"abcace"`.
+
+- The final text becomes `"bce_ace_abcace"`.
+
+</div>
+### Constraints
+
+- $1 \le \text{replacements.length} \le 10$
+
+- Each element of `replacements` is a two-element list `[key, value]`, where:
+
+		<li data-end="1558" data-start="1513">`key` is a single uppercase English letter.
+
+- `value` is a non-empty string of at most 8 characters that may contain zero or more placeholders formatted as `%<key>%`.
+
+	</li>
+- All replacement keys are unique.
+
+- The `text` string is formed by concatenating all key placeholders (formatted as `%<key>%`) randomly from the replacements mapping, separated by underscores.
+
+- $\text{text.length} = 4 * \text{replacements.length} - 1$
+
+- Every placeholder in the `text` or in any replacement value corresponds to a key in the `replacements` mapping.
+
+- There are no cyclic dependencies between replacement keys.

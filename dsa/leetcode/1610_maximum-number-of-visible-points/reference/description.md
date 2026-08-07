@@ -1,8 +1,8 @@
 ## Description
 
-You are given an array `points`, an integer `angle`, and your `location`, where `location = [pos_x, pos_y]` and `points[i] = [x_i, y_i]` both denote **integral coordinates** on the X-Y plane.
+You are given an array `points`, an integer `angle`, and your `location`, where $location = [\text{pos}_{x}, \text{pos}_{y}]$ and $\text{points}[i] = [x_{i}, y_{i}]$ both denote **integral coordinates** on the X-Y plane.
 
-Initially, you are facing directly east from your position. You **cannot move** from your position, but you can **rotate**. In other words, `pos_x` and `pos_y` cannot be changed. Your field of view in **degrees** is represented by `angle`, determining how wide you can see from any given view direction. Let `d` be the amount in degrees that you rotate counterclockwise. Then, your field of view is the **inclusive** range of angles `[d - angle/2, d + angle/2]`.
+Initially, you are facing directly east from your position. You **cannot move** from your position, but you can **rotate**. In other words, $\text{pos}_{x}$ and $\text{pos}_{y}$ cannot be changed. Your field of view in **degrees** is represented by `angle`, determining how wide you can see from any given view direction. Let `d` be the amount in degrees that you rotate counterclockwise. Then, your field of view is the **inclusive** range of angles `[d - angle/2, d + angle/2]`.
 
 <video autoplay="" controls="" height="360" muted="" style="max-width:100%;height:auto;" width="480"><source src="https://assets.leetcode.com/uploads/2020/09/30/angle.mp4" type="video/mp4" />Your browser does not support the video tag or this video format.</video>
 
@@ -11,3 +11,40 @@ You can **see** some set of points if, for each point, the **angle** formed by t
 There can be multiple points at one coordinate. There may be points at your location, and you can always see these points regardless of your rotation. Points do not obstruct your vision to other points.
 
 Return *the maximum number of points you can see*.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+![](images/89a07e9b-00ab-4967-976a-c723b2aa8656.png)
+
+- **Input:** $points = [[2,1],[2,2],[3,3]], angle = 90, location = [1,1]$
+- **Output:** `3`
+- **Explanation:** The shaded region represents your field of view. All points can be made visible in your field of view, including [3,3] even though [2,2] is in front and in the same line of sight.
+#### Example 2
+
+- **Input:** $points = [[2,1],[2,2],[3,4],[1,1]], angle = 90, location = [1,1]$
+- **Output:** `4`
+- **Explanation:** All points can be made visible in your field of view, including the one at your location.
+#### Example 3
+
+![](images/5010bfd3-86e6-465f-ac64-e9df941d2e49.png)
+
+- **Input:** $points = [[1,0],[2,1]], angle = 13, location = [1,1]$
+- **Output:** `1`
+- **Explanation:** You can only see one of the two points, as shown above.
+### Constraints
+
+- $1 \le \text{points.length} \le 10^{5}$
+
+- $\text{points}[i].length = 2$
+
+- $\text{location.length} = 2$
+
+- $0 \le angle < 360$
+
+- $0 \le \text{pos}_{x}, \text{pos}_{y}, x_{i}, y_{i} \le 100$

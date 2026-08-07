@@ -7,3 +7,36 @@ Return the *minimum number of steps* required to convert `mat` to a zero matrix 
 A **binary matrix** is a matrix with all cells equal to `0` or `1` only.
 
 A **zero matrix** is a matrix with all cells equal to `0`.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+![](images/matrix.png)
+
+- **Input:** $mat = [[0,0],[0,1]]$
+- **Output:** `3`
+- **Explanation:** One possible solution is to flip (1, 0) then (0, 1) and finally (1, 1) as shown.
+#### Example 2
+
+- **Input:** $mat = [[0]]$
+- **Output:** `0`
+- **Explanation:** Given matrix is a zero matrix. We do not need to change it.
+#### Example 3
+
+- **Input:** $mat = [[1,0,0],[1,0,0]]$
+- **Output:** `-1`
+- **Explanation:** Given matrix cannot be a zero matrix.
+### Constraints
+
+- $m = \text{mat.length}$
+
+- $n = \text{mat}[i].length$
+
+- $1 \le m, n \le 3$
+
+- $\text{mat}[i][j]$ is either `0` or `1`.

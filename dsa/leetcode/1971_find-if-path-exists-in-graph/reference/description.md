@@ -1,7 +1,47 @@
 ## Description
 
-There is a **bi-directional** graph with `n` vertices, where each vertex is labeled from `0` to `n - 1` (**inclusive**). The edges in the graph are represented as a 2D integer array `edges`, where each `edges[i] = [u_i, v_i]` denotes a bi-directional edge between vertex `u_i` and vertex `v_i`. Every vertex pair is connected by **at most one** edge, and no vertex has an edge to itself.
+There is a **bi-directional** graph with `n` vertices, where each vertex is labeled from `0` to $n - 1$ (**inclusive**). The edges in the graph are represented as a 2D integer array `edges`, where each $\text{edges}[i] = [u_{i}, v_{i}]$ denotes a bi-directional edge between vertex $u_{i}$ and vertex $v_{i}$. Every vertex pair is connected by **at most one** edge, and no vertex has an edge to itself.
 
 You want to determine if there is a **valid path** that exists from vertex `source` to vertex `destination`.
 
 Given `edges` and the integers `n`, `source`, and `destination`, return `true`* if there is a **valid path** from *`source`* to *`destination`*, or *`false`* otherwise**.*
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+![](images/validpath-ex1.png)
+
+- **Input:** $n = 3, edges = [[0,1],[1,2],[2,0]], source = 0, destination = 2$
+- **Output:** `true`
+- **Explanation:** There are two paths from vertex 0 to vertex 2:
+- 0 → 1 → 2
+- 0 → 2
+#### Example 2
+
+![](images/validpath-ex2.png)
+
+- **Input:** $n = 6, edges = [[0,1],[0,2],[3,5],[5,4],[4,3]], source = 0, destination = 5$
+- **Output:** `false`
+- **Explanation:** There is no path from vertex 0 to vertex 5.
+### Constraints
+
+- $1 \le n \le 2 * 10^{5}$
+
+- $0 \le \text{edges.length} \le 2 * 10^{5}$
+
+- $\text{edges}[i].length = 2$
+
+- $0 \le u_{i}, v_{i} \le n - 1$
+
+- $u_{i} \neq v_{i}$
+
+- $0 \le source, destination \le n - 1$
+
+- There are no duplicate edges.
+
+- There are no self edges.

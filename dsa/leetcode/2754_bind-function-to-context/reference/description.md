@@ -1,7 +1,68 @@
 ## Description
 
-Extend every JavaScript function with a method named `bindPolyfill`. Calling that method with one non-null object `obj` must return a new function whose later invocations always execute the original target with `obj` as its `this` context.
+Enhance all functions to have the `bindPolyfill` method. When `bindPolyfill` is called with a passed object `obj`, that object becomes the `this` context for the function.
 
-The returned function receives between zero and 100 arguments. Forward every argument in its original order and return the target function's result without alteration. Reads and writes through `this` must affect the supplied object itself.
+For example, if you had the code:
 
-Do not use the built-in `Function.bind`. A basic solution may use another invocation helper, while the follow-up asks for a solution that does not use built-in context-binding methods.
+```
+function f() {
+  console.log('My context is ' + this.ctx);
+}
+f();
+```
+
+The output would be `"My context is undefined"`. However, if you bound the function:
+
+```
+function f() {
+  console.log('My context is ' + this.ctx);
+}
+const boundFunc = f.boundPolyfill({ "ctx": "My Object" })
+boundFunc();
+```
+
+The output should be `"My context is My Object"`.
+
+You may assume that a single non-null object will be passed to the `bindPolyfill` method.
+
+Please solve it without the built-in `Function.bind` method.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+
+#### Example 1
+
+- **Input:** ``
+fn = function f(multiplier) {
+return this.x * multiplier;
+}
+obj = {"x": 10}
+inputs = [5]
+- **Output:** `50`
+- **Explanation:**
+const boundFunc = f.bindPolyfill({"x": 10});
+boundFunc(5); // 50
+A multiplier of 5 is passed as a parameter.
+The context is set to {"x": 10}.
+Multiplying those two numbers yields 50.
+#### Example 2
+
+- **Input:** ``
+fn = function speak() {
+return "My name is " + this.name;
+}
+obj = {"name": "Kathy"}
+inputs = []
+- **Output:** `"My name is Kathy"`
+- **Explanation:**
+const boundFunc = f.bindPolyfill({"name": "Kathy"});
+boundFunc(); // "My name is Kathy"
+### Constraints
+
+- `obj` is a non-null object
+
+- $0 \le \text{inputs.length} \le 100$
+
+**Can you solve it without using any built-in methods?**

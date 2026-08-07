@@ -4,23 +4,46 @@
 
 You may recall that an array `arr` is a **mountain array** if and only if:
 
-<ul>
-	<li>`arr.length >= 3`</li>
-	<li>There exists some `i` with `0 < i < arr.length - 1` such that:
-	<ul>
-		<li>`arr[0] < arr[1] < ... < arr[i - 1] < arr[i]`</li>
-		<li>`arr[i] > arr[i + 1] > ... > arr[arr.length - 1]`</li>
-	</ul>
-	</li>
-</ul>
+- $\text{arr.length} \ge 3$
 
-Given a mountain array `mountainArr`, return the **minimum** `index` such that `mountainArr.get(index) == target`. If such an `index` does not exist, return `-1`.
+- There exists some `i` with $0 < i < \text{arr.length} - 1$ such that:
+
+		<li>$\text{arr}[0] < \text{arr}[1] < ... < arr[i - 1] < \text{arr}[i]$
+
+- $\text{arr}[i] > arr[i + 1] > ... > arr[\text{arr.length} - 1]$
+
+	</li>
+
+Given a mountain array `mountainArr`, return the **minimum** `index` such that $\text{mountainArr.get}(index) = target$. If such an `index` does not exist, return `-1`.
 
 **You cannot access the mountain array directly.** You may only access the array using a `MountainArray` interface:
 
-<ul>
-	<li>`MountainArray.get(k)` returns the element of the array at index `k` (0-indexed).</li>
-	<li>`MountainArray.length()` returns the length of the array.</li>
-</ul>
+- `MountainArray.get(k)` returns the element of the array at index `k` (0-indexed).
+
+- `MountainArray.length()` returns the length of the array.
 
 Submissions making more than `100` calls to `MountainArray.get` will be judged *Wrong Answer*. Also, any solutions that attempt to circumvent the judge will result in disqualification.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+- **Input:** $mountainArr = [1,2,3,4,5,3,1], target = 3$
+- **Output:** `2`
+- **Explanation:** 3 exists in the array, at index=2 and index=5. Return the minimum index, which is 2.
+#### Example 2
+
+- **Input:** $mountainArr = [0,1,2,4,2,1], target = 3$
+- **Output:** `-1`
+- **Explanation:** 3 does not exist in the array, so we return -1.
+### Constraints
+
+- $3 \le \text{mountainArr.length}() \le 10^{4}$
+
+- $0 \le target \le 10^{9}$
+
+- $0 \le \text{mountainArr.get}(index) \le 10^{9}$

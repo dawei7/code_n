@@ -7,3 +7,39 @@ We **translate** one image however we choose by sliding all the `1` bits left, r
 Note also that a translation does **not** include any kind of rotation. Any `1` bits that are translated outside of the matrix borders are erased.
 
 Return *the largest possible overlap*.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+![](images/overlap1.jpg)
+
+- **Input:** $img1 = [[1,1,0],[0,1,0],[0,1,0]], img2 = [[0,0,0],[0,1,1],[0,0,1]]$
+- **Output:** `3`
+- **Explanation:** We translate img1 to right by 1 unit and down by 1 unit.
+![](images/overlap_step1.jpg)
+The number of positions that have a 1 in both images is 3 (shown in red).
+![](images/overlap_step2.jpg)
+#### Example 2
+
+- **Input:** $img1 = [[1]], img2 = [[1]]$
+- **Output:** `1`
+#### Example 3
+
+- **Input:** $img1 = [[0]], img2 = [[0]]$
+- **Output:** `0`
+### Constraints
+
+- $n = \text{img1.length} = \text{img1}[i].length$
+
+- $n = \text{img2.length} = \text{img2}[i].length$
+
+- $1 \le n \le 30$
+
+- $\text{img1}[i][j]$ is either `0` or `1`.
+
+- $\text{img2}[i][j]$ is either `0` or `1`.

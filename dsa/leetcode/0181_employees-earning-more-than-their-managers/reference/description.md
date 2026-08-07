@@ -3,7 +3,6 @@
 Table: `Employee`
 
 ```
-
 +-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
@@ -14,13 +13,43 @@ Table: `Employee`
 +-------------+---------+
 id is the primary key (column with unique values) for this table.
 Each row of this table indicates the ID of an employee, their name, salary, and the ID of their manager.
-
 ```
-
- 
 
 Write a solution to find the employees who earn more than their managers.
 
 Return the result table in **any order**.
 
 The result format is in the following example.
+### Function Contract
+
+**Inputs**
+
+`Employee(id, name, salary, managerId)` contains employee records and the identifier of each employee's manager when one exists.
+
+**Return value**
+
+Return one column named `Employee` containing the names of employees who earn more than their managers.
+
+### Examples
+
+#### Example 1
+
+```
+**Input:**
+Employee table:
++----+-------+--------+-----------+
+| id | name  | salary | managerId |
++----+-------+--------+-----------+
+| 1  | Joe   | 70000  | 3         |
+| 2  | Henry | 80000  | 4         |
+| 3  | Sam   | 60000  | Null      |
+| 4  | Max   | 90000  | Null      |
++----+-------+--------+-----------+
+**Output:**
++----------+
+| Employee |
++----------+
+| Joe      |
++----------+
+**Explanation:** Joe is the only employee who earns more than his manager.
+```

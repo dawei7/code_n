@@ -9,3 +9,43 @@ You are allowed to perform an **operation** any number of times on `nums`, where
 Return the **minimum** number of **operations** required to make the array **non-decreasing**.
 
 If it is **not** possible to make the array *non-decreasing* using any number of operations, return `-1`.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+<div class="example-block">
+**Input:** nums = [25,7]
+
+**Output:** 1
+
+**Explanation:**
+
+Using a single operation, 25 gets divided by 5 and `nums` becomes `[5, 7]`.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** nums = [7,7,6]
+
+**Output:** -1
+
+</div>
+#### Example 3
+
+<div class="example-block">
+**Input:** nums = [1,1,1,1]
+
+**Output:** 0
+
+</div>
+### Constraints
+
+- $1 \le \text{nums.length} \le 10^{5}$
+
+- $1 \le \text{nums}[i] \le 10^{6}$

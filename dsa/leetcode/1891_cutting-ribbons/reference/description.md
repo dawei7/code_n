@@ -1,5 +1,55 @@
 ## Description
 
-Each value in `ribbons` is the positive integer length of one ribbon. A ribbon may remain whole or be cut into any number of pieces whose lengths are positive integers. Material left after producing useful pieces may be discarded.
+You are given an integer array `ribbons`, where $\text{ribbons}[i]$ represents the length of the $$i^{\text{th}}$$ ribbon, and an integer `k`. You may cut any of the ribbons into any number of segments of **positive integer** lengths, or perform no cuts at all.
 
-Choose one positive integer length $x$ and produce at least `k` pieces that all have exactly that length. Extra pieces are allowed and need not be used. Return the greatest feasible $x$, or return `0` when even `k` pieces of length one cannot be obtained.
+- For example, if you have a ribbon of length `4`, you can:
+
+		<li>Keep the ribbon of length `4`,
+
+- Cut it into one ribbon of length `3` and one ribbon of length `1`,
+
+- Cut it into two ribbons of length `2`,
+
+- Cut it into one ribbon of length `2` and two ribbons of length `1`, or
+
+- Cut it into four ribbons of length `1`.
+
+	</li>
+
+Your task is to determine the **maximum** length of ribbon, `x`, that allows you to cut *at least* `k` ribbons, each of length `x`. You can discard any leftover ribbon from the cuts. If it is **impossible** to cut `k` ribbons of the same length, return 0.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+
+#### Example 1
+
+- **Input:** $ribbons = [9,7,5], k = 3$
+- **Output:** `5`
+- **Explanation:**
+- Cut the first ribbon to two ribbons, one of length 5 and one of length 4.
+- Cut the second ribbon to two ribbons, one of length 5 and one of length 2.
+- Keep the third ribbon as it is.
+Now you have 3 ribbons of length 5.
+#### Example 2
+
+- **Input:** $ribbons = [7,5,9], k = 4$
+- **Output:** `4`
+- **Explanation:**
+- Cut the first ribbon to two ribbons, one of length 4 and one of length 3.
+- Cut the second ribbon to two ribbons, one of length 4 and one of length 1.
+- Cut the third ribbon to three ribbons, two of length 4 and one of length 1.
+Now you have 4 ribbons of length 4.
+#### Example 3
+
+- **Input:** $ribbons = [5,7,9], k = 22$
+- **Output:** `0`
+- **Explanation:** You cannot obtain k ribbons of the same positive integer length.
+### Constraints
+
+- $1 \le \text{ribbons.length} \le 10^{5}$
+
+- $1 \le \text{ribbons}[i] \le 10^{5}$
+
+- $1 \le k \le 10^{9}$

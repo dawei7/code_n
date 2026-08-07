@@ -1,10 +1,46 @@
 ## Description
 
-You are given two 0-indexed binary arrays `nums1` and `nums2` of the same
-length. Choose indices `i` and `j` with $i \le j$ so that the sum of
-`nums1[i:j + 1]` equals the sum over the identical inclusive range in `nums2`.
-Only corresponding ranges with the same endpoints may be compared.
+You are given two **0-indexed** binary arrays `nums1` and `nums2`. Find the **widest** pair of indices `(i, j)` such that $i \le j$ and $\text{nums1}[i] + nums1[i+1] + ... + \text{nums1}[j] = \text{nums2}[i] + nums2[i+1] + ... + \text{nums2}[j]$.
 
-The width of such a pair is $j - i + 1$. Return the greatest achievable width
-over all qualifying index pairs. If no nonempty range has equal sums in the two
-arrays, return `0`.
+The **widest** pair of indices is the pair with the **largest** **distance** between `i` and `j`. The **distance** between a pair of indices is defined as $j - i + 1$.
+
+Return *the **distance** of the **widest** pair of indices. If no pair of indices meets the conditions, return *`0`.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+
+#### Example 1
+
+- **Input:** $nums1 = [1,1,0,1], nums2 = [0,1,1,0]$
+- **Output:** `3`
+- **Explanation:**
+If i = 1 and j = 3:
+nums1[1] + nums1[2] + nums1[3] = 1 + 0 + 1 = 2.
+nums2[1] + nums2[2] + nums2[3] = 1 + 1 + 0 = 2.
+The distance between i and j is j - i + 1 = 3 - 1 + 1 = 3.
+#### Example 2
+
+- **Input:** $nums1 = [0,1], nums2 = [1,1]$
+- **Output:** `1`
+- **Explanation:**
+If i = 1 and j = 1:
+nums1[1] = 1.
+nums2[1] = 1.
+The distance between i and j is j - i + 1 = 1 - 1 + 1 = 1.
+#### Example 3
+
+- **Input:** $nums1 = [0], nums2 = [1]$
+- **Output:** `0`
+- **Explanation:**
+There are no pairs of indices that meet the requirements.
+### Constraints
+
+- $n = \text{nums1.length} = \text{nums2.length}$
+
+- $1 \le n \le 10^{5}$
+
+- $\text{nums1}[i]$ is either `0` or `1`.
+
+- $\text{nums2}[i]$ is either `0` or `1`.

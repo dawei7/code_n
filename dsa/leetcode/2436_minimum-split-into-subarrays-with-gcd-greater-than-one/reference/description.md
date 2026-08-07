@@ -1,5 +1,41 @@
 ## Description
 
-You are given an array `nums` of positive integers. Divide it into one or more disjoint subarrays so that every input element belongs to exactly one part. Each part must be contiguous, and the greatest common divisor of all values in that part must be strictly greater than 1.
+You are given an array `nums` consisting of positive integers.
 
-Among every partition satisfying those requirements, return the smallest possible number of subarrays. The greatest common divisor is the largest positive integer that divides every value in the selected subarray without a remainder.
+Split the array into **one or more** disjoint subarrays such that:
+
+- Each element of the array belongs to **exactly one** subarray, and
+
+- The **GCD** of the elements of each subarray is strictly greater than `1`.
+
+Return *the minimum number of subarrays that can be obtained after the split*.
+
+**Note** that:
+
+- The **GCD** of a subarray is the largest positive integer that evenly divides all the elements of the subarray.
+
+- A **subarray** is a contiguous part of the array.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+
+#### Example 1
+
+- **Input:** `nums = [12,6,3,14,8]`
+- **Output:** `2`
+- **Explanation:** We can split the array into the subarrays: [12,6,3] and [14,8].
+- The GCD of 12, 6 and 3 is 3, which is strictly greater than 1.
+- The GCD of 14 and 8 is 2, which is strictly greater than 1.
+It can be shown that splitting the array into one subarray will make the GCD = 1.
+#### Example 2
+
+- **Input:** `nums = [4,12,6,14]`
+- **Output:** `1`
+- **Explanation:** We can split the array into only one subarray, which is the whole array.
+### Constraints
+
+- $1 \le \text{nums.length} \le 2000$
+
+- $2 \le \text{nums}[i] \le 10^{9}$

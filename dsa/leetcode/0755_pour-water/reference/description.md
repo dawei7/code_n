@@ -1,7 +1,67 @@
 ## Description
 
-An integer array `heights` describes an elevation map: `heights[i]` is the terrain height at index `i`, and every column has width `1`. You are also given a water volume and an index `k`; the water arrives at `k` in indivisible one-unit droplets.
+You are given an elevation map represents as an integer array `heights` where $\text{heights}[i]$ representing the height of the terrain at index `i`. The width at each index is `1`. You are also given two integers `volume` and `k`. `volume` units of water will fall at index `k`.
 
-Each droplet initially rests on the current terrain-plus-water level at `k`. If moving left would eventually place it at a lower level, it moves left. Otherwise, if moving right would eventually place it at a lower level, it moves right. If neither direction would make it fall, it remains at its current position and raises that column by one. Here, a column's level is its terrain height plus all water already settled there.
+Water first drops at the index `k` and rests on top of the highest terrain or water at that index. Then, it flows according to the following rules:
 
-Treat both sides beyond the array as infinitely high terrain, so water cannot leave the represented elevation map. A unit of water cannot be divided across columns: every droplet must settle completely in exactly one column. Apply all droplets sequentially and return the final terrain-plus-water heights.
+- If the droplet would eventually fall by moving left, then move left.
+
+- Otherwise, if the droplet would eventually fall by moving right, then move right.
+
+- Otherwise, rise to its current position.
+
+Here, **"eventually fall"** means that the droplet will eventually be at a lower level if it moves in that direction. Also, level means the height of the terrain plus any water in that column.
+
+We can assume there is infinitely high terrain on the two sides out of bounds of the array. Also, there could not be partial water being spread out evenly on more than one grid block, and each unit of water has to be in exactly one block.
+### Function Contract
+
+$solve(heights: \text{list}[int], volume: int, k: int) -> \text{list}[int]$
+
+Let $n$ be the number of terrain columns.
+
+**Inputs**
+
+- `heights`: the nonnegative initial terrain height of each unit-width column.
+- `volume`: the number of one-unit water droplets to pour.
+- `k`: the index where every droplet begins.
+
+**Return value**
+
+Return the $n$ final column levels after all `volume` droplets have settled sequentially according to the left-before-right eventual-fall rule. Each result entry equals the original terrain height plus the water accumulated in that column.
+
+### Examples
+
+#### Example 1
+
+![](images/pour11-grid.jpg)
+
+- **Input:** $heights = [2,1,1,2,1,2,2], volume = 4, k = 3$
+- **Output:** `[2,2,2,3,2,2,2]`
+- **Explanation:**
+The first drop of water lands at index k = 3. When moving left or right, the water can only move to the same level or a lower level. (By level, we mean the total height of the terrain plus any water in that column.)
+Since moving left will eventually make it fall, it moves left. (A droplet "made to fall" means go to a lower height than it was at previously.) Since moving left will not make it fall, it stays in place.
+![](images/pour12-grid.jpg)
+The next droplet falls at index k = 3. Since the new droplet moving left will eventually make it fall, it moves left. Notice that the droplet still preferred to move left, even though it could move right (and moving right makes it fall quicker.)
+![](images/pour13-grid.jpg)
+The third droplet falls at index k = 3. Since moving left would not eventually make it fall, it tries to move right. Since moving right would eventually make it fall, it moves right.
+![](images/pour14-grid.jpg)
+Finally, the fourth droplet falls at index k = 3. Since moving left would not eventually make it fall, it tries to move right. Since moving right would not eventually make it fall, it stays in place.
+![](images/pour15-grid.jpg)
+#### Example 2
+
+- **Input:** $heights = [1,2,3,4], volume = 2, k = 2$
+- **Output:** `[2,3,3,4]`
+- **Explanation:** The last droplet settles at index 1, since moving further left would not cause it to eventually fall to a lower height.
+#### Example 3
+
+- **Input:** $heights = [3,1,3], volume = 5, k = 1$
+- **Output:** `[4,4,4]`
+### Constraints
+
+- $1 \le \text{heights.length} \le 100$
+
+- $0 \le \text{heights}[i] \le 99$
+
+- $0 \le volume \le 2000$
+
+- $0 \le k < \text{heights.length}$

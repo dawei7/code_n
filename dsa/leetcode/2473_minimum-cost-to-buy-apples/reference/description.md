@@ -1,5 +1,52 @@
 ## Description
 
-There are `n` cities numbered from $1$ through $n$. Each row `[a, b, cost]` in `roads` describes a bidirectional road whose normal travel cost is `cost`. Buying one apple in city $i$ costs `appleCost[i - 1]`, and the buyer may choose any city in which to make the purchase.
+You are given a positive integer `n` representing `n` cities numbered from `1` to `n`. You are also given a **2D** array `roads`, where $\text{roads}[i] = [a_{i}, b_{i}, \text{cost}_{i}]$ indicates that there is a **bidirectional **road between cities $a_{i}$ and $b_{i}$ with a cost of traveling equal to $\text{cost}_{i}$.
 
-For each possible starting city, find the minimum total cost of buying exactly one apple and returning to that same start. Travel toward the purchase city uses the listed road costs; after the apple is bought, every road on the return trip costs `k` times its listed amount. Return one answer for every starting city in numeric order.
+You can buy apples in **any** city you want, but some cities have different costs to buy apples. You are given the 1-based array `appleCost` where $\text{appleCost}[i]$ is the cost of buying one apple from city `i`.
+
+You start at some city, traverse through various roads, and eventually buy **exactly** one apple from **any** city. After you buy that apple, you have to return back to the city you **started** at, but now the cost of all the roads will be **multiplied** by a given factor `k`.
+
+Given the integer `k`, return *a 1-based array *`answer`* of size *`n`* where *$\text{answer}[i]$* is the **minimum** total cost to buy an apple if you start at city *`i`.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+
+#### Example 1
+
+![](images/graph55.png)
+
+- **Input:** $n = 4, roads = [[1,2,4],[2,3,2],[2,4,5],[3,4,1],[1,3,4]], appleCost = [56,42,102,301], k = 2$
+- **Output:** `[54,42,48,51]`
+- **Explanation:** The minimum cost for each starting city is the following:
+- Starting at city 1: You take the path 1 -> 2, buy an apple at city 2, and finally take the path 2 -> 1. The total cost is 4 + 42 + 4 * 2 = 54.
+- Starting at city 2: You directly buy an apple at city 2. The total cost is 42.
+- Starting at city 3: You take the path 3 -> 2, buy an apple at city 2, and finally take the path 2 -> 3. The total cost is 2 + 42 + 2 * 2 = 48.
+- Starting at city 4: You take the path 4 -> 3 -> 2 then you buy at city 2, and finally take the path 2 -> 3 -> 4. The total cost is 1 + 2 + 42 + 1 * 2 + 2 * 2 = 51.
+#### Example 2
+
+![](images/graph4.png)
+
+- **Input:** $n = 3, roads = [[1,2,5],[2,3,1],[3,1,2]], appleCost = [2,3,1], k = 3$
+- **Output:** `[2,3,1]`
+- **Explanation:** It is always optimal to buy the apple in the starting city.
+### Constraints
+
+- $2 \le n \le 1000$
+
+- $1 \le \text{roads.length} \le 2000$
+
+- $1 \le a_{i}, b_{i} \le n$
+
+- $a_{i} \neq b_{i}$
+
+- $1 \le \text{cost}_{i} \le 10^{5}$
+
+- $\text{appleCost.length} = n$
+
+- $1 \le \text{appleCost}[i] \le 10^{5}$
+
+- $1 \le k \le 100$
+
+- There are no repeated edges.

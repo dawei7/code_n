@@ -1,5 +1,28 @@
 ## Description
 
-A positive integer is called fair when its decimal representation contains the same number of even digits and odd digits. Digit parity is based on the digit itself, so `0` is even. Consequently, a fair integer must contain an even total number of digits.
+You are given a **positive** integer `n`.
 
-Given a positive integer `n`, return the smallest fair integer greater than or equal to `n`. The answer may have more digits than `n`: if no fair integer remains at the current even length, or if `n` has odd length, the search continues at the next possible even digit length.
+We call an integer `k` fair if the number of **even** digits in `k` is equal to the number of **odd** digits in it.
+
+Return *the **smallest** fair integer that is **greater than or equal** to *`n`.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+
+#### Example 1
+
+- **Input:** $n = 2$
+- **Output:** `10`
+- **Explanation:** The smallest fair integer that is greater than or equal to 2 is 10.
+10 is fair because it has an equal number of even and odd digits (one odd digit and one even digit).
+#### Example 2
+
+- **Input:** $n = 403$
+- **Output:** `1001`
+- **Explanation:** The smallest fair integer that is greater than or equal to 403 is 1001.
+1001 is fair because it has an equal number of even and odd digits (two odd digits and two even digits).
+### Constraints
+
+- $1 \le n \le 10^{9}$

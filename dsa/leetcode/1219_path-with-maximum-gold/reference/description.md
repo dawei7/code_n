@@ -4,10 +4,50 @@ In a gold mine `grid` of size `m x n`, each cell in this mine has an integer rep
 
 Return the maximum amount of gold you can collect under the conditions:
 
-<ul>
-	<li>Every time you are located in a cell you will collect all the gold in that cell.</li>
-	<li>From your position, you can walk one step to the left, right, up, or down.</li>
-	<li>You can't visit the same cell more than once.</li>
-	<li>Never visit a cell with `0` gold.</li>
-	<li>You can start and stop collecting gold from **any **position in the grid that has some gold.</li>
-</ul>
+- Every time you are located in a cell you will collect all the gold in that cell.
+
+- From your position, you can walk one step to the left, right, up, or down.
+
+- You can't visit the same cell more than once.
+
+- Never visit a cell with `0` gold.
+
+- You can start and stop collecting gold from **any **position in the grid that has some gold.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+- **Input:** `grid = [[0,6,0],[5,8,7],[0,9,0]]`
+- **Output:** `24`
+- **Explanation:**
+[[0,6,0],
+[5,8,7],
+[0,9,0]]
+Path to get the maximum gold, 9 -> 8 -> 7.
+#### Example 2
+
+- **Input:** `grid = [[1,0,7],[2,0,6],[3,4,5],[0,3,0],[9,0,20]]`
+- **Output:** `28`
+- **Explanation:**
+[[1,0,7],
+[2,0,6],
+[3,4,5],
+[0,3,0],
+[9,0,20]]
+Path to get the maximum gold, 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7.
+### Constraints
+
+- $m = \text{grid.length}$
+
+- $n = \text{grid}[i].length$
+
+- $1 \le m, n \le 15$
+
+- $0 \le \text{grid}[i][j] \le 100$
+
+- There are at most **25 **cells containing gold.

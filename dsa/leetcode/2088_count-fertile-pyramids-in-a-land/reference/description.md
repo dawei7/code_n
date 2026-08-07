@@ -4,19 +4,62 @@ A farmer has a **rectangular grid** of land with `m` rows and `n` columns that c
 
 A **pyramidal plot** of land can be defined as a set of cells with the following criteria:
 
-<ol>
-	<li>The number of cells in the set has to be **greater than **`1` and all cells must be **fertile**.</li>
-	<li>The **apex** of a pyramid is the **topmost** cell of the pyramid. The **height** of a pyramid is the number of rows it covers. Let `(r, c)` be the apex of the pyramid, and its height be `h`. Then, the plot comprises of cells `(i, j)` where `r <= i <= r + h - 1` **and** `c - (i - r) <= j <= c + (i - r)`.</li>
-</ol>
+- The number of cells in the set has to be **greater than **`1` and all cells must be **fertile**.
+
+- The **apex** of a pyramid is the **topmost** cell of the pyramid. The **height** of a pyramid is the number of rows it covers. Let `(r, c)` be the apex of the pyramid, and its height be `h`. Then, the plot comprises of cells `(i, j)` where $r \le i \le r + h - 1$ **and** $c - (i - r) \le j \le c + (i - r)$.
 
 An **inverse pyramidal plot** of land can be defined as a set of cells with similar criteria:
 
-<ol>
-	<li>The number of cells in the set has to be **greater than **`1` and all cells must be **fertile**.</li>
-	<li>The **apex** of an inverse pyramid is the **bottommost** cell of the inverse pyramid. The **height** of an inverse pyramid is the number of rows it covers. Let `(r, c)` be the apex of the pyramid, and its height be `h`. Then, the plot comprises of cells `(i, j)` where `r - h + 1 <= i <= r` **and** `c - (r - i) <= j <= c + (r - i)`.</li>
-</ol>
+- The number of cells in the set has to be **greater than **`1` and all cells must be **fertile**.
+
+- The **apex** of an inverse pyramid is the **bottommost** cell of the inverse pyramid. The **height** of an inverse pyramid is the number of rows it covers. Let `(r, c)` be the apex of the pyramid, and its height be `h`. Then, the plot comprises of cells `(i, j)` where $r - h + 1 \le i \le r$ **and** $c - (r - i) \le j \le c + (r - i)$.
 
 Some examples of valid and invalid pyramidal (and inverse pyramidal) plots are shown below. Black cells indicate fertile cells.
 
-<img src="https://assets.leetcode.com/uploads/2021/11/08/image.png" style="width: 700px; height: 156px;" />
+![](images/image.png)
+
 Given a **0-indexed** `m x n` binary matrix `grid` representing the farmland, return *the **total number** of pyramidal and inverse pyramidal plots that can be found in* `grid`.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+![](images/1.JPG)
+
+- **Input:** `grid = [[0,1,1,0],[1,1,1,1]]`
+- **Output:** `2`
+- **Explanation:** The 2 possible pyramidal plots are shown in blue and red respectively.
+There are no inverse pyramidal plots in this grid.
+Hence total number of pyramidal and inverse pyramidal plots is 2 + 0 = 2.
+#### Example 2
+
+![](images/2.JPG)
+
+- **Input:** `grid = [[1,1,1],[1,1,1]]`
+- **Output:** `2`
+- **Explanation:** The pyramidal plot is shown in blue, and the inverse pyramidal plot is shown in red.
+Hence the total number of plots is 1 + 1 = 2.
+#### Example 3
+
+![](images/3.JPG)
+
+- **Input:** `grid = [[1,1,1,1,0],[1,1,1,1,1],[1,1,1,1,1],[0,1,0,0,1]]`
+- **Output:** `13`
+- **Explanation:** There are 7 pyramidal plots, 3 of which are shown in the 2nd and 3rd figures.
+There are 6 inverse pyramidal plots, 2 of which are shown in the last figure.
+The total number of plots is 7 + 6 = 13.
+### Constraints
+
+- $m = \text{grid.length}$
+
+- $n = \text{grid}[i].length$
+
+- $1 \le m, n \le 1000$
+
+- $1 \le m * n \le 10^{5}$
+
+- $\text{grid}[i][j]$ is either `0` or `1`.

@@ -10,7 +10,53 @@ Return `true` if such a **permutation** exists, otherwise return `false`.
 
 **Note**:
 
-<ul>
-	<li>The **factorial** of a non-negative integer `x`, denoted as `x!`, is the **product** of all positive integers **less than or equal** to `x`, and `0! = 1`.</li>
-	<li>A **permutation** is a rearrangement of all the digits of a number that does **not** start with zero. Any arrangement starting with zero is invalid.</li>
-</ul>
+- The **factorial** of a non-negative integer `x`, denoted as `x!`, is the **product** of all positive integers **less than or equal** to `x`, and $0! = 1$.
+
+- A **permutation** is a rearrangement of all the digits of a number that does **not** start with zero. Any arrangement starting with zero is invalid.
+### Function Contract
+
+**Inputs**
+
+- `n`: A positive integer whose complete multiset of decimal digits may be rearranged.
+
+For a decimal integer $x$ with digit multiset $D(x)$, define its digit-factorial sum as
+
+$F(x)=\sum_{d\in D(x)} d!.$
+
+A candidate must use every digit of `n` exactly once and must have no leading zero. It is digitorial precisely when its numeric value $x$ satisfies $F(x)=x$.
+
+Let $D$ be the number of decimal digits in `n`.
+
+**Return value**
+
+Return `true` if some valid digit permutation $x$ satisfies $F(x)=x$; otherwise, return `false`.
+
+### Examples
+
+#### Example 1
+
+<div class="example-block">
+**Input:** n = 145
+
+**Output:** true
+
+**Explanation:**
+
+The number 145 itself is digitorial since $1! + 4! + 5! = 1 + 24 + 120 = 145$. Thus, the answer is `true`.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** n = 10
+
+**Output:** false
+
+**Explanation:**​​​​​​​
+
+10 is not digitorial since $1! + 0! = 2$ is not equal to 10, and the permutation `"01"` is invalid because it starts with zero.
+
+</div>
+### Constraints
+
+- $1 \le n \le 10^{9}$

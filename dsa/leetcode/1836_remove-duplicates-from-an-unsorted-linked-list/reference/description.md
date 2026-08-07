@@ -1,5 +1,37 @@
 ## Description
 
-Given the head of an unsorted singly linked list, identify every value that occurs more than once anywhere in the original list. Delete every node carrying any such value, including its first occurrence.
+Given the `head` of a linked list, find all the values that appear **more than once** in the list and delete the nodes that have any of those values.
 
-Return the head of the remaining list. Nodes whose values occurred exactly once must retain their original relative order. The list contains at least one node initially, but every node may be removed.
+Return *the linked list after the deletions.*
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+
+#### Example 1
+
+![](images/tmp-linked-list.jpg)
+
+- **Input:** $head = [1,2,3,2]$
+- **Output:** `[1,3]`
+- **Explanation:** 2 appears twice in the linked list, so all 2's should be deleted. After deleting all 2's, we are left with [1,3].
+#### Example 2
+
+![](images/tmp-linked-list-1.jpg)
+
+- **Input:** $head = [2,1,1,2]$
+- **Output:** `[]`
+- **Explanation:** 2 and 1 both appear twice. All the elements should be deleted.
+#### Example 3
+
+![](images/tmp-linked-list-2.jpg)
+
+- **Input:** $head = [3,2,2,1,3,2,4]$
+- **Output:** `[1,4]`
+- **Explanation:** 3 appears twice and 2 appears three times. After deleting all 3's and 2's, we are left with [1,4].
+### Constraints
+
+- The number of nodes in the list is in the range $[1, 10^{5}]$
+
+- $1 \le \text{Node.val} \le 10^{5}$

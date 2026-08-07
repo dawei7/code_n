@@ -1,7 +1,55 @@
 ## Description
 
-<p data-end="189" data-start="146">You are given a 2D integer array `points` where `points[i] = [x_i, y_i]` represents the coordinates of the `i^th` point on the Cartesian plane.
+You are given a 2D integer array `points` where $\text{points}[i] = [x_{i}, y_{i}]$ represents the coordinates of the $$i^{\text{th}}$$ point on the Cartesian plane.
 
-<p data-end="189" data-start="146">Return <em data-end="330" data-start="297">the number of unique </em>*trapezoids* that can be formed by choosing any four distinct points from `points`.
+Return *the number of unique **trapezoids* that can be formed by choosing any four distinct points from `points`.
 
-<p data-end="579" data-start="405">A** ****trapezoid** is a convex quadrilateral with <strong data-end="496" data-start="475">at least one pair</strong> of parallel sides. Two lines are parallel if and only if they have the same slope.
+A** ****trapezoid** is a convex quadrilateral with **at least one pair** of parallel sides. Two lines are parallel if and only if they have the same slope.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+<div class="example-block">
+**Input:** points = [[-3,2],[3,0],[2,3],[3,2],[2,-3]]
+
+**Output:** 2
+
+**Explanation:**
+
+![](images/desmos-graph-4.png)
+
+![](images/desmos-graph-3.png)
+
+There are two distinct ways to pick four points that form a trapezoid:
+
+- The points `[-3,2], [2,3], [3,2], [2,-3]` form one trapezoid.
+
+- The points `[2,3], [3,2], [3,0], [2,-3]` form another trapezoid.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** points = [[0,0],[1,0],[0,1],[2,1]]
+
+**Output:** 1
+
+**Explanation:**
+
+![](images/desmos-graph-5.png)
+
+There is only one trapezoid which can be formed.
+
+</div>
+### Constraints
+
+- $4 \le \text{points.length} \le 500$
+
+- $–1000 \le x_{i}, y_{i} \le 1000$
+
+- All points are pairwise distinct.

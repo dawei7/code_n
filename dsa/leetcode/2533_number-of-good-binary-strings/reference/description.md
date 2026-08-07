@@ -1,5 +1,45 @@
 ## Description
 
-You are given `minLength`, `maxLength`, `oneGroup`, and `zeroGroup`. A binary string is good when its length lies in the inclusive interval `[minLength, maxLength]`, every maximal block of consecutive `1` characters has length divisible by `oneGroup`, and every maximal block of consecutive `0` characters has length divisible by `zeroGroup`.
+You are given four integers `minLength`, `maxLength`, `oneGroup` and `zeroGroup`.
 
-Count all distinct good binary strings and return the count modulo $10^9+7$. A missing block has size zero, which is considered a multiple of every positive group size; consequently, an all-zero or all-one string may be valid when its one present block meets the corresponding divisibility rule.
+A binary string is **good** if it satisfies the following conditions:
+
+- The length of the string is in the range `[minLength, maxLength]`.
+
+- The size of each block of consecutive `1`'s is a multiple of `oneGroup`.
+
+		<li>For example in a binary string `00<u>11</u>0<u>1111</u>00` sizes of each block of consecutive ones are `[2,4]`.
+
+	</li>
+- The size of each block of consecutive `0`'s is a multiple of `zeroGroup`.
+
+		<li>For example, in a binary string `<u>00</u>11<u>0</u>1111<u>00</u>` sizes of each block of consecutive zeros are `[2,1,2]`.
+
+	</li>
+
+Return *the number of **good** binary strings*. Since the answer may be too large, return it **modulo** $10^{9} + 7$.
+
+**Note** that `0` is considered a multiple of all the numbers.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+
+#### Example 1
+
+- **Input:** $minLength = 2, maxLength = 3, oneGroup = 1, zeroGroup = 2$
+- **Output:** `5`
+- **Explanation:** There are 5 good binary strings in this example: "00", "11", "001", "100", and "111".
+It can be proven that there are only 5 good strings satisfying all conditions.
+#### Example 2
+
+- **Input:** $minLength = 4, maxLength = 4, oneGroup = 4, zeroGroup = 3$
+- **Output:** `1`
+- **Explanation:** There is only 1 good binary string in this example: "1111".
+It can be proven that there is only 1 good string satisfying all conditions.
+### Constraints
+
+- $1 \le minLength \le maxLength \le 10^{5}$
+
+- $1 \le oneGroup, zeroGroup \le maxLength$

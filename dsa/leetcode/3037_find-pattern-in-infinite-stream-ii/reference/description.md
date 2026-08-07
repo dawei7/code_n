@@ -1,5 +1,39 @@
 ## Description
 
-You are given a binary array `pattern` and an `InfiniteStream` representing a 0-indexed, unending sequence of bits. The stream exposes only `next()`, which consumes and returns one bit. Earlier bits cannot be indexed, requested again, or recovered by rewinding the stream.
+You are given a binary array `pattern` and an object `stream` of class `InfiniteStream` representing a **0-indexed** infinite stream of bits.
 
-Return the first index at which all entries of `pattern` occur consecutively in the same order. The input guarantees that a matching start exists among the first $10^5$ stream positions, so a sequential algorithm will eventually reach the end of the first occurrence.
+The class `InfiniteStream` contains the following function:
+
+- `int next()`: Reads a **single** bit (which is either `0` or `1`) from the stream and returns it.
+
+Return *the **first starting** index where the pattern matches the bits read from the stream*. For example, if the pattern is `[1, 0]`, the first match is the highlighted part in the stream `[0, **<u>1, 0</u>**, 1, ...]`.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+
+#### Example 1
+
+- **Input:** $stream = [1,1,1,0,1,1,1,...], pattern = [0,1]$
+- **Output:** `3`
+- **Explanation:** The first occurrence of the pattern [0,1] is highlighted in the stream [1,1,1,**<u>0,1</u>**,...], which starts at index 3.
+#### Example 2
+
+- **Input:** $stream = [0,0,0,0,...], pattern = [0]$
+- **Output:** `0`
+- **Explanation:** The first occurrence of the pattern [0] is highlighted in the stream [**<u>0</u>**,...], which starts at index 0.
+#### Example 3
+
+- **Input:** $stream = [1,0,1,1,0,1,1,0,1,...], pattern = [1,1,0,1]$
+- **Output:** `2`
+- **Explanation:** The first occurrence of the pattern [1,1,0,1] is highlighted in the stream [1,0,**<u>1,1,0,1</u>**,...], which starts at index 2.
+### Constraints
+
+- $1 \le \text{pattern.length} \le 10^{4}$
+
+- `pattern` consists only of `0` and `1`.
+
+- `stream` consists only of `0` and `1`.
+
+- The input is generated such that the pattern's start index exists in the first $10^{5}$ bits of the stream.

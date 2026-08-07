@@ -1,7 +1,42 @@
 ## Description
 
-You are given points on the X-Y plane, where `points[i] = [x_i, y_i]`. Joining the points sequentially forms a polygon.
+You are given an array of points on the **X-Y** plane `points` where $\text{points}[i] = [x_{i}, y_{i}]$. The points form a polygon when joined sequentially.
 
-Return `true` when that polygon is convex and `false` otherwise. A polygon is convex when the complete line segment between any two points in the polygon stays inside or on its boundary.
+Return `true` if this polygon is <a href="http://en.wikipedia.org/wiki/Convex_polygon" target="_blank">convex</a> and `false` otherwise.
 
-The formed polygon is guaranteed to be simple: exactly two edges meet at each vertex, and no edges intersect anywhere else.
+You may assume the polygon formed by given points is always a <a href="http://en.wikipedia.org/wiki/Simple_polygon" target="_blank">simple polygon</a>. In other words, we ensure that exactly two edges intersect at each vertex and that edges otherwise don't intersect each other.
+### Function Contract
+
+**Inputs**
+
+- `points`: The unique polygon vertices $[x_{i}, y_{i}]$ in sequential boundary order.
+
+**Return value**
+
+- Return `True` if the polygon is convex; otherwise, return `False`.
+
+The given order already defines the polygon boundary, including the closing edge from the final point back to the first.
+
+### Examples
+
+#### Example 1
+
+![](images/covpoly1-plane.jpg)
+
+- **Input:** $points = [[0,0],[0,5],[5,5],[5,0]]$
+- **Output:** `true`
+#### Example 2
+
+![](images/covpoly2-plane.jpg)
+
+- **Input:** $points = [[0,0],[0,10],[10,10],[10,0],[5,5]]$
+- **Output:** `false`
+### Constraints
+
+- $3 \le \text{points.length} \le 10^{4}$
+
+- $\text{points}[i].length = 2$
+
+- $-10^{4} \le x_{i}, y_{i} \le 10^{4}$
+
+- All the given points are **unique**.

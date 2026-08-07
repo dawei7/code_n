@@ -4,9 +4,34 @@ Given a string `s` containing only three types of characters: `'('`, `')'` and `
 
 The following rules define a **valid** string:
 
-<ul>
-	<li>Any left parenthesis `'('` must have a corresponding right parenthesis `')'`.</li>
-	<li>Any right parenthesis `')'` must have a corresponding left parenthesis `'('`.</li>
-	<li>Left parenthesis `'('` must go before the corresponding right parenthesis `')'`.</li>
-	<li>`'*'` could be treated as a single right parenthesis `')'` or a single left parenthesis `'('` or an empty string `""`.</li>
-</ul>
+- Any left parenthesis `'('` must have a corresponding right parenthesis `')'`.
+
+- Any right parenthesis `')'` must have a corresponding left parenthesis `'('`.
+
+- Left parenthesis `'('` must go before the corresponding right parenthesis `')'`.
+
+- `'*'` could be treated as a single right parenthesis `')'` or a single left parenthesis `'('` or an empty string `""`.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+- **Input:** `s = "()"`
+- **Output:** `true`
+#### Example 2
+
+- **Input:** `s = "(*)"`
+- **Output:** `true`
+#### Example 3
+
+- **Input:** `s = "(*))"`
+- **Output:** `true`
+### Constraints
+
+- $1 \le \text{s.length} \le 100$
+
+- $s[i]$ is `'('`, `')'` or `'*'`.

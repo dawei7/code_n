@@ -16,14 +16,67 @@ However, while decoding the message, you realize that there are many different w
 
 For example, `"11106"` can be decoded into:
 
-<ul>
-	<li>`"AAJF"` with the grouping `(1, 1, 10, 6)`</li>
-	<li>`"KJF"` with the grouping `(11, 10, 6)`</li>
-	<li>The grouping `(1, 11, 06)` is invalid because `"06"` is not a valid code (only `"6"` is valid).</li>
-</ul>
+- `"AAJF"` with the grouping `(1, 1, 10, 6)`
+
+- `"KJF"` with the grouping `(11, 10, 6)`
+
+- The grouping `(1, 11, 06)` is invalid because `"06"` is not a valid code (only `"6"` is valid).
 
 Note: there may be strings that are impossible to decode.
 
 Given a string s containing only digits, return the **number of ways** to **decode** it. If the entire string cannot be decoded in any valid way, return `0`.
 
 The test cases are generated so that the answer fits in a **32-bit** integer.
+### Function Contract
+
+**Inputs**
+
+- `s`: The digit-only encoded message.
+
+**Return value**
+
+Return the number of complete valid segmentations of `s` into codes from `1` through `26`.
+
+### Examples
+
+#### Example 1
+
+<div class="example-block">
+**Input:** s = "12"
+
+**Output:** 2
+
+**Explanation:**
+
+"12" could be decoded as "AB" (1 2) or "L" (12).
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** s = "226"
+
+**Output:** 3
+
+**Explanation:**
+
+"226" could be decoded as "BZ" (2 26), "VF" (22 6), or "BBF" (2 2 6).
+
+</div>
+#### Example 3
+
+<div class="example-block">
+**Input:** s = "06"
+
+**Output:** 0
+
+**Explanation:**
+
+"06" cannot be mapped to "F" because of the leading zero ("6" is different from "06"). In this case, the string is not a valid encoding, so return 0.
+
+</div>
+### Constraints
+
+- $1 \le \text{s.length} \le 100$
+
+- `s` contains only digits and may contain leading zero(s).

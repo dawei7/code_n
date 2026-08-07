@@ -1,7 +1,58 @@
 ## Description
 
-Several pistons move vertically between positions `0` and `height`. The current position of a piston is also the area beneath it. `positions[i]` gives its initial position, while `directions[i]` is `U` for upward motion or `D` for downward motion.
+There are several pistons in an old car engine, and we want to calculate the **maximum** possible area **under** the pistons.
 
-During every second, each piston moves one unit in its current direction. Reaching either endpoint reverses its direction for subsequent motion, so every piston repeatedly travels from bottom to top and back. Endpoint directions are interpreted through this immediate reflection: a piston at an endpoint next moves into the valid interval.
+You are given:
 
-At any integer time, the total occupied area is the sum of all piston positions. Return the greatest total that occurs over the continuing periodic motion, including the initial state.
+- An integer `height`, representing the **maximum** height a piston can reach.
+
+- An integer array `positions`, where $\text{positions}[i]$ is the current position of piston `i`, which is equal to the current area **under** it.
+
+- A string `directions`, where $\text{directions}[i]$ is the current moving direction of piston `i`, `'U'` for up, and `'D'` for down.
+
+Each second:
+
+- Every piston moves in its current direction 1 unit. e.g., if the direction is up, $\text{positions}[i]$ is incremented by 1.
+
+- If a piston has reached one of the ends, i.e., $\text{positions}[i] = 0$ or $\text{positions}[i] = height$, its direction will change.
+
+Return the *maximum possible area* under all the pistons.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+
+#### Example 1
+
+<div class="example-block">
+**Input:** height = 5, positions = [2,5], directions = "UD"
+
+**Output:** 7
+
+**Explanation:**
+
+The current position of the pistons has the maximum possible area under it.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** height = 6, positions = [0,0,6,3], directions = "UUDU"
+
+**Output:** 15
+
+**Explanation:**
+
+After 3 seconds, the pistons will be in positions `[3, 3, 3, 6]`, which has the maximum possible area under it.
+
+</div>
+### Constraints
+
+- $1 \le height \le 10^{6}$
+
+- $1 \le \text{positions.length} = \text{directions.length} \le 10^{5}$
+
+- $0 \le \text{positions}[i] \le height$
+
+- $\text{directions}[i]$ is either `'U'` or `'D'`.

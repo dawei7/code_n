@@ -1,5 +1,42 @@
 ## Description
 
-Write a JavaScript generator function that accepts a nonnegative integer `n` and yields the factorial sequence through `n!`. For positive `n`, the sequence contains `1!`, `2!`, and every subsequent factorial up to `n!`, in that order. Each value is produced on the next advancement of the generator.
+Write a generator function that takes an integer `n` as an argument and returns a generator object which yields the **factorial sequence**.
 
-Factorial multiplication follows $i! = i \cdot (i - 1)!$. The special input `n = 0` must still yield one value, because $0!$ is defined as $1$; for positive inputs, do not emit a separate `0!` entry before `1!`.
+The **factorial sequence** is defined by the relation $n! = n * (n-1) * (n-2) * ... * 2 * 1​​​.$
+
+The factorial of 0 is defined as 1.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+
+#### Example 1
+
+- **Input:** $n = 5$
+- **Output:** `[1,2,6,24,120]`
+- **Explanation:**
+const gen = factorial(5)
+gen.next().value // 1
+gen.next().value // 2
+gen.next().value // 6
+gen.next().value // 24
+gen.next().value // 120
+#### Example 2
+
+- **Input:** $n = 2$
+- **Output:** `[1,2]`
+- **Explanation:**
+const gen = factorial(2)
+gen.next().value // 1
+gen.next().value // 2
+#### Example 3
+
+- **Input:** $n = 0$
+- **Output:** `[1]`
+- **Explanation:**
+const gen = factorial(0)
+gen.next().value // 1
+### Constraints
+
+- $0 \le n \le 18$

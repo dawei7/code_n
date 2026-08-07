@@ -11,3 +11,35 @@ To reach the princess as quickly as possible, the knight decides to move only **
 Return *the knight's minimum initial health so that he can rescue the princess*.
 
 **Note** that any room can contain threats or power-ups, even the first room the knight enters and the bottom-right room where the princess is imprisoned.
+### Function Contract
+
+**Inputs**
+
+- `dungeon`: A rectangular integer matrix of health gains and losses.
+
+**Return value**
+
+Return the smallest positive initial health for which at least one right-and-down path reaches the bottom-right room without health ever falling below `1`.
+
+### Examples
+
+#### Example 1
+
+![](images/dungeon-grid-1.jpg)
+
+- **Input:** $dungeon = [[-2,-3,3],[-5,-10,1],[10,30,-5]]$
+- **Output:** `7`
+- **Explanation:** The initial health of the knight must be at least 7 if he follows the optimal path: RIGHT-> RIGHT -> DOWN -> DOWN.
+#### Example 2
+
+- **Input:** $dungeon = [[0]]$
+- **Output:** `1`
+### Constraints
+
+- $m = \text{dungeon.length}$
+
+- $n = \text{dungeon}[i].length$
+
+- $1 \le m, n \le 200$
+
+- $-1000 \le \text{dungeon}[i][j] \le 1000$

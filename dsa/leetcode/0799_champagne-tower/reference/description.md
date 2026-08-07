@@ -6,6 +6,32 @@ Then, some champagne is poured into the first glass at the top.  When the topmos
 
 For example, after one cup of champagne is poured, the top most glass is full.  After two cups of champagne are poured, the two glasses on the second row are half full.  After three cups of champagne are poured, those two cups become full - there are 3 full glasses total now.  After four cups of champagne are poured, the third row has the middle glass half full, and the two outside glasses are a quarter full, as pictured below.
 
-<img alt="" src="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/03/09/tower.png" style="height: 241px; width: 350px;" />
+![](images/tower.png)
 
-Now after pouring some non-negative integer cups of champagne, return how full the `j^th` glass in the `i^th` row is (both `i` and `j` are 0-indexed.)
+Now after pouring some non-negative integer cups of champagne, return how full the $$j^{\text{th}}$$ glass in the $$i^{\text{th}}$$ row is (both `i` and `j` are 0-indexed.)
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+- **Input:** $poured = 1, \text{query}_{row} = 1, \text{query}_{glass} = 1$
+- **Output:** `0.00000`
+- **Explanation:** We poured 1 cup of champange to the top glass of the tower (which is indexed as (0, 0)). There will be no excess liquid so all the glasses under the top glass will remain empty.
+#### Example 2
+
+- **Input:** $poured = 2, \text{query}_{row} = 1, \text{query}_{glass} = 1$
+- **Output:** `0.50000`
+- **Explanation:** We poured 2 cups of champange to the top glass of the tower (which is indexed as (0, 0)). There is one cup of excess liquid. The glass indexed as (1, 0) and the glass indexed as (1, 1) will share the excess liquid equally, and each will get half cup of champange.
+#### Example 3
+
+- **Input:** $poured = 100000009, \text{query}_{row} = 33, \text{query}_{glass} = 17$
+- **Output:** `1.00000`
+### Constraints
+
+- $0 \le poured \le 10^{9}$
+
+- $0 \le \text{query}_{glass} \le \text{query}_{row} < 100$

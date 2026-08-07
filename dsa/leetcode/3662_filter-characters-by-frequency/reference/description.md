@@ -1,7 +1,56 @@
 ## Description
 
-Given a string `s` of lowercase English letters and an integer `k`, determine each character's frequency across the complete original string.
+You are given a string `s` consisting of lowercase English letters and an integer `k`.
 
-Construct a new string by retaining exactly the occurrences whose character appears strictly fewer than `k` times in `s`. If a character qualifies, keep every one of its occurrences; if its frequency is at least `k`, remove all of them.
+Your task is to construct a new string that contains only those characters from `s` which appear **fewer** than `k` times in the entire string. The order of characters in the new string must be the **same** as their **order** in `s`.
 
-Preserve the original left-to-right order of every retained occurrence. Return the constructed string, or the empty string when no character has a qualifying frequency.
+Return the resulting string. If no characters qualify, return an empty string.
+
+Note: **Every occurrence** of a character that occurs fewer than `k` times is kept.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+
+#### Example 1
+
+<div class="example-block">
+**Input:** s = "aadbbcccca", k = 3
+
+**Output:** "dbb"
+
+**Explanation:**
+
+Character frequencies in `s`:
+
+- `'a'` appears 3 times
+
+- `'d'` appears 1 time
+
+- `'b'` appears 2 times
+
+- `'c'` appears 4 times
+
+Only `'d'` and `'b'` appear fewer than 3 times. Preserving their order, the result is `"dbb"`.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** s = "xyz", k = 2
+
+**Output:** "xyz"
+
+**Explanation:**
+
+All characters (`'x'`, `'y'`, `'z'`) appear exactly once, which is fewer than 2. Thus the whole string is returned.
+
+</div>
+### Constraints
+
+- $1 \le \text{s.length} \le 100$
+
+- `s` consists of lowercase English letters.
+
+- $1 \le k \le \text{s.length}$

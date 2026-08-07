@@ -1,5 +1,42 @@
 ## Description
 
-You are given a 0-indexed two-dimensional integer array `nodes`. Each entry `nodes[i] = [id, parentId]` describes the node appearing at index $i$: `id` is that node's identifier, and `parentId` identifies its parent. The unique root has no parent and therefore uses `parentId = -1`. The supplied pairs are guaranteed to describe a binary tree.
+Given a **0-indexed** integer **2D array** `nodes`, your task is to determine if the given array represents the **preorder** traversal of some **binary** tree.
 
-Determine whether the entries occur in a preorder traversal of some orientation of that tree. A preorder traversal visits the current node first, then traverses one child subtree completely, and finally traverses the other child subtree. Return whether the given ordering can follow those rules.
+For each index `i`, $\text{nodes}[i] = [id, parentId]$, where `id` is the id of the node at the index `i` and `parentId` is the id of its parent in the tree (if the node has no parent, then $parentId = -1$).
+
+Return `true` *if the given array **represents the preorder traversal of some tree, and* `false` *otherwise.*
+
+**Note:** the **preorder** traversal of a tree is a recursive way to traverse a tree in which we first visit the current node, then we do the preorder traversal for the left child, and finally, we do it for the right child.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+
+#### Example 1
+
+- **Input:** $nodes = [[0,-1],[1,0],[2,0],[3,2],[4,2]]$
+- **Output:** `true`
+- **Explanation:** The given nodes make the tree in the picture below.
+We can show that this is the preorder traversal of the tree, first we visit node 0, then we do the preorder traversal of the right child which is [1], then we do the preorder traversal of the left child which is [2,3,4].
+
+![](images/1.png)
+#### Example 2
+
+- **Input:** $nodes = [[0,-1],[1,0],[2,0],[3,1],[4,1]]$
+- **Output:** `false`
+- **Explanation:** The given nodes make the tree in the picture below.
+For the preorder traversal, first we visit node 0, then we do the preorder traversal of the right child which is [1,3,4], but we can see that in the given order, 2 comes between 1 and 3, so, it's not the preorder traversal of the tree.
+
+![](images/2.png)
+### Constraints
+
+- $1 \le \text{nodes.length} \le 10^{5}$
+
+- $\text{nodes}[i].length = 2$
+
+- $0 \le \text{nodes}[i][0] \le 10^{5}$
+
+- $-1 \le \text{nodes}[i][1] \le 10^{5}$
+
+- The input is generated such that `nodes` make a binary tree.

@@ -1,13 +1,67 @@
 ## Description
 
-<p data-end="191" data-start="0">You are given an integer array <code data-end="61" data-start="55">nums</code> of length <code data-end="75" data-start="72">n</code>.
+You are given an integer array `nums` of length `n`.
 
-<p data-end="191" data-start="0">A <strong data-end="99" data-is-only-node="" data-start="79">trionic subarray</strong> is a contiguous subarray <code data-end="136" data-start="125">nums[l...r]</code> (with <code data-end="158" data-start="143">0 <= l < r < n</code>) for which there exist indices `l < p < q < r` such that:
+A **trionic subarray** is a contiguous subarray `nums[l...r]` (with $0 \le l < r < n$) for which there exist indices `l < p < q < r` such that:
 
-<ul>
-	<li data-end="267" data-start="230"><code data-end="241" data-start="230">nums[l...p]</code> is **strictly** increasing,</li>
-	<li data-end="307" data-start="270"><code data-end="281" data-start="270">nums[p...q]</code> is **strictly** decreasing,</li>
-	<li data-end="347" data-start="310"><code data-end="321" data-start="310">nums[q...r]</code> is **strictly** increasing.</li>
-</ul>
+- `nums[l...p]` is **strictly** increasing,
 
-<p data-end="609" data-is-last-node="" data-is-only-node="" data-start="349">Return the **maximum** sum of any trionic subarray in <code data-end="417" data-start="411">nums</code>.
+- `nums[p...q]` is **strictly** decreasing,
+
+- `nums[q...r]` is **strictly** increasing.
+
+Return the **maximum** sum of any trionic subarray in `nums`.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+<div class="example-block">
+**Input:** nums = [0,-2,-1,-3,0,2,-1]
+
+**Output:** -4
+
+**Explanation:**
+
+Pick $l = 1$, $p = 2$, $q = 3$, $r = 5$:
+
+- $nums[l...p] = nums[1...2] = [-2, -1]$ is strictly increasing (`-2 < -1`).
+
+- $nums[p...q] = nums[2...3] = [-1, -3]$ is strictly decreasing (`-1 > -3`)
+
+- $nums[q...r] = nums[3...5] = [-3, 0, 2]$ is strictly increasing (`-3 < 0 < 2`).
+
+- Sum = $(-2) + (-1) + (-3) + 0 + 2 = -4$.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** nums = [1,4,2,7]
+
+**Output:** 14
+
+**Explanation:**
+
+Pick $l = 0$, $p = 1$, $q = 2$, $r = 3$:
+
+- $nums[l...p] = nums[0...1] = [1, 4]$ is strictly increasing (`1 < 4`).
+
+- $nums[p...q] = nums[1...2] = [4, 2]$ is strictly decreasing (`4 > 2`).
+
+- $nums[q...r] = nums[2...3] = [2, 7]$ is strictly increasing (`2 < 7`).
+
+- Sum = $1 + 4 + 2 + 7 = 14$.
+
+</div>
+### Constraints
+
+- $4 \le n = \text{nums.length} \le 10^{5}$
+
+- $-10^{9} \le \text{nums}[i] \le 10^{9}$
+
+- It is guaranteed that at least one trionic subarray exists.

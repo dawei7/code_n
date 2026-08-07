@@ -1,11 +1,65 @@
 ## Description
 
-You are given an **undirected connected** graph of `n` nodes, numbered from `0` to `n - 1`. Each node is connected to **at most** 2 other nodes.
+You are given an **undirected connected** graph of `n` nodes, numbered from `0` to $n - 1$. Each node is connected to **at most** 2 other nodes.
 
-The graph consists of `m` edges, represented by a 2D array `edges`, where `edges[i] = [a_i, b_i]` indicates that there is an edge between nodes `a_i` and `b_i`.
+The graph consists of `m` edges, represented by a 2D array `edges`, where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates that there is an edge between nodes $a_{i}$ and $b_{i}$.
 
-<p data-end="502" data-start="345">You have to assign a **unique** value from <code data-end="391" data-start="388">1</code> to <code data-end="398" data-start="395">n</code> to each node. The value of an edge will be the **product** of the values assigned to the two nodes it connects.
+You have to assign a **unique** value from `1` to `n` to each node. The value of an edge will be the **product** of the values assigned to the two nodes it connects.
 
-<p data-end="502" data-start="345">Your score is the sum of the values of all edges in the graph.
+Your score is the sum of the values of all edges in the graph.
 
 Return the **maximum** score you can achieve.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+![](images/screenshot-from-2025-05-13-01-27-52.png)
+
+<div class="example-block">
+**Input:** n = 4, edges = [[0,1],[1,2],[2,3]]
+
+**Output:** 23
+
+**Explanation:**
+
+The diagram above illustrates an optimal assignment of values to nodes. The sum of the values of the edges is: $(1 * 3) + (3 * 4) + (4 * 2) = 23$.
+
+</div>
+#### Example 2
+
+![](images/graphproblemex2drawio.png)
+
+<div class="example-block">
+**Input:** n = 6, edges = [[0,3],[4,5],[2,0],[1,3],[2,4],[1,5]]
+
+**Output:** 82
+
+**Explanation:**
+
+The diagram above illustrates an optimal assignment of values to nodes. The sum of the values of the edges is: $(1 * 2) + (2 * 4) + (4 * 6) + (6 * 5) + (5 * 3) + (3 * 1) = 82$.
+
+</div>
+### Constraints
+
+- $1 \le n \le 5 * 10^{4}$
+
+- $m = \text{edges.length}$
+
+- $1 \le m \le n$
+
+- $\text{edges}[i].length = 2$
+
+- $0 \le a_{i}, b_{i} < n$
+
+- $a_{i} \neq b_{i}$
+
+- There are no repeated edges.
+
+- The graph is connected.
+
+- Each node is connected to at most 2 other nodes.

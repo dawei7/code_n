@@ -1,5 +1,46 @@
 ## Description
 
-Choose one element from each of the three integer arrays `a`, `b`, and `c`. Every index combination $(i,j,k)$ defines a separate triplet `(a[i], b[j], c[k])`, even when some selected values are equal.
+Given three integer arrays `a`, `b`, and `c`, return the number of triplets $(a[i], b[j], c[k])$, such that the bitwise `XOR` between the elements of each triplet has an **even** number of set bits.
+### Function Contract
 
-For each triplet, XOR its three values and count how many set bits appear in that result. Return the number of index triplets for which this set-bit count is even. Zero has no set bits, so its count is even.
+- Refer to method signature.
+
+### Examples
+
+#### Example 1
+
+<div class="example-block">
+**Input:** a = [1], b = [2], c = [3]
+
+**Output:** 1
+
+**Explanation:**
+
+The only triplet is $(a[0], b[0], c[0])$ and their `XOR` is: $1 XOR 2 XOR 3 = \text{00}_{2}$.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** a = [1,1], b = [2,3], c = [1,5]
+
+**Output:** 4
+
+**Explanation:**
+
+Consider these four triplets:
+
+- $(a[0], b[1], c[0])$: $1 XOR 3 XOR 1 = \text{011}_{2}$
+
+- $(a[1], b[1], c[0])$: $1 XOR 3 XOR 1 = \text{011}_{2}$
+
+- $(a[0], b[0], c[1])$: $1 XOR 2 XOR 5 = \text{110}_{2}$
+
+- $(a[1], b[0], c[1])$: $1 XOR 2 XOR 5 = \text{110}_{2}$
+
+</div>
+### Constraints
+
+- $1 \le \text{a.length}, \text{b.length}, \text{c.length} \le 10^{5}$
+
+- $0 \le a[i], b[i], c[i] \le 10^{9}$

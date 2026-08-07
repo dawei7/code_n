@@ -4,13 +4,50 @@ You are given an `m x n` binary matrix `grid` where each cell is either `0` (emp
 
 You are then given stamps of size `stampHeight x stampWidth`. We want to fit the stamps such that they follow the given **restrictions** and **requirements**:
 
-<ol>
-	<li>Cover all the **empty** cells.</li>
-	<li>Do not cover any of the **occupied** cells.</li>
-	<li>We can put as **many** stamps as we want.</li>
-	<li>Stamps can **overlap** with each other.</li>
-	<li>Stamps are not allowed to be **rotated**.</li>
-	<li>Stamps must stay completely **inside** the grid.</li>
-</ol>
+- Cover all the **empty** cells.
+
+- Do not cover any of the **occupied** cells.
+
+- We can put as **many** stamps as we want.
+
+- Stamps can **overlap** with each other.
+
+- Stamps are not allowed to be **rotated**.
+
+- Stamps must stay completely **inside** the grid.
 
 Return `true` *if it is possible to fit the stamps while following the given restrictions and requirements. Otherwise, return* `false`.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+![](images/ex1.png)
+
+- **Input:** `grid = [[1,0,0,0],[1,0,0,0],[1,0,0,0],[1,0,0,0],[1,0,0,0]], stampHeight = 4, stampWidth = 3`
+- **Output:** `true`
+- **Explanation:** We have two overlapping stamps (labeled 1 and 2 in the image) that are able to cover all the empty cells.
+#### Example 2
+
+![](images/ex2.png)
+
+- **Input:** `grid = [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]], stampHeight = 2, stampWidth = 2`
+- **Output:** `false`
+- **Explanation:** There is no way to fit the stamps onto all the empty cells without the stamps going outside the grid.
+### Constraints
+
+- $m = \text{grid.length}$
+
+- $n = \text{grid}[r].length$
+
+- $1 \le m, n \le 10^{5}$
+
+- $1 \le m * n \le 2 * 10^{5}$
+
+- $\text{grid}[r][c]$ is either `0` or `1`.
+
+- $1 \le stampHeight, stampWidth \le 10^{5}$

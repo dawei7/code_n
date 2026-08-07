@@ -2,18 +2,72 @@
 
 You are given an integer array `nums` and a positive integer `k`.
 
-You must choose **exactly** one <span data-keyword="subarray-nonempty">subarray</span> of `nums` and perform **exactly** one of the following operations:
+You must choose **exactly** one subarray of `nums` and perform **exactly** one of the following operations:
 
-<ol>
-	<li>Multiply each number in the chosen subarray by `k`.</li>
-	<li>Divide each number in the chosen subarray by `k`.
-	<ul>
-		<li>When dividing a positive number by `k`, use the **floor** value of the division result.</li>
-		<li>When dividing a negative number by `k`, use the **ceiling** value of the division result.</li>
-	</ul>
+- Multiply each number in the chosen subarray by `k`.
+
+- Divide each number in the chosen subarray by `k`.
+
+		<li>When dividing a positive number by `k`, use the **floor** value of the division result.
+
+- When dividing a negative number by `k`, use the **ceiling** value of the division result.
+
 	</li>
-</ol>
 
 Return the **maximum** possible sum of a **non-empty** subarray in the resulting array.
 
 Note that the subarray chosen for the operation and the subarray chosen for the sum may be **different**.
+### Function Contract
+
+`solve(nums, k) -> int`
+
+**Inputs**
+
+- `nums`: A nonempty integer array from which both the operation subarray and the final sum subarray are selected.
+- `k`: A positive integer used as either the common multiplier or the common divisor for exactly one nonempty operation subarray.
+
+**Output**
+
+Return the maximum sum of a nonempty contiguous subarray after performing exactly one permitted operation. When division is chosen, each transformed value is independently truncated toward zero. The operation range and the range whose sum is returned may be different.
+
+### Examples
+
+#### Example 1
+
+<div class="example-block">
+**Input:** nums = [1,-2,3,4,-5], k = 2
+
+**Output:** 14
+
+**Explanation:**
+
+- Multiply each number in the subarray `[3, 4]` by 2.
+
+- This results in `nums = [1, -2, 6, 8, -5]`.
+
+- The subarray with the largest sum is `[6, 8]`, so the output is $6 + 8 = 14$.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** nums = [-5,-4,-3], k = 2
+
+**Output:** -1
+
+**Explanation:**
+
+- Divide each number in the subarray `[-3]` by 2.
+
+- This results in `nums = [-5, -4, -1]`.
+
+- The subarray with the largest sum is `[-1]`, so the output is -1.
+
+</div>
+### Constraints
+
+- $1 \le \text{nums.length} \le 10^{5}$
+
+- $-10^{5} \le \text{nums}[i] \le 10^{5}$
+
+- $1 \le k \le 10^{5}$

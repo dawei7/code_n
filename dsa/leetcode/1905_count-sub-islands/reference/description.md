@@ -4,4 +4,36 @@ You are given two `m x n` binary matrices `grid1` and `grid2` containing only `0
 
 An island in `grid2` is considered a **sub-island **if there is an island in `grid1` that contains **all** the cells that make up **this** island in `grid2`.
 
-Return the ***number</strong> of islands in </em>`grid2` <em>that are considered <strong>sub-islands***.
+Return the ***number** of islands in *`grid2` *that are considered **sub-islands***.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+![](images/test1.png)
+
+- **Input:** $grid1 = [[1,1,1,0,0],[0,1,1,1,1],[0,0,0,0,0],[1,0,0,0,0],[1,1,0,1,1]], grid2 = [[1,1,1,0,0],[0,0,1,1,1],[0,1,0,0,0],[1,0,1,1,0],[0,1,0,1,0]]$
+- **Output:** `3`
+- **Explanation:** In the picture above, the grid on the left is grid1 and the grid on the right is grid2.
+The 1s colored red in grid2 are those considered to be part of a sub-island. There are three sub-islands.
+#### Example 2
+
+![](images/testcasex2.png)
+
+- **Input:** $grid1 = [[1,0,1,0,1],[1,1,1,1,1],[0,0,0,0,0],[1,1,1,1,1],[1,0,1,0,1]], grid2 = [[0,0,0,0,0],[1,1,1,1,1],[0,1,0,1,0],[0,1,0,1,0],[1,0,0,0,1]]$
+- **Output:** `2`
+- **Explanation:** In the picture above, the grid on the left is grid1 and the grid on the right is grid2.
+The 1s colored red in grid2 are those considered to be part of a sub-island. There are two sub-islands.
+### Constraints
+
+- $m = \text{grid1.length} = \text{grid2.length}$
+
+- $n = \text{grid1}[i].length = \text{grid2}[i].length$
+
+- $1 \le m, n \le 500$
+
+- $\text{grid1}[i][j]$ and $\text{grid2}[i][j]$ are either `0` or `1`.

@@ -5,3 +5,23 @@ You have a set of integers `s`, which originally contains all the numbers from `
 You are given an integer array `nums` representing the data status of this set after the error.
 
 Find the number that occurs twice and the number that is missing and return *them in the form of an array*.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+- **Input:** `nums = [1,2,2,4]`
+- **Output:** `[2,3]`
+#### Example 2
+
+- **Input:** `nums = [1,1]`
+- **Output:** `[1,2]`
+### Constraints
+
+- $2 \le \text{nums.length} \le 10^{4}$
+
+- $1 \le \text{nums}[i] \le 10^{4}$

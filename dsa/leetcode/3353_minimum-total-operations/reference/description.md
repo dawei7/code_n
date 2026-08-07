@@ -1,7 +1,52 @@
 ## Description
 
-You are given an integer array `nums`.
+Given an array of integers `nums`, you can perform *any* number of operations on this array.
 
-In one operation, you can select an index `i` (`0 <= i < nums.length - 1`) and change `nums[i]` to `nums[i + 1]`.
+In each **operation**, you can:
 
-Return the **minimum** number of operations required to make all elements of `nums` **equal**.
+- Choose a **prefix** of the array.
+
+- Choose an integer `k` (which can be negative) and add `k` to each element in the chosen prefix.
+
+A **prefix** of an array is a subarray that starts from the beginning of the array and extends to any point within it.
+
+Return the **minimum** number of operations required to make all elements in `arr` equal.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+
+#### Example 1
+
+<div class="example-block">
+**Input:** nums = [1,4,2]
+
+**Output:** 2
+
+**Explanation:**
+
+- **Operation 1**: Choose the prefix `[1, 4]` of length 2 and add -2 to each element of the prefix. The array becomes `[-1, 2, 2]`.
+
+- **Operation 2**: Choose the prefix `[-1]` of length 1 and add 3 to it. The array becomes `[2, 2, 2]`.
+
+- Thus, the minimum number of required operations is 2.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** nums = [10,10,10]
+
+**Output:** 0
+
+**Explanation:**
+
+- All elements are already equal, so no operations are needed.
+
+</div>
+### Constraints
+
+- $1 \le \text{nums.length} \le 10^{5}$
+
+- $-10^{9} \le \text{nums}[i] \le 10^{9}$

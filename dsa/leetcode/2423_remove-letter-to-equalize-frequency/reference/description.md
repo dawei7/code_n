@@ -6,7 +6,28 @@ Return* *`true`* if it is possible to remove one letter so that the frequency of
 
 **Note:**
 
-<ul>
-	<li>The **frequency** of a letter `x` is the number of times it occurs in the string.</li>
-	<li>You **must** remove exactly one letter and cannot choose to do nothing.</li>
-</ul>
+- The **frequency** of a letter `x` is the number of times it occurs in the string.
+
+- You **must** remove exactly one letter and cannot choose to do nothing.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+- **Input:** $word = "abcc"$
+- **Output:** `true`
+- **Explanation:** Select index 3 and delete it: word becomes "abc" and each character has a frequency of 1.
+#### Example 2
+
+- **Input:** $word = "aazz"$
+- **Output:** `false`
+- **Explanation:** We must delete a character, so either the frequency of "a" is 1 and the frequency of "z" is 2, or vice versa. It is impossible to make all present letters have equal frequency.
+### Constraints
+
+- $2 \le \text{word.length} \le 100$
+
+- `word` consists of lowercase English letters only.

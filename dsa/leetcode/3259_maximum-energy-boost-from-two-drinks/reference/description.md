@@ -7,3 +7,47 @@ You want to *maximize* your total energy boost by drinking one energy drink *per
 Return the **maximum** total energy boost you can gain in the next `n` hours.
 
 **Note** that you can start consuming *either* of the two energy drinks.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+<div class="example-block">
+**Input:** energyDrinkA = [1,3,1], energyDrinkB = [3,1,1]
+
+**Output:** 5
+
+**Explanation:**
+
+To gain an energy boost of 5, drink only the energy drink A (or only B).
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** energyDrinkA = [4,1,1], energyDrinkB = [1,1,3]
+
+**Output:** 7
+
+**Explanation:**
+
+To gain an energy boost of 7:
+
+- Drink the energy drink A for the first hour.
+
+- Switch to the energy drink B and we lose the energy boost of the second hour.
+
+- Gain the energy boost of the drink B in the third hour.
+
+</div>
+### Constraints
+
+- $n = \text{energyDrinkA.length} = \text{energyDrinkB.length}$
+
+- $3 \le n \le 10^{5}$
+
+- $1 \le \text{energyDrinkA}[i], \text{energyDrinkB}[i] \le 10^{5}$

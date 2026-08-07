@@ -1,7 +1,58 @@
 ## Description
 
-A hidden array `nums` contains only `0` and `1`. You cannot read its entries directly. Instead, an `ArrayReader` exposes its length and lets you query four distinct indices in strictly increasing order.
+We have an integer array `nums`, where all the integers in `nums` are **0** or **1**. You will not be given direct access to the array, instead, you will have an **API** `ArrayReader` which have the following functions:
 
-For indices $a < b < c < d$, `reader.query(a, b, c, d)` reports only the distribution of the four hidden bits: it returns `4` when all four are equal, `2` when one bit differs from the other three, and `0` when the group contains two zeros and two ones. At most $2n$ calls to `query` are allowed, where $n$ is the hidden-array length.
+- `int query(int a, int b, int c, int d)`: where $0 \le a < b < c < d < \text{ArrayReader.length}()$. The function returns the distribution of the value of the 4 elements and returns:
 
-Return any index containing the more frequent bit. If zeros and ones occur equally often, return `-1`.
+		<li>**4 **: if the values of the 4 elements are the same (0 or 1).
+
+- **2** : if three elements have a value equal to 0 and one element has value equal to 1 or vice versa.
+
+- **0 **: if two element have a value equal to 0 and two elements have a value equal to 1.
+
+	</li>
+- `int length()`: Returns the size of the array.
+
+You are allowed to call `query()` **2 * n times** at most where n is equal to `ArrayReader.length()`.
+
+Return **any** index of the most frequent value in `nums`, in case of tie, return -1.
+### Function Contract
+
+**Inputs**
+
+- `reader`: An `ArrayReader` for a hidden binary array of length $N$, where $5 \le N \le 10^5$.
+- `reader.length()` returns $N$ in $O(1)$ time.
+- `reader.query(a, b, c, d)` requires $0 \le a < b < c < d < N$ and returns `4`, `2`, or `0` according to the four-bit distribution.
+
+**Return value**
+
+Return any valid index of the majority bit in `nums`, or `-1` when the counts of zeros and ones are equal. The solution may make at most $2N$ calls to `query`.
+
+### Examples
+
+#### Example 1
+
+- **Input:** `nums = [0,0,1,0,1,1,1,1]`
+- **Output:** `5`
+- **Explanation:** The following calls to the API
+reader.length() // returns 8 because there are 8 elements in the hidden array.
+reader.query(0,1,2,3) // returns 2 this is a query that compares the elements nums[0], nums[1], nums[2], nums[3]
+// Three elements have a value equal to 0 and one element has value equal to 1 or viceversa.
+reader.query(4,5,6,7) // returns 4 because nums[4], nums[5], nums[6], nums[7] have the same value.
+we can infer that the most frequent value is found in the last 4 elements.
+Index 2, 4, 6, 7 is also a correct answer.
+#### Example 2
+
+- **Input:** `nums = [0,0,1,1,0]`
+- **Output:** `0`
+#### Example 3
+
+- **Input:** `nums = [1,0,1,0,1,0,1,0]`
+- **Output:** `-1`
+### Constraints
+
+- $5 \le \text{nums.length} \le 10^{5}$
+
+- $0 \le \text{nums}[i] \le 1$
+
+**Follow up:** What is the minimum number of calls needed to find the majority element?

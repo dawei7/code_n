@@ -1,7 +1,44 @@
 ## Description
 
-A circular street contains an unknown number $n$ of houses. From any house, moving right advances to the next house, and moving right from the last house wraps to the first. You begin at an arbitrary house and know only a positive upper bound $k$, where $1 \le n \le k \le 10^5$.
+You are given an object `street` of class `Street` that represents a **circular** street and a positive integer `k` which represents a maximum bound for the number of houses in that street (in other words, the number of houses is less than or equal to `k`). Houses' doors could be open or closed initially (at least one is open).
 
-Each house has a door that may initially be open or closed, with at least one door guaranteed open. The restricted `Street` interface lets you inspect the current door, close it if it is open, and move one house to the right. It does not expose house identities, permit opening a door, or reveal your position.
+Initially, you are standing in front of a door to a house on this street. Your task is to count the number of houses in the street.
 
-Use only that interface to determine and return the exact number of houses.
+The class `Street` contains the following functions which may help you:
+
+- `void closeDoor()`: Close the door of the house you are in front of.
+
+- `boolean isDoorOpen()`: Returns `true` if the door of the current house is open and `false` otherwise.
+
+- `void moveRight()`: Move to the right house.
+
+**Note** that by **circular** street, we mean if you number the houses from `1` to `n`, then the right house of $\text{house}_{i}$ is $\text{house}_{i}+1$ for `i < n`, and the right house of $\text{house}_{n}$ is $\text{house}_{1}$.
+
+Return `ans` *which represents the number of houses on this street.*
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+
+#### Example 1
+
+- **Input:** $street = [1,1,1,1], k = 10$
+- **Output:** `4`
+- **Explanation:** There are 4 houses, and all their doors are open.
+The number of houses is less than k, which is 10.
+#### Example 2
+
+- **Input:** $street = [1,0,1,1,0], k = 5$
+- **Output:** `5`
+- **Explanation:** There are 5 houses, and the doors of the 1st, 3rd, and 4th house (moving in the right direction) are open, and the rest are closed.
+The number of houses is equal to k, which is 5.
+### Constraints
+
+- $n = number of houses$
+
+- $1 \le n \le k \le 10^{5}$
+
+- `street` is circular by definition provided in the statement.
+
+- The input is generated such that at least one of the doors is open.

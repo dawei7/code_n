@@ -7,3 +7,26 @@ In one operation, you can insert any integer at any position in `arr`. For examp
 Return *the **minimum** number of operations needed to make *`target`* a **subsequence** of *`arr`*.*
 
 A **subsequence** of an array is a new array generated from the original array by deleting some elements (possibly none) without changing the remaining elements' relative order. For example, `[2,7,4]` is a subsequence of `[4,<u>2</u>,3,<u>7</u>,2,1,<u>4</u>]` (the underlined elements), while `[2,4,2]` is not.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+- **Input:** $target = [5,1,3], arr = [9,4,2,3,4]$
+- **Output:** `2`
+- **Explanation:** You can add 5 and 1 in such a way that makes arr = [<u>5</u>,9,4,<u>1</u>,2,3,4], then target will be a subsequence of arr.
+#### Example 2
+
+- **Input:** $target = [6,4,8,1,3,2], arr = [4,7,6,2,3,8,6,1]$
+- **Output:** `3`
+### Constraints
+
+- $1 \le \text{target.length}, \text{arr.length} \le 10^{5}$
+
+- $1 \le \text{target}[i], \text{arr}[i] \le 10^{9}$
+
+- `target` contains no duplicates.

@@ -1,9 +1,59 @@
 ## Description
 
-Given a nonempty integer array `arr` interpreted as circular and a valid `startIndex`, return a JavaScript generator that maintains a current array position.
+Given a **circular** array `arr` and an integer `startIndex`, return a generator object `gen` that yields values from `arr`.
 
-The first call to `next()` yields `arr[startIndex]`. Every later call supplies an integer `jump` through `next(jump)`. Move the current index right by a positive jump, left by the magnitude of a negative jump, or leave it unchanged for zero. Crossing either array boundary wraps to the opposite end, and jumps may make multiple complete circuits.
+The first time `gen.next()` is called on the generator, it should should yield $\text{arr}[startIndex]$.
 
-After applying the supplied jump, yield the value at the new current index and suspend again with that index preserved for the following call.
+Each subsequent time `gen.next()` is called, an integer `jump` will be passed into the function (Ex: `gen.next(-3)`).
 
-The array length is from 1 through $10^4$. A test schedule contains from 1 through 100 jumps, and every array value and jump lies between $-10^4$ and $10^4$.
+- If `jump` is positive, the index should increase by that value, however if the current index is the last index, it should instead jump to the first index.
+
+- If `jump` is negative, the index should decrease by the magnitude of that value, however if the current index is the first index, it should instead jump to the last index.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+
+#### Example 1
+
+- **Input:** `arr = [1,2,3,4,5], steps = [1,2,6], startIndex = 0`
+- **Output:** `[1,2,4,5]`
+- **Explanation:**
+const gen = cycleGenerator(arr, startIndex);
+gen.next().value;  // 1, index = startIndex = 0
+gen.next(1).value; // 2, index = 1, 0 -> 1
+gen.next(2).value; // 4, index = 3, 1 -> 2 -> 3
+gen.next(6).value; // 5, index = 4, 3 -> 4 -> 0 -> 1 -> 2 -> 3 -> 4
+#### Example 2
+
+- **Input:** `arr = [10,11,12,13,14,15], steps = [1,4,0,-1,-3], startIndex = 1`
+- **Output:** `[11,12,10,10,15,12]`
+- **Explanation:**
+const gen = cycleGenerator(arr, startIndex);
+gen.next().value;   // 11, index = 1
+gen.next(1).value;  // 12, index = 2
+gen.next(4).value;  // 10, index = 0
+gen.next(0).value;  // 10, index = 0
+gen.next(-1).value; // 15, index = 5
+gen.next(-3).value; // 12, index = 2
+#### Example 3
+
+- **Input:** `arr = [2,4,6,7,8,10], steps = [-4,5,-3,10], startIndex = 3`
+- **Output:** `[7,10,8,4,10]`
+- **Explanation:**
+const gen = cycleGenerator(arr, startIndex);
+gen.next().value   // 7,  index = 3
+gen.next(-4).value // 10, index = 5
+gen.next(5).value  // 8,  index = 4
+gen.next(-3).value // 4,  index = 1
+gen.next(10).value // 10, index = 5
+### Constraints
+
+- $1 \le \text{arr.length} \le 10^{4}$
+
+- $1 \le \text{steps.length} \le 100$
+
+- $-10^{4} \le \text{steps}[i], \text{arr}[i] \le 10^{4}$
+
+- $0 \le startIndex < \text{arr.length}$

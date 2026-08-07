@@ -1,5 +1,52 @@
 ## Description
 
-A company operates $n$ data centers and wants to upgrade as many of their existing servers as possible. For center $i$, `count[i]` is its number of servers, `upgrade[i]` is the cost to upgrade one server, `sell[i]` is the money received by selling one server, and `money[i]` is the cash initially available there.
+You have `n` data centers and need to upgrade their servers.
 
-Each server at a center can be used in at most one way: it may be upgraded, sold to finance other upgrades at that same center, or left unchanged. Funds cannot be transferred between data centers. Return the maximum number of servers that can be upgraded independently at every center.
+You are given four arrays `count`, `upgrade`, `sell`, and `money` of length `n`, which show:
+
+- The number of servers
+
+- The cost of upgrading a single server
+
+- The money you get by selling a server
+
+- The money you initially have
+
+for each data center respectively.
+
+Return an array `answer`, where for each data center, the corresponding element in `answer` represents the **maximum** number of servers that can be upgraded.
+
+Note that the money from one data center **cannot** be used for another data center.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+
+#### Example 1
+
+<div class="example-block">
+**Input:** count = [4,3], upgrade = [3,5], sell = [4,2], money = [8,9]
+
+**Output:** [3,2]
+
+**Explanation:**
+
+For the first data center, if we sell one server, we'll have $8 + 4 = 12$ units of money and we can upgrade the remaining 3 servers.
+
+For the second data center, if we sell one server, we'll have $9 + 2 = 11$ units of money and we can upgrade the remaining 2 servers.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** count = [1], upgrade = [2], sell = [1], money = [1]
+
+**Output:** [0]
+
+</div>
+### Constraints
+
+- $1 \le \text{count.length} = \text{upgrade.length} = \text{sell.length} = \text{money.length} \le 10^{5}$
+
+- $1 \le \text{count}[i], \text{upgrade}[i], \text{sell}[i], \text{money}[i] \le 10^{5}$

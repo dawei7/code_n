@@ -2,11 +2,40 @@
 
 There is a pizza with `3n` slices of varying size, you and your friends will take slices of pizza as follows:
 
-<ul>
-	<li>You will pick **any** pizza slice.</li>
-	<li>Your friend Alice will pick the next slice in the anti-clockwise direction of your pick.</li>
-	<li>Your friend Bob will pick the next slice in the clockwise direction of your pick.</li>
-	<li>Repeat until there are no more slices of pizzas.</li>
-</ul>
+- You will pick **any** pizza slice.
+
+- Your friend Alice will pick the next slice in the anti-clockwise direction of your pick.
+
+- Your friend Bob will pick the next slice in the clockwise direction of your pick.
+
+- Repeat until there are no more slices of pizzas.
 
 Given an integer array `slices` that represent the sizes of the pizza slices in a clockwise direction, return *the maximum possible sum of slice sizes that you can pick*.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+![](images/sample_3_1723.png)
+
+- **Input:** $slices = [1,2,3,4,5,6]$
+- **Output:** `10`
+- **Explanation:** Pick pizza slice of size 4, Alice and Bob will pick slices with size 3 and 5 respectively. Then Pick slices with size 6, finally Alice and Bob will pick slice of size 2 and 1 respectively. Total = 4 + 6.
+#### Example 2
+
+![](images/sample_4_1723.png)
+
+- **Input:** $slices = [8,9,8,6,1,1]$
+- **Output:** `16`
+- **Explanation:** Pick pizza slice of size 8 in each turn. If you pick slice with size 9 your partners will pick slices of size 8.
+### Constraints
+
+- $3 * n = \text{slices.length}$
+
+- $1 \le \text{slices.length} \le 500$
+
+- $1 \le \text{slices}[i] \le 1000$

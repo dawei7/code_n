@@ -4,9 +4,47 @@ A <a href="https://en.wikipedia.org/wiki/Trie" target="_blank">**trie**</a> (pro
 
 Implement the Trie class:
 
-<ul>
-	<li>`Trie()` Initializes the trie object.</li>
-	<li>`void insert(String word)` Inserts the string `word` into the trie.</li>
-	<li>`boolean search(String word)` Returns `true` if the string `word` is in the trie (i.e., was inserted before), and `false` otherwise.</li>
-	<li>`boolean startsWith(String prefix)` Returns `true` if there is a previously inserted string `word` that has the prefix `prefix`, and `false` otherwise.</li>
-</ul>
+- `Trie()` Initializes the trie object.
+
+- `void insert(String word)` Inserts the string `word` into the trie.
+
+- `boolean search(String word)` Returns `true` if the string `word` is in the trie (i.e., was inserted before), and `false` otherwise.
+
+- `boolean startsWith(String prefix)` Returns `true` if there is a previously inserted string `word` that has the prefix `prefix`, and `false` otherwise.
+### Function Contract
+
+**Inputs**
+
+- `operations`: App-local commands of the form `["insert", word]`, `["search", word]`, or `["startsWith", prefix]`, processed against one initially empty trie.
+
+**Return value**
+
+Return the boolean result of every `search` and `startsWith` command in command order; `insert` commands produce no result.
+
+### Examples
+
+#### Example 1
+
+```
+**Input**
+["Trie", "insert", "search", "search", "startsWith", "insert", "search"]
+[[], ["apple"], ["apple"], ["app"], ["app"], ["app"], ["app"]]
+**Output**
+[null, null, true, false, true, null, true]
+
+**Explanation**
+Trie trie = new Trie();
+trie.insert("apple");
+trie.search("apple");   // return True
+trie.search("app");     // return False
+trie.startsWith("app"); // return True
+trie.insert("app");
+trie.search("app");     // return True
+```
+### Constraints
+
+- $1 \le \text{word.length}, \text{prefix.length} \le 2000$
+
+- `word` and `prefix` consist only of lowercase English letters.
+
+- At most $3 * 10^{4}$ calls **in total** will be made to `insert`, `search`, and `startsWith`.

@@ -7,3 +7,53 @@ A cycle is a path of **length 4 or more** in the grid that starts and ends at th
 Also, you cannot move to the cell that you visited in your last move. For example, the cycle `(1, 1) -> (1, 2) -> (1, 1)` is invalid because from `(1, 2)` we visited `(1, 1)` which was the last visited cell.
 
 Return `true` if any cycle of the same value exists in `grid`, otherwise, return `false`.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+**
+
+![](images/1.png)
+
+**
+
+- **Input:** `grid = [["a","a","a","a"],["a","b","b","a"],["a","b","b","a"],["a","a","a","a"]]`
+- **Output:** `true`
+- **Explanation:** There are two valid cycles shown in different colors in the image below:
+![](images/11.png)
+#### Example 2
+
+**
+
+![](images/22.png)
+
+**
+
+- **Input:** `grid = [["c","c","c","a"],["c","d","c","c"],["c","c","e","c"],["f","c","c","c"]]`
+- **Output:** `true`
+- **Explanation:** There is only one valid cycle highlighted in the image below:
+![](images/2.png)
+#### Example 3
+
+**
+
+![](images/3.png)
+
+**
+
+- **Input:** `grid = [["a","b","b"],["b","z","b"],["b","b","a"]]`
+- **Output:** `false`
+### Constraints
+
+- $m = \text{grid.length}$
+
+- $n = \text{grid}[i].length$
+
+- $1 \le m, n \le 500$
+
+- `grid` consists only of lowercase English letters.

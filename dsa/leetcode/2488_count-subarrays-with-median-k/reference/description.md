@@ -6,12 +6,35 @@ Return *the number of non-empty subarrays in *`nums`* that have a **median** equ
 
 **Note**:
 
-<ul>
-	<li>The median of an array is the **middle **element after sorting the array in **ascending **order. If the array is of even length, the median is the **left **middle element.
+- The median of an array is the **middle **element after sorting the array in **ascending **order. If the array is of even length, the median is the **left **middle element.
 
-	<ul>
-		<li>For example, the median of `[2,3,1,4]` is `2`, and the median of `[8,4,3,5,1]` is `4`.</li>
-	</ul>
+		<li>For example, the median of `[2,3,1,4]` is `2`, and the median of `[8,4,3,5,1]` is `4`.
+
 	</li>
-	<li>A subarray is a contiguous part of an array.</li>
-</ul>
+- A subarray is a contiguous part of an array.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+
+#### Example 1
+
+- **Input:** `nums = [3,2,1,4,5], k = 4`
+- **Output:** `3`
+- **Explanation:** The subarrays that have a median equal to 4 are: [4], [4,5] and [1,4,5].
+#### Example 2
+
+- **Input:** `nums = [2,3,1], k = 3`
+- **Output:** `1`
+- **Explanation:** [3] is the only subarray that has a median equal to 3.
+### Constraints
+
+- $n = \text{nums.length}$
+
+- $1 \le n \le 10^{5}$
+
+- $1 \le \text{nums}[i], k \le n$
+
+- The integers in `nums` are distinct.

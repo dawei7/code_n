@@ -1,5 +1,59 @@
 ## Description
 
-Add a custom `forEach` method to `Array.prototype` so that every JavaScript array can invoke `array.forEach(callback, context)`. The method must call `callback` once for every array element in index order and must not return a value.
+Write your version of method `forEach` that enhances all arrays such that you can call the `array.forEach(callback, context)` method on any array and it will execute `callback` on each element of the array. Method `forEach` should not return anything.
 
-Each callback invocation receives the current element, its numeric index, and the array itself. It must also run with `this` bound to the supplied `context` object. The callback may use these arguments or its context to mutate the same array. Implement the traversal directly rather than delegating to built-in array iteration methods.
+`callback` accepts the following arguments:
+
+- `currentValue` - represents the current element being processed in the array. It is the value of the element in the current iteration.
+
+- `index` - represents the index of the current element being processed in the array.
+
+- `array` - represents the array itself, allowing access to the entire array within the callback function.
+
+The `context` is the object that should be passed as the function context parameter to the `callback` function, ensuring that the `this` keyword within the `callback` function refers to this `context` object.
+
+Try to implement it without using the built-in array methods.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+
+#### Example 1
+
+- **Input:** ``
+arr = [1,2,3],
+callback = (val, i, arr) => arr[i] = val * 2,
+context = {"context":true}
+- **Output:** `[2,4,6]`
+- **Explanation:**
+arr.forEach(callback, context)
+console.log(arr) // [2,4,6]
+The callback is executed on each element of the array.
+#### Example 2
+
+- **Input:** ``
+arr = [true, true, false, false],
+callback = (val, i, arr) => arr[i] = this,
+context = {"context": false}
+- **Output:** `[{"context":false},{"context":false},{"context":false},{"context":false}]`
+- **Explanation:**
+arr.forEach(callback, context)
+console.log(arr) // [{"context":false},{"context":false},{"context":false},{"context":false}]
+The callback is executed on each element of the array with the right context.
+#### Example 3
+
+- **Input:** ``
+arr = [true, true, false, false],
+callback = (val, i, arr) => arr[i] = !val,
+context = {"context": 5}
+- **Output:** `[false,false,true,true]`
+### Constraints
+
+- `arr` is a valid JSON array
+
+- `context` is a valid JSON object
+
+- `fn` is a function
+
+- $0 \le \text{arr.length} \le 10^{5}$
