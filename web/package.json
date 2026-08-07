@@ -1,7 +1,7 @@
 {
   "name": "coden-web",
   "private": true,
-  "version": "0.4.2",
+  "version": "0.4.3",
   "type": "module",
   "description": "cOde(n) web frontend - React + Vite + Tailwind with in-app editing, debugging, reference docs, and progress tracking.",
   "scripts": {
@@ -12,9 +12,11 @@
     "test:career": "node scripts/test-career-unlocks.mjs",
     "test:metrics": "node scripts/test-challenge-metrics.mjs",
     "test:mermaid": "node scripts/test-mermaid-docs.mjs",
-    "test:custom-sets": "node scripts/test-custom-problem-sets.mjs && node scripts/test-problem-set-hierarchies.mjs && node scripts/test-personal-set-exchange.mjs"
+    "test:custom-sets": "node scripts/test-custom-problem-sets.mjs && node scripts/test-problem-set-hierarchies.mjs && node scripts/test-personal-set-exchange.mjs",
+    "test:pglite": "node scripts/test-pglite.mjs"
   },
   "dependencies": {
+    "@electric-sql/pglite": "^0.2.16",
     "@fortawesome/fontawesome-svg-core": "^7.3.0",
     "@fortawesome/free-brands-svg-icons": "^7.3.0",
     "@fortawesome/react-fontawesome": "^3.4.0",

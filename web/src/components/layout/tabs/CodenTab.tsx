@@ -198,6 +198,8 @@ export function CodenTab() {
   const source = useAppStore((s) => s.source);
   const codeLanguage = useAppStore((s) => s.codeLanguage);
   const setMode = useAppStore((s) => s.setMode);
+  const sqlEngine = useAppStore((s) => s.sqlEngine);
+  const setSqlEngine = useAppStore((s) => s.setSqlEngine);
   const selectedCaseIds = useAppStore((s) => s.selectedCaseIds);
   const setSelectedCaseIds = useAppStore((s) => s.setSelectedCaseIds);
   const run = useAppStore((s) => s.run);
@@ -777,6 +779,19 @@ export function CodenTab() {
                   />
                   <span className="ml-1 text-[10px] font-bold uppercase tracking-wider text-coden-muted">Verified language</span>
                   <PrimaryLanguageBadge language={codeLanguage} />
+                  {codeLanguage === 'sql' && (
+                    <div className="flex items-center gap-1.5 rounded border border-coden-border bg-coden-inner px-2 py-1 text-xs font-semibold text-coden-text shadow-sm">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-coden-muted">Engine:</span>
+                      <select
+                        value={sqlEngine}
+                        onChange={(e) => setSqlEngine(e.target.value as 'sqlite' | 'postgres')}
+                        className="bg-transparent font-bold text-coden-accent cursor-pointer focus:outline-none"
+                      >
+                        <option value="sqlite" className="bg-coden-surface text-coden-text">SQLite (In-Memory)</option>
+                        <option value="postgres" className="bg-coden-surface text-coden-text">PostgreSQL (PGlite WASM)</option>
+                      </select>
+                    </div>
+                  )}
                 </div>
                 <div className="flex shrink-0 items-center gap-2">
                   <EditorRunControls
