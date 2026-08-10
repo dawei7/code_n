@@ -1,17 +1,3 @@
-[TOC]
-
-## Video Solution
-
----
-<div>
-    <div class="video-container">
-        <iframe src="https://player.vimeo.com/video/631341980?h=590ab3de38" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    </div>
-</div>
-
-<div>
-</div>
-
 ## Solution Article
 
 ---

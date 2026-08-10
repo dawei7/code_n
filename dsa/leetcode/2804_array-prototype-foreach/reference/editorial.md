@@ -1,4 +1,3 @@
-[TOC]
 
 ## Overview:
 Our goal is to improve the built-in Array prototype so that we can call `array.forEach(callback, context)` on any array. The `forEach` function should execute the given `callback` on each element of the array, and the `context` parameter is used to set the value of `this` within the callback function. If the context parameter is not provided, the value of `this` within the callback function will be the global object (`window` in a browser or `global` in Node.js).

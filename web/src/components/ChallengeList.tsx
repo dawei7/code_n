@@ -35,6 +35,7 @@ import { canPreviewChallenge } from '../lib/cheaterMode';
 import {
   buildPdfBundleFilename,
   exportChallengePdfBundle,
+  type PdfContentOptions,
   type PdfTocNode,
 } from './pdf/PdfBundleExport';
 import {
@@ -1422,7 +1423,14 @@ type PdfMenuButtonProps = {
   label?: string;
   title: string;
   ariaLabel: string;
-  onSelect: (includeSolution: boolean) => void;
+  onSelect: (content: PdfContentOptions) => void;
+};
+
+type PdfMenuState = {
+  left: number;
+  top: number;
+  includeApproach: boolean;
+  includeEditorial: boolean;
 };
 
 function PdfMenuButton({
@@ -1436,17 +1444,17 @@ function PdfMenuButton({
 }: PdfMenuButtonProps) {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
-  const [menuPosition, setMenuPosition] = useState<{ left: number; top: number } | null>(null);
+  const [menuState, setMenuState] = useState<PdfMenuState | null>(null);
 
   useEffect(() => {
-    if (!menuPosition) return undefined;
+    if (!menuState) return undefined;
 
     const closeIfOutside = (event: PointerEvent) => {
       const target = event.target as Node | null;
       if (target && (buttonRef.current?.contains(target) || menuRef.current?.contains(target))) return;
-      setMenuPosition(null);
+      setMenuState(null);
     };
-    const close = () => setMenuPosition(null);
+    const close = () => setMenuState(null);
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         close();
@@ -1464,32 +1472,58 @@ function PdfMenuButton({
       window.removeEventListener('resize', close);
       window.removeEventListener('scroll', close, true);
     };
-  }, [menuPosition]);
+  }, [menuState]);
 
   const toggleMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     if (disabled) return;
-    if (menuPosition) {
-      setMenuPosition(null);
+    if (menuState) {
+      setMenuState(null);
       return;
     }
     const rect = buttonRef.current?.getBoundingClientRect();
     if (!rect) return;
-    const menuWidth = 224;
-    const menuHeight = 104;
+    const menuWidth = 288;
+    const menuHeight = 244;
     const left = Math.max(8, Math.min(rect.right - menuWidth, window.innerWidth - menuWidth - 8));
     const below = rect.bottom + 4;
     const top = below + menuHeight <= window.innerHeight - 8
       ? below
       : Math.max(8, rect.top - menuHeight - 4);
-    setMenuPosition({ left, top });
+    setMenuState({
+      left,
+      top,
+      includeApproach: true,
+      includeEditorial: false,
+    });
   };
 
   const choose = (event: React.MouseEvent, includeSolution: boolean) => {
     event.stopPropagation();
-    setMenuPosition(null);
-    onSelect(includeSolution);
+    if (!menuState) return;
+    onSelect({
+      includeApproach: menuState.includeApproach,
+      includeEditorial: menuState.includeEditorial,
+      includeSolution,
+    });
+    setMenuState(null);
   };
+
+  const setChoice = (
+    event: React.MouseEvent,
+    key: 'includeApproach' | 'includeEditorial',
+    value: boolean,
+  ) => {
+    event.stopPropagation();
+    setMenuState((current) => current ? { ...current, [key]: value } : current);
+  };
+
+  const choiceClass = (selected: boolean) => [
+    'rounded px-2 py-1 text-[10px] font-semibold transition-colors',
+    selected
+      ? 'bg-coden-accent text-coden-bg'
+      : 'text-coden-muted hover:bg-coden-border hover:text-coden-text',
+  ].join(' ');
 
   return (
     <>
@@ -1501,38 +1535,87 @@ function PdfMenuButton({
         className={className}
         title={title}
         aria-label={ariaLabel}
-        aria-haspopup="menu"
-        aria-expanded={menuPosition !== null}
+        aria-haspopup="dialog"
+        aria-expanded={menuState !== null}
       >
         <PdfIcon className={iconClassName} />
         {label && <span>{label}</span>}
       </button>
-      {menuPosition && createPortal(
+      {menuState && createPortal(
         <div
           ref={menuRef}
-          role="menu"
+          role="dialog"
           aria-label="PDF contents"
-          className="fixed z-[300] w-56 overflow-hidden rounded border border-coden-border bg-coden-surface shadow-2xl"
-          style={menuPosition}
+          className="fixed z-[300] w-72 overflow-hidden rounded border border-coden-border bg-coden-surface shadow-2xl"
+          style={{ left: menuState.left, top: menuState.top }}
           onClick={(event) => event.stopPropagation()}
         >
+          <div className="border-b border-coden-border px-3 py-2">
+            <span className="block text-xs font-semibold text-coden-text">PDF contents</span>
+            <span className="block text-[10px] text-coden-muted">Choose each optional learning section.</span>
+          </div>
+          <div className="space-y-2 px-3 py-2">
+            <div className="flex items-center justify-between gap-3">
+              <div>
+                <span className="block text-xs font-medium text-coden-text">Optimal approach</span>
+                <span className="block text-[10px] text-coden-muted">No other variants</span>
+              </div>
+              <div role="group" aria-label="Include Optimal Approach" className="flex rounded border border-coden-border p-0.5">
+                <button
+                  type="button"
+                  aria-pressed={menuState.includeApproach}
+                  className={choiceClass(menuState.includeApproach)}
+                  onClick={(event) => setChoice(event, 'includeApproach', true)}
+                >
+                  Yes
+                </button>
+                <button
+                  type="button"
+                  aria-pressed={!menuState.includeApproach}
+                  className={choiceClass(!menuState.includeApproach)}
+                  onClick={(event) => setChoice(event, 'includeApproach', false)}
+                >
+                  No
+                </button>
+              </div>
+            </div>
+            <div className="flex items-center justify-between gap-3">
+              <span className="text-xs font-medium text-coden-text">Editorial</span>
+              <div role="group" aria-label="Include Editorial" className="flex rounded border border-coden-border p-0.5">
+                <button
+                  type="button"
+                  aria-pressed={menuState.includeEditorial}
+                  className={choiceClass(menuState.includeEditorial)}
+                  onClick={(event) => setChoice(event, 'includeEditorial', true)}
+                >
+                  Yes
+                </button>
+                <button
+                  type="button"
+                  aria-pressed={!menuState.includeEditorial}
+                  className={choiceClass(!menuState.includeEditorial)}
+                  onClick={(event) => setChoice(event, 'includeEditorial', false)}
+                >
+                  No
+                </button>
+              </div>
+            </div>
+          </div>
           <button
             type="button"
-            role="menuitem"
-            className="block w-full px-3 py-2 text-left hover:bg-coden-border focus:bg-coden-border focus:outline-none"
+            className="block w-full border-t border-coden-border px-3 py-2 text-left hover:bg-coden-border focus:bg-coden-border focus:outline-none"
             onClick={(event) => choose(event, false)}
           >
-            <span className="block text-xs font-semibold text-coden-text">Without solution</span>
-            <span className="block text-[10px] text-coden-muted">Reference and Guided Example</span>
+            <span className="block text-xs font-semibold text-coden-text">Save without solution</span>
+            <span className="block text-[10px] text-coden-muted">Reference, Guided Example, and choices above</span>
           </button>
           <button
             type="button"
-            role="menuitem"
             className="block w-full border-t border-coden-border px-3 py-2 text-left hover:bg-coden-border focus:bg-coden-border focus:outline-none"
             onClick={(event) => choose(event, true)}
           >
-            <span className="block text-xs font-semibold text-coden-text">With solution</span>
-            <span className="block text-[10px] text-coden-muted">Add each problem's primary language</span>
+            <span className="block text-xs font-semibold text-coden-text">Save with optimal solution</span>
+            <span className="block text-[10px] text-coden-muted">Add each problem's primary-language code</span>
           </button>
         </div>,
         document.body,
@@ -2165,12 +2248,22 @@ export function ChallengeList() {
     scopedChallenges: ChallengeSummary[],
     scopeLabel: string,
     toc: PdfTocNode[],
-    includeSolution: boolean,
+    content: PdfContentOptions,
   ) => {
     if (pdfExporting) return;
 
     const orderedChallenges = uniqueChallengesInOrder(scopedChallenges);
-    const label = `Preparing ${orderedChallenges.length}-problem PDF${includeSolution ? ' with solutions' : ''}`;
+    const optionalSections = [
+      content.includeApproach ? 'Optimal Approaches' : '',
+      content.includeEditorial ? 'Editorials' : '',
+      content.includeSolution ? 'Optimal Solutions' : '',
+    ].filter(Boolean);
+    const contentDescription = [
+      'References',
+      'Guided Examples',
+      ...optionalSections,
+    ].join(', ');
+    const label = `Preparing ${orderedChallenges.length}-problem PDF`;
     setPdfExporting(true);
     setDownloadState({
       label,
@@ -2178,22 +2271,20 @@ export function ChallengeList() {
       total: null,
       percent: null,
       status: 'active',
-      message: includeSolution
-        ? 'Loading References, Guided Examples, and primary-language solutions...'
-        : 'Loading References and Guided Examples...',
+      message: `Loading ${contentDescription}...`,
     });
 
     try {
       const result = await exportChallengePdfBundle({
         challenges: orderedChallenges,
-        title: `${scopeLabel} - References and Guided Examples${includeSolution ? ' with Solutions' : ''}`,
+        title: `${scopeLabel} - ${contentDescription}`,
         suggestedFilename: buildPdfBundleFilename(
           scopeLabel,
           orderedChallenges,
-          includeSolution,
+          content,
         ),
         toc,
-        includeSolution,
+        content,
         onProgress: ({ completed, total, message }) => {
           setDownloadState({
             label,
@@ -2438,11 +2529,11 @@ export function ChallengeList() {
           className="w-7 rounded text-coden-muted hover:text-coden-text hover:bg-coden-border shrink-0 inline-flex items-center justify-center disabled:cursor-wait disabled:opacity-40"
           title={`Save Reference and Guided Example for ${c.name} as PDF`}
           ariaLabel={`Save PDF for ${c.name}`}
-          onSelect={(includeSolution) => void handlePdfBundle(
+          onSelect={(content) => void handlePdfBundle(
             [c],
             `LeetCode ${c.leetcode_frontend_id || c.id.replace(/^lc_/, '')} - ${c.name}`,
             [pdfTocProblem(c)],
-            includeSolution,
+            content,
           )}
         />
         <ResetMenuButton
@@ -2510,11 +2601,11 @@ export function ChallengeList() {
                   className="w-7 h-7 rounded text-coden-muted hover:text-coden-text hover:bg-coden-border shrink-0 inline-flex items-center justify-center disabled:cursor-wait disabled:opacity-40"
                   title={`Save ${group.label} References and Guided Examples as one PDF`}
                   ariaLabel={`Save ${group.label} PDF`}
-                  onSelect={(includeSolution) => void handlePdfBundle(
+                  onSelect={(content) => void handlePdfBundle(
                     collectGroupChallengesInSetOrder(group),
                     `${activeSetLabel} - ${path.join(' - ')}`,
                     [pdfTocGroup(group)],
-                    includeSolution,
+                    content,
                   )}
                 />
                 <ResetMenuButton
@@ -2671,11 +2762,11 @@ export function ChallengeList() {
             ariaLabel="Save all currently shown problems as PDF"
             iconClassName="h-3.5 w-3.5"
             label="all"
-            onSelect={(includeSolution) => void handlePdfBundle(
+            onSelect={(content) => void handlePdfBundle(
               shownChallengesForPdf,
               `${activeSetLabel} - currently shown`,
               shownTocForPdf,
-              includeSolution,
+              content,
             )}
           />
           <ResetMenuButton

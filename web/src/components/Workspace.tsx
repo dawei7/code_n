@@ -5,9 +5,19 @@ import { ReferenceTab } from './layout/tabs/ReferenceTab';
 import { CodenTab } from './layout/tabs/CodenTab';
 import { AITutorTab } from './layout/tabs/AITutorTab';
 import { CareerPathTab } from './layout/tabs/CareerPathTab';
+import { EditorialTab } from './layout/tabs/EditorialTab';
 import { GuidedExampleTab } from './layout/tabs/GuidedExampleTab';
 import { BrandWordmark } from './BrandWordmark';
 import { getAlgorithmSetLabel, getAlgorithmSetOption } from '../lib/algorithmSets';
+import { canRevealSolution } from '../lib/cheaterMode';
+
+type WorkspaceTopic = {
+  id: Topic;
+  label: ReactNode;
+  title: string;
+  className?: string;
+  disabled?: boolean;
+};
 
 export function Workspace() {
   const detail = useAppStore((s) => s.currentDetail);
@@ -15,6 +25,8 @@ export function Workspace() {
   const activeTopic = useAppStore((s) => s.activeTopic);
   const setActiveTopic = useAppStore((s) => s.setActiveTopic);
   const paneFontScales = useAppStore((s) => s.paneFontScales);
+  const completed = useAppStore((s) => s.progress?.completed ?? []);
+  const cheaterMode = useAppStore((s) => s.cheaterMode);
   const activeSetOption = getAlgorithmSetOption(activeSet);
   const activeCustomSetId = useAppStore((s) => s.activeCustomSetId);
   const customProblemSets = useAppStore((s) => s.customProblemSets);
@@ -22,6 +34,9 @@ export function Workspace() {
     ? customProblemSets.find((set) => set.id === activeCustomSetId)
     : null;
   const hasCareerPath = activeSetOption.hasCareerPath || activeCustomSet?.career_mode === true;
+  const editorialUnlocked = detail
+    ? canRevealSolution(completed.includes(detail.id), cheaterMode)
+    : false;
 
   useEffect(() => {
     if (!hasCareerPath && activeTopic === 'career_path') {
@@ -30,7 +45,16 @@ export function Workspace() {
     if (activeTopic === 'guided_example' && !detail?.has_guided_example) {
       setActiveTopic('reference');
     }
-  }, [hasCareerPath, activeTopic, detail?.has_guided_example, setActiveTopic]);
+    if (activeTopic === 'editorial' && !editorialUnlocked) {
+      setActiveTopic('reference');
+    }
+  }, [
+    hasCareerPath,
+    activeTopic,
+    detail?.has_guided_example,
+    editorialUnlocked,
+    setActiveTopic,
+  ]);
 
   if (!detail) {
     if (hasCareerPath) {
@@ -56,8 +80,16 @@ export function Workspace() {
     );
   }
 
-  const topics: { id: Topic; label: ReactNode; title: string; className?: string }[] = [
+  const topics: WorkspaceTopic[] = [
     { id: 'reference', label: '≡', title: 'Reference', className: 'font-serif text-lg' },
+    {
+      id: 'editorial',
+      label: <EditorialIcon locked={!editorialUnlocked} />,
+      title: editorialUnlocked
+        ? 'Editorial'
+        : 'Editorial — solve this challenge successfully to unlock',
+      disabled: !editorialUnlocked,
+    },
     { id: 'coden', label: '</>', title: 'cOde(n)', className: 'font-mono text-sm tracking-tight' },
     ...(detail.has_guided_example
       ? [{ id: 'guided_example' as Topic, label: <ProfessorLectureIcon />, title: 'Guided Example' }]
@@ -80,11 +112,15 @@ export function Workspace() {
           <button
             key={t.id}
             onClick={() => setActiveTopic(t.id)}
+            disabled={t.disabled}
             title={t.title}
             aria-label={t.title}
+            aria-disabled={t.disabled || undefined}
             className={[
               'h-9 min-w-9 px-2 pb-2 text-base font-semibold border-b-2 transition-colors',
-              activeTopic === t.id
+              t.disabled
+                ? 'cursor-not-allowed border-transparent text-coden-muted opacity-35'
+                : activeTopic === t.id
                 ? 'border-coden-accent text-coden-text'
                 : 'border-transparent text-coden-muted hover:text-coden-text hover:border-coden-border',
               t.className ?? '',
@@ -117,6 +153,12 @@ export function Workspace() {
               </div>
             )}
 
+            {activeTopic === 'editorial' && editorialUnlocked && (
+              <div className="overflow-hidden rounded-lg bg-coden-surface shadow-lg">
+                <EditorialTab />
+              </div>
+            )}
+
             {activeTopic === 'guided_example' && (
               <div className="overflow-hidden rounded-lg bg-coden-surface shadow-lg">
                 <GuidedExampleTab />
@@ -143,6 +185,43 @@ export function Workspace() {
         </div>
       </div>
     </div>
+  );
+}
+
+
+function EditorialIcon({ locked }: { locked: boolean }) {
+  return (
+    <span className="relative inline-flex h-[18px] w-[18px] items-center justify-center">
+      <svg
+        viewBox="0 0 24 24"
+        className="h-[18px] w-[18px]"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M6 2.5h8l4 4v15H6z" />
+        <path d="M14 2.5v4h4" />
+        <path d="M9 11h6M9 14.5h6M9 18h4" />
+      </svg>
+      {locked && (
+        <svg
+          viewBox="0 0 12 12"
+          className="absolute -bottom-1 -right-1 h-2.5 w-2.5 fill-coden-surface"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <rect x="2" y="5" width="8" height="6" rx="1" />
+          <path d="M4 5V3.75a2 2 0 0 1 4 0V5" />
+        </svg>
+      )}
+    </span>
   );
 }
 

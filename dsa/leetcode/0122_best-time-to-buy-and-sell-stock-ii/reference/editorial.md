@@ -1,20 +1,3 @@
-[TOC]
-
-## Video Solution
-
----
-
-<div>
-    <div class="video-container">
-        <iframe src="https://player.vimeo.com/video/671344950" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    </div>
-</div>
-
-<div>
-</div>
-
----
-
 ## Summary
 
 We have to determine the maximum profit that can be obtained by making the transactions (no limit on the number of transactions done). For this we need to find out those sets of buying and selling prices which together lead to the maximization of profit.

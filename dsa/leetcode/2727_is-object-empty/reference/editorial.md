@@ -1,4 +1,3 @@
-[TOC]
 
 ## Overview:
 The task is to determine whether an input object or array is empty. An empty object should not contain any key-value pairs, while an empty array should not have any elements. The input is assumed to be the output of JSON.parse.

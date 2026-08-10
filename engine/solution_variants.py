@@ -273,8 +273,8 @@ def validate_solution_variants(
         if not variant_root.is_dir():
             errors.append(f"{prefix} directory is missing")
 
+        approach_path = variant_root / "approach.md"
         if kind != "competitive":
-            approach_path = variant_root / "approach.md"
             errors.extend(f"{prefix}: {error}" for error in _validate_approach(approach_path))
 
         solution_paths: dict[str, Path] = {}
@@ -297,6 +297,8 @@ def validate_solution_variants(
             errors.append(f"{prefix} has no {primary_language} app-local solution")
 
         submission_path = variant_root / "submission.json"
+        submission_status = "missing"
+        submission_id = ""
         if submission_path.is_file() or kind != "competitive":
             submission_status, submission_id, submission_errors = _submission_status(
                 submission_path,

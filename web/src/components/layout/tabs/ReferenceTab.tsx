@@ -38,7 +38,11 @@ import {
 } from '../../markdown/MermaidDiagram';
 import { useAppStore } from '../../../store/useAppStore';
 import { canRevealSolution } from '../../../lib/cheaterMode';
-import type { SolutionVariantDetail, SupportedLanguage } from '../../../types/api';
+import type {
+  SolutionImplementationDetail,
+  SolutionVariantDetail,
+  SupportedLanguage,
+} from '../../../types/api';
 
 
 type LoadState =
@@ -367,7 +371,6 @@ export function ReferenceTab() {
             selectedVariant={selectedVariant}
             onSelect={setSelectedVariantId}
             unlocked={solutionUnlocked}
-            editorialMarkdown={detail?.editorial_markdown ?? ''}
             effectiveElo={detail?.solution_variant_effective_elo ?? null}
             eloSource={detail?.solution_variant_elo_source ?? ''}
             simplifiedEloCeiling={detail?.simplified_solution_elo_ceiling ?? null}
@@ -377,14 +380,6 @@ export function ReferenceTab() {
           <ApproachDisclosure
             key={challengeId ?? 'overview'}
             markdown={approachMarkdown}
-          />
-        )}
-        {!selectedVariant && hasSolution && challengeId && (
-          <EditorialDisclosure
-            key={`editorial:${challengeId}`}
-            challengeId={challengeId}
-            markdown={detail?.editorial_markdown ?? ''}
-            unlocked={solutionUnlocked}
           />
         )}
         {!selectedVariant && hasSolution && challengeId && (
@@ -408,7 +403,6 @@ function SolutionVariantPanel({
   selectedVariant,
   onSelect,
   unlocked,
-  editorialMarkdown,
   effectiveElo,
   eloSource,
   simplifiedEloCeiling,
@@ -418,7 +412,6 @@ function SolutionVariantPanel({
   selectedVariant: SolutionVariantDetail;
   onSelect: (variantId: string) => void;
   unlocked: boolean;
-  editorialMarkdown: string;
   effectiveElo: number | null;
   eloSource: string;
   simplifiedEloCeiling: number | null;
@@ -469,22 +462,19 @@ function SolutionVariantPanel({
               {eloLabel}: {Math.round(effectiveElo)} ≤ {Math.round(simplifiedEloCeiling)}
             </p>
         )}
-        <ApproachDisclosure
-          key={`approach:${challengeId}:${selectedVariant.id}`}
-          markdown={selectedVariant.approach_markdown}
-        />
-        <EditorialDisclosure
-          key={`editorial:${challengeId}:${selectedVariant.id}`}
-          challengeId={challengeId}
-          markdown={editorialMarkdown}
-          unlocked={unlocked}
-        />
+        {selectedVariant.approach_markdown && (
+          <ApproachDisclosure
+            key={`approach:${challengeId}:${selectedVariant.id}`}
+            markdown={selectedVariant.approach_markdown}
+          />
+        )}
         <SolutionDisclosure
           key={`solution:${challengeId}:${selectedVariant.id}`}
           challengeId={challengeId}
           variantId={selectedVariant.id}
           sources={selectedVariant.sources}
           leetcodeSources={selectedVariant.leetcode_sources}
+          implementations={selectedVariant.implementations}
           unlocked={unlocked}
         />
       </div>
@@ -632,134 +622,48 @@ function ApproachDisclosure({ markdown }: { markdown: string }) {
   );
 }
 
-function EditorialDisclosure({
-  challengeId,
-  markdown,
-  unlocked,
-}: {
-  challengeId: string;
-  markdown: string;
-  unlocked: boolean;
-}) {
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    if (!unlocked) setOpen(false);
-  }, [unlocked]);
-
-  if (!markdown.trim()) return null;
-
-  return (
-    <section
-      className={`not-prose my-4 overflow-hidden rounded border transition-colors ${
-        unlocked
-          ? 'border-coden-border bg-coden-bg/40'
-          : 'border-coden-border/60 bg-coden-border/20 opacity-60'
-      }`}
-    >
-      <button
-        data-pdf-exclude="true"
-        type="button"
-        aria-expanded={unlocked ? open : false}
-        aria-disabled={!unlocked}
-        disabled={!unlocked}
-        title={unlocked
-          ? 'Show the editorial'
-          : 'Solve this challenge successfully to unlock the editorial'}
-        onClick={() => setOpen((current) => !current)}
-        className={`flex w-full items-center gap-2 px-3 py-2 text-left text-sm font-semibold transition-colors ${
-          unlocked
-            ? 'text-coden-accent hover:bg-coden-border/40'
-            : 'cursor-not-allowed text-coden-muted'
-        }`}
-      >
-        {unlocked ? (
-          <span aria-hidden="true" className="w-3 text-xs">{open ? '▼' : '▶'}</span>
-        ) : (
-          <LockIcon />
-        )}
-        <span>Editorial</span>
-        {!unlocked && <span className="ml-auto text-xs font-normal">Solve to unlock</span>}
-      </button>
-      {unlocked && open && (
-        <div className="coden-pdf-disclosure-content prose prose-sm max-w-none overflow-x-auto border-t border-coden-border px-4 py-3 text-coden-text prose-headings:text-coden-text prose-p:text-coden-text prose-li:text-coden-text prose-strong:text-coden-text prose-em:text-coden-text prose-a:text-coden-accent prose-code:text-coden-accent prose-code:before:content-none prose-code:after:content-none">
-          <ReactMarkdown
-            remarkPlugins={[remarkGfm, remarkMath]}
-            rehypePlugins={[rehypeRaw, rehypeKatex]}
-            components={{
-              details: ({ node, ...props }) => <CollapsibleDetails node={node} {...props} />,
-              summary: ({ node, ...props }) => (
-                <summary
-                  {...props}
-                  className="cursor-pointer select-none text-sm font-semibold text-coden-accent"
-                />
-              ),
-              a: ({ node, ...props }) => <a {...props} target="_blank" rel="noreferrer" />,
-              img: ({ node, ...props }) => {
-                const rawSrc = String(props.src || '');
-                return (
-                  <img
-                    {...props}
-                    src={leetcodeAssetUrl(challengeId, rawSrc)}
-                    className="my-4 max-h-[520px] max-w-full rounded-md border border-coden-border bg-coden-bg object-contain"
-                  />
-                );
-              },
-              pre: ({ children, ...props }) => {
-                const diagram = mermaidSourceFromPreChildren(children);
-                if (diagram) return <MermaidDiagram source={diagram} />;
-                return (
-                  <pre
-                    {...props}
-                    className="my-3 overflow-x-auto rounded border border-coden-border bg-coden-bg p-3 text-xs text-coden-text"
-                  >
-                    {children}
-                  </pre>
-                );
-              },
-              code: ({ className, children, ...props }) => {
-                const isBlock = String(children).includes('\n');
-                return isBlock ? (
-                  <code {...props} className={className}>{children}</code>
-                ) : (
-                  <code
-                    {...props}
-                    className="rounded border border-coden-border bg-coden-bg px-1 py-0.5 font-mono text-xs text-coden-accent"
-                  >
-                    {children}
-                  </code>
-                );
-              },
-            }}
-          >
-            {markdown}
-          </ReactMarkdown>
-        </div>
-      )}
-    </section>
-  );
-}
-
 function SolutionDisclosure({
   challengeId,
   variantId,
   sources,
   leetcodeSources,
+  implementations = [],
   unlocked,
 }: {
   challengeId: string;
   variantId: string;
   sources: Partial<Record<SupportedLanguage, string>>;
   leetcodeSources: Partial<Record<SupportedLanguage, string>>;
+  implementations?: SolutionImplementationDetail[];
   unlocked: boolean;
 }) {
   const [open, setOpen] = useState(false);
   const theme = useAppStore((state) => state.theme);
-  const selectedMeta = REFERENCE_LANGUAGES.find(({ id }) => (
-    Boolean(sources[id]?.trim()) && Boolean(leetcodeSources[id]?.trim())
-  ));
-  const codenSource = selectedMeta ? sources[selectedMeta.id]?.trim() ?? '' : '';
-  const leetcodeSource = selectedMeta ? leetcodeSources[selectedMeta.id]?.trim() ?? '' : '';
+  const resolvedImplementations: SolutionImplementationDetail[] = implementations.length > 0
+    ? implementations
+    : [{
+        id: 'solution-1',
+        label: 'Verified LeetCode submission',
+        sources,
+        leetcode_sources: leetcodeSources,
+      }];
+  const panels = resolvedImplementations.flatMap((implementation) => {
+    const language = REFERENCE_LANGUAGES.find(({ id }) => (
+      Boolean(implementation.sources[id]?.trim())
+      || Boolean(implementation.leetcode_sources[id]?.trim())
+    ));
+    if (!language) return [];
+    const codenSource = implementation.sources[language.id]?.trim() ?? '';
+    const leetcodeSource = implementation.leetcode_sources[language.id]?.trim() ?? '';
+    return [{
+      id: implementation.id,
+      label: implementation.label,
+      language,
+      source: leetcodeSource || codenSource,
+      sourceKind: leetcodeSource ? 'leetcode' as const : 'coden' as const,
+    }];
+  });
+  const disclosureLabel = panels.length > 1 ? 'Solutions' : 'Solution';
 
   useEffect(() => {
     if (!unlocked) setOpen(false);
@@ -780,7 +684,7 @@ function SolutionDisclosure({
         aria-expanded={unlocked ? open : false}
         aria-disabled={!unlocked}
         disabled={!unlocked}
-        title={unlocked ? 'Show the verified solutions' : 'Solve this challenge successfully to unlock the solution'}
+        title={unlocked ? `Show the ${disclosureLabel.toLowerCase()}` : 'Solve this challenge successfully to unlock the solution'}
         onClick={() => setOpen((current) => !current)}
         className={`flex w-full items-center gap-2 px-3 py-2 text-left text-sm font-semibold transition-colors ${
           unlocked
@@ -793,20 +697,24 @@ function SolutionDisclosure({
         ) : (
           <LockIcon />
         )}
-        <span>Solution</span>
+        <span>{disclosureLabel}</span>
         {!unlocked && <span className="ml-auto text-xs font-normal">Solve to unlock</span>}
       </button>
-      {unlocked && open && selectedMeta && (
+      {unlocked && open && panels.length > 0 && (
         <div className="coden-screen-only space-y-5 border-t border-coden-border px-4 py-4 text-sm text-coden-text">
-          <VerifiedCodePanel
-            challengeId={challengeId}
-            variantId={variantId}
-            sourceKind="leetcode"
-            label="Verified LeetCode submission"
-            language={selectedMeta}
-            source={leetcodeSource || codenSource}
-            theme={theme}
-          />
+          {panels.map((panel) => (
+            <VerifiedCodePanel
+              key={panel.id}
+              challengeId={challengeId}
+              variantId={variantId}
+              sourceId={panel.id}
+              sourceKind={panel.sourceKind}
+              label={panel.label}
+              language={panel.language}
+              source={panel.source}
+              theme={theme}
+            />
+          ))}
         </div>
       )}
     </section>
@@ -816,6 +724,7 @@ function SolutionDisclosure({
 function VerifiedCodePanel({
   challengeId,
   variantId,
+  sourceId,
   sourceKind,
   label,
   language,
@@ -824,6 +733,7 @@ function VerifiedCodePanel({
 }: {
   challengeId: string;
   variantId: string;
+  sourceId: string;
   sourceKind: 'coden' | 'leetcode';
   label: string;
   language: (typeof REFERENCE_LANGUAGES)[number];
@@ -863,7 +773,7 @@ function VerifiedCodePanel({
       </div>
       <div className="overflow-hidden rounded border border-coden-border bg-coden-bg" style={{ height: editorHeight }}>
         <Editor
-          path={`reference://${challengeId}/${variantId}/${sourceKind}.${language.extension}`}
+          path={`reference://${challengeId}/${variantId}/${sourceId}/${sourceKind}.${language.extension}`}
           height="100%"
           language={language.monaco}
           theme={theme === 'dark' ? 'vs-dark' : 'light'}

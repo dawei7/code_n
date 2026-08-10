@@ -91,18 +91,28 @@ class ChallengeSummary(BaseModel):
     leetcode_submission_paid_only: bool = False
 
 
-class SolutionVariantDetail(BaseModel):
-    """One fully validated and remotely verified solution branch."""
+class SolutionImplementationDetail(BaseModel):
+    """One independently displayable implementation inside a branch."""
 
     id: str
     label: str
-    kind: Literal["optimal", "simplified", "alternative"]
+    sources: dict[PrimaryLanguage, str] = Field(default_factory=dict)
+    leetcode_sources: dict[PrimaryLanguage, str] = Field(default_factory=dict)
+
+
+class SolutionVariantDetail(BaseModel):
+    """One displayable solution branch and its ordered implementations."""
+
+    id: str
+    label: str
+    kind: Literal["optimal", "competitive", "simplified", "alternative"]
     summary: str
     time_complexity: str
     space_complexity: str
     approach_markdown: str
     sources: dict[PrimaryLanguage, str] = Field(default_factory=dict)
     leetcode_sources: dict[PrimaryLanguage, str] = Field(default_factory=dict)
+    implementations: list[SolutionImplementationDetail] = Field(default_factory=list)
     submission_status: str
     verified_submission_id: str
 
@@ -125,7 +135,6 @@ class ChallengeDetail(ChallengeSummary):
     leetcode_optimal_sources: dict[PrimaryLanguage, str] = Field(default_factory=dict)
     default_solution_variant: str = ""
     solution_variants: list[SolutionVariantDetail] = Field(default_factory=list)
-    editorial_markdown: str = ""
     solution_variant_effective_elo: float | None = None
     solution_variant_elo_source: str = ""
     simplified_solution_elo_ceiling: float | None = None

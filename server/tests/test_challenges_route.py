@@ -1,16 +1,19 @@
 """Tests for the canonical LeetCode challenge API."""
 from __future__ import annotations
 
+import ast
 import json
 from types import SimpleNamespace
 
 from . import conftest
 from challenges.registry import CHALLENGE_REGISTRY
+from engine.languages import app_solution_filename
 from server.app.challenge_packages import (
     leetcode_package_dir,
     leetcode_solution_path,
     leetcode_solution_variants_status,
     leetcode_submission_manifest_path,
+    leetcode_template_path,
     leetcode_variant_solution_path,
 )
 from server.app.optimal_sources import organized_solution_path
@@ -152,6 +155,77 @@ class ChallengesRouteTest(conftest._Base):
         response = self.client.get("/api/challenges/not-a-challenge")
         self.assertEqual(response.status_code, 404)
 
+    def test_details_document_canonical_package_templates(self) -> None:
+        for challenge_id, language in (
+            ("lc_1", "python"),
+            ("lc_175", "sql"),
+            ("lc_1114", "python"),
+            ("lc_1188", "python"),
+            ("lc_1279", "python"),
+        ):
+            with self.subTest(challenge_id=challenge_id):
+                template_path = leetcode_template_path(challenge_id, language)
+                self.assertIsNotNone(template_path)
+                assert template_path is not None
+                expected = template_path.read_text(encoding="utf-8")
+
+                response = self.client.get(f"/api/challenges/{challenge_id}")
+                self.assertEqual(response.status_code, 200, response.text)
+                detail = response.json()
+                starter = detail["starter_source"]
+                self.assertEqual(detail["starter_sources"][language], starter)
+                self.assertTrue(starter.endswith(expected))
+                comment_prefix = "# " if language == "python" else ""
+                self.assertIn(
+                    f"{comment_prefix}Description\n{comment_prefix}-----------",
+                    starter,
+                )
+                self.assertIn(
+                    f"{comment_prefix}Examples\n{comment_prefix}--------",
+                    starter,
+                )
+                self.assertIn(
+                    f"{comment_prefix}Required Complexity\n{comment_prefix}-------------------",
+                    starter,
+                )
+                self.assertIn("Time: ", starter)
+                self.assertIn("Space: ", starter)
+                if language == "python":
+                    ast.parse(starter)
+
+    def test_documented_starters_use_language_appropriate_comments(self) -> None:
+        cases = (
+            ("lc_1", "python", "# Description"),
+            ("lc_175", "sql", "/*\nDescription"),
+            ("lc_192", "bash", "#!/usr/bin/env bash\n\n# Description"),
+            ("lc_2694", "javascript", "/*\nDescription"),
+        )
+        for challenge_id, language, prefix in cases:
+            with self.subTest(challenge_id=challenge_id):
+                response = self.client.get(f"/api/challenges/{challenge_id}")
+                self.assertEqual(response.status_code, 200, response.text)
+                starter = response.json()["starter_sources"][language]
+                self.assertTrue(starter.startswith(prefix))
+                self.assertIn("Examples", starter)
+                self.assertIn("Required Complexity", starter)
+                self.assertIn("Time: ", starter)
+                self.assertIn("Space: ", starter)
+
+    def test_documented_starters_find_examples_nested_in_source_sections(self) -> None:
+        source_example_facts = {
+            "lc_192": "the day is sunny the the",
+            "lc_3703": 'Input: s = "(())", k = 1',
+            "lc_3933": "Input: matrix = [[0,0,0,0,0,0,0]",
+        }
+        for challenge_id, expected_fact in source_example_facts.items():
+            with self.subTest(challenge_id=challenge_id):
+                response = self.client.get(f"/api/challenges/{challenge_id}")
+                self.assertEqual(response.status_code, 200, response.text)
+                starter = response.json()["starter_source"]
+                self.assertNotIn("No source examples are provided.", starter)
+                self.assertRegex(starter, r"Example(?: 1)?:")
+                self.assertIn(expected_fact, starter)
+
     def test_two_sum_detail_uses_package_metadata_and_artifacts(self) -> None:
         self.client.put("/api/progress", json={"active_set": "leetcode"})
         response = self.client.get("/api/challenges/lc_1")
@@ -179,7 +253,7 @@ class ChallengesRouteTest(conftest._Base):
         path = organized_solution_path("lc_1", "python")
         self.assertIsNotNone(path)
         self.assertTrue(path.is_file())
-        self.assertEqual(path.name, "leetcode.py")
+        self.assertEqual(path.name, app_solution_filename("python"))
 
     def test_details_expose_coden_and_exact_verified_native_submissions(self) -> None:
         for challenge_id, expected_language in (
@@ -236,7 +310,49 @@ class ChallengesRouteTest(conftest._Base):
         self.assertIsNone(detail["estimated_elo_rating"])
         self.assertIsNone(detail["difficulty_estimate"])
 
-    def test_1502_exposes_two_separate_verified_solution_tabs(self) -> None:
+    def test_competitive_numbered_methods_are_separate_solutions(self) -> None:
+        response = self.client.get("/api/challenges/lc_1")
+        self.assertEqual(response.status_code, 200, response.text)
+        detail = response.json()
+        competitive = next(
+            variant
+            for variant in detail["solution_variants"]
+            if variant["id"] == "competitive"
+        )
+
+        self.assertEqual(competitive["kind"], "competitive")
+        self.assertEqual(competitive["submission_status"], "missing")
+        self.assertEqual(
+            [item["label"] for item in competitive["implementations"]],
+            ["Solution 1", "Solution 2"],
+        )
+        first, second = competitive["implementations"]
+        self.assertIn("def twoSum(", first["sources"]["python"])
+        self.assertNotIn("def twoSum2(", first["sources"]["python"])
+        self.assertIn("def twoSum2(", second["sources"]["python"])
+        self.assertNotIn("def twoSum(", second["sources"]["python"])
+
+    def test_competitive_solution_classes_are_separate_solutions(self) -> None:
+        response = self.client.get("/api/challenges/lc_4")
+        self.assertEqual(response.status_code, 200, response.text)
+        detail = response.json()
+        competitive = next(
+            variant
+            for variant in detail["solution_variants"]
+            if variant["id"] == "competitive"
+        )
+
+        self.assertEqual(
+            [item["label"] for item in competitive["implementations"]],
+            ["Solution 1", "Solution 2"],
+        )
+        first, second = competitive["implementations"]
+        self.assertIn("class Solution:", first["sources"]["python"])
+        self.assertNotIn("class Solution_Generic", first["sources"]["python"])
+        self.assertIn("class Solution_Generic", second["sources"]["python"])
+        self.assertNotIn("class Solution:", second["sources"]["python"])
+
+    def test_1502_exposes_verified_and_competitive_solution_tabs(self) -> None:
         response = self.client.get("/api/challenges/lc_1502")
         self.assertEqual(response.status_code, 200, response.text)
         detail = response.json()
@@ -244,24 +360,24 @@ class ChallengesRouteTest(conftest._Base):
         self.assertEqual(detail["default_solution_variant"], "optimal")
         self.assertEqual(
             [variant["id"] for variant in detail["solution_variants"]],
-            ["optimal", "simplified"],
+            ["optimal", "simplified", "competitive"],
         )
         self.assertEqual(
             [variant["kind"] for variant in detail["solution_variants"]],
-            ["optimal", "simplified"],
+            ["optimal", "simplified", "competitive"],
         )
         self.assertTrue(
             all(
                 variant["submission_status"] == "verified"
                 and variant["verified_submission_id"]
-                for variant in detail["solution_variants"]
+                for variant in detail["solution_variants"][:2]
             )
         )
         self.assertAlmostEqual(detail["solution_variant_effective_elo"], 1154.828067979)
         self.assertEqual(detail["solution_variant_elo_source"], "elo_rating")
         self.assertEqual(detail["simplified_solution_elo_ceiling"], 1500)
 
-        optimal, simplified = detail["solution_variants"]
+        optimal, simplified, competitive = detail["solution_variants"]
         self.assertIn("endpoint", optimal["summary"].lower())
         self.assertEqual(optimal["time_complexity"], "O(n)")
         self.assertEqual(optimal["space_complexity"], "O(n)")
@@ -276,6 +392,12 @@ class ChallengesRouteTest(conftest._Base):
         self.assertNotEqual(
             optimal["leetcode_sources"]["python"],
             simplified["leetcode_sources"]["python"],
+        )
+        self.assertEqual(competitive["submission_status"], "missing")
+        self.assertEqual(competitive["leetcode_sources"], {})
+        self.assertEqual(
+            [item["label"] for item in competitive["implementations"]],
+            ["Solution 1"],
         )
 
     def test_1502_default_paths_resolve_to_optimal_branch(self) -> None:

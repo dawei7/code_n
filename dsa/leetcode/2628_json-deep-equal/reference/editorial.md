@@ -1,4 +1,3 @@
-[TOC]
 
 ## Overview
 The task is to determine whether two given objects, `o1` and `o2`, are deeply equal.

@@ -1,4 +1,3 @@
-[TOC]
 
 ### Overview
 You probably can guess from the problem title that this problem is an extension of the original [Cherry Pickup](https://leetcode.com/problems/cherry-pickup/).

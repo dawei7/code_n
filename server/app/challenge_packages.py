@@ -339,6 +339,13 @@ def leetcode_guided_example_path(challenge_id: str) -> Path | None:
     return None if package_dir is None else package_dir / "guided_example.md"
 
 
+def leetcode_optimal_approach_path(challenge_id: str) -> Path | None:
+    """Return the canonical Optimal branch's authored approach path."""
+
+    variant_dir = _variant_directory(challenge_id, "optimal")
+    return None if variant_dir is None else variant_dir / "approach.md"
+
+
 def leetcode_editorial_markdown(challenge_id: str) -> str:
     """Return the package's monolithic editorial without rewriting it."""
 

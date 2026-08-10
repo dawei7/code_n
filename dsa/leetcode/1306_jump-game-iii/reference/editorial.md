@@ -1,18 +1,3 @@
-[TOC]
-
-## Video Solution
-
----
-
-<div>
-    <div class="video-container">
-        <iframe src="https://player.vimeo.com/video/495359105" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    </div>
-</div>
-
-<div>
-</div>
-
 ## Solution Article
 
 You probably can guess from the problem title, this is the third problem in the series of [Jump Game](https://leetcode.com/problems/jump-game/) problems. Those problems are similar, but have considerable differences, making their solutions quite different.

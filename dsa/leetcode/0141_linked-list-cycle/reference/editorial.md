@@ -1,27 +1,3 @@
-[TOC]
-
-## Video Solution
----
-
-<div>
-    <div class="video-container">
-        <iframe src="https://player.vimeo.com/video/507323181" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    </div>
-</div>
-
-<div>
-</div>
-
-</br>
-
-<summary>Clarifying Notes</summary>
-
-The video solution modifies the input by updating the value of the head. This is not recommended. It is better to create a new node to traverse the linked list, as shown in the solution below, so we can still access the head of the list.
-
-</details>
-
----
-
 ## Solution Article
 
 This article is for beginners. It introduces the following ideas: Linked List, Hash Table and Two Pointers.

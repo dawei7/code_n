@@ -19,7 +19,9 @@ from server.app.challenge_packages import (
     is_leetcode_id,
     leetcode_doc_markdown,
     leetcode_doc_path,
+    leetcode_editorial_markdown,
     leetcode_guided_example_path,
+    leetcode_optimal_approach_path,
     leetcode_package_dir,
 )
 from server.app.config import DSA_ROOT, LEETCODE_ROOT, OVERVIEW_DOC
@@ -141,6 +143,39 @@ def guided_example_by_id(challenge_id: str) -> Response:
         )
     return Response(
         content=guide.read_text(encoding="utf-8"),
+        media_type="text/markdown; charset=utf-8",
+    )
+
+
+@router.get("/docs/by-id/{challenge_id}/optimal-approach")
+def optimal_approach_by_id(challenge_id: str) -> Response:
+    """Return only the canonical Optimal branch's authored approach."""
+
+    if challenge_id not in CHALLENGE_REGISTRY:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Challenge '{challenge_id}' not found",
+        )
+    approach = leetcode_optimal_approach_path(challenge_id)
+    if approach is None or not approach.is_file():
+        raise HTTPException(status_code=404, detail=f"No Optimal approach for {challenge_id}")
+    return Response(
+        content=approach.read_text(encoding="utf-8"),
+        media_type="text/markdown; charset=utf-8",
+    )
+
+
+@router.get("/docs/by-id/{challenge_id}/editorial")
+def editorial_by_id(challenge_id: str) -> Response:
+    """Return the package's monolithic editorial for an explicit export."""
+
+    if challenge_id not in CHALLENGE_REGISTRY:
+        raise HTTPException(status_code=404, detail=f"Challenge '{challenge_id}' not found")
+    editorial = leetcode_editorial_markdown(challenge_id)
+    if not editorial:
+        raise HTTPException(status_code=404, detail=f"No editorial for {challenge_id}")
+    return Response(
+        content=editorial,
         media_type="text/markdown; charset=utf-8",
     )
 

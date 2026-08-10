@@ -1,6 +1,5 @@
 ​
 <!-- Don't delete this -->
-[TOC]
 ​
 # Solution
 ​

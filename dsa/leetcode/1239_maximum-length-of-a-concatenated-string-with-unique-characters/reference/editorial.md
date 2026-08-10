@@ -1,5 +1,3 @@
-[TOC]
-
 ## Solution
 
 ---
@@ -60,40 +58,16 @@ While relatively simple, the performance of the basic iterative solution leaves 
 
 In the case of this solution, we can use bit manipulation to store an entire **character bitset** in one integer. Essentially, we will use 26 of the 32 bits of the integer as boolean flags where each bit will be a 0 or a 1, depending on whether or not the corresponding letter of the alphabet is present. Each bit then corresponds to a letter of the alphabet (0 -> 'a' ... 25 -> 'z'). The remaining bits (26 through 31) will be unused.
 
-<div>
-    <div class="video-container">
-        <iframe src="https://player.vimeo.com/video/591163103" width="640" height="272" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-    </div>
-</div>
-
 To accomplish this, we can use some common bit operations:
  - **Bitwise AND operator (`&`)** - Returns an integer in which each bit is a 1 *if and only if* the corresponding bits of both operands are 1s. For example (in binary), $10011001 \& 10101010 = 10001000$.
 
-<div>
-    <div class="video-container">
-        <iframe src="https://player.vimeo.com/video/591163046" width="640" height="311" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-    </div>
-</div>
-
  - **Bitwise shift left (`<<`) and right (`>>`)** - Returns the integer formed by shifting each bit value of the operand the designated direction by the given number of positions. Any bits values that are shifted to the right of 0 are lost, and any bits that are vacated when shifting to the left are automatically 0s. For example (in binary), $10011001 << 3 = 10011001000$ and $10011001 >> 3 = 10011$.
-
-<div>
-    <div class="video-container">
-        <iframe src="https://player.vimeo.com/video/591163069" width="640" height="219" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-    </div>
-</div>
 
 In addition to these basic bitwise operations, we will also need to use a **bitmask**. A bitmask is simply an integer used to target or isolate a specific section of another integer, typically for reading or writing. Let's say that a partial portion of our character bitset is `110011`, which represents 'a', 'b', 'e', and 'f'. If we wanted to store a 'd', the first step would be to create a bitmask of the specific character using a bitwise shift operation. Since 'd' is the 3rd (0-indexed) bit, we can use $1 << 3 = 1000$ as our bitmask. Then, as we're only changing 0s to 1s at this point, we can simply add the bitmask to our bitset ($110011 + 1000 = 111011$) to effectively add the letter 'd'.
 
 To check if a single character is in a bitset, we could use the same bitmask method, but then use the bitwise AND operator to isolate and read the corresponding masked bit of the bitset to see if it is already a 1. For example, using the partial bitset `110011`, checking for a 'd' (`110011 & 1000`) evaluates to 0, while checking for an 'e' (`110011 & 10000`) evaluates to 10000. In this case, the result will be a 0 if the letter is not found and some non-zero number if the letter is found.
 
 In order to avoid having to repeatedly evaluate each bitset to count the length of the result which it represents, we can instead choose to store the length of each bitset in our bitset integer. Since the maximum length of a valid result will be 26, this length data will consequently fit in 5 bits' worth of space ($2^5 = 32$), which is conveniently less than the 6 bits' worth of unused space in our bitset integer. To do this, we can shift the length number left, past the end of the character bitset data, before adding it to the bitset integer ($combined = (length << 26) + bitset$).
-
-<div>
-    <div class="video-container">
-        <iframe src="https://player.vimeo.com/video/591163076" width="640" height="272" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-    </div>
-</div>
 
 This means that we'll have to then use more bit manipulation to isolate and read these two separate pieces of information in our bitset integer. To read the length data, we can simply shift the combined integer to the right by 26 places to drop off the entire bitset portion ($length = combined >> 26$).
 

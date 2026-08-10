@@ -18,6 +18,7 @@ import {
   mermaidSourceFromPreChildren,
   waitForMermaidDiagrams,
 } from '../markdown/MermaidDiagram';
+import { EditorialFrame } from '../markdown/EditorialFrame';
 
 
 export type PdfBundleProgress = {
@@ -28,7 +29,7 @@ export type PdfBundleProgress = {
 
 type MarkdownPdfDocument = {
   challenge: ChallengeSummary;
-  kind: 'reference' | 'guided-example';
+  kind: 'reference' | 'guided-example' | 'approach' | 'editorial';
   markdown: string;
 };
 
@@ -41,6 +42,12 @@ type SolutionPdfDocument = {
 };
 
 type PdfDocument = MarkdownPdfDocument | SolutionPdfDocument;
+
+export type PdfContentOptions = {
+  includeApproach: boolean;
+  includeEditorial: boolean;
+  includeSolution: boolean;
+};
 
 export type PdfTocNode =
   | {
@@ -65,7 +72,7 @@ type ExportPdfBundleOptions = {
   title: string;
   suggestedFilename: string;
   toc: PdfTocNode[];
-  includeSolution: boolean;
+  content: PdfContentOptions;
   onProgress?: (progress: PdfBundleProgress) => void;
 };
 
@@ -75,7 +82,7 @@ export async function exportChallengePdfBundle({
   title,
   suggestedFilename,
   toc,
-  includeSolution,
+  content,
   onProgress,
 }: ExportPdfBundleOptions): Promise<PdfSaveResult> {
   const generatedAtUtc = formatUtcTimestamp(new Date());
@@ -86,7 +93,7 @@ export async function exportChallengePdfBundle({
 
   const documents = await loadDocuments(
     orderedChallenges,
-    includeSolution,
+    content,
     onProgress,
   );
   if (documents.length === 0) {
@@ -138,17 +145,24 @@ export async function exportChallengePdfBundle({
 export function buildPdfBundleFilename(
   scopeLabel: string,
   challenges: ChallengeSummary[],
-  includeSolution: boolean,
+  content: PdfContentOptions,
 ): string {
-  const solutionSuffix = includeSolution ? '-with-solution' : '';
+  const selectedSuffixes = [
+    content.includeApproach ? 'optimal-approach' : '',
+    content.includeEditorial ? 'editorial' : '',
+    content.includeSolution ? 'optimal-solution' : '',
+  ].filter(Boolean);
+  const contentSuffix = selectedSuffixes.length > 0
+    ? `-with-${selectedSuffixes.join('-and-')}`
+    : '';
   if (challenges.length === 1) {
     const challenge = challenges[0]!;
     const frontendId = (challenge.leetcode_frontend_id || challenge.id.replace(/^lc_/, ''))
       .replace(/\D/g, '')
       .padStart(4, '0');
-    return `${frontendId}_${slug(challenge.leetcode_slug || challenge.name)}-reference-guided-example${solutionSuffix}.pdf`;
+    return `${frontendId}_${slug(challenge.leetcode_slug || challenge.name)}-reference-guided-example${contentSuffix}.pdf`;
   }
-  return `${slug(scopeLabel)}-references-guided-examples${includeSolution ? '-with-solutions' : ''}.pdf`;
+  return `${slug(scopeLabel)}-references-guided-examples${contentSuffix}.pdf`;
 }
 
 
@@ -233,8 +247,15 @@ function PdfBundleDocument({
               </article>
             ) : (
               <article className="prose prose-sm max-w-none">
+                {document.kind === 'approach' && (
+                  <h1>{`Optimal Approach: ${document.challenge.name}`}</h1>
+                )}
+                {document.kind === 'editorial' && (
+                  <h1>{`Editorial: ${document.challenge.name}`}</h1>
+                )}
                 <PdfMarkdown
                   challengeId={document.challenge.id}
+                  leetcodeUrl={document.challenge.leetcode_url}
                   markdown={document.markdown}
                 />
               </article>
@@ -250,6 +271,8 @@ function PdfBundleDocument({
 function pdfDocumentLabel(document: PdfDocument): string {
   if (document.kind === 'solution') return `Solution - ${document.languageLabel}`;
   if (document.kind === 'reference') return 'Reference';
+  if (document.kind === 'approach') return 'Optimal Approach';
+  if (document.kind === 'editorial') return 'Editorial';
   return 'Guided Example';
 }
 
@@ -302,7 +325,15 @@ function PdfTocList({
 }
 
 
-function PdfMarkdown({ challengeId, markdown }: { challengeId: string; markdown: string }) {
+function PdfMarkdown({
+  challengeId,
+  leetcodeUrl,
+  markdown,
+}: {
+  challengeId: string;
+  leetcodeUrl: string;
+  markdown: string;
+}) {
   return (
     <ReactMarkdown
       remarkPlugins={[remarkGfm, remarkMath]}
@@ -310,6 +341,9 @@ function PdfMarkdown({ challengeId, markdown }: { challengeId: string; markdown:
       components={{
         details: ({ node, ...props }) => <details {...props} open />,
         a: ({ node, ...props }) => <a {...props} target="_blank" rel="noreferrer" />,
+        iframe: ({ node, ...props }) => (
+          <EditorialFrame {...props} leetcodeUrl={leetcodeUrl} />
+        ),
         img: ({ node, ...props }) => (
           <img
             {...props}
@@ -331,12 +365,14 @@ function PdfMarkdown({ challengeId, markdown }: { challengeId: string; markdown:
 
 async function loadDocuments(
   challenges: ChallengeSummary[],
-  includeSolution: boolean,
+  content: PdfContentOptions,
   onProgress?: (progress: PdfBundleProgress) => void,
 ): Promise<PdfDocument[]> {
   const total = challenges.length
     + challenges.reduce((count, challenge) => count + Number(challenge.has_guided_example), 0)
-    + (includeSolution ? challenges.length : 0);
+    + (content.includeApproach ? challenges.length : 0)
+    + (content.includeEditorial ? challenges.length : 0)
+    + (content.includeSolution ? challenges.length : 0);
   const results: PdfDocument[][] = Array.from({ length: challenges.length }, () => []);
   let nextIndex = 0;
   let completed = 0;
@@ -371,7 +407,31 @@ async function loadDocuments(
         report(`Loaded Guided Example for ${challenge.name}`);
       }
 
-      if (includeSolution) {
+      if (content.includeApproach) {
+        const approach = await apiText(
+          `/docs/by-id/${encodeURIComponent(challenge.id)}/optimal-approach`,
+        );
+        results[index]!.push({
+          challenge,
+          kind: 'approach',
+          markdown: approach,
+        });
+        report(`Loaded Optimal Approach for ${challenge.name}`);
+      }
+
+      if (content.includeEditorial) {
+        const editorial = await apiText(
+          `/docs/by-id/${encodeURIComponent(challenge.id)}/editorial`,
+        );
+        results[index]!.push({
+          challenge,
+          kind: 'editorial',
+          markdown: editorial,
+        });
+        report(`Loaded Editorial for ${challenge.name}`);
+      }
+
+      if (content.includeSolution) {
         const detail = await getChallenge(challenge.id);
         const solution = selectPrimarySolution(detail);
         results[index]!.push({

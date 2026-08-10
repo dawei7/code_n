@@ -1,18 +1,3 @@
-[TOC]
-
-## Video Solution
-
----
-
-<div>
-    <div class="video-container">
-        <iframe src="https://player.vimeo.com/video/664082379" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    </div>
-</div>
-
-<div>
-</div>
-
 ## Solution Article
 
 We need to find out the maximum difference (which will be the maximum profit) between two numbers in the given array. Also, the second number (selling price) must be larger than the first one (buying price).

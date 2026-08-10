@@ -1,4 +1,3 @@
-[TOC]
 
 ### A word of advice
 

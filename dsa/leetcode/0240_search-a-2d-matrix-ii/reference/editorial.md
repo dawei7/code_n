@@ -1,5 +1,3 @@
-[TOC]
-
 ## Solution
 ---
 ### Approach 1: Brute Force
@@ -216,14 +214,6 @@ class Solution:
 
         return search_rec(0, 0, len(matrix[0]) - 1, len(matrix) - 1)
 ```
-
-Here is a visualization for the above code.
-
-<div>
-    <div class="video-container">
-        <iframe src="https://player.vimeo.com/video/570771097" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    </div>
-</div>
 
 **Complexity Analysis**
 

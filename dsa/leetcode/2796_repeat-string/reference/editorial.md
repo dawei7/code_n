@@ -1,4 +1,3 @@
-[TOC]
 
 ## Overview:
 Our task is to enhance the behavior of strings by implementing a method `string.replicate(x)` that returns the string repeated `x` times. The challenge is to achieve this without using the built-in `string.repeat() method`.

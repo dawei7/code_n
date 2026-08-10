@@ -12,8 +12,6 @@ from fastapi import APIRouter, HTTPException
 
 from challenges.registry import CHALLENGE_REGISTRY
 from engine.languages import PrimaryLanguage, SupportedLanguage, normalize_language
-from engine.solutions import _solution_template
-from engine.special_environments import starter_source as environment_starter_source
 from server.app.primary_languages import primary_language_for_challenge
 from server.app.schemas import (
     SolutionGet,
@@ -41,13 +39,6 @@ router = APIRouter()
 def _get_starter(challenge, language: str | None = "python") -> str:
     spec = getattr(challenge, "_spec", None)
     if spec:
-        metadata = getattr(spec, "reference_metadata", {}) or {}
-        environment_starter = environment_starter_source(
-            str(metadata.get("category") or ""),
-            str(getattr(spec, "name", "") or spec.id),
-        )
-        if environment_starter and normalize_language(language) == environment_starter[0]:
-            return environment_starter[1]
         from server.app.routes.challenges import _starter_source_for
         return _starter_source_for(spec, language or "python")
     return ""

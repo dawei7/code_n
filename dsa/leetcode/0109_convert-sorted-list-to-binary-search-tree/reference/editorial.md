@@ -1,5 +1,3 @@
-[TOC]
-
 ## Solution
 ---
 ### Approach 1: Recursion
@@ -20,17 +18,6 @@ The main idea in this approach and the next is that:
 2. We can use the two pointer approach for finding out the middle element of a linked list. Essentially, we have two pointers called $\text{slow}_{ptr}$ and $\text{fast}_{ptr}$. The $\text{slow}_{ptr}$ moves one node at a time whereas the $\text{fast}_{ptr}$ moves two nodes at a time. By the time the $\text{fast}_{ptr}$ reaches the end of the linked list, the $\text{slow}_{ptr}$ would have reached the middle element of the linked list. For an even sized list, any of the two middle elements can act as the root of the BST.
 3. Once we have the middle element of the linked list, we disconnect the portion of the list to the left of the middle element. The way we do this is by keeping a $\text{prev}_{ptr}$ as well which points to one node before the $\text{slow}_{ptr}$ i.e. $\text{prev}_{ptr}.next$ = $\text{slow}_{ptr}$. For disconnecting the left portion we simply do $\text{prev}_{ptr}.next = None$
 4. We only need to pass the head of the linked list to the function that converts it to a height balances BST. So, we recurse on the left half of the linked list by passing the original head of the list and on the right half by passing $\text{slow}_{ptr}.next$ as the head.
-
-Let's look at this algorithm in action on a sample linked list.
-
-<div>
-    <div class="video-container">
-        <iframe src="https://player.vimeo.com/video/810323458" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    </div>
-</div>
-
-<div>
-</div>
 
 ```python
 # Definition for singly-linked list.
@@ -207,17 +194,6 @@ The inorder traversal on a binary search tree leads to a very interesting outcom
 
 The approach listed here make use of this idea to formulate the construction of a binary search tree. The reason we are able to use this idea in this problem is because we are given a `sorted` linked list initially.
 
-Before looking at the algorithm, let us look at how the inorder traversal actually leads to a sorted order of nodes' values.
-
-<div>
-    <div class="video-container">
-        <iframe src="https://player.vimeo.com/video/810323448" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    </div>
-</div>
-
-<div>
-</div>
-
 The critical idea based on the inorder traversal that we will exploit to solve this problem, is:
 
 > We know that the leftmost element in the inorder traversal has to be the head of our given linked list. Similarly, the next element in the inorder traversal will be the second element in the linked list and so on. This is made possible because the initial list given to us is sorted in ascending order.
@@ -245,17 +221,6 @@ Let's quickly look at a pseudo-code to make the algorithm simple to understand.
 3. Recurse on the left half by using $start, mid - 1$ as the starting and ending points.
 4. The invariance that we maintain in this algorithm is that whenever we are done building the left half of the BST, the head pointer in the linked list will point to the root node or the middle node (which becomes the root). So, we simply use the current value pointed to by `head` as the root node and progress the head node by once i.e. $head = \text{head.next}$
 5. We recurse on the right hand side using $mid + 1, end$ as the starting and ending points.
-
-Let's look at an animation to make things even clearer.
-
-<div>
-    <div class="video-container">
-        <iframe src="https://player.vimeo.com/video/810323471" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    </div>
-</div>
-
-<div>
-</div>
 
 ```python
 # Definition for singly-linked list.

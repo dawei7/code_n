@@ -1,4 +1,3 @@
-[TOC]
 
 ## Overview:
 We need to merge two arrays, `arr1` and `arr2`, based on their "id" key. The resulting array, `joinedArray`, should contain all the unique objects from both arrays, sorted in ascending order of their `id` values. When objects share the same `id`, their properties should be merged, with values from `arr2` overriding values from `arr1`. If an `id` exists in only one array, the single object with that `id` should be included without modification.

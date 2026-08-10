@@ -1,28 +1,3 @@
-[TOC]
-
-## Video Solution
-
----
-
-<div>
-    <div class="video-container">
-        <iframe src="https://player.vimeo.com/video/680555550" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    </div>
-</div>
-
-<div>
-</div>
-
-<br />
-
-<details>
-
-<summary>Clarifying Notes</summary>
-
-From 4:05 to 5:30, line 19 of the code, $int right = \text{Math.max}(cols - 1, col + 1);$ should be $int right = \text{Math.min}(cols - 1, col + 1);$.
-
-</details>
-
 ## Solution Article
 
 ---

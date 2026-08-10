@@ -399,13 +399,18 @@ import sys
 import threading
 import time
 import traceback
-from collections import Counter
+from collections import Counter, deque
 from urllib.parse import urlsplit
 
 
 def load_module(path):
     spec = importlib.util.spec_from_file_location("coden_user_solution", path)
     module = importlib.util.module_from_spec(spec)
+    # LeetCode supplies these common concurrency globals to submissions. Keep
+    # the accepted source unchanged and reproduce that module environment in
+    # the isolated cOde(n) runner.
+    module.threading = threading
+    module.deque = deque
     spec.loader.exec_module(module)
     return module
 

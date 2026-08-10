@@ -1,4 +1,3 @@
-[TOC]
 
 ## Overview:
 We need to implement a function `cycleGenerator` that returns a generator function `gen` for a circular array `arr` and an integer `startIndex`. On the first call to `gen.next()`, yield $\text{arr}[startIndex]$. For subsequent calls to `gen.next(jump)`, update the index based on the sign of `jump`. Positive jumps increase the index with wrap-around, and negative jumps decrease the index with wrap-around.

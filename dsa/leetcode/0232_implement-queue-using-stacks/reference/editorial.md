@@ -1,4 +1,3 @@
-[TOC]
 
 ## Summary
 This article is for beginners. It introduces the following ideas:

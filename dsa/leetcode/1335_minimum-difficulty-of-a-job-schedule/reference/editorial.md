@@ -1,4 +1,3 @@
-[TOC]
 
 ### Overview
 In this question, we want to distribute `n` jobs across `d` days in a way that minimizes the difficulty of the job schedule. The difficulty of a job schedule is the sum of the maximum difficulty job for each day and every day must have at least one job. Whenever you need to search for the most efficient way to distribute `n` items, brute force is always an option. Typically, brute force solutions are very slow, but they serve as a good starting point that can be optimized later. The brute force solution to this problem is to generate all valid ways to distribute the `n` jobs across `d` days, and then calculate the minimum job difficulty of each way.

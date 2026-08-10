@@ -1,4 +1,3 @@
-[TOC]
 
 ---
 ### Approach #1: Next Array [Accepted]

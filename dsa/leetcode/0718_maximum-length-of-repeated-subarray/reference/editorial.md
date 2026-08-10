@@ -1,4 +1,3 @@
-[TOC]
 
 ### Approach #1: Brute Force with Initial Character Map [Time Limit Exceeded]
 

@@ -1,16 +1,3 @@
-## Video Solution
-
----
-
-<div>
-  <div class="video-container">
-    <iframe src="https://player.vimeo.com/video/497805462" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-  </div>
-</div>
-
-<div>
-</div>
-
 ## Solution Article
 
 We are given a `beginWord` and an `endWord`. Let these two represent `start node` and `end node` of a graph. We have to reach from the start node to the end node using some intermediate nodes/words. The intermediate nodes are determined by the `wordList` given to us. The only condition for every step we take on this ladder of words is the current word should change by just `one letter`.

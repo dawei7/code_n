@@ -1,5 +1,3 @@
-[TOC]
-
 ## Solution
 
 ---
@@ -261,12 +259,6 @@ After choosing a pivot value, the partition function will swap the values of the
 Once the two pointers meet, we'll need to make sure the left pointer has completely moved past the end of the left side partition, then we can return it back to the QuickSelect function as the `pivotIndex` representing the left-most edge of the right partition.
 
 If `pivotIndex` is equal to $k$, then we know that the first $k$ values in the array will be the ones we want to select. Since the order of the elements in the output array does not matter, an array containing those $k$ values can immediately be returned as the solution. Otherwise, the QuickSelect function should adjust its range pointers appropriately, keeping only the partition which includes the $k^{th}$ value. This process will continue to narrow the range until a match is found and the solution is returned.
-
-<div>
-    <div class="video-container">
-        <iframe src="https://player.vimeo.com/video/614034863?h=d451ff9686" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-    </div>
-</div>
 
 <br>
 

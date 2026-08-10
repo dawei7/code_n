@@ -1,4 +1,3 @@
-[TOC]
 ## Summary
 
 We need to determine the length of the largest valid substring of parentheses from a given string.

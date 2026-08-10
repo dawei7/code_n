@@ -17,6 +17,42 @@ from . import conftest
 
 
 class DynamicDocsTest(conftest._Base):
+    def test_canonical_editorials_omit_videos_and_toc_markers(self) -> None:
+        leetcode_root = Path(__file__).resolve().parents[2] / "dsa" / "leetcode"
+        editorials = sorted(leetcode_root.glob("*/reference/editorial.md"))
+        violations: list[str] = []
+
+        self.assertEqual(len(editorials), 4005)
+        for editorial in editorials:
+            text = editorial.read_text(encoding="utf-8")
+            lowered = text.lower()
+            lines = {line.strip().lower() for line in text.splitlines()}
+            has_video_heading = any(
+                line.startswith("#")
+                and line.lstrip("#").strip() in {"video", "video solution"}
+                for line in lines
+            )
+            has_video_markup = any(
+                marker in lowered
+                for marker in (
+                    "<video",
+                    "player.vimeo.com",
+                    "youtube.com/embed",
+                    "youtube-nocookie.com/embed",
+                    "youtu.be/",
+                    ".mp4",
+                    ".webm",
+                )
+            )
+            if (
+                has_video_markup
+                or has_video_heading
+                or "[toc]" in lines
+            ):
+                violations.append(str(editorial.relative_to(leetcode_root)))
+
+        self.assertEqual(violations, [])
+
     def test_latex_linearithmic_complexity_is_parsed(self) -> None:
         text = "### Required Complexity\n- **Time:** $O(n \\log n)$\n- **Space:** $O(n)$"
         self.assertEqual(_parse_complexity(text), ComplexityClass.O_N_LOG_N)
@@ -64,17 +100,26 @@ class DynamicDocsTest(conftest._Base):
         self.assertIn("| Contest Source | Biweekly Contest 166 |", response.text)
         self.assertIn("| Contest Problem | Q2 |", response.text)
 
-    def test_challenge_detail_exposes_the_monolithic_editorial_unchanged(self) -> None:
-        response = self.client.get("/api/challenges/lc_1")
-        self.assertEqual(response.status_code, 200, response.text)
-
-        package = leetcode_package_dir("lc_1")
+    def test_pdf_sources_expose_only_the_optimal_approach_and_editorial(self) -> None:
+        package = leetcode_package_dir("lc_1502")
         self.assertIsNotNone(package)
         assert package is not None
-        expected = (package / "reference" / "editorial.md").read_text(
-            encoding="utf-8"
+
+        approach = self.client.get("/api/docs/by-id/lc_1502/optimal-approach")
+        self.assertEqual(approach.status_code, 200, approach.text)
+        self.assertEqual(
+            approach.text,
+            (package / "variants" / "optimal" / "approach.md").read_text(
+                encoding="utf-8"
+            ),
         )
-        self.assertEqual(response.json()["editorial_markdown"], expected)
+
+        editorial = self.client.get("/api/docs/by-id/lc_1502/editorial")
+        self.assertEqual(editorial.status_code, 200, editorial.text)
+        self.assertEqual(
+            editorial.text,
+            (package / "reference" / "editorial.md").read_text(encoding="utf-8"),
+        )
 
     def test_monolithic_reference_images_are_served_as_doc_assets(self) -> None:
         response = self.client.get(

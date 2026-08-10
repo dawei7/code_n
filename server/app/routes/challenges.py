@@ -24,8 +24,8 @@ from server.app.challenge_sets import (
     external_subset_memberships_for,
     normalize_algorithm_set,
 )
+from server.app.competitive_solutions import split_competitive_solution_source
 from server.app.challenge_packages import (
-    leetcode_editorial_markdown,
     leetcode_guided_example_path,
     leetcode_solution_path,
     leetcode_template_path,
@@ -42,9 +42,11 @@ from server.app.schemas import (
     ChallengeSummary,
     ParamDoc,
     Sample,
+    SolutionImplementationDetail,
     SolutionVariantDetail,
     TestCaseSummary,
 )
+from server.app.starter_sources import compose_documented_starter
 
 
 router = APIRouter()
@@ -111,25 +113,26 @@ def extract_leetcode_starter(source: str, language: str = "python") -> str:
 
 
 def _starter_source_for(spec, language: str = "python") -> str:
-    reference_metadata = getattr(spec, "reference_metadata", {}) or {}
-    custom_sources = _custom_starter_sources(reference_metadata)
-    if language in custom_sources:
-        return custom_sources[language]
     template_path = leetcode_template_path(spec.id, language)
     if template_path and template_path.is_file():
-        return template_path.read_text(encoding="utf-8")
-    sol_path = leetcode_solution_path(spec.id, language)
-    if sol_path and sol_path.is_file():
-        source = sol_path.read_text(encoding="utf-8")
-        starter = extract_leetcode_starter(source, language)
-        if starter.strip():
-            return starter
-    return _solution_template(
-        spec.id,
-        heading=f"{spec.id}: {spec.name}",
-        description=spec.description,
-        language=language,
-    )
+        template_source = template_path.read_text(encoding="utf-8")
+    else:
+        reference_metadata = getattr(spec, "reference_metadata", {}) or {}
+        custom_sources = _custom_starter_sources(reference_metadata)
+        template_source = custom_sources.get(language, "")
+        if not template_source:
+            sol_path = leetcode_solution_path(spec.id, language)
+            if sol_path and sol_path.is_file():
+                source = sol_path.read_text(encoding="utf-8")
+                template_source = extract_leetcode_starter(source, language)
+        if not template_source.strip():
+            template_source = _solution_template(
+                spec.id,
+                heading=f"{spec.id}: {spec.name}",
+                description=spec.description,
+                language=language,
+            )
+    return compose_documented_starter(spec, language, template_source)
 
 
 @lru_cache(maxsize=4096)
@@ -153,21 +156,56 @@ def _submission_summary(challenge_id: str) -> tuple[str, str, bool]:
 def _solution_variant_details(
     challenge_id: str,
 ) -> tuple[list[SolutionVariantDetail], str, float | None, str, float | None]:
-    """Return only complete, Accepted solution branches for the challenge UI."""
+    """Return complete solution branches that can be displayed in the UI."""
 
     status = leetcode_solution_variants_status(challenge_id)
-    if not status.complete:
+    if not status.variants:
         return [], "", None, "", None
 
     variants: list[SolutionVariantDetail] = []
     for variant in status.variants:
-        native_submission = verified_native_submission_source(variant.submission_path)
-        if native_submission is None:
+        if variant.kind not in {"optimal", "competitive", "simplified", "alternative"}:
             continue
-        language, native_source = native_submission
-        coden_path = variant.solution_paths.get(language)
-        if coden_path is None or not coden_path.is_file():
-            continue
+        implementations: list[SolutionImplementationDetail] = []
+        if variant.kind == "competitive":
+            if not variant.solution_paths:
+                continue
+            language, coden_path = next(iter(variant.solution_paths.items()))
+            if not coden_path.is_file():
+                continue
+            coden_source = coden_path.read_text(encoding="utf-8")
+            sources = {language: coden_source}
+            leetcode_sources: dict[str, str] = {}
+            implementations = [
+                SolutionImplementationDetail(
+                    id=f"solution-{index}",
+                    label=f"Solution {index}",
+                    sources={language: implementation},
+                )
+                for index, implementation in enumerate(
+                    split_competitive_solution_source(coden_source, language),
+                    start=1,
+                )
+            ]
+        else:
+            native_submission = verified_native_submission_source(variant.submission_path)
+            if native_submission is None:
+                continue
+            language, native_source = native_submission
+            coden_path = variant.solution_paths.get(language)
+            if coden_path is None or not coden_path.is_file():
+                continue
+            coden_source = coden_path.read_text(encoding="utf-8")
+            sources = {language: coden_source}
+            leetcode_sources = {language: native_source}
+            implementations = [
+                SolutionImplementationDetail(
+                    id="solution-1",
+                    label="Verified LeetCode submission",
+                    sources=sources,
+                    leetcode_sources=leetcode_sources,
+                )
+            ]
         variants.append(SolutionVariantDetail(
             id=variant.id,
             label=variant.label,
@@ -175,9 +213,14 @@ def _solution_variant_details(
             summary=variant.summary,
             time_complexity=variant.time_complexity,
             space_complexity=variant.space_complexity,
-            approach_markdown=variant.approach_path.read_text(encoding="utf-8"),
-            sources={language: coden_path.read_text(encoding="utf-8")},
-            leetcode_sources={language: native_source},
+            approach_markdown=(
+                variant.approach_path.read_text(encoding="utf-8")
+                if variant.approach_path.is_file()
+                else ""
+            ),
+            sources=sources,
+            leetcode_sources=leetcode_sources,
+            implementations=implementations,
             submission_status=variant.submission_status,
             verified_submission_id=variant.verified_submission_id,
         ))
@@ -493,7 +536,6 @@ def _spec_to_detail(challenge) -> ChallengeDetail:
         leetcode_optimal_sources=leetcode_optimal_sources,
         default_solution_variant=default_solution_variant,
         solution_variants=solution_variants,
-        editorial_markdown=leetcode_editorial_markdown(spec.id),
         solution_variant_effective_elo=solution_variant_effective_elo,
         solution_variant_elo_source=solution_variant_elo_source,
         simplified_solution_elo_ceiling=simplified_solution_elo_ceiling,
