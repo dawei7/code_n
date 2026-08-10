@@ -1,14 +1,74 @@
 ## General
-The optimal solution implements an idiomatic, readable, and production-ready approach for **Count Special Triplets**.
 
-- **Core Strategy**: Uses a two-pointer technique to traverse the input structure from opposing ends.
-- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
-- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
+The source treats each array position as the middle index `j`. Once `nums[j]=x` is fixed, both outer values must equal `2x`. The number of triplets using this middle is:
+
+$$
+\text{count of }2x\text{ on the left}
+\times
+\text{count of }2x\text{ on the right}.
+$$
+
+Two frequency maps maintain those counts while scanning once.
+
+**Map meanings**
+
+`right` initially counts every value in the complete array. `left` begins empty.
+
+Immediately before counting current `x`, the source decrements `right[x]`. After that update:
+
+- `left` contains exactly indices strictly before `j`;
+- `right` contains exactly indices strictly after `j`.
+
+The current position belongs to neither side, which is essential because triplet indices must satisfy strict inequalities.
+
+**Contribution of one middle**
+
+`left[x*2]` is the number of choices for `i`, and `right[x*2]` is the number of choices for `k`. Every left choice can pair with every right choice independently, so multiplication counts all and only triplets with this middle.
+
+After adding the contribution, `left[x]` increments, making the current position available as a left endpoint for later middles.
+
+**Why update order handles zero**
+
+When `x=0`, target `2x` is also zero. If the current zero remained in `right` during counting, it would be incorrectly available as its own `k` endpoint.
+
+Decrementing `right[x]` first excludes it. Incrementing `left[x]` only after counting prevents it from serving as its own `i` endpoint. The same ordering is correct for every value and particularly visible for zero.
+
+**Why every triplet is counted once**
+
+Every special triplet has one unique middle index `j`. When the scan reaches it, its `i` lies in `left` and its `k` lies in `right`, so that pair contributes once to the product.
+
+At every other scan position, a different middle is being considered, so the same index triple cannot be counted again. Conversely, every pair chosen by the product has the required values and strict index order.
+
+**Modulo**
+
+The product and running sum are reduced modulo `10^9+7`. Modular addition and multiplication preserve the final residue. Python avoids overflow, but incremental reduction keeps values bounded.
+
+**Example**
+
+For `[8,4,2,8,4]`, middle value four at index one sees one eight left and one eight right, contributing one. Middle value two at index two sees one four left and one four right, contributing another. Other positions contribute zero, giving two.
 
 ## Complexity detail
-- **Time Complexity**: $O(n)$ — Operational efficiency across problem constraints.
-- **Space Complexity**: $O(n)$ — Auxiliary memory allocation bound.
+
+Constructing `right` takes `O(n)` time. The scan performs expected constant-time Counter operations per element, so total expected time is `O(n)`.
+
+The two maps store at most the number of distinct values, bounded by `n`. Auxiliary space is `O(n)`.
 
 ## Alternatives and edge cases
-- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
-- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.
+
+- **Triple enumeration:** Checking all index triples costs `O(n^3)` and ignores the fixed-middle counting structure.
+- **Position lists plus binary search:** Store indices per value and count positions on each side in `O(\log n)` per middle, yielding `O(n\log n)`.
+- **One total map plus prefix counts:** Right count can be derived as total minus processed occurrences, but the explicit two-map invariant is easy to verify.
+- **All zeros:** Each middle contributes zeros-left times zeros-right, summing to `\binom{n}{3}` modulo the modulus.
+- **Current value equals target:** This happens only for zero under nonnegative values, and the update ordering excludes the current index.
+- **No doubled value:** Counter lookup returns zero and contributes nothing.
+- **Repeated endpoints:** Distinct occurrences represent distinct index choices and are correctly multiplied.
+- **Boundary positions:** First and last positions have an empty side and therefore cannot be a valid middle.
+- **Large answer:** Modulo is applied after each contribution.
+- **Counter missing keys:** Access returns zero rather than requiring membership branches.
+- **Input preservation:** Only counts change; `nums` remains untouched.
+- **Value bound:** Doubling can produce up to `2\cdot10^5`, and Counter lookups support absent larger keys without array bounds.
+- **Strict order:** Moving the current item from right to left around its contribution enforces `i<j<k` exactly.
+- **Multiplication principle:** Left and right endpoint selections do not constrain one another after the middle is fixed. Choosing one occurrence on the left never removes or changes a right occurrence, so multiplying counts is exact rather than an approximation.
+- **Why values, not positions, belong in the maps:** Position order is already encoded by when an occurrence moves between `right` and `left`. The maps need only aggregate equal values within each side; storing complete index lists would duplicate information the scan already provides.
+- **Modulo placement:** Reducing the product before adding and reducing the sum afterward is algebraically equivalent to reducing the complete integer answer once. It also prevents a language with bounded integers from accumulating an unnecessarily large intermediate, even though Python itself would remain safe.
+- **One pass after initialization:** The only preliminary work is the complete `right` count. No second positional preprocessing is hidden; every occurrence crosses from the future map to the past map exactly once during the main loop.

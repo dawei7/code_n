@@ -1,14 +1,103 @@
 ## General
-The optimal solution implements an idiomatic, readable, and production-ready approach for **Minimum Operations to Make Array Sum Divisible by K**.
 
-- **Core Strategy**: Executes an optimal, single-pass iteration with state accumulation.
-- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
-- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
+**Focus on what one operation changes**
+
+The desired property concerns only the sum of the whole array. It does not matter which individual index contributes which amount once the total is known.
+
+Let
+
+`S = nums[0] + nums[1] + ... + nums[n - 1]`.
+
+One allowed operation replaces some `nums[i]` by `nums[i] - 1`. Regardless of the selected index or its current value, this changes the total from `S` to `S - 1`. After exactly `t` operations, the array sum is therefore
+
+`S - t`.
+
+This observation removes the apparent choice among indices. Different distributions of the same `t` decrements all produce the same final total, so the optimization depends only on finding the smallest nonnegative `t` for which `S - t` is divisible by `k`.
+
+**Use quotient and remainder**
+
+By the division algorithm, there are unique integers `q` and `r` such that
+
+`S = qk + r`, with `0 <= r < k`.
+
+The value `r` is exactly `S % k` in Python because the inputs and `k` are positive. It measures how far `S` lies above the previous multiple `qk`. Decreasing the total by `r` gives
+
+`S - r = qk`,
+
+which is divisible by `k`. Thus `r` operations are sufficient.
+
+The complete implementation is consequently:
+
+`return sum(nums) % k`.
+
+Although the code is one line, the important reasoning is that the remainder is distance to the nearest reachable multiple in the allowed direction. Operations can only decrease the sum. The next larger multiple, which is `k - r` steps away when `r > 0`, cannot be reached by decrementing.
+
+**Why fewer operations cannot work**
+
+Take any `t` with `0 <= t < r`. Substituting `S = qk + r` gives
+
+`S - t = qk + (r - t)`.
+
+Because `t < r`, the new remainder-like quantity satisfies `1 <= r - t < k`. Therefore `S - t` is not divisible by `k`. No selection of indices can change this conclusion, because every operation always reduces the total by exactly one.
+
+We have shown both parts needed for optimality:
+
+- `r` operations are feasible because they reach `qk`;
+- every smaller nonnegative number of operations leaves a nonzero remainder.
+
+Therefore `r = S % k` is the minimum.
+
+An equivalent modular statement is that divisibility requires
+
+`S - t ≡ 0 (mod k)`,
+
+so
+
+`t ≡ S ≡ r (mod k)`.
+
+The nonnegative solutions are `r, r + k, r + 2k, ...`. The smallest is `r`.
+
+**Why the operations are always feasible**
+
+The operation statement permits repeated decrements. It does not say that an element must remain positive or nonnegative after an operation. Therefore, one may apply all `r` decrements to any index if desired.
+
+Even under the stronger, unnecessary restriction that values should not go below zero, feasibility would still hold for these positive inputs. Since `r` is a remainder of `S`, `r <= S`. The required decrements could be distributed among elements without removing more than their total sum.
+
+The algorithm does not need to construct this distribution because the function returns only the minimum count. Example 1 has total `19` and `19 % 5 = 4`. Four decrements produce total `15`. They may all be applied to the value `9` as the example does, or distributed across several elements; the count and divisibility outcome are identical.
+
+For `nums = [3, 2]` and `k = 6`, the total is `5`. The previous multiple of six is zero, so the remainder and answer are both five. This illustrates that the answer need not be the distance to `6`: increasing the sum is not an allowed move.
+
+**Why individual array structure is irrelevant**
+
+There are no constraints about sorted order, equality of elements, preserving a minimum value, or minimizing the number of distinct indices changed. The only requested quantity is the number of unit-decrement operations until the total is divisible by `k`.
+
+Accordingly, two arrays with the same total always have the same answer for the same `k`. For example, `[8]` and `[3, 5]` behave identically with respect to this problem. Any algorithm that tracks per-index choices, subsets, or remainders of individual values is retaining information that cannot affect the objective.
+
+This is a useful general problem-solving pattern: first identify the exact global quantity changed by an operation. When every operation changes that quantity by a fixed amount and the target is a modular condition on that quantity, quotient-and-remainder reasoning often replaces simulation or dynamic programming.
 
 ## Complexity detail
-- **Time Complexity**: $O(n)$ — Operational efficiency across problem constraints.
-- **Space Complexity**: $O(1)$ — Auxiliary memory allocation bound.
+
+Let `n = len(nums)`. Python's `sum(nums)` visits every element once, so the running time is `O(n)`. The modulo operation is performed once after the sum is known. With values bounded by `1000` and `n` bounded by `1000`, the total is small, but even with arbitrary-precision accounting its bit length is modest; under the standard word-RAM model the final arithmetic is constant time.
+
+The method keeps only the running total used internally by `sum` and the supplied `k`. It allocates no structure whose size grows with `n`, so auxiliary space is `O(1)`.
+
+Reading all elements is necessary for an arbitrary unsummarized input array: changing one unseen value could change the total remainder and therefore the answer. Thus the `O(n)` time bound is asymptotically optimal for this input representation.
+
+In a fixed-width language, the sum should be stored in a type large enough for `n \cdot max(nums[i])`. Here the maximum total is `10^6`, so even a standard 32-bit signed integer is safe. Python handles the sum without overflow automatically.
 
 ## Alternatives and edge cases
-- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
-- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.
+
+- **Simulate decrements until divisible:** Repeatedly subtracting one from an element and retesting eventually works, but it performs exactly the number of answer operations and obscures the direct formula. The remainder computes the same count immediately after summing.
+- **Distance to the next multiple, `(k - r) % k`:** That formula is appropriate when each operation increases the total by one. Here operations decrease it, so for nonzero `r` the reachable previous multiple is `r` steps away.
+- **Dynamic programming over residues:** Residue DP is useful when operations have different costs or selectable changes. Every operation here has identical effect `-1` on the total, leaving no combinatorial choice to optimize.
+- **Choose the largest array value greedily:** The index choice does not affect the number of unit operations. A large value may be convenient for constructing an example, but it does not change the answer.
+- **Take each element modulo `k` first:** Because addition respects modular arithmetic, summing individual remainders can compute the total remainder, but it is more work conceptually than `sum(nums) % k` and offers no benefit under these bounds.
+- **Already divisible:** If `S % k = 0`, zero is already the smallest feasible operation count and the source returns `0`.
+- **`k = 1`:** Every integer is divisible by one, so the remainder is always zero.
+- **Total smaller than `k`:** Then `S % k = S`. Decreasing the sum to zero takes `S` operations, and zero is divisible by every positive `k`.
+- **One-element array:** The same proof applies. Repeated decrements of that single value can realize the computed remainder.
+- **Operations on multiple indices:** Splitting decrements among indices neither helps nor hurts because only their total count changes `S`.
+- **Values becoming negative:** The operation definition does not impose a lower bound after modification. Even if it did require nonnegative final values, `r <= S` would allow distributing the decrements safely for positive initial inputs.
+- **Zero as a divisible sum:** Zero is a valid multiple of `k`. This matters when the initial total is below `k`, as in the third example.
+- **Modulo language differences:** Some languages define a negative remainder differently, but the documented initial values make `S` positive. Python's result is the unique `r` in `[0, k - 1]` used by the proof.
+- **Overflow in other languages:** Although impossible under these particular constraints with 32-bit signed arithmetic, larger variants of the problem should accumulate in 64-bit storage before applying modulo.

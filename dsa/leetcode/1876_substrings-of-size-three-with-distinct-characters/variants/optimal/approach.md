@@ -1,14 +1,36 @@
 ## General
-The optimal solution implements an idiomatic, readable, and production-ready approach for **Substrings of Size Three with Distinct Characters**.
 
-- **Core Strategy**: Executes an optimal, single-pass iteration with state accumulation.
-- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
-- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
+**Count occurrences by their right endpoint.** A substring of length three ending at index `r` is uniquely determined: it starts at `r - 2`. Therefore, after processing each character, the algorithm only needs to decide whether the most recent three characters are all distinct. Repeated text in different positions is naturally counted more than once because each ending index contributes independently. The source solves that decision through a sliding window that represents the longest duplicate-free suffix ending at the current index.
+
+**Represent the lowercase alphabet as bits.** The expression `ord(c) - 97` maps lowercase `'a'` through `'z'` to integers `0` through `25`. Bit `x` of `mask` records whether character number `x` is currently inside the window. Testing `mask >> x & 1` yields `1` exactly when that bit is set. Setting it uses `mask |= 1 << x`. Since the input alphabet has only 26 characters, the complete membership structure fits in one integer rather than requiring a set or a 26-element count array.
+
+**Maintain a window containing no duplicate.** Variable `l` is the left boundary, and loop variable `r` is the right boundary. Before adding the new character `x`, the `while` loop checks whether `x` is already represented in `mask`. If it is, the algorithm removes characters from the left: `y = ord(s[l]) - 97` converts the outgoing character, `mask ^= 1 << y` clears its bit, and `l += 1` advances the boundary. The loop stops exactly when the previous occurrence of `x` has been removed. The new bit can then be set safely.
+
+Using XOR to remove a bit is correct here because the window invariant guarantees that every character appears at most once. Consequently, the outgoing character's bit is definitely set, and toggling it clears the bit. Without the uniqueness invariant, XOR could incorrectly turn a bit on after removing one of several copies; this source carefully removes duplicates before that situation can arise.
+
+**Why the window is the longest unique suffix.** Before an iteration, the current window is duplicate-free. If `x` is absent, adding it preserves uniqueness and keeping the same `l` gives the longest possible unique suffix. If `x` is present, any suffix beginning at or before its old occurrence would contain both copies and could not be unique. Advancing `l` through that occurrence removes the conflict, and stopping immediately afterward keeps every earlier character that can legally remain. Thus after setting the new bit, `s[l:r + 1]` is duplicate-free and starts as far left as possible.
+
+**Convert suffix length into the length-three answer.** The current unique-window length is `r - l + 1`. The line `ans += int(r - l + 1 >= 3)` adds one if that length is at least three and zero otherwise. It may initially seem that a window longer than three should add several substrings, but this problem counts only substrings of exactly length three. For a fixed right endpoint, there is exactly one such substring. If the entire suffix from `l` through `r` is unique and has length at least three, its last three characters are necessarily unique. Conversely, if the length is below three, the most recent length-three candidate, if positions even exist, begins before `l` and contains a duplicate conflict that forced `l` forward. The Boolean test is therefore precisely the status of the only length-three substring ending at `r`.
+
+**Trace `xyzzaz`.** Reading `x`, `y`, and the first `z` grows the unique window to length three, so the answer becomes one for substring `xyz`. At the second `z`, the bit for `z` is already set. The loop removes `x`, then `y`, and then the old `z`; after adding the new `z`, the unique suffix has length one, so `yzz` is not counted. Adding `a` creates length two. On the final `z`, the old `z` at the left is removed, leaving `az` of length two, so `zaz` is also rejected. The returned count is one.
+
+**Why every valid occurrence is counted exactly once.** Consider every possible length-three substring `s[t:t + 3]`. It is examined on the iteration whose right endpoint is `t + 2`. If its three characters are distinct, it is a suffix of a unique window of length at least three, so that iteration adds one. If it contains a repetition, the longest unique suffix ending there cannot extend across both copies and has length at most two, so no value is added. No other iteration refers to the same occurrence because its right endpoint is unique. This proves both inclusion of all good occurrences and exclusion of all bad ones.
 
 ## Complexity detail
-- **Time Complexity**: $O(N)$ — Operational efficiency across problem constraints.
-- **Space Complexity**: $O(1)$ — Auxiliary memory allocation bound.
+
+Let $n$ be the length of `s`. The right boundary visits each character once. Although the inner `while` loop may advance several positions during one iteration, `l` only moves forward and can cross each index at most once over the entire run. The combined work is therefore $O(n)$ rather than $O(n^2)$.
+
+The mask, two boundaries, answer, and a few character codes use $O(1)$ auxiliary space. The `map` object is lazy and feeds one converted value at a time to `enumerate`; it does not construct a length-$n$ list. The mask uses at most 26 meaningful bits because the string consists only of lowercase English letters, so its size is constant under the contract.
+
+The source indexes the original string again when removing `s[l]`. That lookup is constant time in Python. Each `ord` conversion and bit operation is also constant time for the bounded 26-bit mask. The answer can be at most `max(0, n - 2)`, which is well within the stated length bound.
 
 ## Alternatives and edge cases
-- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
-- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.
+
+- **Direct three-character comparison:** For every start position, check whether the three characters are pairwise unequal or whether `len(set(s[i:i + 3])) == 3`. Because the target length is the constant three, this is also $O(n)$ time and can be simpler, though slicing and constructing many tiny sets adds overhead.
+- **Frequency array window of size three:** Maintain 26 counts while adding the next character and removing the character three positions behind. This generalizes clearly to a fixed length $k$, but the bit-mask unique-suffix method needs less state for this alphabet.
+- **Shrinking the window to exactly three:** That approach can work, yet it is unnecessary. Retaining a longer duplicate-free suffix is safe because its final three characters are automatically distinct, and it lets duplicate removal be driven by the invariant alone.
+- **Strings shorter than three:** No iteration reaches a unique-window length of three, so the method returns zero without a separate branch.
+- **Exactly three distinct characters:** The third iteration contributes one, which is the only possible substring occurrence.
+- **Repeated occurrences with equal text:** Occurrences are tied to right endpoints, not deduplicated by content. For example, both appearances of `abc` in `abcabc` are counted.
+- **Long run of one character:** Every new copy forces `l` past the previous copy, so the window remains length one and the answer stays zero.
+- **Alphabet assumption:** Subtracting `97` and using a 26-bit interpretation relies on lowercase English letters. Supporting arbitrary Unicode text would require a dictionary or set keyed by characters rather than this fixed mapping.

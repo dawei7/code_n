@@ -1,14 +1,124 @@
 ## General
-The optimal solution implements an idiomatic, readable, and production-ready approach for **4 Keys Keyboard**.
 
-- **Core Strategy**: Applies dynamic programming with state memoization to avoid redundant computations.
-- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
-- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
+**Define what each dynamic-programming entry means**
+
+Let `dp[i]` be the maximum number of `A` characters obtainable using exactly `i` keypresses. Although the problem says “at most `n`,” considering exactly `i` is safe: if a strategy leaves a press unused, pressing the ordinary `A` key adds another character. Therefore, an optimum with available presses never needs to stop early.
+
+The array begins as `dp[i] = i`. This represents the simple strategy of pressing `A` on every keypress. It is always legal, so every state starts with a valid baseline before copy-and-paste strategies are considered.
+
+The entry `dp[0] = 0` also has the natural meaning that no presses produce no characters.
+
+**Understand the shape of the final copy-paste block**
+
+Suppose an optimal sequence does more than type individual `A` characters. Focus on its last `Ctrl-A` and the `Ctrl-C` that copies that selection. After this final copy, pressing ordinary `A` is never better than pressing `Ctrl-V`: the clipboard contains at least one character, so a paste adds at least as many characters as one `A` key.
+
+Thus we can represent the end of an optimal sequence as:
+
+1. some optimal prefix that creates a screen of `A` characters;
+2. `Ctrl-A`;
+3. `Ctrl-C`;
+4. one or more `Ctrl-V` presses.
+
+There must be at least one paste; otherwise the selection and copy consume two presses without changing the screen and can be removed.
+
+Earlier copy-and-paste blocks are not lost by this viewpoint. They are already included in the optimal `dp` value for the prefix.
+
+**What the two loop indices mean**
+
+The outer index `i` is the total number of available keypresses for the state being computed.
+
+The inner index `j` is the one-based press position at which the final `Ctrl-A` occurs. Therefore:
+
+- the first `j - 1` presses form the optimal prefix and produce `dp[j - 1]` characters;
+- press `j` is `Ctrl-A`;
+- press `j + 1` is `Ctrl-C`;
+- the remaining `i - j - 1` presses are `Ctrl-V`.
+
+The clipboard holds `dp[j - 1]` characters. The screen already contains one copy of that amount, and each paste adds another copy. With `i - j - 1` pastes, the final number of copies is:
+
+`1 + (i - j - 1) = i - j`.
+
+The candidate is consequently:
+
+`dp[j - 1] * (i - j)`.
+
+This explains every offset in the exact update and avoids treating it as a memorized formula.
+
+**Why the inner range has these boundaries**
+
+`j` begins at two. If the final selection occurred at the very first press, the screen would still be empty, so copying it could not help. Starting at two ensures the prefix has at least one press with which to create an `A`.
+
+Python's `range(2, i - 1)` stops before `i - 1`, so the largest tested `j` is `i - 2`. This leaves two later presses: one for `Ctrl-C` and at least one for `Ctrl-V`. Values of `j` closer to `i` would create a useless incomplete block.
+
+For small `i`, the range is empty and the baseline remains. That correctly handles cases where there are not enough presses to make select, copy, and paste outperform direct typing.
+
+**A walkthrough for seven presses**
+
+Initially, `dp[7]` is seven, representing seven ordinary `A` presses.
+
+One useful final block chooses `j = 4`:
+
+- the first `j - 1 = 3` presses produce `dp[3] = 3` characters;
+- press four selects all;
+- press five copies;
+- presses six and seven paste twice.
+
+The multiplier is `i - j = 7 - 4 = 3`, so the candidate is `dp[3] * 3 = 9`. This corresponds to:
+
+`A, A, A, Ctrl-A, Ctrl-C, Ctrl-V, Ctrl-V`.
+
+The maximum update replaces the baseline seven with nine.
+
+**Why processing states in increasing order works**
+
+Every candidate for `dp[i]` refers to `dp[j - 1]` where `j - 1 < i`. Because the outer loop moves upward from three through `n`, every required prefix state is already complete when it is used. No recursion or repeated subproblem evaluation is needed.
+
+**Why the recurrence covers every optimal sequence**
+
+Consider an optimal sequence using exactly `i` presses.
+
+If it never uses a useful copy-paste block, typing `A` on every press produces `i` characters, and the baseline covers it.
+
+Otherwise, consider its final useful `Ctrl-A`. As argued above, we can assume the next press copies and every remaining press pastes. Let that selection occur at position `j`. The prefix has `j - 1` presses, and replacing it by the best possible prefix can only improve the result, giving `dp[j - 1]` characters. The final block then multiplies that count by `i - j`. The inner loop examines every legal `j`, so it includes this optimal structure.
+
+Every candidate generated by the recurrence corresponds to an actual key sequence with the stated prefix, select, copy, and paste operations. Therefore, the maximum cannot be unattainable. The baseline plus all possible final breakpoints yields exactly the optimum.
 
 ## Complexity detail
-- **Time Complexity**: $O(N)$ — Operational efficiency across problem constraints.
-- **Space Complexity**: $O(N)$ — Auxiliary memory allocation bound.
+
+Let `N` be the maximum number of keypresses.
+
+The exact source initializes an array of `N + 1` entries in `O(N)` time. For every outer `i`, the inner loop may test `O(i)` breakpoints. The total number of tests is an arithmetic series, giving `O(N^2)` time. Each test uses constant arithmetic and one array lookup.
+
+The `dp` array occupies `O(N)` space, while loop variables use constant additional storage.
+
+The manifest advertises `O(N)` time. The editorial derives that bound by proving there is no need for five or more consecutive pastes after a copy and checking only a constant number of final block lengths per state. The literal source here does not apply that restricted range; it tests every earlier breakpoint and is therefore quadratic, though `N <= 50` makes the difference small. Its `O(N)` space claim is accurate.
 
 ## Alternatives and edge cases
-- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
-- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.
+
+- **Constant-transition dynamic programming:** Prove that at most four consecutive pastes need be considered, then update only the next few states from each prefix. This keeps the same `dp` meaning and achieves the manifest's `O(N)` time.
+
+- **Top-down memoization:** Recursively choose the final copy point and cache each press count. It has the same recurrence and typically `O(N^2)` time, plus recursion overhead.
+
+- **Track screen and clipboard explicitly:** A state such as `(presses, screen, clipboard)` supports exhaustive search, but it is much larger than necessary. The final-block decomposition removes the clipboard dimension.
+
+- **Greedily copy whenever the screen grows:** Copying too early spends two presses on selection and copying when direct typing may be better. The best breakpoint depends on the remaining number of pastes.
+
+- **`n = 1`:** The initialized array returns one, produced by a single `A` press.
+
+- **Small `n`:** Before enough presses exist for a beneficial copy-paste block, `dp[n] = n` remains optimal.
+
+- **Exactly seven presses:** The first familiar improvement is nine characters from typing three, selecting, copying, and pasting twice.
+
+- **No paste after copying:** Select and copy alone do not change the screen. The inner range excludes such candidates.
+
+- **Selecting an empty screen:** This cannot help, which is why the final selection position starts after at least one prefix press.
+
+- **Ordinary `A` after the last copy:** Replacing it with Paste adds at least as many characters, so an optimal sequence can be normalized to use only pastes after the final copy.
+
+- **Earlier copy blocks:** They are already represented inside `dp[j - 1]`. The recurrence does not assume the prefix consists only of ordinary `A` presses.
+
+- **At most versus exactly `n`:** Any unused press can add an `A`, so maximizing over exactly `n` presses also solves the at-most contract.
+
+- **Returning `dp[-1]`:** The exact code uses the last array entry, which is `dp[n]` because the array has length `n + 1`.
+
+- **Large integer values:** Python integers expand automatically. With larger unrestricted `n` in another language, the maximum count could require a wide numeric type.

@@ -1,14 +1,39 @@
 ## General
-The optimal solution implements an idiomatic, readable, and production-ready approach for **Stone Game VIII**.
 
-- **Core Strategy**: Executes an optimal, single-pass iteration with state accumulation.
-- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
-- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
+**Turn the changing row into fixed prefix sums.** The physical description makes the game look as though a new array must be built after every move, but every newly created leftmost stone has a very specific value. If a move has already absorbed original positions `0` through `k - 1`, that merged stone equals the sum of exactly that prefix. If the next player absorbs through position `i`, the score gained on that move is therefore the original prefix sum through `i`. Nothing about the internal history of the merged stone matters after its value has been determined. The solution captures all such possible values once with `s = list(accumulate(stones))`, so `s[i]` is `stones[0] + ... + stones[i]`. A legal game then amounts to choosing a strictly increasing sequence of prefix endpoints. This is why a one-dimensional game state is sufficient even though the statement describes repeated removals and insertions.
+
+**Give the recursive state a precise meaning.** `dfs(i)` is the best score difference the player whose turn it is can force when prefix endpoint `i` is the earliest endpoint still available for the next merge. The function is initially called as `dfs(1)` because a move must consume more than one stone, so endpoint `0` is never a legal first choice. At state `i`, the player is effectively choosing the endpoint of the next scoring move from `i, i + 1, ..., n - 1`. Instead of looping over all those choices, the recurrence reduces them to two decisions involving endpoint `i`: either do not use `i` and retain the best choice among later endpoints, or use `i` now.
+
+**Understand the two recurrence branches.** The expression `dfs(i + 1)` represents skipping endpoint `i`. It does not mean that a player spends a turn doing nothing; it is a dynamic-programming way to say that the same player chooses some later endpoint instead. The expression `s[i] - dfs(i + 1)` represents taking endpoint `i` now. The current player immediately earns `s[i]`. After that merge, the opponent becomes the player to move, and the opponent can force a difference of `dfs(i + 1)` from their own perspective. A gain for the opponent is a loss to the current player's final difference, so subtraction—not addition—is required. The recurrence is consequently
+
+$$
+D(i)=\max\bigl(D(i+1),\ s[i]-D(i+1)\bigr).
+$$
+
+The first term covers every strategy whose first selected endpoint is greater than `i`; the second covers every strategy whose first selected endpoint is exactly `i`. These sets are disjoint and together contain every legal choice, which is the core reason the maximum is correct.
+
+**Anchor the game at the forced final move.** When `i` reaches `len(stones) - 1`, the only remaining candidate endpoint is the last stone. Selecting it merges the entire original array, earns the total sum `s[-1]`, and ends the game because only one stone remains. There is no reply by the opponent, so `dfs(i)` returns `s[-1]` directly. This base case also handles an input of two stones: the initial call is already at the last endpoint, and Alice must take their total.
+
+**Why memoization makes the recurrence practical.** The source decorates `dfs` with `@cache`. Although each invocation writes `dfs(i + 1)` twice, both occurrences refer to the same cached state. Each distinct index is evaluated only once, after which later requests return its stored result. There are only `n - 1` reachable indices, so the apparent binary recursion does not become exponential. Python resolves `s` through the enclosing function when `dfs` actually executes; defining the inner function before assigning `s` is therefore valid because `s` has been assigned before `dfs(1)` is called.
+
+**A short mental trace.** For `stones = [-1, 2, -3, 4, -5]`, the prefix sums are `[-1, 1, -2, 2, -3]`. At the final state, `D(4) = -3`. At `i = 3`, skipping gives `-3`, whereas choosing this endpoint gives `2 - (-3) = 5`, so `D(3) = 5`. At `i = 2`, the choices are `5` and `-2 - 5 = -7`, so the state keeps `5`. At `i = 1`, they are again `5` and `1 - 5 = -4`. The returned difference is `5`. Notice that a negative prefix is not automatically bad and a positive prefix is not automatically good: choosing a prefix also hands the remaining strategic opportunity to the opponent, and the subtraction accounts for that interaction.
+
+**Why the result is globally optimal.** Starting from the base state, suppose `dfs(i + 1)` correctly describes optimal play over all later endpoints. At state `i`, every possible first move either uses endpoint `i` or uses a later endpoint. The recurrence computes the exact best outcome for each category and chooses the better one. Thus `dfs(i)` is correct whenever `dfs(i + 1)` is correct. Backward induction carries that fact to `dfs(1)`, which is precisely Alice's initial decision space. Because a score difference is always represented from the current player's perspective, the same recurrence models Alice maximizing and Bob minimizing without separate functions for the two players.
 
 ## Complexity detail
-- **Time Complexity**: $O(N)$ — Operational efficiency across problem constraints.
-- **Space Complexity**: $O(1)$ — Auxiliary memory allocation bound.
+
+Let $n$ be the number of stones. Constructing `s` with `accumulate` visits all $n$ values once. Memoization evaluates one state for every index from `1` through `n - 1`, and each evaluation performs constant work beyond its single next-state dependency. The total time is therefore $O(n)$.
+
+The exact Python implementation is not constant-space. The prefix-sum list contains $n$ integers, the cache can retain $n-1$ results, and the first evaluation forms a recursion chain of depth $O(n)$. Its auxiliary space is consequently $O(n)$. This differs from the `O(1)` space label in the variant manifest; constant extra space is attainable with an iterative backward scan after computing prefix sums in place, but it is not what this source executes. Moreover, with $n$ as large as $10^5$, ordinary Python recursion limits may cause this recursive form to raise `RecursionError` unless the execution environment raises the limit. That implementation constraint does not invalidate the recurrence, but it is material when reproducing this exact code.
+
+The prefix sums can range in magnitude up to $10^9$ because there may be $10^5$ stones of magnitude $10^4$. Python integers safely represent that range without overflow. In a fixed-width language, a signed 64-bit integer should be used for prefix sums and score differences.
 
 ## Alternatives and edge cases
-- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
-- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.
+
+- **Iterative backward dynamic programming:** Start from the total prefix sum and scan endpoints from right to left with the same recurrence. This avoids deep recursion and eliminates the memo table; if prefix sums are stored by overwriting the input or accumulated on a suitable pass, the implementation can approach the manifest's constant-extra-state goal.
+- **Two-dimensional minimax over the visible row:** Explicitly representing every shortened row or using separate Alice/Bob states repeats equivalent prefix information and can lead to quadratic or worse work. The merged-left-stone observation collapses the state to one endpoint.
+- **Trying every next endpoint at every state:** A direct recurrence that loops over all later merges is correct in spirit but costs $O(n^2)$. The skip-versus-take recurrence reuses `dfs(i + 1)` to summarize all later endpoints in constant work per state.
+- **All values negative:** The players cannot decline to move, so the optimal difference may be negative. Initializing states to zero or assuming Alice can always guarantee a nonnegative result would be wrong; the base value must be the actual total prefix sum.
+- **Exactly two stones:** There is only one legal move, and `dfs(1)` immediately returns the sum of both stones. This verifies both the starting index and the base case.
+- **Large input under Python's default recursion limit:** The cached recursion remains linear in time but can still exceed the interpreter's call-stack limit. An iterative translation is safer for the stated maximum and preserves exactly the same mathematical decisions.
+- **Input preservation:** `accumulate(stones)` creates a separate list and does not modify `stones`. The cache and prefix list are local to the call, so repeated calls on the same input values do not inherit game state.

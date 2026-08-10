@@ -1,14 +1,91 @@
 ## General
-The optimal solution implements an idiomatic, readable, and production-ready approach for **Maximum Product of Three Elements After One Replacement**.
 
-- **Core Strategy**: Maintains a hash map / hash set to achieve O(1) average lookup and frequency tracking.
-- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
-- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
+**An optimal product can use the replaced element**
+
+Let `B = 10^5`, the greatest allowed absolute replacement value. For any chosen pair of unchanged original elements with product `p`, the replaced third factor can be chosen as:
+
+- `+B` when `p >= 0`.
+- `-B` when `p < 0`.
+
+The resulting product is
+
+$$
+B|p|,
+$$
+
+which is nonnegative and as large as possible for that pair.
+
+There is no benefit in using a replacement magnitude below `B` because the sign can be chosen freely. An outcome that replaces an unselected index and takes three original values can be matched or improved by replacing one selected factor with magnitude `B` and the sign that makes the other two factors' product nonnegative. Original magnitudes are also bounded by `B`.
+
+Thus the problem reduces to selecting two distinct original indices whose absolute product is maximum, then supplying the optimal signed boundary replacement as the third factor.
+
+**Only three types of extreme pair matter**
+
+After sorting, name:
+
+- `a = nums[0]`, the smallest value.
+- `b = nums[1]`, the second-smallest value.
+- `c = nums[-2]`, the second-largest value.
+- `d = nums[-1]`, the largest value.
+
+The pair with greatest absolute product must be one of three structural types:
+
+1. Two large-magnitude negative values: `a * b`.
+2. Two large positive values: `c * d`.
+3. One extreme negative and one extreme positive: `a * d`.
+
+For a same-sign positive pair product, the replacement should be `+B`. For the cross-sign negative product, it should be `-B`. The exact source therefore returns
+
+`max(a * b * B, c * d * B, a * d * -B)`.
+
+These formulas remain safe when a category is not genuinely present. For example, in an all-positive array, `a*b*B` is merely a smaller positive candidate and `a*d*(-B)` is negative; `c*d*B` wins. In an all-negative array, `a*b*B` captures the two largest magnitudes. Zeros naturally produce zero candidates.
+
+**Why no interior pair can be better**
+
+For two nonnegative values, product increases as either factor increases, so the best pair is the two largest, `c` and `d`. For two nonpositive values, their product equals the product of their absolute magnitudes, which are largest at the most negative end, `a` and `b`.
+
+For opposite signs, the absolute product is maximized by the most negative value `a` and greatest nonnegative value `d`. Multiplying by `-B` turns that negative pair product into a positive final result.
+
+Every pair belongs to one of these sign types. The source evaluates the best extreme representative of each, so its maximum equals
+
+$$
+B\max_{i<j}|\texttt{nums}[i]\texttt{nums}[j]|.
+$$
+
+The two chosen originals have distinct indices because `a,b` and `c,d` refer to separate sorted positions. The replacement occupies a third index. Since the original array has at least three elements, such an index exists; when `n=3`, choosing a pair implicitly determines the remaining replacement position.
+
+For `[-5,7,0]`, the cross-extreme pair is `-5*7=-35`. Choosing replacement `-100000` makes the product `3,500,000`.
+
+For `[-4,-2,-1,-3]`, the two smallest sorted values are `-4` and `-3`. Their product is 12, and replacement `+100000` gives `1,200,000`.
+
+For `[0,10,0]`, every pair contains zero, so all possible three-factor products after one replacement remain zero. The maximum formula returns zero.
+
+**Exactly one replacement is respected**
+
+Each candidate explicitly uses a factor of `+B` or `-B` at the replaced index. The remaining two factors are original values from distinct other indices. The solution does not rely on skipping the mandatory operation.
+
+Choosing an allowed replacement equal to an existing value is still a replacement assignment under the stated operation; more importantly, the extreme signed values used by the formulas always lie in the inclusive permitted range.
 
 ## Complexity detail
-- **Time Complexity**: $O(n)$ — Operational efficiency across problem constraints.
-- **Space Complexity**: $O(1)$ — Auxiliary memory allocation bound.
+
+The manifest claims $O(n)$ time and $O(1)$ space, but that does not match the exact Optimal source being explained. The source executes `nums.sort()`. For `n` elements, this makes the actual time complexity $O(n\log n)$, followed by only constant-time endpoint arithmetic.
+
+Python's in-place Timsort can use $O(n)$ temporary memory in the worst case, so the implementation-level auxiliary-space bound is $O(n)$, not guaranteed $O(1)$. The explicit variables `a,b,c,d,x` use constant space, and a selection algorithm could achieve the manifest bounds by tracking extremes without sorting, but that is not what this source does.
+
+The method also mutates `nums` by sorting it. Products can reach $10^{15}$, requiring a 64-bit type in fixed-width languages; Python integers handle them automatically.
 
 ## Alternatives and edge cases
-- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
-- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.
+
+- **Track four extremes in one pass:** Maintaining the two smallest and two largest values yields $O(n)$ time and $O(1)$ space and would match the manifest. It is a valid optimization, but the exact source sorts and therefore has different actual bounds.
+- **Try every pair:** Evaluating $O(n^2)$ original pairs and selecting the replacement sign is correct but unnecessary because monotonicity confines the best pair to sorted extremes.
+- **Replace with zero or an interior magnitude:** A smaller absolute replacement cannot improve a fixed pair. The optimum always uses `+10^5` or `-10^5`.
+- **Consider only the three largest numeric values:** Two large negative magnitudes can create the best positive pair, so the smallest sorted values are equally important.
+- **Consider only same-sign pairs:** A large negative and large positive pair becomes a large positive triple when the replacement is negative. The `a*d*(-B)` candidate covers it.
+- **All positive values:** The two largest values with positive replacement win.
+- **All negative values:** The two most negative values have the largest positive pair product and use positive replacement.
+- **Mixture with zeros:** Zero is optimal only when every available pair product is zero. The formulas handle this without branching.
+- **Exactly three elements:** Each candidate selects two originals and replaces the remaining index, satisfying distinctness.
+- **Duplicate extremes:** Sorted positions remain distinct even when their values are equal, so using `a` and `b` or `c` and `d` is legal.
+- **Values already at replacement bounds:** The inclusive range still permits boundary replacements. Magnitude cannot exceed `B`.
+- **Input mutation:** Callers needing the original order would have to sort a copy, adding another explicit $O(n)$ allocation; the current source modifies the list.
+- **Manifest mismatch:** Complexity documentation must follow the executed sort, not the summary's aspirational one-pass bound.

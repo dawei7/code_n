@@ -1,14 +1,101 @@
 ## General
-The optimal solution implements an idiomatic, readable, and production-ready approach for **Number of Valid Move Combinations On Chessboard**.
 
-- **Core Strategy**: Uses a double-ended queue for breadth-first traversal or sliding window processing.
-- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
-- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
+**Enumerate one destination for every piece**
+
+A move is completely determined by two choices: a legal direction for that piece and a distance along that direction. Choosing distance zero means the piece stays on its starting square.
+
+The source assigns moves recursively. `dfs(i)` chooses the destination of piece `i` after pieces zero through `i-1` already have fixed moves. When `i == n`, every piece has a compatible move, so one valid combination is counted.
+
+This exhaustive search is practical because the board is fixed at eight by eight and there are at most four pieces.
+
+**Generate only movement allowed by the piece type**
+
+The four rook directions are horizontal and vertical. The four bishop directions are diagonal. A queen receives their concatenation, named `queue_dirs` in the source even though it functions as the queen-direction list.
+
+`get_dirs` examines the first letter of the piece name: `r` selects rook directions, `b` selects bishop directions, and the remaining possible type is queen.
+
+For each direction, the source advances one square at a time until it leaves coordinates one through eight or encounters an unavoidable collision. Every square reached before then is considered as a possible destination.
+
+**Record a complete time-indexed route**
+
+`dist[i][x][y]` records the integer second at which piece `i` visits square `(x,y)` while traveling to its currently selected destination. A value of negative one means that square is not on the route.
+
+The starting square is marked with time zero. Each following square in the chosen direction receives time one, two, and so on. `end[i]` stores the destination coordinates and arrival time.
+
+The route table and endpoint together distinguish two phases:
+
+- before arrival, the piece visits one route square at each integer second;
+- from its endpoint time onward, it remains on the endpoint forever.
+
+Both phases matter when checking another piece.
+
+**Allow a piece to remain stationary**
+
+Before trying positive-distance moves, the source sets the current endpoint to its starting square at time zero.
+
+`check_stop(i,x,y,0)` requires every earlier route-time entry for that square to be less than zero. In other words, no already assigned piece may ever visit the square on its route. This is necessary because the current piece occupies that square from time zero forever.
+
+Initial positions are distinct, but a previous piece might later travel through or stop on this starting square. The stop check rejects those combinations.
+
+**Detect collisions while the current piece is moving**
+
+For a proposed square `(x,y)` reached at second `t`, `check_pass` checks every earlier piece.
+
+If `dist[j][x][y] == t`, both pieces occupy the same square at the same integer second, so the move is invalid.
+
+It also rejects when the earlier piece's endpoint equals `(x,y)` and its endpoint time is at most `t`. In that case the earlier piece has already stopped there and still occupies the square when the current piece arrives.
+
+If either collision occurs at an intermediate square, every farther destination in the same direction must traverse that identical square at the identical time. The source can safely stop extending that direction.
+
+**Check future collisions after the current piece stops**
+
+Passing safely through a destination at its arrival time is not sufficient. After the current piece stops there, an earlier assigned piece might reach that square later.
+
+`check_stop(i,x,y,t)` requires `dist[j][x][y] < t` for every earlier piece. A negative entry means the earlier route never uses the square; a nonnegative entry smaller than `t` means it passed before the current piece stopped. An entry equal to or greater than `t` would create a simultaneous or future collision and is rejected.
+
+An earlier piece that already stopped on the square is caught first by `check_pass`. Together, the two checks cover past, simultaneous, and future occupancy.
+
+**Why swapping adjacent pieces remains valid**
+
+Suppose two adjacent pieces exchange squares in one second. At time zero they occupy distinct starting squares, and at time one they occupy distinct destination squares.
+
+The source compares same-square occupancy at the same integer time. It does not treat crossing edges between those instants as a collision, exactly matching the rule that such swaps are valid.
+
+**Why checking only earlier pieces is sufficient**
+
+When piece `i` is assigned, all earlier routes are fixed, so it can be checked against them. Later pieces will check themselves against piece `i` when their turns arrive.
+
+Every unordered pair of pieces is consequently tested once, when the higher-indexed member is assigned. If the recursion reaches its base case, no pair collides at any relevant time.
+
+Conversely, any globally valid move combination selects one destination generated by the recursion for each piece. None of its pairwise checks fails, so the search reaches and counts that combination.
+
+**State restoration through overwriting**
+
+Before each direction, the current piece's route grid is reset to negative one and its start is restored at time zero. As the direction extends, route times are added incrementally.
+
+At each candidate destination, `end[i]` is updated before recursion. Deeper calls see exactly the route prefix ending at that candidate. When recursion returns and extension continues, the next destination correctly includes one additional visited square.
+
+Earlier pieces' state is never overwritten while choosing a later piece.
 
 ## Complexity detail
-- **Time Complexity**: $O(1)$ — Operational efficiency across problem constraints.
-- **Space Complexity**: $O(1)$ — Auxiliary memory allocation bound.
+
+Let $C_i$ be the number of legal destination choices generated for piece `i` before collision pruning. A queen has at most 28 destinations including staying, and rooks or bishops have fewer on an eight-by-eight board. The search examines at most the product of these choice counts, with pairwise collision work bounded by four pieces and eight travel steps.
+
+In parameterized form the work is exponential in the number of pieces, roughly $O(\prod C_i)$ times a small validation factor. Under the fixed constraints $n\le4$ and board size eight, this has an absolute constant upper bound, which is why the manifest states $O(1)$.
+
+The route tables use $O(n\cdot9^2)$ storage and recursion depth is $O(n)$. Both are $O(1)$ under the fixed constraints.
 
 ## Alternatives and edge cases
-- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
-- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.
+
+- **Enumerate all destinations, then simulate:** Simpler conceptually, but it delays collision pruning until complete combinations are built.
+- **Pairwise trajectory formulas:** Compare two selected moves algebraically without route grids; less storage but easier to get stopping times wrong.
+- **Stationary piece:** Occupies its starting square forever, so no other route may visit it at any time.
+- **Two moving pieces meet:** Equal square and equal time is rejected.
+- **Earlier piece already stopped:** `check_pass` rejects entering its endpoint at or after its arrival.
+- **Earlier piece arrives later:** `check_stop` rejects choosing a destination that will be occupied in the future.
+- **Earlier piece passed before stopping time:** Safe when its route time is strictly smaller and it did not end there.
+- **Adjacent swap:** Allowed because pieces never share a square at an integer second.
+- **Board boundary:** Direction extension stops before row or column zero or nine.
+- **Queen direction variable:** `queue_dirs` is only a naming typo; it contains all eight queen directions.
+- **At most one queen:** Further limits the already fixed search space.
+- **Distinct starts:** Prevents a collision at time zero before moves begin.
