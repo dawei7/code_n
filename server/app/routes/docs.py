@@ -153,16 +153,29 @@ def leetcode_doc_asset(challenge_id: str, asset_path: str) -> FileResponse:
     package_dir = leetcode_package_dir(challenge_id)
     if package_dir is None:
         raise HTTPException(status_code=404, detail=f"Unknown LeetCode challenge: {challenge_id}")
-    assets_root = (package_dir / "assets").resolve()
-    target = (assets_root / asset_path).resolve()
-    try:
-        target.relative_to(assets_root)
-    except ValueError as exc:
-        raise HTTPException(status_code=403, detail="Path traversal denied") from exc
-    if not target.is_file():
-        raise HTTPException(status_code=404, detail=f"Asset not found: {asset_path}")
-    media_type, _encoding = mimetypes.guess_type(str(target))
-    return FileResponse(target, media_type=media_type or "application/octet-stream")
+    relative = Path(asset_path)
+    if relative.is_absolute() or ".." in relative.parts:
+        raise HTTPException(status_code=403, detail="Path traversal denied")
+
+    # Newer authored diagrams live in ``assets/``. The monolithic description
+    # and editorial corpus keeps its source-local media in ``reference/images``.
+    # The public route supports both without exposing either directory broadly.
+    asset_roots = [(package_dir / "assets").resolve()]
+    if relative.parts and relative.parts[0] == "images":
+        asset_roots.append((package_dir / "reference").resolve())
+    for assets_root in asset_roots:
+        target = (assets_root / relative).resolve()
+        try:
+            target.relative_to(assets_root)
+        except ValueError as exc:
+            raise HTTPException(status_code=403, detail="Path traversal denied") from exc
+        if target.is_file():
+            media_type, _encoding = mimetypes.guess_type(str(target))
+            return FileResponse(
+                target,
+                media_type=media_type or "application/octet-stream",
+            )
+    raise HTTPException(status_code=404, detail=f"Asset not found: {asset_path}")
 
 
 @router.get("/docs/{path:path}")

@@ -125,6 +125,7 @@ class ChallengeDetail(ChallengeSummary):
     leetcode_optimal_sources: dict[PrimaryLanguage, str] = Field(default_factory=dict)
     default_solution_variant: str = ""
     solution_variants: list[SolutionVariantDetail] = Field(default_factory=list)
+    editorial_markdown: str = ""
     solution_variant_effective_elo: float | None = None
     solution_variant_elo_source: str = ""
     simplified_solution_elo_ceiling: float | None = None
