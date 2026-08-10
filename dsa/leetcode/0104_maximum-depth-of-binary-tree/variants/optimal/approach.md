@@ -1,24 +1,89 @@
 ## General
-### Beginner-Friendly Intuition & Strategy
-The core task in **Maximum Depth of Binary Tree** is to the `root` of a binary tree, return *its maximum depth*. The data is structured as a **Binary Tree** where each node contains a value (`val`) and pointers to its `left` and `right` children. Instead of treating the tree as an array, the algorithm uses **Tree Traversal (Recursion / DFS)** to process each node and its subtrees. At every node, it recursively compares or transforms the left and right child subtrees, combining their results to solve the problem for the entire tree.
 
-### Step-by-Step Execution Guide
-**Step 1: Setup & Base Cases**  
-We check the base conditions for tree nodes. If a tree node is `None` (empty), we return the base boundary value (e.g., `True` for equality or `0` for depth).  
-**Step 2: Core Processing & Traversal**  
-1. Inspect the current node values (e.g. `p.val` and `q.val`).  
-2. If values differ, return `False` immediately.  
-3. Recursively invoke traversal on left child subtrees (`self.isSameTree(p.left, q.left)`).  
-4. Recursively invoke traversal on right child subtrees (`self.isSameTree(p.right, q.right)`).  
-5. Return `True` only if both left and right subtrees match.  
-**Step 3: Completion & Return**  
-When processing finishes, the algorithm outputs the final validated solution.
+Maximum depth counts nodes, not edges, along the longest path from the current root to a leaf. A binary tree is recursively made from a root, a left subtree, and a right subtree, so its depth follows the same recursive structure.
 
-### Why This Handles Edge Cases Gracefully
-- **Both Nodes Empty (`None`):** Returns `True` as two empty subtrees are identical.
-- **One Node Empty, One Non-Empty:** Returns `False` immediately, preventing null pointer attribute access (`AttributeError`).
+For a node `root`, let $D(\texttt{root})$ be its maximum depth. Then:
 
+$$
+D(\texttt{root})=
+\begin{cases}
+0, & \text{if root is empty},\\
+1+\max(D(\texttt{root.left}),D(\texttt{root.right})), & \text{otherwise}.
+\end{cases}
+$$
+
+The selected code is a direct implementation of this definition.
+
+**Why the empty tree has depth zero**
+
+An empty tree contains no nodes, so its longest root-to-leaf path contains zero nodes. Returning zero is also the arithmetic base that makes a leaf work naturally.
+
+A leaf has two empty children. Their depths are both zero, and the leaf returns:
+
+$$
+1+\max(0,0)=1.
+$$
+
+That agrees with the node-count definition: the path consisting of the leaf alone contains one node.
+
+**Solving both child subproblems**
+
+For a real node, the code recursively computes:
+
+- `l`, the longest node-count path beginning at the left child; and
+- `r`, the longest node-count path beginning at the right child.
+
+Any downward path from the current node must choose exactly one child direction after including the current node. It cannot travel down the left subtree and later jump into the right subtree. Therefore the longest possible continuation is `max(l, r)`.
+
+Adding one counts the current node itself. Omitting that one would count edges below the node and would return zero for a leaf, contradicting the contract.
+
+**Trace through the Reference tree**
+
+For `[3,9,20,null,null,15,7]`, each leaf—nine, fifteen, and seven—receives zero from both empty children and returns one.
+
+Node twenty receives child depths one and one, so it returns two. Root three receives left depth one and right depth two, chooses two, and returns three. One longest path is `3 -> 20 -> 15`; the alternative through seven has the same length.
+
+For `[1,null,2]`, the empty left child returns zero. Node two returns one. Root one returns `1 + max(0, 1) = 2`.
+
+**Why postorder evaluation is necessary**
+
+The parent cannot know its result until both child depths are known. The recursive calls therefore happen before the final calculation, which is a postorder-style computation: left result, right result, then parent result.
+
+The tuple assignment evaluates both right-hand calls before binding `l` and `r`. Python evaluates them left to right, but correctness does not depend on which child is solved first because the subtrees are independent and the tree is not mutated.
+
+**Why the recurrence is correct**
+
+For an empty node, zero is correct. Assume recursive calls return correct maximum depths for both child subtrees.
+
+Every root-to-leaf path from the current node consists of the current node plus a path entirely inside one child subtree. The longest left choice has length $1+l$ and the longest right choice has length $1+r$. Their maximum is $1+\max(l,r)$, exactly what the method returns.
+
+Structural induction from empty children proves the result for every node, including the original root.
+
+The method reads only child pointers. Node values do not affect depth and are never inspected.
 
 ## Complexity detail
-- **Time Complexity**: $O(n)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
-- **Space Complexity**: $O(h)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.
+
+Let $n$ be the number of nodes and $h$ the number of nodes on the longest root-to-leaf path. Every real node is called once, and every missing child causes a constant-time base call. Total work is $O(n)$.
+
+At any moment, the call stack contains one active root-to-current path. Its maximum size is $O(h)$, matching the manifest. A balanced tree has $h=O(\log n)$; a skewed tree has $h=O(n)$.
+
+The return value and local references use constant space per call. Python does not optimize this branching recursion into constant stack space.
+
+Although both subtrees are computed, their call stacks do not remain active simultaneously. The complete left call returns before the right call begins, leaving only its integer result in the parent frame. Stack usage is therefore governed by the longest single path, not by total nodes or the sum of both subtree heights.
+
+A proper tree has one parent per node, so no subtree result is requested from two different paths. Caching depths by node would consume extra memory without avoiding repeated computation.
+
+With up to $10^4$ nodes, a maximally skewed tree can exceed Python's default recursion limit. That is a practical execution concern even though the asymptotic bound is correct.
+
+## Alternatives and edge cases
+
+- **Iterative DFS stack:** Store `(node, depth)` pairs, update the maximum, and avoid recursion-limit failure with $O(h)$ storage.
+- **Level-order BFS:** Count completed levels. It uses $O(w)$ frontier space, where $w$ is maximum width.
+- **Memoization:** Unnecessary for a proper tree because each node has one parent and no subtree is reached twice.
+- **Empty root:** Returns zero immediately.
+- **Single node:** Returns one through two zero-depth child results.
+- **Only one child:** The missing side contributes zero; the existing path determines the result.
+- **Balanced tree:** Both branches may have similar depth, but both still must be computed.
+- **Node values:** Negative, positive, and duplicate values are irrelevant to structural depth.
+- **Depth definition:** This problem counts nodes. An edge-count convention would differ by one for nonempty trees.
+- **No early local shortcut:** Seeing one missing child does not determine the final depth; the existing child can contain an arbitrarily long path and must be solved.

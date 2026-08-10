@@ -1,24 +1,76 @@
 ## General
-### Beginner-Friendly Intuition & Strategy
-The core task in **Maximum Average Subtree** is to the `root` of a binary tree, return *the maximum **average** value of a **subtree** of that tree*. Answers within $10^{-5}$ of the actual answer will be accepted. The data is structured as a **Binary Tree** where each node contains a value (`val`) and pointers to its `left` and `right` children. Instead of treating the tree as an array, the algorithm uses **Tree Traversal (Recursion / DFS)** to process each node and its subtrees. At every node, it recursively compares or transforms the left and right child subtrees, combining their results to solve the problem for the entire tree.
 
-### Step-by-Step Execution Guide
-**Step 1: Setup & Base Cases**  
-We check the base conditions for tree nodes. If a tree node is `None` (empty), we return the base boundary value (e.g., `True` for equality or `0` for depth).  
-**Step 2: Core Processing & Traversal**  
-1. Inspect the current node values (e.g. `p.val` and `q.val`).  
-2. If values differ, return `False` immediately.  
-3. Recursively invoke traversal on left child subtrees (`self.isSameTree(p.left, q.left)`).  
-4. Recursively invoke traversal on right child subtrees (`self.isSameTree(p.right, q.right)`).  
-5. Return `True` only if both left and right subtrees match.  
-**Step 3: Completion & Return**  
-When processing finishes, the algorithm outputs the final validated solution.
+**Every node defines one candidate subtree**
 
-### Why This Handles Edge Cases Gracefully
-- **Both Nodes Empty (`None`):** Returns `True` as two empty subtrees are identical.
-- **One Node Empty, One Non-Empty:** Returns `False` immediately, preventing null pointer attribute access (`AttributeError`).
+A subtree is fixed once its root is chosen: it contains that node and all descendants. Therefore, the problem has one candidate per tree node.
 
+The average for a node’s subtree needs two quantities: the sum of all values below that node and the number of nodes below it. A postorder traversal computes both from the corresponding quantities returned by the left and right children.
+
+**Define the recursive summary**
+
+`dfs(root)` returns a pair `(subtree_sum, subtree_count)`.
+
+For an absent child, both values are zero. This neutral pair can be added without special cases when processing a real parent.
+
+For a real node, recursive calls first obtain `ls, ln` from the left and `rs, rn` from the right. The current subtree then has:
+
+`s = root.val + ls + rs`
+
+and:
+
+`n = 1 + ln + rn`.
+
+These formulas count the current node once and combine the two disjoint descendant subtrees.
+
+**Evaluate the candidate before returning**
+
+The current subtree’s average is `s / n`. `n` is at least one for every real node, so division is safe.
+
+`ans = max(ans, s / n)` compares this candidate with the greatest average seen anywhere earlier in postorder. `ans` is declared `nonlocal` because it belongs to the enclosing method scope while the recursive helper updates it.
+
+After evaluation, the helper returns `s, n` to the parent. The same summary both solves the current candidate and supplies exactly what the next level needs.
+
+For the tree `[5,6,1]`, each leaf returns its own value and count one. Their averages update the answer to six and leave it there after the second leaf. The root then combines sum twelve and count three, producing average four. This trace shows why a small subtree can beat the average of the entire tree.
+
+**Why postorder is necessary**
+
+A parent’s sum and count are incomplete until both child subtrees have been summarized. Processing children first guarantees those results are available.
+
+A preorder traversal could still work if it carried more state or revisited nodes, but direct bottom-up aggregation matches the mathematical definition and visits each node only once.
+
+**Why initializing the answer to zero is safe**
+
+All node values are nonnegative. Every subtree average is therefore at least zero, so `ans = 0` is a valid lower bound.
+
+If negative values were permitted, initializing to zero could incorrectly beat every real average. One would then initialize to negative infinity or use the first candidate. The source constraint is what makes the current initialization correct.
+
+**Complete correctness argument**
+
+By induction, a null call returns the correct zero summary. Assuming child calls return their exact sums and counts, the addition formulas return the exact sum and count for the current subtree.
+
+Thus `s / n` is evaluated once for every real node and equals that node’s true subtree average. `ans` retains the maximum of all candidates processed so far. When the root call finishes, every node has been processed, so `ans` is the maximum subtree average in the whole tree.
+
+The division is performed only for comparison with the running answer; parents receive exact integer sums and counts rather than rounded averages. This avoids compounding floating-point error across levels. The accepted tolerance covers the one final division performed for each candidate.
 
 ## Complexity detail
-- **Time Complexity**: $O(N)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
-- **Space Complexity**: $O(N)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.
+
+Let $N$ be the number of nodes. DFS visits every node once and performs constant arithmetic at each visit, so time is $O(N)$.
+
+The recursion stack depth equals tree height $h$. It is $O(\log N)$ for a balanced tree and $O(N)$ for a completely skewed tree. The manifest states the safe worst-case space bound $O(N)$.
+
+No collection of all subtree summaries is stored; each pair exists only while its ancestor call needs it. Apart from recursion, working space is constant.
+
+## Alternatives and edge cases
+
+- **Store every subtree’s node list:** This repeats descendants across many candidates and can lead to quadratic work.
+- **Two separate traversals per node:** Recomputing sum and count for every possible root also costs up to $O(N^2)$.
+- **Iterative postorder:** A stack and visited marker can avoid recursion-depth limits while keeping $O(N)$ time.
+- **Return average only:** Insufficient because a parent cannot combine child averages without their counts and sums.
+- **Single node:** Its sum is its value, count is one, and its own value is returned.
+- **Leaf node:** Both null children return zeros, so the leaf average is exactly its value.
+- **All zero values:** Every average is zero and the initial answer remains correct.
+- **One deep branch:** Recursion space reaches $O(N)$, though time remains linear.
+- **Very large subtree sum:** Python integers grow as needed before floating division.
+- **Equal maximum averages:** The numeric result is the same regardless of which subtree attains it.
+- **Nonempty root:** The contract guarantees at least one node, so some candidate is always evaluated.
+- **Input preservation:** The traversal reads values and pointers without modifying the tree.

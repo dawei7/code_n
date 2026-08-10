@@ -1,22 +1,75 @@
 ## General
-### Beginner-Friendly Intuition & Strategy
-The core task in **First Letter to Appear Twice** is to a string `s` consisting of lowercase English letters, return *the first letter to appear **twice***. To avoid nested loops that slow down execution, this solution uses a **Hash Table (Hash Map / Hash Set)**. Think of a index index-cards file: instead of scanning through all cards to check if a number exists, the hash table allows us to instantly look up any value in constant $O(1)$ time.
 
-### Step-by-Step Execution Guide
-**Step 1: Setup & Base Cases**  
-We initialize an empty hash map (`dict`) to act as our fast memory bank, storing elements and their indices or frequencies.  
-**Step 2: Core Processing & Traversal**  
-1. Loop through each item in the input.  
-2. Calculate target complement.  
-3. Check if complement exists in hash map for $O(1)$ match.  
-4. Store current value in hash map if not found.  
-**Step 3: Completion & Return**  
-When processing finishes, the algorithm outputs the final validated solution.
+**The answer is determined at a second occurrence**
 
-### Why This Handles Edge Cases Gracefully
-- **Single Element / Border Cases:** Loop bounds handle single items and empty inputs naturally.
+A letter “appears twice” at the position where its running frequency first reaches two. The requested letter is the one whose second occurrence has the smallest index.
 
+Scanning `s` from left to right encounters positions in exactly that priority order. The first character whose count becomes two must therefore be the answer.
+
+**Maintain running frequencies**
+
+`cnt = Counter()` begins as an empty frequency mapping. For each character `c`, the method increments `cnt[c]`.
+
+Immediately after the increment:
+
+- count one means this is the first occurrence;
+- count two means this is the second occurrence;
+- a larger count would mean the second occurrence happened earlier.
+
+The method returns as soon as `cnt[c] == 2`.
+
+Because it returns at the earliest second occurrence in the scan, no character can later qualify earlier.
+
+The Counter represents information about the processed prefix, not about the complete string. That distinction is what makes it useful for ordering. At index `i`, `cnt[c]` answers how many copies of `c` have actually appeared no later than `i`. A final frequency table built after the scan could say that both `a` and `c` repeat, but it would not by itself reveal whether `a`'s second copy or `c`'s second copy occurred first. Updating and testing immediately preserves that temporal fact.
+
+**Why the first appearance does not decide anything**
+
+The order of first occurrences is irrelevant. A letter seen early may not repeat until much later, while another letter first seen later can receive its second occurrence sooner.
+
+For `"abccbaacz"`, `a` is first at index zero, but its second occurrence is index five. `c` first appears at index two and repeats at index three, so the scan returns `c` when that second copy is processed.
+
+**Why checking equality with two is precise**
+
+Checking `cnt[c] >= 2` would also return at the same first qualifying moment. The exact equality makes the event explicit: return exactly when the running frequency transitions from one to two.
+
+No character can reach count three before the method should already have returned at its count-two position. The input guarantee ensures some repeated character exists, so execution always returns inside the loop.
+
+
+Suppose the method returns character `c` at index `i`. Its frequency in prefix `s[0..i]` is two, so `i` is `c`'s second occurrence.
+
+For every earlier position `j < i`, the method did not return. Therefore the character processed at `j` had frequency other than two after its increment; no letter completed its second occurrence earlier.
+
+Thus `c` has the earliest second-occurrence index and is exactly the requested result.
+
+Conversely, let `c` be the problem's answer and `i` its second occurrence. Before `i`, no letter has appeared twice by definition. At `i`, incrementing `cnt[c]` changes it to two, so the method returns `c`. It cannot return another letter first.
+
+**The fixed alphabet bounds storage**
+
+The input uses only 26 lowercase English letters. The Counter can hold at most 26 keys regardless of string length. That makes its auxiliary space constant under this domain.
+
+Although the manifest summary mentions a 26-bit mask, the exact source uses a Counter. A bit mask would record only seen/not-seen state; the Counter records full frequencies even though only the transition to two matters.
 
 ## Complexity detail
-- **Time Complexity**: $O(n)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
-- **Space Complexity**: $O(1)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.
+
+Let `n` be the string length. The scan may return early, but in the worst case the first second occurrence is near the end, so time is `O(n)`.
+
+The Counter stores at most 26 entries, giving `O(1)` auxiliary space under the lowercase-English constraint. With an unbounded alphabet, it would be `O(u)` for `u` distinct characters seen.
+
+The immutable input string is not modified. The returned value is one character.
+
+## Alternatives and edge cases
+
+- **26-bit seen mask:** Test the bit for each character; if already set, return it, otherwise set it. This matches the manifest summary and uses one integer.
+- **Boolean array of length 26:** It expresses first-seen state without full counts and remains constant-space.
+- **Set of seen letters:** If `c in seen`, return it; otherwise insert it. This is simpler than a Counter for the exact need.
+- **Compute all frequencies first:** Final counts do not reveal which second occurrence came earliest; scan order must be retained.
+- **Return the first character with final count at least two:** Iterating unique characters by first appearance can give the wrong answer because second-occurrence order differs.
+- **Immediate pair such as `"aa"`:** The second character raises the count to two and is returned.
+- **Only one repeated letter:** Its second occurrence is necessarily the answer.
+- **Several repeated letters:** The left-to-right early return selects the smallest second-occurrence index.
+- **A letter appearing many times:** It triggers on its second copy; later copies are never reached after return.
+- **First repeated letter may not be first distinct letter:** Only second-occurrence position matters.
+- **Guaranteed repetition:** The function has no fallback return because valid input always triggers the condition.
+- **Lowercase alphabet:** At most 26 Counter keys exist.
+- **Input preservation:** Counting does not modify `s`.
+- **Counter availability:** The exact source relies on `Counter`, conventionally from `collections`.

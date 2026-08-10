@@ -1,24 +1,119 @@
 ## General
-### Beginner-Friendly Intuition & Strategy
-The core task in **Insufficient Nodes in Root to Leaf Paths** is to the `root` of a binary tree and an integer `limit`, delete all **insufficient nodes** in the tree simultaneously, and return *the root of the resulting binary tree*. The data is structured as a **Binary Tree** where each node contains a value (`val`) and pointers to its `left` and `right` children. Instead of treating the tree as an array, the algorithm uses **Tree Traversal (Recursion / DFS)** to process each node and its subtrees. At every node, it recursively compares or transforms the left and right child subtrees, combining their results to solve the problem for the entire tree.
 
-### Step-by-Step Execution Guide
-**Step 1: Setup & Base Cases**  
-We check the base conditions for tree nodes. If a tree node is `None` (empty), we return the base boundary value (e.g., `True` for equality or `0` for depth).  
-**Step 2: Core Processing & Traversal**  
-1. Inspect the current node values (e.g. `p.val` and `q.val`).  
-2. If values differ, return `False` immediately.  
-3. Recursively invoke traversal on left child subtrees (`self.isSameTree(p.left, q.left)`).  
-4. Recursively invoke traversal on right child subtrees (`self.isSameTree(p.right, q.right)`).  
-5. Return `True` only if both left and right subtrees match.  
-**Step 3: Completion & Return**  
-When processing finishes, the algorithm outputs the final validated solution.
+**Pass the remaining sum requirement down the tree**
 
-### Why This Handles Edge Cases Gracefully
-- **Both Nodes Empty (`None`):** Returns `True` as two empty subtrees are identical.
-- **One Node Empty, One Non-Empty:** Returns `False` immediately, preventing null pointer attribute access (`AttributeError`).
+A node is sufficient when at least one original root-to-leaf path through it has total sum at least `limit`. It is insufficient only when every such path falls short.
 
+Instead of carrying the full path sum, the recursion carries how much more sum is still required. On entering a node:
+
+```python
+limit -= root.val
+```
+
+The local `limit` now means the minimum additional sum that must be supplied by descendants.
+
+If the original requirement is ten and the path through the current node has accumulated seven, the remaining requirement is three. If it becomes zero or negative, the path has already reached the threshold, though it must still end at an original leaf to define a root-to-leaf path.
+
+Each recursive call receives its own integer value, so changes in one branch do not affect its sibling.
+
+**Handle a missing subtree**
+
+The first condition is:
+
+```python
+if root is None:
+    return None
+```
+
+A missing child contains no root-to-leaf path and cannot make its parent sufficient. Returning `None` also lets the parent assign the pruned result directly to its child pointer.
+
+Although the problem supplies a nonempty original tree, recursive calls naturally reach missing left or right children.
+
+**Decide an original leaf directly**
+
+After subtracting the leaf value:
+
+```python
+if root.left is None and root.right is None:
+    return None if limit > 0 else root
+```
+
+An original leaf completes one root-to-leaf path. If the remaining requirement is positive, the accumulated path sum is strictly below the original threshold, so the leaf is insufficient and is removed.
+
+If `limit <= 0`, the path sum is at least the threshold. Equality is sufficient because the definition removes only paths whose sum is strictly less than `limit`.
+
+This check happens before recursive pruning, so it recognizes leaves from the original tree structure.
+
+**Prune both subtrees before deciding an internal node**
+
+For a non-leaf:
+
+```python
+root.left = self.sufficientSubset(root.left, limit)
+root.right = self.sufficientSubset(root.right, limit)
+```
+
+Each child call removes all nodes in that subtree that do not belong to any sufficient path through the child. The returned root is either a surviving pruned subtree or `None`.
+
+Assigning the results back mutates the existing tree in place. Surviving node objects are reused; removed connections are replaced with `None`.
+
+**Keep an internal node if either child preserves a sufficient path**
+
+After both recursive calls:
+
+```python
+return None if root.left is None and root.right is None else root
+```
+
+If at least one child survives, that child contains a leaf reachable by a path meeting the remaining requirement. Extending that path through the current node proves the current node lies on a sufficient root-to-leaf path, so it must remain.
+
+If both children disappear, every original descendant path through this internal node was insufficient. The node is therefore insufficient too and returns `None`.
+
+The code does not retest the remaining numeric limit when an internal node becomes childless after pruning. That is correct: it was not an original leaf, and all of its original root-to-leaf continuations have already been proven insufficient. A newly exposed node cannot create a new qualifying original path merely because its children were deleted.
+
+**Why this models simultaneous deletion**
+
+The problem describes deleting all insufficient nodes simultaneously. A careless repeated process might treat nodes exposed as new leaves differently from their original paths.
+
+This postorder recursion bases decisions on whether any original descendant leaf yields a sufficient path. Children are evaluated first, and an internal node survives exactly when one child contains such a path. This computes the simultaneous definition directly, even though pointer updates happen sequentially during recursion.
+
+
+For each call, the returned subtree contains exactly those nodes in the input subtree that lie on at least one path from the current node to an original leaf whose values meet the remaining requirement.
+
+At a leaf, the numeric comparison establishes that statement directly.
+
+At an internal node, the recursive assumption makes each returned child exact. If neither child survives, no qualifying path exists and returning `None` is correct. If one survives, joining the current node to that child's qualifying path proves the current node and surviving branch are correct.
+
+Applying this reasoning at the original root proves the returned tree contains exactly the sufficient nodes.
+
+**Negative values and limits**
+
+Node values may be negative. Subtracting a negative value increases the remaining requirement, correctly reflecting that the path sum decreased.
+
+A negative `limit` does not mean every node automatically survives. A sufficiently negative path can still fall below it. The same remaining-requirement arithmetic handles all signs.
 
 ## Complexity detail
-- **Time Complexity**: $O(n)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
-- **Space Complexity**: $O(n)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.
+
+Let `n` be the number of tree nodes and `h` the tree height.
+
+Every non-null node is visited once and performs constant work besides its recursive calls. Total time is `O(n)`.
+
+The recursion stack holds at most one frame per level, using `O(h)` auxiliary space. A balanced tree has `O(log n)` height, while a skewed tree can have `h = n`. The manifest's worst-case space bound is therefore `O(n)`.
+
+The algorithm reuses tree nodes and allocates no second tree.
+
+## Alternatives and edge cases
+
+- **Carry accumulated sum instead:** Pass the root-to-current sum and compare it with `limit` at leaves. It is equivalent to carrying the remaining requirement.
+- **Compute best descendant path sum:** A postorder function can return the maximum current-to-leaf sum and prune when the root prefix plus that maximum is too small. It requires careful original-leaf handling.
+- **Single sufficient root:** If the root is an original leaf and its value meets the limit, it is returned.
+- **Single insufficient root:** If its value is below the limit, the result is `None`.
+- **Only one child:** The node survives exactly when that one subtree contains a sufficient path.
+- **One surviving branch:** The other pointer becomes `None` while the node and sufficient branch remain.
+- **Both branches pruned:** The internal node is pruned too, regardless of becoming a new leaf.
+- **Path sum equals limit:** It survives because only strictly smaller sums are insufficient.
+- **Negative node:** Remaining requirement increases after subtracting it.
+- **Very negative limit:** Arithmetic remains unchanged; actual path sums still determine survival.
+- **Root removal:** Returning `None` is valid when every root-to-leaf path is insufficient.
+- **Mutation:** The function rewires child pointers of the provided tree. Callers needing the original tree must clone it beforehand.
+- **Deep skewed tree:** Recursive depth can approach 5000 and may require an iterative postorder implementation or a higher recursion limit in environments with shallow stacks.

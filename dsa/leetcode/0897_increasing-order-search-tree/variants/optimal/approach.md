@@ -1,24 +1,62 @@
 ## General
-### Beginner-Friendly Intuition & Strategy
-The core task in **Increasing Order Search Tree** is to the `root` of a binary search tree, rearrange the tree in **in-order** so that the leftmost node in the tree is now the root of the tree, and every node has no left child and only one right child. The data is structured as a **Binary Tree** where each node contains a value (`val`) and pointers to its `left` and `right` children. Instead of treating the tree as an array, the algorithm uses **Tree Traversal (Recursion / DFS)** to process each node and its subtrees. At every node, it recursively compares or transforms the left and right child subtrees, combining their results to solve the problem for the entire tree.
 
-### Step-by-Step Execution Guide
-**Step 1: Setup & Base Cases**  
-We check the base conditions for tree nodes. If a tree node is `None` (empty), we return the base boundary value (e.g., `True` for equality or `0` for depth).  
-**Step 2: Core Processing & Traversal**  
-1. Inspect the current node values (e.g. `p.val` and `q.val`).  
-2. If values differ, return `False` immediately.  
-3. Recursively invoke traversal on left child subtrees (`self.isSameTree(p.left, q.left)`).  
-4. Recursively invoke traversal on right child subtrees (`self.isSameTree(p.right, q.right)`).  
-5. Return `True` only if both left and right subtrees match.  
-**Step 3: Completion & Return**  
-When processing finishes, the algorithm outputs the final validated solution.
+An in-order traversal of a binary search tree visits node values in nondecreasing order: left subtree, node, right subtree. The requested output is exactly those same nodes relinked into a chain where every left pointer is null and each right pointer leads to the next in-order node.
 
-### Why This Handles Edge Cases Gracefully
-- **Both Nodes Empty (`None`):** Returns `True` as two empty subtrees are identical.
-- **One Node Empty, One Non-Empty:** Returns `False` immediately, preventing null pointer attribute access (`AttributeError`).
+The solution performs an in-order traversal while maintaining `prev`, the last node already placed in the new chain. When the current node is visited:
 
+```text
+prev.right = root
+root.left = None
+prev = root
+```
+
+The first assignment appends the current node after its in-order predecessor. Clearing `root.left` enforces the output requirement. Updating `prev` makes the current node the predecessor for the next visited node.
+
+**Why a dummy node is useful.** Before visiting the smallest node, there is no real predecessor. The code creates `dummy` and initializes `prev` to it. The first visited node is linked through `dummy.right`. After traversal, `dummy.right` is the new root, and the artificial node itself is discarded.
+
+The constructor initially gives the dummy a right link to the old root, but that link is overwritten when the leftmost node is visited. Its initial value is not needed for correctness; the dummy simply needs to exist as a stable predecessor placeholder.
+
+**Traversal order and mutation interact safely.** At a node `root`, recursion first processes `root.left`. Once that finishes, all smaller nodes have been chained and `prev` is the largest node from that left subtree. Linking `prev.right = root` correctly appends the current node.
+
+Then `root.left = None` removes the old backward branch. The current node's original right pointer has not yet been replaced, so `dfs(root.right)` still reaches the original right subtree. During that recursive traversal, the first node in the right subtree is linked after `root`, overwriting `root.right` with the correct successor when necessary.
+
+For a node with no right subtree, a later ancestor or successor visit overwrites its right pointer when it becomes `prev`. The maximum node has no successor and originally has no right child in a BST, so the final chain ends with null.
+
+**Why the chain is sorted and complete.** In-order traversal visits every node exactly once and, by the BST property, in ascending value order. Each visit appends that node after the previously visited node. Therefore the chain contains all original nodes exactly once in sorted order.
+
+Every visited node has its left pointer cleared. Every right pointer used in the final structure connects consecutive in-order nodes. The dummy is not one of the original nodes and is excluded by returning `dummy.right`.
+Immediately before processing a current node after its left recursion:
+
+- the dummy's right chain contains exactly all nodes visited earlier in in-order;
+- they appear in required order;
+- every node in that partial chain has a null left child;
+- `prev` is the chain's last node.
+
+The three relinking assignments extend this invariant by the current node. Right recursion repeats it for all larger nodes. When the top call finishes, the partial chain is the complete requested tree.
+
+The algorithm reuses node objects instead of allocating a second collection of values or new tree nodes. As a result, references to original nodes observe the rearranged structure after the method returns.
 
 ## Complexity detail
-- **Time Complexity**: $O(n)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
-- **Space Complexity**: $O(h)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.
+
+Let $n$ be the number of nodes and $h$ the original tree height. Each node is visited and relinked once.
+
+- **Time complexity:** $O(n)$.
+- **Space complexity:** $O(h)$ for the recursion stack.
+
+The dummy node and `prev` reference use constant additional space. The output reuses existing nodes, so no $O(n)$ node array or replacement tree is allocated.
+
+## Alternatives and edge cases
+
+- **Collect nodes in a list first:** In-order traversal into an array followed by relinking is straightforward but uses $O(n)$ extra storage.
+- **Create new nodes:** Building a fresh chain preserves the original tree but requires $O(n)$ output allocations beyond reused structure.
+- **Iterative in-order traversal:** An explicit stack achieves the same $O(n)$ time and $O(h)$ space without recursion.
+- **Morris traversal:** Temporary threaded links can achieve $O(1)$ auxiliary space, but pointer management is considerably more delicate while also producing the chain.
+- **Single node:** It becomes `dummy.right`, its left is cleared, and its right remains null.
+- **Already increasing right chain:** In-order order matches the existing chain; assignments preserve its logical structure.
+- **Only left children:** Traversal visits from bottom upward and reverses those relationships into right links.
+- **Balanced tree:** Recursion uses $O(\log n)$ stack height.
+- **Skewed tree:** Stack depth can reach $O(n)$.
+- **Duplicate values:** The standard BST contract determines their traversal order; the algorithm preserves exact in-order node order even when values tie.
+- **Input mutation:** The original tree is rearranged in place. Callers needing the old structure must copy it beforehand.
+- **Dummy exclusion:** Return `dummy.right`, not `dummy`, because the artificial node is not part of the requested result.
+- **Clear every left link:** The assignment occurs for every visited real node, including the new root.

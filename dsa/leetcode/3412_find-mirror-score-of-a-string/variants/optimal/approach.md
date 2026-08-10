@@ -1,22 +1,57 @@
 ## General
-### Beginner-Friendly Intuition & Strategy
-The core task in **Find Mirror Score of a String** is to a string `s`. To avoid nested loops that slow down execution, this solution uses a **Hash Table (Hash Map / Hash Set)**. Think of a index index-cards file: instead of scanning through all cards to check if a number exists, the hash table allows us to instantly look up any value in constant $O(1)$ time.
 
-### Step-by-Step Execution Guide
-**Step 1: Setup & Base Cases**  
-We initialize an empty hash map (`dict`) to act as our fast memory bank, storing elements and their indices or frequencies.  
-**Step 2: Core Processing & Traversal**  
-1. Loop through each item in the input.  
-2. Calculate target complement.  
-3. Check if complement exists in hash map for $O(1)$ match.  
-4. Store current value in hash map if not found.  
-**Step 3: Completion & Return**  
-When processing finishes, the algorithm outputs the final validated solution.
+**The current index needs the closest available mirror on its left.** The process is fixed: scan from left to right, and whenever index $i$ can pair with an earlier unmarked mirror character, choose the closest such index $j$. Once paired, both positions are marked and can never participate again.
 
-### Why This Handles Edge Cases Gracefully
-- **Single Element / Border Cases:** Loop bounds handle single items and empty inputs naturally.
+For each letter, the source stores the indices of its currently unmarked occurrences in a list. These lists act as stacks. As the scan proceeds left to right, indices are appended in increasing order. Therefore, the last index in a letter's list is always its closest unmatched occurrence to the current position. A stack provides exactly the required choice without searching backward through the string.
 
+The dictionary `d` is a `defaultdict(list)`. A key is a lowercase letter and its value is the stack of unmatched indices holding that letter. Across all stacks, an index appears if and only if it has been scanned but not marked.
+
+**Compute the mirror character directly.** Lowercase English letters occupy consecutive character codes. The reversed alphabet pairs positions whose zero-based alphabet indices add to $25$. The expression
+
+`chr(ord("a") + ord("z") - ord(x))`
+
+computes that counterpart. For `x = "a"`, it becomes `"z"`; for `x = "b"`, it becomes `"y"`; and applying the transformation twice returns the original letter.
+
+Call this mirror `y`. At index `i`, the source checks `d[y]`.
+
+If the stack is non-empty, its final element is the greatest unmarked index $j<i$ containing `y`. The operation `pop()` removes that index, marking it. The current index is also considered marked and is deliberately not appended to any stack. The score increases by `i - j`.
+
+If the mirror stack is empty, no eligible earlier index exists. The current index remains unmarked, so `i` is appended to `d[x]`. It may later be used when a mirror of `x` appears.
+
+**Why LIFO order gives “closest.”** All indices in a stack were appended as the scan moved forward, so they are strictly increasing. A list's final element is its greatest index. Among indices less than the current $i$, the greatest one has the smallest distance $i-j$, exactly matching the statement's closest-left rule. After it is popped, the next element becomes the closest still-unmarked occurrence for a future character.
+
+For `s = "aczzx"`:
+
+- index $0$ contains `"a"`, has no earlier `"z"`, and is pushed onto `d["a"]`;
+- index $1$ contains `"c"`, has no earlier `"x"`, and is pushed;
+- index $2$ contains `"z"`, finds index $0$ on the `"a"` stack, pops it, and adds $2$;
+- index $3$ contains `"z"` but the `"a"` stack is now empty, so index $3$ is stored as unmatched;
+- index $4$ contains `"x"`, pops index $1$ from the `"c"` stack and adds $3$.
+
+The total is $5$. Notice that index $3$ remains unmatched; the algorithm does not pair two equal letters unless they are actual alphabet mirrors, which no lowercase letter is because the alphabet has an even number of letters.
+
+**The dictionary represents exactly the unmarked history.** This invariant can be proved after each scanned index. Initially all stacks are empty and no index has been processed. If no mirror exists, appending the current index records precisely the one new unmarked position. If a mirror exists, popping $j$ removes the earlier position that becomes marked, while not pushing $i$ correctly omits the newly marked current position. Every other stack is unchanged. Thus the invariant continues to hold.
+
+Given the invariant, a non-empty mirror stack contains all and only eligible earlier unmarked mirror positions, and its last element is closest. The source therefore performs exactly the process specified at every index. The accumulated `ans` is the sum of precisely the required distances, proving correctness.
+
+It is also useful to understand why a queue would be wrong. A queue would choose the oldest unmatched mirror, which is farthest rather than closest. The problem does not ask for a globally optimized pairing; it prescribes a deterministic left-to-right greedy process. The stack recreates that process exactly.
 
 ## Complexity detail
-- **Time Complexity**: $O(n)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
-- **Space Complexity**: $O(n)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.
+
+Let $n=\lvert\texttt{s}\rvert$. Each index is visited once. It is either appended to one list or immediately paired. An appended index can be popped at most once later. Dictionary access, list append, and list pop from the end take expected $O(1)$ time. Mirror computation is constant work. Total expected time is therefore $O(n)$.
+
+At most $n$ unmatched indices can be stored across all stacks, so auxiliary space is $O(n)$. The dictionary has at most $26$ meaningful letter keys, although accessing `d[y]` may create an empty list for a mirror not previously seen. The integer score may grow quadratically in numeric value, but Python stores it safely; this does not change the count of stored indices.
+
+## Alternatives and edge cases
+
+- **Backward scan for every index:** Searching left through the string for the closest unmarked mirror directly can take $O(n^2)$ time and requires a separate marked array.
+- **Queue per letter:** Removing the earliest stored index chooses the farthest unmatched mirror, violating the closest-index rule. The per-letter container must be LIFO.
+- **One global stack:** The closest unmatched character overall may not be the required mirror. Separate stacks allow direct access to the correct letter class.
+- **Fixed array of 26 stacks:** A list indexed by alphabet position works equally well and avoids dictionary key creation. The protected source uses a dictionary for concise character-based access.
+- **No possible mirrors:** For a string such as `"abcdef"`, every index is pushed and none is popped, so the score remains zero.
+- **Repeated same letter:** Identical letters do not mirror each other. They accumulate on one stack until their opposite letter appears, at which point the most recent is consumed first.
+- **Nested pairings:** A later mirror always pops the closest currently unmatched index, regardless of earlier completed pairs. Marked indices were removed and cannot interfere.
+- **Current index after a match:** It must not be pushed after pairing. Both positions become marked immediately, so storing `i` would allow an illegal second use.
+- **Empty mirror stack:** Access through `defaultdict` yields an empty list, and the source correctly stores the current index instead of attempting a pop.
+- **Large score:** Distances can accumulate beyond a small fixed-width integer in related constraints. Python's arbitrary-precision integer makes the addition safe.
+- **Lowercase-only contract:** The character-code formula relies on the contiguous lowercase English alphabet and should not be generalized to arbitrary Unicode characters without a different mapping.

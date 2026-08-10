@@ -1,24 +1,53 @@
 ## General
-### Beginner-Friendly Intuition & Strategy
-The core task in **Most Frequent Subtree Sum** is to the `root` of a binary tree, return the most frequent **subtree sum**. If there is a tie, return all the values with the highest frequency in any order. The data is structured as a **Binary Tree** where each node contains a value (`val`) and pointers to its `left` and `right` children. Instead of treating the tree as an array, the algorithm uses **Tree Traversal (Recursion / DFS)** to process each node and its subtrees. At every node, it recursively compares or transforms the left and right child subtrees, combining their results to solve the problem for the entire tree.
 
-### Step-by-Step Execution Guide
-**Step 1: Setup & Base Cases**  
-We check the base conditions for tree nodes. If a tree node is `None` (empty), we return the base boundary value (e.g., `True` for equality or `0` for depth).  
-**Step 2: Core Processing & Traversal**  
-1. Inspect the current node values (e.g. `p.val` and `q.val`).  
-2. If values differ, return `False` immediately.  
-3. Recursively invoke traversal on left child subtrees (`self.isSameTree(p.left, q.left)`).  
-4. Recursively invoke traversal on right child subtrees (`self.isSameTree(p.right, q.right)`).  
-5. Return `True` only if both left and right subtrees match.  
-**Step 3: Completion & Return**  
-When processing finishes, the algorithm outputs the final validated solution.
+Every node defines exactly one subtree: the node itself together with all descendants below it. Its subtree sum is
 
-### Why This Handles Edge Cases Gracefully
-- **Both Nodes Empty (`None`):** Returns `True` as two empty subtrees are identical.
-- **One Node Empty, One Non-Empty:** Returns `False` immediately, preventing null pointer attribute access (`AttributeError`).
+`node.val + left_subtree_sum + right_subtree_sum`.
 
+This dependency naturally requires postorder traversal. Both child sums must be known before the current node's sum can be computed.
+
+`dfs(root)` returns the sum of the subtree rooted at `root`. For `None`, it returns zero because an empty child contributes no value to its parent's sum. This zero is an arithmetic identity, not a subtree sum to count; the frequency map is updated only for real nodes.
+
+**Compute every subtree once.** For a real node, the recursive calls
+
+`l, r = dfs(root.left), dfs(root.right)`
+
+fully process the left and right subtrees and return their totals. The current total is then `s = l + r + root.val`. `cnt[s] += 1` records that one more node has this exact subtree sum, and `s` is returned to the parent for reuse.
+
+The reuse is what makes the traversal linear. A slower approach could start a fresh sum traversal at every node, repeatedly visiting descendants. Postorder calculates each child's sum once and immediately feeds it into the parent's calculation.
+
+For tree `[5, 2, -3]`, the leaf two returns sum two and increments frequency of two. Leaf negative three does the same for negative three. The root then combines `2 + (-3) + 5 = 4` and records four. All three sums have frequency one, so all are modes.
+
+For `[5, 2, -5]`, leaf two records two, leaf negative five records negative five, and the root sum is also two. Frequency of two becomes two, making it the unique result.
+
+Negative node values and negative subtree sums require no special handling. `Counter` accepts any integer key, and addition follows the definition directly. Different subtrees can produce the same sum even if their shapes and values differ; those occurrences must increase the same frequency key.
+
+**Find the maximum only after traversal.** Once `dfs(root)` finishes, `cnt` contains one entry update for every node. `mx = max(cnt.values())` identifies the highest occurrence count. The list comprehension returns every sum `k` whose count `v` equals `mx`.
+
+The tree is guaranteed nonempty, so `cnt` has at least one entry and `max` is safe. If an empty tree were allowed, the method would need a separate result policy before taking the maximum.
+
+The problem permits any output order. Python's `Counter` preserves insertion order in current implementations, but correctness does not depend on it. The comprehension may return tied sums in the order their subtrees completed during postorder.
+
+**Why the frequency map is complete and exact.** By induction, `dfs` returns the correct subtree sum. The base case correctly returns zero for an absent child. Assuming the two recursive child results are correct, adding them to the current value gives the sum of every node in the current subtree exactly once. The function increments that sum once for the current root. Because DFS is invoked once for each real node, every rooted subtree contributes one and only one frequency update.
+
+Afterward, selecting precisely keys with the maximum count is exactly the definition of returning all most frequent subtree sums. Combining these two facts proves the result.
+
+The answer values are sums, not node values and not nodes. A leaf's subtree sum happens to equal its value, while an internal node's sum usually combines many values.
 
 ## Complexity detail
-- **Time Complexity**: $O(n)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
-- **Space Complexity**: $O(n)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.
+
+Let $n$ be the number of nodes and $h$ the tree height. DFS visits each node once and performs constant dictionary work on average, taking $O(n)$ time. Finding the maximum and filtering up to $n$ distinct sums takes another $O(n)$, so total time remains $O(n)$.
+
+The counter can store one distinct sum per node, using $O(n)$ space. Recursion uses $O(h)$ stack space, which is $O(n)$ for a skewed tree. The returned list can also contain $O(n)$ sums when all frequencies tie. Overall space is $O(n)$.
+
+## Alternatives and edge cases
+
+- **Recompute each subtree independently:** Traverse from every node to sum descendants. In a skewed tree this repeats work and reaches $O(n^2)$ time.
+- **Iterative postorder:** Use an explicit stack with visited markers, then compute sums bottom-up. It avoids recursion depth but still needs $O(n)$ state.
+- **Store node-to-sum map:** It is unnecessary here because each sum is immediately returned to the parent; only frequency by sum must persist.
+- **Single node:** Its value is the only subtree sum and therefore the unique mode.
+- **All sums distinct:** Every frequency is one, so all subtree sums are returned.
+- **Several sums tied:** The comprehension includes every key with count `mx`; output order is unrestricted.
+- **Negative and zero sums:** They are ordinary integer dictionary keys and require no sentinel.
+- **Nonempty-tree guarantee:** It ensures `max(cnt.values())` is defined.
+- **Deep skewed tree:** Recursive depth can reach the node count and may approach Python's recursion limit; iterative postorder is the runtime-safe alternative.

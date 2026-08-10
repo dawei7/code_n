@@ -1,22 +1,113 @@
 ## General
-### Beginner-Friendly Intuition & Strategy
-The core task in **Difference Between Maximum and Minimum Price Sum** is to There exists an undirected and initially unrooted tree with `n` nodes indexed from `0` to $n - 1$. You are given the integer `n` and a 2D integer array `edges` of length $n - 1$, where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates that there is an edge between nodes $a_{i}$ and.... To avoid nested loops that slow down execution, this solution uses a **Hash Table (Hash Map / Hash Set)**. Think of a index index-cards file: instead of scanning through all cards to check if a number exists, the hash table allows us to instantly look up any value in constant $O(1)$ time.
 
-### Step-by-Step Execution Guide
-**Step 1: Setup & Base Cases**  
-We initialize an empty hash map (`dict`) to act as our fast memory bank, storing elements and their indices or frequencies.  
-**Step 2: Core Processing & Traversal**  
-1. Loop through each item in the input.  
-2. Calculate target complement.  
-3. Check if complement exists in hash map for $O(1)$ match.  
-4. Store current value in hash map if not found.  
-**Step 3: Completion & Return**  
-When processing finishes, the algorithm outputs the final validated solution.
+**Reduce the chosen-root cost to a path with one endpoint excluded**
 
-### Why This Handles Edge Cases Gracefully
-- **Single Element / Border Cases:** Loop bounds handle single items and empty inputs naturally.
+All prices are positive. For a chosen root `r`, the minimum path sum among paths starting at `r` is the path containing only `r`, with sum `price[r]`.
 
+The maximum path sum starts at `r` and ends at some node `u`. The cost is
+
+$$
+\operatorname{pathSum}(r,u)-\texttt{price}[r].
+$$
+
+Thus the global answer is the maximum price sum of any tree path when the price of one endpoint, the chosen root, is excluded.
+
+The DP tracks whether the far endpoint price of a downward path is included or excluded.
+
+**Define the two returned states**
+
+For node `i` with parent `fa`, `dfs(i,fa)` returns `(a,b)`:
+
+- `a` is the maximum sum of a downward path starting at `i` with its terminal endpoint's price included;
+- `b` is the maximum sum of a downward path starting at `i` with its terminal endpoint's price excluded.
+
+For the zero-edge path from `i` to itself:
+
+- including the endpoint gives `price[i]`, so `a` starts there;
+- excluding that same endpoint gives zero, so `b` starts at zero.
+
+These base choices also allow a complete candidate path to use `i` itself as either endpoint.
+
+**Extend a state through one child**
+
+Suppose child `j` returns `(c,d)`.
+
+A downward path from `i` through `j` that includes its far endpoint has sum
+
+`price[i]+c`.
+
+One that excludes its far endpoint has sum
+
+`price[i]+d`.
+
+The updates
+
+`a=max(a,price[i]+c)`
+
+and
+
+`b=max(b,price[i]+d)`
+
+retain the best downward paths among all processed children.
+
+**Combine two branches through `i`**
+
+Before incorporating child `j` into the running states, `a` and `b` describe either the trivial endpoint at `i` or a path through an earlier child.
+
+A complete path passing through `i` can combine:
+
+- prior branch with endpoint included, `a`, and new child branch with endpoint excluded, `d`;
+- prior branch with endpoint excluded, `b`, and new child branch with endpoint included, `c`.
+
+The candidates are `a+d` and `b+c`.
+
+Exactly one of the two outer endpoints is excluded, matching the root-cost reduction. Node `i` is counted once: it belongs to the running branch state but not to child-return states `c` or `d`, which begin at child `j`.
+
+**Why update answer before extending states**
+
+If `a` were updated with child `c` first, combining it with `d` from the same child could incorrectly use one child subtree on both sides of a supposed path.
+
+The source first evaluates cross-branch candidates using only previously processed branches, then merges the child into `a` and `b`. This enforces that the two halves of a path are disjoint except at `i`.
+
+**Why all paths are considered**
+
+Every simple tree path has a unique highest meeting node relative to the arbitrary DFS root zero. Its endpoints lie in two different child directions of that node, or one endpoint is the node itself.
+
+When the second relevant branch is processed, the first is represented by running `a` or `b` and the second by child `c` or `d`. The appropriate included/excluded combination reaches `ans`.
+
+Conversely, every combined candidate joins two valid downward paths through one node and forms a real simple path with exactly one endpoint price excluded.
+
+Therefore, the maximum candidate equals the best cost over every possible chosen root.
+
+**Trace the meaning of a simple chain**
+
+On a three-node chain with prices 1, 1, 1, the full path sum is three. Excluding one endpoint gives two. The DP builds an included state down one side and an excluded state down the other, producing answer two, matching the sample.
+
+**Graph construction and parent guard**
+
+The adjacency list stores both directions of every undirected edge. Parameter `fa` prevents DFS from returning immediately to its parent. Because the input is a tree, that single guard is enough to visit each node once.
+
+**Actual recursion versus manifest wording**
+
+The manifest describes iterative postorder DP, but the protected source calls recursive `dfs`. On a path-shaped tree with $10^5$ nodes, Python's default recursion depth may be exceeded. The DP logic is linear and correct, but an iterative implementation would be safer at the maximum constraint.
 
 ## Complexity detail
-- **Time Complexity**: $O(n)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
-- **Space Complexity**: $O(n)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.
+
+Building adjacency takes $O(n)$ time and space for `n-1` edges. DFS visits each node once and examines each undirected edge twice, so time is $O(n)$.
+
+The adjacency list uses $O(n)$ space. Recursive call depth can be $O(n)$, so total auxiliary space is $O(n)$.
+
+The answer may sum up to $n$ prices and requires 64-bit arithmetic in fixed-width languages.
+
+## Alternatives and edge cases
+
+- **Iterative postorder:** Store parent and traversal order explicitly to avoid recursion-depth failure; this matches the manifest summary.
+- **One node:** Only the zero-edge path exists, so maximum cost is zero.
+- **Leaf state:** Included value is its price and excluded value is zero.
+- **Positive prices:** They make the root-only path the minimum path sum.
+- **Two child branches:** Combine before updating to avoid reusing the same child.
+- **One endpoint at current node:** Initial `a` and `b` represent those cases.
+- **Arbitrary DFS root:** It only organizes computation; all possible problem roots are still represented as excluded endpoints.
+- **Parent guard:** It is sufficient because the graph is a tree.
+- **Large sum:** Use a wide integer type.
+- **Manifest mismatch:** The exact source is recursive, not iterative.

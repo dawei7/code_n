@@ -1,22 +1,41 @@
 ## General
-### Beginner-Friendly Relational Pipeline Strategy
-To Table: `Employees`, this database query builds a step-by-step SQL pipeline.
 
-### Step-by-Step Query Execution
-**Step 1: Common Table Expressions (CTEs)**  
-The query uses `WITH` clauses to break complex database transformations into small, easy-to-read virtual tables. This makes the query modular and simple to understand.  
-**Step 2: Relational JOIN Operations**  
-It combines matching rows across tables using `INNER JOIN` or `LEFT JOIN` on foreign keys so related information appears in a single record set.  
-**Step 3: PostgreSQL Window Functions**  
-Analytical functions (`ROW_NUMBER()`, `RANK()`, `LAG()`, etc.) calculate relative rankings or running totals within specified partitions without collapsing individual rows.  
-**Step 4: Grouping & Aggregations**  
-It groups rows together using `GROUP BY` and calculates sums, averages, or counts for each group.  
+**Separate qualification from ranking.** A salary creates a team only if at least two employees have that salary. Team identifiers then rank only those qualifying salaries; a unique salary must not consume a rank. This ordering of operations is the central challenge. The query first discovers qualifying salaries in common table expression `S`, then assigns their ranks in common table expression `T`, and only afterward joins those team definitions back to employee rows. If ranking happened before unique salaries were removed, gaps or incorrect larger identifiers could appear.
 
-### Edge Case Handling & PostgreSQL Standards
-- **Filtering Aggregated Results:** Uses `HAVING` to filter groups after aggregation occurs.
-- **ANSI SQL Standard:** Follows PostgreSQL standards for cross-platform reliability.
+**Build one row per qualifying salary.** The first CTE is
 
+`SELECT salary FROM Employees GROUP BY salary HAVING COUNT(1) > 1`.
+
+`GROUP BY salary` gathers all employees with the same salary into one group and emits one candidate row for that salary. `COUNT(1)` counts the employee rows in the group; the literal `1` is non-null for every row, so its count is the group size. `HAVING`, unlike `WHERE`, is evaluated after grouping and can therefore filter using that aggregate count. Keeping only counts greater than one implements the “at least two employees” rule. The output `S` contains each eligible salary exactly once and contains no unique salary.
+
+**Assign consecutive team identifiers to the filtered salaries.** The second CTE selects each salary from `S` and evaluates `ROW_NUMBER() OVER (ORDER BY salary) AS team_id`. The window orders the already-qualified salary rows from smallest to largest and numbers them `1, 2, 3, ...`. Since `S` has one row per distinct salary, no two window rows can tie on `salary`; `ROW_NUMBER` is therefore exactly the required salary rank. Most importantly, an ineligible salary is absent from `S` before numbering begins. In the example, `3000` and `7400` are numbered `1` and `2`; unique salary `6100` never occupies a position.
+
+**Join the team definition back to every member.** `T` has one row per team salary, but the output needs one row per employee who belongs to a team. The inner `JOIN T AS t ON e.salary = t.salary` matches every employee to the team row with the same salary. An employee with a qualifying salary finds exactly one match because `T.salary` is unique by construction. An employee with a unique salary finds no match and disappears from the inner-join result, exactly as required. All employees sharing a salary match the same `t.team_id`, which guarantees that a salary group cannot be split across teams.
+
+**Understand the selected shape.** `SELECT e.*, t.team_id` returns all columns belonging to the employee alias `e`—in the table's declared order, `employee_id`, `name`, and `salary`—then appends the calculated identifier. No salary column from `T` is selected, so the result has the four required fields without a duplicate join key. The approach relies on the input schema's column order when the subsequent positional `ORDER BY` is interpreted.
+
+**Produce the exact required ordering.** `ORDER BY 4, 1` means sort first by the fourth selected column and then, for ties, by the first selected column. With `e.*` expanding to three declared columns, position `4` is `team_id` and position `1` is `employee_id`. Ascending is SQL's default, so teams appear in ascending ID order and members within each team appear in ascending employee ID order. Writing names explicitly would be more resistant to a future schema change, but the positional form is correct for this fixed schema and exact query.
+
+**Trace the example through all three stages.** Grouping produces salary groups `3000` with two rows, `6100` with one row, and `7400` with two rows. `HAVING COUNT(1) > 1` removes `6100`, leaving `S = {3000, 7400}`. The window orders these values and creates `T = {(3000, 1), (7400, 2)}`. Joining employees to `T` returns Meir and Michael with team `1`, excludes Juan because there is no `6100` row in `T`, and returns Addilyn and Kannon with team `2`. Finally, ordering places the two team-1 employees by IDs `2, 3`, followed by the team-2 employees by IDs `7, 9`.
+
+**Why the result satisfies every rule.** Any returned employee joined to a salary retained by `S`, so at least one other employee has that salary. Every employee with that salary joins to the same unique row of `T`, so all and only members of the salary group appear together with one ID. Any unique salary was removed by `HAVING`, so its employee cannot appear. The window assigns consecutive identifiers in increasing qualifying-salary order, and the final sort supplies the requested presentation order. These statements cover team eligibility, membership completeness, rank correctness, exclusion, and output ordering independently.
 
 ## Complexity detail
-- **Time Complexity**: $O(R\log R)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
-- **Space Complexity**: $O(R)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.
+
+Let $R$ be the number of employee rows and let $G$ be the number of distinct salaries that qualify as teams, with $G\le R$. Reading and grouping all employees requires $O(R)$ expected time with hash aggregation or $O(R\log R)$ time with sort-based aggregation. Ordering the $G$ qualifying salaries for `ROW_NUMBER` costs up to $O(G\log G)$. Joining `Employees` to `T` can take $O(R+G)$ expected time with a hash join, while the required final ordering of at most $R$ returned employees costs $O(R\log R)$ in the general case. The overall conservative bound is therefore $O(R\log R)$, matching the manifest.
+
+The grouped salaries, ranked team table, join state, and final sorting workspace can collectively grow linearly with the input, so $O(R)$ auxiliary space is an appropriate high-level bound. A database may spill sorting or hashing to disk when its memory budget is exceeded; that changes the physical storage medium and constants, not the amount of state as a function of $R$. The output itself can contain all $R$ employees if every salary occurs at least twice.
+
+Execution details are optimizer-dependent. Available indexes on `salary` or `employee_id` may support grouping, joining, or ordering, but no such physical index behavior is necessary for the logical correctness of the query. The two CTE names describe conceptual stages; MySQL may materialize them or merge them into a broader execution plan while preserving their semantics.
+
+## Alternatives and edge cases
+
+- **Window count followed by dense rank:** A subquery can compute `COUNT(*) OVER (PARTITION BY salary)`, filter counts greater than one, and then rank salaries. Care is needed to rank distinct qualifying salaries rather than every employee row; applying `DENSE_RANK` at the wrong level or before filtering unique salaries can assign incorrect IDs.
+- **Self-join to detect coworkers:** Joining employees to another employee with the same salary and a different ID can identify team members, but it creates duplicate pairs when a salary has many employees and still requires deduplication and salary ranking. Grouping is cleaner and scales better.
+- **Correlated count subquery:** Counting matching salaries separately for every employee expresses eligibility but may repeat work unless the optimizer decorrelates it. The CTE computes each salary count once.
+- **Exactly two employees at one salary:** `COUNT(1) > 1` includes the group, both rows join to the same team, and that salary receives one identifier. The strict comparison is equivalent to “at least two.”
+- **All salaries unique:** `S` and `T` are empty, the inner join returns no rows, and the result is correctly empty. There is no team ID to assign.
+- **Every employee has the same salary:** `S` contains one salary, `ROW_NUMBER` assigns team `1`, and all employees join to it. The final secondary order arranges all members by `employee_id`.
+- **A unique salary between two team salaries:** It is excluded before `ROW_NUMBER`, so it creates no gap. For example, qualifying salaries `3000` and `7400` remain teams `1` and `2` even if unique salary `6100` lies between them.
+- **Multiple employees and duplicate join output:** `T` has one row per eligible salary because it is built from a grouped relation. Therefore each employee matches at most one team row; the join does not multiply an employee even when their salary group is large.
+- **Positional ordering and schema changes:** `ORDER BY 4, 1` depends on `e.*` expanding to exactly the declared three employee columns. Explicit `ORDER BY t.team_id, e.employee_id` would be more maintainable, but the source is exact for the fixed contract.

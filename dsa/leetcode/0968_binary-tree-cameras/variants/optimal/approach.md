@@ -1,24 +1,122 @@
 ## General
-### Beginner-Friendly Intuition & Strategy
-The core task in **Binary Tree Cameras** is to the `root` of a binary tree. We install cameras on the tree nodes where each camera at a node can monitor its parent, itself, and its immediate children. The data is structured as a **Binary Tree** where each node contains a value (`val`) and pointers to its `left` and `right` children. Instead of treating the tree as an array, the algorithm uses **Tree Traversal (Recursion / DFS)** to process each node and its subtrees. At every node, it recursively compares or transforms the left and right child subtrees, combining their results to solve the problem for the entire tree.
 
-### Step-by-Step Execution Guide
-**Step 1: Setup & Base Cases**  
-We check the base conditions for tree nodes. If a tree node is `None` (empty), we return the base boundary value (e.g., `True` for equality or `0` for depth).  
-**Step 2: Core Processing & Traversal**  
-1. Inspect the current node values (e.g. `p.val` and `q.val`).  
-2. If values differ, return `False` immediately.  
-3. Recursively invoke traversal on left child subtrees (`self.isSameTree(p.left, q.left)`).  
-4. Recursively invoke traversal on right child subtrees (`self.isSameTree(p.right, q.right)`).  
-5. Return `True` only if both left and right subtrees match.  
-**Step 3: Completion & Return**  
-When processing finishes, the algorithm outputs the final validated solution.
+**A parent needs three facts about each child**
 
-### Why This Handles Edge Cases Gracefully
-- **Both Nodes Empty (`None`):** Returns `True` as two empty subtrees are identical.
-- **One Node Empty, One Non-Empty:** Returns `False` immediately, preventing null pointer attribute access (`AttributeError`).
+A camera monitors its node, parent, and immediate children. For a subtree, minimum cost depends on its root's status relative to its parent.
 
+The helper returns `(a, b, c)`:
+
+- `a`: minimum cameras when the subtree root has a camera;
+- `b`: minimum cameras when the root has no camera but is monitored;
+- `c`: minimum cameras when the root is not monitored, while every lower node is monitored.
+
+The uncovered state is useful because a camera at the parent can cover that root later.
+
+**Null-subtree states**
+
+For `None`, return `(infinity, 0, 0)`.
+
+A nonexistent node cannot hold a camera, so camera state is impossible. Infinity prevents transitions from selecting it.
+
+It costs zero for an absent subtree to be considered covered or awaiting parent coverage because there is no real node to violate either condition.
+
+**State `a`: place a root camera**
+
+A root camera monitors both child roots. Each child may therefore be in any state: camera, covered, or uncovered and relying on the current camera.
+
+Choose the cheapest state independently for each child and add one:
+
+`a = min(la, lb, lc) + min(ra, rb, rc) + 1`.
+
+**State `b`: covered without a root camera**
+
+At least one immediate child must have a camera to monitor the root.
+
+The other child cannot be uncovered because the root has no camera to cover it. It must have a camera or already be covered.
+
+Valid combinations are:
+
+- left camera, right covered: `la + rb`;
+- left covered, right camera: `lb + ra`;
+- cameras on both: `la + ra`.
+
+Their minimum is `b`.
+
+**State `c`: root remains uncovered**
+
+Neither child may have a camera, because a child camera would monitor the root.
+
+Both child roots must nevertheless be covered, so they both use state `b`:
+
+`c = lb + rb`.
+
+The parent may later place a camera.
+
+**Why the whole root cannot use `c`**
+
+The tree root has no parent. If it remains uncovered, no outside camera can rescue it.
+
+The solution returns `min(a, b)`, requiring the root to hold a camera or be covered by a child camera.
+
+**Leaf example**
+
+A leaf has two null children.
+
+- Camera state costs one.
+- Covered-without-camera state is impossible because no child can hold a camera.
+- Uncovered state costs zero because there are no lower real nodes.
+
+This is correct: a leaf may wait for its parent's camera, but if it must be covered entirely inside its own subtree, it needs a camera.
+
+**Why the DP is correct**
+
+The three states distinguish every possible interaction between a subtree root and its parent. For each state, the formula enumerates all and only legal child-state combinations.
+
+Assuming child costs are optimal, independently choosing the cheapest legal combination gives the optimal current cost. Structural induction proves all tuples.
+
+At the top, excluding the uncovered state enforces monitoring of every node, so the returned minimum is globally optimal.
+
+**Why child subproblems combine independently**
+
+Once the current root's state is fixed, camera choices in the left subtree do not monitor nodes deep in the right subtree, and vice versa. Their only shared interaction is through whether each child root monitors or relies on the current root.
+
+The three state values summarize that boundary completely, allowing costs to be added.
+
+**Why the three states are mutually informative**
+
+It is not enough to store only “covered” versus “uncovered.” A covered child root might be covered by its own camera or by a camera one level below. Those cases affect the parent differently: only a camera on the child itself monitors the parent.
+
+Separating `a` from `b` preserves this information. Separating `c` tells the parent when its own camera is required to cover a child root. Together, the states contain exactly the boundary information and no complete camera placement history.
+
+**Why cameras deeper than a child cannot cover the current root**
+
+A camera reaches only its own node, parent, and immediate children. A grandchild camera can cover the child but not the current root.
+
+That is why state `b` requires an actual child state `a` rather than merely a covered child. The transition respects the one-edge monitoring radius precisely.
+
+**An internal-node example**
+
+Suppose both children are uncovered state `c`. Placing a camera at the current root makes both valid, which state `a` permits by taking child minima including `c`.
+
+Without a root camera, neither uncovered child can be rescued, so states `b` and `c` never combine with child `c`. This illustrates how the formulas exclude hidden coverage gaps.
 
 ## Complexity detail
-- **Time Complexity**: $O(N)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
-- **Space Complexity**: $O(N)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.
+
+Let `N` be node count and `H` height.
+
+Every node is processed once with constant state arithmetic, giving `O(N)` time.
+
+The recursion stack uses `O(H)` space. The manifest's `O(N)` is a valid worst case for a chain; balanced trees use `O(log N)`.
+
+## Alternatives and edge cases
+
+- **Greedy postorder states:** Mark nodes as needing coverage, covered, or containing a camera, placing cameras above uncovered children. It is also linear.
+- **Try every camera subset:** Exponential and ignores subtree independence.
+- **Camera at every leaf parent:** Helpful intuition but needs careful root and chain handling.
+- **Single node:** The root cannot remain uncovered, so one camera is required.
+- **Null child:** Its camera cost is infinity, preventing imaginary placement.
+- **Root covered by one child:** State `b` permits exactly one child camera.
+- **Both child cameras:** Included when their subtrees make it cheapest.
+- **Uncovered internal root:** Valid only when its parent will cover it.
+- **No mutation:** The tree is read only.
+- **Deep tree:** Recursion may approach `N` frames and hit Python's recursion limit.

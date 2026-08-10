@@ -1,24 +1,90 @@
 ## General
-### Beginner-Friendly Intuition & Strategy
-The core task in **Flip Equivalent Binary Trees** is to For a binary tree **T**, we can define a **flip operation** as follows: choose any node, and swap the left and right child subtrees. The data is structured as a **Binary Tree** where each node contains a value (`val`) and pointers to its `left` and `right` children. Instead of treating the tree as an array, the algorithm uses **Tree Traversal (Recursion / DFS)** to process each node and its subtrees. At every node, it recursively compares or transforms the left and right child subtrees, combining their results to solve the problem for the entire tree.
 
-### Step-by-Step Execution Guide
-**Step 1: Setup & Base Cases**  
-We check the base conditions for tree nodes. If a tree node is `None` (empty), we return the base boundary value (e.g., `True` for equality or `0` for depth).  
-**Step 2: Core Processing & Traversal**  
-1. Inspect the current node values (e.g. `p.val` and `q.val`).  
-2. If values differ, return `False` immediately.  
-3. Recursively invoke traversal on left child subtrees (`self.isSameTree(p.left, q.left)`).  
-4. Recursively invoke traversal on right child subtrees (`self.isSameTree(p.right, q.right)`).  
-5. Return `True` only if both left and right subtrees match.  
-**Step 3: Completion & Return**  
-When processing finishes, the algorithm outputs the final validated solution.
+**At every node, there are only two valid alignments**
 
-### Why This Handles Edge Cases Gracefully
-- **Both Nodes Empty (`None`):** Returns `True` as two empty subtrees are identical.
-- **One Node Empty, One Non-Empty:** Returns `False` immediately, preventing null pointer attribute access (`AttributeError`).
+A flip swaps a node's left and right subtrees. Therefore, after two current roots are known to represent the same value, their children can correspond in exactly two ways:
 
+- no flip at this node: left matches left and right matches right;
+- flip at this node: left matches right and right matches left.
+
+The recursive helper tests these two possibilities. It does not need to construct flipped trees physically because choosing crossed recursive arguments represents a flip logically.
+
+**Base cases before recursion**
+
+The first condition is `root1 == root2 or (root1 is None and root2 is None)`.
+
+When both references are `None`, their empty trees are equivalent. When both variables reference the same node object, the subtrees are literally identical and also equivalent. In ordinary separate input trees, the equality shortcut mainly covers both-null pairs. The explicit both-null part is logically redundant after reference equality in Python, but it makes the intended empty-tree case visible.
+
+Next, the helper returns false if:
+
+- exactly one root is `None`;
+- their values differ.
+
+A flip changes only child positions. It cannot create a missing node or change a node value, so either mismatch makes equivalence impossible at this pair.
+
+**Testing the unflipped arrangement**
+
+The first conjunction is:
+
+`dfs(root1.left, root2.left) and dfs(root1.right, root2.right)`.
+
+Both child-subtree pairs must be flip equivalent. If the left comparison fails, Python's short-circuit `and` skips the right comparison because the whole unflipped arrangement is already impossible.
+
+**Testing the flipped arrangement**
+
+If the unflipped arrangement does not succeed, the second conjunction tests:
+
+`dfs(root1.left, root2.right) and dfs(root1.right, root2.left)`.
+
+This corresponds to flipping one current node. It does not matter which of the two trees is described as flipped; swapping either side creates the same child pairing.
+
+The two conjunctions are joined by `or`. Success of either complete alignment is enough.
+
+**Local choices combine into a global transformation**
+
+Each recursive call makes its own flip-or-no-flip decision. A tree may need a flip at the root, no flip at one child, and another flip several levels lower.
+
+This independence is why recursion fits the definition. Once a current child pairing is selected, operations inside those subtrees do not affect nodes outside them.
+
+**Trace conceptually**
+
+Suppose both roots hold one, but the left child of the first root holds two while the right child of the second root holds two. The unflipped left-left comparison quickly fails due to different values. The crossed comparison aligns the two-valued subtrees and separately aligns the other children.
+
+Within the two-valued subtree, the helper repeats the same reasoning. A later pair of children may match without another flip or may require another crossed alignment.
+
+**Why the recursion is correct**
+
+If the helper returns true through the unflipped branch, both corresponding child pairs can independently be made equal. Applying those subtree flips makes the whole rooted trees equal without flipping the current node.
+
+If it returns true through the crossed branch, flip one current node, then apply the recursively established transformations inside the crossed child pairs. The complete rooted trees become equal.
+
+Conversely, suppose two rooted trees are flip equivalent. Their roots must either both be absent or have equal values. At a present root, the successful transformation either flips that node or does not. In the first case, the crossed child pairs must be flip equivalent; in the second, the aligned pairs must be. The helper tests both possibilities, so it cannot miss a valid transformation.
+
+This structural induction proves both soundness and completeness.
+
+**Why unique values help**
+
+The contract gives unique values within each tree. When two non-null child roots have different values, the wrong orientation fails immediately rather than exploring deep ambiguous matches. This supports the linear traversal behavior of the exact implementation.
 
 ## Complexity detail
-- **Time Complexity**: $O(n)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
-- **Space Complexity**: $O(h)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.
+
+Let `n` be the total number of nodes examined and `h` the greater tree height.
+
+With unique node values, each meaningful matching node pair is processed a constant number of times, and mismatched orientations stop immediately. Time complexity is `O(n)`.
+
+The recursion stack follows at most one root-to-leaf path within each active conjunction, so auxiliary space is `O(h)`. Balanced trees use `O(log n)` stack depth, while chain-shaped trees use `O(n)`.
+
+No tree nodes are copied or mutated.
+
+## Alternatives and edge cases
+
+- **Physically flip nodes during search:** This mutates input and complicates backtracking. Crossed recursive arguments represent the same choice safely.
+- **Canonical tree serialization:** Recursively order child representations and compare canonical forms. It can be elegant but constructs extra strings or tuples.
+- **Iterative stack of node pairs:** It avoids recursion-depth concerns but must still choose aligned or crossed children based on values.
+- **Both trees empty:** The first base case returns true.
+- **Exactly one tree empty:** The null mismatch returns false.
+- **Different root values:** No flip can change values, so the result is immediately false.
+- **Leaf nodes with equal values:** Both child pairs are empty, so the unflipped branch succeeds.
+- **Already identical trees:** Every node succeeds through the aligned branch.
+- **Flip required at several levels:** Each recursive pair independently chooses the crossed branch where needed.
+- **Short-circuit evaluation:** It avoids evaluating unnecessary branches after success or obvious failure, which is important for keeping the search controlled.

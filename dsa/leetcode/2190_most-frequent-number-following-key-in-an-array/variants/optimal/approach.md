@@ -1,22 +1,81 @@
 ## General
-### Beginner-Friendly Intuition & Strategy
-The core task in **Most Frequent Number Following Key In an Array** is to a **0-indexed** integer array `nums`.** **You are also given an integer `key`, which is present in `nums`. To avoid nested loops that slow down execution, this solution uses a **Hash Table (Hash Map / Hash Set)**. Think of a index index-cards file: instead of scanning through all cards to check if a number exists, the hash table allows us to instantly look up any value in constant $O(1)$ time.
 
-### Step-by-Step Execution Guide
-**Step 1: Setup & Base Cases**  
-We initialize an empty hash map (`dict`) to act as our fast memory bank, storing elements and their indices or frequencies.  
-**Step 2: Core Processing & Traversal**  
-1. Loop through each item in the input.  
-2. Calculate target complement.  
-3. Check if complement exists in hash map for $O(1)$ match.  
-4. Store current value in hash map if not found.  
-**Step 3: Completion & Return**  
-When processing finishes, the algorithm outputs the final validated solution.
+Only adjacent positions matter. For every occurrence of `key` that is not the final array element, the value immediately after it contributes one vote to that follower value.
 
-### Why This Handles Edge Cases Gracefully
-- **Single Element / Border Cases:** Loop bounds handle single items and empty inputs naturally.
+The exact solution walks all adjacent pairs once, maintains a frequency counter for qualifying second values, and updates the best follower as soon as its count becomes the largest seen.
 
+**Generate adjacent pairs directly**
+
+`pairwise(nums)` yields
+
+`(nums[0], nums[1])`, `(nums[1], nums[2])`, and so on through the final adjacent pair.
+
+Each yielded pair is assigned to `a, b`. Here `a` represents `nums[i]` and `b` represents `nums[i + 1]` for one index `i`.
+
+This avoids manual index arithmetic while covering exactly the allowed range from zero through `len(nums) - 2`. The last array element appears as a follower but never as the first component of a nonexistent pair beyond the array.
+
+**Filter on the key position**
+
+The code enters its counting block only when `a == key`. In that case, `b` is precisely a target that immediately follows an occurrence of `key`, so `cnt[b]` increases by one.
+
+If `a` is not the key, the adjacent value `b` is irrelevant for this problem and no counter changes.
+
+Notice that `b` may itself equal `key`. Consecutive copies of the key are valid: in `[2,2,2]`, the second two follows the first, and the third follows the second, so target two receives two votes.
+
+**Maintain the best count online**
+
+`mx` stores the greatest follower frequency observed so far, and `ans` stores the follower that achieved it.
+
+After incrementing `cnt[b]`, the code compares it with `mx`. If it is strictly larger, both `mx` and `ans` are updated. If it merely ties the current maximum, the stored answer remains unchanged.
+
+The contract guarantees that the final maximum target is unique. Temporary ties during the scan therefore do not create ambiguity in the returned result. The eventual unique winner must at some point raise its count above every competitor and trigger an update.
+
+**Why updating only the changed target is enough**
+
+One loop iteration changes only `cnt[b]`. Every other follower's frequency remains exactly what it was, so none of them can newly exceed `mx` at this moment.
+
+It is sufficient to compare the updated `b` with the existing maximum rather than rescan the entire Counter after every pair. This keeps the pass linear.
+
+**Why every qualifying occurrence contributes once**
+
+For any index `i` in the problem's range, `pairwise` yields exactly one pair whose first element is `nums[i]` and second is `nums[i + 1]`. If the first equals `key`, the corresponding target counter increases once.
+
+No other generated pair represents that same index `i`, so the occurrence is not double-counted. If the first does not equal `key`, the occurrence should not contribute and is skipped.
+
+After the scan, `cnt[target]` therefore equals the definition's number of indices for every follower that ever occurs after the key.
+
+**Why `ans` ends at the unique maximum**
+
+Initially no follower has been seen, and `mx = 0`. The first qualifying follower reaches count one, exceeds zero, and becomes `ans`.
+
+Whenever a follower establishes a new strictly greatest observed frequency, the update records it. At the end, let $w$ be the unique target with maximum final count. When $w$ reaches that final count, it is strictly above every other target's final count and hence above every count observed for them. The conditional must set `ans = w`. No later target can surpass it, so the returned value is $w$.
+
+For `[1,100,200,1,100]` with key one, the adjacent pairs beginning with one are `(1,100)` twice. Counter entry 100 reaches two and remains the unique maximum.
+
+**Understand the initial zero answer**
+
+`ans` begins at zero even though input values are positive. Under valid test generation, at least one counted follower exists and replaces it. A key occurrence at the final position alone cannot define the promised unique target maximum; the problem's answer guarantee rules out a case with no qualifying follower.
 
 ## Complexity detail
-- **Time Complexity**: $O(n)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
-- **Space Complexity**: $O(1)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.
+
+Let $n$ be the array length. `pairwise` produces $n-1$ adjacent pairs, and each iteration performs expected constant-time Counter operations. Total time is $O(n)$.
+
+The counter stores one entry per distinct value that follows `key`. Given the fixed value range one through 1000, this is at most 1000 entries and is $O(1)$ with respect to $n$, matching the manifest. If values were unbounded, the more general auxiliary-space bound would be $O(u)$ for $u$ distinct followers.
+
+`pairwise` is lazy and keeps only iterator state rather than materializing all pairs.
+
+## Alternatives and edge cases
+
+- **Count then call `most_common`:** First build all follower counts, then select the maximum. It is correct but performs a separate pass over distinct targets.
+- **Fixed frequency array:** Values are at most 1000, so a 1001-entry list can replace the Counter and make the constant-space interpretation explicit.
+- **Manual index loop:** Iterate `i` through `range(len(nums) - 1)` and inspect `nums[i + 1]`. It has identical behavior.
+- **Consecutive keys:** The key itself is a valid target when one key immediately follows another.
+- **Key at the final index:** That occurrence creates no pair because nothing follows it.
+- **Several key occurrences:** Each immediate follower occurrence contributes independently, even when positions share the same target value.
+- **Temporary tie:** Strict comparison keeps the earlier leader, but the guaranteed unique final maximum eventually overtakes all others.
+- **Unique final winner:** No explicit tie-breaking rule is needed.
+- **Minimum array length two:** There is one adjacent pair, which is counted if its first value is the key.
+- **Values unrelated to key:** Followers after non-key values never enter the Counter.
+- **Lazy adjacency:** `pairwise` avoids an $O(n)$ list of tuples.
+- **Input preservation:** The array and key are only read.
+- **Fixed-domain space:** The Counter is logically bounded by 1000 possible positive values under the contract.

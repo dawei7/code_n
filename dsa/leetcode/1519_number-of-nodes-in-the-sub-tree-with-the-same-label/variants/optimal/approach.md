@@ -1,22 +1,83 @@
 ## General
-### Beginner-Friendly Intuition & Strategy
-The core task in **Number of Nodes in the Sub-Tree With the Same Label** is to a tree (i.e. a connected, undirected graph that has no cycles) consisting of `n` nodes numbered from `0` to $n - 1$ and exactly $n - 1$ `edges`. The **root** of the tree is the node `0`, and each node of the tree has **a label** which is a lower-case character given in the str.... To avoid nested loops that slow down execution, this solution uses a **Hash Table (Hash Map / Hash Set)**. Think of a index index-cards file: instead of scanning through all cards to check if a number exists, the hash table allows us to instantly look up any value in constant $O(1)$ time.
 
-### Step-by-Step Execution Guide
-**Step 1: Setup & Base Cases**  
-We initialize an empty hash map (`dict`) to act as our fast memory bank, storing elements and their indices or frequencies.  
-**Step 2: Core Processing & Traversal**  
-1. Loop through each item in the input.  
-2. Calculate target complement.  
-3. Check if complement exists in hash map for $O(1)$ match.  
-4. Store current value in hash map if not found.  
-**Step 3: Completion & Return**  
-When processing finishes, the algorithm outputs the final validated solution.
+**Rooting the undirected tree**
 
-### Why This Handles Edge Cases Gracefully
-- **Single Element / Border Cases:** Loop bounds handle single items and empty inputs naturally.
+The input edges are undirected, but subtrees are defined after rooting at node zero. The source builds adjacency list `g` in both directions.
 
+The recursive helper receives current node `i` and parent `fa`. When examining neighbors, it skips `fa` and recursively visits every other neighbor as a child. Because the graph is a tree, this parent check is enough to prevent walking backward or revisiting a node.
+
+**A global counter used as a traversal prefix**
+
+The unusual part is `cnt`. It is one global `Counter` of labels seen so far in depth-first traversal, and values are never decremented when recursion returns.
+
+For node `i` with label `labels[i]`, the entry action is
+
+`ans[i] -= cnt[labels[i]]`.
+
+This stores the negative number of occurrences of that label seen before entering `i`'s subtree.
+
+The code then increments the current node's label and completely traverses every child subtree. After all descendants finish, every node in `i`'s subtree has been visited, and no node that comes later outside that subtree has been visited yet.
+
+The exit action
+
+`ans[i] += cnt[labels[i]]`
+
+adds the global count after the subtree. The difference between after and before is exactly the number of occurrences of `labels[i]` visited inside the subtree.
+
+**Why DFS contiguity makes this work**
+
+A recursive DFS enters a node and finishes every descendant before returning to the parent. Therefore, the visitation events for one subtree form one contiguous interval in traversal order.
+
+For any label $c$,
+
+$$
+\text{count of c in subtree i}
+=
+\text{prefixCountAfter}(c)
+-\text{prefixCountBefore}(c).
+$$
+
+The two updates to `ans[i]` compute exactly this prefix difference for the node's own label.
+
+The counter must not be decremented on backtracking. It represents a monotone traversal prefix, not the labels on the active recursion path. Decrementing would destroy the after-minus-before interpretation.
+
+**A small trace**
+
+Suppose node `i` has label `a` and two earlier nodes outside its subtree have already contributed `a`. On entry, `ans[i]` becomes minus two. During the subtree traversal, the current node and two descendants with label `a` add three occurrences, so the global count becomes five. On exit, adding five produces three, exactly the subtree answer.
+
+Nodes visited afterward in sibling branches cannot contaminate `ans[i]` because its exit update occurs before DFS leaves `i`.
+
+**Why every answer is assigned correctly**
+
+The current node increments its label before visiting children, so each node counts itself. All descendants are visited before the exit snapshot. Parent and other already completed subtrees are removed algebraically through the entry baseline.
+
+Each node executes exactly one entry and exit pair, so every `ans[i]` is filled once. The Counter can use label characters directly; missing labels begin at zero.
+
+**Comparison with merging frequency arrays**
+
+A common DFS returns a 26-element frequency array from each child and merges it into the parent. The exact source avoids those per-node arrays by using global traversal-prefix differences. It needs only one counter containing at most 26 keys, although it still uses linear adjacency and recursion storage.
+
+**Practical recursion depth**
+
+A chain-shaped tree can create $N$ recursive calls. With $N$ up to one hundred thousand, standard Python recursion limits are insufficient, so the exact source can raise `RecursionError` on valid deep inputs unless the environment adjusts the limit. An iterative traversal with entry and exit events preserves the same prefix-difference idea safely.
 
 ## Complexity detail
-- **Time Complexity**: $O(n)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
-- **Space Complexity**: $O(n)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.
+
+Building adjacency lists takes $O(N)$ time and space because a tree has $N-1$ edges. DFS visits every node once and examines each undirected edge twice. Counter operations are expected constant time over a fixed 26-letter alphabet, so total time is $O(N)$.
+
+The adjacency list uses $O(N)$ space, the answer uses $O(N)$, and the recursion stack can use $O(N)$ in a chain. The counter itself is $O(1)$ relative to $N$. Overall auxiliary space is $O(N)$, matching the manifest.
+
+The approach does not allocate a 26-entry array per node, improving constants relative to frequency merging.
+
+## Alternatives and edge cases
+
+- **Return 26-count arrays:** Merge child frequencies in postorder. It is straightforward and still $O(N)$ because the alphabet is fixed, but uses larger per-frame data.
+- **Iterative entry-exit DFS:** Record the baseline on entry and compute the difference on exit without recursion-limit risk.
+- **Leaf node:** Its subtree contains itself only, so its answer is one.
+- **All labels equal:** Each answer becomes the size of that rooted subtree.
+- **All labels distinct:** Every node's answer is one.
+- **Single-node tree:** Entry baseline is zero, the node increments its label, and exit produces one.
+- **Parent skip:** It is necessary because adjacency lists contain both edge directions.
+- **Global counter not decremented:** This is intentional prefix counting, not an active-path frequency.
+- **Deep chain:** Mathematical correctness holds, but recursive Python execution may exceed the stack limit.
+- **Required imports:** `defaultdict` and `Counter` must be available from `collections`.

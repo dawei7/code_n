@@ -1,22 +1,92 @@
 ## General
-### Beginner-Friendly Intuition & Strategy
-The core task in **Count Number of Rectangles Containing Each Point** is to a 2D integer array `rectangles` where $\text{rectangles}[i] = [l_{i}, h_{i}]$ indicates that $$i^{\text{th}}$$ rectangle has a length of $l_{i}$ and a height of $h_{i}$. You are also given a 2D integer array `points` where $\text{points}[j] = [x_{j}, y_{j}]$ is a point with co.... To avoid nested loops that slow down execution, this solution uses a **Hash Table (Hash Map / Hash Set)**. Think of a index index-cards file: instead of scanning through all cards to check if a number exists, the hash table allows us to instantly look up any value in constant $O(1)$ time.
 
-### Step-by-Step Execution Guide
-**Step 1: Setup & Base Cases**  
-We initialize an empty hash map (`dict`) to act as our fast memory bank, storing elements and their indices or frequencies.  
-**Step 2: Core Processing & Traversal**  
-1. Loop through each item in the input.  
-2. Calculate target complement.  
-3. Check if complement exists in hash map for $O(1)$ match.  
-4. Store current value in hash map if not found.  
-**Step 3: Completion & Return**  
-When processing finishes, the algorithm outputs the final validated solution.
+**Containment becomes two lower-bound conditions**
 
-### Why This Handles Edge Cases Gracefully
-- **Single Element / Border Cases:** Loop bounds handle single items and empty inputs naturally.
+Every rectangle starts at `(0,0)` and ends at `(l,h)`. Since point coordinates are positive under the constraints, point `(x,y)` is contained exactly when
 
+$$
+l \ge x \quad \text{and} \quad h \ge y.
+$$
+
+The challenge is to count rectangles satisfying both inequalities for up to fifty thousand points.
+
+**Exploit the small height universe**
+
+Rectangle lengths can be as large as `10^9`, but heights are only one through one hundred. The solution groups rectangle lengths by exact height:
+
+`d[y].append(x)`
+
+where local `x` is rectangle length and `y` is rectangle height.
+
+After all rectangles are bucketed, each height's length list is sorted. The code iterates `d.keys()` and replaces each list with its sorted order in place. Updating values without adding or removing keys is safe during key iteration.
+
+**Answer one point by scanning eligible heights**
+
+For point `(x,y)`, a containing rectangle must have height at least `y`. The loop
+
+`for h in range(y, 101)`
+
+visits every possible eligible height through the maximum one hundred. Heights below `y` are ignored because those rectangles cannot contain the point vertically.
+
+Within exact-height bucket `h`, the sorted list `xs` contains rectangle lengths. `bisect_left(xs, x)` finds the first position whose length is at least point coordinate `x`. Therefore,
+
+`len(xs) - bisect_left(xs, x)`
+
+is the number of rectangles in that bucket satisfying `l >= x`.
+
+Summing this over all heights `h >= y` counts exactly the rectangles satisfying both dimensions.
+
+**Why edge points count**
+
+Both containment boundaries are inclusive. Starting the height loop at `y` includes rectangles with `h = y`. `bisect_left` inserts before values equal to `x`, so lengths exactly equal to `x` are included in the suffix count.
+
+Using `bisect_right` would incorrectly exclude equal-length rectangles.
+
+**Default empty buckets**
+
+`d` is a `defaultdict(list)`. Accessing `d[h]` for a height with no rectangles yields an empty list. Its length and insertion index are both zero, contributing nothing.
+
+These accesses may create empty dictionary entries during point processing, but there are at most 101 height keys, so this does not affect asymptotic storage.
+
+**Why every counted rectangle contains the point**
+
+A rectangle counted in bucket `h` came from a loop value `h >= y`. Its length lies in the suffix starting at the first value at least `x`, so `l >= x`. Since the rectangle begins at the origin and point coordinates are nonnegative, both containment conditions hold.
+
+**Why every containing rectangle is counted**
+
+Take a rectangle containing point `(x,y)`. Its height `h` is at least `y`, so the height loop visits its bucket. Its length `l` is at least `x`, so it appears at or after the `bisect_left` boundary and contributes one. Every rectangle lives in exactly one height bucket, preventing duplicates.
+
+**Preserve point order**
+
+The method processes `points` in their original order and appends one `cnt` immediately for each. It does not sort points, so the returned positions correspond directly to input indices.
+
+**Trace a bucket**
+
+Suppose height five has sorted lengths `[1,2,7,10]` and the point's x-coordinate is two. `bisect_left` returns index one, and the suffix has three lengths: two, seven, and ten. All three contain the point horizontally.
+
+If the point's y-coordinate is four, height five is among the visited buckets. If its y-coordinate is six, that bucket is skipped.
 
 ## Complexity detail
-- **Time Complexity**: $O(R log R + P H log R)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
-- **Space Complexity**: $O(R + H)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.
+
+Let `R` be the number of rectangles, `P` the number of points, and `H = 100` the maximum height. Sorting all buckets costs at most `O(R \log R)` in total.
+
+Each point scans at most `H` height values and performs a binary search costing `O(\log R)` in the worst case. Query time is `O(PH \log R)`, so total time is `O(R \log R + PH \log R)`.
+
+Buckets store every rectangle length once plus at most `H` lists, using `O(R + H)` space. The answer uses `O(P)` required output space.
+
+Because `H` is fixed at one hundred, the per-point height scan is effectively a small constant factor.
+
+## Alternatives and edge cases
+
+- **Test every rectangle for every point:** It takes `O(RP)` time and ignores the bounded-height opportunity.
+- **Sweep points and rectangles by x:** A Fenwick tree over heights can achieve strong asymptotic performance, but requires offline sorting and more machinery.
+- **One global length list:** It loses height information, so rectangles too short vertically would be counted.
+- **Use `bisect_right`:** It would exclude rectangles whose right edge is exactly at the point's x-coordinate.
+- **Point on top edge:** Height equality is included because scanning starts at `y`.
+- **Point on right edge:** Length equality is included by `bisect_left`.
+- **No eligible height:** The loop may be empty only beyond the stated range; within constraints, empty buckets simply contribute zero.
+- **Empty exact-height bucket:** `defaultdict` returns an empty list and binary search contributes zero.
+- **Duplicate dimensions:** Rectangles are unique, but equal lengths may appear at different heights and are counted independently.
+- **Large x-coordinate:** Insertion may be at the list end, giving zero for that bucket.
+- **Small y-coordinate:** More height buckets are considered, as required.
+- **Output ordering:** Points are never rearranged.

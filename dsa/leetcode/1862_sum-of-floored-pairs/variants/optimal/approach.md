@@ -1,22 +1,67 @@
 ## General
-### Beginner-Friendly Intuition & Strategy
-The core task in **Sum of Floored Pairs** is to an integer array `nums`, return the sum of $floor(\text{nums}[i] / \text{nums}[j])$ for all pairs of indices $0 \le i, j < \text{nums.length}$ in the array. Since the answer may be too large, return it **modulo** $10^{9} + 7$. To avoid nested loops that slow down execution, this solution uses a **Hash Table (Hash Map / Hash Set)**. Think of a index index-cards file: instead of scanning through all cards to check if a number exists, the hash table allows us to instantly look up any value in constant $O(1)$ time.
 
-### Step-by-Step Execution Guide
-**Step 1: Setup & Base Cases**  
-We initialize an empty hash map (`dict`) to act as our fast memory bank, storing elements and their indices or frequencies.  
-**Step 2: Core Processing & Traversal**  
-1. Loop through each item in the input.  
-2. Calculate target complement.  
-3. Check if complement exists in hash map for $O(1)$ match.  
-4. Store current value in hash map if not found.  
-**Step 3: Completion & Return**  
-When processing finishes, the algorithm outputs the final validated solution.
+**Group ordered pairs by denominator value and quotient.** A direct calculation considers every ordered pair of indices, which is quadratic. Many indices share the same numeric value, and many numerator values produce the same floor quotient for a fixed denominator. The solution aggregates both kinds of repetition.
 
-### Why This Handles Edge Cases Gracefully
-- **Single Element / Border Cases:** Loop bounds handle single items and empty inputs naturally.
+`cnt = Counter(nums)` records how many times each value occurs. Let `mx` be the largest value.
 
+**Build prefix counts over the value domain.** Array `s` has indices zero through `mx`. For each value `i`,
+
+`s[i] = s[i - 1] + cnt[i]`.
+
+Thus `s[r] - s[l - 1]` gives the number of input occurrences with values in inclusive range `[l, r]`. Missing values contribute zero through the counter.
+
+**Characterize one floor quotient bucket.** Fix denominator value `y`. For a positive integer quotient `d`:
+
+`floor(x / y) = d`
+
+exactly when
+
+`d * y <= x <= (d + 1) * y - 1`.
+
+The code enumerates `d = 1, 2, ...` while `d * y <= mx`. The upper endpoint is capped at `mx` because no numerator exceeds it.
+
+The number of numerator occurrences in that bucket is:
+
+`s[min(mx, d * y + y - 1)] - s[d * y - 1]`.
+
+Each such numerator paired with one denominator occurrence contributes `d`. There are `cnt[y]` denominator indices having value `y`, so the total bucket contribution is denominator frequency times quotient times numerator frequency.
+
+**Why quotient zero is omitted.** Numerators smaller than `y` produce floor quotient zero. Their total contribution is zero regardless of how many pairs exist, so the loop begins at one without losing anything.
+
+**Count ordered index pairs correctly.** Frequencies multiply because every numerator occurrence can pair with every denominator occurrence. When numerator and denominator values are equal, their indices may also be equal; the problem permits all `i, j`, including `i = j`. `cnt[y] * cnt[y]` correctly includes those self-pairs and cross-pairs.
+
+**Trace `nums = [2, 5, 9]` for denominator two.** Quotient one covers numerators two and three, finding the occurrence two and contributing one. Quotient two covers four and five, finding five and contributing two. Quotient four covers eight and nine, finding nine and contributing four. Empty quotient buckets contribute zero. The denominator-two total is seven.
+
+The outer loop then handles denominator five and nine, adding their quotient-one pairs and producing the sample total ten.
+
+**Why iterating all domain values is efficient.** For denominator `y`, the inner loop runs about `mx / y` times. Summed over positive `y`, this is the harmonic series:
+
+`mx * (1 + 1/2 + 1/3 + ... + 1/mx)`,
+
+which is `O(mx log mx)`. The `if cnt[y]` guard skips absent denominators and can only reduce work.
+
+**Modulo handling.** After every bucket addition, `ans %= mod` keeps the accumulator bounded. Modular addition and multiplication preserve the final sum modulo the prime; unlike a maximization problem, reducing partial sums cannot change which result should be selected because there is no comparison between raw candidates.
+Fix a denominator occurrence. Every numerator value belongs to exactly one quotient bucket, including the omitted zero bucket. Positive buckets are disjoint and cover all numerators at least `y`. The prefix difference counts each occurrence in its unique bucket, and multiplying by `d` gives its correct quotient contribution. Multiplying by denominator frequency and summing all present `y` counts every ordered pair exactly once.
 
 ## Complexity detail
-- **Time Complexity**: $O(n + U\log U)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
-- **Space Complexity**: $O(U)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.
+
+Let `n = nums.length` and `U = max(nums)`. Building frequencies is `O(n)`. Prefix counts take `O(U)`. The nested quotient loops perform `O(U log U)` iterations in the worst case. Total time is `O(n + U log U)`.
+
+The counter and prefix array store at most `O(U)` values, so auxiliary space is `O(U)`.
+
+## Alternatives and edge cases
+
+- **Enumerate all index pairs:** It is direct but costs `O(n^2)` time.
+- **Sort and binary-search quotient ranges:** Possible, but value-domain prefix counts answer every bucket count in constant time.
+- **All values equal:** Every ordered pair has quotient one, giving `n^2`.
+- **Denominator larger than numerator:** Quotient zero is correctly omitted from the sum.
+- **Self-pairs:** Each contributes one and is included by frequency multiplication.
+- **Duplicate values:** Counter frequencies count each index occurrence, not merely each distinct value.
+- **Capped final bucket:** `min(mx, ...)` prevents a prefix lookup beyond the array.
+- **Positive-input dependency:** Denominators are never zero, so division and bucket stepping are safe.
+- **Missing domain values:** `cnt[y]` is zero and no denominator work is needed.
+- **Modulo frequency:** Reducing after each bucket is safe for a sum and prevents large accumulation.
+- **Ordered pairs:** Numerator and denominator roles are distinct; the outer denominator loop preserves that direction.
+- **Prefix lower endpoint:** Since `d >= 1` and `y >= 1`, `d * y - 1` is always a valid nonnegative index.
+- **Inner-loop termination:** Once `d * y > mx`, every remaining quotient bucket begins above the largest numerator in the array. All such buckets are empty, so stopping at that exact condition omits no positive contribution and avoids pointless prefix queries.
+- **Largest denominator:** When `y = mx`, only quotient one can be nonempty, and it contains precisely numerator occurrences equal to `mx`.

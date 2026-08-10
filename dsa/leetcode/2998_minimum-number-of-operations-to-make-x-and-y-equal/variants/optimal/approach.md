@@ -1,20 +1,70 @@
 ## General
-### Beginner-Friendly Intuition & Strategy
-The core task in **Minimum Number of Operations to Make X and Y Equal** is to two positive integers `x` and `y`. Instead of recalculating the exact same subproblems over and over again, this solution uses **Dynamic Programming**. We break the larger problem down into smaller overlapping subproblems, solve each subproblem once, and store its result in a memory table. When building the final answer, we simply look up previously calculated answers.
 
-### Step-by-Step Execution Guide
-**Step 1: Setup & Base Cases**  
-We create a Dynamic Programming table and initialize known base cases.  
-**Step 2: Core Processing & Traversal**  
-1. Iterate sequentially through each element.  
-2. Apply operational rules to update state variables.  
-**Step 3: Completion & Return**  
-When processing finishes, the algorithm outputs the final validated solution.
+**Direct movement is always a fallback**
 
-### Why This Handles Edge Cases Gracefully
-- **Single Element / Border Cases:** Loop bounds handle single items and empty inputs naturally.
+State `dfs(v)` means the minimum operations needed to change current value $v$ into the fixed target `y`.
 
+If `y >= v`, division can only make the positive value smaller and move it away from the target. The best strategy is therefore to increment exactly `y - v` times.
+
+When `v > y`, decrementing directly to `y` costs `v - y`. The code initializes `ans` to this valid fallback before considering divisions.
+
+**A division may require adjustment first**
+
+Division by $d$, where $d$ is five or eleven, is legal only at a multiple of $d$. Let $r=v\bmod d$.
+
+The closest multiple at or below $v$ is $v-r$. Reaching it costs $r$ decrements, division costs one, and its quotient is $\lfloor v/d\rfloor$. This yields:
+
+`r + 1 + dfs(v // d)`.
+
+The closest multiple at or above $v$ is $v+(d-r)$ when written by the code. Reaching it costs $d-r$ increments, division costs one, and its quotient is $\lfloor v/d\rfloor+1$. This yields:
+
+`d - r + 1 + dfs(v // d + 1)`.
+
+When $r=0$, the downward option divides immediately. The upward expression moves a full $d$ steps to the next multiple; it is usually worse but remains a legal candidate.
+
+The method evaluates these two choices for both five and eleven and keeps the minimum with direct decrementing.
+
+**Why only the nearest multiple on each side matters**
+
+Suppose the first division used is by $d$. Before that division, only increments and decrements occur. If the reached multiple lies below $v$, choosing a multiple even farther below requires at least $d$ extra decrements and produces a quotient at least one smaller. Those extra movements can instead be postponed until after division at no greater cost through the recursively optimized quotient state. The closest lower multiple is never worse.
+
+The symmetric argument applies above $v$: the nearest upper multiple minimizes the adjustment before obtaining the next larger quotient. Thus every optimal strategy whose first division is by $d$ is represented by one of the two candidates.
+
+If an optimal strategy never divides, the direct `v-y` candidate represents it.
+
+**Memoization shares quotient states**
+
+Different adjustment paths can reach the same smaller quotient. `@cache` stores `dfs(v)` so that state is solved once.
+
+Every recursive child is substantially smaller than its parent when `v>y`: it is roughly `v/5` or `v/11`, with at most one added. This guarantees termination and creates a shallow logarithmic recursion tree.
+
+For `x=26, y=1`, the division-by-five lower candidate decrements once to 25, divides to five, and then divides to one. Its cost is three. The recurrence discovers this through `1 + 1 + dfs(5)`, where `dfs(5)` chooses one immediate division.
+
+
+Take an optimal strategy from $v>y$. If it contains no division, direct decrementing is optimal among pure plus/minus movement and appears in `ans`.
+
+Otherwise, consider its first division. It is by five or eleven. All preceding operations merely move $v$ to a divisible value. The nearest-multiple argument transforms that prefix into one of the recurrence’s lower/upper candidates without increasing cost. After division, optimal continuation cost is exactly the cached child state by induction.
+
+The recurrence therefore considers a plan no more expensive than every optimum, while every recurrence candidate is a legal plan. Equality follows.
+
+**Why moving above the current value can help**
+
+Incrementing may appear counterintuitive when the target is smaller, but it can unlock a dramatic division. From 54 to target two, increment once to 55, divide by eleven to five, divide by five to one, and increment to two. The recurrence’s upper-multiple branches capture such strategies.
 
 ## Complexity detail
-- **Time Complexity**: $O(log^2 X)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
-- **Space Complexity**: $O(log^2 X)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.
+
+The exact manifest gives $O(\log^2 X)$ time and space. Cached states are generated by repeated quotients by five and eleven, including neighboring quotients. Their combinations form at most a polylogarithmic set; the supplied bound is $O(\log^2 X)$ time and $O(\log^2 X)$ cache space.
+
+The recursion depth itself is $O(\log X)$ because every division shrinks the state by at least about five. Each cached state performs constant work across four division candidates and one fallback.
+
+## Alternatives and edge cases
+
+- **Breadth-first search over integers:** It finds shortest paths but requires choosing a search bound and can explore many irrelevant values.
+- **Only adjust downward:** This misses strategies such as 54 incrementing to 55 before division.
+- **Only try immediate divisible operations:** A value not currently divisible may be one step from a valuable division.
+- **Move to farther multiples:** The nearest multiple on each side dominates farther pre-division adjustment.
+- **`x <= y`:** Pure increments are optimal; division cannot help reach a larger positive target.
+- **`x == y`:** The base case returns zero.
+- **Already divisible:** The lower branch divides with one operation; the upper branch legally considers the next multiple.
+- **Direct decrements win:** `x-y` remains in the minimum, so divisions are never forced.
+- **Memoization:** It prevents overlapping quotient subproblems from expanding exponentially.

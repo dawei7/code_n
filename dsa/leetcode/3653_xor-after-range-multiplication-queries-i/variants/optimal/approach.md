@@ -1,20 +1,112 @@
 ## General
-### Beginner-Friendly Intuition & Strategy
-The core task in **XOR After Range Multiplication Queries I** is to an integer array `nums` of length `n` and a 2D integer array `queries` of size `q`, where $\text{queries}[i] = [l_{i}, r_{i}, k_{i}, v_{i}]$. Instead of using nested loops that inspect every pair in $O(n^2)$ time, this algorithm uses the **Two-Pointer technique**. We place two markers (pointers)—typically one at the start (`left`) and one at the end (`right`) of a sorted array—and move them toward each other based on clear comparison rules, completing the search in a single efficient pass.
 
-### Step-by-Step Execution Guide
-**Step 1: Setup & Base Cases**  
-We initialize an empty hash map (`dict`) to act as our fast memory bank, storing elements and their indices or frequencies.  
-**Step 2: Core Processing & Traversal**  
-1. Compare elements at `array[left]` and `array[right]`.  
-2. Advance `left` or retreat `right` based on comparison rules.  
-**Step 3: Completion & Return**  
-When processing finishes, the algorithm outputs the final validated solution.
+**Follow each arithmetic progression exactly**
 
-### Why This Handles Edge Cases Gracefully
-- **Single Element / Border Cases:** Loop bounds handle single items and empty inputs naturally.
+A query `[l, r, k, v]` does not update every index in the interval unless `k = 1`. It visits the arithmetic progression
 
+`l, l + k, l + 2k, ...`
+
+and stops before the next index would exceed the inclusive boundary `r`.
+
+Python’s
+
+`range(l, r + 1, k)`
+
+describes exactly those indices. The endpoint is `r + 1` because `range` excludes its stop argument. The positive-step constraint `k >= 1` guarantees progress and prevents an infinite loop.
+
+For every visited `idx`, the source performs
+
+`nums[idx] = nums[idx] * v % mod`,
+
+where `mod = 10^9 + 7`. Queries are processed in their given order, and a later query reads the already-updated value left by all earlier queries.
+
+**Why direct simulation is appropriate for this version**
+
+Both the array length and the number of queries are at most `10^3`. In the worst case, every query has `k = 1` and covers the whole array, so there are at most about `10^6` element updates. That amount of work is practical.
+
+More complicated range-update structures are useful for the larger “II” version, but they would add implementation and proof complexity without improving the worst-case scale needed here. The direct loops mirror the statement closely and make inclusive bounds and step sizes easy to verify.
+
+Let `U` be the total number of indices actually visited across all queries:
+
+`U = sum over queries of (floor((r - l) / k) + 1)`.
+
+The simulation performs exactly `U` multiplications. This is a more precise measure than writing `O(nq)`, although `U <= nq` gives the familiar worst-case bound.
+
+**Apply the modulus after every multiplication**
+
+The statement requires each updated array value to be reduced modulo `10^9 + 7`. The source applies the remainder during every query visit, rather than allowing values to grow and reducing only at the end.
+
+Repeated modular multiplication is consistent with the required sequential updates. If one index is multiplied by factors `a` and `b` in separate queries, then
+
+`((x * a) mod M * b) mod M = (x * a * b) mod M`.
+
+Reducing early therefore preserves the final modular value while keeping the stored integer bounded below `M`.
+
+The XOR operation is not modular arithmetic. It must be applied to the final reduced integer values. Computing products without the required intermediate modulus and XORing those larger numbers could produce a different bit pattern.
+
+**Why mutating `nums` is enough**
+
+Each update depends only on the current value at one index. There is no query that asks for an intermediate aggregate, and updating one index does not affect which other indices a query visits. The source can safely modify `nums` in place without a second array.
+
+For a fixed index, all applicable query multipliers ultimately form a modular product. Multiplication is commutative, but the implementation still respects the specified query order. No delayed-update bookkeeping is required under these constraints.
+
+The in-place behavior means the caller’s array contains the final values after the method returns. This is part of the exact source behavior and is not counted as auxiliary storage.
+
+**Compute XOR only after every query is complete**
+
+Once all updates have been applied, the source returns
+
+`reduce(xor, nums)`.
+
+This combines the array as
+
+`nums[0] XOR nums[1] XOR ... XOR nums[n - 1]`.
+
+The array is guaranteed nonempty, so `reduce` does not need an initializer. XOR is associative, which makes the left-to-right reduction valid.
+
+It is possible to maintain a running XOR by XORing out an old value and XORing in its replacement at every update, because `x XOR x = 0`. The source does not do that. A single final `O(n)` pass is simpler, and it does not change the dominant bound.
+
+**Trace the second example**
+
+Start with `[2, 3, 1, 5, 4]`.
+
+The first query `[1, 4, 2, 3]` visits indices one and three. Their values become nine and fifteen, producing `[2, 9, 1, 15, 4]`. Index five would be next, but it exceeds `r = 4`.
+
+The second query `[0, 2, 1, 2]` visits zero, one, and two. It doubles their current values, including the nine produced by the first query, resulting in `[4, 18, 2, 15, 4]`.
+
+Only then does the reduction compute `4 XOR 18 XOR 2 XOR 15 XOR 4 = 31`.
+
+**Why every final value is correct**
+
+Consider any array index `p`. A query affects it exactly when `p` lies between `l` and `r` and `p - l` is a non-negative multiple of `k`. Those are precisely the values generated by `range(l, r + 1, k)`.
+
+Whenever that condition holds, the loop applies the query’s multiplier once. Whenever it does not hold, the loop never visits `p`. By induction over the query order, the stored `nums[p]` after each query equals the value defined by all operations processed so far. This is true independently for every index, so the final XOR is taken over the exact required final array.
 
 ## Complexity detail
-- **Time Complexity**: $O(n + U)$ — Detailed Analysis: The time complexity corresponds directly to the total number of operations required by the step-by-step execution loop described above.
-- **Space Complexity**: $O(1)$ — Detailed Analysis: The space complexity reflects the auxiliary memory allocated for tracking structures, recursion stack depth, or hash maps during processing.
+
+For query `[l, r, k, v]`, the inner loop executes
+
+`floor((r - l) / k) + 1`
+
+times. Summed over all queries, update time is `O(U)`. The final XOR reduction visits `n` values, giving total time `O(U + n)`.
+
+In the worst case, `U = nq`, so this can also be stated as `O(nq + n) = O(nq)`. The manifest’s `O(n + U)` is the more input-sensitive description.
+
+The method modifies `nums` directly and stores only the modulus and loop variables. Excluding the input array, auxiliary space is `O(1)`. The iteration machinery used by `range` and `reduce` does not allocate a list of visited indices.
+
+## Alternatives and edge cases
+
+- **Maintain XOR during updates:** XOR out `nums[idx]`, update it, and XOR the new value in. This avoids the final pass but adds two XOR operations per update and does not improve the asymptotic bound.
+- **Batch query multipliers:** Difference structures can help when `n` and `q` are much larger, but arbitrary step sizes make them unnecessarily complex for the `10^3` limits of this version.
+- **Update every index between `l` and `r`:** This ignores `k` and changes positions that the query should skip. The arithmetic progression must be followed.
+- **Use `range(l, r, k)`:** Because the stop is exclusive, this misses index `r` when `r` belongs to the progression. Use `r + 1`.
+- **Apply modulus only before XOR:** The operation explicitly reduces after each multiplication. Delaying it also risks enormous intermediate integers in fixed-width languages.
+- **`k = 1`:** Every index in the inclusive interval is updated.
+- **`k > r - l`:** Only index `l` is visited; the next progression position already exceeds `r`.
+- **`l = r`:** The single selected element is multiplied once regardless of `k`.
+- **Overlapping queries:** An index receives every applicable multiplier in query order. The in-place update automatically compounds them.
+- **Multiplier one:** The visited values remain unchanged modulo `M`, but the query is still processed correctly.
+- **Repeated equal array values:** XOR cancellation depends on final bit patterns, not on positions; the final reduction handles duplicates naturally.
+- **Single-element array:** Every valid query starts and ends at index zero, and `reduce` returns that one final value.
+- **Input mutation:** The source changes `nums`. A caller that needs the original array must copy it before the call.
+- **Missing imports:** The stored source uses `List`, `reduce`, and `xor` without imports. Standalone Python needs imports from `typing`, `functools`, and `operator` unless provided by the harness.
