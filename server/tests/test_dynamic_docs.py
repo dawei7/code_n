@@ -37,17 +37,24 @@ class DynamicDocsTest(conftest._Base):
         response = self.client.get("/api/docs/by-id/lc_1")
         self.assertEqual(response.status_code, 200, response.text)
         self.assertIn("# Two Sum", response.text)
-        self.assertIn("## Description", response.text)
-        self.assertIn("## Function Contract", response.text)
-        self.assertIn("## Examples", response.text)
-        self.assertIn("## Constraints", response.text)
-        self.assertIn("## Follow-up", response.text)
+        self.assertIn("### 1. Description", response.text)
+        self.assertIn("### 2. Function Contract", response.text)
+        self.assertIn("### 3. Examples", response.text)
+        self.assertIn("### 4. Constraints", response.text)
+        self.assertIn("### 5. Follow-up", response.text)
         self.assertIn("| Supported Language | Python |", response.text)
         self.assertNotIn("Supported Languages", response.text)
-        self.assertLess(response.text.index("## Description"), response.text.index("## Function Contract"))
-        self.assertLess(response.text.index("## Function Contract"), response.text.index("## Examples"))
-        self.assertLess(response.text.index("## Examples"), response.text.index("## Constraints"))
-        self.assertLess(response.text.index("## Constraints"), response.text.index("## Follow-up"))
+        ordered_sections = (
+            "### 1. Description",
+            "### 2. Function Contract",
+            "### 3. Examples",
+            "### 4. Constraints",
+            "### 5. Follow-up",
+        )
+        self.assertEqual(
+            sorted(response.text.index(section) for section in ordered_sections),
+            [response.text.index(section) for section in ordered_sections],
+        )
         self.assertNotIn("### Required Complexity", response.text)
 
     def test_reference_metadata_exposes_zerotrac_contest_source(self) -> None:
@@ -76,22 +83,22 @@ class DynamicDocsTest(conftest._Base):
         self.assertIn("# Legacy", markdown)
         self.assertIn("### Goal", markdown)
 
-    def test_legacy_metadata_is_normalized_to_one_supported_language(self) -> None:
+    def test_composed_metadata_exposes_one_supported_language(self) -> None:
         response = self.client.get("/api/docs/by-id/lc_764")
 
         self.assertEqual(response.status_code, 200, response.text)
         self.assertIn("| Supported Language | Python |", response.text)
         self.assertNotIn("Supported Languages", response.text)
 
-    def test_reviewed_source_native_sections_keep_manifest_order(self) -> None:
+    def test_monolithic_source_native_sections_keep_numbered_order(self) -> None:
         custom_judge = self.client.get("/api/docs/by-id/lc_26")
         self.assertEqual(custom_judge.status_code, 200, custom_judge.text)
         custom_headings = (
-            "## Description",
-            "## Function Contract",
-            "## Custom Judge",
-            "## Examples",
-            "## Constraints",
+            "### 1. Description",
+            "### 2. Function Contract",
+            "### 3. Custom Judge",
+            "### 4. Examples",
+            "### 5. Constraints",
         )
         self.assertEqual(
             sorted(custom_judge.text.index(heading) for heading in custom_headings),
@@ -100,25 +107,25 @@ class DynamicDocsTest(conftest._Base):
 
         note = self.client.get("/api/docs/by-id/lc_29")
         self.assertEqual(note.status_code, 200, note.text)
-        self.assertLess(note.text.index("## Description"), note.text.index("## Note"))
-        self.assertLess(note.text.index("## Note"), note.text.index("## Examples"))
+        self.assertLess(note.text.index("### 1. Description"), note.text.index("### 3. Note"))
+        self.assertLess(note.text.index("### 3. Note"), note.text.index("### 4. Examples"))
 
-    def test_reviewed_sql_doc_can_preserve_source_without_constraints(self) -> None:
+    def test_monolithic_sql_doc_preserves_source_order_without_constraints(self) -> None:
         response = self.client.get("/api/docs/by-id/lc_175")
 
         self.assertEqual(response.status_code, 200, response.text)
-        headings = (
-            "## Person Table",
-            "## Address Table",
-            "## Description",
-            "## Function Contract",
-            "## Examples",
+        signposts = (
+            "### 1. Description",
+            "Table: `Person`",
+            "Table: `Address`",
+            "### 2. Function Contract",
+            "### 3. Examples",
         )
         self.assertEqual(
-            sorted(response.text.index(heading) for heading in headings),
-            [response.text.index(heading) for heading in headings],
+            sorted(response.text.index(signpost) for signpost in signposts),
+            [response.text.index(signpost) for signpost in signposts],
         )
-        self.assertNotIn("## Constraints", response.text)
+        self.assertNotIn("### 4. Constraints", response.text)
         self.assertIn("| Supported Language | SQL |", response.text)
 
     def test_overview_is_the_root_readme(self) -> None:
@@ -135,12 +142,15 @@ class DynamicDocsTest(conftest._Base):
             parameters = paths[route]["get"].get("parameters", [])
             self.assertNotIn("lang", {parameter["name"] for parameter in parameters})
 
-    def test_docs_index_contains_only_registry_challenges(self) -> None:
+    def test_docs_index_contains_every_canonical_registry_challenge(self) -> None:
         response = self.client.get("/api/docs/index")
         self.assertEqual(response.status_code, 200, response.text)
         entries = response.json()
-        self.assertGreater(len(entries), 3900)
-        self.assertTrue(all(entry["id"].startswith("lc_") for entry in entries))
+        self.assertEqual(len(entries), 4005)
+        self.assertEqual(
+            {entry["id"] for entry in entries},
+            {f"lc_{frontend_id}" for frontend_id in range(1, 4006)},
+        )
         two_sum = next(entry for entry in entries if entry["id"] == "lc_1")
         self.assertEqual(
             two_sum["path"],
@@ -152,7 +162,13 @@ class DynamicDocsTest(conftest._Base):
             "/api/docs/dsa/leetcode/0001_two-sum/reference/description.md"
         )
         self.assertEqual(response.status_code, 200, response.text)
-        self.assertIn("## Description", response.text)
+        package = leetcode_package_dir("lc_1")
+        self.assertIsNotNone(package)
+        assert package is not None
+        expected = (package / "reference" / "description.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertEqual(response.text, expected)
 
         legacy = self.client.get("/api/docs/algorithms/README.md")
         self.assertEqual(legacy.status_code, 404)

@@ -54,6 +54,10 @@ LEETCODE_REFERENCE_REQUIRED_SECTIONS = (
     "constraints.md",
 )
 LEETCODE_SOURCE_SECTION_ID = re.compile(r"^[a-z][a-z0-9_]*$")
+LEETCODE_MONOLITHIC_DESCRIPTION_HEADING = re.compile(
+    r"^###\s+1\.\s+Description\s*$",
+    flags=re.MULTILINE,
+)
 
 
 def is_leetcode_id(challenge_id: str) -> bool:
@@ -202,9 +206,30 @@ def _reviewed_source_section_files(package_dir: Path) -> tuple[str, ...] | None:
 def _reference_section_paths(package_dir: Path) -> tuple[Path, ...] | None:
     reference_dir = package_dir / "reference"
     reviewed_files = _reviewed_source_section_files(package_dir)
-    filenames = reviewed_files or LEETCODE_REFERENCE_REQUIRED_SECTIONS
-    paths = tuple(reference_dir / filename for filename in filenames)
-    return paths if all(path.is_file() for path in paths) else None
+    if reviewed_files is not None:
+        reviewed_paths = tuple(reference_dir / filename for filename in reviewed_files)
+        return reviewed_paths if all(path.is_file() for path in reviewed_paths) else None
+
+    section_paths = tuple(
+        reference_dir / filename
+        for filename in LEETCODE_REFERENCE_REQUIRED_SECTIONS
+    )
+    if all(path.is_file() for path in section_paths):
+        return section_paths
+
+    # The current reference corpus stores the complete problem statement in
+    # one numbered description document. Treat that file as the canonical
+    # source instead of falling back to ``doc.md``: many migrated packages keep
+    # only a compatibility comment in the latter.
+    monolithic_path = reference_dir / "description.md"
+    if monolithic_path.is_file():
+        try:
+            monolithic = monolithic_path.read_text(encoding="utf-8")
+        except OSError:
+            return None
+        if LEETCODE_MONOLITHIC_DESCRIPTION_HEADING.search(monolithic):
+            return (monolithic_path,)
+    return None
 
 
 def _markdown_table_value(value: object) -> str:
