@@ -3,12 +3,18 @@ from __future__ import annotations
 
 import json
 
+from server.app.challenge_packages import leetcode_template_path
 from server.app.user_solutions import user_solution_dir
 from server.tests.conftest import _Base, _TEST_LEGACY_SOLUTIONS
 
 
 class SolutionRoutesTests(_Base):
     def test_first_open_creates_only_three_versioned_files(self) -> None:
+        template_path = leetcode_template_path("lc_1", "python")
+        self.assertIsNotNone(template_path)
+        assert template_path is not None
+        canonical_template = template_path.read_text(encoding="utf-8")
+
         response = self.client.get("/api/solutions/lc_1?language=python")
         self.assertEqual(response.status_code, 200)
         payload = response.json()
@@ -18,10 +24,22 @@ class SolutionRoutesTests(_Base):
             payload["filename"],
             "dsa/leetcode/1_two-sum/user_solutions/python_v1.py",
         )
+        expected_starter = payload["starter_source"]
+        self.assertEqual(payload["source"], expected_starter)
+        self.assertTrue(expected_starter.endswith(canonical_template))
+        self.assertIn("# Description\n# -----------", expected_starter)
+        self.assertIn("# Examples\n# --------", expected_starter)
+        self.assertIn("# Required Complexity\n# -------------------", expected_starter)
+        self.assertIn("You are given an array of integers nums", expected_starter)
+        self.assertIn("Input: nums = [2,7,11,15], target = 9", expected_starter)
+        self.assertIn("Time: O(n)", expected_starter)
+        self.assertIn("Space: O(n)", expected_starter)
 
         directory = user_solution_dir("lc_1")
         code_files = sorted(path.name for path in directory.glob("*.py"))
         self.assertEqual(code_files, ["python_v1.py", "python_v2.py", "python_v3.py"])
+        for source_path in directory.glob("*.py"):
+            self.assertEqual(source_path.read_text(encoding="utf-8"), expected_starter)
         self.assertFalse((directory / "python.py").exists())
 
     def test_switch_reads_real_version_without_copy_alias(self) -> None:

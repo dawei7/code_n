@@ -1,17 +1,3 @@
-[TOC]
-
-## Video Solution
----
-
-<div>
-    <div class="video-container">
-        <iframe src="https://player.vimeo.com/video/806523757" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    </div>
-</div>
-
-<div>
-</div>
-
 ## Solution Article
 
 ---
@@ -31,17 +17,6 @@ Where $\text{root.left}$ and $\text{root.right}$ are left and right children of 
 In our first approach, we'll simply traverse the tree recursively in a depth first search manner using the function `int getHeight(node)`, which will return the height of the given node in the binary tree. Since height of any node depends on the height of it's children node, hence we traverse the tree in a post-order manner (i.e. height of the childrens are calculated first before calculating the height of the given node). Additionally, whenever we encounter a null node, we simply return -1 as it's height.
 
 Next, we'll store the pair `(height, val)` for all the nodes which will be sorted later to obtain the final answer. The sorting will be done in increasing order considering the height first and then the val. Hence we'll obtain all the pairs in the increasing order of their height in the given binary tree.
-
-Attached below is the video which shows the calculation of height in a height-first-search manner for the binary tree given in the example.
-
-<div>
-    <div class="video-container">
-        <iframe src="https://player.vimeo.com/video/810324564" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    </div>
-</div>
-
-<div>
-</div>
 
 Below is the implementaion of this approach
 

@@ -1,4 +1,3 @@
-[TOC]
 ## Summary
 
 We need to determine whether a given string can be formed by interleaving the other two strings.

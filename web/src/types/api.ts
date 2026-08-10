@@ -93,16 +93,24 @@ export interface ChallengeSummary {
   leetcode_submission_paid_only: boolean;
 }
 
+export interface SolutionImplementationDetail {
+  id: string;
+  label: string;
+  sources: Partial<Record<SupportedLanguage, string>>;
+  leetcode_sources: Partial<Record<SupportedLanguage, string>>;
+}
+
 export interface SolutionVariantDetail {
   id: string;
   label: string;
-  kind: 'optimal' | 'simplified' | 'alternative';
+  kind: 'optimal' | 'competitive' | 'simplified' | 'alternative';
   summary: string;
   time_complexity: string;
   space_complexity: string;
   approach_markdown: string;
   sources: Partial<Record<SupportedLanguage, string>>;
   leetcode_sources: Partial<Record<SupportedLanguage, string>>;
+  implementations: SolutionImplementationDetail[];
   submission_status: string;
   verified_submission_id: string;
 }
@@ -119,7 +127,6 @@ export interface ChallengeDetail extends ChallengeSummary {
   leetcode_optimal_sources?: Partial<Record<SupportedLanguage, string>>;
   default_solution_variant: string;
   solution_variants: SolutionVariantDetail[];
-  editorial_markdown: string;
   solution_variant_effective_elo: number | null;
   solution_variant_elo_source: string;
   simplified_solution_elo_ceiling: number | null;

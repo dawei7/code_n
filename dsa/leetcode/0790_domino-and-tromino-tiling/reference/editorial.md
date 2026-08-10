@@ -1,5 +1,3 @@
-[TOC]
-
 ## Solution
 
 ---
@@ -11,35 +9,11 @@ At first glance, one might consider testing every possible combination of domino
 
 Whenever you are not sure how to approach a problem, it is a good idea to draw out the first couple of scenarios.
 
-<div>
-    <div class="video-container">
-        <iframe src="https://player.vimeo.com/video/566292903" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    </div>
-</div>
+For a board with width `k`, some possible tilings can be derived directly from the two previous fully covered boards.
 
-Take a close look at the above animation.  Notice that for a board with width `k`, some of the possible tilings can directly be derived from the two previous fully covered boards as shown below.
+However, some possible tilings cannot be derived directly from previous fully covered boards. Instead, they must be derived from partially covered boards with a width of `k-1` (for example, a fully covered board of width `k=3` can be derived from a partially covered board with a width of `k=2`).
 
-<div>
-    <div class="video-container">
-        <iframe src="https://player.vimeo.com/video/566292920" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    </div>
-</div>
-
-<div>
-    <div class="video-container">
-        <iframe src="https://player.vimeo.com/video/566292936" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    </div>
-</div>
-
-However, some of the possible tilings cannot be derived from previous fully covered boards directly. Instead, they must be derived from partially covered boards with a width of `k-1` as shown below (e.g. a fully covered board of width `k=3` can be derived from a partially covered board of width `k=2`).
-
-<div>
-    <div class="video-container">
-        <iframe src="https://player.vimeo.com/video/566292948" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    </div>
-</div>
-
-The above animations provide a basic idea of where the possible tilings come from for a board with width $k$. Let's find out how we can derive an algorithm from these patterns.
+These cases provide the basic idea of where the possible tilings come from for a board with width $k$. Let's derive an algorithm from these patterns.
 
 Now, let's define:
 - **Fully covered board**: All tiles on board are covered by a _domino_ or a _tromino_.
@@ -49,11 +23,11 @@ Now, let's define:
 
 We can determine the number of ways to fully or partially tile a board of width $k$ by considering every possible way to arrive at $f(k)$ or $p(k)$ by placing a domino or a tromino.  Let's find $f(k)$ together and then you can pause to practice by finding $p(k)$ on your own.  All of the ways to arrive at a fully tiled board of width $k$ are as follows:
 
-- From $f(k-1)$ we can add 1 vertical domino for each tiling in a fully covered board with a width of $k-1$, as shown in the second animation.
-- From $f(k-2)$ we can add 2 horizontal dominos for each tiling in a fully covered board with a width of $k-2$, as shown in the third animation.
+- From $f(k-1)$ we can add 1 vertical domino for each tiling in a fully covered board with a width of $k-1$.
+- From $f(k-2)$ we can add 2 horizontal dominos for each tiling in a fully covered board with a width of $k-2$.
 - Note that we don't need to add 2 **vertical** dominos to $f(k-2)$, since $f(k-1)$ will cover that case and it will cause duplicates if we count it again.
-- From $p(k-1)$ we can add an L-shaped tromino for each tiling in a partially covered board with a width of $k-1$, as shown above (in the fourth animation).
-- We will **multiply by $p(k-1)$ by 2** because for any partially covered tiling, there will be a horizontally symmetrical tiling of it. For example, the animation below shows two $p(k - 1)$ board states that are identical when reflected over the horizontal edge of the board. Logically, there must be an equal number of ways to fully tile the board from both $p(k - 1)$ states.  So rather than count the number of ways twice, we simply multiply the number of ways from one $p(k - 1)$ state by 2.
+- From $p(k-1)$ we can add an L-shaped tromino for each tiling in a partially covered board with a width of $k-1$.
+- We will **multiply $p(k-1)$ by 2** because every partially covered tiling has a horizontally symmetrical counterpart. Therefore, there are equally many ways to finish the board from the upper-gap and lower-gap states, so we count one orientation and multiply it by 2.
 
 Summing the ways to reach $f(k)$ gives us the following equation:
 <center>
@@ -62,11 +36,6 @@ $f(k) = f(k-1) + f(k-2) + 2 * p(k-1)$
 </center>
 <br/>
 
-<div>
-    <div class="video-container">
-        <iframe src="https://player.vimeo.com/video/566292973" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    </div>
-</div>
 <!-- ![Tromino horizontally symmetrical flip](images/tromino_flip.gif) -->
 
 Now that we know where tilings on $f(k)$ are coming from, how about $p(k)$? Can we apply the same logic and find that out? Absolutely yes!
@@ -512,8 +481,8 @@ This algorithm is very similar to *Approach 3: Space Optimized Bottom-up DP*, bu
 - `fBeforePrevious` represents $f(k-3)$.
 
     Since `k` starts from 4, the three variables will have the following initial values:
-- $fCurrent = 5$ (i.e. $f(k-1) = f(3) = 5$), because there are five ways to **_fully tile a board_** of width 3 (as shown in the first animation in the **_Overview_** section).
-- $fPrevious = 2$ (i.e. $f(k-2) = f(2) = 2$), because there are two ways to **_fully tile a board_** of width 2 (as shown in the first animation in the **_Overview_** section).
+- $fCurrent = 5$ (i.e. $f(k-1) = f(3) = 5$), because there are five ways to **_fully tile a board_** of width 3.
+- $fPrevious = 2$ (i.e. $f(k-2) = f(2) = 2$), because there are two ways to **_fully tile a board_** of width 2.
 - $fBeforePrevious = 1$ (i.e. $f(k-3) = f(1) = 1$), because there is exactly one way to **_fully cover a board_** of width 1: add one vertical domino
 
 2. Iterate $k$ from $4$ to $n$ and at each iteration update the above three variables according to the transition function mentioned previously: $f(k) = 2*f(k-1) + f(k-3)$

@@ -1,4 +1,3 @@
-[TOC]
 
 ---
 ### Approach #1: Dynamic Programming [Memory Limit Exceeded]

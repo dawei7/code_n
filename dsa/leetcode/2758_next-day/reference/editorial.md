@@ -1,4 +1,3 @@
-[TOC]
 
 ## Overview:
 In this problem we will improve upon the date objects by adding a `nextDay()` method. It operates on a date object and returns the next day's date in the format YYYY-MM-DD.

@@ -1,4 +1,3 @@
-[TOC]
 
 ## Overview:
 The task is to enhance arrays to have a method called `upperBound()`, which should return the last index (i.e., the index of the last occurrence) of a given `target` number. There are three important insights that are given to us:

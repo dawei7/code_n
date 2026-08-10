@@ -1,20 +1,3 @@
-[TOC]
-
-## Video Solution
-
----
-
-<div>
-    <div class="video-container">
-        <iframe src="https://player.vimeo.com/video/497431788?texttrack=en" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    </div>
-</div>
-
-<div>
-</div>
-
----
-
 ## Solution Article
 
 ### Overview
@@ -151,12 +134,6 @@ The above solution requires at most 2n steps. In fact, it could be optimized to 
 #### Algorithm
 
 The reason is that if $s[j]$ have a duplicate in the range $[i, j)$ with index $j'$, we don't need to increase $i$ little by little. We can skip all the elements in the range $[i, j']$ and let $i$ to be $j' + 1$ directly.
-
-Here is a visualization of the above code.
-
-<div class="video-container">
-<iframe src="https://player.vimeo.com/video/484238122" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-</div>
 
 #### Implementation
 

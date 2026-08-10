@@ -1,4 +1,3 @@
-[TOC]
 
 ---
 ### Approach #1: Reverse Time and Union-Find [Accepted]

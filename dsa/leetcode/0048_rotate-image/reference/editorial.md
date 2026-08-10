@@ -1,5 +1,3 @@
-[TOC]
-
 ## Solution
 
 ---
@@ -15,12 +13,6 @@ Observe how the cells move in groups when we rotate the image.
 We can iterate over each group of four cells and rotate them.
 
 **Implementation**
-
-Here is a visualization of the algorithm in action.
-
-<div class="video-container">
-    <iframe src="https://player.vimeo.com/video/484247719" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-</div>
 
 ```python
 class Solution:
@@ -52,12 +44,6 @@ Let $M$ be the number of cells in the matrix.
 **Intuition**
 
 The most elegant solution for rotating the matrix is to first reverse the matrix around the main diagonal, and then reverse it from left to right. These operations are called **transpose** and **reflect** in linear algebra.
-
-Here is a visualization to help you see why this works.
-
-<div class="video-container">
-    <iframe src="https://player.vimeo.com/video/484247738" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-</div>
 
 > **Bonus Question:** What would happen if you reflect and *then* transpose? Would you still get the correct answer?
 

@@ -1,4 +1,3 @@
-[TOC]
 
 ## Overview:
 We are given with two arrays, `keysArr` and `valuesArr`. Our main task is to create a new object `obj` where each key-value pair in `obj` should be formed from the corresponding elements in `keysArr` and `valuesArr`. However, if a duplicate key has been encountered at a previous index, the key-value pair corresponding to that key should be excluded from `obj`.

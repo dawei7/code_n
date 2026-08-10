@@ -1,18 +1,3 @@
-[TOC]
-
-## Video Solution
-
----
-
-<div>
-    <div class="video-container">
-        <iframe src="https://player.vimeo.com/video/495920363" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    </div>
-</div>
-
-<div>
-</div>
-
 ## Solution Article
 
 We need to find the rectangle of largest area that can be formed by using the given bars of histogram.

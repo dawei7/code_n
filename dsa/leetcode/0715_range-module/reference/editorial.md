@@ -1,4 +1,3 @@
-[TOC]
 
 ### Approach #1: Maintain Sorted Disjoint Intervals [Accepted]
 

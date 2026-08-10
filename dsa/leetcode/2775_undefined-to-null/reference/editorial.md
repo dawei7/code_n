@@ -1,4 +1,3 @@
-[TOC]
 
 ## Overview:
 We need to implement a function `undefinedToNull` that takes an `obj` array as input and returns an `obj` array with any `undefined` values replaced by `null`.

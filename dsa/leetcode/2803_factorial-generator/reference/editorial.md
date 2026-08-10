@@ -1,4 +1,3 @@
-[TOC]
 
 ## Overview:
 Our goal is to create a factorial sequence for a given non-negative integer `n`. The factorial sequence is a series of numbers where each number is the product of all positive integers from 1 to that number. Apart from this one more thing is mentioned i.e., "The calling code yields the value one by one". This statement helps us to think in a right direction i.e., we can use `yield` to get the values one by one.

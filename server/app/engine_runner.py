@@ -56,6 +56,7 @@ import tempfile
 import time
 from collections import Counter, deque
 from dataclasses import dataclass, field
+from itertools import pairwise
 from pathlib import Path
 from typing import Any, Optional
 
@@ -6010,6 +6011,7 @@ def _load_python_optimal_solve(challenge: Any) -> tuple[Optional[Any], str]:
         "Optional": typing.Optional,
         "Union": typing.Union,
         "Any": typing.Any,
+        "pairwise": pairwise,
         "ListNode": _JudgeListNode,
         "Node": _JudgeNode,
         "Point": _JudgePoint,
@@ -6582,6 +6584,7 @@ def _run_python_validated_cases(
             "Optional": typing.Optional,
             "Union": typing.Union,
             "Any": typing.Any,
+            "pairwise": pairwise,
             "ListNode": _JudgeListNode,
             "Node": _JudgeNode,
             "Point": _JudgePoint,

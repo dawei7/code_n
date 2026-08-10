@@ -6,7 +6,7 @@ import shutil
 
 import pytest
 
-from server.app.challenge_packages import leetcode_solution_path
+from server.app.challenge_packages import leetcode_solution_path, leetcode_template_path
 from server.app.special_environments import run_special_environment
 
 from . import conftest
@@ -22,7 +22,14 @@ class SpecialEnvironmentRouteTest(conftest._Base):
         self.assertEqual(body["supported_languages"], ["sql"])
         self.assertEqual(body["primary_language"], "sql")
         self.assertTrue(body["optimal_sources"]["sql"])
-        self.assertIn("SELECT", body["starter_sources"]["sql"])
+        template_path = leetcode_template_path("lc_175", "sql")
+        self.assertIsNotNone(template_path)
+        assert template_path is not None
+        starter = body["starter_sources"]["sql"]
+        self.assertTrue(starter.endswith(template_path.read_text(encoding="utf-8")))
+        self.assertIn("Description\n-----------", starter)
+        self.assertIn("Examples\n--------", starter)
+        self.assertIn("Required Complexity\n-------------------", starter)
 
         response = self.client.post(
             "/api/challenges/lc_175/run",

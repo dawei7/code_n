@@ -1,4 +1,3 @@
-[TOC]
 
 ## Overview:
 You are given a function `fn`, an array of arguments `args`, and an interval time `t`. You need to implement a function `cancelFn` that calls `fn` immediately with `args` and then schedules subsequent calls to `fn` every `t` milliseconds until `cancelFn` is called.

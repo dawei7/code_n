@@ -1,4 +1,3 @@
-[TOC]
 
 ---
 ### Approach #1: Adjacent Symbols [Accepted]

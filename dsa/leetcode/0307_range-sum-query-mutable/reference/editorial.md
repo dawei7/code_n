@@ -1,4 +1,3 @@
-[TOC]
 
 ## Summary
 This article is for intermediate level readers. It introduces the following concepts:
