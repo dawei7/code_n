@@ -339,6 +339,21 @@ def leetcode_guided_example_path(challenge_id: str) -> Path | None:
     return None if package_dir is None else package_dir / "guided_example.md"
 
 
+def leetcode_editorial_markdown(challenge_id: str) -> str:
+    """Return the package's monolithic editorial without rewriting it."""
+
+    package_dir = leetcode_package_dir(challenge_id)
+    if package_dir is None:
+        return ""
+    editorial = package_dir / "reference" / "editorial.md"
+    if not editorial.is_file():
+        return ""
+    try:
+        return editorial.read_text(encoding="utf-8")
+    except OSError:
+        return ""
+
+
 def leetcode_solution_variants_manifest_path(challenge_id: str) -> Path | None:
     package_dir = leetcode_package_dir(challenge_id)
     if package_dir is None:

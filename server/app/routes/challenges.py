@@ -25,6 +25,7 @@ from server.app.challenge_sets import (
     normalize_algorithm_set,
 )
 from server.app.challenge_packages import (
+    leetcode_editorial_markdown,
     leetcode_guided_example_path,
     leetcode_solution_path,
     leetcode_template_path,
@@ -492,6 +493,7 @@ def _spec_to_detail(challenge) -> ChallengeDetail:
         leetcode_optimal_sources=leetcode_optimal_sources,
         default_solution_variant=default_solution_variant,
         solution_variants=solution_variants,
+        editorial_markdown=leetcode_editorial_markdown(spec.id),
         solution_variant_effective_elo=solution_variant_effective_elo,
         solution_variant_elo_source=solution_variant_elo_source,
         simplified_solution_elo_ceiling=simplified_solution_elo_ceiling,

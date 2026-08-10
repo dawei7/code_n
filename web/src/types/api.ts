@@ -119,6 +119,7 @@ export interface ChallengeDetail extends ChallengeSummary {
   leetcode_optimal_sources?: Partial<Record<SupportedLanguage, string>>;
   default_solution_variant: string;
   solution_variants: SolutionVariantDetail[];
+  editorial_markdown: string;
   solution_variant_effective_elo: number | null;
   solution_variant_elo_source: string;
   simplified_solution_elo_ceiling: number | null;

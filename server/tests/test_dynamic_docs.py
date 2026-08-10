@@ -64,6 +64,26 @@ class DynamicDocsTest(conftest._Base):
         self.assertIn("| Contest Source | Biweekly Contest 166 |", response.text)
         self.assertIn("| Contest Problem | Q2 |", response.text)
 
+    def test_challenge_detail_exposes_the_monolithic_editorial_unchanged(self) -> None:
+        response = self.client.get("/api/challenges/lc_1")
+        self.assertEqual(response.status_code, 200, response.text)
+
+        package = leetcode_package_dir("lc_1")
+        self.assertIsNotNone(package)
+        assert package is not None
+        expected = (package / "reference" / "editorial.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertEqual(response.json()["editorial_markdown"], expected)
+
+    def test_monolithic_reference_images_are_served_as_doc_assets(self) -> None:
+        response = self.client.get(
+            "/api/docs/by-id/lc_2/assets/images/addtwonumber1.jpg"
+        )
+        self.assertEqual(response.status_code, 200, response.text)
+        self.assertEqual(response.headers["content-type"], "image/jpeg")
+        self.assertGreater(len(response.content), 0)
+
     def test_legacy_monolithic_reference_docs_remain_supported(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             package = Path(temp_dir) / "9999_legacy"
