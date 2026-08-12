@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_280",
+  "source": "euler",
+  "frontend_id": "280",
+  "slug": "ant-and-seeds",
+  "title": "Ant and Seeds",
+  "difficulty": "Level 15",
+  "euler_level": 15,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=280",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

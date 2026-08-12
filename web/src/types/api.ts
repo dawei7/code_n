@@ -91,7 +91,9 @@ export interface ChallengeSummary {
   leetcode_submission_status: 'missing' | 'candidate' | 'verified';
   leetcode_submission_language: string;
   leetcode_submission_paid_only: boolean;
+  dataset?: string;
 }
+
 
 export interface SolutionImplementationDetail {
   id: string;

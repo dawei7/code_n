@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_980",
+  "source": "euler",
+  "frontend_id": "980",
+  "slug": "the-quaternion-group-i",
+  "title": "The Quaternion Group I",
+  "difficulty": "Level 9",
+  "euler_level": 9,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=980",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

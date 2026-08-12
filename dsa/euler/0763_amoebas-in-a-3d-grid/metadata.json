@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_763",
+  "source": "euler",
+  "frontend_id": "763",
+  "slug": "amoebas-in-a-3d-grid",
+  "title": "Amoebas in a 3D Grid",
+  "difficulty": "Level 39",
+  "euler_level": 39,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=763",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

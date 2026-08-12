@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_88",
+  "source": "euler",
+  "frontend_id": "88",
+  "slug": "product-sum-numbers",
+  "title": "Product-sum Numbers",
+  "difficulty": "Level 5",
+  "euler_level": 5,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=88",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

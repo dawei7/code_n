@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_808",
+  "source": "euler",
+  "frontend_id": "808",
+  "slug": "reversible-prime-squares",
+  "title": "Reversible Prime Squares",
+  "difficulty": "Level 4",
+  "euler_level": 4,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=808",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

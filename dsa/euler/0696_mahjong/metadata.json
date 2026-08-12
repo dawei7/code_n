@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_696",
+  "source": "euler",
+  "frontend_id": "696",
+  "slug": "mahjong",
+  "title": "Mahjong",
+  "difficulty": "Level 38",
+  "euler_level": 38,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=696",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

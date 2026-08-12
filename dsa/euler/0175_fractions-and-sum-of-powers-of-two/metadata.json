@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_175",
+  "source": "euler",
+  "frontend_id": "175",
+  "slug": "fractions-and-sum-of-powers-of-two",
+  "title": "Fractions and Sum of Powers of Two",
+  "difficulty": "Level 20",
+  "euler_level": 20,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=175",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_176",
+  "source": "euler",
+  "frontend_id": "176",
+  "slug": "common-cathetus-right-angled-triangles",
+  "title": "Common Cathetus Right-angled Triangles",
+  "difficulty": "Level 16",
+  "euler_level": 16,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=176",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

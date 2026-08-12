@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_731",
+  "source": "euler",
+  "frontend_id": "731",
+  "slug": "a-stoneham-number",
+  "title": "A Stoneham Number",
+  "difficulty": "Level 11",
+  "euler_level": 11,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=731",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

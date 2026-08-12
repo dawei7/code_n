@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_892",
+  "source": "euler",
+  "frontend_id": "892",
+  "slug": "zebra-circles",
+  "title": "Zebra Circles",
+  "difficulty": "Level 27",
+  "euler_level": 27,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=892",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

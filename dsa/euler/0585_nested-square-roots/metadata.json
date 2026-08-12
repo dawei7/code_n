@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_585",
+  "source": "euler",
+  "frontend_id": "585",
+  "slug": "nested-square-roots",
+  "title": "Nested Square Roots",
+  "difficulty": "Level 38",
+  "euler_level": 38,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=585",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

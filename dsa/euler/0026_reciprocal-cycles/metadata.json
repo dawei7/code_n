@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_26",
+  "source": "euler",
+  "frontend_id": "26",
+  "slug": "reciprocal-cycles",
+  "title": "Reciprocal Cycles",
+  "difficulty": "Level 3",
+  "euler_level": 3,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=26",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

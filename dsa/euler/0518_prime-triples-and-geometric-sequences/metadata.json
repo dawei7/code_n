@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_518",
+  "source": "euler",
+  "frontend_id": "518",
+  "slug": "prime-triples-and-geometric-sequences",
+  "title": "Prime Triples and Geometric Sequences",
+  "difficulty": "Level 8",
+  "euler_level": 8,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=518",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

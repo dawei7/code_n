@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_970",
+  "source": "euler",
+  "frontend_id": "970",
+  "slug": "kangaroo-hopping-over-sixes",
+  "title": "Kangaroo Hopping over Sixes",
+  "difficulty": "Level 38",
+  "euler_level": 38,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=970",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_623",
+  "source": "euler",
+  "frontend_id": "623",
+  "slug": "lambda-count",
+  "title": "Lambda Count",
+  "difficulty": "Level 21",
+  "euler_level": 21,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=623",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

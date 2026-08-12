@@ -60,6 +60,10 @@ DSA_ROOT = Path(os.environ.get("CODEN_DSA_DIR", str(PROJECT_ROOT / "dsa")))
 # benchmarks, metadata, and language-specific optimal solutions in one folder.
 LEETCODE_ROOT = Path(os.environ.get("CODEN_LEETCODE_DIR", str(DSA_ROOT / "leetcode")))
 
+# Canonical Project Euler challenge packages.
+EULER_ROOT = Path(os.environ.get("CODEN_EULER_DIR", str(DSA_ROOT / "euler")))
+USER_EULER_ROOT = Path(os.environ.get("CODEN_USER_EULER_DIR", str(USER_DSA_ROOT / "euler")))
+
 # Server config.
 CODEN_HOST = os.environ.get("CODEN_HOST", "127.0.0.1")
 CODEN_PORT = int(os.environ.get("CODEN_PORT", "8000"))
@@ -87,6 +91,7 @@ def ensure_data_dirs() -> None:
     """
     CODEN_HOME.mkdir(parents=True, exist_ok=True)
     USER_LEETCODE_ROOT.mkdir(parents=True, exist_ok=True)
+    USER_EULER_ROOT.mkdir(parents=True, exist_ok=True)
     # Development previously wrote progress.json at the repository root.
     # Preserve it when moving to the ignored .coden-data profile. Installed
     # builds already keep the same appData path across upgrades.

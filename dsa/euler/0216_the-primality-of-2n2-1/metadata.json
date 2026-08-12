@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_216",
+  "source": "euler",
+  "frontend_id": "216",
+  "slug": "the-primality-of-2n2-1",
+  "title": "The Primality of $2n^2 - 1$",
+  "difficulty": "Level 10",
+  "euler_level": 10,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=216",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

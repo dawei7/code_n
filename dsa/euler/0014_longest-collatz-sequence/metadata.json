@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_14",
+  "source": "euler",
+  "frontend_id": "14",
+  "slug": "longest-collatz-sequence",
+  "title": "Longest Collatz Sequence",
+  "difficulty": "Level 1",
+  "euler_level": 1,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=14",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

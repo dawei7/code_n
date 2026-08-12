@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_426",
+  "source": "euler",
+  "frontend_id": "426",
+  "slug": "box-ball-system",
+  "title": "Box-Ball System",
+  "difficulty": "Level 33",
+  "euler_level": 33,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=426",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

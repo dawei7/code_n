@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_493",
+  "source": "euler",
+  "frontend_id": "493",
+  "slug": "under-the-rainbow",
+  "title": "Under the Rainbow",
+  "difficulty": "Level 7",
+  "euler_level": 7,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=493",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_120",
+  "source": "euler",
+  "frontend_id": "120",
+  "slug": "square-remainders",
+  "title": "Square Remainders",
+  "difficulty": "Level 3",
+  "euler_level": 3,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=120",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

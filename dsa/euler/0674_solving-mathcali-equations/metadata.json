@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_674",
+  "source": "euler",
+  "frontend_id": "674",
+  "slug": "solving-mathcali-equations",
+  "title": "Solving $\\mathcal{I}$-equations",
+  "difficulty": "Level 35",
+  "euler_level": 35,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=674",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

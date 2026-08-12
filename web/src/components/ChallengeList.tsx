@@ -1978,7 +1978,14 @@ function formatBytes(value: number): string {
  * registry exposes, so all challenges are clickable.
  */
 export function ChallengeList() {
-  const challenges = useAppStore((s) => s.challenges);
+  const appMode = useAppStore((s) => s.appMode);
+  const rawChallenges = useAppStore((s) => s.challenges);
+  const challenges = useMemo(() => {
+    if (appMode === 'euler') {
+      return rawChallenges.filter((c) => c.dataset === 'euler' || c.id.startsWith('euler_'));
+    }
+    return rawChallenges.filter((c) => c.dataset !== 'euler' && !c.id.startsWith('euler_'));
+  }, [rawChallenges, appMode]);
   const challengesLoading = useAppStore((s) => s.challengesLoading);
   const challengesError = useAppStore((s) => s.challengesError);
   const loadChallenges = useAppStore((s) => s.loadChallenges);

@@ -1,0 +1,14 @@
+{
+  "extension.description": "Autonomous iterative AI agent methodology (Ralph Loop) for Antigravity",
+  "view.sidebar.name": "Ralph Loop Control Panel",
+  "command.start": "Ralph: Start Ralph Loop",
+  "command.stop": "Ralph: Stop Ralph Loop",
+  "command.pause": "Ralph: Pause/Resume Ralph Loop",
+  "command.emergencyStop": "Ralph: Emergency Stop Ralph Loop",
+  "config.maxIterations": "Maximum iterations per loop session",
+  "config.defaultMode": "Default execution mode (Fast or Planning)",
+  "config.defaultModel": "Default AI model for Antigravity sessions",
+  "config.promptFile": "Default prompt instructions file path",
+  "config.taskFile": "Default task specification file path (PRD.md)",
+  "config.progressFile": "Default progress log file path (progress.txt)"
+}

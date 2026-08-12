@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_125",
+  "source": "euler",
+  "frontend_id": "125",
+  "slug": "palindromic-sums",
+  "title": "Palindromic Sums",
+  "difficulty": "Level 3",
+  "euler_level": 3,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=125",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

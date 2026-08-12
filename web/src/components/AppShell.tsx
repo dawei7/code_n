@@ -39,6 +39,7 @@ import { ProfileModal } from './ProfileModal';
 import { InfoModal } from './InfoModal';
 import { EloGuideModal } from './EloGuideModal';
 import { BrandWordmark } from './BrandWordmark';
+import { EulerWordmark } from './EulerWordmark';
 import { ALGORITHM_SETS, challengesForAlgorithmSet } from '../lib/algorithmSets';
 import { collectSetChallengeIds } from '../lib/customProblemSets';
 import {
@@ -254,6 +255,9 @@ function TopHeader({
     }
   })();
 
+  const appMode = useAppStore((s) => s.appMode);
+  const setAppMode = useAppStore((s) => s.setAppMode);
+
   return (
     <header className="h-10 flex items-center justify-between gap-3 px-3 border-b border-coden-border bg-coden-surface shrink-0 select-none">
       <div className="flex items-center gap-2 min-w-0">
@@ -277,11 +281,32 @@ function TopHeader({
           type="button"
           onClick={onOpenInfo}
           className="text-sm font-bold tracking-tight text-coden-text ml-1 shrink-0 hover:text-coden-accent transition-colors"
-          title="About cOde(n)"
-          aria-label="About cOde(n)"
+          title={appMode === 'euler' ? "About Euler" : "About cOde(n)"}
+          aria-label={appMode === 'euler' ? "About Euler" : "About cOde(n)"}
         >
-          <BrandWordmark />
+          {appMode === 'euler' ? <EulerWordmark /> : <BrandWordmark />}
         </button>
+
+        {/* Subtle Android-style toggle switch without text */}
+        <button
+          type="button"
+          onClick={() => setAppMode(appMode === 'coden' ? 'euler' : 'coden')}
+          className={`relative inline-flex h-4 w-7 shrink-0 cursor-pointer items-center rounded-full p-0.5 transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-coden-accent ml-1.5 ${
+            appMode === 'euler'
+              ? 'bg-blue-600 dark:bg-blue-500'
+              : 'bg-slate-300 dark:bg-slate-700'
+          }`}
+          title={appMode === 'euler' ? "Switch to cOde(n) (LeetCode)" : "Switch to Project Euler"}
+          aria-label={appMode === 'euler' ? "Switch to cOde(n) (LeetCode)" : "Switch to Project Euler"}
+        >
+          <span
+            className={`pointer-events-none inline-block h-3 w-3 rounded-full bg-white shadow-xs ring-0 transition-transform duration-200 ease-in-out ${
+              appMode === 'euler' ? 'translate-x-3' : 'translate-x-0'
+            }`}
+          />
+        </button>
+
+
         {challenges.length > 0 && (
           <span className="text-[11px] text-slate-500 font-mono shrink-0">
             {visibleChallengeCount} challenges

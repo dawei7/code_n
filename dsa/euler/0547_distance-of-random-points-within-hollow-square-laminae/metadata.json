@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_547",
+  "source": "euler",
+  "frontend_id": "547",
+  "slug": "distance-of-random-points-within-hollow-square-laminae",
+  "title": "Distance of Random Points Within Hollow Square Laminae",
+  "difficulty": "Level 38",
+  "euler_level": 38,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=547",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

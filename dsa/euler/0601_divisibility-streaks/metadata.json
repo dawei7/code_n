@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_601",
+  "source": "euler",
+  "frontend_id": "601",
+  "slug": "divisibility-streaks",
+  "title": "Divisibility Streaks",
+  "difficulty": "Level 7",
+  "euler_level": 7,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=601",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

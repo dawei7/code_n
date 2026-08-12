@@ -42,10 +42,11 @@ from engine.complexity_certificates import (
 )
 from engine.languages import app_solution_filename, language_extension, normalize_language
 from engine.solution_variants import SolutionVariantStatus, validate_solution_variants
-from server.app.config import LEETCODE_ROOT
+from server.app.config import EULER_ROOT, LEETCODE_ROOT
 
 
 LEETCODE_ID_PREFIX = "lc_"
+EULER_ID_PREFIX = "euler_"
 LEETCODE_PACKAGE_ID_WIDTH = 4
 LEETCODE_REFERENCE_REQUIRED_SECTIONS = (
     "description.md",
@@ -64,8 +65,29 @@ def is_leetcode_id(challenge_id: str) -> bool:
     return challenge_id.startswith(LEETCODE_ID_PREFIX)
 
 
+def is_euler_id(challenge_id: str) -> bool:
+    return challenge_id.startswith(EULER_ID_PREFIX)
+
+
 def leetcode_frontend_id(challenge_id: str) -> str:
     return challenge_id.removeprefix(LEETCODE_ID_PREFIX)
+
+
+def euler_frontend_id(challenge_id: str) -> str:
+    return challenge_id.removeprefix(EULER_ID_PREFIX)
+
+
+def euler_package_dir(challenge_id: str) -> Path | None:
+    if not is_euler_id(challenge_id):
+        return None
+    frontend_id = euler_frontend_id(challenge_id)
+    padded = frontend_id.zfill(4)
+    if not EULER_ROOT.is_dir():
+        return None
+    for entry in EULER_ROOT.iterdir():
+        if entry.is_dir() and (entry.name.startswith(f"{padded}_") or entry.name == padded):
+            return entry
+    return None
 
 
 def _safe_slug(value: str) -> str:
@@ -132,6 +154,8 @@ def leetcode_user_package_name(challenge_id: str) -> str | None:
 
 
 def leetcode_package_dir(challenge_id: str) -> Path | None:
+    if is_euler_id(challenge_id):
+        return euler_package_dir(challenge_id)
     name = leetcode_package_name(challenge_id)
     if name is None:
         return None
@@ -279,8 +303,10 @@ def _reference_header(metadata: dict[str, Any]) -> str:
     url = str(metadata.get("url") or "").strip()
     contest_source = str(metadata.get("contest_source") or "").strip()
     contest_problem_index = str(metadata.get("contest_problem_index") or "").strip()
+    source_name = "Project Euler" if metadata.get("source") == "euler" else "LeetCode"
+    link_label = "Project Euler" if metadata.get("source") == "euler" else "LeetCode"
     fields = (
-        ("Source", "LeetCode"),
+        ("Source", source_name),
         ("Frontend ID", metadata.get("frontend_id") or ""),
         ("Difficulty", metadata.get("difficulty") or ""),
         ("Contest Source", contest_source),
@@ -288,8 +314,9 @@ def _reference_header(metadata: dict[str, Any]) -> str:
         ("Category", metadata.get("category_title") or metadata.get("category") or ""),
         ("Topics", ", ".join(topic_names)),
         ("Supported Language", language_name),
-        ("Official Link", f"[LeetCode]({url})" if url else ""),
+        ("Official Link", f"[{link_label}]({url})" if url else ""),
     )
+
     rows = [
         f"| {_markdown_table_value(label)} | {_markdown_table_value(value)} |"
         for label, value in fields
@@ -589,6 +616,10 @@ def leetcode_package_id(package_dir: Path) -> str | None:
         challenge_id = str(metadata.get("challenge_id") or "")
         if challenge_id:
             return challenge_id
+    if package_dir.parent == EULER_ROOT or package_dir.parent.name == "euler":
+        match = re.match(r"^(\d+)_", package_dir.name)
+        if match:
+            return f"euler_{int(match.group(1))}"
     match = re.match(r"^(\d+)_", package_dir.name)
     if match:
         return f"lc_{int(match.group(1))}"

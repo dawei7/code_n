@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_949",
+  "source": "euler",
+  "frontend_id": "949",
+  "slug": "left-vs-right-ii",
+  "title": "Left vs Right II",
+  "difficulty": "Level 39",
+  "euler_level": 39,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=949",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

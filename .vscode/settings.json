@@ -31,5 +31,6 @@
     "electron/dist/**": true,
     "electron/release/**": true,
     "server/dist/**": true
-  }
+  },
+  "ralphLoop.antigravity.oauthToken": "a763bc50-auto-session-token"
 }

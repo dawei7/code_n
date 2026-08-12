@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_170",
+  "source": "euler",
+  "frontend_id": "170",
+  "slug": "pandigital-concatenating-products",
+  "title": "Pandigital Concatenating Products",
+  "difficulty": "Level 18",
+  "euler_level": 18,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=170",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

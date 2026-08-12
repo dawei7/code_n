@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_542",
+  "source": "euler",
+  "frontend_id": "542",
+  "slug": "geometric-progression-with-maximum-sum",
+  "title": "Geometric Progression with Maximum Sum",
+  "difficulty": "Level 33",
+  "euler_level": 33,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=542",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

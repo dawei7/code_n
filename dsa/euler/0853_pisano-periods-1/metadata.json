@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_853",
+  "source": "euler",
+  "frontend_id": "853",
+  "slug": "pisano-periods-1",
+  "title": "Pisano Periods 1",
+  "difficulty": "Level 11",
+  "euler_level": 11,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=853",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

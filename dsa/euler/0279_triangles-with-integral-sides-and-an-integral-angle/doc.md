@@ -1,0 +1,5 @@
+# Triangles with Integral Sides and an Integral Angle
+
+### Triangles with Integral Sides and an Integral Angle
+
+How many triangles are there with integral sides, at least one integral angle (measured in degrees), and a perimeter that does not exceed $10^8$?

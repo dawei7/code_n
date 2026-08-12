@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_23",
+  "source": "euler",
+  "frontend_id": "23",
+  "slug": "non-abundant-sums",
+  "title": "Non-Abundant Sums",
+  "difficulty": "Level 2",
+  "euler_level": 2,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=23",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

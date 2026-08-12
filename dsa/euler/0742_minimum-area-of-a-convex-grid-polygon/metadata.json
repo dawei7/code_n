@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_742",
+  "source": "euler",
+  "frontend_id": "742",
+  "slug": "minimum-area-of-a-convex-grid-polygon",
+  "title": "Minimum Area of a Convex Grid Polygon",
+  "difficulty": "Level 35",
+  "euler_level": 35,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=742",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

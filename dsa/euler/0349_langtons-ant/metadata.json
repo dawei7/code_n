@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_349",
+  "source": "euler",
+  "frontend_id": "349",
+  "slug": "langtons-ant",
+  "title": "Langton's Ant",
+  "difficulty": "Level 7",
+  "euler_level": 7,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=349",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_603",
+  "source": "euler",
+  "frontend_id": "603",
+  "slug": "substring-sums-of-prime-concatenations",
+  "title": "Substring Sums of Prime Concatenations",
+  "difficulty": "Level 32",
+  "euler_level": 32,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=603",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

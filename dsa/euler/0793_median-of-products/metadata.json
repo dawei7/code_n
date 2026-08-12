@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_793",
+  "source": "euler",
+  "frontend_id": "793",
+  "slug": "median-of-products",
+  "title": "Median of Products",
+  "difficulty": "Level 17",
+  "euler_level": 17,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=793",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

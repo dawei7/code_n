@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_135",
+  "source": "euler",
+  "frontend_id": "135",
+  "slug": "same-differences",
+  "title": "Same Differences",
+  "difficulty": "Level 9",
+  "euler_level": 9,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=135",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

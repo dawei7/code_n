@@ -275,6 +275,53 @@ def _spec_to_summary(challenge_id: str, challenge) -> ChallengeSummary:
             has_guided_example=False,
         )
     reference_metadata = getattr(spec, "reference_metadata", {}) or {}
+    if spec.id.startswith("euler_"):
+        frontend_id = str(reference_metadata.get("frontend_id") or spec.id.removeprefix("euler_"))
+        return ChallengeSummary(
+            id=spec.id,
+            name=spec.name,
+            category=spec.category,
+            categories=spec.categories or [spec.category],
+            difficulty_label=spec.difficulty_label,
+            elo_rating=None,
+            estimated_elo_rating=None,
+            frequency=None,
+            difficulty_estimate=None,
+            acceptance_rate=None,
+            required_complexity=spec.required_complexity.value,
+            description=spec.description,
+            hint=spec.hint or "",
+            source_url=spec.source_url or "",
+            parents=[],
+            children=[],
+            max_n=challenge.max_n,
+            unlocked=True,
+            leetcode_title=spec.name,
+            leetcode_slug=str(reference_metadata.get("slug") or ""),
+            leetcode_url=str(spec.source_url or ""),
+            leetcode_category="euler_math",
+            leetcode_category_title="Project Euler",
+            leetcode_frontend_id=frontend_id,
+            leetcode_topics=[
+                dict(topic)
+                for topic in reference_metadata.get("topics", [])
+                if isinstance(topic, dict)
+            ],
+            leetcode_subsets=[],
+            leetcode_tags=[],
+            leetcode_company_tags=[],
+            leetcode_study_plans=[],
+            leetcode_external_subsets=[],
+            supported_languages=["python"],
+            primary_language="python",
+            runnable_in_coden=True,
+            has_guided_example=False,
+            leetcode_submission_status="accepted",
+            leetcode_submission_language="python",
+            leetcode_submission_paid_only=False,
+            dataset="euler",
+        )
+
     lc_slug = str(reference_metadata.get("slug") or "")
     external_subsets = external_subset_memberships_for(spec.id)
     leetcode_title = spec.name
@@ -282,6 +329,7 @@ def _spec_to_summary(challenge_id: str, challenge) -> ChallengeSummary:
     leetcode_url = str(spec.source_url or "")
     submission_status, submission_language, submission_paid_only = _submission_summary(spec.id)
     primary_language = primary_language_for_challenge(spec.id, reference_metadata)
+
     return ChallengeSummary(
         id=spec.id,
         name=spec.name,
@@ -340,7 +388,9 @@ def _spec_to_summary(challenge_id: str, challenge) -> ChallengeSummary:
         leetcode_submission_status=submission_status,
         leetcode_submission_language=submission_language,
         leetcode_submission_paid_only=submission_paid_only,
+        dataset=str(reference_metadata.get("dataset") or ("euler" if spec.id.startswith("euler_") else "leetcode")),
     )
+
 
 
 @router.get("/leetcode/questions/{title_slug}")

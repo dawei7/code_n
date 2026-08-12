@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_225",
+  "source": "euler",
+  "frontend_id": "225",
+  "slug": "tribonacci-non-divisors",
+  "title": "Tribonacci Non-divisors",
+  "difficulty": "Level 9",
+  "euler_level": 9,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=225",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

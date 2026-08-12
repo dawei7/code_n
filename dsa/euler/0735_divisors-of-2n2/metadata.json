@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_735",
+  "source": "euler",
+  "frontend_id": "735",
+  "slug": "divisors-of-2n2",
+  "title": "Divisors of $2n^2$",
+  "difficulty": "Level 36",
+  "euler_level": 36,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=735",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

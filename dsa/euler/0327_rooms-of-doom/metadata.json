@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_327",
+  "source": "euler",
+  "frontend_id": "327",
+  "slug": "rooms-of-doom",
+  "title": "Rooms of Doom",
+  "difficulty": "Level 8",
+  "euler_level": 8,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=327",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

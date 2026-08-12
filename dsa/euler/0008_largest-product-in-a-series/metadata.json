@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_8",
+  "source": "euler",
+  "frontend_id": "8",
+  "slug": "largest-product-in-a-series",
+  "title": "Largest Product in a Series",
+  "difficulty": "Level 0",
+  "euler_level": 0,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=8",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

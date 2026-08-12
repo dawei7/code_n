@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_91",
+  "source": "euler",
+  "frontend_id": "91",
+  "slug": "right-triangles-with-integer-coordinates",
+  "title": "Right Triangles with Integer Coordinates",
+  "difficulty": "Level 4",
+  "euler_level": 4,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=91",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

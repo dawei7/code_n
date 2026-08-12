@@ -57,6 +57,12 @@ bundled-workspace/
 # Editor caches
 .idea/
 /.kilo/
+.antigravity/
+nul
+
+# Ralph Loop extension outputs & dependencies
+tools/ralph_loop/node_modules/
+tools/ralph_loop/out/
 
 # The cOde(n)-specific VSCode files (launch.json + tasks.json +
 # settings.json) are committed — they're the in-VSCode equivalent

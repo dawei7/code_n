@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_207",
+  "source": "euler",
+  "frontend_id": "207",
+  "slug": "integer-partition-equations",
+  "title": "Integer Partition Equations",
+  "difficulty": "Level 10",
+  "euler_level": 10,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=207",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

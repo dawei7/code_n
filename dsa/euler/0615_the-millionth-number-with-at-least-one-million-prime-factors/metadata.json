@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_615",
+  "source": "euler",
+  "frontend_id": "615",
+  "slug": "the-millionth-number-with-at-least-one-million-prime-factors",
+  "title": "The Millionth Number with at Least One Million Prime Factors",
+  "difficulty": "Level 25",
+  "euler_level": 25,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=615",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_386",
+  "source": "euler",
+  "frontend_id": "386",
+  "slug": "maximum-length-of-an-antichain",
+  "title": "Maximum Length of an Antichain",
+  "difficulty": "Level 26",
+  "euler_level": 26,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=386",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_491",
+  "source": "euler",
+  "frontend_id": "491",
+  "slug": "double-pandigital-number-divisible-by-11",
+  "title": "Double Pandigital Number Divisible by $11$",
+  "difficulty": "Level 13",
+  "euler_level": 13,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=491",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

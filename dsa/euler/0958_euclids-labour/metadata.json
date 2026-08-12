@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_958",
+  "source": "euler",
+  "frontend_id": "958",
+  "slug": "euclids-labour",
+  "title": "Euclid's Labour",
+  "difficulty": "Level 34",
+  "euler_level": 34,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=958",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

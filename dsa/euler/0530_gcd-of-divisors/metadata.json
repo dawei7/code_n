@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_530",
+  "source": "euler",
+  "frontend_id": "530",
+  "slug": "gcd-of-divisors",
+  "title": "GCD of Divisors",
+  "difficulty": "Level 23",
+  "euler_level": 23,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=530",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

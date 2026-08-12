@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_838",
+  "source": "euler",
+  "frontend_id": "838",
+  "slug": "not-coprime",
+  "title": "Not Coprime",
+  "difficulty": "Level 24",
+  "euler_level": 24,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=838",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

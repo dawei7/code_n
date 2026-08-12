@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_704",
+  "source": "euler",
+  "frontend_id": "704",
+  "slug": "factors-of-two-in-binomial-coefficients",
+  "title": "Factors of Two in Binomial Coefficients",
+  "difficulty": "Level 6",
+  "euler_level": 6,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=704",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

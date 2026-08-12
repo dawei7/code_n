@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_643",
+  "source": "euler",
+  "frontend_id": "643",
+  "slug": "2-friendly",
+  "title": "$2$-Friendly",
+  "difficulty": "Level 9",
+  "euler_level": 9,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=643",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

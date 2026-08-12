@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_854",
+  "source": "euler",
+  "frontend_id": "854",
+  "slug": "pisano-periods-2",
+  "title": "Pisano Periods 2",
+  "difficulty": "Level 21",
+  "euler_level": 21,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=854",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

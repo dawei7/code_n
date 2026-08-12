@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_341",
+  "source": "euler",
+  "frontend_id": "341",
+  "slug": "golombs-self-describing-sequence",
+  "title": "Golomb's Self-describing Sequence",
+  "difficulty": "Level 20",
+  "euler_level": 20,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=341",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

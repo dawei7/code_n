@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_261",
+  "source": "euler",
+  "frontend_id": "261",
+  "slug": "pivotal-square-sums",
+  "title": "Pivotal Square Sums",
+  "difficulty": "Level 37",
+  "euler_level": 37,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=261",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

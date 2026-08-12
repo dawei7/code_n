@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_24",
+  "source": "euler",
+  "frontend_id": "24",
+  "slug": "lexicographic-permutations",
+  "title": "Lexicographic Permutations",
+  "difficulty": "Level 2",
+  "euler_level": 2,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=24",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

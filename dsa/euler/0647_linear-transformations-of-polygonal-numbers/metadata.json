@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_647",
+  "source": "euler",
+  "frontend_id": "647",
+  "slug": "linear-transformations-of-polygonal-numbers",
+  "title": "Linear Transformations of Polygonal Numbers",
+  "difficulty": "Level 11",
+  "euler_level": 11,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=647",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

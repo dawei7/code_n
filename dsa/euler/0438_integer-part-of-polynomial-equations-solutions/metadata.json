@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_438",
+  "source": "euler",
+  "frontend_id": "438",
+  "slug": "integer-part-of-polynomial-equations-solutions",
+  "title": "Integer Part of Polynomial Equation's Solutions",
+  "difficulty": "Level 35",
+  "euler_level": 35,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=438",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

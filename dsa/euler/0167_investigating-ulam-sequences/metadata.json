@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_167",
+  "source": "euler",
+  "frontend_id": "167",
+  "slug": "investigating-ulam-sequences",
+  "title": "Investigating Ulam Sequences",
+  "difficulty": "Level 23",
+  "euler_level": 23,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=167",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_492",
+  "source": "euler",
+  "frontend_id": "492",
+  "slug": "exploding-sequence",
+  "title": "Exploding Sequence",
+  "difficulty": "Level 23",
+  "euler_level": 23,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=492",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

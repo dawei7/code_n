@@ -95,7 +95,11 @@ export interface AppState {
   theme: 'light' | 'dark';
   toggleTheme: () => void;
 
+  appMode: 'coden' | 'euler';
+  setAppMode: (mode: 'coden' | 'euler') => void;
+
   cheaterMode: boolean;
+
   setCheaterMode: (enabled: boolean) => void;
 
   baseFontSize: number;
@@ -233,6 +237,13 @@ export const useAppStore = create<AppState>((set, get) => ({
     localStorage.setItem('coden-theme', next);
     return { theme: next };
   }),
+
+  appMode: (localStorage.getItem('coden-app-mode') as 'coden' | 'euler') || 'coden',
+  setAppMode: (mode) => set(() => {
+    localStorage.setItem('coden-app-mode', mode);
+    return { appMode: mode };
+  }),
+
 
   cheaterMode: localStorage.getItem(CHEATER_MODE_STORAGE_KEY) === 'true',
   setCheaterMode: (enabled) => set(() => {

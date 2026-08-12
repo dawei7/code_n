@@ -1,0 +1,115 @@
+{
+  "name": "ralph-loop-antigravity",
+  "displayName": "Ralph Loop for Antigravity",
+  "description": "%extension.description%",
+  "version": "1.2.0",
+  "publisher": "alexj11324",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.83.0"
+  },
+  "categories": [
+    "AI",
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "ralph-loop-container",
+          "title": "Ralph Loop",
+          "icon": "resources/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "ralph-loop-container": [
+        {
+          "id": "ralph-loop-sidebar",
+          "name": "%view.sidebar.name%",
+          "type": "webview"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "ralph.start",
+        "title": "%command.start%",
+        "icon": "$(play)"
+      },
+      {
+        "command": "ralph.stop",
+        "title": "%command.stop%",
+        "icon": "$(debug-stop)"
+      },
+      {
+        "command": "ralph.pause",
+        "title": "%command.pause%",
+        "icon": "$(debug-pause)"
+      },
+      {
+        "command": "ralph.emergencyStop",
+        "title": "%command.emergencyStop%",
+        "icon": "$(close)"
+      }
+    ],
+    "configuration": {
+      "title": "Ralph Loop",
+      "properties": {
+        "ralphLoop.maxIterations": {
+          "type": "number",
+          "default": 200,
+          "description": "%config.maxIterations%"
+        },
+        "ralphLoop.defaultMode": {
+          "type": "string",
+          "enum": [
+            "Fast",
+            "Planning"
+          ],
+          "default": "Planning",
+          "description": "%config.defaultMode%"
+        },
+        "ralphLoop.defaultModel": {
+          "type": "string",
+          "default": "Claude Opus 4.6 (Thinking)",
+          "description": "%config.defaultModel%"
+        },
+        "ralphLoop.promptFile": {
+          "type": "string",
+          "default": "docs/tasks/prompt.md",
+          "description": "%config.promptFile%"
+        },
+        "ralphLoop.taskFile": {
+          "type": "string",
+          "default": "docs/tasks/PRD.md",
+          "description": "%config.taskFile%"
+        },
+        "ralphLoop.progressFile": {
+          "type": "string",
+          "default": "docs/tasks/progress.txt",
+          "description": "%config.progressFile%"
+        },
+        "ralphLoop.antigravity.oauthToken": {
+          "type": "string",
+          "default": "",
+          "description": "Optional manual OAuth token for Antigravity connection"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.83.0",
+    "typescript": "^5.0.0"
+  }
+}

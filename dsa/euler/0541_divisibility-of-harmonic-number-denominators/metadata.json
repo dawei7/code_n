@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_541",
+  "source": "euler",
+  "frontend_id": "541",
+  "slug": "divisibility-of-harmonic-number-denominators",
+  "title": "Divisibility of Harmonic Number Denominators",
+  "difficulty": "Level 38",
+  "euler_level": 38,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=541",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

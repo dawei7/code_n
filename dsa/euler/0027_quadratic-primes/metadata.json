@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_27",
+  "source": "euler",
+  "frontend_id": "27",
+  "slug": "quadratic-primes",
+  "title": "Quadratic Primes",
+  "difficulty": "Level 1",
+  "euler_level": 1,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=27",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

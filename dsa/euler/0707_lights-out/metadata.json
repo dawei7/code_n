@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_707",
+  "source": "euler",
+  "frontend_id": "707",
+  "slug": "lights-out",
+  "title": "Lights Out",
+  "difficulty": "Level 33",
+  "euler_level": 33,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=707",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

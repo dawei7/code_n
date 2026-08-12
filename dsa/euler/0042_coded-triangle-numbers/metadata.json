@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_42",
+  "source": "euler",
+  "frontend_id": "42",
+  "slug": "coded-triangle-numbers",
+  "title": "Coded Triangle Numbers",
+  "difficulty": "Level 0",
+  "euler_level": 0,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=42",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

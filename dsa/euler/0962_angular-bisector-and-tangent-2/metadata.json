@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_962",
+  "source": "euler",
+  "frontend_id": "962",
+  "slug": "angular-bisector-and-tangent-2",
+  "title": "Angular Bisector and Tangent 2",
+  "difficulty": "Level 34",
+  "euler_level": 34,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=962",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

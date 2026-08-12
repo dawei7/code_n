@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_639",
+  "source": "euler",
+  "frontend_id": "639",
+  "slug": "summing-a-multiplicative-function",
+  "title": "Summing a Multiplicative Function",
+  "difficulty": "Level 36",
+  "euler_level": 36,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=639",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

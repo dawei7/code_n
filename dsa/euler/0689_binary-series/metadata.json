@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_689",
+  "source": "euler",
+  "frontend_id": "689",
+  "slug": "binary-series",
+  "title": "Binary Series",
+  "difficulty": "Level 35",
+  "euler_level": 35,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=689",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

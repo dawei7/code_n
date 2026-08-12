@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_743",
+  "source": "euler",
+  "frontend_id": "743",
+  "slug": "window-into-a-matrix",
+  "title": "Window into a Matrix",
+  "difficulty": "Level 7",
+  "euler_level": 7,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=743",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

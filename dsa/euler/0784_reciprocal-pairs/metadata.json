@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_784",
+  "source": "euler",
+  "frontend_id": "784",
+  "slug": "reciprocal-pairs",
+  "title": "Reciprocal Pairs",
+  "difficulty": "Level 15",
+  "euler_level": 15,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=784",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

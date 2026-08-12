@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_930",
+  "source": "euler",
+  "frontend_id": "930",
+  "slug": "the-gathering",
+  "title": "The Gathering",
+  "difficulty": "Level 39",
+  "euler_level": 39,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=930",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

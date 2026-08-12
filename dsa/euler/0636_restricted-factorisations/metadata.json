@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_636",
+  "source": "euler",
+  "frontend_id": "636",
+  "slug": "restricted-factorisations",
+  "title": "Restricted Factorisations",
+  "difficulty": "Level 32",
+  "euler_level": 32,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=636",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

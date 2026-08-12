@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_187",
+  "source": "euler",
+  "frontend_id": "187",
+  "slug": "semiprimes",
+  "title": "Semiprimes",
+  "difficulty": "Level 3",
+  "euler_level": 3,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=187",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

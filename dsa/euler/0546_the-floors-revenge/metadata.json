@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_546",
+  "source": "euler",
+  "frontend_id": "546",
+  "slug": "the-floors-revenge",
+  "title": "The Floor's Revenge",
+  "difficulty": "Level 30",
+  "euler_level": 30,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=546",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

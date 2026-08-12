@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_855",
+  "source": "euler",
+  "frontend_id": "855",
+  "slug": "delphi-paper",
+  "title": "Delphi Paper",
+  "difficulty": "Level 31",
+  "euler_level": 31,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=855",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

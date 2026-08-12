@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_123",
+  "source": "euler",
+  "frontend_id": "123",
+  "slug": "prime-square-remainders",
+  "title": "Prime Square Remainders",
+  "difficulty": "Level 4",
+  "euler_level": 4,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=123",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

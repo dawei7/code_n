@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_373",
+  "source": "euler",
+  "frontend_id": "373",
+  "slug": "circumscribed-circles",
+  "title": "Circumscribed Circles",
+  "difficulty": "Level 36",
+  "euler_level": 36,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=373",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

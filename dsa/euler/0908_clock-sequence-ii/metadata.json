@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_908",
+  "source": "euler",
+  "frontend_id": "908",
+  "slug": "clock-sequence-ii",
+  "title": "Clock Sequence II",
+  "difficulty": "Level 28",
+  "euler_level": 28,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=908",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

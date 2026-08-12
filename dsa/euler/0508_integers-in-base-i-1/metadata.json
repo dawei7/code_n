@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_508",
+  "source": "euler",
+  "frontend_id": "508",
+  "slug": "integers-in-base-i-1",
+  "title": "Integers in Base $i-1$",
+  "difficulty": "Level 38",
+  "euler_level": 38,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=508",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

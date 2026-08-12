@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_420",
+  "source": "euler",
+  "frontend_id": "420",
+  "slug": "2-times-2-positive-integer-matrix",
+  "title": "$2 \\times 2$ Positive Integer Matrix",
+  "difficulty": "Level 23",
+  "euler_level": 23,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=420",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

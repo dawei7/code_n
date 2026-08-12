@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_802",
+  "source": "euler",
+  "frontend_id": "802",
+  "slug": "iterated-composition",
+  "title": "Iterated Composition",
+  "difficulty": "Level 27",
+  "euler_level": 27,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=802",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

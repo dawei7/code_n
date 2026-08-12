@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_960",
+  "source": "euler",
+  "frontend_id": "960",
+  "slug": "stone-game-solitaire",
+  "title": "Stone Game Solitaire",
+  "difficulty": "Level 22",
+  "euler_level": 22,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=960",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}
