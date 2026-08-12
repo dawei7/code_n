@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_214",
+  "source": "euler",
+  "frontend_id": "214",
+  "slug": "totient-chains",
+  "title": "Totient Chains",
+  "difficulty": "Level 7",
+  "euler_level": 7,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=214",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_797",
+  "source": "euler",
+  "frontend_id": "797",
+  "slug": "cyclogenic-polynomials",
+  "title": "Cyclogenic Polynomials",
+  "difficulty": "Level 25",
+  "euler_level": 25,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=797",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

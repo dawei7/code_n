@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_100",
+  "source": "euler",
+  "frontend_id": "100",
+  "slug": "arranged-probability",
+  "title": "Arranged Probability",
+  "difficulty": "Level 5",
+  "euler_level": 5,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=100",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

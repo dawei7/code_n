@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_152",
+  "source": "euler",
+  "frontend_id": "152",
+  "slug": "sums-of-square-reciprocals",
+  "title": "Sums of Square Reciprocals",
+  "difficulty": "Level 22",
+  "euler_level": 22,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=152",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

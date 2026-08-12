@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_669",
+  "source": "euler",
+  "frontend_id": "669",
+  "slug": "the-kings-banquet",
+  "title": "The King's Banquet",
+  "difficulty": "Level 24",
+  "euler_level": 24,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=669",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

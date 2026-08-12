@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_551",
+  "source": "euler",
+  "frontend_id": "551",
+  "slug": "sum-of-digits-sequence",
+  "title": "Sum of Digits Sequence",
+  "difficulty": "Level 15",
+  "euler_level": 15,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=551",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

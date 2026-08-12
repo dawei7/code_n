@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_235",
+  "source": "euler",
+  "frontend_id": "235",
+  "slug": "an-arithmetic-geometric-sequence",
+  "title": "An Arithmetic Geometric Sequence",
+  "difficulty": "Level 10",
+  "euler_level": 10,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=235",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

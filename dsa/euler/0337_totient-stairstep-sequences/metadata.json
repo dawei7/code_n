@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_337",
+  "source": "euler",
+  "frontend_id": "337",
+  "slug": "totient-stairstep-sequences",
+  "title": "Totient Stairstep Sequences",
+  "difficulty": "Level 21",
+  "euler_level": 21,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=337",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_326",
+  "source": "euler",
+  "frontend_id": "326",
+  "slug": "modulo-summations",
+  "title": "Modulo Summations",
+  "difficulty": "Level 20",
+  "euler_level": 20,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=326",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

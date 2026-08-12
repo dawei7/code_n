@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_774",
+  "source": "euler",
+  "frontend_id": "774",
+  "slug": "conjunctive-sequences",
+  "title": "Conjunctive Sequences",
+  "difficulty": "Level 38",
+  "euler_level": 38,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=774",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

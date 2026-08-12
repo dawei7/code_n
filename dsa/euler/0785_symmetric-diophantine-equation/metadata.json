@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_785",
+  "source": "euler",
+  "frontend_id": "785",
+  "slug": "symmetric-diophantine-equation",
+  "title": "Symmetric Diophantine Equation",
+  "difficulty": "Level 34",
+  "euler_level": 34,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=785",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_288",
+  "source": "euler",
+  "frontend_id": "288",
+  "slug": "an-enormous-factorial",
+  "title": "An Enormous Factorial",
+  "difficulty": "Level 12",
+  "euler_level": 12,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=288",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

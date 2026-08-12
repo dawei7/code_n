@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_618",
+  "source": "euler",
+  "frontend_id": "618",
+  "slug": "numbers-with-a-given-prime-factor-sum",
+  "title": "Numbers with a Given Prime Factor Sum",
+  "difficulty": "Level 12",
+  "euler_level": 12,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=618",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

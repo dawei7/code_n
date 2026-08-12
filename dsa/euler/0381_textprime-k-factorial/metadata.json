@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_381",
+  "source": "euler",
+  "frontend_id": "381",
+  "slug": "textprime-k-factorial",
+  "title": "$(\\text{prime}-k)$ Factorial",
+  "difficulty": "Level 4",
+  "euler_level": 4,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=381",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

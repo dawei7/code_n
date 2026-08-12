@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_813",
+  "source": "euler",
+  "frontend_id": "813",
+  "slug": "xor-powers",
+  "title": "XOR-Powers",
+  "difficulty": "Level 20",
+  "euler_level": 20,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=813",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

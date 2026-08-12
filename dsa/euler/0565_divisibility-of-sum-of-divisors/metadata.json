@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_565",
+  "source": "euler",
+  "frontend_id": "565",
+  "slug": "divisibility-of-sum-of-divisors",
+  "title": "Divisibility of Sum of Divisors",
+  "difficulty": "Level 24",
+  "euler_level": 24,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=565",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

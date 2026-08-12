@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_545",
+  "source": "euler",
+  "frontend_id": "545",
+  "slug": "faulhabers-formulas",
+  "title": "Faulhaber's Formulas",
+  "difficulty": "Level 12",
+  "euler_level": 12,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=545",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

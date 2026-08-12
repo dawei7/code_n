@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_128",
+  "source": "euler",
+  "frontend_id": "128",
+  "slug": "hexagonal-tile-differences",
+  "title": "Hexagonal Tile Differences",
+  "difficulty": "Level 8",
+  "euler_level": 8,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=128",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

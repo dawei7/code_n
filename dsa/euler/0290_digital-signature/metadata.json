@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_290",
+  "source": "euler",
+  "frontend_id": "290",
+  "slug": "digital-signature",
+  "title": "Digital Signature",
+  "difficulty": "Level 18",
+  "euler_level": 18,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=290",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

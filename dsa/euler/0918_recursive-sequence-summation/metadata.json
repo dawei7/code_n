@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_918",
+  "source": "euler",
+  "frontend_id": "918",
+  "slug": "recursive-sequence-summation",
+  "title": "Recursive Sequence Summation",
+  "difficulty": "Level 6",
+  "euler_level": 6,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=918",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

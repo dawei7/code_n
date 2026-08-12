@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_468",
+  "source": "euler",
+  "frontend_id": "468",
+  "slug": "smooth-divisors-of-binomial-coefficients",
+  "title": "Smooth Divisors of Binomial Coefficients",
+  "difficulty": "Level 30",
+  "euler_level": 30,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=468",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

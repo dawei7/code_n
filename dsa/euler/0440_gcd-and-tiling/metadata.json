@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_440",
+  "source": "euler",
+  "frontend_id": "440",
+  "slug": "gcd-and-tiling",
+  "title": "GCD and Tiling",
+  "difficulty": "Level 25",
+  "euler_level": 25,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=440",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

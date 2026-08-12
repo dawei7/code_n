@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_342",
+  "source": "euler",
+  "frontend_id": "342",
+  "slug": "the-totient-of-a-square-is-a-cube",
+  "title": "The Totient of a Square Is a Cube",
+  "difficulty": "Level 15",
+  "euler_level": 15,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=342",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

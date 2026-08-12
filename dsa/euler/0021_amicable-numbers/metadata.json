@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_21",
+  "source": "euler",
+  "frontend_id": "21",
+  "slug": "amicable-numbers",
+  "title": "Amicable Numbers",
+  "difficulty": "Level 1",
+  "euler_level": 1,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=21",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

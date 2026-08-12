@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_632",
+  "source": "euler",
+  "frontend_id": "632",
+  "slug": "square-prime-factors",
+  "title": "Square Prime Factors",
+  "difficulty": "Level 18",
+  "euler_level": 18,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=632",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

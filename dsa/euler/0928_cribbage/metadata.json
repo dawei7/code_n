@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_928",
+  "source": "euler",
+  "frontend_id": "928",
+  "slug": "cribbage",
+  "title": "Cribbage",
+  "difficulty": "Level 24",
+  "euler_level": 24,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=928",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

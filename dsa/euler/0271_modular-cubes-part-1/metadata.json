@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_271",
+  "source": "euler",
+  "frontend_id": "271",
+  "slug": "modular-cubes-part-1",
+  "title": "Modular Cubes, Part 1",
+  "difficulty": "Level 8",
+  "euler_level": 8,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=271",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

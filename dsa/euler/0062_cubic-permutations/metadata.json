@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_62",
+  "source": "euler",
+  "frontend_id": "62",
+  "slug": "cubic-permutations",
+  "title": "Cubic Permutations",
+  "difficulty": "Level 2",
+  "euler_level": 2,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=62",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

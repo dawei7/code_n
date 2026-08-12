@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_705",
+  "source": "euler",
+  "frontend_id": "705",
+  "slug": "total-inversion-count-of-divided-sequences",
+  "title": "Total Inversion Count of Divided Sequences",
+  "difficulty": "Level 13",
+  "euler_level": 13,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=705",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_1",
+  "source": "euler",
+  "frontend_id": "1",
+  "slug": "multiples-of-3-or-5",
+  "title": "Multiples of 3 or 5",
+  "difficulty": "Level 0",
+  "euler_level": 0,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=1",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

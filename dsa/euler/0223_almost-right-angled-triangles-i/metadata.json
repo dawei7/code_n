@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_223",
+  "source": "euler",
+  "frontend_id": "223",
+  "slug": "almost-right-angled-triangles-i",
+  "title": "Almost Right-angled Triangles I",
+  "difficulty": "Level 30",
+  "euler_level": 30,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=223",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_464",
+  "source": "euler",
+  "frontend_id": "464",
+  "slug": "m\u00f6bius-function-and-intervals",
+  "title": "M\u00f6bius Function and Intervals",
+  "difficulty": "Level 23",
+  "euler_level": 23,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=464",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

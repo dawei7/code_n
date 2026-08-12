@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_791",
+  "source": "euler",
+  "frontend_id": "791",
+  "slug": "average-and-variance",
+  "title": "Average and Variance",
+  "difficulty": "Level 27",
+  "euler_level": 27,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=791",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

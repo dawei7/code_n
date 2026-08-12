@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_676",
+  "source": "euler",
+  "frontend_id": "676",
+  "slug": "matching-digit-sums",
+  "title": "Matching Digit Sums",
+  "difficulty": "Level 26",
+  "euler_level": 26,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=676",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

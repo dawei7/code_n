@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_861",
+  "source": "euler",
+  "frontend_id": "861",
+  "slug": "products-of-bi-unitary-divisors",
+  "title": "Products of Bi-Unitary Divisors",
+  "difficulty": "Level 29",
+  "euler_level": 29,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=861",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

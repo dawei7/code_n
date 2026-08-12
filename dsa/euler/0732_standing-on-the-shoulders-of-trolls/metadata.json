@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_732",
+  "source": "euler",
+  "frontend_id": "732",
+  "slug": "standing-on-the-shoulders-of-trolls",
+  "title": "Standing on the Shoulders of Trolls",
+  "difficulty": "Level 27",
+  "euler_level": 27,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=732",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

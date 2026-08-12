@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_611",
+  "source": "euler",
+  "frontend_id": "611",
+  "slug": "hallway-of-square-steps",
+  "title": "Hallway of Square Steps",
+  "difficulty": "Level 28",
+  "euler_level": 28,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=611",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

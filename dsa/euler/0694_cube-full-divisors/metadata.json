@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_694",
+  "source": "euler",
+  "frontend_id": "694",
+  "slug": "cube-full-divisors",
+  "title": "Cube-full Divisors",
+  "difficulty": "Level 9",
+  "euler_level": 9,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=694",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

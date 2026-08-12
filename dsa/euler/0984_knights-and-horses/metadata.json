@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_984",
+  "source": "euler",
+  "frontend_id": "984",
+  "slug": "knights-and-horses",
+  "title": "Knights and Horses",
+  "difficulty": "Level 27",
+  "euler_level": 27,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=984",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

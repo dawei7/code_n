@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_708",
+  "source": "euler",
+  "frontend_id": "708",
+  "slug": "twos-are-all-you-need",
+  "title": "Twos Are All You Need",
+  "difficulty": "Level 33",
+  "euler_level": 33,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=708",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

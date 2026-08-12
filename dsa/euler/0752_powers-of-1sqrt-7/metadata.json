@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_752",
+  "source": "euler",
+  "frontend_id": "752",
+  "slug": "powers-of-1sqrt-7",
+  "title": "Powers of $1+\\sqrt 7$",
+  "difficulty": "Level 18",
+  "euler_level": 18,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=752",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

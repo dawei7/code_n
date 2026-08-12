@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_103",
+  "source": "euler",
+  "frontend_id": "103",
+  "slug": "special-subset-sums-optimum",
+  "title": "Special Subset Sums: Optimum",
+  "difficulty": "Level 5",
+  "euler_level": 5,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=103",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

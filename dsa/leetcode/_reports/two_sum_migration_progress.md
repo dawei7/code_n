@@ -1,6 +1,6 @@
 # Two Sum Migration Progress
 
-Generated: 2026-08-07T20:46:55.126512+00:00
+Generated: 2026-08-11T20:50:15.110853+00:00
 
 All canonical packages in ascending numeric LeetCode frontend-ID order; IDs are sparse.
 
@@ -19,16 +19,16 @@ A package is locally complete only when its shared canonical document (including
 | doc complete | 3018 |
 | cases complete | 4005 |
 | benchmarks complete | 3594 |
-| optimal solution complete | 4005 |
-| leetcode submission complete | 4005 |
+| optimal solution complete | 0 |
+| leetcode submission complete | 3895 |
 | complexity certified | 411 |
 | complexity complete | 4005 |
 | solution variant packages | 4005 |
-| solution variant packages complete | 0 |
+| solution variant packages complete | 3895 |
 
 ## Verified-solution queue
 
-- Empty
+- 2213 â€” Longest Substring of One Repeating Character (`dsa/leetcode/2213_longest-substring-of-one-repeating-character`)
 
 ## Next generally incomplete package
 

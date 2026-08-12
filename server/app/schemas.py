@@ -89,6 +89,7 @@ class ChallengeSummary(BaseModel):
     leetcode_submission_status: str = "missing"
     leetcode_submission_language: str = ""
     leetcode_submission_paid_only: bool = False
+    dataset: str = "leetcode"
 
 
 class SolutionImplementationDetail(BaseModel):

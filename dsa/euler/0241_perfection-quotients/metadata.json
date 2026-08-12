@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_241",
+  "source": "euler",
+  "frontend_id": "241",
+  "slug": "perfection-quotients",
+  "title": "Perfection Quotients",
+  "difficulty": "Level 34",
+  "euler_level": 34,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=241",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

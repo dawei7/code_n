@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_596",
+  "source": "euler",
+  "frontend_id": "596",
+  "slug": "number-of-lattice-points-in-a-hyperball",
+  "title": "Number of Lattice Points in a Hyperball",
+  "difficulty": "Level 21",
+  "euler_level": 21,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=596",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

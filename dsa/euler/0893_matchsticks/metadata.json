@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_893",
+  "source": "euler",
+  "frontend_id": "893",
+  "slug": "matchsticks",
+  "title": "Matchsticks",
+  "difficulty": "Level 19",
+  "euler_level": 19,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=893",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_610",
+  "source": "euler",
+  "frontend_id": "610",
+  "slug": "roman-numerals-ii",
+  "title": "Roman Numerals II",
+  "difficulty": "Level 14",
+  "euler_level": 14,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=610",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

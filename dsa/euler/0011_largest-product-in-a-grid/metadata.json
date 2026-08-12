@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_11",
+  "source": "euler",
+  "frontend_id": "11",
+  "slug": "largest-product-in-a-grid",
+  "title": "Largest Product in a Grid",
+  "difficulty": "Level 1",
+  "euler_level": 1,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=11",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

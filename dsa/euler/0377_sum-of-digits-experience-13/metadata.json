@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_377",
+  "source": "euler",
+  "frontend_id": "377",
+  "slug": "sum-of-digits-experience-13",
+  "title": "Sum of Digits - Experience #13",
+  "difficulty": "Level 15",
+  "euler_level": 15,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=377",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

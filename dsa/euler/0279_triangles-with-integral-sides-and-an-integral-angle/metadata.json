@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_279",
+  "source": "euler",
+  "frontend_id": "279",
+  "slug": "triangles-with-integral-sides-and-an-integral-angle",
+  "title": "Triangles with Integral Sides and an Integral Angle",
+  "difficulty": "Level 27",
+  "euler_level": 27,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=279",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_847",
+  "source": "euler",
+  "frontend_id": "847",
+  "slug": "jacks-bean",
+  "title": "Jack's Bean",
+  "difficulty": "Level 36",
+  "euler_level": 36,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=847",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

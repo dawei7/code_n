@@ -16,6 +16,7 @@ from pydantic import BaseModel
 
 from challenges.registry import CHALLENGE_REGISTRY
 from server.app.challenge_packages import (
+    is_euler_id,
     is_leetcode_id,
     leetcode_doc_markdown,
     leetcode_doc_path,
@@ -43,15 +44,16 @@ class DocIndexEntry(BaseModel):
 
 
 def _find_doc_path(challenge_id: str) -> Path | None:
-    if not is_leetcode_id(challenge_id):
+    if not is_leetcode_id(challenge_id) and not is_euler_id(challenge_id):
         return None
     return leetcode_doc_path(challenge_id)
 
 
 def _find_doc_markdown(challenge_id: str) -> str | None:
-    if not is_leetcode_id(challenge_id):
+    if not is_leetcode_id(challenge_id) and not is_euler_id(challenge_id):
         return None
     return leetcode_doc_markdown(challenge_id)
+
 
 
 @router.get("/docs/index")

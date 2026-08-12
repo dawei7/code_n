@@ -20,8 +20,8 @@ from pathlib import Path
 from typing import Any, Iterable
 
 from engine.languages import SupportedLanguage, language_extension, normalize_language
-from server.app.challenge_packages import leetcode_user_package_name
-from server.app.config import LEGACY_SOLUTIONS_DIR, PROJECT_ROOT, USER_LEETCODE_ROOT
+from server.app.challenge_packages import euler_frontend_id, is_euler_id, leetcode_user_package_name
+from server.app.config import LEGACY_SOLUTIONS_DIR, PROJECT_ROOT, USER_EULER_ROOT, USER_LEETCODE_ROOT
 
 
 SOLUTION_VERSIONS = (1, 2, 3)
@@ -35,13 +35,20 @@ def _require_version(version: int) -> int:
 
 
 def user_problem_dir(challenge_id: str, *, create: bool = False) -> Path:
+    if is_euler_id(challenge_id):
+        frontend_id = euler_frontend_id(challenge_id)
+        path = USER_EULER_ROOT / f"{frontend_id}_euler"
+        if create:
+            path.mkdir(parents=True, exist_ok=True)
+        return path
     package_name = leetcode_user_package_name(challenge_id)
     if package_name is None:
-        raise ValueError(f"Unknown LeetCode challenge: {challenge_id}")
+        raise ValueError(f"Unknown challenge: {challenge_id}")
     path = USER_LEETCODE_ROOT / package_name
     if create:
         path.mkdir(parents=True, exist_ok=True)
     return path
+
 
 
 def user_solution_dir(challenge_id: str, *, create: bool = False) -> Path:

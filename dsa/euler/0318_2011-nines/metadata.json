@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_318",
+  "source": "euler",
+  "frontend_id": "318",
+  "slug": "2011-nines",
+  "title": "2011 Nines",
+  "difficulty": "Level 13",
+  "euler_level": 13,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=318",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

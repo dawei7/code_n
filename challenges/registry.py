@@ -11,9 +11,9 @@ from .spec import AlgorithmSpec, make_challenge
 
 
 def _collect_specs() -> list[AlgorithmSpec]:
-    """Load the canonical LeetCode corpus."""
-    from challenges.algorithms import leetcode
-    return [*leetcode.SPECS]
+    """Load canonical LeetCode and Project Euler corpora."""
+    from challenges.algorithms import euler, leetcode
+    return [*leetcode.SPECS, *euler.SPECS]
 
 
 

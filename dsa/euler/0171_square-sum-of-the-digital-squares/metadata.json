@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_171",
+  "source": "euler",
+  "frontend_id": "171",
+  "slug": "square-sum-of-the-digital-squares",
+  "title": "Square Sum of the Digital Squares",
+  "difficulty": "Level 17",
+  "euler_level": 17,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=171",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

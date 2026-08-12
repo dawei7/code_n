@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_388",
+  "source": "euler",
+  "frontend_id": "388",
+  "slug": "distinct-lines",
+  "title": "Distinct Lines",
+  "difficulty": "Level 20",
+  "euler_level": 20,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=388",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

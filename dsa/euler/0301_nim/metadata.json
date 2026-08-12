@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_301",
+  "source": "euler",
+  "frontend_id": "301",
+  "slug": "nim",
+  "title": "Nim",
+  "difficulty": "Level 5",
+  "euler_level": 5,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=301",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_693",
+  "source": "euler",
+  "frontend_id": "693",
+  "slug": "finite-sequence-generator",
+  "title": "Finite Sequence Generator",
+  "difficulty": "Level 33",
+  "euler_level": 33,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=693",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

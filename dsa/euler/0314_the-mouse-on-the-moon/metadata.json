@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_314",
+  "source": "euler",
+  "frontend_id": "314",
+  "slug": "the-mouse-on-the-moon",
+  "title": "The Mouse on the Moon",
+  "difficulty": "Level 33",
+  "euler_level": 33,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=314",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

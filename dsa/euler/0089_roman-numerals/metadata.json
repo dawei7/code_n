@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_89",
+  "source": "euler",
+  "frontend_id": "89",
+  "slug": "roman-numerals",
+  "title": "Roman Numerals",
+  "difficulty": "Level 3",
+  "euler_level": 3,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=89",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

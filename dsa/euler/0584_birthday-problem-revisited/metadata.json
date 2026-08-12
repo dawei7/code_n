@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_584",
+  "source": "euler",
+  "frontend_id": "584",
+  "slug": "birthday-problem-revisited",
+  "title": "Birthday Problem Revisited",
+  "difficulty": "Level 32",
+  "euler_level": 32,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=584",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

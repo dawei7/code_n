@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_499",
+  "source": "euler",
+  "frontend_id": "499",
+  "slug": "st-petersburg-lottery",
+  "title": "St. Petersburg Lottery",
+  "difficulty": "Level 34",
+  "euler_level": 34,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=499",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

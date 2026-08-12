@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_974",
+  "source": "euler",
+  "frontend_id": "974",
+  "slug": "very-odd-numbers",
+  "title": "Very Odd Numbers",
+  "difficulty": "Level 8",
+  "euler_level": 8,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=974",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

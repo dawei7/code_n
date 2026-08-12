@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_906",
+  "source": "euler",
+  "frontend_id": "906",
+  "slug": "a-collective-decision",
+  "title": "A Collective Decision",
+  "difficulty": "Level 25",
+  "euler_level": 25,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=906",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

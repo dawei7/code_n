@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_604",
+  "source": "euler",
+  "frontend_id": "604",
+  "slug": "convex-path-in-square",
+  "title": "Convex Path in Square",
+  "difficulty": "Level 18",
+  "euler_level": 18,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=604",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

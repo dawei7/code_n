@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_411",
+  "source": "euler",
+  "frontend_id": "411",
+  "slug": "uphill-paths",
+  "title": "Uphill Paths",
+  "difficulty": "Level 17",
+  "euler_level": 17,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=411",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

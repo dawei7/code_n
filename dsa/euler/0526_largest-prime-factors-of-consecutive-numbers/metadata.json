@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_526",
+  "source": "euler",
+  "frontend_id": "526",
+  "slug": "largest-prime-factors-of-consecutive-numbers",
+  "title": "Largest Prime Factors of Consecutive Numbers",
+  "difficulty": "Level 34",
+  "euler_level": 34,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=526",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

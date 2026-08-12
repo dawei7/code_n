@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_146",
+  "source": "euler",
+  "frontend_id": "146",
+  "slug": "investigating-a-prime-pattern",
+  "title": "Investigating a Prime Pattern",
+  "difficulty": "Level 10",
+  "euler_level": 10,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=146",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

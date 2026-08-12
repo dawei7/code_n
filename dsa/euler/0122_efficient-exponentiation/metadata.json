@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_122",
+  "source": "euler",
+  "frontend_id": "122",
+  "slug": "efficient-exponentiation",
+  "title": "Efficient Exponentiation",
+  "difficulty": "Level 12",
+  "euler_level": 12,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=122",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

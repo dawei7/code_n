@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_287",
+  "source": "euler",
+  "frontend_id": "287",
+  "slug": "quadtree-encoding-a-simple-compression-algorithm",
+  "title": "Quadtree Encoding (a Simple Compression Algorithm)",
+  "difficulty": "Level 9",
+  "euler_level": 9,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=287",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

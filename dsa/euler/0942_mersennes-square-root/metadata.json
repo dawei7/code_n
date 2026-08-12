@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_942",
+  "source": "euler",
+  "frontend_id": "942",
+  "slug": "mersennes-square-root",
+  "title": "Mersenne's Square Root",
+  "difficulty": "Level 38",
+  "euler_level": 38,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=942",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

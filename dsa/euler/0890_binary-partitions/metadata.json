@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_890",
+  "source": "euler",
+  "frontend_id": "890",
+  "slug": "binary-partitions",
+  "title": "Binary Partitions",
+  "difficulty": "Level 27",
+  "euler_level": 27,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=890",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

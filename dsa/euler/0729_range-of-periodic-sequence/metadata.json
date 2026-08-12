@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_729",
+  "source": "euler",
+  "frontend_id": "729",
+  "slug": "range-of-periodic-sequence",
+  "title": "Range of Periodic Sequence",
+  "difficulty": "Level 36",
+  "euler_level": 36,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=729",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

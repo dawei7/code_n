@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_606",
+  "source": "euler",
+  "frontend_id": "606",
+  "slug": "gozinta-chains-ii",
+  "title": "Gozinta Chains II",
+  "difficulty": "Level 25",
+  "euler_level": 25,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=606",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

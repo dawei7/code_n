@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_363",
+  "source": "euler",
+  "frontend_id": "363",
+  "slug": "b\u00e9zier-curves",
+  "title": "B\u00e9zier Curves",
+  "difficulty": "Level 10",
+  "euler_level": 10,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=363",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

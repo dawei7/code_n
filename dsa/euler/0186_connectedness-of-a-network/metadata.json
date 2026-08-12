@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_186",
+  "source": "euler",
+  "frontend_id": "186",
+  "slug": "connectedness-of-a-network",
+  "title": "Connectedness of a Network",
+  "difficulty": "Level 8",
+  "euler_level": 8,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=186",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

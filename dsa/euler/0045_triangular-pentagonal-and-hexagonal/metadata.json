@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_45",
+  "source": "euler",
+  "frontend_id": "45",
+  "slug": "triangular-pentagonal-and-hexagonal",
+  "title": "Triangular, Pentagonal, and Hexagonal",
+  "difficulty": "Level 0",
+  "euler_level": 0,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=45",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

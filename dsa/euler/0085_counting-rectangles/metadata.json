@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_85",
+  "source": "euler",
+  "frontend_id": "85",
+  "slug": "counting-rectangles",
+  "title": "Counting Rectangles",
+  "difficulty": "Level 2",
+  "euler_level": 2,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=85",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

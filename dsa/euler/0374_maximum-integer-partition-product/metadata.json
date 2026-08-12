@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_374",
+  "source": "euler",
+  "frontend_id": "374",
+  "slug": "maximum-integer-partition-product",
+  "title": "Maximum Integer Partition Product",
+  "difficulty": "Level 18",
+  "euler_level": 18,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=374",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

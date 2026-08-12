@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_269",
+  "source": "euler",
+  "frontend_id": "269",
+  "slug": "polynomials-with-at-least-one-integer-root",
+  "title": "Polynomials with at Least One Integer Root",
+  "difficulty": "Level 33",
+  "euler_level": 33,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=269",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

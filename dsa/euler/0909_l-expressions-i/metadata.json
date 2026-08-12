@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_909",
+  "source": "euler",
+  "frontend_id": "909",
+  "slug": "l-expressions-i",
+  "title": "L-expressions I",
+  "difficulty": "Level 38",
+  "euler_level": 38,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=909",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

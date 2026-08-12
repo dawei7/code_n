@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_278",
+  "source": "euler",
+  "frontend_id": "278",
+  "slug": "linear-combinations-of-semiprimes",
+  "title": "Linear Combinations of Semiprimes",
+  "difficulty": "Level 10",
+  "euler_level": 10,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=278",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

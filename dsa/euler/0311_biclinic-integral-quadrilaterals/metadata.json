@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_311",
+  "source": "euler",
+  "frontend_id": "311",
+  "slug": "biclinic-integral-quadrilaterals",
+  "title": "Biclinic Integral Quadrilaterals",
+  "difficulty": "Level 31",
+  "euler_level": 31,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=311",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

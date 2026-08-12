@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_239",
+  "source": "euler",
+  "frontend_id": "239",
+  "slug": "twenty-two-foolish-primes",
+  "title": "Twenty-two Foolish Primes",
+  "difficulty": "Level 27",
+  "euler_level": 27,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=239",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

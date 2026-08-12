@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_355",
+  "source": "euler",
+  "frontend_id": "355",
+  "slug": "maximal-coprime-subset",
+  "title": "Maximal Coprime Subset",
+  "difficulty": "Level 37",
+  "euler_level": 37,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=355",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

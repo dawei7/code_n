@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_283",
+  "source": "euler",
+  "frontend_id": "283",
+  "slug": "integer-sided-triangles-with-integral-areaperimeter-ratio",
+  "title": "Integer Sided Triangles with Integral Area/perimeter Ratio",
+  "difficulty": "Level 32",
+  "euler_level": 32,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=283",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

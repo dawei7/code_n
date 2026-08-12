@@ -1,0 +1,14 @@
+{
+  "extension.description": "适用于 Antigravity 的自主迭代 AI 代理方法论 (Ralph Loop)",
+  "view.sidebar.name": "Ralph Loop 控制面板",
+  "command.start": "Ralph: 启动 Ralph Loop",
+  "command.stop": "Ralph: 停止 Ralph Loop",
+  "command.pause": "Ralph: 暂停/恢复 Ralph Loop",
+  "command.emergencyStop": "Ralph: 紧急停止 Ralph Loop",
+  "config.maxIterations": "每次 Loop 会话的最大迭代次数",
+  "config.defaultMode": "默认执行模式 (Fast 或 Planning)",
+  "config.defaultModel": "Antigravity 会话的默认 AI 模型",
+  "config.promptFile": "默认提示词指令文件路径",
+  "config.taskFile": "默认任务规范文件路径 (PRD.md)",
+  "config.progressFile": "默认进度日志文件路径 (progress.txt)"
+}

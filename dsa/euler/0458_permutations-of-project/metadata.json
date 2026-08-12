@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_458",
+  "source": "euler",
+  "frontend_id": "458",
+  "slug": "permutations-of-project",
+  "title": "Permutations of Project",
+  "difficulty": "Level 25",
+  "euler_level": 25,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=458",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

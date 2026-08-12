@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_268",
+  "source": "euler",
+  "frontend_id": "268",
+  "slug": "at-least-four-distinct-prime-factors-less-than-100",
+  "title": "At Least Four Distinct Prime Factors Less Than 100",
+  "difficulty": "Level 25",
+  "euler_level": 25,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=268",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

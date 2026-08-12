@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_590",
+  "source": "euler",
+  "frontend_id": "590",
+  "slug": "sets-with-a-given-least-common-multiple",
+  "title": "Sets with a Given Least Common Multiple",
+  "difficulty": "Level 29",
+  "euler_level": 29,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=590",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}

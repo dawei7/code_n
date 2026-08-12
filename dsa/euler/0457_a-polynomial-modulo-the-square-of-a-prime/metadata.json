@@ -1,0 +1,22 @@
+{
+  "challenge_id": "euler_457",
+  "source": "euler",
+  "frontend_id": "457",
+  "slug": "a-polynomial-modulo-the-square-of-a-prime",
+  "title": "A Polynomial Modulo the Square of a Prime",
+  "difficulty": "Level 14",
+  "euler_level": 14,
+  "category": "math",
+  "category_title": "Math",
+  "topics": [],
+  "url": "https://projecteuler.net/problem=457",
+  "supported_languages": [
+    "python"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "dataset": "euler",
+  "solution_variants": {
+    "manifest": "solution_variants.json"
+  }
+}
