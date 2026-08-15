@@ -32,19 +32,19 @@ An array is **k-even** when that expression is even at exactly `k` of the $n-1$ 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 3, m = 4, k = 2`
-- Output: `8`
-- Explanation: Both adjacent positions qualify only when all three values are even. Each position can independently be `2` or `4`.
+- **Input:** `n = 3, m = 4, k = 2`
+- **Output:** `8`
+- **Explanation:** Both adjacent positions qualify only when all three values are even. Each position can independently be `2` or `4`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 5, m = 1, k = 0`
-- Output: `1`
-- Explanation: The only possible array is `[1, 1, 1, 1, 1]`, and no adjacent pair qualifies.
+- **Input:** `n = 5, m = 1, k = 0`
+- **Output:** `1`
+- **Explanation:** The only possible array is `[1, 1, 1, 1, 1]`, and no adjacent pair qualifies.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 7, m = 7, k = 5`
-- Output: `5832`
+- **Input:** `n = 7, m = 7, k = 5`
+- **Output:** `5832`

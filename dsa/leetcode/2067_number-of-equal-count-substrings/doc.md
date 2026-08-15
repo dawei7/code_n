@@ -31,20 +31,20 @@ Given `s` and the positive integer `count`, return the number of index ranges th
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "aaabcbbcc", count = 3`
-- Output: `3`
-- Explanation: `"aaa"`, `"bcbbcc"`, and the complete string have one, two, and three distinct letters, respectively, each occurring three times.
+- **Input:** `s = "aaabcbbcc", count = 3`
+- **Output:** `3`
+- **Explanation:** `"aaa"`, `"bcbbcc"`, and the complete string have one, two, and three distinct letters, respectively, each occurring three times.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "abcd", count = 2`
-- Output: `0`
-- Explanation: No letter occurs twice inside any candidate range.
+- **Input:** `s = "abcd", count = 2`
+- **Output:** `0`
+- **Explanation:** No letter occurs twice inside any candidate range.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "a", count = 5`
-- Output: `0`
-- Explanation: The string is shorter than the required frequency.
+- **Input:** `s = "a", count = 5`
+- **Output:** `0`
+- **Explanation:** The string is shorter than the required frequency.

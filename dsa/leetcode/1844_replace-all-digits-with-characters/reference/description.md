@@ -12,8 +12,13 @@ Return `s`* *after replacing all digits. It is **guaranteed** that* *$shift(s[i-
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Note
 
@@ -29,6 +34,7 @@ that `shift(c, x)` is **not** a preloaded function, but an operation *to be impl
 - s[1] -> shift('a',1) = 'b'
 - s[3] -> shift('c',1) = 'd'
 - s[5] -> shift('e',1) = 'f'
+
 #### Example 2
 
 - **Input:** `s = "a1b2c3d4e"`

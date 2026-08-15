@@ -23,6 +23,7 @@ Return the greatest number of initial staircase rows that can each receive their
 - **Input:** $n = 5$
 - **Output:** `2`
 - **Explanation:** Because the 3^rd row is incomplete, we return 2.
+
 #### Example 2
 
 ![](images/arrangecoins2-grid.jpg)

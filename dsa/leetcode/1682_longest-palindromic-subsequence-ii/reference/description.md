@@ -31,6 +31,7 @@ Return an integer representing the maximum length of a good palindromic subseque
 - **Input:** `s = "bbabab"`
 - **Output:** `4`
 - **Explanation:** The longest good palindromic subsequence of s is "baab".
+
 #### Example 2
 
 - **Input:** `s = "dcbccacdb"`

@@ -8,8 +8,14 @@ Return *the coordinates of the black queens that can directly attack the king*. 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `queens`: Input parameter (`List[List[int]]`).
+- `king`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
@@ -20,6 +26,7 @@ Return *the coordinates of the black queens that can directly attack the king*. 
 - **Input:** $queens = [[0,1],[1,0],[4,0],[0,4],[3,3],[2,4]], king = [0,0]$
 - **Output:** `[[0,1],[1,0],[3,3]]`
 - **Explanation:** The diagram above shows the three queens that can directly attack the king and the three queens that cannot attack the king (i.e., marked with red dashes).
+
 #### Example 2
 
 ![](images/chess2.jpg)

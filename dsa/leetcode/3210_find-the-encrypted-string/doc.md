@@ -35,14 +35,14 @@ Let $n=\lvert s\rvert$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "dart", k = 3`
-- Output: `"tdar"`
-- Explanation: Each position receives the character three circular steps after its original index.
+- **Input:** `s = "dart", k = 3`
+- **Output:** `"tdar"`
+- **Explanation:** Each position receives the character three circular steps after its original index.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "aaa", k = 1`
-- Output: `"aaa"`
-- Explanation: Rotating equal characters leaves the visible string unchanged.
+- **Input:** `s = "aaa", k = 1`
+- **Output:** `"aaa"`
+- **Explanation:** Rotating equal characters leaves the visible string unchanged.

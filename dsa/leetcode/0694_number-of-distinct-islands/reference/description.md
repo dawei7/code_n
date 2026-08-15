@@ -26,6 +26,7 @@ Return the number of island shape classes under translation alone. Horizontal an
 
 - **Input:** `grid = [[1,1,0,0,0],[1,1,0,0,0],[0,0,0,1,1],[0,0,0,1,1]]`
 - **Output:** `1`
+
 #### Example 2
 
 ![](images/distinctisland1-2-grid.jpg)

@@ -23,40 +23,27 @@ Return the minimum total cost of deletions that leaves a nonempty string contain
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "aabaac", cost = [1,2,3,4,1,10]
+- **Input:** s = "aabaac", cost = [1,2,3,4,1,10]
 
-**Output:** 11
+- **Output:** 11
 
-**Explanation:**
+- **Explanation:** Deleting the characters at indices 0, 1, 2, 3, 4 results in the string `"c"`, which consists of equal characters, and the total cost is $\text{cost}[0] + \text{cost}[1] + \text{cost}[2] + \text{cost}[3] + \text{cost}[4] = 1 + 2 + 3 + 4 + 1 = 11$.
 
-Deleting the characters at indices 0, 1, 2, 3, 4 results in the string `"c"`, which consists of equal characters, and the total cost is $\text{cost}[0] + \text{cost}[1] + \text{cost}[2] + \text{cost}[3] + \text{cost}[4] = 1 + 2 + 3 + 4 + 1 = 11$.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "abc", cost = [10,5,8]
+- **Input:** s = "abc", cost = [10,5,8]
 
-**Output:** 13
+- **Output:** 13
 
-**Explanation:**
+- **Explanation:** Deleting the characters at indices 1 and 2 results in the string `"a"`, which consists of equal characters, and the total cost is $\text{cost}[1] + \text{cost}[2] = 5 + 8 = 13$.
 
-Deleting the characters at indices 1 and 2 results in the string `"a"`, which consists of equal characters, and the total cost is $\text{cost}[1] + \text{cost}[2] = 5 + 8 = 13$.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "zzzzz", cost = [67,67,67,67,67]
+- **Input:** s = "zzzzz", cost = [67,67,67,67,67]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-All characters in `s` are equal, so the deletion cost is 0.
-
-</div>
+- **Explanation:** All characters in `s` are equal, so the deletion cost is 0.
 
 ### 4. Constraints
 

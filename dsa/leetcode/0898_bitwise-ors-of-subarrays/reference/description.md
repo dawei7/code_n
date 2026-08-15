@@ -8,8 +8,13 @@ A **subarray** is a contiguous non-empty sequence of elements within an array.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +23,7 @@ A **subarray** is a contiguous non-empty sequence of elements within an array.
 - **Input:** `arr = [0]`
 - **Output:** `1`
 - **Explanation:** There is only one possible result: 0.
+
 #### Example 2
 
 - **Input:** `arr = [1,1,2]`
@@ -25,6 +31,7 @@ A **subarray** is a contiguous non-empty sequence of elements within an array.
 - **Explanation:** The possible subarrays are [1], [1], [2], [1, 1], [1, 2], [1, 1, 2].
 These yield the results 1, 1, 2, 1, 3, 3.
 There are 3 unique values, so the answer is 3.
+
 #### Example 3
 
 - **Input:** `arr = [1,2,4]`

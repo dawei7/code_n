@@ -18,6 +18,7 @@ Return the number of digit-`1` occurrences in the ordinary decimal representatio
 
 - **Input:** $n = 13$
 - **Output:** `6`
+
 #### Example 2
 
 - **Input:** $n = 0$

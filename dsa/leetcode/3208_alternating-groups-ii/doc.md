@@ -35,17 +35,17 @@ Let $n=\lvert\texttt{colors}\rvert$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `colors = [0,1,0,1,0], k = 3`
-- Output: `3`
+- **Input:** `colors = [0,1,0,1,0], k = 3`
+- **Output:** `3`
 
-**Example 2**
+#### Example 2
 
-- Input: `colors = [0,1,0,0,1,0,1], k = 6`
-- Output: `2`
+- **Input:** `colors = [0,1,0,0,1,0,1], k = 6`
+- **Output:** `2`
 
-**Example 3**
+#### Example 3
 
-- Input: `colors = [1,1,0,1], k = 4`
-- Output: `0`
+- **Input:** `colors = [1,1,0,1], k = 4`
+- **Output:** `0`

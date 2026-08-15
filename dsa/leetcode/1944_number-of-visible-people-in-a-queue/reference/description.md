@@ -8,8 +8,13 @@ Return *an array *`answer`* of length *`n`* where *$\text{answer}[i]$* is the **
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `heights`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -19,13 +24,13 @@ Return *an array *`answer`* of length *`n`* where *$\text{answer}[i]$* is the **
 
 - **Input:** $heights = [10,6,8,5,11,9]$
 - **Output:** `[3,1,2,1,1,0]`
-- **Explanation:**
-Person 0 can see person 1, 2, and 4.
+- **Explanation:** Person 0 can see person 1, 2, and 4.
 Person 1 can see person 2.
 Person 2 can see person 3 and 4.
 Person 3 can see person 4.
 Person 4 can see person 5.
 Person 5 can see no one since nobody is to the right of them.
+
 #### Example 2
 
 - **Input:** $heights = [5,1,2,3,10]$

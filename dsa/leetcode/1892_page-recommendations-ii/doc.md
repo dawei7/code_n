@@ -34,21 +34,21 @@ For every user participating in the friendship graph, recommend each page liked 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: users `1` and `2` share friends `3` and `4`; users `2` and `3` both like page `77`; user `1` already likes page `88`.
+- **Input:** users `1` and `2` share friends `3` and `4`; users `2` and `3` both like page `77`; user `1` already likes page `88`.
 - Output includes `(1,77,2)` because two friends of user `1` like page `77`, but it excludes `(1,88,...)` because user `1` already likes page `88`.
 
-**Example 2**
+#### Example 2
 
-- Input: friendship `(1,2)`, with only user `2` liking page `10`.
-- Output: `(1,10,1)`.
+- **Input:** friendship `(1,2)`, with only user `2` liking page `10`.
+- **Output:** `(1,10,1)`.
 
 The stored orientation does not prevent recommending user `1` a page liked by user `2`.
 
-**Example 3**
+#### Example 3
 
-- Input: friendship `(1,2)`, and both users like page `10`.
-- Output: no rows.
+- **Input:** friendship `(1,2)`, and both users like page `10`.
+- **Output:** no rows.
 
 The friend's like cannot recommend a page the target user already likes.

@@ -18,8 +18,13 @@ An **adjacent** cell of the cell `(r, c)`, is one of the cells $(r, c + 1)$, $(r
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -30,6 +35,7 @@ An **adjacent** cell of the cell `(r, c)`, is one of the cells $(r, c + 1)$, $(r
 - **Input:** `grid = [[0,2,1,0],[4,0,0,3],[1,0,0,4],[0,3,2,0]]`
 - **Output:** `7`
 - **Explanation:** The fisher can start at cell (1,3) and collect 3 fish, then move to cell (2,3) and collect 4 fish.
+
 #### Example 2
 
 ![](images/example2.png)

@@ -29,23 +29,23 @@ A divisor of $n$ is nice when it is divisible by every distinct prime factor of 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `primeFactors = 5`
-- Output: `6`
+- **Input:** `primeFactors = 5`
+- **Output:** `6`
 
 One valid construction has prime exponents $3$ and $2$, whose product gives $3 \cdot 2=6$ nice divisors.
 
-**Example 2**
+#### Example 2
 
-- Input: `primeFactors = 8`
-- Output: `18`
+- **Input:** `primeFactors = 8`
+- **Output:** `18`
 
 Splitting the exponent budget as $3+3+2$ gives $3 \cdot 3 \cdot 2=18$.
 
-**Example 3**
+#### Example 3
 
-- Input: `primeFactors = 1`
-- Output: `1`
+- **Input:** `primeFactors = 1`
+- **Output:** `1`
 
 A prime $n$ has only itself as a divisor containing its sole prime factor.

@@ -14,8 +14,14 @@ Implement the `Solution` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `m`: Input parameter (`int`).
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `the result`.
 
 ### 3. Examples
 

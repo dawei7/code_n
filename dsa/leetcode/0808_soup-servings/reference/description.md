@@ -12,8 +12,13 @@ You have two soups, **A** and **B**, each starting with `n` mL. On every turn, o
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `float`.
 
 ### 3. Note
 
@@ -33,17 +38,16 @@ Return the probability that A is used up *before* B, plus half the probability t
 
 - **Input:** $n = 50$
 - **Output:** `0.62500`
-- **Explanation:**
-If we perform either of the first two serving operations, soup A will become empty first.
+- **Explanation:** If we perform either of the first two serving operations, soup A will become empty first.
 If we perform the third operation, A and B will become empty at the same time.
 If we perform the fourth operation, B will become empty first.
 So the total probability of A becoming empty first plus half the probability that A and B become empty at the same time, is 0.25 * (1 + 1 + 0.5 + 0) = 0.625.
+
 #### Example 2
 
 - **Input:** $n = 100$
 - **Output:** `0.71875`
-- **Explanation:**
-If we perform the first serving operation, soup A will become empty first.
+- **Explanation:** If we perform the first serving operation, soup A will become empty first.
 If we perform the second serving operations, A will become empty on performing operation [1, 2, 3], and both A and B become empty on performing operation 4.
 If we perform the third operation, A will become empty on performing operation [1, 2], and both A and B become empty on performing operation 3.
 If we perform the fourth operation, A will become empty on performing operation 1, and both A and B become empty on performing operation 2.

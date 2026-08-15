@@ -8,11 +8,9 @@ Pick a **subsequence** with indices $0 \le i_{1} < i_{2} < ... < i_{m} < n$ such
 
 - The selected values form a **strictly alternating** sequence. In other words, either:
 
-		<li>$nums[i_{1}] < nums[i_{2}] > nums[i_{3}] < ...$, or
+		- $nums[i_{1}] < nums[i_{2}] > nums[i_{3}] < ...$, or
 
 - $nums[i_{1}] > nums[i_{2}] < nums[i_{3}] > ...$
-
-	</li>
 
 A **subsequence** of length 1 is also considered **strictly** alternating. The score of a **valid** subsequence is the **sum** of its selected values.
 
@@ -35,14 +33,11 @@ Return the maximum sum of a non-empty subsequence whose consecutive selected ind
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [5,4,2], k = 2
+- **Input:** nums = [5,4,2], k = 2
 
-**Output:** 7
+- **Output:** 7
 
-**Explanation:**
-
-An optimal choice is indices `[0, 2]`, which gives values `[5, 2]`.
+- **Explanation:** An optimal choice is indices `[0, 2]`, which gives values `[5, 2]`.
 
 - The distance condition holds because $2 - 0 = 2 \ge k$.
 
@@ -50,17 +45,13 @@ An optimal choice is indices `[0, 2]`, which gives values `[5, 2]`.
 
 The score is $5 + 2 = 7$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [3,5,4,2,4], k = 1
+- **Input:** nums = [3,5,4,2,4], k = 1
 
-**Output:** 14
+- **Output:** 14
 
-**Explanation:**
-
-An optimal choice is indices `[0, 1, 3, 4]`, which gives values `[3, 5, 2, 4]`.
+- **Explanation:** An optimal choice is indices `[0, 1, 3, 4]`, which gives values `[3, 5, 2, 4]`.
 
 - The distance condition holds because each pair of consecutive chosen indices differs by at least $k = 1$.
 
@@ -68,19 +59,13 @@ An optimal choice is indices `[0, 1, 3, 4]`, which gives values `[3, 5, 2, 4]`.
 
 The score is $3 + 5 + 2 + 4 = 14$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [5], k = 1
+- **Input:** nums = [5], k = 1
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
-
-The only valid subsequence is `[5]`. A subsequence with 1 element is always strictly alternating, so the score is 5.
-
-</div>
+- **Explanation:** The only valid subsequence is `[5]`. A subsequence with 1 element is always strictly alternating, so the score is 5.
 
 ### 4. Constraints
 

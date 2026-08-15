@@ -10,8 +10,13 @@ Given an array `strs` of alphanumeric strings, return *the **maximum value** of 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `strs`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,19 +24,19 @@ Given an array `strs` of alphanumeric strings, return *the **maximum value** of 
 
 - **Input:** $strs = ["alic3","bob","3","4","00000"]$
 - **Output:** `5`
-- **Explanation:**
+- **Explanation:** 
 - "alic3" consists of both letters and digits, so its value is its length, i.e. 5.
 - "bob" consists only of letters, so its value is also its length, i.e. 3.
 - "3" consists only of digits, so its value is its numeric equivalent, i.e. 3.
 - "4" also consists only of digits, so its value is 4.
 - "00000" consists only of digits, so its value is 0.
 Hence, the maximum value is 5, of "alic3".
+
 #### Example 2
 
 - **Input:** $strs = ["1","01","001","0001"]$
 - **Output:** `1`
-- **Explanation:**
-Each string in the array has value 1. Hence, we return 1.
+- **Explanation:** Each string in the array has value 1. Hence, we return 1.
 
 ### 4. Constraints
 

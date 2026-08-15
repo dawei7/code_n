@@ -14,8 +14,13 @@ An **AND triple** is a triple of indices `(i, j, k)` such that:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -36,6 +41,7 @@ An **AND triple** is a triple of indices `(i, j, k)` such that:
 (i=1, j=2, k=0) : 1 & 3 & 2
 (i=2, j=0, k=1) : 3 & 2 & 1
 (i=2, j=1, k=0) : 3 & 1 & 2
+
 #### Example 2
 
 - **Input:** `nums = [0,0,0]`

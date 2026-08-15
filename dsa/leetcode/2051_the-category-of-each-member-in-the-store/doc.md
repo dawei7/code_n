@@ -41,7 +41,7 @@ Let $M$, $V$, and $P$ denote the numbers of rows in `Members`, `Visits`, and `Pu
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: members Alice, Bob, Winston, Hercy, and Narihan; their visits and purchases produce rates of $50\%$, approximately $33.33\%$, $0\%$, $100\%$, and no defined rate, respectively.
-- Output: Alice is `Gold`, Bob and Winston are `Silver`, Hercy is `Diamond`, and Narihan is `Bronze`.
+- **Input:** members Alice, Bob, Winston, Hercy, and Narihan; their visits and purchases produce rates of $50\%$, approximately $33.33\%$, $0\%$, $100\%$, and no defined rate, respectively.
+- **Output:** Alice is `Gold`, Bob and Winston are `Silver`, Hercy is `Diamond`, and Narihan is `Bronze`.

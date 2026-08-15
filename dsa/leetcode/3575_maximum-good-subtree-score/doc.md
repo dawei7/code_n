@@ -35,22 +35,22 @@ Return the sum of the maximum good-subset score for every rooted subtree, reduce
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `vals = [2,3], par = [-1,0]`
-- Output: `8`
-- Explanation: The root subtree can select both values for score `5`, while node `1` contributes `3`.
+- **Input:** `vals = [2,3], par = [-1,0]`
+- **Output:** `8`
+- **Explanation:** The root subtree can select both values for score `5`, while node `1` contributes `3`.
 
-**Example 2**
+#### Example 2
 
-- Input: `vals = [1,5,2], par = [-1,0,0]`
-- Output: `15`
-- Explanation: The root selects all three distinct digits for score `8`; the two leaf maxima are `5` and `2`.
+- **Input:** `vals = [1,5,2], par = [-1,0,0]`
+- **Output:** `15`
+- **Explanation:** The root selects all three distinct digits for score `8`; the two leaf maxima are `5` and `2`.
 
-**Example 3**
+#### Example 3
 
-- Input: `vals = [34,1,2], par = [-1,0,1]`
-- Output: `42`
-- Explanation: The three subtree maxima are `37`, `3`, and `2` because the digits `3`, `4`, `1`, and `2` do not conflict.
+- **Input:** `vals = [34,1,2], par = [-1,0,1]`
+- **Output:** `42`
+- **Explanation:** The three subtree maxima are `37`, `3`, and `2` because the digits `3`, `4`, `1`, and `2` do not conflict.
 
 ---

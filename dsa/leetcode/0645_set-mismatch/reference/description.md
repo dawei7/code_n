@@ -8,8 +8,13 @@ Find the number that occurs twice and the number that is missing and return *the
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -17,6 +22,7 @@ Find the number that occurs twice and the number that is missing and return *the
 
 - **Input:** `nums = [1,2,2,4]`
 - **Output:** `[2,3]`
+
 #### Example 2
 
 - **Input:** `nums = [1,1]`

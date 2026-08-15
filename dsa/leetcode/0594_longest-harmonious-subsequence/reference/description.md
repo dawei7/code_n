@@ -6,47 +6,39 @@ Given an integer array `nums`, return the length of its longest harmonious subse
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,3,2,2,5,2,3,7]
+- **Input:** nums = [1,3,2,2,5,2,3,7]
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** The longest harmonious subsequence is `[3,2,2,2,3]`.
 
-The longest harmonious subsequence is `[3,2,2,2,3]`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4]
+- **Input:** nums = [1,2,3,4]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** The longest harmonious subsequences are `[1,2]`, `[2,3]`, and `[3,4]`, all of which have a length of 2.
 
-The longest harmonious subsequences are `[1,2]`, `[2,3]`, and `[3,4]`, all of which have a length of 2.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,1,1,1]
+- **Input:** nums = [1,1,1,1]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-No harmonic subsequence exists.
-
-</div>
+- **Explanation:** No harmonic subsequence exists.
 
 ### 4. Constraints
 

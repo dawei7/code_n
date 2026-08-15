@@ -52,7 +52,7 @@ Return `Department`, `Employee`, and `Salary` for every employee whose salary is
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Employee table:
 +----+-------+--------+--------------+
 | id | name  | salary | departmentId |
@@ -72,7 +72,7 @@ Department table:
 | 1  | IT    |
 | 2  | Sales |
 +----+-------+
-**Output:**
+- **Output:** 
 +------------+----------+--------+
 | Department | Employee | Salary |
 +------------+----------+--------+
@@ -83,8 +83,7 @@ Department table:
 | Sales      | Henry    | 80000  |
 | Sales      | Sam      | 60000  |
 +------------+----------+--------+
-**Explanation:**
-In the IT department:
+- **Explanation:** In the IT department:
 - Max earns the highest unique salary
 - Both Randy and Joe earn the second-highest unique salary
 - Will earns the third-highest unique salary

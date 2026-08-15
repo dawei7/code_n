@@ -12,8 +12,13 @@ Return the new text following the format shown above.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `text`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -23,6 +28,7 @@ Return the new text following the format shown above.
 - **Output:** `"Is cool leetcode"`
 - **Explanation:** There are 3 words, "Leetcode" of length 8, "is" of length 2 and "cool" of length 4.
 Output is ordered by length and the new first word starts with capital letter.
+
 #### Example 2
 
 - **Input:** $text = "Keep calm and code on"$
@@ -33,6 +39,7 @@ Output is ordered by length and the new first word starts with capital letter.
 "keep" 4 letters in case of tie order by position in original text.
 "calm" 4 letters.
 "code" 4 letters.
+
 #### Example 3
 
 - **Input:** $text = "To be or not to be"$

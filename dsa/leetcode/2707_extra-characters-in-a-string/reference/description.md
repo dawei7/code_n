@@ -6,8 +6,14 @@ Return *the **minimum** number of extra characters left over if you break up *`s
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `dictionary`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,6 +22,7 @@ Return *the **minimum** number of extra characters left over if you break up *`s
 - **Input:** `s = "leetscode", dictionary = ["leet","code","leetcode"]`
 - **Output:** `1`
 - **Explanation:** We can break s in two substrings: "leet" from index 0 to 3 and "code" from index 5 to 8. There is only 1 unused character (at index 4), so we return 1.
+
 #### Example 2
 
 - **Input:** `s = "sayhelloworld", dictionary = ["hello","world"]`

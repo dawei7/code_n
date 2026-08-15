@@ -32,12 +32,12 @@ A list of $d+1$ labels ordered from the root to the node labelled $L$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `label = 14`
-- Output: `[1, 3, 4, 14]`
+- **Input:** `label = 14`
+- **Output:** `[1, 3, 4, 14]`
 
-**Example 2**
+#### Example 2
 
-- Input: `label = 26`
-- Output: `[1, 2, 6, 10, 26]`
+- **Input:** `label = 26`
+- **Output:** `[1, 2, 6, 10, 26]`

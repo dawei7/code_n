@@ -33,19 +33,19 @@ Let $n=\lvert\texttt{nums}\rvert$ and $q=\lvert\texttt{queries}\rvert$. Both sat
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 0, 2]`, `queries = [[0, 2], [0, 2], [1, 1]]`
-- Output: `1`
-- Explanation: Keep the two full-range queries. Each supplies one decrement at indices 0 and 2, while their effect at index 1 may be chosen as zero.
+- **Input:** `nums = [2, 0, 2]`, `queries = [[0, 2], [0, 2], [1, 1]]`
+- **Output:** `1`
+- **Explanation:** Keep the two full-range queries. Each supplies one decrement at indices 0 and 2, while their effect at index 1 may be chosen as zero.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 1, 1, 1]`, `queries = [[1, 3], [0, 2], [1, 3], [1, 2]]`
-- Output: `2`
+- **Input:** `nums = [1, 1, 1, 1]`, `queries = [[1, 3], [0, 2], [1, 3], [1, 2]]`
+- **Output:** `2`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 2, 3, 4]`, `queries = [[0, 3]]`
-- Output: `-1`
-- Explanation: The single query supplies only one unit at the last index, but that index requires four.
+- **Input:** `nums = [1, 2, 3, 4]`, `queries = [[0, 3]]`
+- **Output:** `-1`
+- **Explanation:** The single query supplies only one unit at the last index, but that index requires four.

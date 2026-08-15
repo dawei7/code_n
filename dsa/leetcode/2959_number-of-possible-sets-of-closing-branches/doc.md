@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/number-of-possible-sets-of-closing-branches/) |
 
 ## Problem Description
+
 ### Goal
+
 A company has $N$ branches numbered from `0` through `n - 1`. Undirected roads
 connect some pairs of branches, and initially every branch is reachable from
 every other. A road record `[u, v, w]` gives its two endpoints and positive
@@ -27,6 +29,7 @@ at most `maxDistance`. A set leaving fewer than two branches open automatically
 meets the pairwise condition.
 
 ### Function Contract
+
 **Inputs**
 
 - `n`: the number of branches
@@ -44,20 +47,21 @@ The number of branch sets that may be closed while keeping every pair of open
 branches within `maxDistance` using only open branches and their roads.
 
 ### Examples
-**Example 1**
 
-- Input: `n = 3, maxDistance = 5, roads = [[0,1,2],[1,2,10],[0,2,10]]`
-- Output: `5`
-- Explanation: Besides closing every branch, each choice that leaves at most one branch open is valid, and leaving only branches `0` and `1` open is also valid.
+#### Example 1
 
-**Example 2**
+- **Input:** `n = 3, maxDistance = 5, roads = [[0,1,2],[1,2,10],[0,2,10]]`
+- **Output:** `5`
+- **Explanation:** Besides closing every branch, each choice that leaves at most one branch open is valid, and leaving only branches `0` and `1` open is also valid.
 
-- Input: `n = 3, maxDistance = 5, roads = [[0,1,20],[0,1,10],[1,2,2],[0,2,2]]`
-- Output: `7`
-- Explanation: All three branches are mutually within distance four, and every closing choice except the one that leaves only `0` and `1` open is valid.
+#### Example 2
 
-**Example 3**
+- **Input:** `n = 3, maxDistance = 5, roads = [[0,1,20],[0,1,10],[1,2,2],[0,2,2]]`
+- **Output:** `7`
+- **Explanation:** All three branches are mutually within distance four, and every closing choice except the one that leaves only `0` and `1` open is valid.
 
-- Input: `n = 1, maxDistance = 10, roads = []`
-- Output: `2`
-- Explanation: Both keeping the sole branch open and closing it satisfy the condition.
+#### Example 3
+
+- **Input:** `n = 1, maxDistance = 10, roads = []`
+- **Output:** `2`
+- **Explanation:** Both keeping the sole branch open and closing it satisfy the condition.

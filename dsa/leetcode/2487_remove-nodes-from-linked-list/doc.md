@@ -32,14 +32,14 @@ Return the head of the list after removing exactly those nodes that have a later
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `head = [5, 2, 13, 3, 8]`
-- Output: `[13, 8]`
-- Explanation: `13` eliminates the earlier `5` and `2`, while `8` eliminates `3`. Neither retained node has a greater value to its right.
+- **Input:** `head = [5, 2, 13, 3, 8]`
+- **Output:** `[13, 8]`
+- **Explanation:** `13` eliminates the earlier `5` and `2`, while `8` eliminates `3`. Neither retained node has a greater value to its right.
 
-**Example 2**
+#### Example 2
 
-- Input: `head = [1, 1, 1, 1]`
-- Output: `[1, 1, 1, 1]`
-- Explanation: Equal values are not greater, so every node remains.
+- **Input:** `head = [1, 1, 1, 1]`
+- **Output:** `[1, 1, 1, 1]`
+- **Explanation:** Equal values are not greater, so every node remains.

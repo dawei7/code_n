@@ -12,53 +12,47 @@ Return an array containing all the remaining methods after removing all the **su
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+- `invocations`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 4, k = 1, invocations = [[1,2],[0,1],[3,2]]
+- **Input:** n = 4, k = 1, invocations = [[1,2],[0,1],[3,2]]
 
-**Output:** [0,1,2,3]
+- **Output:** [0,1,2,3]
 
-**Explanation:**
-
-![](images/graph-2.png)
+- **Explanation:** ![](images/graph-2.png)
 
 Method 2 and method 1 are suspicious, but they are directly invoked by methods 3 and 0, which are not suspicious. We return all elements without removing anything.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 5, k = 0, invocations = [[1,2],[0,2],[0,1],[3,4]]
+- **Input:** n = 5, k = 0, invocations = [[1,2],[0,2],[0,1],[3,4]]
 
-**Output:** [3,4]
+- **Output:** [3,4]
 
-**Explanation:**
-
-![](images/graph-3.png)
+- **Explanation:** ![](images/graph-3.png)
 
 Methods 0, 1, and 2 are suspicious and they are not directly invoked by any other method. We can remove them.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 3, k = 2, invocations = [[1,2],[0,1],[2,0]]
+- **Input:** n = 3, k = 2, invocations = [[1,2],[0,1],[2,0]]
 
-**Output:** []
+- **Output:** []
 
-**Explanation:**
-
-![](images/graph.png)
+- **Explanation:** ![](images/graph.png)
 
 All methods are suspicious. We can remove them.
-
-</div>
 
 ### 4. Constraints
 

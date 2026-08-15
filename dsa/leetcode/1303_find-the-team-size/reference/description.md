@@ -41,7 +41,7 @@ Return exactly $n$ rows—one for every employee. Team identifiers and employee 
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Employee Table:
 +-------------+------------+
 | employee_id | team_id    |
@@ -53,7 +53,7 @@ Employee Table:
 |     5       |     9      |
 |     6       |     9      |
 +-------------+------------+
-**Output:**
+- **Output:** 
 +-------------+------------+
 | employee_id | team_size  |
 +-------------+------------+
@@ -64,8 +64,7 @@ Employee Table:
 |     5       |     2      |
 |     6       |     2      |
 +-------------+------------+
-**Explanation:**
-Employees with Id 1,2,3 are part of a team with team_id = 8.
+- **Explanation:** Employees with Id 1,2,3 are part of a team with team_id = 8.
 Employee with Id 4 is part of a team with team_id = 7.
 Employees with Id 5,6 are part of a team with team_id = 9.
 ```

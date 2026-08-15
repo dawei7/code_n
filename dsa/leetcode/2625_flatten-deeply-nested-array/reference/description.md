@@ -27,6 +27,7 @@ n = 0
 **Explanation**
 Passing a depth of n=0 will always result in the original array. This is because the smallest possible depth of a subarray (0) is not less than n=0. Thus, no subarray should be flattened.
 ```
+
 #### Example 2
 
 ```
@@ -39,6 +40,7 @@ n = 1
 **Explanation**
 The subarrays starting with 4, 7, and 13 are all flattened. This is because their depth of 0 is less than 1. However [9, 10, 11] remains unflattened because its depth is 1.
 ```
+
 #### Example 3
 
 ```

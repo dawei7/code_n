@@ -27,6 +27,7 @@ the matrix contains no `1`.
 
 - **Input:** $mat = [[0,1,1,0],[0,1,1,0],[0,0,0,1]]$
 - **Output:** `3`
+
 #### Example 2
 
 ![](images/long2-grid.jpg)

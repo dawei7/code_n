@@ -16,8 +16,17 @@ Return the **maximum** amount of `initialCurrency` you can have after performing
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `initialCurrency`: Input parameter (`str`).
+- `pairs1`: Input parameter (`List[List[str]]`).
+- `rates1`: Input parameter (`List[float]`).
+- `pairs2`: Input parameter (`List[List[str]]`).
+- `rates2`: Input parameter (`List[float]`).
+
+**Return value**
+
+- Returns `float`.
 
 ### 3. Note
 
@@ -27,57 +36,41 @@ Conversion rates are valid, and there will be no contradictions in the rates for
 
 #### Example 1
 
-<div class="example-block">
-**Input:** initialCurrency = "EUR", pairs1 = [["EUR","USD"],["USD","JPY"]], rates1 = [2.0,3.0], pairs2 = [["JPY","USD"],["USD","CHF"],["CHF","EUR"]], rates2 = [4.0,5.0,6.0]
+- **Input:** initialCurrency = "EUR", pairs1 = [["EUR","USD"],["USD","JPY"]], rates1 = [2.0,3.0], pairs2 = [["JPY","USD"],["USD","CHF"],["CHF","EUR"]], rates2 = [4.0,5.0,6.0]
 
-**Output:** 720.00000
+- **Output:** 720.00000
 
-**Explanation:**
-
-To get the maximum amount of **EUR**, starting with 1.0 **EUR**:
+- **Explanation:** To get the maximum amount of **EUR**, starting with 1.0 **EUR**:
 
 - On Day 1:
 
-		<li>Convert **EUR **to **USD** to get 2.0 **USD**.
+		- Convert **EUR **to **USD** to get 2.0 **USD**.
 
 - Convert **USD** to **JPY** to get 6.0 **JPY**.
 
-	</li>
 - On Day 2:
 
-		<li>Convert **JPY** to **USD** to get 24.0 **USD**.
+		- Convert **JPY** to **USD** to get 24.0 **USD**.
 
 - Convert **USD** to **CHF** to get 120.0 **CHF**.
 
 - Finally, convert **CHF** to **EUR** to get 720.0 **EUR**.
 
-	</li>
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** initialCurrency = "NGN", pairs1 = [["NGN","EUR"]], rates1 = [9.0], pairs2 = [["NGN","EUR"]], rates2 = [6.0]
+- **Input:** initialCurrency = "NGN", pairs1 = [["NGN","EUR"]], rates1 = [9.0], pairs2 = [["NGN","EUR"]], rates2 = [6.0]
 
-**Output:** 1.50000
+- **Output:** 1.50000
 
-**Explanation:**
+- **Explanation:** Converting **NGN** to **EUR** on day 1 and **EUR** to **NGN** using the inverse rate on day 2 gives the maximum amount.
 
-Converting **NGN** to **EUR** on day 1 and **EUR** to **NGN** using the inverse rate on day 2 gives the maximum amount.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** initialCurrency = "USD", pairs1 = [["USD","EUR"]], rates1 = [1.0], pairs2 = [["EUR","JPY"]], rates2 = [10.0]
+- **Input:** initialCurrency = "USD", pairs1 = [["USD","EUR"]], rates1 = [1.0], pairs2 = [["EUR","JPY"]], rates2 = [10.0]
 
-**Output:** 1.00000
+- **Output:** 1.00000
 
-**Explanation:**
-
-In this example, there is no need to make any conversions on either day.
-
-</div>
+- **Explanation:** In this example, there is no need to make any conversions on either day.
 
 ### 5. Constraints
 

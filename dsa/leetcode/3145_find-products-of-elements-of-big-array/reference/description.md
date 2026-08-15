@@ -45,41 +45,37 @@ Return an integer array `answer` such that $\text{answer}[i]$ is the answer to t
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** queries = [[1,3,7]]
+- **Input:** queries = [[1,3,7]]
 
-**Output:** [4]
+- **Output:** [4]
 
-**Explanation:**
-
-There is one query.
+- **Explanation:** There is one query.
 
 $\text{big}_{nums}[1..3] = [2,1,2]$. The product of them is 4. The result is $4 \% 7 = 4.$
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** queries = [[2,5,3],[7,7,4]]
+- **Input:** queries = [[2,5,3],[7,7,4]]
 
-**Output:** [2,2]
+- **Output:** [2,2]
 
-**Explanation:**
-
-There are two queries.
+- **Explanation:** There are two queries.
 
 First query: $\text{big}_{nums}[2..5] = [1,2,4,1]$. The product of them is 8. The result is $8 \% 3 = 2$.
 
 Second query: $\text{big}_{nums}[7] = 2$. The result is $2 \% 4 = 2$.
-
-</div>
 
 ### 4. Constraints
 

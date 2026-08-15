@@ -8,8 +8,14 @@ Return the number of islands with a total value **divisible by** `k`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -17,30 +23,21 @@ Return the number of islands with a total value **divisible by** `k`.
 
 ![](images/example1griddrawio-1.png)
 
-<div class="example-block">
-**Input:** grid = [[0,2,1,0,0],[0,5,0,0,5],[0,0,1,0,0],[0,1,4,7,0],[0,2,0,0,8]], k = 5
+- **Input:** grid = [[0,2,1,0,0],[0,5,0,0,5],[0,0,1,0,0],[0,1,4,7,0],[0,2,0,0,8]], k = 5
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** The grid contains four islands. The islands highlighted in blue have a total value that is divisible by 5, while the islands highlighted in red do not.
 
-The grid contains four islands. The islands highlighted in blue have a total value that is divisible by 5, while the islands highlighted in red do not.
-
-</div>
 #### Example 2
 
 ![](images/example2griddrawio.png)
 
-<div class="example-block">
-**Input:** grid = [[3,0,3,0], [0,3,0,3], [3,0,3,0]], k = 3
+- **Input:** grid = [[3,0,3,0], [0,3,0,3], [3,0,3,0]], k = 3
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
-
-The grid contains six islands, each with a total value that is divisible by 3.
-
-</div>
+- **Explanation:** The grid contains six islands, each with a total value that is divisible by 3.
 
 ### 4. Constraints
 

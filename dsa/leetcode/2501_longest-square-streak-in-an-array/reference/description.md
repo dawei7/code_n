@@ -12,8 +12,13 @@ A **subsequence** is an array that can be derived from another array by deleting
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,6 +31,7 @@ A **subsequence** is an array that can be derived from another array by deleting
 - 16 = 4 * 4.
 Therefore, [4,16,2] is a square streak.
 It can be shown that every subsequence of length 4 is not a square streak.
+
 #### Example 2
 
 - **Input:** `nums = [2,3,5,6,7]`

@@ -25,6 +25,7 @@ The app-local function returns the cycle-entry node's zero-based index, or `-1` 
 - **Input:** $head = [3,2,0,-4], pos = 1$
 - **Output:** `tail connects to node index 1`
 - **Explanation:** There is a cycle in the linked list, where tail connects to the second node.
+
 #### Example 2
 
 ![](images/circularlinkedlist_test2.png)
@@ -32,6 +33,7 @@ The app-local function returns the cycle-entry node's zero-based index, or `-1` 
 - **Input:** $head = [1,2], pos = 0$
 - **Output:** `tail connects to node index 0`
 - **Explanation:** There is a cycle in the linked list, where tail connects to the first node.
+
 #### Example 3
 
 ![](images/circularlinkedlist_test3.png)

@@ -31,23 +31,23 @@ Count all valid index pairs. Equal values at different indices remain distinct p
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,4,2,7], low = 2, high = 6`
-- Output: `6`
+- **Input:** `nums = [1,4,2,7], low = 2, high = 6`
+- **Output:** `6`
 
 Every one of the six index pairs has an XOR in the requested interval.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [9,8,4,2,1], low = 5, high = 14`
-- Output: `8`
+- **Input:** `nums = [9,8,4,2,1], low = 5, high = 14`
+- **Output:** `8`
 
 Eight of the ten possible index pairs satisfy the inclusive bounds.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,2,3], low = 1, high = 2`
-- Output: `2`
+- **Input:** `nums = [1,2,3], low = 1, high = 2`
+- **Output:** `2`
 
 The pair XOR values are `3`, `2`, and `1`.

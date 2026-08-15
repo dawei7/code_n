@@ -16,8 +16,14 @@ Return *the **difference** between the **maximum** and **minimum** scores among 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `weights`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,10 +31,10 @@ Return *the **difference** between the **maximum** and **minimum** scores among 
 
 - **Input:** $weights = [1,3,5,1], k = 2$
 - **Output:** `4`
-- **Explanation:**
-The distribution [1],[3,5,1] results in the minimal score of (1+1) + (3+1) = 6.
+- **Explanation:** The distribution [1],[3,5,1] results in the minimal score of (1+1) + (3+1) = 6.
 The distribution [1,3],[5,1], results in the maximal score of (1+3) + (5+1) = 10.
 Thus, we return their difference 10 - 6 = 4.
+
 #### Example 2
 
 - **Input:** $weights = [1, 3], k = 2$

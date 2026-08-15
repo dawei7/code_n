@@ -27,7 +27,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 cities table:
@@ -70,38 +69,33 @@ cities table:
 
 - **Pennsylvania**:
 
-		<li>Has 3 cities (meets minimum requirement)
+		- Has 3 cities (meets minimum requirement)
 
 - All 3 cities start with 'P' (same as state)
 
 - matching_letter_count = 3
 
-	</li>
 - **Texas**:
 
-		<li>Has 4 cities (meets minimum requirement)
+		- Has 4 cities (meets minimum requirement)
 
 - 3 cities (Taylor, Temple, Tyler) start with 'T' (same as state)
 
 - matching_letter_count = 3
 
-	</li>
 - **New York**:
 
-		<li>Has 4 cities (meets minimum requirement)
+		- Has 4 cities (meets minimum requirement)
 
 - 2 cities (Newark, New York City) start with 'N' (same as state)
 
 - matching_letter_count = 2
 
-	</li>
 - **California** is not included in the output because:
 
-		<li>Although it has 4 cities (meets minimum requirement)
+		- Although it has 4 cities (meets minimum requirement)
 
 - No cities start with 'C' (doesn't meet the matching letter requirement)
-
-	</li>
 
 ### 2. Function Contract
 
@@ -114,5 +108,3 @@ cities table:
 - When matching_letter_count is the same (Texas and New York both have 2), they are ordered by state name alphabetically
 
 - Cities in each row are ordered alphabetically
-
-</div>

@@ -17,11 +17,13 @@ A **palindrome** is a number that reads the same backward as forward.
 - **Input:** $num = "1221"$
 - **Output:** `"2112"`
 - **Explanation:** The next palindrome larger than "1221" is "2112".
+
 #### Example 2
 
 - **Input:** $num = "32123"$
 - **Output:** `""`
 - **Explanation:** No palindromes larger than "32123" can be made by rearranging the digits.
+
 #### Example 3
 
 - **Input:** $num = "45544554"$

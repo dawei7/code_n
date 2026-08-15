@@ -10,8 +10,14 @@ If it is impossible to make `num1` equal to `0`, return `-1`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `num1`: Input parameter (`int`).
+- `num2`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +30,7 @@ If it is impossible to make `num1` equal to `0`, return `-1`.
 - We choose i = 2 and subtract $2^{2}$ + (-2) from 1, 1 - (4 + (-2)) = -1.
 - We choose i = 0 and subtract $2^{0}$ + (-2) from -1, (-1) - (1 + (-2)) = 0.
 It can be proven, that 3 is the minimum number of operations that we need to perform.
+
 #### Example 2
 
 - **Input:** $num1 = 5, num2 = 7$

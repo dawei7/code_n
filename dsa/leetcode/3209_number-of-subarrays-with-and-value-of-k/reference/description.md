@@ -4,47 +4,40 @@ Given an array of integers `nums` and an integer `k`, return the number of subar
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,1,1], k = 1
+- **Input:** nums = [1,1,1], k = 1
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
+- **Explanation:** All subarrays contain only 1's.
 
-All subarrays contain only 1's.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,1,2], k = 1
+- **Input:** nums = [1,1,2], k = 1
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** Subarrays having an `AND` value of 1 are: `[<u>**1**</u>,1,2]`, `[1,<u>**1**</u>,2]`, `[<u>**1,1**</u>,2]`.
 
-Subarrays having an `AND` value of 1 are: `[<u>**1**</u>,1,2]`, `[1,<u>**1**</u>,2]`, `[<u>**1,1**</u>,2]`.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,2,3], k = 2
+- **Input:** nums = [1,2,3], k = 2
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-Subarrays having an `AND` value of 2 are: `[1,**<u>2</u>**,3]`, `[1,<u>**2,3**</u>]`.
-
-</div>
+- **Explanation:** Subarrays having an `AND` value of 2 are: `[1,**<u>2</u>**,3]`, `[1,<u>**2,3**</u>]`.
 
 ### 4. Constraints
 

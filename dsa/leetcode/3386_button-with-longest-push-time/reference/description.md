@@ -12,19 +12,23 @@ Return the `index` of the button that took the **longest** time to push. If mult
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `events`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** events = [[1,2],[2,5],[3,9],[1,15]]
+- **Input:** events = [[1,2],[2,5],[3,9],[1,15]]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - Button with index 1 is pressed at time 2.
 
@@ -34,21 +38,17 @@ Return the `index` of the button that took the **longest** time to push. If mult
 
 - Button with index 1 is pressed again at time 15, so it took $15 - 9 = 6$ units of time.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** events = [[10,5],[1,7]]
+- **Input:** events = [[10,5],[1,7]]
 
-**Output:** 10
+- **Output:** 10
 
-**Explanation:**
+- **Explanation:** 
 
 - Button with index 10 is pressed at time 5.
 
 - Button with index 1 is pressed at time 7, so it took $7 - 5 = 2$ units of time.
-
-</div>
 
 ### 4. Constraints
 

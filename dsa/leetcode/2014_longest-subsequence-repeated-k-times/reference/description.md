@@ -12,8 +12,14 @@ Return *the **longest subsequence repeated** *`k`* times in string *`s`*. If mul
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -25,11 +31,13 @@ Return *the **longest subsequence repeated** *`k`* times in string *`s`*. If mul
 - **Output:** `"let"`
 - **Explanation:** There are two longest subsequences repeated 2 times: "let" and "ete".
 "let" is the lexicographically largest one.
+
 #### Example 2
 
 - **Input:** `s = "bb", k = 2`
 - **Output:** `"b"`
 - **Explanation:** The longest subsequence repeated 2 times is "b".
+
 #### Example 3
 
 - **Input:** `s = "ab", k = 2`

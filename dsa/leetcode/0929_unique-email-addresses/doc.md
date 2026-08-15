@@ -40,13 +40,13 @@ Return the number of distinct recipient addresses after applying the local-name 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `emails = ["test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","testemail+david@lee.tcode.com"]`
-- Output: `2`
-- Explanation: The messages reach `"testemail@leetcode.com"` and `"testemail@lee.tcode.com"`.
+- **Input:** `emails = ["test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","testemail+david@lee.tcode.com"]`
+- **Output:** `2`
+- **Explanation:** The messages reach `"testemail@leetcode.com"` and `"testemail@lee.tcode.com"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `emails = ["a@leetcode.com","b@leetcode.com","c@leetcode.com"]`
-- Output: `3`
+- **Input:** `emails = ["a@leetcode.com","b@leetcode.com","c@leetcode.com"]`
+- **Output:** `3`

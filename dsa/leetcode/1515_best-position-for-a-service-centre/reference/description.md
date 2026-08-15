@@ -12,8 +12,13 @@ Answers within $10^{-5}$ of the actual value will be accepted.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `positions`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `float`.
 
 ### 3. Examples
 
@@ -24,6 +29,7 @@ Answers within $10^{-5}$ of the actual value will be accepted.
 - **Input:** $positions = [[0,1],[1,0],[1,2],[2,1]]$
 - **Output:** `4.00000`
 - **Explanation:** As shown, you can see that choosing [x_centre, y_centre] = [1, 1] will make the distance to each customer = 1, the sum of all distances is 4 which is the minimum possible we can achieve.
+
 #### Example 2
 
 ![](images/q4_e3.jpg)

@@ -30,20 +30,20 @@ Return the total number of operations required to empty the array. Because every
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3,4,-1]`
-- Output: `5`
-- Explanation: Rotate `3` and `4`, remove `-1`, then remove `3` and `4`.
+- **Input:** `nums = [3,4,-1]`
+- **Output:** `5`
+- **Explanation:** Rotate `3` and `4`, remove `-1`, then remove `3` and `4`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,2,4,3]`
-- Output: `5`
-- Explanation: Remove `1` and `2`, rotate `4`, then remove `3` and `4`.
+- **Input:** `nums = [1,2,4,3]`
+- **Output:** `5`
+- **Explanation:** Remove `1` and `2`, rotate `4`, then remove `3` and `4`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,2,3]`
-- Output: `3`
-- Explanation: The front is always the current minimum, so every operation removes an element.
+- **Input:** `nums = [1,2,3]`
+- **Output:** `3`
+- **Explanation:** The front is always the current minimum, so every operation removes an element.

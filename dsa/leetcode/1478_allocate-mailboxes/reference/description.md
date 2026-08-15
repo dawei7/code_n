@@ -8,8 +8,14 @@ The test cases are generated so that the answer fits in a 32-bit integer.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `houses`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +27,7 @@ The test cases are generated so that the answer fits in a 32-bit integer.
 - **Output:** `5`
 - **Explanation:** Allocate mailboxes in position 3, 9 and 20.
 Minimum total distance from each houses to nearest mailboxes is |3-1| + |4-3| + |9-8| + |10-9| + |20-20| = 5
+
 #### Example 2
 
 ![](images/sample_2_1816.png)

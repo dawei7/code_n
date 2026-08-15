@@ -35,23 +35,23 @@ Return the maximum total profit as an integer. Each worker and each task may par
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `workers = [1, 2, 3, 4, 5]`, `tasks = [[1, 100], [2, 400], [3, 100], [3, 400]]`
-- Output: `1000`
+- **Input:** `workers = [1, 2, 3, 4, 5]`, `tasks = [[1, 100], [2, 400], [3, 100], [3, 400]]`
+- **Output:** `1000`
 
 The skill-1 and skill-2 workers earn `100` and `400`. The skill-3 worker takes one profit-`400` task, and the extra worker takes the other skill-3 task for `100`.
 
-**Example 2**
+#### Example 2
 
-- Input: `workers = [10, 10000, 100000000]`, `tasks = [[1, 100]]`
-- Output: `100`
+- **Input:** `workers = [10, 10000, 100000000]`, `tasks = [[1, 100]]`
+- **Output:** `100`
 
 No regular worker has skill 1, but the extra worker can complete the only task.
 
-**Example 3**
+#### Example 3
 
-- Input: `workers = [7]`, `tasks = [[3, 3], [3, 3]]`
-- Output: `3`
+- **Input:** `workers = [7]`, `tasks = [[3, 3], [3, 3]]`
+- **Output:** `3`
 
 The regular worker cannot take either task. The extra worker completes one of them, and a task cannot be reused.

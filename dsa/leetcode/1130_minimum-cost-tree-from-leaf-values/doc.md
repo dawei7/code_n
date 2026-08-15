@@ -30,13 +30,13 @@ The minimum possible sum of the non-leaf node values over all valid full binary 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [6,2,4]`
-- Output: `32`
-- Explanation: The lower-cost tree has internal values `8` and `24`, whose sum is `32`; the other possible grouping costs `36`.
+- **Input:** `arr = [6,2,4]`
+- **Output:** `32`
+- **Explanation:** The lower-cost tree has internal values `8` and `24`, whose sum is `32`; the other possible grouping costs `36`.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [4,11]`
-- Output: `44`
+- **Input:** `arr = [4,11]`
+- **Output:** `44`

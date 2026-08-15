@@ -6,8 +6,14 @@ Return *the minimum integer you can obtain also as a string*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `num`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -18,11 +24,13 @@ Return *the minimum integer you can obtain also as a string*.
 - **Input:** $num = "4321", k = 4$
 - **Output:** `"1342"`
 - **Explanation:** The steps to obtain the minimum integer from 4321 with 4 adjacent swaps are shown.
+
 #### Example 2
 
 - **Input:** $num = "100", k = 1$
 - **Output:** `"010"`
 - **Explanation:** It's ok for the output to have leading zeros, but the input is guaranteed not to have any leading zeros.
+
 #### Example 3
 
 - **Input:** $num = "36789", k = 1000$

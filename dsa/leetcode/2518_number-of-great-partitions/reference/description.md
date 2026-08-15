@@ -4,8 +4,14 @@ You are given an array `nums` consisting of **positive** integers and an integer
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Partition
 
@@ -22,11 +28,13 @@ Two partitions are considered distinct if some element $\text{nums}[i]$ is in di
 - **Input:** `nums = [1,2,3,4], k = 4`
 - **Output:** `6`
 - **Explanation:** The great partitions are: ([1,2,3], [4]), ([1,3], [2,4]), ([1,4], [2,3]), ([2,3], [1,4]), ([2,4], [1,3]) and ([4], [1,2,3]).
+
 #### Example 2
 
 - **Input:** `nums = [3,3,3], k = 4`
 - **Output:** `0`
 - **Explanation:** There are no great partitions for this array.
+
 #### Example 3
 
 - **Input:** `nums = [6,6], k = 2`

@@ -8,8 +8,13 @@ Return *an array containing all the **safe nodes** of the graph*. The answer sho
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `graph`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -22,12 +27,12 @@ Return *an array containing all the **safe nodes** of the graph*. The answer sho
 - **Explanation:** The given graph is shown above.
 Nodes 5 and 6 are terminal nodes as there are no outgoing edges from either of them.
 Every path starting at nodes 2, 4, 5, and 6 all lead to either node 5 or 6.
+
 #### Example 2
 
 - **Input:** $graph = [[1,2,3,4],[1,2],[3,4],[0,4],[]]$
 - **Output:** `[4]`
-- **Explanation:**
-Only node 4 is a terminal node, and every path starting at node 4 leads to node 4.
+- **Explanation:** Only node 4 is a terminal node, and every path starting at node 4 leads to node 4.
 
 ### 4. Constraints
 

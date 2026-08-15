@@ -34,16 +34,16 @@ Let $q$ be the number of queries and let $C$ be one more than the largest coordi
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `queries = [[1, 2], [2, 3, 3], [2, 3, 1], [2, 2, 2]]`
-- Output: `[false, true, true]`
+- **Input:** `queries = [[1, 2], [2, 3, 3], [2, 3, 1], [2, 2, 2]]`
+- **Output:** `[false, true, true]`
 
 An obstacle at coordinate `2` leaves no obstacle-free interval of length `3` inside $[0,3]$. Length `1` fits, and a length-`2` block can exactly touch the obstacle at its right endpoint.
 
-**Example 2**
+#### Example 2
 
-- Input: `queries = [[1, 7], [2, 7, 6], [1, 2], [2, 7, 5], [2, 7, 6]]`
-- Output: `[true, true, false]`
+- **Input:** `queries = [[1, 7], [2, 7, 6], [1, 2], [2, 7, 5], [2, 7, 6]]`
+- **Output:** `[true, true, false]`
 
 Before the second obstacle is added, the interval from `0` to `7` can hold the length-`6` block. Adding an obstacle at `2` splits that space; the largest remaining gap has length `5`, so the last two checks differ.

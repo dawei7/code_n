@@ -12,8 +12,13 @@ Return *the 2D sorted list of prime number pairs* $[x_{i}, y_{i}]$. The list sho
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Note
 
@@ -27,6 +32,7 @@ A prime number is a natural number greater than `1` with only two factors, itsel
 - **Output:** `[[3,7],[5,5]]`
 - **Explanation:** In this example, there are two prime pairs that satisfy the criteria.
 These pairs are [3,7] and [5,5], and we return them in the sorted order as described in the problem statement.
+
 #### Example 2
 
 - **Input:** $n = 2$

@@ -30,20 +30,20 @@ The reversed digit sequence is interpreted as an integer, so any leading zeros d
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `num = 443`
-- Output: `true`
-- Explanation: `172 + 271 = 443`.
+- **Input:** `num = 443`
+- **Output:** `true`
+- **Explanation:** `172 + 271 = 443`.
 
-**Example 2**
+#### Example 2
 
-- Input: `num = 63`
-- Output: `false`
-- Explanation: No non-negative integer has the required sum with its reversal.
+- **Input:** `num = 63`
+- **Output:** `false`
+- **Explanation:** No non-negative integer has the required sum with its reversal.
 
-**Example 3**
+#### Example 3
 
-- Input: `num = 181`
-- Output: `true`
-- Explanation: Reversing 140 gives integer 41, and `140 + 41 = 181`.
+- **Input:** `num = 181`
+- **Output:** `true`
+- **Explanation:** Reversing 140 gives integer 41, and `140 + 41 = 181`.

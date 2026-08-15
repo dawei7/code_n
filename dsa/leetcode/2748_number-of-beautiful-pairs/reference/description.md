@@ -8,8 +8,13 @@ Two integers `x` and `y` are **coprime** if there is no integer greater than 1 t
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +29,7 @@ When i = 1 and j = 2: the first digit of nums[1] is 5, and the last digit of num
 When i = 1 and j = 3: the first digit of nums[1] is 5, and the last digit of nums[3] is 4. Indeed, gcd(5,4) == 1.
 When i = 2 and j = 3: the first digit of nums[2] is 1, and the last digit of nums[3] is 4. Indeed, gcd(1,4) == 1.
 Thus, we return 5.
+
 #### Example 2
 
 - **Input:** `nums = [11,21,12]`

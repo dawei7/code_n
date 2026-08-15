@@ -8,35 +8,36 @@ Return the **minimum** number of operations required to make all characters in t
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "110", k = 1
+- **Input:** s = "110", k = 1
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - There is one `'0'` in `s`.
 
 - Since $k = 1$, we can flip it directly in one operation.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "0101", k = 3
+- **Input:** s = "0101", k = 3
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-One optimal set of operations choosing $k = 3$ indices in each operation is:
+- **Explanation:** One optimal set of operations choosing $k = 3$ indices in each operation is:
 
 - **Operation 1**: Flip indices `[0, 1, 3]`. `s` changes from `"0101"` to `"1000"`.
 
@@ -44,19 +45,13 @@ One optimal set of operations choosing $k = 3$ indices in each operation is:
 
 Thus, the minimum number of operations is 2.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "101", k = 2
+- **Input:** s = "101", k = 2
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-Since $k = 2$ and `s` has only one `'0'`, it is impossible to flip exactly `k` indices to make all `'1'`. Hence, the answer is -1.
-
-</div>
+- **Explanation:** Since $k = 2$ and `s` has only one `'0'`, it is impossible to flip exactly `k` indices to make all `'1'`. Hence, the answer is -1.
 
 ### 4. Constraints
 

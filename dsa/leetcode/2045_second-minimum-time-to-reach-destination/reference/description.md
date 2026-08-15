@@ -12,8 +12,16 @@ Given `n`, `edges`, `time`, and `change`, return *the **second minimum time** it
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+- `time`: Input parameter (`int`).
+- `change`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -31,8 +39,7 @@ Given `n`, `edges`, `time`, and `change`, return *the **second minimum time** it
 
 - **Input:** $n = 5, edges = [[1,2],[1,3],[1,4],[3,4],[4,5]], time = 3, change = 5$
 - **Output:** `13`
-- **Explanation:**
-The figure on the left shows the given graph.
+- **Explanation:** The figure on the left shows the given graph.
 The blue path in the figure on the right is the minimum time path.
 The time taken is:
 - Start at 1, time elapsed=0
@@ -46,14 +53,14 @@ The red path shows the path to get the second minimum time.
 - Wait at 4 for 4 minutes, time elapsed=10
 - 4 -> 5: 3 minutes, time elapsed=13
 Hence the second minimum time is 13 minutes.
+
 #### Example 2
 
 ![](images/eg2.png)
 
 - **Input:** $n = 2, edges = [[1,2]], time = 3, change = 2$
 - **Output:** `11`
-- **Explanation:**
-The minimum time path is 1 -> 2 with time = 3 minutes.
+- **Explanation:** The minimum time path is 1 -> 2 with time = 3 minutes.
 The second minimum time path is 1 -> 2 -> 1 -> 2 with time = 11 minutes.
 
 ### 5. Constraints

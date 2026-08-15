@@ -34,16 +34,16 @@ Return a boolean indicating whether one horizontal or vertical cut can form two 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[1,4],[2,3]]`
-- Output: `true`
-- Explanation: Cutting horizontally between the two rows gives sums $1+4=5$ and $2+3=5$.
+- **Input:** `grid = [[1,4],[2,3]]`
+- **Output:** `true`
+- **Explanation:** Cutting horizontally between the two rows gives sums $1+4=5$ and $2+3=5$.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[1,3],[2,4]]`
-- Output: `false`
-- Explanation: Neither the horizontal cut nor the vertical cut divides the total equally.
+- **Input:** `grid = [[1,3],[2,4]]`
+- **Output:** `false`
+- **Explanation:** Neither the horizontal cut nor the vertical cut divides the total equally.
 
 ---

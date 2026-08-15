@@ -30,20 +30,20 @@ The final group contains every remaining node and may therefore be shorter than 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `head = [5,2,6,3,9,1,7,3,8,4]`
-- Output: `[5,6,2,3,9,1,4,8,3,7]`
-- Explanation: Groups have lengths $1,2,3,4$; the groups of lengths $2$ and $4$ reverse.
+- **Input:** `head = [5,2,6,3,9,1,7,3,8,4]`
+- **Output:** `[5,6,2,3,9,1,4,8,3,7]`
+- **Explanation:** Groups have lengths $1,2,3,4$; the groups of lengths $2$ and $4$ reverse.
 
-**Example 2**
+#### Example 2
 
-- Input: `head = [1,1,0,6]`
-- Output: `[1,0,1,6]`
-- Explanation: The groups have actual lengths $1,2,1$, so only the middle group reverses.
+- **Input:** `head = [1,1,0,6]`
+- **Output:** `[1,0,1,6]`
+- **Explanation:** The groups have actual lengths $1,2,1$, so only the middle group reverses.
 
-**Example 3**
+#### Example 3
 
-- Input: `head = [1,1,0,6,5]`
-- Output: `[1,0,1,5,6]`
-- Explanation: The final group has actual length $2$ rather than its intended length $3$, so it also reverses.
+- **Input:** `head = [1,1,0,6,5]`
+- **Output:** `[1,0,1,5,6]`
+- **Explanation:** The final group has actual length $2$ rather than its intended length $3$, so it also reverses.

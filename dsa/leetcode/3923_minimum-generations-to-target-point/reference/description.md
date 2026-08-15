@@ -37,12 +37,11 @@ Return the smallest generation number in which `target` is available. Return `-1
 
 #### Example 1
 
-<div class="example-block">
-**Input:** points = [[0,0,0],[6,6,6]], target = [3,3,3]
+- **Input:** points = [[0,0,0],[6,6,6]], target = [3,3,3]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - **Generation 0:** The initial $points = [[0, 0, 0], [6, 6, 6]]$.
 
@@ -50,22 +49,19 @@ Return the smallest generation number in which `target` is available. Return `-1
 
 - **Generation 1:** For each pair of points in generation 0, we create new points.
 
-		<li>Using `[0, 0, 0]` and `[6, 6, 6]`, we generate `[3, 3, 3]`.
+		- Using `[0, 0, 0]` and `[6, 6, 6]`, we generate `[3, 3, 3]`.
 
-	</li>
 - After generation 1, $points = [[0, 0, 0], [6, 6, 6], [3, 3, 3]]$.
 
 - The $target = [3, 3, 3]$ is found in generation 1, so the smallest `k` is 1.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** points = [[0,0,0],[5,5,5]], target = [1,1,1]
+- **Input:** points = [[0,0,0],[5,5,5]], target = [1,1,1]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - **Generation 0:** The initial $points = [[0, 0, 0], [5, 5, 5]]$.
 
@@ -73,53 +69,45 @@ Return the smallest generation number in which `target` is available. Return `-1
 
 - **Generation 1:** For each pair of points in generation 0, we create new points.
 
-		<li>Using `[0, 0, 0]` and `[5, 5, 5]`, we generate `[2, 2, 2]`.
+		- Using `[0, 0, 0]` and `[5, 5, 5]`, we generate `[2, 2, 2]`.
 
-	</li>
 - After generation 1, $points = [[0, 0, 0], [5, 5, 5], [2, 2, 2]]$.
 
 - **Generation 2:** For each pair of points available after generation 1, we create new points.
 
-		<li>Using `[0, 0, 0]` and `[5, 5, 5]`, we generate `[2, 2, 2]`.
+		- Using `[0, 0, 0]` and `[5, 5, 5]`, we generate `[2, 2, 2]`.
 
 - Using `[0, 0, 0]` and `[2, 2, 2]`, we generate `[1, 1, 1]`.
 
 - Using `[5, 5, 5]` and `[2, 2, 2]`, we generate `[3, 3, 3]`.
 
-	</li>
 - After generation 2, $points = [[0, 0, 0], [5, 5, 5], [2, 2, 2], [1, 1, 1], [3, 3, 3]]$.
 
 - The $target = [1, 1, 1]$ is found in generation 2, so the smallest `k` is 2.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** points = [[0,0,0],[2,2,2],[3,3,3]], target = [2,2,2]
+- **Input:** points = [[0,0,0],[2,2,2],[3,3,3]], target = [2,2,2]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** 
 
 - **Generation 0:** The initial $points = [[0, 0, 0], [2, 2, 2], [3, 3, 3]]$.
 
 - The $target = [2, 2, 2]$ already exists in generation 0, so the smallest `k` is 0.
 
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** points = [[1,2,3]], target = [5,5,5]
+- **Input:** points = [[1,2,3]], target = [5,5,5]
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
+- **Explanation:** 
 
 - Only one initial point is available, so no new points can be generated.
 
 - Therefore, the target cannot be obtained, and the answer is -1.
-
-</div>
 
 ### 4. Constraints
 

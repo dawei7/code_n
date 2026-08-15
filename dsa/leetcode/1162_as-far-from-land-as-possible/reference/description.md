@@ -6,8 +6,13 @@ The distance used in this problem is the Manhattan distance: the distance betwee
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +23,7 @@ The distance used in this problem is the Manhattan distance: the distance betwee
 - **Input:** `grid = [[1,0,1],[0,0,0],[1,0,1]]`
 - **Output:** `2`
 - **Explanation:** The cell (1, 1) is as far as possible from all the land with distance 2.
+
 #### Example 2
 
 ![](images/1336_ex2.JPG)

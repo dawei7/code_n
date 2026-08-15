@@ -10,19 +10,23 @@ Return `true` if **all** the cells satisfy these conditions, otherwise, return `
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** grid = [[1,0,2],[1,0,2]]
+- **Input:** grid = [[1,0,2],[1,0,2]]
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
+- **Explanation:** 
 
 **
 
@@ -32,15 +36,13 @@ Return `true` if **all** the cells satisfy these conditions, otherwise, return `
 
 All the cells in the grid satisfy the conditions.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** grid = [[1,1,1],[0,0,0]]
+- **Input:** grid = [[1,1,1],[0,0,0]]
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
+- **Explanation:** 
 
 **
 
@@ -50,21 +52,15 @@ All the cells in the grid satisfy the conditions.
 
 All cells in the first row are equal.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** grid = [[1],[2],[3]]
+- **Input:** grid = [[1],[2],[3]]
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
-
-![](images/changed.png)
+- **Explanation:** ![](images/changed.png)
 
 Cells in the first column have different values.
-
-</div>
 
 ### 4. Constraints
 

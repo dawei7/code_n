@@ -12,8 +12,18 @@ Return *the maximum number of alloys that the company can create*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+- `budget`: Input parameter (`int`).
+- `composition`: Input parameter (`List[List[int]]`).
+- `stock`: Input parameter (`List[int]`).
+- `cost`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -29,6 +39,7 @@ To create 2 alloys we need to buy the:
 In total, we need 2 * 1 + 2 * 2 + 2 * 3 = 12 coins, which is smaller than or equal to budget = 15.
 Notice that we have 0 units of metal of each type and we have to buy all the required units of metal.
 It can be proven that we can create at most 2 alloys.
+
 #### Example 2
 
 - **Input:** $n = 3, k = 2, budget = 15, composition = [[1,1,1],[1,1,10]], stock = [0,0,100], cost = [1,2,3]$
@@ -40,6 +51,7 @@ To create 5 alloys we need to buy:
 - 0 units of metal of the 3^rd type.
 In total, we need 5 * 1 + 5 * 2 + 0 * 3 = 15 coins, which is smaller than or equal to budget = 15.
 It can be proven that we can create at most 5 alloys.
+
 #### Example 3
 
 - **Input:** $n = 2, k = 3, budget = 10, composition = [[2,1],[1,2],[1,1]], stock = [1,1], cost = [5,5]$

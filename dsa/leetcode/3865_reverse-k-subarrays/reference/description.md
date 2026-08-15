@@ -25,12 +25,11 @@ Return the length-$N$ array formed by reversing each of the `k` blocks and conca
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,4,3,5,6], k = 3
+- **Input:** nums = [1,2,4,3,5,6], k = 3
 
-**Output:** [2,1,3,4,6,5]
+- **Output:** [2,1,3,4,6,5]
 
-**Explanation:**
+- **Explanation:** 
 
 - The array is partitioned into $k = 3$ subarrays: `[1, 2]`, `[4, 3]`, and `[5, 6]`.
 
@@ -38,21 +37,17 @@ Return the length-$N$ array formed by reversing each of the `k` blocks and conca
 
 - Combining them gives the final array `[2, 1, 3, 4, 6, 5]`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [5,4,4,2], k = 1
+- **Input:** nums = [5,4,4,2], k = 1
 
-**Output:** [2,4,4,5]
+- **Output:** [2,4,4,5]
 
-**Explanation:**
+- **Explanation:** 
 
 - The array is partitioned into $k = 1$ subarray: `[5, 4, 4, 2]`.
 
 - Reversing it produces `[2, 4, 4, 5]`, which is the final array.
-
-</div>
 
 ### 4. Constraints
 

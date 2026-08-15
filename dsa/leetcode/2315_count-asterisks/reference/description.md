@@ -6,8 +6,13 @@ Return *the number of *`'*'`* in *`s`*, **excluding** the *`'*'`* between each p
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -23,11 +28,13 @@ that each `'|'` will belong to **exactly** one pair.
 The characters between the first and second '|' are excluded from the answer.
 Also, the characters between the third and fourth '|' are excluded from the answer.
 There are 2 asterisks considered. Therefore, we return 2.
+
 #### Example 2
 
 - **Input:** `s = "iamprogrammer"`
 - **Output:** `0`
 - **Explanation:** In this example, there are no asterisks in s. Therefore, we return 0.
+
 #### Example 3
 
 - **Input:** `s = "yo|uar|e**|b|e***au|tifu|l"`

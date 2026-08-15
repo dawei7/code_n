@@ -20,19 +20,25 @@ Return an array of the **codes** of all valid coupons, **sorted** first by their
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `code`: Input parameter (`List[str]`).
+- `businessLine`: Input parameter (`List[str]`).
+- `isActive`: Input parameter (`List[bool]`).
+
+**Return value**
+
+- Returns `List[str]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** code = ["SAVE20","","PHARMA5","SAVE@20"], businessLine = ["restaurant","grocery","pharmacy","restaurant"], isActive = [true,true,true,true]
+- **Input:** code = ["SAVE20","","PHARMA5","SAVE@20"], businessLine = ["restaurant","grocery","pharmacy","restaurant"], isActive = [true,true,true,true]
 
-**Output:** ["PHARMA5","SAVE20"]
+- **Output:** ["PHARMA5","SAVE20"]
 
-**Explanation:**
+- **Explanation:** 
 
 - First coupon is valid.
 
@@ -42,23 +48,19 @@ Return an array of the **codes** of all valid coupons, **sorted** first by their
 
 - Fourth coupon has special character `@` (invalid).
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** code = ["GROCERY15","ELECTRONICS_50","DISCOUNT10"], businessLine = ["grocery","electronics","invalid"], isActive = [false,true,true]
+- **Input:** code = ["GROCERY15","ELECTRONICS_50","DISCOUNT10"], businessLine = ["grocery","electronics","invalid"], isActive = [false,true,true]
 
-**Output:** ["ELECTRONICS_50"]
+- **Output:** ["ELECTRONICS_50"]
 
-**Explanation:**
+- **Explanation:** 
 
 - First coupon is inactive (invalid).
 
 - Second coupon is valid.
 
 - Third coupon has invalid business line (invalid).
-
-</div>
 
 ### 4. Constraints
 

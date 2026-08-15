@@ -37,20 +37,20 @@ Return a new array whose entries retain their original order, with exactly those
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [1,2,3,[4,5,6],[7,8,[9,10,11],12],[13,14,15]]`, `n = 0`
-- Output: `[1,2,3,[4,5,6],[7,8,[9,10,11],12],[13,14,15]]`
-- Explanation: No nested array has a depth less than zero, so none is expanded.
+- **Input:** `arr = [1,2,3,[4,5,6],[7,8,[9,10,11],12],[13,14,15]]`, `n = 0`
+- **Output:** `[1,2,3,[4,5,6],[7,8,[9,10,11],12],[13,14,15]]`
+- **Explanation:** No nested array has a depth less than zero, so none is expanded.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [1,2,3,[4,5,6],[7,8,[9,10,11],12],[13,14,15]]`, `n = 1`
-- Output: `[1,2,3,4,5,6,7,8,[9,10,11],12,13,14,15]`
-- Explanation: Arrays encountered at depth zero are expanded, but `[9,10,11]` is encountered at depth one and remains nested.
+- **Input:** `arr = [1,2,3,[4,5,6],[7,8,[9,10,11],12],[13,14,15]]`, `n = 1`
+- **Output:** `[1,2,3,4,5,6,7,8,[9,10,11],12,13,14,15]`
+- **Explanation:** Arrays encountered at depth zero are expanded, but `[9,10,11]` is encountered at depth one and remains nested.
 
-**Example 3**
+#### Example 3
 
-- Input: `arr = [[1,2,3],[4,5,6],[7,8,[9,10,11],12],[13,14,15]]`, `n = 2`
-- Output: `[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]`
-- Explanation: Every nested array occurs above the limit of two, so the result is completely flat.
+- **Input:** `arr = [[1,2,3],[4,5,6],[7,8,[9,10,11],12],[13,14,15]]`, `n = 2`
+- **Output:** `[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]`
+- **Explanation:** Every nested array occurs above the limit of two, so the result is completely flat.

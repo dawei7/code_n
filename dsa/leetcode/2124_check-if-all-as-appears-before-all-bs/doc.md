@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/check-if-all-as-appears-before-all-bs/) |
 
 ## Problem Description
+
 ### Goal
 
 You are given a nonempty string `s` containing only the characters `a` and
@@ -24,6 +25,7 @@ vacuously. Return false as soon as the ordering switches back to `a` after any
 `b` has appeared; otherwise return true.
 
 ### Function Contract
+
 **Inputs**
 
 - `s`: A nonempty string containing only `a` and `b`. Let
@@ -34,23 +36,24 @@ vacuously. Return false as soon as the ordering switches back to `a` after any
 Return `true` if every `a` occurs before every `b`; otherwise return `false`.
 
 ### Examples
-**Example 1**
 
-- Input: `s = "aaabbb"`
-- Output: `true`
+#### Example 1
+
+- **Input:** `s = "aaabbb"`
+- **Output:** `true`
 
 All three `a` characters precede all three `b` characters.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "abab"`
-- Output: `false`
+- **Input:** `s = "abab"`
+- **Output:** `false`
 
 The `a` at index two occurs after the `b` at index one.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "bbb"`
-- Output: `true`
+- **Input:** `s = "bbb"`
+- **Output:** `true`
 
 There are no `a` characters that could violate the condition.

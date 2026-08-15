@@ -31,20 +31,20 @@ Return any permutation of `s` satisfying that rule. Characters not present in `o
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `order = "cba", s = "abcd"`
-- Output: `"cbad"`
-- Explanation: Ranked characters appear as `c`, then `b`, then `a`; unranked `d` may be placed freely.
+- **Input:** `order = "cba", s = "abcd"`
+- **Output:** `"cbad"`
+- **Explanation:** Ranked characters appear as `c`, then `b`, then `a`; unranked `d` may be placed freely.
 
-**Example 2**
+#### Example 2
 
-- Input: `order = "bcafg", s = "abcd"`
-- Output: `"bcad"`
-- Explanation: The characters shared with `order` follow `b`, `c`, `a`; `d` is unranked.
+- **Input:** `order = "bcafg", s = "abcd"`
+- **Output:** `"bcad"`
+- **Explanation:** The characters shared with `order` follow `b`, `c`, `a`; `d` is unranked.
 
-**Example 3**
+#### Example 3
 
-- Input: `order = "kqep", s = "kqeep"`
-- Output: `"kqeep"`
-- Explanation: Repeated `e` characters stay together at their ranked position.
+- **Input:** `order = "kqep", s = "kqeep"`
+- **Output:** `"kqeep"`
+- **Explanation:** Repeated `e` characters stay together at their ranked position.

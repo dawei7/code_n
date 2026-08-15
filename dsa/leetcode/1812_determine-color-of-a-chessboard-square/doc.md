@@ -32,23 +32,23 @@ The two-character string `coordinates` names one valid square, with its file let
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `coordinates = "a1"`
-- Output: `false`
+- **Input:** `coordinates = "a1"`
+- **Output:** `false`
 
 The lower-left reference square is black.
 
-**Example 2**
+#### Example 2
 
-- Input: `coordinates = "h3"`
-- Output: `true`
+- **Input:** `coordinates = "h3"`
+- **Output:** `true`
 
 Its zero-based file and rank indices have different parity.
 
-**Example 3**
+#### Example 3
 
-- Input: `coordinates = "c7"`
-- Output: `false`
+- **Input:** `coordinates = "c7"`
+- **Output:** `false`
 
 Both zero-based indices are even, matching `"a1"`'s color.

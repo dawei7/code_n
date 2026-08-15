@@ -25,6 +25,7 @@ Return any maximum-size subset in which every pair is divisible in at least one 
 - **Input:** `nums = [1,2,3]`
 - **Output:** `[1,2]`
 - **Explanation:** [1,3] is also accepted.
+
 #### Example 2
 
 - **Input:** `nums = [1,2,4,8]`

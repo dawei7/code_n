@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/maximum-number-of-eaten-apples/) |
 
 ## Problem Description
+
 ### Goal
 
 An apple tree produces fruit during $n$ consecutive days. On day `i`, it grows `apples[i]` apples. Every apple from that batch becomes rotten on day `i + days[i]`, so it may be eaten on days from `i` through `i + days[i] - 1` but not on or after its expiration day. A zero-sized batch has `apples[i] = days[i] = 0`.
@@ -18,6 +19,7 @@ An apple tree produces fruit during $n$ consecutive days. On day `i`, it grows `
 You may eat at most one apple per day. Apples can still be eaten after the first $n$ production days as long as an unexpired batch remains. Choose which available batch to consume from each day and return the maximum total number of apples that can be eaten before they rot.
 
 ### Function Contract
+
 **Inputs**
 
 - `apples`: a length-$n$ list where `apples[i]` is the batch size produced on day `i`
@@ -32,23 +34,24 @@ Let $E$ be the number of apples ultimately eaten.
 The maximum possible value of $E$ when at most one unexpired apple is eaten on each day.
 
 ### Examples
-**Example 1**
 
-- Input: `apples = [1, 2, 3, 5, 2], days = [3, 2, 1, 4, 2]`
-- Output: `7`
+#### Example 1
+
+- **Input:** `apples = [1, 2, 3, 5, 2], days = [3, 2, 1, 4, 2]`
+- **Output:** `7`
 
 Eating from the batches with the nearest expiration first preserves enough of the day-three batch to consume four apples from it through day six.
 
-**Example 2**
+#### Example 2
 
-- Input: `apples = [3, 0, 0, 0, 0, 2], days = [3, 0, 0, 0, 0, 2]`
-- Output: `5`
+- **Input:** `apples = [3, 0, 0, 0, 0, 2], days = [3, 0, 0, 0, 0, 2]`
+- **Output:** `5`
 
 Three apples are eaten on days zero through two, followed by two idle days and two more apples on days five and six.
 
-**Example 3**
+#### Example 3
 
-- Input: `apples = [2, 1, 10], days = [2, 10, 1]`
-- Output: `4`
+- **Input:** `apples = [2, 1, 10], days = [2, 10, 1]`
+- **Output:** `4`
 
 The short-lived batches are consumed first; only one of the ten apples produced on day two can be eaten before that batch expires.

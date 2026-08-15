@@ -10,8 +10,13 @@ Return `true` *if it is possible to select two or more elements whose bitwise* `
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -20,12 +25,14 @@ Return `true` *if it is possible to select two or more elements whose bitwise* `
 - **Input:** `nums = [1,2,3,4,5]`
 - **Output:** `true`
 - **Explanation:** If we select the elements 2 and 4, their bitwise OR is 6, which has the binary representation "110" with one trailing zero.
+
 #### Example 2
 
 - **Input:** `nums = [2,4,8,16]`
 - **Output:** `true`
 - **Explanation:** If we select the elements 2 and 4, their bitwise OR is 6, which has the binary representation "110" with one trailing zero.
 Other possible ways to select elements to have trailing zeroes in the binary representation of their bitwise OR are: (2, 8), (2, 16), (4, 8), (4, 16), (8, 16), (2, 4, 8), (2, 4, 16), (2, 8, 16), (4, 8, 16), and (2, 4, 8, 16).
+
 #### Example 3
 
 - **Input:** `nums = [1,3,5,7,9]`

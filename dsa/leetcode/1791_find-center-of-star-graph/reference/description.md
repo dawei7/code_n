@@ -6,8 +6,13 @@ You are given a 2D integer array `edges` where each $\text{edges}[i] = [u_{i}, v
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `edges`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +23,7 @@ You are given a 2D integer array `edges` where each $\text{edges}[i] = [u_{i}, v
 - **Input:** $edges = [[1,2],[2,3],[4,2]]$
 - **Output:** `2`
 - **Explanation:** As shown in the figure above, node 2 is connected to every other node, so 2 is the center.
+
 #### Example 2
 
 - **Input:** $edges = [[1,2],[5,1],[1,3],[1,4]]$

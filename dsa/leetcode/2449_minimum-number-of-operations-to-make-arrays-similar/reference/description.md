@@ -14,8 +14,14 @@ Return *the minimum number of operations required to make *`nums`* similar to *`
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `target`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -27,12 +33,14 @@ Return *the minimum number of operations required to make *`nums`* similar to *`
 - Choose i = 0 and j = 2, nums = [10,12,4].
 - Choose i = 1 and j = 2, nums = [10,14,2].
 It can be shown that 2 is the minimum number of operations needed.
+
 #### Example 2
 
 - **Input:** `nums = [1,2,5], target = [4,1,3]`
 - **Output:** `1`
 - **Explanation:** We can make nums similar to target in one operation:
 - Choose i = 1 and j = 2, nums = [1,4,3].
+
 #### Example 3
 
 - **Input:** `nums = [1,1,1,1,1], target = [1,1,1,1,1]`

@@ -6,8 +6,13 @@ Return *the number of pairs *`(i, j)`* for which *$0 \le i < j < \text{dominoes.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `dominoes`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -15,6 +20,7 @@ Return *the number of pairs *`(i, j)`* for which *$0 \le i < j < \text{dominoes.
 
 - **Input:** $dominoes = [[1,2],[2,1],[3,4],[5,6]]$
 - **Output:** `1`
+
 #### Example 2
 
 - **Input:** $dominoes = [[1,2],[1,2],[1,1],[1,2],[2,2]]$

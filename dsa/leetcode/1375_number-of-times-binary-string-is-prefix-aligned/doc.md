@@ -30,17 +30,17 @@ The string is prefix-aligned after a step when every bit from position $1$ throu
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `flips = [3,2,4,1,5]`
-- Output: `2`
+- **Input:** `flips = [3,2,4,1,5]`
+- **Output:** `2`
 
-**Example 2**
+#### Example 2
 
-- Input: `flips = [4,1,2,3]`
-- Output: `1`
+- **Input:** `flips = [4,1,2,3]`
+- **Output:** `1`
 
-**Example 3**
+#### Example 3
 
-- Input: `flips = [1,2,3]`
-- Output: `3`
+- **Input:** `flips = [1,2,3]`
+- **Output:** `3`

@@ -32,23 +32,23 @@ Given `sensor1` and `sensor2`, determine which sensor's sequence exhibits that s
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `sensor1 = [2,3,4,5], sensor2 = [2,1,3,4]`
-- Output: `1`
+- **Input:** `sensor1 = [2,3,4,5], sensor2 = [2,1,3,4]`
+- **Output:** `1`
 
 After the first mismatch, `sensor1`'s values `[3,4]` align with `sensor2` one position later.
 
-**Example 2**
+#### Example 2
 
-- Input: `sensor1 = [2,1,3,4], sensor2 = [2,3,4,5]`
-- Output: `2`
+- **Input:** `sensor1 = [2,1,3,4], sensor2 = [2,3,4,5]`
+- **Output:** `2`
 
 This is the reversed directional case.
 
-**Example 3**
+#### Example 3
 
-- Input: `sensor1 = [2,2,2,2,2], sensor2 = [2,2,2,2,5]`
-- Output: `-1`
+- **Input:** `sensor1 = [2,2,2,2,2], sensor2 = [2,2,2,2,5]`
+- **Output:** `-1`
 
 The final arbitrary reading is the first mismatch, so neither shift direction is distinguishable.

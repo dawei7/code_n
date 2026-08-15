@@ -38,14 +38,14 @@ $$
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3]`
-- Output: `6`
-- Explanation: Each one-digit value is unchanged, so the encrypted values are `[1, 2, 3]` and their sum is `6`.
+- **Input:** `nums = [1, 2, 3]`
+- **Output:** `6`
+- **Explanation:** Each one-digit value is unchanged, so the encrypted values are `[1, 2, 3]` and their sum is `6`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [10, 21, 31]`
-- Output: `66`
-- Explanation: The encrypted values are `[11, 22, 33]`, whose sum is `66`.
+- **Input:** `nums = [10, 21, 31]`
+- **Output:** `66`
+- **Explanation:** The encrypted values are `[11, 22, 33]`, whose sum is `66`.

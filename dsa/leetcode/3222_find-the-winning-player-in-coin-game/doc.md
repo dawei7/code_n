@@ -31,20 +31,20 @@ Return the winning player's name, either `"Alice"` or `"Bob"`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `x = 2, y = 7`
-- Output: `"Alice"`
-- Explanation: Alice removes one `75` coin and four `10` coins, after which Bob cannot move.
+- **Input:** `x = 2, y = 7`
+- **Output:** `"Alice"`
+- **Explanation:** Alice removes one `75` coin and four `10` coins, after which Bob cannot move.
 
-**Example 2**
+#### Example 2
 
-- Input: `x = 4, y = 11`
-- Output: `"Bob"`
-- Explanation: Exactly two turns are possible, so Alice moves first and Bob moves last.
+- **Input:** `x = 4, y = 11`
+- **Output:** `"Bob"`
+- **Explanation:** Exactly two turns are possible, so Alice moves first and Bob moves last.
 
-**Example 3**
+#### Example 3
 
-- Input: `x = 1, y = 1`
-- Output: `"Bob"`
-- Explanation: Alice cannot total `115` on the first turn.
+- **Input:** `x = 1, y = 1`
+- **Output:** `"Bob"`
+- **Explanation:** Alice cannot total `115` on the first turn.

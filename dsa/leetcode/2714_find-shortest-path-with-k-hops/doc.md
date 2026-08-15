@@ -36,20 +36,20 @@ Return the minimum path weight from `s` to `d` after making at most $k$ traverse
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 4, edges = [[0,1,4],[0,2,2],[2,3,6]], s = 1, d = 3, k = 2`
-- Output: `2`
-- Explanation: On the only simple route $1 \to 0 \to 2 \to 3$, hopping over the edges of weights $4$ and $6$ leaves cost $2$.
+- **Input:** `n = 4, edges = [[0,1,4],[0,2,2],[2,3,6]], s = 1, d = 3, k = 2`
+- **Output:** `2`
+- **Explanation:** On the only simple route $1 \to 0 \to 2 \to 3$, hopping over the edges of weights $4$ and $6$ leaves cost $2$.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 7, edges = [[3,1,9],[3,2,4],[4,0,9],[0,5,6],[3,6,2],[6,0,4],[1,2,4]], s = 4, d = 1, k = 2`
-- Output: `6`
-- Explanation: Along $4 \to 0 \to 6 \to 3 \to 1$, making the two weight-$9$ edges free leaves $4+2=6$.
+- **Input:** `n = 7, edges = [[3,1,9],[3,2,4],[4,0,9],[0,5,6],[3,6,2],[6,0,4],[1,2,4]], s = 4, d = 1, k = 2`
+- **Output:** `6`
+- **Explanation:** Along $4 \to 0 \to 6 \to 3 \to 1$, making the two weight-$9$ edges free leaves $4+2=6$.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 5, edges = [[0,4,2],[0,1,3],[0,2,1],[2,1,4],[1,3,4],[3,4,7]], s = 2, d = 3, k = 1`
-- Output: `3`
-- Explanation: The route $2 \to 0 \to 4 \to 3$ costs $1+2+7$ normally; hopping over its last edge reduces the total to $3$.
+- **Input:** `n = 5, edges = [[0,4,2],[0,1,3],[0,2,1],[2,1,4],[1,3,4],[3,4,7]], s = 2, d = 3, k = 1`
+- **Output:** `3`
+- **Explanation:** The route $2 \to 0 \to 4 \to 3$ costs $1+2+7$ normally; hopping over its last edge reduces the total to $3$.

@@ -41,21 +41,21 @@ $$
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 4, edges = [[1,2],[2,4],[1,3],[2,3],[2,1]], queries = [2,3]`
-- Output: `[6,5]`
+- **Input:** `n = 4, edges = [[1,2],[2,4],[1,3],[2,3],[2,1]], queries = [2,3]`
+- **Output:** `[6,5]`
 
 The two entries `[1,2]` and `[2,1]` are parallel edges between the same nodes. They contribute to both degrees, but each is counted only once when the incident edges of pair `(1, 2)` are evaluated.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 5, edges = [[1,5],[1,5],[3,4],[2,5],[1,3],[5,1],[2,3],[2,5]], queries = [1,2,3,4,5]`
-- Output: `[10,10,9,8,6]`
+- **Input:** `n = 5, edges = [[1,5],[1,5],[3,4],[2,5],[1,3],[5,1],[2,3],[2,5]], queries = [1,2,3,4,5]`
+- **Output:** `[10,10,9,8,6]`
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 3, edges = [[1,2]], queries = [1]`
-- Output: `[0]`
+- **Input:** `n = 3, edges = [[1,2]], queries = [1]`
+- **Output:** `[0]`
 
 Every pair has exactly one incident edge, so no pair is strictly above the threshold.

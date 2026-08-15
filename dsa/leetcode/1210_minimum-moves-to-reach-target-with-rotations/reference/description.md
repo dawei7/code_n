@@ -22,8 +22,13 @@ If there is no way to reach the target, return `-1`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -42,8 +47,9 @@ If there is no way to reach the target, return `-1`.
 [0,1,1,0,0,0],
 [0,1,1,0,0,0]]
 - **Output:** `11`
-- **Explanation:**
+- **Explanation:** 
 **One possible solution is [right, right, rotate clockwise, right, down, down, down, down, rotate counterclockwise, right, down].
+
 #### Example 2
 
 - **Input:** `grid = [[0,0,1,1,1,1],`

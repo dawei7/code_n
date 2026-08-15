@@ -16,8 +16,14 @@ Note that a path and its reverse are counted as the **same** path. For example, 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `vals`: Input parameter (`List[int]`).
+- `edges`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -31,6 +37,7 @@ Note that a path and its reverse are counted as the **same** path. For example, 
 There is 1 additional good path: 1 -> 0 -> 2 -> 4.
 (The reverse path 4 -> 2 -> 0 -> 1 is treated as the same as 1 -> 0 -> 2 -> 4.)
 Note that 0 -> 2 -> 3 is not a good path because vals[2] > vals[0].
+
 #### Example 2
 
 ![](images/149d3065ec165a71a1b9aec890776ff.png)
@@ -39,6 +46,7 @@ Note that 0 -> 2 -> 3 is not a good path because vals[2] > vals[0].
 - **Output:** `7`
 - **Explanation:** There are 5 good paths consisting of a single node.
 There are 2 additional good paths: 0 -> 1 and 2 -> 3.
+
 #### Example 3
 
 ![](images/31705e22af3d9c0a557459bc7d1b62d.png)

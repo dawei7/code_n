@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/find-third-transaction/) |
 
 ## Problem Description
+
 ### Goal
+
 The `Transactions` table records a user's spend and transaction timestamp. The
 pair `(user_id, transaction_date)` is unique, so each user's rows have an
 unambiguous chronological order.
@@ -24,6 +26,7 @@ replace a third transaction that fails the condition. Name the output fields
 the result by `user_id` ascending.
 
 ### Function Contract
+
 **Inputs**
 
 - `Transactions(user_id, spend, transaction_date)`: uniquely dated transaction rows per user
@@ -36,17 +39,18 @@ Return qualifying users' chronological third transactions with the required
 aliases, ordered by ascending `user_id`.
 
 ### Examples
-**Example 1**
 
-- Input: User `1` spends `7.44`, `49.78`, then `65.56` chronologically.
-- Output: `(1, 65.56, "2023-11-18 13:49:42")`
+#### Example 1
 
-**Example 2**
+- **Input:** User `1` spends `7.44`, `49.78`, then `65.56` chronologically.
+- **Output:** `(1, 65.56, "2023-11-18 13:49:42")`
 
-- Input: A user has only two transactions.
-- Output: No row for that user.
+#### Example 2
 
-**Example 3**
+- **Input:** A user has only two transactions.
+- **Output:** No row for that user.
 
-- Input: The third spend is equal to one of the first two spends.
-- Output: No row, because both comparisons must be strict.
+#### Example 3
+
+- **Input:** The third spend is equal to one of the first two spends.
+- **Output:** No row, because both comparisons must be strict.

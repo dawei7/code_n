@@ -73,7 +73,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Drivers table:
 +-----------+------------+
 | driver_id | join_date  |
@@ -122,7 +122,7 @@ AcceptedRides table:
 | 12      | 8         | 38            | 34            |
 | 14      | 1         | 90            | 74            |
 +---------+-----------+---------------+---------------+
-**Output:**
+- **Output:** 
 +-------+--------------------+
 | month | working_percentage |
 +-------+--------------------+
@@ -139,8 +139,7 @@ AcceptedRides table:
 | 11    | 33.33              |
 | 12    | 16.67              |
 +-------+--------------------+
-**Explanation:**
-By the end of January --> two active drivers (10, 8) and no accepted rides. The percentage is 0%.
+- **Explanation:** By the end of January --> two active drivers (10, 8) and no accepted rides. The percentage is 0%.
 By the end of February --> three active drivers (10, 8, 5) and no accepted rides. The percentage is 0%.
 By the end of March --> four active drivers (10, 8, 5, 7) and one accepted ride by driver (10). The percentage is (1 / 4) * 100 = 25%.
 By the end of April --> four active drivers (10, 8, 5, 7) and no accepted rides. The percentage is 0%.

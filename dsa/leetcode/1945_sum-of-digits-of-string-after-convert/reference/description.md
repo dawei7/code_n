@@ -20,21 +20,24 @@ Return the **resulting** **integer** after performing the **operations** describ
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "iiii", k = 1
+- **Input:** s = "iiii", k = 1
 
-**Output:** 36
+- **Output:** 36
 
-**Explanation:**
-
-The operations are as follows:
+- **Explanation:** The operations are as follows:
 
 - Convert: "iiii" ➝ "(9)(9)(9)(9)" ➝ "9999" ➝ 9999
 
@@ -42,17 +45,13 @@ The operations are as follows:
 
 Thus the resulting integer is 36.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "leetcode", k = 2
+- **Input:** s = "leetcode", k = 2
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
-
-The operations are as follows:
+- **Explanation:** The operations are as follows:
 
 - Convert: "leetcode" ➝ "(12)(5)(5)(20)(3)(15)(4)(5)" ➝ "12552031545" ➝ 12552031545
 
@@ -62,15 +61,11 @@ The operations are as follows:
 
 Thus the resulting integer is 6.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "zbax", k = 2
+- **Input:** s = "zbax", k = 2
 
-**Output:** 8
-
-</div>
+- **Output:** 8
 
 ### 4. Constraints
 

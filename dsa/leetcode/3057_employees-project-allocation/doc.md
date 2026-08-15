@@ -41,18 +41,18 @@ Let $n$ be the number of project-allocation rows.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 Team A has workloads `45` and `68`, averaging `56.50`, so only employee `4`
 qualifies. Team B has workloads `90` and `12`, averaging `51.00`, so only
 employee `2` qualifies. Employee order places `2` before `4`.
 
-**Example 2**
+#### Example 2
 
 An employee whose workload equals the team average is excluded because the
 comparison is strict.
 
-**Example 3**
+#### Example 3
 
 A team containing one employee has that employee's workload as its average,
 so it contributes no result row.

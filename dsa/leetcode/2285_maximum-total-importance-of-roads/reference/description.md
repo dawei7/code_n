@@ -10,8 +10,14 @@ Return *the **maximum total importance** of all roads possible after assigning t
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `roads`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -30,6 +36,7 @@ Return *the **maximum total importance** of all roads possible after assigning t
 - The road (2,4) has an importance of 5 + 1 = 6.
 The total importance of all roads is 6 + 9 + 8 + 7 + 7 + 6 = 43.
 It can be shown that we cannot obtain a greater total importance than 43.
+
 #### Example 2
 
 ![](images/ex2drawio.png)

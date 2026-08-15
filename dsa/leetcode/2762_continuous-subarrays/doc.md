@@ -30,20 +30,20 @@ Return the number of non-empty contiguous subarrays whose values satisfy $\max -
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [5,4,2,4]`
-- Output: `8`
-- Explanation: All four singletons, the three adjacent pairs, and `[4,2,4]` are continuous.
+- **Input:** `nums = [5,4,2,4]`
+- **Output:** `8`
+- **Explanation:** All four singletons, the three adjacent pairs, and `[4,2,4]` are continuous.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,2,3]`
-- Output: `6`
-- Explanation: Every non-empty subarray has a maximum and minimum differing by at most $2$.
+- **Input:** `nums = [1,2,3]`
+- **Output:** `6`
+- **Explanation:** Every non-empty subarray has a maximum and minimum differing by at most $2$.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,4]`
-- Output: `2`
-- Explanation: Each singleton is continuous, but `[1,4]` has range $3$.
+- **Input:** `nums = [1,4]`
+- **Output:** `2`
+- **Explanation:** Each singleton is continuous, but `[1,4]` has range $3$.

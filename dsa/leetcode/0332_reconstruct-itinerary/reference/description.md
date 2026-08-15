@@ -26,6 +26,7 @@ Return the lexically smallest airport sequence that starts at `"JFK"` and uses e
 
 - **Input:** $tickets = [["MUC","LHR"],["JFK","MUC"],["SFO","SJC"],["LHR","SFO"]]$
 - **Output:** `["JFK","MUC","LHR","SFO","SJC"]`
+
 #### Example 2
 
 ![](images/itinerary2-graph.jpg)

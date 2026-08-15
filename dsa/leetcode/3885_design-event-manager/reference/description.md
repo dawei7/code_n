@@ -31,14 +31,13 @@ Return one result for every operation: `null` for construction and priority upda
 
 #### Example 1
 
-<div class="example-block">
-**Input:**
+- **Input:** 
 
 ["EventManager", "pollHighest", "updatePriority", "pollHighest", "pollHighest"]
 
 [[[[5, 7], [2, 7], [9, 4]]], [], [9, 7], [], []]
 
-**Output:**
+- **Output:** 
 
 [null, 2, null, 5, 9]
 
@@ -52,17 +51,17 @@ eventManager.updatePriority(9, 7); // event 9 now has priority 7
 
 eventManager.pollHighest(); // remaining highest priority events are 5 and 9, return 5
 
-eventManager.pollHighest(); // return 9</div>
+eventManager.pollHighest(); // return 9
+
 #### Example 2
 
-<div class="example-block">
-**Input:**
+- **Input:** 
 
 ["EventManager", "pollHighest", "pollHighest", "pollHighest"]
 
 [[[[4, 1], [7, 2]]], [], [], []]
 
-**Output:**
+- **Output:** 
 
 [null, 7, 4, -1]
 
@@ -74,7 +73,7 @@ eventManager.pollHighest(); // return 7
 
 eventManager.pollHighest(); // return 4
 
-eventManager.pollHighest(); // no events remain, return -1</div>
+eventManager.pollHighest(); // no events remain, return -1
 
 ### 4. Constraints
 

@@ -18,7 +18,7 @@ Return *the number of positions *`i`* on the street between *`0`* and *$n - 1$* 
 
 - **Input:** $n = 5, lights = [[0,1],[2,1],[3,2]], requirement = [0,2,1,4,1]$
 - **Output:** `4`
-- **Explanation:**
+- **Explanation:** 
 - The first street lamp lights up the area from [max(0, 0 - 1), min(n - 1, 0 + 1)] = [0, 1] (inclusive).
 - The second street lamp lights up the area from [max(0, 2 - 1), min(n - 1, 2 + 1)] = [1, 3] (inclusive).
 - The third street lamp lights up the area from [max(0, 3 - 2), min(n - 1, 3 + 2)] = [1, 4] (inclusive).
@@ -28,11 +28,12 @@ Return *the number of positions *`i`* on the street between *`0`* and *$n - 1$* 
 - Position 3 is covered by the second and third street lamps. It is covered by 2 street lamps which is less than requirement[3].
 - Position 4 is covered by the third street lamp. It is covered by 1 street lamp which is equal to requirement[4].
 Positions 0, 1, 2, and 4 meet the requirement so we return 4.
+
 #### Example 2
 
 - **Input:** $n = 1, lights = [[0,1]], requirement = [2]$
 - **Output:** `0`
-- **Explanation:**
+- **Explanation:** 
 - The first street lamp lights up the area from [max(0, 0 - 1), min(n - 1, 0 + 1)] = [0, 0] (inclusive).
 - Position 0 is covered by the first street lamp. It is covered by 1 street lamp which is less than requirement[0].
 - We return 0 because no position meets their brightness requirement.

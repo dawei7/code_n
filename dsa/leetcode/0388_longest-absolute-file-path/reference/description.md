@@ -47,6 +47,7 @@ that the testcases are generated such that the file system is valid and no file 
 - **Input:** $input = "dir\n\tsubdir1\n\tsubdir2\n\t\\text{tfile.ext}"$
 - **Output:** `20`
 - **Explanation:** We have only one file, and the absolute path is "dir/subdir2/file.ext" of length 20.
+
 #### Example 2
 
 ![](images/dir2.jpg)
@@ -57,6 +58,7 @@ that the testcases are generated such that the file system is valid and no file 
 "dir/subdir1/file1.ext" of length 21
 "dir/subdir2/subsubdir2/file2.ext" of length 32.
 We return 32 since it is the longest absolute path to a file.
+
 #### Example 3
 
 - **Input:** $input = "a"$

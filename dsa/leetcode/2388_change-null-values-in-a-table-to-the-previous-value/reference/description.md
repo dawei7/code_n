@@ -28,7 +28,7 @@ The result format is shown in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 CoffeeShop table:
 +----+-------------------+
 | id | drink             |
@@ -40,7 +40,7 @@ CoffeeShop table:
 | 1  | Orange Margarita  |
 | 2  | null              |
 +----+-------------------+
-**Output:**
+- **Output:** 
 +----+-------------------+
 | id | drink             |
 +----+-------------------+
@@ -51,8 +51,7 @@ CoffeeShop table:
 | 1  | Orange Margarita  |
 | 2  | Orange Margarita  |
 +----+-------------------+
-**Explanation:**
-For ID 6, the previous value that is not null is from ID 9. We replace the null with "Rum and Coke".
+- **Explanation:** For ID 6, the previous value that is not null is from ID 9. We replace the null with "Rum and Coke".
 For ID 7, the previous value that is not null is from ID 9. We replace the null with "Rum and Coke;.
 For ID 2, the previous value that is not null is from ID 1. We replace the null with "Orange Margarita".
 Note that the rows in the output are the same as in the input.

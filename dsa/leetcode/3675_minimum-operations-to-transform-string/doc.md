@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/minimum-operations-to-transform-string/) |
 
 ## Problem Description
+
 ### Goal
 
 Given a string `s` of lowercase English letters, an operation chooses one letter currently appearing in the string and changes every occurrence of that letter to its alphabetic successor. The alphabet is circular, so changing `z` produces `a`.
@@ -29,23 +30,23 @@ Return the minimum number of global letter-successor operations required to make
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "yz"`
-- Output: `2`
+- **Input:** `s = "yz"`
+- **Output:** `2`
 
 Changing `y` merges both positions at `z`; changing `z` once more wraps both to `a`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "a"`
-- Output: `0`
+- **Input:** `s = "a"`
+- **Output:** `0`
 
 The target condition already holds.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "abz"`
-- Output: `25`
+- **Input:** `s = "abz"`
+- **Output:** `25`
 
 The `b` group must advance through the alphabet to `a`; it absorbs the `z` group along the way, while the original `a` remains unchanged.

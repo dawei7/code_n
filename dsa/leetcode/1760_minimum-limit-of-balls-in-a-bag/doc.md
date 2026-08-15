@@ -33,20 +33,20 @@ Let $M=\max(\texttt{nums})$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [9], maxOperations = 2`
-- Output: `3`
-- Explanation: Split nine balls into three bags of three using two operations.
+- **Input:** `nums = [9], maxOperations = 2`
+- **Output:** `3`
+- **Explanation:** Split nine balls into three bags of three using two operations.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, 4, 8, 2], maxOperations = 4`
-- Output: `2`
-- Explanation: The bags of four and eight can be divided until every bag contains at most two balls.
+- **Input:** `nums = [2, 4, 8, 2], maxOperations = 4`
+- **Output:** `2`
+- **Explanation:** The bags of four and eight can be divided until every bag contains at most two balls.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [7, 17], maxOperations = 2`
-- Output: `7`
-- Explanation: Split seventeen into parts no larger than seven; a penalty below seven would require too many total splits.
+- **Input:** `nums = [7, 17], maxOperations = 2`
+- **Output:** `7`
+- **Explanation:** Split seventeen into parts no larger than seven; a penalty below seven would require too many total splits.

@@ -32,14 +32,14 @@ The constraints are $2\le n\le2000$ and $0\le\texttt{nums[i]}\le1000$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 2, 1, 1, 0]`
-- Output: `[1, 4, 2, 0, 0, 0]`
-- Explanation: The equal `2` values become `4, 0`, then the equal `1` values become `2, 0`. Stable compaction leaves `1, 4, 2` before the zeros.
+- **Input:** `nums = [1, 2, 2, 1, 1, 0]`
+- **Output:** `[1, 4, 2, 0, 0, 0]`
+- **Explanation:** The equal `2` values become `4, 0`, then the equal `1` values become `2, 0`. Stable compaction leaves `1, 4, 2` before the zeros.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [0, 1]`
-- Output: `[1, 0]`
-- Explanation: The adjacent values are unequal, so only the final zero shift changes the array.
+- **Input:** `nums = [0, 1]`
+- **Output:** `[1, 0]`
+- **Explanation:** The adjacent values are unequal, so only the final zero shift changes the array.

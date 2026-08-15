@@ -10,33 +10,32 @@ We say that `word` is **k-periodic** if there is some string `s` of length `k` s
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `word`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** word = "leetcodeleet", k = 4
+- **Input:** word = "leetcodeleet", k = 4
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** We can obtain a 4-periodic string by picking i = 4 and j = 0. After this operation, word becomes equal to "leetleetleet".
 
-We can obtain a 4-periodic string by picking i = 4 and j = 0. After this operation, word becomes equal to "leetleetleet".
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** word = "leetcoleet", k = 2
+- **Input:** word = "leetcoleet", k = 2
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-We can obtain a 2-periodic string by applying the operations in the table below.
+- **Explanation:** We can obtain a 2-periodic string by applying the operations in the table below.
 
 <table border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0" height="146" style="border-collapse:collapse; text-align: center; vertical-align: middle;">
 	<tbody>
@@ -62,11 +61,8 @@ We can obtain a 2-periodic string by applying the operations in the table below.
 		</tr>
 	</tbody>
 </table>
-</div>
 
-<div id="gtx-trans" style="position: absolute; left: 107px; top: 238.5px;">
-<div class="gtx-trans-icon"> </div>
-</div>
+ 
 
 ### 4. Constraints
 

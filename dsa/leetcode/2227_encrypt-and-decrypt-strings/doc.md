@@ -33,17 +33,17 @@ Return one result per operation. Construction contributes `null`; `encrypt` cont
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `operations = ["Encrypter", "encrypt", "decrypt"]`, with constructor arguments `keys = ["a", "b", "c", "d"]`, `values = ["ei", "zf", "ei", "am"]`, `dictionary = ["abcd", "acbd", "adbc", "badc", "dacb", "cadb", "cbda", "abad"]`, followed by `"abcd"` and `"eizfeiam"`
-- Output: `[null, "eizfeiam", 2]`
+- **Input:** `operations = ["Encrypter", "encrypt", "decrypt"]`, with constructor arguments `keys = ["a", "b", "c", "d"]`, `values = ["ei", "zf", "ei", "am"]`, `dictionary = ["abcd", "acbd", "adbc", "badc", "dacb", "cadb", "cbda", "abad"]`, followed by `"abcd"` and `"eizfeiam"`
+- **Output:** `[null, "eizfeiam", 2]`
 
-**Example 2**
+#### Example 2
 
-- Input: `keys = ["a"]`, `values = ["xy"]`, `dictionary = ["a", "aa"]`; then encrypt `"aa"` and decrypt `"xy"`
-- Output: `[null, "xyxy", 1]`
+- **Input:** `keys = ["a"]`, `values = ["xy"]`, `dictionary = ["a", "aa"]`; then encrypt `"aa"` and decrypt `"xy"`
+- **Output:** `[null, "xyxy", 1]`
 
-**Example 3**
+#### Example 3
 
-- Input: `keys = ["a", "b"]`, `values = ["zz", "zz"]`, `dictionary = ["a", "b", "ab"]`; then decrypt `"zz"`
-- Output: `[null, 2]`
+- **Input:** `keys = ["a", "b"]`, `values = ["zz", "zz"]`, `dictionary = ["a", "b", "ab"]`; then decrypt `"zz"`
+- **Output:** `[null, 2]`

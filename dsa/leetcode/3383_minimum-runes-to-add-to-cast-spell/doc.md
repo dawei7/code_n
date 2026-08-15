@@ -37,14 +37,14 @@ Let $m=\lvert\texttt{flowFrom}\rvert=\lvert\texttt{flowTo}\rvert$. The constrain
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 6, crystals = [0], flowFrom = [0,1,2,3], flowTo = [1,2,3,0]`
-- Output: `2`
-- Explanation: The crystal energizes the cycle containing points zero through three, while isolated points four and five each need a new incoming rune.
+- **Input:** `n = 6, crystals = [0], flowFrom = [0,1,2,3], flowTo = [1,2,3,0]`
+- **Output:** `2`
+- **Explanation:** The crystal energizes the cycle containing points zero through three, while isolated points four and five each need a new incoming rune.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 7, crystals = [3,5], flowFrom = [0,1,2,3,5], flowTo = [1,2,0,4,6]`
-- Output: `1`
-- Explanation: The two crystals already energize points three through six. One new rune into the separate cycle containing zero, one, and two energizes that entire cycle.
+- **Input:** `n = 7, crystals = [3,5], flowFrom = [0,1,2,3,5], flowTo = [1,2,0,4,6]`
+- **Output:** `1`
+- **Explanation:** The two crystals already energize points three through six. One new rune into the separate cycle containing zero, one, and two energizes that entire cycle.

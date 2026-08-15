@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/where-will-the-ball-fall/) |
 
 ## Problem Description
+
 ### Goal
 
 A box is represented by an $m \times n$ matrix `grid`, with its top and bottom open. Each cell contains one diagonal board. A value of `1` is a board descending from the cell's top-left corner to its bottom-right corner and redirects a ball right; `-1` descends from top-right to bottom-left and redirects a ball left.
@@ -18,6 +19,7 @@ A box is represented by an $m \times n$ matrix `grid`, with its top and bottom o
 Drop one ball into the top of every column. A ball moves through the rows in order, but it becomes stuck if a board directs it into a side wall or if two neighboring boards form a `V` around it. Return the bottom exit column of every ball in starting-column order, using `-1` for each ball that cannot leave the box.
 
 ### Function Contract
+
 **Inputs**
 
 - `grid`: an $m \times n$ matrix containing only `1` and `-1`
@@ -28,23 +30,24 @@ Drop one ball into the top of every column. A ball moves through the rows in ord
 A length-$n$ list where entry `start` is the exit column for the ball dropped above `grid[0][start]`, or `-1` when that ball gets stuck.
 
 ### Examples
-**Example 1**
 
-- Input: `grid = [[1,1,1,-1,-1],[1,1,1,-1,-1],[-1,-1,-1,1,1],[1,1,1,1,-1],[-1,-1,-1,-1,-1]]`
-- Output: `[1, -1, -1, -1, -1]`
+#### Example 1
+
+- **Input:** `grid = [[1,1,1,-1,-1],[1,1,1,-1,-1],[-1,-1,-1,1,1],[1,1,1,1,-1],[-1,-1,-1,-1,-1]]`
+- **Output:** `[1, -1, -1, -1, -1]`
 
 Only the ball from column zero follows compatible adjacent boards through every row and exits at column one.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[-1]]`
-- Output: `[-1]`
+- **Input:** `grid = [[-1]]`
+- **Output:** `[-1]`
 
 The only board points through the left wall, so the ball is immediately stuck.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[1,1,1,1,1,1],[-1,-1,-1,-1,-1,-1],[1,1,1,1,1,1],[-1,-1,-1,-1,-1,-1]]`
-- Output: `[0, 1, 2, 3, 4, -1]`
+- **Input:** `grid = [[1,1,1,1,1,1],[-1,-1,-1,-1,-1,-1],[1,1,1,1,1,1],[-1,-1,-1,-1,-1,-1]]`
+- **Output:** `[0, 1, 2, 3, 4, -1]`
 
 The first five balls alternate right and left moves and return to their starting columns; the last ball hits the right wall in the first row.

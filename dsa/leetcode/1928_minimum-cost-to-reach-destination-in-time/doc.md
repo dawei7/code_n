@@ -33,21 +33,21 @@ Begin in city `0` and reach city `n - 1` in at most `maxTime` minutes. The total
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `maxTime = 30, edges = [[0,1,10],[1,2,10],[2,5,10],[0,3,1],[3,4,10],[4,5,15]], passingFees = [5,1,2,20,20,3]`
-- Output: `11`
+- **Input:** `maxTime = 30, edges = [[0,1,10],[1,2,10],[2,5,10],[0,3,1],[3,4,10],[4,5,15]], passingFees = [5,1,2,20,20,3]`
+- **Output:** `11`
 
 The route `0 -> 1 -> 2 -> 5` uses exactly 30 minutes.
 
-**Example 2**
+#### Example 2
 
-- Input: the same graph with `maxTime = 29`
-- Output: `48`
+- **Input:** the same graph with `maxTime = 29`
+- **Output:** `48`
 
 The cheap route is too slow, so `0 -> 3 -> 4 -> 5` is optimal.
 
-**Example 3**
+#### Example 3
 
-- Input: the same graph with `maxTime = 25`
-- Output: `-1`
+- **Input:** the same graph with `maxTime = 25`
+- **Output:** `-1`

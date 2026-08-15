@@ -10,8 +10,13 @@ You do not need to use up all the given intervals. You can select pairs in any o
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `pairs`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +25,7 @@ You do not need to use up all the given intervals. You can select pairs in any o
 - **Input:** $pairs = [[1,2],[2,3],[3,4]]$
 - **Output:** `2`
 - **Explanation:** The longest chain is [1,2] -> [3,4].
+
 #### Example 2
 
 - **Input:** $pairs = [[1,2],[7,8],[4,5]]$

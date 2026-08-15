@@ -43,14 +43,14 @@ Here, $m$ is the number of rows and $n$ is the number of columns. The constraint
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[1,2,3],[3,1,5],[3,2,1]]`
-- Output: `[[1,1,0],[1,0,1],[0,1,1]]`
-- Explanation: For the center cell, the value set above-left is `{1}` and the set below-right is also `{1}`, so the difference is $0$. At the top-left cell, the first set is empty while the lower-right set is `{1}`, so the difference is $1$.
+- **Input:** `grid = [[1,2,3],[3,1,5],[3,2,1]]`
+- **Output:** `[[1,1,0],[1,0,1],[0,1,1]]`
+- **Explanation:** For the center cell, the value set above-left is `{1}` and the set below-right is also `{1}`, so the difference is $0$. At the top-left cell, the first set is empty while the lower-right set is `{1}`, so the difference is $1$.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[1]]`
-- Output: `[[0]]`
-- Explanation: No cells lie above-left or below-right of the only cell, so both distinct counts are zero.
+- **Input:** `grid = [[1]]`
+- **Output:** `[[0]]`
+- **Explanation:** No cells lie above-left or below-right of the only cell, so both distinct counts are zero.

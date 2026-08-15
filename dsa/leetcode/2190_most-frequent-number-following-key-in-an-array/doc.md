@@ -39,17 +39,17 @@ Return the unique value that most frequently appears immediately after `key`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,100,200,1,100]`, `key = 1`
-- Output: `100`
+- **Input:** `nums = [1,100,200,1,100]`, `key = 1`
+- **Output:** `100`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2,2,2,2,3]`, `key = 2`
-- Output: `2`
+- **Input:** `nums = [2,2,2,2,3]`, `key = 2`
+- **Output:** `2`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [3,4,5,3]`, `key = 3`
-- Output: `4`
+- **Input:** `nums = [3,4,5,3]`, `key = 3`
+- **Output:** `4`

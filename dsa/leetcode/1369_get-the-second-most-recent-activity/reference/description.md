@@ -48,7 +48,7 @@ For a user with at least two distinct activity periods, select the second period
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 UserActivity table:
 +------------+--------------+-------------+-------------+
 | username   | activity     | startDate   | endDate     |
@@ -58,14 +58,13 @@ UserActivity table:
 | Alice      | Travel       | 2020-02-24  | 2020-02-28  |
 | Bob        | Travel       | 2020-02-11  | 2020-02-18  |
 +------------+--------------+-------------+-------------+
-**Output:**
+- **Output:** 
 +------------+--------------+-------------+-------------+
 | username   | activity     | startDate   | endDate     |
 +------------+--------------+-------------+-------------+
 | Alice      | Dancing      | 2020-02-21  | 2020-02-23  |
 | Bob        | Travel       | 2020-02-11  | 2020-02-18  |
 +------------+--------------+-------------+-------------+
-**Explanation:**
-The most recent activity of Alice is Travel from 2020-02-24 to 2020-02-28, before that she was dancing from 2020-02-21 to 2020-02-23.
+- **Explanation:** The most recent activity of Alice is Travel from 2020-02-24 to 2020-02-28, before that she was dancing from 2020-02-21 to 2020-02-23.
 Bob only has one record, we just take that one.
 ```

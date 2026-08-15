@@ -32,20 +32,20 @@ Consecutive output positions come from overlapping pairs: an interior value of `
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 3, 7, 15]`
-- Output: `[3, 7, 15]`
-- Explanation: The adjacent OR values are `1 | 3 = 3`, `3 | 7 = 7`, and `7 | 15 = 15`.
+- **Input:** `nums = [1, 3, 7, 15]`
+- **Output:** `[3, 7, 15]`
+- **Explanation:** The adjacent OR values are `1 | 3 = 3`, `3 | 7 = 7`, and `7 | 15 = 15`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [8, 4, 2]`
-- Output: `[12, 6]`
-- Explanation: The two adjacent pairs produce `8 | 4 = 12` and `4 | 2 = 6`.
+- **Input:** `nums = [8, 4, 2]`
+- **Output:** `[12, 6]`
+- **Explanation:** The two adjacent pairs produce `8 | 4 = 12` and `4 | 2 = 6`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [5, 4, 9, 11]`
-- Output: `[5, 13, 11]`
-- Explanation: Apply bitwise OR independently to each consecutive pair.
+- **Input:** `nums = [5, 4, 9, 11]`
+- **Output:** `[5, 13, 11]`
+- **Explanation:** Apply bitwise OR independently to each consecutive pair.

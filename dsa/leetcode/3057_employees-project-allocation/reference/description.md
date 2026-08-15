@@ -44,7 +44,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Project table:
 +-------------+-------------+----------+
 | project_id  | employee_id | workload |
@@ -63,14 +63,14 @@ Employees table:
 | 3           | John   | B    |
 | 4           | Doe    | A    |
 +-------------+--------+------+
-**Output:**
+- **Output:** 
 +-------------+------------+---------------+------------------+
 | employee_id | project_id | employee_name | project_workload |
 +-------------+------------+---------------+------------------+
 | 2           | 1          | Ali           | 90               |
 | 4           | 2          | Doe           | 68               |
 +-------------+------------+---------------+------------------+
-**Explanation:**
+- **Explanation:** 
 - Employee with ID 1 has a project workload of 45 and belongs to Team A, where the average workload is 56.50. Since his project workload does not exceed the team's average workload, he will be excluded.
 - Employee with ID 2 has a project workload of 90 and belongs to Team B, where the average workload is 51.00. Since his project workload does exceed the team's average workload, he will be included.
 - Employee with ID 3 has a project workload of 12 and belongs to Team B, where the average workload is 51.00. Since his project workload does not exceed the team's average workload, he will be excluded.

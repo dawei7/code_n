@@ -43,18 +43,18 @@ inside `[lower, upper]`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `differences = [1,-3,4], lower = 1, upper = 6`
-- Output: `2`
-- Explanation: The valid sequences are `[3,4,1,5]` and `[4,5,2,6]`.
+- **Input:** `differences = [1,-3,4], lower = 1, upper = 6`
+- **Output:** `2`
+- **Explanation:** The valid sequences are `[3,4,1,5]` and `[4,5,2,6]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `differences = [3,-4,5,1,-2], lower = -4, upper = 5`
-- Output: `4`
+- **Input:** `differences = [3,-4,5,1,-2], lower = -4, upper = 5`
+- **Output:** `4`
 
-**Example 3**
+#### Example 3
 
-- Input: `differences = [4,-7,2], lower = 3, upper = 6`
-- Output: `0`
+- **Input:** `differences = [4,-7,2], lower = 3, upper = 6`
+- **Output:** `0`

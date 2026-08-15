@@ -12,8 +12,13 @@ Return *the number of ways to select a group of students so that everyone remain
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,17 +26,16 @@ Return *the number of ways to select a group of students so that everyone remain
 
 - **Input:** `nums = [1,1]`
 - **Output:** `2`
-- **Explanation:**
-The two possible ways are:
+- **Explanation:** The two possible ways are:
 The class teacher selects no student.
 The class teacher selects both students to form the group.
 If the class teacher selects just one student to form a group then the both students will not be happy. Therefore, there are only two possible ways.
+
 #### Example 2
 
 - **Input:** `nums = [6,0,3,3,6,7,2,7]`
 - **Output:** `3`
-- **Explanation:**
-The three possible ways are:
+- **Explanation:** The three possible ways are:
 The class teacher selects the student with index = 1 to form the group.
 The class teacher selects the students with index = 1, 2, 3, 6 to form the group.
 The class teacher selects all the students to form the group.

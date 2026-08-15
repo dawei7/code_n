@@ -37,14 +37,14 @@ A forward shift maps each letter to its successor and wraps `'z'` to `'a'`; a ba
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abc", shifts = [[0,1,0],[1,2,1],[0,2,1]]`
-- Output: `"ace"`
-- Explanation: The intermediate strings are `"zac"`, `"zbd"`, and finally `"ace"`.
+- **Input:** `s = "abc", shifts = [[0,1,0],[1,2,1],[0,2,1]]`
+- **Output:** `"ace"`
+- **Explanation:** The intermediate strings are `"zac"`, `"zbd"`, and finally `"ace"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "dztz", shifts = [[0,0,0],[1,1,1]]`
-- Output: `"catz"`
-- Explanation: The first operation changes `'d'` to `'c'`, and the second wraps `'z'` forward to `'a'`.
+- **Input:** `s = "dztz", shifts = [[0,0,0],[1,1,1]]`
+- **Output:** `"catz"`
+- **Explanation:** The first operation changes `'d'` to `'c'`, and the second wraps `'z'` forward to `'a'`.

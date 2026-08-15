@@ -11,47 +11,39 @@ A **subsequence** is an array that can be derived from another array by deleting
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4]
+- **Input:** nums = [1,2,3,4]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** The longest valid subsequence is `[1, 2, 3, 4]`.
 
-The longest valid subsequence is `[1, 2, 3, 4]`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2,1,1,2,1,2]
+- **Input:** nums = [1,2,1,1,2,1,2]
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
+- **Explanation:** The longest valid subsequence is `[1, 2, 1, 2, 1, 2]`.
 
-The longest valid subsequence is `[1, 2, 1, 2, 1, 2]`.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,3]
+- **Input:** nums = [1,3]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The longest valid subsequence is `[1, 3]`.
-
-</div>
+- **Explanation:** The longest valid subsequence is `[1, 3]`.
 
 ### 4. Constraints
 

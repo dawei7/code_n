@@ -32,20 +32,20 @@ Let $n$ be the number of nodes and $W$ the maximum number of nodes on any one le
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [1,4,3,7,6,8,5,null,null,null,null,9,null,10]`
-- Output: `3`
-- Explanation: One swap orders level $1$, and two swaps order the values `[7,6,8,5]` at level $2$.
+- **Input:** `root = [1,4,3,7,6,8,5,null,null,null,null,9,null,10]`
+- **Output:** `3`
+- **Explanation:** One swap orders level $1$, and two swaps order the values `[7,6,8,5]` at level $2$.
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [1,3,2,7,6,5,4]`
-- Output: `3`
-- Explanation: Sorting `[3,2]` costs one swap and sorting `[7,6,5,4]` costs two more.
+- **Input:** `root = [1,3,2,7,6,5,4]`
+- **Output:** `3`
+- **Explanation:** Sorting `[3,2]` costs one swap and sorting `[7,6,5,4]` costs two more.
 
-**Example 3**
+#### Example 3
 
-- Input: `root = [1,2,3,4,5,6]`
-- Output: `0`
-- Explanation: Every level is already strictly increasing from left to right.
+- **Input:** `root = [1,2,3,4,5,6]`
+- **Output:** `0`
+- **Explanation:** Every level is already strictly increasing from left to right.

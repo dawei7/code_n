@@ -31,20 +31,20 @@ For an assignment, consider the largest working time among all workers. Return t
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `jobs = [3,2,3], k = 3`
-- Output: `3`
-- Explanation: Assigning one job to each worker makes the largest workload $3$.
+- **Input:** `jobs = [3,2,3], k = 3`
+- **Output:** `3`
+- **Explanation:** Assigning one job to each worker makes the largest workload $3$.
 
-**Example 2**
+#### Example 2
 
-- Input: `jobs = [1,2,4,7,8], k = 2`
-- Output: `11`
-- Explanation: Workloads $1+2+8=11$ and $4+7=11$ attain the optimum.
+- **Input:** `jobs = [1,2,4,7,8], k = 2`
+- **Output:** `11`
+- **Explanation:** Workloads $1+2+8=11$ and $4+7=11$ attain the optimum.
 
-**Example 3**
+#### Example 3
 
-- Input: `jobs = [5,5,4,4,4], k = 2`
-- Output: `12`
-- Explanation: One worker can receive the two fives while the other receives the three fours.
+- **Input:** `jobs = [5,5,4,4,4], k = 2`
+- **Output:** `12`
+- **Explanation:** One worker can receive the two fives while the other receives the three fours.

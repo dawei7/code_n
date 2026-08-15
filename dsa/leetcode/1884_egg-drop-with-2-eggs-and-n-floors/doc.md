@@ -29,23 +29,23 @@ On each move, choose any still-unbroken egg and any building floor. A surviving 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 2`
-- Output: `2`
+- **Input:** `n = 2`
+- **Output:** `2`
 
 Testing floors `1` and `2` distinguishes all three possible thresholds.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 100`
-- Output: `14`
+- **Input:** `n = 100`
+- **Output:** `14`
 
 Fourteen moves can cover $14+13+\cdots+1=105$ floors, whereas thirteen cover only $91$.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 3`
-- Output: `2`
+- **Input:** `n = 3`
+- **Output:** `2`
 
 Drop first from floor `2`; either outcome leaves at most one floor to test.

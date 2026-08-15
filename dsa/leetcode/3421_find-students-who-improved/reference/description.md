@@ -27,7 +27,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 Scores table:
@@ -73,8 +72,6 @@ Scores table:
 - Student 104 in Physics: Improved from 75 to 85
 
 Result table is ordered by student_id, subject.
-
-</div>
 
 ### 2. Function Contract
 

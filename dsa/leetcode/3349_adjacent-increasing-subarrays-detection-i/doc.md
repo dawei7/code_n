@@ -33,20 +33,20 @@ The source guarantees $2 \le n \le 100$, $1 < 2k \le n$, and $-1000 \le \texttt{
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 5, 7, 8, 9, 2, 3, 4, 3, 1], k = 3`
-- Output: `True`
-- Explanation: `[7, 8, 9]` and `[2, 3, 4]` are strictly increasing length-three subarrays whose starting indices differ by three.
+- **Input:** `nums = [2, 5, 7, 8, 9, 2, 3, 4, 3, 1], k = 3`
+- **Output:** `True`
+- **Explanation:** `[7, 8, 9]` and `[2, 3, 4]` are strictly increasing length-three subarrays whose starting indices differ by three.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 2, 3, 4, 4, 4, 4, 5, 6, 7], k = 5`
-- Output: `False`
-- Explanation: No two adjacent blocks of five elements are both strictly increasing.
+- **Input:** `nums = [1, 2, 3, 4, 4, 4, 4, 5, 6, 7], k = 5`
+- **Output:** `False`
+- **Explanation:** No two adjacent blocks of five elements are both strictly increasing.
 
 **Boundary example**
 
-- Input: `nums = [1, 2, 2, 3], k = 2`
-- Output: `True`
-- Explanation: `[1, 2]` and `[2, 3]` are each strictly increasing; equality between the last value of the first block and the first value of the second does not invalidate either block.
+- **Input:** `nums = [1, 2, 2, 3], k = 2`
+- **Output:** `True`
+- **Explanation:** `[1, 2]` and `[2, 3]` are each strictly increasing; equality between the last value of the first block and the first value of the second does not invalidate either block.

@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/maximum-subtree-of-the-same-color/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given an undirected tree with nodes numbered from 0 through $N-1$ and
 rooted at node 0. Each row `[u, v]` of `edges` connects two nodes, and
 `colors[i]` gives the integer color assigned to node `i`.
@@ -20,6 +22,7 @@ A rooted subtree qualifies when every node in that subtree has the same color.
 Return the greatest number of nodes in any qualifying subtree.
 
 ### Function Contract
+
 **Inputs**
 
 - `edges`: the $N-1$ undirected tree edges
@@ -34,23 +37,24 @@ $10^5$, and a connected acyclic graph.
 Return the maximum size of a rooted subtree whose nodes all share one color.
 
 ### Examples
-**Example 1**
 
-- Input: `edges = [[0,1],[0,2],[0,3]], colors = [1,1,2,3]`
-- Output: `1`
+#### Example 1
+
+- **Input:** `edges = [[0,1],[0,2],[0,3]], colors = [1,1,2,3]`
+- **Output:** `1`
 
 The root's subtree mixes colors, while every leaf is a valid size-one subtree.
 
-**Example 2**
+#### Example 2
 
-- Input: `edges = [[0,1],[0,2],[0,3]], colors = [1,1,1,1]`
-- Output: `4`
+- **Input:** `edges = [[0,1],[0,2],[0,3]], colors = [1,1,1,1]`
+- **Output:** `4`
 
 The entire rooted tree is monochromatic.
 
-**Example 3**
+#### Example 3
 
-- Input: `edges = [[0,1],[0,2],[2,3],[2,4]], colors = [1,2,3,3,3]`
-- Output: `3`
+- **Input:** `edges = [[0,1],[0,2],[2,3],[2,4]], colors = [1,2,3,3,3]`
+- **Output:** `3`
 
 Node 2 roots a three-node subtree whose color is uniformly 3.

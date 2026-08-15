@@ -26,29 +26,28 @@ A subtree of a binary tree `tree` is a tree that consists of a node in `tree` an
 
 - **Input:** $n = 3$
 - **Output:** `true`
-- **Explanation:**
-Alice takes the node 1 in the right subtree.
+- **Explanation:** Alice takes the node 1 in the right subtree.
 Bob takes either the 1 in the left subtree or the 2 in the right subtree.
 Alice takes whichever node Bob doesn't take.
 Bob is forced to take the root node 3, so Bob will lose.
 Return true because Alice wins.
+
 #### Example 2
 
 ![](images/image-20210914173634-4.png)
 
 - **Input:** $n = 1$
 - **Output:** `false`
-- **Explanation:**
-Alice is forced to take the root node 1, so Alice will lose.
+- **Explanation:** Alice is forced to take the root node 1, so Alice will lose.
 Return false because Alice loses.
+
 #### Example 3
 
 ![](images/image-20210914173425-1.png)
 
 - **Input:** $n = 2$
 - **Output:** `true`
-- **Explanation:**
-Alice takes the node 1.
+- **Explanation:** Alice takes the node 1.
 Bob is forced to take the root node 2, so Bob will lose.
 Return true because Alice wins.
 

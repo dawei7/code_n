@@ -38,19 +38,19 @@ $$
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `words = ["aaaa","asas","able","ability","actt","actor","access"]`, `puzzles = ["aboveyz","abrodyz","abslute","absoryz","actresz","gaswxyz"]`
-- Output: `[1,1,3,2,4,0]`
+- **Input:** `words = ["aaaa","asas","able","ability","actt","actor","access"]`, `puzzles = ["aboveyz","abrodyz","abslute","absoryz","actresz","gaswxyz"]`
+- **Output:** `[1,1,3,2,4,0]`
 
 For `"actresz"`, the valid words are `"aaaa"`, `"actt"`, `"actor"`, and `"access"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `words = ["apple","pleas","please"]`, `puzzles = ["aelwxyz","aelpxyz","aelpsxy","saelpxy","xaelpsy"]`
-- Output: `[0,1,3,2,0]`
+- **Input:** `words = ["apple","pleas","please"]`, `puzzles = ["aelwxyz","aelpxyz","aelpsxy","saelpxy","xaelpsy"]`
+- **Output:** `[0,1,3,2,0]`
 
-**Example 3**
+#### Example 3
 
-- Input: `words = ["aaaa","bbbb","abab"]`, `puzzles = ["abcdefg","bcdefgh"]`
-- Output: `[2,1]`
+- **Input:** `words = ["aaaa","bbbb","abab"]`, `puzzles = ["abcdefg","bcdefgh"]`
+- **Output:** `[2,1]`

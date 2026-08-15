@@ -34,23 +34,23 @@ The constraints are $1\le n,m\le10^5$ and $0\le k\le n-1$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 3, m = 2, k = 1`
-- Output: `4`
+- **Input:** `n = 3, m = 2, k = 1`
+- **Output:** `4`
 
 The good arrays are `[1, 1, 2]`, `[1, 2, 2]`, `[2, 1, 1]`, and `[2, 2, 1]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 4, m = 2, k = 2`
-- Output: `6`
+- **Input:** `n = 4, m = 2, k = 2`
+- **Output:** `6`
 
 Each valid array has two equal boundaries and one changing boundary. There are three choices for the changing boundary and two choices for the first value.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 5, m = 2, k = 0`
-- Output: `2`
+- **Input:** `n = 5, m = 2, k = 0`
+- **Output:** `2`
 
 Every boundary must change, so the two valid arrays alternate between 1 and 2, starting with either value.

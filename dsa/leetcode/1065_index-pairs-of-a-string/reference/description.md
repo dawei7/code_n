@@ -27,6 +27,7 @@ Each returned pair `[i, j]` uses inclusive zero-based boundaries and therefore r
 
 - **Input:** $text = "thestoryofleetcodeandme", words = ["story","fleet","leetcode"]$
 - **Output:** `[[3,7],[9,13],[10,17]]`
+
 #### Example 2
 
 - **Input:** $text = "ababa", words = ["aba","ab"]$

@@ -30,14 +30,11 @@ Return the greatest total obtainable with at most `m` selections, reduced modulo
 
 #### Example 1
 
-<div class="example-block">
-**Input:** value = [6,5,4], decay = [2,1,1], m = 4
+- **Input:** value = [6,5,4], decay = [2,1,1], m = 4
 
-**Output:** 19
+- **Output:** 19
 
-**Explanation:**
-
-One optimal sequence of selections is as follows:
+- **Explanation:** One optimal sequence of selections is as follows:
 
 - By selecting index 0, the value gained is 6.
 
@@ -49,17 +46,13 @@ One optimal sequence of selections is as follows:
 
 The total value is $6 + 5 + 4 + 4 = 19$. No other sequence of at most 4 selections gives a higher total value.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** value = [7,2,2], decay = [3,2,1], m = 2
+- **Input:** value = [7,2,2], decay = [3,2,1], m = 2
 
-**Output:** 11
+- **Output:** 11
 
-**Explanation:**
-
-One optimal sequence of selections is as follows:
+- **Explanation:** One optimal sequence of selections is as follows:
 
 - By selecting index 0, the value gained is 7.
 
@@ -67,25 +60,19 @@ One optimal sequence of selections is as follows:
 
 The total value is $7 + 4 = 11$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** value = [4,3], decay = [5,4], m = 5
+- **Input:** value = [4,3], decay = [5,4], m = 5
 
-**Output:** 7
+- **Output:** 7
 
-**Explanation:**
-
-One optimal sequence of selections is as follows:
+- **Explanation:** One optimal sequence of selections is as follows:
 
 - By selecting index 0, the value gained is 4.
 
 - By selecting index 1, the value gained is 3.
 
 The total value is $4 + 3 = 7$.
-
-</div>
 
 ### 4. Constraints
 

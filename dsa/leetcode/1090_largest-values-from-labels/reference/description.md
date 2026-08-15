@@ -12,47 +12,42 @@ Return the maximum sum.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `values`: Input parameter (`List[int]`).
+- `labels`: Input parameter (`List[int]`).
+- `numWanted`: Input parameter (`int`).
+- `useLimit`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** values = [5,4,3,2,1], labels = [1,1,2,2,3], numWanted = 3, useLimit = 1
+- **Input:** values = [5,4,3,2,1], labels = [1,1,2,2,3], numWanted = 3, useLimit = 1
 
-**Output:** 9
+- **Output:** 9
 
-**Explanation:**
+- **Explanation:** The subset chosen is the first, third, and fifth items with the sum of values 5 + 3 + 1.
 
-The subset chosen is the first, third, and fifth items with the sum of values 5 + 3 + 1.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** values = [5,4,3,2,1], labels = [1,3,3,3,2], numWanted = 3, useLimit = 2
+- **Input:** values = [5,4,3,2,1], labels = [1,3,3,3,2], numWanted = 3, useLimit = 2
 
-**Output:** 12
+- **Output:** 12
 
-**Explanation:**
+- **Explanation:** The subset chosen is the first, second, and third items with the sum of values 5 + 4 + 3.
 
-The subset chosen is the first, second, and third items with the sum of values 5 + 4 + 3.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** values = [9,8,8,7,6], labels = [0,0,0,1,1], numWanted = 3, useLimit = 1
+- **Input:** values = [9,8,8,7,6], labels = [0,0,0,1,1], numWanted = 3, useLimit = 1
 
-**Output:** 16
+- **Output:** 16
 
-**Explanation:**
-
-The subset chosen is the first and fourth items with the sum of values 9 + 7.
-
-</div>
+- **Explanation:** The subset chosen is the first and fourth items with the sum of values 9 + 7.
 
 ### 4. Constraints
 

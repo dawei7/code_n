@@ -23,6 +23,7 @@ A **substring** is a contiguous non-empty sequence of characters within a string
 2^nd query: s[1..4] is "bcaa" which has 5 same-end substrings: "**<u>b</u>**caa", "b**<u>c</u>**aa", "bc**<u>a</u>**a", "bca**<u>a</u>**", "bc**<u>aa</u>**".
 3^rd query: s[2..5] is "caab" which has 5 same-end substrings: "**<u>c</u>**aab", "c**<u>a</u>**ab", "ca**<u>a</u>**b", "caa**<u>b</u>**", "c**<u>aa</u>**b".
 4^th query: s[0..5] is "abcaab" which has 10 same-end substrings: "**<u>a</u>**bcaab", "a**<u>b</u>**caab", "ab**<u>c</u>**aab", "abc**<u>a</u>**ab", "abca**<u>a</u>**b", "abcaa**<u>b</u>**", "abc**<u>aa</u>**b", "**<u>abca</u>**ab", "**<u>abcaa</u>**b", "a**<u>bcaab</u>**".
+
 #### Example 2
 
 - **Input:** `s = "abcd", queries = [[0,3]]`

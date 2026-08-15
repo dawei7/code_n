@@ -29,7 +29,7 @@ The result format is in the following example​​​​​.
 #### Example 1
 
 ```
-**Input:
+- **Input:** 
 **Spotify table:
 +---------+--------------------+------------+
 | id      | track_name         | artist     |
@@ -40,7 +40,7 @@ The result format is in the following example​​​​​.
 | 811266  | Young Dumb & Broke | DJ Khalid  |
 | 505727  | Happier            | Ed Sheeran |
 +---------+--------------------+------------+
-**Output:
+- **Output:** 
 **+------------+-------------+
 | artist     | occurrences |
 +------------+-------------+
@@ -49,5 +49,5 @@ The result format is in the following example​​​​​.
 | Sia        | 1           |
 +------------+-------------+
 
-**Explanation: **The count of occurrences is listed in descending order under the column name "occurrences". If the number of occurrences is the same, the artist's names are sorted in ascending order.
+- **Explanation:** The count of occurrences is listed in descending order under the column name "occurrences". If the number of occurrences is the same, the artist's names are sorted in ascending order.
 ```

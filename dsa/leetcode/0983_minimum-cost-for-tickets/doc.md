@@ -31,14 +31,14 @@ Three passes are available: a 1-day pass costs `costs[0]`, a 7-day pass costs `c
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `days = [1, 4, 6, 7, 8, 20], costs = [2, 7, 15]`
-- Output: `11`
-- Explanation: one optimal plan uses 1-day passes for days `1` and `20` plus a 7-day pass covering the middle travel days.
+- **Input:** `days = [1, 4, 6, 7, 8, 20], costs = [2, 7, 15]`
+- **Output:** `11`
+- **Explanation:** one optimal plan uses 1-day passes for days `1` and `20` plus a 7-day pass covering the middle travel days.
 
-**Example 2**
+#### Example 2
 
-- Input: `days = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 30, 31], costs = [2, 7, 15]`
-- Output: `17`
-- Explanation: a 30-day pass covers days `1` through `30`, and a 1-day pass covers day `31`.
+- **Input:** `days = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 30, 31], costs = [2, 7, 15]`
+- **Output:** `17`
+- **Explanation:** a 30-day pass covers days `1` through `30`, and a 1-day pass covers day `31`.

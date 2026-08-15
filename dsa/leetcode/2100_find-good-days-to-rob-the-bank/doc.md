@@ -40,20 +40,20 @@ Return every index whose preceding `time` comparisons are non-increasing and who
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `security = [5,3,3,3,5,6,2]`, `time = 2`
-- Output: `[2,3]`
-- Explanation: Around day `2`, $5 \ge 3 \ge 3 \le 3 \le 5$; around day `3`, $3 \ge 3 \ge 3 \le 5 \le 6$.
+- **Input:** `security = [5,3,3,3,5,6,2]`, `time = 2`
+- **Output:** `[2,3]`
+- **Explanation:** Around day `2`, $5 \ge 3 \ge 3 \le 3 \le 5$; around day `3`, $3 \ge 3 \ge 3 \le 5 \le 6$.
 
-**Example 2**
+#### Example 2
 
-- Input: `security = [1,1,1,1,1]`, `time = 0`
-- Output: `[0,1,2,3,4]`
-- Explanation: With no required days on either side, every index qualifies.
+- **Input:** `security = [1,1,1,1,1]`, `time = 0`
+- **Output:** `[0,1,2,3,4]`
+- **Explanation:** With no required days on either side, every index qualifies.
 
-**Example 3**
+#### Example 3
 
-- Input: `security = [1,2,3,4,5,6]`, `time = 2`
-- Output: `[]`
-- Explanation: No eligible center has two non-increasing days leading into it.
+- **Input:** `security = [1,2,3,4,5,6]`, `time = 2`
+- **Output:** `[]`
+- **Explanation:** No eligible center has two non-increasing days leading into it.

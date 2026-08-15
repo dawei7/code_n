@@ -18,8 +18,13 @@ Return *the number of columns that you will delete*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `strs`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -32,6 +37,7 @@ cba
 daf
 ghi
 Columns 0 and 2 are sorted, but column 1 is not, so you only need to delete 1 column.
+
 #### Example 2
 
 - **Input:** $strs = ["a","b"]$
@@ -40,6 +46,7 @@ Columns 0 and 2 are sorted, but column 1 is not, so you only need to delete 1 co
 a
 b
 Column 0 is the only column and is sorted, so you will not delete any columns.
+
 #### Example 3
 
 - **Input:** $strs = ["zyx","wvu","tsr"]$

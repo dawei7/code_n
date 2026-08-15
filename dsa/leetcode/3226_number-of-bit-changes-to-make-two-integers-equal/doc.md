@@ -31,20 +31,20 @@ Return the minimum number of `1` bits that must be cleared, or `-1` if `k` conta
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 13, k = 4`
-- Output: `2`
-- Explanation: Clearing the `8` and `1` bits changes binary `1101` to `0100`.
+- **Input:** `n = 13, k = 4`
+- **Output:** `2`
+- **Explanation:** Clearing the `8` and `1` bits changes binary `1101` to `0100`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 21, k = 21`
-- Output: `0`
-- Explanation: The integers already match.
+- **Input:** `n = 21, k = 21`
+- **Output:** `0`
+- **Explanation:** The integers already match.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 14, k = 13`
-- Output: `-1`
-- Explanation: `k` needs a low `1` bit that is `0` in `n`.
+- **Input:** `n = 14, k = 13`
+- **Output:** `-1`
+- **Explanation:** `k` needs a low `1` bit that is `0` in `n`.

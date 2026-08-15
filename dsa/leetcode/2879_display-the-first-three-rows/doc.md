@@ -30,17 +30,17 @@ A pandas `DataFrame` containing the first `min(3, len(employees))` rows with the
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: six employee rows beginning with Bob, Alice, and Tatiana.
-- Output: the three rows for Bob, Alice, and Tatiana, with all four columns preserved.
+- **Input:** six employee rows beginning with Bob, Alice, and Tatiana.
+- **Output:** the three rows for Bob, Alice, and Tatiana, with all four columns preserved.
 
-**Example 2**
+#### Example 2
 
-- Input: exactly three employee rows.
-- Output: all three rows in their original order.
+- **Input:** exactly three employee rows.
+- **Output:** all three rows in their original order.
 
-**Example 3**
+#### Example 3
 
-- Input: one employee row.
-- Output: that single row with the original schema.
+- **Input:** one employee row.
+- **Output:** that single row with the original schema.

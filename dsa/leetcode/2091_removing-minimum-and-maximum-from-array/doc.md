@@ -31,19 +31,19 @@ Return the minimum number of front and back deletions needed to remove both the 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 10, 7, 5, 4, 1, 8, 6]`
-- Output: `5`
-- Explanation: Remove two elements from the front to include `10` and three from the back to include `1`.
+- **Input:** `nums = [2, 10, 7, 5, 4, 1, 8, 6]`
+- **Output:** `5`
+- **Explanation:** Remove two elements from the front to include `10` and three from the back to include `1`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [0, -4, 19, 1, 8, -2, -3, 5]`
-- Output: `3`
-- Explanation: Removing the first three elements removes both extremes.
+- **Input:** `nums = [0, -4, 19, 1, 8, -2, -3, 5]`
+- **Output:** `3`
+- **Explanation:** Removing the first three elements removes both extremes.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [101]`
-- Output: `1`
+- **Input:** `nums = [101]`
+- **Output:** `1`

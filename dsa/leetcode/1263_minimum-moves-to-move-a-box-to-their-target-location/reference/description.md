@@ -22,8 +22,13 @@ Return *the minimum number of **pushes** to move the box to the target*. If ther
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[str]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -39,6 +44,7 @@ Return *the minimum number of **pushes** to move the box to the target*. If ther
 ["#","#","#","#","#","#"]]
 - **Output:** `3`
 - **Explanation:** We return only the number of times the box is pushed.
+
 #### Example 2
 
 - **Input:** `grid = [["#","#","#","#","#","#"],`
@@ -48,6 +54,7 @@ Return *the minimum number of **pushes** to move the box to the target*. If ther
 ["#",".",".",".","S","#"],
 ["#","#","#","#","#","#"]]
 - **Output:** `-1`
+
 #### Example 3
 
 - **Input:** `grid = [["#","#","#","#","#","#"],`

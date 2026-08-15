@@ -12,8 +12,12 @@ Implement `MyHashSet` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `MyHashSet()`: Initializes the data structure.
+- `add(key: int)`: Executes operation.
+- `remove(key: int)`: Executes operation.
+- `contains(key: int) -> `bool``: Executes operation.
 
 ### 3. Examples
 

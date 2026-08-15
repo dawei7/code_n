@@ -40,8 +40,8 @@ At most $Q=10^4$ method calls are made after construction.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `operations = ["Robot","step","step","getPos","getDir","step","step","step","getPos","getDir"]`, `arguments = [[6,3],[2],[2],[],[],[2],[1],[4],[],[]]`
-- Output: `[null,null,null,[4,0],"East",null,null,null,[1,2],"West"]`
-- Explanation: The robot crosses the bottom edge, turns north at the right boundary, and later turns west across the top edge.
+- **Input:** `operations = ["Robot","step","step","getPos","getDir","step","step","step","getPos","getDir"]`, `arguments = [[6,3],[2],[2],[],[],[2],[1],[4],[],[]]`
+- **Output:** `[null,null,null,[4,0],"East",null,null,null,[1,2],"West"]`
+- **Explanation:** The robot crosses the bottom edge, turns north at the right boundary, and later turns west across the top edge.

@@ -12,8 +12,16 @@ Return any solution if there is more than one solution and return an **empty lis
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `m`: Input parameter (`int`).
+- `group`: Input parameter (`List[int]`).
+- `beforeItems`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -27,6 +35,7 @@ Return any solution if there is more than one solution and return an **empty lis
 
 - **Input:** $n = 8, m = 2, group = [-1,-1,1,0,0,1,0,-1], beforeItems = [[],[6],[5],[6],[3,6],[],[],[]]$
 - **Output:** `[6,3,4,1,5,2,0,7]`
+
 #### Example 2
 
 - **Input:** $n = 8, m = 2, group = [-1,-1,1,0,0,1,0,-1], beforeItems = [[],[6],[5],[6],[3],[],[4],[]]$

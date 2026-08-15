@@ -32,20 +32,20 @@ Return the number of non-empty substrings whose characters are all distinct.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abcd"`
-- Output: `10`
-- Explanation: Every substring is special, giving $4+3+2+1=10$ choices.
+- **Input:** `s = "abcd"`
+- **Output:** `10`
+- **Explanation:** Every substring is special, giving $4+3+2+1=10$ choices.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "ooo"`
-- Output: `3`
-- Explanation: Only the three one-character substrings avoid repetition.
+- **Input:** `s = "ooo"`
+- **Output:** `3`
+- **Explanation:** Only the three one-character substrings avoid repetition.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "abab"`
-- Output: `7`
-- Explanation: The four length-one and three length-two substrings are special; every longer substring repeats a character.
+- **Input:** `s = "abab"`
+- **Output:** `7`
+- **Explanation:** The four length-one and three length-two substrings are special; every longer substring repeats a character.

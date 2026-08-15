@@ -8,25 +8,19 @@ Return *the number* `n`.
 
 **Example 1: **
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
 **Input: **  n = 31
 
 **Output: **  31
 
 **Explanation: ** It can be proven that it's possible to find `31` using the provided API.
 
-</div>
-
 **Example 2: **
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
 **Input: **  n = 33
 
 **Output: **  33
 
 **Explanation: ** It can be proven that it's possible to find `33` using the provided API.
-
-</div>
 
 ### 2. Function Contract
 

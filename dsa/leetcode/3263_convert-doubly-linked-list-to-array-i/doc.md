@@ -30,17 +30,17 @@ Create an integer array containing the list's values in their forward order, beg
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [1,2,3,4,3,2,1]`
-- Output: `[1,2,3,4,3,2,1]`
+- **Input:** `root = [1,2,3,4,3,2,1]`
+- **Output:** `[1,2,3,4,3,2,1]`
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [2,2,2,2,2]`
-- Output: `[2,2,2,2,2]`
+- **Input:** `root = [2,2,2,2,2]`
+- **Output:** `[2,2,2,2,2]`
 
-**Example 3**
+#### Example 3
 
-- Input: `root = [3,2,3,2,3,2]`
-- Output: `[3,2,3,2,3,2]`
+- **Input:** `root = [3,2,3,2,3,2]`
+- **Output:** `[3,2,3,2,3,2]`

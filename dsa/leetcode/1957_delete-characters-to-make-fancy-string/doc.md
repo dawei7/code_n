@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/delete-characters-to-make-fancy-string/) |
 
 ## Problem Description
+
 ### Goal
+
 A string is fancy when it contains no three equal consecutive characters.
 Given a lowercase English string `s`, delete as few characters as possible so
 that the remaining characters form a fancy string.
@@ -19,6 +21,7 @@ final string after performing the minimum number of deletions. The contract
 guarantees that this minimum-deletion result is unique.
 
 ### Function Contract
+
 **Inputs**
 
 - `s`: a lowercase English string of length $N$, where
@@ -30,17 +33,18 @@ guarantees that this minimum-deletion result is unique.
   characters from `s`.
 
 ### Examples
-**Example 1**
 
-- Input: `s = "leeetcode"`
-- Output: `"leetcode"`
+#### Example 1
 
-**Example 2**
+- **Input:** `s = "leeetcode"`
+- **Output:** `"leetcode"`
 
-- Input: `s = "aaabaaaa"`
-- Output: `"aabaa"`
+#### Example 2
 
-**Example 3**
+- **Input:** `s = "aaabaaaa"`
+- **Output:** `"aabaa"`
 
-- Input: `s = "aab"`
-- Output: `"aab"`
+#### Example 3
+
+- **Input:** `s = "aab"`
+- **Output:** `"aab"`

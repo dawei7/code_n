@@ -33,14 +33,11 @@ Return an array of length $q$. Its $i$-th value is the $k_i$-th smallest positiv
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,4,7], queries = [[0,2,1],[1,1,2],[0,0,3]]
+- **Input:** nums = [1,4,7], queries = [[0,2,1],[1,1,2],[0,0,3]]
 
-**Output:** [2,6,6]
+- **Output:** [2,6,6]
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">`i`</th>
@@ -89,17 +86,13 @@ Return an array of length $q$. Its $i$-th value is the $k_i$-th smallest positiv
 
 Thus, $ans = [2, 6, 6]$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,5,8], queries = [[0,1,2],[1,2,1],[0,2,4]]
+- **Input:** nums = [2,5,8], queries = [[0,1,2],[1,2,1],[0,2,4]]
 
-**Output:** [6,2,12]
+- **Output:** [6,2,12]
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">`i`</th>
@@ -148,17 +141,13 @@ Thus, $ans = [2, 6, 6]$.
 
 Thus, $ans = [6, 2, 12]$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [3,6], queries = [[0,1,1],[1,1,3]]
+- **Input:** nums = [3,6], queries = [[0,1,1],[1,1,3]]
 
-**Output:** [2,8]
+- **Output:** [2,8]
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">`i`</th>
@@ -197,8 +186,6 @@ Thus, $ans = [6, 2, 12]$.
 </table>
 
 Thus, $ans = [2, 8]$.
-
-</div>
 
 ### 4. Constraints
 

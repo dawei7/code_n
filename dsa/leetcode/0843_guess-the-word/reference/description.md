@@ -20,8 +20,10 @@ The test cases are generated such that you can guess the secret word with a reas
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `guess(word: str) -> `int``: Executes operation.
+- `findSecretWord(words: List[str], master: 'Master')`: Executes operation.
 
 ### 3. Examples
 
@@ -29,13 +31,13 @@ The test cases are generated such that you can guess the secret word with a reas
 
 - **Input:** $secret = "acckzz", words = ["acckzz","ccbazz","eiowzz","abcczz"], allowedGuesses = 10$
 - **Output:** `You guessed the secret word correctly.`
-- **Explanation:**
-master.guess("aaaaaa") returns -1, because "aaaaaa" is not in words.
+- **Explanation:** master.guess("aaaaaa") returns -1, because "aaaaaa" is not in words.
 master.guess("acckzz") returns 6, because "acckzz" is secret and has all 6 matches.
 master.guess("ccbazz") returns 3, because "ccbazz" has 3 matches.
 master.guess("eiowzz") returns 2, because "eiowzz" has 2 matches.
 master.guess("abcczz") returns 4, because "abcczz" has 4 matches.
 We made 5 calls to master.guess, and one of them was the secret, so we pass the test case.
+
 #### Example 2
 
 - **Input:** $secret = "hamada", words = ["hamada","khaled"], allowedGuesses = 10$

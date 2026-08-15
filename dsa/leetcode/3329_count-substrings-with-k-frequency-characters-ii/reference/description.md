@@ -10,14 +10,11 @@ Given a string `s` and an integer `k`, return the total number of substrings of 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "abacb", k = 2
+- **Input:** s = "abacb", k = 2
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-The valid substrings are:
+- **Explanation:** The valid substrings are:
 
 - "`aba"` (character `'a'` appears 2 times).
 
@@ -27,19 +24,13 @@ The valid substrings are:
 
 - `"bacb"` (character `'b'` appears 2 times).
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "abcde", k = 1
+- **Input:** s = "abcde", k = 1
 
-**Output:** 15
+- **Output:** 15
 
-**Explanation:**
-
-All substrings are valid because every character appears at least once.
-
-</div>
+- **Explanation:** All substrings are valid because every character appears at least once.
 
 ### 4. Constraints
 

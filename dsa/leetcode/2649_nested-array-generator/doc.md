@@ -30,14 +30,14 @@ Return a JavaScript generator object that yields every integer in recursive left
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [[[6]],[1,3],[]]`
-- Output: `[6,1,3]`
-- Explanation: Recursive left-to-right traversal reaches `6`, then `1`, then `3`; the empty array contributes nothing.
+- **Input:** `arr = [[[6]],[1,3],[]]`
+- **Output:** `[6,1,3]`
+- **Explanation:** Recursive left-to-right traversal reaches `6`, then `1`, then `3`; the empty array contributes nothing.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = []`
-- Output: `[]`
-- Explanation: There are no integers to yield.
+- **Input:** `arr = []`
+- **Output:** `[]`
+- **Explanation:** There are no integers to yield.

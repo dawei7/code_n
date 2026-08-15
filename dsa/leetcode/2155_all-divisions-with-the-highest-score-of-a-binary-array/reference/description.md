@@ -14,8 +14,13 @@ Return ***all distinct indices** that have the **highest** possible **division s
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -31,6 +36,7 @@ Return ***all distinct indices** that have the **highest** possible **division s
 - 4: nums_left is [<u>**0**</u>,<u>**0**</u>,1,<u>**0**</u>]. nums_right is []. The score is 3 + 0 = 3.
 Indices 2 and 4 both have the highest possible division score 3.
 Note the answer [4,2] would also be accepted.
+
 #### Example 2
 
 - **Input:** `nums = [0,0,0]`
@@ -41,6 +47,7 @@ Note the answer [4,2] would also be accepted.
 - 2: nums_left is [<u>**0**</u>,<u>**0**</u>]. nums_right is [0]. The score is 2 + 0 = 2.
 - 3: nums_left is [<u>**0**</u>,<u>**0**</u>,<u>**0**</u>]. nums_right is []. The score is 3 + 0 = 3.
 Only index 3 has the highest possible division score 3.
+
 #### Example 3
 
 - **Input:** `nums = [1,1]`

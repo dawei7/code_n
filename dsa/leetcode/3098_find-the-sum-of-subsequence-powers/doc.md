@@ -31,20 +31,20 @@ Consider every subsequence of `nums` whose length is exactly `k`. Sum the power 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3, 4], k = 3`
-- Output: `4`
-- Explanation: The four length-three subsequences have powers $1$, $1$, $1$, and $1$, so their sum is $4$.
+- **Input:** `nums = [1, 2, 3, 4], k = 3`
+- **Output:** `4`
+- **Explanation:** The four length-three subsequences have powers $1$, $1$, $1$, and $1$, so their sum is $4$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, 2], k = 2`
-- Output: `0`
-- Explanation: The only subsequence contains two equal values, making its minimum absolute difference zero.
+- **Input:** `nums = [2, 2], k = 2`
+- **Output:** `0`
+- **Explanation:** The only subsequence contains two equal values, making its minimum absolute difference zero.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [4, 3, -1], k = 2`
-- Output: `10`
-- Explanation: The three pair powers are $\lvert 4 - 3 \rvert = 1$, $\lvert 4 - (-1) \rvert = 5$, and $\lvert 3 - (-1) \rvert = 4$.
+- **Input:** `nums = [4, 3, -1], k = 2`
+- **Output:** `10`
+- **Explanation:** The three pair powers are $\lvert 4 - 3 \rvert = 1$, $\lvert 4 - (-1) \rvert = 5$, and $\lvert 3 - (-1) \rvert = 4$.

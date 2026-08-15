@@ -8,21 +8,24 @@ Since the answer may be too large, return it **modulo** $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [9,4,1,3,7], k = 4
+- **Input:** nums = [9,4,1,3,7], k = 4
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
-
-There are 6 valid partitions where the difference between the maximum and minimum elements in each segment is at most $k = 4$:
+- **Explanation:** There are 6 valid partitions where the difference between the maximum and minimum elements in each segment is at most $k = 4$:
 
 - `[[9], [4], [1], [3], [7]]`
 
@@ -36,23 +39,17 @@ There are 6 valid partitions where the difference between the maximum and minimu
 
 - `[[9], [4, 1, 3], [7]]`
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [3,3,4], k = 0
+- **Input:** nums = [3,3,4], k = 0
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-There are 2 valid partitions that satisfy the given conditions:
+- **Explanation:** There are 2 valid partitions that satisfy the given conditions:
 
 - `[[3], [3], [4]]`
 
 - `[[3, 3], [4]]`
-
-</div>
 
 ### 4. Constraints
 

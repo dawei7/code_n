@@ -49,23 +49,23 @@ The minimum attainable sum of squared pairwise differences.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [1,2,3,4]`, `nums2 = [2,10,20,19]`, `k1 = 0`, `k2 = 0`
-- Output: `579`
-- Explanation: With no operations, the squared absolute differences are
+- **Input:** `nums1 = [1,2,3,4]`, `nums2 = [2,10,20,19]`, `k1 = 0`, `k2 = 0`
+- **Output:** `579`
+- **Explanation:** With no operations, the squared absolute differences are
   $1$, $64$, $289$, and $225$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [1,4,10,12]`, `nums2 = [5,8,6,9]`, `k1 = 1`, `k2 = 1`
-- Output: `43`
-- Explanation: The differences begin as `[4,4,4,3]`; reducing two of the
+- **Input:** `nums1 = [1,4,10,12]`, `nums2 = [5,8,6,9]`, `k1 = 1`, `k2 = 1`
+- **Output:** `43`
+- **Explanation:** The differences begin as `[4,4,4,3]`; reducing two of the
   values `4` to `3` leaves `[3,4,3,3]`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums1 = [1]`, `nums2 = [10]`, `k1 = 10`, `k2 = 10`
-- Output: `0`
-- Explanation: Nine of the available operations can eliminate the sole
+- **Input:** `nums1 = [1]`, `nums2 = [10]`, `k1 = 10`, `k2 = 10`
+- **Output:** `0`
+- **Explanation:** Nine of the available operations can eliminate the sole
   difference completely.

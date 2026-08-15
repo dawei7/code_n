@@ -34,20 +34,20 @@ Return the maximum score attainable after every multiplier has been used.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,2,3], multipliers = [3,2,1]`
-- Output: `14`
-- Explanation: Taking `3`, then `2`, then `1` from the right contributes $9+4+1$.
+- **Input:** `nums = [1,2,3], multipliers = [3,2,1]`
+- **Output:** `14`
+- **Explanation:** Taking `3`, then `2`, then `1` from the right contributes $9+4+1$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [-5,-3,-3,-2,7,1], multipliers = [-10,-5,3,4,6]`
-- Output: `102`
-- Explanation: One optimal sequence takes three values from the left, then two from the right, exploiting both negative and positive products.
+- **Input:** `nums = [-5,-3,-3,-2,7,1], multipliers = [-10,-5,3,4,6]`
+- **Output:** `102`
+- **Explanation:** One optimal sequence takes three values from the left, then two from the right, exploiting both negative and positive products.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [5,1,4], multipliers = [2,3]`
-- Output: `23`
-- Explanation: Taking `4` from the right and then `5` from the left gives $8+15$.
+- **Input:** `nums = [5,1,4], multipliers = [2,3]`
+- **Output:** `23`
+- **Explanation:** Taking `4` from the right and then `5` from the left gives $8+15$.

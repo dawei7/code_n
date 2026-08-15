@@ -12,37 +12,34 @@ A **subsequence** is an array that can be derived from another array by deleting
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [3,5,9], queries = [[1,-2],[0,-3]]
+- **Input:** nums = [3,5,9], queries = [[1,-2],[0,-3]]
 
-**Output:** 21
+- **Output:** 21
 
-**Explanation:**
-
-After the 1^st query, `nums = [3,-2,9]` and the maximum sum of a subsequence with non-adjacent elements is $3 + 9 = 12$.
+- **Explanation:** After the 1^st query, `nums = [3,-2,9]` and the maximum sum of a subsequence with non-adjacent elements is $3 + 9 = 12$.
 
 After the 2^nd query, `nums = [-3,-2,9]` and the maximum sum of a subsequence with non-adjacent elements is 9.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [0,-1], queries = [[0,-5]]
+- **Input:** nums = [0,-1], queries = [[0,-5]]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-After the 1^st query, `nums = [-5,-1]` and the maximum sum of a subsequence with non-adjacent elements is 0 (choosing an empty subsequence).
-
-</div>
+- **Explanation:** After the 1^st query, `nums = [-5,-1]` and the maximum sum of a subsequence with non-adjacent elements is 0 (choosing an empty subsequence).
 
 ### 4. Constraints
 

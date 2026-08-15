@@ -30,20 +30,20 @@ Return the total number of collisions according to the stated scoring rules.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `directions = "RLRSLL"`
-- Output: `5`
-- Explanation: the first opposing pair contributes two, and three later moving cars each strike a stationary collision site.
+- **Input:** `directions = "RLRSLL"`
+- **Output:** `5`
+- **Explanation:** the first opposing pair contributes two, and three later moving cars each strike a stationary collision site.
 
-**Example 2**
+#### Example 2
 
-- Input: `directions = "LLRR"`
-- Output: `0`
-- Explanation: left-moving cars at the left boundary and right-moving cars at the right boundary escape forever.
+- **Input:** `directions = "LLRR"`
+- **Output:** `0`
+- **Explanation:** left-moving cars at the left boundary and right-moving cars at the right boundary escape forever.
 
-**Example 3**
+#### Example 3
 
-- Input: `directions = "SSS"`
-- Output: `0`
-- Explanation: no car moves, so no collision occurs.
+- **Input:** `directions = "SSS"`
+- **Output:** `0`
+- **Explanation:** no car moves, so no collision occurs.

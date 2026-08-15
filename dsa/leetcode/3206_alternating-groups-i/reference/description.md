@@ -12,8 +12,13 @@ Return the number of **alternating** groups.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `colors`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -23,26 +28,19 @@ that since `colors` represents a **circle**, the **first** and the **last** tile
 
 #### Example 1
 
-<div class="example-block">
-**Input:** colors = [1,1,1]
+- **Input:** colors = [1,1,1]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** ![](images/image_2024-05-16_23-53-171.png)
 
-![](images/image_2024-05-16_23-53-171.png)
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** colors = [0,1,0,0,1]
+- **Input:** colors = [0,1,0,0,1]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-![](images/image_2024-05-16_23-47-491.png)
+- **Explanation:** ![](images/image_2024-05-16_23-47-491.png)
 
 Alternating groups:
 
@@ -59,8 +57,6 @@ Alternating groups:
 ![](images/image_2024-05-16_23-49-351.png)
 
 **
-
-</div>
 
 ### 5. Constraints
 

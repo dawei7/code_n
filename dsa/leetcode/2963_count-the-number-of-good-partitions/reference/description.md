@@ -10,8 +10,13 @@ Since the answer may be large, return it **modulo** $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,11 +25,13 @@ Since the answer may be large, return it **modulo** $10^{9} + 7$.
 - **Input:** `nums = [1,2,3,4]`
 - **Output:** `8`
 - **Explanation:** The 8 possible good partitions are: ([1], [2], [3], [4]), ([1], [2], [3,4]), ([1], [2,3], [4]), ([1], [2,3,4]), ([1,2], [3], [4]), ([1,2], [3,4]), ([1,2,3], [4]), and ([1,2,3,4]).
+
 #### Example 2
 
 - **Input:** `nums = [1,1,1,1]`
 - **Output:** `1`
 - **Explanation:** The only possible good partition is: ([1,1,1,1]).
+
 #### Example 3
 
 - **Input:** `nums = [1,2,1,3]`

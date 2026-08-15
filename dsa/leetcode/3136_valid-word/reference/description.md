@@ -16,8 +16,13 @@ Return `true` if `word` is valid, otherwise, return `false`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `word`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Note
 
@@ -29,40 +34,27 @@ Return `true` if `word` is valid, otherwise, return `false`.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** word = "234Adas"
+- **Input:** word = "234Adas"
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
+- **Explanation:** This word satisfies the conditions.
 
-This word satisfies the conditions.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** word = "b3"
+- **Input:** word = "b3"
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
+- **Explanation:** The length of this word is fewer than 3, and does not have a vowel.
 
-The length of this word is fewer than 3, and does not have a vowel.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** word = "a3$e"
+- **Input:** word = "a3$e"
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
-
-This word contains a `'$'` character and does not have a consonant.
-
-</div>
+- **Explanation:** This word contains a `'$'` character and does not have a consonant.
 
 ### 5. Constraints
 

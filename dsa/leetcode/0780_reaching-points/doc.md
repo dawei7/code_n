@@ -31,20 +31,20 @@ Given target point `(tx, ty)`, return `True` if a finite sequence of allowed mov
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `sx = 1, sy = 1, tx = 3, ty = 5`
-- Output: `True`
-- Explanation: `(1,1) -> (1,2) -> (3,2) -> (3,5)`.
+- **Input:** `sx = 1, sy = 1, tx = 3, ty = 5`
+- **Output:** `True`
+- **Explanation:** `(1,1) -> (1,2) -> (3,2) -> (3,5)`.
 
-**Example 2**
+#### Example 2
 
-- Input: `sx = 1, sy = 1, tx = 2, ty = 2`
-- Output: `False`
-- Explanation: A move increases exactly one coordinate, so equal coordinates cannot both change from `(1,1)` to `(2,2)`.
+- **Input:** `sx = 1, sy = 1, tx = 2, ty = 2`
+- **Output:** `False`
+- **Explanation:** A move increases exactly one coordinate, so equal coordinates cannot both change from `(1,1)` to `(2,2)`.
 
-**Example 3**
+#### Example 3
 
-- Input: `sx = 1, sy = 1, tx = 1, ty = 1`
-- Output: `True`
-- Explanation: No moves are required.
+- **Input:** `sx = 1, sy = 1, tx = 1, ty = 1`
+- **Output:** `True`
+- **Explanation:** No moves are required.

@@ -30,23 +30,23 @@ Maximize and return the sum of the three selected values. Negative entries are l
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: \`board = [[-3,1,1,1],[-3,1,-3,1],[-3,2,1,1]]\`
-- Output: \`4\`
+- **Input:** \`board = [[-3,1,1,1],[-3,1,-3,1],[-3,2,1,1]]\`
+- **Output:** \`4\`
 
 One optimum uses cells \`(0,2)\`, \`(1,3)\`, and \`(2,1)\`.
 
-**Example 2**
+#### Example 2
 
-- Input: \`board = [[1,2,3],[4,5,6],[7,8,9]]\`
-- Output: \`15\`
+- **Input:** \`board = [[1,2,3],[4,5,6],[7,8,9]]\`
+- **Output:** \`15\`
 
 Three distinct rows and columns can contribute a maximum total of 15.
 
-**Example 3**
+#### Example 3
 
-- Input: \`board = [[1,1,1],[1,1,1],[1,1,1]]\`
-- Output: \`3\`
+- **Input:** \`board = [[1,1,1],[1,1,1],[1,1,1]]\`
+- **Output:** \`3\`
 
 All legal placements have equal value.

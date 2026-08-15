@@ -10,43 +10,40 @@ Return the number of different infection sequences possible, modulo $10^{9}+7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `sick`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 5, sick = [0,4]
+- **Input:** n = 5, sick = [0,4]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-There is a total of 6 different sequences overall.
+- **Explanation:** There is a total of 6 different sequences overall.
 
 - Valid infection sequences are `[1,2,3]`, `[1,3,2]`, `[3,2,1]` and `[3,1,2]`.
 
 - `[2,3,1]` and `[2,1,3]` are not valid infection sequences because the person at index 2 cannot be infected at the first step.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 4, sick = [1]
+- **Input:** n = 4, sick = [1]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-There is a total of 6 different sequences overall.
+- **Explanation:** There is a total of 6 different sequences overall.
 
 - Valid infection sequences are `[0,2,3]`, `[2,0,3]` and `[2,3,0]`.
 
 - `[3,2,0]`, `[3,0,2]`, and `[0,3,2]` are not valid infection sequences because the infection starts at the person at index 1, then the order of infection is 2, then 3, and hence 3 cannot be infected earlier than 2.
-
-</div>
 
 ### 4. Constraints
 

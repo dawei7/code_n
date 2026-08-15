@@ -10,21 +10,23 @@ If no such set exists, return an **empty** array.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `numWays`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** numWays = [0,1,0,2,0,3,0,4,0,5]
+- **Input:** numWays = [0,1,0,2,0,3,0,4,0,5]
 
-**Output:** [2,4,6]
+- **Output:** [2,4,6]
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<tbody>
 		<tr>
 			<th style="border: 1px solid black;">Amount</th>
@@ -83,16 +85,14 @@ If no such set exists, return an **empty** array.
 		</tr>
 	</tbody>
 </table>
+
 #### Example 2
 
-<div class="example-block">
-**Input:** numWays = [1,2,2,3,4]
+- **Input:** numWays = [1,2,2,3,4]
 
-**Output:** [1,2,5]
+- **Output:** [1,2,5]
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<tbody>
 		<tr>
 			<th style="border: 1px solid black;">Amount</th>
@@ -126,23 +126,17 @@ If no such set exists, return an **empty** array.
 		</tr>
 	</tbody>
 </table>
-</div>
+
 #### Example 3
 
-<div class="example-block">
-**Input:** numWays = [1,2,3,4,15]
+- **Input:** numWays = [1,2,3,4,15]
 
-**Output:** []
+- **Output:** []
 
-**Explanation:**
-
-No set of denomination satisfies this array.
-
-</div>
+- **Explanation:** No set of denomination satisfies this array.
 
 <table style="border: 1px solid black;">
 </table>
-</div>
 
 ### 4. Constraints
 

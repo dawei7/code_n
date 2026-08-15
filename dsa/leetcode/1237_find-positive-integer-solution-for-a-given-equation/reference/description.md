@@ -30,8 +30,10 @@ We will judge your solution as follows:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `f(x, y)`: Executes operation.
+- `findSolution(customfunction: 'CustomFunction', z: int) -> `List[List[int]]``: Executes operation.
 
 ### 3. Examples
 
@@ -45,6 +47,7 @@ x=1, y=4 -> f(1, 4) = 1 + 4 = 5.
 x=2, y=3 -> f(2, 3) = 2 + 3 = 5.
 x=3, y=2 -> f(3, 2) = 3 + 2 = 5.
 x=4, y=1 -> f(4, 1) = 4 + 1 = 5.
+
 #### Example 2
 
 - **Input:** $\text{function}_{id} = 2, z = 5$

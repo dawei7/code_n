@@ -25,6 +25,7 @@ Return `true` if any part of the path crosses an earlier part; otherwise return 
 - **Input:** $distance = [2,1,1,2]$
 - **Output:** `true`
 - **Explanation:** The path crosses itself at the point (0, 1).
+
 #### Example 2
 
 ![](images/22.jpg)
@@ -32,6 +33,7 @@ Return `true` if any part of the path crosses an earlier part; otherwise return 
 - **Input:** $distance = [1,2,3,4]$
 - **Output:** `false`
 - **Explanation:** The path does not cross itself at any point.
+
 #### Example 3
 
 ![](images/33.jpg)

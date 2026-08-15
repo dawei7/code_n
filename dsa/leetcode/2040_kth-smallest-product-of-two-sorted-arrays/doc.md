@@ -40,19 +40,19 @@ product.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [2, 5], nums2 = [3, 4], k = 2`
-- Output: `8`
-- Explanation: The first two products are `6` and `8`.
+- **Input:** `nums1 = [2, 5], nums2 = [3, 4], k = 2`
+- **Output:** `8`
+- **Explanation:** The first two products are `6` and `8`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [-4, -2, 0, 3], nums2 = [2, 4], k = 6`
-- Output: `0`
-- Explanation: Four products are negative, followed by the two zero products.
+- **Input:** `nums1 = [-4, -2, 0, 3], nums2 = [2, 4], k = 6`
+- **Output:** `0`
+- **Explanation:** Four products are negative, followed by the two zero products.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums1 = [-2, -1, 0, 1, 2], nums2 = [-3, -1, 2, 4, 5], k = 3`
-- Output: `-6`
+- **Input:** `nums1 = [-2, -1, 0, 1, 2], nums2 = [-3, -1, 2, 4, 5], k = 3`
+- **Output:** `-6`

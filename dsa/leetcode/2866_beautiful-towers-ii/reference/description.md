@@ -20,8 +20,13 @@ Return *the **maximum possible sum of heights** of a beautiful configuration of 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `maxHeights`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -33,6 +38,7 @@ Return *the **maximum possible sum of heights** of a beautiful configuration of 
 - 1 <= heights[i] <= maxHeights[i]
 - heights is a mountain of peak i = 0.
 It can be shown that there exists no other beautiful configuration with a sum of heights greater than 13.
+
 #### Example 2
 
 - **Input:** $maxHeights = [6,5,3,9,2,7]$
@@ -41,6 +47,7 @@ It can be shown that there exists no other beautiful configuration with a sum of
 - 1 <= heights[i] <= maxHeights[i]
 - heights is a mountain of peak i = 3.
 It can be shown that there exists no other beautiful configuration with a sum of heights greater than 22.
+
 #### Example 3
 
 - **Input:** $maxHeights = [3,2,5,5,2,3]$

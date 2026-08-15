@@ -30,20 +30,20 @@ Return the length of the longest alternating contiguous subarray, or `-1` if no 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,3,4,3,4]`
-- Output: `4`
-- Explanation: The longest alternating subarray is `[3,4,3,4]`.
+- **Input:** `nums = [2,3,4,3,4]`
+- **Output:** `4`
+- **Explanation:** The longest alternating subarray is `[3,4,3,4]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4,5,6]`
-- Output: `2`
-- Explanation: Both `[4,5]` and `[5,6]` satisfy the required first rise, but neither can extend.
+- **Input:** `nums = [4,5,6]`
+- **Output:** `2`
+- **Explanation:** Both `[4,5]` and `[5,6]` satisfy the required first rise, but neither can extend.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [21,9,5]`
-- Output: `-1`
-- Explanation: No adjacent pair rises by exactly one, so no alternating subarray can start.
+- **Input:** `nums = [21,9,5]`
+- **Output:** `-1`
+- **Explanation:** No adjacent pair rises by exactly one, so no alternating subarray can start.

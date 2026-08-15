@@ -12,8 +12,13 @@ Return the number of teams you can form given the conditions. (soldiers can be p
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `rating`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,11 +27,13 @@ Return the number of teams you can form given the conditions. (soldiers can be p
 - **Input:** $rating = [2,5,3,4,1]$
 - **Output:** `3`
 - **Explanation:** We can form three teams given the conditions. (2,3,4), (5,4,1), (5,3,1).
+
 #### Example 2
 
 - **Input:** $rating = [2,1,3]$
 - **Output:** `0`
 - **Explanation:** We can't form any team given the conditions.
+
 #### Example 3
 
 - **Input:** $rating = [1,2,3,4]$

@@ -33,14 +33,11 @@ Return the integer sum of all positive values `x` satisfying both $abs(n - x) \l
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 2, k = 3
+- **Input:** n = 2, k = 3
 
-**Output:** 10
+- **Output:** 10
 
-**Explanation:**
-
-The compatible integers are:
+- **Explanation:** The compatible integers are:
 
 - $x = 1$, since $abs(2 - 1) = 1$ and $2 \& 1 = 0$.
 
@@ -50,19 +47,13 @@ The compatible integers are:
 
 Thus, the answer is $1 + 4 + 5 = 10$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 5, k = 1
+- **Input:** n = 5, k = 1
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-There are no compatible integers in the range `[4, 6]`. Thus, the answer is 0.
-
-</div>
+- **Explanation:** There are no compatible integers in the range `[4, 6]`. Thus, the answer is 0.
 
 ### 5. Constraints
 

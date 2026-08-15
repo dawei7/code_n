@@ -35,26 +35,26 @@ The arrays have equal length, $2 \le n \le 1000$. Every coordinate is between $1
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `bottomLeft = [[1,1],[2,2],[3,1]], topRight = [[3,3],[4,4],[6,6]]`
-- Output: `1`
-- Explanation: Rectangles `0` and `1` overlap in a unit square, so the best side length is `1`.
+- **Input:** `bottomLeft = [[1,1],[2,2],[3,1]], topRight = [[3,3],[4,4],[6,6]]`
+- **Output:** `1`
+- **Explanation:** Rectangles `0` and `1` overlap in a unit square, so the best side length is `1`.
 
-**Example 2**
+#### Example 2
 
-- Input: `bottomLeft = [[1,1],[1,3],[1,5]], topRight = [[5,5],[5,7],[5,9]]`
-- Output: `4`
-- Explanation: A side-`2` square fits in the overlap of the first two rectangles, giving area `4`.
+- **Input:** `bottomLeft = [[1,1],[1,3],[1,5]], topRight = [[5,5],[5,7],[5,9]]`
+- **Output:** `4`
+- **Explanation:** A side-`2` square fits in the overlap of the first two rectangles, giving area `4`.
 
-**Example 3**
+#### Example 3
 
-- Input: `bottomLeft = [[1,1],[2,2],[1,2]], topRight = [[3,3],[4,4],[3,4]]`
-- Output: `1`
-- Explanation: The widest square supported by any shared region has side length `1`.
+- **Input:** `bottomLeft = [[1,1],[2,2],[1,2]], topRight = [[3,3],[4,4],[3,4]]`
+- **Output:** `1`
+- **Explanation:** The widest square supported by any shared region has side length `1`.
 
-**Example 4**
+#### Example 4
 
-- Input: `bottomLeft = [[1,1],[3,3],[3,1]], topRight = [[2,2],[4,4],[4,2]]`
-- Output: `0`
-- Explanation: No pair overlaps with positive width and positive height.
+- **Input:** `bottomLeft = [[1,1],[3,3],[3,1]], topRight = [[2,2],[4,4],[4,2]]`
+- **Output:** `0`
+- **Explanation:** No pair overlaps with positive width and positive height.

@@ -12,8 +12,15 @@ Answers within $10^{-5}$ of the actual answer are considered accepted.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+- `maxPts`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `float`.
 
 ### 3. Examples
 
@@ -22,12 +29,14 @@ Answers within $10^{-5}$ of the actual answer are considered accepted.
 - **Input:** $n = 10, k = 1, maxPts = 10$
 - **Output:** `1.00000`
 - **Explanation:** Alice gets a single card, then stops.
+
 #### Example 2
 
 - **Input:** $n = 6, k = 1, maxPts = 10$
 - **Output:** `0.60000`
 - **Explanation:** Alice gets a single card, then stops.
 In 6 out of 10 possibilities, she is at or below 6 points.
+
 #### Example 3
 
 - **Input:** $n = 21, k = 17, maxPts = 10$

@@ -35,20 +35,20 @@ Return a length-`n` integer array whose entry at index `i - 1` is the minimum ro
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 4, roads = [[1,2,4],[2,3,2],[2,4,5],[3,4,1],[1,3,4]], appleCost = [56,42,102,301], k = 2`
-- Output: `[54,42,48,51]`
-- Explanation: City 2 offers the best purchase for every start; each route back costs twice its outward cost.
+- **Input:** `n = 4, roads = [[1,2,4],[2,3,2],[2,4,5],[3,4,1],[1,3,4]], appleCost = [56,42,102,301], k = 2`
+- **Output:** `[54,42,48,51]`
+- **Explanation:** City 2 offers the best purchase for every start; each route back costs twice its outward cost.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3, roads = [[1,2,5],[2,3,1],[3,1,2]], appleCost = [2,3,1], k = 3`
-- Output: `[2,3,1]`
-- Explanation: At every start, buying locally is cheaper than adding travel.
+- **Input:** `n = 3, roads = [[1,2,5],[2,3,1],[3,1,2]], appleCost = [2,3,1], k = 3`
+- **Output:** `[2,3,1]`
+- **Explanation:** At every start, buying locally is cheaper than adding travel.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 2, roads = [[1,2,10]], appleCost = [100,1], k = 1`
-- Output: `[21,1]`
-- Explanation: From city 1, traveling to city 2 and back adds `20` to its apple price of `1`.
+- **Input:** `n = 2, roads = [[1,2,10]], appleCost = [100,1], k = 1`
+- **Output:** `[21,1]`
+- **Explanation:** From city 1, traveling to city 2 and back adds `20` to its apple price of `1`.

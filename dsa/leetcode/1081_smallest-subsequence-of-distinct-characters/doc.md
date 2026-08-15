@@ -30,12 +30,12 @@ Among all subsequences satisfying that coverage and uniqueness requirement, retu
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "bcabc"`
-- Output: `"abc"`
+- **Input:** `s = "bcabc"`
+- **Output:** `"abc"`
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "cbacdcbc"`
-- Output: `"acdb"`
+- **Input:** `s = "cbacdcbc"`
+- **Output:** `"acdb"`

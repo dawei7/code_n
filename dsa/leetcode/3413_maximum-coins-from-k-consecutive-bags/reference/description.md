@@ -12,35 +12,32 @@ Return the **maximum** amount of coins you can obtain by collecting `k` consecut
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `coins`: Input parameter (`List[List[int]]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** coins = [[8,10,1],[1,3,2],[5,6,4]], k = 4
+- **Input:** coins = [[8,10,1],[1,3,2],[5,6,4]], k = 4
 
-**Output:** 10
+- **Output:** 10
 
-**Explanation:**
+- **Explanation:** Selecting bags at positions `[3, 4, 5, 6]` gives the maximum number of coins: $2 + 0 + 4 + 4 = 10$.
 
-Selecting bags at positions `[3, 4, 5, 6]` gives the maximum number of coins: $2 + 0 + 4 + 4 = 10$.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** coins = [[1,10,3]], k = 2
+- **Input:** coins = [[1,10,3]], k = 2
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
-
-Selecting bags at positions `[1, 2]` gives the maximum number of coins: $3 + 3 = 6$.
-
-</div>
+- **Explanation:** Selecting bags at positions `[1, 2]` gives the maximum number of coins: $3 + 3 = 6$.
 
 ### 4. Constraints
 

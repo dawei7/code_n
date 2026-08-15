@@ -28,20 +28,20 @@ Return the maximum value of $\lvert A\rvert\lvert B\rvert$ over two palindromic 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "leetcodecom"`
-- Output: `9`
-- Explanation: `"ete"` and `"cdc"` use disjoint positions and give $3\cdot3=9$.
+- **Input:** `s = "leetcodecom"`
+- **Output:** `9`
+- **Explanation:** `"ete"` and `"cdc"` use disjoint positions and give $3\cdot3=9$.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "bb"`
-- Output: `1`
-- Explanation: Select one `b` from each of the two source positions.
+- **Input:** `s = "bb"`
+- **Output:** `1`
+- **Explanation:** Select one `b` from each of the two source positions.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "accbcaxxcxx"`
-- Output: `25`
-- Explanation: Disjoint subsequences `"accca"` and `"xxcxx"` each have length $5$.
+- **Input:** `s = "accbcaxxcxx"`
+- **Output:** `25`
+- **Explanation:** Disjoint subsequences `"accca"` and `"xxcxx"` each have length $5$.

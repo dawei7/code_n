@@ -8,8 +8,14 @@ Return `true`* if it is possible to pick up and drop off all passengers for all 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `trips`: Input parameter (`List[List[int]]`).
+- `capacity`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -17,6 +23,7 @@ Return `true`* if it is possible to pick up and drop off all passengers for all 
 
 - **Input:** $trips = [[2,1,5],[3,3,7]], capacity = 4$
 - **Output:** `false`
+
 #### Example 2
 
 - **Input:** $trips = [[2,1,5],[3,3,7]], capacity = 5$

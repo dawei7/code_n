@@ -26,6 +26,7 @@ The given order already defines the polygon boundary, including the closing edge
 
 - **Input:** $points = [[0,0],[0,5],[5,5],[5,0]]$
 - **Output:** `true`
+
 #### Example 2
 
 ![](images/covpoly2-plane.jpg)

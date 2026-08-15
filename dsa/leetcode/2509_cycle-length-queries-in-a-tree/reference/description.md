@@ -16,8 +16,14 @@ You are also given a 2D integer array `queries` of length `m`, where $\text{quer
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -43,6 +49,7 @@ Return *an array *`answer`* of length *`m`* where* $\text{answer}[i]$ *is the an
 - After adding the edge between nodes 3 and 5, the graph contains a cycle of nodes [5,2,1,3]. Thus answer to the first query is 4. We delete the added edge and process the next query.
 - After adding the edge between nodes 4 and 7, the graph contains a cycle of nodes [4,2,1,3,7]. Thus answer to the second query is 5. We delete the added edge and process the next query.
 - After adding the edge between nodes 2 and 3, the graph contains a cycle of nodes [2,1,3]. Thus answer to the third query is 3. We delete the added edge.
+
 #### Example 2
 
 ![](images/aexample2.png)

@@ -6,8 +6,10 @@ Return *the *`head`* of the linked list after **doubling** it*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `ListNode(val=0, next=None)`: Initializes the data structure.
+- `doubleIt(head: Optional[ListNode]) -> `Optional[ListNode]``: Executes operation.
 
 ### 3. Examples
 
@@ -18,6 +20,7 @@ Return *the *`head`* of the linked list after **doubling** it*.
 - **Input:** $head = [1,8,9]$
 - **Output:** `[3,7,8]`
 - **Explanation:** The figure above corresponds to the given linked list which represents the number 189. Hence, the returned linked list represents the number 189 * 2 = 378.
+
 #### Example 2
 
 ![](images/example2.png)

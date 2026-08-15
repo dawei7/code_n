@@ -23,46 +23,33 @@ Return all zero-based starting indices whose substring is a permutation-concaten
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "barfoothefoobarman", words = ["foo","bar"]
+- **Input:** s = "barfoothefoobarman", words = ["foo","bar"]
 
-**Output:** [0,9]
+- **Output:** [0,9]
 
-**Explanation:**
-
-The substring starting at 0 is `"barfoo"`. It is the concatenation of `["bar","foo"]` which is a permutation of `words`.
+- **Explanation:** The substring starting at 0 is `"barfoo"`. It is the concatenation of `["bar","foo"]` which is a permutation of `words`.
 
 The substring starting at 9 is `"foobar"`. It is the concatenation of `["foo","bar"]` which is a permutation of `words`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "wordgoodgoodgoodbestword", words = ["word","good","best","word"]
+- **Input:** s = "wordgoodgoodgoodbestword", words = ["word","good","best","word"]
 
-**Output:** []
+- **Output:** []
 
-**Explanation:**
+- **Explanation:** There is no concatenated substring.
 
-There is no concatenated substring.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "barfoofoobarthefoobarman", words = ["bar","foo","the"]
+- **Input:** s = "barfoofoobarthefoobarman", words = ["bar","foo","the"]
 
-**Output:** [6,9,12]
+- **Output:** [6,9,12]
 
-**Explanation:**
-
-The substring starting at 6 is `"foobarthe"`. It is the concatenation of `["foo","bar","the"]`.
+- **Explanation:** The substring starting at 6 is `"foobarthe"`. It is the concatenation of `["foo","bar","the"]`.
 
 The substring starting at 9 is `"barthefoo"`. It is the concatenation of `["bar","the","foo"]`.
 
 The substring starting at 12 is `"thefoobar"`. It is the concatenation of `["the","foo","bar"]`.
-
-</div>
 
 ### 4. Constraints
 

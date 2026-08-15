@@ -38,7 +38,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Customers table:
 +-------------+---------------+
 | customer_id | customer_name |
@@ -47,13 +47,12 @@ Customers table:
 | 4           | Bob           |
 | 5           | Charlie       |
 +-------------+---------------+
-**Output:**
+- **Output:** 
 +-----+
 | ids |
 +-----+
 | 2   |
 | 3   |
 +-----+
-**Explanation:**
-The maximum customer_id present in the table is 5, so in the range [1,5], IDs 2 and 3 are missing from the table.
+- **Explanation:** The maximum customer_id present in the table is 5, so in the range [1,5], IDs 2 and 3 are missing from the table.
 ```

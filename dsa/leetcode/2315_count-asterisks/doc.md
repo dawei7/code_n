@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/count-asterisks/) |
 
 ## Problem Description
+
 ### Goal
+
 The vertical bars in `s` occur an even number of times. Reading from left to
 right, the first and second bars form one pair, the third and fourth form the
 next pair, and so on. Each pair encloses one region of the string, and every
@@ -21,6 +23,7 @@ asterisks before the first pair, between two pairs, or after the last pair
 contribute to the result.
 
 ### Function Contract
+
 **Inputs**
 
 - `s`: A string of lowercase English letters, vertical bars `'|'`, and
@@ -35,18 +38,19 @@ The number of asterisks outside the regions delimited by consecutive bar
 pairs.
 
 ### Examples
-**Example 1**
 
-- Input: `s = "l|*e*et|c**o|*de|"`
-- Output: `2`
-- Explanation: Only the two asterisks in `c**o` are outside paired bars.
+#### Example 1
 
-**Example 2**
+- **Input:** `s = "l|*e*et|c**o|*de|"`
+- **Output:** `2`
+- **Explanation:** Only the two asterisks in `c**o` are outside paired bars.
 
-- Input: `s = "iamprogrammer"`
-- Output: `0`
+#### Example 2
 
-**Example 3**
+- **Input:** `s = "iamprogrammer"`
+- **Output:** `0`
 
-- Input: `s = "yo|uar|e**|b|e***au|tifu|l"`
-- Output: `5`
+#### Example 3
+
+- **Input:** `s = "yo|uar|e**|b|e***au|tifu|l"`
+- **Output:** `5`

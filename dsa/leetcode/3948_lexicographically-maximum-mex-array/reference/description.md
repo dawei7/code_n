@@ -34,46 +34,39 @@ Return the lexicographically maximum array of prefix MEX values obtainable by re
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [0,1,0]
+- **Input:** nums = [0,1,0]
 
-**Output:** [2,1]
+- **Output:** [2,1]
 
-**Explanation:**
+- **Explanation:** 
 
 - Take the first $k = 2$ elements `[0, 1]` which has MEX = 2. Current $result = [2]$.
 
 - Remaining array `[0]` has MEX = 1. Thus, the final $result = [2, 1]$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,0,2]
+- **Input:** nums = [1,0,2]
 
-**Output:** [3]
+- **Output:** [3]
 
-**Explanation:**
+- **Explanation:** 
 
 - Take the first $k = 3$ elements `[1, 0, 2]` which has MEX = 3.
 
 - `nums` is now empty. Thus, the final $result = [3]$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [3,1]
+- **Input:** nums = [3,1]
 
-**Output:** [0,0]
+- **Output:** [0,0]
 
-**Explanation:**​​​​​​​
+- **Explanation:** ​​​​​​​
 
 - Take $k = 1$, first element `[3]` has MEX = 0. Current $result = [0]$.
 
 - Remaining array `[1]` has MEX = 0. Thus, the final $result = [0, 0]$.
-
-</div>
 
 ### 4. Constraints
 

@@ -36,19 +36,19 @@ Let $N$ be the length of `nums`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3, 1]`
-- Output: `2`
-- Explanation: Subsets selecting `[3]` and `[3, 1]` both have OR `3`.
+- **Input:** `nums = [3, 1]`
+- **Output:** `2`
+- **Explanation:** Subsets selecting `[3]` and `[3, 1]` both have OR `3`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, 2, 2]`
-- Output: `7`
-- Explanation: Every one of the $2^3-1$ nonempty index subsets has OR `2`.
+- **Input:** `nums = [2, 2, 2]`
+- **Output:** `7`
+- **Explanation:** Every one of the $2^3-1$ nonempty index subsets has OR `2`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [3, 2, 1, 5]`
-- Output: `6`
+- **Input:** `nums = [3, 2, 1, 5]`
+- **Output:** `6`

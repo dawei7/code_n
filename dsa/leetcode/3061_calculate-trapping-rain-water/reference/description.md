@@ -28,7 +28,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Heights table:
 +-----+--------+
 | id  | height |
@@ -46,15 +46,13 @@ Heights table:
 | 11  | 2      |
 | 12  | 1      |
 +-----+--------+
-**Output:**
+- **Output:** 
 +---------------------+
 | total_trapped_water |
 +---------------------+
 | 6                   |
 +---------------------+
-**Explanation:**
-
-![](images/trapping_rain_water.png)
+- **Explanation:** ![](images/trapping_rain_water.png)
 
 The elevation map depicted above (in the black section) is graphically represented with the x-axis denoting the id and the y-axis representing the heights [0,1,0,2,1,0,1,3,2,1,2,1]. In this scenario, 6 units of rainwater are trapped within the blue section.
 ```

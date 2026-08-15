@@ -6,8 +6,10 @@ A **grandparent** of a node is the parent of its parent if it exists.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `sumEvenGrandparent(root: Optional[TreeNode]) -> `int``: Executes operation.
 
 ### 3. Examples
 
@@ -18,6 +20,7 @@ A **grandparent** of a node is the parent of its parent if it exists.
 - **Input:** `root = [6,7,8,2,7,1,3,9,null,1,4,null,null,null,5]`
 - **Output:** `18`
 - **Explanation:** The red nodes are the nodes with even-value grandparent while the blue nodes are the even-value grandparents.
+
 #### Example 2
 
 ![](images/even2-tree.jpg)

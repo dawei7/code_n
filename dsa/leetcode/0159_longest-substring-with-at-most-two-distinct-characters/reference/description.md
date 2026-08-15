@@ -19,6 +19,7 @@ Return an integer representing the maximum length of a contiguous substring cont
 - **Input:** `s = "eceba"`
 - **Output:** `3`
 - **Explanation:** The substring is "ece" which its length is 3.
+
 #### Example 2
 
 - **Input:** `s = "ccaabbb"`

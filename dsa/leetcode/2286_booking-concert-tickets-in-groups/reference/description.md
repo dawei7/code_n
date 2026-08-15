@@ -22,8 +22,11 @@ Implement the `BookMyShow` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `BookMyShow(n: int, m: int)`: Initializes the data structure.
+- `gather(k: int, maxRow: int) -> `List[int]``: Executes operation.
+- `scatter(k: int, maxRow: int) -> `bool``: Executes operation.
 
 ### 3. Examples
 

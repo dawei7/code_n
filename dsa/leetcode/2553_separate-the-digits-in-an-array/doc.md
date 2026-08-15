@@ -32,14 +32,14 @@ Let $D$ be the total number of decimal digits across all values in `nums`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [13, 25, 83, 77]`
-- Output: `[1, 3, 2, 5, 8, 3, 7, 7]`
-- Explanation: The four values contribute `[1, 3]`, `[2, 5]`, `[8, 3]`, and `[7, 7]` in that order.
+- **Input:** `nums = [13, 25, 83, 77]`
+- **Output:** `[1, 3, 2, 5, 8, 3, 7, 7]`
+- **Explanation:** The four values contribute `[1, 3]`, `[2, 5]`, `[8, 3]`, and `[7, 7]` in that order.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [7, 1, 3, 9]`
-- Output: `[7, 1, 3, 9]`
-- Explanation: Each input already consists of one digit.
+- **Input:** `nums = [7, 1, 3, 9]`
+- **Output:** `[7, 1, 3, 9]`
+- **Explanation:** Each input already consists of one digit.

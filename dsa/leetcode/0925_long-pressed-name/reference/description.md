@@ -6,8 +6,14 @@ You examine the `typed` characters of the keyboard. Return `True` if it is possi
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `name`: Input parameter (`str`).
+- `typed`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -16,6 +22,7 @@ You examine the `typed` characters of the keyboard. Return `True` if it is possi
 - **Input:** $name = "alex", typed = "aaleex"$
 - **Output:** `true`
 - **Explanation:** 'a' and 'e' in 'alex' were long pressed.
+
 #### Example 2
 
 - **Input:** $name = "saeed", typed = "ssaaedd"$

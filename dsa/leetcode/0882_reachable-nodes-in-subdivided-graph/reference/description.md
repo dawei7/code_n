@@ -12,8 +12,15 @@ Given the original graph and `maxMoves`, return *the number of nodes that are **
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `edges`: Input parameter (`List[List[int]]`).
+- `maxMoves`: Input parameter (`int`).
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,10 +32,12 @@ Given the original graph and `maxMoves`, return *the number of nodes that are **
 - **Output:** `13`
 - **Explanation:** The edge subdivisions are shown in the image above.
 The nodes that are reachable are highlighted in yellow.
+
 #### Example 2
 
 - **Input:** $edges = [[0,1,4],[1,2,6],[0,2,8],[1,3,1]], maxMoves = 10, n = 4$
 - **Output:** `23`
+
 #### Example 3
 
 - **Input:** $edges = [[1,2,4],[1,4,5],[1,3,1],[2,3,4],[3,4,5]], maxMoves = 17, n = 5$

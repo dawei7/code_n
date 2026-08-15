@@ -31,20 +31,20 @@ Return the maximum distance in kilometers after consuming every usable liter fro
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `mainTank = 5, additionalTank = 10`
-- Output: `60`
-- Explanation: Consuming the first five liters triggers one transfer, so six liters are ultimately burned.
+- **Input:** `mainTank = 5, additionalTank = 10`
+- **Output:** `60`
+- **Explanation:** Consuming the first five liters triggers one transfer, so six liters are ultimately burned.
 
-**Example 2**
+#### Example 2
 
-- Input: `mainTank = 1, additionalTank = 2`
-- Output: `10`
-- Explanation: The main tank empties before a transfer event can occur.
+- **Input:** `mainTank = 1, additionalTank = 2`
+- **Output:** `10`
+- **Explanation:** The main tank empties before a transfer event can occur.
 
-**Example 3**
+#### Example 3
 
-- Input: `mainTank = 9, additionalTank = 2`
-- Output: `110`
-- Explanation: The first transfer allows another five-liter consumption milestone, so both reserve liters become usable.
+- **Input:** `mainTank = 9, additionalTank = 2`
+- **Output:** `110`
+- **Explanation:** The first transfer allows another five-liter consumption milestone, so both reserve liters become usable.

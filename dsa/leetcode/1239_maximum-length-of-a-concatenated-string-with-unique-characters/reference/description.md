@@ -8,8 +8,13 @@ A **subsequence** is an array that can be derived from another array by deleting
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,11 +30,13 @@ A **subsequence** is an array that can be derived from another array by deleting
 - "uniq" ("un" + "iq")
 - "ique" ("iq" + "ue")
 Maximum length is 4.
+
 #### Example 2
 
 - **Input:** `arr = ["cha","r","act","ers"]`
 - **Output:** `6`
 - **Explanation:** Possible longest valid concatenations are "chaers" ("cha" + "ers") and "acters" ("act" + "ers").
+
 #### Example 3
 
 - **Input:** `arr = ["abcdefghijklmnopqrstuvwxyz"]`

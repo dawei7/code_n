@@ -34,14 +34,14 @@ The dimensions satisfy $2 \leq m,n \leq 1000$ and $4 \leq mn \leq 10^5$. Every c
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[0,1,3,2],[5,1,2,5],[4,3,8,6]]`
-- Output: `7`
-- Explanation: A legal route reaches `(0, 1)` at time $1$, uses accessible cells to keep moving while later cells unlock, and first reaches `(2, 3)` at time $7$.
+- **Input:** `grid = [[0,1,3,2],[5,1,2,5],[4,3,8,6]]`
+- **Output:** `7`
+- **Explanation:** A legal route reaches `(0, 1)` at time $1$, uses accessible cells to keep moving while later cells unlock, and first reaches `(2, 3)` at time $7$.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[0,2,4],[3,2,1],[1,0,4]]`
-- Output: `-1`
-- Explanation: At time $1$, neither neighbor of `(0, 0)` is available. Because a move is mandatory, no route can begin.
+- **Input:** `grid = [[0,2,4],[3,2,1],[1,0,4]]`
+- **Output:** `-1`
+- **Explanation:** At time $1$, neither neighbor of `(0, 0)` is available. Because a move is mandatory, no route can begin.

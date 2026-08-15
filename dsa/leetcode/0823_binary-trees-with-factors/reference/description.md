@@ -8,8 +8,13 @@ Return *the number of binary trees we can make*. The answer may be too large so 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +23,7 @@ Return *the number of binary trees we can make*. The answer may be too large so 
 - **Input:** `arr = [2,4]`
 - **Output:** `3`
 - **Explanation:** We can make these trees: [2], [4], [4, 2, 2]
+
 #### Example 2
 
 - **Input:** `arr = [2,4,5,10]`

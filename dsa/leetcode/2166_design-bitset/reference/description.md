@@ -22,8 +22,16 @@ Implement the `Bitset` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `Bitset(size: int)`: Initializes the data structure.
+- `fix(idx: int)`: Executes operation.
+- `unfix(idx: int)`: Executes operation.
+- `flip()`: Executes operation.
+- `all() -> `bool``: Executes operation.
+- `one() -> `bool``: Executes operation.
+- `count() -> `int``: Executes operation.
+- `toString() -> `str``: Executes operation.
 
 ### 3. Examples
 

@@ -16,8 +16,14 @@ Note:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `num`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,15 +31,16 @@ Note:
 
 - **Input:** $num = 58, k = 9$
 - **Output:** `2`
-- **Explanation:**
-One valid set is [9,49], as the sum is 58 and each integer has a units digit of 9.
+- **Explanation:** One valid set is [9,49], as the sum is 58 and each integer has a units digit of 9.
 Another valid set is [19,39].
 It can be shown that 2 is the minimum possible size of a valid set.
+
 #### Example 2
 
 - **Input:** $num = 37, k = 2$
 - **Output:** `-1`
 - **Explanation:** It is not possible to obtain a sum of 37 using only integers that have a units digit of 2.
+
 #### Example 3
 
 - **Input:** $num = 0, k = 7$

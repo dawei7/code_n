@@ -10,7 +10,6 @@ You are given two jugs with capacities `x` liters and `y` liters. You have an in
 
 **Example 1: **
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
 **Input: **  x = 3, y = 5, target = 4
 
 **Output: **  true
@@ -35,27 +34,19 @@ Follow these steps to reach a total of 4 liters:
 
 Reference: The <a href="https://www.youtube.com/watch?v=BVtQNK_ZUJg&ab_channel=notnek01" target="_blank">Die Hard</a> example.
 
-</div>
-
 **Example 2: **
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
 **Input: **  x = 2, y = 6, target = 5
 
 **Output: **  false
 
-</div>
-
 **Example 3: **
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
 **Input: **  x = 1, y = 2, target = 3
 
 **Output: **  true
 
 **Explanation:** Fill both jugs. The total amount of water in both jugs is equal to 3 now.
-
-</div>
 
 ### 2. Function Contract
 

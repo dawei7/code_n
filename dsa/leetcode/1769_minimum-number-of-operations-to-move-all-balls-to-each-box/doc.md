@@ -34,20 +34,20 @@ For every possible target index, determine the minimum operations needed to brin
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `boxes = "110"`
-- Output: `[1,1,3]`
-- Explanation: Gathering at indices `0` or `1` costs one move; gathering at index `2` costs two moves for the first ball and one for the second.
+- **Input:** `boxes = "110"`
+- **Output:** `[1,1,3]`
+- **Explanation:** Gathering at indices `0` or `1` costs one move; gathering at index `2` costs two moves for the first ball and one for the second.
 
-**Example 2**
+#### Example 2
 
-- Input: `boxes = "001011"`
-- Output: `[11,8,5,4,3,4]`
-- Explanation: Each entry sums the distances from the balls initially at indices `2`, `4`, and `5`.
+- **Input:** `boxes = "001011"`
+- **Output:** `[11,8,5,4,3,4]`
+- **Explanation:** Each entry sums the distances from the balls initially at indices `2`, `4`, and `5`.
 
-**Example 3**
+#### Example 3
 
-- Input: `boxes = "0"`
-- Output: `[0]`
-- Explanation: With no balls present, every required movement cost is zero.
+- **Input:** `boxes = "0"`
+- **Output:** `[0]`
+- **Explanation:** With no balls present, every required movement cost is zero.

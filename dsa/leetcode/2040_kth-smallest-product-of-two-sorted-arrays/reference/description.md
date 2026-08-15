@@ -4,8 +4,15 @@ Given two **sorted 0-indexed** integer arrays `nums1` and `nums2` as well as an 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums1`: Input parameter (`List[int]`).
+- `nums2`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -17,6 +24,7 @@ Given two **sorted 0-indexed** integer arrays `nums1` and `nums2` as well as an 
 - nums1[0] * nums2[0] = 2 * 3 = 6
 - nums1[0] * nums2[1] = 2 * 4 = 8
 The 2^nd smallest product is 8.
+
 #### Example 2
 
 - **Input:** $nums1 = [-4,-2,0,3], nums2 = [2,4], k = 6$
@@ -29,6 +37,7 @@ The 2^nd smallest product is 8.
 - nums1[2] * nums2[0] = 0 * 2 = 0
 - nums1[2] * nums2[1] = 0 * 4 = 0
 The 6^th smallest product is 0.
+
 #### Example 3
 
 - **Input:** $nums1 = [-2,-1,0,1,2], nums2 = [-3,-1,2,4,5], k = 3$

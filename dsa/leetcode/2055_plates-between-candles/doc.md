@@ -31,13 +31,13 @@ For every query, count the plates that have at least one candle to their left an
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "**|**|***|", queries = [[2,5],[5,9]]`
-- Output: `[2,3]`
-- Explanation: The candles at indices `2` and `5` enclose two plates; those at `5` and `9` enclose three.
+- **Input:** `s = "**|**|***|", queries = [[2,5],[5,9]]`
+- **Output:** `[2,3]`
+- **Explanation:** The candles at indices `2` and `5` enclose two plates; those at `5` and `9` enclose three.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "***|**|*****|**||**|*", queries = [[1,17],[4,5],[14,17],[5,11],[15,16]]`
-- Output: `[9,0,0,0,0]`
+- **Input:** `s = "***|**|*****|**||**|*", queries = [[1,17],[4,5],[14,17],[5,11],[15,16]]`
+- **Output:** `[9,0,0,0,0]`

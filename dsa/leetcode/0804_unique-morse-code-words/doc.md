@@ -30,20 +30,20 @@ Given an array `words`, return the number of distinct Morse transformations prod
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `words = ["gin","zen","gig","msg"]`
-- Output: `2`
-- Explanation: `gin` and `zen` share one transformation, while `gig` and `msg` share another.
+- **Input:** `words = ["gin","zen","gig","msg"]`
+- **Output:** `2`
+- **Explanation:** `gin` and `zen` share one transformation, while `gig` and `msg` share another.
 
-**Example 2**
+#### Example 2
 
-- Input: `words = ["a","et"]`
-- Output: `1`
-- Explanation: Both words concatenate to `.-` because transformation boundaries do not preserve letter separators.
+- **Input:** `words = ["a","et"]`
+- **Output:** `1`
+- **Explanation:** Both words concatenate to `.-` because transformation boundaries do not preserve letter separators.
 
-**Example 3**
+#### Example 3
 
-- Input: `words = ["abc","def","ghi"]`
-- Output: `3`
-- Explanation: The three resulting Morse strings are different.
+- **Input:** `words = ["abc","def","ghi"]`
+- **Output:** `3`
+- **Explanation:** The three resulting Morse strings are different.

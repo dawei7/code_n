@@ -12,21 +12,23 @@ Return the **maximum** number of operations that you can perform.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "1001101"
+- **Input:** s = "1001101"
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-We can perform the following operations:
+- **Explanation:** We can perform the following operations:
 
 - Choose index $i = 0$. The resulting string is `s = "<u>**001**</u>1101"`.
 
@@ -36,15 +38,11 @@ We can perform the following operations:
 
 - Choose index $i = 2$. The resulting string is `s = "00**<u>01</u>**111"`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "00111"
+- **Input:** s = "00111"
 
-**Output:** 0
-
-</div>
+- **Output:** 0
 
 ### 4. Constraints
 

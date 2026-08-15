@@ -30,20 +30,20 @@ Return the maximum possible number of valid move operations.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "1001101"`
-- Output: `4`
-- Explanation: The two zero blocks can be crossed by one and three preceding `1` characters respectively.
+- **Input:** `s = "1001101"`
+- **Output:** `4`
+- **Explanation:** The two zero blocks can be crossed by one and three preceding `1` characters respectively.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "00111"`
-- Output: `0`
-- Explanation: No `1` has a zero immediately to its right.
+- **Input:** `s = "00111"`
+- **Output:** `0`
+- **Explanation:** No `1` has a zero immediately to its right.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "10"`
-- Output: `1`
-- Explanation: The single `1` moves across the final zero block once.
+- **Input:** `s = "10"`
+- **Output:** `1`
+- **Explanation:** The single `1` moves across the final zero block once.

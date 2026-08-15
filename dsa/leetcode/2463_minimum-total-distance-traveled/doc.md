@@ -33,14 +33,14 @@ There are at most $100$ robots and $100$ factories. Positions lie between $-10^9
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `robot = [0, 4, 6], factory = [[2, 2], [6, 2]]`
-- Output: `4`
-- Explanation: Send the robots at `0` and `4` to position `2`, and repair the robot at `6` without movement.
+- **Input:** `robot = [0, 4, 6], factory = [[2, 2], [6, 2]]`
+- **Output:** `4`
+- **Explanation:** Send the robots at `0` and `4` to position `2`, and repair the robot at `6` without movement.
 
-**Example 2**
+#### Example 2
 
-- Input: `robot = [1, -1], factory = [[-2, 1], [2, 1]]`
-- Output: `2`
-- Explanation: Each robot travels one unit to the factory on its respective side.
+- **Input:** `robot = [1, -1], factory = [[-2, 1], [2, 1]]`
+- **Output:** `2`
+- **Explanation:** Each robot travels one unit to the factory on its respective side.

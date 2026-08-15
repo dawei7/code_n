@@ -8,11 +8,9 @@ You may recall that an array `arr` is a **mountain array** if and only if:
 
 - There exists some `i` with $0 < i < \text{arr.length} - 1$ such that:
 
-		<li>$\text{arr}[0] < \text{arr}[1] < ... < arr[i - 1] < \text{arr}[i]$
+		- $\text{arr}[0] < \text{arr}[1] < ... < arr[i - 1] < \text{arr}[i]$
 
 - $\text{arr}[i] > arr[i + 1] > ... > arr[\text{arr.length} - 1]$
-
-	</li>
 
 Given a mountain array `mountainArr`, return the **minimum** `index` such that $\text{mountainArr.get}(index) = target$. If such an `index` does not exist, return `-1`.
 
@@ -26,8 +24,11 @@ Submissions making more than `100` calls to `MountainArray.get` will be judged *
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `get(index: int) -> `int``: Executes operation.
+- `length() -> `int``: Executes operation.
+- `findInMountainArray(target: int, mountainArr: 'MountainArray') -> `int``: Executes operation.
 
 ### 3. Examples
 
@@ -36,6 +37,7 @@ Submissions making more than `100` calls to `MountainArray.get` will be judged *
 - **Input:** $mountainArr = [1,2,3,4,5,3,1], target = 3$
 - **Output:** `2`
 - **Explanation:** 3 exists in the array, at index=2 and index=5. Return the minimum index, which is 2.
+
 #### Example 2
 
 - **Input:** $mountainArr = [0,1,2,4,2,1], target = 3$

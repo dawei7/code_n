@@ -34,20 +34,20 @@ Return the cheapest total price among all routes satisfying that stop limit. If 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 3, flights = [[0,1,100],[1,2,100],[0,2,500]], src = 0, dst = 2, k = 1`
-- Output: `200`
-- Explanation: The route through city `1` uses one stop and is cheaper than the direct flight.
+- **Input:** `n = 3, flights = [[0,1,100],[1,2,100],[0,2,500]], src = 0, dst = 2, k = 1`
+- **Output:** `200`
+- **Explanation:** The route through city `1` uses one stop and is cheaper than the direct flight.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3, flights = [[0,1,2],[1,2,2],[0,2,5]], src = 0, dst = 2, k = 0`
-- Output: `5`
-- Explanation: With no stops allowed, only the direct flight qualifies.
+- **Input:** `n = 3, flights = [[0,1,2],[1,2,2],[0,2,5]], src = 0, dst = 2, k = 0`
+- **Output:** `5`
+- **Explanation:** With no stops allowed, only the direct flight qualifies.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 3, flights = [[0,1,2]], src = 0, dst = 2, k = 1`
-- Output: `-1`
-- Explanation: No route reaches city `2`.
+- **Input:** `n = 3, flights = [[0,1,2]], src = 0, dst = 2, k = 1`
+- **Output:** `-1`
+- **Explanation:** No route reaches city `2`.

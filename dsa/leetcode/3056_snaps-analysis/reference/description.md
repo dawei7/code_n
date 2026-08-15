@@ -45,7 +45,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Activities table:
 +-------------+---------+---------------+------------+
 | activity_id | user_id | activity_type | time_spent |
@@ -67,7 +67,7 @@ Age table:
 | 789     | 21-25      |
 | 456     | 26-30      |
 +---------+------------+
-**Output:**
+- **Output:** 
 +------------+-----------+-----------+
 | age_bucket | send_perc | open_perc |
 +------------+-----------+-----------+
@@ -75,8 +75,7 @@ Age table:
 | 26-30      | 82.26     | 17.74     |
 | 21-25      | 54.31     | 45.69     |
 +------------+-----------+-----------+
-**Explanation:**
-For age group 31-35:
+- **Explanation:** For age group 31-35:
   - There is only one user belonging to this group with the user ID 123.
   - The total time spent on sending snaps by this user is 3.50, and the time spent on opening snaps is 4.50 + 1.25 = 5.75.
   - The overall time spent by this user is 3.50 + 5.75 = 9.25.

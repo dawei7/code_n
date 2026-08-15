@@ -30,23 +30,23 @@ Perform at most `k` operations and return the greatest frequency that any single
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,2,4], k = 5`
-- Output: `3`
+- **Input:** `nums = [1,2,4], k = 5`
+- **Output:** `3`
 
 Raise 1 by three and 2 by two, producing three copies of 4.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,4,8,13], k = 5`
-- Output: `2`
+- **Input:** `nums = [1,4,8,13], k = 5`
+- **Output:** `2`
 
 Several pairs can be equalized, but no three values fit the budget.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [3,9,6], k = 2`
-- Output: `1`
+- **Input:** `nums = [3,9,6], k = 2`
+- **Output:** `1`
 
 Every gap between different values exceeds the available operations.

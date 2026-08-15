@@ -31,20 +31,20 @@ Return `true` if a sequence of valid contiguous splits can produce all singleton
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 2, 1]`, `m = 4`
-- Output: `true`
-- Explanation: Split off `[1]`; the remaining `[2, 2]` is good and can then split into two singletons.
+- **Input:** `nums = [2, 2, 1]`, `m = 4`
+- **Output:** `true`
+- **Explanation:** Split off `[1]`; the remaining `[2, 2]` is good and can then split into two singletons.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, 1, 3]`, `m = 5`
-- Output: `false`
-- Explanation: Either first split leaves a length-two part whose sum is below `m`.
+- **Input:** `nums = [2, 1, 3]`, `m = 5`
+- **Output:** `false`
+- **Explanation:** Either first split leaves a length-two part whose sum is below `m`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [2, 3, 3, 2, 3]`, `m = 6`
-- Output: `true`
-- Explanation: The adjacent pair `[3, 3]` can be preserved while surrounding singletons are peeled away, then the pair itself is split.
+- **Input:** `nums = [2, 3, 3, 2, 3]`, `m = 6`
+- **Output:** `true`
+- **Explanation:** The adjacent pair `[3, 3]` can be preserved while surrounding singletons are peeled away, then the pair itself is split.

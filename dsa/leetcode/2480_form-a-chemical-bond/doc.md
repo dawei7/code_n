@@ -34,20 +34,20 @@ Return a table with columns `metal` and `nonmetal`, containing the Cartesian pro
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `Elements = [(He, Noble, 0), (Na, Metal, 1), (Ca, Metal, 2), (La, Metal, 3), (Cl, Nonmetal, 1), (O, Nonmetal, 2), (N, Nonmetal, 3)]`
-- Output: All nine pairs formed by one symbol from `{Na, Ca, La}` and one symbol from `{Cl, O, N}`.
-- Explanation: Every metal is compatible with every nonmetal; helium is Noble and is excluded.
+- **Input:** `Elements = [(He, Noble, 0), (Na, Metal, 1), (Ca, Metal, 2), (La, Metal, 3), (Cl, Nonmetal, 1), (O, Nonmetal, 2), (N, Nonmetal, 3)]`
+- **Output:** All nine pairs formed by one symbol from `{Na, Ca, La}` and one symbol from `{Cl, O, N}`.
+- **Explanation:** Every metal is compatible with every nonmetal; helium is Noble and is excluded.
 
-**Example 2**
+#### Example 2
 
-- Input: `Elements = [(Fe, Metal, 2), (Ne, Noble, 0)]`
-- Output: An empty table with columns `metal` and `nonmetal`.
-- Explanation: No nonmetal exists, so no bond pair can be formed.
+- **Input:** `Elements = [(Fe, Metal, 2), (Ne, Noble, 0)]`
+- **Output:** An empty table with columns `metal` and `nonmetal`.
+- **Explanation:** No nonmetal exists, so no bond pair can be formed.
 
-**Example 3**
+#### Example 3
 
-- Input: `Elements = [(Li, Metal, 1), (F, Nonmetal, 1)]`
-- Output: `[(Li, F)]`
-- Explanation: The only metal and the only nonmetal form the sole pair.
+- **Input:** `Elements = [(Li, Metal, 1), (F, Nonmetal, 1)]`
+- **Output:** `[(Li, F)]`
+- **Explanation:** The only metal and the only nonmetal form the sole pair.

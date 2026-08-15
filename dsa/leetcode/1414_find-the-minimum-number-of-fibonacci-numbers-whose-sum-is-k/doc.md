@@ -30,17 +30,17 @@ Return the minimum possible number of chosen terms. Only the count is required, 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `k = 7`
-- Output: `2`
+- **Input:** `k = 7`
+- **Output:** `2`
 
-**Example 2**
+#### Example 2
 
-- Input: `k = 10`
-- Output: `2`
+- **Input:** `k = 10`
+- **Output:** `2`
 
-**Example 3**
+#### Example 3
 
-- Input: `k = 19`
-- Output: `3`
+- **Input:** `k = 19`
+- **Output:** `3`

@@ -31,16 +31,16 @@ Return `true` if all elements can become equal after at most `k` operations; oth
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,-1,1,-1,1], k = 3`
-- Output: `true`
-- Explanation: Flipping pairs starting at indices `1` and `2` produces five `1` values in two operations.
+- **Input:** `nums = [1,-1,1,-1,1], k = 3`
+- **Output:** `true`
+- **Explanation:** Flipping pairs starting at indices `1` and `2` produces five `1` values in two operations.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [-1,-1,-1,1,1,1], k = 5`
-- Output: `false`
-- Explanation: No sequence of allowed pair flips can make this even-length array uniform.
+- **Input:** `nums = [-1,-1,-1,1,1,1], k = 5`
+- **Output:** `false`
+- **Explanation:** No sequence of allowed pair flips can make this even-length array uniform.
 
 ---

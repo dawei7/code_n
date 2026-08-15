@@ -32,23 +32,23 @@ Return the head of the remaining list. Nodes whose values occurred exactly once 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `head = [1,2,3,2]`
-- Output: `[1,3]`
+- **Input:** `head = [1,2,3,2]`
+- **Output:** `[1,3]`
 
 Both nodes valued 2 are removed.
 
-**Example 2**
+#### Example 2
 
-- Input: `head = [2,1,1,2]`
-- Output: `[]`
+- **Input:** `head = [2,1,1,2]`
+- **Output:** `[]`
 
 Neither value occurs exactly once.
 
-**Example 3**
+#### Example 3
 
-- Input: `head = [3,2,2,1,3,2,4]`
-- Output: `[1,4]`
+- **Input:** `head = [3,2,2,1,3,2,4]`
+- **Output:** `[1,4]`
 
 Values 3 and 2 occur multiple times, while 1 and 4 are unique.

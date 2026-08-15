@@ -22,8 +22,14 @@ Return *the* $$k^{\text{th}}$$ *bit* *in* $S_{n}$. It is guaranteed that `k` is 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -33,6 +39,7 @@ Return *the* $$k^{\text{th}}$$ *bit* *in* $S_{n}$. It is guaranteed that `k` is 
 - **Output:** `"0"`
 - **Explanation:** S_3 is "**<u>0</u>**111001".
 The 1^st bit is "0".
+
 #### Example 2
 
 - **Input:** $n = 4, k = 11$

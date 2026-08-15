@@ -24,32 +24,27 @@ Return how many integers from `0` through `n`, including both endpoints, have a 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 1
+- **Input:** n = 1
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - The integers in the range `[0, 1]` have binary representations `"0"` and `"1"`.
 
 - Each representation consists of identical bits. Thus, the answer is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 4
+- **Input:** n = 4
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - The integers in the range `[0, 4]` include binaries `"0"`, `"1"`, `"10"`, `"11"`, and `"100"`.
 
 - Only 0, 1 and 3 satisfy the Monobit condition. Thus, the answer is 3.
-
-</div>
 
 ### 4. Constraints
 

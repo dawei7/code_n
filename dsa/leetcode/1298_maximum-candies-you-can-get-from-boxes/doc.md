@@ -9,12 +9,15 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/maximum-candies-you-can-get-from-boxes/) |
 
 ## Problem Description
+
 ### Goal
+
 There are $n$ boxes labeled from $0$ through $n-1$. Each box has an open or closed status, contains some candies, may provide keys for other boxes, and may physically contain other boxes. Opening a box lets you collect all of its candies, take every key inside it, and gain possession of every contained box.
 
 You initially possess the boxes listed in `initialBoxes`. A box can be opened only when you both possess it and either it was already open or you have obtained its key. Keys may be found before or after their corresponding boxes, and either order must eventually make the box usable. Return the maximum total number of candies obtainable by repeatedly applying these rules.
 
 ### Function Contract
+
 **Inputs**
 
 Let $n$ be the common length of the first four arrays, let
@@ -39,20 +42,21 @@ and define $S=n+K+B$.
 The greatest total number of candies that can be collected from boxes that become both possessed and openable.
 
 ### Examples
-**Example 1**
 
-- Input: `status = [1,0,1,0]`, `candies = [7,5,4,100]`, `keys = [[],[],[1],[]]`, `containedBoxes = [[1,2],[3],[],[]]`, `initialBoxes = [0]`
-- Output: `16`
-- Explanation: Box 0 yields boxes 1 and 2; box 2 supplies the key for box 1. Box 3 remains locked.
+#### Example 1
 
-**Example 2**
+- **Input:** `status = [1,0,1,0]`, `candies = [7,5,4,100]`, `keys = [[],[],[1],[]]`, `containedBoxes = [[1,2],[3],[],[]]`, `initialBoxes = [0]`
+- **Output:** `16`
+- **Explanation:** Box 0 yields boxes 1 and 2; box 2 supplies the key for box 1. Box 3 remains locked.
 
-- Input: `status = [1,0,0,0,0,0]`, `candies = [1,1,1,1,1,1]`, `keys = [[1,2,3,4,5],[],[],[],[],[]]`, `containedBoxes = [[1,2,3,4,5],[],[],[],[],[]]`, `initialBoxes = [0]`
-- Output: `6`
-- Explanation: Opening box 0 provides both every remaining box and every required key.
+#### Example 2
 
-**Example 3**
+- **Input:** `status = [1,0,0,0,0,0]`, `candies = [1,1,1,1,1,1]`, `keys = [[1,2,3,4,5],[],[],[],[],[]]`, `containedBoxes = [[1,2,3,4,5],[],[],[],[],[]]`, `initialBoxes = [0]`
+- **Output:** `6`
+- **Explanation:** Opening box 0 provides both every remaining box and every required key.
 
-- Input: `status = [0,1]`, `candies = [10,20]`, `keys = [[],[]]`, `containedBoxes = [[],[0]]`, `initialBoxes = [1]`
-- Output: `20`
-- Explanation: Box 0 is obtained but cannot be opened because its key is never found.
+#### Example 3
+
+- **Input:** `status = [0,1]`, `candies = [10,20]`, `keys = [[],[]]`, `containedBoxes = [[],[0]]`, `initialBoxes = [1]`
+- **Output:** `20`
+- **Explanation:** Box 0 is obtained but cannot be opened because its key is never found.

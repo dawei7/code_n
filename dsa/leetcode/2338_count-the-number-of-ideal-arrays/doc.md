@@ -37,16 +37,16 @@ The number of distinct length-`n` ideal arrays, reduced modulo $10^9+7$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 2`, `maxValue = 5`
-- Output: `10`
-- Explanation: There are five arrays beginning with 1, two beginning with 2,
+- **Input:** `n = 2`, `maxValue = 5`
+- **Output:** `10`
+- **Explanation:** There are five arrays beginning with 1, two beginning with 2,
   and one beginning with each of 3, 4, and 5.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 5`, `maxValue = 3`
-- Output: `11`
-- Explanation: Nine valid arrays begin with 1; the constant all-2 and all-3
+- **Input:** `n = 5`, `maxValue = 3`
+- **Output:** `11`
+- **Explanation:** Nine valid arrays begin with 1; the constant all-2 and all-3
   arrays contribute the other two.

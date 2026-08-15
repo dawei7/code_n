@@ -7,8 +7,15 @@ Return *a string denoting the answer to the problem.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `a`: Input parameter (`str`).
+- `b`: Input parameter (`str`).
+- `c`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Note
 
@@ -23,6 +30,7 @@ Return *a string denoting the answer to the problem.*
 - **Input:** $a = "abc", b = "bca", c = "aaa"$
 - **Output:** `"aaabca"`
 - **Explanation:** We show that "aaabca" contains all the given strings: a = ans[2...4], b = ans[3..5], c = ans[0..2]. It can be shown that the length of the resulting string would be at least 6 and "aaabca" is the lexicographically smallest one.
+
 #### Example 2
 
 - **Input:** $a = "ab", b = "ba", c = "aba"$

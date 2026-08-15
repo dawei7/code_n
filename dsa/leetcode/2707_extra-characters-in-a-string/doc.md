@@ -37,20 +37,20 @@ Return the minimum number of characters in `s` that remain outside all chosen, n
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "leetscode"`, `dictionary = ["leet","code","leetcode"]`
-- Output: `1`
-- Explanation: Use `"leet"` at indices $0$ through $3$ and `"code"` at indices $5$ through $8$; only `s[4]` remains extra.
+- **Input:** `s = "leetscode"`, `dictionary = ["leet","code","leetcode"]`
+- **Output:** `1`
+- **Explanation:** Use `"leet"` at indices $0$ through $3$ and `"code"` at indices $5$ through $8$; only `s[4]` remains extra.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "sayhelloworld"`, `dictionary = ["hello","world"]`
-- Output: `3`
-- Explanation: The prefix `"say"` is extra, while the remaining ten characters form two dictionary words.
+- **Input:** `s = "sayhelloworld"`, `dictionary = ["hello","world"]`
+- **Output:** `3`
+- **Explanation:** The prefix `"say"` is extra, while the remaining ten characters form two dictionary words.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "aaaa"`, `dictionary = ["a","aa"]`
-- Output: `0`
-- Explanation: Several non-overlapping segmentations cover the entire string.
+- **Input:** `s = "aaaa"`, `dictionary = ["a","aa"]`
+- **Output:** `0`
+- **Explanation:** Several non-overlapping segmentations cover the entire string.

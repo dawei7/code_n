@@ -12,8 +12,10 @@ Implement the `TreeAncestor` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeAncestor(n: int, parent: List[int])`: Initializes the data structure.
+- `getKthAncestor(node: int, k: int) -> `int``: Executes operation.
 
 ### 3. Examples
 

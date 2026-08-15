@@ -28,18 +28,18 @@ Return the number of length-$n$ digit sequences obtainable by choosing any start
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 1`
-- Output: `10`
-- Explanation: Any digit may be the sole digit.
+- **Input:** `n = 1`
+- **Output:** `10`
+- **Explanation:** Any digit may be the sole digit.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 2`
-- Output: `20`
+- **Input:** `n = 2`
+- **Output:** `20`
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 3131`
-- Output: `136006598`
+- **Input:** `n = 3131`
+- **Output:** `136006598`

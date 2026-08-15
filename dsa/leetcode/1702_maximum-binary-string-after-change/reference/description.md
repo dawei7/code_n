@@ -4,21 +4,23 @@ You are given a binary string `binary` consisting of only `0`'s or `1`'s. You ca
 
 - Operation 1: If the number contains the substring `"00"`, you can replace it with `"10"`.
 
-		<li>For example, `"<u>00</u>010" -> "<u>10</u>010`"
+		- For example, `"<u>00</u>010" -> "<u>10</u>010`"
 
-	</li>
 - Operation 2: If the number contains the substring `"10"`, you can replace it with `"01"`.
 
-		<li>For example, `"000<u>10</u>" -> "000<u>01</u>"`
-
-	</li>
+		- For example, `"000<u>10</u>" -> "000<u>01</u>"`
 
 *Return the **maximum binary string** you can obtain after any number of operations. Binary string `x` is greater than binary string `y` if `x`'s decimal representation is greater than `y`'s decimal representation.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `binary`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -32,6 +34,7 @@ You are given a binary string `binary` consisting of only `0`'s or `1`'s. You ca
 "1<u>00</u>101" -> "1<u>10</u>101"
 "110<u>10</u>1" -> "110<u>01</u>1"
 "11<u>00</u>11" -> "11<u>10</u>11"
+
 #### Example 2
 
 - **Input:** $binary = "01"$

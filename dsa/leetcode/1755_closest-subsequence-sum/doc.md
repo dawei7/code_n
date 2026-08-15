@@ -31,20 +31,20 @@ Among every possible subsequence of `nums`, find one whose sum is closest to `go
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [5, -7, 3, 5], goal = 6`
-- Output: `0`
-- Explanation: Selecting `5`, `-7`, `3`, and `5` gives a sum of `6`, exactly matching the goal.
+- **Input:** `nums = [5, -7, 3, 5], goal = 6`
+- **Output:** `0`
+- **Explanation:** Selecting `5`, `-7`, `3`, and `5` gives a sum of `6`, exactly matching the goal.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [7, -9, 15, -2], goal = -5`
-- Output: `1`
-- Explanation: A subsequence sum of `-6` is attainable, and no attainable sum is closer to `-5`.
+- **Input:** `nums = [7, -9, 15, -2], goal = -5`
+- **Output:** `1`
+- **Explanation:** A subsequence sum of `-6` is attainable, and no attainable sum is closer to `-5`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 2, 3], goal = -7`
-- Output: `7`
-- Explanation: Every nonempty subsequence has a positive sum, so the empty subsequence with sum zero is closest.
+- **Input:** `nums = [1, 2, 3], goal = -7`
+- **Output:** `7`
+- **Explanation:** Every nonempty subsequence has a positive sum, so the empty subsequence with sum zero is closest.

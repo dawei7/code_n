@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/max-dot-product-of-two-subsequences/) |
 
 ## Problem Description
+
 ### Goal
 
 You are given two integer arrays, `nums1` and `nums2`. Choose a non-empty
@@ -29,6 +30,7 @@ must be selected, so returning zero by choosing two empty subsequences is not
 allowed. This matters when every possible paired product is negative.
 
 ### Function Contract
+
 **Inputs**
 
 - `nums1`: an integer array of length $m$, where $1 \le m \le 500$.
@@ -42,22 +44,23 @@ subsequences, one drawn from each input while retaining each array's original
 order.
 
 ### Examples
-**Example 1**
 
-- Input: `nums1 = [2,1,-2,5], nums2 = [3,0,-6]`
-- Output: `18`
-- Explanation: Pair subsequences `[2,-2]` and `[3,-6]`, producing
+#### Example 1
+
+- **Input:** `nums1 = [2,1,-2,5], nums2 = [3,0,-6]`
+- **Output:** `18`
+- **Explanation:** Pair subsequences `[2,-2]` and `[3,-6]`, producing
   $2\cdot3+(-2)\cdot(-6)=18$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [3,-2], nums2 = [2,-6,7]`
-- Output: `21`
-- Explanation: The one-element subsequences `[3]` and `[7]` produce the
+- **Input:** `nums1 = [3,-2], nums2 = [2,-6,7]`
+- **Output:** `21`
+- **Explanation:** The one-element subsequences `[3]` and `[7]` produce the
   maximum.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums1 = [-1,-1], nums2 = [1,1]`
-- Output: `-1`
-- Explanation: Every pair is negative, but the subsequences must be non-empty.
+- **Input:** `nums1 = [-1,-1], nums2 = [1,1]`
+- **Output:** `-1`
+- **Explanation:** Every pair is negative, but the subsequences must be non-empty.

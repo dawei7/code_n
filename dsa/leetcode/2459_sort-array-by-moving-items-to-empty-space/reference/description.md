@@ -30,21 +30,23 @@ Return an integer representing the minimum number of operations into the empty s
 
 - **Input:** `nums = [4,2,0,3,1]`
 - **Output:** `3`
-- **Explanation:**
+- **Explanation:** 
 - Move item 2 to the empty space. Now, nums = [4,0,2,3,1].
 - Move item 1 to the empty space. Now, nums = [4,1,2,3,0].
 - Move item 4 to the empty space. Now, nums = [0,1,2,3,4].
 It can be proven that 3 is the minimum number of operations needed.
+
 #### Example 2
 
 - **Input:** `nums = [1,2,3,4,0]`
 - **Output:** `0`
 - **Explanation:** nums is already sorted so return 0.
+
 #### Example 3
 
 - **Input:** `nums = [1,0,2,4,3]`
 - **Output:** `2`
-- **Explanation:**
+- **Explanation:** 
 - Move item 2 to the empty space. Now, nums = [1,2,0,4,3].
 - Move item 3 to the empty space. Now, nums = [1,2,3,4,0].
 It can be proven that 2 is the minimum number of operations needed.

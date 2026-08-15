@@ -10,47 +10,39 @@ Return the first **valid pair** found in the string `s` when traversing from lef
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "2523533"
+- **Input:** s = "2523533"
 
-**Output:** "23"
+- **Output:** "23"
 
-**Explanation:**
+- **Explanation:** Digit `'2'` appears 2 times and digit `'3'` appears 3 times. Each digit in the pair `"23"` appears in `s` exactly as many times as its numeric value. Hence, the output is `"23"`.
 
-Digit `'2'` appears 2 times and digit `'3'` appears 3 times. Each digit in the pair `"23"` appears in `s` exactly as many times as its numeric value. Hence, the output is `"23"`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "221"
+- **Input:** s = "221"
 
-**Output:** "21"
+- **Output:** "21"
 
-**Explanation:**
+- **Explanation:** Digit `'2'` appears 2 times and digit `'1'` appears 1 time. Hence, the output is `"21"`.
 
-Digit `'2'` appears 2 times and digit `'1'` appears 1 time. Hence, the output is `"21"`.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "22"
+- **Input:** s = "22"
 
-**Output:** ""
+- **Output:** ""
 
-**Explanation:**
-
-There are no valid adjacent pairs.
-
-</div>
+- **Explanation:** There are no valid adjacent pairs.
 
 ### 4. Constraints
 

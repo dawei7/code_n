@@ -32,7 +32,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Salary table:
 +----+------+-----+--------+
 | id | name | sex | salary |
@@ -42,7 +42,7 @@ Salary table:
 | 3  | C    | m   | 5500   |
 | 4  | D    | f   | 500    |
 +----+------+-----+--------+
-**Output:**
+- **Output:** 
 +----+------+-----+--------+
 | id | name | sex | salary |
 +----+------+-----+--------+
@@ -51,7 +51,6 @@ Salary table:
 | 3  | C    | f   | 5500   |
 | 4  | D    | m   | 500    |
 +----+------+-----+--------+
-**Explanation:**
-(1, A) and (3, C) were changed from 'm' to 'f'.
+- **Explanation:** (1, A) and (3, C) were changed from 'm' to 'f'.
 (2, B) and (4, D) were changed from 'f' to 'm'.
 ```

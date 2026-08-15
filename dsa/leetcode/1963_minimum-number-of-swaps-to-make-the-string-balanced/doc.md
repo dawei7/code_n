@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/minimum-number-of-swaps-to-make-the-string-balanced/) |
 
 ## Problem Description
+
 ### Goal
+
 The even-length string `s` contains equal numbers of opening brackets `"["`
 and closing brackets `"]"`. A string is balanced when it is empty, is a
 concatenation of balanced strings, or has the form `[C]` for a balanced string
@@ -20,6 +22,7 @@ need to be adjacent. Perform as few swaps as possible to make `s` balanced,
 and return that minimum number.
 
 ### Function Contract
+
 **Inputs**
 
 - `s`: an even-length bracket string of length $N$, where
@@ -30,17 +33,18 @@ and return that minimum number.
 - The minimum number of arbitrary index swaps needed to make `s` balanced.
 
 ### Examples
-**Example 1**
 
-- Input: `s = "][]["`
-- Output: `1`
+#### Example 1
 
-**Example 2**
+- **Input:** `s = "][]["`
+- **Output:** `1`
 
-- Input: `s = "]]][[["`
-- Output: `2`
+#### Example 2
 
-**Example 3**
+- **Input:** `s = "]]][[["`
+- **Output:** `2`
 
-- Input: `s = "[]"`
-- Output: `0`
+#### Example 3
+
+- **Input:** `s = "[]"`
+- **Output:** `0`

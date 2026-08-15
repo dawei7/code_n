@@ -32,16 +32,16 @@ Continue until every position is marked, and return the resulting score.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,1,3,4,5,2]`
-- Output: `7`
+- **Input:** `nums = [2,1,3,4,5,2]`
+- **Output:** `7`
 
 Choose the values `1`, `2`, and `4` in that order. Their sum is `7`; each choice also marks its existing neighbors.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2,3,5,1,3,2]`
-- Output: `5`
+- **Input:** `nums = [2,3,5,1,3,2]`
+- **Output:** `5`
 
 After choosing `1` at index `3`, the equal unmarked values `2` are processed by increasing index, so indices `0` and `5` both contribute.

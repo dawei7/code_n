@@ -47,7 +47,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Employees table:
 +-------------+--------------+
 | employee_id | needed_hours |
@@ -65,15 +65,14 @@ Logs table:
 | 1           | 2022-10-12 23:00:00 | 2022-10-13 03:00:01 |
 | 2           | 2022-10-29 12:00:00 | 2022-10-29 23:58:58 |
 +-------------+---------------------+---------------------+
-**Output:**
+- **Output:** 
 +-------------+
 | employee_id |
 +-------------+
 | 2           |
 | 3           |
 +-------------+
-**Explanation:**
-Employee 1:
+- **Explanation:** Employee 1:
  - Worked for three sessions:
 - On 2022-10-01, they worked for 8 hours.
 - On 2022-10-06, they worked for 8 hours and 4 minutes.

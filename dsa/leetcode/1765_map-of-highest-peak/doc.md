@@ -35,20 +35,20 @@ Among all assignments satisfying these rules, maximize the greatest height appea
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `isWater = [[0,1],[0,0]]`
-- Output: `[[1,0],[2,1]]`
-- Explanation: The water cell is at height $0$; moving one step away raises the height by one.
+- **Input:** `isWater = [[0,1],[0,0]]`
+- **Output:** `[[1,0],[2,1]]`
+- **Explanation:** The water cell is at height $0$; moving one step away raises the height by one.
 
-**Example 2**
+#### Example 2
 
-- Input: `isWater = [[0,0,1],[1,0,0],[0,0,0]]`
-- Output: `[[1,1,0],[0,1,1],[1,2,2]]`
-- Explanation: The greatest attainable height is $2$. Any valid assignment attaining that value is acceptable.
+- **Input:** `isWater = [[0,0,1],[1,0,0],[0,0,0]]`
+- **Output:** `[[1,1,0],[0,1,1],[1,2,2]]`
+- **Explanation:** The greatest attainable height is $2$. Any valid assignment attaining that value is acceptable.
 
-**Example 3**
+#### Example 3
 
-- Input: `isWater = [[1]]`
-- Output: `[[0]]`
-- Explanation: The only cell is water, so its required height is $0$.
+- **Input:** `isWater = [[1]]`
+- **Output:** `[[0]]`
+- **Explanation:** The only cell is water, so its required height is $0$.

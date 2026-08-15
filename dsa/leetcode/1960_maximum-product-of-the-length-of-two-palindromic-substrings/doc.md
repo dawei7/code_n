@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/maximum-product-of-the-length-of-two-palindromic-substrings/) |
 
 ## Problem Description
+
 ### Goal
+
 Given a zero-indexed lowercase string `s`, choose two non-intersecting
 substrings. Both chosen substrings must be palindromes of odd length, and the
 first must end before the second begins.
@@ -20,6 +22,7 @@ of their lengths. A substring is contiguous, and a palindrome reads identically
 from left to right and right to left.
 
 ### Function Contract
+
 **Inputs**
 
 - `s`: a lowercase English string of length $N$, where
@@ -31,17 +34,18 @@ from left to right and right to left.
   palindromic substrings.
 
 ### Examples
-**Example 1**
 
-- Input: `s = "ababbb"`
-- Output: `9`
+#### Example 1
 
-**Example 2**
+- **Input:** `s = "ababbb"`
+- **Output:** `9`
 
-- Input: `s = "zaaaxbbby"`
-- Output: `9`
+#### Example 2
 
-**Example 3**
+- **Input:** `s = "zaaaxbbby"`
+- **Output:** `9`
 
-- Input: `s = "racecarxaba"`
-- Output: `21`
+#### Example 3
+
+- **Input:** `s = "racecarxaba"`
+- **Output:** `21`

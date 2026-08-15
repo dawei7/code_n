@@ -30,20 +30,20 @@ Otherwise the player must erase one number, but loses if that erasure makes the 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,1,2]`
-- Output: `False`
-- Explanation: The XOR is nonzero and the list length is odd, so every move gives Bob a winning position.
+- **Input:** `nums = [1,1,2]`
+- **Output:** `False`
+- **Explanation:** The XOR is nonzero and the list length is odd, so every move gives Bob a winning position.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [0,1]`
-- Output: `True`
-- Explanation: The XOR is nonzero, but an even number of entries guarantees Alice a safe move.
+- **Input:** `nums = [0,1]`
+- **Output:** `True`
+- **Explanation:** The XOR is nonzero, but an even number of entries guarantees Alice a safe move.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,2,3]`
-- Output: `True`
-- Explanation: The initial XOR is zero, so Alice wins before removing anything.
+- **Input:** `nums = [1,2,3]`
+- **Output:** `True`
+- **Explanation:** The initial XOR is zero, so Alice wins before removing anything.

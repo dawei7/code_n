@@ -36,8 +36,12 @@ Implement the `Router` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `Router(memoryLimit: int)`: Initializes the data structure.
+- `addPacket(source: int, destination: int, timestamp: int) -> `bool``: Executes operation.
+- `forwardPacket() -> `List[int]``: Executes operation.
+- `getCount(destination: int, startTime: int, endTime: int) -> `int``: Executes operation.
 
 ### 3. Note
 
@@ -47,14 +51,13 @@ that queries for `addPacket` will be made in non-decreasing order of `timestamp`
 
 #### Example 1
 
-<div class="example-block">
-**Input:**
+- **Input:** 
 
 ["Router", "addPacket", "addPacket", "addPacket", "addPacket", "addPacket", "forwardPacket", "addPacket", "getCount"]
 
 [[3], [1, 4, 90], [2, 5, 90], [1, 4, 90], [3, 5, 95], [4, 5, 105], [], [5, 2, 110], [5, 100, 110]]
 
-**Output:**
+- **Output:** 
 
 [null, true, true, false, true, true, [2, 5, 90], true, 1]
 
@@ -76,17 +79,17 @@ router.forwardPacket(); // Return `[2, 5, 90]` and remove it from router.
 
 router.addPacket(5, 2, 110); // Packet is added. Return True.
 
-router.getCount(5, 100, 110); // The only packet with destination 5 and timestamp in the inclusive range `[100, 110]` is `[4, 5, 105]`. Return 1.</div>
+router.getCount(5, 100, 110); // The only packet with destination 5 and timestamp in the inclusive range `[100, 110]` is `[4, 5, 105]`. Return 1.
+
 #### Example 2
 
-<div class="example-block">
-**Input:**
+- **Input:** 
 
 ["Router", "addPacket", "forwardPacket", "forwardPacket"]
 
 [[2], [7, 4, 90], [], []]
 
-**Output:**
+- **Output:** 
 
 [null, true, [7, 4, 90], []]
 
@@ -98,7 +101,7 @@ router.addPacket(7, 4, 90); // Return True.
 
 router.forwardPacket(); // Return `[7, 4, 90]`.
 
-router.forwardPacket(); // There are no packets left, return `[]`.</div>
+router.forwardPacket(); // There are no packets left, return `[]`.
 
 ### 5. Constraints
 

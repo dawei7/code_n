@@ -37,22 +37,22 @@ Let $N$ be the number of lamps.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `lights = [[-3, 2], [1, 2], [3, 3]]`
-- Output: `-1`
-- Explanation: Brightness is two at `-1` and throughout `0` through `3`;
+- **Input:** `lights = [[-3, 2], [1, 2], [3, 3]]`
+- **Output:** `-1`
+- **Explanation:** Brightness is two at `-1` and throughout `0` through `3`;
   `-1` is the smallest maximizer.
 
-**Example 2**
+#### Example 2
 
-- Input: `lights = [[1, 0], [0, 1]]`
-- Output: `1`
-- Explanation: Both lamps cover position `1`, giving it brightness two.
+- **Input:** `lights = [[1, 0], [0, 1]]`
+- **Output:** `1`
+- **Explanation:** Both lamps cover position `1`, giving it brightness two.
 
-**Example 3**
+#### Example 3
 
-- Input: `lights = [[1, 2]]`
-- Output: `-1`
-- Explanation: Every position from `-1` through `3` has brightness one, so
+- **Input:** `lights = [[1, 2]]`
+- **Output:** `-1`
+- **Explanation:** Every position from `-1` through `3` has brightness one, so
   the smallest one is returned.

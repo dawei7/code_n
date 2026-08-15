@@ -6,8 +6,14 @@ A string `s` is a **subsequence** of string `t` if deleting some number of chara
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `str1`: Input parameter (`str`).
+- `str2`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -15,10 +21,10 @@ A string `s` is a **subsequence** of string `t` if deleting some number of chara
 
 - **Input:** $str1 = "abac", str2 = "cab"$
 - **Output:** `"cabac"`
-- **Explanation:**
-str1 = "abac" is a subsequence of "cabac" because we can delete the first "c".
+- **Explanation:** str1 = "abac" is a subsequence of "cabac" because we can delete the first "c".
 str2 = "cab" is a subsequence of "cabac" because we can delete the last "ac".
 The answer provided is the shortest such string that satisfies these properties.
+
 #### Example 2
 
 - **Input:** $str1 = "aaaaaaaa", str2 = "aaaaaaaa"$

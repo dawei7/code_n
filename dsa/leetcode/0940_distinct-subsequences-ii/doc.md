@@ -30,20 +30,20 @@ Return the number of distinct non-empty subsequences of `s`, modulo $10^9+7$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abc"`
-- Output: `7`
-- Explanation: The distinct results are `"a"`, `"b"`, `"c"`, `"ab"`, `"ac"`, `"bc"`, and `"abc"`.
+- **Input:** `s = "abc"`
+- **Output:** `7`
+- **Explanation:** The distinct results are `"a"`, `"b"`, `"c"`, `"ab"`, `"ac"`, `"bc"`, and `"abc"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "aba"`
-- Output: `6`
-- Explanation: The distinct results are `"a"`, `"b"`, `"ab"`, `"aa"`, `"ba"`, and `"aba"`.
+- **Input:** `s = "aba"`
+- **Output:** `6`
+- **Explanation:** The distinct results are `"a"`, `"b"`, `"ab"`, `"aa"`, `"ba"`, and `"aba"`.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "aaa"`
-- Output: `3`
-- Explanation: Only `"a"`, `"aa"`, and `"aaa"` are distinct.
+- **Input:** `s = "aaa"`
+- **Output:** `3`
+- **Explanation:** Only `"a"`, `"aa"`, and `"aaa"` are distinct.

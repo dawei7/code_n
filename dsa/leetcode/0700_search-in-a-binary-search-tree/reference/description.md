@@ -6,8 +6,10 @@ Find the node in the BST that the node's value equals `val` and return the subtr
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `searchBST(root: Optional[TreeNode], val: int) -> `Optional[TreeNode]``: Executes operation.
 
 ### 3. Examples
 
@@ -17,6 +19,7 @@ Find the node in the BST that the node's value equals `val` and return the subtr
 
 - **Input:** `root = [4,2,7,1,3], val = 2`
 - **Output:** `[2,1,3]`
+
 #### Example 2
 
 ![](images/tree2.jpg)

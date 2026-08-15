@@ -26,53 +26,39 @@ Return a string of length $N$. Every original letter position must still contain
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = ")ebc#da@f("
+- **Input:** s = ")ebc#da@f("
 
-**Output:** "(fad@cb#e)"
+- **Output:** "(fad@cb#e)"
 
-**Explanation:**
+- **Explanation:** 
 
 - The letters in the string are `['e', 'b', 'c', 'd', 'a', 'f']`:
 
-		<li>Reversing them gives `['f', 'a', 'd', 'c', 'b', 'e']`
+		- Reversing them gives `['f', 'a', 'd', 'c', 'b', 'e']`
 
 - `s` becomes `")fad#cb@e("`
 
-	</li>
 - ​​​​​​​The special characters in the string are `[')', '#', '@', '(']`:
 
-		<li>Reversing them gives `['(', '@', '#', ')']`
+		- Reversing them gives `['(', '@', '#', ')']`
 
 - `s` becomes `"(fad@cb#e)"`
 
-	</li>
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "z"
+- **Input:** s = "z"
 
-**Output:** "z"
+- **Output:** "z"
 
-**Explanation:**
+- **Explanation:** The string contains only one letter, and reversing it does not change the string. There are no special characters.
 
-The string contains only one letter, and reversing it does not change the string. There are no special characters.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "!@#$%^&*()"
+- **Input:** s = "!@#$%^&*()"
 
-**Output:** ")(*&^%$#@!"
+- **Output:** ")(*&^%$#@!"
 
-**Explanation:**
-
-The string contains no letters. The string contains all special characters, so reversing the special characters reverses the whole string.
-
-</div>
+- **Explanation:** The string contains no letters. The string contains all special characters, so reversing the special characters reverses the whole string.
 
 ### 4. Constraints
 

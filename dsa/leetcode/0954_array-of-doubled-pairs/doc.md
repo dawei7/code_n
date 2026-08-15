@@ -32,18 +32,18 @@ Return `true` if all occurrences can be partitioned into pairs `(x, 2 * x)`; oth
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [3,1,3,6]`
-- Output: `false`
+- **Input:** `arr = [3,1,3,6]`
+- **Output:** `false`
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [2,1,2,6]`
-- Output: `false`
+- **Input:** `arr = [2,1,2,6]`
+- **Output:** `false`
 
-**Example 3**
+#### Example 3
 
-- Input: `arr = [4,-2,2,-4]`
-- Output: `true`
-- Explanation: The occurrences can form `(-2,-4)` and `(2,4)`.
+- **Input:** `arr = [4,-2,2,-4]`
+- **Output:** `true`
+- **Explanation:** The occurrences can form `(-2,-4)` and `(2,4)`.

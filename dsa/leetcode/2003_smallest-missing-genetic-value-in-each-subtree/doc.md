@@ -29,20 +29,20 @@ Return an array `answer` of length $N$ in which `answer[i]` is the smallest posi
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `parents = [-1, 0, 0, 2], nums = [1, 2, 3, 4]`
-- Output: `[5, 1, 1, 1]`
-- Explanation: The root contains values $1$ through $4$, while every other subtree omits $1$.
+- **Input:** `parents = [-1, 0, 0, 2], nums = [1, 2, 3, 4]`
+- **Output:** `[5, 1, 1, 1]`
+- **Explanation:** The root contains values $1$ through $4$, while every other subtree omits $1$.
 
-**Example 2**
+#### Example 2
 
-- Input: `parents = [-1, 0, 1, 0, 3, 3], nums = [5, 4, 6, 2, 1, 3]`
-- Output: `[7, 1, 1, 4, 2, 1]`
-- Explanation: The subtree at node $3$ contains $\{1,2,3\}$, and the leaf holding $1$ is missing $2$.
+- **Input:** `parents = [-1, 0, 1, 0, 3, 3], nums = [5, 4, 6, 2, 1, 3]`
+- **Output:** `[7, 1, 1, 4, 2, 1]`
+- **Explanation:** The subtree at node $3$ contains $\{1,2,3\}$, and the leaf holding $1$ is missing $2$.
 
-**Example 3**
+#### Example 3
 
-- Input: `parents = [-1, 2, 3, 0, 2, 4, 1], nums = [2, 3, 4, 5, 6, 7, 8]`
-- Output: `[1, 1, 1, 1, 1, 1, 1]`
-- Explanation: Genetic value $1$ is absent from the whole tree, so it is absent from every subtree.
+- **Input:** `parents = [-1, 2, 3, 0, 2, 4, 1], nums = [2, 3, 4, 5, 6, 7, 8]`
+- **Output:** `[1, 1, 1, 1, 1, 1, 1]`
+- **Explanation:** Genetic value $1$ is absent from the whole tree, so it is absent from every subtree.

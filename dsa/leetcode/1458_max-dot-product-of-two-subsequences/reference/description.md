@@ -8,8 +8,14 @@ A subsequence of an array is a new array which is formed from the original array
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums1`: Input parameter (`List[int]`).
+- `nums2`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,12 +25,14 @@ A subsequence of an array is a new array which is formed from the original array
 - **Output:** `18`
 - **Explanation:** Take subsequence [2,-2] from nums1 and subsequence [3,-6] from nums2.
 Their dot product is (2*3 + (-2)*(-6)) = 18.
+
 #### Example 2
 
 - **Input:** $nums1 = [3,-2], nums2 = [2,-6,7]$
 - **Output:** `21`
 - **Explanation:** Take subsequence [3] from nums1 and subsequence [7] from nums2.
 Their dot product is (3*7) = 21.
+
 #### Example 3
 
 - **Input:** $nums1 = [-1,-1], nums2 = [1,1]$

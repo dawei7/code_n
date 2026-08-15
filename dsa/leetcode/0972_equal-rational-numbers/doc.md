@@ -34,17 +34,17 @@ Return `true` if both strings have exactly the same rational value; otherwise re
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "0.(52)", t = "0.5(25)"`
-- Output: `true`
+- **Input:** `s = "0.(52)", t = "0.5(25)"`
+- **Output:** `true`
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "0.1666(6)", t = "0.166(66)"`
-- Output: `true`
+- **Input:** `s = "0.1666(6)", t = "0.166(66)"`
+- **Output:** `true`
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "0.9(9)", t = "1."`
-- Output: `true`
+- **Input:** `s = "0.9(9)", t = "1."`
+- **Output:** `true`

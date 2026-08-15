@@ -6,8 +6,14 @@ Return *an **array of indices** representing the words that contain the characte
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+- `x`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -20,11 +26,13 @@ that the returned array may be in **any** order.
 - **Input:** $words = ["leet","code"], x = "e"$
 - **Output:** `[0,1]`
 - **Explanation:** "e" occurs in both words: "l**<u>ee</u>**t", and "cod<u>**e**</u>". Hence, we return indices 0 and 1.
+
 #### Example 2
 
 - **Input:** $words = ["abc","bcd","aaaa","cbc"], x = "a"$
 - **Output:** `[0,2]`
 - **Explanation:** "a" occurs in "**<u>a</u>**bc", and "<u>**aaaa**</u>". Hence, we return indices 0 and 2.
+
 #### Example 3
 
 - **Input:** $words = ["abc","bcd","aaaa","cbc"], x = "z"$

@@ -12,8 +12,13 @@ A **permutation** is a sequence of integers from `1` to `n` of length `n` contai
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,6 +30,7 @@ A **permutation** is a sequence of integers from `1` to `n` of length `n` contai
 1 - swap i = 0 and j = 1. The permutation becomes [1,2,4,3].
 2 - swap i = 2 and j = 3. The permutation becomes [1,2,3,4].
 It can be proved that there is no sequence of less than two operations that make nums a semi-ordered permutation.
+
 #### Example 2
 
 - **Input:** `nums = [2,4,1,3]`
@@ -34,6 +40,7 @@ It can be proved that there is no sequence of less than two operations that make
 2 - swap i = 0 and j = 1. The permutation becomes [1,2,4,3].
 3 - swap i = 2 and j = 3. The permutation becomes [1,2,3,4].
 It can be proved that there is no sequence of less than three operations that make nums a semi-ordered permutation.
+
 #### Example 3
 
 - **Input:** `nums = [1,3,4,2,5]`

@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/find-the-kth-largest-integer-in-the-array/) |
 
 ## Problem Description
+
 ### Goal
+
 The array `nums` contains non-negative integers represented as decimal strings.
 Each representation contains only digits and has no leading zero, except that
 the integer zero itself is written as `"0"`. Values may contain far more digits
@@ -21,6 +23,7 @@ entries: if the maximum occurs twice, those copies occupy ranks one and two
 rather than being deduplicated.
 
 ### Function Contract
+
 **Inputs**
 
 - `nums`: a list of $N$ valid decimal integer strings, where
@@ -34,19 +37,20 @@ rather than being deduplicated.
   duplicate entries separately.
 
 ### Examples
-**Example 1**
 
-- Input: `nums = ["3", "6", "7", "10"], k = 4`
-- Output: `"3"`
+#### Example 1
 
-**Example 2**
+- **Input:** `nums = ["3", "6", "7", "10"], k = 4`
+- **Output:** `"3"`
 
-- Input: `nums = ["2", "21", "12", "1"], k = 3`
-- Output: `"2"`
+#### Example 2
 
-**Example 3**
+- **Input:** `nums = ["2", "21", "12", "1"], k = 3`
+- **Output:** `"2"`
 
-- Input: `nums = ["0", "0"], k = 2`
-- Output: `"0"`
+#### Example 3
+
+- **Input:** `nums = ["0", "0"], k = 2`
+- **Output:** `"0"`
 
 Both zero entries occupy their own rank.

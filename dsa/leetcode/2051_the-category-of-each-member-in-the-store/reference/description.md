@@ -69,7 +69,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Members table:
 +-----------+---------+
 | member_id | name    |
@@ -100,7 +100,7 @@ Purchases table:
 | 18       | 9000           |
 | 17       | 7000           |
 +----------+----------------+
-**Output:**
+- **Output:** 
 +-----------+---------+----------+
 | member_id | name    | category |
 +-----------+---------+----------+
@@ -110,7 +110,7 @@ Purchases table:
 | 9         | Alice   | Gold     |
 | 11        | Bob     | Silver   |
 +-----------+---------+----------+
-**Explanation:**
+- **Explanation:** 
 - User Narihan with id = 1 did not make any visits to the store. She gets a Bronze category.
 - User Winston with id = 3 visited the store one time and did not purchase anything. The conversion rate = (100 * 0) / 1 = 0. He gets a Silver category.
 - User Hercy with id = 8 visited the store one time and purchased one time. The conversion rate = (100 * 1) / 1 = 1. He gets a Diamond category.

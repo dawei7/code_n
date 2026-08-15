@@ -40,7 +40,7 @@ Return a table with columns `score` and `rank`, retaining every input row and or
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Scores table:
 +----+-------+
 | id | score |
@@ -52,7 +52,7 @@ Scores table:
 | 5  | 4.00  |
 | 6  | 3.65  |
 +----+-------+
-**Output:**
+- **Output:** 
 +-------+------+
 | score | rank |
 +-------+------+

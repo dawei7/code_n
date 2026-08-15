@@ -34,14 +34,14 @@ Let $d$ be the number of decimal digits in `num`, so $2 \leq d \leq 10$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `num = 4325`
-- Output: `59`
-- Explanation: The digits can form `24` and `35`, whose sum is $59$.
+- **Input:** `num = 4325`
+- **Output:** `59`
+- **Explanation:** The digits can form `24` and `35`, whose sum is $59$.
 
-**Example 2**
+#### Example 2
 
-- Input: `num = 687`
-- Output: `75`
-- Explanation: The digits can form `68` and `7`, whose sum is $75$.
+- **Input:** `num = 687`
+- **Output:** `75`
+- **Explanation:** The digits can form `68` and `7`, whose sum is $75$.

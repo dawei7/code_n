@@ -18,19 +18,23 @@ Return the total score at the end of the process.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "aczzx"
+- **Input:** s = "aczzx"
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** 
 
 - $i = 0$. There is no index `j` that satisfies the conditions, so we skip.
 
@@ -42,19 +46,13 @@ Return the total score at the end of the process.
 
 - $i = 4$. The closest index `j` that satisfies the conditions is $j = 1$, so we mark both indices 1 and 4, and then add $4 - 1 = 3$ to the score.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "abcdef"
+- **Input:** s = "abcdef"
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-For each index `i`, there is no index `j` that satisfies the conditions.
-
-</div>
+- **Explanation:** For each index `i`, there is no index `j` that satisfies the conditions.
 
 ### 4. Constraints
 

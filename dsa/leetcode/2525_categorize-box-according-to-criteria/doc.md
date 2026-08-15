@@ -35,14 +35,14 @@ Return exactly one of `"Both"`, `"Neither"`, `"Bulky"`, or `"Heavy"` according t
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `length = 1000, width = 35, height = 700, mass = 300`
-- Output: `"Heavy"`
-- Explanation: No dimension and not the volume reaches a bulky threshold, while the mass is at least `100`.
+- **Input:** `length = 1000, width = 35, height = 700, mass = 300`
+- **Output:** `"Heavy"`
+- **Explanation:** No dimension and not the volume reaches a bulky threshold, while the mass is at least `100`.
 
-**Example 2**
+#### Example 2
 
-- Input: `length = 200, width = 50, height = 800, mass = 50`
-- Output: `"Neither"`
-- Explanation: Its dimensions, volume, and mass all remain below their respective thresholds.
+- **Input:** `length = 200, width = 50, height = 800, mass = 50`
+- **Output:** `"Neither"`
+- **Explanation:** Its dimensions, volume, and mass all remain below their respective thresholds.

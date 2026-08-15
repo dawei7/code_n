@@ -32,20 +32,20 @@ Return the signed digit sum that begins positively at the most significant digit
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 521`
-- Output: `4`
-- Explanation: $5-2+1=4$.
+- **Input:** `n = 521`
+- **Output:** `4`
+- **Explanation:** $5-2+1=4$.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 111`
-- Output: `1`
-- Explanation: $1-1+1=1$.
+- **Input:** `n = 111`
+- **Output:** `1`
+- **Explanation:** $1-1+1=1$.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 886996`
-- Output: `0`
-- Explanation: $8-8+6-9+9-6=0$.
+- **Input:** `n = 886996`
+- **Output:** `0`
+- **Explanation:** $8-8+6-9+9-6=0$.

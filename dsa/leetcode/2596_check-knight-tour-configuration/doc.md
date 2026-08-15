@@ -34,16 +34,16 @@ The board dimension satisfies $3 \leq n \leq 7$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[0,11,16,5,20],[17,4,19,10,15],[12,1,8,21,6],[3,18,23,14,9],[24,13,2,7,22]]`
-- Output: `true`
+- **Input:** `grid = [[0,11,16,5,20],[17,4,19,10,15],[12,1,8,21,6],[3,18,23,14,9],[24,13,2,7,22]]`
+- **Output:** `true`
 
 The visit order starts at the top-left and every transition from move zero through move 24 has coordinate differences one and two.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[0,3,6],[5,8,1],[2,7,4]]`
-- Output: `false`
+- **Input:** `grid = [[0,3,6],[5,8,1],[2,7,4]]`
+- **Output:** `false`
 
 The transition from move `7` to move `8` is not a legal knight move.

@@ -25,14 +25,11 @@ Return the minimum number of pairs $(i,j)$ satisfying $i<j$ and $\text{window}[i
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [3,1,2,5,4], k = 3
+- **Input:** nums = [3,1,2,5,4], k = 3
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-We consider all subarrays of length $k = 3$ (indices below are relative to each subarray):
+- **Explanation:** We consider all subarrays of length $k = 3$ (indices below are relative to each subarray):
 
 - `[3, 1, 2]` has 2 inversions: `(0, 1)` and `(0, 2)`.
 
@@ -42,37 +39,27 @@ We consider all subarrays of length $k = 3$ (indices below are relative to each 
 
 The minimum inversion count among all subarrays of length `3` is 0, achieved by subarray `[1, 2, 5]`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [5,3,2,1], k = 4
+- **Input:** nums = [5,3,2,1], k = 4
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
-
-There is only one subarray of length $k = 4$: `[5, 3, 2, 1]`.
+- **Explanation:** There is only one subarray of length $k = 4$: `[5, 3, 2, 1]`.
 
 Within this subarray, the inversions are: `(0, 1)`, `(0, 2)`, `(0, 3)`, `(1, 2)`, `(1, 3)`, and `(2, 3)`.
 
 Total inversions is 6, so the minimum inversion count is 6.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [2,1], k = 1
+- **Input:** nums = [2,1], k = 1
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-All subarrays of length $k = 1$ contain only one element, so no inversions are possible.
+- **Explanation:** All subarrays of length $k = 1$ contain only one element, so no inversions are possible.
 
 The minimum inversion count is therefore 0.
-
-</div>
 
 ### 4. Constraints
 

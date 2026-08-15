@@ -17,11 +17,13 @@ If the key is not a string, it should be converted into a string by calling `Str
 - **Input:** $keysArr = ["a", "b", "c"], valuesArr = [1, 2, 3]$
 - **Output:** `{"a": 1, "b": 2, "c": 3}`
 - **Explanation:** The keys "a", "b", and "c" are paired with the values 1, 2, and 3 respectively.
+
 #### Example 2
 
 - **Input:** $keysArr = ["1", 1, false], valuesArr = [4, 5, 6]$
 - **Output:** `{"1": 4, "false": 6}`
 - **Explanation:** First, all the elements in keysArr are converted into strings. We can see there are two occurrences of "1". The value associated with the first occurrence of "1" is used: 4.
+
 #### Example 3
 
 - **Input:** $keysArr = [], valuesArr = []$

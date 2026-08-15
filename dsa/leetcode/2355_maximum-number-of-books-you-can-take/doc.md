@@ -43,23 +43,23 @@ integer.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `books = [8,5,2,7,9]`
-- Output: `19`
+- **Input:** `books = [8,5,2,7,9]`
+- **Output:** `19`
 
 Taking `1, 2, 7, 9` books from shelves 1 through 4 is valid and totals 19.
 
-**Example 2**
+#### Example 2
 
-- Input: `books = [7,0,3,4,5]`
-- Output: `12`
+- **Input:** `books = [7,0,3,4,5]`
+- **Output:** `12`
 
 Shelves 2 through 4 can contribute `3, 4, 5`, for a total of 12.
 
-**Example 3**
+#### Example 3
 
-- Input: `books = [8,2,3,7,3,4,0,1,4,3]`
-- Output: `13`
+- **Input:** `books = [8,2,3,7,3,4,0,1,4,3]`
+- **Output:** `13`
 
 One optimal section is shelves 0 through 3, taking `1, 2, 3, 7`.

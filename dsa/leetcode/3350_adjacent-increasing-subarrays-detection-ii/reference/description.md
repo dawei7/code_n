@@ -12,19 +12,23 @@ A **subarray** is a contiguous **non-empty** sequence of elements within an arra
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,5,7,8,9,2,3,4,3,1]
+- **Input:** nums = [2,5,7,8,9,2,3,4,3,1]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - The subarray starting at index 2 is `[7, 8, 9]`, which is strictly increasing.
 
@@ -32,23 +36,19 @@ A **subarray** is a contiguous **non-empty** sequence of elements within an arra
 
 - These two subarrays are adjacent, and 3 is the **maximum** possible value of `k` for which two such adjacent strictly increasing subarrays exist.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4,4,4,4,5,6,7]
+- **Input:** nums = [1,2,3,4,4,4,4,5,6,7]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - The subarray starting at index 0 is `[1, 2]`, which is strictly increasing.
 
 - The subarray starting at index 2 is `[3, 4]`, which is also strictly increasing.
 
 - These two subarrays are adjacent, and 2 is the **maximum** possible value of `k` for which two such adjacent strictly increasing subarrays exist.
-
-</div>
 
 ### 4. Constraints
 

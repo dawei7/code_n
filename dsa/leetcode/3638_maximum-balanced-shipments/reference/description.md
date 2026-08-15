@@ -8,58 +8,51 @@ Return the **maximum possible number** of balanced shipments that can be formed.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `weight`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** weight = [2,5,1,4,3]
+- **Input:** weight = [2,5,1,4,3]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-We can form the maximum of two balanced shipments as follows:
+- **Explanation:** We can form the maximum of two balanced shipments as follows:
 
 - Shipment 1: `[2, 5, 1]`
 
-		<li data-end="195" data-start="168">Maximum parcel weight = 5
+		- Maximum parcel weight = 5
 
 - Last parcel weight = 1, which is strictly less than 5. Thus, it's balanced.
 
-	</li>
 - Shipment 2: `[4, 3]`
 
-		<li data-end="331" data-start="304">Maximum parcel weight = 4
+		- Maximum parcel weight = 4
 
 - Last parcel weight = 3, which is strictly less than 4. Thus, it's balanced.
 
-	</li>
-
 It is impossible to partition the parcels to achieve more than two balanced shipments, so the answer is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** weight = [4,4]
+- **Input:** weight = [4,4]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-No balanced shipment can be formed in this case:
+- **Explanation:** No balanced shipment can be formed in this case:
 
 - A shipment `[4, 4]` has maximum weight 4 and the last parcel's weight is also 4, which is not strictly less. Thus, it's not balanced.
 
 - Single-parcel shipments `[4]` have the last parcel weight equal to the maximum parcel weight, thus not balanced.
 
 As there is no way to form even one balanced shipment, the answer is 0.
-
-</div>
 
 ### 4. Constraints
 

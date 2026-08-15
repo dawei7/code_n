@@ -36,17 +36,17 @@ For the app-local trace adapter, return one result per operation: `null` for con
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `operations = ["NeighborSum","adjacentSum","adjacentSum","diagonalSum","diagonalSum"]`, `arguments = [[[[0,1,2],[3,4,5],[6,7,8]]],[1],[4],[4],[8]]`
-- Output: `[null,6,16,16,4]`
+- **Input:** `operations = ["NeighborSum","adjacentSum","adjacentSum","diagonalSum","diagonalSum"]`, `arguments = [[[[0,1,2],[3,4,5],[6,7,8]]],[1],[4],[4],[8]]`
+- **Output:** `[null,6,16,16,4]`
 
-**Example 2**
+#### Example 2
 
-- Input: `operations = ["NeighborSum","adjacentSum","diagonalSum"]`, `arguments = [[[[1,2,0,3],[4,7,15,6],[8,9,10,11],[12,13,14,5]]],[15],[9]]`
-- Output: `[null,23,45]`
+- **Input:** `operations = ["NeighborSum","adjacentSum","diagonalSum"]`, `arguments = [[[[1,2,0,3],[4,7,15,6],[8,9,10,11],[12,13,14,5]]],[15],[9]]`
+- **Output:** `[null,23,45]`
 
-**Example 3**
+#### Example 3
 
-- Input: `operations = ["NeighborSum","adjacentSum","diagonalSum"]`, `arguments = [[[[8,7,6],[5,4,3],[2,1,0]]],[0],[4]]`
-- Output: `[null,4,16]`
+- **Input:** `operations = ["NeighborSum","adjacentSum","diagonalSum"]`, `arguments = [[[[8,7,6],[5,4,3],[2,1,0]]],[0],[4]]`
+- **Output:** `[null,4,16]`

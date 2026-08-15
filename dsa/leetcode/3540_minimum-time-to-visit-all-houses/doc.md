@@ -36,14 +36,14 @@ Both road arrays have the same length $n$, where $2 \le n \le 10^5$. Every road 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `forward = [1,4,4], backward = [4,1,2], queries = [1,2,0,2]`
-- Output: `12`
-- Explanation: Optimal choices reach the requested houses at cumulative times `1`, `5`, `8`, and `12`.
+- **Input:** `forward = [1,4,4], backward = [4,1,2], queries = [1,2,0,2]`
+- **Output:** `12`
+- **Explanation:** Optimal choices reach the requested houses at cumulative times `1`, `5`, `8`, and `12`.
 
-**Example 2**
+#### Example 2
 
-- Input: `forward = [1,1,1,1], backward = [2,2,2,2], queries = [1,2,3,0]`
-- Output: `4`
-- Explanation: Following one forward edge for every visit completes a full circle in four seconds.
+- **Input:** `forward = [1,1,1,1], backward = [2,2,2,2], queries = [1,2,3,0]`
+- **Output:** `4`
+- **Explanation:** Following one forward edge for every visit completes a full circle in four seconds.

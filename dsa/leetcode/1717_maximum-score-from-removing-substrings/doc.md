@@ -32,20 +32,20 @@ Choose both the order and locations of the deletions. Return the greatest total 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "cdbcbbaaabab", x = 4, y = 5`
-- Output: `19`
-- Explanation: Removing three `ba` pairs and one `ab` pair yields $3 \cdot 5 + 4 = 19$ points.
+- **Input:** `s = "cdbcbbaaabab", x = 4, y = 5`
+- **Output:** `19`
+- **Explanation:** Removing three `ba` pairs and one `ab` pair yields $3 \cdot 5 + 4 = 19$ points.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "aabbaaxybbaabb", x = 5, y = 4`
-- Output: `20`
-- Explanation: The characters `x` and `y` separate independent `a`/`b` regions; four profitable removals are available in total.
+- **Input:** `s = "aabbaaxybbaabb", x = 5, y = 4`
+- **Output:** `20`
+- **Explanation:** The characters `x` and `y` separate independent `a`/`b` regions; four profitable removals are available in total.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "abba", x = 10, y = 1`
-- Output: `11`
-- Explanation: Delete the higher-valued `ab` first, leaving `ba`; both pairs can then be scored.
+- **Input:** `s = "abba", x = 10, y = 1`
+- **Output:** `11`
+- **Explanation:** Delete the higher-valued `ab` first, leaving `ba`; both pairs can then be scored.

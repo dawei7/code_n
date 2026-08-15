@@ -50,10 +50,12 @@ Return the maximum integer font size from `fonts` that allows `text` to fit with
 
 - **Input:** $text = "helloworld", w = 80, h = 20, fonts = [6,8,10,12,14,16,18,24,36]$
 - **Output:** `6`
+
 #### Example 2
 
 - **Input:** $text = "leetcode", w = 1000, h = 50, fonts = [1,2,4]$
 - **Output:** `4`
+
 #### Example 3
 
 - **Input:** $text = "easyquestion", w = 100, h = 100, fonts = [10,15,20,25]$

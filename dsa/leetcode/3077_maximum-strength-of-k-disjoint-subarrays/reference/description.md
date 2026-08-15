@@ -14,8 +14,14 @@ Return the **maximum** possible strength that can be obtained from selecting exa
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -25,35 +31,31 @@ that the chosen subarrays **don't** need to cover the entire array.
 
 #### Example 1
 
-**Input:** nums = [1,2,3,-1,2], k = 3
+- **Input:** nums = [1,2,3,-1,2], k = 3
 
-**Output:** 22
+- **Output:** 22
 
-**Explanation:**
-
-The best possible way to select 3 subarrays is: nums[0..2], nums[3..3], and nums[4..4]. The strength is calculated as follows:
+- **Explanation:** The best possible way to select 3 subarrays is: nums[0..2], nums[3..3], and nums[4..4]. The strength is calculated as follows:
 
 $strength = 3 * (1 + 2 + 3) - 2 * (-1) + 2 = 22$
+
 #### Example 2
 
-**Input:** nums = [12,-2,-2,-2,-2], k = 5
+- **Input:** nums = [12,-2,-2,-2,-2], k = 5
 
-**Output:** 64
+- **Output:** 64
 
-**Explanation:**
-
-The only possible way to select 5 disjoint subarrays is: nums[0..0], nums[1..1], nums[2..2], nums[3..3], and nums[4..4]. The strength is calculated as follows:
+- **Explanation:** The only possible way to select 5 disjoint subarrays is: nums[0..0], nums[1..1], nums[2..2], nums[3..3], and nums[4..4]. The strength is calculated as follows:
 
 $strength = 5 * 12 - 4 * (-2) + 3 * (-2) - 2 * (-2) + (-2) = 64$
+
 #### Example 3
 
-**Input:** nums = [-1,-2,-3], k = 1
+- **Input:** nums = [-1,-2,-3], k = 1
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-The best possible way to select 1 subarray is: nums[0..0]. The strength is -1.
+- **Explanation:** The best possible way to select 1 subarray is: nums[0..0]. The strength is -1.
 
 ### 5. Constraints
 

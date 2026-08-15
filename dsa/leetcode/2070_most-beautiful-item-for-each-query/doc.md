@@ -31,20 +31,20 @@ Return the answers in the original query order. If a query cannot afford any ite
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `items = [[1,2],[3,2],[2,4],[5,6],[3,5]], queries = [1,2,3,4,5,6]`
-- Output: `[2,4,5,5,6,6]`
-- Explanation: As the affordable price rises, the best available beauty forms the prefix maxima $2,4,5,5,6,6$.
+- **Input:** `items = [[1,2],[3,2],[2,4],[5,6],[3,5]], queries = [1,2,3,4,5,6]`
+- **Output:** `[2,4,5,5,6,6]`
+- **Explanation:** As the affordable price rises, the best available beauty forms the prefix maxima $2,4,5,5,6,6$.
 
-**Example 2**
+#### Example 2
 
-- Input: `items = [[1,2],[1,2],[1,3],[1,4]], queries = [1]`
-- Output: `[4]`
-- Explanation: All four items are affordable, so the greatest beauty at the shared price is selected.
+- **Input:** `items = [[1,2],[1,2],[1,3],[1,4]], queries = [1]`
+- **Output:** `[4]`
+- **Explanation:** All four items are affordable, so the greatest beauty at the shared price is selected.
 
-**Example 3**
+#### Example 3
 
-- Input: `items = [[10,1000]], queries = [5]`
-- Output: `[0]`
-- Explanation: The only item costs more than the query.
+- **Input:** `items = [[10,1000]], queries = [5]`
+- **Output:** `[0]`
+- **Explanation:** The only item costs more than the query.

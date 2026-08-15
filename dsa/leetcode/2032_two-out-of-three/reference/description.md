@@ -4,8 +4,15 @@ Given three integer arrays `nums1`, `nums2`, and `nums3`, return *a **distinct**
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums1`: Input parameter (`List[int]`).
+- `nums2`: Input parameter (`List[int]`).
+- `nums3`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -16,6 +23,7 @@ Given three integer arrays `nums1`, `nums2`, and `nums3`, return *a **distinct**
 - **Explanation:** The values that are present in at least two arrays are:
 - 3, in all three arrays.
 - 2, in nums1 and nums2.
+
 #### Example 2
 
 - **Input:** $nums1 = [3,1], nums2 = [2,3], nums3 = [1,2]$
@@ -24,6 +32,7 @@ Given three integer arrays `nums1`, `nums2`, and `nums3`, return *a **distinct**
 - 2, in nums2 and nums3.
 - 3, in nums1 and nums2.
 - 1, in nums1 and nums3.
+
 #### Example 3
 
 - **Input:** $nums1 = [1,2,2], nums2 = [4,3,3], nums3 = [5]$

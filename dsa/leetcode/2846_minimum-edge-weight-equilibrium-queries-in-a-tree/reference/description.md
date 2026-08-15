@@ -6,8 +6,15 @@ You are also given a 2D integer array `queries` of length `m`, where $\text{quer
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -32,6 +39,7 @@ In the second query, all the edges in the path from 3 to 6 have a weight of 2. H
 In the third query, we change the weight of edge [2,3] to 2. After this operation, all the edges in the path from 2 to 6 have a weight of 2. Hence, the answer is 1.
 In the fourth query, we change the weights of edges [0,1], [1,2] and [2,3] to 2. After these operations, all the edges in the path from 0 to 6 have a weight of 2. Hence, the answer is 3.
 For each queries[i], it can be shown that answer[i] is the minimum number of operations needed to equalize all the edge weights in the path from a_i to b_i.
+
 #### Example 2
 
 ![](images/graph-9-1.png)

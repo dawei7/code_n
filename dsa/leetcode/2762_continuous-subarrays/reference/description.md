@@ -10,8 +10,13 @@ A subarray is a contiguous **non-empty** sequence of elements within an array.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,19 +24,18 @@ A subarray is a contiguous **non-empty** sequence of elements within an array.
 
 - **Input:** `nums = [5,4,2,4]`
 - **Output:** `8`
-- **Explanation:**
-Continuous subarray of size 1: [5], [4], [2], [4].
+- **Explanation:** Continuous subarray of size 1: [5], [4], [2], [4].
 Continuous subarray of size 2: [5,4], [4,2], [2,4].
 Continuous subarray of size 3: [4,2,4].
 There are no subarrys of size 4.
 Total continuous subarrays = 4 + 3 + 1 = 8.
 It can be shown that there are no more continuous subarrays.
+
 #### Example 2
 
 - **Input:** `nums = [1,2,3]`
 - **Output:** `6`
-- **Explanation:**
-Continuous subarray of size 1: [1], [2], [3].
+- **Explanation:** Continuous subarray of size 1: [1], [2], [3].
 Continuous subarray of size 2: [1,2], [2,3].
 Continuous subarray of size 3: [1,2,3].
 Total continuous subarrays = 3 + 2 + 1 = 6.

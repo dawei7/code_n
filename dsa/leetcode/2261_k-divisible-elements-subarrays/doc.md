@@ -37,17 +37,17 @@ at most `k` elements `value` for which `value % p == 0`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,3,3,2,2], k = 2, p = 2`
-- Output: `11`
+- **Input:** `nums = [2,3,3,2,2], k = 2, p = 2`
+- **Output:** `11`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,2,3,4], k = 4, p = 1`
-- Output: `10`
+- **Input:** `nums = [1,2,3,4], k = 4, p = 1`
+- **Output:** `10`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,1,1], k = 3, p = 2`
-- Output: `3`
+- **Input:** `nums = [1,1,1], k = 3, p = 2`
+- **Output:** `3`

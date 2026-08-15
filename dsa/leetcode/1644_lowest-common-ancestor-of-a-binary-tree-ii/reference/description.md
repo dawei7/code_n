@@ -25,6 +25,7 @@ Return the lowest common ancestor `TreeNode` if both `p` and `q` exist in the bi
 - **Input:** `root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1`
 - **Output:** `3`
 - **Explanation:** The LCA of nodes 5 and 1 is 3.
+
 #### Example 2
 
 ![](images/binarytree.png)
@@ -32,6 +33,7 @@ Return the lowest common ancestor `TreeNode` if both `p` and `q` exist in the bi
 - **Input:** `root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4`
 - **Output:** `5`
 - **Explanation:** The LCA of nodes 5 and 4 is 5. A node can be a descendant of itself according to the definition of LCA.
+
 #### Example 3
 
 ![](images/binarytree.png)

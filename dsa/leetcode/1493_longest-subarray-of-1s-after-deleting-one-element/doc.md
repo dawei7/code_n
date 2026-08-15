@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/) |
 
 ## Problem Description
+
 ### Goal
 
 Given a binary array `nums`, delete exactly one element from it. After that deletion, inspect the remaining array for contiguous subarrays containing only `1` values.
@@ -16,6 +17,7 @@ Given a binary array `nums`, delete exactly one element from it. After that dele
 Return the greatest possible length of such an all-ones subarray. The deleted element may be either `0` or `1`; in particular, an input containing only ones must still lose one element. If no `1` remains in a useful run, return `0`.
 
 ### Function Contract
+
 **Inputs**
 
 Let $N$ be the length of `nums`.
@@ -28,20 +30,21 @@ Let $N$ be the length of `nums`.
 Return the maximum number of consecutive ones obtainable after deleting exactly one array element.
 
 ### Examples
-**Example 1**
 
-- Input: `nums = [1,1,0,1]`
-- Output: `3`
-- Explanation: Deleting the zero joins the runs `[1,1]` and `[1]`.
+#### Example 1
 
-**Example 2**
+- **Input:** `nums = [1,1,0,1]`
+- **Output:** `3`
+- **Explanation:** Deleting the zero joins the runs `[1,1]` and `[1]`.
 
-- Input: `nums = [0,1,1,1,0,1,1,0,1]`
-- Output: `5`
-- Explanation: Deleting the zero between the three-one and two-one runs creates five consecutive ones.
+#### Example 2
 
-**Example 3**
+- **Input:** `nums = [0,1,1,1,0,1,1,0,1]`
+- **Output:** `5`
+- **Explanation:** Deleting the zero between the three-one and two-one runs creates five consecutive ones.
 
-- Input: `nums = [1,1,1]`
-- Output: `2`
-- Explanation: A deletion is mandatory, so one of the three ones must be removed.
+#### Example 3
+
+- **Input:** `nums = [1,1,1]`
+- **Output:** `2`
+- **Explanation:** A deletion is mandatory, so one of the three ones must be removed.

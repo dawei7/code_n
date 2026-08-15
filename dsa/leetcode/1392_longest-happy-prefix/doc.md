@@ -30,17 +30,17 @@ Given a lowercase English string `s`, return its longest happy prefix. If no non
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "level"`
-- Output: `"l"`
+- **Input:** `s = "level"`
+- **Output:** `"l"`
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "ababab"`
-- Output: `"abab"`
+- **Input:** `s = "ababab"`
+- **Output:** `"abab"`
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "leetcodeleet"`
-- Output: `"leet"`
+- **Input:** `s = "leetcodeleet"`
+- **Output:** `"leet"`

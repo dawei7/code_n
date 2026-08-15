@@ -39,12 +39,11 @@ Return the maximum integer value obtainable by reordering and concatenating all 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums1 = [1,2], nums0 = [1,0]
+- **Input:** nums1 = [1,2], nums0 = [1,0]
 
-**Output:** 14
+- **Output:** 14
 
-**Explanation:**
+- **Explanation:** 
 
 - At index 0, $\text{nums1}[0] = 1$ and $\text{nums0}[0] = 1$, so the segment formed is `"10"`.
 
@@ -54,15 +53,13 @@ Return the maximum integer value obtainable by reordering and concatenating all 
 
 - The binary number `"1110"` has value 14 which is the maximum possible value.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums1 = [3,1], nums0 = [0,3]
+- **Input:** nums1 = [3,1], nums0 = [0,3]
 
-**Output:** 120
+- **Output:** 120
 
-**Explanation:**
+- **Explanation:** 
 
 - At index 0, $\text{nums1}[0] = 3$ and $\text{nums0}[0] = 0$, so the segment formed is `"111"`.
 
@@ -71,8 +68,6 @@ Return the maximum integer value obtainable by reordering and concatenating all 
 - Reordering the segments as `"111"` followed by `"1000"` produces the binary string `"1111000"`.
 
 - The binary number `"1111000"` has value 120 which is the maximum possible value.
-
-</div>
 
 ### 4. Constraints
 

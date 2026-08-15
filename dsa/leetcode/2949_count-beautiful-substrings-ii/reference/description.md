@@ -20,8 +20,14 @@ A **substring** is a contiguous sequence of characters in a string.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -35,6 +41,7 @@ You can see that string "aeyh" is beautiful as vowels == consonants and vowels *
 - Substring "<u>baey</u>h", vowels = 2 (["a",e"]), consonants = 2 (["b","y"]).
 You can see that string "baey" is beautiful as vowels == consonants and vowels * consonants % k == 0.
 It can be shown that there are only 2 beautiful substrings in the given string.
+
 #### Example 2
 
 - **Input:** `s = "abba", k = 1`
@@ -44,6 +51,7 @@ It can be shown that there are only 2 beautiful substrings in the given string.
 - Substring "ab<u>ba</u>", vowels = 1 (["a"]), consonants = 1 (["b"]).
 - Substring "<u>abba</u>", vowels = 2 (["a","a"]), consonants = 2 (["b","b"]).
 It can be shown that there are only 3 beautiful substrings in the given string.
+
 #### Example 3
 
 - **Input:** `s = "bcdf", k = 1`

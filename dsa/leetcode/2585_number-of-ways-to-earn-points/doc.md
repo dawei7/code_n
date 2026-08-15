@@ -31,17 +31,17 @@ Count the ways to select questions whose total score is exactly `target`. Questi
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `target = 6, types = [[6,1],[3,2],[2,3]]`
-- Output: `7`
+- **Input:** `target = 6, types = [[6,1],[3,2],[2,3]]`
+- **Output:** `7`
 
-**Example 2**
+#### Example 2
 
-- Input: `target = 5, types = [[50,1],[50,2],[50,5]]`
-- Output: `4`
+- **Input:** `target = 5, types = [[50,1],[50,2],[50,5]]`
+- **Output:** `4`
 
-**Example 3**
+#### Example 3
 
-- Input: `target = 18, types = [[6,1],[3,2],[2,3]]`
-- Output: `1`
+- **Input:** `target = 18, types = [[6,1],[3,2],[2,3]]`
+- **Output:** `1`

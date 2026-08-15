@@ -32,14 +32,14 @@ For candidate sides sorted as $a\le b\le c$, non-zero area is equivalent to $a+b
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 1, 2]`
-- Output: `5`
-- Explanation: lengths $1$, $2$, and $2$ satisfy $1+2>2$.
+- **Input:** `nums = [2, 1, 2]`
+- **Output:** `5`
+- **Explanation:** lengths $1$, $2$, and $2$ satisfy $1+2>2$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 2, 1, 10]`
-- Output: `0`
-- Explanation: no selection of three lengths satisfies the strict triangle inequality.
+- **Input:** `nums = [1, 2, 1, 10]`
+- **Output:** `0`
+- **Explanation:** no selection of three lengths satisfies the strict triangle inequality.

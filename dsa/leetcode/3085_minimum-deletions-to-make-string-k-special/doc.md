@@ -33,20 +33,20 @@ Characters removed completely no longer participate in the pairwise frequency co
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word = "aabcaba", k = 0`
-- Output: `3`
-- Explanation: Delete two `a` characters and the only `c`, leaving two `a` and two `b` characters.
+- **Input:** `word = "aabcaba", k = 0`
+- **Output:** `3`
+- **Explanation:** Delete two `a` characters and the only `c`, leaving two `a` and two `b` characters.
 
-**Example 2**
+#### Example 2
 
-- Input: `word = "dabdcbdcdcd", k = 2`
-- Output: `2`
-- Explanation: Removing the only `a` and one `d` leaves frequencies $2$, $3$, and $4$, whose maximum difference is $2$.
+- **Input:** `word = "dabdcbdcdcd", k = 2`
+- **Output:** `2`
+- **Explanation:** Removing the only `a` and one `d` leaves frequencies $2$, $3$, and $4$, whose maximum difference is $2$.
 
-**Example 3**
+#### Example 3
 
-- Input: `word = "aaabaaa", k = 2`
-- Output: `1`
-- Explanation: Delete the only `b`; the remaining string contains only `a`, with frequency $6$.
+- **Input:** `word = "aaabaaa", k = 2`
+- **Output:** `1`
+- **Explanation:** Delete the only `b`; the remaining string contains only `a`, with frequency $6$.

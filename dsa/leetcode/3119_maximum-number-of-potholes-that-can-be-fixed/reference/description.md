@@ -14,40 +14,27 @@ Return the **maximum** number of potholes that can be fixed such that the sum of
 
 #### Example 1
 
-<div class="example-block">
-**Input:** road = "..", budget = 5
+- **Input:** road = "..", budget = 5
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** There are no potholes to be fixed.
 
-There are no potholes to be fixed.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** road = "..xxxxx", budget = 4
+- **Input:** road = "..xxxxx", budget = 4
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** We fix the first three potholes (they are consecutive). The budget needed for this task is $3 + 1 = 4$.
 
-We fix the first three potholes (they are consecutive). The budget needed for this task is $3 + 1 = 4$.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** road = "x.x.xxx...x", budget = 14
+- **Input:** road = "x.x.xxx...x", budget = 14
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
-
-We can fix all the potholes. The total cost would be $(1 + 1) + (1 + 1) + (3 + 1) + (1 + 1) = 10$ which is within our budget of 14.
-
-</div>
+- **Explanation:** We can fix all the potholes. The total cost would be $(1 + 1) + (1 + 1) + (3 + 1) + (1 + 1) = 10$ which is within our budget of 14.
 
 ### 4. Constraints
 

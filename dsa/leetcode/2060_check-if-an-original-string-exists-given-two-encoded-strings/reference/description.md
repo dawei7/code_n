@@ -20,8 +20,14 @@ Given two encoded strings `s1` and `s2`, consisting of lowercase English letters
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s1`: Input parameter (`str`).
+- `s2`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Note
 
@@ -42,6 +48,7 @@ Given two encoded strings `s1` and `s2`, consisting of lowercase English letters
 -> Split:       ["i", "nternationalizatio", "n"]
 -> Replace:     ["i", "18",                 "n"]
 -> Concatenate:  "i18n", which is s2
+
 #### Example 2
 
 - **Input:** $s1 = "l123e", s2 = "44"$
@@ -55,6 +62,7 @@ Given two encoded strings `s1` and `s2`, consisting of lowercase English letters
 -> Split:      ["leet", "code"]
 -> Replace:    ["4",    "4"]
 -> Concatenate: "44", which is s2.
+
 #### Example 3
 
 - **Input:** $s1 = "a5b", s2 = "c5b"$

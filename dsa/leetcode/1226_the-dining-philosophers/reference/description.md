@@ -28,8 +28,9 @@ Five threads, each representing a philosopher, will simultaneously use one objec
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `wantsToEat(philosopher: int, pickLeftFork: 'Callable[[], None]', pickRightFork: 'Callable[[], None]', eat: 'Callable[[], None]', putLeftFork: 'Callable[[], None]', putRightFork: 'Callable[[], None]')`: Executes operation.
 
 ### 3. Examples
 
@@ -37,8 +38,7 @@ Five threads, each representing a philosopher, will simultaneously use one objec
 
 - **Input:** $n = 1$
 - **Output:** `[[3,2,1],[3,1,1],[3,0,3],[3,1,2],[3,2,2],[4,2,1],[4,1,1],[2,2,1],[2,1,1],[1,2,1],[2,0,3],[2,1,2],[2,2,2],[4,0,3],[4,1,2],[4,2,2],[1,1,1],[1,0,3],[1,1,2],[1,2,2],[0,1,1],[0,2,1],[0,0,3],[0,1,2],[0,2,2]]`
-- **Explanation:**
-n is the number of times each philosopher will call the function.
+- **Explanation:** n is the number of times each philosopher will call the function.
 The output array describes the calls you made to the functions controlling the forks and the eat function, its format is:
 output[i] = [a, b, c] (three integers)
 - a is the id of a philosopher.

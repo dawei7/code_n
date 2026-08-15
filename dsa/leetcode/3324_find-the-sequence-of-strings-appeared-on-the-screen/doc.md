@@ -30,14 +30,14 @@ Return the complete ordered list of screen states produced by a minimum-length k
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `target = "abc"`
-- Output: `["a", "aa", "ab", "aba", "abb", "abc"]`
-- Explanation: Each position appears first as `a`; the second and third positions are advanced once and twice respectively.
+- **Input:** `target = "abc"`
+- **Output:** `["a", "aa", "ab", "aba", "abb", "abc"]`
+- **Explanation:** Each position appears first as `a`; the second and third positions are advanced once and twice respectively.
 
-**Example 2**
+#### Example 2
 
-- Input: `target = "he"`
-- Output: `["a", "b", "c", "d", "e", "f", "g", "h", "ha", "hb", "hc", "hd", "he"]`
-- Explanation: The first position advances from `a` through `h`; the second is then appended and advanced through `e`.
+- **Input:** `target = "he"`
+- **Output:** `["a", "b", "c", "d", "e", "f", "g", "h", "ha", "hb", "hc", "hd", "he"]`
+- **Explanation:** The first position advances from `a` through `h`; the second is then appended and advanced through `e`.

@@ -31,7 +31,7 @@ For each distinct `query_name`, compute its quality as the average of $\texttt{r
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 `Queries`
 
@@ -44,17 +44,17 @@ For each distinct `query_name`, compute its quality as the average of $\texttt{r
 | Cat | Siamese | 3 | 3 |
 | Cat | Sphynx | 7 | 4 |
 
-Output:
+- **Output:** 
 
 | query_name | quality | poor_query_percentage |
 |---|---:|---:|
 | Cat | 0.66 | 33.33 |
 | Dog | 2.50 | 33.33 |
 
-**Example 2**
+#### Example 2
 
 A group in which no rating is below 3 has a poor query percentage of `0.00`.
 
-**Example 3**
+#### Example 3
 
 Duplicate table rows each contribute separately to both averages.

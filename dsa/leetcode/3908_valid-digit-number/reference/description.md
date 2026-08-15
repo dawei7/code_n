@@ -27,40 +27,27 @@ Return `true` when the decimal representation of `n` contains `x` at least once 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 101, x = 0
+- **Input:** n = 101, x = 0
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
+- **Explanation:** The number contains digit 0 at index 1. It does not start with 0, so it satisfies both conditions. Thus, the answer is `true`​​​​​​​.
 
-The number contains digit 0 at index 1. It does not start with 0, so it satisfies both conditions. Thus, the answer is `true`​​​​​​​.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 232, x = 2
+- **Input:** n = 232, x = 2
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
+- **Explanation:** The number starts with 2, which violates the condition. Thus, the answer is `false`.
 
-The number starts with 2, which violates the condition. Thus, the answer is `false`.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 5, x = 1
+- **Input:** n = 5, x = 1
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
-
-The number does not contain digit 1. Thus, the answer is `false`.
-
-</div>
+- **Explanation:** The number does not contain digit 1. Thus, the answer is `false`.
 
 ### 4. Constraints
 

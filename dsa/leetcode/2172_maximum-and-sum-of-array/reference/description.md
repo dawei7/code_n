@@ -10,8 +10,14 @@ Return *the maximum possible **AND sum** of *`nums`* given *`numSlots`* slots.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `numSlots`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +27,7 @@ Return *the maximum possible **AND sum** of *`nums`* given *`numSlots`* slots.*
 - **Output:** `9`
 - **Explanation:** One possible placement is [1, 4] into slot <u>1</u>, [2, 6] into slot <u>2</u>, and [3, 5] into slot <u>3</u>.
 This gives the maximum AND sum of (1 AND <u>1</u>) + (4 AND <u>1</u>) + (2 AND <u>2</u>) + (6 AND <u>2</u>) + (3 AND <u>3</u>) + (5 AND <u>3</u>) = 1 + 0 + 2 + 2 + 3 + 1 = 9.
+
 #### Example 2
 
 - **Input:** `nums = [1,3,10,4,7,1], numSlots = 9`

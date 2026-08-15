@@ -26,7 +26,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Days table:
 +------------+
 | day        |
@@ -35,7 +35,7 @@ Days table:
 | 2021-08-09 |
 | 2020-06-26 |
 +------------+
-**Output:**
+- **Output:** 
 +-------------------------+
 | day                     |
 +-------------------------+
@@ -43,5 +43,5 @@ Days table:
 | Monday, August 9, 2021  |
 | Friday, June 26, 2020   |
 +-------------------------+
-**Explanation:** Please note that the output is case-sensitive.
+- **Explanation:** Please note that the output is case-sensitive.
 ```

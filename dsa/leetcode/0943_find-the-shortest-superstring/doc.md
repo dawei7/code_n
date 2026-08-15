@@ -37,14 +37,14 @@ Return any minimum-length string that contains every string in `words` as a subs
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `words = ["alex", "loves", "leetcode"]`
-- Output: `"alexlovesleetcode"`
+- **Input:** `words = ["alex", "loves", "leetcode"]`
+- **Output:** `"alexlovesleetcode"`
 
 There are no useful overlaps here, so concatenating the three words in any order has minimum length and is acceptable.
 
-**Example 2**
+#### Example 2
 
-- Input: `words = ["catg", "ctaagt", "gcta", "ttca", "atgcatc"]`
-- Output: `"gctaagttcatgcatc"`
+- **Input:** `words = ["catg", "ctaagt", "gcta", "ttca", "atgcatc"]`
+- **Output:** `"gctaagttcatgcatc"`

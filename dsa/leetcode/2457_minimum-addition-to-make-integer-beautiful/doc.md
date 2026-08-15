@@ -33,20 +33,20 @@ The bounds are $1\le n\le 10^{12}$ and $1\le\texttt{target}\le150$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 16, target = 6`
-- Output: `4`
-- Explanation: Adding `4` produces `20`, whose digit sum is $2$. No smaller non-negative addition works.
+- **Input:** `n = 16, target = 6`
+- **Output:** `4`
+- **Explanation:** Adding `4` produces `20`, whose digit sum is $2$. No smaller non-negative addition works.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 467, target = 6`
-- Output: `33`
-- Explanation: Adding `33` produces `500`, whose digit sum is $5$.
+- **Input:** `n = 467, target = 6`
+- **Output:** `33`
+- **Explanation:** Adding `33` produces `500`, whose digit sum is $5$.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 1, target = 1`
-- Output: `0`
-- Explanation: The original number is already beautiful.
+- **Input:** `n = 1, target = 1`
+- **Output:** `0`
+- **Explanation:** The original number is already beautiful.

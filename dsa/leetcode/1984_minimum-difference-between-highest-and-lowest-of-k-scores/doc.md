@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/minimum-difference-between-highest-and-lowest-of-k-scores/) |
 
 ## Problem Description
+
 ### Goal
+
 The 0-indexed integer array `nums` records one score for each student. Select
 the scores of exactly `k` different students. For a particular selection, its
 spread is the highest selected score minus the lowest selected score; scores
@@ -20,6 +22,7 @@ the minimum achievable difference. Selection is by array position, so equal
 scores belonging to different students may all be chosen.
 
 ### Function Contract
+
 **Inputs**
 
 - `nums`: a list of $N$ student scores, where $1 \le N \le 1000$ and
@@ -33,23 +36,24 @@ scores belonging to different students may all be chosen.
   selections of exactly `k` positions.
 
 ### Examples
-**Example 1**
 
-- Input: `nums = [90], k = 1`
-- Output: `0`
+#### Example 1
+
+- **Input:** `nums = [90], k = 1`
+- **Output:** `0`
 
 The only selected score is both the minimum and maximum.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [9, 4, 1, 7], k = 2`
-- Output: `2`
+- **Input:** `nums = [9, 4, 1, 7], k = 2`
+- **Output:** `2`
 
 Choosing scores `7` and `9` gives the smallest spread.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 5, 6, 14, 15], k = 3`
-- Output: `5`
+- **Input:** `nums = [1, 5, 6, 14, 15], k = 3`
+- **Output:** `5`
 
 Choosing `1`, `5`, and `6` gives spread `5`.

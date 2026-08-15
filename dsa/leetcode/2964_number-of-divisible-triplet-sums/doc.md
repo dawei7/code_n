@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/number-of-divisible-triplet-sums/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given a 0-indexed integer array `nums` and a positive integer `d`.
 Choose three distinct indices in strictly increasing order, $i<j<k$.
 
@@ -26,6 +28,7 @@ Triplets are distinguished by indices, so repeated values may participate in
 several different choices.
 
 ### Function Contract
+
 **Inputs**
 
 - `nums`: the positive integer array supplying triplet values
@@ -40,20 +43,21 @@ The number of index triples $i<j<k$ whose corresponding value sum is divisible
 by `d`.
 
 ### Examples
-**Example 1**
 
-- Input: `nums = [3,3,4,7,8], d = 5`
-- Output: `3`
-- Explanation: The qualifying index triples are `(0,1,2)`, `(0,2,4)`, and `(1,2,4)`.
+#### Example 1
 
-**Example 2**
+- **Input:** `nums = [3,3,4,7,8], d = 5`
+- **Output:** `3`
+- **Explanation:** The qualifying index triples are `(0,1,2)`, `(0,2,4)`, and `(1,2,4)`.
 
-- Input: `nums = [3,3,3,3], d = 3`
-- Output: `4`
-- Explanation: Every choice of three indices sums to nine, so all four possible triplets qualify.
+#### Example 2
 
-**Example 3**
+- **Input:** `nums = [3,3,3,3], d = 3`
+- **Output:** `4`
+- **Explanation:** Every choice of three indices sums to nine, so all four possible triplets qualify.
 
-- Input: `nums = [3,3,3,3], d = 6`
-- Output: `0`
-- Explanation: Every triplet sum is nine, which is not divisible by six.
+#### Example 3
+
+- **Input:** `nums = [3,3,3,3], d = 6`
+- **Output:** `0`
+- **Explanation:** Every triplet sum is nine, which is not divisible by six.

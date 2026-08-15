@@ -55,7 +55,7 @@ Return one row per expression with columns $\text{left}_{operand}$, `operator`, 
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Variables table:
 +------+-------+
 | name | value |
@@ -74,7 +74,7 @@ Expressions table:
 | y            | <        | x             |
 | x            | =        | x             |
 +--------------+----------+---------------+
-**Output:**
+- **Output:** 
 +--------------+----------+---------------+-------+
 | left_operand | operator | right_operand | value |
 +--------------+----------+---------------+-------+
@@ -85,6 +85,5 @@ Expressions table:
 | y            | <        | x             | false |
 | x            | =        | x             | true  |
 +--------------+----------+---------------+-------+
-**Explanation:**
-As shown, you need to find the value of each boolean expression in the table using the variables table.
+- **Explanation:** As shown, you need to find the value of each boolean expression in the table using the variables table.
 ```

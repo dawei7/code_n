@@ -8,8 +8,13 @@ Return *the **maximum** possible bitwise XOR of all elements of *`nums`* after a
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +26,7 @@ Return *the **maximum** possible bitwise XOR of all elements of *`nums`* after a
 Now, nums = [3, 2, 4, 2] and the bitwise XOR of all the elements = 3 XOR 2 XOR 4 XOR 2 = 7.
 It can be shown that 7 is the maximum possible bitwise XOR.
 Note that other operations may be used to achieve a bitwise XOR of 7.
+
 #### Example 2
 
 - **Input:** `nums = [1,2,3,9,2]`

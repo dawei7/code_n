@@ -33,14 +33,14 @@ Let $n=\lvert\texttt{nums}\rvert$ and $q=\lvert\texttt{queries}\rvert$. The sour
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 0, 2], queries = [[0, 2, 1], [0, 2, 1], [1, 1, 3]]`
-- Output: `2`
-- Explanation: Each of the first two queries supplies one unit at indices $0$ and $2$, while index $1$ can choose a decrement of zero.
+- **Input:** `nums = [2, 0, 2], queries = [[0, 2, 1], [0, 2, 1], [1, 1, 3]]`
+- **Output:** `2`
+- **Explanation:** Each of the first two queries supplies one unit at indices $0$ and $2$, while index $1$ can choose a decrement of zero.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4, 3, 2, 1], queries = [[1, 3, 2], [0, 2, 1]]`
-- Output: `-1`
-- Explanation: Across the complete query list, index $0$ receives capacity only from the second query, which is not enough to remove its value $4$.
+- **Input:** `nums = [4, 3, 2, 1], queries = [[1, 3, 2], [0, 2, 1]]`
+- **Output:** `-1`
+- **Explanation:** Across the complete query list, index $0$ receives capacity only from the second query, which is not enough to remove its value $4$.

@@ -33,10 +33,10 @@ Implement `MKAverage(m, k)`, `addElement(num)`, and `calculateMKAverage()`. Addi
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 - Operations: `["MKAverage","addElement","addElement","calculateMKAverage","addElement","calculateMKAverage","addElement","addElement","addElement","calculateMKAverage"]`
 - Arguments: `[[3,1],[3],[1],[],[10],[],[5],[5],[5],[]]`
-- Output: `[null,null,null,-1,null,3,null,null,null,5]`
+- **Output:** `[null,null,null,-1,null,3,null,null,null,5]`
 
 The first calculation is too early. Window `[3,1,10]` retains only `3`; after three fives arrive, the active window is `[5,5,5]`.

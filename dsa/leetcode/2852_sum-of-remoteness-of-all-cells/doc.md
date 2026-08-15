@@ -34,20 +34,20 @@ The matrix order satisfies $1 \le n \le 300$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[-1,1,-1],[5,-1,4],[-1,3,-1]]`
-- Output: `39`
-- Explanation: All four positive cells are isolated. Their remoteness values are `12`, `8`, `9`, and `10`, whose sum is `39`.
+- **Input:** `grid = [[-1,1,-1],[5,-1,4],[-1,3,-1]]`
+- **Output:** `39`
+- **Explanation:** All four positive cells are isolated. Their remoteness values are `12`, `8`, `9`, and `10`, whose sum is `39`.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[-1,3,4],[-1,-1,-1],[3,-1,-1]]`
-- Output: `13`
-- Explanation: The adjacent values `3` and `4` form one component, while the lower `3` is isolated. The two upper cells each contribute `3`, and the lower cell contributes `7`.
+- **Input:** `grid = [[-1,3,4],[-1,-1,-1],[3,-1,-1]]`
+- **Output:** `13`
+- **Explanation:** The adjacent values `3` and `4` form one component, while the lower `3` is isolated. The two upper cells each contribute `3`, and the lower cell contributes `7`.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[1]]`
-- Output: `0`
-- Explanation: The only nonblocked cell has no unreachable positive cell.
+- **Input:** `grid = [[1]]`
+- **Output:** `0`
+- **Explanation:** The only nonblocked cell has no unreachable positive cell.

@@ -31,14 +31,14 @@ Collect every prize whose coordinate belongs to at least one chosen segment, inc
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `prizePositions = [1, 1, 2, 2, 3, 3, 5], k = 2`
-- Output: `7`
-- Explanation: Segments `[1, 3]` and `[3, 5]` together cover every prize.
+- **Input:** `prizePositions = [1, 1, 2, 2, 3, 3, 5], k = 2`
+- **Output:** `7`
+- **Explanation:** Segments `[1, 3]` and `[3, 5]` together cover every prize.
 
-**Example 2**
+#### Example 2
 
-- Input: `prizePositions = [1, 2, 3, 4], k = 0`
-- Output: `2`
-- Explanation: Each zero-length segment covers one coordinate, so choosing two different occupied coordinates collects two prizes.
+- **Input:** `prizePositions = [1, 2, 3, 4], k = 0`
+- **Output:** `2`
+- **Explanation:** Each zero-length segment covers one coordinate, so choosing two different occupied coordinates collects two prizes.

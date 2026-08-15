@@ -32,26 +32,26 @@ Return the maximum number of active sections obtainable after at most one valid 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "01"`
-- Output: `1`
-- Explanation: No block of active sections is surrounded by inactive sections, so no trade is possible.
+- **Input:** `s = "01"`
+- **Output:** `1`
+- **Explanation:** No block of active sections is surrounded by inactive sections, so no trade is possible.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "0100"`
-- Output: `4`
-- Explanation: In the augmented string `"101001"`, changing the middle `'1'` to `'0'` merges the two neighboring zero blocks. Changing that merged block to `'1'` activates all four original sections.
+- **Input:** `s = "0100"`
+- **Output:** `4`
+- **Explanation:** In the augmented string `"101001"`, changing the middle `'1'` to `'0'` merges the two neighboring zero blocks. Changing that merged block to `'1'` activates all four original sections.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "1000100"`
-- Output: `7`
-- Explanation: Trading around the single active section between the zero blocks of lengths three and two makes every original section active.
+- **Input:** `s = "1000100"`
+- **Output:** `7`
+- **Explanation:** Trading around the single active section between the zero blocks of lengths three and two makes every original section active.
 
-**Example 4**
+#### Example 4
 
-- Input: `s = "01010"`
-- Output: `4`
-- Explanation: Either internal active block joins two adjacent one-character zero blocks, increasing the original active count by two.
+- **Input:** `s = "01010"`
+- **Output:** `4`
+- **Explanation:** Either internal active block joins two adjacent one-character zero blocks, increasing the original active count by two.

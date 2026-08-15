@@ -15,11 +15,13 @@ Please solve it without using the built-in `JSON.parse` method.
 - **Input:** $str = '{"a":2,"b":[1,2,3]}'$
 - **Output:** ${"a":2,"b":[1,2,3]}$
 - **Explanation:** Returns the object represented by the JSON string.
+
 #### Example 2
 
 - **Input:** $str = 'true'$
 - **Output:** `true`
 - **Explanation:** Primitive types are valid JSON.
+
 #### Example 3
 
 - **Input:** $str = '[1,5,"false",{"a":2}]'$

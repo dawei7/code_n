@@ -23,6 +23,7 @@ Return `True` if the string can be transformed into a palindrome in exactly one 
 - **Explanation:** One way to make s a palindrome using 1 operation is:
 - Change s[2] to 'd'. Now, s = "abddba".
 One operation could be performed to make s a palindrome so return true.
+
 #### Example 2
 
 - **Input:** `s = "aa"`
@@ -31,6 +32,7 @@ One operation could be performed to make s a palindrome so return true.
 - Change s[0] to 'b'. Now, s = "ba".
 - Change s[1] to 'b'. Now, s = "bb".
 Two operations could be performed to make s a palindrome so return true.
+
 #### Example 3
 
 - **Input:** `s = "abcdef"`

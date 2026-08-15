@@ -32,6 +32,7 @@ A black lonely pixel is a character `'B'` that located at a specific position `(
 Take 'B' at row r = 0 and column c = 1 as an example:
 - Rule 1, row r = 0 and column c = 1 both have exactly target = 3 black pixels.
 - Rule 2, the rows have black pixel at column c = 1 are row 0, row 1 and row 2. They are exactly the same as row r = 0.
+
 #### Example 2
 
 ![](images/pixel2-2-grid.jpg)

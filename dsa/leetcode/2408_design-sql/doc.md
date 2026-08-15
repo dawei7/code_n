@@ -35,17 +35,17 @@ Return one result per operation: `null` for construction and removals, booleans 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `operations = ["SQL","ins","sel","ins","exp","rmv","sel","exp"]`, `arguments = [[["one","two","three"],[2,3,1]],["two",["first","second","third"]],["two",1,3],["two",["fourth","fifth","sixth"]],["two"],["two",1],["two",2,2],["two"]]`
-- Output: `[null,true,"third",true,["1,first,second,third","2,fourth,fifth,sixth"],null,"fifth",["2,fourth,fifth,sixth"]]`
+- **Input:** `operations = ["SQL","ins","sel","ins","exp","rmv","sel","exp"]`, `arguments = [[["one","two","three"],[2,3,1]],["two",["first","second","third"]],["two",1,3],["two",["fourth","fifth","sixth"]],["two"],["two",1],["two",2,2],["two"]]`
+- **Output:** `[null,true,"third",true,["1,first,second,third","2,fourth,fifth,sixth"],null,"fifth",["2,fourth,fifth,sixth"]]`
 
-**Example 2**
+#### Example 2
 
-- Input: `operations = ["SQL","ins","sel","rmv","sel","ins","ins"]`, `arguments = [[["one","two","three"],[2,3,1]],["two",["first","second","third"]],["two",1,3],["two",1],["two",1,2],["two",["fourth","fifth"]],["two",["fourth","fifth","sixth"]]]`
-- Output: `[null,true,"third",null,"<null>",false,true]`
+- **Input:** `operations = ["SQL","ins","sel","rmv","sel","ins","ins"]`, `arguments = [[["one","two","three"],[2,3,1]],["two",["first","second","third"]],["two",1,3],["two",1],["two",1,2],["two",["fourth","fifth"]],["two",["fourth","fifth","sixth"]]]`
+- **Output:** `[null,true,"third",null,"<null>",false,true]`
 
-**Example 3**
+#### Example 3
 
-- Input: `operations = ["SQL","ins","rmv","ins","exp"]`, `arguments = [[["data"],[1]],["data",["alpha"]],["data",1],["data",["beta"]],["data"]]`
-- Output: `[null,true,null,true,["2,beta"]]`
+- **Input:** `operations = ["SQL","ins","rmv","ins","exp"]`, `arguments = [[["data"],[1]],["data",["alpha"]],["data",1],["data",["beta"]],["data"]]`
+- **Output:** `[null,true,null,true,["2,beta"]]`

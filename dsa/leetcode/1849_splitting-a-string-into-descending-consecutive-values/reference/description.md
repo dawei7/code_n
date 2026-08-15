@@ -14,8 +14,13 @@ A **substring** is a contiguous sequence of characters in a string.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -24,12 +29,14 @@ A **substring** is a contiguous sequence of characters in a string.
 - **Input:** `s = "1234"`
 - **Output:** `false`
 - **Explanation:** There is no valid way to split s.
+
 #### Example 2
 
 - **Input:** `s = "050043"`
 - **Output:** `true`
 - **Explanation:** s can be split into ["05", "004", "3"] with numerical values [5,4,3].
 The values are in descending order with adjacent values differing by 1.
+
 #### Example 3
 
 - **Input:** `s = "9080701"`

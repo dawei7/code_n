@@ -6,8 +6,10 @@ Note that once you delete a leaf node with value `target`**, **if its parent nod
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `removeLeafNodes(root: Optional[TreeNode], target: int) -> `Optional[TreeNode]``: Executes operation.
 
 ### 3. Examples
 
@@ -23,6 +25,7 @@ Note that once you delete a leaf node with value `target`**, **if its parent nod
 - **Output:** `[1,null,3,null,4]`
 - **Explanation:** Leaf nodes in green with value (target = 2) are removed (Picture in left).
 After removing, new nodes become leaf nodes with value (target = 2) (Picture in center).
+
 #### Example 2
 
 **
@@ -33,6 +36,7 @@ After removing, new nodes become leaf nodes with value (target = 2) (Picture in 
 
 - **Input:** `root = [1,3,3,3,2], target = 3`
 - **Output:** `[1,3,null,null,2]`
+
 #### Example 3
 
 **

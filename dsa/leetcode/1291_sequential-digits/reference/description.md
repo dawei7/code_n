@@ -6,8 +6,14 @@ Return a **sorted** list of all the integers in the range `[low, high]` inclusiv
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `low`: Input parameter (`int`).
+- `high`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -15,6 +21,7 @@ Return a **sorted** list of all the integers in the range `[low, high]` inclusiv
 
 - **Input:** $low = 100, high = 300$
 - **Output:** `[123,234]`
+
 #### Example 2
 
 - **Input:** $low = 1000, high = 13000$

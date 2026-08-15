@@ -34,14 +34,14 @@ Let $m$ be `relations.length`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 3, relations = [[1,3],[2,3]], time = [3,2,5]`
-- Output: `8`
-- Explanation: Courses `1` and `2` start together. Course `3` waits until month $3$ and then requires five more months.
+- **Input:** `n = 3, relations = [[1,3],[2,3]], time = [3,2,5]`
+- **Output:** `8`
+- **Explanation:** Courses `1` and `2` start together. Course `3` waits until month $3$ and then requires five more months.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 5, relations = [[1,5],[2,5],[3,5],[3,4],[4,5]], time = [1,2,3,4,5]`
-- Output: `12`
-- Explanation: The critical sequence is course `3`, then `4`, then `5`, with total duration $3+4+5=12$.
+- **Input:** `n = 5, relations = [[1,5],[2,5],[3,5],[3,4],[4,5]], time = [1,2,3,4,5]`
+- **Output:** `12`
+- **Explanation:** The critical sequence is course `3`, then `4`, then `5`, with total duration $3+4+5=12$.

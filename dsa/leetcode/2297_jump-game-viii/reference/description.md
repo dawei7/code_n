@@ -33,6 +33,7 @@ Return an integer representing the minimum total landing cost to reach index $n-
 The total cost is 8. It can be proven that 8 is the minimum cost needed.
 Two other possible paths are from index 0 -> 1 -> 4 and index 0 -> 2 -> 3 -> 4.
 These have a total cost of 9 and 12, respectively.
+
 #### Example 2
 
 - **Input:** `nums = [0,1,2], costs = [1,1,1]`

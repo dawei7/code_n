@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/maximum-xor-after-operations/) |
 
 ## Problem Description
+
 ### Goal
+
 Start with the non-negative integers in `nums`. One operation chooses an index
 `i` and any non-negative integer `x`, then replaces `nums[i]` with
 `nums[i] AND (nums[i] XOR x)`. The operation may be applied any number of
@@ -23,6 +25,7 @@ element, so the answer depends on which bit positions occur anywhere in the
 original array.
 
 ### Function Contract
+
 **Inputs**
 
 - `nums`: A nonempty array of integers from $0$ through $10^8$.
@@ -35,15 +38,16 @@ The maximum possible bitwise XOR of all elements after any number of allowed
 updates.
 
 ### Examples
-**Example 1**
 
-- Input: `nums = [3,2,4,6]`
-- Output: `7`
-- Explanation: Clearing the value-four bit from the final element permits the
+#### Example 1
+
+- **Input:** `nums = [3,2,4,6]`
+- **Output:** `7`
+- **Explanation:** Clearing the value-four bit from the final element permits the
   total XOR to contain all three low bits.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,2,3,9,2]`
-- Output: `11`
-- Explanation: Applying no operation already produces the maximum.
+- **Input:** `nums = [1,2,3,9,2]`
+- **Output:** `11`
+- **Explanation:** Applying no operation already produces the maximum.

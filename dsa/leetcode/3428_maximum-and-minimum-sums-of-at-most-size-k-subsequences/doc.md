@@ -32,20 +32,20 @@ Return the sum of all eligible subsequence minima and maxima modulo $1{,}000{,}0
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,2,3], k = 2`
-- Output: `24`
-- Explanation: The three singleton subsequences contribute `2`, `4`, and `6`; the three size-two subsequences contribute `3`, `4`, and `5`.
+- **Input:** `nums = [1,2,3], k = 2`
+- **Output:** `24`
+- **Explanation:** The three singleton subsequences contribute `2`, `4`, and `6`; the three size-two subsequences contribute `3`, `4`, and `5`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [5,0,6], k = 1`
-- Output: `22`
-- Explanation: Only singletons are eligible, and each value is counted once as both its minimum and maximum.
+- **Input:** `nums = [5,0,6], k = 1`
+- **Output:** `22`
+- **Explanation:** Only singletons are eligible, and each value is counted once as both its minimum and maximum.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,1,1], k = 2`
-- Output: `12`
-- Explanation: There are three singleton and three size-two index choices; every one contributes `2`.
+- **Input:** `nums = [1,1,1], k = 2`
+- **Output:** `12`
+- **Explanation:** There are three singleton and three size-two index choices; every one contributes `2`.

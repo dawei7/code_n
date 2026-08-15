@@ -8,8 +8,14 @@ Return *an array containing *`[crashTime, memory1_crash, memory2_crash]`*, where
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `memory1`: Input parameter (`int`).
+- `memory2`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -21,6 +27,7 @@ Return *an array containing *`[crashTime, memory1_crash, memory2_crash]`*, where
 - At the 1^st second, 1 bit of memory is allocated to stick 1. The first stick now has 1 bit of available memory.
 - At the 2^nd second, 2 bits of memory are allocated to stick 2. The second stick now has 0 bits of available memory.
 - At the 3^rd second, the program crashes. The sticks have 1 and 0 bits available respectively.
+
 #### Example 2
 
 - **Input:** $memory1 = 8, memory2 = 11$

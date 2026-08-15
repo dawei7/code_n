@@ -42,14 +42,11 @@ Return the largest score among all legal selections of exactly $K$ pairs.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums1 = [1,3,2], nums2 = [4,5,1], k = 2
+- **Input:** nums1 = [1,3,2], nums2 = [4,5,1], k = 2
 
-**Output:** 22
+- **Output:** 22
 
-**Explanation:**
-
-One optimal choice of index pairs is:
+- **Explanation:** One optimal choice of index pairs is:
 
 - $(i_{1}, j_{1}) = (1, 0)$ which scores $3 * 4 = 12$
 
@@ -57,17 +54,13 @@ One optimal choice of index pairs is:
 
 This gives a total score of $12 + 10 = 22$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums1 = [-2,0,5], nums2 = [-3,4,-1,2], k = 2
+- **Input:** nums1 = [-2,0,5], nums2 = [-3,4,-1,2], k = 2
 
-**Output:** 26
+- **Output:** 26
 
-**Explanation:**
-
-One optimal choice of index pairs is:
+- **Explanation:** One optimal choice of index pairs is:
 
 - $(i_{1}, j_{1}) = (0, 0)$ which scores $-2 * -3 = 6$
 
@@ -75,25 +68,19 @@ One optimal choice of index pairs is:
 
 The total score is $6 + 20 = 26$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums1 = [-3,-2], nums2 = [1,2], k = 2
+- **Input:** nums1 = [-3,-2], nums2 = [1,2], k = 2
 
-**Output:** -7
+- **Output:** -7
 
-**Explanation:**
-
-The optimal choice of index pairs is:
+- **Explanation:** The optimal choice of index pairs is:
 
 - $(i_{1}, j_{1}) = (0, 0)$ which scores $-3 * 1 = -3$
 
 - $(i_{2}, j_{2}) = (1, 1)$ which scores $-2 * 2 = -4$
 
 The total score is $-3 + (-4) = -7$.
-
-</div>
 
 ### 4. Constraints
 

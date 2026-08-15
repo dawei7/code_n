@@ -30,20 +30,20 @@ Given all reported answers, return the minimum total number of rabbits that coul
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `answers = [1,1,2]`
-- Output: `5`
-- Explanation: The two rabbits answering `1` can form one color group of two; the rabbit answering `2` requires a group of three.
+- **Input:** `answers = [1,1,2]`
+- **Output:** `5`
+- **Explanation:** The two rabbits answering `1` can form one color group of two; the rabbit answering `2` requires a group of three.
 
-**Example 2**
+#### Example 2
 
-- Input: `answers = [10,10,10]`
-- Output: `11`
-- Explanation: All three respondents can belong to a single color group of size eleven.
+- **Input:** `answers = [10,10,10]`
+- **Output:** `11`
+- **Explanation:** All three respondents can belong to a single color group of size eleven.
 
-**Example 3**
+#### Example 3
 
-- Input: `answers = []`
-- Output: `0`
-- Explanation: No surveyed rabbits impose any required population.
+- **Input:** `answers = []`
+- **Output:** `0`
+- **Explanation:** No surveyed rabbits impose any required population.

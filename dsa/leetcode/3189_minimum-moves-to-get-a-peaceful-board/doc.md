@@ -37,12 +37,12 @@ to make the board peaceful.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `rooks = [[0, 0], [1, 0], [1, 1]]`
-- Output: `3`
+- **Input:** `rooks = [[0, 0], [1, 0], [1, 1]]`
+- **Output:** `3`
 
-**Example 2**
+#### Example 2
 
-- Input: `rooks = [[0, 0], [0, 1], [0, 2], [0, 3]]`
-- Output: `6`
+- **Input:** `rooks = [[0, 0], [0, 1], [0, 2], [0, 3]]`
+- **Output:** `6`

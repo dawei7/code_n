@@ -8,8 +8,14 @@ Return `names`* sorted in **descending** order by the people's heights*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `names`: Input parameter (`List[str]`).
+- `heights`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[str]`.
 
 ### 3. Examples
 
@@ -18,6 +24,7 @@ Return `names`* sorted in **descending** order by the people's heights*.
 - **Input:** $names = ["Mary","John","Emma"], heights = [180,165,170]$
 - **Output:** `["Mary","Emma","John"]`
 - **Explanation:** Mary is the tallest, followed by Emma and John.
+
 #### Example 2
 
 - **Input:** $names = ["Alice","Bob","Bob"], heights = [155,185,150]$

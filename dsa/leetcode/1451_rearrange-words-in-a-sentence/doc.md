@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/rearrange-words-in-a-sentence/) |
 
 ## Problem Description
+
 ### Goal
 
 The input is a sentence whose words are separated by exactly one space. Its
@@ -22,6 +23,7 @@ uppercase and every other letter is lowercase. No word may be added, removed,
 or internally rearranged.
 
 ### Function Contract
+
 **Inputs**
 
 - `text`: a non-empty sentence of length $N$, where
@@ -38,19 +40,20 @@ stably preserving input order within each equal-length group. Separate words
 with one space and capitalize only the first character of the result.
 
 ### Examples
-**Example 1**
 
-- Input: `text = "Leetcode is cool"`
-- Output: `"Is cool leetcode"`
+#### Example 1
 
-**Example 2**
+- **Input:** `text = "Leetcode is cool"`
+- **Output:** `"Is cool leetcode"`
 
-- Input: `text = "Keep calm and code on"`
-- Output: `"On and keep calm code"`
-- Explanation: `"keep"`, `"calm"`, and `"code"` all have length four and
+#### Example 2
+
+- **Input:** `text = "Keep calm and code on"`
+- **Output:** `"On and keep calm code"`
+- **Explanation:** `"keep"`, `"calm"`, and `"code"` all have length four and
   remain in their original relative order.
 
-**Example 3**
+#### Example 3
 
-- Input: `text = "To be or not to be"`
-- Output: `"To be or to be not"`
+- **Input:** `text = "To be or not to be"`
+- **Output:** `"To be or to be not"`

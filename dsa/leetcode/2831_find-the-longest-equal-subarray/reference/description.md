@@ -10,8 +10,14 @@ A **subarray** is a contiguous, possibly empty sequence of elements within an ar
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,6 +29,7 @@ A **subarray** is a contiguous, possibly empty sequence of elements within an ar
 After deleting them, nums becomes equal to [1, 3, 3, 3].
 The longest equal subarray starts at i = 1 and ends at j = 3 with length equal to 3.
 It can be proven that no longer equal subarrays can be created.
+
 #### Example 2
 
 - **Input:** `nums = [1,1,2,2,1,1], k = 2`

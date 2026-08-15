@@ -8,35 +8,32 @@ Return the **maximum** *possible score* of the chosen integers.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `start`: Input parameter (`List[int]`).
+- `d`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** start = [6,0,3], d = 2
+- **Input:** start = [6,0,3], d = 2
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** The maximum possible score can be obtained by choosing integers: 8, 0, and 4. The score of these chosen integers is $min(|8 - 0|, |8 - 4|, |0 - 4|)$ which equals 4.
 
-The maximum possible score can be obtained by choosing integers: 8, 0, and 4. The score of these chosen integers is $min(|8 - 0|, |8 - 4|, |0 - 4|)$ which equals 4.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** start = [2,6,13,13], d = 5
+- **Input:** start = [2,6,13,13], d = 5
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
-
-The maximum possible score can be obtained by choosing integers: 2, 7, 13, and 18. The score of these chosen integers is $min(|2 - 7|, |2 - 13|, |2 - 18|, |7 - 13|, |7 - 18|, |13 - 18|)$ which equals 5.
-
-</div>
+- **Explanation:** The maximum possible score can be obtained by choosing integers: 2, 7, 13, and 18. The score of these chosen integers is $min(|2 - 7|, |2 - 13|, |2 - 18|, |7 - 13|, |7 - 18|, |13 - 18|)$ which equals 5.
 
 ### 4. Constraints
 

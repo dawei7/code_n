@@ -6,8 +6,13 @@ Given a string `sentence` containing only lowercase English letters, return* *`t
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `sentence`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -16,6 +21,7 @@ Given a string `sentence` containing only lowercase English letters, return* *`t
 - **Input:** $sentence = "thequickbrownfoxjumpsoverthelazydog"$
 - **Output:** `true`
 - **Explanation:** sentence contains at least one of every letter of the English alphabet.
+
 #### Example 2
 
 - **Input:** $sentence = "leetcode"$

@@ -32,20 +32,20 @@ Only contiguous length-two substrings count; the two characters cannot be select
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "leetcode"`
-- Output: `true`
-- Explanation: The substring `"ee"` also occurs in `"edocteel"`, the reverse of `s`.
+- **Input:** `s = "leetcode"`
+- **Output:** `true`
+- **Explanation:** The substring `"ee"` also occurs in `"edocteel"`, the reverse of `s`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "abcba"`
-- Output: `true`
-- Explanation: Reversing this palindrome leaves it unchanged, so each of its length-two substrings remains present.
+- **Input:** `s = "abcba"`
+- **Output:** `true`
+- **Explanation:** Reversing this palindrome leaves it unchanged, so each of its length-two substrings remains present.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "abcd"`
-- Output: `false`
-- Explanation: None of `"ab"`, `"bc"`, or `"cd"` occurs in `"dcba"`.
+- **Input:** `s = "abcd"`
+- **Output:** `false`
+- **Explanation:** None of `"ab"`, `"bc"`, or `"cd"` occurs in `"dcba"`.

@@ -12,8 +12,15 @@ A **substring** is a contiguous non-empty sequence of characters within a string
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `sub`: Input parameter (`str`).
+- `mappings`: Input parameter (`List[List[str]]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -23,12 +30,14 @@ A **substring** is a contiguous non-empty sequence of characters within a string
 - **Output:** `true`
 - **Explanation:** Replace the first 'e' in sub with '3' and 't' in sub with '7'.
 Now sub = "l3e7" is a substring of s, so we return true.
+
 #### Example 2
 
 - **Input:** `s = "fooleetbar", sub = "f00l", mappings = [["o","0"]]`
 - **Output:** `false`
 - **Explanation:** The string "f00l" is not a substring of s and no replacements can be made.
 Note that we cannot replace '0' with 'o'.
+
 #### Example 3
 
 - **Input:** `s = "Fool33tbaR", sub = "leetd", mappings = [["e","3"],["t","7"],["t","8"],["d","b"],["p","b"]]`

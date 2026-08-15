@@ -22,8 +22,13 @@ Return *the **minimum** number of operations needed to write the letter Y on the
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -35,6 +40,7 @@ Return *the **minimum** number of operations needed to write the letter Y on the
 - **Output:** `3`
 - **Explanation:** We can write Y on the grid by applying the changes highlighted in blue in the image above. After the operations, all cells that belong to Y, denoted in bold, have the same value of 1 while those that do not belong to Y are equal to 0.
 It can be shown that 3 is the minimum number of operations needed to write Y on the grid.
+
 #### Example 2
 
 ![](images/y3.png)

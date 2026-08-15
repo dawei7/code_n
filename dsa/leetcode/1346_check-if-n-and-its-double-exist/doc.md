@@ -30,18 +30,18 @@ Return `true` when such a pair exists and `false` otherwise. The distinct-index 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [10, 2, 5, 3]`
-- Output: `true`
-- Explanation: The values `10` and `5` occur at different indices and `10 == 2 * 5`.
+- **Input:** `arr = [10, 2, 5, 3]`
+- **Output:** `true`
+- **Explanation:** The values `10` and `5` occur at different indices and `10 == 2 * 5`.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [3, 1, 7, 11]`
-- Output: `false`
+- **Input:** `arr = [3, 1, 7, 11]`
+- **Output:** `false`
 
-**Example 3**
+#### Example 3
 
-- Input: `arr = [0, 0]`
-- Output: `true`
+- **Input:** `arr = [0, 0]`
+- **Output:** `true`

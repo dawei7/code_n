@@ -18,8 +18,14 @@ Return *the resulting string after evaluating **all** of the bracket pairs.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `knowledge`: Input parameter (`List[List[str]]`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -27,14 +33,15 @@ Return *the resulting string after evaluating **all** of the bracket pairs.*
 
 - **Input:** `s = "(name)is(age)yearsold", knowledge = [["name","bob"],["age","two"]]`
 - **Output:** `"bobistwoyearsold"`
-- **Explanation:**
-The key "name" has a value of "bob", so replace "(name)" with "bob".
+- **Explanation:** The key "name" has a value of "bob", so replace "(name)" with "bob".
 The key "age" has a value of "two", so replace "(age)" with "two".
+
 #### Example 2
 
 - **Input:** `s = "hi(name)", knowledge = [["a","b"]]`
 - **Output:** `"hi?"`
 - **Explanation:** As you do not know the value of the key "name", replace "(name)" with "?".
+
 #### Example 3
 
 - **Input:** `s = "(a)(a)(a)aaa", knowledge = [["a","yes"]]`

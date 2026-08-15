@@ -34,7 +34,7 @@ Return a one-row table with a `median` column. Its value is the middle decompres
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Numbers table:
 +-----+-----------+
 | num | frequency |
@@ -44,12 +44,11 @@ Numbers table:
 | 2   | 3         |
 | 3   | 1         |
 +-----+-----------+
-**Output:**
+- **Output:** 
 +--------+
 | median |
 +--------+
 | 0.0    |
 +--------+
-**Explanation:**
-If we decompress the Numbers table, we will get [0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 3], so the median is (0 + 0) / 2 = 0.
+- **Explanation:** If we decompress the Numbers table, we will get [0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 3], so the median is (0 + 0) / 2 = 0.
 ```

@@ -38,20 +38,20 @@ Cells at the same distance may appear in any relative order.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `rows = 1, cols = 2, rCenter = 0, cCenter = 0`
-- Output: `[[0,0],[0,1]]`
-- Explanation: The two distances are $0$ and $1$.
+- **Input:** `rows = 1, cols = 2, rCenter = 0, cCenter = 0`
+- **Output:** `[[0,0],[0,1]]`
+- **Explanation:** The two distances are $0$ and $1$.
 
-**Example 2**
+#### Example 2
 
-- Input: `rows = 2, cols = 2, rCenter = 0, cCenter = 1`
-- Output: `[[0,1],[0,0],[1,1],[1,0]]`
-- Explanation: The distances are $0,1,1,2$; the two distance-one cells may be exchanged.
+- **Input:** `rows = 2, cols = 2, rCenter = 0, cCenter = 1`
+- **Output:** `[[0,1],[0,0],[1,1],[1,0]]`
+- **Explanation:** The distances are $0,1,1,2$; the two distance-one cells may be exchanged.
 
-**Example 3**
+#### Example 3
 
-- Input: `rows = 2, cols = 3, rCenter = 1, cCenter = 2`
-- Output: `[[1,2],[0,2],[1,1],[0,1],[1,0],[0,0]]`
-- Explanation: The distances are $0,1,1,2,2,3$, and other orders within equal-distance groups are valid.
+- **Input:** `rows = 2, cols = 3, rCenter = 1, cCenter = 2`
+- **Output:** `[[1,2],[0,2],[1,1],[0,1],[1,0],[0,0]]`
+- **Explanation:** The distances are $0,1,1,2,2,3$, and other orders within equal-distance groups are valid.

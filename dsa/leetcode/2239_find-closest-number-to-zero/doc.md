@@ -37,17 +37,17 @@ elements, return the largest value.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [-4, -2, 1, 4, 8]`
-- Output: `1`
+- **Input:** `nums = [-4, -2, 1, 4, 8]`
+- **Output:** `1`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, -1, 1]`
-- Output: `1`
+- **Input:** `nums = [2, -1, 1]`
+- **Output:** `1`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [-5, -3, -9]`
-- Output: `-3`
+- **Input:** `nums = [-5, -3, -9]`
+- **Output:** `-3`

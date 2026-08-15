@@ -25,30 +25,21 @@ Return the integer number of different subarray value sequences whose element su
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3], k = 3
+- **Input:** nums = [1,2,3], k = 3
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** The good subarrays are `[1, 2]`, `[3]`, and `[1, 2, 3]`. For example, `[1, 2, 3]` is good because the sum of its elements is $1 + 2 + 3 = 6$, and $6 \% k = 6 \% 3 = 0$.
 
-The good subarrays are `[1, 2]`, `[3]`, and `[1, 2, 3]`. For example, `[1, 2, 3]` is good because the sum of its elements is $1 + 2 + 3 = 6$, and $6 \% k = 6 \% 3 = 0$.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,2,2,2,2,2], k = 6
+- **Input:** nums = [2,2,2,2,2,2], k = 6
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The good subarrays are `[2, 2, 2]` and `[2, 2, 2, 2, 2, 2]`. For example, `[2, 2, 2]` is good because the sum of its elements is $2 + 2 + 2 = 6$, and $6 \% k = 6 \% 6 = 0$.
+- **Explanation:** The good subarrays are `[2, 2, 2]` and `[2, 2, 2, 2, 2, 2]`. For example, `[2, 2, 2]` is good because the sum of its elements is $2 + 2 + 2 = 6$, and $6 \% k = 6 \% 6 = 0$.
 
 Note that `[2, 2, 2]` is counted only once.
-
-</div>
 
 ### 4. Constraints
 

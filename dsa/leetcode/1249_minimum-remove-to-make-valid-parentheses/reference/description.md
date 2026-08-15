@@ -14,8 +14,13 @@ Formally, a *parentheses string* is valid if and only if:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -24,10 +29,12 @@ Formally, a *parentheses string* is valid if and only if:
 - **Input:** `s = "lee(t(c)o)de)"`
 - **Output:** `"lee(t(c)o)de"`
 - **Explanation:** "lee(t(co)de)" , "lee(t(c)ode)" would also be accepted.
+
 #### Example 2
 
 - **Input:** `s = "a)b(c)d"`
 - **Output:** `"ab(c)d"`
+
 #### Example 3
 
 - **Input:** `s = "))(("`

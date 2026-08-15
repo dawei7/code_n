@@ -26,28 +26,19 @@ Return the fewest single-position flips that make the original $B$-character bin
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 7
+- **Input:** n = 7
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** The binary representation of 7 is `"111"`. Its reverse is also `"111"`, which is the same. Hence, no flips are needed.
 
-The binary representation of 7 is `"111"`. Its reverse is also `"111"`, which is the same. Hence, no flips are needed.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 10
+- **Input:** n = 10
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-The binary representation of 10 is `"1010"`. Its reverse is `"0101"`. All four bits must be flipped to make them equal. Thus, the minimum number of flips required is 4.
-
-</div>
+- **Explanation:** The binary representation of 10 is `"1010"`. Its reverse is `"0101"`. All four bits must be flipped to make them equal. Thus, the minimum number of flips required is 4.
 
 ### 4. Constraints
 

@@ -24,6 +24,7 @@ The app adapter serializes `root`, deserializes the resulting string, and return
 
 - **Input:** `root = [1,2,3,null,null,4,5]`
 - **Output:** `[1,2,3,null,null,4,5]`
+
 #### Example 2
 
 - **Input:** `root = []`

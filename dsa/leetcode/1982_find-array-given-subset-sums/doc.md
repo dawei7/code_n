@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/find-array-given-subset-sums/) |
 
 ## Problem Description
+
 ### Goal
+
 An unknown integer array has length `n`. You receive the multiset of all
 $2^n$ subset sums of that array in arbitrary order. A subset is formed by
 deleting any selection of positions, including none or all; equal values at
@@ -22,6 +24,7 @@ multiplicity. More than one reconstruction may be valid, and any valid one is
 accepted. The input is guaranteed to admit at least one reconstruction.
 
 ### Function Contract
+
 **Inputs**
 
 - `n`: the unknown array length $N$, where $1 \le N \le 15$.
@@ -34,20 +37,21 @@ accepted. The input is guaranteed to admit at least one reconstruction.
   `sums`.
 
 ### Examples
-**Example 1**
 
-- Input: `n = 3, sums = [-3, -2, -1, 0, 0, 1, 2, 3]`
-- Output: `[1, 2, -3]`
+#### Example 1
+
+- **Input:** `n = 3, sums = [-3, -2, -1, 0, 0, 1, 2, 3]`
+- **Output:** `[1, 2, -3]`
 
 The eight subsets of `[1, 2, -3]` produce precisely the supplied values.
 Permutations and some sign-alternative reconstructions are also valid.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 2, sums = [0, 0, 0, 0]`
-- Output: `[0, 0]`
+- **Input:** `n = 2, sums = [0, 0, 0, 0]`
+- **Output:** `[0, 0]`
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 4, sums = [0, 0, 5, 5, 4, -1, 4, 9, 9, -1, 4, 3, 4, 8, 3, 8]`
-- Output: `[0, -1, 4, 5]`
+- **Input:** `n = 4, sums = [0, 0, 5, 5, 4, -1, 4, 9, 9, -1, 4, 3, 4, 8, 3, 8]`
+- **Output:** `[0, -1, 4, 5]`

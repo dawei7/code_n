@@ -30,20 +30,20 @@ Return `True` if choosing all one-digit values or all two-digit values gives Ali
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3, 4, 10]`
-- Output: `False`
-- Explanation: Both groups sum to $10$, so neither choice wins strictly.
+- **Input:** `nums = [1, 2, 3, 4, 10]`
+- **Output:** `False`
+- **Explanation:** Both groups sum to $10$, so neither choice wins strictly.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 2, 3, 4, 5, 14]`
-- Output: `True`
-- Explanation: Alice can choose the single-digit values, whose sum is $15$.
+- **Input:** `nums = [1, 2, 3, 4, 5, 14]`
+- **Output:** `True`
+- **Explanation:** Alice can choose the single-digit values, whose sum is $15$.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [5, 5, 5, 25]`
-- Output: `True`
-- Explanation: Alice can choose the double-digit value, whose sum is $25$.
+- **Input:** `nums = [5, 5, 5, 25]`
+- **Output:** `True`
+- **Explanation:** Alice can choose the double-digit value, whose sum is $25$.

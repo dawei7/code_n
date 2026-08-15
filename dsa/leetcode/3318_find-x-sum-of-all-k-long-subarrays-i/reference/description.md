@@ -12,8 +12,15 @@ The **x-sum** of an array is calculated by the following procedure:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+- `x`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -25,12 +32,11 @@ Return an integer array `answer` of length $n - k + 1$ where $\text{answer}[i]$ 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,1,2,2,3,4,2,3], k = 6, x = 2
+- **Input:** nums = [1,1,2,2,3,4,2,3], k = 6, x = 2
 
-**Output:** [6,10,12]
+- **Output:** [6,10,12]
 
-**Explanation:**
+- **Explanation:** 
 
 - For subarray `[1, 1, 2, 2, 3, 4]`, only elements 1 and 2 will be kept in the resulting array. Hence, $\text{answer}[0] = 1 + 1 + 2 + 2$.
 
@@ -38,19 +44,13 @@ Return an integer array `answer` of length $n - k + 1$ where $\text{answer}[i]$ 
 
 - For subarray `[2, 2, 3, 4, 2, 3]`, only elements 2 and 3 are kept in the resulting array. Hence, $\text{answer}[2] = 2 + 2 + 2 + 3 + 3$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [3,8,7,8,7,5], k = 2, x = 2
+- **Input:** nums = [3,8,7,8,7,5], k = 2, x = 2
 
-**Output:** [11,15,15,15,12]
+- **Output:** [11,15,15,15,12]
 
-**Explanation:**
-
-Since $k = x$, $\text{answer}[i]$ is equal to the sum of the subarray $nums[i..i + k - 1]$.
-
-</div>
+- **Explanation:** Since $k = x$, $\text{answer}[i]$ is equal to the sum of the subarray $nums[i..i + k - 1]$.
 
 ### 5. Constraints
 

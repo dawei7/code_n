@@ -23,6 +23,7 @@ You must not use any built-in BigInteger library or convert the inputs to intege
 
 - **Input:** $num1 = "2", num2 = "3"$
 - **Output:** `"6"`
+
 #### Example 2
 
 - **Input:** $num1 = "123", num2 = "456"$

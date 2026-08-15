@@ -36,19 +36,19 @@ Return `true` if character moves can make all $N$ strings identical; otherwise r
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `words = ["abc","aabc","bc"]`
-- Output: `true`
-- Explanation: Moving one `a` from the second word to the third produces three copies of `"abc"`.
+- **Input:** `words = ["abc","aabc","bc"]`
+- **Output:** `true`
+- **Explanation:** Moving one `a` from the second word to the third produces three copies of `"abc"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `words = ["ab","a"]`
-- Output: `false`
+- **Input:** `words = ["ab","a"]`
+- **Output:** `false`
 
-**Example 3**
+#### Example 3
 
-- Input: `words = ["ab","ba"]`
-- Output: `true`
-- Explanation: The combined counts contain two copies of each letter, so each of two final words can receive one.
+- **Input:** `words = ["ab","ba"]`
+- **Output:** `true`
+- **Explanation:** The combined counts contain two copies of each letter, so each of two final words can receive one.

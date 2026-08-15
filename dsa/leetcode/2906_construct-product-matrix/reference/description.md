@@ -8,8 +8,13 @@ Return *the product matrix of* `grid`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
@@ -22,6 +27,7 @@ p[0][1] = grid[0][0] * grid[1][0] * grid[1][1] = 1 * 3 * 4 = 12
 p[1][0] = grid[0][0] * grid[0][1] * grid[1][1] = 1 * 2 * 4 = 8
 p[1][1] = grid[0][0] * grid[0][1] * grid[1][0] = 1 * 2 * 3 = 6
 So the answer is [[24,12],[8,6]].
+
 #### Example 2
 
 - **Input:** `grid = [[12345],[2],[1]]`

@@ -8,8 +8,15 @@ Return *an *`m x n`* 2D array constructed according to the above procedure, or a
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `original`: Input parameter (`List[int]`).
+- `m`: Input parameter (`int`).
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
@@ -22,12 +29,14 @@ Return *an *`m x n`* 2D array constructed according to the above procedure, or a
 - **Explanation:** The constructed 2D array should contain 2 rows and 2 columns.
 The first group of n=2 elements in original, [1,2], becomes the first row in the constructed 2D array.
 The second group of n=2 elements in original, [3,4], becomes the second row in the constructed 2D array.
+
 #### Example 2
 
 - **Input:** $original = [1,2,3], m = 1, n = 3$
 - **Output:** `[[1,2,3]]`
 - **Explanation:** The constructed 2D array should contain 1 row and 3 columns.
 Put all three elements in original into the first row of the constructed 2D array.
+
 #### Example 3
 
 - **Input:** $original = [1,2], m = 1, n = 1$

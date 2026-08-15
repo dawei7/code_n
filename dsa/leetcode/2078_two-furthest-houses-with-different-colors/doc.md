@@ -30,20 +30,20 @@ Choose two houses with different colors and maximize their distance. For indices
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `colors = [1,1,1,6,1,1,1]`
-- Output: `3`
-- Explanation: The lone house of color 6 is three positions from either endpoint.
+- **Input:** `colors = [1,1,1,6,1,1,1]`
+- **Output:** `3`
+- **Explanation:** The lone house of color 6 is three positions from either endpoint.
 
-**Example 2**
+#### Example 2
 
-- Input: `colors = [1,8,3,8,3]`
-- Output: `4`
-- Explanation: Houses 0 and 4 have different colors and span the entire street.
+- **Input:** `colors = [1,8,3,8,3]`
+- **Output:** `4`
+- **Explanation:** Houses 0 and 4 have different colors and span the entire street.
 
-**Example 3**
+#### Example 3
 
-- Input: `colors = [0,1]`
-- Output: `1`
-- Explanation: The only two houses have different colors and are one position apart.
+- **Input:** `colors = [0,1]`
+- **Output:** `1`
+- **Explanation:** The only two houses have different colors and are one position apart.

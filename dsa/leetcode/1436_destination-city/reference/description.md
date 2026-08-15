@@ -6,8 +6,13 @@ It is guaranteed that the graph of paths forms a line without any loop, therefor
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `paths`: Input parameter (`List[List[str]]`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -16,6 +21,7 @@ It is guaranteed that the graph of paths forms a line without any loop, therefor
 - **Input:** $paths = [["London","New York"],["New York","Lima"],["Lima","Sao Paulo"]]$
 - **Output:** `"Sao Paulo"`
 - **Explanation:** Starting at "London" city you will reach "Sao Paulo" city which is the destination city. Your trip consist of: "London" -> "New York" -> "Lima" -> "Sao Paulo".
+
 #### Example 2
 
 - **Input:** $paths = [["B","C"],["D","B"],["C","A"]]$
@@ -26,6 +32,7 @@ It is guaranteed that the graph of paths forms a line without any loop, therefor
 "C" -> "A".
 "A".
 Clearly the destination city is "A".
+
 #### Example 3
 
 - **Input:** $paths = [["A","Z"]]$

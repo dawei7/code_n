@@ -32,23 +32,23 @@ Multiply the two decoded arrays element by element, then return the run-length e
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `encoded1 = [[1,3],[2,3]]`, `encoded2 = [[6,3],[3,3]]`
-- Output: `[[6,6]]`
+- **Input:** `encoded1 = [[1,3],[2,3]]`, `encoded2 = [[6,3],[3,3]]`
+- **Output:** `[[6,6]]`
 
 Both aligned run products equal `6`, so they merge into one six-element run.
 
-**Example 2**
+#### Example 2
 
-- Input: `encoded1 = [[1,3],[2,1],[3,2]]`, `encoded2 = [[2,3],[3,3]]`
-- Output: `[[2,3],[6,1],[9,2]]`
+- **Input:** `encoded1 = [[1,3],[2,1],[3,2]]`, `encoded2 = [[2,3],[3,3]]`
+- **Output:** `[[2,3],[6,1],[9,2]]`
 
 The run boundaries differ, but the pointers consume only the overlap at each step.
 
-**Example 3**
+#### Example 3
 
-- Input: `encoded1 = [[4,5]]`, `encoded2 = [[2,2],[3,3]]`
-- Output: `[[8,2],[12,3]]`
+- **Input:** `encoded1 = [[4,5]]`, `encoded2 = [[2,2],[3,3]]`
+- **Output:** `[[8,2],[12,3]]`
 
 One long run may overlap several runs from the other encoding.

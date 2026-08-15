@@ -33,20 +33,20 @@ Return the integer score when execution first leaves the array or would revisit 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `instructions = ["jump", "add", "add", "jump", "add", "jump"]`, `values = [2, 1, 3, 1, -2, -3]`
-- Output: `1`
-- Explanation: The path is `0 -> 2 -> 3 -> 4 -> 5 -> 2`; values `3` and `-2` are added before the attempted revisit of index `2`.
+- **Input:** `instructions = ["jump", "add", "add", "jump", "add", "jump"]`, `values = [2, 1, 3, 1, -2, -3]`
+- **Output:** `1`
+- **Explanation:** The path is `0 -> 2 -> 3 -> 4 -> 5 -> 2`; values `3` and `-2` are added before the attempted revisit of index `2`.
 
-**Example 2**
+#### Example 2
 
-- Input: `instructions = ["jump", "add", "add"]`, `values = [3, 1, 1]`
-- Output: `0`
-- Explanation: The first jump lands at index `3`, which is out of bounds.
+- **Input:** `instructions = ["jump", "add", "add"]`, `values = [3, 1, 1]`
+- **Output:** `0`
+- **Explanation:** The first jump lands at index `3`, which is out of bounds.
 
-**Example 3**
+#### Example 3
 
-- Input: `instructions = ["jump"]`, `values = [0]`
-- Output: `0`
-- Explanation: The jump targets index `0` again, so execution stops before a second execution.
+- **Input:** `instructions = ["jump"]`, `values = [0]`
+- **Output:** `0`
+- **Explanation:** The jump targets index `0` again, so execution stops before a second execution.

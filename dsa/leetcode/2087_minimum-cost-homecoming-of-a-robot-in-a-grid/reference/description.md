@@ -12,8 +12,16 @@ Return *the **minimum total cost** for this robot to return home*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `startPos`: Input parameter (`List[int]`).
+- `homePos`: Input parameter (`List[int]`).
+- `rowCosts`: Input parameter (`List[int]`).
+- `colCosts`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -30,6 +38,7 @@ Starting from (1, 0)
 -> It goes right to (2, <u>**2**</u>). This move costs colCosts[2] = 6.
 -> It goes right to (2, <u>**3**</u>). This move costs colCosts[3] = 7.
 The total cost is 3 + 2 + 6 + 7 = 18
+
 #### Example 2
 
 - **Input:** $startPos = [0, 0], homePos = [0, 0], rowCosts = [5], colCosts = [26]$

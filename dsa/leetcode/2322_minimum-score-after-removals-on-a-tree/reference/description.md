@@ -16,8 +16,14 @@ Return *the **minimum** score of any possible pair of edge removals on the given
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `edges`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -33,6 +39,7 @@ Return *the **minimum** score of any possible pair of edge removals on the given
 - The 3^rd component has node [2] with value [5]. Its XOR value is 5 = 5.
 The score is the difference between the largest and smallest XOR value which is 10 - 1 = 9.
 It can be shown that no other pair of removals will obtain a smaller score than 9.
+
 #### Example 2
 
 ![](images/ex2drawio.png)

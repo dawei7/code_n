@@ -31,20 +31,20 @@ Apply this operation exactly `k` times and return the largest array sum that can
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [4, 2, 3], k = 1`
-- Output: `5`
-- Explanation: Negating `nums[1]` changes the array to `[4, -2, 3]`.
+- **Input:** `nums = [4, 2, 3], k = 1`
+- **Output:** `5`
+- **Explanation:** Negating `nums[1]` changes the array to `[4, -2, 3]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3, -1, 0, 2], k = 3`
-- Output: `6`
-- Explanation: Choosing indices `1`, `2`, and `2` produces `[3, 1, 0, 2]`.
+- **Input:** `nums = [3, -1, 0, 2], k = 3`
+- **Output:** `6`
+- **Explanation:** Choosing indices `1`, `2`, and `2` produces `[3, 1, 0, 2]`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [2, -3, -1, 5, -4], k = 2`
-- Output: `13`
-- Explanation: Negating the values `-3` and `-4` produces `[2, 3, -1, 5, 4]`.
+- **Input:** `nums = [2, -3, -1, 5, -4], k = 2`
+- **Output:** `13`
+- **Explanation:** Negating the values `-3` and `-4` produces `[2, 3, -1, 5, 4]`.

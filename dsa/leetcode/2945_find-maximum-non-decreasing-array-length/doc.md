@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/find-maximum-non-decreasing-array-length/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given a 0-indexed positive-integer array `nums`. In one operation,
 choose any nonempty subarray and replace that entire contiguous segment with
 one element equal to the segment's sum. Apply this operation any number of
@@ -23,6 +25,7 @@ replace every block by its sum, and maximize the number of blocks subject to
 those block sums being non-decreasing.
 
 ### Function Contract
+
 **Inputs**
 
 - `nums`: the positive integers that may be merged in contiguous groups
@@ -36,21 +39,22 @@ The largest number of contiguous block sums that can form a non-decreasing
 array.
 
 ### Examples
-**Example 1**
 
-- Input: `nums = [5,2,2]`
-- Output: `1`
-- Explanation: Every partition into two or three blocks has a decrease, so all
+#### Example 1
+
+- **Input:** `nums = [5,2,2]`
+- **Output:** `1`
+- **Explanation:** Every partition into two or three blocks has a decrease, so all
   values must be merged into the single sum `9`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,2,3,4]`
-- Output: `4`
-- Explanation: The original array is already non-decreasing.
+- **Input:** `nums = [1,2,3,4]`
+- **Output:** `4`
+- **Explanation:** The original array is already non-decreasing.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [4,3,2,6]`
-- Output: `3`
-- Explanation: Merging `[3,2]` gives the non-decreasing array `[4,5,6]`.
+- **Input:** `nums = [4,3,2,6]`
+- **Output:** `3`
+- **Explanation:** Merging `[3,2]` gives the non-decreasing array `[4,5,6]`.

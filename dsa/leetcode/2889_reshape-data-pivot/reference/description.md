@@ -25,7 +25,8 @@ The result format is in the following example.
 ### 3. Examples
 
 #### Example 1
-**Input:**
+
+- **Input:** 
 +--------------+----------+-------------+
 | city         | month    | temperature |
 +--------------+----------+-------------+
@@ -40,7 +41,7 @@ The result format is in the following example.
 | ElPaso       | April    | 2           |
 | ElPaso       | May      | 43          |
 +--------------+----------+-------------+
-**Output:**
+- **Output:** 
 +----------+--------+--------------+
 | month    | ElPaso | Jacksonville |
 +----------+--------+--------------+
@@ -50,6 +51,6 @@ The result format is in the following example.
 | March    | 26     | 38           |
 | May      | 43     | 34           |
 +----------+--------+--------------+
-**Explanation:
+- **Explanation:** 
 **The table is pivoted, each column represents a city, and each row represents a specific month.
 ```

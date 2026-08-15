@@ -29,21 +29,21 @@ Given the length `n`, count all good digit strings of that length. Leading zeroe
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 1`
-- Output: `5`
+- **Input:** `n = 1`
+- **Output:** `5`
 
 The valid strings are `"0"`, `"2"`, `"4"`, `"6"`, and `"8"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 4`
-- Output: `400`
+- **Input:** `n = 4`
+- **Output:** `400`
 
 There are two even-indexed and two odd-indexed positions, giving $5^2 \cdot 4^2=400$ choices.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 50`
-- Output: `564908303`
+- **Input:** `n = 50`
+- **Output:** `564908303`

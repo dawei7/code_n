@@ -26,6 +26,7 @@ You may not engage in multiple transactions simultaneously (i.e., you must sell 
 - **Input:** $k = 2, prices = [2,4,1]$
 - **Output:** `2`
 - **Explanation:** Buy on day 1 (price = 2) and sell on day 2 (price = 4), profit = 4-2 = 2.
+
 #### Example 2
 
 - **Input:** $k = 2, prices = [3,2,6,5,0,3]$

@@ -8,8 +8,13 @@ Given an integer `n`, the length of the array, return *the minimum number of ope
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +25,7 @@ Given an integer `n`, the length of the array, return *the minimum number of ope
 - **Explanation:** arr = [1, 3, 5]
 First operation choose x = 2 and y = 0, this leads arr to be [2, 3, 4]
 In the second operation choose x = 2 and y = 0 again, thus arr = [3, 3, 3].
+
 #### Example 2
 
 - **Input:** $n = 6$

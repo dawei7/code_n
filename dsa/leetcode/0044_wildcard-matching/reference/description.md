@@ -28,11 +28,13 @@ Return `true` if `p` matches all of `s` under the wildcard rules; otherwise retu
 - **Input:** `s = "aa", p = "a"`
 - **Output:** `false`
 - **Explanation:** "a" does not match the entire string "aa".
+
 #### Example 2
 
 - **Input:** `s = "aa", p = "*"`
 - **Output:** `true`
 - **Explanation:** '*' matches any sequence.
+
 #### Example 3
 
 - **Input:** `s = "cb", p = "?a"`

@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/rle-iterator/) |
 
 ## Problem Description
+
 ### Goal
+
 Run-length encoding represents an integer sequence with an even-length, 0-indexed array `encoding`. At every even index `i`, `encoding[i]` is the number of consecutive copies of the non-negative value `encoding[i + 1]`. A count may be zero, and adjacent runs may contain the same value, so one decoded sequence can have several valid encodings.
 
 Design an iterator over the represented sequence without requiring it to be expanded.
@@ -17,6 +19,7 @@ Design an iterator over the represented sequence without requiring it to be expa
 Construct `RLEIterator` from `encoding`. Each call `next(n)` exhausts the next `n` decoded elements and returns the last element exhausted. If fewer than `n` elements remain, exhaust everything that is left and return `-1`.
 
 ### Function Contract
+
 Let $m$ be the number of encoded runs and $q$ be the number of `next` calls.
 
 **Operations**
@@ -36,19 +39,20 @@ Let $m$ be the number of encoded runs and $q$ be the number of `next` calls.
 Return the integer result of each `next` call in order.
 
 ### Examples
-**Example 1**
 
-- Input: `encoding = [3,8,0,9,2,5], operations = [["next",2],["next",1],["next",1],["next",2]]`
-- Output: `[8,8,5,-1]`
+#### Example 1
+
+- **Input:** `encoding = [3,8,0,9,2,5], operations = [["next",2],["next",1],["next",1],["next",2]]`
+- **Output:** `[8,8,5,-1]`
 
 The encoding represents `[8,8,8,5,5]`. The final request asks for two elements when only one remains, so it returns `-1`.
 
-**Example 2**
+#### Example 2
 
-- Input: `encoding = [1,4], operations = [["next",1]]`
-- Output: `[4]`
+- **Input:** `encoding = [1,4], operations = [["next",1]]`
+- **Output:** `[4]`
 
-**Example 3**
+#### Example 3
 
-- Input: `encoding = [0,7,2,3], operations = [["next",1],["next",1]]`
-- Output: `[3,3]`
+- **Input:** `encoding = [0,7,2,3], operations = [["next",1],["next",1]]`
+- **Output:** `[3,3]`

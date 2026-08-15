@@ -38,12 +38,11 @@ Return $[x_{i}, y_{i}]$ for the reachable tower with greatest $q_i$. Among equal
 
 #### Example 1
 
-<div class="example-block">
-**Input:** towers = [[1,2,5], [2,1,7], [3,1,9]], center = [1,1], radius = 2
+- **Input:** towers = [[1,2,5], [2,1,7], [3,1,9]], center = [1,1], radius = 2
 
-**Output:** [3,1]
+- **Output:** [3,1]
 
-**Explanation:**
+- **Explanation:** 
 
 - Tower `[1, 2, 5]`: Manhattan distance = $|1 - 1| + |2 - 1| = 1$, reachable.
 
@@ -53,15 +52,13 @@ Return $[x_{i}, y_{i}]$ for the reachable tower with greatest $q_i$. Among equal
 
 All towers are reachable. The maximum quality factor is 9, which corresponds to tower `[3, 1]`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** towers = [[1,3,4], [2,2,4], [4,4,7]], center = [0,0], radius = 5
+- **Input:** towers = [[1,3,4], [2,2,4], [4,4,7]], center = [0,0], radius = 5
 
-**Output:** [1,3]
+- **Output:** [1,3]
 
-**Explanation:**
+- **Explanation:** 
 
 - Tower `[1, 3, 4]`: Manhattan distance = $|1 - 0| + |3 - 0| = 4$, reachable.
 
@@ -71,23 +68,19 @@ All towers are reachable. The maximum quality factor is 9, which corresponds to 
 
 Among the reachable towers, the maximum quality factor is 4. Both `[1, 3]` and `[2, 2]` have the same quality, so the lexicographically smaller coordinate is `[1, 3]`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** towers = [[5,6,8], [0,3,5]], center = [1,2], radius = 1
+- **Input:** towers = [[5,6,8], [0,3,5]], center = [1,2], radius = 1
 
-**Output:** [-1,-1]
+- **Output:** [-1,-1]
 
-**Explanation:**
+- **Explanation:** 
 
 - Tower `[5, 6, 8]`: Manhattan distance = $|5 - 1| + |6 - 2| = 8$, not reachable.
 
 - Tower `[0, 3, 5]`: Manhattan distance = $|0 - 1| + |3 - 2| = 2$, not reachable.
 
 No tower is reachable within the given radius, so `[-1, -1]` is returned.
-
-</div>
 
 ### 4. Constraints
 

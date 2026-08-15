@@ -8,8 +8,13 @@ Given an array `rooms` where $\text{rooms}[i]$ is the set of keys that you can o
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `rooms`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -17,12 +22,12 @@ Given an array `rooms` where $\text{rooms}[i]$ is the set of keys that you can o
 
 - **Input:** $rooms = [[1],[2],[3],[]]$
 - **Output:** `true`
-- **Explanation:**
-We visit room 0 and pick up key 1.
+- **Explanation:** We visit room 0 and pick up key 1.
 We then visit room 1 and pick up key 2.
 We then visit room 2 and pick up key 3.
 We then visit room 3.
 Since we were able to visit every room, we return true.
+
 #### Example 2
 
 - **Input:** $rooms = [[1,3],[3,0,1],[2],[0]]$

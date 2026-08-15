@@ -34,17 +34,17 @@ The judge either creates two wrappers and adds them or creates one wrapper and c
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [[1,2],[3,4]]`, `operation = "Add"`
-- Output: `10`
+- **Input:** `nums = [[1,2],[3,4]]`, `operation = "Add"`
+- **Output:** `10`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [[23,98,42,70]]`, `operation = "String"`
-- Output: `"[23,98,42,70]"`
+- **Input:** `nums = [[23,98,42,70]]`, `operation = "String"`
+- **Output:** `"[23,98,42,70]"`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [[],[]]`, `operation = "Add"`
-- Output: `0`
+- **Input:** `nums = [[],[]]`, `operation = "Add"`
+- **Output:** `0`

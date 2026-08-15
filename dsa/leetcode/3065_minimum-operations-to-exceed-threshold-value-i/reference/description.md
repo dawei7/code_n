@@ -8,8 +8,14 @@ Return *the **minimum** number of operations needed so that all elements of the 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,11 +28,13 @@ After two operations, nums becomes equal to [11, 10, 3].
 After three operations, nums becomes equal to [11, 10].
 At this stage, all the elements of nums are greater than or equal to 10 so we can stop.
 It can be shown that 3 is the minimum number of operations needed so that all elements of the array are greater than or equal to 10.
+
 #### Example 2
 
 - **Input:** `nums = [1,1,2,4,9], k = 1`
 - **Output:** `0`
 - **Explanation:** All elements of the array are greater than or equal to 1 so we do not need to apply any operations on nums.
+
 #### Example 3
 
 - **Input:** `nums = [1,1,2,4,9], k = 9`

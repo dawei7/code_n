@@ -31,23 +31,23 @@ Among all arrays satisfying those rules, maximize `nums[index]` and return that 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 4, index = 2, maxSum = 6`
-- Output: `2`
+- **Input:** `n = 4, index = 2, maxSum = 6`
+- **Output:** `2`
 
 One valid optimal array is `[1,2,2,1]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 6, index = 1, maxSum = 10`
-- Output: `3`
+- **Input:** `n = 6, index = 1, maxSum = 10`
+- **Output:** `3`
 
 The peak can reach three while respecting both the adjacent-difference and sum bounds.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 1, index = 0, maxSum = 24`
-- Output: `24`
+- **Input:** `n = 1, index = 0, maxSum = 24`
+- **Output:** `24`
 
 With no neighbors, the target may use the entire budget.

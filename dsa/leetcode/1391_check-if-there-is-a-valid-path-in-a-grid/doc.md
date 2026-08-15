@@ -32,17 +32,17 @@ Determine whether the existing streets contain a valid path from the upper-left 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[2,4,3],[6,5,2]]`
-- Output: `true`
+- **Input:** `grid = [[2,4,3],[6,5,2]]`
+- **Output:** `true`
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[1,2,1],[1,2,1]]`
-- Output: `false`
+- **Input:** `grid = [[1,2,1],[1,2,1]]`
+- **Output:** `false`
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[1,1,2]]`
-- Output: `false`
+- **Input:** `grid = [[1,1,2]]`
+- **Output:** `false`

@@ -17,28 +17,21 @@ Return the unique set of `k` most-frequent values as an array in any order.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,1,1,2,2,3], k = 2
+- **Input:** nums = [1,1,1,2,2,3], k = 2
 
-**Output:** [1,2]
+- **Output:** [1,2]
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1], k = 1
+- **Input:** nums = [1], k = 1
 
-**Output:** [1]
+- **Output:** [1]
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,2,1,2,1,2,3,1,3,2], k = 2
+- **Input:** nums = [1,2,1,2,1,2,3,1,3,2], k = 2
 
-**Output:** [1,2]
-
-</div>
+- **Output:** [1,2]
 
 ### 4. Constraints
 

@@ -28,8 +28,13 @@ Implement the `MovieRentingSystem` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `MovieRentingSystem(n: int, entries: List[List[int]])`: Initializes the data structure.
+- `search(movie: int) -> `List[int]``: Executes operation.
+- `rent(shop: int, movie: int)`: Executes operation.
+- `drop(shop: int, movie: int)`: Executes operation.
+- `report() -> `List[List[int]]``: Executes operation.
 
 ### 3. Note
 

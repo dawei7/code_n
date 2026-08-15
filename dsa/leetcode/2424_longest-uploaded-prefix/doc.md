@@ -38,23 +38,23 @@ Let $q$ be the number of entries in `operations`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 4, operations = [["upload",[3]],["longest",[]],["upload",[1]],["longest",[]],["upload",[2]],["longest",[]]]`
-- Output: `[null,0,null,1,null,3]`
+- **Input:** `n = 4, operations = [["upload",[3]],["longest",[]],["upload",[1]],["longest",[]],["upload",[2]],["longest",[]]]`
+- **Output:** `[null,0,null,1,null,3]`
 
 Video 3 is initially separated from the prefix. Uploading 1 creates a prefix of length 1, and uploading 2 joins the already-uploaded video 3.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 5, operations = [["upload",[1]],["upload",[2]],["longest",[]],["upload",[4]],["longest",[]]]`
-- Output: `[null,null,2,null,2]`
+- **Input:** `n = 5, operations = [["upload",[1]],["upload",[2]],["longest",[]],["upload",[4]],["longest",[]]]`
+- **Output:** `[null,null,2,null,2]`
 
 Uploading video 4 cannot extend the prefix while video 3 is missing.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 1, operations = [["longest",[]],["upload",[1]],["longest",[]]]`
-- Output: `[0,null,1]`
+- **Input:** `n = 1, operations = [["longest",[]],["upload",[1]],["longest",[]]]`
+- **Output:** `[0,null,1]`
 
 The prefix is empty before the only video arrives and complete afterward.

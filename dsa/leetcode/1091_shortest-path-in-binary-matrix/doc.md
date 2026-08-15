@@ -30,19 +30,19 @@ Consecutive path cells must be different and 8-directionally connected: they may
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[0, 1], [1, 0]]`
-- Output: `2`
+- **Input:** `grid = [[0, 1], [1, 0]]`
+- **Output:** `2`
 
 The two open cells touch at a corner, so the diagonal is a valid two-cell path.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[0, 0, 0], [1, 1, 0], [1, 1, 0]]`
-- Output: `4`
+- **Input:** `grid = [[0, 0, 0], [1, 1, 0], [1, 1, 0]]`
+- **Output:** `4`
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[1, 0, 0], [1, 1, 0], [1, 1, 0]]`
-- Output: `-1`
+- **Input:** `grid = [[1, 0, 0], [1, 1, 0], [1, 1, 0]]`
+- **Output:** `-1`

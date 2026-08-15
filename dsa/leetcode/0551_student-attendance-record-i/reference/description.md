@@ -18,8 +18,13 @@ Return `true`* if the student is eligible for an attendance award, or *`false`* 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -28,6 +33,7 @@ Return `true`* if the student is eligible for an attendance award, or *`false`* 
 - **Input:** `s = "PPALLP"`
 - **Output:** `true`
 - **Explanation:** The student has fewer than 2 absences and was never late 3 or more consecutive days.
+
 #### Example 2
 
 - **Input:** `s = "PPALLL"`

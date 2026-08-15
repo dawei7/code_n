@@ -8,8 +8,13 @@ Return* an integer *`answer`*, the number of valid clock times that can be creat
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `time`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,11 +23,13 @@ Return* an integer *`answer`*, the number of valid clock times that can be creat
 - **Input:** $time = "?5:00"$
 - **Output:** `2`
 - **Explanation:** We can replace the ? with either a 0 or 1, producing "05:00" or "15:00". Note that we cannot replace it with a 2, since the time "25:00" is invalid. In total, we have two choices.
+
 #### Example 2
 
 - **Input:** $time = "0?:0?"$
 - **Output:** `100`
 - **Explanation:** Each ? can be replaced by any digit from 0 to 9, so we have 100 total choices.
+
 #### Example 3
 
 - **Input:** $time = "??:??"$

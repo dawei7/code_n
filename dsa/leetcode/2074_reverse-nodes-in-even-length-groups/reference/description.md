@@ -16,8 +16,10 @@ Note that the length of the last group may be less than or equal to $1 + the len
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `ListNode(val=0, next=None)`: Initializes the data structure.
+- `reverseEvenLengthGroups(head: Optional[ListNode]) -> `Optional[ListNode]``: Executes operation.
 
 ### 3. Examples
 
@@ -27,28 +29,30 @@ Note that the length of the last group may be less than or equal to $1 + the len
 
 - **Input:** $head = [5,2,6,3,9,1,7,3,8,4]$
 - **Output:** `[5,6,2,3,9,1,4,8,3,7]`
-- **Explanation:**
+- **Explanation:** 
 - The length of the first group is 1, which is odd, hence no reversal occurs.
 - The length of the second group is 2, which is even, hence the nodes are reversed.
 - The length of the third group is 3, which is odd, hence no reversal occurs.
 - The length of the last group is 4, which is even, hence the nodes are reversed.
+
 #### Example 2
 
 ![](images/eg2.png)
 
 - **Input:** $head = [1,1,0,6]$
 - **Output:** `[1,0,1,6]`
-- **Explanation:**
+- **Explanation:** 
 - The length of the first group is 1. No reversal occurs.
 - The length of the second group is 2. The nodes are reversed.
 - The length of the last group is 1. No reversal occurs.
+
 #### Example 3
 
 ![](images/ex3.png)
 
 - **Input:** $head = [1,1,0,6,5]$
 - **Output:** `[1,0,1,5,6]`
-- **Explanation:**
+- **Explanation:** 
 - The length of the first group is 1. No reversal occurs.
 - The length of the second group is 2. The nodes are reversed.
 - The length of the last group is 2. The nodes are reversed.

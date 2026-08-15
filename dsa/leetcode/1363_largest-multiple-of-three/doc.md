@@ -30,17 +30,17 @@ Return the numerically largest arrangement that is divisible by $3$, represented
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `digits = [8,1,9]`
-- Output: `"981"`
+- **Input:** `digits = [8,1,9]`
+- **Output:** `"981"`
 
-**Example 2**
+#### Example 2
 
-- Input: `digits = [8,6,7,1,0]`
-- Output: `"8760"`
+- **Input:** `digits = [8,6,7,1,0]`
+- **Output:** `"8760"`
 
-**Example 3**
+#### Example 3
 
-- Input: `digits = [1]`
-- Output: `""`
+- **Input:** `digits = [1]`
+- **Output:** `""`

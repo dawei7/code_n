@@ -12,8 +12,14 @@ Return *the minimum possible* `x`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `quantities`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,6 +31,7 @@ Return *the minimum possible* `x`.
 - The 11 products of type 0 are distributed to the first four stores in these amounts: 2, 3, 3, 3
 - The 6 products of type 1 are distributed to the other two stores in these amounts: 3, 3
 The maximum number of products given to any store is max(2, 3, 3, 3, 3, 3) = 3.
+
 #### Example 2
 
 - **Input:** $n = 7, quantities = [15,10,10]$
@@ -34,6 +41,7 @@ The maximum number of products given to any store is max(2, 3, 3, 3, 3, 3) = 3.
 - The 10 products of type 1 are distributed to the next two stores in these amounts: 5, 5
 - The 10 products of type 2 are distributed to the last two stores in these amounts: 5, 5
 The maximum number of products given to any store is max(5, 5, 5, 5, 5, 5, 5) = 5.
+
 #### Example 3
 
 - **Input:** $n = 1, quantities = [100000]$

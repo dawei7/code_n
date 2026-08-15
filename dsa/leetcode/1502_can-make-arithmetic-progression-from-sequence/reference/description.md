@@ -6,8 +6,13 @@ Given an array of numbers `arr`, return `true` *if the array can be rearranged t
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -16,6 +21,7 @@ Given an array of numbers `arr`, return `true` *if the array can be rearranged t
 - **Input:** `arr = [3,5,1]`
 - **Output:** `true`
 - **Explanation:** We can reorder the elements as [1,3,5] or [5,3,1] with differences 2 and -2 respectively, between each consecutive elements.
+
 #### Example 2
 
 - **Input:** `arr = [1,2,4]`

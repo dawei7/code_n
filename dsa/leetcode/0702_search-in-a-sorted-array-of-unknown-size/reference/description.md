@@ -36,6 +36,7 @@ Return the target's unique zero-based index, or `-1` if it does not occur. An ou
 - **Input:** $secret = [-1,0,3,5,9,12], target = 9$
 - **Output:** `4`
 - **Explanation:** 9 exists in secret and its index is 4.
+
 #### Example 2
 
 - **Input:** $secret = [-1,0,3,5,9,12], target = 2$

@@ -8,8 +8,13 @@ Return *a list of integers that represent a valid split containing a **maximum**
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `finalSum`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -20,12 +25,14 @@ Return *a list of integers that represent a valid split containing a **maximum**
 - **Explanation:** The following are valid splits: (12), (2 + 10), (2 + 4 + 6), and (4 + 8).
 (2 + 4 + 6) has the maximum number of integers, which is 3. Thus, we return [2,4,6].
 Note that [2,6,4], [6,2,4], etc. are also accepted.
+
 #### Example 2
 
 - **Input:** $finalSum = 7$
 - **Output:** `[]`
 - **Explanation:** There are no valid splits for the given finalSum.
 Thus, we return an empty array.
+
 #### Example 3
 
 - **Input:** $finalSum = 28$

@@ -29,16 +29,16 @@ Return `True` if there is a contradiction in the given equations; otherwise retu
 
 - **Input:** `equations = [["a","b"],["b","c"],["a","c"]], values = [3,0.5,1.5]`
 - **Output:** `false`
-- **Explanation:**
+- **Explanation:** 
 **The given equations are: a / b = 3, b / c = 0.5, a / c = 1.5
 There are no contradictions in the equations. One possible assignment to satisfy all equations is:
 a = 3, b = 1 and c = 2.
+
 #### Example 2
 
 - **Input:** `equations = [["le","et"],["le","code"],["code","et"]], values = [2,5,0.5]`
 - **Output:** `true`
-- **Explanation:**
-The given equations are: le / et = 2, le / code = 5, code / et = 0.5
+- **Explanation:** The given equations are: le / et = 2, le / code = 5, code / et = 0.5
 Based on the first two equations, we get code / et = 0.4.
 Since the third equation is code / et = 0.5, we get a contradiction.
 

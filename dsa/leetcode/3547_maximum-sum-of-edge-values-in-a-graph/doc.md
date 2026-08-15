@@ -35,16 +35,16 @@ Return the maximum possible sum of edge-endpoint products after assigning the un
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 4, edges = [[0,1],[1,2],[2,3]]`
-- Output: `23`
-- Explanation: Along the path, the assignment order `1, 3, 4, 2` produces $1\cdot3+3\cdot4+4\cdot2=23$.
+- **Input:** `n = 4, edges = [[0,1],[1,2],[2,3]]`
+- **Output:** `23`
+- **Explanation:** Along the path, the assignment order `1, 3, 4, 2` produces $1\cdot3+3\cdot4+4\cdot2=23$.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 6, edges = [[0,3],[4,5],[2,0],[1,3],[2,4],[1,5]]`
-- Output: `82`
-- Explanation: The edges form a cycle. A cyclic ordering such as `1, 2, 4, 6, 5, 3` yields a total score of $82$.
+- **Input:** `n = 6, edges = [[0,3],[4,5],[2,0],[1,3],[2,4],[1,5]]`
+- **Output:** `82`
+- **Explanation:** The edges form a cycle. A cyclic ordering such as `1, 2, 4, 6, 5, 3` yields a total score of $82$.
 
 ---

@@ -29,23 +29,23 @@ Determine whether the string contains at most one contiguous segment of ones. Re
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "1001"`
-- Output: `false`
+- **Input:** `s = "1001"`
+- **Output:** `false`
 
 The two endpoint ones form two distinct segments.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "110"`
-- Output: `true`
+- **Input:** `s = "110"`
+- **Output:** `true`
 
 The two ones are adjacent and form one segment.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "1"`
-- Output: `true`
+- **Input:** `s = "1"`
+- **Output:** `true`
 
 The minimum-length string has one segment.

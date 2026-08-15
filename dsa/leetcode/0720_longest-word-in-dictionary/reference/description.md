@@ -8,8 +8,13 @@ Note that the word should be built from left to right with each additional chara
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -18,6 +23,7 @@ Note that the word should be built from left to right with each additional chara
 - **Input:** $words = ["w","wo","wor","worl","world"]$
 - **Output:** `"world"`
 - **Explanation:** The word "world" can be built one character at a time by "w", "wo", "wor", and "worl".
+
 #### Example 2
 
 - **Input:** $words = ["a","banana","app","appl","ap","apply","apple"]$

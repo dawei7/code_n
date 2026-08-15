@@ -16,8 +16,14 @@ Given a string `word`, return `true`* if *`word`* can be placed in *`board`*, or
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `board`: Input parameter (`List[List[str]]`).
+- `word`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -28,6 +34,7 @@ Given a string `word`, return `true`* if *`word`* can be placed in *`board`*, or
 - **Input:** $board = [["#", " ", "#"], [" ", " ", "#"], ["#", "c", " "]], word = "abc"$
 - **Output:** `true`
 - **Explanation:** The word "abc" can be placed as shown above (top to bottom).
+
 #### Example 2
 
 ![](images/crossword-ex2-1.png)
@@ -35,6 +42,7 @@ Given a string `word`, return `true`* if *`word`* can be placed in *`board`*, or
 - **Input:** $board = [[" ", "#", "a"], [" ", "#", "c"], [" ", "#", "a"]], word = "ac"$
 - **Output:** `false`
 - **Explanation:** It is impossible to place the word because there will always be a space/letter above or below it.
+
 #### Example 3
 
 ![](images/crossword-ex3-1.png)

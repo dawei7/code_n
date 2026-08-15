@@ -31,8 +31,8 @@ Return columns `student_id`, `subject`, `first_score`, and `latest_score` for pa
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `Scores = [(101,"Math",70,"2023-01-15"),(101,"Math",85,"2023-02-15"),(101,"Physics",65,"2023-01-15"),(101,"Physics",60,"2023-02-15"),(102,"Math",80,"2023-01-15"),(102,"Math",85,"2023-02-15"),(103,"Math",90,"2023-01-15"),(104,"Physics",75,"2023-01-15"),(104,"Physics",85,"2023-02-15")]`
-- Output: `[(101,"Math",70,85),(102,"Math",80,85),(104,"Physics",75,85)]`
-- Explanation: The three returned pairs improve from their chronological first score to their chronological latest score. The Physics result for student 101 declines, and student 103 has only one exam.
+- **Input:** `Scores = [(101,"Math",70,"2023-01-15"),(101,"Math",85,"2023-02-15"),(101,"Physics",65,"2023-01-15"),(101,"Physics",60,"2023-02-15"),(102,"Math",80,"2023-01-15"),(102,"Math",85,"2023-02-15"),(103,"Math",90,"2023-01-15"),(104,"Physics",75,"2023-01-15"),(104,"Physics",85,"2023-02-15")]`
+- **Output:** `[(101,"Math",70,85),(102,"Math",80,85),(104,"Physics",75,85)]`
+- **Explanation:** The three returned pairs improve from their chronological first score to their chronological latest score. The Physics result for student 101 declines, and student 103 has only one exam.

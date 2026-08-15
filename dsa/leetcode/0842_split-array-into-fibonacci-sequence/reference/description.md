@@ -16,8 +16,13 @@ Return any Fibonacci-like sequence split from `num`, or return `[]` if it cannot
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `num`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -26,11 +31,13 @@ Return any Fibonacci-like sequence split from `num`, or return `[]` if it cannot
 - **Input:** $num = "1101111"$
 - **Output:** `[11,0,11,11]`
 - **Explanation:** The output [110, 1, 111] would also be accepted.
+
 #### Example 2
 
 - **Input:** $num = "112358130"$
 - **Output:** `[]`
 - **Explanation:** The task is impossible.
+
 #### Example 3
 
 - **Input:** $num = "0123"$

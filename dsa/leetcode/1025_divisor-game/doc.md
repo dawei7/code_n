@@ -32,14 +32,14 @@ Return `true` if and only if Alice wins when both players choose their moves opt
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 2`
-- Output: `true`
-- Explanation: Alice subtracts `1`, leaving `1`; Bob then has no valid move.
+- **Input:** `n = 2`
+- **Output:** `true`
+- **Explanation:** Alice subtracts `1`, leaving `1`; Bob then has no valid move.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3`
-- Output: `false`
-- Explanation: Alice's only move subtracts `1`. Bob does the same from `2`, leaving Alice unable to move from `1`.
+- **Input:** `n = 3`
+- **Output:** `false`
+- **Explanation:** Alice's only move subtracts `1`. Bob does the same from `2`, leaving Alice unable to move from `1`.

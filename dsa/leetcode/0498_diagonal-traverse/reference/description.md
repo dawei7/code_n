@@ -4,8 +4,13 @@ Given an `m x n` matrix `mat`, return *an array of all the elements of the array
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `mat`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -15,6 +20,7 @@ Given an `m x n` matrix `mat`, return *an array of all the elements of the array
 
 - **Input:** $mat = [[1,2,3],[4,5,6],[7,8,9]]$
 - **Output:** `[1,2,4,7,5,3,6,8,9]`
+
 #### Example 2
 
 - **Input:** $mat = [[1,2],[3,4]]$

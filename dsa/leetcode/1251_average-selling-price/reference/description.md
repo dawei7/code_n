@@ -46,7 +46,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Prices table:
 +------------+------------+------------+--------+
 | product_id | start_date | end_date   | price  |
@@ -65,15 +65,14 @@ UnitsSold table:
 | 2          | 2019-02-10    | 200   |
 | 2          | 2019-03-22    | 30    |
 +------------+---------------+-------+
-**Output:**
+- **Output:** 
 +------------+---------------+
 | product_id | average_price |
 +------------+---------------+
 | 1          | 6.96          |
 | 2          | 16.96         |
 +------------+---------------+
-**Explanation:**
-Average selling price = Total Price of Product / Number of products sold.
+- **Explanation:** Average selling price = Total Price of Product / Number of products sold.
 Average selling price for product 1 = ((100 * 5) + (15 * 20)) / 115 = 6.96
 Average selling price for product 2 = ((200 * 15) + (30 * 30)) / 230 = 16.96
 ```

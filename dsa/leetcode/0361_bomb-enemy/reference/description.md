@@ -22,6 +22,7 @@ Return the maximum number of enemies visible horizontally or vertically from a s
 
 - **Input:** `grid = [["0","E","0","0"],["E","0","W","E"],["0","E","0","0"]]`
 - **Output:** `3`
+
 #### Example 2
 
 ![](images/bomb2-grid.jpg)

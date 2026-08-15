@@ -22,19 +22,25 @@ Return the result accordingly.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `x`: Input parameter (`int`).
+- `y`: Input parameter (`int`).
+- `z`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** x = 2, y = 7, z = 4
+- **Input:** x = 2, y = 7, z = 4
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - Person 1 is at position 2 and can reach Person 3 (at position 4) in 2 steps.
 
@@ -42,15 +48,13 @@ Return the result accordingly.
 
 Since Person 1 reaches Person 3 first, the output is 1.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** x = 2, y = 5, z = 6
+- **Input:** x = 2, y = 5, z = 6
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - Person 1 is at position 2 and can reach Person 3 (at position 6) in 4 steps.
 
@@ -58,23 +62,19 @@ Since Person 1 reaches Person 3 first, the output is 1.
 
 Since Person 2 reaches Person 3 first, the output is 2.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** x = 1, y = 5, z = 3
+- **Input:** x = 1, y = 5, z = 3
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** 
 
 - Person 1 is at position 1 and can reach Person 3 (at position 3) in 2 steps.
 
 - Person 2 is at position 5 and can reach Person 3 in 2 steps.
 
 Since both Person 1 and Person 2 reach Person 3 at the same time, the output is 0.
-
-</div>
 
 ### 4. Constraints
 

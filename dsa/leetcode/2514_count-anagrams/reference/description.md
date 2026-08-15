@@ -10,8 +10,13 @@ Return *the number of **distinct anagrams** of *`s`. Since the answer may be ver
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +25,7 @@ Return *the number of **distinct anagrams** of *`s`. Since the answer may be ver
 - **Input:** `s = "too hot"`
 - **Output:** `18`
 - **Explanation:** Some of the anagrams of the given string are "too hot", "oot hot", "oto toh", "too toh", and "too oht".
+
 #### Example 2
 
 - **Input:** `s = "aa"`

@@ -16,8 +16,15 @@ Note that friendships are not transitive, meaning if `x` is a friend of `y` and 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `languages`: Input parameter (`List[List[int]]`).
+- `friendships`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,6 +33,7 @@ Note that friendships are not transitive, meaning if `x` is a friend of `y` and 
 - **Input:** $n = 2, languages = [[1],[2],[1,2]], friendships = [[1,2],[1,3],[2,3]]$
 - **Output:** `1`
 - **Explanation:** You can either teach user 1 the second language or user 2 the first language.
+
 #### Example 2
 
 - **Input:** $n = 3, languages = [[2],[1,3],[1,2],[3]], friendships = [[1,4],[1,2],[3,4],[2,3]]$

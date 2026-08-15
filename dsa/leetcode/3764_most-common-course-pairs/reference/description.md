@@ -32,7 +32,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 course_completions table:
@@ -91,17 +90,13 @@ course_completions table:
 
 - **Course Pairs Among Top Performers**:
 
-		<li>User 1: Python Basics → SQL Fundamentals → JavaScript → React Basics → Node.js → Docker
+		- User 1: Python Basics → SQL Fundamentals → JavaScript → React Basics → Node.js → Docker
 
 - User 2: Python Basics → React Basics → Node.js → Docker → AWS Fundamentals
 
 - Most common transitions: Node.js → Docker (2 times), React Basics → Node.js (2 times)
 
-	</li>
-
 Results are ordered by transition_count in descending order, then by first_course in ascending order, and then by second_course in ascending order.
-
-</div>
 
 ### 2. Function Contract
 

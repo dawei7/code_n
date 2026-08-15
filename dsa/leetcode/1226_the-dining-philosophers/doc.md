@@ -36,17 +36,17 @@ Philosophers are identified from `0` through `4` in clockwise order. Implement `
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 1`
-- Output: Any valid 25-event interleaving for the five philosophers.
+- **Input:** `n = 1`
+- **Output:** Any valid 25-event interleaving for the five philosophers.
 
 Each philosopher contributes two fork-pick events, one eat event, and two fork-put events. The precise interleaving is scheduler-dependent.
 
-**Example 2**
+#### Example 2
 
 Two adjacent philosophers may request food simultaneously, but they may not both hold their shared fork or eat without holding both forks.
 
-**Example 3**
+#### Example 3
 
 Repeated requests from every philosopher must finish without a circular wait, including when calls begin in different thread orders.

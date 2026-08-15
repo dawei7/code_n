@@ -33,20 +33,20 @@ Let $n = \lvert\texttt{nums}\rvert$. The constraints are $1 \le n \le 50$, $1 \l
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3,1,5,4,2], k = 2`
-- Output: `4`
-- Explanation: The removed values are `2`, `4`, `5`, and `1`. At that point both required values, `1` and `2`, have been collected.
+- **Input:** `nums = [3,1,5,4,2], k = 2`
+- **Output:** `4`
+- **Explanation:** The removed values are `2`, `4`, `5`, and `1`. At that point both required values, `1` and `2`, have been collected.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3,1,5,4,2], k = 5`
-- Output: `5`
-- Explanation: Every array element must be removed before the collection contains all values from `1` through `5`.
+- **Input:** `nums = [3,1,5,4,2], k = 5`
+- **Output:** `5`
+- **Explanation:** Every array element must be removed before the collection contains all values from `1` through `5`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [3,2,5,3,1], k = 3`
-- Output: `4`
-- Explanation: Removing `1`, `3`, `5`, and `2` collects every required value; the irrelevant `5` still counts as an operation.
+- **Input:** `nums = [3,2,5,3,1], k = 3`
+- **Output:** `4`
+- **Explanation:** Removing `1`, `3`, `5`, and `2` collects every required value; the irrelevant `5` still counts as an operation.

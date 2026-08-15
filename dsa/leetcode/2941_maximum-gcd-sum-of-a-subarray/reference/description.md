@@ -24,6 +24,7 @@ Return *the **maximum gcd-sum** of a subarray of* `nums` *with at least* `k` *el
 - **Output:** `48`
 - **Explanation:** We take the subarray [4,4,4], the gcd-sum of this array is 4 * (4 + 4 + 4) = 48.
 It can be shown that we can not select any other subarray with a gcd-sum greater than 48.
+
 #### Example 2
 
 - **Input:** `nums = [7,3,9,4], k = 1`

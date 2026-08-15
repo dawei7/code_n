@@ -6,8 +6,13 @@ Return the number of servers that communicate with any other server.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +23,7 @@ Return the number of servers that communicate with any other server.
 - **Input:** `grid = [[1,0],[0,1]]`
 - **Output:** `0`
 - **Explanation:** No servers can communicate with others.
+
 #### Example 2
 
 **
@@ -29,6 +35,7 @@ Return the number of servers that communicate with any other server.
 - **Input:** `grid = [[1,0],[1,1]]`
 - **Output:** `3`
 - **Explanation:** All three servers can communicate with at least one other server.
+
 #### Example 3
 
 ![](images/untitled-diagram-1-3.jpg)

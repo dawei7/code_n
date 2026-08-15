@@ -8,8 +8,13 @@ The **value of a triplet of indices** `(i, j, k)` is equal to $(\text{nums}[i] -
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,12 +24,14 @@ The **value of a triplet of indices** `(i, j, k)` is equal to $(\text{nums}[i] -
 - **Output:** `77`
 - **Explanation:** The value of the triplet (0, 2, 4) is (nums[0] - nums[2]) * nums[4] = 77.
 It can be shown that there are no ordered triplets of indices with a value greater than 77.
+
 #### Example 2
 
 - **Input:** `nums = [1,10,3,4,19]`
 - **Output:** `133`
 - **Explanation:** The value of the triplet (1, 2, 4) is (nums[1] - nums[2]) * nums[4] = 133.
 It can be shown that there are no ordered triplets of indices with a value greater than 133.
+
 #### Example 3
 
 - **Input:** `nums = [1,2,3]`

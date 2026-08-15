@@ -26,6 +26,7 @@ Return the minimum total cost among valid color assignments.
 - **Output:** `10`
 - **Explanation:** Paint house 0 into blue, paint house 1 into green, paint house 2 into blue.
 Minimum cost: 2 + 5 + 3 = 10.
+
 #### Example 2
 
 - **Input:** $costs = [[7,6,2]]$

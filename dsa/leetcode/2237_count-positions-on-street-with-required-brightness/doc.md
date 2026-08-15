@@ -43,17 +43,17 @@ containing $i$ is at least `requirement[i]`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 5, lights = [[0, 1], [2, 1], [3, 2]], requirement = [0, 2, 1, 4, 1]`
-- Output: `4`
+- **Input:** `n = 5, lights = [[0, 1], [2, 1], [3, 2]], requirement = [0, 2, 1, 4, 1]`
+- **Output:** `4`
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 1, lights = [[0, 1]], requirement = [2]`
-- Output: `0`
+- **Input:** `n = 1, lights = [[0, 1]], requirement = [2]`
+- **Output:** `0`
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 4, lights = [[1, 0]], requirement = [0, 1, 0, 0]`
-- Output: `4`
+- **Input:** `n = 4, lights = [[1, 0]], requirement = [0, 1, 0, 0]`
+- **Output:** `4`

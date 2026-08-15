@@ -12,8 +12,10 @@ Return *the **maximum binary tree** built from *`nums`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `constructMaximumBinaryTree(nums: List[int]) -> `Optional[TreeNode]``: Executes operation.
 
 ### 3. Examples
 
@@ -33,6 +35,7 @@ Return *the **maximum binary tree** built from *`nums`.
 - The largest value in [0,5] is 5. Left prefix is [0] and right suffix is [].
 - Only one element, so child is a node with value 0.
 - Empty array, so no child.
+
 #### Example 2
 
 ![](images/tree2.jpg)

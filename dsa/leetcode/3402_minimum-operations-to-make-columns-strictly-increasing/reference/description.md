@@ -8,19 +8,23 @@ Return the **minimum** number of operations needed to make all columns of `grid`
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** grid = [[3,2],[1,3],[3,4],[0,1]]
+- **Input:** grid = [[3,2],[1,3],[3,4],[0,1]]
 
-**Output:** 15
+- **Output:** 15
 
-**Explanation:**
+- **Explanation:** 
 
 - To make the $0^th$ column strictly increasing, we can apply 3 operations on $\text{grid}[1][0]$, 2 operations on $\text{grid}[2][0]$, and 6 operations on $\text{grid}[3][0]$.
 
@@ -28,15 +32,13 @@ Return the **minimum** number of operations needed to make all columns of `grid`
 
 ![](images/firstexample.png)
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** grid = [[3,2,1],[2,1,0],[1,2,3]]
+- **Input:** grid = [[3,2,1],[2,1,0],[1,2,3]]
 
-**Output:** 12
+- **Output:** 12
 
-**Explanation:**
+- **Explanation:** 
 
 - To make the $0^th$ column strictly increasing, we can apply 2 operations on $\text{grid}[1][0]$, and 4 operations on $\text{grid}[2][0]$.
 
@@ -45,8 +47,6 @@ Return the **minimum** number of operations needed to make all columns of `grid`
 - To make the $2^nd$ column strictly increasing, we can apply 2 operations on $\text{grid}[1][2]$.
 
 ![](images/secondexample.png)
-
-</div>
 
 ### 4. Constraints
 
@@ -58,12 +58,6 @@ Return the **minimum** number of operations needed to make all columns of `grid`
 
 - $0 \le \text{grid}[i][j] < 2500$
 
-<div class="spoiler">
-<div>
-
 ```
 
 ```
-
-</div>
-</div>

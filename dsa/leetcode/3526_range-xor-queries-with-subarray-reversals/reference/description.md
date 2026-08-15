@@ -21,12 +21,11 @@ Return *an array of the results of all range XOR queries* in the order they were
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4,5], queries = [[2,1,3],[1,2,10],[3,0,4],[2,0,4]]
+- **Input:** nums = [1,2,3,4,5], queries = [[2,1,3],[1,2,10],[3,0,4],[2,0,4]]
 
-**Output:** [5,8]
+- **Output:** [5,8]
 
-**Explanation:**
+- **Explanation:** 
 
 - **Query**** 1****:** `[2, 1, 3]` – Compute XOR of subarray `[2, 3, 4]` resulting in 5.
 
@@ -36,23 +35,19 @@ Return *an array of the results of all range XOR queries* in the order they were
 
 - **Query 4:** `[2, 0, 4]` – Compute XOR of subarray `[5, 4, 10, 2, 1]` resulting in 8.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [7,8,9], queries = [[1,0,3],[2,0,2],[3,1,2]]
+- **Input:** nums = [7,8,9], queries = [[1,0,3],[2,0,2],[3,1,2]]
 
-**Output:** [2]
+- **Output:** [2]
 
-**Explanation:**
+- **Explanation:** 
 
 - **Query 1:** `[1, 0, 3]` – Update $\text{nums}[0]$ to 3, updating the array to `[3, 8, 9]`.
 
 - **Query 2:** `[2, 0, 2]` – Compute XOR of subarray `[3, 8, 9]` resulting in 2.
 
 - **Query 3:** `[3, 1, 2]` – Reverse the subarray `[8, 9]` to get `[9, 8]`.
-
-</div>
 
 ### 4. Constraints
 
@@ -68,13 +63,10 @@ Return *an array of the results of all range XOR queries* in the order they were
 
 - If $\text{queries}[i][0] = 1$:`​`
 
-		<li data-end="691" data-start="606">$0 \le index < \text{nums.length}​$
+		- $0 \le index < \text{nums.length}​$
 
 - $0 \le value \le 10^{9}$
 
-	</li>
 - If $\text{queries}[i][0] = 2$ or $\text{queries}[i][0] = 3$:`​`
 
-		<li data-end="959" data-start="874">$0 \le left \le right < \text{nums.length}​$
-
-	</li>
+		- $0 \le left \le right < \text{nums.length}​$

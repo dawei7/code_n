@@ -12,28 +12,19 @@ A **substring** is a contiguous sequence of characters within a string.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s1 = "aba", s2 = "bab"
+- **Input:** s1 = "aba", s2 = "bab"
 
-**Output:** "abab"
+- **Output:** "abab"
 
-**Explanation:**
+- **Explanation:** `"abab"` is the shortest string that contains both `"aba"` and `"bab"` as substrings.
 
-`"abab"` is the shortest string that contains both `"aba"` and `"bab"` as substrings.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s1 = "aa", s2 = "aaa"
+- **Input:** s1 = "aa", s2 = "aaa"
 
-**Output:** "aaa"
+- **Output:** "aaa"
 
-**Explanation:**
-
-`"aa"` is already contained within `"aaa"`, so the shortest superstring is `"aaa"`.
-
-</div>
+- **Explanation:** `"aa"` is already contained within `"aaa"`, so the shortest superstring is `"aaa"`.
 
 ### 4. Constraints
 

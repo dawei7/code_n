@@ -35,17 +35,17 @@ Return the integer $\texttt{num1}+\texttt{num2}$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `num1 = 12, num2 = 5`
-- Output: `17`
+- **Input:** `num1 = 12, num2 = 5`
+- **Output:** `17`
 
-**Example 2**
+#### Example 2
 
-- Input: `num1 = -10, num2 = 4`
-- Output: `-6`
+- **Input:** `num1 = -10, num2 = 4`
+- **Output:** `-6`
 
-**Example 3**
+#### Example 3
 
-- Input: `num1 = -7, num2 = 7`
-- Output: `0`
+- **Input:** `num1 = -7, num2 = 7`
+- **Output:** `0`

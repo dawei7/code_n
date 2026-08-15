@@ -31,16 +31,16 @@ A critical connection is an edge whose removal makes at least one server unable 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 4`, `connections = [[0,1],[1,2],[2,0],[1,3]]`
-- Output: `[[1,3]]`
+- **Input:** `n = 4`, `connections = [[0,1],[1,2],[2,0],[1,3]]`
+- **Output:** `[[1,3]]`
 
 The first three servers lie on a cycle, while server `3` has no alternate route.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 2`, `connections = [[0,1]]`
-- Output: `[[0,1]]`
+- **Input:** `n = 2`, `connections = [[0,1]]`
+- **Output:** `[[0,1]]`
 
 The network's only edge is necessarily critical.

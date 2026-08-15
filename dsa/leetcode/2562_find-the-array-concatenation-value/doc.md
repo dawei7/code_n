@@ -30,20 +30,20 @@ While at least two elements remain, concatenate the current first element with t
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [7, 52, 2, 4]`
-- Output: `596`
-- Explanation: The outer pairs produce `74` and `522`, whose sum is `596`.
+- **Input:** `nums = [7, 52, 2, 4]`
+- **Output:** `596`
+- **Explanation:** The outer pairs produce `74` and `522`, whose sum is `596`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [5, 14, 13, 8, 12]`
-- Output: `673`
-- Explanation: The pair values are `512` and `148`, and the middle value `13` is added directly.
+- **Input:** `nums = [5, 14, 13, 8, 12]`
+- **Output:** `673`
+- **Explanation:** The pair values are `512` and `148`, and the middle value `13` is added directly.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1]`
-- Output: `1`
-- Explanation: The only element is the unmatched middle value.
+- **Input:** `nums = [1]`
+- **Output:** `1`
+- **Explanation:** The only element is the unmatched middle value.

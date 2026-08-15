@@ -10,8 +10,14 @@ A **substring** is a contiguous sequence of characters within the string.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `num`: Input parameter (`str`).
+- `change`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -23,6 +29,7 @@ A **substring** is a contiguous sequence of characters within the string.
 - 1 maps to change[1] = 8.
 Thus, "<u>1</u>32" becomes "<u>8</u>32".
 "832" is the largest number that can be created, so return it.
+
 #### Example 2
 
 - **Input:** $num = "<u>021</u>", change = [9,4,3,5,7,2,1,9,0,6]$
@@ -33,6 +40,7 @@ Thus, "<u>1</u>32" becomes "<u>8</u>32".
 - 1 maps to change[1] = 4.
 Thus, "<u>021</u>" becomes "<u>934</u>".
 "934" is the largest number that can be created, so return it.
+
 #### Example 3
 
 - **Input:** $num = "5", change = [1,4,7,5,3,2,5,6,9,4]$

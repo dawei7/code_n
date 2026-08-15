@@ -30,20 +30,20 @@ In one move, choose two consecutive, nonempty special substrings of `s` and swap
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "11011000"`
-- Output: `"11100100"`
-- Explanation: Optimizing and reordering the special blocks inside the outer pair produces the larger string.
+- **Input:** `s = "11011000"`
+- **Output:** `"11100100"`
+- **Explanation:** Optimizing and reordering the special blocks inside the outer pair produces the larger string.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "10"`
-- Output: `"10"`
-- Explanation: The only nonempty special block cannot be improved.
+- **Input:** `s = "10"`
+- **Output:** `"10"`
+- **Explanation:** The only nonempty special block cannot be improved.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "101100"`
-- Output: `"110010"`
-- Explanation: The top-level blocks `"10"` and `"1100"` can be swapped, and the longer block is lexicographically larger.
+- **Input:** `s = "101100"`
+- **Output:** `"110010"`
+- **Explanation:** The top-level blocks `"10"` and `"1100"` can be swapped, and the longer block is lexicographically larger.

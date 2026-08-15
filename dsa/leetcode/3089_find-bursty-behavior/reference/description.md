@@ -30,7 +30,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 Posts table:
@@ -73,5 +72,3 @@ Posts table:
 ### 4. Note
 
 Output table is ordered by user_id in ascending order.
-
-</div>

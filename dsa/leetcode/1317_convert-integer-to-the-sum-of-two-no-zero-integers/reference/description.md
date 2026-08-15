@@ -12,8 +12,13 @@ The test cases are generated so that there is at least one valid solution. If th
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -23,6 +28,7 @@ The test cases are generated so that there is at least one valid solution. If th
 - **Output:** `[1,1]`
 - **Explanation:** Let a = 1 and b = 1.
 Both a and b are no-zero integers, and a + b = 2 = n.
+
 #### Example 2
 
 - **Input:** $n = 11$

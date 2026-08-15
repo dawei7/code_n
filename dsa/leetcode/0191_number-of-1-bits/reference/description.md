@@ -16,40 +16,27 @@ Return the count of binary positions whose value is `1`.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 11
+- **Input:** n = 11
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** The input binary string **1011** has a total of three set bits.
 
-The input binary string **1011** has a total of three set bits.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 128
+- **Input:** n = 128
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** The input binary string **10000000** has a total of one set bit.
 
-The input binary string **10000000** has a total of one set bit.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 2147483645
+- **Input:** n = 2147483645
 
-**Output:** 30
+- **Output:** 30
 
-**Explanation:**
-
-The input binary string **1111111111111111111111111111101** has a total of thirty set bits.
-
-</div>
+- **Explanation:** The input binary string **1111111111111111111111111111101** has a total of thirty set bits.
 
 ### 4. Constraints
 

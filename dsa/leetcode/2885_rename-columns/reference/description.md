@@ -34,7 +34,8 @@ The result format is in the following example.
 ### 3. Examples
 
 #### Example 1
-**Input:
+
+- **Input:** 
 **+----+---------+----------+-----+
 | id | first   | last     | age |
 +----+---------+----------+-----+
@@ -44,7 +45,7 @@ The result format is in the following example.
 | 4  | Georgia | Thompson | 18  |
 | 5  | Thomas  | Moore    | 10  |
 +----+---------+----------+-----+
-**Output:**
+- **Output:** 
 +------------+------------+-----------+--------------+
 | student_id | first_name | last_name | age_in_years |
 +------------+------------+-----------+--------------+
@@ -54,6 +55,5 @@ The result format is in the following example.
 | 4          | Georgia    | Thompson  | 18           |
 | 5          | Thomas     | Moore     | 10           |
 +------------+------------+-----------+--------------+
-**Explanation:**
-The column names are changed accordingly.
+- **Explanation:** The column names are changed accordingly.
 ```

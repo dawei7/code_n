@@ -6,8 +6,14 @@ A **subsequence** is a sequence that can be derived from `arr` by deleting some 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+- `difference`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,11 +22,13 @@ A **subsequence** is a sequence that can be derived from `arr` by deleting some 
 - **Input:** `arr = [1,2,3,4], difference = 1`
 - **Output:** `4`
 - **Explanation:** The longest arithmetic subsequence is [1,2,3,4].
+
 #### Example 2
 
 - **Input:** `arr = [1,3,5,7], difference = 1`
 - **Output:** `1`
 - **Explanation:** The longest arithmetic subsequence is any single element.
+
 #### Example 3
 
 - **Input:** `arr = [1,5,7,8,5,3,4,2,1], difference = -2`

@@ -10,8 +10,11 @@ Design the `CombinationIterator` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `CombinationIterator(characters: str, combinationLength: int)`: Initializes the data structure.
+- `next() -> `str``: Executes operation.
+- `hasNext() -> `bool``: Executes operation.
 
 ### 3. Examples
 

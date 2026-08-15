@@ -45,17 +45,17 @@ be filled exactly.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `height = 2`, `width = 3`, `bricks = [1,2]`
-- Output: `2`
+- **Input:** `height = 2`, `width = 3`, `bricks = [1,2]`
+- **Output:** `2`
 
-**Example 2**
+#### Example 2
 
-- Input: `height = 1`, `width = 1`, `bricks = [5]`
-- Output: `0`
+- **Input:** `height = 1`, `width = 1`, `bricks = [5]`
+- **Output:** `0`
 
-**Example 3**
+#### Example 3
 
-- Input: `height = 10`, `width = 5`, `bricks = [5]`
-- Output: `1`
+- **Input:** `height = 10`, `width = 5`, `bricks = [5]`
+- **Output:** `1`

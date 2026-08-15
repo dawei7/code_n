@@ -32,16 +32,16 @@ Count the set bits at even indices and the set bits at odd indices. Return those
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 50`
-- Output: `[1,2]`
+- **Input:** `n = 50`
+- **Output:** `[1,2]`
 
 The binary representation is `110010`, whose set bits are at indices `1`, `4`, and `5`. Index `4` is even, while indices `1` and `5` are odd.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 2`
-- Output: `[0,1]`
+- **Input:** `n = 2`
+- **Output:** `[0,1]`
 
 The binary representation is `10`, so its only set bit is at odd index `1`.

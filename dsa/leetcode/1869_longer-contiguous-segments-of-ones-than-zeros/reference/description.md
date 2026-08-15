@@ -8,8 +8,13 @@ Note that if there are no `0`'s, then the longest continuous segment of `0`'s is
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -17,24 +22,23 @@ Note that if there are no `0`'s, then the longest continuous segment of `0`'s is
 
 - **Input:** `s = "1101"`
 - **Output:** `true`
-- **Explanation:**
-The longest contiguous segment of 1s has length 2: "<u>11</u>01"
+- **Explanation:** The longest contiguous segment of 1s has length 2: "<u>11</u>01"
 The longest contiguous segment of 0s has length 1: "11<u>0</u>1"
 The segment of 1s is longer, so return true.
+
 #### Example 2
 
 - **Input:** `s = "111000"`
 - **Output:** `false`
-- **Explanation:**
-The longest contiguous segment of 1s has length 3: "<u>111</u>000"
+- **Explanation:** The longest contiguous segment of 1s has length 3: "<u>111</u>000"
 The longest contiguous segment of 0s has length 3: "111<u>000</u>"
 The segment of 1s is not longer, so return false.
+
 #### Example 3
 
 - **Input:** `s = "110100010"`
 - **Output:** `false`
-- **Explanation:**
-The longest contiguous segment of 1s has length 2: "<u>11</u>0100010"
+- **Explanation:** The longest contiguous segment of 1s has length 2: "<u>11</u>0100010"
 The longest contiguous segment of 0s has length 3: "1101<u>000</u>10"
 The segment of 1s is not longer, so return false.
 

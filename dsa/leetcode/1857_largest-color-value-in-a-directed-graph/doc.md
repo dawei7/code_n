@@ -33,19 +33,19 @@ A valid path follows directed edges and may contain one or more nodes. Its color
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `colors = "abaca"`, `edges = [[0, 1], [0, 2], [2, 3], [3, 4]]`
-- Output: `3`
+- **Input:** `colors = "abaca"`, `edges = [[0, 1], [0, 2], [2, 3], [3, 4]]`
+- **Output:** `3`
 
 Path `0 -> 2 -> 3 -> 4` contains three nodes colored `a`.
 
-**Example 2**
+#### Example 2
 
-- Input: `colors = "a"`, `edges = [[0, 0]]`
-- Output: `-1`
+- **Input:** `colors = "a"`, `edges = [[0, 0]]`
+- **Output:** `-1`
 
-**Example 3**
+#### Example 3
 
-- Input: `colors = "abc"`, `edges = []`
-- Output: `1`
+- **Input:** `colors = "abc"`, `edges = []`
+- **Output:** `1`

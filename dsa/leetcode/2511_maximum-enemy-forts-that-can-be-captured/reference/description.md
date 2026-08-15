@@ -20,8 +20,13 @@ Return* the **maximum** number of enemy forts that can be captured*. In case it 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `forts`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -29,10 +34,11 @@ Return* the **maximum** number of enemy forts that can be captured*. In case it 
 
 - **Input:** $forts = [1,0,0,-1,0,0,0,0,1]$
 - **Output:** `4`
-- **Explanation:**
+- **Explanation:** 
 - Moving the army from position 0 to position 3 captures 2 enemy forts, at 1 and 2.
 - Moving the army from position 8 to position 3 captures 4 enemy forts.
 Since 4 is the maximum number of enemy forts that can be captured, we return 4.
+
 #### Example 2
 
 - **Input:** $forts = [0,0,1,-1]$

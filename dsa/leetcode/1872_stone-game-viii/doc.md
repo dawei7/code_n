@@ -29,23 +29,23 @@ The game ends with one stone. Alice chooses moves to maximize `Alice score - Bob
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `stones = [-1,2,-3,4,-5]`
-- Output: `5`
+- **Input:** `stones = [-1,2,-3,4,-5]`
+- **Output:** `5`
 
 Alice can combine the first four stones for `2`; Bob then combines `[2,-5]` for `-3`, giving difference $2-(-3)=5$.
 
-**Example 2**
+#### Example 2
 
-- Input: `stones = [7,-6,5,10,5,-2,-6]`
-- Output: `13`
+- **Input:** `stones = [7,-6,5,10,5,-2,-6]`
+- **Output:** `13`
 
 Alice can combine the entire row immediately and score its total, `13`.
 
-**Example 3**
+#### Example 3
 
-- Input: `stones = [-10,-12]`
-- Output: `-22`
+- **Input:** `stones = [-10,-12]`
+- **Output:** `-22`
 
 Only one move is legal, so Alice must score the total `-22`.

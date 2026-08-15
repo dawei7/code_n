@@ -40,21 +40,21 @@ lexicographically larger value.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "letsleetcode", k = 2`
-- Output: `"let"`
-- Explanation: Both `"let"` and `"ete"` have maximum length three, and
+- **Input:** `s = "letsleetcode", k = 2`
+- **Output:** `"let"`
+- **Explanation:** Both `"let"` and `"ete"` have maximum length three, and
   `"let"` is lexicographically larger.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "bb", k = 2`
-- Output: `"b"`
-- Explanation: Two copies of `"b"` form the complete string.
+- **Input:** `s = "bb", k = 2`
+- **Output:** `"b"`
+- **Explanation:** Two copies of `"b"` form the complete string.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "ab", k = 2`
-- Output: `""`
-- Explanation: Neither character occurs often enough to appear in two copies.
+- **Input:** `s = "ab", k = 2`
+- **Output:** `""`
+- **Explanation:** Neither character occurs often enough to appear in two copies.

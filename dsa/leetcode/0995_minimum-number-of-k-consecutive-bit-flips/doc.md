@@ -31,19 +31,19 @@ Return the minimum number of k-bit flips needed to leave no `0` anywhere in the 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [0, 1, 0], k = 1`
-- Output: `2`
-- Explanation: Flip the first and third individual bits.
+- **Input:** `nums = [0, 1, 0], k = 1`
+- **Output:** `2`
+- **Explanation:** Flip the first and third individual bits.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 1, 0], k = 2`
-- Output: `-1`
-- Explanation: No sequence of length-two flips produces three ones.
+- **Input:** `nums = [1, 1, 0], k = 2`
+- **Output:** `-1`
+- **Explanation:** No sequence of length-two flips produces three ones.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [0, 0, 0, 1, 0, 1, 1, 0], k = 3`
-- Output: `3`
+- **Input:** `nums = [0, 0, 0, 1, 0, 1, 1, 0], k = 3`
+- **Output:** `3`

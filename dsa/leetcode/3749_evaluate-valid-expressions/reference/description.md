@@ -36,36 +36,27 @@ Return the integer obtained after recursively applying every encoded operation t
 
 #### Example 1
 
-<div class="example-block">
-**Input:** expression = "add(2,3)"
+- **Input:** expression = "add(2,3)"
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** The operation `add(2,3)` means $2 + 3 = 5$.
 
-The operation `add(2,3)` means $2 + 3 = 5$.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** expression = "-42"
+- **Input:** expression = "-42"
 
-**Output:** -42
+- **Output:** -42
 
-**Explanation:**
+- **Explanation:** The expression is a single integer literal, so the result is -42.
 
-The expression is a single integer literal, so the result is -42.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** expression = "div(mul(4,sub(9,5)),add(1,1))"
+- **Input:** expression = "div(mul(4,sub(9,5)),add(1,1))"
 
-**Output:** 8
+- **Output:** 8
 
-**Explanation:**
+- **Explanation:** 
 
 - First, evaluate the inner expression: $sub(9,5) = 9 - 5 = 4$
 
@@ -76,8 +67,6 @@ The expression is a single integer literal, so the result is -42.
 - Finally, divide the two main results: $div(16,2) = 16 / 2 = 8$
 
 Therefore, the entire expression evaluates to 8.
-
-</div>
 
 ### 4. Constraints
 

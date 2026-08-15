@@ -37,7 +37,7 @@ ascending and the latter is descending.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 Input table `Data`:
 
@@ -48,7 +48,7 @@ Input table `Data`:
 | 3 | 1 |
 | 1 | 4 |
 
-Output:
+- **Output:** 
 
 | first_col | second_col |
 |---:|---:|

@@ -10,19 +10,23 @@ If it is *not possible* to find such a value for $\text{ans}[i]$ that satisfies 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,3,5,7]
+- **Input:** nums = [2,3,5,7]
 
-**Output:** [-1,1,4,3]
+- **Output:** [-1,1,4,3]
 
-**Explanation:**
+- **Explanation:** 
 
 - For $i = 0$, as there is no value for $\text{ans}[0]$ that satisfies $\text{ans}[0] OR (\text{ans}[0] + 1) = 2$, so $\text{ans}[0] = -1$.
 
@@ -32,23 +36,19 @@ If it is *not possible* to find such a value for $\text{ans}[i]$ that satisfies 
 
 - For $i = 3$, the smallest $\text{ans}[3]$ that satisfies $\text{ans}[3] OR (\text{ans}[3] + 1) = 7$ is `3`, because $3 OR (3 + 1) = 7$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [11,13,31]
+- **Input:** nums = [11,13,31]
 
-**Output:** [9,12,15]
+- **Output:** [9,12,15]
 
-**Explanation:**
+- **Explanation:** 
 
 - For $i = 0$, the smallest $\text{ans}[0]$ that satisfies $\text{ans}[0] OR (\text{ans}[0] + 1) = 11$ is `9`, because $9 OR (9 + 1) = 11$.
 
 - For $i = 1$, the smallest $\text{ans}[1]$ that satisfies $\text{ans}[1] OR (\text{ans}[1] + 1) = 13$ is `12`, because $12 OR (12 + 1) = 13$.
 
 - For $i = 2$, the smallest $\text{ans}[2]$ that satisfies $\text{ans}[2] OR (\text{ans}[2] + 1) = 31$ is `15`, because $15 OR (15 + 1) = 31$.
-
-</div>
 
 ### 4. Constraints
 

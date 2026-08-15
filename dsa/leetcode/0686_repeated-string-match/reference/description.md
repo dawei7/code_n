@@ -4,8 +4,14 @@ Given two strings `a` and `b`, return *the minimum number of times you should re
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `a`: Input parameter (`str`).
+- `b`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Notice
 
@@ -18,6 +24,7 @@ string `"abc"` repeated 0 times is `""`, repeated 1 time is `"abc"` and repeated
 - **Input:** $a = "abcd", b = "cdabcdab"$
 - **Output:** `3`
 - **Explanation:** We return 3 because by repeating a three times "ab**cdabcdab**cd", b is a substring of it.
+
 #### Example 2
 
 - **Input:** $a = "a", b = "aa"$

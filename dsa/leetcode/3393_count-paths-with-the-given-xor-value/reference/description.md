@@ -14,21 +14,24 @@ Since the answer can be very large, return the result **modulo** $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** grid = [[2, 1, 5], [7, 10, 0], [12, 6, 4]], k = 11
+- **Input:** grid = [[2, 1, 5], [7, 10, 0], [12, 6, 4]], k = 11
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-The 3 paths are:
+- **Explanation:** The 3 paths are:
 
 - `(0, 0) → (1, 0) → (2, 0) → (2, 1) → (2, 2)`
 
@@ -36,17 +39,13 @@ The 3 paths are:
 
 - `(0, 0) → (0, 1) → (1, 1) → (2, 1) → (2, 2)`
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** grid = [[1, 3, 3, 3], [0, 3, 3, 2], [3, 0, 1, 1]], k = 2
+- **Input:** grid = [[1, 3, 3, 3], [0, 3, 3, 2], [3, 0, 1, 1]], k = 2
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
-
-The 5 paths are:
+- **Explanation:** The 5 paths are:
 
 - `(0, 0) → (1, 0) → (2, 0) → (2, 1) → (2, 2) → (2, 3)`
 
@@ -58,15 +57,11 @@ The 5 paths are:
 
 - `(0, 0) → (0, 1) → (0, 2) → (1, 2) → (2, 2) → (2, 3)`
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** grid = [[1, 1, 1, 2], [3, 0, 3, 2], [3, 0, 2, 2]], k = 10
+- **Input:** grid = [[1, 1, 1, 2], [3, 0, 3, 2], [3, 0, 2, 2]], k = 10
 
-**Output:** 0
-
-</div>
+- **Output:** 0
 
 ### 4. Constraints
 

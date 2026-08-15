@@ -16,8 +16,15 @@ Return the **maximum** possible stability of any valid spanning tree. If it is i
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -27,12 +34,11 @@ Return the **maximum** possible stability of any valid spanning tree. If it is i
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,1,2,1],[1,2,3,0]], k = 1
+- **Input:** n = 3, edges = [[0,1,2,1],[1,2,3,0]], k = 1
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - Edge `[0,1]` with strength = 2 must be included in the spanning tree.
 
@@ -42,15 +48,13 @@ Return the **maximum** possible stability of any valid spanning tree. If it is i
 
 - The minimum strength in the spanning tree is 2, which is the maximum possible stability.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,1,4,0],[1,2,3,0],[0,2,1,0]], k = 2
+- **Input:** n = 3, edges = [[0,1,4,0],[1,2,3,0],[0,2,1,0]], k = 2
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
+- **Explanation:** 
 
 - Since all edges are optional and up to $k = 2$ upgrades are allowed.
 
@@ -60,19 +64,15 @@ Return the **maximum** possible stability of any valid spanning tree. If it is i
 
 - The minimum strength in the tree is 6, which is the maximum possible stability.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,1,1,1],[1,2,1,1],[2,0,1,1]], k = 0
+- **Input:** n = 3, edges = [[0,1,1,1],[1,2,1,1],[2,0,1,1]], k = 0
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
+- **Explanation:** 
 
 - All edges are mandatory and form a cycle, which violates the spanning tree property of acyclicity. Thus, the answer is -1.
-
-</div>
 
 ### 5. Constraints
 

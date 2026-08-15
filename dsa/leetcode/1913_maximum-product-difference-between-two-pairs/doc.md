@@ -31,23 +31,23 @@ Maximize this difference and return its value. Equal values at different indices
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [5,6,2,7,4]`
-- Output: `34`
+- **Input:** `nums = [5,6,2,7,4]`
+- **Output:** `34`
 
 The two largest values give `6 * 7`, and the two smallest remaining values give `2 * 4`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4,2,5,9,7,4,8]`
-- Output: `64`
+- **Input:** `nums = [4,2,5,9,7,4,8]`
+- **Output:** `64`
 
 The maximum is `9 * 8 - 2 * 4 = 64`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,2,3,4]`
-- Output: `10`
+- **Input:** `nums = [1,2,3,4]`
+- **Output:** `10`
 
 All four values are used: `4 * 3 - 1 * 2 = 10`.

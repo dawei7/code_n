@@ -8,8 +8,14 @@ A **prefix** of a string `s` is any leading contiguous substring of `s`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+- `pref`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +24,7 @@ A **prefix** of a string `s` is any leading contiguous substring of `s`.
 - **Input:** $words = ["pay","**<u>at</u>**tention","practice","<u>**at**</u>tend"], pref = "at"$
 - **Output:** `2`
 - **Explanation:** The 2 strings that contain "at" as a prefix are: "<u>**at**</u>tention" and "<u>**at**</u>tend".
+
 #### Example 2
 
 - **Input:** $words = ["leetcode","win","loops","success"], pref = "code"$

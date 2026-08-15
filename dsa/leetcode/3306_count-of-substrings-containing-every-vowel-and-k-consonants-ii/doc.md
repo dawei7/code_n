@@ -31,23 +31,23 @@ Return the number of substrings that contain all five vowels at least once and e
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word = "aeioqq", k = 1`
-- Output: `0`
+- **Input:** `word = "aeioqq", k = 1`
+- **Output:** `0`
 
 No substring contains `u`, so none can contain every vowel.
 
-**Example 2**
+#### Example 2
 
-- Input: `word = "aeiou", k = 0`
-- Output: `1`
+- **Input:** `word = "aeiou", k = 0`
+- **Output:** `1`
 
 The complete string is the only range containing every vowel, and it has no consonants.
 
-**Example 3**
+#### Example 3
 
-- Input: `word = "ieaouqqieaouqq", k = 1`
-- Output: `3`
+- **Input:** `word = "ieaouqqieaouqq", k = 1`
+- **Output:** `3`
 
 Exactly three positional ranges include all five vowels while containing one consonant.

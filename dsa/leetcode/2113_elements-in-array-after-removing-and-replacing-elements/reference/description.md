@@ -22,8 +22,7 @@ Return *an integer array `ans` of size *`n` *where *$\text{ans}[j]$* is the answ
 
 - **Input:** `nums = [0,1,2], queries = [[0,2],[2,0],[3,2],[5,0]]`
 - **Output:** `[2,2,-1,0]`
-- **Explanation:**
-Minute 0: [0,1,2] - All elements are in the nums.
+- **Explanation:** Minute 0: [0,1,2] - All elements are in the nums.
 Minute 1: [1,2]   - The leftmost element, 0, is removed.
 Minute 2: [2]     - The leftmost element, 1, is removed.
 Minute 3: []      - The leftmost element, 2, is removed.
@@ -33,6 +32,7 @@ At minute 0, nums[2] is 2.
 At minute 2, nums[0] is 2.
 At minute 3, nums[2] does not exist.
 At minute 5, nums[0] is 0.
+
 #### Example 2
 
 - **Input:** `nums = [2], queries = [[0,0],[1,0],[2,0],[3,0]]`

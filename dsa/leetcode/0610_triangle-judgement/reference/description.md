@@ -30,7 +30,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Triangle table:
 +----+----+----+
 | x  | y  | z  |
@@ -38,7 +38,7 @@ Triangle table:
 | 13 | 15 | 30 |
 | 10 | 20 | 15 |
 +----+----+----+
-**Output:**
+- **Output:** 
 +----+----+----+----------+
 | x  | y  | z  | triangle |
 +----+----+----+----------+

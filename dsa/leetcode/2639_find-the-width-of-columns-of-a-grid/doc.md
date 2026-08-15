@@ -32,14 +32,14 @@ Here, $m$ is the number of rows and $n$ is the number of columns.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[1], [22], [333]]`
-- Output: `[3]`
-- Explanation: The only column contains values of lengths one, two, and three, so its width is three.
+- **Input:** `grid = [[1], [22], [333]]`
+- **Output:** `[3]`
+- **Explanation:** The only column contains values of lengths one, two, and three, so its width is three.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[-15, 1, 3], [15, 7, 12], [5, 6, -2]]`
-- Output: `[3, 1, 2]`
-- Explanation: The first column needs three characters for `-15`; the other columns need at most one and two characters, respectively.
+- **Input:** `grid = [[-15, 1, 3], [15, 7, 12], [5, 6, -2]]`
+- **Output:** `[3, 1, 2]`
+- **Explanation:** The first column needs three characters for `-15`; the other columns need at most one and two characters, respectively.

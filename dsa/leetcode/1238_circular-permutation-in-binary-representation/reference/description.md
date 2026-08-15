@@ -10,8 +10,14 @@ Given 2 integers `n` and `start`. Your task is return **any** permutation `p` of
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `start`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -21,6 +27,7 @@ Given 2 integers `n` and `start`. Your task is return **any** permutation `p` of
 - **Output:** `[3,2,0,1]`
 - **Explanation:** The binary representation of the permutation is (11,10,00,01).
 All the adjacent element differ by one bit. Another valid permutation is [3,1,0,2]
+
 #### Example 2
 
 - **Input:** $n = 3, start = 2$

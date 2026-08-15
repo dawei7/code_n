@@ -33,20 +33,20 @@ Return the smallest valid decimal string representing an integer at least as lar
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `num = "1234", t = 256`
-- Output: `"1488"`
-- Explanation: The digit product of `1488` is $1\cdot4\cdot8\cdot8=256$, and no smaller zero-free integer at least `1234` has a product divisible by $256$.
+- **Input:** `num = "1234", t = 256`
+- **Output:** `"1488"`
+- **Explanation:** The digit product of `1488` is $1\cdot4\cdot8\cdot8=256$, and no smaller zero-free integer at least `1234` has a product divisible by $256$.
 
-**Example 2**
+#### Example 2
 
-- Input: `num = "12355", t = 50`
-- Output: `"12355"`
-- Explanation: The input is already zero-free and its digit product is $150$, which is divisible by $50$.
+- **Input:** `num = "12355", t = 50`
+- **Output:** `"12355"`
+- **Explanation:** The input is already zero-free and its digit product is $150$, which is divisible by $50$.
 
-**Example 3**
+#### Example 3
 
-- Input: `num = "11111", t = 26`
-- Output: `"-1"`
-- Explanation: A product of nonzero decimal digits has no prime factors other than $2$, $3$, $5$, and $7$, while $26$ contains the factor $13$.
+- **Input:** `num = "11111", t = 26`
+- **Output:** `"-1"`
+- **Explanation:** A product of nonzero decimal digits has no prime factors other than $2$, $3$, $5$, and $7$, while $26$ contains the factor $13$.

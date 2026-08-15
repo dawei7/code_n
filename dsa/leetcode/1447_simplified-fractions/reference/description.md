@@ -4,8 +4,13 @@ Given an integer `n`, return *a list of all **simplified** fractions between *`0
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[str]`.
 
 ### 3. Examples
 
@@ -14,10 +19,12 @@ Given an integer `n`, return *a list of all **simplified** fractions between *`0
 - **Input:** $n = 2$
 - **Output:** `["1/2"]`
 - **Explanation:** "1/2" is the only unique fraction with a denominator less-than-or-equal-to 2.
+
 #### Example 2
 
 - **Input:** $n = 3$
 - **Output:** `["1/2","1/3","2/3"]`
+
 #### Example 3
 
 - **Input:** $n = 4$

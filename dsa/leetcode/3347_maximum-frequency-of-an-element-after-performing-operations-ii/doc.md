@@ -34,20 +34,20 @@ Return the maximum attainable count of equal elements after all operations.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 4, 5], k = 1, numOperations = 2`
-- Output: `2`
-- Explanation: Add zero to `4` and add `-1` to `5`; afterward, `4` occurs twice.
+- **Input:** `nums = [1, 4, 5], k = 1, numOperations = 2`
+- **Output:** `2`
+- **Explanation:** Add zero to `4` and add `-1` to `5`; afterward, `4` occurs twice.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [5, 11, 20, 20], k = 5, numOperations = 1`
-- Output: `2`
-- Explanation: The two copies of `20` already form the best frequency, and adding zero to `11` performs the required operation without changing it.
+- **Input:** `nums = [5, 11, 20, 20], k = 5, numOperations = 1`
+- **Output:** `2`
+- **Explanation:** The two copies of `20` already form the best frequency, and adding zero to `11` performs the required operation without changing it.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 1000000000], k = 500000000, numOperations = 2`
-- Output: `2`
-- Explanation: Both elements can be moved to `500000000`, even though that target is absent from the original array.
+- **Input:** `nums = [1, 1000000000], k = 500000000, numOperations = 2`
+- **Output:** `2`
+- **Explanation:** Both elements can be moved to `500000000`, even though that target is absent from the original array.

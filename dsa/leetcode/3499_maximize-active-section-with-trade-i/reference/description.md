@@ -16,8 +16,13 @@ Return the **maximum** number of active sections in `s` after making the optimal
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -27,24 +32,19 @@ Treat `s` as if it is **augmented** with a `'1'` at both ends, forming $t = '1' 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "01"
+- **Input:** s = "01"
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** Because there is no block of `'1'`s surrounded by `'0'`s, no valid trade is possible. The maximum number of active sections is 1.
 
-Because there is no block of `'1'`s surrounded by `'0'`s, no valid trade is possible. The maximum number of active sections is 1.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "0100"
+- **Input:** s = "0100"
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** 
 
 - String `"0100"` → Augmented to `"101001"`.
 
@@ -52,15 +52,13 @@ Because there is no block of `'1'`s surrounded by `'0'`s, no valid trade is poss
 
 - The final string without augmentation is `"1111"`. The maximum number of active sections is 4.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "1000100"
+- **Input:** s = "1000100"
 
-**Output:** 7
+- **Output:** 7
 
-**Explanation:**
+- **Explanation:** 
 
 - String `"1000100"` → Augmented to `"110001001"`.
 
@@ -68,23 +66,19 @@ Because there is no block of `'1'`s surrounded by `'0'`s, no valid trade is poss
 
 - The final string without augmentation is `"1111111"`. The maximum number of active sections is 7.
 
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** s = "01010"
+- **Input:** s = "01010"
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** 
 
 - String `"01010"` → Augmented to `"1010101"`.
 
 - Choose `"010"`, convert `"10<u>**1**</u>0101"` → `"1<u>**000**</u>101"` → `"1<u>**111**</u>101"`.
 
 - The final string without augmentation is `"11110"`. The maximum number of active sections is 4.
-
-</div>
 
 ### 5. Constraints
 

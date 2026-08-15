@@ -8,8 +8,14 @@ Given the two integers `numBottles` and `numExchange`, return *the **maximum** n
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `numBottles`: Input parameter (`int`).
+- `numExchange`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +27,7 @@ Given the two integers `numBottles` and `numExchange`, return *the **maximum** n
 - **Output:** `13`
 - **Explanation:** You can exchange 3 empty bottles to get 1 full water bottle.
 Number of water bottles you can drink: 9 + 3 + 1 = 13.
+
 #### Example 2
 
 ![](images/sample_2_1875.png)

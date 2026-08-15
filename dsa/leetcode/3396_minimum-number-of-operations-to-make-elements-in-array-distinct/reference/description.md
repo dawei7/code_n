@@ -6,8 +6,13 @@ You are given an integer array `nums`. You need to ensure that the elements in t
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -17,12 +22,11 @@ that an empty array is considered to have distinct elements. Return the **minimu
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4,2,3,3,5,7]
+- **Input:** nums = [1,2,3,4,2,3,3,5,7]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - In the first operation, the first 3 elements are removed, resulting in the array `[4, 2, 3, 3, 5, 7]`.
 
@@ -30,15 +34,13 @@ that an empty array is considered to have distinct elements. Return the **minimu
 
 Therefore, the answer is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [4,5,6,4,4]
+- **Input:** nums = [4,5,6,4,4]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - In the first operation, the first 3 elements are removed, resulting in the array `[4, 4]`.
 
@@ -46,19 +48,13 @@ Therefore, the answer is 2.
 
 Therefore, the answer is 2.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [6,7,8,9]
+- **Input:** nums = [6,7,8,9]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-The array already contains distinct elements. Therefore, the answer is 0.
-
-</div>
+- **Explanation:** The array already contains distinct elements. Therefore, the answer is 0.
 
 ### 5. Constraints
 

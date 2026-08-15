@@ -30,17 +30,17 @@ The path length is its number of traversed edges, which is one less than its num
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: an alternating five-node chain.
-- Output: `4`
+- **Input:** an alternating five-node chain.
+- **Output:** `4`
 
-**Example 2**
+#### Example 2
 
-- Input: a three-node chain using two left edges.
-- Output: `1`
+- **Input:** a three-node chain using two left edges.
+- **Output:** `1`
 
-**Example 3**
+#### Example 3
 
-- Input: a one-node tree.
-- Output: `0`
+- **Input:** a one-node tree.
+- **Output:** `0`

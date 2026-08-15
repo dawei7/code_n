@@ -19,6 +19,7 @@ Return one longest palindromic substring of `s`.
 - **Input:** `s = "babad"`
 - **Output:** `"bab"`
 - **Explanation:** "aba" is also a valid answer.
+
 #### Example 2
 
 - **Input:** `s = "cbbd"`

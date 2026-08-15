@@ -51,7 +51,6 @@ The query result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 `TeamStats` table:
@@ -119,5 +118,3 @@ The query result format is in the following example.
 - **Tier 2:** The middle 33% of teams. Burnley, Nottingham Forest, Everton, and Luton Town fall into Tier 2.
 
 - **Tier 3:** The bottom 34% of teams. Liverpool and Aston Villa fall into Tier 3.
-
-</div>

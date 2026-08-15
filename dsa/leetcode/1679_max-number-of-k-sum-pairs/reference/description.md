@@ -8,8 +8,14 @@ Return *the maximum number of operations you can perform on the array*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +27,7 @@ Return *the maximum number of operations you can perform on the array*.
 - Remove numbers 1 and 4, then nums = [2,3]
 - Remove numbers 2 and 3, then nums = []
 There are no more pairs that sum up to 5, hence a total of 2 operations.
+
 #### Example 2
 
 - **Input:** `nums = [3,1,3,4,3], k = 6`

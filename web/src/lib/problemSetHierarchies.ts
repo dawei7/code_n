@@ -287,8 +287,9 @@ function buildEloBuckets(
   challenges: ChallengeSummary[],
 ): void {
   for (const challenge of challenges) {
-    if (challenge.elo_rating === null) continue;
-    const band = eloBandForRating(challenge.elo_rating);
+    const elo = challenge.elo_rating ?? challenge.estimated_elo_rating;
+    if (elo === null || elo === undefined) continue;
+    const band = eloBandForRating(elo);
     if (band === null) continue;
     const bandOrder = ELO_BANDS.indexOf(band);
     const bucket = childFolder(
@@ -296,7 +297,7 @@ function buildEloBuckets(
       `${formatEloBand(band)} · ${band.label}`,
       bandOrder,
     );
-    addProblem(bucket, challenge, challenge.elo_rating);
+    addProblem(bucket, challenge, elo);
   }
 }
 
@@ -324,13 +325,15 @@ function buildMetricSet(
   metric: 'elo' | 'frequency',
 ): void {
   const eligible = challenges.filter((challenge) => (
-    metric === 'elo' ? challenge.elo_rating !== null : challenge.frequency !== null
+    metric === 'elo'
+      ? (challenge.elo_rating !== null || challenge.estimated_elo_rating !== null)
+      : challenge.frequency !== null
   ));
   for (const challenge of eligible) {
     for (const topic of challengeTopics(challenge)) {
       const leaf = ensurePath(root, [topic.name], [topicOrder(topic.name)]);
       const order = metric === 'elo'
-        ? challenge.elo_rating!
+        ? (challenge.elo_rating ?? challenge.estimated_elo_rating)!
         : -(challenge.frequency ?? 0);
       addProblem(leaf, challenge, order);
     }

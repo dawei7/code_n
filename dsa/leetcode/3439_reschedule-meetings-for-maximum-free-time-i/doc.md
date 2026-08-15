@@ -35,17 +35,17 @@ Return the maximum achievable length of one continuous free-time interval.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `eventTime = 5, k = 1, startTime = [1,3], endTime = [2,5]`
-- Output: `2`
+- **Input:** `eventTime = 5, k = 1, startTime = [1,3], endTime = [2,5]`
+- **Output:** `2`
 
-**Example 2**
+#### Example 2
 
-- Input: `eventTime = 10, k = 1, startTime = [0,2,9], endTime = [1,4,10]`
-- Output: `6`
+- **Input:** `eventTime = 10, k = 1, startTime = [0,2,9], endTime = [1,4,10]`
+- **Output:** `6`
 
-**Example 3**
+#### Example 3
 
-- Input: `eventTime = 5, k = 2, startTime = [0,1,2,3,4], endTime = [1,2,3,4,5]`
-- Output: `0`
+- **Input:** `eventTime = 5, k = 2, startTime = [0,1,2,3,4], endTime = [1,2,3,4,5]`
+- **Output:** `0`

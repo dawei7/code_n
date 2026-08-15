@@ -14,21 +14,24 @@ Return an integer denoting the **maximum** number of resulting partitions after 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "accca", k = 2
+- **Input:** s = "accca", k = 2
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-The optimal way is to change $s[2]$ to something other than a and c, for example, b. then it becomes `"acbca"`.
+- **Explanation:** The optimal way is to change $s[2]$ to something other than a and c, for example, b. then it becomes `"acbca"`.
 
 Then we perform the operations:
 
@@ -40,33 +43,23 @@ Then we perform the operations:
 
 Doing the operations, the string is divided into 3 partitions, so the answer is 3.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "aabaab", k = 3
+- **Input:** s = "aabaab", k = 3
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** Initially `s` contains 2 distinct characters, so whichever character we change, it will contain at most 3 distinct characters, so the longest prefix with at most 3 distinct characters would always be all of it, therefore the answer is 1.
 
-Initially `s` contains 2 distinct characters, so whichever character we change, it will contain at most 3 distinct characters, so the longest prefix with at most 3 distinct characters would always be all of it, therefore the answer is 1.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "xxyz", k = 1
+- **Input:** s = "xxyz", k = 1
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-The optimal way is to change $s[0]$ or $s[1]$ to something other than characters in `s`, for example, to change $s[0]$ to `w`.
+- **Explanation:** The optimal way is to change $s[0]$ or $s[1]$ to something other than characters in `s`, for example, to change $s[0]$ to `w`.
 
 Then `s` becomes `"wxyz"`, which consists of 4 distinct characters, so as `k` is 1, it will divide into 4 partitions.
-
-</div>
 
 ### 4. Constraints
 

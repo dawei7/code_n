@@ -10,8 +10,14 @@ Note that a subsequence of an array is an array formed by removing some elements
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `goal`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,12 +27,14 @@ Note that a subsequence of an array is an array formed by removing some elements
 - **Output:** `0`
 - **Explanation:** Choose the whole array as a subsequence, with a sum of 6.
 This is equal to the goal, so the absolute difference is 0.
+
 #### Example 2
 
 - **Input:** `nums = [7,-9,15,-2], goal = -5`
 - **Output:** `1`
 - **Explanation:** Choose the subsequence [7,-9,-2], with a sum of -4.
 The absolute difference is abs(-4 - (-5)) = abs(1) = 1, which is the minimum.
+
 #### Example 3
 
 - **Input:** `nums = [1,2,3], goal = -7`

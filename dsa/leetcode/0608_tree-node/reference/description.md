@@ -40,7 +40,7 @@ The result format is in the following example.
 ![](images/tree1.jpg)
 
 ```
-**Input:**
+- **Input:** 
 Tree table:
 +----+------+
 | id | p_id |
@@ -51,7 +51,7 @@ Tree table:
 | 4  | 2    |
 | 5  | 2    |
 +----+------+
-**Output:**
+- **Output:** 
 +----+-------+
 | id | type  |
 +----+-------+
@@ -61,30 +61,30 @@ Tree table:
 | 4  | Leaf  |
 | 5  | Leaf  |
 +----+-------+
-**Explanation:**
-Node 1 is the root node because its parent node is null and it has child nodes 2 and 3.
+- **Explanation:** Node 1 is the root node because its parent node is null and it has child nodes 2 and 3.
 Node 2 is an inner node because it has parent node 1 and child node 4 and 5.
 Nodes 3, 4, and 5 are leaf nodes because they have parent nodes and they do not have child nodes.
 ```
+
 #### Example 2
 
 ![](images/tree2.jpg)
 
 ```
-**Input:**
+- **Input:** 
 Tree table:
 +----+------+
 | id | p_id |
 +----+------+
 | 1  | null |
 +----+------+
-**Output:**
+- **Output:** 
 +----+-------+
 | id | type  |
 +----+-------+
 | 1  | Root  |
 +----+-------+
-**Explanation:** If there is only one node on the tree, you only need to output its root attributes.
+- **Explanation:** If there is only one node on the tree, you only need to output its root attributes.
 ```
 
 ### 4. Note

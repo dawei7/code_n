@@ -31,16 +31,16 @@ Return the number of valid contiguous partitions modulo $10^9+7$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [9,4,1,3,7], k = 4`
-- Output: `6`
-- Explanation: Six choices of segment boundaries keep every segment's maximum-minus-minimum difference at most `4`.
+- **Input:** `nums = [9,4,1,3,7], k = 4`
+- **Output:** `6`
+- **Explanation:** Six choices of segment boundaries keep every segment's maximum-minus-minimum difference at most `4`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3,3,4], k = 0`
-- Output: `2`
-- Explanation: The two equal `3` values may be grouped together or separated, while `4` must form its own segment.
+- **Input:** `nums = [3,3,4], k = 0`
+- **Output:** `2`
+- **Explanation:** The two equal `3` values may be grouped together or separated, while `4` must form its own segment.
 
 ---

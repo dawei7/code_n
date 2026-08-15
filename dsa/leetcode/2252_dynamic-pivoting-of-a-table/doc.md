@@ -36,20 +36,20 @@ order and nullable prices.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `Products = [(1,"Shop",110),(1,"LC_Store",100),(2,"Nozama",200),(2,"Souq",190),(3,"Shop",1000),(3,"Souq",1900)]`
+- **Input:** `Products = [(1,"Shop",110),(1,"LC_Store",100),(2,"Nozama",200),(2,"Souq",190),(3,"Shop",1000),(3,"Souq",1900)]`
 - Output columns: `product_id, LC_Store, Nozama, Shop, Souq`
 - Output rows: `[(1,100,null,110,null),(2,null,200,null,190),(3,null,null,1000,1900)]`
 
-**Example 2**
+#### Example 2
 
-- Input: `Products = [(7,"Only",42)]`
+- **Input:** `Products = [(7,"Only",42)]`
 - Output columns: `product_id, Only`
 - Output rows: `[(7,42)]`
 
-**Example 3**
+#### Example 3
 
-- Input: `Products = [(1,"B",20),(2,"A",30)]`
+- **Input:** `Products = [(1,"B",20),(2,"A",30)]`
 - Output columns: `product_id, A, B`
 - Output rows: `[(1,null,20),(2,30,null)]`

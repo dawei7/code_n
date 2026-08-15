@@ -31,23 +31,23 @@ An array is strictly increasing when every element after the first is greater th
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,2,10,5,7]`
-- Output: `True`
+- **Input:** `nums = [1,2,10,5,7]`
+- **Output:** `True`
 
 Removing `10` leaves `[1,2,5,7]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2,3,1,2]`
-- Output: `False`
+- **Input:** `nums = [2,3,1,2]`
+- **Output:** `False`
 
 No single removal repairs both order conflicts.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,1,1]`
-- Output: `False`
+- **Input:** `nums = [1,1,1]`
+- **Output:** `False`
 
 Every possible result is `[1,1]`, which is not strictly increasing.

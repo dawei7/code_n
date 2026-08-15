@@ -31,18 +31,18 @@ Return `s` with one space inserted before every original index listed in `spaces
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "LeetcodeHelpsMeLearn", spaces = [8, 13, 15]`
-- Output: `"Leetcode Helps Me Learn"`
+- **Input:** `s = "LeetcodeHelpsMeLearn", spaces = [8, 13, 15]`
+- **Output:** `"Leetcode Helps Me Learn"`
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "icodeinpython", spaces = [1, 5, 7, 9]`
-- Output: `"i code in py thon"`
+- **Input:** `s = "icodeinpython", spaces = [1, 5, 7, 9]`
+- **Output:** `"i code in py thon"`
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "spacing", spaces = [0, 1, 2, 3, 4, 5, 6]`
-- Output: `" s p a c i n g"`
-- Explanation: An insertion at index $0$ places a space before the first character.
+- **Input:** `s = "spacing", spaces = [0, 1, 2, 3, 4, 5, 6]`
+- **Output:** `" s p a c i n g"`
+- **Explanation:** An insertion at index $0$ places a space before the first character.

@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/minimum-cost-to-set-cooking-time/) |
 
 ## Problem Description
+
 ### Goal
 
 A microwave accepts between one and four digit presses. Before interpreting
@@ -26,6 +27,7 @@ same digit require no additional move. Find the minimum fatigue cost of an
 entry whose interpreted duration is exactly `targetSeconds`.
 
 ### Function Contract
+
 **Inputs**
 
 - `startAt`: the digit, from `0` through `9`, where the finger begins.
@@ -42,25 +44,26 @@ Return the minimum total movement and pressing cost among all entries that
 represent exactly `targetSeconds`.
 
 ### Examples
-**Example 1**
 
-- Input: `startAt = 1, moveCost = 2, pushCost = 1, targetSeconds = 600`
-- Output: `6`
+#### Example 1
+
+- **Input:** `startAt = 1, moveCost = 2, pushCost = 1, targetSeconds = 600`
+- **Output:** `6`
 
 Pressing `1000` represents ten minutes. The finger presses `1`, moves once to
 `0`, and presses `0` three times, for a total cost of $6$.
 
-**Example 2**
+#### Example 2
 
-- Input: `startAt = 0, moveCost = 1, pushCost = 2, targetSeconds = 76`
-- Output: `6`
+- **Input:** `startAt = 0, moveCost = 1, pushCost = 2, targetSeconds = 76`
+- **Output:** `6`
 
 The entry `76` is padded to `0076`. It requires two moves and two presses.
 
-**Example 3**
+#### Example 3
 
-- Input: `startAt = 9, moveCost = 1, pushCost = 100000, targetSeconds = 6039`
-- Output: `400000`
+- **Input:** `startAt = 9, moveCost = 1, pushCost = 100000, targetSeconds = 6039`
+- **Output:** `400000`
 
 The largest legal duration is entered as `9999`; the finger never moves and
 four presses are required.

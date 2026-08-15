@@ -30,18 +30,18 @@ The dates may arrive in either chronological order and may be identical. Calenda
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `date1 = "2019-06-29", date2 = "2019-06-30"`
-- Output: `1`
+- **Input:** `date1 = "2019-06-29", date2 = "2019-06-30"`
+- **Output:** `1`
 
-**Example 2**
+#### Example 2
 
-- Input: `date1 = "2020-01-15", date2 = "2019-12-31"`
-- Output: `15`
+- **Input:** `date1 = "2020-01-15", date2 = "2019-12-31"`
+- **Output:** `15`
 
-**Example 3**
+#### Example 3
 
-- Input: `date1 = "2020-02-28", date2 = "2020-03-01"`
-- Output: `2`
-- Explanation: February 29 contributes an additional day in leap year 2020.
+- **Input:** `date1 = "2020-02-28", date2 = "2020-03-01"`
+- **Output:** `2`
+- **Explanation:** February 29 contributes an additional day in leap year 2020.

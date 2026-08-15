@@ -6,8 +6,13 @@ Return *the minimum area of a rectangle formed from these points, with sides par
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `points`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -17,6 +22,7 @@ Return *the minimum area of a rectangle formed from these points, with sides par
 
 - **Input:** $points = [[1,1],[1,3],[3,1],[3,3],[2,2]]$
 - **Output:** `4`
+
 #### Example 2
 
 ![](images/rec2.JPG)

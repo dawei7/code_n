@@ -8,8 +8,17 @@ If there is no path from `start` to `end`, **return 0**. Your answer will be acc
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+- `succProb`: Input parameter (`List[float]`).
+- `start_node`: Input parameter (`int`).
+- `end_node`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `float`.
 
 ### 3. Examples
 
@@ -24,6 +33,7 @@ If there is no path from `start` to `end`, **return 0**. Your answer will be acc
 - **Input:** $n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.5,0.2], start = 0, end = 2$
 - **Output:** `0.25000`
 - **Explanation:** There are two paths from start to end, one having a probability of success = 0.2 and the other has 0.5 * 0.5 = 0.25.
+
 #### Example 2
 
 **
@@ -34,6 +44,7 @@ If there is no path from `start` to `end`, **return 0**. Your answer will be acc
 
 - **Input:** $n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.5,0.3], start = 0, end = 2$
 - **Output:** `0.30000`
+
 #### Example 3
 
 **

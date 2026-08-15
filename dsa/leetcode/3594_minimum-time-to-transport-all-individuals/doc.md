@@ -36,20 +36,20 @@ Return the minimum total time as a floating-point number, or `-1.0` if no valid 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 1, k = 1, m = 2, time = [5], mul = [1.0, 1.3]`
-- Output: `5.00000`
-- Explanation: The only individual crosses at stage `0` in five minutes, and no return is needed.
+- **Input:** `n = 1, k = 1, m = 2, time = [5], mul = [1.0, 1.3]`
+- **Output:** `5.00000`
+- **Explanation:** The only individual crosses at stage `0` in five minutes, and no return is needed.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3, k = 2, m = 3, time = [2, 5, 8], mul = [1.0, 1.5, 0.75]`
-- Output: `14.50000`
-- Explanation: Send individuals `0` and `2`, return individual `0` under the faster third stage, then send individuals `0` and `1`.
+- **Input:** `n = 3, k = 2, m = 3, time = [2, 5, 8], mul = [1.0, 1.5, 0.75]`
+- **Output:** `14.50000`
+- **Explanation:** Send individuals `0` and `2`, return individual `0` under the faster third stage, then send individuals `0` and `1`.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 2, k = 1, m = 2, time = [10, 10], mul = [2.0, 2.0]`
-- Output: `-1.00000`
-- Explanation: With capacity one, every forward trip before completion requires the same sole traveler to return, so no progress is possible.
+- **Input:** `n = 2, k = 1, m = 2, time = [10, 10], mul = [2.0, 2.0]`
+- **Output:** `-1.00000`
+- **Explanation:** With capacity one, every forward trip before completion requires the same sole traveler to return, so no progress is possible.

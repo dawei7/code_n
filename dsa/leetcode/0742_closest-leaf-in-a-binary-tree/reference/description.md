@@ -28,6 +28,7 @@ Return the value of a leaf at minimum edge distance from the node whose value is
 - **Input:** `root = [1,3,2], k = 1`
 - **Output:** `2`
 - **Explanation:** Either 2 or 3 is the nearest leaf node to the target of 1.
+
 #### Example 2
 
 ![](images/closest2-tree.jpg)
@@ -35,6 +36,7 @@ Return the value of a leaf at minimum edge distance from the node whose value is
 - **Input:** `root = [1], k = 1`
 - **Output:** `1`
 - **Explanation:** The nearest leaf node is the root node itself.
+
 #### Example 3
 
 ![](images/closest3-tree.jpg)

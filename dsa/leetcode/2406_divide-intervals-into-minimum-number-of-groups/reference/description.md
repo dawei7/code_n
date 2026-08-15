@@ -10,8 +10,13 @@ Two intervals **intersect** if there is at least one common number between them.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `intervals`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +29,7 @@ Two intervals **intersect** if there is at least one common number between them.
 - Group 2: [2, 3], [5, 10].
 - Group 3: [1, 10].
 It can be proven that it is not possible to divide the intervals into fewer than 3 groups.
+
 #### Example 2
 
 - **Input:** $intervals = [[1,3],[5,6],[8,10],[11,13]]$

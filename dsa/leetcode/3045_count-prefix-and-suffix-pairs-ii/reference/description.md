@@ -12,8 +12,13 @@ Return *an integer denoting the **number** of index pairs *`(i*, *j)`* such that
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -27,6 +32,7 @@ i = 0 and j = 2 because isPrefixAndSuffix("a", "ababa") is true.
 i = 0 and j = 3 because isPrefixAndSuffix("a", "aa") is true.
 i = 1 and j = 2 because isPrefixAndSuffix("aba", "ababa") is true.
 Therefore, the answer is 4.
+
 #### Example 2
 
 - **Input:** $words = ["pa","papa","ma","mama"]$
@@ -35,6 +41,7 @@ Therefore, the answer is 4.
 i = 0 and j = 1 because isPrefixAndSuffix("pa", "papa") is true.
 i = 2 and j = 3 because isPrefixAndSuffix("ma", "mama") is true.
 Therefore, the answer is 2.
+
 #### Example 3
 
 - **Input:** $words = ["abab","ab"]$

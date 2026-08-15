@@ -33,21 +33,21 @@ A transaction is possibly invalid when its amount exceeds `$1000`. It is also po
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `transactions = ["alice,20,800,mtv","alice,50,100,beijing"]`
-- Output: `["alice,20,800,mtv","alice,50,100,beijing"]`
+- **Input:** `transactions = ["alice,20,800,mtv","alice,50,100,beijing"]`
+- **Output:** `["alice,20,800,mtv","alice,50,100,beijing"]`
 
 The records share a name, differ in city, and are only `30` minutes apart, so both are invalid.
 
-**Example 2**
+#### Example 2
 
-- Input: `transactions = ["alice,20,800,mtv","alice,50,1200,mtv"]`
-- Output: `["alice,50,1200,mtv"]`
+- **Input:** `transactions = ["alice,20,800,mtv","alice,50,1200,mtv"]`
+- **Output:** `["alice,50,1200,mtv"]`
 
 The cities match, but the second amount exceeds `$1000`.
 
-**Example 3**
+#### Example 3
 
-- Input: `transactions = ["alice,20,800,mtv","bob,50,1200,mtv"]`
-- Output: `["bob,50,1200,mtv"]`
+- **Input:** `transactions = ["alice,20,800,mtv","bob,50,1200,mtv"]`
+- **Output:** `["bob,50,1200,mtv"]`

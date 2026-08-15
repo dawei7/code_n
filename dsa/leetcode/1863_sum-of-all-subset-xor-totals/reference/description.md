@@ -8,8 +8,13 @@ Given an array `nums`, return *the **sum** of all **XOR totals** for every **sub
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -29,6 +34,7 @@ An array `a` is a **subset** of an array `b` if `a` can be obtained from `b` by 
 - [3] has an XOR total of 3.
 - [1,3] has an XOR total of 1 XOR 3 = 2.
 0 + 1 + 3 + 2 = 6
+
 #### Example 2
 
 - **Input:** `nums = [5,1,6]`
@@ -43,6 +49,7 @@ An array `a` is a **subset** of an array `b` if `a` can be obtained from `b` by 
 - [1,6] has an XOR total of 1 XOR 6 = 7.
 - [5,1,6] has an XOR total of 5 XOR 1 XOR 6 = 2.
 0 + 5 + 1 + 6 + 4 + 3 + 7 + 2 = 28
+
 #### Example 3
 
 - **Input:** `nums = [3,4,5,6,7,8]`

@@ -33,20 +33,20 @@ Both values satisfy $1\leq n,m<10^4$. Let $d$ be their common digit count and le
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 10`, `m = 12`
-- Output: `85`
-- Explanation: One minimum-cost route visits `10`, `20`, `21`, `22`, and `12`, whose sum is `85`.
+- **Input:** `n = 10`, `m = 12`
+- **Output:** `85`
+- **Explanation:** One minimum-cost route visits `10`, `20`, `21`, `22`, and `12`, whose sum is `85`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 4`, `m = 8`
-- Output: `-1`
-- Explanation: No sequence of legal one-digit changes can connect the two non-prime values without entering a prime.
+- **Input:** `n = 4`, `m = 8`
+- **Output:** `-1`
+- **Explanation:** No sequence of legal one-digit changes can connect the two non-prime values without entering a prime.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 6`, `m = 2`
-- Output: `-1`
-- Explanation: The destination is prime, so it cannot be occupied.
+- **Input:** `n = 6`, `m = 2`
+- **Output:** `-1`
+- **Explanation:** The destination is prime, so it cannot be occupied.

@@ -27,30 +27,23 @@ A valid knight move consists of moving two squares in one direction and one squa
 
 #### Example 1
 
-<div class="example-block">
-**Input:** start = [1,1], target = [2,2]
+- **Input:** start = [1,1], target = [2,2]
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
-
-One possible sequence of moves is `(1, 1) -> (3, 2) -> (2, 4) -> (4, 3) -> (2, 2)`.
+- **Explanation:** One possible sequence of moves is `(1, 1) -> (3, 2) -> (2, 4) -> (4, 3) -> (2, 2)`.
 
 The knight reaches the target in 4 moves, which is even. Thus, the answer is `true`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** start = [4,5], target = [6,6]
+- **Input:** start = [4,5], target = [6,6]
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**​​​​​​​
+- **Explanation:** ​​​​​​​
 
 It is impossible to reach $target = [6, 6]$ from $start = [4, 5]$ in an even number of moves. Thus, the answer is `false`.
-
-</div>
 
 ### 5. Constraints
 

@@ -30,23 +30,23 @@ Return the matrix after sorting bottom-left diagonals in non-increasing order an
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[1,7,3],[9,8,2],[4,5,6]]`
-- Output: `[[8,2,3],[9,6,7],[4,5,1]]`
+- **Input:** `grid = [[1,7,3],[9,8,2],[4,5,6]]`
+- **Output:** `[[8,2,3],[9,6,7],[4,5,1]]`
 
 The main diagonal becomes `[8,6,1]`, while the top-right diagonal `[7,2]` becomes `[2,7]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[0,1],[1,2]]`
-- Output: `[[2,1],[1,0]]`
+- **Input:** `grid = [[0,1],[1,2]]`
+- **Output:** `[[2,1],[1,0]]`
 
 Only the main diagonal has more than one entry, and it is arranged in non-increasing order.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[1]]`
-- Output: `[[1]]`
+- **Input:** `grid = [[1]]`
+- **Output:** `[[1]]`
 
 A one-element diagonal already satisfies either ordering.

@@ -32,19 +32,19 @@ Return the largest side length $k$ for which some contiguous $k \times k$ subgri
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[7,1,4,5,6],[2,5,1,6,4],[1,5,4,3,2],[1,2,7,3,4]]`
-- Output: `3`
-- Explanation: The square with top-left entry `5` has every row, column, and diagonal sum equal to $12$.
+- **Input:** `grid = [[7,1,4,5,6],[2,5,1,6,4],[1,5,4,3,2],[1,2,7,3,4]]`
+- **Output:** `3`
+- **Explanation:** The square with top-left entry `5` has every row, column, and diagonal sum equal to $12$.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[5,1,3,1],[9,3,3,1],[1,3,3,8]]`
-- Output: `2`
+- **Input:** `grid = [[5,1,3,1],[9,3,3,1],[1,3,3,8]]`
+- **Output:** `2`
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[1000000]]`
-- Output: `1`
-- Explanation: A single cell is magic by definition.
+- **Input:** `grid = [[1000000]]`
+- **Output:** `1`
+- **Explanation:** A single cell is magic by definition.

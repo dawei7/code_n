@@ -4,8 +4,14 @@ In a string composed of `'L'`, `'R'`, and `'X'` characters, like `"RXXLRXRXL"`, 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `start`: Input parameter (`str`).
+- `result`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -19,6 +25,7 @@ XRXLRXRXL ->
 XRLXRXRXL ->
 XRLXXRRXL ->
 XRLXXRRLX
+
 #### Example 2
 
 - **Input:** $start = "X", result = "L"$

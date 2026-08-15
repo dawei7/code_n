@@ -16,8 +16,13 @@ Return ***true** if such an array exists or **false** otherwise.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `derived`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -29,6 +34,7 @@ Return ***true** if such an array exists or **false** otherwise.*
 derived[0] = original[0] ⊕ original[1] = 0 ⊕ 1 = 1
 derived[1] = original[1] ⊕ original[2] = 1 ⊕ 0 = 1
 derived[2] = original[2] ⊕ original[0] = 0 ⊕ 0 = 0
+
 #### Example 2
 
 - **Input:** $derived = [1,1]$
@@ -36,6 +42,7 @@ derived[2] = original[2] ⊕ original[0] = 0 ⊕ 0 = 0
 - **Explanation:** A valid original array that gives derived is [0,1].
 derived[0] = original[0] ⊕ original[1] = 1
 derived[1] = original[1] ⊕ original[0] = 1
+
 #### Example 3
 
 - **Input:** $derived = [1,0]$

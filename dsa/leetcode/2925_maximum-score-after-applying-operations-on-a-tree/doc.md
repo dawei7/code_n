@@ -42,16 +42,16 @@ node 0 for path interpretation.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `edges = [[0, 1], [0, 2], [0, 3], [2, 4], [4, 5]], values = [5, 2, 5, 2, 1, 1]`
-- Output: `11`
-- Explanation: Keep the root value and select nodes 1 through 5. Every
+- **Input:** `edges = [[0, 1], [0, 2], [0, 3], [2, 4], [4, 5]], values = [5, 2, 5, 2, 1, 1]`
+- **Output:** `11`
+- **Explanation:** Keep the root value and select nodes 1 through 5. Every
   root-to-leaf path remains positive because it contains the root.
 
-**Example 2**
+#### Example 2
 
-- Input: `edges = [[0, 1], [0, 2], [1, 3], [1, 4], [2, 5], [2, 6]], values = [20, 10, 9, 7, 4, 3, 5]`
-- Output: `40`
-- Explanation: Selecting nodes 0, 2, 3, and 4 leaves positive value on every
+- **Input:** `edges = [[0, 1], [0, 2], [1, 3], [1, 4], [2, 5], [2, 6]], values = [20, 10, 9, 7, 4, 3, 5]`
+- **Output:** `40`
+- **Explanation:** Selecting nodes 0, 2, 3, and 4 leaves positive value on every
   path and earns 40.

@@ -14,19 +14,24 @@ Return the **maximum area** that you can obtain or -1 if no such rectangle is po
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `xCoord`: Input parameter (`List[int]`).
+- `yCoord`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** xCoord = [1,1,3,3], yCoord = [1,3,1,3]
+- **Input:** xCoord = [1,1,3,3], yCoord = [1,3,1,3]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** 
 
 **
 
@@ -36,15 +41,13 @@ Return the **maximum area** that you can obtain or -1 if no such rectangle is po
 
 We can make a rectangle with these 4 points as corners and there is no other point that lies inside or on the border. Hence, the maximum possible area would be 4.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** xCoord = [1,1,3,3,2], yCoord = [1,3,1,3,2]
+- **Input:** xCoord = [1,1,3,3,2], yCoord = [1,3,1,3,2]
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
+- **Explanation:** 
 
 **
 
@@ -54,15 +57,13 @@ We can make a rectangle with these 4 points as corners and there is no other poi
 
 There is only one rectangle possible is with points `[1,1], [1,3], [3,1]` and `[3,3]` but `[2,2]` will always lie inside it. Hence, returning -1.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** xCoord = [1,1,3,3,1,3], yCoord = [1,3,1,3,2,2]
+- **Input:** xCoord = [1,1,3,3,1,3], yCoord = [1,3,1,3,2,2]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 **
 
@@ -71,8 +72,6 @@ There is only one rectangle possible is with points `[1,1], [1,3], [3,1]` and `[
 **
 
 The maximum area rectangle is formed by the points `[1,3], [1,2], [3,2], [3,3]`, which has an area of 2. Additionally, the points `[1,1], [1,2], [3,1], [3,2]` also form a valid rectangle with the same area.
-
-</div>
 
 ### 4. Constraints
 

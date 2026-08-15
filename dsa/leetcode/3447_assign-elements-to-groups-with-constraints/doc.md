@@ -35,23 +35,23 @@ Return an array `assigned` of length $G$. For each index `i`, `assigned[i]` is t
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `groups = [8,4,3,2,4], elements = [4,2]`
-- Output: `[0,0,-1,1,0]`
+- **Input:** `groups = [8,4,3,2,4], elements = [4,2]`
+- **Output:** `[0,0,-1,1,0]`
 
 Value `4` at index `0` handles every group divisible by four; group size `2` uses index `1`, and size `3` has no match.
 
-**Example 2**
+#### Example 2
 
-- Input: `groups = [2,3,5,7], elements = [5,3,3]`
-- Output: `[-1,1,0,-1]`
+- **Input:** `groups = [2,3,5,7], elements = [5,3,3]`
+- **Output:** `[-1,1,0,-1]`
 
 The duplicate `3` at index `2` cannot replace its earlier occurrence at index `1`.
 
-**Example 3**
+#### Example 3
 
-- Input: `groups = [10,21,30,41], elements = [2,1]`
-- Output: `[0,1,0,1]`
+- **Input:** `groups = [10,21,30,41], elements = [2,1]`
+- **Output:** `[0,1,0,1]`
 
 Even group sizes use index `0`; the remaining sizes are divisible by `1` at index `1`.

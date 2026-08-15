@@ -12,8 +12,13 @@ Return *the biggest three **distinct rhombus sums** in the *`grid`* in **descend
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -27,6 +32,7 @@ Return *the biggest three **distinct rhombus sums** in the *`grid`* in **descend
 - Blue: 20 + 3 + 200 + 5 = 228
 - Red: 200 + 2 + 10 + 4 = 216
 - Green: 5 + 200 + 4 + 2 = 211
+
 #### Example 2
 
 ![](images/pc73-q4-ex2.png)
@@ -37,6 +43,7 @@ Return *the biggest three **distinct rhombus sums** in the *`grid`* in **descend
 - Blue: 4 + 2 + 6 + 8 = 20
 - Red: 9 (area 0 rhombus in the bottom right corner)
 - Green: 8 (area 0 rhombus in the bottom middle)
+
 #### Example 3
 
 - **Input:** `grid = [[7,7,7]]`

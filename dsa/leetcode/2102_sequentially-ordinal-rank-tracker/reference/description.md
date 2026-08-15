@@ -8,9 +8,7 @@ You are building a system that tracks the ranking of locations with the system i
 
 - **Querying** the $$i^{\text{th}}$$ **best** location of **all locations already added**, where `i` is the number of times the system has been queried (including the current query).
 
-		<li>For example, when the system is queried for the $4^th$ time, it returns the $4^th$ best location of all locations already added.
-
-	</li>
+		- For example, when the system is queried for the $4^th$ time, it returns the $4^th$ best location of all locations already added.
 
 Note that the test data are generated so that **at any time**, the number of queries **does not exceed** the number of locations added to the system.
 
@@ -24,8 +22,11 @@ Implement the `SORTracker` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `SORTracker()`: Initializes the data structure.
+- `add(name: str, score: int)`: Executes operation.
+- `get() -> `str``: Executes operation.
 
 ### 3. Examples
 

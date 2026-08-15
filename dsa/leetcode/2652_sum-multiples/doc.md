@@ -30,20 +30,20 @@ Return the sum of all selected integers. Values that are divisible by none of th
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 7`
-- Output: `21`
-- Explanation: The selected values are `3`, `5`, `6`, and `7`.
+- **Input:** `n = 7`
+- **Output:** `21`
+- **Explanation:** The selected values are `3`, `5`, `6`, and `7`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 10`
-- Output: `40`
-- Explanation: The selected values are `3`, `5`, `6`, `7`, `9`, and `10`.
+- **Input:** `n = 10`
+- **Output:** `40`
+- **Explanation:** The selected values are `3`, `5`, `6`, `7`, `9`, and `10`.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 9`
-- Output: `30`
-- Explanation: The selected values are `3`, `5`, `6`, `7`, and `9`.
+- **Input:** `n = 9`
+- **Output:** `30`
+- **Explanation:** The selected values are `3`, `5`, `6`, `7`, and `9`.

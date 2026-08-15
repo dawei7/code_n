@@ -32,17 +32,17 @@ Return the same student data under the ordered columns `student_id`, `first_name
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `students = [{"id": 1, "first": "Mason", "last": "King", "age": 6}, {"id": 2, "first": "Ava", "last": "Wright", "age": 7}, {"id": 3, "first": "Taylor", "last": "Hall", "age": 16}, {"id": 4, "first": "Georgia", "last": "Thompson", "age": 18}, {"id": 5, "first": "Thomas", "last": "Moore", "age": 10}]`
-- Output: `[{"student_id": 1, "first_name": "Mason", "last_name": "King", "age_in_years": 6}, {"student_id": 2, "first_name": "Ava", "last_name": "Wright", "age_in_years": 7}, {"student_id": 3, "first_name": "Taylor", "last_name": "Hall", "age_in_years": 16}, {"student_id": 4, "first_name": "Georgia", "last_name": "Thompson", "age_in_years": 18}, {"student_id": 5, "first_name": "Thomas", "last_name": "Moore", "age_in_years": 10}]`
+- **Input:** `students = [{"id": 1, "first": "Mason", "last": "King", "age": 6}, {"id": 2, "first": "Ava", "last": "Wright", "age": 7}, {"id": 3, "first": "Taylor", "last": "Hall", "age": 16}, {"id": 4, "first": "Georgia", "last": "Thompson", "age": 18}, {"id": 5, "first": "Thomas", "last": "Moore", "age": 10}]`
+- **Output:** `[{"student_id": 1, "first_name": "Mason", "last_name": "King", "age_in_years": 6}, {"student_id": 2, "first_name": "Ava", "last_name": "Wright", "age_in_years": 7}, {"student_id": 3, "first_name": "Taylor", "last_name": "Hall", "age_in_years": 16}, {"student_id": 4, "first_name": "Georgia", "last_name": "Thompson", "age_in_years": 18}, {"student_id": 5, "first_name": "Thomas", "last_name": "Moore", "age_in_years": 10}]`
 
-**Example 2**
+#### Example 2
 
-- Input: `students = [{"id": 9, "first": "Ada", "last": "Lovelace", "age": 17}]`
-- Output: `[{"student_id": 9, "first_name": "Ada", "last_name": "Lovelace", "age_in_years": 17}]`
+- **Input:** `students = [{"id": 9, "first": "Ada", "last": "Lovelace", "age": 17}]`
+- **Output:** `[{"student_id": 9, "first_name": "Ada", "last_name": "Lovelace", "age_in_years": 17}]`
 
-**Example 3**
+#### Example 3
 
-- Input: `students = [{"id": 10, "first": "Lee", "last": "Kim", "age": 12}, {"id": 11, "first": "Lee", "last": "Park", "age": 15}]`
-- Output: `[{"student_id": 10, "first_name": "Lee", "last_name": "Kim", "age_in_years": 12}, {"student_id": 11, "first_name": "Lee", "last_name": "Park", "age_in_years": 15}]`
+- **Input:** `students = [{"id": 10, "first": "Lee", "last": "Kim", "age": 12}, {"id": 11, "first": "Lee", "last": "Park", "age": 15}]`
+- **Output:** `[{"student_id": 10, "first_name": "Lee", "last_name": "Kim", "age_in_years": 12}, {"student_id": 11, "first_name": "Lee", "last_name": "Park", "age_in_years": 15}]`

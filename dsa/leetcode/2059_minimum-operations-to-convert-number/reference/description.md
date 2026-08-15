@@ -16,8 +16,15 @@ Return *the **minimum** number of operations needed to convert *$x = start$* int
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `start`: Input parameter (`int`).
+- `goal`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -28,6 +35,7 @@ Return *the **minimum** number of operations needed to convert *$x = start$* int
 - **Explanation:** We can go from 2 → 14 → 12 with the following 2 operations.
 - 2 + 12 = 14
 - 14 - 2 = 12
+
 #### Example 2
 
 - **Input:** `nums = [3,5,7], start = 0, goal = -4`
@@ -36,6 +44,7 @@ Return *the **minimum** number of operations needed to convert *$x = start$* int
 - 0 + 3 = 3
 - 3 - 7 = -4
 Note that the last operation sets x out of the range 0 <= x <= 1000, which is valid.
+
 #### Example 3
 
 - **Input:** `nums = [2,8,16], start = 0, goal = 1`

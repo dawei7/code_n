@@ -44,6 +44,7 @@ Return independent adjacency data for a deep copy. The native LeetCode interface
 2nd node (val = 2)'s neighbors are 1st node (val = 1) and 3rd node (val = 3).
 3rd node (val = 3)'s neighbors are 2nd node (val = 2) and 4th node (val = 4).
 4th node (val = 4)'s neighbors are 1st node (val = 1) and 3rd node (val = 3).
+
 #### Example 2
 
 ![](images/graph.png)
@@ -51,6 +52,7 @@ Return independent adjacency data for a deep copy. The native LeetCode interface
 - **Input:** $adjList = [[]]$
 - **Output:** `[[]]`
 - **Explanation:** Note that the input contains one empty list. The graph consists of only one node with val = 1 and it does not have any neighbors.
+
 #### Example 3
 
 - **Input:** $adjList = []$

@@ -30,20 +30,20 @@ Return `true` when all occurrences can be divided into equal-value pairs; otherw
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3, 2, 3, 2, 2, 2]`
-- Output: `true`
-- Explanation: the occurrences can form `(3, 3)`, `(2, 2)`, and `(2, 2)`.
+- **Input:** `nums = [3, 2, 3, 2, 2, 2]`
+- **Output:** `true`
+- **Explanation:** the occurrences can form `(3, 3)`, `(2, 2)`, and `(2, 2)`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 2, 3, 4]`
-- Output: `false`
-- Explanation: each value occurs only once, so no equal pair can be formed.
+- **Input:** `nums = [1, 2, 3, 4]`
+- **Output:** `false`
+- **Explanation:** each value occurs only once, so no equal pair can be formed.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [7, 7]`
-- Output: `true`
-- Explanation: the two occurrences form the single required pair.
+- **Input:** `nums = [7, 7]`
+- **Output:** `true`
+- **Explanation:** the two occurrences form the single required pair.

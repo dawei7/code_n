@@ -10,8 +10,13 @@ Return *the original array *`nums`*. If there are multiple solutions, return **a
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `adjacentPairs`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -21,12 +26,14 @@ Return *the original array *`nums`*. If there are multiple solutions, return **a
 - **Output:** `[1,2,3,4]`
 - **Explanation:** This array has all its adjacent pairs in adjacentPairs.
 Notice that adjacentPairs[i] may not be in left-to-right order.
+
 #### Example 2
 
 - **Input:** $adjacentPairs = [[4,-2],[1,4],[-3,1]]$
 - **Output:** `[-2,4,1,-3]`
 - **Explanation:** There can be negative numbers.
 Another solution is [-3,1,4,-2], which would also be accepted.
+
 #### Example 3
 
 - **Input:** $adjacentPairs = [[100000,-100000]]$

@@ -21,6 +21,7 @@ Return the number of contiguous non-space segments in `s`.
 - **Input:** `s = "Hello, my name is John"`
 - **Output:** `5`
 - **Explanation:** The five segments are ["Hello,", "my", "name", "is", "John"]
+
 #### Example 2
 
 - **Input:** `s = "Hello"`

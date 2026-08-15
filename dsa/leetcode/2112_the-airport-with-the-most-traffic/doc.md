@@ -30,20 +30,20 @@ An airport's traffic is the total `flights_count` over every route departing fro
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `Flights = [[1,2,4],[2,1,5],[2,4,5]]`
-- Output: `[[2]]`
-- Explanation: Airports $1$, $2$, and $4$ have traffic $9$, $14$, and $5$, respectively.
+- **Input:** `Flights = [[1,2,4],[2,1,5],[2,4,5]]`
+- **Output:** `[[2]]`
+- **Explanation:** Airports $1$, $2$, and $4$ have traffic $9$, $14$, and $5$, respectively.
 
-**Example 2**
+#### Example 2
 
-- Input: `Flights = [[1,2,4],[2,1,5],[3,4,5],[4,3,4],[5,6,7]]`
-- Output: `[[1],[2],[3],[4]]`
-- Explanation: Airports $1$ through $4$ each have traffic $9$, while airports $5$ and $6$ each have traffic $7$.
+- **Input:** `Flights = [[1,2,4],[2,1,5],[3,4,5],[4,3,4],[5,6,7]]`
+- **Output:** `[[1],[2],[3],[4]]`
+- **Explanation:** Airports $1$ through $4$ each have traffic $9$, while airports $5$ and $6$ each have traffic $7$.
 
-**Example 3**
+#### Example 3
 
-- Input: `Flights = [[10,20,3]]`
-- Output: `[[10],[20]]`
-- Explanation: Both endpoints participate in the same three flights and therefore tie.
+- **Input:** `Flights = [[10,20,3]]`
+- **Output:** `[[10],[20]]`
+- **Explanation:** Both endpoints participate in the same three flights and therefore tie.

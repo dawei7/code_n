@@ -8,8 +8,13 @@ Given `n`, return *the total amount of money he will have in the Leetcode bank a
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,11 +23,13 @@ Given `n`, return *the total amount of money he will have in the Leetcode bank a
 - **Input:** $n = 4$
 - **Output:** `10`
 - **Explanation:** After the 4^th day, the total is 1 + 2 + 3 + 4 = 10.
+
 #### Example 2
 
 - **Input:** $n = 10$
 - **Output:** `37`
 - **Explanation:** After the 10^th day, the total is (1 + 2 + 3 + 4 + 5 + 6 + 7) + (2 + 3 + 4) = 37. Notice that on the 2^nd Monday, Hercy only puts in $2.
+
 #### Example 3
 
 - **Input:** $n = 20$

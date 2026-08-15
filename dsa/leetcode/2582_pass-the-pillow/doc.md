@@ -35,14 +35,14 @@ The constraints are $2 \leq n \leq 1000$ and $1 \leq \texttt{time} \leq 1000$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 4, time = 5`
-- Output: `2`
-- Explanation: The holders are `1 -> 2 -> 3 -> 4 -> 3 -> 2`.
+- **Input:** `n = 4, time = 5`
+- **Output:** `2`
+- **Explanation:** The holders are `1 -> 2 -> 3 -> 4 -> 3 -> 2`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3, time = 2`
-- Output: `3`
-- Explanation: After two passes, the pillow has just reached the right endpoint.
+- **Input:** `n = 3, time = 2`
+- **Output:** `3`
+- **Explanation:** After two passes, the pillow has just reached the right endpoint.

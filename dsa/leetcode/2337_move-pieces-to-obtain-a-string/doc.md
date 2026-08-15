@@ -40,21 +40,21 @@ Both strings contain only `L`, `R`, and `_`, with $1 \le n \le 10^5$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `start = "_L__R__R_"`, `target = "L______RR"`
-- Output: `True`
-- Explanation: The `L` can move left once, and the two `R` pieces can move
+- **Input:** `start = "_L__R__R_"`, `target = "L______RR"`
+- **Output:** `True`
+- **Explanation:** The `L` can move left once, and the two `R` pieces can move
   right to their target cells without crossing another piece.
 
-**Example 2**
+#### Example 2
 
-- Input: `start = "R_L_"`, `target = "__LR"`
-- Output: `False`
-- Explanation: The `R` would have to pass the `L`, which no legal move allows.
+- **Input:** `start = "R_L_"`, `target = "__LR"`
+- **Output:** `False`
+- **Explanation:** The `R` would have to pass the `L`, which no legal move allows.
 
-**Example 3**
+#### Example 3
 
-- Input: `start = "_R"`, `target = "R_"`
-- Output: `False`
-- Explanation: An `R` piece cannot move left.
+- **Input:** `start = "_R"`, `target = "R_"`
+- **Output:** `False`
+- **Explanation:** An `R` piece cannot move left.

@@ -39,20 +39,20 @@ Return the recursively merged JSON value. Matching objects combine keys, matchin
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `obj1 = {"a":1,"c":3}, obj2 = {"a":2,"b":2}`
-- Output: `{"a":2,"c":3,"b":2}`
-- Explanation: The shared primitive at `a` comes from the second object, while both unique keys remain.
+- **Input:** `obj1 = {"a":1,"c":3}, obj2 = {"a":2,"b":2}`
+- **Output:** `{"a":2,"c":3,"b":2}`
+- **Explanation:** The shared primitive at `a` comes from the second object, while both unique keys remain.
 
-**Example 2**
+#### Example 2
 
-- Input: `obj1 = [{},2,3], obj2 = [[],5]`
-- Output: `[[],5,3]`
-- Explanation: Object and array values at index 0 are incompatible, index 1 is replaced, and the first array's trailing value remains.
+- **Input:** `obj1 = [{},2,3], obj2 = [[],5]`
+- **Output:** `[[],5,3]`
+- **Explanation:** Object and array values at index 0 are incompatible, index 1 is replaced, and the first array's trailing value remains.
 
-**Example 3**
+#### Example 3
 
-- Input: `obj1 = true, obj2 = null`
-- Output: `null`
-- Explanation: The roots are not two compatible containers, so the second value is the result.
+- **Input:** `obj1 = true, obj2 = null`
+- **Output:** `null`
+- **Explanation:** The roots are not two compatible containers, so the second value is the result.

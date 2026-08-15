@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/users-that-actively-request-confirmation-messages/) |
 
 ## Problem Description
+
 ### Goal
+
 The `Signups` table records registered users. The `Confirmations` table records
 each confirmation-message request, including its user, request timestamp, and
 whether the request was confirmed or timed out.
@@ -20,6 +22,7 @@ do not affect eligibility; only timestamps belonging to the same user matter.
 Return the qualifying user IDs in any order.
 
 ### Function Contract
+
 **Inputs**
 
 - `Signups(user_id, time_stamp)`: one row per user, with unique `user_id`.
@@ -36,20 +39,21 @@ Let $C$ be the number of `Confirmations` rows.
 - Emit each qualifying user once. Row order is unrestricted.
 
 ### Examples
-**Example 1**
+
+#### Example 1
 
 Requests for users `2`, `3`, and `6` contain pairs separated by exactly 24
 hours, 6 minutes 59 seconds, and 23 hours 59 minutes 59 seconds respectively.
 User `7` has two requests 24 hours and one second apart.
 
-- Output: users `2`, `3`, and `6`.
+- **Output:** users `2`, `3`, and `6`.
 
-**Example 2**
+#### Example 2
 
 - A user's two requests occur exactly 24 hours apart.
-- Output: that user.
+- **Output:** that user.
 
-**Example 3**
+#### Example 3
 
 - A user has only one request.
-- Output: no rows.
+- **Output:** no rows.

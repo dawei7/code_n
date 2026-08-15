@@ -8,8 +8,14 @@ Return* an integer array *`answer`*, of length *`n`*, where *$\text{answer}[i]$*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `removeQueries`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -28,6 +34,7 @@ Query 3: Remove the 2nd element, nums becomes [0,2,0,0,1] and the maximum segmen
 Query 4: Remove the 4th element, nums becomes [0,2,0,0,0] and the maximum segment sum is 2 for segment [2].
 Query 5: Remove the 1st element, nums becomes [0,0,0,0,0] and the maximum segment sum is 0, since there are no segments.
 Finally, we return [14,7,2,2,0].
+
 #### Example 2
 
 - **Input:** `nums = [3,2,11,1], removeQueries = [3,2,1,0]`

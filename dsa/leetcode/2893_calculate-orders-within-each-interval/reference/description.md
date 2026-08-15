@@ -30,7 +30,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Orders table:
 +--------+-------------+
 | minute | order_count |
@@ -48,14 +48,14 @@ Orders table:
 | 11     | 4           |
 | 12     | 6           |
 +--------+-------------+
-**Output:**
+- **Output:** 
 +-------------+--------------+
 | interval_no | total_orders |
 +-------------+--------------+
 | 1           | 17           |
 | 2           | 18           |
 +-------------+--------------+
-**Explanation:**
+- **Explanation:** 
 - Interval number 1 comprises minutes from 1 to 6. The total orders in these six minutes are (0 + 2 + 4 + 6 + 1 + 4) = 17.
 - Interval number 2 comprises minutes from 7 to 12. The total orders in these six minutes are (1 + 2 + 4 + 1 + 4 + 6) = 18.
 Returning table orderd by interval_no in ascending order.

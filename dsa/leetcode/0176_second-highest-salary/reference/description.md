@@ -32,7 +32,7 @@ Return exactly one row and one column named `SecondHighestSalary`, containing th
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Employee table:
 +----+--------+
 | id | salary |
@@ -41,24 +41,25 @@ Employee table:
 | 2  | 200    |
 | 3  | 300    |
 +----+--------+
-**Output:**
+- **Output:** 
 +---------------------+
 | SecondHighestSalary |
 +---------------------+
 | 200                 |
 +---------------------+
 ```
+
 #### Example 2
 
 ```
-**Input:**
+- **Input:** 
 Employee table:
 +----+--------+
 | id | salary |
 +----+--------+
 | 1  | 100    |
 +----+--------+
-**Output:**
+- **Output:** 
 +---------------------+
 | SecondHighestSalary |
 +---------------------+

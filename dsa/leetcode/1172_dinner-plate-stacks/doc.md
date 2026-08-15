@@ -38,19 +38,19 @@ The structure must also support removing the top value from one explicitly index
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `capacity = 2`, `operations = [["push",[1]],["push",[2]],["push",[3]],["push",[4]],["push",[5]],["popAtStack",[0]],["push",[20]],["push",[21]],["popAtStack",[0]],["popAtStack",[2]],["pop",[]],["pop",[]],["pop",[]],["pop",[]],["pop",[]]]`
-- Output: `[null,null,null,null,null,2,null,null,20,21,5,4,3,1,-1]`
+- **Input:** `capacity = 2`, `operations = [["push",[1]],["push",[2]],["push",[3]],["push",[4]],["push",[5]],["popAtStack",[0]],["push",[20]],["push",[21]],["popAtStack",[0]],["popAtStack",[2]],["pop",[]],["pop",[]],["pop",[]],["pop",[]],["pop",[]]]`
+- **Output:** `[null,null,null,null,null,2,null,null,20,21,5,4,3,1,-1]`
 
 After the first five pushes the stacks are `[1,2]`, `[3,4]`, and `[5]`. Removing `2` opens space in stack `0`, so the next push places `20` there before a later push uses stack `2`.
 
-**Example 2**
+#### Example 2
 
-- Input: `capacity = 1`, `operations = [["pop",[]]]`
-- Output: `[-1]`
+- **Input:** `capacity = 1`, `operations = [["pop",[]]]`
+- **Output:** `[-1]`
 
-**Example 3**
+#### Example 3
 
-- Input: `capacity = 1`, `operations = [["push",[7]],["popAtStack",[3]],["pop",[]]]`
-- Output: `[null,-1,7]`
+- **Input:** `capacity = 1`, `operations = [["push",[7]],["popAtStack",[3]],["pop",[]]]`
+- **Output:** `[null,-1,7]`

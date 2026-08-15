@@ -14,41 +14,39 @@ Return *the array *`answer`*, where *$\text{answer}[i]$* denotes the **minimum**
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+- `query`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 5, edges = [[0,1,7],[1,3,7],[1,2,1]], query = [[0,3],[3,4]]
+- **Input:** n = 5, edges = [[0,1,7],[1,3,7],[1,2,1]], query = [[0,3],[3,4]]
 
-**Output:** [1,-1]
+- **Output:** [1,-1]
 
-**Explanation:**
-
-![](images/q4_example1-1.png)
+- **Explanation:** ![](images/q4_example1-1.png)
 
 To achieve the cost of 1 in the first query, we need to move on the following edges: `0->1` (weight 7), `1->2` (weight 1), `2->1` (weight 1), `1->3` (weight 7).
 
 In the second query, there is no walk between nodes 3 and 4, so the answer is -1.
+
 #### Example 2
 
-</div>
+- **Input:** n = 3, edges = [[0,2,7],[0,1,15],[1,2,6],[1,2,1]], query = [[1,2]]
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,2,7],[0,1,15],[1,2,6],[1,2,1]], query = [[1,2]]
+- **Output:** [0]
 
-**Output:** [0]
-
-**Explanation:**
-
-![](images/q4_example2e.png)
+- **Explanation:** ![](images/q4_example2e.png)
 
 To achieve the cost of 0 in the first query, we need to move on the following edges: `1->2` (weight 1), `2->1` (weight 6), `1->2` (weight 1).
-
-</div>
 
 ### 4. Constraints
 

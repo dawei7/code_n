@@ -31,20 +31,20 @@ Each query is a pair `[left, right]` asking how many qualifying words occur from
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `words = ["aba", "bcb", "ece", "aa", "e"], queries = [[0, 2], [1, 4], [1, 1]]`
-- Output: `[2, 3, 0]`
-- Explanation: The qualifying words are `aba`, `ece`, `aa`, and `e`; each range counts only those indices it contains.
+- **Input:** `words = ["aba", "bcb", "ece", "aa", "e"], queries = [[0, 2], [1, 4], [1, 1]]`
+- **Output:** `[2, 3, 0]`
+- **Explanation:** The qualifying words are `aba`, `ece`, `aa`, and `e`; each range counts only those indices it contains.
 
-**Example 2**
+#### Example 2
 
-- Input: `words = ["a", "e", "i"], queries = [[0, 2], [0, 1], [2, 2]]`
-- Output: `[3, 2, 1]`
-- Explanation: Every word begins and ends with a vowel.
+- **Input:** `words = ["a", "e", "i"], queries = [[0, 2], [0, 1], [2, 2]]`
+- **Output:** `[3, 2, 1]`
+- **Explanation:** Every word begins and ends with a vowel.
 
-**Example 3**
+#### Example 3
 
-- Input: `words = ["apple", "owl", "ice"], queries = [[0, 2], [1, 1]]`
-- Output: `[2, 0]`
-- Explanation: `apple` and `ice` qualify, while `owl` ends with a consonant.
+- **Input:** `words = ["apple", "owl", "ice"], queries = [[0, 2], [1, 1]]`
+- **Output:** `[2, 0]`
+- **Explanation:** `apple` and `ice` qualify, while `owl` ends with a consonant.

@@ -33,12 +33,12 @@ Return the minimum number of cameras needed to monitor all $N$ nodes.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [0,0,null,0,0]`
-- Output: `1`
+- **Input:** `root = [0,0,null,0,0]`
+- **Output:** `1`
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [0,0,null,0,null,0,null,null,0]`
-- Output: `2`
+- **Input:** `root = [0,0,null,0,null,0,null,null,0]`
+- **Output:** `2`

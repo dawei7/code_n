@@ -36,16 +36,16 @@ Return an integer list `answer` of length $n$. For each $i$, `answer[i]` is the 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [4, 2, 1, 5, 3]`, `nums2 = [10, 20, 30, 40, 50]`, `k = 2`
-- Output: `[80, 30, 0, 80, 50]`
+- **Input:** `nums1 = [4, 2, 1, 5, 3]`, `nums2 = [10, 20, 30, 40, 50]`, `k = 2`
+- **Output:** `[80, 30, 0, 80, 50]`
 
 For index 0, eligible second-array values are `20`, `30`, and `50`, so the largest two sum to `80`. Index 2 has the smallest first-array value and therefore has no eligible indices.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [2, 2, 2, 2]`, `nums2 = [3, 1, 2, 3]`, `k = 1`
-- Output: `[0, 0, 0, 0]`
+- **Input:** `nums1 = [2, 2, 2, 2]`, `nums2 = [3, 1, 2, 3]`, `k = 1`
+- **Output:** `[0, 0, 0, 0]`
 
 All first-array values are equal, so the strict inequality excludes every possible index for every answer position.

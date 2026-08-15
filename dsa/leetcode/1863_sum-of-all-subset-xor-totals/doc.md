@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/sum-of-all-subset-xor-totals/) |
 
 ## Problem Description
+
 ### Goal
+
 The XOR total of an array is the bitwise XOR of all its elements; the empty
 array has XOR total zero. Given `nums`, consider every subset obtainable by
 deleting any selection of its indexed elements and add all of those XOR totals.
@@ -22,6 +24,7 @@ distinct and must each contribute to the sum. Return the complete subset-XOR
 sum.
 
 ### Function Contract
+
 **Inputs**
 
 - `nums`: an array of $n$ positive integers, where $1 \le n \le 12$ and
@@ -33,19 +36,20 @@ An integer equal to the sum of the XOR totals of all $2^n$ index subsets,
 including the empty subset.
 
 ### Examples
-**Example 1**
 
-- Input: `nums = [1,3]`
-- Output: `6`
+#### Example 1
+
+- **Input:** `nums = [1,3]`
+- **Output:** `6`
 
 The four XOR totals are $0$, $1$, $3$, and $1 \mathbin{\mathtt{XOR}} 3=2$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [5,1,6]`
-- Output: `28`
+- **Input:** `nums = [5,1,6]`
+- **Output:** `28`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [3,4,5,6,7,8]`
-- Output: `480`
+- **Input:** `nums = [3,4,5,6,7,8]`
+- **Output:** `480`

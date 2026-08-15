@@ -12,19 +12,23 @@ Return the **minimum score** after **changing two elements** of `nums`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,4,7,8,5]
+- **Input:** nums = [1,4,7,8,5]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - Change $\text{nums}[0]$ and $\text{nums}[1]$ to be 6 so that `nums` becomes [6,6,7,8,5].
 
@@ -34,21 +38,17 @@ Return the **minimum score** after **changing two elements** of `nums`.
 
 - The sum of high and low score is 3.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,4,3]
+- **Input:** nums = [1,4,3]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** 
 
 - Change $\text{nums}[1]$ and $\text{nums}[2]$ to 1 so that `nums` becomes [1,1,1].
 
 - The sum of maximum absolute difference and minimum absolute difference is 0.
-
-</div>
 
 ### 4. Constraints
 

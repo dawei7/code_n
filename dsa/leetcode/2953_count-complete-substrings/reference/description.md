@@ -14,8 +14,14 @@ A **substring** is a **non-empty** contiguous sequence of characters in a string
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `word`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +30,7 @@ A **substring** is a **non-empty** contiguous sequence of characters in a string
 - **Input:** $word = "igigee", k = 2$
 - **Output:** `3`
 - **Explanation:** The complete substrings where each character appears exactly twice and the difference between adjacent characters is at most 2 are: <u>**igig**</u>ee, igig<u>**ee**</u>, <u>**igigee**</u>.
+
 #### Example 2
 
 - **Input:** $word = "aaabbbccc", k = 3$

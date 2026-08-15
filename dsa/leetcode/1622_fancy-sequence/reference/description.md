@@ -16,8 +16,13 @@ Implement the `Fancy` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `Fancy()`: Initializes the data structure.
+- `append(val: int)`: Executes operation.
+- `addAll(inc: int)`: Executes operation.
+- `multAll(m: int)`: Executes operation.
+- `getIndex(idx: int) -> `int``: Executes operation.
 
 ### 3. Examples
 

@@ -10,8 +10,11 @@ You have a memory allocator with the following functionalities:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `Allocator(n: int)`: Initializes the data structure.
+- `allocate(size: int, mID: int) -> `int``: Executes operation.
+- `freeMemory(mID: int) -> `int``: Executes operation.
 
 ### 3. Note
 

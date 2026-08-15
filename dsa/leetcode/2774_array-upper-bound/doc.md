@@ -33,20 +33,20 @@ Return the greatest index $i$ for which `nums[i] === target`, or `-1` when no su
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3, 4, 5], target = 5`
-- Output: `2`
-- Explanation: The target appears at the final array index.
+- **Input:** `nums = [3, 4, 5], target = 5`
+- **Output:** `2`
+- **Explanation:** The target appears at the final array index.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 4, 5], target = 2`
-- Output: `-1`
-- Explanation: No element equals `2`.
+- **Input:** `nums = [1, 4, 5], target = 2`
+- **Output:** `-1`
+- **Explanation:** No element equals `2`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [3, 4, 6, 6, 6, 6, 7], target = 6`
-- Output: `5`
-- Explanation: The duplicate run of `6` ends at index `5`.
+- **Input:** `nums = [3, 4, 6, 6, 6, 6, 7], target = 6`
+- **Output:** `5`
+- **Explanation:** The duplicate run of `6` ends at index `5`.

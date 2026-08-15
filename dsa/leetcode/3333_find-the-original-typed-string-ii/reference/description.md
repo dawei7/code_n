@@ -10,43 +10,38 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `word`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** word = "aabbccdd", k = 7
+- **Input:** word = "aabbccdd", k = 7
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** The possible strings are: `"aabbccdd"`, `"aabbccd"`, `"aabbcdd"`, `"aabccdd"`, and `"abbccdd"`.
 
-The possible strings are: `"aabbccdd"`, `"aabbccd"`, `"aabbcdd"`, `"aabccdd"`, and `"abbccdd"`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** word = "aabbccdd", k = 8
+- **Input:** word = "aabbccdd", k = 8
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** The only possible string is `"aabbccdd"`.
 
-The only possible string is `"aabbccdd"`.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** word = "aaabbb", k = 3
+- **Input:** word = "aaabbb", k = 3
 
-**Output:** 8
-
-</div>
+- **Output:** 8
 
 ### 4. Constraints
 

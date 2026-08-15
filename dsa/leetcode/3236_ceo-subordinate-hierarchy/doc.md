@@ -39,6 +39,6 @@ Return columns `subordinate_id`, `subordinate_name`, `hierarchy_level`, and `sal
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 If Alice is the CEO, Bob and Charlie report to Alice, David and Eve report to Bob, Frank and Grace report to Charlie, and Helen reports to Eve, the result assigns levels $1$, $2$, and $3$ respectively. Each salary difference is computed against Alice's salary, not against the employee's immediate manager.

@@ -10,11 +10,10 @@ For each integer `x` in the range `[l, r]` (inclusive), perform the following st
 
 - Starting at the **top-left** cell ($row = 0$, $column = 0$), apply the 6 characters of `directions` in order:
 
-		<li>`'D'` increments the row by 1.
+		- `'D'` increments the row by 1.
 
 - `'R'` increments the column by 1.
 
-	</li>
 - Record the sequence of digits visited along the path (including the starting cell), producing a sequence of length 7.
 
 The integer `x` is considered **good** if the recorded sequence is **non-decreasing**.
@@ -43,14 +42,11 @@ Leading zeros are actual grid digits and participate in this comparison.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** l = 8, r = 10, directions = "DDDRRR"
+- **Input:** l = 8, r = 10, directions = "DDDRRR"
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The grid for $x = 8$:
+- **Explanation:** The grid for $x = 8$:
 
 <table style="border: 1px solid black;">
 	<tbody>
@@ -159,17 +155,13 @@ The grid for $x = 10$:
 
 - Hence, only 8 and 9 are good, giving a total of 2 good integers in the range.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** l = 123456789, r = 123456790, directions = "DDRRDR"
+- **Input:** l = 123456789, r = 123456790, directions = "DDRRDR"
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-The grid for $x = 123456789$:
+- **Explanation:** The grid for $x = 123456789$:
 
 <table style="border: 1px solid black;">
 	<tbody>
@@ -243,17 +235,13 @@ The grid for $x = 123456790$:
 
 - Hence, only 123456789 is good, giving a total of 1 good integer in the range.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** l = 1288561398769758, r = 1288561398769758, directions = "RRRDDD"
+- **Input:** l = 1288561398769758, r = 1288561398769758, directions = "RRRDDD"
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-The grid for $x = 1288561398769758$:
+- **Explanation:** The grid for $x = 1288561398769758$:
 
 <table style="border: 1px solid black;">
 	<tbody>
@@ -291,8 +279,6 @@ The grid for $x = 1288561398769758$:
 - ​​​​​​​As the sequence of digits visited is not non-decreasing, 1288561398769758 is not a good integer.
 
 - No numbers are good, giving a total of 0 good integers in the range.
-
-</div>
 
 ### 4. Constraints
 

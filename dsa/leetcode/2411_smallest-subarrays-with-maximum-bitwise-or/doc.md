@@ -32,17 +32,17 @@ Return an array `answer` of length $n$, where `answer[i]` is the smallest positi
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,0,2,1,3]`
-- Output: `[3,3,2,2,1]`
+- **Input:** `nums = [1,0,2,1,3]`
+- **Output:** `[3,3,2,2,1]`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,2]`
-- Output: `[2,1]`
+- **Input:** `nums = [1,2]`
+- **Output:** `[2,1]`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [0,0]`
-- Output: `[1,1]`
+- **Input:** `nums = [0,0]`
+- **Output:** `[1,1]`

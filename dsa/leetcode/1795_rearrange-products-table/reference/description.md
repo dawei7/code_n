@@ -32,7 +32,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Products table:
 +------------+--------+--------+--------+
 | product_id | store1 | store2 | store3 |
@@ -40,7 +40,7 @@ Products table:
 | 0          | 95     | 100    | 105    |
 | 1          | 70     | null   | 80     |
 +------------+--------+--------+--------+
-**Output:**
+- **Output:** 
 +------------+--------+-------+
 | product_id | store  | price |
 +------------+--------+-------+
@@ -50,7 +50,6 @@ Products table:
 | 1          | store1 | 70    |
 | 1          | store3 | 80    |
 +------------+--------+-------+
-**Explanation:**
-Product 0 is available in all three stores with prices 95, 100, and 105 respectively.
+- **Explanation:** Product 0 is available in all three stores with prices 95, 100, and 105 respectively.
 Product 1 is available in store1 with price 70 and store3 with price 80. The product is not available in store2.
 ```

@@ -22,6 +22,7 @@ Return the root of any height-balanced binary search tree containing the values 
 - **Output:** `[0,-3,9,-10,null,5]`
 - **Explanation:** [0,-10,5,null,-3,null,9] is also accepted:
 ![](images/btree2.jpg)
+
 #### Example 2
 
 ![](images/btree.jpg)

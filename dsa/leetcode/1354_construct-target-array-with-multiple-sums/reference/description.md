@@ -12,8 +12,13 @@ Return `true` *if it is possible to construct the* `target` *array from* `arr`*,
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `target`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -26,11 +31,13 @@ Return `true` *if it is possible to construct the* `target` *array from* `arr`*,
 [1, 3, 1], sum = 5 choose index 2
 [1, 3, 5], sum = 9 choose index 0
 [9, 3, 5] Done
+
 #### Example 2
 
 - **Input:** $target = [1,1,1,2]$
 - **Output:** `false`
 - **Explanation:** Impossible to create target array from [1,1,1,1].
+
 #### Example 3
 
 - **Input:** $target = [8,5]$

@@ -14,8 +14,14 @@ Return *the **minimum** possible sum that a beautiful array could have modulo *$
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `target`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -28,6 +34,7 @@ Return *the **minimum** possible sum that a beautiful array could have modulo *$
 - The array nums consists of pairwise distinct positive integers.
 - There doesn't exist two distinct indices, i and j, with nums[i] + nums[j] == 3.
 It can be proven that 4 is the minimum possible sum that a beautiful array could have.
+
 #### Example 2
 
 - **Input:** $n = 3, target = 3$
@@ -37,6 +44,7 @@ It can be proven that 4 is the minimum possible sum that a beautiful array could
 - The array nums consists of pairwise distinct positive integers.
 - There doesn't exist two distinct indices, i and j, with nums[i] + nums[j] == 3.
 It can be proven that 8 is the minimum possible sum that a beautiful array could have.
+
 #### Example 3
 
 - **Input:** $n = 1, target = 1$

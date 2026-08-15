@@ -42,17 +42,17 @@ $\texttt{nums[i]}\texttt{nums[j]}$ divisible by `k`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,2,3,4,5]`, `k = 2`
-- Output: `7`
+- **Input:** `nums = [1,2,3,4,5]`, `k = 2`
+- **Output:** `7`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,2,3,4]`, `k = 5`
-- Output: `0`
+- **Input:** `nums = [1,2,3,4]`, `k = 5`
+- **Output:** `0`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [2,3]`, `k = 6`
-- Output: `1`
+- **Input:** `nums = [2,3]`, `k = 6`
+- **Output:** `1`

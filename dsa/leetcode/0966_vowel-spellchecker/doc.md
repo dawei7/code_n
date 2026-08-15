@@ -37,12 +37,12 @@ Return one correction per query, preserving query order and the original capital
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `wordlist = ["KiTe","kite","hare","Hare"], queries = ["kite","Kite","KiTe","Hare","HARE","Hear","hear","keti","keet","keto"]`
-- Output: `["kite","KiTe","KiTe","Hare","hare","","","KiTe","","KiTe"]`
+- **Input:** `wordlist = ["KiTe","kite","hare","Hare"], queries = ["kite","Kite","KiTe","Hare","HARE","Hear","hear","keti","keet","keto"]`
+- **Output:** `["kite","KiTe","KiTe","Hare","hare","","","KiTe","","KiTe"]`
 
-**Example 2**
+#### Example 2
 
-- Input: `wordlist = ["yellow"], queries = ["YellOw"]`
-- Output: `["yellow"]`
+- **Input:** `wordlist = ["yellow"], queries = ["YellOw"]`
+- **Output:** `["yellow"]`

@@ -41,20 +41,20 @@ Let $Q = \lvert\texttt{queries}\rvert$, where $1 \le Q \le 10^5$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 5, nums = [1,8,3,4,2], maxDiff = 3, queries = [[0,3],[2,4]]`
-- Output: `[1,1]`
-- Explanation: Values $1$ and $4$ differ by $3$, while values $3$ and $2$ differ by $1$, so both queried pairs share a direct edge.
+- **Input:** `n = 5, nums = [1,8,3,4,2], maxDiff = 3, queries = [[0,3],[2,4]]`
+- **Output:** `[1,1]`
+- **Explanation:** Values $1$ and $4$ differ by $3$, while values $3$ and $2$ differ by $1$, so both queried pairs share a direct edge.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 5, nums = [5,3,1,9,10], maxDiff = 2, queries = [[0,1],[0,2],[2,3],[4,3]]`
-- Output: `[1,2,-1,1]`
-- Explanation: The values $5,3,1$ form a three-node chain, while $9,10$ form a separate component.
+- **Input:** `n = 5, nums = [5,3,1,9,10], maxDiff = 2, queries = [[0,1],[0,2],[2,3],[4,3]]`
+- **Output:** `[1,2,-1,1]`
+- **Explanation:** The values $5,3,1$ form a three-node chain, while $9,10$ form a separate component.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 3, nums = [3,6,1], maxDiff = 1, queries = [[0,0],[0,1],[1,2]]`
-- Output: `[0,-1,-1]`
-- Explanation: No two different values are close enough for an edge, but the self-query still has distance zero.
+- **Input:** `n = 3, nums = [3,6,1], maxDiff = 1, queries = [[0,0],[0,1],[1,2]]`
+- **Output:** `[0,-1,-1]`
+- **Explanation:** No two different values are close enough for an edge, but the self-query still has distance zero.

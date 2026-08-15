@@ -49,7 +49,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Friendship table:
 +----------+----------+
 | user1_id | user2_id |
@@ -76,7 +76,7 @@ Likes table:
 | 3       | 77      |
 | 6       | 88      |
 +---------+---------+
-**Output:**
+- **Output:** 
 +---------+---------+---------------+
 | user_id | page_id | friends_likes |
 +---------+---------+---------------+
@@ -97,8 +97,7 @@ Likes table:
 | 5       | 77      | 1             |
 | 5       | 23      | 1             |
 +---------+---------+---------------+
-**Explanation:**
-Take user 1 as an example:
+- **Explanation:** Take user 1 as an example:
   - User 1 is friends with users 2, 3, 4, and 6.
   - Recommended pages are 23 (user 2 liked it), 24 (user 3 liked it), 56 (user 3 liked it), 33 (user 6 liked it), and 77 (user 2 and user 3 liked it).
   - Note that page 88 is not recommended because user 1 already liked it.

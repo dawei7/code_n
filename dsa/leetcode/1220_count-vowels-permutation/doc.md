@@ -36,21 +36,21 @@ Return the number of valid strings modulo $M=10^9+7$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 1`
-- Output: `5`
+- **Input:** `n = 1`
+- **Output:** `5`
 
 Each individual vowel is valid.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 2`
-- Output: `10`
+- **Input:** `n = 2`
+- **Output:** `10`
 
 The valid strings are `ae`, `ea`, `ei`, `ia`, `ie`, `io`, `iu`, `oi`, `ou`, and `ua`.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 5`
-- Output: `68`
+- **Input:** `n = 5`
+- **Output:** `68`

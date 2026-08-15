@@ -31,17 +31,17 @@ Design `FindElements` to recover the tree during construction and answer whether
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [-1, null, -1]`, `queries = [1, 2]`
-- Output: `[false, true]`
+- **Input:** `root = [-1, null, -1]`, `queries = [1, 2]`
+- **Output:** `[false, true]`
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [-1, -1, -1, -1, -1]`, `queries = [1, 3, 5]`
-- Output: `[true, true, false]`
+- **Input:** `root = [-1, -1, -1, -1, -1]`, `queries = [1, 3, 5]`
+- **Output:** `[true, true, false]`
 
-**Example 3**
+#### Example 3
 
-- Input: `root = [-1, null, -1, -1, null, -1]`, `queries = [2, 3, 4, 5]`
-- Output: `[true, false, false, true]`
+- **Input:** `root = [-1, null, -1, -1, null, -1]`, `queries = [2, 3, 4, 5]`
+- **Output:** `[true, false, false, true]`

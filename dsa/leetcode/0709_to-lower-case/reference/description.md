@@ -4,8 +4,13 @@ Given a string `s`, return *the string after replacing every uppercase letter wi
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -13,10 +18,12 @@ Given a string `s`, return *the string after replacing every uppercase letter wi
 
 - **Input:** `s = "Hello"`
 - **Output:** `"hello"`
+
 #### Example 2
 
 - **Input:** `s = "here"`
 - **Output:** `"here"`
+
 #### Example 3
 
 - **Input:** `s = "LOVELY"`

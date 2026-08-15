@@ -33,7 +33,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Delivery table:
 +-------------+-------------+------------+-----------------------------+
 | delivery_id | customer_id | order_date | customer_pref_delivery_date |
@@ -46,14 +46,13 @@ Delivery table:
 | 6           | 2           | 2019-08-11 | 2019-08-13                  |
 | 7           | 4           | 2019-08-09 | 2019-08-09                  |
 +-------------+-------------+------------+-----------------------------+
-**Output:**
+- **Output:** 
 +----------------------+
 | immediate_percentage |
 +----------------------+
 | 50.00                |
 +----------------------+
-**Explanation:**
-The customer id 1 has a first order with delivery id 1 and it is scheduled.
+- **Explanation:** The customer id 1 has a first order with delivery id 1 and it is scheduled.
 The customer id 2 has a first order with delivery id 2 and it is immediate.
 The customer id 3 has a first order with delivery id 5 and it is scheduled.
 The customer id 4 has a first order with delivery id 7 and it is immediate.

@@ -30,20 +30,20 @@ Return the lexicographically smallest string obtainable by making zero or one le
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "45320"`
-- Output: `"43520"`
-- Explanation: The adjacent digits `5` and `3` are both odd. Swapping them produces the smallest legal result.
+- **Input:** `s = "45320"`
+- **Output:** `"43520"`
+- **Explanation:** The adjacent digits `5` and `3` are both odd. Swapping them produces the smallest legal result.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "001"`
-- Output: `"001"`
-- Explanation: The only same-parity adjacent pair contains equal digits, so no swap can improve the string.
+- **Input:** `s = "001"`
+- **Output:** `"001"`
+- **Explanation:** The only same-parity adjacent pair contains equal digits, so no swap can improve the string.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "42"`
-- Output: `"24"`
-- Explanation: Both digits are even, and moving `2` to the first position makes the string smaller.
+- **Input:** `s = "42"`
+- **Output:** `"24"`
+- **Explanation:** Both digits are even, and moving `2` to the first position makes the string smaller.

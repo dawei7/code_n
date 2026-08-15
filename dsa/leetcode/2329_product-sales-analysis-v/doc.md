@@ -33,9 +33,9 @@ Return each `user_id` and the sum of `quantity * price` over that user's purchas
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `Sales = [(1,1,101,10),(2,2,101,1),(3,3,102,3),(4,3,102,2),(5,2,103,3)]`, `Product = [(1,10),(2,25),(3,15)]`
-- Output: `[(101,125),(102,75),(103,75)]`
+- **Input:** `Sales = [(1,1,101,10),(2,2,101,1),(3,3,102,3),(4,3,102,2),(5,2,103,3)]`, `Product = [(1,10),(2,25),(3,15)]`
+- **Output:** `[(101,125),(102,75),(103,75)]`
 
 User 101 has the largest total. Users 102 and 103 tie at 75, so their IDs determine their relative order.

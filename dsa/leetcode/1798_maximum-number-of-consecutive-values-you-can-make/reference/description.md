@@ -8,8 +8,13 @@ Note that you may have multiple coins of the same value.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `coins`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +26,7 @@ Note that you may have multiple coins of the same value.
 - 0: take []
 - 1: take [1]
 You can make 2 consecutive integer values starting from 0.
+
 #### Example 2
 
 - **Input:** $coins = [1,1,1,4]$
@@ -35,6 +41,7 @@ You can make 2 consecutive integer values starting from 0.
 - 6: take [4,1,1]
 - 7: take [4,1,1,1]
 You can make 8 consecutive integer values starting from 0.
+
 #### Example 3
 
 - **Input:** $coins = [1,4,10,3,1]$

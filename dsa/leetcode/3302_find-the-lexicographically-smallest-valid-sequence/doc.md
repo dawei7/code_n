@@ -33,26 +33,26 @@ The target is non-empty and strictly shorter than the source, and `word1.length`
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word1 = "vbcca"`, `word2 = "abc"`
-- Output: `[0,1,2]`
-- Explanation: The selected string is `"vbc"`; changing its first character makes `"abc"`.
+- **Input:** `word1 = "vbcca"`, `word2 = "abc"`
+- **Output:** `[0,1,2]`
+- **Explanation:** The selected string is `"vbc"`; changing its first character makes `"abc"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `word1 = "bacdc"`, `word2 = "abc"`
-- Output: `[1,2,4]`
-- Explanation: The selection is `"adc"`, with only its middle character mismatching.
+- **Input:** `word1 = "bacdc"`, `word2 = "abc"`
+- **Output:** `[1,2,4]`
+- **Explanation:** The selection is `"adc"`, with only its middle character mismatching.
 
-**Example 3**
+#### Example 3
 
-- Input: `word1 = "aaaaaa"`, `word2 = "aaabc"`
-- Output: `[]`
-- Explanation: Any length-five selection differs from the target in at least two positions.
+- **Input:** `word1 = "aaaaaa"`, `word2 = "aaabc"`
+- **Output:** `[]`
+- **Explanation:** Any length-five selection differs from the target in at least two positions.
 
-**Example 4**
+#### Example 4
 
-- Input: `word1 = "abc"`, `word2 = "ab"`
-- Output: `[0,1]`
-- Explanation: The earliest two indices already select the target exactly.
+- **Input:** `word1 = "abc"`, `word2 = "ab"`
+- **Output:** `[0,1]`
+- **Explanation:** The earliest two indices already select the target exactly.

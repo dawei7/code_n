@@ -35,18 +35,18 @@ Let $n$ be the number of rows, let $S$ be the total number of characters across 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 - Input row: `(1, "hello world of SQL")`
 - Output row: `(1, "hello world of SQL", "Hello World Of Sql")`
 
-**Example 2**
+#### Example 2
 
 - Input row: `(2, "the QUICK-brown fox")`
 - Output row: `(2, "the QUICK-brown fox", "The Quick-Brown Fox")`
 
-**Example 3**
+#### Example 3
 
 - Input row: `(4, "foo--bar -baz lOO-daR-@Daz-")`
 - Output row: `(4, "foo--bar -baz lOO-daR-@Daz-", "Foo--bar -baz Loo-dar-@daz-")`
-- Explanation: None of the malformed multi-hyphen tokens is a two-part alphabetic hyphenated word.
+- **Explanation:** None of the malformed multi-hyphen tokens is a two-part alphabetic hyphenated word.

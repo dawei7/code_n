@@ -10,8 +10,14 @@ The **diameter** of a tree is the length of the *longest* path between any two n
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `edges1`: Input parameter (`List[List[int]]`).
+- `edges2`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,30 +25,21 @@ The **diameter** of a tree is the length of the *longest* path between any two n
 
 ![](images/example11-transformed.png)
 
-<div class="example-block">
-**Input:** edges1 = [[0,1],[0,2],[0,3]], edges2 = [[0,1]]
+- **Input:** edges1 = [[0,1],[0,2],[0,3]], edges2 = [[0,1]]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** We can obtain a tree of diameter 3 by connecting node 0 from the first tree with any node from the second tree.
 
-We can obtain a tree of diameter 3 by connecting node 0 from the first tree with any node from the second tree.
-
-</div>
 #### Example 2
 
 ![](images/example211.png)
 
-<div class="example-block">
-**Input:** edges1 = [[0,1],[0,2],[0,3],[2,4],[2,5],[3,6],[2,7]], edges2 = [[0,1],[0,2],[0,3],[2,4],[2,5],[3,6],[2,7]]
+- **Input:** edges1 = [[0,1],[0,2],[0,3],[2,4],[2,5],[3,6],[2,7]], edges2 = [[0,1],[0,2],[0,3],[2,4],[2,5],[3,6],[2,7]]
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
-
-We can obtain a tree of diameter 5 by connecting node 0 from the first tree with node 0 from the second tree.
-
-</div>
+- **Explanation:** We can obtain a tree of diameter 5 by connecting node 0 from the first tree with node 0 from the second tree.
 
 ### 4. Constraints
 

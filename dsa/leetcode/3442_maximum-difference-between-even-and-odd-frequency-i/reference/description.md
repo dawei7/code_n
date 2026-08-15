@@ -12,39 +12,39 @@ Return this **maximum** difference.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "aaaaabbc"
+- **Input:** s = "aaaaabbc"
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - The character `'a'` has an **odd frequency** of `5`, and `'b'` has an **even frequency** of `2`.
 
 - The maximum difference is $5 - 2 = 3$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "abcabcab"
+- **Input:** s = "abcabcab"
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - The character `'a'` has an **odd frequency** of `3`, and `'c'` has an **even frequency** of 2.
 
 - The maximum difference is $3 - 2 = 1$.
-
-</div>
 
 ### 4. Constraints
 

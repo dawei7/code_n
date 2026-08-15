@@ -42,17 +42,17 @@ inclusive interval of length `carpetLen`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `tiles = [[1,5],[10,11],[12,18],[20,25],[30,32]], carpetLen = 10`
-- Output: `9`
+- **Input:** `tiles = [[1,5],[10,11],[12,18],[20,25],[30,32]], carpetLen = 10`
+- **Output:** `9`
 
 A carpet beginning at position `10` covers nine white tiles across the
 adjacent intervals `[10,11]` and `[12,18]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `tiles = [[10,11],[1,1]], carpetLen = 2`
-- Output: `2`
+- **Input:** `tiles = [[10,11],[1,1]], carpetLen = 2`
+- **Output:** `2`
 
 Placing the carpet on `[10,11]` covers both white positions.

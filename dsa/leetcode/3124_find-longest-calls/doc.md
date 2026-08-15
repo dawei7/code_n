@@ -33,8 +33,8 @@ Return up to three rows for each call type with columns `first_name`, `type`, an
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `Contacts = [[1,"John","Doe"],[2,"Jane","Smith"],[3,"Alice","Johnson"],[4,"Michael","Brown"],[5,"Emily","Davis"]]`, `Calls = [[1,"incoming",120],[1,"outgoing",180],[2,"incoming",300],[2,"outgoing",240],[3,"incoming",150],[3,"outgoing",360],[4,"incoming",420],[4,"outgoing",200],[5,"incoming",180],[5,"outgoing",280]]`
-- Output: `[["Alice","outgoing","00:06:00"],["Emily","outgoing","00:04:40"],["Jane","outgoing","00:04:00"],["Michael","incoming","00:07:00"],["Jane","incoming","00:05:00"],["Emily","incoming","00:03:00"]]`
-- Explanation: The result retains the three greatest durations within each direction, then places `outgoing` before `incoming` under descending type order.
+- **Input:** `Contacts = [[1,"John","Doe"],[2,"Jane","Smith"],[3,"Alice","Johnson"],[4,"Michael","Brown"],[5,"Emily","Davis"]]`, `Calls = [[1,"incoming",120],[1,"outgoing",180],[2,"incoming",300],[2,"outgoing",240],[3,"incoming",150],[3,"outgoing",360],[4,"incoming",420],[4,"outgoing",200],[5,"incoming",180],[5,"outgoing",280]]`
+- **Output:** `[["Alice","outgoing","00:06:00"],["Emily","outgoing","00:04:40"],["Jane","outgoing","00:04:00"],["Michael","incoming","00:07:00"],["Jane","incoming","00:05:00"],["Emily","incoming","00:03:00"]]`
+- **Explanation:** The result retains the three greatest durations within each direction, then places `outgoing` before `incoming` under descending type order.

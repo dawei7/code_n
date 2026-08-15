@@ -38,21 +38,21 @@ The length of the shortest roll sequence that is not a subsequence of `rolls`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `rolls = [4,2,1,2,3,3,2,4,1]`, `k = 4`
-- Output: `3`
-- Explanation: Every one- and two-roll sequence occurs, but some length-three
+- **Input:** `rolls = [4,2,1,2,3,3,2,4,1]`, `k = 4`
+- **Output:** `3`
+- **Explanation:** Every one- and two-roll sequence occurs, but some length-three
   sequence does not.
 
-**Example 2**
+#### Example 2
 
-- Input: `rolls = [1,1,2,2]`, `k = 2`
-- Output: `2`
-- Explanation: Both single faces occur, while `[2,1]` is absent.
+- **Input:** `rolls = [1,1,2,2]`, `k = 2`
+- **Output:** `2`
+- **Explanation:** Both single faces occur, while `[2,1]` is absent.
 
-**Example 3**
+#### Example 3
 
-- Input: `rolls = [1,1,3,2,2,2,3,3]`, `k = 4`
-- Output: `1`
-- Explanation: Face 4 never occurs.
+- **Input:** `rolls = [1,1,3,2,2,2,3,3]`, `k = 4`
+- **Output:** `1`
+- **Explanation:** Face 4 never occurs.

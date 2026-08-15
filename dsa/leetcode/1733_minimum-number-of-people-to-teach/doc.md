@@ -46,20 +46,20 @@ bound the work needed to test the friendship pairs.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 2`, `languages = [[1],[2],[1,2]]`, `friendships = [[1,2],[1,3],[2,3]]`
-- Output: `1`
-- Explanation: Teach language `2` to user `1`, or language `1` to user `2`.
+- **Input:** `n = 2`, `languages = [[1],[2],[1,2]]`, `friendships = [[1,2],[1,3],[2,3]]`
+- **Output:** `1`
+- **Explanation:** Teach language `2` to user `1`, or language `1` to user `2`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3`, `languages = [[2],[1,3],[1,2],[3]]`, `friendships = [[1,4],[1,2],[3,4],[2,3]]`
-- Output: `2`
-- Explanation: Teaching language `3` to users `1` and `3` makes every pair communicable.
+- **Input:** `n = 3`, `languages = [[2],[1,3],[1,2],[3]]`, `friendships = [[1,4],[1,2],[3,4],[2,3]]`
+- **Output:** `2`
+- **Explanation:** Teaching language `3` to users `1` and `3` makes every pair communicable.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 3`, `languages = [[1,2],[2,3],[1,3]]`, `friendships = [[1,2],[2,3]]`
-- Output: `0`
-- Explanation: Both listed friendship pairs already share a language.
+- **Input:** `n = 3`, `languages = [[1,2],[2,3],[1,3]]`, `friendships = [[1,2],[2,3]]`
+- **Output:** `0`
+- **Explanation:** Both listed friendship pairs already share a language.

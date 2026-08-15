@@ -32,22 +32,22 @@ Return the minimum number of allowed subarray operations required to turn every 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [0, 2]`
-- Output: `1`
-- Explanation: Choosing the one-element subarray containing `2` changes it to `0`.
+- **Input:** `nums = [0, 2]`
+- **Output:** `1`
+- **Explanation:** Choosing the one-element subarray containing `2` changes it to `0`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3, 1, 2, 1]`
-- Output: `3`
-- Explanation: One operation removes both occurrences of `1`; the remaining isolated values `3` and `2` each require one operation.
+- **Input:** `nums = [3, 1, 2, 1]`
+- **Output:** `3`
+- **Explanation:** One operation removes both occurrences of `1`; the remaining isolated values `3` and `2` each require one operation.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 2, 1, 2, 1, 2]`
-- Output: `4`
-- Explanation: The three `1` values can be removed together. They then separate the three `2` values, which require one operation each.
+- **Input:** `nums = [1, 2, 1, 2, 1, 2]`
+- **Output:** `4`
+- **Explanation:** The three `1` values can be removed together. They then separate the three `2` values, which require one operation each.
 
 ---

@@ -18,8 +18,13 @@ Return *the **minimum difference** possible between the sums of the two parts af
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -33,6 +38,7 @@ Thus we have to remove 1 element from nums and divide the array into two equal p
 - If we remove nums[1] = 1, the array will be [3,2]. The difference in sums of the two parts will be 3 - 2 = 1.
 - If we remove nums[2] = 2, the array will be [3,1]. The difference in sums of the two parts will be 3 - 1 = 2.
 The minimum difference between sums of the two parts is min(-1,1,2) = -1.
+
 #### Example 2
 
 - **Input:** `nums = [7,9,5,8,1,3]`

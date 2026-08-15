@@ -37,23 +37,23 @@ be the total number of decimal digits processed.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [42,11,1,97]`
-- Output: `2`
+- **Input:** `nums = [42,11,1,97]`
+- **Output:** `2`
 
 The nice pairs are `(0,3)` and `(1,2)`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [13,10,35,24,76]`
-- Output: `4`
+- **Input:** `nums = [13,10,35,24,76]`
+- **Output:** `4`
 
 Four pairs share equal values of `x - rev(x)`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,1,1]`
-- Output: `3`
+- **Input:** `nums = [1,1,1]`
+- **Output:** `3`
 
 All three index pairs are nice, even though their values are equal.

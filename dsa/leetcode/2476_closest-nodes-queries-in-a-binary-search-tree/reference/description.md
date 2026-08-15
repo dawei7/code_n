@@ -12,8 +12,10 @@ Return *the array* `answer`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `closestNodes(root: Optional[TreeNode], queries: List[int]) -> `List[List[int]]``: Executes operation.
 
 ### 3. Examples
 
@@ -27,6 +29,7 @@ Return *the array* `answer`.
 - The largest number that is smaller or equal than 2 in the tree is 2, and the smallest number that is greater or equal than 2 is still 2. So the answer for the first query is [2,2].
 - The largest number that is smaller or equal than 5 in the tree is 4, and the smallest number that is greater or equal than 5 is 6. So the answer for the second query is [4,6].
 - The largest number that is smaller or equal than 16 in the tree is 15, and the smallest number that is greater or equal than 16 does not exist. So the answer for the third query is [15,-1].
+
 #### Example 2
 
 ![](images/bstttreee.png)

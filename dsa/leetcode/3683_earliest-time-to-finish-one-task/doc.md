@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/earliest-time-to-finish-one-task/) |
 
 ## Problem Description
+
 ### Goal
 
 Each row `tasks[i] = [s_i, t_i]` describes an independent task that starts at time $s_i$ and requires $t_i$ time units to complete without interruption. Its finish time is therefore $s_i+t_i$.
@@ -29,23 +30,23 @@ Return the minimum completion time `start + duration` among all tasks.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `tasks = [[1, 6], [2, 3]]`
-- Output: `5`
+- **Input:** `tasks = [[1, 6], [2, 3]]`
+- **Output:** `5`
 
 The tasks finish at times 7 and 5, so the second task finishes first.
 
-**Example 2**
+#### Example 2
 
-- Input: `tasks = [[100, 100], [100, 100], [100, 100]]`
-- Output: `200`
+- **Input:** `tasks = [[100, 100], [100, 100], [100, 100]]`
+- **Output:** `200`
 
 Every task has the same completion time.
 
-**Example 3**
+#### Example 3
 
-- Input: `tasks = [[10, 20]]`
-- Output: `30`
+- **Input:** `tasks = [[10, 20]]`
+- **Output:** `30`
 
 With a single task, its finish time is necessarily the answer.

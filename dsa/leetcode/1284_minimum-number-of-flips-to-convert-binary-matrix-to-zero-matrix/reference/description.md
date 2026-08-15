@@ -10,8 +10,13 @@ A **zero matrix** is a matrix with all cells equal to `0`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `mat`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,11 +27,13 @@ A **zero matrix** is a matrix with all cells equal to `0`.
 - **Input:** $mat = [[0,0],[0,1]]$
 - **Output:** `3`
 - **Explanation:** One possible solution is to flip (1, 0) then (0, 1) and finally (1, 1) as shown.
+
 #### Example 2
 
 - **Input:** $mat = [[0]]$
 - **Output:** `0`
 - **Explanation:** Given matrix is a zero matrix. We do not need to change it.
+
 #### Example 3
 
 - **Input:** $mat = [[1,0,0],[1,0,0]]$

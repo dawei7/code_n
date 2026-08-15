@@ -14,8 +14,12 @@ Implement the `CBTInserter` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `TreeNode(root: Optional[TreeNode])`: Initializes the data structure.
+- `insert(val: int) -> `int``: Executes operation.
+- `get_root() -> `Optional[TreeNode]``: Executes operation.
 
 ### 3. Examples
 

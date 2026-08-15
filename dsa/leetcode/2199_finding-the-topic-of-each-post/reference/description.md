@@ -49,7 +49,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Keywords table:
 +----------+----------+
 | topic_id | word     |
@@ -68,7 +68,7 @@ Posts table:
 | 3       | stop the war and play handball                                         |
 | 4       | warning I planted some flowers this morning and then got vaccinated    |
 +---------+------------------------------------------------------------------------+
-**Output:**
+- **Output:** 
 +---------+------------+
 | post_id | topic      |
 +---------+------------+
@@ -77,8 +77,7 @@ Posts table:
 | 3       | 1,3        |
 | 4       | Ambiguous! |
 +---------+------------+
-**Explanation:**
-1: "We call it soccer They call it football hahaha"
+- **Explanation:** 1: "We call it soccer They call it football hahaha"
 "football" expresses topic 1. There is no other word that expresses any other topic.
 
 2: "Americans prefer basketball while Europeans love handball and football"

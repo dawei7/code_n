@@ -18,8 +18,13 @@ A cell is **adjacent** to another cell if the former is directly north, east, so
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -32,6 +37,7 @@ A cell is **adjacent** to another cell if the former is directly north, east, so
 - **Explanation:** The figure above shows the scenario where you stay in the initial position for 3 minutes.
 You will still be able to safely reach the safehouse.
 Staying for more than 3 minutes will not allow you to safely reach the safehouse.
+
 #### Example 2
 
 ![](images/ex2new2.jpg)
@@ -41,6 +47,7 @@ Staying for more than 3 minutes will not allow you to safely reach the safehouse
 - **Explanation:** The figure above shows the scenario where you immediately move towards the safehouse.
 Fire will spread to any cell you move towards and it is impossible to safely reach the safehouse.
 Thus, -1 is returned.
+
 #### Example 3
 
 ![](images/ex3new.jpg)

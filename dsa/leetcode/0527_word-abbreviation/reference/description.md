@@ -8,14 +8,12 @@ The following are the rules for a string abbreviation:
 
 - If more than one word shares the **same** abbreviation, then perform the following operation:
 
-		<li>**Increase** the prefix (characters in the first part) of each of their abbreviations by `1`.
+		- **Increase** the prefix (characters in the first part) of each of their abbreviations by `1`.
+- For example, say you start with the words `["abcdef","abndef"]` both initially abbreviated as `"a4f"`. Then, a sequence of operations would be `["a4f","a4f"]` -> `["ab3f","ab3f"]` -> `["abc2f","abn2f"]`.
 
-			<li>For example, say you start with the words `["abcdef","abndef"]` both initially abbreviated as `"a4f"`. Then, a sequence of operations would be `["a4f","a4f"]` -> `["ab3f","ab3f"]` -> `["abc2f","abn2f"]`.
-
-		</li>
 - This operation is repeated until every abbreviation is **unique**.
 
-	</li>
+	
 - At the end, if an abbreviation did not make a word shorter, then keep it as the original word.
 
 ### 2. Function Contract
@@ -35,6 +33,7 @@ The following are the rules for a string abbreviation:
 
 - **Input:** $words = ["like","god","internal","me","internet","interval","intension","face","intrusion"]$
 - **Output:** `["l2e","god","internal","me","i6t","interval","inte4n","f2e","intr4n"]`
+
 #### Example 2
 
 - **Input:** $words = ["aa","aaa"]$

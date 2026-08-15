@@ -59,7 +59,7 @@ Return exactly one row per group with columns $\text{group}_{id}$ and $\text{pla
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Players table:
 +-----------+------------+
 | player_id | group_id   |
@@ -84,7 +84,7 @@ Matches table:
 | 4          | 40           | 20            | 5           | 2            |
 | 5          | 35           | 50            | 1           | 1            |
 +------------+--------------+---------------+-------------+--------------+
-**Output:**
+- **Output:** 
 +-----------+------------+
 | group_id  | player_id  |
 +-----------+------------+

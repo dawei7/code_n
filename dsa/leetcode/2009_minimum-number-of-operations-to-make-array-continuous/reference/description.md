@@ -14,8 +14,13 @@ Return *the **minimum** number of operations to make *`nums`* ****continuous***.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,12 +29,14 @@ Return *the **minimum** number of operations to make *`nums`* ****continuous***.
 - **Input:** `nums = [4,2,5,3]`
 - **Output:** `0`
 - **Explanation:** nums is already continuous.
+
 #### Example 2
 
 - **Input:** `nums = [1,2,3,5,6]`
 - **Output:** `1`
 - **Explanation:** One possible solution is to change the last element to 4.
 The resulting array is [1,2,3,5,4], which is continuous.
+
 #### Example 3
 
 - **Input:** `nums = [1,10,100,1000]`

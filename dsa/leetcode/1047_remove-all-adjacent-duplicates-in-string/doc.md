@@ -30,13 +30,13 @@ Keep making duplicate removals until no adjacent equal pair remains. Removing on
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abbaca"`
-- Output: `"ca"`
-- Explanation: Removing `"bb"` gives `"aaca"`; the newly exposed `"aa"` is then removed.
+- **Input:** `s = "abbaca"`
+- **Output:** `"ca"`
+- **Explanation:** Removing `"bb"` gives `"aaca"`; the newly exposed `"aa"` is then removed.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "azxxzy"`
-- Output: `"ay"`
+- **Input:** `s = "azxxzy"`
+- **Output:** `"ay"`

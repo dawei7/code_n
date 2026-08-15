@@ -38,12 +38,12 @@ Every entry lies between 1 and $10^6$ inclusive.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[1,1,2],[2,3,3],[1,3,4]]`
-- Output: `2`
+- **Input:** `grid = [[1,1,2],[2,3,3],[1,3,4]]`
+- **Output:** `2`
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[1,1,3,3,4]]`
-- Output: `3`
+- **Input:** `grid = [[1,1,3,3,4]]`
+- **Output:** `3`

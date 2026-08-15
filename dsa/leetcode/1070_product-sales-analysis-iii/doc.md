@@ -32,7 +32,7 @@ For every product, identify the earliest year in which it appears in `Sales`, th
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 `Sales`
 
@@ -42,7 +42,7 @@ For every product, identify the earliest year in which it appears in `Sales`, th
 | 2 | 100 | 2009 | 12 | 5000 |
 | 7 | 200 | 2011 | 15 | 9000 |
 
-Output:
+- **Output:** 
 
 | product_id | first_year | quantity | price |
 |---:|---:|---:|---:|

@@ -34,20 +34,20 @@ Return the minimum feasible number of seconds, or `-1` when the sum cannot be re
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [1, 2, 3]`, `nums2 = [1, 2, 3]`, `x = 4`
-- Output: `3`
-- Explanation: Resetting indices in increasing increment order leaves `[2, 2, 0]` after three seconds, whose sum is $4$.
+- **Input:** `nums1 = [1, 2, 3]`, `nums2 = [1, 2, 3]`, `x = 4`
+- **Output:** `3`
+- **Explanation:** Resetting indices in increasing increment order leaves `[2, 2, 0]` after three seconds, whose sum is $4$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [1, 2, 3]`, `nums2 = [3, 3, 3]`, `x = 4`
-- Output: `-1`
-- Explanation: Even the best reset sequence cannot offset the total growth enough to reach the limit.
+- **Input:** `nums1 = [1, 2, 3]`, `nums2 = [3, 3, 3]`, `x = 4`
+- **Output:** `-1`
+- **Explanation:** Even the best reset sequence cannot offset the total growth enough to reach the limit.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums1 = [5, 1]`, `nums2 = [0, 0]`, `x = 6`
-- Output: `0`
-- Explanation: The initial sum already meets the requirement.
+- **Input:** `nums1 = [5, 1]`, `nums2 = [0, 0]`, `x = 6`
+- **Output:** `0`
+- **Explanation:** The initial sum already meets the requirement.

@@ -31,14 +31,11 @@ Return the number of non-empty node subsets whose induced subgraph is connected 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,0,1], edges = [[0,1],[1,2]]
+- **Input:** nums = [1,0,1], edges = [[0,1],[1,2]]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">`s`</th>
@@ -92,17 +89,14 @@ Return the number of non-empty node subsets whose induced subgraph is connected 
 		</tr>
 	</tbody>
 </table>
-</div>
+
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1], edges = []
+- **Input:** nums = [1], edges = []
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">`s`</th>
@@ -120,7 +114,6 @@ Return the number of non-empty node subsets whose induced subgraph is connected 
 		</tr>
 	</tbody>
 </table>
-</div>
 
 ### 4. Constraints
 

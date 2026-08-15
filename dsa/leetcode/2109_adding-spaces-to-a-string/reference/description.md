@@ -8,8 +8,14 @@ Return** ***the modified string **after** the spaces have been added.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `spaces`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -17,22 +23,21 @@ Return** ***the modified string **after** the spaces have been added.*
 
 - **Input:** `s = "LeetcodeHelpsMeLearn", spaces = [8,13,15]`
 - **Output:** `"Leetcode Helps Me Learn"`
-- **Explanation:**
-The indices 8, 13, and 15 correspond to the underlined characters in "Leetcode<u>**H**</u>elps<u>**M**</u>e<u>**L**</u>earn".
+- **Explanation:** The indices 8, 13, and 15 correspond to the underlined characters in "Leetcode<u>**H**</u>elps<u>**M**</u>e<u>**L**</u>earn".
 We then place spaces before those characters.
+
 #### Example 2
 
 - **Input:** `s = "icodeinpython", spaces = [1,5,7,9]`
 - **Output:** `"i code in py thon"`
-- **Explanation:**
-The indices 1, 5, 7, and 9 correspond to the underlined characters in "i<u>**c**</u>ode<u>**i**</u>n<u>**p**</u>y<u>**t**</u>hon".
+- **Explanation:** The indices 1, 5, 7, and 9 correspond to the underlined characters in "i<u>**c**</u>ode<u>**i**</u>n<u>**p**</u>y<u>**t**</u>hon".
 We then place spaces before those characters.
+
 #### Example 3
 
 - **Input:** `s = "spacing", spaces = [0,1,2,3,4,5,6]`
 - **Output:** `" s p a c i n g"`
-- **Explanation:**
-We are also able to place spaces before the first character of the string.
+- **Explanation:** We are also able to place spaces before the first character of the string.
 
 ### 4. Constraints
 

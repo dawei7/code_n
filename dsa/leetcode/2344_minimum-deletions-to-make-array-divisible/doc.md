@@ -41,15 +41,15 @@ all of `numsDivide`, or `-1` if that is impossible.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,3,2,4,3]`, `numsDivide = [9,6,9,3,15]`
-- Output: `2`
-- Explanation: Deleting both 2s leaves 3 as the minimum, and 3 divides every
+- **Input:** `nums = [2,3,2,4,3]`, `numsDivide = [9,6,9,3,15]`
+- **Output:** `2`
+- **Explanation:** Deleting both 2s leaves 3 as the minimum, and 3 divides every
   value in `numsDivide`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4,3,6]`, `numsDivide = [8,2,6,10]`
-- Output: `-1`
-- Explanation: No value in `nums` divides all four target values.
+- **Input:** `nums = [4,3,6]`, `numsDivide = [8,2,6,10]`
+- **Output:** `-1`
+- **Explanation:** No value in `nums` divides all four target values.

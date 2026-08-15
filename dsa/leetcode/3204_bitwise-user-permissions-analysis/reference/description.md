@@ -27,7 +27,6 @@ The result format is shown in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 user_permissions table:
@@ -57,7 +56,7 @@ user_permissions table:
 
 - **common_perms:** Represents the bitwise AND result of all permissions:
 
-		<li>For user 1 (5): 5 (binary 0101)
+		- For user 1 (5): 5 (binary 0101)
 
 - For user 2 (12): 12 (binary 1100)
 
@@ -67,14 +66,9 @@ user_permissions table:
 
 - Bitwise AND: 5 & 12 & 7 & 3 = 0 (binary 0000)
 
-	</li>
 - **any_perms:** Represents the bitwise OR result of all permissions:
 
-		<li>Bitwise OR: 5 | 12 | 7 | 3 = 15 (binary 1111)
-
-	</li>
-
-</div>
+		- Bitwise OR: 5 | 12 | 7 | 3 = 15 (binary 1111)
 
 ### 2. Function Contract
 

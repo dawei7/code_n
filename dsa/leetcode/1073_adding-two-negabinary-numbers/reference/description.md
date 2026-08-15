@@ -8,8 +8,14 @@ Return the result of adding `arr1` and `arr2` in the same format: as an array of
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr1`: Input parameter (`List[int]`).
+- `arr2`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -18,10 +24,12 @@ Return the result of adding `arr1` and `arr2` in the same format: as an array of
 - **Input:** $arr1 = [1,1,1,1,1], arr2 = [1,0,1]$
 - **Output:** `[1,0,0,0,0]`
 - **Explanation:** arr1 represents 11, arr2 represents 5, the output represents 16.
+
 #### Example 2
 
 - **Input:** $arr1 = [0], arr2 = [0]$
 - **Output:** `[0]`
+
 #### Example 3
 
 - **Input:** $arr1 = [0], arr2 = [1]$

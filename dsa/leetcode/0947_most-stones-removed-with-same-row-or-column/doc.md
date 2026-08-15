@@ -31,21 +31,21 @@ Return the largest number of stones that can be removed under the same-row-or-sa
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `stones = [[0, 0], [0, 1], [1, 0], [1, 2], [2, 1], [2, 2]]`
-- Output: `5`
+- **Input:** `stones = [[0, 0], [0, 1], [1, 0], [1, 2], [2, 1], [2, 2]]`
+- **Output:** `5`
 
 All six stones belong to one row-or-column connected component, so one stone must remain and five can be removed.
 
-**Example 2**
+#### Example 2
 
-- Input: `stones = [[0, 0], [0, 2], [1, 1], [2, 0], [2, 2]]`
-- Output: `3`
+- **Input:** `stones = [[0, 0], [0, 2], [1, 1], [2, 0], [2, 2]]`
+- **Output:** `3`
 
 The isolated stone `[1, 1]` forms one component and the other four stones form another, leaving two stones in total.
 
-**Example 3**
+#### Example 3
 
-- Input: `stones = [[0, 0]]`
-- Output: `0`
+- **Input:** `stones = [[0, 0]]`
+- **Output:** `0`

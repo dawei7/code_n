@@ -8,59 +8,54 @@ Return an array `answer`, where $\text{answer}[i]$ is the answer for $$i^{\text{
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** words = ["jump","run","run","jump","run"], k = 2
+- **Input:** words = ["jump","run","run","jump","run"], k = 2
 
-**Output:** [3,4,4,3,4]
+- **Output:** [3,4,4,3,4]
 
-**Explanation:**
+- **Explanation:** 
 
 - Removing index 0 (`"jump"`):
 
-		<li>`words` becomes: `["run", "run", "jump", "run"]`. `"run"` occurs 3 times. Choosing any two gives the longest common prefix `"run"` (length 3).
+		- `words` becomes: `["run", "run", "jump", "run"]`. `"run"` occurs 3 times. Choosing any two gives the longest common prefix `"run"` (length 3).
 
-	</li>
 - Removing index 1 (`"run"`):
 
-		<li>`words` becomes: `["jump", "run", "jump", "run"]`. `"jump"` occurs twice. Choosing these two gives the longest common prefix `"jump"` (length 4).
+		- `words` becomes: `["jump", "run", "jump", "run"]`. `"jump"` occurs twice. Choosing these two gives the longest common prefix `"jump"` (length 4).
 
-	</li>
 - Removing index 2 (`"run"`):
 
-		<li>`words` becomes: `["jump", "run", "jump", "run"]`. `"jump"` occurs twice. Choosing these two gives the longest common prefix `"jump"` (length 4).
+		- `words` becomes: `["jump", "run", "jump", "run"]`. `"jump"` occurs twice. Choosing these two gives the longest common prefix `"jump"` (length 4).
 
-	</li>
 - Removing index 3 (`"jump"`):
 
-		<li>`words` becomes: `["jump", "run", "run", "run"]`. `"run"` occurs 3 times. Choosing any two gives the longest common prefix `"run"` (length 3).
+		- `words` becomes: `["jump", "run", "run", "run"]`. `"run"` occurs 3 times. Choosing any two gives the longest common prefix `"run"` (length 3).
 
-	</li>
 - Removing index 4 ("run"):
 
-		<li>`words` becomes: `["jump", "run", "run", "jump"]`. `"jump"` occurs twice. Choosing these two gives the longest common prefix `"jump"` (length 4).
+		- `words` becomes: `["jump", "run", "run", "jump"]`. `"jump"` occurs twice. Choosing these two gives the longest common prefix `"jump"` (length 4).
 
-	</li>
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** words = ["dog","racer","car"], k = 2
+- **Input:** words = ["dog","racer","car"], k = 2
 
-**Output:** [0,0,0]
+- **Output:** [0,0,0]
 
-**Explanation:**
+- **Explanation:** 
 
 - Removing any index results in an answer of 0.
-
-</div>
 
 ### 4. Constraints
 

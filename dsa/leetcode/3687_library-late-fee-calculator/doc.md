@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/library-late-fee-calculator/) |
 
 ## Problem Description
+
 ### Goal
 
 A library records in `daysLate` how many days late each returned book was. Calculate each book's fee independently from its delay, then return the sum of all fees.
@@ -29,23 +30,23 @@ Return the total fee obtained by adding the independently calculated penalty for
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `daysLate = [5, 1, 7]`
-- Output: `32`
+- **Input:** `daysLate = [5, 1, 7]`
+- **Output:** `32`
 
 The fees are `10`, `1`, and `21`.
 
-**Example 2**
+#### Example 2
 
-- Input: `daysLate = [1, 1]`
-- Output: `2`
+- **Input:** `daysLate = [1, 1]`
+- **Output:** `2`
 
 Each one-day delay contributes 1.
 
-**Example 3**
+#### Example 3
 
-- Input: `daysLate = [2, 5, 6]`
-- Output: `32`
+- **Input:** `daysLate = [2, 5, 6]`
+- **Output:** `32`
 
 The fees at these important boundaries are `4`, `10`, and `18`.

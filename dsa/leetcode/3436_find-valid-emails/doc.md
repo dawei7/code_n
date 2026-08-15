@@ -35,7 +35,7 @@ Return columns `user_id` and `email` for valid addresses, sorted by ascending `u
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 Input table `Users`:
 
@@ -47,7 +47,7 @@ Input table `Users`:
 | 4 | `david@domain.com` |
 | 5 | `eve@invalid` |
 
-Output:
+- **Output:** 
 
 | user_id | email |
 |---:|---|

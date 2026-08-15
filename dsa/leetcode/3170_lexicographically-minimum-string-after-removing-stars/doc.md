@@ -32,16 +32,16 @@ Let $n = \lvert\texttt{s}\rvert$. The constraints satisfy $1 \le n \le 10^5$, an
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "aaba*"`
-- Output: `"aab"`
+- **Input:** `s = "aaba*"`
+- **Output:** `"aab"`
 
 The smallest eligible letter is `a`. Deleting its rightmost eligible occurrence gives the smallest remaining order.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "abc"`
-- Output: `"abc"`
+- **Input:** `s = "abc"`
+- **Output:** `"abc"`
 
 There are no stars, so no characters are removed.

@@ -20,8 +20,15 @@ Return *the lexicographically smallest equivalent string of *`baseStr`* by using
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s1`: Input parameter (`str`).
+- `s2`: Input parameter (`str`).
+- `baseStr`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -32,12 +39,14 @@ Return *the lexicographically smallest equivalent string of *`baseStr`* by using
 - **Explanation:** Based on the equivalency information in s1 and s2, we can group their characters as [m,p], [a,o], [k,r,s], [e,i].
 The characters in each group are equivalent and sorted in lexicographical order.
 So the answer is "makkek".
+
 #### Example 2
 
 - **Input:** $s1 = "hello", s2 = "world", baseStr = "hold"$
 - **Output:** `"hdld"`
 - **Explanation:** Based on the equivalency information in s1 and s2, we can group their characters as [h,w], [d,e,o], [l,r].
 So only the second letter 'o' in baseStr is changed to 'd', the answer is "hdld".
+
 #### Example 3
 
 - **Input:** $s1 = "leetcode", s2 = "programs", baseStr = "sourcecode"$

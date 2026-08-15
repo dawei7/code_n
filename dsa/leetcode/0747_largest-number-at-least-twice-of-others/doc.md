@@ -30,14 +30,14 @@ If it satisfies the condition for all other positions, return the zero-based ind
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3, 6, 1, 0]`
-- Output: `1`
-- Explanation: `6` is at least twice each of `3`, `1`, and `0`.
+- **Input:** `nums = [3, 6, 1, 0]`
+- **Output:** `1`
+- **Explanation:** `6` is at least twice each of `3`, `1`, and `0`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 2, 3, 4]`
-- Output: `-1`
-- Explanation: The maximum `4` is not at least twice `3`.
+- **Input:** `nums = [1, 2, 3, 4]`
+- **Output:** `-1`
+- **Explanation:** The maximum `4` is not at least twice `3`.

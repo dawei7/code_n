@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/count-the-number-of-incremovable-subarrays-i/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given a 0-indexed array `nums` of positive integers. A subarray is a
 contiguous, non-empty sequence of its elements.
 
@@ -25,6 +27,7 @@ of left and right endpoints count separately, even when their values happen to
 be equal.
 
 ### Function Contract
+
 **Inputs**
 
 - `nums`: the positive integers in their original array order
@@ -38,20 +41,21 @@ The number of non-empty contiguous subarrays whose removal leaves a strictly
 increasing sequence.
 
 ### Examples
-**Example 1**
 
-- Input: `nums = [1,2,3,4]`
-- Output: `10`
-- Explanation: Removing any of the ten non-empty subarrays leaves a strictly increasing array.
+#### Example 1
 
-**Example 2**
+- **Input:** `nums = [1,2,3,4]`
+- **Output:** `10`
+- **Explanation:** Removing any of the ten non-empty subarrays leaves a strictly increasing array.
 
-- Input: `nums = [6,5,7,8]`
-- Output: `7`
-- Explanation: Exactly seven endpoint pairs remove the descent or one of its surrounding portions while preserving strict increase.
+#### Example 2
 
-**Example 3**
+- **Input:** `nums = [6,5,7,8]`
+- **Output:** `7`
+- **Explanation:** Exactly seven endpoint pairs remove the descent or one of its surrounding portions while preserving strict increase.
 
-- Input: `nums = [8,7,6,6]`
-- Output: `3`
-- Explanation: The valid deletions are the whole array and the two length-three subarrays; retaining the equal `6` values would not be strictly increasing.
+#### Example 3
+
+- **Input:** `nums = [8,7,6,6]`
+- **Output:** `3`
+- **Explanation:** The valid deletions are the whole array and the two length-three subarrays; retaining the equal `6` values would not be strictly increasing.

@@ -32,23 +32,23 @@ Return the number of qualifying index selections modulo $10^9+7$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 1, 1, 1, 1, 1]`
-- Output: `6`
+- **Input:** `nums = [1, 1, 1, 1, 1, 1]`
+- **Output:** `6`
 
 Every choice of five indices produces `[1, 1, 1, 1, 1]`; there are $\binom{6}{5}=6$ such choices.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 2, 2, 3, 3, 4]`
-- Output: `4`
+- **Input:** `nums = [1, 2, 2, 3, 3, 4]`
+- **Output:** `4`
 
 The valid selections have their third value occurring more often than every competitor. A selection containing two 2s and two 3s is invalid because its mode is tied.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [0, 1, 2, 3, 4, 5, 6, 7, 8]`
-- Output: `0`
+- **Input:** `nums = [0, 1, 2, 3, 4, 5, 6, 7, 8]`
+- **Output:** `0`
 
 Every selected value is distinct, so no five-element subsequence has a unique mode.

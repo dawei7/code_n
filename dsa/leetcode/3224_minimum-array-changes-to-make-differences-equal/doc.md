@@ -31,20 +31,20 @@ Return the minimum number of individual array elements that must be replaced.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 0, 1, 2, 4, 3], k = 4`
-- Output: `2`
-- Explanation: Two replacements can make every mirrored difference equal to `2`.
+- **Input:** `nums = [1, 0, 1, 2, 4, 3], k = 4`
+- **Output:** `2`
+- **Explanation:** Two replacements can make every mirrored difference equal to `2`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [0, 1, 2, 3, 3, 6, 5, 4], k = 6`
-- Output: `2`
-- Explanation: A common difference of `4` is attainable with two changes.
+- **Input:** `nums = [0, 1, 2, 3, 3, 6, 5, 4], k = 6`
+- **Output:** `2`
+- **Explanation:** A common difference of `4` is attainable with two changes.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 2, 2, 1], k = 2`
-- Output: `0`
-- Explanation: Both mirrored pairs already have difference `0`.
+- **Input:** `nums = [1, 2, 2, 1], k = 2`
+- **Output:** `0`
+- **Explanation:** Both mirrored pairs already have difference `0`.

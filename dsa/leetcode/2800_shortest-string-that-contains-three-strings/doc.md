@@ -34,14 +34,14 @@ Return the shortest string containing `a`, `b`, and `c` as substrings. Break equ
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `a = "abc"`, `b = "bca"`, `c = "aaa"`
-- Output: `"aaabca"`
-- Explanation: The result contains `"aaa"` at the start, `"abc"` from indices $2$ through $4$, and `"bca"` from indices $3$ through $5$; no shorter answer exists.
+- **Input:** `a = "abc"`, `b = "bca"`, `c = "aaa"`
+- **Output:** `"aaabca"`
+- **Explanation:** The result contains `"aaa"` at the start, `"abc"` from indices $2$ through $4$, and `"bca"` from indices $3$ through $5$; no shorter answer exists.
 
-**Example 2**
+#### Example 2
 
-- Input: `a = "ab"`, `b = "ba"`, `c = "aba"`
-- Output: `"aba"`
-- Explanation: The third string already contains the first two as substrings.
+- **Input:** `a = "ab"`, `b = "ba"`, `c = "aba"`
+- **Output:** `"aba"`
+- **Explanation:** The third string already contains the first two as substrings.

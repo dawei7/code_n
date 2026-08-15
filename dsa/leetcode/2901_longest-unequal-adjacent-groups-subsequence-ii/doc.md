@@ -35,14 +35,14 @@ Return any maximum-length word subsequence satisfying all adjacent group, length
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `words = ["bab", "dab", "cab"], groups = [1, 2, 2]`
-- Output: `["bab", "dab"]`
-- Explanation: The group identifiers differ and the equal-length words differ only at their first character. Choosing `"cab"` instead of `"dab"` is another valid longest answer.
+- **Input:** `words = ["bab", "dab", "cab"], groups = [1, 2, 2]`
+- **Output:** `["bab", "dab"]`
+- **Explanation:** The group identifiers differ and the equal-length words differ only at their first character. Choosing `"cab"` instead of `"dab"` is another valid longest answer.
 
-**Example 2**
+#### Example 2
 
-- Input: `words = ["a", "b", "c", "d"], groups = [1, 2, 3, 4]`
-- Output: `["a", "b", "c", "d"]`
-- Explanation: Every adjacent pair has different group identifiers, and every pair of distinct one-character words has Hamming distance $1$.
+- **Input:** `words = ["a", "b", "c", "d"], groups = [1, 2, 3, 4]`
+- **Output:** `["a", "b", "c", "d"]`
+- **Explanation:** Every adjacent pair has different group identifiers, and every pair of distinct one-character words has Hamming distance $1$.

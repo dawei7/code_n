@@ -8,8 +8,14 @@ We define that a subsequence `a` is more **competitive** than a subsequence `b` 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -18,6 +24,7 @@ We define that a subsequence `a` is more **competitive** than a subsequence `b` 
 - **Input:** `nums = [3,5,2,6], k = 2`
 - **Output:** `[2,6]`
 - **Explanation:** Among the set of every possible subsequence: {[3,5], [3,2], [3,6], [5,2], [5,6], [2,6]}, [2,6] is the most competitive.
+
 #### Example 2
 
 - **Input:** `nums = [2,4,3,3,5,4,9,6], k = 4`

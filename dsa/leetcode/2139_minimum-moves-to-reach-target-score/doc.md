@@ -40,22 +40,22 @@ into `target` without exceeding the doubling limit.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `target = 5, maxDoubles = 0`
-- Output: `4`
-- Explanation: With no doubles available, four increments are necessary.
+- **Input:** `target = 5, maxDoubles = 0`
+- **Output:** `4`
+- **Explanation:** With no doubles available, four increments are necessary.
 
-**Example 2**
+#### Example 2
 
-- Input: `target = 19, maxDoubles = 2`
-- Output: `7`
-- Explanation: One optimal sequence reaches `4` with three increments, doubles
+- **Input:** `target = 19, maxDoubles = 2`
+- **Output:** `7`
+- **Explanation:** One optimal sequence reaches `4` with three increments, doubles
   to `8`, increments to `9`, doubles to `18`, and increments once more.
 
-**Example 3**
+#### Example 3
 
-- Input: `target = 10, maxDoubles = 4`
-- Output: `4`
-- Explanation: Increment to `2`, double to `4`, increment to `5`, and double
+- **Input:** `target = 10, maxDoubles = 4`
+- **Output:** `4`
+- **Explanation:** Increment to `2`, double to `4`, increment to `5`, and double
   to `10`.

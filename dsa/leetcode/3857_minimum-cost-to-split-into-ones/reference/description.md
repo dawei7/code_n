@@ -26,14 +26,11 @@ Return the minimum possible sum of all operation costs over a complete sequence 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 3
+- **Input:** n = 3
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-One optimal set of operations is:
+- **Explanation:** One optimal set of operations is:
 
 <table style="border: 1px solid black;">
 	<tbody>
@@ -66,18 +63,13 @@ One optimal set of operations is:
 
 Thus, the minimum total cost is $2 + 1 = 3$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 4
+- **Input:** n = 4
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
-
-<div class="example-block">
-One optimal set of operations is:
+- **Explanation:** One optimal set of operations is:
 
 <table style="border: 1px solid black;">
 	<tbody>
@@ -117,9 +109,6 @@ One optimal set of operations is:
 </table>
 
 Thus, the minimum total cost is $4 + 1 + 1 = 6$.
-
-</div>
-</div>
 
 ### 4. Constraints
 

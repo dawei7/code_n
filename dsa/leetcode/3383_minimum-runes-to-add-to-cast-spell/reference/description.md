@@ -20,14 +20,11 @@ Return the **minimum** number of directed runes that she should add.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 6, crystals = [0], flowFrom = [0,1,2,3], flowTo = [1,2,3,0]
+- **Input:** n = 6, crystals = [0], flowFrom = [0,1,2,3], flowTo = [1,2,3,0]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-![](images/runesexample0.png)
+- **Explanation:** ![](images/runesexample0.png)
 
 Add two directed runes:
 
@@ -35,21 +32,15 @@ Add two directed runes:
 
 - From focus point 0 to focus point 5.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 7, crystals = [3,5], flowFrom = [0,1,2,3,5], flowTo = [1,2,0,4,6]
+- **Input:** n = 7, crystals = [3,5], flowFrom = [0,1,2,3,5], flowTo = [1,2,0,4,6]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-![](images/runesexample1.png)
+- **Explanation:** ![](images/runesexample1.png)
 
 Add a directed rune from focus point 4 to focus point 2.
-
-</div>
 
 ### 4. Constraints
 

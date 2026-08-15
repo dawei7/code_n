@@ -14,8 +14,14 @@ Return *the maximum MEX of *`nums`* after applying the mentioned operation **any
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `value`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -28,6 +34,7 @@ Return *the maximum MEX of *`nums`* after applying the mentioned operation **any
 - Subtract value from nums[2] once to make nums = [1,0,**<u>2</u>**,13,6,8]
 - Subtract value from nums[3] twice to make nums = [1,0,2,**<u>3</u>**,6,8]
 The MEX of nums is 4. It can be shown that 4 is the maximum MEX we can achieve.
+
 #### Example 2
 
 - **Input:** `nums = [1,-10,7,13,6,8], value = 7`

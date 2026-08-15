@@ -6,8 +6,14 @@ A *subsequence* of an array is obtained by deleting some number of elements (can
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,11 +22,13 @@ A *subsequence* of an array is obtained by deleting some number of elements (can
 - **Input:** `nums = [10,2,-10,5,20], k = 2`
 - **Output:** `37`
 - **Explanation:** The subsequence is [10, 2, 5, 20].
+
 #### Example 2
 
 - **Input:** `nums = [-1,-2,-3], k = 1`
 - **Output:** `-1`
 - **Explanation:** The subsequence must be non-empty, so we choose the largest number.
+
 #### Example 3
 
 - **Input:** `nums = [10,-2,-10,-5,20], k = 2`

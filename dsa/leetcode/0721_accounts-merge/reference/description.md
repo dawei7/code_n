@@ -8,8 +8,13 @@ After merging the accounts, return the accounts in the following format: the fir
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `accounts`: Input parameter (`List[List[str]]`).
+
+**Return value**
+
+- Returns `List[List[str]]`.
 
 ### 3. Examples
 
@@ -17,11 +22,11 @@ After merging the accounts, return the accounts in the following format: the fir
 
 - **Input:** $accounts = [["John","johnsmith@\text{mail.com}","\text{john}_{newyork}@\text{mail.com}"],["John","johnsmith@\text{mail.com}","john00@\text{mail.com}"],["Mary","mary@\text{mail.com}"],["John","johnnybravo@\text{mail.com}"]]$
 - **Output:** `[["John","john00@mail.com","john_newyork@mail.com","johnsmith@mail.com"],["Mary","mary@mail.com"],["John","johnnybravo@mail.com"]]`
-- **Explanation:**
-The first and second John's are the same person as they have the common email "johnsmith@mail.com".
+- **Explanation:** The first and second John's are the same person as they have the common email "johnsmith@mail.com".
 The third John and Mary are different people as none of their email addresses are used by other accounts.
 We could return these lists in any order, for example the answer [['Mary', 'mary@mail.com'], ['John', 'johnnybravo@mail.com'],
 ['John', 'john00@mail.com', 'john_newyork@mail.com', 'johnsmith@mail.com']] would still be accepted.
+
 #### Example 2
 
 - **Input:** $accounts = [["Gabe","Gabe0@\text{m.co}","Gabe3@\text{m.co}","Gabe1@\text{m.co}"],["Kevin","Kevin3@\text{m.co}","Kevin5@\text{m.co}","Kevin0@\text{m.co}"],["Ethan","Ethan5@\text{m.co}","Ethan4@\text{m.co}","Ethan0@\text{m.co}"],["Hanzo","Hanzo3@\text{m.co}","Hanzo1@\text{m.co}","Hanzo0@\text{m.co}"],["Fern","Fern5@\text{m.co}","Fern1@\text{m.co}","Fern0@\text{m.co}"]]$

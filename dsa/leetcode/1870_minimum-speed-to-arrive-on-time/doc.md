@@ -32,23 +32,23 @@ Except for the final ride, the next train can depart only at an integer-hour mar
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `dist = [1,3,2], hour = 6`
-- Output: `1`
+- **Input:** `dist = [1,3,2], hour = 6`
+- **Output:** `1`
 
 At speed one, the rides finish at integer-hour marks and total exactly six hours.
 
-**Example 2**
+#### Example 2
 
-- Input: `dist = [1,3,2], hour = 2.7`
-- Output: `3`
+- **Input:** `dist = [1,3,2], hour = 2.7`
+- **Output:** `3`
 
 The first two departures occur at hours one and two; the last ride finishes after another $2/3$ hour.
 
-**Example 3**
+#### Example 3
 
-- Input: `dist = [1,3,2], hour = 1.9`
-- Output: `-1`
+- **Input:** `dist = [1,3,2], hour = 1.9`
+- **Output:** `-1`
 
 Even at arbitrarily high speed, the two required departure boundaries consume at least two hours before the final ride.

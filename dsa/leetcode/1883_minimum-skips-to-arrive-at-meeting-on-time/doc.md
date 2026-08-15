@@ -31,23 +31,23 @@ After finishing any road except the last, you normally must wait until the next 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `dist = [1,3,2], speed = 4, hoursBefore = 2`
-- Output: `1`
+- **Input:** `dist = [1,3,2], speed = 4, hoursBefore = 2`
+- **Output:** `1`
 
 Skipping the first rest lets the first two roads finish exactly at hour `1`; the final road then ends at hour `1.5`.
 
-**Example 2**
+#### Example 2
 
-- Input: `dist = [7,3,5,5], speed = 2, hoursBefore = 10`
-- Output: `2`
+- **Input:** `dist = [7,3,5,5], speed = 2, hoursBefore = 10`
+- **Output:** `2`
 
 Skipping the rests after the first and third roads produces an arrival exactly at hour `10`.
 
-**Example 3**
+#### Example 3
 
-- Input: `dist = [7,3,5,5], speed = 1, hoursBefore = 10`
-- Output: `-1`
+- **Input:** `dist = [7,3,5,5], speed = 1, hoursBefore = 10`
+- **Output:** `-1`
 
 The roads themselves require `20` hours, so removing rests cannot meet the deadline.

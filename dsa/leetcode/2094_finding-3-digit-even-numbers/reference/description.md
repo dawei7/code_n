@@ -16,8 +16,13 @@ Return *a **sorted** array of the unique integers.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `digits`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -27,12 +32,14 @@ Return *a **sorted** array of the unique integers.*
 - **Output:** `[102,120,130,132,210,230,302,310,312,320]`
 - **Explanation:** All the possible integers that follow the requirements are in the output array.
 Notice that there are no **odd** integers or integers with **leading zeros**.
+
 #### Example 2
 
 - **Input:** $digits = [2,2,8,8,2]$
 - **Output:** `[222,228,282,288,822,828,882]`
 - **Explanation:** The same digit can be used as many times as it appears in digits.
 In this example, the digit 8 is used twice each time in 288, 828, and 882.
+
 #### Example 3
 
 - **Input:** $digits = [3,7,5]$

@@ -6,35 +6,31 @@ Return the *sum* of the complete subset with the *maximum sum*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [8,7,3,5,7,2,4,9]
+- **Input:** nums = [8,7,3,5,7,2,4,9]
 
-**Output:** 16
+- **Output:** 16
 
-**Explanation:**
+- **Explanation:** We select elements at indices 2 and 8 and $2 * 8$ is a perfect square.
 
-We select elements at indices 2 and 8 and $2 * 8$ is a perfect square.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [8,10,3,8,1,13,7,9,4]
+- **Input:** nums = [8,10,3,8,1,13,7,9,4]
 
-**Output:** 20
+- **Output:** 20
 
-**Explanation:**
-
-We select elements at indices 1, 4, and 9. $1 * 4$, $1 * 9$, $4 * 9$ are perfect squares.
-
-</div>
+- **Explanation:** We select elements at indices 1, 4, and 9. $1 * 4$, $1 * 9$, $4 * 9$ are perfect squares.
 
 ### 4. Constraints
 

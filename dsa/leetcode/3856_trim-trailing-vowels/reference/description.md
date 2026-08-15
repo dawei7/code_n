@@ -24,40 +24,27 @@ Return $s[:j + 1]$ when a non-vowel exists, or the empty string when all charact
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "idea"
+- **Input:** s = "idea"
 
-**Output:** "id"
+- **Output:** "id"
 
-**Explanation:**
+- **Explanation:** Removing `"id<u>**ea**</u>"`, we obtain the string `"id"`.
 
-Removing `"id<u>**ea**</u>"`, we obtain the string `"id"`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "day"
+- **Input:** s = "day"
 
-**Output:** "day"
+- **Output:** "day"
 
-**Explanation:**
+- **Explanation:** There are no trailing vowels in the string `"day"`.
 
-There are no trailing vowels in the string `"day"`.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "aeiou"
+- **Input:** s = "aeiou"
 
-**Output:** ""
+- **Output:** ""
 
-**Explanation:**
-
-Removing `"<u>**aeiou**</u>"`, we obtain the string `""`.
-
-</div>
+- **Explanation:** Removing `"<u>**aeiou**</u>"`, we obtain the string `""`.
 
 ### 4. Constraints
 

@@ -14,8 +14,15 @@ Return the maximum profit we can achieve after assigning the workers to the jobs
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `difficulty`: Input parameter (`List[int]`).
+- `profit`: Input parameter (`List[int]`).
+- `worker`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +31,7 @@ Return the maximum profit we can achieve after assigning the workers to the jobs
 - **Input:** $difficulty = [2,4,6,8,10], profit = [10,20,30,40,50], worker = [4,5,6,7]$
 - **Output:** `100`
 - **Explanation:** Workers are assigned jobs of difficulty [4,4,6,6] and they get a profit of [20,20,30,30] separately.
+
 #### Example 2
 
 - **Input:** $difficulty = [85,47,57], profit = [24,66,99], worker = [40,25,25]$

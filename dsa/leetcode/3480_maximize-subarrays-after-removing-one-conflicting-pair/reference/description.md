@@ -8,19 +8,24 @@ Return the **maximum** number of subarrays possible after removing **exactly** o
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `conflictingPairs`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 4, conflictingPairs = [[2,3],[1,4]]
+- **Input:** n = 4, conflictingPairs = [[2,3],[1,4]]
 
-**Output:** 9
+- **Output:** 9
 
-**Explanation:**
+- **Explanation:** 
 
 - Remove `[2, 3]` from `conflictingPairs`. Now, $conflictingPairs = [[1, 4]]$.
 
@@ -28,23 +33,19 @@ Return the **maximum** number of subarrays possible after removing **exactly** o
 
 - The maximum number of subarrays we can achieve after removing one element from `conflictingPairs` is 9.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 5, conflictingPairs = [[1,2],[2,5],[3,5]]
+- **Input:** n = 5, conflictingPairs = [[1,2],[2,5],[3,5]]
 
-**Output:** 12
+- **Output:** 12
 
-**Explanation:**
+- **Explanation:** 
 
 - Remove `[1, 2]` from `conflictingPairs`. Now, $conflictingPairs = [[2, 5], [3, 5]]$.
 
 - There are 12 subarrays in `nums` where `[2, 5]` and `[3, 5]` do not appear together.
 
 - The maximum number of subarrays we can achieve after removing one element from `conflictingPairs` is 12.
-
-</div>
 
 ### 4. Constraints
 

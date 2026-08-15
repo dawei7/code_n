@@ -10,8 +10,13 @@ Alice is going to type `target` on her computer using a special keyboard that ha
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `target`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `List[str]`.
 
 ### 3. Note
 
@@ -23,14 +28,11 @@ Return a list of *all* strings that appear on the screen as Alice types `target`
 
 #### Example 1
 
-<div class="example-block">
-**Input:** target = "abc"
+- **Input:** target = "abc"
 
-**Output:** ["a","aa","ab","aba","abb","abc"]
+- **Output:** ["a","aa","ab","aba","abb","abc"]
 
-**Explanation:**
-
-The sequence of key presses done by Alice are:
+- **Explanation:** The sequence of key presses done by Alice are:
 
 - Press key 1, and the string on the screen becomes `"a"`.
 
@@ -44,15 +46,11 @@ The sequence of key presses done by Alice are:
 
 - Press key 2, and the string on the screen becomes `"abc"`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** target = "he"
+- **Input:** target = "he"
 
-**Output:** ["a","b","c","d","e","f","g","h","ha","hb","hc","hd","he"]
-
-</div>
+- **Output:** ["a","b","c","d","e","f","g","h","ha","hb","hc","hd","he"]
 
 ### 5. Constraints
 

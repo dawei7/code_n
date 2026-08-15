@@ -30,8 +30,13 @@ After removing the comments from the source code, return *the source code in the
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `source`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `List[str]`.
 
 ### 3. Examples
 
@@ -58,6 +63,7 @@ int main()
 int a, b, c;
 a = b + c;
 }
+
 #### Example 2
 
 - **Input:** $source = ["a/*comment", "line", "\text{more}_{comment}*/b"]$

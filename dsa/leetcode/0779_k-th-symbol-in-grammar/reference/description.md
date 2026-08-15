@@ -8,8 +8,14 @@ Given two integer `n` and `k`, return the $$k^{\text{th}}$$ (**1-indexed**) symb
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,19 +24,19 @@ Given two integer `n` and `k`, return the $$k^{\text{th}}$$ (**1-indexed**) symb
 - **Input:** $n = 1, k = 1$
 - **Output:** `0`
 - **Explanation:** row 1: <u>0</u>
+
 #### Example 2
 
 - **Input:** $n = 2, k = 1$
 - **Output:** `0`
-- **Explanation:**
-row 1: 0
+- **Explanation:** row 1: 0
 row 2: <u>0</u>1
+
 #### Example 3
 
 - **Input:** $n = 2, k = 2$
 - **Output:** `1`
-- **Explanation:**
-row 1: 0
+- **Explanation:** row 1: 0
 row 2: 0<u>1</u>
 
 ### 4. Constraints

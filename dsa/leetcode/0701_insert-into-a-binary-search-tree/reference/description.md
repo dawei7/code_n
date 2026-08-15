@@ -4,8 +4,10 @@ You are given the `root` node of a binary search tree (BST) and a `value` to ins
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `insertIntoBST(root: Optional[TreeNode], val: int) -> `Optional[TreeNode]``: Executes operation.
 
 ### 3. Notice
 
@@ -21,10 +23,12 @@ that there may exist multiple valid ways for the insertion, as long as the tree 
 - **Output:** `[4,2,7,1,3,5]`
 - **Explanation:** Another accepted tree is:
 ![](images/bst.jpg)
+
 #### Example 2
 
 - **Input:** `root = [40,20,60,10,30,50,70], val = 25`
 - **Output:** `[40,20,60,10,30,50,70,null,null,25]`
+
 #### Example 3
 
 - **Input:** `root = [4,2,7,1,3,null,null,null,null,null,null], val = 5`

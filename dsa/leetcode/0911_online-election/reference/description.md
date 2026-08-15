@@ -12,8 +12,10 @@ Implement the `TopVotedCandidate` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TopVotedCandidate(persons: List[int], times: List[int])`: Initializes the data structure.
+- `q(t: int) -> `int``: Executes operation.
 
 ### 3. Examples
 

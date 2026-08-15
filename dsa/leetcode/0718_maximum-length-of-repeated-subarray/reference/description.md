@@ -4,8 +4,14 @@ Given two integer arrays `nums1` and `nums2`, return *the maximum length of a su
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums1`: Input parameter (`List[int]`).
+- `nums2`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -14,6 +20,7 @@ Given two integer arrays `nums1` and `nums2`, return *the maximum length of a su
 - **Input:** $nums1 = [1,2,3,2,1], nums2 = [3,2,1,4,7]$
 - **Output:** `3`
 - **Explanation:** The repeated subarray with maximum length is [3,2,1].
+
 #### Example 2
 
 - **Input:** $nums1 = [0,0,0,0,0], nums2 = [0,0,0,0,0]$

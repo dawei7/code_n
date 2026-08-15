@@ -44,17 +44,17 @@ distinct array positions.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `words = ["a","b","c","ab","bc","abc"], s = "abc"`
-- Output: `3`
+- **Input:** `words = ["a","b","c","ab","bc","abc"], s = "abc"`
+- **Output:** `3`
 
-**Example 2**
+#### Example 2
 
-- Input: `words = ["a","a"], s = "aa"`
-- Output: `2`
+- **Input:** `words = ["a","a"], s = "aa"`
+- **Output:** `2`
 
-**Example 3**
+#### Example 3
 
-- Input: `words = ["abcd","abc","abx"], s = "abc"`
-- Output: `1`
+- **Input:** `words = ["abcd","abc","abx"], s = "abc"`
+- **Output:** `1`

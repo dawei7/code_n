@@ -4,8 +4,13 @@ Given an integer array `nums` sorted in **non-decreasing** order, return *an arr
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -15,6 +20,7 @@ Given an integer array `nums` sorted in **non-decreasing** order, return *an arr
 - **Output:** `[0,1,9,16,100]`
 - **Explanation:** After squaring, the array becomes [16,1,0,9,100].
 After sorting, it becomes [0,1,9,16,100].
+
 #### Example 2
 
 - **Input:** `nums = [-7,-3,2,3,11]`

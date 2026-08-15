@@ -16,8 +16,10 @@ Implement the `Solution` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `encode(longUrl: str) -> `str``: Executes operation.
+- `decode(shortUrl: str) -> `str``: Executes operation.
 
 ### 3. Examples
 
@@ -25,8 +27,7 @@ Implement the `Solution` class:
 
 - **Input:** $url = "https://\text{leetcode.com}/problems/design-tinyurl"$
 - **Output:** `"https://leetcode.com/problems/design-tinyurl"`
-- **Explanation:**
-Solution obj = new Solution();
+- **Explanation:** Solution obj = new Solution();
 string tiny = obj.encode(url); // returns the encoded tiny url.
 string ans = obj.decode(tiny); // returns the original url after decoding it.
 

@@ -14,8 +14,12 @@ Implement the `DinnerPlates` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `DinnerPlates(capacity: int)`: Initializes the data structure.
+- `push(val: int)`: Executes operation.
+- `pop() -> `int``: Executes operation.
+- `popAtStack(index: int) -> `int``: Executes operation.
 
 ### 3. Examples
 
@@ -28,8 +32,7 @@ Implement the `DinnerPlates` class:
 **Output**
 [null, null, null, null, null, null, 2, null, null, 20, 21, 5, 4, 3, 1, -1]
 
-**Explanation:**
-DinnerPlates D = DinnerPlates(2);  // Initialize with capacity = 2
+- **Explanation:** DinnerPlates D = DinnerPlates(2);  // Initialize with capacity = 2
 D.push(1);
 D.push(2);
 D.push(3);

@@ -28,7 +28,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Friends table:
 +-------+-------+
 | user1 | user2 |
@@ -43,7 +43,7 @@ Friends table:
 | 8     | 3     |
 | 3     | 9     |
 +-------+-------+
-**Output:**
+- **Output:** 
 +-------+-----------------------+
 | user1 | percentage_popularity |
 +-------+-----------------------+
@@ -57,8 +57,7 @@ Friends table:
 | 8     | 11.11                 |
 | 9     | 11.11                 |
 +-------+-----------------------+
-**Explanation:**
-There are total 9 users on the platform.
+- **Explanation:** There are total 9 users on the platform.
 - User "1" has friendships with 2, 3, 4, 5 and 6. Therefore, the percentage popularity for user 1 would be calculated as (5/9) * 100 = 55.56.
 - User "2" has friendships with 1, 6 and 7. Therefore, the percentage popularity for user 2 would be calculated as (3/9) * 100 = 33.33.
 - User "3" has friendships with 1, 8 and 9. Therefore, the percentage popularity for user 3 would be calculated as (3/9) * 100 = 33.33.

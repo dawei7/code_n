@@ -18,7 +18,6 @@ Return an integer denoting the number of **local maximums** in `matrix`.
 
 **​​​​​​​Example 1:**
 
-<div class="example-block">
 **Input:** matrix = [[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,2,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0]]
 
 **Output:** 1
@@ -39,45 +38,33 @@ Return an integer denoting the number of **local maximums** in `matrix`.
 
 - There are no other non-zero cells, so the answer is 1.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** matrix = [[1,2],[3,4]]
+- **Input:** matrix = [[1,2],[3,4]]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** Only the cell with value 4 is a local maximum. Every other non-zero cell considers a cell with a greater value.
 
-Only the cell with value 4 is a local maximum. Every other non-zero cell considers a cell with a greater value.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** matrix = [[1,0,1],[0,1,0],[1,0,1]]
+- **Input:** matrix = [[1,0,1],[0,1,0],[1,0,1]]
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** 
 
 - For a cell with value 1, the considered cells are the cell itself and its 4-directionally adjacent cells that are inside the matrix.
 
 - Each of the five cells with value 1 only considers cells with values 0 or 1, so all five of them are local maximums.
 
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** matrix = [[1,1],[1,1]]
+- **Input:** matrix = [[1,1],[1,1]]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-All cells have the same value. Therefore, no cell considers another cell with a greater value, so all 4 cells are local maximums.
-
-</div>
+- **Explanation:** All cells have the same value. Therefore, no cell considers another cell with a greater value, so all 4 cells are local maximums.
 
 ### 2. Function Contract
 

@@ -45,20 +45,20 @@ Return the number of distinct sets whose powered values sum to `n`, reduced modu
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 10, x = 2`
-- Output: `1`
-- Explanation: The only set is $\{1, 3\}$ because $1^2 + 3^2 = 10$.
+- **Input:** `n = 10, x = 2`
+- **Output:** `1`
+- **Explanation:** The only set is $\{1, 3\}$ because $1^2 + 3^2 = 10$.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 4, x = 1`
-- Output: `2`
-- Explanation: The valid sets are $\{4\}$ and $\{1, 3\}$.
+- **Input:** `n = 4, x = 1`
+- **Output:** `2`
+- **Explanation:** The valid sets are $\{4\}$ and $\{1, 3\}$.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 25, x = 2`
-- Output: `2`
-- Explanation: Both $\{5\}$ and $\{3, 4\}$ produce $25$ after squaring their members.
+- **Input:** `n = 25, x = 2`
+- **Output:** `2`
+- **Explanation:** Both $\{5\}$ and $\{3, 4\}$ produce $25$ after squaring their members.

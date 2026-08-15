@@ -33,14 +33,14 @@ Return the minimum possible value of the least-distance road used by any path fr
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 4, roads = [[1, 2, 9], [2, 3, 6], [2, 4, 5], [1, 4, 7]]`
-- Output: `5`
-- Explanation: The route `1 -> 2 -> 4` uses roads of lengths `9` and `5`, so its score is `5`, the minimum achievable value.
+- **Input:** `n = 4, roads = [[1, 2, 9], [2, 3, 6], [2, 4, 5], [1, 4, 7]]`
+- **Output:** `5`
+- **Explanation:** The route `1 -> 2 -> 4` uses roads of lengths `9` and `5`, so its score is `5`, the minimum achievable value.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 4, roads = [[1, 2, 2], [1, 3, 4], [3, 4, 7]]`
-- Output: `2`
-- Explanation: Repetition permits `1 -> 2 -> 1 -> 3 -> 4`, which includes the length-`2` road before reaching city `4`.
+- **Input:** `n = 4, roads = [[1, 2, 2], [1, 3, 4], [3, 4, 7]]`
+- **Output:** `2`
+- **Explanation:** Repetition permits `1 -> 2 -> 1 -> 3 -> 4`, which includes the length-`2` road before reaching city `4`.

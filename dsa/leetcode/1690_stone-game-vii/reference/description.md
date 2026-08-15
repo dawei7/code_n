@@ -10,8 +10,13 @@ Given an array of integers `stones` where $\text{stones}[i]$ represents the valu
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `stones`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,13 +24,14 @@ Given an array of integers `stones` where $\text{stones}[i]$ represents the valu
 
 - **Input:** $stones = [5,3,1,4,2]$
 - **Output:** `6`
-- **Explanation:**
+- **Explanation:** 
 - Alice removes 2 and gets 5 + 3 + 1 + 4 = 13 points. Alice = 13, Bob = 0, stones = [5,3,1,4].
 - Bob removes 5 and gets 3 + 1 + 4 = 8 points. Alice = 13, Bob = 8, stones = [3,1,4].
 - Alice removes 3 and gets 1 + 4 = 5 points. Alice = 18, Bob = 8, stones = [1,4].
 - Bob removes 1 and gets 4 points. Alice = 18, Bob = 12, stones = [4].
 - Alice removes 4 and gets 0 points. Alice = 18, Bob = 12, stones = [].
 The score difference is 18 - 12 = 6.
+
 #### Example 2
 
 - **Input:** $stones = [7,90,5,1,100,10,10,2]$

@@ -8,8 +8,13 @@ Return *the **maximum number of words** that appear in a single sentence*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `sentences`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -17,11 +22,12 @@ Return *the **maximum number of words** that appear in a single sentence*.
 
 - **Input:** $sentences = ["alice and bob love leetcode", "i think so too", <u>"this is great thanks very much"</u>]$
 - **Output:** `6`
-- **Explanation:**
+- **Explanation:** 
 - The first sentence, "alice and bob love leetcode", has 5 words in total.
 - The second sentence, "i think so too", has 4 words in total.
 - The third sentence, "this is great thanks very much", has 6 words in total.
 Thus, the maximum number of words in a single sentence comes from the third sentence, which has 6 words.
+
 #### Example 2
 
 - **Input:** $sentences = ["please wait", <u>"continue to fight"</u>, <u>"continue to win"</u>]$

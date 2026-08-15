@@ -12,8 +12,14 @@ Return *the minimum number of clips needed so that we can cut the clips into seg
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `clips`: Input parameter (`List[List[int]]`).
+- `time`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,11 +31,13 @@ Return *the minimum number of clips needed so that we can cut the clips into seg
 Then, we can reconstruct the sporting event as follows:
 We cut [1,9] into segments [1,2] + [2,8] + [8,9].
 Now we have segments [0,2] + [2,8] + [8,10] which cover the sporting event [0, 10].
+
 #### Example 2
 
 - **Input:** $clips = [[0,1],[1,2]], time = 5$
 - **Output:** `-1`
 - **Explanation:** We cannot cover [0,5] with only [0,1] and [1,2].
+
 #### Example 3
 
 - **Input:** $clips = [[0,1],[6,8],[0,2],[5,6],[0,4],[0,3],[6,7],[1,3],[4,7],[1,4],[2,5],[2,6],[3,4],[4,5],[5,7],[6,9]], time = 9$

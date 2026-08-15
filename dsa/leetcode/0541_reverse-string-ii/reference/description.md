@@ -6,8 +6,14 @@ If there are fewer than `k` characters left, reverse all of them. If there are l
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -15,6 +21,7 @@ If there are fewer than `k` characters left, reverse all of them. If there are l
 
 - **Input:** `s = "abcdefg", k = 2`
 - **Output:** `"bacdfeg"`
+
 #### Example 2
 
 - **Input:** `s = "abcd", k = 2`

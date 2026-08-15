@@ -16,8 +16,14 @@ Return *the number of full chess rounds you have played in the tournament*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `loginTime`: Input parameter (`str`).
+- `logoutTime`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -32,6 +38,7 @@ All the given times follow the 24-hour clock. That means the first round of the 
 - **Explanation:** You played one full round from 09:45 to 10:00.
 You did not play the full round from 09:30 to 09:45 because you logged in at 09:31 after it began.
 You did not play the full round from 10:00 to 10:15 because you logged out at 10:14 before it ended.
+
 #### Example 2
 
 - **Input:** $loginTime = "21:30", logoutTime = "03:00"$

@@ -42,7 +42,7 @@ Order the $D$ result rows by $\text{sale}_{date}$ ascending.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Sales table:
 +------------+------------+-------------+
 | sale_date  | fruit      | sold_num    |
@@ -56,7 +56,7 @@ Sales table:
 | 2020-05-04 | apples     | 15          |
 | 2020-05-04 | oranges    | 16          |
 +------------+------------+-------------+
-**Output:**
+- **Output:** 
 +------------+--------------+
 | sale_date  | diff         |
 +------------+--------------+
@@ -65,8 +65,7 @@ Sales table:
 | 2020-05-03 | 20           |
 | 2020-05-04 | -1           |
 +------------+--------------+
-**Explanation:**
-Day 2020-05-01, 10 apples and 8 oranges were sold (Difference  10 - 8 = 2).
+- **Explanation:** Day 2020-05-01, 10 apples and 8 oranges were sold (Difference  10 - 8 = 2).
 Day 2020-05-02, 15 apples and 15 oranges were sold (Difference 15 - 15 = 0).
 Day 2020-05-03, 20 apples and 0 oranges were sold (Difference 20 - 0 = 20).
 Day 2020-05-04, 15 apples and 16 oranges were sold (Difference 15 - 16 = -1).

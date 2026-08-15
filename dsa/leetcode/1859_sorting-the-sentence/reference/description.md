@@ -10,8 +10,13 @@ Given a **shuffled sentence** `s` containing no more than `9` words, reconstruct
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -20,6 +25,7 @@ Given a **shuffled sentence** `s` containing no more than `9` words, reconstruct
 - **Input:** `s = "is2 sentence4 This1 a3"`
 - **Output:** `"This is a sentence"`
 - **Explanation:** Sort the words in s to their original positions "This1 is2 a3 sentence4", then remove the numbers.
+
 #### Example 2
 
 - **Input:** `s = "Myself2 Me1 I4 and3"`

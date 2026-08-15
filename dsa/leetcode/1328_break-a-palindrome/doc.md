@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/break-a-palindrome/) |
 
 ## Problem Description
+
 ### Goal
+
 Given a palindromic string `palindrome` of lowercase English letters, replace exactly one character with another lowercase letter so the resulting string is not a palindrome.
 
 Among all valid results, return the lexicographically smallest. For equal-length strings, lexicographic order is determined by the first position where they differ. If no one-character replacement can break the palindrome, return the empty string.
@@ -17,6 +19,7 @@ Among all valid results, return the lexicographically smallest. For equal-length
 The replacement character may be any lowercase English letter, but it must differ from the character it replaces because the operation is an actual change.
 
 ### Function Contract
+
 **Inputs**
 
 - `palindrome`: a lowercase palindromic string of length $n$, where $1\le n\le1000$.
@@ -26,20 +29,21 @@ The replacement character may be any lowercase English letter, but it must diffe
 The lexicographically smallest non-palindrome obtainable by replacing exactly one character, or `""` if no such string exists.
 
 ### Examples
-**Example 1**
 
-- Input: `palindrome = "abccba"`
-- Output: `"aaccba"`
-- Explanation: Replacing the first non-`a` in the left half yields the smallest possible differing prefix.
+#### Example 1
 
-**Example 2**
+- **Input:** `palindrome = "abccba"`
+- **Output:** `"aaccba"`
+- **Explanation:** Replacing the first non-`a` in the left half yields the smallest possible differing prefix.
 
-- Input: `palindrome = "a"`
-- Output: `""`
-- Explanation: Every one-character string is a palindrome after any replacement.
+#### Example 2
 
-**Example 3**
+- **Input:** `palindrome = "a"`
+- **Output:** `""`
+- **Explanation:** Every one-character string is a palindrome after any replacement.
 
-- Input: `palindrome = "aa"`
-- Output: `"ab"`
-- Explanation: No left-half character can be reduced, so increasing the final character minimally is optimal.
+#### Example 3
+
+- **Input:** `palindrome = "aa"`
+- **Output:** `"ab"`
+- **Explanation:** No left-half character can be reduced, so increasing the final character minimally is optimal.

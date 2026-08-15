@@ -32,13 +32,13 @@ The owner can use a secret technique once to remain not grumpy for exactly `minu
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `customers = [1,0,1,2,1,1,7,5], grumpy = [0,1,0,1,0,1,0,1], minutes = 3`
-- Output: `16`
-- Explanation: Applying the technique during the final three minutes yields the maximum total.
+- **Input:** `customers = [1,0,1,2,1,1,7,5], grumpy = [0,1,0,1,0,1,0,1], minutes = 3`
+- **Output:** `16`
+- **Explanation:** Applying the technique during the final three minutes yields the maximum total.
 
-**Example 2**
+#### Example 2
 
-- Input: `customers = [1], grumpy = [0], minutes = 1`
-- Output: `1`
+- **Input:** `customers = [1], grumpy = [0], minutes = 1`
+- **Output:** `1`

@@ -29,6 +29,7 @@ Return *the **length** of the shortest path for you to reach **any** food cell*.
 - **Input:** `grid = [["X","X","X","X","X","X"],["X","*","O","O","O","X"],["X","O","O","#","O","X"],["X","X","X","X","X","X"]]`
 - **Output:** `3`
 - **Explanation:** It takes 3 steps to reach the food.
+
 #### Example 2
 
 ![](images/img2.jpg)
@@ -36,6 +37,7 @@ Return *the **length** of the shortest path for you to reach **any** food cell*.
 - **Input:** `grid = [["X","X","X","X","X"],["X","*","X","O","X"],["X","O","X","#","X"],["X","X","X","X","X"]]`
 - **Output:** `-1`
 - **Explanation:** It is not possible to reach the food.
+
 #### Example 3
 
 ![](images/img3.jpg)
@@ -43,6 +45,7 @@ Return *the **length** of the shortest path for you to reach **any** food cell*.
 - **Input:** `grid = [["X","X","X","X","X","X","X","X"],["X","*","O","X","O","#","O","X"],["X","O","O","X","O","O","X","X"],["X","O","O","O","O","#","O","X"],["X","X","X","X","X","X","X","X"]]`
 - **Output:** `6`
 - **Explanation:** There can be multiple food cells. It only takes 6 steps to reach the bottom food.
+
 #### Example 4
 
 - **Input:** `grid = [["X","X","X","X","X","X","X","X"],["X","*","O","X","O","#","O","X"],["X","O","O","X","O","O","X","X"],["X","O","O","O","O","#","O","X"],["O","O","O","O","O","O","O","O"]]`

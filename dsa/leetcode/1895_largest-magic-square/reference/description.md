@@ -6,8 +6,13 @@ Given an `m x n` integer `grid`, return *the **size** (i.e., the side length *`k
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +27,7 @@ Every row sum, column sum, and diagonal sum of this magic square is equal to 12.
 - Row sums: 5+1+6 = 5+4+3 = 2+7+3 = 12
 - Column sums: 5+5+2 = 1+4+7 = 6+3+3 = 12
 - Diagonal sums: 5+4+3 = 6+4+2 = 12
+
 #### Example 2
 
 ![](images/magicsquare2-grid.jpg)

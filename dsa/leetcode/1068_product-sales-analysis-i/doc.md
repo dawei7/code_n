@@ -33,7 +33,7 @@ For every row in `Sales`, report the associated `product_name` together with tha
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 `Sales`
 
@@ -51,7 +51,7 @@ For every row in `Sales`, report the associated `product_name` together with tha
 | 200 | Apple |
 | 300 | Samsung |
 
-Output:
+- **Output:** 
 
 | product_name | year | price |
 |---|---:|---:|

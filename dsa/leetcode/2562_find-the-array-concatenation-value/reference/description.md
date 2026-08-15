@@ -16,8 +16,13 @@ Return* the concatenation value of `nums`*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -35,6 +40,7 @@ We pick the first element, 52, and the last element, 2.
 Their concatenation is 522, and we add it to the concatenation value, so it becomes equal to 596.
 Then we delete them from the nums, so nums becomes empty.
 Since the concatenation value is 596 so the answer is 596.
+
 #### Example 2
 
 - **Input:** `nums = [5,14,13,8,12]`
@@ -59,10 +65,9 @@ Since the concatenation value is 673 so the answer is 673.
 
 - $1 \le \text{nums}[i] \le 10^{4}$
 
-<style type="text/css">.spoilerbutton {display:block; border:dashed; padding: 0px 0px; margin:10px 0px; font-size:150%; font-weight: bold; color:#000000; background-color:cyan; outline:0;
+.spoilerbutton {display:block; border:dashed; padding: 0px 0px; margin:10px 0px; font-size:150%; font-weight: bold; color:#000000; background-color:cyan; outline:0;
 }
 .spoiler {overflow:hidden;}
 .spoiler > div {-webkit-transition: all 0s ease;-moz-transition: margin 0s ease;-o-transition: all 0s ease;transition: margin 0s ease;}
 .spoilerbutton[value="Show Message"] + .spoiler > div {margin-top:-500%;}
 .spoilerbutton[value="Hide Message"] + .spoiler {padding:5px;}
-</style>

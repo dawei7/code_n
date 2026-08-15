@@ -24,8 +24,14 @@ Return *the minimum total distance traveled by all the robots*. The test cases a
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `robot`: Input parameter (`List[int]`).
+- `factory`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -42,6 +48,7 @@ Return *the minimum total distance traveled by all the robots*. The test cases a
 The limit of the first factory is 2, and it fixed 2 robots.
 The limit of the second factory is 2, and it fixed 1 robot.
 The total distance is |2 - 0| + |2 - 4| + |6 - 6| = 4. It can be shown that we cannot achieve a better total distance than 4.
+
 #### Example 2
 
 ![](images/example-2.jpg)

@@ -60,7 +60,7 @@ Repeated `Sales` rows are permitted and each stored row contributes separately. 
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Product table:
 +------------+--------------+------------+
 | product_id | product_name | unit_price |
@@ -78,12 +78,12 @@ Sales table:
 | 2         | 2          | 3        | 2019-06-02 | 1        | 800   |
 | 3         | 3          | 4        | 2019-05-13 | 2        | 2800  |
 +-----------+------------+----------+------------+----------+-------+
-**Output:**
+- **Output:** 
 +-------------+
 | seller_id   |
 +-------------+
 | 1           |
 | 3           |
 +-------------+
-**Explanation:** Both sellers with id 1 and 3 sold products with the most total price of 2800.
+- **Explanation:** Both sellers with id 1 and 3 sold products with the most total price of 2800.
 ```

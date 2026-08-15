@@ -18,14 +18,11 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 3, m = 4, k = 2
+- **Input:** n = 3, m = 4, k = 2
 
-**Output:** 8
+- **Output:** 8
 
-**Explanation:**
-
-The 8 possible 2-even arrays are:
+- **Explanation:** The 8 possible 2-even arrays are:
 
 - `[2, 2, 2]`
 
@@ -43,27 +40,19 @@ The 8 possible 2-even arrays are:
 
 - `[4, 4, 4]`
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 5, m = 1, k = 0
+- **Input:** n = 5, m = 1, k = 0
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** The only 0-even array is `[1, 1, 1, 1, 1]`.
 
-The only 0-even array is `[1, 1, 1, 1, 1]`.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 7, m = 7, k = 5
+- **Input:** n = 7, m = 7, k = 5
 
-**Output:** 5832
-
-</div>
+- **Output:** 5832
 
 ### 4. Constraints
 

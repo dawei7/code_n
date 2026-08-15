@@ -36,14 +36,14 @@ The constraints are $1\le n\le10^4$, $1\le w\le26$, and $1\le m\le2\cdot10^4$. E
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 7, edges = [[0,1,1],[1,2,1],[2,3,1],[3,4,2],[4,5,2],[5,6,2]], queries = [[0,3],[3,6],[2,6],[0,6]]`
-- Output: `[0,0,1,3]`
-- Explanation: The first two paths already have uniform weights. The third changes its one weight-`1` edge to `2`, while the full path needs three of its six edges changed.
+- **Input:** `n = 7, edges = [[0,1,1],[1,2,1],[2,3,1],[3,4,2],[4,5,2],[5,6,2]], queries = [[0,3],[3,6],[2,6],[0,6]]`
+- **Output:** `[0,0,1,3]`
+- **Explanation:** The first two paths already have uniform weights. The third changes its one weight-`1` edge to `2`, while the full path needs three of its six edges changed.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 8, edges = [[1,2,6],[1,3,4],[2,4,6],[2,5,3],[3,6,6],[3,0,8],[7,0,2]], queries = [[4,6],[0,4],[6,5],[7,4]]`
-- Output: `[1,2,2,3]`
-- Explanation: For each path, retaining its most frequent existing weight minimizes how many other edges must be changed.
+- **Input:** `n = 8, edges = [[1,2,6],[1,3,4],[2,4,6],[2,5,3],[3,6,6],[3,0,8],[7,0,2]], queries = [[4,6],[0,4],[6,5],[7,4]]`
+- **Output:** `[1,2,2,3]`
+- **Explanation:** For each path, retaining its most frequent existing weight minimizes how many other edges must be changed.

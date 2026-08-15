@@ -6,8 +6,15 @@ Additionally, you are given an array `disappear`, where $\text{disappear}[i]$ de
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+- `disappear`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -19,14 +26,11 @@ Return the array `answer`, with $\text{answer}[i]$ denoting the **minimum** unit
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,1,2],[1,2,1],[0,2,4]], disappear = [1,1,5]
+- **Input:** n = 3, edges = [[0,1,2],[1,2,1],[0,2,4]], disappear = [1,1,5]
 
-**Output:** [0,-1,4]
+- **Output:** [0,-1,4]
 
-**Explanation:**
-
-![](images/output-onlinepngtools.png)
+- **Explanation:** ![](images/output-onlinepngtools.png)
 
 We are starting our journey from node 0, and our goal is to find the minimum time required to reach each node before it disappears.
 
@@ -36,17 +40,13 @@ We are starting our journey from node 0, and our goal is to find the minimum tim
 
 - For node 2, we need at least 4 units of time to traverse $\text{edges}[2]$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,1,2],[1,2,1],[0,2,4]], disappear = [1,3,5]
+- **Input:** n = 3, edges = [[0,1,2],[1,2,1],[0,2,4]], disappear = [1,3,5]
 
-**Output:** [0,2,3]
+- **Output:** [0,2,3]
 
-**Explanation:**
-
-![](images/output-onlinepngtools-1.png)
+- **Explanation:** ![](images/output-onlinepngtools-1.png)
 
 We are starting our journey from node 0, and our goal is to find the minimum time required to reach each node before it disappears.
 
@@ -56,19 +56,13 @@ We are starting our journey from node 0, and our goal is to find the minimum tim
 
 - For node 2, we need at least 3 units of time to traverse $\text{edges}[0]$ and $\text{edges}[1]$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 2, edges = [[0,1,1]], disappear = [1,1]
+- **Input:** n = 2, edges = [[0,1,1]], disappear = [1,1]
 
-**Output:** [0,-1]
+- **Output:** [0,-1]
 
-**Explanation:**
-
-Exactly when we reach node 1, it disappears.
-
-</div>
+- **Explanation:** Exactly when we reach node 1, it disappears.
 
 ### 5. Constraints
 

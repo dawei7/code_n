@@ -31,20 +31,20 @@ Return the number of connected components in which every pair of distinct vertic
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 6, edges = [[0,1],[0,2],[1,2],[3,4]]`
-- Output: `3`
-- Explanation: Vertices `0`, `1`, and `2` form a triangle, `3` and `4` form a complete two-vertex component, and vertex `5` is isolated. All three components are complete.
+- **Input:** `n = 6, edges = [[0,1],[0,2],[1,2],[3,4]]`
+- **Output:** `3`
+- **Explanation:** Vertices `0`, `1`, and `2` form a triangle, `3` and `4` form a complete two-vertex component, and vertex `5` is isolated. All three components are complete.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 6, edges = [[0,1],[0,2],[1,2],[3,4],[3,5]]`
-- Output: `1`
-- Explanation: The triangle on `0`, `1`, and `2` is complete. The other component is missing the edge between `4` and `5`, so it is not complete.
+- **Input:** `n = 6, edges = [[0,1],[0,2],[1,2],[3,4],[3,5]]`
+- **Output:** `1`
+- **Explanation:** The triangle on `0`, `1`, and `2` is complete. The other component is missing the edge between `4` and `5`, so it is not complete.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 1, edges = []`
-- Output: `1`
-- Explanation: The single isolated vertex is a complete component.
+- **Input:** `n = 1, edges = []`
+- **Output:** `1`
+- **Explanation:** The single isolated vertex is a complete component.

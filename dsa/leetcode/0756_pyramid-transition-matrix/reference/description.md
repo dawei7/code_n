@@ -12,8 +12,14 @@ Given `bottom` and `allowed`, return `true`* if you can build the pyramid all th
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `bottom`: Input parameter (`str`).
+- `allowed`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -26,6 +32,7 @@ Given `bottom` and `allowed`, return `true`* if you can build the pyramid all th
 - **Explanation:** The allowed triangular patterns are shown on the right.
 Starting from the bottom (level 3), we can build "CE" on level 2 and then build "A" on level 1.
 There are three triangular patterns in the pyramid, which are "BCC", "CDE", and "CEA". All are allowed.
+
 #### Example 2
 
 ![](images/pyramid2-grid.jpg)

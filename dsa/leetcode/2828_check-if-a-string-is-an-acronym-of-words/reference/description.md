@@ -8,8 +8,14 @@ Return `true`* if *`s`* is an acronym of *`words`*, and *`false`* otherwise. *
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -18,6 +24,7 @@ Return `true`* if *`s`* is an acronym of *`words`*, and *`false`* otherwise. *
 - **Input:** $words = ["alice","bob","charlie"], s = "abc"$
 - **Output:** `true`
 - **Explanation:** The first character in the words "alice", "bob", and "charlie" are 'a', 'b', and 'c', respectively. Hence, s = "abc" is the acronym.
+
 #### Example 2
 
 - **Input:** $words = ["an","apple"], s = "a"$
@@ -25,6 +32,7 @@ Return `true`* if *`s`* is an acronym of *`words`*, and *`false`* otherwise. *
 - **Explanation:** The first character in the words "an" and "apple" are 'a' and 'a', respectively.
 The acronym formed by concatenating these characters is "aa".
 Hence, s = "a" is not the acronym.
+
 #### Example 3
 
 - **Input:** $words = ["never","gonna","give","up","on","you"], s = "ngguoy"$

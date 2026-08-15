@@ -23,6 +23,7 @@ Return `True` if there exists at least one path from `(0, 0)` to $(r - 1, c - 1)
 - **Input:** `grid = [[0,1,0,0],[0,1,0,0],[1,0,1,0]]`
 - **Output:** `true`
 - **Explanation:** The path colored in blue in the above diagram is a valid path because we have 3 cells with a value of 1 and 3 with a value of 0. Since there is a valid path, we return true.
+
 #### Example 2
 
 ![](images/yetgrid2drawio-1.png)

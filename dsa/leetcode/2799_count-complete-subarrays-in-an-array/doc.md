@@ -30,14 +30,14 @@ Return the number of non-empty contiguous subarrays whose set of distinct values
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 3, 1, 2, 2]`
-- Output: `4`
-- Explanation: The complete subarrays are `[1, 3, 1, 2]`, `[1, 3, 1, 2, 2]`, `[3, 1, 2]`, and `[3, 1, 2, 2]`.
+- **Input:** `nums = [1, 3, 1, 2, 2]`
+- **Output:** `4`
+- **Explanation:** The complete subarrays are `[1, 3, 1, 2]`, `[1, 3, 1, 2, 2]`, `[3, 1, 2]`, and `[3, 1, 2, 2]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [5, 5, 5, 5]`
-- Output: `10`
-- Explanation: The whole array has one distinct value, so every non-empty subarray is complete. There are $4 \cdot 5 / 2 = 10$ such subarrays.
+- **Input:** `nums = [5, 5, 5, 5]`
+- **Output:** `10`
+- **Explanation:** The whole array has one distinct value, so every non-empty subarray is complete. There are $4 \cdot 5 / 2 = 10$ such subarrays.

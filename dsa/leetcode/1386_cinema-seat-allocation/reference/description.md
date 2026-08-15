@@ -20,8 +20,14 @@ Return an integer denoting the **maximum** number of four-person groups that can
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `reservedSeats`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -32,10 +38,12 @@ Return an integer denoting the **maximum** number of four-person groups that can
 - **Input:** $n = 3, reservedSeats = [[1,2],[1,3],[1,8],[2,6],[3,1],[3,10]]$
 - **Output:** `4`
 - **Explanation:** The figure above shows an optimal allocation of four groups. Seats marked in blue are already reserved, and each set of four contiguous seats marked in orange is assigned to one group.
+
 #### Example 2
 
 - **Input:** $n = 2, reservedSeats = [[2,1],[1,8],[2,6]]$
 - **Output:** `2`
+
 #### Example 3
 
 - **Input:** $n = 4, reservedSeats = [[4,3],[1,4],[4,6],[1,7]]$

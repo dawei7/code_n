@@ -14,8 +14,14 @@ Return *an array *`answer`* of length *`k`* where *$\text{answer}[j]$* contains 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `rooms`: Input parameter (`List[List[int]]`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -27,6 +33,7 @@ Return *an array *`answer`* of length *`k`* where *$\text{answer}[j]$* contains 
 Query = [3,1]: Room number 3 is the closest as abs(3 - 3) = 0, and its size of 2 is at least 1. The answer is 3.
 Query = [3,3]: There are no rooms with a size of at least 3, so the answer is -1.
 Query = [5,2]: Room number 3 is the closest as abs(3 - 5) = 2, and its size of 2 is at least 2. The answer is 3.
+
 #### Example 2
 
 - **Input:** $rooms = [[1,4],[2,3],[3,5],[4,1],[5,2]], queries = [[2,3],[2,4],[2,5]]$

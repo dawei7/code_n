@@ -21,17 +21,16 @@ Return the number of distinct index selections in `s` whose characters, in order
 
 - **Input:** `s = "rabbbit", t = "rabbit"`
 - **Output:** `3`
-- **Explanation:**
-As shown below, there are 3 ways you can generate "rabbit" from s.
+- **Explanation:** As shown below, there are 3 ways you can generate "rabbit" from s.
 **<u>rabb</u>**b**<u>it</u>**
 **<u>ra</u>**b**<u>bbit</u>**
 **<u>rab</u>**b**<u>bit</u>**
+
 #### Example 2
 
 - **Input:** `s = "babgbag", t = "bag"`
 - **Output:** `5`
-- **Explanation:**
-As shown below, there are 5 ways you can generate "bag" from s.
+- **Explanation:** As shown below, there are 5 ways you can generate "bag" from s.
 **<u>ba</u>**b<u>**g**</u>bag
 **<u>ba</u>**bgba**<u>g</u>**
 <u>**b**</u>abgb**<u>ag</u>**

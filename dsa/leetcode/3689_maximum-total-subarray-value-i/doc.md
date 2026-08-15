@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/maximum-total-subarray-value-i/) |
 
 ## Problem Description
+
 ### Goal
 
 Choose exactly `k` nonempty subarrays of `nums`. The chosen intervals may overlap, and an interval with the same endpoints may be chosen more than once. For any selected subarray, its value is its maximum element minus its minimum element.
@@ -30,23 +31,23 @@ Return the maximum sum of the ranges of exactly `k` chosen nonempty subarrays. T
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 3, 2], k = 2`
-- Output: `4`
+- **Input:** `nums = [1, 3, 2], k = 2`
+- **Output:** `4`
 
 The global range is 2, and two choices can each achieve it.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4, 2, 5, 1], k = 3`
-- Output: `12`
+- **Input:** `nums = [4, 2, 5, 1], k = 3`
+- **Output:** `12`
 
 Each choice can use a subarray containing both 5 and 1 and contribute 4.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [7], k = 10`
-- Output: `0`
+- **Input:** `nums = [7], k = 10`
+- **Output:** `0`
 
 Every nonempty subarray of a singleton has range zero, even when selected repeatedly.

@@ -31,20 +31,20 @@ After watering a plant, return to the river and refill only when the remaining w
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `plants = [2,2,3,3], capacity = 5`
-- Output: `14`
-- Explanation: Refills are needed before plants 2 and 3, adding their return trips to the ordinary left-to-right steps.
+- **Input:** `plants = [2,2,3,3], capacity = 5`
+- **Output:** `14`
+- **Explanation:** Refills are needed before plants 2 and 3, adding their return trips to the ordinary left-to-right steps.
 
-**Example 2**
+#### Example 2
 
-- Input: `plants = [1,1,1,4,2,3], capacity = 4`
-- Output: `30`
-- Explanation: The gardener refills after plant 2 and again before plants 4 and 5.
+- **Input:** `plants = [1,1,1,4,2,3], capacity = 4`
+- **Output:** `30`
+- **Explanation:** The gardener refills after plant 2 and again before plants 4 and 5.
 
-**Example 3**
+#### Example 3
 
-- Input: `plants = [7,7,7,7,7,7,7], capacity = 8`
-- Output: `49`
-- Explanation: Every plant after the first requires a river trip, so the total equals $1+3+5+\cdots+13=49$.
+- **Input:** `plants = [7,7,7,7,7,7,7], capacity = 8`
+- **Output:** `49`
+- **Explanation:** Every plant after the first requires a river trip, so the total equals $1+3+5+\cdots+13=49$.

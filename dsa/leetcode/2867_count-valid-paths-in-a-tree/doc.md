@@ -35,20 +35,20 @@ The input satisfies $1 \le n \le 10^5$, every endpoint lies between $1$ and $n$,
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 5, edges = [[1,2],[1,3],[2,4],[2,5]]`
-- Output: `4`
-- Explanation: The valid endpoint pairs are `(1,2)`, `(1,3)`, `(1,4)`, and `(2,4)`.
+- **Input:** `n = 5, edges = [[1,2],[1,3],[2,4],[2,5]]`
+- **Output:** `4`
+- **Explanation:** The valid endpoint pairs are `(1,2)`, `(1,3)`, `(1,4)`, and `(2,4)`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 6, edges = [[1,2],[1,3],[2,4],[3,5],[3,6]]`
-- Output: `6`
-- Explanation: The six valid pairs are `(1,2)`, `(1,3)`, `(1,4)`, `(1,6)`, `(2,4)`, and `(3,6)`.
+- **Input:** `n = 6, edges = [[1,2],[1,3],[2,4],[3,5],[3,6]]`
+- **Output:** `6`
+- **Explanation:** The six valid pairs are `(1,2)`, `(1,3)`, `(1,4)`, `(1,6)`, `(2,4)`, and `(3,6)`.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 1, edges = []`
-- Output: `0`
-- Explanation: There are no paths between two distinct nodes.
+- **Input:** `n = 1, edges = []`
+- **Output:** `0`
+- **Explanation:** There are no paths between two distinct nodes.

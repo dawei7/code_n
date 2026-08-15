@@ -10,8 +10,13 @@ Notice that some substrings can be repeated so in this case you have to count th
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,11 +27,13 @@ Notice that some substrings can be repeated so in this case you have to count th
 - **Explanation:** All possible substrings are: "A","B","C","AB","BC" and "ABC".
 Every substring is composed with only unique letters.
 Sum of lengths of all substring is 1 + 1 + 1 + 2 + 2 + 3 = 10
+
 #### Example 2
 
 - **Input:** `s = "ABA"`
 - **Output:** `8`
 - **Explanation:** The same as example 1, except countUniqueChars("ABA") = 1.
+
 #### Example 3
 
 - **Input:** `s = "LEETCODE"`

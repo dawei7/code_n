@@ -33,17 +33,17 @@ The constraints guarantee $1 \le mountainHeight \le 10^5$, at most $10^4$ worker
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `mountainHeight = 4`, `workerTimes = [2,1,1]`
-- Output: `3`
+- **Input:** `mountainHeight = 4`, `workerTimes = [2,1,1]`
+- **Output:** `3`
 
-**Example 2**
+#### Example 2
 
-- Input: `mountainHeight = 10`, `workerTimes = [3,2,2,4]`
-- Output: `12`
+- **Input:** `mountainHeight = 10`, `workerTimes = [3,2,2,4]`
+- **Output:** `12`
 
-**Example 3**
+#### Example 3
 
-- Input: `mountainHeight = 5`, `workerTimes = [1]`
-- Output: `15`
+- **Input:** `mountainHeight = 5`, `workerTimes = [1]`
+- **Output:** `15`

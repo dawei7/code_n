@@ -28,20 +28,20 @@ Return `true` when the initial position is winning for Alice under optimal play,
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 3`
-- Output: `true`
-- Explanation: Alice can remove one leaf so that after the remaining safe removals, Bob is the player forced to take the root.
+- **Input:** `n = 3`
+- **Output:** `true`
+- **Explanation:** Alice can remove one leaf so that after the remaining safe removals, Bob is the player forced to take the root.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 1`
-- Output: `false`
-- Explanation: The tree contains only the root, so Alice loses immediately.
+- **Input:** `n = 1`
+- **Output:** `false`
+- **Explanation:** The tree contains only the root, so Alice loses immediately.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 2`
-- Output: `true`
-- Explanation: Alice removes the only non-root node, leaving Bob with the losing root move.
+- **Input:** `n = 2`
+- **Output:** `true`
+- **Explanation:** Alice removes the only non-root node, leaving Bob with the losing root move.

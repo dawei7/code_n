@@ -34,23 +34,23 @@ The common length satisfies $1 \le n \le 10^5$, and every damage and health valu
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `power = 4, damage = [1,2,3,4], health = [4,5,6,8]`
-- Output: `39`
+- **Input:** `power = 4, damage = [1,2,3,4], health = [4,5,6,8]`
+- **Output:** `39`
 
 One optimal defeat order is enemy 3, enemy 2, enemy 0, then enemy 1.
 
-**Example 2**
+#### Example 2
 
-- Input: `power = 1, damage = [1,1,1,1], health = [1,2,3,4]`
-- Output: `20`
+- **Input:** `power = 1, damage = [1,1,1,1], health = [1,2,3,4]`
+- **Output:** `20`
 
 With equal rates, defeating enemies in increasing required attack time is optimal.
 
-**Example 3**
+#### Example 3
 
-- Input: `power = 8, damage = [40], health = [59]`
-- Output: `320`
+- **Input:** `power = 8, damage = [40], health = [59]`
+- **Output:** `320`
 
 The lone enemy attacks for $\lceil 59/8 \rceil = 8$ seconds.

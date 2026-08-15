@@ -12,21 +12,23 @@ Return the **maximum** subarray sum across **all** possible resulting arrays.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [-3,2,-2,-1,3,-2,3]
+- **Input:** nums = [-3,2,-2,-1,3,-2,3]
 
-**Output:** 7
+- **Output:** 7
 
-**Explanation:**
-
-We can have the following arrays after at most one operation:
+- **Explanation:** We can have the following arrays after at most one operation:
 
 - The original array is `nums = [-3, 2, -2, -1, <u>**3, -2, 3**</u>]`. The maximum subarray sum is $3 + (-2) + 3 = 4$.
 
@@ -40,19 +42,13 @@ We can have the following arrays after at most one operation:
 
 The output is $max(4, 4, 7, 4, 2) = 7$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4]
+- **Input:** nums = [1,2,3,4]
 
-**Output:** 10
+- **Output:** 10
 
-**Explanation:**
-
-It is optimal to not perform any operations.
-
-</div>
+- **Explanation:** It is optimal to not perform any operations.
 
 ### 4. Constraints
 

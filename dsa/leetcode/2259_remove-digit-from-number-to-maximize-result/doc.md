@@ -36,17 +36,17 @@ Return the length-$n-1$ string obtained by deleting exactly one occurrence of
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `number = "123", digit = "3"`
-- Output: `"12"`
+- **Input:** `number = "123", digit = "3"`
+- **Output:** `"12"`
 
-**Example 2**
+#### Example 2
 
-- Input: `number = "1231", digit = "1"`
-- Output: `"231"`
+- **Input:** `number = "1231", digit = "1"`
+- **Output:** `"231"`
 
-**Example 3**
+#### Example 3
 
-- Input: `number = "551", digit = "5"`
-- Output: `"51"`
+- **Input:** `number = "551", digit = "5"`
+- **Output:** `"51"`

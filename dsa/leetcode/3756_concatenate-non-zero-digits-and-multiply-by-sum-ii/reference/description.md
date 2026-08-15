@@ -29,93 +29,77 @@ Return an array of $q$ integers. For each query, concatenate its nonzero digits 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "10203004", queries = [[0,7],[1,3],[4,6]]
+- **Input:** s = "10203004", queries = [[0,7],[1,3],[4,6]]
 
-**Output:** [12340, 4, 9]
+- **Output:** [12340, 4, 9]
 
-**Explanation:**
+- **Explanation:** 
 
 - $s[0..7] = "10203004"$
 
-		<li>$x = 1234$
+		- $x = 1234$
 
 - $sum = 1 + 2 + 3 + 4 = 10$
 
 - Therefore, answer is $1234 * 10 = 12340$.
 
-	</li>
 - $s[1..3] = "020"$
 
-		<li>$x = 2$
+		- $x = 2$
 
 - $sum = 2$
 
 - Therefore, the answer is $2 * 2 = 4$.
 
-	</li>
 - $s[4..6] = "300"$
 
-		<li>$x = 3$
+		- $x = 3$
 
 - $sum = 3$
 
 - Therefore, the answer is $3 * 3 = 9$.
 
-	</li>
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "1000", queries = [[0,3],[1,1]]
+- **Input:** s = "1000", queries = [[0,3],[1,1]]
 
-**Output:** [1, 0]
+- **Output:** [1, 0]
 
-**Explanation:**
+- **Explanation:** 
 
 - $s[0..3] = "1000"$
 
-		<li>$x = 1$
+		- $x = 1$
 
 - $sum = 1$
 
 - Therefore, the answer is $1 * 1 = 1$.
 
-	</li>
 - $s[1..1] = "0"$
 
-		<li>$x = 0$
+		- $x = 0$
 
 - $sum = 0$
 
 - Therefore, the answer is $0 * 0 = 0$.
 
-	</li>
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "9876543210", queries = [[0,9]]
+- **Input:** s = "9876543210", queries = [[0,9]]
 
-**Output:** [444444137]
+- **Output:** [444444137]
 
-**Explanation:**
+- **Explanation:** 
 
 - $s[0..9] = "9876543210"$
 
-		<li>$x = 987654321$
+		- $x = 987654321$
 
 - $sum = 9 + 8 + 7 + 6 + 5 + 4 + 3 + 2 + 1 = 45$
 
 - Therefore, the answer is $987654321 * 45 = 44444444445$.
 
 - We return $44444444445 modulo (10^{9} + 7) = 444444137$.
-
-	</li>
-
-</div>
 
 ### 4. Constraints
 

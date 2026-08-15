@@ -32,12 +32,11 @@ Return `true` if every required prefix and suffix is prime. Return `false` as so
 
 #### Example 1
 
-<div class="example-block">
-**Input:** num = 23
+- **Input:** num = 23
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
+- **Explanation:** 
 
 - **​​​​​​​**Prefixes of $num = 23$ are 2 and 23, both are prime.
 
@@ -45,15 +44,13 @@ Return `true` if every required prefix and suffix is prime. Return `false` as so
 
 - All prefixes and suffixes are prime, so 23 is a Complete Prime Number and the answer is `true`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** num = 39
+- **Input:** num = 39
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
+- **Explanation:** 
 
 - Prefixes of $num = 39$ are 3 and 39. 3 is prime, but 39 is not prime.
 
@@ -61,19 +58,15 @@ Return `true` if every required prefix and suffix is prime. Return `false` as so
 
 - At least one prefix or suffix is not prime, so 39 is not a Complete Prime Number and the answer is `false`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** num = 7
+- **Input:** num = 7
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
+- **Explanation:** 
 
 - 7 is prime, so all its prefixes and suffixes are prime and the answer is `true`.
-
-</div>
 
 ### 5. Constraints
 

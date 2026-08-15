@@ -27,12 +27,11 @@ Return the smallest number of removed indices whose complementary retained subse
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3], target = 2
+- **Input:** nums = [1,2,3], target = 2
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - Removing $\text{nums}[1] = 2$ leaves `[nums[0], nums[2]] = [1, 3]`.
 
@@ -40,31 +39,21 @@ Return the smallest number of removed indices whose complementary retained subse
 
 - It is not possible to achieve XOR = 2 in less than one removal, therefore the answer is 1.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,4], target = 1
+- **Input:** nums = [2,4], target = 1
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
+- **Explanation:** It is impossible to remove elements to achieve `target`. Thus, the answer is -1.
 
-It is impossible to remove elements to achieve `target`. Thus, the answer is -1.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [7], target = 7
+- **Input:** nums = [7], target = 7
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-The XOR of all elements is $\text{nums}[0] = 7$, which equals `target`. Thus, no removal is needed.
-
-</div>
+- **Explanation:** The XOR of all elements is $\text{nums}[0] = 7$, which equals `target`. Thus, no removal is needed.
 
 ### 4. Constraints
 

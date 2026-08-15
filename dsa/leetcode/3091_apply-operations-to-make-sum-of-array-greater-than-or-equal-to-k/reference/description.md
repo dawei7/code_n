@@ -12,21 +12,23 @@ Return *the **minimum** number of operations required to make the **sum** of ele
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** k = 11
+- **Input:** k = 11
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
-
-We can do the following operations on the array `nums = [1]`:
+- **Explanation:** We can do the following operations on the array `nums = [1]`:
 
 - Increase the element by `1` three times. The resulting array is `nums = [4]`.
 
@@ -36,19 +38,13 @@ The sum of the final array is $4 + 4 + 4 = 12$ which is greater than or equal to
 
 The total number of operations performed is $3 + 2 = 5$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** k = 1
+- **Input:** k = 1
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-The sum of the original array is already greater than or equal to `1`, so no operations are needed.
-
-</div>
+- **Explanation:** The sum of the original array is already greater than or equal to `1`, so no operations are needed.
 
 ### 4. Constraints
 

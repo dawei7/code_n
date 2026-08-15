@@ -12,8 +12,10 @@ A leaf of a node is a node that has no children.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `smallestFromLeaf(root: Optional[TreeNode]) -> `str``: Executes operation.
 
 ### 3. Examples
 
@@ -23,12 +25,14 @@ A leaf of a node is a node that has no children.
 
 - **Input:** `root = [0,1,2,3,4,3,4]`
 - **Output:** `"dba"`
+
 #### Example 2
 
 ![](images/tree2.png)
 
 - **Input:** `root = [25,1,3,1,3,0,2]`
 - **Output:** `"adz"`
+
 #### Example 3
 
 ![](images/tree3.png)

@@ -33,16 +33,16 @@ Return the greatest MEX that can be achieved after applying any number of operat
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,-10,7,13,6,8], value = 5`
-- Output: `4`
+- **Input:** `nums = [1,-10,7,13,6,8], value = 5`
+- **Output:** `4`
 
 Elements from the required remainder classes can be transformed into `0`, `1`, `2`, and `3`, but no unused element can represent `4` afterward.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,-10,7,13,6,8], value = 7`
-- Output: `2`
+- **Input:** `nums = [1,-10,7,13,6,8], value = 7`
+- **Output:** `2`
 
 The remainder supplies can cover `0` and `1`; the class needed for `2` is unavailable next.

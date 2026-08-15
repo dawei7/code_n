@@ -30,20 +30,20 @@ Return the largest subarray sum that can be achieved by choosing both the square
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,-1,-4,-3]`
-- Output: `17`
-- Explanation: Squaring `-4` gives the subarray `[2,-1,16]`, whose sum is $17$.
+- **Input:** `nums = [2,-1,-4,-3]`
+- **Output:** `17`
+- **Explanation:** Squaring `-4` gives the subarray `[2,-1,16]`, whose sum is $17$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,-1,1,1,-1,-1,1]`
-- Output: `4`
-- Explanation: Squaring a selected `-1` changes it to `1`, allowing a best sum of $4$.
+- **Input:** `nums = [1,-1,1,1,-1,-1,1]`
+- **Output:** `4`
+- **Explanation:** Squaring a selected `-1` changes it to `1`, allowing a best sum of $4$.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [-5]`
-- Output: `25`
-- Explanation: The only element must be squared and is also the only nonempty subarray.
+- **Input:** `nums = [-5]`
+- **Output:** `25`
+- **Explanation:** The only element must be squared and is also the only nonempty subarray.

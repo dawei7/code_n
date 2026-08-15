@@ -40,14 +40,14 @@ Let $m$ be the number of edges and $q$ be the number of queries.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 5, edges = [[0,1,7],[1,3,7],[1,2,1]], query = [[0,3],[3,4]]`
-- Output: `[1, -1]`
-- Explanation: A walk from $0$ to $3$ can detour through the weight-$1$ edge and traverse it again, giving cost $7 \mathbin{\&} 1 \mathbin{\&} 1 \mathbin{\&} 7=1$. Vertex $4$ is disconnected from vertex $3$.
+- **Input:** `n = 5, edges = [[0,1,7],[1,3,7],[1,2,1]], query = [[0,3],[3,4]]`
+- **Output:** `[1, -1]`
+- **Explanation:** A walk from $0$ to $3$ can detour through the weight-$1$ edge and traverse it again, giving cost $7 \mathbin{\&} 1 \mathbin{\&} 1 \mathbin{\&} 7=1$. Vertex $4$ is disconnected from vertex $3$.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3, edges = [[0,2,7],[0,1,15],[1,2,6],[1,2,1]], query = [[1,2]]`
-- Output: `[0]`
-- Explanation: The parallel edges of weights $6$ and $1$ may both appear in a walk, reducing its cost to $0$.
+- **Input:** `n = 3, edges = [[0,2,7],[0,1,15],[1,2,6],[1,2,1]], query = [[1,2]]`
+- **Output:** `[0]`
+- **Explanation:** The parallel edges of weights $6$ and $1$ may both appear in a walk, reducing its cost to $0$.

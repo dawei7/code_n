@@ -39,17 +39,17 @@ where $1 \le S \le 2 \cdot 10^4$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `products = ["mobile","mouse","moneypot","monitor","mousepad"]`, `searchWord = "mouse"`
-- Output: `[["mobile","moneypot","monitor"],["mobile","moneypot","monitor"],["mouse","mousepad"],["mouse","mousepad"],["mouse","mousepad"]]`
+- **Input:** `products = ["mobile","mouse","moneypot","monitor","mousepad"]`, `searchWord = "mouse"`
+- **Output:** `[["mobile","moneypot","monitor"],["mobile","moneypot","monitor"],["mouse","mousepad"],["mouse","mousepad"],["mouse","mousepad"]]`
 
-**Example 2**
+#### Example 2
 
-- Input: `products = ["havana"]`, `searchWord = "havana"`
-- Output: `[["havana"],["havana"],["havana"],["havana"],["havana"],["havana"]]`
+- **Input:** `products = ["havana"]`, `searchWord = "havana"`
+- **Output:** `[["havana"],["havana"],["havana"],["havana"],["havana"],["havana"]]`
 
-**Example 3**
+#### Example 3
 
-- Input: `products = ["bags","baggage","banner","box","cloths"]`, `searchWord = "bags"`
-- Output: `[["baggage","bags","banner"],["baggage","bags","banner"],["baggage","bags"],["bags"]]`
+- **Input:** `products = ["bags","baggage","banner","box","cloths"]`, `searchWord = "bags"`
+- **Output:** `[["baggage","bags","banner"],["baggage","bags","banner"],["baggage","bags"],["bags"]]`

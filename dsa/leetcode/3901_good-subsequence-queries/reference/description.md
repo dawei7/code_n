@@ -34,14 +34,11 @@ Return the number of updates after which at least one non-empty proper subsequen
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [4,8,12,16], p = 2, queries = [[0,3],[2,6]]
+- **Input:** nums = [4,8,12,16], p = 2, queries = [[0,3],[2,6]]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">i</th>
@@ -71,17 +68,13 @@ Return the number of updates after which at least one non-empty proper subsequen
 
 Thus, the answer is 1.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [4,5,7,8], p = 3, queries = [[0,6],[1,9],[2,3]]
+- **Input:** nums = [4,5,7,8], p = 3, queries = [[0,6],[1,9],[2,3]]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">i</th>
@@ -118,17 +111,13 @@ Thus, the answer is 1.
 
 Thus, the answer is 2.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [5,7,9], p = 2, queries = [[1,4],[2,8]]
+- **Input:** nums = [5,7,9], p = 2, queries = [[1,4],[2,8]]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">i</th>
@@ -157,8 +146,6 @@ Thus, the answer is 2.
 </table>
 
 Thus, the answer is 0.
-
-</div>
 
 ### 4. Constraints
 

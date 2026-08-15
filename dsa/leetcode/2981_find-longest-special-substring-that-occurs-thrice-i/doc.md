@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/find-longest-special-substring-that-occurs-thrice-i/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given a string `s` containing only lowercase English letters. A string
 is **special** when all of its characters are the same; for example, `"ddd"`,
 `"zz"`, and `"f"` are special, while `"abc"` is not.
@@ -22,6 +24,7 @@ identified by their positions and may overlap. Return that greatest length, or
 return `-1` when no special substring has three occurrences.
 
 ### Function Contract
+
 **Inputs**
 
 - `s`: a lowercase English string
@@ -34,19 +37,20 @@ Return the length of the longest special substring occurring at least three
 times, or `-1` if none exists.
 
 ### Examples
-**Example 1**
 
-- Input: `s = "aaaa"`
-- Output: `2`
-- Explanation: `"aa"` begins at indices `0`, `1`, and `2`; these overlapping occurrences all count.
+#### Example 1
 
-**Example 2**
+- **Input:** `s = "aaaa"`
+- **Output:** `2`
+- **Explanation:** `"aa"` begins at indices `0`, `1`, and `2`; these overlapping occurrences all count.
 
-- Input: `s = "abcdef"`
-- Output: `-1`
+#### Example 2
 
-**Example 3**
+- **Input:** `s = "abcdef"`
+- **Output:** `-1`
 
-- Input: `s = "abcaba"`
-- Output: `1`
-- Explanation: The one-character substring `"a"` occurs three times.
+#### Example 3
+
+- **Input:** `s = "abcaba"`
+- **Output:** `1`
+- **Explanation:** The one-character substring `"a"` occurs three times.

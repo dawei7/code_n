@@ -10,8 +10,15 @@ Note that node `0` will **not** be a restricted node.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+- `restricted`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,6 +30,7 @@ Note that node `0` will **not** be a restricted node.
 - **Output:** `4`
 - **Explanation:** The diagram above shows the tree.
 We have that [0,1,2,3] are the only nodes that can be reached from node 0 without visiting a restricted node.
+
 #### Example 2
 
 ![](images/ex2drawio.png)

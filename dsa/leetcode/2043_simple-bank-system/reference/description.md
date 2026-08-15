@@ -20,8 +20,12 @@ Implement the `Bank` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `Bank(balance: List[int])`: Initializes the data structure.
+- `transfer(account1: int, account2: int, money: int) -> `bool``: Executes operation.
+- `deposit(account: int, money: int) -> `bool``: Executes operation.
+- `withdraw(account: int, money: int) -> `bool``: Executes operation.
 
 ### 3. Examples
 

@@ -28,6 +28,7 @@ Return *the **minimum** number of days needed to defeat all the monsters.*
 - Day 3: Gain 2 mana points to get a total of 4 mana points. Spend all mana points to kill the 3^rd monster.
 - Day 4: Gain 3 mana points to get a total of 3 mana points. Spend all mana points to kill the 1^st monster.
 It can be proven that 4 is the minimum number of days needed.
+
 #### Example 2
 
 - **Input:** $power = [1,1,4]$
@@ -38,6 +39,7 @@ It can be proven that 4 is the minimum number of days needed.
 - Day 3: Gain 3 mana points to get a total of 3 mana points.
 - Day 4: Gain 3 mana points to get a total of 6 mana points. Spend all mana points to kill the 3^rd monster.
 It can be proven that 4 is the minimum number of days needed.
+
 #### Example 3
 
 - **Input:** $power = [1,2,4,9]$

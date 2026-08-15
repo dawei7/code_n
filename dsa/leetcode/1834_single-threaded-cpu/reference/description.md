@@ -16,8 +16,13 @@ Return the order in which the CPU will process the tasks.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `tasks`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -35,6 +40,7 @@ Return the order in which the CPU will process the tasks.
 - At time = 5, the CPU finishes task 2 and starts processing task 3 as it is the shortest. Available tasks = {1}.
 - At time = 6, the CPU finishes task 3 and starts processing task 1. Available tasks = {}.
 - At time = 10, the CPU finishes task 1 and becomes idle.
+
 #### Example 2
 
 - **Input:** $tasks = [[7,10],[7,12],[7,5],[7,4],[7,2]]$

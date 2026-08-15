@@ -12,8 +12,13 @@ Two sequences are considered distinct if at least one element is different.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,6 +31,7 @@ Some invalid sequences are (1, 2, 1, 3), (1, 2, 3, 6).
 (1, 2, 1, 3) is invalid since the first and third roll have an equal value and abs(1 - 3) = 2 (i and j are 1-indexed).
 (1, 2, 3, 6) is invalid since the greatest common divisor of 3 and 6 = 3.
 There are a total of 184 distinct sequences possible, so we return 184.
+
 #### Example 2
 
 - **Input:** $n = 2$

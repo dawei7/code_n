@@ -20,12 +20,11 @@ Return the **minimum** number of operations required to make all elements in `ar
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,4,2]
+- **Input:** nums = [1,4,2]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - **Operation 1**: Choose the prefix `[1, 4]` of length 2 and add -2 to each element of the prefix. The array becomes `[-1, 2, 2]`.
 
@@ -33,19 +32,15 @@ Return the **minimum** number of operations required to make all elements in `ar
 
 - Thus, the minimum number of required operations is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [10,10,10]
+- **Input:** nums = [10,10,10]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** 
 
 - All elements are already equal, so no operations are needed.
-
-</div>
 
 ### 4. Constraints
 

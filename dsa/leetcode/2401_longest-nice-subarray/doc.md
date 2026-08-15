@@ -38,22 +38,22 @@ Return the maximum length of a contiguous interval in which
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 3, 8, 48, 10]`
-- Output: `3`
-- Explanation: `[3, 8, 48]` is nice because each of its three pairwise AND
+- **Input:** `nums = [1, 3, 8, 48, 10]`
+- **Output:** `3`
+- **Explanation:** `[3, 8, 48]` is nice because each of its three pairwise AND
   results is zero.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3, 1, 5, 11, 13]`
-- Output: `1`
-- Explanation: Every adjacent extension introduces a shared set bit, while any
+- **Input:** `nums = [3, 1, 5, 11, 13]`
+- **Output:** `1`
+- **Explanation:** Every adjacent extension introduces a shared set bit, while any
   single element is valid.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 2, 4, 8]`
-- Output: `4`
-- Explanation: Each value uses a different bit, so the entire array is nice.
+- **Input:** `nums = [1, 2, 4, 8]`
+- **Output:** `4`
+- **Explanation:** Each value uses a different bit, so the entire array is nice.

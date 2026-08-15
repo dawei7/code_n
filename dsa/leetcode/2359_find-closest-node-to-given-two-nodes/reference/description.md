@@ -12,8 +12,15 @@ Note that `edges` may contain cycles.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `edges`: Input parameter (`List[int]`).
+- `node1`: Input parameter (`int`).
+- `node2`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,6 +32,7 @@ Note that `edges` may contain cycles.
 - **Output:** `2`
 - **Explanation:** The distance from node 0 to node 2 is 1, and the distance from node 1 to node 2 is 1.
 The maximum of those two distances is 1. It can be proven that we cannot get a node with a smaller maximum distance than 1, so we return node 2.
+
 #### Example 2
 
 ![](images/graph4drawio-4.png)

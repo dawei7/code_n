@@ -34,23 +34,23 @@ Let $U$ be the number of distinct beauty values.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `flowers = [1,2,3,1,2]`
-- Output: `8`
+- **Input:** `flowers = [1,2,3,1,2]`
+- **Output:** `8`
 
 Keeping `[2,3,1,2]` gives equal endpoints and total beauty `8`.
 
-**Example 2**
+#### Example 2
 
-- Input: `flowers = [100,1,1,-3,1]`
-- Output: `3`
+- **Input:** `flowers = [100,1,1,-3,1]`
+- **Output:** `3`
 
 Remove `100` and `-3`, leaving `[1,1,1]`.
 
-**Example 3**
+#### Example 3
 
-- Input: `flowers = [-1,-2,0,-1]`
-- Output: `-2`
+- **Input:** `flowers = [-1,-2,0,-1]`
+- **Output:** `-2`
 
 The best valid garden is `[-1,-1]`; the interior nonpositive flowers are removed.

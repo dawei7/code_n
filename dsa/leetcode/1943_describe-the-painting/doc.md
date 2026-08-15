@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/describe-the-painting/) |
 
 ## Problem Description
+
 ### Goal
+
 A long, narrow painting is represented by a number line. Each input entry
 paints a unique color over a half-open segment `[start, end)`. The left endpoint
 belongs to the segment, while the right endpoint does not. Wherever segments
@@ -23,6 +25,7 @@ A boundary where the underlying color set changes must remain a boundary even
 if the sums on its two sides happen to be equal.
 
 ### Function Contract
+
 **Inputs**
 
 - `segments`: between 1 and $2\cdot 10^4$ entries of the form
@@ -37,18 +40,19 @@ if the sums on its two sides happen to be equal.
   any order.
 
 ### Examples
-**Example 1**
 
-- Input: `segments = [[1, 4, 5], [4, 7, 7], [1, 7, 9]]`
-- Output: `[[1, 4, 14], [4, 7, 16]]`
+#### Example 1
 
-**Example 2**
+- **Input:** `segments = [[1, 4, 5], [4, 7, 7], [1, 7, 9]]`
+- **Output:** `[[1, 4, 14], [4, 7, 16]]`
 
-- Input: `segments = [[1, 7, 9], [6, 8, 15], [8, 10, 7]]`
-- Output: `[[1, 6, 9], [6, 7, 24], [7, 8, 15], [8, 10, 7]]`
+#### Example 2
 
-**Example 3**
+- **Input:** `segments = [[1, 7, 9], [6, 8, 15], [8, 10, 7]]`
+- **Output:** `[[1, 6, 9], [6, 7, 24], [7, 8, 15], [8, 10, 7]]`
 
-- Input: `segments = [[1, 4, 5], [1, 4, 7], [4, 7, 1], [4, 7, 11]]`
-- Output: `[[1, 4, 12], [4, 7, 12]]`
-- Explanation: The equal sums cannot be merged because their color sets differ.
+#### Example 3
+
+- **Input:** `segments = [[1, 4, 5], [1, 4, 7], [4, 7, 1], [4, 7, 11]]`
+- **Output:** `[[1, 4, 12], [4, 7, 12]]`
+- **Explanation:** The equal sums cannot be merged because their color sets differ.

@@ -6,8 +6,10 @@ Return *the root of the trimmed binary search tree*. Note that the root may chan
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `trimBST(root: Optional[TreeNode], low: int, high: int) -> `Optional[TreeNode]``: Executes operation.
 
 ### 3. Examples
 
@@ -17,6 +19,7 @@ Return *the root of the trimmed binary search tree*. Note that the root may chan
 
 - **Input:** `root = [1,0,2], low = 1, high = 2`
 - **Output:** `[1,null,2]`
+
 #### Example 2
 
 ![](images/trim2.jpg)

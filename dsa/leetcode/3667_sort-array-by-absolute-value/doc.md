@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/sort-array-by-absolute-value/) |
 
 ## Problem Description
+
 ### Goal
 
 Given an integer array `nums`, rearrange all of its elements so their absolute values appear in non-decreasing order.
@@ -31,19 +32,19 @@ Return a permutation of `nums` such that $\lvert\texttt{answer[i]}\rvert\le\lver
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3, -1, -4, 1, 5]`
+- **Input:** `nums = [3, -1, -4, 1, 5]`
 - One valid output: `[-1, 1, 3, -4, 5]`
 - The resulting magnitudes are `[1, 1, 3, 4, 5]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [-100, 100]`
+- **Input:** `nums = [-100, 100]`
 - One valid output: `[-100, 100]`
 - Reversing these two values would also be valid because both magnitudes are `100`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [0, -2, 2, -1]`
+- **Input:** `nums = [0, -2, 2, -1]`
 - One valid output: `[0, -1, -2, 2]`.

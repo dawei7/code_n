@@ -32,7 +32,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 DailySales table:
 +-----------+-----------+---------+------------+
 | date_id   | make_name | lead_id | partner_id |
@@ -48,7 +48,7 @@ DailySales table:
 | 2020-12-7 | honda     | 1       | 2          |
 | 2020-12-7 | honda     | 2       | 1          |
 +-----------+-----------+---------+------------+
-**Output:**
+- **Output:** 
 +-----------+-----------+--------------+-----------------+
 | date_id   | make_name | unique_leads | unique_partners |
 +-----------+-----------+--------------+-----------------+
@@ -57,7 +57,6 @@ DailySales table:
 | 2020-12-8 | honda     | 2            | 2               |
 | 2020-12-7 | honda     | 3            | 2               |
 +-----------+-----------+--------------+-----------------+
-**Explanation:**
-For 2020-12-8, toyota gets leads = [0, 1] and partners = [0, 1, 2] while honda gets leads = [1, 2] and partners = [1, 2].
+- **Explanation:** For 2020-12-8, toyota gets leads = [0, 1] and partners = [0, 1, 2] while honda gets leads = [1, 2] and partners = [1, 2].
 For 2020-12-7, toyota gets leads = [0] and partners = [1, 2] while honda gets leads = [0, 1, 2] and partners = [1, 2].
 ```

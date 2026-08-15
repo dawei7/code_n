@@ -32,23 +32,23 @@ Its length $n$ satisfies $1 \le n \le 2000$, and every value is at most $10^9$. 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [12, 6, 3, 14, 8]`
-- Output: `2`
+- **Input:** `nums = [12, 6, 3, 14, 8]`
+- **Output:** `2`
 
 The parts `[12, 6, 3]` and `[14, 8]` have GCDs 3 and 2.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4, 12, 6, 14]`
-- Output: `1`
+- **Input:** `nums = [4, 12, 6, 14]`
+- **Output:** `1`
 
 The GCD of the complete array is 2, so no split is necessary.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [2, 3, 5, 7]`
-- Output: `4`
+- **Input:** `nums = [2, 3, 5, 7]`
+- **Output:** `4`
 
 Every adjacent extension would reduce the current GCD to 1, so every value forms its own part.

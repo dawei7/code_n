@@ -16,8 +16,11 @@ Implement the `NumberContainers` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `NumberContainers()`: Initializes the data structure.
+- `change(index: int, number: int)`: Executes operation.
+- `find(number: int) -> `int``: Executes operation.
 
 ### 3. Examples
 

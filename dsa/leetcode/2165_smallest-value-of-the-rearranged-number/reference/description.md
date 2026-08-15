@@ -8,8 +8,13 @@ Note that the sign of the number does not change after rearranging the digits.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `num`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,6 +24,7 @@ Note that the sign of the number does not change after rearranging the digits.
 - **Output:** `103`
 - **Explanation:** The possible arrangements for the digits of 310 are 013, 031, 103, 130, 301, 310.
 The arrangement with the smallest value that does not contain any leading zeros is 103.
+
 #### Example 2
 
 - **Input:** $num = -7605$

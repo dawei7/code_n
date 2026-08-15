@@ -37,13 +37,13 @@ Sort all $2^n$ subsequence sums in non-increasing order and retain duplicates pr
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,4,-2], k = 5`
-- Output: `2`
-- Explanation: The descending sums are `6, 4, 4, 2, 2, 0, 0, -2`, so rank five is `2`.
+- **Input:** `nums = [2,4,-2], k = 5`
+- **Output:** `2`
+- **Explanation:** The descending sums are `6, 4, 4, 2, 2, 0, 0, -2`, so rank five is `2`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,-2,3,4,-10,12], k = 16`
-- Output: `10`
+- **Input:** `nums = [1,-2,3,4,-10,12], k = 16`
+- **Output:** `10`

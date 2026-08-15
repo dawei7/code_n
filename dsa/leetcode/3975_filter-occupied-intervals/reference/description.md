@@ -28,32 +28,27 @@ Return all integer points covered by at least one occupied interval but not by `
 
 #### Example 1
 
-<div class="example-block">
-**Input:** occupiedIntervals = [[2,6],[4,8],[10,10],[10,12],[14,16]], freeStart = 7, freeEnd = 11
+- **Input:** occupiedIntervals = [[2,6],[4,8],[10,10],[10,12],[14,16]], freeStart = 7, freeEnd = 11
 
-**Output:** [[2,6],[12,12],[14,16]]
+- **Output:** [[2,6],[12,12],[14,16]]
 
-**Explanation:**
+- **Explanation:** 
 
 - After merging, the occupied intervals are `[2, 8]`, `[10, 12]`, and `[14, 16]`.
 
 - Excluding the free interval `[7, 11]` results in `[2, 6]`, `[12, 12]`, and `[14, 16]`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** occupiedIntervals = [[1,5],[2,3]], freeStart = 3, freeEnd = 8
+- **Input:** occupiedIntervals = [[1,5],[2,3]], freeStart = 3, freeEnd = 8
 
-**Output:** [[1,2]]
+- **Output:** [[1,2]]
 
-**Explanation:**
+- **Explanation:** 
 
 - After merging, the occupied interval is `[1, 5]`.
 
 - Excluding the free interval `[3, 8]` results in `[1, 2]`.
-
-</div>
 
 ### 4. Constraints
 

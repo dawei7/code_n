@@ -18,8 +18,14 @@ Return *the resulting array*. The returned array must be sorted in ascending ord
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums1`: Input parameter (`List[List[int]]`).
+- `nums2`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
@@ -32,6 +38,7 @@ Return *the resulting array*. The returned array must be sorted in ascending ord
 - id = 2, the value of this id is 3.
 - id = 3, the value of this id is 2.
 - id = 4, the value of this id is 5 + 1 = 6.
+
 #### Example 2
 
 - **Input:** $nums1 = [[2,4],[3,6],[5,5]], nums2 = [[1,3],[4,3]]$

@@ -14,8 +14,16 @@ Return *the **minimum** number of training hours required to defeat all *`n`* op
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `initialEnergy`: Input parameter (`int`).
+- `initialExperience`: Input parameter (`int`).
+- `energy`: Input parameter (`List[int]`).
+- `experience`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -35,6 +43,7 @@ Your energy becomes 6 - 3 = 3, and your experience becomes 13 + 3 = 16.
 Your energy becomes 3 - 2 = 1, and your experience becomes 16 + 1 = 17.
 You did a total of 6 + 2 = 8 hours of training before the competition, so we return 8.
 It can be proven that no smaller answer exists.
+
 #### Example 2
 
 - **Input:** $initialEnergy = 2, initialExperience = 4, energy = [1], experience = [3]$

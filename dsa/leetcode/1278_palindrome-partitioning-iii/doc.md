@@ -31,17 +31,17 @@ A character change replaces the letter at one position with another lowercase En
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abc", k = 2`
-- Output: `1`
+- **Input:** `s = "abc", k = 2`
+- **Output:** `1`
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "aabbc", k = 3`
-- Output: `0`
+- **Input:** `s = "aabbc", k = 3`
+- **Output:** `0`
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "leetcode", k = 8`
-- Output: `0`
+- **Input:** `s = "leetcode", k = 8`
+- **Output:** `0`

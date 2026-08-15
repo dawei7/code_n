@@ -28,6 +28,7 @@ Return `true` exactly when every node satisfies the strict, recursive BST orderi
 
 - **Input:** `root = [2,1,3]`
 - **Output:** `true`
+
 #### Example 2
 
 ![](images/tree2.jpg)

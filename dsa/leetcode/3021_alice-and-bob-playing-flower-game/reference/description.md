@@ -24,8 +24,14 @@ Return *the number of possible pairs* `(x, y)` *that satisfy the conditions ment
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `m`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -34,6 +40,7 @@ Return *the number of possible pairs* `(x, y)` *that satisfy the conditions ment
 - **Input:** $n = 3, m = 2$
 - **Output:** `3`
 - **Explanation:** The following pairs satisfy conditions described in the statement: (1,2), (3,2), (2,1).
+
 #### Example 2
 
 - **Input:** $n = 1, m = 1$

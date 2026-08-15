@@ -31,13 +31,13 @@ Return at most $10N$ integers. Every returned `k` must satisfy $1 \le k \le N$, 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [3,2,4,1]`
-- Output: `[4,2,4,3]`
-- Explanation: Those four prefix reversals transform the input into `[1,2,3,4]`; other valid sequences are also accepted.
+- **Input:** `arr = [3,2,4,1]`
+- **Output:** `[4,2,4,3]`
+- **Explanation:** Those four prefix reversals transform the input into `[1,2,3,4]`; other valid sequences are also accepted.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [1,2,3]`
-- Output: `[]`
+- **Input:** `arr = [1,2,3]`
+- **Output:** `[]`

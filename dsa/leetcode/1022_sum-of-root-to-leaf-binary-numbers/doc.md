@@ -32,19 +32,19 @@ Let $H$ denote the tree height, measured as the maximum number of nodes on a roo
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [1, 0, 1, 0, 1, 0, 1]`
-- Output: `22`
-- Explanation: The paths represent `100`, `101`, `110`, and `111`, whose values sum to `22`.
+- **Input:** `root = [1, 0, 1, 0, 1, 0, 1]`
+- **Output:** `22`
+- **Explanation:** The paths represent `100`, `101`, `110`, and `111`, whose values sum to `22`.
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [0]`
-- Output: `0`
+- **Input:** `root = [0]`
+- **Output:** `0`
 
-**Example 3**
+#### Example 3
 
-- Input: `root = [1, 1]`
-- Output: `3`
-- Explanation: The only path represents binary `11`.
+- **Input:** `root = [1, 1]`
+- **Output:** `3`
+- **Explanation:** The only path represents binary `11`.

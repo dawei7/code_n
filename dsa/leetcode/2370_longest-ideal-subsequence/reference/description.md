@@ -12,8 +12,14 @@ A **subsequence** is a string that can be derived from another string by deletin
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -27,6 +33,7 @@ that the alphabet order is not cyclic. For example, the absolute difference in t
 - **Output:** `4`
 - **Explanation:** The longest ideal string is "acbd". The length of this string is 4, so 4 is returned.
 Note that "acfgbd" is not ideal because 'c' and 'f' have a difference of 3 in alphabet order.
+
 #### Example 2
 
 - **Input:** `s = "abcd", k = 3`

@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/check-if-a-string-contains-all-binary-codes-of-size-k/) |
 
 ## Problem Description
+
 ### Goal
 
 Given a binary string `s` and a positive integer `k`, determine whether
@@ -21,6 +22,7 @@ codes appears at least once; repeated occurrences of one code do not compensate
 for another code being absent.
 
 ### Function Contract
+
 **Inputs**
 
 - `s`: a string of $n$ characters, each either `"0"` or `"1"`, where
@@ -33,20 +35,21 @@ Return `true` if the set of all contiguous length-$k$ substrings of `s`
 contains all $2^k$ binary codes; otherwise return `false`.
 
 ### Examples
-**Example 1**
 
-- Input: `s = "00110110", k = 2`
-- Output: `true`
-- Explanation: `"00"`, `"01"`, `"10"`, and `"11"` all occur.
+#### Example 1
 
-**Example 2**
+- **Input:** `s = "00110110", k = 2`
+- **Output:** `true`
+- **Explanation:** `"00"`, `"01"`, `"10"`, and `"11"` all occur.
 
-- Input: `s = "0110", k = 1`
-- Output: `true`
-- Explanation: Both one-bit codes occur.
+#### Example 2
 
-**Example 3**
+- **Input:** `s = "0110", k = 1`
+- **Output:** `true`
+- **Explanation:** Both one-bit codes occur.
 
-- Input: `s = "0110", k = 2`
-- Output: `false`
-- Explanation: The code `"00"` is absent.
+#### Example 3
+
+- **Input:** `s = "0110", k = 2`
+- **Output:** `false`
+- **Explanation:** The code `"00"` is absent.

@@ -8,8 +8,13 @@ Return *the total surface area of the resulting shapes*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -23,12 +28,14 @@ The bottom face of each shape counts toward its surface area.
 
 - **Input:** `grid = [[1,2],[3,4]]`
 - **Output:** `34`
+
 #### Example 2
 
 ![](images/tmp-grid4.jpg)
 
 - **Input:** `grid = [[1,1,1],[1,0,1],[1,1,1]]`
 - **Output:** `32`
+
 #### Example 3
 
 ![](images/tmp-grid5.jpg)

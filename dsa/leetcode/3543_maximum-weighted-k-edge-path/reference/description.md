@@ -14,69 +14,62 @@ Return the **maximum** possible sum of weights for such a path. If no such path 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+- `k`: Input parameter (`int`).
+- `t`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,1,1],[1,2,2]], k = 2, t = 4
+- **Input:** n = 3, edges = [[0,1,1],[1,2,2]], k = 2, t = 4
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-![](images/screenshot-2025-04-10-at-061326.png)
+- **Explanation:** ![](images/screenshot-2025-04-10-at-061326.png)
 
 - The only path with $k = 2$ edges is `0 -> 1 -> 2` with weight $1 + 2 = 3 < t$.
 
 - Thus, the maximum possible sum of weights less than `t` is 3.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,1,2],[0,2,3]], k = 1, t = 3
+- **Input:** n = 3, edges = [[0,1,2],[0,2,3]], k = 1, t = 3
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-![](images/screenshot-2025-04-10-at-061406.png)
+- **Explanation:** ![](images/screenshot-2025-04-10-at-061406.png)
 
 - There are two paths with $k = 1$ edge:
 
-		<li>`0 -> 1` with weight `2 < t`.
+		- `0 -> 1` with weight `2 < t`.
 
 - `0 -> 2` with weight $3 = t$, which is not strictly less than `t`.
 
-	</li>
 - Thus, the maximum possible sum of weights less than `t` is 2.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,1,6],[1,2,8]], k = 1, t = 6
+- **Input:** n = 3, edges = [[0,1,6],[1,2,8]], k = 1, t = 6
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-![](images/screenshot-2025-04-10-at-061442.png)
+- **Explanation:** ![](images/screenshot-2025-04-10-at-061442.png)
 
 - There are two paths with k = 1 edge:
 
-		<li>`0 -> 1` with weight $6 = t$, which is not strictly less than `t`.
+		- `0 -> 1` with weight $6 = t$, which is not strictly less than `t`.
 
 - `1 -> 2` with weight `8 > t`, which is not strictly less than `t`.
 
-	</li>
 - Since there is no path with sum of weights strictly less than `t`, the answer is -1.
-
-</div>
 
 ### 4. Constraints
 

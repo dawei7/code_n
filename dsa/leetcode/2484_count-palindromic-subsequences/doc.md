@@ -38,20 +38,20 @@ for which `s[i1] = s[i5]` and `s[i2] = s[i4]`, reduced modulo $10^9 + 7$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "103301"`
-- Output: `2`
-- Explanation: Two distinct selections of indices produce the palindrome `"10301"`.
+- **Input:** `s = "103301"`
+- **Output:** `2`
+- **Explanation:** Two distinct selections of indices produce the palindrome `"10301"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "0000000"`
-- Output: `21`
-- Explanation: Every choice of five among the seven positions forms `"00000"`, giving $\binom{7}{5} = 21$.
+- **Input:** `s = "0000000"`
+- **Output:** `21`
+- **Explanation:** Every choice of five among the seven positions forms `"00000"`, giving $\binom{7}{5} = 21$.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "9999900000"`
-- Output: `2`
-- Explanation: Exactly one selection forms `"99999"` and one forms `"00000"`.
+- **Input:** `s = "9999900000"`
+- **Output:** `2`
+- **Explanation:** Exactly one selection forms `"99999"` and one forms `"00000"`.

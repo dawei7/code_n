@@ -39,23 +39,23 @@ kill permanently increases gain by one.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `power = [3,1,4]`
-- Output: `4`
-- Explanation: Kill power 1 after one day, power 4 after two more days at gain
+- **Input:** `power = [3,1,4]`
+- **Output:** `4`
+- **Explanation:** Kill power 1 after one day, power 4 after two more days at gain
   2, and power 3 after one day at gain 3.
 
-**Example 2**
+#### Example 2
 
-- Input: `power = [1,1,4]`
-- Output: `4`
-- Explanation: The two power-1 monsters take one day each; the last monster
+- **Input:** `power = [1,1,4]`
+- **Output:** `4`
+- **Explanation:** The two power-1 monsters take one day each; the last monster
   takes two days at gain 3.
 
-**Example 3**
+#### Example 3
 
-- Input: `power = [1,2,4,9]`
-- Output: `6`
-- Explanation: One optimal order is 1, 2, 9, 4, requiring respectively
+- **Input:** `power = [1,2,4,9]`
+- **Output:** `6`
+- **Explanation:** One optimal order is 1, 2, 9, 4, requiring respectively
   1, 1, 3, and 1 days.

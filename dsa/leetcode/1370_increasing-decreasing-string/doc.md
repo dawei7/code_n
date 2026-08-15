@@ -31,17 +31,17 @@ Remove each chosen occurrence from the remaining multiset. Alternate these incre
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "aaaabbbbcccc"`
-- Output: `"abccbaabccba"`
+- **Input:** `s = "aaaabbbbcccc"`
+- **Output:** `"abccbaabccba"`
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "rat"`
-- Output: `"art"`
+- **Input:** `s = "rat"`
+- **Output:** `"art"`
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "leetcode"`
-- Output: `"cdelotee"`
+- **Input:** `s = "leetcode"`
+- **Output:** `"cdelotee"`

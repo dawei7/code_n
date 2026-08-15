@@ -36,14 +36,14 @@ After all merges, each interval between consecutive remaining signs uses the tim
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `l = 10, n = 4, k = 1, position = [0,3,8,10], time = [5,8,3,6]`
-- Output: `62`
-- Explanation: Removing the sign at kilometer `3` changes the time at kilometer `8` to `11`. The remaining intervals cost `8 * 5 + 2 * 11 = 62` minutes.
+- **Input:** `l = 10, n = 4, k = 1, position = [0,3,8,10], time = [5,8,3,6]`
+- **Output:** `62`
+- **Explanation:** Removing the sign at kilometer `3` changes the time at kilometer `8` to `11`. The remaining intervals cost `8 * 5 + 2 * 11 = 62` minutes.
 
-**Example 2**
+#### Example 2
 
-- Input: `l = 5, n = 5, k = 1, position = [0,1,2,3,5], time = [8,3,9,3,3]`
-- Output: `34`
-- Explanation: Merging the signs originally at kilometers `1` and `2` leaves interval costs `2 * 8`, `1 * 12`, and `2 * 3`.
+- **Input:** `l = 5, n = 5, k = 1, position = [0,1,2,3,5], time = [8,3,9,3,3]`
+- **Output:** `34`
+- **Explanation:** Merging the signs originally at kilometers `1` and `2` leaves interval costs `2 * 8`, `1 * 12`, and `2 * 3`.

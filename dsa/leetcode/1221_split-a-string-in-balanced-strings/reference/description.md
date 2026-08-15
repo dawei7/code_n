@@ -10,8 +10,13 @@ Return *the **maximum** number of balanced strings you can obtain.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,12 +25,14 @@ Return *the **maximum** number of balanced strings you can obtain.*
 - **Input:** `s = "RLRRLLRLRL"`
 - **Output:** `4`
 - **Explanation:** s can be split into "RL", "RRLL", "RL", "RL", each substring contains same number of 'L' and 'R'.
+
 #### Example 2
 
 - **Input:** `s = "RLRRRLLRLL"`
 - **Output:** `2`
 - **Explanation:** s can be split into "RL", "RRRLLRLL", each substring contains same number of 'L' and 'R'.
 Note that s cannot be split into "RL", "RR", "RL", "LR", "LL", because the 2^nd and 5^th substrings are not balanced.
+
 #### Example 3
 
 - **Input:** `s = "LLLLRRRR"`

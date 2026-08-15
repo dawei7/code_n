@@ -31,14 +31,14 @@ You may delete some tree edges, producing several connected components. Define a
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [6, 2, 2, 2, 6], edges = [[0, 1], [1, 2], [1, 3], [3, 4]]`
-- Output: `2`
-- Explanation: Delete `[0, 1]` and `[3, 4]`. The components `{0}`, `{1, 2, 3}`, and `{4}` each have value 6.
+- **Input:** `nums = [6, 2, 2, 2, 6], edges = [[0, 1], [1, 2], [1, 3], [3, 4]]`
+- **Output:** `2`
+- **Explanation:** Delete `[0, 1]` and `[3, 4]`. The components `{0}`, `{1, 2, 3}`, and `{4}` each have value 6.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2], edges = []`
-- Output: `0`
-- Explanation: A one-node tree has no edge available to delete.
+- **Input:** `nums = [2], edges = []`
+- **Output:** `0`
+- **Explanation:** A one-node tree has no edge available to delete.

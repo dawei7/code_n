@@ -28,12 +28,11 @@ Return one integer for every type-2 query, in query order. Each integer is the n
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums1 = [1,2], nums2 = [3,4], queries = [[2,5],[1,0,0,2],[2,5]]
+- **Input:** nums1 = [1,2], nums2 = [3,4], queries = [[2,5],[1,0,0,2],[2,5]]
 
-**Output:** [2,1]
+- **Output:** [2,1]
 
-**Explanation:**
+- **Explanation:** 
 
 - $\text{queries}[0] = [2, 5]$: Valid pairs are $\text{nums1}[0] + \text{nums2}[1] = 1 + 4 = 5$ and $\text{nums1}[1] + \text{nums2}[0] = 2 + 3 = 5$.
 
@@ -43,15 +42,13 @@ Return one integer for every type-2 query, in query order. Each integer is the n
 
 - Thus, the $answer = [2, 1]$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums1 = [1,1], nums2 = [2,2,3], queries = [[2,4],[1,0,1,1],[2,4]]
+- **Input:** nums1 = [1,1], nums2 = [2,2,3], queries = [[2,4],[1,0,1,1],[2,4]]
 
-**Output:** [2,6]
+- **Output:** [2,6]
 
-**Explanation:**
+- **Explanation:** 
 
 - $\text{queries}[0] = [2, 4]$: Valid pairs are $\text{nums1}[0] + \text{nums2}[2] = 1 + 3$ and $\text{nums1}[1] + \text{nums2}[2] = 1 + 3$.
 
@@ -61,15 +58,13 @@ Return one integer for every type-2 query, in query order. Each integer is the n
 
 - Thus, the $answer = [2, 6]$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums1 = [2,5,8,4], nums2 = [1,3,8], queries = [[2,9],[1,1,2,1],[2,10]]
+- **Input:** nums1 = [2,5,8,4], nums2 = [1,3,8], queries = [[2,9],[1,1,2,1],[2,10]]
 
-**Output:** [1,0]
+- **Output:** [1,0]
 
-**Explanation:**
+- **Explanation:** 
 
 - $\text{queries}[0] = [2, 9]$: Only valid pair is $\text{nums1}[2] + \text{nums2}[0] = 8 + 1 = 9$.
 
@@ -78,8 +73,6 @@ Return one integer for every type-2 query, in query order. Each integer is the n
 - $\text{queries}[2] = [2, 10]$: No pair sums to `10`.
 
 - Thus, the $answer = [1, 0]$.
-
-</div>
 
 ### 4. Constraints
 
@@ -93,7 +86,7 @@ Return one integer for every type-2 query, in query order. Each integer is the n
 
 - $\text{queries}[i].length = 2 or 4$
 
-		<li>$\text{queries}[i] = [1, x, y, val], or$
+		- $\text{queries}[i] = [1, x, y, val], or$
 
 - $\text{queries}[i] = [2, tot]$
 
@@ -102,5 +95,3 @@ Return one integer for every type-2 query, in query order. Each integer is the n
 - $1 \le val \le 10^{5}$
 
 - $1 \le tot \le 10^{9}​​​​​​​$
-
-	</li>

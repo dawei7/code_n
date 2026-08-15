@@ -6,8 +6,14 @@ In other words, return `true` if one of `s1`'s permutations is the substring of 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s1`: Input parameter (`str`).
+- `s2`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -16,6 +22,7 @@ In other words, return `true` if one of `s1`'s permutations is the substring of 
 - **Input:** $s1 = "ab", s2 = "eidbaooo"$
 - **Output:** `true`
 - **Explanation:** s2 contains one permutation of s1 ("ba").
+
 #### Example 2
 
 - **Input:** $s1 = "ab", s2 = "eidboaoo"$

@@ -6,8 +6,13 @@ A *defanged IP address* replaces every period `"."` with `"[.]"`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `address`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -15,6 +20,7 @@ A *defanged IP address* replaces every period `"."` with `"[.]"`.
 
 - **Input:** $address = "1.1.1.1"$
 - **Output:** `"1[.]1[.]1[.]1"`
+
 #### Example 2
 
 - **Input:** $address = "255.100.50.0"$

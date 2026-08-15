@@ -6,8 +6,14 @@ Sort the elements of `arr1` such that the relative ordering of items in `arr1` a
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr1`: Input parameter (`List[int]`).
+- `arr2`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -15,6 +21,7 @@ Sort the elements of `arr1` such that the relative ordering of items in `arr1` a
 
 - **Input:** $arr1 = [2,3,1,3,2,4,6,7,9,2,19], arr2 = [2,1,4,3,9,6]$
 - **Output:** `[2,2,2,1,4,3,3,9,6,7,19]`
+
 #### Example 2
 
 - **Input:** $arr1 = [28,6,22,8,44,17], arr2 = [22,28,8,6]$

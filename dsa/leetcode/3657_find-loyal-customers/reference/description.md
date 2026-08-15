@@ -32,7 +32,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 customer_transactions table:
@@ -77,7 +76,7 @@ customer_transactions table:
 
 - **Customer 101**:
 
-		<li>Purchase transactions: 4 (IDs: 1, 2, 3, 4)
+		- Purchase transactions: 4 (IDs: 1, 2, 3, 4)
 
 - Refund transactions: 0
 
@@ -87,10 +86,9 @@ customer_transactions table:
 
 - Qualifies as loyal
 
-	</li>
 - **Customer 102**:
 
-		<li>Purchase transactions: 3 (IDs: 5, 6, 9)
+		- Purchase transactions: 3 (IDs: 5, 6, 9)
 
 - Refund transactions: 2 (IDs: 7, 8)
 
@@ -98,10 +96,9 @@ customer_transactions table:
 
 - Not loyal
 
-	</li>
 - **Customer 103**:
 
-		<li>Purchase transactions: 3 (IDs: 10, 11, 12)
+		- Purchase transactions: 3 (IDs: 10, 11, 12)
 
 - Refund transactions: 0
 
@@ -111,10 +108,9 @@ customer_transactions table:
 
 - Not loyal
 
-	</li>
 - **Customer 104**:
 
-		<li>Purchase transactions: 5 (IDs: 13, 14, 15, 16, 17)
+		- Purchase transactions: 5 (IDs: 13, 14, 15, 16, 17)
 
 - Refund transactions: 1 (ID: 18)
 
@@ -124,11 +120,7 @@ customer_transactions table:
 
 - Qualifies as loyal
 
-	</li>
-
 The result table is ordered by customer_id in ascending order.
-
-</div>
 
 ### 2. Function Contract
 

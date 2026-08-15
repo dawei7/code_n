@@ -8,8 +8,14 @@ Return *the minimum cost to merge all piles of stones into one pile*. If it is i
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `stones`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,11 +28,13 @@ We merge [3, 2] for a cost of 5, and we are left with [5, 4, 1].
 We merge [4, 1] for a cost of 5, and we are left with [5, 5].
 We merge [5, 5] for a cost of 10, and we are left with [10].
 The total cost was 20, and this is the minimum possible.
+
 #### Example 2
 
 - **Input:** $stones = [3,2,4,1], k = 3$
 - **Output:** `-1`
 - **Explanation:** After any merge operation, there are 2 piles left, and we can't merge anymore.  So the task is impossible.
+
 #### Example 3
 
 - **Input:** $stones = [3,5,1,2,6], k = 3$

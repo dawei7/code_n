@@ -14,51 +14,44 @@ Return the **maximum **number of elements that can be removed from `queries`, su
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,0,2], queries = [[0,2],[0,2],[1,1]]
+- **Input:** nums = [2,0,2], queries = [[0,2],[0,2],[1,1]]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-After removing $\text{queries}[2]$, `nums` can still be converted to a zero array.
+- **Explanation:** After removing $\text{queries}[2]$, `nums` can still be converted to a zero array.
 
 - Using $\text{queries}[0]$, decrement $\text{nums}[0]$ and $\text{nums}[2]$ by 1 and $\text{nums}[1]$ by 0.
 
 - Using $\text{queries}[1]$, decrement $\text{nums}[0]$ and $\text{nums}[2]$ by 1 and $\text{nums}[1]$ by 0.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,1,1,1], queries = [[1,3],[0,2],[1,3],[1,2]]
+- **Input:** nums = [1,1,1,1], queries = [[1,3],[0,2],[1,3],[1,2]]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** We can remove $\text{queries}[2]$ and $\text{queries}[3]$.
 
-We can remove $\text{queries}[2]$ and $\text{queries}[3]$.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4], queries = [[0,3]]
+- **Input:** nums = [1,2,3,4], queries = [[0,3]]
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-`nums` cannot be converted to a zero array even after using all the queries.
-
-</div>
+- **Explanation:** `nums` cannot be converted to a zero array even after using all the queries.
 
 ### 4. Constraints
 

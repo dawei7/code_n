@@ -23,6 +23,7 @@ Return the number of ordered sequences of one-step and two-step moves whose tota
 - **Explanation:** There are two ways to climb to the top.
 1. 1 step + 1 step
 2. 2 steps
+
 #### Example 2
 
 - **Input:** $n = 3$

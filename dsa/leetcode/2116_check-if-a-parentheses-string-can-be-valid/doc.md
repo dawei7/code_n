@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/check-if-a-parentheses-string-can-be-valid/) |
 
 ## Problem Description
+
 ### Goal
 
 A nonempty parentheses string contains only `(` and `)`. It is valid when its
@@ -26,6 +27,7 @@ Determine whether some assignment of every editable position makes the whole
 string a valid parentheses string.
 
 ### Function Contract
+
 **Inputs**
 
 - `s`: A nonempty string containing only `(` and `)`.
@@ -40,30 +42,31 @@ Return `true` if the editable positions can be assigned to form a valid
 parentheses string; otherwise, return `false`.
 
 ### Examples
-**Example 1**
 
-- Input: `s = "))()))", locked = "010100"`
-- Output: `true`
+#### Example 1
+
+- **Input:** `s = "))()))", locked = "010100"`
+- **Output:** `true`
 
 Changing positions zero and four to `(` yields a valid assignment.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "()()", locked = "0000"`
-- Output: `true`
+- **Input:** `s = "()()", locked = "0000"`
+- **Output:** `true`
 
 The current characters already form one valid choice.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = ")", locked = "0"`
-- Output: `false`
+- **Input:** `s = ")", locked = "0"`
+- **Output:** `false`
 
 Every valid parentheses string has even length.
 
-**Example 4**
+#### Example 4
 
-- Input: `s = "(((())(((())", locked = "111111010111"`
-- Output: `true`
+- **Input:** `s = "(((())(((())", locked = "111111010111"`
+- **Output:** `true`
 
 The two editable positions can both be changed to closing parentheses.

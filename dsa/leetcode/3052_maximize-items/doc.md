@@ -44,7 +44,7 @@ Let $n$ be the number of inventory rows.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 The six prime-eligible rows occupy `555.20` square feet per batch. The
 warehouse holds `900` such batches, or `5400` prime items, and leaves `320`
@@ -56,12 +56,12 @@ two further batches add `8` items:
 | prime_eligible | 5400 |
 | not_prime | 8 |
 
-**Example 2**
+#### Example 2
 
 If prime batches exactly fill all `500000` square feet, the returned
 `not_prime` count is `0` because no complete non-prime batch fits.
 
-**Example 3**
+#### Example 3
 
 If prime storage leaves `100000` square feet and one non-prime batch occupies
 `70000`, exactly one non-prime batch is counted; the unused `30000` square

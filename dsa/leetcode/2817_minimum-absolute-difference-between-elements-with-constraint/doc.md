@@ -33,20 +33,20 @@ Return the smallest absolute value difference among two array elements whose ind
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [4,3,2,4], x = 2`
-- Output: `0`
-- Explanation: Indices `0` and `3` are at least two positions apart and contain equal values.
+- **Input:** `nums = [4,3,2,4], x = 2`
+- **Output:** `0`
+- **Explanation:** Indices `0` and `3` are at least two positions apart and contain equal values.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [5,3,2,10,15], x = 1`
-- Output: `1`
-- Explanation: The values `3` and `2` occur at neighboring indices and have the smallest possible difference.
+- **Input:** `nums = [5,3,2,10,15], x = 1`
+- **Output:** `1`
+- **Explanation:** The values `3` and `2` occur at neighboring indices and have the smallest possible difference.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,2,3,4], x = 3`
-- Output: `3`
-- Explanation: Only indices `0` and `3` satisfy the required distance, giving `|1 - 4| = 3`.
+- **Input:** `nums = [1,2,3,4], x = 3`
+- **Output:** `3`
+- **Explanation:** Only indices `0` and `3` satisfy the required distance, giving `|1 - 4| = 3`.

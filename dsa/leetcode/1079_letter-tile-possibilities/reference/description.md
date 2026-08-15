@@ -6,8 +6,13 @@ Return *the number of possible non-empty sequences of letters* you can make usin
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `tiles`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,10 +21,12 @@ Return *the number of possible non-empty sequences of letters* you can make usin
 - **Input:** $tiles = "AAB"$
 - **Output:** `8`
 - **Explanation:** The possible sequences are "A", "B", "AA", "AB", "BA", "AAB", "ABA", "BAA".
+
 #### Example 2
 
 - **Input:** $tiles = "AAABBC"$
 - **Output:** `188`
+
 #### Example 3
 
 - **Input:** $tiles = "V"$

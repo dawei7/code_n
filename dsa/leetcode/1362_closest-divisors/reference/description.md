@@ -6,8 +6,13 @@ Return the two integers in any order.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `num`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -16,10 +21,12 @@ Return the two integers in any order.
 - **Input:** $num = 8$
 - **Output:** `[3,3]`
 - **Explanation:** For num + 1 = 9, the closest divisors are 3 & 3, for num + 2 = 10, the closest divisors are 2 & 5, hence 3 & 3 is chosen.
+
 #### Example 2
 
 - **Input:** $num = 123$
 - **Output:** `[5,25]`
+
 #### Example 3
 
 - **Input:** $num = 999$

@@ -8,8 +8,14 @@ Return *a list of the target indices of* `nums` after* sorting *`nums`* in **non
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `target`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -19,12 +25,14 @@ Return *a list of the target indices of* `nums` after* sorting *`nums`* in **non
 - **Output:** `[1,2]`
 - **Explanation:** After sorting, nums is [1,<u>**2**</u>,<u>**2**</u>,3,5].
 The indices where nums[i] == 2 are 1 and 2.
+
 #### Example 2
 
 - **Input:** `nums = [1,2,5,2,3], target = 3`
 - **Output:** `[3]`
 - **Explanation:** After sorting, nums is [1,2,2,<u>**3**</u>,5].
 The index where nums[i] == 3 is 3.
+
 #### Example 3
 
 - **Input:** `nums = [1,2,5,2,3], target = 5`

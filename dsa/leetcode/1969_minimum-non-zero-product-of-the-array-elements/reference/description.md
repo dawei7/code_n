@@ -12,8 +12,13 @@ Find the **minimum non-zero** product of `nums` after performing the above opera
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `p`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -27,6 +32,7 @@ The answer should be the minimum product **before** the modulo operation is done
 - **Output:** `1`
 - **Explanation:** nums = [1].
 There is only one element, so the product equals that element.
+
 #### Example 2
 
 - **Input:** $p = 2$
@@ -34,6 +40,7 @@ There is only one element, so the product equals that element.
 - **Explanation:** nums = [01, 10, 11].
 Any swap would either make the product 0 or stay the same.
 Thus, the array product of 1 * 2 * 3 = 6 is already minimized.
+
 #### Example 3
 
 - **Input:** $p = 3$

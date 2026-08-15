@@ -22,19 +22,18 @@ Return *the* ***confusion**** score** of the maze.*
 
 - **Input:** $n = 5, corridors = [[1,2],[5,2],[4,1],[2,4],[3,1],[3,4]]$
 - **Output:** `2`
-- **Explanation:**
-One cycle of length 3 is 4 → 1 → 3 → 4, denoted in red.
+- **Explanation:** One cycle of length 3 is 4 → 1 → 3 → 4, denoted in red.
 Note that this is the same cycle as 3 → 4 → 1 → 3 or 1 → 3 → 4 → 1 because the rooms are the same.
 Another cycle of length 3 is 1 → 2 → 4 → 1, denoted in blue.
 Thus, there are two different cycles of length 3.
+
 #### Example 2
 
 ![](images/image-20211114164851-2.png)
 
 - **Input:** $n = 4, corridors = [[1,2],[3,4]]$
 - **Output:** `0`
-- **Explanation:**
-There are no cycles of length 3.
+- **Explanation:** There are no cycles of length 3.
 
 ### 4. Constraints
 

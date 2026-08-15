@@ -33,19 +33,19 @@ Return the minimum time required to finish all $m$ potions.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `skill = [1,5,2,4], mana = [5,1,4,2]`
-- Output: `110`
-- Explanation: The four potions can start at times `0`, `52`, `54`, and `86`; the last potion leaves the final wizard at time `110`.
+- **Input:** `skill = [1,5,2,4], mana = [5,1,4,2]`
+- **Output:** `110`
+- **Explanation:** The four potions can start at times `0`, `52`, `54`, and `86`; the last potion leaves the final wizard at time `110`.
 
-**Example 2**
+#### Example 2
 
-- Input: `skill = [1,1,1], mana = [1,1,1]`
-- Output: `5`
-- Explanation: Starting the potions at times `0`, `1`, and `2` keeps the three-wizard pipeline continuously synchronized.
+- **Input:** `skill = [1,1,1], mana = [1,1,1]`
+- **Output:** `5`
+- **Explanation:** Starting the potions at times `0`, `1`, and `2` keeps the three-wizard pipeline continuously synchronized.
 
-**Example 3**
+#### Example 3
 
-- Input: `skill = [1,2,3,4], mana = [1,2]`
-- Output: `21`
+- **Input:** `skill = [1,2,3,4], mana = [1,2]`
+- **Output:** `21`

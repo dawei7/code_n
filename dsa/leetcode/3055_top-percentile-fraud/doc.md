@@ -41,18 +41,18 @@ Let $n$ be the total row count and $n_s$ the row count of state $s$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 California, Florida, New York, and Texas each have fewer than twenty policies,
 so each contributes its single highest-scoring policy. The result begins with
 California policy `1`, followed by Florida policy `11` under state ordering.
 
-**Example 2**
+#### Example 2
 
 A state with exactly twenty policies contributes the one highest-scoring
 position because $\lceil 20\cdot0.05\rceil=1$.
 
-**Example 3**
+#### Example 3
 
 A state with twenty-one policies contributes two ranked positions. If two
 policies tie for the second-highest score, both are returned along with the

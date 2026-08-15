@@ -8,8 +8,14 @@ Return the total number of **valid** substrings of `word1`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `word1`: Input parameter (`str`).
+- `word2`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -19,36 +25,25 @@ that the memory limits in this problem are **smaller** than usual, so you **must
 
 #### Example 1
 
-<div class="example-block">
-**Input:** word1 = "bcca", word2 = "abc"
+- **Input:** word1 = "bcca", word2 = "abc"
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** The only valid substring is `"bcca"` which can be rearranged to `"abcc"` having `"abc"` as a prefix.
 
-The only valid substring is `"bcca"` which can be rearranged to `"abcc"` having `"abc"` as a prefix.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** word1 = "abcabc", word2 = "abc"
+- **Input:** word1 = "abcabc", word2 = "abc"
 
-**Output:** 10
+- **Output:** 10
 
-**Explanation:**
+- **Explanation:** All the substrings except substrings of size 1 and size 2 are valid.
 
-All the substrings except substrings of size 1 and size 2 are valid.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** word1 = "abcabc", word2 = "aaabc"
+- **Input:** word1 = "abcabc", word2 = "aaabc"
 
-**Output:** 0
-
-</div>
+- **Output:** 0
 
 ### 5. Constraints
 

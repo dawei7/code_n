@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/design-a-text-editor/) |
 
 ## Problem Description
+
 ### Goal
+
 Design a text editor whose cursor always occupies a position between
 characters, from position zero through the current text length. The editor
 starts empty and supports these stateful operations:
@@ -26,6 +28,7 @@ to the left of the cursor after moving. If no character lies there, it returns
 the empty string.
 
 ### Function Contract
+
 **Inputs**
 
 - `operations`: A trace beginning with `"TextEditor"` and followed by supported method names.
@@ -42,7 +45,8 @@ deletion count for `deleteText`, and the requested left-context string for
 each cursor movement.
 
 ### Examples
-**Example 1**
 
-- Input: `operations = ["TextEditor", "addText", "deleteText", "addText", "cursorRight", "cursorLeft", "deleteText", "cursorLeft", "cursorRight"]`, `arguments = [[], ["leetcode"], [4], ["practice"], [3], [8], [10], [2], [6]]`
-- Output: `[null, null, 4, null, "etpractice", "leet", 4, "", "practi"]`
+#### Example 1
+
+- **Input:** `operations = ["TextEditor", "addText", "deleteText", "addText", "cursorRight", "cursorLeft", "deleteText", "cursorLeft", "cursorRight"]`, `arguments = [[], ["leetcode"], [4], ["practice"], [3], [8], [10], [2], [6]]`
+- **Output:** `[null, null, 4, null, "etpractice", "leet", 4, "", "practi"]`

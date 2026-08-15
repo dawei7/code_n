@@ -6,21 +6,23 @@ Return the **minimum** number of operations to make all elements of `nums` divis
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4]
+- **Input:** nums = [1,2,3,4]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-All array elements can be made divisible by 3 using 3 operations:
+- **Explanation:** All array elements can be made divisible by 3 using 3 operations:
 
 - Subtract 1 from 1.
 
@@ -28,15 +30,11 @@ All array elements can be made divisible by 3 using 3 operations:
 
 - Subtract 1 from 4.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [3,6,9]
+- **Input:** nums = [3,6,9]
 
-**Output:** 0
-
-</div>
+- **Output:** 0
 
 ### 4. Constraints
 

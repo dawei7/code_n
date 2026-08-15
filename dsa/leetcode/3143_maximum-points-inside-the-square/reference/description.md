@@ -14,8 +14,14 @@ Note:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `points`: Input parameter (`List[List[int]]`).
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,42 +29,29 @@ Note:
 
 ![](images/3708-tc1.png)
 
-<div class="example-block">
-**Input:** points = [[2,2],[-1,-2],[-4,4],[-3,1],[3,-3]], s = "abdca"
+- **Input:** points = [[2,2],[-1,-2],[-4,4],[-3,1],[3,-3]], s = "abdca"
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** The square of side length 4 covers two points $\text{points}[0]$ and $\text{points}[1]$.
 
-The square of side length 4 covers two points $\text{points}[0]$ and $\text{points}[1]$.
-
-</div>
 #### Example 2
 
 ![](images/3708-tc2.png)
 
-<div class="example-block">
-**Input:** points = [[1,1],[-2,-2],[-2,2]], s = "abb"
+- **Input:** points = [[1,1],[-2,-2],[-2,2]], s = "abb"
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** The square of side length 2 covers one point, which is $\text{points}[0]$.
 
-The square of side length 2 covers one point, which is $\text{points}[0]$.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** points = [[1,1],[-1,-1],[2,-2]], s = "ccd"
+- **Input:** points = [[1,1],[-1,-1],[2,-2]], s = "ccd"
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-It's impossible to make any valid squares centered at the origin such that it covers only one point among $\text{points}[0]$ and $\text{points}[1]$.
-
-</div>
+- **Explanation:** It's impossible to make any valid squares centered at the origin such that it covers only one point among $\text{points}[0]$ and $\text{points}[1]$.
 
 ### 4. Constraints
 

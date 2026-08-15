@@ -8,8 +8,13 @@ Given the puzzle board `board`, return *the least number of moves required so th
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `board`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +25,7 @@ Given the puzzle board `board`, return *the least number of moves required so th
 - **Input:** $board = [[1,2,3],[4,0,5]]$
 - **Output:** `1`
 - **Explanation:** Swap the 0 and the 5 in one move.
+
 #### Example 2
 
 ![](images/slide2-grid.jpg)
@@ -27,6 +33,7 @@ Given the puzzle board `board`, return *the least number of moves required so th
 - **Input:** $board = [[1,2,3],[5,4,0]]$
 - **Output:** `-1`
 - **Explanation:** No number of moves will make the board solved.
+
 #### Example 3
 
 ![](images/slide3-grid.jpg)

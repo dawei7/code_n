@@ -10,39 +10,35 @@ Return `true` if such a partition exists; otherwise return `false`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** grid = [[1,4],[2,3]]
+- **Input:** grid = [[1,4],[2,3]]
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
-
-![](images/lc.png)
+- **Explanation:** ![](images/lc.png)
 
 ![](images/lc.jpeg)
 
 A horizontal cut between row 0 and row 1 results in two non-empty sections, each with a sum of 5. Thus, the answer is `true`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** grid = [[1,3],[2,4]]
+- **Input:** grid = [[1,3],[2,4]]
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
-
-No horizontal or vertical cut results in two non-empty sections with equal sums. Thus, the answer is `false`.
-
-</div>
+- **Explanation:** No horizontal or vertical cut results in two non-empty sections with equal sums. Thus, the answer is `false`.
 
 ### 4. Constraints
 

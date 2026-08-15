@@ -32,6 +32,7 @@ that:
 - The substring s[4..6]: "0110<u>011</u>". It contains one 0 and two 1's. The ratio is 1 : 2.
 - The substring s[1..6]: "0<u>110011</u>". It contains two 0's and four 1's. The ratio is 2 : 4 == 1 : 2.
 It can be shown that there are no more ratio substrings.
+
 #### Example 2
 
 - **Input:** `s = "10101", num1 = 3, num2 = 1`

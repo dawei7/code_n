@@ -24,30 +24,25 @@ Return the number of distinct integers `y` in `[l, r]` for which some integer `x
 
 #### Example 1
 
-<div class="example-block">
-**Input:** l = 1, r = 9, k = 3
+- **Input:** l = 1, r = 9, k = 3
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The perfect cubes in the range `[1, 9]` are:
+- **Explanation:** The perfect cubes in the range `[1, 9]` are:
 
 - $1 = 1^{3}$
 
 - $8 = 2^{3}$
 
-Hence, the answer is 2.</div>
+Hence, the answer is 2.
+
 #### Example 2
 
-<div class="example-block">
-**Input:** l = 8, r = 30, k = 2
+- **Input:** l = 8, r = 30, k = 2
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-The perfect squares in the range `[8, 30]` are:
+- **Explanation:** The perfect squares in the range `[8, 30]` are:
 
 - $9 = 3^{2}$
 
@@ -55,7 +50,7 @@ The perfect squares in the range `[8, 30]` are:
 
 - $25 = 5^{2}$
 
-Hence, the answer is 3.</div>
+Hence, the answer is 3.
 
 ### 4. Constraints
 

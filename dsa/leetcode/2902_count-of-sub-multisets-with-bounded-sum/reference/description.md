@@ -10,8 +10,15 @@ A **sub-multiset** is an **unordered** collection of elements of the array in wh
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `l`: Input parameter (`int`).
+- `r`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -28,11 +35,13 @@ that:
 - **Input:** `nums = [1,2,2,3], l = 6, r = 6`
 - **Output:** `1`
 - **Explanation:** The only subset of nums that has a sum of 6 is {1, 2, 3}.
+
 #### Example 2
 
 - **Input:** `nums = [2,1,4,2,7], l = 1, r = 5`
 - **Output:** `7`
 - **Explanation:** The subsets of nums that have a sum within the range [1, 5] are {1}, {2}, {4}, {2, 2}, {1, 2}, {1, 4}, and {1, 2, 2}.
+
 #### Example 3
 
 - **Input:** `nums = [1,2,1,3,5,2], l = 3, r = 5`

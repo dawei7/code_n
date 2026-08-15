@@ -38,6 +38,7 @@ that you do not need to return anything.
 
 - **Input:** $board = [[0,1,0],[0,0,1],[1,1,1],[0,0,0]]$
 - **Output:** `[[0,0,0],[1,0,1],[0,1,1],[0,1,0]]`
+
 #### Example 2
 
 ![](images/grid2.jpg)

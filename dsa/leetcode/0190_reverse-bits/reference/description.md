@@ -16,14 +16,11 @@ Return the integer obtained by reversing all 32 binary positions of `n`, includi
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 43261596
+- **Input:** n = 43261596
 
-**Output:** 964176192
+- **Output:** 964176192
 
-**Explanation:**
-
-<table>
+- **Explanation:** <table>
 	<tbody>
 		<tr>
 			<th>Integer</th>
@@ -39,17 +36,14 @@ Return the integer obtained by reversing all 32 binary positions of `n`, includi
 		</tr>
 	</tbody>
 </table>
-</div>
+
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 2147483644
+- **Input:** n = 2147483644
 
-**Output:** 1073741822
+- **Output:** 1073741822
 
-**Explanation:**
-
-<table>
+- **Explanation:** <table>
 	<tbody>
 		<tr>
 			<th>Integer</th>
@@ -65,7 +59,6 @@ Return the integer obtained by reversing all 32 binary positions of `n`, includi
 		</tr>
 	</tbody>
 </table>
-</div>
 
 ### 4. Constraints
 

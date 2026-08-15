@@ -32,19 +32,19 @@ Return `true` if flips can make the trees identical; otherwise return `false`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root1 = [1, 2, 3, 4, 5, 6, null, null, null, 7, 8]`, `root2 = [1, 3, 2, null, 6, 4, 5, null, null, null, null, 8, 7]`
-- Output: `true`
+- **Input:** `root1 = [1, 2, 3, 4, 5, 6, null, null, null, 7, 8]`, `root2 = [1, 3, 2, null, 6, 4, 5, null, null, null, null, 8, 7]`
+- **Output:** `true`
 
 Flips at nodes with values `1`, `3`, and `5` make the trees identical.
 
-**Example 2**
+#### Example 2
 
-- Input: `root1 = []`, `root2 = []`
-- Output: `true`
+- **Input:** `root1 = []`, `root2 = []`
+- **Output:** `true`
 
-**Example 3**
+#### Example 3
 
-- Input: `root1 = []`, `root2 = [1]`
-- Output: `false`
+- **Input:** `root1 = []`, `root2 = [1]`
+- **Output:** `false`

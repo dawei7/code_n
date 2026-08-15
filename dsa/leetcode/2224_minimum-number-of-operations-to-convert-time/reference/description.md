@@ -10,8 +10,14 @@ Return *the **minimum number of operations** needed to convert *`current`* to *`
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `current`: Input parameter (`str`).
+- `correct`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,12 +25,13 @@ Return *the **minimum number of operations** needed to convert *`current`* to *`
 
 - **Input:** $current = "02:30", correct = "04:35"$
 - **Output:** `3`
-- **Explanation:**
+- **Explanation:** 
 **We can convert current to correct in 3 operations as follows:
 - Add 60 minutes to current. current becomes "03:30".
 - Add 60 minutes to current. current becomes "04:30".
 - Add 5 minutes to current. current becomes "04:35".
 It can be proven that it is not possible to convert current to correct in fewer than 3 operations.
+
 #### Example 2
 
 - **Input:** $current = "11:00", correct = "11:01"$

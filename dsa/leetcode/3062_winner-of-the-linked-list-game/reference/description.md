@@ -16,7 +16,6 @@ Return *the name of the team with the **higher** points, if the points are equal
 
 **Example 1: **
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
 **Input: **  head = [2,1]
 
 **Output: **  "Even"
@@ -25,11 +24,8 @@ Return *the name of the team with the **higher** points, if the points are equal
 
 Hence, the answer would be `"Even"`.
 
-</div>
-
 **Example 2: **
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
 **Input: **  head = [2,5,4,7,20,5]
 
 **Output: **  "Odd"
@@ -46,11 +42,8 @@ The Odd team earned `2` points while the Even team got `1` point and the Odd tea
 
 Hence, the answer would be `"Odd"`.
 
-</div>
-
 **Example 3: **
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
 **Input: **  head = [4,5,2,1]
 
 **Output: **  "Tie"
@@ -64,8 +57,6 @@ Hence, the answer would be `"Odd"`.
 Both teams earned `1` point.
 
 Hence, the answer would be `"Tie"`.
-
-</div>
 
 ### 2. Function Contract
 

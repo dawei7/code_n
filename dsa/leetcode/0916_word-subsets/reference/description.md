@@ -12,35 +12,34 @@ Return an array of all the **universal** strings in `words1`. You may return the
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words1`: Input parameter (`List[str]`).
+- `words2`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `List[str]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** words1 = ["amazon","apple","facebook","google","leetcode"], words2 = ["e","o"]
+- **Input:** words1 = ["amazon","apple","facebook","google","leetcode"], words2 = ["e","o"]
 
-**Output:** ["facebook","google","leetcode"]
+- **Output:** ["facebook","google","leetcode"]
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** words1 = ["amazon","apple","facebook","google","leetcode"], words2 = ["lc","eo"]
+- **Input:** words1 = ["amazon","apple","facebook","google","leetcode"], words2 = ["lc","eo"]
 
-**Output:** ["leetcode"]
+- **Output:** ["leetcode"]
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** words1 = ["acaac","cccbb","aacbb","caacc","bcbbb"], words2 = ["c","cc","b"]
+- **Input:** words1 = ["acaac","cccbb","aacbb","caacc","bcbbb"], words2 = ["c","cc","b"]
 
-**Output:** ["cccbb"]
-
-</div>
+- **Output:** ["cccbb"]
 
 ### 4. Constraints
 

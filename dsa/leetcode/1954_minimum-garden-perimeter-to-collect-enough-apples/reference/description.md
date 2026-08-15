@@ -14,8 +14,13 @@ The value of `|x|` is defined as:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `neededApples`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -28,10 +33,12 @@ The value of `|x|` is defined as:
 - **Explanation:** A square plot of side length 1 does not contain any apples.
 However, a square plot of side length 2 has 12 apples inside (as depicted in the image above).
 The perimeter is 2 * 4 = 8.
+
 #### Example 2
 
 - **Input:** $neededApples = 13$
 - **Output:** `16`
+
 #### Example 3
 
 - **Input:** $neededApples = 1000000000$

@@ -10,8 +10,10 @@ Return *the generated matrix*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `ListNode(val=0, next=None)`: Initializes the data structure.
+- `spiralMatrix(m: int, n: int, head: Optional[ListNode]) -> `List[List[int]]``: Executes operation.
 
 ### 3. Examples
 
@@ -23,6 +25,7 @@ Return *the generated matrix*.
 - **Output:** `[[3,0,2,6,8],[5,0,-1,-1,1],[5,2,4,9,7]]`
 - **Explanation:** The diagram above shows how the values are printed in the matrix.
 Note that the remaining spaces in the matrix are filled with -1.
+
 #### Example 2
 
 ![](images/ex2.jpg)

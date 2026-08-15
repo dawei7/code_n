@@ -33,7 +33,7 @@ For every project represented in `Project`, report the average experience years 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 `Project`
 
@@ -54,7 +54,7 @@ For every project represented in `Project`, report the average experience years 
 | 3 | John | 1 |
 | 4 | Doe | 2 |
 
-Output:
+- **Output:** 
 
 | project_id | average_years |
 |---:|---:|

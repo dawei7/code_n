@@ -36,19 +36,19 @@ Return the maximum equal height of two supports formed from disjoint rod subsets
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `rods = [1,2,3,6]`
-- Output: `6`
-- Explanation: Weld `1`, `2`, and `3` for one support and use `6` for the other.
+- **Input:** `rods = [1,2,3,6]`
+- **Output:** `6`
+- **Explanation:** Weld `1`, `2`, and `3` for one support and use `6` for the other.
 
-**Example 2**
+#### Example 2
 
-- Input: `rods = [1,2,3,4,5,6]`
-- Output: `10`
-- Explanation: The subsets `{2,3,5}` and `{4,6}` both total 10.
+- **Input:** `rods = [1,2,3,4,5,6]`
+- **Output:** `10`
+- **Explanation:** The subsets `{2,3,5}` and `{4,6}` both total 10.
 
-**Example 3**
+#### Example 3
 
-- Input: `rods = [1,2]`
-- Output: `0`
+- **Input:** `rods = [1,2]`
+- **Output:** `0`

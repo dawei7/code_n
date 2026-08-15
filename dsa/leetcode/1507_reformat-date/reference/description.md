@@ -18,8 +18,13 @@ Convert the date string to the format `YYYY-MM-DD`, where:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `date`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -27,10 +32,12 @@ Convert the date string to the format `YYYY-MM-DD`, where:
 
 - **Input:** $date = "20th Oct 2052"$
 - **Output:** `"2052-10-20"`
+
 #### Example 2
 
 - **Input:** $date = "6th Jun 1933"$
 - **Output:** `"1933-06-06"`
+
 #### Example 3
 
 - **Input:** $date = "26th May 1960"$

@@ -8,8 +8,14 @@ Return *the **index** of the student that will **replace** the chalk pieces*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `chalk`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,6 +31,7 @@ Return *the **index** of the student that will **replace** the chalk pieces*.
 - Student number 1 uses 1 chalk, so k = 5.
 - Student number 2 uses 5 chalk, so k = 0.
 Student number 0 does not have enough chalk, so they will have to replace it.
+
 #### Example 2
 
 - **Input:** $chalk = [3,4,1,2], k = 25$

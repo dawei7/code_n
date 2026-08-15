@@ -41,20 +41,20 @@ The combined words are distinct and $S \le 10^6$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `a = ["avokado","dabar"], b = ["brazil"]`
-- Output: `false`
-- Explanation: Alice must open with `"avokado"`. Bob can advance to `"brazil"`, after which Alice cannot legally jump from initial `b` to her remaining `d` word.
+- **Input:** `a = ["avokado","dabar"], b = ["brazil"]`
+- **Output:** `false`
+- **Explanation:** Alice must open with `"avokado"`. Bob can advance to `"brazil"`, after which Alice cannot legally jump from initial `b` to her remaining `d` word.
 
-**Example 2**
+#### Example 2
 
-- Input: `a = ["ananas","atlas","banana"], b = ["albatros","cikla","nogomet"]`
-- Output: `true`
-- Explanation: Bob's only word beginning with `a` is smaller than Alice's forced opening, and he has no playable word beginning with `b`.
+- **Input:** `a = ["ananas","atlas","banana"], b = ["albatros","cikla","nogomet"]`
+- **Output:** `true`
+- **Explanation:** Bob's only word beginning with `a` is smaller than Alice's forced opening, and he has no playable word beginning with `b`.
 
-**Example 3**
+#### Example 3
 
-- Input: `a = ["hrvatska","zastava"], b = ["bijeli","galeb"]`
-- Output: `true`
-- Explanation: Both of Bob's words are lexicographically smaller than Alice's opening and start before `h`, so Bob has no legal move.
+- **Input:** `a = ["hrvatska","zastava"], b = ["bijeli","galeb"]`
+- **Output:** `true`
+- **Explanation:** Both of Bob's words are lexicographically smaller than Alice's opening and start before `h`, so Bob has no legal move.

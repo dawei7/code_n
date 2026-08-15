@@ -32,22 +32,22 @@ Return the lexicographically smallest string obtainable after zero or more valid
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abc"`
-- Output: `"a"`
-- Explanation: Removing `bc` leaves `a`, which is smaller than the result obtained by removing `ab`.
+- **Input:** `s = "abc"`
+- **Output:** `"a"`
+- **Explanation:** Removing `bc` leaves `a`, which is smaller than the result obtained by removing `ab`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "bcda"`
-- Output: `""`
-- Explanation: Remove `cd`, then remove the newly adjacent `ba` pair.
+- **Input:** `s = "bcda"`
+- **Output:** `""`
+- **Explanation:** Remove `cd`, then remove the newly adjacent `ba` pair.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "zdce"`
-- Output: `"zdce"`
-- Explanation: Removing `dc` would leave `ze`, but the unchanged original is lexicographically smaller than `ze`, so performing zero operations is optimal.
+- **Input:** `s = "zdce"`
+- **Output:** `"zdce"`
+- **Explanation:** Removing `dc` would leave `ze`, but the unchanged original is lexicographically smaller than `ze`, so performing zero operations is optimal.
 
 ---

@@ -31,7 +31,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Department table:
 +------+---------+-------+
 | id   | revenue | month |
@@ -42,7 +42,7 @@ Department table:
 | 1    | 7000    | Feb   |
 | 1    | 6000    | Mar   |
 +------+---------+-------+
-**Output:**
+- **Output:** 
 +------+-------------+-------------+-------------+-----+-------------+
 | id   | Jan_Revenue | Feb_Revenue | Mar_Revenue | ... | Dec_Revenue |
 +------+-------------+-------------+-------------+-----+-------------+
@@ -50,6 +50,6 @@ Department table:
 | 2    | 9000        | null        | null        | ... | null        |
 | 3    | null        | 10000       | null        | ... | null        |
 +------+-------------+-------------+-------------+-----+-------------+
-**Explanation:** The revenue from Apr to Dec is null.
+- **Explanation:** The revenue from Apr to Dec is null.
 Note that the result table has 13 columns (1 for the department id + 12 for the months).
 ```

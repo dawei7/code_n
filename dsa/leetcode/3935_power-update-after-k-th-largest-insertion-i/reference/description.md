@@ -32,14 +32,11 @@ Return an array of length $Q$ whose element `i` is the updated `p` after query `
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2], p = 4, queries = [[3,1],[1,2]]
+- **Input:** nums = [2], p = 4, queries = [[3,1],[1,2]]
 
-**Output:** [64,4096]
+- **Output:** [64,4096]
 
-**Explanation:**
-
-<table border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0" style="border-collapse:collapse;">
+- **Explanation:** <table border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0" style="border-collapse:collapse;">
 	<thead>
 		<tr>
 			<th>`i`</th>
@@ -79,18 +76,13 @@ Return an array of length $Q$ whose element `i` is the updated `p` after query `
 
 Thus, $ans = [64, 4096]$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [7,5], p = 6, queries = [[4,3],[7,2]]
+- **Input:** nums = [7,5], p = 6, queries = [[4,3],[7,2]]
 
-**Output:** [1296,220296870]
+- **Output:** [1296,220296870]
 
-**Explanation:**
-
-<div class="example-block">
-<table border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0" style="border-collapse:collapse;">
+- **Explanation:** <table border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0" style="border-collapse:collapse;">
 	<thead>
 		<tr>
 			<th>`i`</th>
@@ -129,9 +121,6 @@ Thus, $ans = [64, 4096]$.
 </table>
 
 Thus, $ans = [1296, 220296870]$
-
-</div>
-</div>
 
 ### 4. Constraints
 

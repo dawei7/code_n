@@ -30,13 +30,13 @@ If $x=y$, both stones are destroyed. If $x\ne y$, the stone weighing $x$ is dest
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `stones = [2,7,4,1,8,1]`
-- Output: `1`
-- Explanation: The successive heaviest pairs produce differences `1`, `2`, and `1`; an equal pair is then destroyed, leaving weight `1`.
+- **Input:** `stones = [2,7,4,1,8,1]`
+- **Output:** `1`
+- **Explanation:** The successive heaviest pairs produce differences `1`, `2`, and `1`; an equal pair is then destroyed, leaving weight `1`.
 
-**Example 2**
+#### Example 2
 
-- Input: `stones = [1]`
-- Output: `1`
+- **Input:** `stones = [1]`
+- **Output:** `1`

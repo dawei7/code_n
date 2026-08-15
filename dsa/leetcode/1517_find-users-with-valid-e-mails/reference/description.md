@@ -36,7 +36,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Users table:
 +---------+-----------+-------------------------+
 | user_id | name      | mail                    |
@@ -49,7 +49,7 @@ Users table:
 | 6       | David     | david69@gmail.com       |
 | 7       | Shapiro   | .shapo@leetcode.com     |
 +---------+-----------+-------------------------+
-**Output:**
+- **Output:** 
 +---------+-----------+-------------------------+
 | user_id | name      | mail                    |
 +---------+-----------+-------------------------+
@@ -57,8 +57,7 @@ Users table:
 | 3       | Annabelle | bella-@leetcode.com     |
 | 4       | Sally     | sally.come@leetcode.com |
 +---------+-----------+-------------------------+
-**Explanation:**
-The mail of user 2 does not have a domain.
+- **Explanation:** The mail of user 2 does not have a domain.
 The mail of user 5 has the # sign which is not allowed.
 The mail of user 6 does not have the leetcode domain.
 The mail of user 7 starts with a period.

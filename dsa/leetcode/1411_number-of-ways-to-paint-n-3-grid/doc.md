@@ -30,17 +30,17 @@ Count all valid paintings of the entire grid. Because the count grows quickly, r
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 1`
-- Output: `12`
+- **Input:** `n = 1`
+- **Output:** `12`
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 2`
-- Output: `54`
+- **Input:** `n = 2`
+- **Output:** `54`
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 3`
-- Output: `246`
+- **Input:** `n = 3`
+- **Output:** `246`

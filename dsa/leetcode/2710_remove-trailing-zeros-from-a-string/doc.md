@@ -30,20 +30,20 @@ Return the prefix ending at the last nonzero digit of `num`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `num = "51230100"`
-- Output: `"512301"`
-- Explanation: Exactly two zeros form the trailing suffix; the interior zero remains.
+- **Input:** `num = "51230100"`
+- **Output:** `"512301"`
+- **Explanation:** Exactly two zeros form the trailing suffix; the interior zero remains.
 
-**Example 2**
+#### Example 2
 
-- Input: `num = "123"`
-- Output: `"123"`
-- Explanation: The string already ends with a nonzero digit.
+- **Input:** `num = "123"`
+- **Output:** `"123"`
+- **Explanation:** The string already ends with a nonzero digit.
 
-**Example 3**
+#### Example 3
 
-- Input: `num = "1000"`
-- Output: `"1"`
-- Explanation: Removing the three trailing zeros leaves the first digit.
+- **Input:** `num = "1000"`
+- **Output:** `"1"`
+- **Explanation:** Removing the three trailing zeros leaves the first digit.

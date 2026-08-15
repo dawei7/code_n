@@ -20,10 +20,12 @@ Return `true` exactly when `n` equals an integer power of four; otherwise return
 
 - **Input:** $n = 16$
 - **Output:** `true`
+
 #### Example 2
 
 - **Input:** $n = 5$
 - **Output:** `false`
+
 #### Example 3
 
 - **Input:** $n = 1$

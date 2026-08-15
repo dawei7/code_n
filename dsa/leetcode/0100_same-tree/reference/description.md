@@ -23,12 +23,14 @@ Return `true` if `p` and `q` have identical structure and values; otherwise retu
 
 - **Input:** $p = [1,2,3], q = [1,2,3]$
 - **Output:** `true`
+
 #### Example 2
 
 ![](images/ex2.jpg)
 
 - **Input:** $p = [1,2], q = [1,null,2]$
 - **Output:** `false`
+
 #### Example 3
 
 ![](images/ex3.jpg)

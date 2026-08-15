@@ -20,6 +20,7 @@ Return every distinct subset of the input multiset, including the empty subset.
 
 - **Input:** `nums = [1,2,2]`
 - **Output:** `[[],[1],[1,2],[1,2,2],[2],[2,2]]`
+
 #### Example 2
 
 - **Input:** `nums = [0]`

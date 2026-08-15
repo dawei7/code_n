@@ -12,21 +12,23 @@ Your task is to determine the **minimum** number of operations required to reduc
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** queries = [[1,2],[2,4]]
+- **Input:** queries = [[1,2],[2,4]]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-For $\text{queries}[0]$:
+- **Explanation:** For $\text{queries}[0]$:
 
 - The initial array is `nums = [1, 2]`.
 
@@ -46,17 +48,13 @@ For $\text{queries}[1]$:
 
 The output is $1 + 2 = 3$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** queries = [[2,6]]
+- **Input:** queries = [[2,6]]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-For $\text{queries}[0]$:
+- **Explanation:** For $\text{queries}[0]$:
 
 - The initial array is `nums = [2, 3, 4, 5, 6]`.
 
@@ -71,8 +69,6 @@ For $\text{queries}[0]$:
 - The minimum number of operations required is 4.
 
 The output is 4.
-
-</div>
 
 ### 4. Constraints
 

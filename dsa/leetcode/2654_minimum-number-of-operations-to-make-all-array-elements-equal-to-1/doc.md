@@ -30,14 +30,14 @@ Apply this operation any number of times and return the minimum number needed to
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,6,3,4]`
-- Output: `4`
-- Explanation: Combining `3` and `4` first creates a `1`; three more adjacent operations spread that value across the remaining positions.
+- **Input:** `nums = [2,6,3,4]`
+- **Output:** `4`
+- **Explanation:** Combining `3` and `4` first creates a `1`; three more adjacent operations spread that value across the remaining positions.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2,10,6,14]`
-- Output: `-1`
-- Explanation: Every array value is even, so every gcd produced by an operation remains greater than `1`.
+- **Input:** `nums = [2,10,6,14]`
+- **Output:** `-1`
+- **Explanation:** Every array value is even, so every gcd produced by an operation remains greater than `1`.

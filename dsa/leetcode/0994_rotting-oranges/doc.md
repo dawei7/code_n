@@ -32,19 +32,19 @@ Define the grid area as $A=mn$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[2, 1, 1], [1, 1, 0], [0, 1, 1]]`
-- Output: `4`
+- **Input:** `grid = [[2, 1, 1], [1, 1, 0], [0, 1, 1]]`
+- **Output:** `4`
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[2, 1, 1], [0, 1, 1], [1, 0, 1]]`
-- Output: `-1`
-- Explanation: The fresh orange in the lower-left corner has no 4-directional path from a rotten orange.
+- **Input:** `grid = [[2, 1, 1], [0, 1, 1], [1, 0, 1]]`
+- **Output:** `-1`
+- **Explanation:** The fresh orange in the lower-left corner has no 4-directional path from a rotten orange.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[0, 2]]`
-- Output: `0`
-- Explanation: No fresh orange exists at minute zero.
+- **Input:** `grid = [[0, 2]]`
+- **Output:** `0`
+- **Explanation:** No fresh orange exists at minute zero.

@@ -14,21 +14,24 @@ Since the answer may be large, return it **modulo** $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `vals`: Input parameter (`List[int]`).
+- `par`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** vals = [2,3], par = [-1,0]
+- **Input:** vals = [2,3], par = [-1,0]
 
-**Output:** 8
+- **Output:** 8
 
-**Explanation:**
-
-![](images/screenshot-2025-04-29-at-150754.png)
+- **Explanation:** ![](images/screenshot-2025-04-29-at-150754.png)
 
 - The subtree rooted at node 0 includes nodes `{0, 1}`. The subset `{2, 3}` is* *good as the digits 2 and 3 appear only once. The score of this subset is $2 + 3 = 5$.
 
@@ -36,15 +39,13 @@ Since the answer may be large, return it **modulo** $10^{9} + 7$.
 
 - The `maxScore` array is `[5, 3]`, and the sum of all values in `maxScore` is $5 + 3 = 8$. Thus, the answer is 8.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** vals = [1,5,2], par = [-1,0,0]
+- **Input:** vals = [1,5,2], par = [-1,0,0]
 
-**Output:** 15
+- **Output:** 15
 
-**Explanation:**
+- **Explanation:** 
 
 **
 
@@ -60,17 +61,13 @@ Since the answer may be large, return it **modulo** $10^{9} + 7$.
 
 - The `maxScore` array is `[8, 5, 2]`, and the sum of all values in `maxScore` is $8 + 5 + 2 = 15$. Thus, the answer is 15.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** vals = [34,1,2], par = [-1,0,1]
+- **Input:** vals = [34,1,2], par = [-1,0,1]
 
-**Output:** 42
+- **Output:** 42
 
-**Explanation:**
-
-![](images/screenshot-2025-04-29-at-151747.png)
+- **Explanation:** ![](images/screenshot-2025-04-29-at-151747.png)
 
 - The subtree rooted at node 0 includes nodes `{0, 1, 2}`. The subset `{34, 1, 2}` is* *good as the digits 3, 4, 1 and 2 appear only once. The score of this subset is $34 + 1 + 2 = 37$.
 
@@ -80,15 +77,13 @@ Since the answer may be large, return it **modulo** $10^{9} + 7$.
 
 - The `maxScore` array is `[37, 3, 2]`, and the sum of all values in `maxScore` is $37 + 3 + 2 = 42$. Thus, the answer is 42.
 
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** vals = [3,22,5], par = [-1,0,1]
+- **Input:** vals = [3,22,5], par = [-1,0,1]
 
-**Output:** 18
+- **Output:** 18
 
-**Explanation:**
+- **Explanation:** 
 
 - The subtree rooted at node 0 includes nodes `{0, 1, 2}`. The subset `{3, 22, 5}` is* *not good, as digit 2 appears twice. Therefore, the subset `{3, 5}` is valid. The score of this subset is $3 + 5 = 8$.
 
@@ -97,8 +92,6 @@ Since the answer may be large, return it **modulo** $10^{9} + 7$.
 - The subtree rooted at node 2 includes `{2}`. The subset `{5}` is* *good. The score of this subset is 5.
 
 - The `maxScore` array is `[8, 5, 5]`, and the sum of all values in `maxScore` is $8 + 5 + 5 = 18$. Thus, the answer is 18.
-
-</div>
 
 ### 4. Constraints
 

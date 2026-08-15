@@ -32,20 +32,20 @@ Return the number of substrings for which $#1\geq(\#0)^2$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "00011"`
-- Output: `5`
-- Explanation: The dominant substrings are the two single `1` characters, `"01"`, `"11"`, and `"011"`.
+- **Input:** `s = "00011"`
+- **Output:** `5`
+- **Explanation:** The dominant substrings are the two single `1` characters, `"01"`, `"11"`, and `"011"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "101101"`
-- Output: `16`
-- Explanation: Of the $21$ total substrings, exactly five fail the dominance inequality.
+- **Input:** `s = "101101"`
+- **Output:** `16`
+- **Explanation:** Of the $21$ total substrings, exactly five fail the dominance inequality.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "1111"`
-- Output: `10`
-- Explanation: Every substring contains zero zeroes, so all $4\cdot5/2$ substrings qualify.
+- **Input:** `s = "1111"`
+- **Output:** `10`
+- **Explanation:** Every substring contains zero zeroes, so all $4\cdot5/2$ substrings qualify.

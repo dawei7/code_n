@@ -30,16 +30,16 @@ Return the maximum integer represented by concatenating the three binary represe
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3]`
-- Output: `30`
+- **Input:** `nums = [1, 2, 3]`
+- **Output:** `30`
 
 Ordering the values as `[3, 1, 2]` produces the bit string `"11110"`, whose decimal value is 30.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, 8, 16]`
-- Output: `1296`
+- **Input:** `nums = [2, 8, 16]`
+- **Output:** `1296`
 
 The order `[2, 8, 16]` produces `"10100010000"`, which represents 1296.

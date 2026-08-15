@@ -41,17 +41,17 @@ Return columns `product1_id`, `product2_id`, `product1_category`, `product2_cate
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: Customers 1 and 4 buy products 101, 102, and 103; customer 2 buys 101, 102, and 104; customer 3 buys 101, 103, and 105; customer 5 buys 102 and 104. Product categories are Electronics, Books, Clothing, Kitchen, and Sports respectively.
-- Output: `(101, 102, Electronics, Books, 3)`, `(101, 103, Electronics, Clothing, 3)`, and `(102, 104, Books, Kitchen, 3)`.
+- **Input:** Customers 1 and 4 buy products 101, 102, and 103; customer 2 buys 101, 102, and 104; customer 3 buys 101, 103, and 105; customer 5 buys 102 and 104. Product categories are Electronics, Books, Clothing, Kitchen, and Sports respectively.
+- **Output:** `(101, 102, Electronics, Books, 3)`, `(101, 103, Electronics, Clothing, 3)`, and `(102, 104, Books, Kitchen, 3)`.
 
-**Example 2**
+#### Example 2
 
-- Input: Three customers each buy products 7 and 12, with arbitrary positive quantities.
-- Output: One recommendation `(7, 12, ..., ..., 3)`; quantities do not multiply the customer count.
+- **Input:** Three customers each buy products 7 and 12, with arbitrary positive quantities.
+- **Output:** One recommendation `(7, 12, ..., ..., 3)`; quantities do not multiply the customer count.
 
-**Example 3**
+#### Example 3
 
-- Input: Only two customers share the same two products.
-- Output: No rows, because a recommendation needs at least three distinct customers.
+- **Input:** Only two customers share the same two products.
+- **Output:** No rows, because a recommendation needs at least three distinct customers.

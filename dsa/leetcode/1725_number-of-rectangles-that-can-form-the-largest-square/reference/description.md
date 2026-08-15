@@ -10,8 +10,13 @@ Return *the **number** of rectangles that can make a square with a side length o
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `rectangles`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +26,7 @@ Return *the **number** of rectangles that can make a square with a side length o
 - **Output:** `3`
 - **Explanation:** The largest squares you can get from each rectangle are of lengths [5,3,5,5].
 The largest possible square is of length 5, and you can get it out of 3 rectangles.
+
 #### Example 2
 
 - **Input:** $rectangles = [[2,3],[3,7],[4,3],[3,7]]$

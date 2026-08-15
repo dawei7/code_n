@@ -34,14 +34,14 @@ Let $S$ be the total number of characters in all tweet texts, $h$ the total numb
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 The supplied table contains `#HappyDay` three times and `#TechLife` twice. Every other hashtag occurs once; the descending hashtag tie break selects `#WorkLife` for third place. The result is `(#HappyDay, 3)`, `(#TechLife, 2)`, and `(#WorkLife, 1)`.
 
-**Example 2**
+#### Example 2
 
 The tweet `"Updates #SQL #Database"` contributes one occurrence to each of `#SQL` and `#Database`, rather than only its first or last hashtag.
 
-**Example 3**
+#### Example 3
 
 If a tweet ends with `#Launch,`, the comma is part of the non-space hashtag token, so the extracted value is `#Launch,`.

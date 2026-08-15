@@ -8,35 +8,32 @@ Return `true` if the array `message` is spam, and `false` otherwise.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `message`: Input parameter (`List[str]`).
+- `bannedWords`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** message = ["hello","world","leetcode"], bannedWords = ["world","hello"]
+- **Input:** message = ["hello","world","leetcode"], bannedWords = ["world","hello"]
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
+- **Explanation:** The words `"hello"` and `"world"` from the `message` array both appear in the `bannedWords` array.
 
-The words `"hello"` and `"world"` from the `message` array both appear in the `bannedWords` array.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** message = ["hello","programming","fun"], bannedWords = ["world","programming","leetcode"]
+- **Input:** message = ["hello","programming","fun"], bannedWords = ["world","programming","leetcode"]
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
-
-Only one word from the `message` array (`"programming"`) appears in the `bannedWords` array.
-
-</div>
+- **Explanation:** Only one word from the `message` array (`"programming"`) appears in the `bannedWords` array.
 
 ### 4. Constraints
 

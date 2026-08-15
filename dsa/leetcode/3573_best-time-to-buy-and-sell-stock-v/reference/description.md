@@ -10,8 +10,14 @@ You are allowed to make at most `k` transactions, where each transaction can be 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `prices`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -23,38 +29,29 @@ Return the **maximum** total profit you can earn by making **at most** `k` trans
 
 #### Example 1
 
-<div class="example-block">
-**Input:** prices = [1,7,9,8,2], k = 2
+- **Input:** prices = [1,7,9,8,2], k = 2
 
-**Output:** 14
+- **Output:** 14
 
-**Explanation:**
-
-We can make $14 of profit through 2 transactions:
+- **Explanation:** We can make $14 of profit through 2 transactions:
 
 - A normal transaction: buy the stock on day 0 for $1 then sell it on day 2 for$9.
 
 - A short selling transaction: sell the stock on day 3 for $8 then buy back on day 4 for$2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** prices = [12,16,19,19,8,1,19,13,9], k = 3
+- **Input:** prices = [12,16,19,19,8,1,19,13,9], k = 3
 
-**Output:** 36
+- **Output:** 36
 
-**Explanation:**
-
-We can make $36 of profit through 3 transactions:
+- **Explanation:** We can make $36 of profit through 3 transactions:
 
 - A normal transaction: buy the stock on day 0 for $12 then sell it on day 2 for$19.
 
 - A short selling transaction: sell the stock on day 3 for $19 then buy back on day 4 for$8.
 
 - A normal transaction: buy the stock on day 5 for $1 then sell it on day 6 for$19.
-
-</div>
 
 ### 5. Constraints
 

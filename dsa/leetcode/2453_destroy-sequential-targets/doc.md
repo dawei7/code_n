@@ -31,20 +31,20 @@ Choose a seed from `nums` that destroys the greatest possible number of array en
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3, 7, 8, 1, 1, 5], space = 2`
-- Output: `1`
-- Explanation: Seeding with 1 destroys both targets valued 1 and the targets 3, 5, and 7, for five targets total.
+- **Input:** `nums = [3, 7, 8, 1, 1, 5], space = 2`
+- **Output:** `1`
+- **Explanation:** Seeding with 1 destroys both targets valued 1 and the targets 3, 5, and 7, for five targets total.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 3, 5, 2, 4, 6], space = 2`
-- Output: `1`
-- Explanation: Seeds 1 and 2 each destroy three targets, so the smaller seed is returned.
+- **Input:** `nums = [1, 3, 5, 2, 4, 6], space = 2`
+- **Output:** `1`
+- **Explanation:** Seeds 1 and 2 each destroy three targets, so the smaller seed is returned.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [6, 2, 5], space = 100`
-- Output: `2`
-- Explanation: No seed reaches another target, so every seed destroys one target and the smallest wins.
+- **Input:** `nums = [6, 2, 5], space = 100`
+- **Output:** `2`
+- **Explanation:** No seed reaches another target, so every seed destroys one target and the smallest wins.

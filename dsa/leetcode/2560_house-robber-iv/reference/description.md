@@ -12,8 +12,14 @@ Return *the **minimum** capability of the robber out of all the possible ways to
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,12 +27,12 @@ Return *the **minimum** capability of the robber out of all the possible ways to
 
 - **Input:** `nums = [2,3,5,9], k = 2`
 - **Output:** `5`
-- **Explanation:**
-There are three ways to rob at least 2 houses:
+- **Explanation:** There are three ways to rob at least 2 houses:
 - Rob the houses at indices 0 and 2. Capability is max(nums[0], nums[2]) = 5.
 - Rob the houses at indices 0 and 3. Capability is max(nums[0], nums[3]) = 9.
 - Rob the houses at indices 1 and 3. Capability is max(nums[1], nums[3]) = 9.
 Therefore, we return min(5, 9, 9) = 5.
+
 #### Example 2
 
 - **Input:** `nums = [2,7,9,3,1], k = 2`

@@ -33,10 +33,10 @@ Return columns `book_id`, `title`, `author`, `genre`, `publication_year`, and `c
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: A six-book catalog in which *The Great Gatsby* has three active loans for three copies and *1984* has one active loan for one copy; all other books retain at least one available copy.
-- Output: Rows for *The Great Gatsby* with `current_borrowers = 3`, followed by *1984* with `current_borrowers = 1`.
-- Explanation: Returned records are excluded before counting, so only these two books have zero availability.
+- **Input:** A six-book catalog in which *The Great Gatsby* has three active loans for three copies and *1984* has one active loan for one copy; all other books retain at least one available copy.
+- **Output:** Rows for *The Great Gatsby* with `current_borrowers = 3`, followed by *1984* with `current_borrowers = 1`.
+- **Explanation:** Returned records are excluded before counting, so only these two books have zero availability.
 
 ---

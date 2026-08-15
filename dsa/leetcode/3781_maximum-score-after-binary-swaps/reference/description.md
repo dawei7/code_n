@@ -25,14 +25,11 @@ Return the maximum sum of $\text{nums}[i]$ over positions that can contain `'1'`
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,1,5,2,3], s = "01010"
+- **Input:** nums = [2,1,5,2,3], s = "01010"
 
-**Output:** 7
+- **Output:** 7
 
-**Explanation:**
-
-We can perform the following swaps:
+- **Explanation:** We can perform the following swaps:
 
 - Swap at index $i = 0$: `"01010"` changes to `"10010"`
 
@@ -40,19 +37,13 @@ We can perform the following swaps:
 
 Positions 0 and 2 contain `'1'`, contributing $\text{nums}[0] + \text{nums}[2] = 2 + 5 = 7$. This is maximum score achievable.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [4,7,2,9], s = "0000"
+- **Input:** nums = [4,7,2,9], s = "0000"
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-There are no `'1'` characters in `s`, so no swaps can be performed. The score remains 0.
-
-</div>
+- **Explanation:** There are no `'1'` characters in `s`, so no swaps can be performed. The score remains 0.
 
 ### 4. Constraints
 

@@ -36,20 +36,20 @@ Return the surviving robots' final health values in original input order.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `positions = [5,4,3,2,1], healths = [2,17,9,15,10], directions = "RRRRR"`
-- Output: `[2,17,9,15,10]`
-- Explanation: Robots moving at equal speed in the same direction never meet.
+- **Input:** `positions = [5,4,3,2,1], healths = [2,17,9,15,10], directions = "RRRRR"`
+- **Output:** `[2,17,9,15,10]`
+- **Explanation:** Robots moving at equal speed in the same direction never meet.
 
-**Example 2**
+#### Example 2
 
-- Input: `positions = [3,5,2,6], healths = [10,10,15,12], directions = "RLRL"`
-- Output: `[14]`
-- Explanation: The equal-health pair disappears, while the robot originally at position `2` wins its collision and loses one health.
+- **Input:** `positions = [3,5,2,6], healths = [10,10,15,12], directions = "RLRL"`
+- **Output:** `[14]`
+- **Explanation:** The equal-health pair disappears, while the robot originally at position `2` wins its collision and loses one health.
 
-**Example 3**
+#### Example 3
 
-- Input: `positions = [1,2,5,6], healths = [10,10,11,11], directions = "RLRL"`
-- Output: `[]`
-- Explanation: Both approaching pairs have equal health, so every robot is removed.
+- **Input:** `positions = [1,2,5,6], healths = [10,10,11,11], directions = "RLRL"`
+- **Output:** `[]`
+- **Explanation:** Both approaching pairs have equal health, so every robot is removed.

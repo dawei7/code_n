@@ -33,20 +33,20 @@ Let $R$ be the number of session rows and $B$ the number of banned accounts.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: account `1` has overlapping sessions from `10.0.0.1` and `10.0.0.2`.
-- Output: `(1)`
-- Explanation: The same account is active from two different addresses at a common time.
+- **Input:** account `1` has overlapping sessions from `10.0.0.1` and `10.0.0.2`.
+- **Output:** `(1)`
+- **Explanation:** The same account is active from two different addresses at a common time.
 
-**Example 2**
+#### Example 2
 
-- Input: account `2` uses two different addresses, but its first session ends before the second begins.
-- Output: no row for account `2`.
-- Explanation: Sequential use of different addresses is not simultaneous access.
+- **Input:** account `2` uses two different addresses, but its first session ends before the second begins.
+- **Output:** no row for account `2`.
+- **Explanation:** Sequential use of different addresses is not simultaneous access.
 
-**Example 3**
+#### Example 3
 
-- Input: account `3` has overlapping sessions from the same address.
-- Output: no row for account `3`.
-- Explanation: A violation requires distinct IP addresses as well as temporal overlap.
+- **Input:** account `3` has overlapping sessions from the same address.
+- **Output:** no row for account `3`.
+- **Explanation:** A violation requires distinct IP addresses as well as temporal overlap.

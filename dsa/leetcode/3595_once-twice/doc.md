@@ -30,14 +30,14 @@ Return `[once, twice]`, placing the value with frequency one before the value wi
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 2, 3, 2, 5, 5, 5, 7, 7]`
-- Output: `[3, 7]`
-- Explanation: `3` occurs once, `7` occurs twice, and both remaining values occur three times.
+- **Input:** `nums = [2, 2, 3, 2, 5, 5, 5, 7, 7]`
+- **Output:** `[3, 7]`
+- **Explanation:** `3` occurs once, `7` occurs twice, and both remaining values occur three times.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4, 4, 6, 4, 9, 9, 9, 6, 8]`
-- Output: `[8, 6]`
-- Explanation: `8` has frequency one and `6` has frequency two.
+- **Input:** `nums = [4, 4, 6, 4, 9, 9, 9, 6, 8]`
+- **Output:** `[8, 6]`
+- **Explanation:** `8` has frequency one and `6` has frequency two.

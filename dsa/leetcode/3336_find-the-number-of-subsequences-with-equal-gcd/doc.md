@@ -32,20 +32,20 @@ Let $V=\max(\texttt{nums})$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3, 4]`
-- Output: `10`
-- Explanation: All ten valid ordered pairs have GCD $1$; exchanging the first and second subsequences counts separately.
+- **Input:** `nums = [1, 2, 3, 4]`
+- **Output:** `10`
+- **Explanation:** All ten valid ordered pairs have GCD $1$; exchanging the first and second subsequences counts separately.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [10, 20, 30]`
-- Output: `2`
-- Explanation: The two valid ordered pairs both have GCD $10$ and differ by which side receives the index containing `10`.
+- **Input:** `nums = [10, 20, 30]`
+- **Output:** `2`
+- **Explanation:** The two valid ordered pairs both have GCD $10$ and differ by which side receives the index containing `10`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 1, 1, 1]`
-- Output: `50`
-- Explanation: Every pair of non-empty disjoint subsequences has GCD $1$.
+- **Input:** `nums = [1, 1, 1, 1]`
+- **Output:** `50`
+- **Explanation:** Every pair of non-empty disjoint subsequences has GCD $1$.

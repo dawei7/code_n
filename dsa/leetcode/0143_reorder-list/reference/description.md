@@ -32,6 +32,7 @@ Return nothing; relink the supplied linked list in place. The app displays the r
 
 - **Input:** $head = [1,2,3,4]$
 - **Output:** `[1,4,2,3]`
+
 #### Example 2
 
 ![](images/reorder2-linked-list.jpg)

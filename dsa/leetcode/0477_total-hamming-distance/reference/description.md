@@ -27,6 +27,7 @@ Equal values at different positions still form a pair, although their mutual con
 showing the four bits relevant in this case).
 The answer will be:
 HammingDistance(4, 14) + HammingDistance(4, 2) + HammingDistance(14, 2) = 2 + 2 + 2 = 6.
+
 #### Example 2
 
 - **Input:** `nums = [4,14,4]`

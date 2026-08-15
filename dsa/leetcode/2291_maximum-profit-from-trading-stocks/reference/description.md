@@ -19,6 +19,7 @@ Buy the 0^th, 3^rd, and 4^th stocks for a total of 5 + 2 + 3 = 10.
 Next year, sell all three stocks for a total of 8 + 3 + 5 = 16.
 The profit you made is 16 - 10 = 6.
 It can be shown that the maximum profit you can make is 6.
+
 #### Example 2
 
 - **Input:** $present = [2,2,5], future = [3,4,10], budget = 6$
@@ -26,6 +27,7 @@ It can be shown that the maximum profit you can make is 6.
 - **Explanation:** The only possible way to maximize your profit is to:
 Buy the 2^nd stock, and make a profit of 10 - 5 = 5.
 It can be shown that the maximum profit you can make is 5.
+
 #### Example 3
 
 - **Input:** $present = [3,3,12], future = [0,3,15], budget = 10$

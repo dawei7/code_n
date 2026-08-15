@@ -10,21 +10,25 @@ Return an array `ans`, where $\text{ans}[j]$ is the node index of the weighted m
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 2, edges = [[0,1,7]], queries = [[1,0],[0,1]]
+- **Input:** n = 2, edges = [[0,1,7]], queries = [[1,0],[0,1]]
 
-**Output:** [0,1]
+- **Output:** [0,1]
 
-**Explanation:**
-
-![](images/screenshot-2025-05-26-at-193447.png)
+- **Explanation:** ![](images/screenshot-2025-05-26-at-193447.png)
 
 <table style="border: 1px solid black;">
 	<thead>
@@ -65,13 +69,12 @@ Return an array `ans`, where $\text{ans}[j]$ is the node index of the weighted m
 		</tr>
 	</tbody>
 </table>
-</div>
+
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,1,2],[2,0,4]], queries = [[0,1],[2,0],[1,2]]
+- **Input:** n = 3, edges = [[0,1,2],[2,0,4]], queries = [[0,1],[2,0],[1,2]]
 
-**Output:** [1,0,2]
+- **Output:** [1,0,2]
 
 **E****xplanation:**
 
@@ -127,17 +130,14 @@ Return an array `ans`, where $\text{ans}[j]$ is the node index of the weighted m
 		</tr>
 	</tbody>
 </table>
-</div>
+
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 5, edges = [[0,1,2],[0,2,5],[1,3,1],[2,4,3]], queries = [[3,4],[1,2]]
+- **Input:** n = 5, edges = [[0,1,2],[0,2,5],[1,3,1],[2,4,3]], queries = [[3,4],[1,2]]
 
-**Output:** [2,2]
+- **Output:** [2,2]
 
-**Explanation:**
-
-![](images/screenshot-2025-05-26-at-193857.png)
+- **Explanation:** ![](images/screenshot-2025-05-26-at-193857.png)
 
 <table style="border: 1px solid black;">
 	<thead>
@@ -187,7 +187,6 @@ Return an array `ans`, where $\text{ans}[j]$ is the node index of the weighted m
 		</tr>
 	</tbody>
 </table>
-</div>
 
 ### 4. Constraints
 

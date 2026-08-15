@@ -36,20 +36,20 @@ Return the accumulator obtained after applying `fn` once to each element in left
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,2,3,4]`, `fn = (accum, curr) => accum + curr`, `init = 0`
-- Output: `10`
-- Explanation: The accumulator progresses through `1`, `3`, `6`, and `10`.
+- **Input:** `nums = [1,2,3,4]`, `fn = (accum, curr) => accum + curr`, `init = 0`
+- **Output:** `10`
+- **Explanation:** The accumulator progresses through `1`, `3`, `6`, and `10`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,2,3,4]`, `fn = (accum, curr) => accum + curr * curr`, `init = 100`
-- Output: `130`
-- Explanation: The four squared values add `1 + 4 + 9 + 16` to the initial value.
+- **Input:** `nums = [1,2,3,4]`, `fn = (accum, curr) => accum + curr * curr`, `init = 100`
+- **Output:** `130`
+- **Explanation:** The four squared values add `1 + 4 + 9 + 16` to the initial value.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = []`, `fn = (accum, curr) => 0`, `init = 25`
-- Output: `25`
-- Explanation: The reducer is never called for an empty array, so the initial value is returned.
+- **Input:** `nums = []`, `fn = (accum, curr) => 0`, `init = 25`
+- **Output:** `25`
+- **Explanation:** The reducer is never called for an empty array, so the initial value is returned.

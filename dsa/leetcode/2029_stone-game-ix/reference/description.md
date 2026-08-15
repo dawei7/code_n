@@ -8,8 +8,13 @@ Assuming both players play **optimally**, return `true` *if Alice wins and* `fal
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `stones`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -21,12 +26,14 @@ Assuming both players play **optimally**, return `true` *if Alice wins and* `fal
 - Turn 1: Alice can remove either stone.
 - Turn 2: Bob removes the remaining stone.
 The sum of the removed stones is 1 + 2 = 3 and is divisible by 3. Therefore, Bob loses and Alice wins the game.
+
 #### Example 2
 
 - **Input:** $stones = [2]$
 - **Output:** `false`
 - **Explanation:** Alice will remove the only stone, and the sum of the values on the removed stones is 2.
 Since all the stones are removed and the sum of values is not divisible by 3, Bob wins the game.
+
 #### Example 3
 
 - **Input:** $stones = [5,1,2,4,3]$

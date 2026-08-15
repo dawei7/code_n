@@ -31,20 +31,20 @@ Return the number of tree nodes whose values are greater than at least `k` value
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [7, 6, 5, 4, 3, 2, 1], k = 2`
-- Output: `3`
-- Explanation: The root and its two children each exceed at least two values in their respective subtrees.
+- **Input:** `root = [7, 6, 5, 4, 3, 2, 1], k = 2`
+- **Output:** `3`
+- **Explanation:** The root and its two children each exceed at least two values in their respective subtrees.
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [1, 2, 3], k = 1`
-- Output: `0`
-- Explanation: No node has a strictly smaller value below it.
+- **Input:** `root = [1, 2, 3], k = 1`
+- **Output:** `0`
+- **Explanation:** No node has a strictly smaller value below it.
 
-**Example 3**
+#### Example 3
 
-- Input: `root = [3, 2, 2], k = 2`
-- Output: `1`
-- Explanation: The root is greater than both child values, while neither leaf has enough smaller subtree values.
+- **Input:** `root = [3, 2, 2], k = 2`
+- **Output:** `1`
+- **Explanation:** The root is greater than both child values, while neither leaf has enough smaller subtree values.

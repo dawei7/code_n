@@ -10,8 +10,15 @@ Return `true`* if you can reach index *$\text{s.length} - 1$* in *`s`*, or *`fal
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `minJump`: Input parameter (`int`).
+- `maxJump`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -19,9 +26,9 @@ Return `true`* if you can reach index *$\text{s.length} - 1$* in *`s`*, or *`fal
 
 - **Input:** `s = "<u>0</u>11<u>0</u>1<u>0</u>", minJump = 2, maxJump = 3`
 - **Output:** `true`
-- **Explanation:**
-In the first step, move from index 0 to index 3.
+- **Explanation:** In the first step, move from index 0 to index 3.
 In the second step, move from index 3 to index 5.
+
 #### Example 2
 
 - **Input:** `s = "01101110", minJump = 2, maxJump = 3`

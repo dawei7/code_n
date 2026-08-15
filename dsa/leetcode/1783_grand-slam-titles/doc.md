@@ -34,23 +34,23 @@ Let $C$ be the number of championship rows and $K$ the number of distinct player
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `Players = [[1,"Nadal"],[2,"Federer"],[3,"Novak"]]`, `Championships = [[2018,1,1,1,1],[2019,1,1,2,2],[2020,2,1,2,2]]`
-- Output: `[[1,"Nadal",7],[2,"Federer",5]]`
+- **Input:** `Players = [[1,"Nadal"],[2,"Federer"],[3,"Novak"]]`, `Championships = [[2018,1,1,1,1],[2019,1,1,2,2],[2020,2,1,2,2]]`
+- **Output:** `[[1,"Nadal",7],[2,"Federer",5]]`
 
 Nadal's ID appears seven times and Federer's appears five times. Novak has no title and is omitted.
 
-**Example 2**
+#### Example 2
 
-- Input: `Players = [[7,"Serena"],[8,"Venus"]]`, `Championships = [[2021,7,7,7,7]]`
-- Output: `[[7,"Serena",4]]`
+- **Input:** `Players = [[7,"Serena"],[8,"Venus"]]`, `Championships = [[2021,7,7,7,7]]`
+- **Output:** `[[7,"Serena",4]]`
 
 Winning all four tournaments in one year contributes four titles.
 
-**Example 3**
+#### Example 3
 
-- Input: `Players = [[1,"A"],[2,"B"],[3,"C"],[4,"D"]]`, `Championships = [[2024,1,2,3,4]]`
-- Output: `[[1,"A",1],[2,"B",1],[3,"C",1],[4,"D",1]]`
+- **Input:** `Players = [[1,"A"],[2,"B"],[3,"C"],[4,"D"]]`, `Championships = [[2024,1,2,3,4]]`
+- **Output:** `[[1,"A",1],[2,"B",1],[3,"C",1],[4,"D",1]]`
 
 Each tournament column contributes its winner independently.

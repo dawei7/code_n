@@ -38,17 +38,17 @@ Result order is unrestricted.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `Rides = [[1, 7, 1], [2, 7, 2], [3, 11, 1], [4, 11, 7], [5, 11, 7], [6, 11, 3]]`
-- Output: `[[7, 2], [11, 0]]`
+- **Input:** `Rides = [[1, 7, 1], [2, 7, 2], [3, 11, 1], [4, 11, 7], [5, 11, 7], [6, 11, 3]]`
+- **Output:** `[[7, 2], [11, 0]]`
 
-**Example 2**
+#### Example 2
 
-- Input: `Rides = [[1, 4, 9]]`
-- Output: `[[4, 0]]`
+- **Input:** `Rides = [[1, 4, 9]]`
+- **Output:** `[[4, 0]]`
 
-**Example 3**
+#### Example 3
 
-- Input: `Rides = [[1, 1, 2], [2, 2, 1]]`
-- Output: `[[1, 1], [2, 1]]`
+- **Input:** `Rides = [[1, 1, 2], [2, 2, 1]]`
+- **Output:** `[[1, 1], [2, 1]]`

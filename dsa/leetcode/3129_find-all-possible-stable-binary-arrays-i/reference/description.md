@@ -16,49 +16,43 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `zero`: Input parameter (`int`).
+- `one`: Input parameter (`int`).
+- `limit`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** zero = 1, one = 1, limit = 2
+- **Input:** zero = 1, one = 1, limit = 2
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** The two possible stable binary arrays are `[1,0]` and `[0,1]`, as both arrays have a single 0 and a single 1, and no subarray has a length greater than 2.
 
-The two possible stable binary arrays are `[1,0]` and `[0,1]`, as both arrays have a single 0 and a single 1, and no subarray has a length greater than 2.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** zero = 1, one = 2, limit = 1
+- **Input:** zero = 1, one = 2, limit = 1
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-The only possible stable binary array is `[1,0,1]`.
+- **Explanation:** The only possible stable binary array is `[1,0,1]`.
 
 Note that the binary arrays `[1,1,0]` and `[0,1,1]` have subarrays of length 2 with identical elements, hence, they are not stable.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** zero = 3, one = 3, limit = 2
+- **Input:** zero = 3, one = 3, limit = 2
 
-**Output:** 14
+- **Output:** 14
 
-**Explanation:**
-
-All the possible stable binary arrays are `[0,0,1,0,1,1]`, `[0,0,1,1,0,1]`, `[0,1,0,0,1,1]`, `[0,1,0,1,0,1]`, `[0,1,0,1,1,0]`, `[0,1,1,0,0,1]`, `[0,1,1,0,1,0]`, `[1,0,0,1,0,1]`, `[1,0,0,1,1,0]`, `[1,0,1,0,0,1]`, `[1,0,1,0,1,0]`, `[1,0,1,1,0,0]`, `[1,1,0,0,1,0]`, and `[1,1,0,1,0,0]`.
-
-</div>
+- **Explanation:** All the possible stable binary arrays are `[0,0,1,0,1,1]`, `[0,0,1,1,0,1]`, `[0,1,0,0,1,1]`, `[0,1,0,1,0,1]`, `[0,1,0,1,1,0]`, `[0,1,1,0,0,1]`, `[0,1,1,0,1,0]`, `[1,0,0,1,0,1]`, `[1,0,0,1,1,0]`, `[1,0,1,0,0,1]`, `[1,0,1,0,1,0]`, `[1,0,1,1,0,0]`, `[1,1,0,0,1,0]`, and `[1,1,0,1,0,0]`.
 
 ### 4. Constraints
 

@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/execution-of-all-suffix-instructions-staying-in-a-grid/) |
 
 ## Problem Description
+
 ### Goal
 
 An $n \times n$ grid uses zero-based coordinates from the top-left cell
@@ -28,6 +29,7 @@ executed before that run stops. An instruction that would leave the grid is
 not included in its count.
 
 ### Function Contract
+
 **Inputs**
 
 - `n`: The positive side length of the square grid.
@@ -43,23 +45,24 @@ instructions in the suffix beginning at `s[i]` when starting anew from
 `startPos`.
 
 ### Examples
-**Example 1**
 
-- Input: `n = 3, startPos = [0, 1], s = "RRDDLU"`
-- Output: `[1, 5, 4, 3, 1, 0]`
+#### Example 1
+
+- **Input:** `n = 3, startPos = [0, 1], s = "RRDDLU"`
+- **Output:** `[1, 5, 4, 3, 1, 0]`
 
 The suffix beginning at index zero executes one right move before the next
 would leave the grid; the suffix beginning at index one executes all five
 moves.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 2, startPos = [1, 1], s = "LURD"`
-- Output: `[4, 1, 0, 0]`
+- **Input:** `n = 2, startPos = [1, 1], s = "LURD"`
+- **Output:** `[4, 1, 0, 0]`
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 1, startPos = [0, 0], s = "LRUD"`
-- Output: `[0, 0, 0, 0]`
+- **Input:** `n = 1, startPos = [0, 0], s = "LRUD"`
+- **Output:** `[0, 0, 0, 0]`
 
 Every possible first move leaves a one-cell grid.

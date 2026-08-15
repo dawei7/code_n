@@ -10,8 +10,13 @@ Return *the minimum number of days to disconnect the grid*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,6 +28,7 @@ Return *the minimum number of days to disconnect the grid*.
 - **Output:** `2`
 - **Explanation:** We need at least 2 days to get a disconnected grid.
 Change land grid[1][1] and grid[0][2] to water and get 2 disconnected island.
+
 #### Example 2
 
 ![](images/land2.jpg)

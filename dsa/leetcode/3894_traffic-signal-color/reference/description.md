@@ -26,28 +26,19 @@ Return `"Green"`, `"Orange"`, or `"Red"` when the corresponding timer rule appli
 
 #### Example 1
 
-<div class="example-block">
-**Input:** timer = 60
+- **Input:** timer = 60
 
-**Output:** "Red"
+- **Output:** "Red"
 
-**Explanation:**
+- **Explanation:** Since $timer = 60$, and $30 < timer \le 90$, the answer is `"Red"`.
 
-Since $timer = 60$, and $30 < timer \le 90$, the answer is `"Red"`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** timer = 5
+- **Input:** timer = 5
 
-**Output:** "Invalid"
+- **Output:** "Invalid"
 
-**Explanation:**
-
-Since $timer = 5$, it does not satisfy any of the given conditions, the answer is `"Invalid"`.
-
-</div>
+- **Explanation:** Since $timer = 5$, it does not satisfy any of the given conditions, the answer is `"Invalid"`.
 
 ### 4. Constraints
 

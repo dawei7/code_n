@@ -14,8 +14,14 @@ Return *the **minimum** number of operations needed to achieve your goal.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `a`: Input parameter (`str`).
+- `b`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -28,6 +34,7 @@ Return *the **minimum** number of operations needed to achieve your goal.*
 2) Change a to "bbb" and b to "aaa" in 3 operations, then every letter in b is less than every letter in a.
 3) Change a to "aaa" and b to "aaa" in 2 operations, then a and b consist of one distinct letter.
 The best way was done in 2 operations (either condition 1 or condition 3).
+
 #### Example 2
 
 - **Input:** $a = "dabadd", b = "cda"$

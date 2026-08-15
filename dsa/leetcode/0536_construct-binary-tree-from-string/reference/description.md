@@ -27,10 +27,12 @@ negative values form one node value; the first child expression belongs to `left
 
 - **Input:** `s = "4(2(3)(1))(6(5))"`
 - **Output:** `[4,2,6,3,1,5]`
+
 #### Example 2
 
 - **Input:** `s = "4(2(3)(1))(6(5)(7))"`
 - **Output:** `[4,2,6,3,1,5,7]`
+
 #### Example 3
 
 - **Input:** `s = "-4(2(3)(1))(6(5)(7))"`

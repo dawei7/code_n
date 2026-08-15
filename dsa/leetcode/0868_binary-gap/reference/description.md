@@ -6,8 +6,13 @@ Two `1`'s are **adjacent** if there are only `0`'s separating them (possibly no 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,12 +25,14 @@ The first adjacent pair of 1's is "<u>1</u>0<u>1</u>10" with a distance of 2.
 The second adjacent pair of 1's is "10<u>11</u>0" with a distance of 1.
 The answer is the largest of these two distances, which is 2.
 Note that "<u>1</u>01<u>1</u>0" is not a valid pair since there is a 1 separating the two 1's underlined.
+
 #### Example 2
 
 - **Input:** $n = 8$
 - **Output:** `0`
 - **Explanation:** 8 in binary is "1000".
 There are not any adjacent pairs of 1's in the binary representation of 8, so we return 0.
+
 #### Example 3
 
 - **Input:** $n = 5$

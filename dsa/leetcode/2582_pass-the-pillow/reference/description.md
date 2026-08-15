@@ -8,8 +8,14 @@ Given the two positive integers `n` and `time`, return *the index of the person 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `time`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,6 +25,7 @@ Given the two positive integers `n` and `time`, return *the index of the person 
 - **Output:** `2`
 - **Explanation:** People pass the pillow in the following way: 1 -> 2 -> 3 -> 4 -> 3 -> 2.
 After five seconds, the 2^nd person is holding the pillow.
+
 #### Example 2
 
 - **Input:** $n = 3, time = 2$

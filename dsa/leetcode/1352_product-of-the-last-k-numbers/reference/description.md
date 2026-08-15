@@ -38,8 +38,11 @@ productOfNumbers.getProduct(2); // return 32. The product of the last 2 numbers 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `ProductOfNumbers()`: Initializes the data structure.
+- `add(num: int)`: Executes operation.
+- `getProduct(k: int) -> `int``: Executes operation.
 
 ### 3. Constraints
 

@@ -8,8 +8,13 @@ A **subarray** may only include each element of the fixed buffer `nums` at most 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,11 +23,13 @@ A **subarray** may only include each element of the fixed buffer `nums` at most 
 - **Input:** `nums = [1,-2,3,-2]`
 - **Output:** `3`
 - **Explanation:** Subarray [3] has maximum sum 3.
+
 #### Example 2
 
 - **Input:** `nums = [5,-3,5]`
 - **Output:** `10`
 - **Explanation:** Subarray [5,5] has maximum sum 5 + 5 = 10.
+
 #### Example 3
 
 - **Input:** `nums = [-3,-2,-3]`

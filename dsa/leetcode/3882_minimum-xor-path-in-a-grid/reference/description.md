@@ -28,14 +28,11 @@ Return the minimum integer among the XOR costs of all valid paths from `(0, 0)` 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** grid = [[1,2],[3,4]]
+- **Input:** grid = [[1,2],[3,4]]
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
-
-There are two valid paths:
+- **Explanation:** There are two valid paths:
 
 - `(0, 0) → (0, 1) → (1, 1)` with XOR: $1 XOR 2 XOR 4 = 7$
 
@@ -43,17 +40,13 @@ There are two valid paths:
 
 The minimum XOR value among all valid paths is 6.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** grid = [[6,7],[5,8]]
+- **Input:** grid = [[6,7],[5,8]]
 
-**Output:** 9
+- **Output:** 9
 
-**Explanation:**
-
-There are two valid paths:
+- **Explanation:** There are two valid paths:
 
 - `(0, 0) → (0, 1) → (1, 1)` with XOR: $6 XOR 7 XOR 8 = 9$
 
@@ -61,23 +54,17 @@ There are two valid paths:
 
 The minimum XOR value among all valid paths is 9.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** grid = [[2,7,5]]
+- **Input:** grid = [[2,7,5]]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-There is only one valid path:
+- **Explanation:** There is only one valid path:
 
 - `(0, 0) → (0, 1) → (0, 2)` with XOR: $2 XOR 7 XOR 5 = 0$
 
 The XOR value of this path is 0, which is the minimum possible.
-
-</div>
 
 ### 4. Constraints
 

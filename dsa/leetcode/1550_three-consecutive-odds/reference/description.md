@@ -4,8 +4,13 @@ Given an integer array `arr`, return `true` if there are three consecutive odd n
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -14,6 +19,7 @@ Given an integer array `arr`, return `true` if there are three consecutive odd n
 - **Input:** `arr = [2,6,4,1]`
 - **Output:** `false`
 - **Explanation:** There are no three consecutive odds.
+
 #### Example 2
 
 - **Input:** `arr = [1,2,34,3,4,5,7,23,12]`

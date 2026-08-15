@@ -30,14 +30,14 @@ Return the sum of those contributions across the whole string. Each neighboring 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "hello"`
-- Output: `13`
-- Explanation: The four contributions are $3$, $7$, $0$, and $3$.
+- **Input:** `s = "hello"`
+- **Output:** `13`
+- **Explanation:** The four contributions are $3$, $7$, $0$, and $3$.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "zaz"`
-- Output: `50`
-- Explanation: Both adjacent pairs differ by $25$ in ASCII value.
+- **Input:** `s = "zaz"`
+- **Output:** `50`
+- **Explanation:** Both adjacent pairs differ by $25$ in ASCII value.

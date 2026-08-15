@@ -14,8 +14,10 @@ A **subarray** is a contiguous sequence of elements within an array. `arr[left..
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `RangeFreqQuery(arr: List[int])`: Initializes the data structure.
+- `query(left: int, right: int, value: int) -> `int``: Executes operation.
 
 ### 3. Examples
 

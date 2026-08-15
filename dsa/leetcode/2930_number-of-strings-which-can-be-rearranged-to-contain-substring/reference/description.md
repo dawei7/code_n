@@ -16,12 +16,17 @@ Since the answer may be large, return it **modulo **$10^{9} + 7$.
 
 A **substring** is a contiguous sequence of characters within a string.
 
-<div class="notranslate" style="all: initial;"> </div>
+ 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -30,6 +35,7 @@ A **substring** is a contiguous sequence of characters within a string.
 - **Input:** $n = 4$
 - **Output:** `12`
 - **Explanation:** The 12 strings which can be rearranged to have "leet" as a substring are: "eelt", "eetl", "elet", "elte", "etel", "etle", "leet", "lete", "ltee", "teel", "tele", and "tlee".
+
 #### Example 2
 
 - **Input:** $n = 10$

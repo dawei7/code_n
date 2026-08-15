@@ -1,0 +1,36 @@
+{
+  "model_version": "difficulty-acceptance-v2",
+  "formula": "Elo = Base + Slope * (ln((1-p)/p) - Median_z) + TopicAdjustment + CalibrationOffset",
+  "parameters_by_difficulty": {
+    "Easy": {
+      "base": 1253.5005,
+      "slope": 52.6991,
+      "median_z": -1.0082,
+      "minimum_bound": 1151.5867,
+      "maximum_bound": 1440.1785,
+      "calibration_offset": -73.3795,
+      "real_rating_count": 604,
+      "acceptance_count": 956
+    },
+    "Medium": {
+      "base": 1646.8565,
+      "slope": 174.701,
+      "median_z": -0.2261,
+      "minimum_bound": 1460.1785,
+      "maximum_bound": 1944.543,
+      "calibration_offset": -60.9093,
+      "real_rating_count": 1278,
+      "acceptance_count": 2091
+    },
+    "Hard": {
+      "base": 2262.2295,
+      "slope": 186.7697,
+      "median_z": 0.1824,
+      "minimum_bound": 1964.543,
+      "maximum_bound": 2765.0564,
+      "calibration_offset": -48.5512,
+      "real_rating_count": 667,
+      "acceptance_count": 958
+    }
+  }
+}

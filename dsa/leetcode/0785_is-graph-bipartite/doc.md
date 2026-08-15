@@ -30,20 +30,20 @@ Return `True` if such a division exists and `False` otherwise. Every vertex must
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `graph = [[1,2,3],[0,2],[0,1,3],[0,2]]`
-- Output: `False`
-- Explanation: Vertices `0`, `1`, and `2` form an odd cycle.
+- **Input:** `graph = [[1,2,3],[0,2],[0,1,3],[0,2]]`
+- **Output:** `False`
+- **Explanation:** Vertices `0`, `1`, and `2` form an odd cycle.
 
-**Example 2**
+#### Example 2
 
-- Input: `graph = [[1,3],[0,2],[1,3],[0,2]]`
-- Output: `True`
-- Explanation: The four-cycle can be split into groups `{0,2}` and `{1,3}`.
+- **Input:** `graph = [[1,3],[0,2],[1,3],[0,2]]`
+- **Output:** `True`
+- **Explanation:** The four-cycle can be split into groups `{0,2}` and `{1,3}`.
 
-**Example 3**
+#### Example 3
 
-- Input: `graph = [[],[]]`
-- Output: `True`
-- Explanation: Isolated vertices impose no cross-group conflicts.
+- **Input:** `graph = [[],[]]`
+- **Output:** `True`
+- **Explanation:** Isolated vertices impose no cross-group conflicts.

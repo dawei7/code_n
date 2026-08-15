@@ -30,23 +30,23 @@ Return the length of the longest valid prefix. The removed element is one occurr
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,2,1,1,5,3,3,5]`
-- Output: `7`
+- **Input:** `nums = [2,2,1,1,5,3,3,5]`
+- **Output:** `7`
 
 In the first seven elements, removing `5` leaves `1`, `2`, and `3` with frequency two. The full length-eight prefix cannot be repaired by one removal.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,1,1,2,2,2,3,3,3,4,4,4,5]`
-- Output: `13`
+- **Input:** `nums = [1,1,1,2,2,2,3,3,3,4,4,4,5]`
+- **Output:** `13`
 
 Removing the single `5` leaves four values that each occur three times.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,1,1,2,2,2]`
-- Output: `5`
+- **Input:** `nums = [1,1,1,2,2,2]`
+- **Output:** `5`
 
 For the first five elements, removing one `1` leaves both values with frequency two.

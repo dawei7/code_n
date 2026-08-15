@@ -32,22 +32,22 @@ Return the string remaining after repeatedly deleting the leftmost adjacent alph
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abc"`
-- Output: `"c"`
-- Explanation: The leftmost removable pair is `ab`, leaving `c`.
+- **Input:** `s = "abc"`
+- **Output:** `"c"`
+- **Explanation:** The leftmost removable pair is `ab`, leaving `c`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "adcb"`
-- Output: `""`
-- Explanation: Removing `dc` leaves `ab`, which is then removed.
+- **Input:** `s = "adcb"`
+- **Output:** `""`
+- **Explanation:** Removing `dc` leaves `ab`, which is then removed.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "zadb"`
-- Output: `"db"`
-- Explanation: The circular pair `za` is removed; the remaining `db` is stable.
+- **Input:** `s = "zadb"`
+- **Output:** `"db"`
+- **Explanation:** The circular pair `za` is removed; the remaining `db` is stable.
 
 ---

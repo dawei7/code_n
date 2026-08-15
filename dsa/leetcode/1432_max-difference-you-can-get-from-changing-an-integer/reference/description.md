@@ -16,8 +16,13 @@ Note that neither `a` nor `b` may have any leading zeros, and **must not** be 0.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `num`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -28,6 +33,7 @@ Note that neither `a` nor `b` may have any leading zeros, and **must not** be 0.
 - **Explanation:** The first time pick x = 5 and y = 9 and store the new integer in a.
 The second time pick x = 5 and y = 1 and store the new integer in b.
 We have now a = 999 and b = 111 and max difference = 888
+
 #### Example 2
 
 - **Input:** $num = 9$

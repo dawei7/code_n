@@ -30,23 +30,23 @@ Split `s` into nonempty, contiguous balanced strings so that every character bel
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "RLRRLLRLRL"`
-- Output: `4`
+- **Input:** `s = "RLRRLLRLRL"`
+- **Output:** `4`
 
 One maximum split is `RL | RRLL | RL | RL`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "RLRRRLLRLL"`
-- Output: `2`
+- **Input:** `s = "RLRRRLLRLL"`
+- **Output:** `2`
 
 It may be split as `RL | RRRLLRLL`.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "LLLLRRRR"`
-- Output: `1`
+- **Input:** `s = "LLLLRRRR"`
+- **Output:** `1`
 
 No proper prefix is balanced, so the entire string is the only piece.

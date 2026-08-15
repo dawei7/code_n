@@ -43,7 +43,7 @@ Return a table with columns $\text{user}_{id}$ and $\text{biggest}_{window}$. Fo
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 UserVisits table:
 +---------+------------+
 | user_id | visit_date |
@@ -55,7 +55,7 @@ UserVisits table:
 | 2       | 2020-12-9  |
 | 3       | 2020-11-11 |
 +---------+------------+
-**Output:**
+- **Output:** 
 +---------+---------------+
 | user_id | biggest_window|
 +---------+---------------+
@@ -63,8 +63,7 @@ UserVisits table:
 | 2       | 65            |
 | 3       | 51            |
 +---------+---------------+
-**Explanation:**
-For the first user, the windows in question are between dates:
+- **Explanation:** For the first user, the windows in question are between dates:
 - 2020-10-20 and 2020-11-28 with a total of 39 days.
 - 2020-11-28 and 2020-12-3 with a total of 5 days.
 - 2020-12-3 and 2021-1-1 with a total of 29 days.

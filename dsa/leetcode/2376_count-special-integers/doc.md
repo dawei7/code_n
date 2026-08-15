@@ -38,20 +38,20 @@ Let $d$ be the number of decimal digits in `n`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 20`
-- Output: `19`
-- Explanation: Every positive integer through `20` is special except `11`.
+- **Input:** `n = 20`
+- **Output:** `19`
+- **Explanation:** Every positive integer through `20` is special except `11`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 5`
-- Output: `5`
-- Explanation: All five positive integers in the interval have one digit.
+- **Input:** `n = 5`
+- **Output:** `5`
+- **Explanation:** All five positive integers in the interval have one digit.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 135`
-- Output: `110`
-- Explanation: Exactly 110 integers in the interval have no repeated decimal digit.
+- **Input:** `n = 135`
+- **Output:** `110`
+- **Explanation:** Exactly 110 integers in the interval have no repeated decimal digit.

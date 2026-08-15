@@ -31,55 +31,43 @@ Return $q$ integers, one per query, giving the number of nonempty, non-decreasin
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [3,1,2], queries = [[0,1],[1,2],[0,2]]
+- **Input:** nums = [3,1,2], queries = [[0,1],[1,2],[0,2]]
 
-**Output:** [2,3,4]
+- **Output:** [2,3,4]
 
-**Explanation:**​​​​​
+- **Explanation:** ​​​​​
 
 - For $\text{queries}[0] = [0, 1]$, the subarray is `[nums[0], nums[1]] = [3, 1]`.
 
-		<li>The stable subarrays are `[3]` and `[1]`. The total number of stable subarrays is 2.
+		- The stable subarrays are `[3]` and `[1]`. The total number of stable subarrays is 2.
 
-	</li>
 - For $\text{queries}[1] = [1, 2]$, the subarray is `[nums[1], nums[2]] = [1, 2]`.
 
-		<li>The stable subarrays are `[1]`, `[2]`, and `[1, 2]`. The total number of stable subarrays is 3.
+		- The stable subarrays are `[1]`, `[2]`, and `[1, 2]`. The total number of stable subarrays is 3.
 
-	</li>
 - For $\text{queries}[2] = [0, 2]$, the subarray is `[nums[0], nums[1], nums[2]] = [3, 1, 2]`.
 
-		<li>The stable subarrays are `[3]`, `[1]`, `[2]`, and `[1, 2]`. The total number of stable subarrays is 4.
-
-	</li>
+		- The stable subarrays are `[3]`, `[1]`, `[2]`, and `[1, 2]`. The total number of stable subarrays is 4.
 
 Thus, $ans = [2, 3, 4]$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,2], queries = [[0,1],[0,0]]
+- **Input:** nums = [2,2], queries = [[0,1],[0,0]]
 
-**Output:** [3,1]
+- **Output:** [3,1]
 
-**Explanation:**
+- **Explanation:** 
 
 - For $\text{queries}[0] = [0, 1]$, the subarray is `[nums[0], nums[1]] = [2, 2]`.
 
-		<li>The stable subarrays are `[2]`, `[2]`, and `[2, 2]`. The total number of stable subarrays is 3.
+		- The stable subarrays are `[2]`, `[2]`, and `[2, 2]`. The total number of stable subarrays is 3.
 
-	</li>
 - For $\text{queries}[1] = [0, 0]$, the subarray is `[nums[0]] = [2]`.
 
-		<li>The stable subarray is `[2]`. The total number of stable subarrays is 1.
-
-	</li>
+		- The stable subarray is `[2]`. The total number of stable subarrays is 1.
 
 Thus, $ans = [3, 1]$.
-
-</div>
 
 ### 5. Constraints
 

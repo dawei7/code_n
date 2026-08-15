@@ -8,8 +8,14 @@ A **shift** on `s` consists of moving the leftmost character of `s` to the right
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `goal`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -17,6 +23,7 @@ A **shift** on `s` consists of moving the leftmost character of `s` to the right
 
 - **Input:** `s = "abcde", goal = "cdeab"`
 - **Output:** `true`
+
 #### Example 2
 
 - **Input:** `s = "abcde", goal = "abced"`

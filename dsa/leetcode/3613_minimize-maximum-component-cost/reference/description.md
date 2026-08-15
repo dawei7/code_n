@@ -10,43 +10,41 @@ Return the **minimum** possible value of the **maximum** cost among all componen
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 5, edges = [[0,1,4],[1,2,3],[1,3,2],[3,4,6]], k = 2
+- **Input:** n = 5, edges = [[0,1,4],[1,2,3],[1,3,2],[3,4,6]], k = 2
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-![](images/minimizemaximumm.jpg)
+- **Explanation:** ![](images/minimizemaximumm.jpg)
 
 - Remove the edge between nodes 3 and 4 (weight 6).
 
 - The resulting components have costs of 0 and 4, so the overall maximum cost is 4.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 4, edges = [[0,1,5],[1,2,5],[2,3,5]], k = 1
+- **Input:** n = 4, edges = [[0,1,5],[1,2,5],[2,3,5]], k = 1
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
-
-![](images/minmax2.jpg)
+- **Explanation:** ![](images/minmax2.jpg)
 
 - No edge can be removed, since allowing only one component ($k = 1$) requires the graph to stay fully connected.
 
 - That single component’s cost equals its largest edge weight, which is 5.
-
-</div>
 
 ### 4. Constraints
 

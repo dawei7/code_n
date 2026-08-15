@@ -33,16 +33,16 @@ Let $n=\lvert\texttt{coins}\rvert$. The constraints are $1\le n\le10^5$, $1\le k
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `coins = [[8, 10, 1], [1, 3, 2], [5, 6, 4]], k = 4`
-- Output: `10`
+- **Input:** `coins = [[8, 10, 1], [1, 3, 2], [5, 6, 4]], k = 4`
+- **Output:** `10`
 
 Positions 3 through 6 contain `2 + 0 + 4 + 4 = 10` coins.
 
-**Example 2**
+#### Example 2
 
-- Input: `coins = [[1, 10, 3]], k = 2`
-- Output: `6`
+- **Input:** `coins = [[1, 10, 3]], k = 2`
+- **Output:** `6`
 
 Any two positions inside the segment contain `3 + 3 = 6` coins.

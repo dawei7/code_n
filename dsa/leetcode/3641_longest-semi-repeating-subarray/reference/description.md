@@ -14,40 +14,27 @@ Return the length of the longest **semi‑repeating** subarray in `nums`.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3,1,2,3,4], k = 2
+- **Input:** nums = [1,2,3,1,2,3,4], k = 2
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
+- **Explanation:** The longest semi-repeating subarray is `[2, 3, 1, 2, 3, 4]`, which has two repeating elements (2 and 3).
 
-The longest semi-repeating subarray is `[2, 3, 1, 2, 3, 4]`, which has two repeating elements (2 and 3).
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,1,1,1,1], k = 4
+- **Input:** nums = [1,1,1,1,1], k = 4
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** The longest semi-repeating subarray is `[1, 1, 1, 1, 1]`, which has only one repeating element (1).
 
-The longest semi-repeating subarray is `[1, 1, 1, 1, 1]`, which has only one repeating element (1).
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,1,1,1,1], k = 0
+- **Input:** nums = [1,1,1,1,1], k = 0
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-The longest semi-repeating subarray is `[1]`, which has no repeating elements.
-
-</div>
+- **Explanation:** The longest semi-repeating subarray is `[1]`, which has no repeating elements.
 
 ### 4. Constraints
 

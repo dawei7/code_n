@@ -34,17 +34,17 @@ Let $L$ be the number of distinct `(user_id, song_id, day)` listening facts and 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 - Users `1`, `2`, and `3` each listen to songs `10`, `11`, and `12` on `2021-03-15`; users `1` and `2` are already friends.
-- Output: `(1,3)`, `(2,3)`, `(3,1)`, and `(3,2)`.
+- **Output:** `(1,3)`, `(2,3)`, `(3,1)`, and `(3,2)`.
 
-**Example 2**
+#### Example 2
 
 - Users `1` and `2` share only songs `10` and `11` on one day.
-- Output: no rows.
+- **Output:** no rows.
 
-**Example 3**
+#### Example 3
 
 - Users `1` and `2` share three songs on two different days.
-- Output: only `(1,2)` and `(2,1)`, once each.
+- **Output:** only `(1,2)` and `(2,1)`, once each.

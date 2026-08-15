@@ -33,20 +33,20 @@ Return all people who know the secret after every meeting. The order of the retu
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 6`, `meetings = [[1,2,5],[2,3,8],[1,5,10]]`, `firstPerson = 1`
-- Output: `[0,1,2,3,5]`
-- Explanation: Knowledge passes from `1` to `2`, later to `3`, and from `1` to `5`.
+- **Input:** `n = 6`, `meetings = [[1,2,5],[2,3,8],[1,5,10]]`, `firstPerson = 1`
+- **Output:** `[0,1,2,3,5]`
+- **Explanation:** Knowledge passes from `1` to `2`, later to `3`, and from `1` to `5`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 4`, `meetings = [[3,1,3],[1,2,2],[0,3,3]]`, `firstPerson = 3`
-- Output: `[0,1,3]`
-- Explanation: The time-`2` meeting cannot transmit retroactively. At time `3`, people `0`, `3`, and `1` are connected.
+- **Input:** `n = 4`, `meetings = [[3,1,3],[1,2,2],[0,3,3]]`, `firstPerson = 3`
+- **Output:** `[0,1,3]`
+- **Explanation:** The time-`2` meeting cannot transmit retroactively. At time `3`, people `0`, `3`, and `1` are connected.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 5`, `meetings = [[3,4,2],[1,2,1],[2,3,1]]`, `firstPerson = 1`
-- Output: `[0,1,2,3,4]`
-- Explanation: At time `1`, person `2` learns and immediately passes the secret to `3`.
+- **Input:** `n = 5`, `meetings = [[3,4,2],[1,2,1],[2,3,1]]`, `firstPerson = 1`
+- **Output:** `[0,1,2,3,4]`
+- **Explanation:** At time `1`, person `2` learns and immediately passes the secret to `3`.

@@ -31,20 +31,20 @@ The maximum number of non-empty chunks in a valid chunked palindrome decompositi
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `text = "ghiabcdefhelloadamhelloabcdefghi"`
-- Output: `7`
-- Explanation: One maximum decomposition is `(ghi)(abcdef)(hello)(adam)(hello)(abcdef)(ghi)`.
+- **Input:** `text = "ghiabcdefhelloadamhelloabcdefghi"`
+- **Output:** `7`
+- **Explanation:** One maximum decomposition is `(ghi)(abcdef)(hello)(adam)(hello)(abcdef)(ghi)`.
 
-**Example 2**
+#### Example 2
 
-- Input: `text = "merchant"`
-- Output: `1`
-- Explanation: No proper matching outer chunks exist, so the complete string is the only chunk.
+- **Input:** `text = "merchant"`
+- **Output:** `1`
+- **Explanation:** No proper matching outer chunks exist, so the complete string is the only chunk.
 
-**Example 3**
+#### Example 3
 
-- Input: `text = "antaprezatepzapreanta"`
-- Output: `11`
-- Explanation: It can be decomposed as `(a)(nt)(a)(pre)(za)(tep)(za)(pre)(a)(nt)(a)`.
+- **Input:** `text = "antaprezatepzapreanta"`
+- **Output:** `11`
+- **Explanation:** It can be decomposed as `(a)(nt)(a)(pre)(za)(tep)(za)(pre)(a)(nt)(a)`.

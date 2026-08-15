@@ -16,8 +16,10 @@ Implement the `StockSpanner` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `StockSpanner()`: Initializes the data structure.
+- `next(price: int) -> `int``: Executes operation.
 
 ### 3. Examples
 

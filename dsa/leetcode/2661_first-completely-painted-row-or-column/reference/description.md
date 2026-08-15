@@ -8,8 +8,14 @@ Return *the smallest index* `i` *at which either a row or a column will be compl
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+- `mat`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +26,7 @@ Return *the smallest index* `i` *at which either a row or a column will be compl
 - **Input:** `arr = [1,3,4,2], mat = [[1,4],[2,3]]`
 - **Output:** `2`
 - **Explanation:** The moves are shown in order, and both the first row and second column of the matrix become fully painted at arr[2].
+
 #### Example 2
 
 ![image explanation for example 2](images/grid2.jpg)

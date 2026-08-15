@@ -24,46 +24,39 @@ Return the absolute difference between `n` and the integer represented by its re
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 25
+- **Input:** n = 25
 
-**Output:** 27
+- **Output:** 27
 
-**Explanation:**
+- **Explanation:** 
 
 - $reverse(25) = 52$.
 
 - Thus, the answer is $abs(25 - 52) = 27$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 10
+- **Input:** n = 10
 
-**Output:** 9
+- **Output:** 9
 
-**Explanation:**
+- **Explanation:** 
 
 - $reverse(10) = 01$ which is 1.
 
 - Thus, the answer is $abs(10 - 1) = 9$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 7
+- **Input:** n = 7
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** 
 
 - $reverse(7) = 7$.
 
 - Thus, the answer is $abs(7 - 7) = 0$.
-
-</div>
 
 ### 4. Constraints
 

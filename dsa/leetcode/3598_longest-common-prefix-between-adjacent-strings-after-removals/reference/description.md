@@ -10,69 +10,63 @@ Return an array `answer`, where $\text{answer}[i]$ is the length of the longest 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** words = ["jump","run","run","jump","run"]
+- **Input:** words = ["jump","run","run","jump","run"]
 
-**Output:** [3,0,0,3,3]
+- **Output:** [3,0,0,3,3]
 
-**Explanation:**
+- **Explanation:** 
 
 - Removing index 0:
 
-		<li>`words` becomes `["run", "run", "jump", "run"]`
+		- `words` becomes `["run", "run", "jump", "run"]`
 
 - Longest adjacent pair is `["run", "run"]` having a common prefix `"run"` (length 3)
 
-	</li>
 - Removing index 1:
 
-		<li>`words` becomes `["jump", "run", "jump", "run"]`
+		- `words` becomes `["jump", "run", "jump", "run"]`
 
 - No adjacent pairs share a common prefix (length 0)
 
-	</li>
 - Removing index 2:
 
-		<li>`words` becomes `["jump", "run", "jump", "run"]`
+		- `words` becomes `["jump", "run", "jump", "run"]`
 
 - No adjacent pairs share a common prefix (length 0)
 
-	</li>
 - Removing index 3:
 
-		<li>`words` becomes `["jump", "run", "run", "run"]`
+		- `words` becomes `["jump", "run", "run", "run"]`
 
 - Longest adjacent pair is `["run", "run"]` having a common prefix `"run"` (length 3)
 
-	</li>
 - Removing index 4:
 
-		<li>words becomes `["jump", "run", "run", "jump"]`
+		- words becomes `["jump", "run", "run", "jump"]`
 
 - Longest adjacent pair is `["run", "run"]` having a common prefix `"run"` (length 3)
 
-	</li>
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** words = ["dog","racer","car"]
+- **Input:** words = ["dog","racer","car"]
 
-**Output:** [0,0,0]
+- **Output:** [0,0,0]
 
-**Explanation:**
+- **Explanation:** 
 
 - Removing any index results in an answer of 0.
-
-</div>
 
 ### 4. Constraints
 

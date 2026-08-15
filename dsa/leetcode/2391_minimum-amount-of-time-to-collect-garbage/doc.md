@@ -37,12 +37,12 @@ One truck handles each garbage type. Every truck starts at house zero, visits ho
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `garbage = ["G","P","GP","GG"], travel = [2,4,3]`
-- Output: `21`
+- **Input:** `garbage = ["G","P","GP","GG"], travel = [2,4,3]`
+- **Output:** `21`
 
-**Example 2**
+#### Example 2
 
-- Input: `garbage = ["MMM","PGM","GP"], travel = [3,10]`
-- Output: `37`
+- **Input:** `garbage = ["MMM","PGM","GP"], travel = [3,10]`
+- **Output:** `37`

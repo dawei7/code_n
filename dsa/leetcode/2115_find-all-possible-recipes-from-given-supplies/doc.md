@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/find-all-possible-recipes-from-given-supplies/) |
 
 ## Problem Description
+
 ### Goal
 
 There are $n$ named recipes. Recipe `recipes[i]` can be prepared only when
@@ -28,6 +29,7 @@ and other preparable recipes. The result may list those recipe names in any
 order.
 
 ### Function Contract
+
 **Inputs**
 
 - `recipes`: A list of $n$ distinct recipe names.
@@ -48,23 +50,24 @@ $$
 Return a list containing each preparable recipe exactly once, in any order.
 
 ### Examples
-**Example 1**
 
-- Input: `recipes = ["bread"], ingredients = [["yeast", "flour"]], supplies = ["yeast", "flour", "corn"]`
-- Output: `["bread"]`
+#### Example 1
+
+- **Input:** `recipes = ["bread"], ingredients = [["yeast", "flour"]], supplies = ["yeast", "flour", "corn"]`
+- **Output:** `["bread"]`
 
 Both required ingredients are initially available.
 
-**Example 2**
+#### Example 2
 
-- Input: `recipes = ["bread", "sandwich"], ingredients = [["yeast", "flour"], ["bread", "meat"]], supplies = ["yeast", "flour", "meat"]`
-- Output: `["bread", "sandwich"]`
+- **Input:** `recipes = ["bread", "sandwich"], ingredients = [["yeast", "flour"], ["bread", "meat"]], supplies = ["yeast", "flour", "meat"]`
+- **Output:** `["bread", "sandwich"]`
 
 Preparing `bread` makes the final ingredient of `sandwich` available.
 
-**Example 3**
+#### Example 3
 
-- Input: `recipes = ["bread", "sandwich", "burger"], ingredients = [["yeast", "flour"], ["bread", "meat"], ["sandwich", "meat", "bread"]], supplies = ["yeast", "flour", "meat"]`
-- Output: `["bread", "sandwich", "burger"]`
+- **Input:** `recipes = ["bread", "sandwich", "burger"], ingredients = [["yeast", "flour"], ["bread", "meat"], ["sandwich", "meat", "bread"]], supplies = ["yeast", "flour", "meat"]`
+- **Output:** `["bread", "sandwich", "burger"]`
 
 The dependency chain can unlock several recipes in succession.

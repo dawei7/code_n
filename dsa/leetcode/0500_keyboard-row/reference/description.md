@@ -4,8 +4,13 @@ Given an array of strings `words`, return *the words that can be typed using let
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `List[str]`.
 
 ### 3. Note
 
@@ -25,32 +30,23 @@ In the **American keyboard**:
 
 #### Example 1
 
-<div class="example-block">
-**Input:** words = ["Hello","Alaska","Dad","Peace"]
+- **Input:** words = ["Hello","Alaska","Dad","Peace"]
 
-**Output:** ["Alaska","Dad"]
+- **Output:** ["Alaska","Dad"]
 
-**Explanation:**
+- **Explanation:** Both `"a"` and `"A"` are in the 2nd row of the American keyboard due to case insensitivity.
 
-Both `"a"` and `"A"` are in the 2nd row of the American keyboard due to case insensitivity.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** words = ["omk"]
+- **Input:** words = ["omk"]
 
-**Output:** []
+- **Output:** []
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** words = ["adsdf","sfd"]
+- **Input:** words = ["adsdf","sfd"]
 
-**Output:** ["adsdf","sfd"]
-
-</div>
+- **Output:** ["adsdf","sfd"]
 
 ### 5. Constraints
 

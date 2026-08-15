@@ -14,21 +14,23 @@ Return an array of strings `segments`, where $\text{segments}[i]$ is the $$i^{\t
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `List[str]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "abbccccd"
+- **Input:** s = "abbccccd"
 
-**Output:** ["a","b","bc","c","cc","d"]
+- **Output:** ["a","b","bc","c","cc","d"]
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<tbody>
 		<tr>
 			<th style="border: 1px solid black;">Index</th>
@@ -107,17 +109,13 @@ Return an array of strings `segments`, where $\text{segments}[i]$ is the $$i^{\t
 
 Hence, the final output is `["a", "b", "bc", "c", "cc", "d"]`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "aaaa"
+- **Input:** s = "aaaa"
 
-**Output:** ["a","aa"]
+- **Output:** ["a","aa"]
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<tbody>
 		<tr>
 			<th style="border: 1px solid black;">Index</th>
@@ -163,8 +161,6 @@ Hence, the final output is `["a", "b", "bc", "c", "cc", "d"]`.
 </table>
 
 Hence, the final output is `["a", "aa"]`.
-
-</div>
 
 ### 4. Constraints
 

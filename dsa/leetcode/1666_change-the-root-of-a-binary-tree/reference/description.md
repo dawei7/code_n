@@ -33,6 +33,7 @@ Ensure that your solution sets the `Node.parent` pointers correctly after reroot
 
 - **Input:** `root = [3,5,1,6,2,0,8,null,null,7,4], leaf = 7`
 - **Output:** `[7,2,null,5,4,3,6,null,null,null,1,null,null,0,8]`
+
 #### Example 2
 
 - **Input:** `root = [3,5,1,6,2,0,8,null,null,7,4], leaf = 0`

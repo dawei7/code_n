@@ -14,8 +14,14 @@ Return *the maximum score you can achieve after performing the operation exactly
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -29,6 +35,7 @@ For the second iteration, we choose 6. Then sum is 5 + 6 and nums = [1,2,3,4,7]
 For the third iteration, we choose 7. Then sum is 5 + 6 + 7 = 18 and nums = [1,2,3,4,8]
 So, we will return 18.
 It can be proven, that 18 is the maximum answer that we can achieve.
+
 #### Example 2
 
 - **Input:** `nums = [5,5,5], k = 2`
@@ -47,10 +54,9 @@ It can be proven, that 11 is the maximum answer that we can achieve.
 
 - $1 \le k \le 100$
 
-<style type="text/css">.spoilerbutton {display:block; border:dashed; padding: 0px 0px; margin:10px 0px; font-size:150%; font-weight: bold; color:#000000; background-color:cyan; outline:0;
+.spoilerbutton {display:block; border:dashed; padding: 0px 0px; margin:10px 0px; font-size:150%; font-weight: bold; color:#000000; background-color:cyan; outline:0;
 }
 .spoiler {overflow:hidden;}
 .spoiler > div {-webkit-transition: all 0s ease;-moz-transition: margin 0s ease;-o-transition: all 0s ease;transition: margin 0s ease;}
 .spoilerbutton[value="Show Message"] + .spoiler > div {margin-top:-500%;}
 .spoilerbutton[value="Hide Message"] + .spoiler {padding:5px;}
-</style>

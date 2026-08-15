@@ -61,6 +61,7 @@ Construct one `TrafficLight` instance for an intersection whose initial green ro
 "Car 2 Has Passed Road B In Direction 4",    // Car 2 crosses as the light is green on road B now.
 "Car 4 Has Passed Road B In Direction 3"     // Car 4 crosses the intersection as the light is still green.
 ]
+
 #### Example 2
 
 - **Input:** $cars = [1,2,3,4,5], directions = [2,4,3,3,1], arrivalTimes = [10,20,30,40,40]$

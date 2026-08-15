@@ -41,23 +41,23 @@ from the top-left, with every unused cell set to `-1`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `m = 3`, `n = 5`,
+- **Input:** `m = 3`, `n = 5`,
   `head = [3,0,2,6,8,1,7,9,4,2,5,5,0]`
-- Output: `[[3,0,2,6,8],[5,0,-1,-1,1],[5,2,4,9,7]]`
-- Explanation: Thirteen values occupy the outer spiral and part of the inner
+- **Output:** `[[3,0,2,6,8],[5,0,-1,-1,1],[5,2,4,9,7]]`
+- **Explanation:** Thirteen values occupy the outer spiral and part of the inner
   row; the two cells never reached remain `-1`.
 
-**Example 2**
+#### Example 2
 
-- Input: `m = 1`, `n = 4`, `head = [0,1,2]`
-- Output: `[[0,1,2,-1]]`
-- Explanation: A one-row spiral moves only from left to right.
+- **Input:** `m = 1`, `n = 4`, `head = [0,1,2]`
+- **Output:** `[[0,1,2,-1]]`
+- **Explanation:** A one-row spiral moves only from left to right.
 
-**Example 3**
+#### Example 3
 
-- Input: `m = 2`, `n = 2`, `head = [1000,0,500,250]`
-- Output: `[[1000,0],[250,500]]`
-- Explanation: A full two-by-two perimeter visits the bottom-right cell before
+- **Input:** `m = 2`, `n = 2`, `head = [1000,0,500,250]`
+- **Output:** `[[1000,0],[250,500]]`
+- **Explanation:** A full two-by-two perimeter visits the bottom-right cell before
   the bottom-left cell.

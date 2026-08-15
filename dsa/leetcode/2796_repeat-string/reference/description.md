@@ -15,11 +15,13 @@ Try to implement it without using the built-in method `string.repeat`.
 - **Input:** $str = "hello", times = 2$
 - **Output:** `"hellohello"`
 - **Explanation:** "hello" is repeated 2 times
+
 #### Example 2
 
 - **Input:** $str = "code", times = 3$
 - **Output:** `"codecodecode"`
 - **Explanation:** "code" is repeated 3 times
+
 #### Example 3
 
 - **Input:** $str = "js", times = 1$

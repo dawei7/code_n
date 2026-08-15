@@ -14,21 +14,23 @@ Return an array `answer` of size `n`, where $\text{answer}[i]$ is the **minimum*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `cost`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** cost = [5,3,4,1,3,2]
+- **Input:** cost = [5,3,4,1,3,2]
 
-**Output:** [5,3,3,1,1,1]
+- **Output:** [5,3,3,1,1,1]
 
-**Explanation:**
-
-We can get to each position in the following way:
+- **Explanation:** We can get to each position in the following way:
 
 - $i = 0$. We can swap with person 0 for a cost of 5.
 
@@ -42,19 +44,13 @@ We can get to each position in the following way:
 
 - $i = 5$. We can swap with person 3 for a cost of 1, then swap with person 5 for free.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** cost = [1,2,4,6,7]
+- **Input:** cost = [1,2,4,6,7]
 
-**Output:** [1,1,1,1,1]
+- **Output:** [1,1,1,1,1]
 
-**Explanation:**
-
-We can swap with person 0 for a cost of 1, then we will be able to reach any position `i` for free.
-
-</div>
+- **Explanation:** We can swap with person 0 for a cost of 1, then we will be able to reach any position `i` for free.
 
 ### 4. Constraints
 

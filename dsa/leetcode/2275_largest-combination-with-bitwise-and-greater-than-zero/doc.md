@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/largest-combination-with-bitwise-and-greater-than-zero/) |
 
 ## Problem Description
+
 ### Goal
+
 The bitwise AND of an array is obtained by applying the AND operator across
 all its values. A bit remains set in that result only when the same bit is set
 in every selected value. For instance, the bitwise AND of `[1, 5, 3]` is
@@ -26,6 +28,7 @@ Return that maximum combination size. More than one combination may attain
 the same maximum; only its size is required.
 
 ### Function Contract
+
 **Inputs**
 
 - `candidates`: a nonempty list of at most $10^5$ positive integers, each at
@@ -40,23 +43,24 @@ The greatest number of elements that can be chosen while keeping their
 combined bitwise AND greater than zero.
 
 ### Examples
-**Example 1**
 
-- Input: `candidates = [16, 17, 71, 62, 12, 24, 14]`
-- Output: `4`
+#### Example 1
+
+- **Input:** `candidates = [16, 17, 71, 62, 12, 24, 14]`
+- **Output:** `4`
 
 For example, `[16, 17, 62, 24]` has bitwise AND `16`.
 
-**Example 2**
+#### Example 2
 
-- Input: `candidates = [8, 8]`
-- Output: `2`
+- **Input:** `candidates = [8, 8]`
+- **Output:** `2`
 
 Both occurrences can be selected, and their bitwise AND remains `8`.
 
-**Example 3**
+#### Example 3
 
-- Input: `candidates = [1, 2, 4]`
-- Output: `1`
+- **Input:** `candidates = [1, 2, 4]`
+- **Output:** `1`
 
 No two values share a set bit, but every individual positive value is valid.

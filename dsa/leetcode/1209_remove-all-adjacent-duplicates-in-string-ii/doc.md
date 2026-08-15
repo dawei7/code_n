@@ -31,21 +31,21 @@ Repeatedly perform any available `k` duplicate removal until no qualifying block
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abcd"`, `k = 2`
-- Output: `"abcd"`
+- **Input:** `s = "abcd"`, `k = 2`
+- **Output:** `"abcd"`
 
 No adjacent equal pair exists.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "deeedbbcccbdaa"`, `k = 3`
-- Output: `"aa"`
+- **Input:** `s = "deeedbbcccbdaa"`, `k = 3`
+- **Output:** `"aa"`
 
 Removing `"eee"` and `"ccc"` creates `"ddbbbdaa"`; removing `"bbb"` then creates `"dddaa"`, and removing `"ddd"` leaves `"aa"`.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "pbbcggttciiippooaais"`, `k = 2`
-- Output: `"ps"`
+- **Input:** `s = "pbbcggttciiippooaais"`, `k = 2`
+- **Output:** `"ps"`

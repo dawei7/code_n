@@ -10,8 +10,14 @@ Each day, whether the cell is occupied or vacant changes according to the follow
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `cells`: Input parameter (`List[int]`).
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -36,6 +42,7 @@ Day 4: [0, 0, 0, 0, 0, 1, 0, 0]
 Day 5: [0, 1, 1, 1, 0, 1, 0, 0]
 Day 6: [0, 0, 1, 0, 1, 1, 0, 0]
 Day 7: [0, 0, 1, 1, 0, 0, 0, 0]
+
 #### Example 2
 
 - **Input:** $cells = [1,0,0,1,0,0,1,0], n = 1000000000$

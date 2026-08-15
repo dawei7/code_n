@@ -8,8 +8,13 @@ Your result should **not** contain any brackets.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -17,11 +22,13 @@ Your result should **not** contain any brackets.
 
 - **Input:** `s = "(abcd)"`
 - **Output:** `"dcba"`
+
 #### Example 2
 
 - **Input:** `s = "(u(love)i)"`
 - **Output:** `"iloveu"`
 - **Explanation:** The substring "love" is reversed first, then the whole string is reversed.
+
 #### Example 3
 
 - **Input:** `s = "(ed(et(oc))el)"`

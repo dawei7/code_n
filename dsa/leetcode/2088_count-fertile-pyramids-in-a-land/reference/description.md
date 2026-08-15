@@ -22,8 +22,13 @@ Given a **0-indexed** `m x n` binary matrix `grid` representing the farmland, re
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -36,6 +41,7 @@ Given a **0-indexed** `m x n` binary matrix `grid` representing the farmland, re
 - **Explanation:** The 2 possible pyramidal plots are shown in blue and red respectively.
 There are no inverse pyramidal plots in this grid.
 Hence total number of pyramidal and inverse pyramidal plots is 2 + 0 = 2.
+
 #### Example 2
 
 ![](images/2.JPG)
@@ -44,6 +50,7 @@ Hence total number of pyramidal and inverse pyramidal plots is 2 + 0 = 2.
 - **Output:** `2`
 - **Explanation:** The pyramidal plot is shown in blue, and the inverse pyramidal plot is shown in red.
 Hence the total number of plots is 1 + 1 = 2.
+
 #### Example 3
 
 ![](images/3.JPG)

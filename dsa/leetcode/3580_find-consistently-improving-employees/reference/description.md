@@ -44,7 +44,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 employees table:
@@ -103,7 +102,7 @@ performance_reviews table:
 
 - **Alice Johnson (employee_id = 1):**
 
-		<li>Has 4 reviews with ratings: 2, 3, 4, 5
+		- Has 4 reviews with ratings: 2, 3, 4, 5
 
 - Last 3 reviews (by date): 2023-04-15 (3), 2023-07-15 (4), 2023-10-15 (5)
 
@@ -111,10 +110,9 @@ performance_reviews table:
 
 - Improvement score: 5 - 3 = 2
 
-	</li>
 - **Carol Davis (employee_id = 3):**
 
-		<li>Has 4 reviews with ratings: 1, 2, 3, 4
+		- Has 4 reviews with ratings: 1, 2, 3, 4
 
 - Last 3 reviews (by date): 2023-06-10 (2), 2023-09-10 (3), 2023-12-10 (4)
 
@@ -122,10 +120,9 @@ performance_reviews table:
 
 - Improvement score: 4 - 2 = 2
 
-	</li>
 - **Bob Smith (employee_id = 2):**
 
-		<li>Has 4 reviews with ratings: 3, 2, 4, 5
+		- Has 4 reviews with ratings: 3, 2, 4, 5
 
 - Last 3 reviews (by date): 2023-05-01 (2), 2023-08-01 (4), 2023-11-01 (5)
 
@@ -133,18 +130,13 @@ performance_reviews table:
 
 - Improvement score: 5 - 2 = 3
 
-	</li>
 - **Employees not included:**
 
-		<li>David Wilson (employee_id = 4): Last 3 reviews are all 4 (no improvement)
+		- David Wilson (employee_id = 4): Last 3 reviews are all 4 (no improvement)
 
 - Emma Brown (employee_id = 5): Only has 2 reviews (needs at least 3)
 
-	</li>
-
 The output table is ordered by improvement_score in descending order, then by name in ascending order.
-
-</div>
 
 ### 2. Function Contract
 

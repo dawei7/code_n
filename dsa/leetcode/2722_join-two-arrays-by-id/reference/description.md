@@ -36,6 +36,7 @@ arr2 = [
 {"id": 3, "x": 5}
 ]
 - **Explanation:** There are no duplicate ids so arr1 is simply concatenated with arr2.
+
 #### Example 2
 
 - **Input:** ``
@@ -54,6 +55,7 @@ arr2 = [
 {"id": 3, "x": 0, "y": 0}
 ]
 - **Explanation:** The two objects with id=1 and id=3 are included in the result array without modifiction. The two objects with id=2 are merged together. The keys from arr2 override the values in arr1.
+
 #### Example 3
 
 - **Input:** ``

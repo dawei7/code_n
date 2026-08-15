@@ -29,11 +29,12 @@ Return `true` if some connected path starts at `root`, ends at a leaf, and has e
 
 - **Input:** `root = [0,1,0,0,1,0,null,null,1,0,0], arr = [0,1,0,1]`
 - **Output:** `true`
-- **Explanation:**
+- **Explanation:** 
 **The path 0 -> 1 -> 0 -> 1 is a valid sequence (green color in the figure).
 Other valid sequences are:
 0 -> 1 -> 1 -> 0
 0 -> 0 -> 0
+
 #### Example 2
 
 **
@@ -45,6 +46,7 @@ Other valid sequences are:
 - **Input:** `root = [0,1,0,0,1,0,null,null,1,0,0], arr = [0,0,1]`
 - **Output:** `false`
 - **Explanation:** The path 0 -> 0 -> 1 does not exist, therefore it is not even a sequence.
+
 #### Example 3
 
 **

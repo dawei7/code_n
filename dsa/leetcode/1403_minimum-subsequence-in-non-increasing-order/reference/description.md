@@ -8,8 +8,13 @@ Note that the solution with the given constraints is guaranteed to be **unique**
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -18,6 +23,7 @@ Note that the solution with the given constraints is guaranteed to be **unique**
 - **Input:** `nums = [4,3,10,9,8]`
 - **Output:** `[10,9]`
 - **Explanation:** The subsequences [10,9] and [10,8] are minimal such that the sum of their elements is strictly greater than the sum of elements not included. However, the subsequence [10,9] has the maximum total sum of its elements.
+
 #### Example 2
 
 - **Input:** `nums = [4,4,7,6,7]`

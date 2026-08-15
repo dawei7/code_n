@@ -32,14 +32,11 @@ Return the total number of qualifying ordered descendant-ancestor pairs. Node `0
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,1],[1,2]], nums = [2,8,2]
+- **Input:** n = 3, edges = [[0,1],[1,2]], nums = [2,8,2]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">`**i**`</th>
@@ -71,17 +68,13 @@ Return the total number of qualifying ordered descendant-ancestor pairs. Node `0
 
 Thus, the total number of valid ancestor pairs across all non-root nodes is $1 + 2 = 3$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,1],[0,2]], nums = [1,2,4]
+- **Input:** n = 3, edges = [[0,1],[0,2]], nums = [1,2,4]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">`**i**`</th>
@@ -111,17 +104,13 @@ Thus, the total number of valid ancestor pairs across all non-root nodes is $1 +
 
 Thus, the total number of valid ancestor pairs across all non-root nodes is 1.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 4, edges = [[0,1],[0,2],[1,3]], nums = [1,2,9,4]
+- **Input:** n = 4, edges = [[0,1],[0,2],[1,3]], nums = [1,2,9,4]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">`i`</th>
@@ -159,8 +148,6 @@ Thus, the total number of valid ancestor pairs across all non-root nodes is 1.
 </table>
 
 Thus, the total number of valid ancestor pairs across all non-root nodes is $0 + 1 + 1 = 2$.
-
-</div>
 
 ### 5. Constraints
 

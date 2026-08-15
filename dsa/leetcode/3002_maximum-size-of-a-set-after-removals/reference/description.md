@@ -8,8 +8,14 @@ Return *the **maximum** possible size of the set* `s`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums1`: Input parameter (`List[int]`).
+- `nums2`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,12 +25,14 @@ Return *the **maximum** possible size of the set* `s`.
 - **Output:** `2`
 - **Explanation:** We remove two occurences of 1 from nums1 and nums2. After the removals, the arrays become equal to nums1 = [2,2] and nums2 = [1,1]. Therefore, s = {1,2}.
 It can be shown that 2 is the maximum possible size of the set s after the removals.
+
 #### Example 2
 
 - **Input:** $nums1 = [1,2,3,4,5,6], nums2 = [2,3,2,3,2,3]$
 - **Output:** `5`
 - **Explanation:** We remove 2, 3, and 6 from nums1, as well as 2 and two occurrences of 3 from nums2. After the removals, the arrays become equal to nums1 = [1,4,5] and nums2 = [2,3,2]. Therefore, s = {1,2,3,4,5}.
 It can be shown that 5 is the maximum possible size of the set s after the removals.
+
 #### Example 3
 
 - **Input:** $nums1 = [1,1,2,2,3,3], nums2 = [4,4,5,5,6,6]$

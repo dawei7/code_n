@@ -32,17 +32,17 @@ The represented date lies between January 1, 1900 and December 31, 2019, inclusi
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `date = "2019-01-09"`
-- Output: `9`
+- **Input:** `date = "2019-01-09"`
+- **Output:** `9`
 
-**Example 2**
+#### Example 2
 
-- Input: `date = "2019-02-10"`
-- Output: `41`
+- **Input:** `date = "2019-02-10"`
+- **Output:** `41`
 
-**Example 3**
+#### Example 3
 
-- Input: `date = "2000-03-01"`
-- Output: `61`
+- **Input:** `date = "2000-03-01"`
+- **Output:** `61`

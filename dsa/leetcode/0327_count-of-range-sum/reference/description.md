@@ -23,6 +23,7 @@ Return the number of pairs $(i,j)$ with $i \le j$ whose inclusive range sum is b
 - **Input:** `nums = [-2,5,-1], lower = -2, upper = 2`
 - **Output:** `3`
 - **Explanation:** The three ranges are: [0,0], [2,2], and [0,2] and their respective sums are: -2, -1, 2.
+
 #### Example 2
 
 - **Input:** `nums = [0], lower = 0, upper = 0`

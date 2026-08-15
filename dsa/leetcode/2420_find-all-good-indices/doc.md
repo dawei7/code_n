@@ -33,17 +33,17 @@ Return all indices $i$ with $k \le i < n-k$ whose `k` preceding values are non-i
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,1,1,1,3,4,1]`, `k = 2`
-- Output: `[2,3]`
+- **Input:** `nums = [2,1,1,1,3,4,1]`, `k = 2`
+- **Output:** `[2,3]`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2,1,1,2]`, `k = 2`
-- Output: `[]`
+- **Input:** `nums = [2,1,1,2]`, `k = 2`
+- **Output:** `[]`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,2,3,4,5]`, `k = 1`
-- Output: `[1,2,3]`
+- **Input:** `nums = [1,2,3,4,5]`, `k = 1`
+- **Output:** `[1,2,3]`

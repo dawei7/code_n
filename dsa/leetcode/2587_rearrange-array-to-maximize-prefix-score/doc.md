@@ -32,16 +32,16 @@ Return the largest score obtainable over every possible rearrangement. The reque
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,-1,0,1,-3,3,-3]`
-- Output: `6`
+- **Input:** `nums = [2,-1,0,1,-3,3,-3]`
+- **Output:** `6`
 
 For example, ordering the values as `[2,3,1,-1,-3,0,-3]` produces prefix sums `[2,5,6,5,2,2,-1]`, of which six are positive.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [-2,-3,0]`
-- Output: `0`
+- **Input:** `nums = [-2,-3,0]`
+- **Output:** `0`
 
 No rearrangement can create a positive prefix sum.

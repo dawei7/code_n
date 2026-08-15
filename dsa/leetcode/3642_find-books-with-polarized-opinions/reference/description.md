@@ -52,7 +52,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 books table:
@@ -113,7 +112,7 @@ reading_sessions table:
 
 - **The Great Gatsby (book_id = 1):**
 
-		<li>Has 5 reading sessions (meets minimum requirement)
+		- Has 5 reading sessions (meets minimum requirement)
 
 - Ratings: 5, 1, 4, 2, 5
 
@@ -127,10 +126,9 @@ reading_sessions table:
 
 - Polarization score: 5/5 = 1.00 (≥ 0.6, qualifies)
 
-	</li>
 - **1984 (book_id = 3):**
 
-		<li>Has 6 reading sessions (meets minimum requirement)
+		- Has 6 reading sessions (meets minimum requirement)
 
 - Ratings: 2, 1, 2, 1, 4, 5
 
@@ -144,20 +142,15 @@ reading_sessions table:
 
 - Polarization score: 6/6 = 1.00 (≥ 0.6, qualifies)
 
-	</li>
 - **Books not included:**
 
-		<li>To Kill a Mockingbird (book_id = 2): All ratings are 4-5, no low ratings (≤2)
+		- To Kill a Mockingbird (book_id = 2): All ratings are 4-5, no low ratings (≤2)
 
 - Pride and Prejudice (book_id = 4): Only 2 sessions (< 5 minimum)
 
 - The Catcher in the Rye (book_id = 5): Only 2 sessions (< 5 minimum)
 
-	</li>
-
 The result table is ordered by polarization score in descending order, then by book title in descending order.
-
-</div>
 
 ### 2. Function Contract
 

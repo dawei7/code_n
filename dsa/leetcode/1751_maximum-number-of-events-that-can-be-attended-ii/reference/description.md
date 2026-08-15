@@ -8,8 +8,14 @@ Return *the **maximum sum** of values that you can receive by attending events.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `events`: Input parameter (`List[List[int]]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +26,7 @@ Return *the **maximum sum** of values that you can receive by attending events.*
 - **Input:** $events = [[1,2,4],[3,4,3],[2,3,1]], k = 2$
 - **Output:** `7`
 - **Explanation:** Choose the green events, 0 and 1 (0-indexed) for a total value of 4 + 3 = 7.
+
 #### Example 2
 
 ![](images/screenshot-2021-01-11-at-60150-pm.png)
@@ -28,6 +35,7 @@ Return *the **maximum sum** of values that you can receive by attending events.*
 - **Output:** `10`
 - **Explanation:** Choose event 2 for a total value of 10.
 Notice that you cannot attend any other event as they overlap, and that you do **not** have to attend k events.
+
 #### Example 3
 
 **

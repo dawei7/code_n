@@ -27,6 +27,7 @@ New stations may be placed at arbitrary real-valued positions. Once the existing
 
 - **Input:** $stations = [1,2,3,4,5,6,7,8,9,10], k = 9$
 - **Output:** `0.50000`
+
 #### Example 2
 
 - **Input:** $stations = [23,24,36,39,46,56,57,65,84,98], k = 1$

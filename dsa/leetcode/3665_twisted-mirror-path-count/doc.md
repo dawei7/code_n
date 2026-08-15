@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/twisted-mirror-path-count/) |
 
 ## Problem Description
+
 ### Goal
 
 A robot starts at the top-left cell of an $m\times n$ binary grid and seeks the bottom-right cell. It normally moves one cell right or one cell down. A zero marks an empty cell, while a one marks a mirror.
@@ -35,20 +36,20 @@ Return the number of valid right/down paths after applying every forced mirror r
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[0,1,0],[0,0,1],[1,0,0]]`
-- Output: `5`
+- **Input:** `grid = [[0,1,0],[0,0,1],[1,0,0]]`
+- **Output:** `5`
 - Five routes survive the mirrors and remain inside the grid.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[0,0],[0,0]]`
-- Output: `2`
+- **Input:** `grid = [[0,0],[0,0]]`
+- **Output:** `2`
 - The ordinary right-then-down and down-then-right routes are both valid.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[0,1,1],[1,1,0]]`
-- Output: `1`
+- **Input:** `grid = [[0,1,1],[1,1,0]]`
+- **Output:** `1`
 - One reflection chain reaches the destination; the other is redirected outside the bottom boundary.

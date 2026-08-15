@@ -10,31 +10,31 @@ Return *the resulting string*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "1?:?4"
+- **Input:** s = "1?:?4"
 
-**Output:** "11:54"
+- **Output:** "11:54"
 
-**Explanation:** The latest 12-hour format time we can achieve by replacing `"?"` characters is `"11:54"`.
+- **Explanation:** The latest 12-hour format time we can achieve by replacing `"?"` characters is `"11:54"`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "0?:5?"
+- **Input:** s = "0?:5?"
 
-**Output:** "09:59"
+- **Output:** "09:59"
 
-**Explanation:** The latest 12-hour format time we can achieve by replacing `"?"` characters is `"09:59"`.
-
-</div>
+- **Explanation:** The latest 12-hour format time we can achieve by replacing `"?"` characters is `"09:59"`.
 
 ### 4. Constraints
 

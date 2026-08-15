@@ -9,12 +9,15 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/find-and-replace-in-string/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given a 0-indexed string `s` and three 0-indexed parallel arrays, `indices`, `sources`, and `targets`, each containing $k$ entries. Operation $i$ examines the original string at `indices[i]`. If `sources[i]` occurs there as a substring, that occurrence must be replaced by `targets[i]`; otherwise, that operation makes no change.
 
 All operations occur simultaneously, so one replacement must not shift the position used by another. The input guarantees that replacements which occur do not overlap. A substring is a contiguous sequence of characters. Return the string produced after every applicable replacement has been performed on `s`.
 
 ### Function Contract
+
 **Inputs**
 
 - `s`: the original lowercase English string, with $1 \leq \lvert s \rvert \leq 1000$.
@@ -33,21 +36,22 @@ $$
 Return the resulting string after applying every source that matches at its specified index in the original `s`.
 
 ### Examples
-**Example 1**
 
-- Input: `s = "abcd", indices = [0, 2], sources = ["a", "cd"], targets = ["eee", "ffff"]`
-- Output: `"eeebffff"`
+#### Example 1
+
+- **Input:** `s = "abcd", indices = [0, 2], sources = ["a", "cd"], targets = ["eee", "ffff"]`
+- **Output:** `"eeebffff"`
 
 Both sources match their original positions, so both replacements occur.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "abcd", indices = [0, 2], sources = ["ab", "ec"], targets = ["eee", "ffff"]`
-- Output: `"eeecd"`
+- **Input:** `s = "abcd", indices = [0, 2], sources = ["ab", "ec"], targets = ["eee", "ffff"]`
+- **Output:** `"eeecd"`
 
 The first source matches. The second does not start at index `2`, so `"cd"` remains unchanged.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "abc", indices = [1], sources = ["b"], targets = ["xyz"]`
-- Output: `"axyzc"`
+- **Input:** `s = "abc", indices = [1], sources = ["b"], targets = ["xyz"]`
+- **Output:** `"axyzc"`

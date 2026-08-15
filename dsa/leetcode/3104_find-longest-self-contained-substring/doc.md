@@ -32,20 +32,20 @@ Return the length of the longest self-contained substring. If no proper substrin
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abba"`
-- Output: `2`
-- Explanation: The substring `"bb"` contains every occurrence of `b`, and `b` does not occur in the remaining characters.
+- **Input:** `s = "abba"`
+- **Output:** `2`
+- **Explanation:** The substring `"bb"` contains every occurrence of `b`, and `b` does not occur in the remaining characters.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "abab"`
-- Output: `-1`
-- Explanation: Every proper substring containing `a` or `b` leaves another occurrence of that character outside the substring.
+- **Input:** `s = "abab"`
+- **Output:** `-1`
+- **Explanation:** Every proper substring containing `a` or `b` leaves another occurrence of that character outside the substring.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "abacd"`
-- Output: `4`
-- Explanation: The prefix `"abac"` contains all occurrences of `a`, `b`, and `c`; the only outside character is `d`.
+- **Input:** `s = "abacd"`
+- **Output:** `4`
+- **Explanation:** The prefix `"abac"` contains all occurrences of `a`, `b`, and `c`; the only outside character is `d`.

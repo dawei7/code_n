@@ -33,15 +33,16 @@ Return the concatenation of the completed zigzag's rows from top to bottom.
 
 - **Input:** `s = "PAYPALISHIRING", numRows = 3`
 - **Output:** `"PAHNAPLSIIGYIR"`
+
 #### Example 2
 
 - **Input:** `s = "PAYPALISHIRING", numRows = 4`
 - **Output:** `"PINALSIGYAHRPI"`
-- **Explanation:**
-P     I    N
+- **Explanation:** P     I    N
 A   L S  I G
 Y A   H R
 P     I
+
 #### Example 3
 
 - **Input:** `s = "A", numRows = 1`

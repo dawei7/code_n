@@ -42,16 +42,16 @@ trim-and-rank query.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = ["102","473","251","814"]`,
+- **Input:** `nums = ["102","473","251","814"]`,
   `queries = [[1,1],[2,3],[4,2],[1,2]]`
-- Output: `[2,2,1,0]`
-- Explanation: The requested suffix orders select indices 2, 2, 1, and 0.
+- **Output:** `[2,2,1,0]`
+- **Explanation:** The requested suffix orders select indices 2, 2, 1, and 0.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = ["24","37","96","04"]`, `queries = [[2,1],[2,2]]`
-- Output: `[3,0]`
-- Explanation: For one digit, the equal values at indices 0 and 3 are ordered
+- **Input:** `nums = ["24","37","96","04"]`, `queries = [[2,1],[2,2]]`
+- **Output:** `[3,0]`
+- **Explanation:** For one digit, the equal values at indices 0 and 3 are ordered
   by index; with two digits, `"24"` is second.

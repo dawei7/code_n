@@ -18,8 +18,13 @@ Return* the number of **distinct** averages calculated using the above process*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -31,17 +36,16 @@ that when there is a tie for a minimum or maximum number, any can be removed.
 
 - **Input:** `nums = [4,1,4,0,3,5]`
 - **Output:** `2`
-- **Explanation:**
-1. Remove 0 and 5, and the average is (0 + 5) / 2 = 2.5. Now, nums = [4,1,4,3].
+- **Explanation:** 1. Remove 0 and 5, and the average is (0 + 5) / 2 = 2.5. Now, nums = [4,1,4,3].
 2. Remove 1 and 4. The average is (1 + 4) / 2 = 2.5, and nums = [4,3].
 3. Remove 3 and 4, and the average is (3 + 4) / 2 = 3.5.
 Since there are 2 distinct numbers among 2.5, 2.5, and 3.5, we return 2.
+
 #### Example 2
 
 - **Input:** `nums = [1,100]`
 - **Output:** `1`
-- **Explanation:**
-There is only one average to be calculated after removing 1 and 100, so we return 1.
+- **Explanation:** There is only one average to be calculated after removing 1 and 100, so we return 1.
 
 ### 5. Constraints
 

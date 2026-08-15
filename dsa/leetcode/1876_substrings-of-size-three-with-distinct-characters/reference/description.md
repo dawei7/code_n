@@ -10,8 +10,13 @@ A **substring** is a contiguous sequence of characters in a string.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +26,7 @@ A **substring** is a contiguous sequence of characters in a string.
 - **Output:** `1`
 - **Explanation:** There are 4 substrings of size 3: "xyz", "yzz", "zza", and "zaz".
 The only good substring of length 3 is "xyz".
+
 #### Example 2
 
 - **Input:** `s = "aababcabc"`

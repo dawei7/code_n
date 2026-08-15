@@ -6,8 +6,19 @@ Return `true`* if the circle and rectangle are overlapped otherwise return *`fal
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `radius`: Input parameter (`int`).
+- `xCenter`: Input parameter (`int`).
+- `yCenter`: Input parameter (`int`).
+- `x1`: Input parameter (`int`).
+- `y1`: Input parameter (`int`).
+- `x2`: Input parameter (`int`).
+- `y2`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -18,10 +29,12 @@ Return `true`* if the circle and rectangle are overlapped otherwise return *`fal
 - **Input:** $radius = 1, xCenter = 0, yCenter = 0, x1 = 1, y1 = -1, x2 = 3, y2 = 1$
 - **Output:** `true`
 - **Explanation:** Circle and rectangle share the point (1,0).
+
 #### Example 2
 
 - **Input:** $radius = 1, xCenter = 1, yCenter = 1, x1 = 1, y1 = -3, x2 = 2, y2 = -1$
 - **Output:** `false`
+
 #### Example 3
 
 ![](images/sample_2_1728.png)

@@ -12,8 +12,13 @@ The robot has a special ability to **neutralize robbers** in at most **2 cells**
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `coins`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -25,14 +30,11 @@ Return the **maximum** profit the robot can gain on the route.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** coins = [[0,1,-1],[1,-2,3],[2,-3,4]]
+- **Input:** coins = [[0,1,-1],[1,-2,3],[2,-3,4]]
 
-**Output:** 8
+- **Output:** 8
 
-**Explanation:**
-
-An optimal path for maximum coins is:
+- **Explanation:** An optimal path for maximum coins is:
 
 - Start at `(0, 0)` with `0` coins (total coins = `0`).
 
@@ -44,17 +46,13 @@ An optimal path for maximum coins is:
 
 - Move to `(2, 2)`, gaining `4` coins (total coins = $4 + 4 = 8$).
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** coins = [[10,10,10],[10,10,10]]
+- **Input:** coins = [[10,10,10],[10,10,10]]
 
-**Output:** 40
+- **Output:** 40
 
-**Explanation:**
-
-An optimal path for maximum coins is:
+- **Explanation:** An optimal path for maximum coins is:
 
 - Start at `(0, 0)` with `10` coins (total coins = `10`).
 
@@ -63,8 +61,6 @@ An optimal path for maximum coins is:
 - Move to `(0, 2)`, gaining another `10` coins (total coins = $20 + 10 = 30$).
 
 - Move to `(1, 2)`, gaining the final `10` coins (total coins = $30 + 10 = 40$).
-
-</div>
 
 ### 5. Constraints
 

@@ -4,8 +4,13 @@ Given an integer array `nums`, return *the number of elements that have **both**
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,6 +21,7 @@ Given an integer array `nums`, return *the number of elements that have **both**
 - **Explanation:** The element 7 has the element 2 strictly smaller than it and the element 11 strictly greater than it.
 Element 11 has element 7 strictly smaller than it and element 15 strictly greater than it.
 In total there are 2 elements having both a strictly smaller and a strictly greater element appear in nums.
+
 #### Example 2
 
 - **Input:** `nums = [-3,3,3,90]`

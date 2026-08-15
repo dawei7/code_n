@@ -14,37 +14,36 @@ Return an array `answer` of size `q` where $\text{answer}[i]$ is the answer to q
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,8,4,32,16,1], queries = [[0,2],[1,4],[0,5]]
+- **Input:** nums = [2,8,4,32,16,1], queries = [[0,2],[1,4],[0,5]]
 
-**Output:** [12,60,60]
+- **Output:** [12,60,60]
 
-**Explanation:**
-
-In the first query, `nums[0..2]` has 6 subarrays `[2]`, `[8]`, `[4]`, `[2, 8]`, `[8, 4]`, and `[2, 8, 4]` each with a respective XOR score of 2, 8, 4, 10, 12, and 6. The answer for the query is 12, the largest of all XOR scores.
+- **Explanation:** In the first query, `nums[0..2]` has 6 subarrays `[2]`, `[8]`, `[4]`, `[2, 8]`, `[8, 4]`, and `[2, 8, 4]` each with a respective XOR score of 2, 8, 4, 10, 12, and 6. The answer for the query is 12, the largest of all XOR scores.
 
 In the second query, the subarray of `nums[1..4]` with the largest XOR score is `nums[1..4]` with a score of 60.
 
 In the third query, the subarray of `nums[0..5]` with the largest XOR score is `nums[1..4]` with a score of 60.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [0,7,3,2,8,5,1], queries = [[0,3],[1,5],[2,4],[2,6],[5,6]]
+- **Input:** nums = [0,7,3,2,8,5,1], queries = [[0,3],[1,5],[2,4],[2,6],[5,6]]
 
-**Output:** [7,14,11,14,5]
+- **Output:** [7,14,11,14,5]
 
-**Explanation:**
-
-<table height="70" width="472">
+- **Explanation:** <table height="70" width="472">
 	<thead>
 		<tr>
 			<th>Index</th>
@@ -86,7 +85,6 @@ In the third query, the subarray of `nums[0..5]` with the largest XOR score is `
 		</tr>
 	</tbody>
 </table>
-</div>
 
 ### 4. Constraints
 

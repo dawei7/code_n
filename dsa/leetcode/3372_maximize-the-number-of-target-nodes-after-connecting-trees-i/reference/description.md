@@ -10,8 +10,15 @@ Return an array of `n` integers `answer`, where $\text{answer}[i]$ is the **maxi
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `edges1`: Input parameter (`List[List[int]]`).
+- `edges2`: Input parameter (`List[List[int]]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -21,12 +28,11 @@ that queries are independent from each other. That is, for every query you will 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** edges1 = [[0,1],[0,2],[2,3],[2,4]], edges2 = [[0,1],[0,2],[0,3],[2,7],[1,4],[4,5],[4,6]], k = 2
+- **Input:** edges1 = [[0,1],[0,2],[2,3],[2,4]], edges2 = [[0,1],[0,2],[0,3],[2,7],[1,4],[4,5],[4,6]], k = 2
 
-**Output:** [9,7,9,8,8]
+- **Output:** [9,7,9,8,8]
 
-**Explanation:**
+- **Explanation:** 
 
 - For $i = 0$, connect node 0 from the first tree to node 0 from the second tree.
 
@@ -40,21 +46,15 @@ that queries are independent from each other. That is, for every query you will 
 
 ![](images/3982-1.png)
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** edges1 = [[0,1],[0,2],[0,3],[0,4]], edges2 = [[0,1],[1,2],[2,3]], k = 1
+- **Input:** edges1 = [[0,1],[0,2],[0,3],[0,4]], edges2 = [[0,1],[1,2],[2,3]], k = 1
 
-**Output:** [6,3,3,3,3]
+- **Output:** [6,3,3,3,3]
 
-**Explanation:**
-
-For every `i`, connect node `i` of the first tree with any node of the second tree.
+- **Explanation:** For every `i`, connect node `i` of the first tree with any node of the second tree.
 
 ![](images/3928-2.png)
-
-</div>
 
 ### 5. Constraints
 

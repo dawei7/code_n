@@ -12,21 +12,25 @@ A **topological order** of a DAG is a linear ordering of its nodes such that for
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+- `score`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 2, edges = [[0,1]], score = [2,3]
+- **Input:** n = 2, edges = [[0,1]], score = [2,3]
 
-**Output:** 8
+- **Output:** 8
 
-**Explanation:**
-
-![](images/screenshot-2025-03-11-at-021131.png)
+- **Explanation:** ![](images/screenshot-2025-03-11-at-021131.png)
 
 Node 1 depends on node 0, so a valid order is `[0, 1]`.
 
@@ -60,17 +64,13 @@ Node 1 depends on node 0, so a valid order is `[0, 1]`.
 
 The maximum total profit achievable over all valid topological orders is $2 + 6 = 8$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,1],[0,2]], score = [1,6,3]
+- **Input:** n = 3, edges = [[0,1],[0,2]], score = [1,6,3]
 
-**Output:** 25
+- **Output:** 25
 
-**Explanation:**
-
-![](images/screenshot-2025-03-11-at-023558.png)
+- **Explanation:** ![](images/screenshot-2025-03-11-at-023558.png)
 
 Nodes 1 and 2 depend on node 0, so the most optimal valid order is `[0, 2, 1]`.
 
@@ -110,8 +110,6 @@ Nodes 1 and 2 depend on node 0, so the most optimal valid order is `[0, 2, 1]`.
 </table>
 
 The maximum total profit achievable over all valid topological orders is $1 + 6 + 18 = 25$.
-
-</div>
 
 ### 4. Constraints
 

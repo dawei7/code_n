@@ -10,8 +10,16 @@ Return *the **maximum number of components** in any valid split*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+- `values`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,6 +33,7 @@ Return *the **maximum number of components** in any valid split*.
 - The value of the component containing nodes 1 and 3 is values[1] + values[3] = 12.
 - The value of the component containing nodes 0, 2, and 4 is values[0] + values[2] + values[4] = 6.
 It can be shown that no other valid split has more than 2 connected components.
+
 #### Example 2
 
 ![](images/example21svg-1.jpg)

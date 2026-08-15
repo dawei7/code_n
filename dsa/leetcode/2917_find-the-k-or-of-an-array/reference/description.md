@@ -6,7 +6,6 @@ Return *the K-or of* `nums`.
 
 **Example 1: **
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
 **Input:** nums = [7,12,9,8,9,15], k = 4
 
 **Output:** 9
@@ -80,34 +79,32 @@ Bit 0 is set in 7, 9, 9, and 15. Bit 3 is set in 12, 9, 8, 9, and 15.
 
 Only bits 0 and 3 qualify. The result is $(1001)_2 = 9$.
 
-</div>
-
 **Example 2: **
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
 **Input:** nums = [2,12,1,11,4,5], k = 6
 
 **Output:** 0
 
 **Explanation: **No bit appears as 1 in all six array numbers, as required for K-or with $k = 6$. Thus, the result is 0.
 
-</div>
-
 **Example 3: **
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
 **Input:** nums = [10,8,5,9,11,6,8], k = 1
 
 **Output:** 15
 
 **Explanation: ** Since $k = 1$, the 1-or of the array is equal to the bitwise OR of all its elements. Hence, the answer is $10 OR 8 OR 5 OR 9 OR 11 OR 6 OR 8 = 15$.
 
-</div>
-
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Constraints
 

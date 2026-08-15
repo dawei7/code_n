@@ -26,28 +26,19 @@ Return the *maximum possible area* under all the pistons.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** height = 5, positions = [2,5], directions = "UD"
+- **Input:** height = 5, positions = [2,5], directions = "UD"
 
-**Output:** 7
+- **Output:** 7
 
-**Explanation:**
+- **Explanation:** The current position of the pistons has the maximum possible area under it.
 
-The current position of the pistons has the maximum possible area under it.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** height = 6, positions = [0,0,6,3], directions = "UUDU"
+- **Input:** height = 6, positions = [0,0,6,3], directions = "UUDU"
 
-**Output:** 15
+- **Output:** 15
 
-**Explanation:**
-
-After 3 seconds, the pistons will be in positions `[3, 3, 3, 6]`, which has the maximum possible area under it.
-
-</div>
+- **Explanation:** After 3 seconds, the pistons will be in positions `[3, 3, 3, 6]`, which has the maximum possible area under it.
 
 ### 4. Constraints
 

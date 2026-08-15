@@ -10,8 +10,14 @@ Return *the **maximum** sum of the happiness values of the selected children you
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `happiness`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,6 +29,7 @@ Return *the **maximum** sum of the happiness values of the selected children you
 - Pick the child with the happiness value == 3. The happiness value of the remaining children becomes [0,1].
 - Pick the child with the happiness value == 1. The happiness value of the remaining child becomes [0]. Note that the happiness value cannot become less than 0.
 The sum of the happiness values of the selected children is 3 + 1 = 4.
+
 #### Example 2
 
 - **Input:** $happiness = [1,1,1,1], k = 2$
@@ -31,6 +38,7 @@ The sum of the happiness values of the selected children is 3 + 1 = 4.
 - Pick any child with the happiness value == 1. The happiness value of the remaining children becomes [0,0,0].
 - Pick the child with the happiness value == 0. The happiness value of the remaining child becomes [0,0].
 The sum of the happiness values of the selected children is 1 + 0 = 1.
+
 #### Example 3
 
 - **Input:** $happiness = [2,3,4,5], k = 1$

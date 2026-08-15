@@ -31,23 +31,23 @@ When a window meets that condition, its power is its maximum element; because th
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: \`nums = [1,2,3,4,3,2,5], k = 3\`
-- Output: \`[3,4,-1,-1,-1]\`
+- **Input:** \`nums = [1,2,3,4,3,2,5], k = 3\`
+- **Output:** \`[3,4,-1,-1,-1]\`
 
 The first two windows rise by one at every step. Each remaining window contains a break.
 
-**Example 2**
+#### Example 2
 
-- Input: \`nums = [2,2,2,2,2], k = 4\`
-- Output: \`[-1,-1]\`
+- **Input:** \`nums = [2,2,2,2,2], k = 4\`
+- **Output:** \`[-1,-1]\`
 
 Equal neighboring values are not consecutive in ascending order.
 
-**Example 3**
+#### Example 3
 
-- Input: \`nums = [3,2,3,2,3,2], k = 2\`
-- Output: \`[-1,3,-1,3,-1]\`
+- **Input:** \`nums = [3,2,3,2,3,2], k = 2\`
+- **Output:** \`[-1,3,-1,3,-1]\`
 
 Only the two windows \`[2,3]\` satisfy the required step.

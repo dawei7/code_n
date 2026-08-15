@@ -12,8 +12,14 @@ Tests are generated such that the answer will not exceed $10^{7}$ and `hour` wil
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `dist`: Input parameter (`List[int]`).
+- `hour`: Input parameter (`float`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,6 +32,7 @@ Tests are generated such that the answer will not exceed $10^{7}$ and `hour` wil
 - Since we are already at an integer hour, we depart immediately at the 1 hour mark. The second train takes 3/1 = 3 hours.
 - Since we are already at an integer hour, we depart immediately at the 4 hour mark. The third train takes 2/1 = 2 hours.
 - You will arrive at exactly the 6 hour mark.
+
 #### Example 2
 
 - **Input:** $dist = [1,3,2], hour = 2.7$
@@ -35,6 +42,7 @@ Tests are generated such that the answer will not exceed $10^{7}$ and `hour` wil
 - Since we are not at an integer hour, we wait until the 1 hour mark to depart. The second train ride takes 3/3 = 1 hour.
 - Since we are already at an integer hour, we depart immediately at the 2 hour mark. The third train takes 2/3 = 0.66667 hours.
 - You will arrive at the 2.66667 hour mark.
+
 #### Example 3
 
 - **Input:** $dist = [1,3,2], hour = 1.9$

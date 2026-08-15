@@ -34,7 +34,7 @@ A relation containing one row per distinct product with:
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 `Products`
 
@@ -47,7 +47,7 @@ A relation containing one row per distinct product with:
 | 2 | 65 | 2019-08-17 |
 | 3 | 20 | 2019-08-18 |
 
-Output:
+- **Output:** 
 
 | product_id | price |
 |---:|---:|

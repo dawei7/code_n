@@ -12,8 +12,13 @@ Return *the **minimum possible sum** of a mountain triplet of* `nums`. *If no su
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,6 +30,7 @@ Return *the **minimum possible sum** of a mountain triplet of* `nums`. *If no su
 - 2 < 3 < 4
 - nums[2] < nums[3] and nums[4] < nums[3]
 And the sum of this triplet is nums[2] + nums[3] + nums[4] = 9. It can be shown that there are no mountain triplets with a sum of less than 9.
+
 #### Example 2
 
 - **Input:** `nums = [5,4,8,7,10,2]`
@@ -33,6 +39,7 @@ And the sum of this triplet is nums[2] + nums[3] + nums[4] = 9. It can be shown 
 - 1 < 3 < 5
 - nums[1] < nums[3] and nums[5] < nums[3]
 And the sum of this triplet is nums[1] + nums[3] + nums[5] = 13. It can be shown that there are no mountain triplets with a sum of less than 13.
+
 #### Example 3
 
 - **Input:** `nums = [6,5,4,3,4,5]`

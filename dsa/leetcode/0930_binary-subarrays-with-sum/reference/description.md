@@ -6,8 +6,14 @@ A **subarray** is a contiguous part of the array.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `goal`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +26,7 @@ A **subarray** is a contiguous part of the array.
 [<u>**1,0,1,0**</u>,1]
 [1,<u>**0,1,0,1**</u>]
 [1,0,<u>**1,0,1**</u>]
+
 #### Example 2
 
 - **Input:** `nums = [0,0,0,0,0], goal = 0`

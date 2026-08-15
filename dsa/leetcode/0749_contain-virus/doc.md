@@ -30,14 +30,14 @@ Build one wall segment along every infected-to-healthy boundary edge of the chos
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `isInfected = [[0,1,0,0,0,0,0,1],[0,1,0,0,0,0,0,1],[0,0,0,0,0,0,0,1],[0,0,0,0,0,0,0,0]]`
-- Output: `10`
-- Explanation: Quarantining the right-hand region first costs five walls; later containing the remaining spread costs five more.
+- **Input:** `isInfected = [[0,1,0,0,0,0,0,1],[0,1,0,0,0,0,0,1],[0,0,0,0,0,0,0,1],[0,0,0,0,0,0,0,0]]`
+- **Output:** `10`
+- **Explanation:** Quarantining the right-hand region first costs five walls; later containing the remaining spread costs five more.
 
-**Example 2**
+#### Example 2
 
-- Input: `isInfected = [[1,1,1],[1,0,1],[1,1,1]]`
-- Output: `4`
-- Explanation: The central healthy cell is threatened across four separate grid edges, so four wall segments are required.
+- **Input:** `isInfected = [[1,1,1],[1,0,1],[1,1,1]]`
+- **Output:** `4`
+- **Explanation:** The central healthy cell is threatened across four separate grid edges, so four wall segments are required.

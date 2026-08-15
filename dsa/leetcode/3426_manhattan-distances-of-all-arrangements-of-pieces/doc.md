@@ -35,14 +35,14 @@ Return the total sum modulo $1{,}000{,}000{,}007$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `m = 2, n = 2, k = 2`
-- Output: `8`
-- Explanation: Four adjacent cell pairs contribute distance `1`, and two diagonal pairs contribute distance `2`.
+- **Input:** `m = 2, n = 2, k = 2`
+- **Output:** `8`
+- **Explanation:** Four adjacent cell pairs contribute distance `1`, and two diagonal pairs contribute distance `2`.
 
-**Example 2**
+#### Example 2
 
-- Input: `m = 1, n = 4, k = 3`
-- Output: `20`
-- Explanation: The four arrangements have total pair distances `4`, `6`, `6`, and `4`.
+- **Input:** `m = 1, n = 4, k = 3`
+- **Output:** `20`
+- **Explanation:** The four arrangements have total pair distances `4`, `6`, `6`, and `4`.

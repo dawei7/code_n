@@ -20,6 +20,7 @@ Return the head of a linked list representing the original nonnegative integer p
 
 - **Input:** $head = [1,2,3]$
 - **Output:** `[1,2,4]`
+
 #### Example 2
 
 - **Input:** $head = [0]$

@@ -30,18 +30,18 @@ Return the minimum number of jumps required to reach the last index. Repeated va
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [100, -23, -23, 404, 100, 23, 23, 23, 3, 404]`
-- Output: `3`
-- Explanation: One shortest route uses indices `0 -> 4 -> 3 -> 9`.
+- **Input:** `arr = [100, -23, -23, 404, 100, 23, 23, 23, 3, 404]`
+- **Output:** `3`
+- **Explanation:** One shortest route uses indices `0 -> 4 -> 3 -> 9`.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [7]`
-- Output: `0`
+- **Input:** `arr = [7]`
+- **Output:** `0`
 
-**Example 3**
+#### Example 3
 
-- Input: `arr = [7, 6, 9, 6, 9, 6, 9, 7]`
-- Output: `1`
+- **Input:** `arr = [7, 6, 9, 6, 9, 6, 9, 7]`
+- **Output:** `1`

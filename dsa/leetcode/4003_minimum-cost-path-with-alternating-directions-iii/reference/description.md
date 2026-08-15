@@ -42,14 +42,11 @@ Return the minimum total cost of reaching cell $(m - 1, n - 1)$. Arrival ends th
 
 #### Example 1
 
-<div class="example-block">
-**Input:** m = 2, n = 2, penalty = [[5,3],[1,4]]
+- **Input:** m = 2, n = 2, penalty = [[5,3],[1,4]]
 
-**Output:** 8
+- **Output:** 8
 
-**Explanation:**
-
-The optimal path is:
+- **Explanation:** The optimal path is:
 
 - Start at cell `(0, 0)` with entry cost $(0 + 1) * (0 + 1) = 1$.
 
@@ -59,17 +56,13 @@ The optimal path is:
 
 Thus, the total cost is $1 + 2 + 4 + 1 = 8$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** m = 2, n = 2, penalty = [[0,7],[3,2]]
+- **Input:** m = 2, n = 2, penalty = [[0,7],[3,2]]
 
-**Output:** 7
+- **Output:** 7
 
-**Explanation:**
-
-The optimal path is:
+- **Explanation:** The optimal path is:
 
 - Start at cell `(0, 0)` with entry cost $(0 + 1) * (0 + 1) = 1$.
 
@@ -81,17 +74,13 @@ The optimal path is:
 
 Thus, the total cost is $1 + 0 + 2 + 0 + 4 = 7$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** m = 2, n = 3, penalty = [[8,0,9],[7,4,1]]
+- **Input:** m = 2, n = 3, penalty = [[8,0,9],[7,4,1]]
 
-**Output:** 12
+- **Output:** 12
 
-**Explanation:**
-
-The optimal path is:
+- **Explanation:** The optimal path is:
 
 - Start at cell `(0, 0)` with entry cost $(0 + 1) * (0 + 1) = 1$.
 
@@ -102,8 +91,6 @@ The optimal path is:
 - **Move 3**: Move down to cell `(1, 2)` with entry cost $(1 + 1) * (2 + 1) = 6$.
 
 Thus, the total cost is $1 + 2 + 3 + 0 + 6 = 12$.
-
-</div>
 
 ### 4. Constraints
 

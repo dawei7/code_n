@@ -6,8 +6,13 @@ There may be **duplicates** in the original array.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Note
 
@@ -21,11 +26,13 @@ An array `A` rotated by `x` positions results in an array `B` of the same length
 - **Output:** `true`
 - **Explanation:** [1,2,3,4,5] is the original sorted array.
 You can rotate the array by x = 2 positions to begin on the element of value 3: [3,4,5,1,2].
+
 #### Example 2
 
 - **Input:** `nums = [2,1,3,4]`
 - **Output:** `false`
 - **Explanation:** There is no sorted array once rotated that can make nums.
+
 #### Example 3
 
 - **Input:** `nums = [1,2,3]`

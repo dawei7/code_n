@@ -8,23 +8,25 @@ More formally, a subarray `[arr[i], arr[i + 1], ..., arr[j]]` of `arr` is said t
 
 - For $i \le k < j$:
 
-		<li>$\text{arr}[k] > arr[k + 1]$ when `k` is odd, and
+		- $\text{arr}[k] > arr[k + 1]$ when `k` is odd, and
 
 - $\text{arr}[k] < arr[k + 1]$ when `k` is even.
 
-	</li>
 - Or, for $i \le k < j$:
 
-		<li>$\text{arr}[k] > arr[k + 1]$ when `k` is even, and
+		- $\text{arr}[k] > arr[k + 1]$ when `k` is even, and
 
 - $\text{arr}[k] < arr[k + 1]$ when `k` is odd.
 
-	</li>
-
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -33,10 +35,12 @@ More formally, a subarray `[arr[i], arr[i + 1], ..., arr[j]]` of `arr` is said t
 - **Input:** `arr = [9,4,2,10,7,8,8,1,9]`
 - **Output:** `5`
 - **Explanation:** arr[1] > arr[2] < arr[3] > arr[4] < arr[5]
+
 #### Example 2
 
 - **Input:** `arr = [4,8,12,16]`
 - **Output:** `2`
+
 #### Example 3
 
 - **Input:** `arr = [100]`

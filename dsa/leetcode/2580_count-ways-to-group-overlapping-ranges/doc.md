@@ -34,14 +34,14 @@ The number of ranges is between $1$ and $10^5$. Every range satisfies $0 \leq \t
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `ranges = [[6,10],[5,15]]`
-- Output: `2`
-- Explanation: The ranges overlap and must stay together; their component can be placed in either group.
+- **Input:** `ranges = [[6,10],[5,15]]`
+- **Output:** `2`
+- **Explanation:** The ranges overlap and must stay together; their component can be placed in either group.
 
-**Example 2**
+#### Example 2
 
-- Input: `ranges = [[1,3],[10,20],[2,5],[4,8]]`
-- Output: `4`
-- Explanation: The first, third, and fourth ranges form one overlap-connected component, while `[10,20]` forms another. Each component independently chooses one of two groups.
+- **Input:** `ranges = [[1,3],[10,20],[2,5],[4,8]]`
+- **Output:** `4`
+- **Explanation:** The first, third, and fourth ranges form one overlap-connected component, while `[10,20]` forms another. Each component independently chooses one of two groups.

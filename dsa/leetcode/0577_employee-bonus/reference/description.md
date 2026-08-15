@@ -49,7 +49,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Employee table:
 +-------+--------+------------+--------+
 | empId | name   | supervisor | salary |
@@ -66,7 +66,7 @@ Bonus table:
 | 2     | 500   |
 | 4     | 2000  |
 +-------+-------+
-**Output:**
+- **Output:** 
 +------+-------+
 | name | bonus |
 +------+-------+

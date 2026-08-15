@@ -22,6 +22,7 @@ Return `None`; mutate `matrix` in place so every row and column containing an or
 
 - **Input:** $matrix = [[1,1,1],[1,0,1],[1,1,1]]$
 - **Output:** `[[1,0,1],[0,0,0],[1,0,1]]`
+
 #### Example 2
 
 ![](images/mat2.jpg)

@@ -16,8 +16,13 @@ Since the answer may be large, return it **modulo** $10^{9}$ + 7.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `complexity`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -27,47 +32,35 @@ that the password for the computer **with label** 0 is decrypted, and *not* the 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** complexity = [1,2,3]
+- **Input:** complexity = [1,2,3]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The valid permutations are:
+- **Explanation:** The valid permutations are:
 
 - [0, 1, 2]
 
-		<li>Unlock computer 0 first with root password.
+		- Unlock computer 0 first with root password.
 
 - Unlock computer 1 with password of computer 0 since $\text{complexity}[0] < \text{complexity}[1]$.
 
 - Unlock computer 2 with password of computer 1 since $\text{complexity}[1] < \text{complexity}[2]$.
 
-	</li>
 - [0, 2, 1]
 
-		<li>Unlock computer 0 first with root password.
+		- Unlock computer 0 first with root password.
 
 - Unlock computer 2 with password of computer 0 since $\text{complexity}[0] < \text{complexity}[2]$.
 
 - Unlock computer 1 with password of computer 0 since $\text{complexity}[0] < \text{complexity}[1]$.
 
-	</li>
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** complexity = [3,3,3,4,4,4]
+- **Input:** complexity = [3,3,3,4,4,4]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-There are no possible permutations which can unlock all computers.
-
-</div>
+- **Explanation:** There are no possible permutations which can unlock all computers.
 
 ### 5. Constraints
 

@@ -10,8 +10,14 @@ Return *the latest step at which there exists a group of ones of length **exactl
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+- `m`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,19 +25,18 @@ Return *the latest step at which there exists a group of ones of length **exactl
 
 - **Input:** `arr = [3,5,1,2,4], m = 1`
 - **Output:** `4`
-- **Explanation:**
-Step 1: "00<u>1</u>00", groups: ["1"]
+- **Explanation:** Step 1: "00<u>1</u>00", groups: ["1"]
 Step 2: "0010<u>1</u>", groups: ["1", "1"]
 Step 3: "<u>1</u>0101", groups: ["1", "1", "1"]
 Step 4: "1<u>1</u>101", groups: ["111", "1"]
 Step 5: "111<u>1</u>1", groups: ["11111"]
 The latest step at which there exists a group of size 1 is step 4.
+
 #### Example 2
 
 - **Input:** `arr = [3,1,5,4,2], m = 2`
 - **Output:** `-1`
-- **Explanation:**
-Step 1: "00<u>1</u>00", groups: ["1"]
+- **Explanation:** Step 1: "00<u>1</u>00", groups: ["1"]
 Step 2: "<u>1</u>0100", groups: ["1", "1"]
 Step 3: "1010<u>1</u>", groups: ["1", "1", "1"]
 Step 4: "101<u>1</u>1", groups: ["1", "111"]

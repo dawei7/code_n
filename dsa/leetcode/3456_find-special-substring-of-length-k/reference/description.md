@@ -14,21 +14,24 @@ Return `true` if such a substring exists. Otherwise, return `false`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "aaabaaa", k = 3
+- **Input:** s = "aaabaaa", k = 3
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
-
-The substring $s[4..6] = "aaa"$ satisfies the conditions.
+- **Explanation:** The substring $s[4..6] = "aaa"$ satisfies the conditions.
 
 - It has a length of 3.
 
@@ -38,19 +41,13 @@ The substring $s[4..6] = "aaa"$ satisfies the conditions.
 
 - There is no character after `"aaa"`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "abc", k = 2
+- **Input:** s = "abc", k = 2
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
-
-There is no substring of length 2 that consists of one distinct character and satisfies the conditions.
-
-</div>
+- **Explanation:** There is no substring of length 2 that consists of one distinct character and satisfies the conditions.
 
 ### 4. Constraints
 

@@ -10,8 +10,13 @@ Given a string `s`, reconstruct the permutation `perm` and return it. If there a
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -19,10 +24,12 @@ Given a string `s`, reconstruct the permutation `perm` and return it. If there a
 
 - **Input:** `s = "IDID"`
 - **Output:** `[0,4,1,3,2]`
+
 #### Example 2
 
 - **Input:** `s = "III"`
 - **Output:** `[0,1,2,3]`
+
 #### Example 3
 
 - **Input:** `s = "DDI"`

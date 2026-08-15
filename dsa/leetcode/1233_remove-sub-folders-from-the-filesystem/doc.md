@@ -32,23 +32,23 @@ Let $L$ be the maximum length of any path in `folder`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `folder = ["/a","/a/b","/c/d","/c/d/e","/c/f"]`
-- Output: `["/a","/c/d","/c/f"]`
+- **Input:** `folder = ["/a","/a/b","/c/d","/c/d/e","/c/f"]`
+- **Output:** `["/a","/c/d","/c/f"]`
 
 `"/a/b"` is removed under `"/a"`, and `"/c/d/e"` is removed under `"/c/d"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `folder = ["/a","/a/b/c","/a/b/d"]`
-- Output: `["/a"]`
+- **Input:** `folder = ["/a","/a/b/c","/a/b/d"]`
+- **Output:** `["/a"]`
 
 Both longer paths are sub-folders of the listed folder `"/a"`.
 
-**Example 3**
+#### Example 3
 
-- Input: `folder = ["/a/b/c","/a/b/ca","/a/b/d"]`
-- Output: `["/a/b/c","/a/b/ca","/a/b/d"]`
+- **Input:** `folder = ["/a/b/c","/a/b/ca","/a/b/d"]`
+- **Output:** `["/a/b/c","/a/b/ca","/a/b/d"]`
 
 None of these paths is a complete parent followed by `"/"` for another one.

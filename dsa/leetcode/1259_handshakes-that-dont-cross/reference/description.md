@@ -27,6 +27,7 @@ Return the number of ways to pair every person with exactly one other person wit
 - **Input:** $numPeople = 4$
 - **Output:** `2`
 - **Explanation:** There are two ways to do it, the first way is [(1,2),(3,4)] and the second one is [(2,3),(4,1)].
+
 #### Example 2
 
 ![](images/5125_example_3.png)

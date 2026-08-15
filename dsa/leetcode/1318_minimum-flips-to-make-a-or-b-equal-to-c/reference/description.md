@@ -6,8 +6,15 @@ Flip operation consists of change **any** single bit 1 to 0 or change the bit 0 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `a`: Input parameter (`int`).
+- `b`: Input parameter (`int`).
+- `c`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,10 +25,12 @@ Flip operation consists of change **any** single bit 1 to 0 or change the bit 0 
 - **Input:** $a = 2, b = 6, c = 5$
 - **Output:** `3`
 - **Explanation:** After flips a = 1 , b = 4 , c = 5 such that (a OR b == c)
+
 #### Example 2
 
 - **Input:** $a = 4, b = 2, c = 7$
 - **Output:** `1`
+
 #### Example 3
 
 - **Input:** $a = 1, b = 2, c = 3$

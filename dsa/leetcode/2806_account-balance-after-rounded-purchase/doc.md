@@ -30,20 +30,20 @@ Return the integer balance after rounding the purchase price to the nearest mult
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `purchaseAmount = 9`
-- Output: `90`
-- Explanation: The nearest multiple of $10$ is $10$, leaving `100 - 10 = 90`.
+- **Input:** `purchaseAmount = 9`
+- **Output:** `90`
+- **Explanation:** The nearest multiple of $10$ is $10$, leaving `100 - 10 = 90`.
 
-**Example 2**
+#### Example 2
 
-- Input: `purchaseAmount = 15`
-- Output: `80`
-- Explanation: A half-way value rounds upward, so $15$ becomes $20$.
+- **Input:** `purchaseAmount = 15`
+- **Output:** `80`
+- **Explanation:** A half-way value rounds upward, so $15$ becomes $20$.
 
-**Example 3**
+#### Example 3
 
-- Input: `purchaseAmount = 10`
-- Output: `90`
-- Explanation: The price is already a multiple of $10$ and does not change before subtraction.
+- **Input:** `purchaseAmount = 10`
+- **Output:** `90`
+- **Explanation:** The price is already a multiple of $10$ and does not change before subtraction.

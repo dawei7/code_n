@@ -36,20 +36,20 @@ Let $L=A+B$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word1 = "cacb", word2 = "cbba"`
-- Output: `5`
-- Explanation: Choose `"ab"` from `word1` and `"cba"` from `word2` to form `"abcba"`.
+- **Input:** `word1 = "cacb", word2 = "cbba"`
+- **Output:** `5`
+- **Explanation:** Choose `"ab"` from `word1` and `"cba"` from `word2` to form `"abcba"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `word1 = "ab", word2 = "ab"`
-- Output: `3`
-- Explanation: The subsequences `"ab"` and `"a"` concatenate to `"aba"`.
+- **Input:** `word1 = "ab", word2 = "ab"`
+- **Output:** `3`
+- **Explanation:** The subsequences `"ab"` and `"a"` concatenate to `"aba"`.
 
-**Example 3**
+#### Example 3
 
-- Input: `word1 = "aa", word2 = "bb"`
-- Output: `0`
-- Explanation: No character from one word can pair across the palindrome with a character from the other.
+- **Input:** `word1 = "aa", word2 = "bb"`
+- **Output:** `0`
+- **Explanation:** No character from one word can pair across the palindrome with a character from the other.

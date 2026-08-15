@@ -8,8 +8,13 @@ Return *the minimum number of operations needed to make *`s`* equal to *`target`
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `target`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +27,7 @@ Choose index i = 2: "00<u>000</u>" -> "00<u>111</u>"
 Choose index i = 0: "<u>00111</u>" -> "<u>11000</u>"
 Choose index i = 1: "1<u>1000</u>" -> "1<u>0111</u>"
 We need at least 3 flip operations to form target.
+
 #### Example 2
 
 - **Input:** $target = "101"$
@@ -31,6 +37,7 @@ Choose index i = 0: "<u>000</u>" -> "<u>111</u>"
 Choose index i = 1: "1<u>11</u>" -> "1<u>00</u>"
 Choose index i = 2: "10<u>0</u>" -> "10<u>1</u>"
 We need at least 3 flip operations to form target.
+
 #### Example 3
 
 - **Input:** $target = "00000"$

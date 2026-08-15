@@ -10,8 +10,13 @@ Return the number of indices `i` and `j` in `nums` where `i < j` such that $\tex
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -21,44 +26,31 @@ that it is allowed for an integer to have leading zeros after performing an oper
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [3,12,30,17,21]
+- **Input:** nums = [3,12,30,17,21]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The almost equal pairs of elements are:
+- **Explanation:** The almost equal pairs of elements are:
 
 - 3 and 30. By swapping 3 and 0 in 30, you get 3.
 
 - 12 and 21. By swapping 1 and 2 in 12, you get 21.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,1,1,1,1]
+- **Input:** nums = [1,1,1,1,1]
 
-**Output:** 10
+- **Output:** 10
 
-**Explanation:**
+- **Explanation:** Every two elements in the array are almost equal.
 
-Every two elements in the array are almost equal.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [123,231]
+- **Input:** nums = [123,231]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-We cannot swap any two digits of 123 or 231 to reach the other.
-
-</div>
+- **Explanation:** We cannot swap any two digits of 123 or 231 to reach the other.
 
 ### 5. Constraints
 

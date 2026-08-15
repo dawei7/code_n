@@ -16,8 +16,15 @@ Given the 2D integer arrays `edges`, `guesses` and the integer `k`, return *the 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `edges`: Input parameter (`List[List[int]]`).
+- `guesses`: Input parameter (`List[List[int]]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -27,21 +34,20 @@ Given the 2D integer arrays `edges`, `guesses` and the integer `k`, return *the 
 
 - **Input:** $edges = [[0,1],[1,2],[1,3],[4,2]], guesses = [[1,3],[0,1],[1,0],[2,4]], k = 3$
 - **Output:** `3`
-- **Explanation:**
-Root = 0, correct guesses = [1,3], [0,1], [2,4]
+- **Explanation:** Root = 0, correct guesses = [1,3], [0,1], [2,4]
 Root = 1, correct guesses = [1,3], [1,0], [2,4]
 Root = 2, correct guesses = [1,3], [1,0], [2,4]
 Root = 3, correct guesses = [1,0], [2,4]
 Root = 4, correct guesses = [1,3], [1,0]
 Considering 0, 1, or 2 as root node leads to 3 correct guesses.
+
 #### Example 2
 
 ![](images/ex-2.png)
 
 - **Input:** $edges = [[0,1],[1,2],[2,3],[3,4]], guesses = [[1,0],[3,4],[2,1],[3,2]], k = 1$
 - **Output:** `5`
-- **Explanation:**
-Root = 0, correct guesses = [3,4]
+- **Explanation:** Root = 0, correct guesses = [3,4]
 Root = 1, correct guesses = [1,0], [3,4]
 Root = 2, correct guesses = [1,0], [2,1], [3,4]
 Root = 3, correct guesses = [1,0], [2,1], [3,2], [3,4]

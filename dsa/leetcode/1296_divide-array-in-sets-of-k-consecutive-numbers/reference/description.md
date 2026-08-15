@@ -6,8 +6,14 @@ Return `true` *if it is possible*.** **Otherwise, return `false`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -16,11 +22,13 @@ Return `true` *if it is possible*.** **Otherwise, return `false`.
 - **Input:** `nums = [1,2,3,3,4,4,5,6], k = 4`
 - **Output:** `true`
 - **Explanation:** Array can be divided into [1,2,3,4] and [3,4,5,6].
+
 #### Example 2
 
 - **Input:** `nums = [3,2,1,2,3,4,3,4,5,9,10,11], k = 3`
 - **Output:** `true`
 - **Explanation:** Array can be divided into [1,2,3] , [2,3,4] , [3,4,5] and [9,10,11].
+
 #### Example 3
 
 - **Input:** `nums = [1,2,3,4], k = 3`

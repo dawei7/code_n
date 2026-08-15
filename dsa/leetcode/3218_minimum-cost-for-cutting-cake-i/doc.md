@@ -33,20 +33,20 @@ Return the minimum total cost of cutting the whole cake into $1 \times 1$ pieces
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `m = 3, n = 2, horizontalCut = [1, 3], verticalCut = [5]`
-- Output: `13`
-- Explanation: Cutting vertically for `5` first makes each horizontal line necessary in two pieces, giving `5 + 2 * 3 + 2 * 1 = 13`.
+- **Input:** `m = 3, n = 2, horizontalCut = [1, 3], verticalCut = [5]`
+- **Output:** `13`
+- **Explanation:** Cutting vertically for `5` first makes each horizontal line necessary in two pieces, giving `5 + 2 * 3 + 2 * 1 = 13`.
 
-**Example 2**
+#### Example 2
 
-- Input: `m = 2, n = 2, horizontalCut = [7], verticalCut = [4]`
-- Output: `15`
-- Explanation: Use the cost-`7` horizontal line first, then pay `4` in each of the two resulting pieces.
+- **Input:** `m = 2, n = 2, horizontalCut = [7], verticalCut = [4]`
+- **Output:** `15`
+- **Explanation:** Use the cost-`7` horizontal line first, then pay `4` in each of the two resulting pieces.
 
-**Example 3**
+#### Example 3
 
-- Input: `m = 1, n = 4, horizontalCut = [], verticalCut = [2, 1, 3]`
-- Output: `6`
-- Explanation: With one row, every vertical boundary is used exactly once.
+- **Input:** `m = 1, n = 4, horizontalCut = [], verticalCut = [2, 1, 3]`
+- **Output:** `6`
+- **Explanation:** With one row, every vertical boundary is used exactly once.

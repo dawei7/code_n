@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/a-number-after-a-double-reversal/) |
 
 ## Problem Description
+
 ### Goal
 
 Reversing an integer reverses the order of its decimal digits. Any zeros that
@@ -25,6 +26,7 @@ the original number exactly. The comparison concerns the numeric values after
 both applications of the same leading-zero rule.
 
 ### Function Contract
+
 **Inputs**
 
 - `num`: An integer from $0$ through $10^6$.
@@ -35,24 +37,25 @@ Return `true` when reversing `num` twice restores it exactly; otherwise return
 `false`.
 
 ### Examples
-**Example 1**
 
-- Input: `num = 526`
-- Output: `true`
+#### Example 1
+
+- **Input:** `num = 526`
+- **Output:** `true`
 
 The reversals are `526 -> 625 -> 526`.
 
-**Example 2**
+#### Example 2
 
-- Input: `num = 1800`
-- Output: `false`
+- **Input:** `num = 1800`
+- **Output:** `false`
 
 The first reversal discards two leading zeros, giving `81`, and the second
 therefore produces only `18`.
 
-**Example 3**
+#### Example 3
 
-- Input: `num = 0`
-- Output: `true`
+- **Input:** `num = 0`
+- **Output:** `true`
 
 Zero remains zero under both reversals.

@@ -29,23 +29,23 @@ Given positive integer arrays `nums1` and `nums2`, you may rearrange the element
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [5,3,4,2], nums2 = [4,2,2,5]`
-- Output: `40`
+- **Input:** `nums1 = [5,3,4,2], nums2 = [4,2,2,5]`
+- **Output:** `40`
 
 Pairing the values as `[3,5,4,2]` against `nums2` yields `12 + 10 + 8 + 10`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [2,1,4,5,7], nums2 = [3,2,4,8,6]`
-- Output: `65`
+- **Input:** `nums1 = [2,1,4,5,7], nums2 = [3,2,4,8,6]`
+- **Output:** `65`
 
 The largest first-array values are assigned to the smallest second-array values.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums1 = [7], nums2 = [9]`
-- Output: `63`
+- **Input:** `nums1 = [7], nums2 = [9]`
+- **Output:** `63`
 
 With one element, there is only one possible pairing.

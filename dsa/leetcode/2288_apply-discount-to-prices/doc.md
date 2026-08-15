@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/apply-discount-to-prices/) |
 
 ## Problem Description
+
 ### Goal
+
 A sentence consists of words separated by single spaces. Its characters may
 be lowercase English letters, digits, spaces, or dollar signs. An entire word
 is a price exactly when it starts with `"$"` and every remaining character is
@@ -25,6 +27,7 @@ Return the resulting sentence. Valid input prices are positive integers
 without leading zeros and have at most ten digits.
 
 ### Function Contract
+
 **Inputs**
 
 - `sentence`: A nonempty, single-space-separated sentence with no leading or trailing space.
@@ -39,12 +42,13 @@ The sentence after replacing every whole-word price with its discounted
 two-decimal representation and leaving all other words unchanged.
 
 ### Examples
-**Example 1**
 
-- Input: `sentence = "there are $1 $2 and 5$ candies in the shop"`, `discount = 50`
-- Output: `"there are $0.50 $1.00 and 5$ candies in the shop"`
+#### Example 1
 
-**Example 2**
+- **Input:** `sentence = "there are $1 $2 and 5$ candies in the shop"`, `discount = 50`
+- **Output:** `"there are $0.50 $1.00 and 5$ candies in the shop"`
 
-- Input: `sentence = "1 2 $3 4 $5 $6 7 8$ $9 $10$"`, `discount = 100`
-- Output: `"1 2 $0.00 4 $0.00 $0.00 7 8$ $0.00 $10$"`
+#### Example 2
+
+- **Input:** `sentence = "1 2 $3 4 $5 $6 7 8$ $9 $10$"`, `discount = 100`
+- **Output:** `"1 2 $0.00 4 $0.00 $0.00 7 8$ $0.00 $10$"`

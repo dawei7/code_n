@@ -32,20 +32,20 @@ The constraint is $1\le n\le10^{18}$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 105`
-- Output: `"357"`
-- Explanation: The digits multiply to $3\cdot5\cdot7=105$, and no smaller positive integer has that digit product.
+- **Input:** `n = 105`
+- **Output:** `"357"`
+- **Explanation:** The digits multiply to $3\cdot5\cdot7=105$, and no smaller positive integer has that digit product.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 7`
-- Output: `"7"`
-- Explanation: The one-digit number already has the required product and is the smallest possible answer.
+- **Input:** `n = 7`
+- **Output:** `"7"`
+- **Explanation:** The one-digit number already has the required product and is the smallest possible answer.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 44`
-- Output: `"-1"`
-- Explanation: The prime factor $11$ cannot be supplied by any decimal digit, so no valid integer exists.
+- **Input:** `n = 44`
+- **Output:** `"-1"`
+- **Explanation:** The prime factor $11$ cannot be supplied by any decimal digit, so no valid integer exists.

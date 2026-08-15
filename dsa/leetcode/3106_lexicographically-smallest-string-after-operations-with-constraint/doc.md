@@ -37,20 +37,20 @@ You may change any character of `s` to any lowercase English letter, and may per
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "zbbz", k = 3`
-- Output: `"aaaz"`
-- Explanation: Changing the first three characters to `a` costs $1+1+1=3$.
+- **Input:** `s = "zbbz", k = 3`
+- **Output:** `"aaaz"`
+- **Explanation:** Changing the first three characters to `a` costs $1+1+1=3$.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "xaxcd", k = 4`
-- Output: `"aawcd"`
-- Explanation: Changing the first `x` to `a` costs $3$ through the cyclic wrap, and changing the second `x` backward to `w` costs the remaining $1$.
+- **Input:** `s = "xaxcd", k = 4`
+- **Output:** `"aawcd"`
+- **Explanation:** Changing the first `x` to `a` costs $3$ through the cyclic wrap, and changing the second `x` backward to `w` costs the remaining $1$.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "lol", k = 0`
-- Output: `"lol"`
-- Explanation: A zero budget permits no positive-distance change.
+- **Input:** `s = "lol", k = 0`
+- **Output:** `"lol"`
+- **Explanation:** A zero budget permits no positive-distance change.

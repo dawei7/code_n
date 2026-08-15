@@ -14,8 +14,14 @@ A **substring** is a contiguous sequence of characters within a string.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,6 +31,7 @@ A **substring** is a contiguous sequence of characters within a string.
 - **Output:** `2`
 - **Explanation:** We can select the substrings underlined in s = "<u>**aba**</u>cc<u>**dbbd**</u>". Both "aba" and "dbbd" are palindromes and have a length of at least k = 3.
 It can be shown that we cannot find a selection with more than two valid substrings.
+
 #### Example 2
 
 - **Input:** `s = "adbcda", k = 2`

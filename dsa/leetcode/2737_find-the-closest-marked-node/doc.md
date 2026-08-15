@@ -33,20 +33,20 @@ Return the shortest directed-path distance from `s` to any marked node, or `-1` 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 4, edges = [[0,1,1],[1,2,3],[2,3,2],[0,3,4]], s = 0, marked = [2,3]`
-- Output: `4`
-- Explanation: Node `2` is reached with cost `4`, while node `3` can also be reached directly with cost `4`.
+- **Input:** `n = 4, edges = [[0,1,1],[1,2,3],[2,3,2],[0,3,4]], s = 0, marked = [2,3]`
+- **Output:** `4`
+- **Explanation:** Node `2` is reached with cost `4`, while node `3` can also be reached directly with cost `4`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 5, edges = [[0,1,2],[0,2,4],[1,3,1],[2,3,3],[3,4,2]], s = 1, marked = [0,4]`
-- Output: `3`
-- Explanation: The path `1 -> 3 -> 4` reaches a marked node with total cost `3`; node `0` is unreachable from the source.
+- **Input:** `n = 5, edges = [[0,1,2],[0,2,4],[1,3,1],[2,3,3],[3,4,2]], s = 1, marked = [0,4]`
+- **Output:** `3`
+- **Explanation:** The path `1 -> 3 -> 4` reaches a marked node with total cost `3`; node `0` is unreachable from the source.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 4, edges = [[0,1,1],[1,2,3],[2,3,2]], s = 3, marked = [0,1]`
-- Output: `-1`
-- Explanation: No directed path from node `3` reaches either marked node.
+- **Input:** `n = 4, edges = [[0,1,1],[1,2,3],[2,3,2]], s = 3, marked = [0,1]`
+- **Output:** `-1`
+- **Explanation:** No directed path from node `3` reaches either marked node.

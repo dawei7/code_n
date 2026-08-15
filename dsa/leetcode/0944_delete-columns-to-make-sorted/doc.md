@@ -31,21 +31,21 @@ Return the number of column indices whose characters are not in non-decreasing l
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `strs = ["cba", "daf", "ghi"]`
-- Output: `1`
+- **Input:** `strs = ["cba", "daf", "ghi"]`
+- **Output:** `1`
 
 Columns `0` and `2` are sorted from top to bottom, but column `1` reads `"bfa"` and must be deleted.
 
-**Example 2**
+#### Example 2
 
-- Input: `strs = ["a", "b"]`
-- Output: `0`
+- **Input:** `strs = ["a", "b"]`
+- **Output:** `0`
 
-**Example 3**
+#### Example 3
 
-- Input: `strs = ["zyx", "wvu", "tsr"]`
-- Output: `3`
+- **Input:** `strs = ["zyx", "wvu", "tsr"]`
+- **Output:** `3`
 
 Every column decreases from the first row to the next, so all three columns are deleted.

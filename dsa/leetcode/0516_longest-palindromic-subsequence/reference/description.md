@@ -6,8 +6,13 @@ A **subsequence** is a sequence that can be derived from another sequence by del
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,6 +21,7 @@ A **subsequence** is a sequence that can be derived from another sequence by del
 - **Input:** `s = "bbbab"`
 - **Output:** `4`
 - **Explanation:** One possible longest palindromic subsequence is "bbbb".
+
 #### Example 2
 
 - **Input:** `s = "cbbd"`

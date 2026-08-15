@@ -12,8 +12,13 @@ Return *the **minimum** number of **obstacles** to **remove** so you can move fr
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,6 +31,7 @@ Return *the **minimum** number of **obstacles** to **remove** so you can move fr
 - **Explanation:** We can remove the obstacles at (0, 1) and (0, 2) to create a path from (0, 0) to (2, 2).
 It can be shown that we need to remove at least 2 obstacles, so we return 2.
 Note that there may be other ways to remove 2 obstacles to create a path.
+
 #### Example 2
 
 ![](images/example1drawio.png)

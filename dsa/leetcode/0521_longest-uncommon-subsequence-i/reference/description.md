@@ -6,8 +6,14 @@ An **uncommon subsequence** between two strings is a string that is a **subseque
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `a`: Input parameter (`str`).
+- `b`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -17,11 +23,13 @@ An **uncommon subsequence** between two strings is a string that is a **subseque
 - **Output:** `3`
 - **Explanation:** One longest uncommon subsequence is "aba" because "aba" is a subsequence of "aba" but not "cdc".
 Note that "cdc" is also a longest uncommon subsequence.
+
 #### Example 2
 
 - **Input:** $a = "aaa", b = "bbb"$
 - **Output:** `3`
 - **Explanation:** The longest uncommon subsequences are "aaa" and "bbb".
+
 #### Example 3
 
 - **Input:** $a = "aaa", b = "aaa"$

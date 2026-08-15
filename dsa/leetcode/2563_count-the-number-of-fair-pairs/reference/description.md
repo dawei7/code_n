@@ -10,8 +10,15 @@ A pair `(i, j)` is **fair **if:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `lower`: Input parameter (`int`).
+- `upper`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +27,7 @@ A pair `(i, j)` is **fair **if:
 - **Input:** `nums = [0,1,7,4,4,5], lower = 3, upper = 6`
 - **Output:** `6`
 - **Explanation:** There are 6 fair pairs: (0,3), (0,4), (0,5), (1,3), (1,4), and (1,5).
+
 #### Example 2
 
 - **Input:** `nums = [1,7,9,2,5], lower = 11, upper = 11`

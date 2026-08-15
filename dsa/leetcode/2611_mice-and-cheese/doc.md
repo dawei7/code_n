@@ -34,14 +34,14 @@ Return the maximum total points obtainable under the exact-`k` assignment rule.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `reward1 = [1, 1, 3, 4], reward2 = [4, 4, 1, 1], k = 2`
-- Output: `15`
-- Explanation: Assigning indices `2` and `3` to the first mouse gives `3 + 4`; the second mouse receives indices `0` and `1`, adding `4 + 4`.
+- **Input:** `reward1 = [1, 1, 3, 4], reward2 = [4, 4, 1, 1], k = 2`
+- **Output:** `15`
+- **Explanation:** Assigning indices `2` and `3` to the first mouse gives `3 + 4`; the second mouse receives indices `0` and `1`, adding `4 + 4`.
 
-**Example 2**
+#### Example 2
 
-- Input: `reward1 = [1, 1], reward2 = [1, 1], k = 2`
-- Output: `2`
-- Explanation: The first mouse must eat both cheese types, and each contributes one point.
+- **Input:** `reward1 = [1, 1], reward2 = [1, 1], k = 2`
+- **Output:** `2`
+- **Explanation:** The first mouse must eat both cheese types, and each contributes one point.

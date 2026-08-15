@@ -14,8 +14,13 @@ A **subsequence** of an array is a new **non-empty** array that is formed from t
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -29,6 +34,7 @@ nums[3] - nums[2] >= 3 - 2.
 Hence, it is a balanced subsequence, and its sum is the maximum among the balanced subsequences of nums.
 The subsequence consisting of indices 1, 2, and 3 is also valid.
 It can be shown that it is not possible to get a balanced subsequence with a sum greater than 14.
+
 #### Example 2
 
 - **Input:** `nums = [5,-1,-3,8]`
@@ -37,6 +43,7 @@ It can be shown that it is not possible to get a balanced subsequence with a sum
 nums[3] - nums[0] >= 3 - 0.
 Hence, it is a balanced subsequence, and its sum is the maximum among the balanced subsequences of nums.
 It can be shown that it is not possible to get a balanced subsequence with a sum greater than 13.
+
 #### Example 3
 
 - **Input:** `nums = [-2,-1]`

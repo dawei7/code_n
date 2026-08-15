@@ -38,20 +38,20 @@ Let $N$ be the length of `nums`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, -1, 2], k = 3`
-- Output: `1`
-- Explanation: Replacing the first value produces `[3, -1, 2]`, whose pivot
+- **Input:** `nums = [2, -1, 2], k = 3`
+- **Output:** `1`
+- **Explanation:** Replacing the first value produces `[3, -1, 2]`, whose pivot
   at index `2` has equal sums.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [0, 0, 0], k = 1`
-- Output: `2`
-- Explanation: Leaving the array unchanged keeps both pivots valid.
+- **Input:** `nums = [0, 0, 0], k = 1`
+- **Output:** `2`
+- **Explanation:** Leaving the array unchanged keeps both pivots valid.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [22, 4, -25, -20, -15, 15, -16, 7, 19, -10, 0, -13, -14], k = -33`
-- Output: `4`
+- **Input:** `nums = [22, 4, -25, -20, -15, 15, -16, 7, 19, -10, 0, -13, -14], k = -33`
+- **Output:** `4`

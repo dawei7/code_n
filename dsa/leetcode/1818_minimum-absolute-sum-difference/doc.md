@@ -31,23 +31,23 @@ You may change at most one position of `nums1`. If you make a change, the replac
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [1,7,5], nums2 = [2,3,5]`
-- Output: `3`
+- **Input:** `nums1 = [1,7,5], nums2 = [2,3,5]`
+- **Output:** `3`
 
 Replacing `7` with either `1` or `5` reduces its difference from 4 to 2.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [2,4,6,8,10], nums2 = [2,4,6,8,10]`
-- Output: `0`
+- **Input:** `nums1 = [2,4,6,8,10], nums2 = [2,4,6,8,10]`
+- **Output:** `0`
 
 The arrays already match, so the optional replacement is unnecessary.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums1 = [1,10,4,4,2,7], nums2 = [9,3,5,1,7,4]`
-- Output: `20`
+- **Input:** `nums1 = [1,10,4,4,2,7], nums2 = [9,3,5,1,7,4]`
+- **Output:** `20`
 
 Replacing the first value `1` with the available value `10` gives the optimal reduction.

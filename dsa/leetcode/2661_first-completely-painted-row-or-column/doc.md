@@ -31,14 +31,14 @@ Return the smallest index `i` at which all cells of at least one matrix row or a
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [1,3,4,2], mat = [[1,4],[2,3]]`
-- Output: `2`
-- Explanation: Painting value `4` at index `2` completes the first row and the second column.
+- **Input:** `arr = [1,3,4,2], mat = [[1,4],[2,3]]`
+- **Output:** `2`
+- **Explanation:** Painting value `4` at index `2` completes the first row and the second column.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [2,8,7,4,1,3,5,6,9], mat = [[3,2,5],[1,4,6],[8,7,9]]`
-- Output: `3`
-- Explanation: Painting value `4` completes the matrix's second column.
+- **Input:** `arr = [2,8,7,4,1,3,5,6,9], mat = [[3,2,5],[1,4,6],[8,7,9]]`
+- **Output:** `3`
+- **Explanation:** Painting value `4` completes the matrix's second column.

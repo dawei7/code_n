@@ -32,14 +32,14 @@ The dimension satisfies $2\le n\le1000$, and every grid value is between $0$ and
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `fruits = [[1, 2, 3, 4], [5, 6, 8, 7], [9, 10, 11, 12], [13, 14, 15, 16]]`
-- Output: `100`
-- Explanation: The children can use the main diagonal, a path through the strict upper triangle, and a path through the strict lower triangle, collecting ten distinct rooms.
+- **Input:** `fruits = [[1, 2, 3, 4], [5, 6, 8, 7], [9, 10, 11, 12], [13, 14, 15, 16]]`
+- **Output:** `100`
+- **Explanation:** The children can use the main diagonal, a path through the strict upper triangle, and a path through the strict lower triangle, collecting ten distinct rooms.
 
-**Example 2**
+#### Example 2
 
-- Input: `fruits = [[1, 1], [1, 1]]`
-- Output: `4`
-- Explanation: The three starting rooms and their shared destination account for all four rooms exactly once.
+- **Input:** `fruits = [[1, 1], [1, 1]]`
+- **Output:** `4`
+- **Explanation:** The three starting rooms and their shared destination account for all four rooms exactly once.

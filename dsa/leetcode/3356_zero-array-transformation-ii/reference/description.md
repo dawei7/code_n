@@ -14,61 +14,56 @@ Return the **minimum** possible **non-negative** value of `k`, such that after p
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,0,2], queries = [[0,2,1],[0,2,1],[1,1,3]]
+- **Input:** nums = [2,0,2], queries = [[0,2,1],[0,2,1],[1,1,3]]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - **For i = 0 (l = 0, r = 2, val = 1):**
 
-		<li>Decrement values at indices `[0, 1, 2]` by `[1, 0, 1]` respectively.
+		- Decrement values at indices `[0, 1, 2]` by `[1, 0, 1]` respectively.
 
 - The array will become `[1, 0, 1]`.
 
-	</li>
 - **For i = 1 (l = 0, r = 2, val = 1):**
 
-		<li>Decrement values at indices `[0, 1, 2]` by `[1, 0, 1]` respectively.
+		- Decrement values at indices `[0, 1, 2]` by `[1, 0, 1]` respectively.
 
 - The array will become `[0, 0, 0]`, which is a Zero Array. Therefore, the minimum value of `k` is 2.
 
-	</li>
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [4,3,2,1], queries = [[1,3,2],[0,2,1]]
+- **Input:** nums = [4,3,2,1], queries = [[1,3,2],[0,2,1]]
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
+- **Explanation:** 
 
 - **For i = 0 (l = 1, r = 3, val = 2):**
 
-		<li>Decrement values at indices `[1, 2, 3]` by `[2, 2, 1]` respectively.
+		- Decrement values at indices `[1, 2, 3]` by `[2, 2, 1]` respectively.
 
 - The array will become `[4, 1, 0, 0]`.
 
-	</li>
 - **For i = 1 (l = 0, r = 2, val = 1):**
 
-		<li>Decrement values at indices `[0, 1, 2]` by `[1, 1, 0]` respectively.
+		- Decrement values at indices `[0, 1, 2]` by `[1, 1, 0]` respectively.
 
 - The array will become `[3, 0, 0, 0]`, which is not a Zero Array.
-
-	</li>
-
-</div>
 
 ### 4. Constraints
 

@@ -16,39 +16,38 @@ Return the **modified** image after performing the flood fill.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `image`: Input parameter (`List[List[int]]`).
+- `sr`: Input parameter (`int`).
+- `sc`: Input parameter (`int`).
+- `color`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** image = [[1,1,1],[1,1,0],[1,0,1]], sr = 1, sc = 1, color = 2
+- **Input:** image = [[1,1,1],[1,1,0],[1,0,1]], sr = 1, sc = 1, color = 2
 
-**Output:** [[2,2,2],[2,2,0],[2,0,1]]
+- **Output:** [[2,2,2],[2,2,0],[2,0,1]]
 
-**Explanation:**
-
-![](images/flood1-grid.jpg)
+- **Explanation:** ![](images/flood1-grid.jpg)
 
 From the center of the image with position $(sr, sc) = (1, 1)$ (i.e., the red pixel), all pixels connected by a path of the same color as the starting pixel (i.e., the blue pixels) are colored with the new color.
 
 Note the bottom corner is **not** colored 2, because it is not horizontally or vertically connected to the starting pixel.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** image = [[0,0,0],[0,0,0]], sr = 0, sc = 0, color = 0
+- **Input:** image = [[0,0,0],[0,0,0]], sr = 0, sc = 0, color = 0
 
-**Output:** [[0,0,0],[0,0,0]]
+- **Output:** [[0,0,0],[0,0,0]]
 
-**Explanation:**
-
-The starting pixel is already colored with 0, which is the same as the target color. Therefore, no changes are made to the image.
-
-</div>
+- **Explanation:** The starting pixel is already colored with 0, which is the same as the target color. Therefore, no changes are made to the image.
 
 ### 4. Constraints
 

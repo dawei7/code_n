@@ -8,8 +8,13 @@ Return `true` if it is possible to achieve that and `false` otherwise.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Note
 
@@ -22,6 +27,7 @@ that for an array `arr`, `average(arr)` is the sum of all the elements of `arr` 
 - **Input:** `nums = [1,2,3,4,5,6,7,8]`
 - **Output:** `true`
 - **Explanation:** We can split the array into [1,4,5,8] and [2,3,6,7], and both of them have an average of 4.5.
+
 #### Example 2
 
 - **Input:** `nums = [3,1]`

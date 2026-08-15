@@ -30,36 +30,27 @@ Let $G$ be the total number of characters across all compatible merged candidate
 
 #### Example 1
 
-<div class="example-block">
-**Input:** phrases = ["writing code","code rocks"]
+- **Input:** phrases = ["writing code","code rocks"]
 
-**Output:** ["writing code rocks"]
+- **Output:** ["writing code rocks"]
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** phrases = ["mission statement","a quick bite to eat","a chip off the old block","chocolate bar","mission impossible","a man on a mission","block party","eat my words","bar of soap"]
+- **Input:** phrases = ["mission statement","a quick bite to eat","a chip off the old block","chocolate bar","mission impossible","a man on a mission","block party","eat my words","bar of soap"]
 
-**Output:** ["a chip off the old block party","a man on a mission impossible","a man on a mission statement","a quick bite to eat my words","chocolate bar of soap"]
+- **Output:** ["a chip off the old block party","a man on a mission impossible","a man on a mission statement","a quick bite to eat my words","chocolate bar of soap"]
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** phrases = ["a","b","a"]
+- **Input:** phrases = ["a","b","a"]
 
-**Output:** ["a"]
+- **Output:** ["a"]
 
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** phrases = ["ab ba","ba ab","ab ba"]
+- **Input:** phrases = ["ab ba","ba ab","ab ba"]
 
-**Output:** ["ab ba ab","ba ab ba"]
-
-</div>
+- **Output:** ["ab ba ab","ba ab ba"]
 
 ### 4. Constraints
 

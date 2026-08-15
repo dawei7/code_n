@@ -12,8 +12,14 @@ Return *an integer denoting the maximum elegance of a subsequence of *`items`* w
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `items`: Input parameter (`List[List[int]]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -29,6 +35,7 @@ A subsequence of an array is a new array generated from the original array by de
 We can select items[0] = [3,2] and items[2] = [10,1].
 The total profit in this subsequence is 3 + 10 = 13, and the subsequence contains 2 distinct categories [2,1].
 Hence, the elegance is 13 + $2^{2}$ = 17, and we can show that it is the maximum achievable elegance.
+
 #### Example 2
 
 - **Input:** $items = [[3,1],[3,1],[2,2],[5,3]], k = 3$
@@ -37,6 +44,7 @@ Hence, the elegance is 13 + $2^{2}$ = 17, and we can show that it is the maximum
 We can select items[0] = [3,1], items[2] = [2,2], and items[3] = [5,3].
 The total profit in this subsequence is 3 + 2 + 5 = 10, and the subsequence contains 3 distinct categories [1,2,3].
 Hence, the elegance is 10 + $3^{2}$ = 19, and we can show that it is the maximum achievable elegance.
+
 #### Example 3
 
 - **Input:** $items = [[1,1],[2,1],[3,1]], k = 3$

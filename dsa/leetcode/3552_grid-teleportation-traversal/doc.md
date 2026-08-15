@@ -34,16 +34,16 @@ Return the minimum number of cost-one adjacent moves needed to reach `(m - 1,n -
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `matrix = ["A..",".A.","..."]`
-- Output: `2`
-- Explanation: Teleport from `(0,0)` to `(1,1)` for free, then make two adjacent moves to `(2,2)`.
+- **Input:** `matrix = ["A..",".A.","..."]`
+- **Output:** `2`
+- **Explanation:** Teleport from `(0,0)` to `(1,1)` for free, then make two adjacent moves to `(2,2)`.
 
-**Example 2**
+#### Example 2
 
-- Input: `matrix = [".#...",".#.#.",".#.#.","...#."]`
-- Output: `13`
-- Explanation: There are no portals, so the shortest valid route around the obstacles uses thirteen moves.
+- **Input:** `matrix = [".#...",".#.#.",".#.#.","...#."]`
+- **Output:** `13`
+- **Explanation:** There are no portals, so the shortest valid route around the obstacles uses thirteen moves.
 
 ---

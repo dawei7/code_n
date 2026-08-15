@@ -6,8 +6,13 @@ Return *a **0-indexed **integer array *`ans`* of size *`2`* where *$\text{ans}[0
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -16,6 +21,7 @@ Return *a **0-indexed **integer array *`ans`* of size *`2`* where *$\text{ans}[0
 - **Input:** `grid = [[1,3],[2,2]]`
 - **Output:** `[2,4]`
 - **Explanation:** Number 2 is repeated and number 4 is missing so the answer is [2,4].
+
 #### Example 2
 
 - **Input:** `grid = [[9,1,7],[8,9,2],[3,4,6]]`

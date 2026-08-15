@@ -30,20 +30,20 @@ Return the number of non-empty index subsets whose element product is square-fre
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3, 4, 4, 5]`
-- Output: `3`
-- Explanation: The valid index subsets produce `[3]`, `[5]`, and `[3, 5]`. Each `4` already contains the square factor $2^2$.
+- **Input:** `nums = [3, 4, 4, 5]`
+- **Output:** `3`
+- **Explanation:** The valid index subsets produce `[3]`, `[5]`, and `[3, 5]`. Each `4` already contains the square factor $2^2$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1]`
-- Output: `1`
-- Explanation: The single selected value has product $1$, which is square-free.
+- **Input:** `nums = [1]`
+- **Output:** `1`
+- **Explanation:** The single selected value has product $1$, which is square-free.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [2, 3, 5]`
-- Output: `7`
-- Explanation: The values have distinct prime factors, so every non-empty subset is valid.
+- **Input:** `nums = [2, 3, 5]`
+- **Output:** `7`
+- **Explanation:** The values have distinct prime factors, so every non-empty subset is valid.

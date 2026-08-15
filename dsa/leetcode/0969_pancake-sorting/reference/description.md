@@ -14,8 +14,13 @@ Return *an array of the *`k`*-values corresponding to a sequence of pancake flip
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -23,13 +28,13 @@ Return *an array of the *`k`*-values corresponding to a sequence of pancake flip
 
 - **Input:** `arr = [3,2,4,1]`
 - **Output:** `[4,2,4,3]`
-- **Explanation:**
-We perform 4 pancake flips, with k values 4, 2, 4, and 3.
+- **Explanation:** We perform 4 pancake flips, with k values 4, 2, 4, and 3.
 Starting state: arr = [3, 2, 4, 1]
 After 1st flip (k = 4): arr = [<u>1</u>, <u>4</u>, <u>2</u>, <u>3</u>]
 After 2nd flip (k = 2): arr = [<u>4</u>, <u>1</u>, 2, 3]
 After 3rd flip (k = 4): arr = [<u>3</u>, <u>2</u>, <u>1</u>, <u>4</u>]
 After 4th flip (k = 3): arr = [<u>1</u>, <u>2</u>, <u>3</u>, 4], which is sorted.
+
 #### Example 2
 
 - **Input:** `arr = [1,2,3]`

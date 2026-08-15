@@ -36,20 +36,20 @@ Let $F=\lvert\texttt{features}\rvert$, let $W$ be the total number of response-w
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `features = ["cooler","lock","touch"]`, with responses `"i like cooler cooler"`, `"lock touch cool"`, and `"locker like touch"`.
-- Output: `["touch","cooler","lock"]`
-- Explanation: `"touch"` appears in two responses. `"cooler"` and `"lock"` each appear in one, so their original order breaks the tie.
+- **Input:** `features = ["cooler","lock","touch"]`, with responses `"i like cooler cooler"`, `"lock touch cool"`, and `"locker like touch"`.
+- **Output:** `["touch","cooler","lock"]`
+- **Explanation:** `"touch"` appears in two responses. `"cooler"` and `"lock"` each appear in one, so their original order breaks the tie.
 
-**Example 2**
+#### Example 2
 
-- Input: `features = ["a","aa","b","c"]`, with responses `"a"`, `"a aa"`, `"a a a a a"`, and `"b a"`.
-- Output: `["a","aa","b","c"]`
-- Explanation: Repeated `"a"` words in one response count once; `"aa"` and `"b"` tie and retain their input order.
+- **Input:** `features = ["a","aa","b","c"]`, with responses `"a"`, `"a aa"`, `"a a a a a"`, and `"b a"`.
+- **Output:** `["a","aa","b","c"]`
+- **Explanation:** Repeated `"a"` words in one response count once; `"aa"` and `"b"` tie and retain their input order.
 
-**Example 3**
+#### Example 3
 
-- Input: `features = ["z","a","m"]`, with responses that mention none of them.
-- Output: `["z","a","m"]`
-- Explanation: All popularity counts are zero, so the original order is unchanged.
+- **Input:** `features = ["z","a","m"]`, with responses that mention none of them.
+- **Output:** `["z","a","m"]`
+- **Explanation:** All popularity counts are zero, so the original order is unchanged.

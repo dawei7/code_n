@@ -6,8 +6,14 @@ Given a sequence of `words` written in the alien language, and the `order` of th
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+- `order`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -16,11 +22,13 @@ Given a sequence of `words` written in the alien language, and the `order` of th
 - **Input:** $words = ["hello","leetcode"], order = "hlabcdefgijkmnopqrstuvwxyz"$
 - **Output:** `true`
 - **Explanation:** As 'h' comes before 'l' in this language, then the sequence is sorted.
+
 #### Example 2
 
 - **Input:** $words = ["word","world","row"], order = "worldabcefghijkmnpqstuvxyz"$
 - **Output:** `false`
 - **Explanation:** As 'd' comes after 'l' in this language, then words[0] > words[1], hence the sequence is unsorted.
+
 #### Example 3
 
 - **Input:** $words = ["apple","app"], order = "abcdefghijklmnopqrstuvwxyz"$

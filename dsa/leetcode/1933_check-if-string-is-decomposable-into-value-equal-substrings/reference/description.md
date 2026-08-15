@@ -23,11 +23,13 @@ A **substring** is a contiguous sequence of characters in a string.
 - **Input:** `s = "000111000"`
 - **Output:** `false`
 - **Explanation:** s cannot be decomposed according to the rules because ["000", "111", "000"] does not have a substring of length 2.
+
 #### Example 2
 
 - **Input:** `s = "00011111222"`
 - **Output:** `true`
 - **Explanation:** s can be decomposed into ["000", "111", "11", "222"].
+
 #### Example 3
 
 - **Input:** `s = "011100022233"`

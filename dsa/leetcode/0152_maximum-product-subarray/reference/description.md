@@ -25,6 +25,7 @@ that the product of an array with a single element is the value of that element.
 - **Input:** `nums = [2,3,-2,4]`
 - **Output:** `6`
 - **Explanation:** [2,3] has the largest product 6.
+
 #### Example 2
 
 - **Input:** `nums = [-2,0,-1]`

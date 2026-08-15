@@ -8,8 +8,13 @@ Answers within $10^{-5}$ of the actual answer will be accepted.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `squares`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `float`.
 
 ### 3. Note
 
@@ -19,32 +24,23 @@ Answers within $10^{-5}$ of the actual answer will be accepted.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** squares = [[0,0,1],[2,2,1]]
+- **Input:** squares = [[0,0,1],[2,2,1]]
 
-**Output:** 1.00000
+- **Output:** 1.00000
 
-**Explanation:**
-
-![](images/4065example1drawio.png)
+- **Explanation:** ![](images/4065example1drawio.png)
 
 Any horizontal line between $y = 1$ and $y = 2$ results in an equal split, with 1 square unit above and 1 square unit below. The minimum y-value is 1.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** squares = [[0,0,2],[1,1,1]]
+- **Input:** squares = [[0,0,2],[1,1,1]]
 
-**Output:** 1.00000
+- **Output:** 1.00000
 
-**Explanation:**
-
-![](images/4065example2drawio.png)
+- **Explanation:** ![](images/4065example2drawio.png)
 
 Since the blue square overlaps with the red square, it will not be counted again. Thus, the line $y = 1$ splits the squares into two equal parts.
-
-</div>
 
 ### 5. Constraints
 

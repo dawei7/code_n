@@ -8,8 +8,14 @@ Return *the **minimum** **maximum** difference among all *`p` *pairs.* We define
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `p`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,6 +25,7 @@ Return *the **minimum** **maximum** difference among all *`p` *pairs.* We define
 - **Output:** `1`
 - **Explanation:** The first pair is formed from the indices 1 and 4, and the second pair is formed from the indices 2 and 5.
 The maximum difference is max(|nums[1] - nums[4]|, |nums[2] - nums[5]|) = max(0, 1) = 1. Therefore, we return 1.
+
 #### Example 2
 
 - **Input:** `nums = [4,2,1,2], p = 1`

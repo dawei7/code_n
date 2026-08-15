@@ -28,14 +28,14 @@ Return a permutation $(a_0,a_1,\ldots,a_{n-1})$ of the integers from $1$ through
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 4`
-- Output: `[2,1,4,3]`
+- **Input:** `n = 4`
+- **Output:** `[2,1,4,3]`
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 5`
-- Output: `[3,1,2,5,4]`
+- **Input:** `n = 5`
+- **Output:** `[3,1,2,5,4]`
 
 Other permutations satisfying the same conditions are also valid.

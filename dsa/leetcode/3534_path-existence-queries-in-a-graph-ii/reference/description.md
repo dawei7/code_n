@@ -12,8 +12,16 @@ Return an array `answer`, where $\text{answer}[i]$ is the result of the $$i^{\te
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `nums`: Input parameter (`List[int]`).
+- `maxDiff`: Input parameter (`int`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -23,14 +31,11 @@ The edges between the nodes are unweighted.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 5, nums = [1,8,3,4,2], maxDiff = 3, queries = [[0,3],[2,4]]
+- **Input:** n = 5, nums = [1,8,3,4,2], maxDiff = 3, queries = [[0,3],[2,4]]
 
-**Output:** [1,1]
+- **Output:** [1,1]
 
-**Explanation:**
-
-The resulting graph is:
+- **Explanation:** The resulting graph is:
 
 ![](images/4149example1drawio.png)
 
@@ -56,21 +61,15 @@ The resulting graph is:
 
 Thus, the output is `[1, 1]`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 5, nums = [5,3,1,9,10], maxDiff = 2, queries = [[0,1],[0,2],[2,3],[4,3]]
+- **Input:** n = 5, nums = [5,3,1,9,10], maxDiff = 2, queries = [[0,1],[0,2],[2,3],[4,3]]
 
-**Output:** [1,2,-1,1]
+- **Output:** [1,2,-1,1]
 
-**Explanation:**
-
-The resulting graph is:
+- **Explanation:** The resulting graph is:
 
 ![](images/4149example2drawio.png)
-
-</div>
 
 <table>
 	<tbody>
@@ -103,16 +102,14 @@ The resulting graph is:
 </table>
 
 Thus, the output is `[1, 2, -1, 1]`.
+
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 3, nums = [3,6,1], maxDiff = 1, queries = [[0,0],[0,1],[1,2]]
+- **Input:** n = 3, nums = [3,6,1], maxDiff = 1, queries = [[0,0],[0,1],[1,2]]
 
-**Output:** [0,-1,-1]
+- **Output:** [0,-1,-1]
 
-**Explanation:**
-
-There are no edges between any two nodes because:
+- **Explanation:** There are no edges between any two nodes because:
 
 - Nodes 0 and 1: $|\text{nums}[0] - \text{nums}[1]| = |3 - 6| = 3 > 1$
 
@@ -121,8 +118,6 @@ There are no edges between any two nodes because:
 - Nodes 1 and 2: $|\text{nums}[1] - \text{nums}[2]| = |6 - 1| = 5 > 1$
 
 Thus, no node can reach any other node, and the output is `[0, -1, -1]`.
-
-</div>
 
 ### 5. Constraints
 

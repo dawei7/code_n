@@ -39,17 +39,17 @@ Return all $A$ cell names in column-major, then row-major, order.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "K1:L2"`
-- Output: `["K1","K2","L1","L2"]`
+- **Input:** `s = "K1:L2"`
+- **Output:** `["K1","K2","L1","L2"]`
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "A1:F1"`
-- Output: `["A1","B1","C1","D1","E1","F1"]`
+- **Input:** `s = "A1:F1"`
+- **Output:** `["A1","B1","C1","D1","E1","F1"]`
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "Z9:Z9"`
-- Output: `["Z9"]`
+- **Input:** `s = "Z9:Z9"`
+- **Output:** `["Z9"]`

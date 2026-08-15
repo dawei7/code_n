@@ -42,13 +42,13 @@ Let $r$ and $c$ denote the numbers of row and column conditions.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `k = 3, rowConditions = [[1,2],[3,2]], colConditions = [[2,1],[3,2]]`
+- **Input:** `k = 3, rowConditions = [[1,2],[3,2]], colConditions = [[2,1],[3,2]]`
 - One valid output: `[[3,0,0],[0,0,1],[0,2,0]]`
 
-**Example 2**
+#### Example 2
 
-- Input: `k = 3, rowConditions = [[1,2],[2,3],[3,1],[2,3]], colConditions = [[2,1]]`
-- Output: `[]`
-- Explanation: The row conditions contain a directed cycle.
+- **Input:** `k = 3, rowConditions = [[1,2],[2,3],[3,1],[2,3]], colConditions = [[2,1]]`
+- **Output:** `[]`
+- **Explanation:** The row conditions contain a directed cycle.

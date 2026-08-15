@@ -33,19 +33,19 @@ Choose a subset whose value sum is as large as possible. The subset may contain 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `values = [5, 4, 3, 2, 1]`, `labels = [1, 1, 2, 2, 3]`, `numWanted = 3`, `useLimit = 1`
-- Output: `9`
+- **Input:** `values = [5, 4, 3, 2, 1]`, `labels = [1, 1, 2, 2, 3]`, `numWanted = 3`, `useLimit = 1`
+- **Output:** `9`
 
 Select values 5, 3, and 1, one from each label.
 
-**Example 2**
+#### Example 2
 
-- Input: `values = [5, 4, 3, 2, 1]`, `labels = [1, 3, 3, 3, 2]`, `numWanted = 3`, `useLimit = 2`
-- Output: `12`
+- **Input:** `values = [5, 4, 3, 2, 1]`, `labels = [1, 3, 3, 3, 2]`, `numWanted = 3`, `useLimit = 2`
+- **Output:** `12`
 
-**Example 3**
+#### Example 3
 
-- Input: `values = [9, 8, 8, 7, 6]`, `labels = [0, 0, 0, 1, 1]`, `numWanted = 3`, `useLimit = 1`
-- Output: `16`
+- **Input:** `values = [9, 8, 8, 7, 6]`, `labels = [0, 0, 0, 1, 1]`, `numWanted = 3`, `useLimit = 1`
+- **Output:** `16`

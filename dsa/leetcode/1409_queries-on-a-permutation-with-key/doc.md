@@ -31,17 +31,17 @@ After recording the index, remove that occurrence from its current position and 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `queries = [3,1,2,1], m = 5`
-- Output: `[2,1,2,1]`
+- **Input:** `queries = [3,1,2,1], m = 5`
+- **Output:** `[2,1,2,1]`
 
-**Example 2**
+#### Example 2
 
-- Input: `queries = [4,1,2,2], m = 4`
-- Output: `[3,1,2,0]`
+- **Input:** `queries = [4,1,2,2], m = 4`
+- **Output:** `[3,1,2,0]`
 
-**Example 3**
+#### Example 3
 
-- Input: `queries = [7,5,5,8,3], m = 8`
-- Output: `[6,5,0,7,5]`
+- **Input:** `queries = [7,5,5,8,3], m = 8`
+- **Output:** `[6,5,0,7,5]`

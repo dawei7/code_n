@@ -12,21 +12,24 @@ Return the **minimum** cost to paint the houses such that they look **beautiful*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `cost`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 4, cost = [[3,5,7],[6,2,9],[4,8,1],[7,3,5]]
+- **Input:** n = 4, cost = [[3,5,7],[6,2,9],[4,8,1],[7,3,5]]
 
-**Output:** 9
+- **Output:** 9
 
-**Explanation:**
-
-The optimal painting sequence is `[1, 2, 3, 2]` with corresponding costs `[3, 2, 1, 3]`. This satisfies the following conditions:
+- **Explanation:** The optimal painting sequence is `[1, 2, 3, 2]` with corresponding costs `[3, 2, 1, 3]`. This satisfies the following conditions:
 
 - No adjacent houses have the same color.
 
@@ -36,17 +39,13 @@ The optimal painting sequence is `[1, 2, 3, 2]` with corresponding costs `[3, 2,
 
 The minimum cost to paint the houses so that they look beautiful is $3 + 2 + 1 + 3 = 9$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 6, cost = [[2,4,6],[5,3,8],[7,1,9],[4,6,2],[3,5,7],[8,2,4]]
+- **Input:** n = 6, cost = [[2,4,6],[5,3,8],[7,1,9],[4,6,2],[3,5,7],[8,2,4]]
 
-**Output:** 18
+- **Output:** 18
 
-**Explanation:**
-
-The optimal painting sequence is `[1, 3, 2, 3, 1, 2]` with corresponding costs `[2, 8, 1, 2, 3, 2]`. This satisfies the following conditions:
+- **Explanation:** The optimal painting sequence is `[1, 3, 2, 3, 1, 2]` with corresponding costs `[2, 8, 1, 2, 3, 2]`. This satisfies the following conditions:
 
 - No adjacent houses have the same color.
 
@@ -57,8 +56,6 @@ The optimal painting sequence is `[1, 3, 2, 3, 1, 2]` with corresponding costs `
 - Houses at positions 2 and 3 (equidistant from the ends) are not painted the same color $(2 \neq 3)$.
 
 The minimum cost to paint the houses so that they look beautiful is $2 + 8 + 1 + 2 + 3 + 2 = 18$.
-
-</div>
 
 ### 4. Constraints
 

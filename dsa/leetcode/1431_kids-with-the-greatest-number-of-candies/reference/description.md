@@ -8,8 +8,14 @@ Note that **multiple** kids can have the **greatest** number of candies.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `candies`: Input parameter (`List[int]`).
+- `extraCandies`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[bool]`.
 
 ### 3. Examples
 
@@ -23,12 +29,14 @@ Note that **multiple** kids can have the **greatest** number of candies.
 - Kid 3, they will have 5 + 3 = 8 candies, which is the greatest among the kids.
 - Kid 4, they will have 1 + 3 = 4 candies, which is not the greatest among the kids.
 - Kid 5, they will have 3 + 3 = 6 candies, which is the greatest among the kids.
+
 #### Example 2
 
 - **Input:** $candies = [4,2,1,1,2], extraCandies = 1$
 - **Output:** `[true,false,false,false,false]`
 - **Explanation:** There is only 1 extra candy.
 Kid 1 will always have the greatest number of candies, even if a different kid is given the extra candy.
+
 #### Example 3
 
 - **Input:** $candies = [12,1,12], extraCandies = 10$

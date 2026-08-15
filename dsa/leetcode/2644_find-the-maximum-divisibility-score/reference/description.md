@@ -8,21 +8,24 @@ Return the integer $\text{divisors}[i]$ with the **maximum** divisibility score.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `divisors`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,9,15,50], divisors = [5,3,7,2]
+- **Input:** nums = [2,9,15,50], divisors = [5,3,7,2]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The divisibility score of $\text{divisors}[0]$ is 2 since $\text{nums}[2]$ and $\text{nums}[3]$ are divisible by 5.
+- **Explanation:** The divisibility score of $\text{divisors}[0]$ is 2 since $\text{nums}[2]$ and $\text{nums}[3]$ are divisible by 5.
 
 The divisibility score of $\text{divisors}[1]$ is 2 since $\text{nums}[1]$ and $\text{nums}[2]$ are divisible by 3.
 
@@ -32,39 +35,29 @@ The divisibility score of $\text{divisors}[3]$ is 2 since $\text{nums}[0]$ and $
 
 As $\text{divisors}[0]$, $\text{divisors}[1]$, and $\text{divisors}[3]$ have the same divisibility score, we return the smaller one which is $\text{divisors}[3]$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [4,7,9,3,9], divisors = [5,2,3]
+- **Input:** nums = [4,7,9,3,9], divisors = [5,2,3]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-The divisibility score of $\text{divisors}[0]$ is 0 since none of numbers in `nums` is divisible by 5.
+- **Explanation:** The divisibility score of $\text{divisors}[0]$ is 0 since none of numbers in `nums` is divisible by 5.
 
 The divisibility score of $\text{divisors}[1]$ is 1 since only $\text{nums}[0]$ is divisible by 2.
 
 The divisibility score of $\text{divisors}[2]$ is 3 since $\text{nums}[2]$, $\text{nums}[3]$ and $\text{nums}[4]$ are divisible by 3.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [20,14,21,10], divisors = [10,16,20]
+- **Input:** nums = [20,14,21,10], divisors = [10,16,20]
 
-**Output:** 10
+- **Output:** 10
 
-**Explanation:**
-
-The divisibility score of $\text{divisors}[0]$ is 2 since $\text{nums}[0]$ and $\text{nums}[3]$ are divisible by 10.
+- **Explanation:** The divisibility score of $\text{divisors}[0]$ is 2 since $\text{nums}[0]$ and $\text{nums}[3]$ are divisible by 10.
 
 The divisibility score of $\text{divisors}[1]$ is 0 since none of the numbers in `nums` is divisible by 16.
 
 The divisibility score of $\text{divisors}[2]$ is 1 since $\text{nums}[0]$ is divisible by 20.
-
-</div>
 
 ### 4. Constraints
 

@@ -12,8 +12,13 @@ A **subsequence** of a string is a new string generated from the original string
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,11 +30,13 @@ A **subsequence** of a string is a new string generated from the original string
 - "aba" (subsequence of "<u>a</u>a<u>b</u>c<u>a</u>")
 - "aaa" (subsequence of "<u>aa</u>bc<u>a</u>")
 - "aca" (subsequence of "<u>a</u>ab<u>ca</u>")
+
 #### Example 2
 
 - **Input:** `s = "adc"`
 - **Output:** `0`
 - **Explanation:** There are no palindromic subsequences of length 3 in "adc".
+
 #### Example 3
 
 - **Input:** `s = "bbcbaba"`

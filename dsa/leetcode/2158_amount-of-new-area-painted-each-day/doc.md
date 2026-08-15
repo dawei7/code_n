@@ -39,21 +39,21 @@ $i$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `paint = [[1, 4], [4, 7], [5, 8]]`
-- Output: `[3, 3, 1]`
-- Explanation: The first two days add disjoint length-three areas; on the last
+- **Input:** `paint = [[1, 4], [4, 7], [5, 8]]`
+- **Output:** `[3, 3, 1]`
+- **Explanation:** The first two days add disjoint length-three areas; on the last
   day only `[7, 8)` is new.
 
-**Example 2**
+#### Example 2
 
-- Input: `paint = [[1, 4], [5, 8], [4, 7]]`
-- Output: `[3, 3, 1]`
-- Explanation: On day two, `[5, 7)` is already covered, leaving only `[4, 5)`.
+- **Input:** `paint = [[1, 4], [5, 8], [4, 7]]`
+- **Output:** `[3, 3, 1]`
+- **Explanation:** On day two, `[5, 7)` is already covered, leaving only `[4, 5)`.
 
-**Example 3**
+#### Example 3
 
-- Input: `paint = [[1, 5], [2, 4]]`
-- Output: `[4, 0]`
-- Explanation: The second interval lies entirely inside the first.
+- **Input:** `paint = [[1, 5], [2, 4]]`
+- **Output:** `[4, 0]`
+- **Explanation:** The second interval lies entirely inside the first.

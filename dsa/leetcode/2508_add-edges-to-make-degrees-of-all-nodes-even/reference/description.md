@@ -10,8 +10,14 @@ The degree of a node is the number of edges connected to it.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -23,6 +29,7 @@ The degree of a node is the number of edges connected to it.
 - **Output:** `true`
 - **Explanation:** The above diagram shows a valid way of adding an edge.
 Every node in the resulting graph is connected to an even number of edges.
+
 #### Example 2
 
 ![](images/aagraphdrawio.png)
@@ -30,6 +37,7 @@ Every node in the resulting graph is connected to an even number of edges.
 - **Input:** $n = 4, edges = [[1,2],[3,4]]$
 - **Output:** `true`
 - **Explanation:** The above diagram shows a valid way of adding two edges.
+
 #### Example 3
 
 ![](images/aaagraphdrawio.png)

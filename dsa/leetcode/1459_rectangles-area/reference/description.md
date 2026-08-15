@@ -53,7 +53,7 @@ Order the rows by `area DESC, p1 ASC, p2 ASC`.
 ![](images/rect.png)
 
 ```
-**Input:**
+- **Input:** 
 Points table:
 +----------+-------------+-------------+
 | id       | x_value     | y_value     |
@@ -62,15 +62,14 @@ Points table:
 | 2        | 4           | 8           |
 | 3        | 2           | 10          |
 +----------+-------------+-------------+
-**Output:**
+- **Output:** 
 +----------+-------------+-------------+
 | p1       | p2          | area        |
 +----------+-------------+-------------+
 | 2        | 3           | 4           |
 | 1        | 2           | 2           |
 +----------+-------------+-------------+
-**Explanation:**
-The rectangle formed by p1 = 2 and p2 = 3 has an area equal to |4-2| * |8-10| = 4.
+- **Explanation:** The rectangle formed by p1 = 2 and p2 = 3 has an area equal to |4-2| * |8-10| = 4.
 The rectangle formed by p1 = 1 and p2 = 2 has an area equal to |2-4| * |7-8| = 2.
 Note that the rectangle formed by p1 = 1 and p2 = 3 is invalid because the area is 0.
 ```

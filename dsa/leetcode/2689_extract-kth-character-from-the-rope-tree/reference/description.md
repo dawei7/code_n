@@ -32,6 +32,7 @@ If `s` and `p` are two strings, `concat(s, p)` is a string obtained by concatena
 You can see that S[root] = concat(concat("g", "rta"), "abcpoe") = "grtaabcpoe". So S[root][5], which represents 6th character of it, is equal to "b".
 
 ![](images/example1.png)
+
 #### Example 2
 
 - **Input:** `root = [12,6,6,"abc","efg","hij","klm"], k = 3`
@@ -40,6 +41,7 @@ You can see that S[root] = concat(concat("g", "rta"), "abcpoe") = "grtaabcpoe". 
 You can see that S[root] = concat(concat("abc", "efg"), concat("hij", "klm")) = "abcefghijklm". So S[root][2], which represents the 3rd character of it, is equal to "c".
 
 ![](images/example2.png)
+
 #### Example 3
 
 - **Input:** `root = ["ropetree"], k = 8`

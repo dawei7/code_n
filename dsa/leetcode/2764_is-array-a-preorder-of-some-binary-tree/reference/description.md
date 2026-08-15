@@ -24,6 +24,7 @@ the **preorder** traversal of a tree is a recursive way to traverse a tree in wh
 We can show that this is the preorder traversal of the tree, first we visit node 0, then we do the preorder traversal of the right child which is [1], then we do the preorder traversal of the left child which is [2,3,4].
 
 ![](images/1.png)
+
 #### Example 2
 
 - **Input:** $nodes = [[0,-1],[1,0],[2,0],[3,1],[4,1]]$

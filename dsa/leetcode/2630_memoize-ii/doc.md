@@ -36,20 +36,20 @@ Return a function that produces the same result as `fn`. It computes and stores 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `fn = (a, b) => a + b`, calls `(2, 2)`, `(2, 2)`, `(1, 2)`
-- Output: values `4`, `4`, `3`; underlying call counts `1`, `1`, `2`
-- Explanation: The second tuple is identical to the first, while `(1, 2)` creates a new cache entry.
+- **Input:** `fn = (a, b) => a + b`, calls `(2, 2)`, `(2, 2)`, `(1, 2)`
+- **Output:** values `4`, `4`, `3`; underlying call counts `1`, `1`, `2`
+- **Explanation:** The second tuple is identical to the first, while `(1, 2)` creates a new cache entry.
 
-**Example 2**
+#### Example 2
 
-- Input: Each call passes newly created objects with the same properties.
-- Output: The underlying call counts are `1`, `2`, `3`.
-- Explanation: Structural similarity does not make separate object references strictly equal.
+- **Input:** Each call passes newly created objects with the same properties.
+- **Output:** The underlying call counts are `1`, `2`, `3`.
+- **Explanation:** Structural similarity does not make separate object references strictly equal.
 
-**Example 3**
+#### Example 3
 
-- Input: Each call reuses the same two object references.
-- Output: The underlying call counts are `1`, `1`, `1`.
-- Explanation: Every argument position contains the same reference, so all three calls share one cached result.
+- **Input:** Each call reuses the same two object references.
+- **Output:** The underlying call counts are `1`, `1`, `1`.
+- **Explanation:** Every argument position contains the same reference, so all three calls share one cached result.

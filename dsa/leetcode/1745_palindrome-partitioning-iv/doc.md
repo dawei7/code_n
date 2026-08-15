@@ -30,20 +30,20 @@ The characters must remain in their original order, every character must belong 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abcbdd"`
-- Output: `true`
-- Explanation: `"a"`, `"bcb"`, and `"dd"` are all palindromes.
+- **Input:** `s = "abcbdd"`
+- **Output:** `true`
+- **Explanation:** `"a"`, `"bcb"`, and `"dd"` are all palindromes.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "bcbddxy"`
-- Output: `false`
-- Explanation: No placement of two cuts makes all three resulting pieces palindromic.
+- **Input:** `s = "bcbddxy"`
+- **Output:** `false`
+- **Explanation:** No placement of two cuts makes all three resulting pieces palindromic.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "racecarannakayak"`
-- Output: `true`
-- Explanation: The string splits as `"racecar"`, `"anna"`, and `"kayak"`.
+- **Input:** `s = "racecarannakayak"`
+- **Output:** `true`
+- **Explanation:** The string splits as `"racecar"`, `"anna"`, and `"kayak"`.

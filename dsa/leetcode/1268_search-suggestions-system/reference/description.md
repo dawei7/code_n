@@ -8,8 +8,14 @@ Return *a list of lists of the suggested products after each character of *`sear
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `products`: Input parameter (`List[str]`).
+- `searchWord`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `List[List[str]]`.
 
 ### 3. Examples
 
@@ -20,6 +26,7 @@ Return *a list of lists of the suggested products after each character of *`sear
 - **Explanation:** products sorted lexicographically = ["mobile","moneypot","monitor","mouse","mousepad"].
 After typing m and mo all products match and we show user ["mobile","moneypot","monitor"].
 After typing mou, mous and mouse the system suggests ["mouse","mousepad"].
+
 #### Example 2
 
 - **Input:** $products = ["havana"], searchWord = "havana"$

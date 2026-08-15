@@ -14,8 +14,13 @@ Return *the minimum number of minutes that must elapse until no cell has a fresh
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,11 +30,13 @@ Return *the minimum number of minutes that must elapse until no cell has a fresh
 
 - **Input:** `grid = [[2,1,1],[1,1,0],[0,1,1]]`
 - **Output:** `4`
+
 #### Example 2
 
 - **Input:** `grid = [[2,1,1],[0,1,1],[1,0,1]]`
 - **Output:** `-1`
 - **Explanation:** The orange in the bottom left corner (row 2, column 0) is never rotten, because rotting only happens 4-directionally.
+
 #### Example 3
 
 - **Input:** `grid = [[0,2]]`

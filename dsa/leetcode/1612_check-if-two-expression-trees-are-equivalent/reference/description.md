@@ -23,6 +23,7 @@ Return `true` if `root1` and `root2` represent equivalent addition expressions (
 
 - **Input:** $root1 = [x], root2 = [x]$
 - **Output:** `true`
+
 #### Example 2
 
 **
@@ -34,6 +35,7 @@ Return `true` if `root1` and `root2` represent equivalent addition expressions (
 - **Input:** $root1 = [+,a,+,null,null,b,c], root2 = [+,+,a,b,c]$
 - **Output:** `true`
 **Explanation****:** a + (b + c) == (b + c) + a
+
 #### Example 3
 
 **

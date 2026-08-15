@@ -12,8 +12,14 @@ Return *the team that will be the **champion** of the tournament if there is a *
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -30,6 +36,7 @@ Return *the team that will be the **champion** of the tournament if there is a *
 - **Input:** $n = 3, edges = [[0,1],[1,2]]$
 - **Output:** `0`
 - **Explanation:** Team 1 is weaker than team 0. Team 2 is weaker than team 1. So the champion is team 0.
+
 #### Example 2
 
 ![](images/graph-4.png)

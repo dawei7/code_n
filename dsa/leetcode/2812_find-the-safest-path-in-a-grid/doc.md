@@ -32,20 +32,20 @@ Return the maximum possible minimum Manhattan distance from any cell of a start-
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[1,0,0],[0,0,0],[0,0,1]]`
-- Output: `0`
-- Explanation: Both endpoints contain thieves, so every path has safeness zero.
+- **Input:** `grid = [[1,0,0],[0,0,0],[0,0,1]]`
+- **Output:** `0`
+- **Explanation:** Both endpoints contain thieves, so every path has safeness zero.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[0,0,1],[0,0,0],[0,0,0]]`
-- Output: `2`
-- Explanation: A path along the left and bottom sides stays at least two Manhattan steps from the thief.
+- **Input:** `grid = [[0,0,1],[0,0,0],[0,0,0]]`
+- **Output:** `2`
+- **Explanation:** A path along the left and bottom sides stays at least two Manhattan steps from the thief.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[0,0,0,1],[0,0,0,0],[0,0,0,0],[1,0,0,0]]`
-- Output: `2`
-- Explanation: A route through the middle keeps distance two from both thieves, and no route can maintain a larger minimum.
+- **Input:** `grid = [[0,0,0,1],[0,0,0,0],[0,0,0,0],[1,0,0,0]]`
+- **Output:** `2`
+- **Explanation:** A route through the middle keeps distance two from both thieves, and no route can maintain a larger minimum.

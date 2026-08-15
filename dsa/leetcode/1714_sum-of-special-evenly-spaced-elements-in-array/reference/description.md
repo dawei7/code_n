@@ -20,6 +20,7 @@ Return *an array *`answer`* where *$\text{answer.length} = \text{queries.length}
 1) The j indices that satisfy this query are 0, 3, and 6. nums[0] + nums[3] + nums[6] = 9
 2) The j indices that satisfy this query are 5, 6, and 7. nums[5] + nums[6] + nums[7] = 18
 3) The j indices that satisfy this query are 4 and 6. nums[4] + nums[6] = 10
+
 #### Example 2
 
 - **Input:** `nums = [100,200,101,201,102,202,103,203], queries = [[0,7]]`

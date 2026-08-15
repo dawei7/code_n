@@ -40,7 +40,7 @@ price. The result need not include `invoice_id`, and row order is unrestricted.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 Invoice 2 and invoice 4 both total 1000, so invoice 2 wins the identifier
 tie-break. Its two returned lines are `(2, 3, 600)` and `(1, 4, 400)`.

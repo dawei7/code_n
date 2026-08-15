@@ -33,19 +33,19 @@ Return the minimum number of moves needed to reach the target. If no valid seque
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[0,0,0,0,0,1],[1,1,0,0,1,0],[0,0,0,0,1,1],[0,0,1,0,1,0],[0,1,1,0,0,0],[0,1,1,0,0,0]]`
-- Output: `11`
+- **Input:** `grid = [[0,0,0,0,0,1],[1,1,0,0,1,0],[0,0,0,0,1,1],[0,0,1,0,1,0],[0,1,1,0,0,0],[0,1,1,0,0,0]]`
+- **Output:** `11`
 
 One shortest sequence uses translations in both directions and both allowed rotations.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[0,0,1,1,1,1],[0,0,0,0,1,1],[1,1,0,0,0,1],[1,1,1,0,0,1],[1,1,1,0,0,1],[1,1,1,0,0,0]]`
-- Output: `9`
+- **Input:** `grid = [[0,0,1,1,1,1],[0,0,0,0,1,1],[1,1,0,0,0,1],[1,1,1,0,0,1],[1,1,1,0,0,1],[1,1,1,0,0,0]]`
+- **Output:** `9`
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[0,0],[0,0]]`
-- Output: `1`
+- **Input:** `grid = [[0,0],[0,0]]`
+- **Output:** `1`

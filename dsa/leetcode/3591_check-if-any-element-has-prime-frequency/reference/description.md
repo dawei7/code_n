@@ -10,47 +10,39 @@ A prime number is a natural number greater than 1 with only two factors, 1 and i
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4,5,4]
+- **Input:** nums = [1,2,3,4,5,4]
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
+- **Explanation:** 4 has a frequency of two, which is a prime number.
 
-4 has a frequency of two, which is a prime number.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4,5]
+- **Input:** nums = [1,2,3,4,5]
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
+- **Explanation:** All elements have a frequency of one.
 
-All elements have a frequency of one.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [2,2,2,4,4]
+- **Input:** nums = [2,2,2,4,4]
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
-
-Both 2 and 4 have a prime frequency.
-
-</div>
+- **Explanation:** Both 2 and 4 have a prime frequency.
 
 ### 4. Constraints
 

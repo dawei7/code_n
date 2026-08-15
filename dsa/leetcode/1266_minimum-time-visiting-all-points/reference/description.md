@@ -6,21 +6,25 @@ You can move according to these rules:
 
 - In `1` second, you can either:
 
-		<li>move vertically by one unit,
+		- move vertically by one unit,
 
 - move horizontally by one unit, or
 
 - move diagonally `sqrt(2)` units (in other words, move one unit vertically then one unit horizontally in `1` second).
 
-	</li>
 - You have to visit the points in the same order as they appear in the array.
 
 - You are allowed to pass through points that appear later in the order, but these do not count as visits.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `points`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -34,6 +38,7 @@ You can move according to these rules:
 Time from [1,1] to [3,4] = 3 seconds
 Time from [3,4] to [-1,0] = 4 seconds
 Total time = 7 seconds
+
 #### Example 2
 
 - **Input:** $points = [[3,2],[-2,2]]$

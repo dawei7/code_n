@@ -12,8 +12,10 @@ The test cases will be generated such that the binary tree is **valid**.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `createBinaryTree(descriptions: List[List[int]]) -> `Optional[TreeNode]``: Executes operation.
 
 ### 3. Examples
 
@@ -25,6 +27,7 @@ The test cases will be generated such that the binary tree is **valid**.
 - **Output:** `[50,20,80,15,17,19]`
 - **Explanation:** The root node is the node with value 50 since it has no parent.
 The resulting binary tree is shown in the diagram.
+
 #### Example 2
 
 ![](images/example2drawio.png)

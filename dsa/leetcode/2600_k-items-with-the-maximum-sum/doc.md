@@ -37,16 +37,16 @@ All three counts are between $0$ and $50$, inclusive, and $0 \leq k \leq \texttt
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `numOnes = 3, numZeros = 2, numNegOnes = 0, k = 2`
-- Output: `2`
+- **Input:** `numOnes = 3, numZeros = 2, numNegOnes = 0, k = 2`
+- **Output:** `2`
 
 Selecting two of the three positive items gives the maximum sum `2`.
 
-**Example 2**
+#### Example 2
 
-- Input: `numOnes = 3, numZeros = 2, numNegOnes = 0, k = 4`
-- Output: `3`
+- **Input:** `numOnes = 3, numZeros = 2, numNegOnes = 0, k = 4`
+- **Output:** `3`
 
 Take all three positive items and one zero-valued item, so the fourth selection does not reduce the sum.

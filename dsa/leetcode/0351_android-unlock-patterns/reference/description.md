@@ -6,11 +6,9 @@ Android devices have a special lock screen with a `3 x 3` grid of dots. Users ca
 
 - If the line segment connecting two consecutive dots in the sequence passes through the **center** of any other dot, the other dot **must have previously appeared** in the sequence. No jumps through the center non-selected dots are allowed.
 
-		<li>For example, connecting dots `2` and `9` without dots `5` or `6` appearing beforehand is valid because the line from dot `2` to dot `9` does not pass through the center of either dot `5` or `6`.
+		- For example, connecting dots `2` and `9` without dots `5` or `6` appearing beforehand is valid because the line from dot `2` to dot `9` does not pass through the center of either dot `5` or `6`.
 
 - However, connecting dots `1` and `3` without dot `2` appearing beforehand is invalid because the line from dot `1` to dot `3` passes through the center of dot `2`.
-
-	</li>
 
 Here are some example valid and invalid unlock patterns:
 
@@ -45,6 +43,7 @@ Return the number of unique valid dot sequences whose lengths lie in the inclusi
 
 - **Input:** $m = 1, n = 1$
 - **Output:** `9`
+
 #### Example 2
 
 - **Input:** $m = 1, n = 2$

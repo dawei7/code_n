@@ -46,7 +46,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Employees table:
 +-------------+----------+
 | employee_id | name     |
@@ -63,15 +63,14 @@ Salaries table:
 | 1           | 22517  |
 | 4           | 63539  |
 +-------------+--------+
-**Output:**
+- **Output:** 
 +-------------+
 | employee_id |
 +-------------+
 | 1           |
 | 2           |
 +-------------+
-**Explanation:**
-Employees 1, 2, 4, and 5 are working at this company.
+- **Explanation:** Employees 1, 2, 4, and 5 are working at this company.
 The name of employee 1 is missing.
 The salary of employee 2 is missing.
 ```

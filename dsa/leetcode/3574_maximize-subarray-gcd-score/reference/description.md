@@ -10,8 +10,14 @@ Your task is to return the **maximum** **score** that can be achieved by selecti
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -21,12 +27,11 @@ Your task is to return the **maximum** **score** that can be achieved by selecti
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,4], k = 1
+- **Input:** nums = [2,4], k = 1
 
-**Output:** 8
+- **Output:** 8
 
-**Explanation:**
+- **Explanation:** 
 
 - Double $\text{nums}[0]$ to 4 using one operation. The modified array becomes `[4, 4]`.
 
@@ -34,15 +39,13 @@ Your task is to return the **maximum** **score** that can be achieved by selecti
 
 - Thus, the maximum possible score is $2 × 4 = 8$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [3,5,7], k = 2
+- **Input:** nums = [3,5,7], k = 2
 
-**Output:** 14
+- **Output:** 14
 
-**Explanation:**
+- **Explanation:** 
 
 - Double $\text{nums}[2]$ to 14 using one operation. The modified array becomes `[3, 5, 14]`.
 
@@ -50,21 +53,17 @@ Your task is to return the **maximum** **score** that can be achieved by selecti
 
 - Thus, the maximum possible score is $1 × 14 = 14$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [5,5,5], k = 1
+- **Input:** nums = [5,5,5], k = 1
 
-**Output:** 15
+- **Output:** 15
 
-**Explanation:**
+- **Explanation:** 
 
 - The subarray `[5, 5, 5]` has a GCD of 5, and its length is 3.
 
 - Since doubling any element doesn't improve the score, the maximum score is $3 × 5 = 15$.
-
-</div>
 
 ### 5. Constraints
 

@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/check-if-all-characters-have-equal-number-of-occurrences/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given a string `s` containing only lowercase English letters. The
 number of occurrences of a character is the number of positions in `s` that
 contain that character. Characters that do not appear in the string are not
@@ -20,6 +22,7 @@ Return `true` when their positive occurrence counts are identical, and return
 `false` as soon as at least two present characters have different counts.
 
 ### Function Contract
+
 **Inputs**
 
 - `s`: a string of lowercase English letters with length $N$, where
@@ -31,20 +34,21 @@ Return `true` when their positive occurrence counts are identical, and return
   occurrence count; otherwise, `false`.
 
 ### Examples
-**Example 1**
 
-- Input: `s = "abacbc"`
-- Output: `true`
-- Explanation: `a`, `b`, and `c` each occur twice.
+#### Example 1
 
-**Example 2**
+- **Input:** `s = "abacbc"`
+- **Output:** `true`
+- **Explanation:** `a`, `b`, and `c` each occur twice.
 
-- Input: `s = "aaabb"`
-- Output: `false`
-- Explanation: `a` occurs three times while `b` occurs twice.
+#### Example 2
 
-**Example 3**
+- **Input:** `s = "aaabb"`
+- **Output:** `false`
+- **Explanation:** `a` occurs three times while `b` occurs twice.
 
-- Input: `s = "abcd"`
-- Output: `true`
-- Explanation: Every present character occurs once.
+#### Example 3
+
+- **Input:** `s = "abcd"`
+- **Output:** `true`
+- **Explanation:** Every present character occurs once.

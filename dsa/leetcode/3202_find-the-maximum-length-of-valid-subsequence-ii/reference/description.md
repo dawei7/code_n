@@ -9,35 +9,32 @@ Return the length of the **longest** **valid** subsequence of `nums`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4,5], k = 2
+- **Input:** nums = [1,2,3,4,5], k = 2
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** The longest valid subsequence is `[1, 2, 3, 4, 5]`.
 
-The longest valid subsequence is `[1, 2, 3, 4, 5]`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,4,2,3,1,4], k = 3
+- **Input:** nums = [1,4,2,3,1,4], k = 3
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-The longest valid subsequence is `[1, 4, 1, 4]`.
-
-</div>
+- **Explanation:** The longest valid subsequence is `[1, 4, 1, 4]`.
 
 ### 4. Constraints
 

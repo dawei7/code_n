@@ -37,20 +37,20 @@ Let $N$ be the number of stones.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `stones = [2, 1]`
-- Output: `True`
-- Explanation: Bob must take the remaining stone and makes the cumulative sum
+- **Input:** `stones = [2, 1]`
+- **Output:** `True`
+- **Explanation:** Bob must take the remaining stone and makes the cumulative sum
   equal to `3`, so Bob loses.
 
-**Example 2**
+#### Example 2
 
-- Input: `stones = [2]`
-- Output: `False`
-- Explanation: Alice makes a safe move, but exhaustion awards the game to Bob.
+- **Input:** `stones = [2]`
+- **Output:** `False`
+- **Explanation:** Alice makes a safe move, but exhaustion awards the game to Bob.
 
-**Example 3**
+#### Example 3
 
-- Input: `stones = [5, 1, 2, 4, 3]`
-- Output: `False`
+- **Input:** `stones = [5, 1, 2, 4, 3]`
+- **Output:** `False`

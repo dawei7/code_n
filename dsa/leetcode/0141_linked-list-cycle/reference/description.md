@@ -25,6 +25,7 @@ Return `true` if following `next` pointers enters a cycle; otherwise return `fal
 - **Input:** $head = [3,2,0,-4], pos = 1$
 - **Output:** `true`
 - **Explanation:** There is a cycle in the linked list, where the tail connects to the 1st node (0-indexed).
+
 #### Example 2
 
 ![](images/circularlinkedlist_test2.png)
@@ -32,6 +33,7 @@ Return `true` if following `next` pointers enters a cycle; otherwise return `fal
 - **Input:** $head = [1,2], pos = 0$
 - **Output:** `true`
 - **Explanation:** There is a cycle in the linked list, where the tail connects to the 0th node.
+
 #### Example 3
 
 ![](images/circularlinkedlist_test3.png)

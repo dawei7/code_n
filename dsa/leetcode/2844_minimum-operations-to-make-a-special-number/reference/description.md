@@ -10,8 +10,13 @@ An integer `x` is considered **special** if it is divisible by `25`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `num`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,12 +26,14 @@ An integer `x` is considered **special** if it is divisible by `25`.
 - **Output:** `2`
 - **Explanation:** Delete digits num[5] and num[6]. The resulting number is "22450" which is special since it is divisible by 25.
 It can be shown that 2 is the minimum number of operations required to get a special number.
+
 #### Example 2
 
 - **Input:** $num = "2908305"$
 - **Output:** `3`
 - **Explanation:** Delete digits num[3], num[4], and num[6]. The resulting number is "2900" which is special since it is divisible by 25.
 It can be shown that 3 is the minimum number of operations required to get a special number.
+
 #### Example 3
 
 - **Input:** $num = "10"$

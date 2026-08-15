@@ -6,8 +6,10 @@ Given the `root` of a binary tree, return `true`* if the given tree is **uni-val
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `isUnivalTree(root: Optional[TreeNode]) -> `bool``: Executes operation.
 
 ### 3. Examples
 
@@ -17,6 +19,7 @@ Given the `root` of a binary tree, return `true`* if the given tree is **uni-val
 
 - **Input:** `root = [1,1,1,1,1,null,1]`
 - **Output:** `true`
+
 #### Example 2
 
 ![](images/unival_bst_2.png)

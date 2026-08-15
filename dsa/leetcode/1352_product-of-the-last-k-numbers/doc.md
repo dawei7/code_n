@@ -35,17 +35,17 @@ The operation sequence can contain zeroes. Any queried suffix containing a zero 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 - Operations: add `3, 0, 2, 5, 4`; query the last `2`, `3`, and `4` values; add `8`; query the last `2`.
-- Output: `[null, null, null, null, null, 20, 40, 0, null, 32]`
+- **Output:** `[null, null, null, null, null, 20, 40, 0, null, 32]`
 
-**Example 2**
+#### Example 2
 
 - Operations: add `1, 2, 3`; query the last `3`.
-- Output: `[null, null, null, 6]`
+- **Output:** `[null, null, null, 6]`
 
-**Example 3**
+#### Example 3
 
 - Operations: add `0, 9`; query the last `1` and `2`.
-- Output: `[null, null, 9, 0]`
+- **Output:** `[null, null, 9, 0]`

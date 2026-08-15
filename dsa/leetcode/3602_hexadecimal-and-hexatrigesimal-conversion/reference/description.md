@@ -10,19 +10,23 @@ A **hexatrigesimal** number is defined as a base-36 numeral system that uses the
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 13
+- **Input:** n = 13
 
-**Output:** "A91P1"
+- **Output:** "A91P1"
 
-**Explanation:**
+- **Explanation:** 
 
 - $n^{2} = 13 * 13 = 169$. In hexadecimal, it converts to $(10 * 16) + 9 = 169$, which corresponds to `"A9"`.
 
@@ -30,23 +34,19 @@ A **hexatrigesimal** number is defined as a base-36 numeral system that uses the
 
 - Concatenating both results gives $"A9" + "1P1" = "A91P1"$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 36
+- **Input:** n = 36
 
-**Output:** "5101000"
+- **Output:** "5101000"
 
-**Explanation:**
+- **Explanation:** 
 
 - $n^{2} = 36 * 36 = 1296$. In hexadecimal, it converts to $(5 * 16^{2}) + (1 * 16) + 0 = 1296$, which corresponds to `"510"`.
 
 - $n^{3} = 36 * 36 * 36 = 46656$. In hexatrigesimal, it converts to $(1 * 36^{3}) + (0 * 36^{2}) + (0 * 36) + 0 = 46656$, which corresponds to `"1000"`.
 
 - Concatenating both results gives $"510" + "1000" = "5101000"$.
-
-</div>
 
 ### 4. Constraints
 

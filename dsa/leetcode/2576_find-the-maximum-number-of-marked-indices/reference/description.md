@@ -10,8 +10,13 @@ Return *the maximum possible number of marked indices in `nums` using the above 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +26,7 @@ Return *the maximum possible number of marked indices in `nums` using the above 
 - **Output:** `2`
 - **Explanation:** In the first operation: pick i = 2 and j = 1, the operation is allowed because 2 * nums[2] <= nums[1]. Then mark index 2 and 1.
 It can be shown that there's no other valid operation so the answer is 2.
+
 #### Example 2
 
 - **Input:** `nums = [9,2,5,4]`
@@ -28,6 +34,7 @@ It can be shown that there's no other valid operation so the answer is 2.
 - **Explanation:** In the first operation: pick i = 3 and j = 0, the operation is allowed because 2 * nums[3] <= nums[0]. Then mark index 3 and 0.
 In the second operation: pick i = 1 and j = 2, the operation is allowed because 2 * nums[1] <= nums[2]. Then mark index 1 and 2.
 Since there is no other operation, the answer is 4.
+
 #### Example 3
 
 - **Input:** `nums = [7,6,8]`
@@ -40,10 +47,9 @@ Since there is no other operation, the answer is 4.
 
 - $1 \le \text{nums}[i] \le 10^{9}$
 
-<style type="text/css">.spoilerbutton {display:block; border:dashed; padding: 0px 0px; margin:10px 0px; font-size:150%; font-weight: bold; color:#000000; background-color:cyan; outline:0;
+.spoilerbutton {display:block; border:dashed; padding: 0px 0px; margin:10px 0px; font-size:150%; font-weight: bold; color:#000000; background-color:cyan; outline:0;
 }
 .spoiler {overflow:hidden;}
 .spoiler > div {-webkit-transition: all 0s ease;-moz-transition: margin 0s ease;-o-transition: all 0s ease;transition: margin 0s ease;}
 .spoilerbutton[value="Show Message"] + .spoiler > div {margin-top:-500%;}
 .spoilerbutton[value="Hide Message"] + .spoiler {padding:5px;}
-</style>

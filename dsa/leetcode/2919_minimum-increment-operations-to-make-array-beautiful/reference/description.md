@@ -14,8 +14,14 @@ A subarray is a contiguous **non-empty** sequence of elements within an array.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -31,6 +37,7 @@ The subarrays with a size of 3 or more are: [2,4,0], [4,0,0], [0,0,4], [2,4,0,0]
 In all the subarrays, the maximum element is equal to k = 4, so nums is now beautiful.
 It can be shown that nums cannot be made beautiful with fewer than 3 increment operations.
 Hence, the answer is 3.
+
 #### Example 2
 
 - **Input:** `nums = [0,1,3,3], k = 5`
@@ -42,6 +49,7 @@ The subarrays with a size of 3 or more are: [0,1,5], [1,5,3], [0,1,5,3].
 In all the subarrays, the maximum element is equal to k = 5, so nums is now beautiful.
 It can be shown that nums cannot be made beautiful with fewer than 2 increment operations.
 Hence, the answer is 2.
+
 #### Example 3
 
 - **Input:** `nums = [1,1,2], k = 1`

@@ -33,20 +33,20 @@ Return the length of the shortest subarray whose bitwise OR is at least `k`. Ret
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3], k = 2`
-- Output: `1`
-- Explanation: The one-element subarray `[3]` has OR value `3`; `[2]` is another valid one-element choice.
+- **Input:** `nums = [1, 2, 3], k = 2`
+- **Output:** `1`
+- **Explanation:** The one-element subarray `[3]` has OR value `3`; `[2]` is another valid one-element choice.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, 1, 8], k = 10`
-- Output: `3`
-- Explanation: The full array has OR value `11`, while neither a single element nor either length-two subarray reaches `10`.
+- **Input:** `nums = [2, 1, 8], k = 10`
+- **Output:** `3`
+- **Explanation:** The full array has OR value `11`, while neither a single element nor either length-two subarray reaches `10`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 2], k = 0`
-- Output: `1`
-- Explanation: Every non-negative OR value is at least zero, so any single element is already special.
+- **Input:** `nums = [1, 2], k = 0`
+- **Output:** `1`
+- **Explanation:** Every non-negative OR value is at least zero, so any single element is already special.

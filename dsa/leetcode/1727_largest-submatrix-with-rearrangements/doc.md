@@ -30,20 +30,20 @@ Return the largest possible area of a submatrix in which every element is `1`. T
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `matrix = [[0,0,1],[1,1,1],[1,0,1]]`
-- Output: `4`
-- Explanation: Reordering complete columns can place two columns with height-two runs next to each other, producing an all-ones rectangle of height two and width two.
+- **Input:** `matrix = [[0,0,1],[1,1,1],[1,0,1]]`
+- **Output:** `4`
+- **Explanation:** Reordering complete columns can place two columns with height-two runs next to each other, producing an all-ones rectangle of height two and width two.
 
-**Example 2**
+#### Example 2
 
-- Input: `matrix = [[1,0,1,0,1]]`
-- Output: `3`
-- Explanation: Place the three columns containing `1` together to form a one-row rectangle of width three.
+- **Input:** `matrix = [[1,0,1,0,1]]`
+- **Output:** `3`
+- **Explanation:** Place the three columns containing `1` together to form a one-row rectangle of width three.
 
-**Example 3**
+#### Example 3
 
-- Input: `matrix = [[1,1,0],[1,0,1]]`
-- Output: `2`
-- Explanation: Entire columns must move together; the rows cannot select independent column orders.
+- **Input:** `matrix = [[1,1,0],[1,0,1]]`
+- **Output:** `2`
+- **Explanation:** Entire columns must move together; the rows cannot select independent column orders.

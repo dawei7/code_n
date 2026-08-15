@@ -16,8 +16,15 @@ Return an array of integers representing the results of each query of type `[1, 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `c`: Input parameter (`int`).
+- `connections`: Input parameter (`List[List[int]]`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -27,14 +34,11 @@ The power grid preserves its structure; an offline (non‑operational) node rema
 
 #### Example 1
 
-<div class="example-block">
-**Input:** c = 5, connections = [[1,2],[2,3],[3,4],[4,5]], queries = [[1,3],[2,1],[1,1],[2,2],[1,2]]
+- **Input:** c = 5, connections = [[1,2],[2,3],[3,4],[4,5]], queries = [[1,3],[2,1],[1,1],[2,2],[1,2]]
 
-**Output:** [3,2,3]
+- **Output:** [3,2,3]
 
-**Explanation:**
-
-![](images/powergrid.jpg)
+- **Explanation:** ![](images/powergrid.jpg)
 
 - Initially, all stations `{1, 2, 3, 4, 5}` are online and form a single power grid.
 
@@ -48,15 +52,13 @@ The power grid preserves its structure; an offline (non‑operational) node rema
 
 - Query `[1,2]`: Station 2 is offline, so the check is resolved by the operational station with the smallest `id` among `{3, 4, 5}`, which is station 3.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** c = 3, connections = [], queries = [[1,1],[2,1],[1,1]]
+- **Input:** c = 3, connections = [], queries = [[1,1],[2,1],[1,1]]
 
-**Output:** [1,-1]
+- **Output:** [1,-1]
 
-**Explanation:**
+- **Explanation:** 
 
 - There are no connections, so each station is its own isolated grid.
 
@@ -65,8 +67,6 @@ The power grid preserves its structure; an offline (non‑operational) node rema
 - Query `[2,1]`: Station 1 goes offline.
 
 - Query `[1,1]`: Station 1 is offline and there are no other stations in its grid, so the result is -1.
-
-</div>
 
 ### 5. Constraints
 

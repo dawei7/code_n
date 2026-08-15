@@ -8,8 +8,13 @@ Return *the total number of special permutations. *As the answer could be large,
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +23,7 @@ Return *the total number of special permutations. *As the answer could be large,
 - **Input:** `nums = [2,3,6]`
 - **Output:** `2`
 - **Explanation:** [3,6,2] and [2,6,3] are the two special permutations of nums.
+
 #### Example 2
 
 - **Input:** `nums = [1,4,3]`

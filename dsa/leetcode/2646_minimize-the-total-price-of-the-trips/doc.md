@@ -33,12 +33,12 @@ Before any trips occur, you may choose a set of pairwise non-adjacent nodes and 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 4`, `edges = [[0,1],[1,2],[1,3]]`, `price = [2,2,10,6]`, `trips = [[0,3],[2,1],[2,3]]`
-- Output: `23`
+- **Input:** `n = 4`, `edges = [[0,1],[1,2],[1,3]]`, `price = [2,2,10,6]`, `trips = [[0,3],[2,1],[2,3]]`
+- **Output:** `23`
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 2`, `edges = [[0,1]]`, `price = [2,2]`, `trips = [[0,0]]`
-- Output: `1`
+- **Input:** `n = 2`, `edges = [[0,1]]`, `price = [2,2]`, `trips = [[0,0]]`
+- **Output:** `1`

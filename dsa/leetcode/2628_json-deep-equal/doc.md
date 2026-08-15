@@ -37,26 +37,26 @@ Return `true` exactly when `o1` and `o2` have the same JSON type and recursively
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `o1 = {"x":1,"y":2}`, `o2 = {"x":1,"y":2}`
-- Output: `true`
-- Explanation: Both objects contain the same keys with equal associated numbers.
+- **Input:** `o1 = {"x":1,"y":2}`, `o2 = {"x":1,"y":2}`
+- **Output:** `true`
+- **Explanation:** Both objects contain the same keys with equal associated numbers.
 
-**Example 2**
+#### Example 2
 
-- Input: `o1 = {"y":2,"x":1}`, `o2 = {"x":1,"y":2}`
-- Output: `true`
-- Explanation: Object key order does not affect equality.
+- **Input:** `o1 = {"y":2,"x":1}`, `o2 = {"x":1,"y":2}`
+- **Output:** `true`
+- **Explanation:** Object key order does not affect equality.
 
-**Example 3**
+#### Example 3
 
-- Input: `o1 = {"x":null,"L":[1,2,3]}`, `o2 = {"x":null,"L":["1","2","3"]}`
-- Output: `false`
-- Explanation: Numbers and their string representations are different primitive values.
+- **Input:** `o1 = {"x":null,"L":[1,2,3]}`, `o2 = {"x":null,"L":["1","2","3"]}`
+- **Output:** `false`
+- **Explanation:** Numbers and their string representations are different primitive values.
 
-**Example 4**
+#### Example 4
 
-- Input: `o1 = true`, `o2 = false`
-- Output: `false`
-- Explanation: The two booleans fail strict equality.
+- **Input:** `o1 = true`, `o2 = false`
+- **Output:** `false`
+- **Explanation:** The two booleans fail strict equality.

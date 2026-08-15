@@ -33,18 +33,18 @@ Both lengths are between 1 and 1000, and every value is between 1 and $10^9$, in
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 9, 15, 50]`, `divisors = [5, 3, 7, 2]`
-- Output: `2`
-- Explanation: Divisors 5, 3, and 2 each score two; the smallest tied divisor is 2.
+- **Input:** `nums = [2, 9, 15, 50]`, `divisors = [5, 3, 7, 2]`
+- **Output:** `2`
+- **Explanation:** Divisors 5, 3, and 2 each score two; the smallest tied divisor is 2.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4, 7, 9, 3, 9]`, `divisors = [5, 2, 3]`
-- Output: `3`
+- **Input:** `nums = [4, 7, 9, 3, 9]`, `divisors = [5, 2, 3]`
+- **Output:** `3`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [20, 14, 21, 10]`, `divisors = [10, 16, 20]`
-- Output: `10`
+- **Input:** `nums = [20, 14, 21, 10]`, `divisors = [10, 16, 20]`
+- **Output:** `10`

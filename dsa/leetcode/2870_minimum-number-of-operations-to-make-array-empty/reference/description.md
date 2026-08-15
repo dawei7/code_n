@@ -12,8 +12,13 @@ Return *the **minimum** number of operations required to make the array empty, o
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -27,6 +32,7 @@ Return *the **minimum** number of operations required to make the array empty, o
 - Apply the second operation on the elements at indices 0, 1, and 3. The resulting array is nums = [4,4].
 - Apply the first operation on the elements at indices 0 and 1. The resulting array is nums = [].
 It can be shown that we cannot make the array empty in less than 4 operations.
+
 #### Example 2
 
 - **Input:** `nums = [2,1,2,2,3,3]`

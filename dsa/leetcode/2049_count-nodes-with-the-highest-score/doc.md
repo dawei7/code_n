@@ -31,14 +31,14 @@ To score a node, remove that node and every edge incident to it. The remaining n
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `parents = [-1,2,0,2,0]`
-- Output: `3`
-- Explanation: Nodes `1`, `3`, and `4` each score $4$, which is the maximum.
+- **Input:** `parents = [-1,2,0,2,0]`
+- **Output:** `3`
+- **Explanation:** Nodes `1`, `3`, and `4` each score $4$, which is the maximum.
 
-**Example 2**
+#### Example 2
 
-- Input: `parents = [-1,2,0]`
-- Output: `2`
-- Explanation: Removing node `0` or node `1` produces score $2$; node `2` scores $1$.
+- **Input:** `parents = [-1,2,0]`
+- **Output:** `2`
+- **Explanation:** Removing node `0` or node `1` produces score $2$; node `2` scores $1$.

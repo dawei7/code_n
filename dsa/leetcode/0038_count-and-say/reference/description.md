@@ -26,33 +26,24 @@ Return the $n$th count-and-say term as a digit string.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 4
+- **Input:** n = 4
 
-**Output:** "1211"
+- **Output:** "1211"
 
-**Explanation:**
-
-```
+- **Explanation:** ```
 countAndSay(1) = "1"
 countAndSay(2) = RLE of "1" = "11"
 countAndSay(3) = RLE of "11" = "21"
 countAndSay(4) = RLE of "21" = "1211"
 ```
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 1
+- **Input:** n = 1
 
-**Output:** "1"
+- **Output:** "1"
 
-**Explanation:**
-
-This is the base case.
-
-</div>
+- **Explanation:** This is the base case.
 
 ### 4. Constraints
 

@@ -8,8 +8,14 @@ For each cut you choose the direction: vertical or horizontal, then you choose a
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `pizza`: Input parameter (`List[str]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,10 +30,12 @@ For each cut you choose the direction: vertical or horizontal, then you choose a
 - **Input:** $pizza = ["A..","AAA","..."], k = 3$
 - **Output:** `3`
 - **Explanation:** The figure above shows the three ways to cut the pizza. Note that pieces must contain at least one apple.
+
 #### Example 2
 
 - **Input:** $pizza = ["A..","AA.","..."], k = 3$
 - **Output:** `1`
+
 #### Example 3
 
 - **Input:** $pizza = ["A..","A..","..."], k = 1$

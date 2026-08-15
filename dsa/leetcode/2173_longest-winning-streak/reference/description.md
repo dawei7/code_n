@@ -32,7 +32,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Matches table:
 +-----------+------------+--------+
 | player_id | match_day  | result |
@@ -46,7 +46,7 @@ Matches table:
 | 2         | 2022-02-08 | Lose   |
 | 3         | 2022-03-30 | Win    |
 +-----------+------------+--------+
-**Output:**
+- **Output:** 
 +-----------+----------------+
 | player_id | longest_streak |
 +-----------+----------------+
@@ -54,8 +54,7 @@ Matches table:
 | 2         | 0              |
 | 3         | 1              |
 +-----------+----------------+
-**Explanation:**
-Player 1:
+- **Explanation:** Player 1:
 From 2022-01-17 to 2022-01-25, player 1 won 3 consecutive matches.
 On 2022-01-31, player 1 had a draw.
 On 2022-02-08, player 1 won a match.

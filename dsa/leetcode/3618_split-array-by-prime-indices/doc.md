@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/split-array-by-prime-indices/) |
 
 ## Problem Description
+
 ### Goal
 
 Split `nums` into two arrays according to each element's zero-based position. Place `nums[i]` in array `A` when index $i$ is a prime number. Place every element at a non-prime index in array `B`; in particular, indices 0 and 1 are not prime.
@@ -31,20 +32,20 @@ Return $\lvert\operatorname{sum}(A)-\operatorname{sum}(B)\rvert$ after assigning
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 3, 4]`
-- Output: `1`
-- Explanation: Only index 2 is prime, so `A` sums to 4 and `B` sums to 5.
+- **Input:** `nums = [2, 3, 4]`
+- **Output:** `1`
+- **Explanation:** Only index 2 is prime, so `A` sums to 4 and `B` sums to 5.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [-1, 5, 7, 0]`
-- Output: `3`
-- Explanation: Prime indices 2 and 3 contribute 7, while indices 0 and 1 contribute 4.
+- **Input:** `nums = [-1, 5, 7, 0]`
+- **Output:** `3`
+- **Explanation:** Prime indices 2 and 3 contribute 7, while indices 0 and 1 contribute 4.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [9]`
-- Output: `9`
-- Explanation: Index 0 is non-prime, so `A` is empty and `B` sums to 9.
+- **Input:** `nums = [9]`
+- **Output:** `9`
+- **Explanation:** Index 0 is non-prime, so `A` is empty and `B` sums to 9.

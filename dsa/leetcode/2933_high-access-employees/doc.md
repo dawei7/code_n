@@ -40,20 +40,20 @@ valid four-digit 24-hour time.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `access_times = [["a", "0549"], ["b", "0457"], ["a", "0532"], ["a", "0621"], ["b", "0540"]]`
-- Output: `["a"]`
-- Explanation: Employee `a` accesses at 05:32, 05:49, and 06:21, spanning 49 minutes.
+- **Input:** `access_times = [["a", "0549"], ["b", "0457"], ["a", "0532"], ["a", "0621"], ["b", "0540"]]`
+- **Output:** `["a"]`
+- **Explanation:** Employee `a` accesses at 05:32, 05:49, and 06:21, spanning 49 minutes.
 
-**Example 2**
+#### Example 2
 
-- Input: `access_times = [["d", "0002"], ["c", "0808"], ["c", "0829"], ["e", "0215"], ["d", "1508"], ["d", "1444"], ["d", "1410"], ["c", "0809"]]`
-- Output: `["c", "d"]`
-- Explanation: Both `c` and `d` have a qualifying triple; `e` has only one access.
+- **Input:** `access_times = [["d", "0002"], ["c", "0808"], ["c", "0829"], ["e", "0215"], ["d", "1508"], ["d", "1444"], ["d", "1410"], ["c", "0809"]]`
+- **Output:** `["c", "d"]`
+- **Explanation:** Both `c` and `d` have a qualifying triple; `e` has only one access.
 
-**Example 3**
+#### Example 3
 
-- Input: `access_times = [["cd", "1025"], ["ab", "1025"], ["cd", "1046"], ["cd", "1055"], ["ab", "1124"], ["ab", "1120"]]`
-- Output: `["ab", "cd"]`
-- Explanation: Each employee has three accesses whose earliest and latest times differ by 59 minutes or less.
+- **Input:** `access_times = [["cd", "1025"], ["ab", "1025"], ["cd", "1046"], ["cd", "1055"], ["ab", "1124"], ["ab", "1120"]]`
+- **Output:** `["ab", "cd"]`
+- **Explanation:** Each employee has three accesses whose earliest and latest times differ by 59 minutes or less.

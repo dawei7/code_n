@@ -32,20 +32,20 @@ The constraints guarantee $2 \le n \le 100$ and exactly two distinct repeated el
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [0,1,1,0]`
-- Output: `[0,1]`
-- Explanation: Both 0 and 1 occur twice.
+- **Input:** `nums = [0,1,1,0]`
+- **Output:** `[0,1]`
+- **Explanation:** Both 0 and 1 occur twice.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [0,3,2,1,3,2]`
-- Output: `[2,3]`
-- Explanation: Both 2 and 3 occur twice.
+- **Input:** `nums = [0,3,2,1,3,2]`
+- **Output:** `[2,3]`
+- **Explanation:** Both 2 and 3 occur twice.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [7,1,5,4,3,4,6,0,9,5,8,2]`
-- Output: `[4,5]`
-- Explanation: Both 4 and 5 occur twice.
+- **Input:** `nums = [7,1,5,4,3,4,6,0,9,5,8,2]`
+- **Output:** `[4,5]`
+- **Explanation:** Both 4 and 5 occur twice.

@@ -36,7 +36,7 @@ Return a one-column table containing each free $\text{seat}_{id}$ that has a fre
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Cinema table:
 +---------+------+
 | seat_id | free |
@@ -47,7 +47,7 @@ Cinema table:
 | 4       | 1    |
 | 5       | 1    |
 +---------+------+
-**Output:**
+- **Output:** 
 +---------+
 | seat_id |
 +---------+

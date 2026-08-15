@@ -8,8 +8,10 @@ The maximum depth is the number of nodes along the longest path from the root no
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `Node(val: Optional[int] = None, children: Optional[List['Node']] = None)`: Initializes the data structure.
+- `maxDepth(root: 'Node') -> `int``: Executes operation.
 
 ### 3. Examples
 
@@ -19,6 +21,7 @@ The maximum depth is the number of nodes along the longest path from the root no
 
 - **Input:** `root = [1,null,3,2,4,null,5,6]`
 - **Output:** `3`
+
 #### Example 2
 
 ![](images/sample_4_964.png)

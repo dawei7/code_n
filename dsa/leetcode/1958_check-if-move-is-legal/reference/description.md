@@ -12,8 +12,16 @@ Given two integers `rMove` and `cMove` and a character `color` representing the 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `board`: Input parameter (`List[List[str]]`).
+- `rMove`: Input parameter (`int`).
+- `cMove`: Input parameter (`int`).
+- `color`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -25,6 +33,7 @@ Given two integers `rMove` and `cMove` and a character `color` representing the 
 - **Output:** `true`
 - **Explanation:** '.', 'W', and 'B' are represented by the colors blue, white, and black respectively, and cell (rMove, cMove) is marked with an 'X'.
 The two good lines with the chosen cell as an endpoint are annotated above with the red rectangles.
+
 #### Example 2
 
 ![](images/grid2.png)

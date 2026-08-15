@@ -32,17 +32,17 @@ Count the good strings `s` for which `s1` is lexicographically less than or equa
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 2, s1 = "aa", s2 = "da", evil = "b"`
-- Output: `51`
+- **Input:** `n = 2, s1 = "aa", s2 = "da", evil = "b"`
+- **Output:** `51`
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 8, s1 = "leetcode", s2 = "leetgoes", evil = "leet"`
-- Output: `0`
+- **Input:** `n = 8, s1 = "leetcode", s2 = "leetgoes", evil = "leet"`
+- **Output:** `0`
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 2, s1 = "gx", s2 = "gz", evil = "x"`
-- Output: `2`
+- **Input:** `n = 2, s1 = "gx", s2 = "gz", evil = "x"`
+- **Output:** `2`

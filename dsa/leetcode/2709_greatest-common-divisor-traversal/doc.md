@@ -32,20 +32,20 @@ Return `true` if every index can reach every other index through one or more val
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,3,6]`
-- Output: `true`
-- Explanation: Value $6$ shares factor $2$ with the first index and factor $3$ with the second, connecting all three.
+- **Input:** `nums = [2,3,6]`
+- **Output:** `true`
+- **Explanation:** Value $6$ shares factor $2$ with the first index and factor $3$ with the second, connecting all three.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3,9,5]`
-- Output: `false`
-- Explanation: The value $5$ shares no prime factor with either other value.
+- **Input:** `nums = [3,9,5]`
+- **Output:** `false`
+- **Explanation:** The value $5$ shares no prime factor with either other value.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [4,3,12,8]`
-- Output: `true`
-- Explanation: The value $12$ links the factor-$2$ indices to the factor-$3$ index.
+- **Input:** `nums = [4,3,12,8]`
+- **Output:** `true`
+- **Explanation:** The value $12$ links the factor-$2$ indices to the factor-$3$ index.

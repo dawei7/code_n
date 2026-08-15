@@ -8,8 +8,10 @@ Return *the **minimum** number of moves required to make every node have **exact
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `distributeCoins(root: Optional[TreeNode]) -> `int``: Executes operation.
 
 ### 3. Examples
 
@@ -20,6 +22,7 @@ Return *the **minimum** number of moves required to make every node have **exact
 - **Input:** `root = [3,0,0]`
 - **Output:** `2`
 - **Explanation:** From the root of the tree, we move one coin to its left child, and one coin to its right child.
+
 #### Example 2
 
 ![](images/tree2.png)

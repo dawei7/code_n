@@ -21,6 +21,7 @@ Return the maximum number of available characters that can be rearranged into a 
 - **Input:** `s = "abccccdd"`
 - **Output:** `7`
 - **Explanation:** One longest palindrome that can be built is "dccaccd", whose length is 7.
+
 #### Example 2
 
 - **Input:** `s = "a"`

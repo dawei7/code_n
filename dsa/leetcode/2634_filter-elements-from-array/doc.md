@@ -33,20 +33,20 @@ Return a new array containing each `arr[i]` for which `fn(arr[i], i)` is truthy,
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [0,10,20,30]`, `fn = n => n > 10`
-- Output: `[20,30]`
-- Explanation: Only twenty and thirty are strictly greater than ten.
+- **Input:** `arr = [0,10,20,30]`, `fn = n => n > 10`
+- **Output:** `[20,30]`
+- **Explanation:** Only twenty and thirty are strictly greater than ten.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [1,2,3]`, `fn = (n, i) => i === 0`
-- Output: `[1]`
-- Explanation: The callback keeps only the element at index zero.
+- **Input:** `arr = [1,2,3]`, `fn = (n, i) => i === 0`
+- **Output:** `[1]`
+- **Explanation:** The callback keeps only the element at index zero.
 
-**Example 3**
+#### Example 3
 
-- Input: `arr = [-2,-1,0,1,2]`, `fn = n => n + 1`
-- Output: `[-2,0,1,2]`
-- Explanation: The callback returns zero only for `-1`; zero is falsy, while the other numeric results are truthy.
+- **Input:** `arr = [-2,-1,0,1,2]`, `fn = n => n + 1`
+- **Output:** `[-2,0,1,2]`
+- **Explanation:** The callback returns zero only for `-1`; zero is falsy, while the other numeric results are truthy.

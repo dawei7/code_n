@@ -6,8 +6,14 @@ Note that after backspacing an empty text, the text will continue empty.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `t`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -16,11 +22,13 @@ Note that after backspacing an empty text, the text will continue empty.
 - **Input:** `s = "ab#c", t = "ad#c"`
 - **Output:** `true`
 - **Explanation:** Both s and t become "ac".
+
 #### Example 2
 
 - **Input:** `s = "ab##", t = "c#d#"`
 - **Output:** `true`
 - **Explanation:** Both s and t become "".
+
 #### Example 3
 
 - **Input:** `s = "a#c", t = "b"`

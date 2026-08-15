@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/remove-adjacent-almost-equal-characters/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given a 0-indexed lowercase English string `word`. Two characters are
 almost-equal when they are identical or occupy adjacent positions in the
 alphabet. Equivalently, their alphabet codes differ by at most one; the
@@ -23,6 +25,7 @@ almost-equal. Return the minimum number of operations needed; the resulting
 string itself is not required.
 
 ### Function Contract
+
 **Inputs**
 
 - `word`: the lowercase English string to modify conceptually
@@ -35,20 +38,21 @@ The minimum number of single-position character replacements needed to make
 every adjacent pair differ by at least two alphabet positions.
 
 ### Examples
-**Example 1**
 
-- Input: `word = "aaaaa"`
-- Output: `2`
-- Explanation: Changing the second and fourth characters to `c` produces `acaca`, whose adjacent pairs are all safe.
+#### Example 1
 
-**Example 2**
+- **Input:** `word = "aaaaa"`
+- **Output:** `2`
+- **Explanation:** Changing the second and fourth characters to `c` produces `acaca`, whose adjacent pairs are all safe.
 
-- Input: `word = "abddez"`
-- Output: `2`
-- Explanation: Two replacements suffice to break the conflict at the beginning and the equal middle pair without creating new conflicts.
+#### Example 2
 
-**Example 3**
+- **Input:** `word = "abddez"`
+- **Output:** `2`
+- **Explanation:** Two replacements suffice to break the conflict at the beginning and the equal middle pair without creating new conflicts.
 
-- Input: `word = "zyxyxyz"`
-- Output: `3`
-- Explanation: Three carefully placed replacements remove every equal or alphabet-adjacent neighboring pair.
+#### Example 3
+
+- **Input:** `word = "zyxyxyz"`
+- **Output:** `3`
+- **Explanation:** Three carefully placed replacements remove every equal or alphabet-adjacent neighboring pair.

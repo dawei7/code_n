@@ -29,23 +29,23 @@ Determine the maximum number of consecutive integer values, beginning with $0$, 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `coins = [1,3]`
-- Output: `2`
+- **Input:** `coins = [1,3]`
+- **Output:** `2`
 
 The values $0$ and $1$ are formable, but $2$ is not.
 
-**Example 2**
+#### Example 2
 
-- Input: `coins = [1,1,1,4]`
-- Output: `8`
+- **Input:** `coins = [1,1,1,4]`
+- **Output:** `8`
 
 Every value from $0$ through $7$ can be formed.
 
-**Example 3**
+#### Example 3
 
-- Input: `coins = [1,4,10,3,1]`
-- Output: `20`
+- **Input:** `coins = [1,4,10,3,1]`
+- **Output:** `20`
 
 The coins can form every value from $0$ through $19$.

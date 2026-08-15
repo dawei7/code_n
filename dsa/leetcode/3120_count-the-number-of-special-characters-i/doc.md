@@ -32,20 +32,20 @@ Return the number of distinct letters whose lowercase and uppercase forms both a
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word = "aaAbcBC"`
-- Output: `3`
-- Explanation: The letters `a`, `b`, and `c` each occur in both cases.
+- **Input:** `word = "aaAbcBC"`
+- **Output:** `3`
+- **Explanation:** The letters `a`, `b`, and `c` each occur in both cases.
 
-**Example 2**
+#### Example 2
 
-- Input: `word = "abc"`
-- Output: `0`
-- Explanation: No uppercase form appears for any letter in the string.
+- **Input:** `word = "abc"`
+- **Output:** `0`
+- **Explanation:** No uppercase form appears for any letter in the string.
 
-**Example 3**
+#### Example 3
 
-- Input: `word = "abBCab"`
-- Output: `1`
-- Explanation: Only `b` occurs in both lowercase and uppercase.
+- **Input:** `word = "abBCab"`
+- **Output:** `1`
+- **Explanation:** Only `b` occurs in both lowercase and uppercase.

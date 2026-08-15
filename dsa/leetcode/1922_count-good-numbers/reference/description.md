@@ -10,8 +10,13 @@ A **digit string** is a string consisting of digits `0` through `9` that may con
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,10 +25,12 @@ A **digit string** is a string consisting of digits `0` through `9` that may con
 - **Input:** $n = 1$
 - **Output:** `5`
 - **Explanation:** The good numbers of length 1 are "0", "2", "4", "6", "8".
+
 #### Example 2
 
 - **Input:** $n = 4$
 - **Output:** `400`
+
 #### Example 3
 
 - **Input:** $n = 50$

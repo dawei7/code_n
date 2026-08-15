@@ -16,26 +16,19 @@ Find the **minimum** number of operations needed to make `nums` **positive**.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [-10,15,-12]
+- **Input:** nums = [-10,15,-12]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** The only subarray with more than 2 elements is the array itself. The sum of all elements is $(-10) + 15 + (-12) = -7$. By replacing $\text{nums}[0]$ with 0, the new sum becomes $0 + 15 + (-12) = 3$. Thus, the array is now positive.
 
-The only subarray with more than 2 elements is the array itself. The sum of all elements is $(-10) + 15 + (-12) = -7$. By replacing $\text{nums}[0]$ with 0, the new sum becomes $0 + 15 + (-12) = 3$. Thus, the array is now positive.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [-1,-2,3,-1,2,6]
+- **Input:** nums = [-1,-2,3,-1,2,6]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-The only subarrays with more than 2 elements and a non-positive sum are:
+- **Explanation:** The only subarrays with more than 2 elements and a non-positive sum are:
 
 <table style="border: 1px solid black;">
 	<tbody>
@@ -72,19 +65,13 @@ The only subarrays with more than 2 elements and a non-positive sum are:
 
 Thus, `nums` is positive after one operation.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,2,3]
+- **Input:** nums = [1,2,3]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-The array is already positive, so no operations are needed.
-
-</div>
+- **Explanation:** The array is already positive, so no operations are needed.
 
 ### 4. Constraints
 

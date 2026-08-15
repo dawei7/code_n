@@ -33,20 +33,20 @@ Return the minimum number of smallest-element removals needed so that every rema
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 11, 10, 1, 3], k = 10`
-- Output: `3`
-- Explanation: Removing `1`, `2`, and `3` leaves `[11, 10]`, whose values both meet the threshold.
+- **Input:** `nums = [2, 11, 10, 1, 3], k = 10`
+- **Output:** `3`
+- **Explanation:** Removing `1`, `2`, and `3` leaves `[11, 10]`, whose values both meet the threshold.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 1, 2, 4, 9], k = 1`
-- Output: `0`
-- Explanation: Every value is already at least `1`.
+- **Input:** `nums = [1, 1, 2, 4, 9], k = 1`
+- **Output:** `0`
+- **Explanation:** Every value is already at least `1`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 1, 2, 4, 9], k = 9`
-- Output: `4`
-- Explanation: The four values below `9` must be removed, leaving the single value `9`.
+- **Input:** `nums = [1, 1, 2, 4, 9], k = 9`
+- **Output:** `4`
+- **Explanation:** The four values below `9` must be removed, leaving the single value `9`.

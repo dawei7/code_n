@@ -16,8 +16,12 @@ Implement the `RangeModule` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `RangeModule()`: Initializes the data structure.
+- `addRange(left: int, right: int)`: Executes operation.
+- `queryRange(left: int, right: int) -> `bool``: Executes operation.
+- `removeRange(left: int, right: int)`: Executes operation.
 
 ### 3. Examples
 

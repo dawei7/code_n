@@ -10,21 +10,24 @@ Return an array `ans` of length `n`, where $\text{ans}[i]$ represents the **coun
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `freq`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,3,2,1], freq = [3,2,-3,1]
+- **Input:** nums = [2,3,2,1], freq = [3,2,-3,1]
 
-**Output:** [3,3,2,2]
+- **Output:** [3,3,2,2]
 
-**Explanation:**
-
-After step 0, we have 3 IDs with the value of 2. So $\text{ans}[0] = 3$.
+- **Explanation:** After step 0, we have 3 IDs with the value of 2. So $\text{ans}[0] = 3$.
 
 After step 1, we have 3 IDs with the value of 2 and 2 IDs with the value of 3. So $\text{ans}[1] = 3$.
 
@@ -32,23 +35,17 @@ After step 2, we have 2 IDs with the value of 3. So $\text{ans}[2] = 2$.
 
 After step 3, we have 2 IDs with the value of 3 and 1 ID with the value of 1. So $\text{ans}[3] = 2$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [5,5,3], freq = [2,-2,1]
+- **Input:** nums = [5,5,3], freq = [2,-2,1]
 
-**Output:** [2,0,1]
+- **Output:** [2,0,1]
 
-**Explanation:**
-
-After step 0, we have 2 IDs with the value of 5. So $\text{ans}[0] = 2$.
+- **Explanation:** After step 0, we have 2 IDs with the value of 5. So $\text{ans}[0] = 2$.
 
 After step 1, there are no IDs. So $\text{ans}[1] = 0$.
 
 After step 2, we have 1 ID with the value of 3. So $\text{ans}[2] = 1$.
-
-</div>
 
 ### 4. Constraints
 

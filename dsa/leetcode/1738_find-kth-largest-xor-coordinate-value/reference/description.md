@@ -8,8 +8,14 @@ Find the $$k^{\text{th}}$$ largest value **(1-indexed)** of all the coordinates 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `matrix`: Input parameter (`List[List[int]]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,11 +24,13 @@ Find the $$k^{\text{th}}$$ largest value **(1-indexed)** of all the coordinates 
 - **Input:** $matrix = [[5,2],[1,6]], k = 1$
 - **Output:** `7`
 - **Explanation:** The value of coordinate (0,1) is 5 XOR 2 = 7, which is the largest value.
+
 #### Example 2
 
 - **Input:** $matrix = [[5,2],[1,6]], k = 2$
 - **Output:** `5`
 - **Explanation:** The value of coordinate (0,0) is 5 = 5, which is the 2nd largest value.
+
 #### Example 3
 
 - **Input:** $matrix = [[5,2],[1,6]], k = 3$

@@ -10,8 +10,13 @@ Since the answer may be too large, return it modulo $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `hats`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,12 +26,14 @@ Since the answer may be too large, return it modulo $10^{9} + 7$.
 - **Output:** `1`
 - **Explanation:** There is only one way to choose hats given the conditions.
 First person chooses hat 3, Second person chooses hat 4 and last one hat 5.
+
 #### Example 2
 
 - **Input:** $hats = [[3,5,1],[3,5]]$
 - **Output:** `4`
 - **Explanation:** There are 4 ways to choose hats:
 (3,5), (5,3), (1,3) and (1,5)
+
 #### Example 3
 
 - **Input:** $hats = [[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4]]$

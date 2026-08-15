@@ -8,8 +8,14 @@ Return `true`* if it is possible to form** a palindrome string, otherwise return
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `a`: Input parameter (`str`).
+- `b`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Notice
 
@@ -25,10 +31,12 @@ that $x + y$ denotes the concatenation of strings `x` and `y`.
 a_prefix = "", a_suffix = "x"
 b_prefix = "", b_suffix = "y"
 Then, a_prefix + b_suffix = "" + "y" = "y", which is a palindrome.
+
 #### Example 2
 
 - **Input:** $a = "xbdef", b = "xecab"$
 - **Output:** `false`
+
 #### Example 3
 
 - **Input:** $a = "ulacfd", b = "jizalu"$

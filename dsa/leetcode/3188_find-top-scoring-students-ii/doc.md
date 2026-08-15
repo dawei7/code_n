@@ -38,11 +38,11 @@ Let $s$, $c$, and $e$ be the row counts of the three input tables, and let $r=s+
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 For the supplied Computer Science and Mathematics data, students 1 and 3 earn `A` in both mandatory courses of their majors, have qualifying grades in two major electives, and maintain an average GPA above 2.5.
 
-Output:
+- **Output:** 
 
 | student_id |
 |---:|

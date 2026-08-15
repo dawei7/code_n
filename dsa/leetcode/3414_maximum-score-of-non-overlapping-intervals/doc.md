@@ -32,23 +32,23 @@ Let $n=\lvert\texttt{intervals}\rvert$. The constraints are $1\le n\le5\cdot10^4
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `intervals = [[1, 3, 2], [4, 5, 2], [1, 5, 5], [6, 9, 3], [6, 7, 1], [8, 9, 1]]`
-- Output: `[2, 3]`
+- **Input:** `intervals = [[1, 3, 2], [4, 5, 2], [1, 5, 5], [6, 9, 3], [6, 7, 1], [8, 9, 1]]`
+- **Output:** `[2, 3]`
 
 Intervals 2 and 3 do not overlap and contribute $5+3=8$.
 
-**Example 2**
+#### Example 2
 
-- Input: `intervals = [[5, 8, 1], [6, 7, 7], [4, 7, 3], [9, 10, 6], [7, 8, 2], [11, 14, 3], [3, 5, 5]]`
-- Output: `[1, 3, 5, 6]`
+- **Input:** `intervals = [[5, 8, 1], [6, 7, 7], [4, 7, 3], [9, 10, 6], [7, 8, 2], [11, 14, 3], [3, 5, 5]]`
+- **Output:** `[1, 3, 5, 6]`
 
 These four intervals have total weight $7+6+3+5=21$.
 
-**Example 3**
+#### Example 3
 
-- Input: `intervals = [[1, 2, 5], [3, 4, 5], [1, 4, 10]]`
-- Output: `[0, 1]`
+- **Input:** `intervals = [[1, 2, 5], [3, 4, 5], [1, 4, 10]]`
+- **Output:** `[0, 1]`
 
 Both `[0, 1]` and `[2]` score 10, and `[0, 1]` is lexicographically smaller.

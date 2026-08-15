@@ -16,28 +16,19 @@ A **right shift** is defined as shifting the element at index `i` to index $(i +
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums1 = [3,1,2,3,1,2], nums2 = [1,2,3,1,2,3]
+- **Input:** nums1 = [3,1,2,3,1,2], nums2 = [1,2,3,1,2,3]
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
+- **Explanation:** If we right shift `nums1` 2 times, it becomes `[1, 2, 3, 1, 2, 3]`. Every index matches, so the output is 6.
 
-If we right shift `nums1` 2 times, it becomes `[1, 2, 3, 1, 2, 3]`. Every index matches, so the output is 6.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums1 = [1,4,2,5,3,1], nums2 = [2,3,1,2,4,6]
+- **Input:** nums1 = [1,4,2,5,3,1], nums2 = [2,3,1,2,4,6]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-If we right shift `nums1` 3 times, it becomes `[5, 3, 1, 1, 4, 2]`. Indices 1, 2, and 4 match, so the output is 3.
-
-</div>
+- **Explanation:** If we right shift `nums1` 3 times, it becomes `[5, 3, 1, 1, 4, 2]`. Indices 1, 2, and 4 match, so the output is 3.
 
 ### 4. Constraints
 

@@ -12,8 +12,13 @@ Return the minimum number of moves to transform the given array `nums` into a zi
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +27,7 @@ Return the minimum number of moves to transform the given array `nums` into a zi
 - **Input:** `nums = [1,2,3]`
 - **Output:** `2`
 - **Explanation:** We can decrease 2 to 0 or 3 to 1.
+
 #### Example 2
 
 - **Input:** `nums = [9,6,1,6,2]`

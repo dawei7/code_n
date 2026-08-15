@@ -6,8 +6,13 @@ We define an array is non-decreasing if $\text{nums}[i] \le nums[i + 1]$ holds f
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -16,6 +21,7 @@ We define an array is non-decreasing if $\text{nums}[i] \le nums[i + 1]$ holds f
 - **Input:** `nums = [4,2,3]`
 - **Output:** `true`
 - **Explanation:** You could modify the first 4 to 1 to get a non-decreasing array.
+
 #### Example 2
 
 - **Input:** `nums = [4,2,1]`

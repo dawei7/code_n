@@ -32,20 +32,20 @@ Return the head of a $k$-node linked list containing each distinct input value's
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `head = [1, 1, 2, 1, 2, 3]`
-- Output: `[3, 2, 1]`
-- Explanation: The values `1`, `2`, and `3` occur three, two, and one times, respectively. Any permutation of `[3, 2, 1]` is also valid.
+- **Input:** `head = [1, 1, 2, 1, 2, 3]`
+- **Output:** `[3, 2, 1]`
+- **Explanation:** The values `1`, `2`, and `3` occur three, two, and one times, respectively. Any permutation of `[3, 2, 1]` is also valid.
 
-**Example 2**
+#### Example 2
 
-- Input: `head = [1, 1, 2, 2, 2]`
-- Output: `[2, 3]`
-- Explanation: The two distinct values occur two and three times.
+- **Input:** `head = [1, 1, 2, 2, 2]`
+- **Output:** `[2, 3]`
+- **Explanation:** The two distinct values occur two and three times.
 
-**Example 3**
+#### Example 3
 
-- Input: `head = [6, 5, 4, 3, 2, 1]`
-- Output: `[1, 1, 1, 1, 1, 1]`
-- Explanation: All six input values are distinct, so every frequency is one.
+- **Input:** `head = [6, 5, 4, 3, 2, 1]`
+- **Output:** `[1, 1, 1, 1, 1, 1]`
+- **Explanation:** All six input values are distinct, so every frequency is one.

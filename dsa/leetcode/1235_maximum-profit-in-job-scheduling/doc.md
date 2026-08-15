@@ -32,23 +32,23 @@ A job ending at time $X$ is compatible with another job starting at exactly time
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `startTime = [1,2,3,3]`, `endTime = [3,4,5,6]`, `profit = [50,10,40,70]`
-- Output: `120`
+- **Input:** `startTime = [1,2,3,3]`, `endTime = [3,4,5,6]`, `profit = [50,10,40,70]`
+- **Output:** `120`
 
 The jobs `[1,3]` and `[3,6]` touch at time $3$ and earn $50+70=120$.
 
-**Example 2**
+#### Example 2
 
-- Input: `startTime = [1,2,3,4,6]`, `endTime = [3,5,10,6,9]`, `profit = [20,20,100,70,60]`
-- Output: `150`
+- **Input:** `startTime = [1,2,3,4,6]`, `endTime = [3,5,10,6,9]`, `profit = [20,20,100,70,60]`
+- **Output:** `150`
 
 Selecting `[1,3]`, `[4,6]`, and `[6,9]` earns $20+70+60=150$.
 
-**Example 3**
+#### Example 3
 
-- Input: `startTime = [1,1,1]`, `endTime = [2,3,4]`, `profit = [5,6,4]`
-- Output: `6`
+- **Input:** `startTime = [1,1,1]`, `endTime = [2,3,4]`, `profit = [5,6,4]`
+- **Output:** `6`
 
 Every pair overlaps, so the single job worth $6$ is optimal.

@@ -31,23 +31,23 @@ Return the size of the $k$th largest perfect subtree, counting equal sizes separ
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [5, 3, 6, 5, 2, 5, 7, 1, 8, null, null, 6, 8], k = 2`
-- Output: `3`
+- **Input:** `root = [5, 3, 6, 5, 2, 5, 7, 1, 8, null, null, 6, 8], k = 2`
+- **Output:** `3`
 
 The perfect-subtree sizes in non-increasing order begin `[3, 3, 1, 1, 1, 1, 1, 1]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [1, 2, 3, 4, 5, 6, 7], k = 1`
-- Output: `7`
+- **Input:** `root = [1, 2, 3, 4, 5, 6, 7], k = 1`
+- **Output:** `7`
 
 The entire tree is perfect and is the largest qualifying subtree.
 
-**Example 3**
+#### Example 3
 
-- Input: `root = [1, 2, 3, null, 4], k = 3`
-- Output: `-1`
+- **Input:** `root = [1, 2, 3, null, 4], k = 3`
+- **Output:** `-1`
 
 Only the two leaves form perfect subtrees, so a third size does not exist.

@@ -9,12 +9,15 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/apply-operations-to-make-string-empty/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given a string `s`. Perform an operation by considering every lowercase English letter from `'a'` through `'z'`: if that letter currently occurs in the string, remove its first occurrence. Repeat this operation until the string becomes empty.
 
 Return the entire string as it appears immediately before the final operation. The relative order of the remaining characters is never changed by an operation; only selected occurrences are deleted.
 
 ### Function Contract
+
 Let $n=\lvert\texttt{s}\rvert$.
 
 **Inputs**
@@ -26,14 +29,15 @@ Let $n=\lvert\texttt{s}\rvert$.
 Return the nonempty string present immediately before the operation that removes all of its remaining characters.
 
 ### Examples
-**Example 1**
 
-- Input: `s = "aabcbbca"`
-- Output: `"ba"`
-- Explanation: The successive strings are `"aabcbbca"`, `"abbca"`, `"ba"`, and `""`. Thus `"ba"` is the state immediately before the last operation.
+#### Example 1
 
-**Example 2**
+- **Input:** `s = "aabcbbca"`
+- **Output:** `"ba"`
+- **Explanation:** The successive strings are `"aabcbbca"`, `"abbca"`, `"ba"`, and `""`. Thus `"ba"` is the state immediately before the last operation.
 
-- Input: `s = "abcd"`
-- Output: `"abcd"`
-- Explanation: Every letter occurs once, so the first operation also empties the string.
+#### Example 2
+
+- **Input:** `s = "abcd"`
+- **Output:** `"abcd"`
+- **Explanation:** Every letter occurs once, so the first operation also empties the string.

@@ -8,8 +8,13 @@ Return `true`* if *`a`* and *`b`* are **alike***. Otherwise, return `false`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -18,6 +23,7 @@ Return `true`* if *`a`* and *`b`* are **alike***. Otherwise, return `false`.
 - **Input:** `s = "book"`
 - **Output:** `true`
 - **Explanation:** a = "b<u>o</u>" and b = "<u>o</u>k". a has 1 vowel and b has 1 vowel. Therefore, they are alike.
+
 #### Example 2
 
 - **Input:** `s = "textbook"`

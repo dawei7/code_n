@@ -39,23 +39,23 @@ The number of position-distinct strictly increasing four-directional paths in
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[1,1],[3,4]]`
-- Output: `8`
-- Explanation: Four one-cell paths, three two-cell paths, and the path from
+- **Input:** `grid = [[1,1],[3,4]]`
+- **Output:** `8`
+- **Explanation:** Four one-cell paths, three two-cell paths, and the path from
   the lower-left `1` through `3` to `4` give eight paths altogether.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[1],[2]]`
-- Output: `3`
-- Explanation: The two single-cell paths and the path from `1` to `2` are
+- **Input:** `grid = [[1],[2]]`
+- **Output:** `3`
+- **Explanation:** The two single-cell paths and the path from `1` to `2` are
   valid.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[5,5,5],[5,5,5]]`
-- Output: `6`
-- Explanation: Equal values cannot follow one another in a strictly
+- **Input:** `grid = [[5,5,5],[5,5,5]]`
+- **Output:** `6`
+- **Explanation:** Equal values cannot follow one another in a strictly
   increasing path, so only the six individual cells count.

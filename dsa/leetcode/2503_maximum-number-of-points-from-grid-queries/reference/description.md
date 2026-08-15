@@ -14,8 +14,14 @@ Return *the resulting array* `answer`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+- `queries`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -26,6 +32,7 @@ Return *the resulting array* `answer`.
 - **Input:** `grid = [[1,2,3],[2,5,7],[3,5,1]], queries = [5,6,2]`
 - **Output:** `[5,8,1]`
 - **Explanation:** The diagrams above show which cells we visit to get points for each query.
+
 #### Example 2
 
 ![](images/yetgriddrawio-2.png)

@@ -20,8 +20,13 @@ Return *the maximum number of cherries you can collect by following the rules be
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -35,6 +40,7 @@ Return *the maximum number of cherries you can collect by following the rules be
 4 cherries were picked up during this single trip, and the matrix becomes [[0,1,-1],[0,0,-1],[0,0,0]].
 Then, the player went left, up, up, left to return home, picking up one more cherry.
 The total number of cherries picked up is 5, and this is the maximum possible.
+
 #### Example 2
 
 - **Input:** `grid = [[1,1,-1],[1,-1,1],[-1,1,1]]`

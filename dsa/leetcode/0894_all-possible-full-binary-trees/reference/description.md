@@ -8,8 +8,10 @@ A **full binary tree** is a binary tree where each node has exactly `0` or `2` c
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `allPossibleFBT(n: int) -> `List[Optional[TreeNode]]``: Executes operation.
 
 ### 3. Examples
 
@@ -19,6 +21,7 @@ A **full binary tree** is a binary tree where each node has exactly `0` or `2` c
 
 - **Input:** $n = 7$
 - **Output:** `[[0,0,0,null,null,0,0,null,null,0,0],[0,0,0,null,null,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,null,null,null,null,0,0],[0,0,0,0,0,null,null,0,0]]`
+
 #### Example 2
 
 - **Input:** $n = 3$

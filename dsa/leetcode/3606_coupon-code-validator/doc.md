@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/coupon-code-validator/) |
 
 ## Problem Description
+
 ### Goal
 
 Three arrays of the same length describe a collection of coupons. At index `i`, `code[i]` is the coupon identifier, `businessLine[i]` is its category, and `isActive[i]` states whether the coupon is active.
@@ -35,14 +36,14 @@ Return the valid coupon codes in the required category and lexicographical order
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `code = ["SAVE20", "", "PHARMA5", "SAVE@20"], businessLine = ["restaurant", "grocery", "pharmacy", "restaurant"], isActive = [true, true, true, true]`
-- Output: `["PHARMA5", "SAVE20"]`
-- Explanation: The empty code and the code containing `@` are invalid. Pharmacy precedes restaurant.
+- **Input:** `code = ["SAVE20", "", "PHARMA5", "SAVE@20"], businessLine = ["restaurant", "grocery", "pharmacy", "restaurant"], isActive = [true, true, true, true]`
+- **Output:** `["PHARMA5", "SAVE20"]`
+- **Explanation:** The empty code and the code containing `@` are invalid. Pharmacy precedes restaurant.
 
-**Example 2**
+#### Example 2
 
-- Input: `code = ["GROCERY15", "ELECTRONICS_50", "DISCOUNT10"], businessLine = ["grocery", "electronics", "invalid"], isActive = [false, true, true]`
-- Output: `["ELECTRONICS_50"]`
-- Explanation: The grocery coupon is inactive, and the last business line is not permitted.
+- **Input:** `code = ["GROCERY15", "ELECTRONICS_50", "DISCOUNT10"], businessLine = ["grocery", "electronics", "invalid"], isActive = [false, true, true]`
+- **Output:** `["ELECTRONICS_50"]`
+- **Explanation:** The grocery coupon is inactive, and the last business line is not permitted.

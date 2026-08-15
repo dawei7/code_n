@@ -6,8 +6,14 @@ A query word $\text{queries}[i]$ matches `pattern` if you can insert lowercase E
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `queries`: Input parameter (`List[str]`).
+- `pattern`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `List[bool]`.
 
 ### 3. Examples
 
@@ -18,12 +24,14 @@ A query word $\text{queries}[i]$ matches `pattern` if you can insert lowercase E
 - **Explanation:** "FooBar" can be generated like this "F" + "oo" + "B" + "ar".
 "FootBall" can be generated like this "F" + "oot" + "B" + "all".
 "FrameBuffer" can be generated like this "F" + "rame" + "B" + "uffer".
+
 #### Example 2
 
 - **Input:** $queries = ["FooBar","FooBarTest","FootBall","FrameBuffer","ForceFeedBack"], pattern = "FoBa"$
 - **Output:** `[true,false,true,false,false]`
 - **Explanation:** "FooBar" can be generated like this "Fo" + "o" + "Ba" + "r".
 "FootBall" can be generated like this "Fo" + "ot" + "Ba" + "ll".
+
 #### Example 3
 
 - **Input:** $queries = ["FooBar","FooBarTest","FootBall","FrameBuffer","ForceFeedBack"], pattern = "FoBaT"$

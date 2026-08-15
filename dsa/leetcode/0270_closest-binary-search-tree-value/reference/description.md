@@ -23,6 +23,7 @@ Return the node value with minimum absolute distance from `target`, choosing the
 
 - **Input:** `root = [4,2,5,1,3], target = 3.714286`
 - **Output:** `4`
+
 #### Example 2
 
 - **Input:** `root = [1], target = 4.428571`

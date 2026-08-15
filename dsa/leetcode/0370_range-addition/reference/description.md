@@ -25,6 +25,7 @@ Return the length-`length` array after accumulating all additions, including ove
 
 - **Input:** $length = 5, updates = [[1,3,2],[2,4,3],[0,2,-2]]$
 - **Output:** `[-2,0,3,5,3]`
+
 #### Example 2
 
 - **Input:** $length = 10, updates = [[2,4,6],[5,6,8],[1,9,-4]]$

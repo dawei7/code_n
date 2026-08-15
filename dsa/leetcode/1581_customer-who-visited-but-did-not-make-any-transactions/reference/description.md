@@ -43,7 +43,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Visits
 +----------+-------------+
 | visit_id | customer_id |
@@ -66,7 +66,7 @@ Transactions
 | 12             | 1        | 910    |
 | 13             | 2        | 970    |
 +----------------+----------+--------+
-**Output:**
+- **Output:** 
 +-------------+----------------+
 | customer_id | count_no_trans |
 +-------------+----------------+
@@ -74,8 +74,7 @@ Transactions
 | 30          | 1              |
 | 96          | 1              |
 +-------------+----------------+
-**Explanation:**
-Customer with id = 23 visited the mall once and made one transaction during the visit with id = 12.
+- **Explanation:** Customer with id = 23 visited the mall once and made one transaction during the visit with id = 12.
 Customer with id = 9 visited the mall once and made one transaction during the visit with id = 13.
 Customer with id = 30 visited the mall once and did not make any transactions.
 Customer with id = 54 visited the mall three times. During 2 visits they did not make any transactions, and during one visit they made 3 transactions.

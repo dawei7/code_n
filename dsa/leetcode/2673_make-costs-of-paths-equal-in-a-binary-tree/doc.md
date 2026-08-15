@@ -31,14 +31,14 @@ One operation increments any single node's cost by one. Apply as few operations 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 7`, `cost = [1,5,2,2,3,3,1]`
-- Output: `6`
-- Explanation: The four path sums can all be raised to `9` using six increments in total.
+- **Input:** `n = 7`, `cost = [1,5,2,2,3,3,1]`
+- **Output:** `6`
+- **Explanation:** The four path sums can all be raised to `9` using six increments in total.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3`, `cost = [5,3,3]`
-- Output: `0`
-- Explanation: Both root-to-leaf paths already have equal cost.
+- **Input:** `n = 3`, `cost = [5,3,3]`
+- **Output:** `0`
+- **Explanation:** Both root-to-leaf paths already have equal cost.

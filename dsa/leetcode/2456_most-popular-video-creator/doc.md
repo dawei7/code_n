@@ -36,14 +36,14 @@ All three arrays have the same length $n$, where $1\le n\le 10^5$. Each creator 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `creators = ["alice", "bob", "alice", "chris"]`, `ids = ["one", "two", "three", "four"]`, `views = [5, 10, 5, 4]`
-- Output: `[["alice", "one"], ["bob", "two"]]`
-- Explanation: Alice and Bob each total `10` views. Alice's two videos tie at `5`, so the smaller identifier `"one"` is selected.
+- **Input:** `creators = ["alice", "bob", "alice", "chris"]`, `ids = ["one", "two", "three", "four"]`, `views = [5, 10, 5, 4]`
+- **Output:** `[["alice", "one"], ["bob", "two"]]`
+- **Explanation:** Alice and Bob each total `10` views. Alice's two videos tie at `5`, so the smaller identifier `"one"` is selected.
 
-**Example 2**
+#### Example 2
 
-- Input: `creators = ["alice", "alice", "alice"]`, `ids = ["a", "b", "c"]`, `views = [1, 2, 2]`
-- Output: `[["alice", "b"]]`
-- Explanation: The videos `"b"` and `"c"` tie for Alice's largest view count, and `"b"` is lexicographically smaller.
+- **Input:** `creators = ["alice", "alice", "alice"]`, `ids = ["a", "b", "c"]`, `views = [1, 2, 2]`
+- **Output:** `[["alice", "b"]]`
+- **Explanation:** The videos `"b"` and `"c"` tie for Alice's largest view count, and `"b"` is lexicographically smaller.

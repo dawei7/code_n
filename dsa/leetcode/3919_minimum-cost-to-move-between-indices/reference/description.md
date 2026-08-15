@@ -35,12 +35,11 @@ Return a list of $q$ integers in the same order as `queries`. Entry `i` is the m
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [-5,-2,3], queries = [[0,2],[2,0],[1,2]]
+- **Input:** nums = [-5,-2,3], queries = [[0,2],[2,0],[1,2]]
 
-**Output:** [6,2,5]
+- **Output:** [6,2,5]
 
-**Explanation:**​​​​​​​​​​​​​​​​​​​​
+- **Explanation:** ​​​​​​​​​​​​​​​​​​​​
 
 - The closest indices are `[1, 0, 1]` respectively.
 
@@ -52,15 +51,13 @@ Return a list of $q$ integers in the same order as `queries`. Entry `i` is the m
 
 Thus, $ans = [6, 2, 5]$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [0,2,3,9], queries = [[3,0],[1,2],[2,0]]
+- **Input:** nums = [0,2,3,9], queries = [[3,0],[1,2],[2,0]]
 
-**Output:** [4,1,3]
+- **Output:** [4,1,3]
 
-**Explanation:**
+- **Explanation:** 
 
 - The closest indices are `[1, 2, 1, 2]` respectively.
 
@@ -71,8 +68,6 @@ Thus, $ans = [6, 2, 5]$.
 - For `[2, 0]`, the path `2 → 1 → 0` uses a closest move from index 2 to 1 with cost 1 and a move from 1 to 0 with cost $|2 - 0| = 2$, giving total $1 + 2 = 3$.
 
 Thus, $ans = [4, 1, 3]$.
-
-</div>
 
 ### 4. Constraints
 

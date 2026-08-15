@@ -10,8 +10,13 @@ Since the answer may be very large, **return it modulo **$10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +27,7 @@ Since the answer may be very large, **return it modulo **$10^{9} + 7$.
 - **Input:** `nums = [2,1,3]`
 - **Output:** `1`
 - **Explanation:** We can reorder nums to be [2,3,1] which will yield the same BST. There are no other ways to reorder nums which will yield the same BST.
+
 #### Example 2
 
 ![](images/1569_ex.png)
@@ -34,6 +40,7 @@ Since the answer may be very large, **return it modulo **$10^{9} + 7$.
 [3,1,4,5,2]
 [3,4,1,2,5]
 [3,4,1,5,2]
+
 #### Example 3
 
 ![](images/1569_ex2.png)

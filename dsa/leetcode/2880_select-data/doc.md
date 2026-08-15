@@ -30,17 +30,17 @@ A one-row pandas `DataFrame` with columns `name` and `age` for the student whose
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: rows `[101, "Ulysses", 13]`, `[53, "William", 10]`, `[128, "Henry", 6]`, and `[3, "Henry", 11]`.
-- Output: one row `[["Ulysses", 13]]` under columns `name` and `age`.
+- **Input:** rows `[101, "Ulysses", 13]`, `[53, "William", 10]`, `[128, "Henry", 6]`, and `[3, "Henry", 11]`.
+- **Output:** one row `[["Ulysses", 13]]` under columns `name` and `age`.
 
-**Example 2**
+#### Example 2
 
-- Input: the row with `student_id = 101` appears after another student.
-- Output: the target student's `name` and `age`, regardless of position.
+- **Input:** the row with `student_id = 101` appears after another student.
+- **Output:** the target student's `name` and `age`, regardless of position.
 
-**Example 3**
+#### Example 3
 
-- Input: the target row is the final row of the DataFrame.
-- Output: that final student's `name` and `age` only.
+- **Input:** the target row is the final row of the DataFrame.
+- **Output:** that final student's `name` and `age` only.

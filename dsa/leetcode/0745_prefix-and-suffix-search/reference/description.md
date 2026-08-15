@@ -10,8 +10,10 @@ Implement the `WordFilter` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `WordFilter(words: List[str])`: Initializes the data structure.
+- `f(pref: str, suff: str) -> `int``: Executes operation.
 
 ### 3. Examples
 

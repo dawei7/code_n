@@ -4,8 +4,10 @@ Given the `root` node of a binary search tree and two integers `low` and `high`,
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `rangeSumBST(root: Optional[TreeNode], low: int, high: int) -> `int``: Executes operation.
 
 ### 3. Examples
 
@@ -16,6 +18,7 @@ Given the `root` node of a binary search tree and two integers `low` and `high`,
 - **Input:** `root = [10,5,15,3,7,null,18], low = 7, high = 15`
 - **Output:** `32`
 - **Explanation:** Nodes 7, 10, and 15 are in the range [7, 15]. 7 + 10 + 15 = 32.
+
 #### Example 2
 
 ![](images/bst2.jpg)

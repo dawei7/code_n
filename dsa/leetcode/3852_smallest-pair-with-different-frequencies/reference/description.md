@@ -36,40 +36,27 @@ Return `[x, y]` for the lexicographically smallest valid pair. Return `[-1, -1]`
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,1,2,2,3,4]
+- **Input:** nums = [1,1,2,2,3,4]
 
-**Output:** [1,3]
+- **Output:** [1,3]
 
-**Explanation:**
+- **Explanation:** The smallest value is 1 with a frequency of 2, and the smallest value greater than 1 that has a different frequency from 1 is 3 with a frequency of 1. Thus, the answer is `[1, 3]`.
 
-The smallest value is 1 with a frequency of 2, and the smallest value greater than 1 that has a different frequency from 1 is 3 with a frequency of 1. Thus, the answer is `[1, 3]`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,5]
+- **Input:** nums = [1,5]
 
-**Output:** [-1,-1]
+- **Output:** [-1,-1]
 
-**Explanation:**
+- **Explanation:** Both values have the same frequency, so no valid pair exists. Return `[-1, -1]`.
 
-Both values have the same frequency, so no valid pair exists. Return `[-1, -1]`.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [7]
+- **Input:** nums = [7]
 
-**Output:** [-1,-1]
+- **Output:** [-1,-1]
 
-**Explanation:**
-
-There is only one value in the array, so no valid pair exists. Return `[-1, -1]`.
-
-</div>
+- **Explanation:** There is only one value in the array, so no valid pair exists. Return `[-1, -1]`.
 
 ### 4. Constraints
 

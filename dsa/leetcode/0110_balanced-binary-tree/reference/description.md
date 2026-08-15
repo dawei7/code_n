@@ -20,12 +20,14 @@ Return `true` if the height-balance condition holds at every node; otherwise ret
 
 - **Input:** `root = [3,9,20,null,null,15,7]`
 - **Output:** `true`
+
 #### Example 2
 
 ![](images/balance_2.jpg)
 
 - **Input:** `root = [1,2,2,3,3,null,null,4,4]`
 - **Output:** `false`
+
 #### Example 3
 
 - **Input:** `root = []`

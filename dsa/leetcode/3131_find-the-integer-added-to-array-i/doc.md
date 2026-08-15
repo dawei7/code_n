@@ -33,18 +33,18 @@ Both lengths are between $1$ and $100$, inclusive. Every element of both arrays 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [2, 6, 4], nums2 = [9, 7, 5]`
-- Output: `3`
-- Explanation: Adding `3` gives `[5, 9, 7]`, whose elements can be rearranged into `nums2`.
+- **Input:** `nums1 = [2, 6, 4], nums2 = [9, 7, 5]`
+- **Output:** `3`
+- **Explanation:** Adding `3` gives `[5, 9, 7]`, whose elements can be rearranged into `nums2`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [10], nums2 = [5]`
-- Output: `-5`
+- **Input:** `nums1 = [10], nums2 = [5]`
+- **Output:** `-5`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums1 = [1, 1, 1, 1], nums2 = [1, 1, 1, 1]`
-- Output: `0`
+- **Input:** `nums1 = [1, 1, 1, 1], nums2 = [1, 1, 1, 1]`
+- **Output:** `0`

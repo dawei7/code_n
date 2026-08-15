@@ -42,22 +42,22 @@ Let $E$ be the number of channels.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `edges = [[0, 1], [1, 2]], patience = [0, 2, 1]`
-- Output: `8`
-- Explanation: Server `2` has round-trip time `4` and last resends at second
+- **Input:** `edges = [[0, 1], [1, 2]], patience = [0, 2, 1]`
+- **Output:** `8`
+- **Explanation:** Server `2` has round-trip time `4` and last resends at second
   `3`; that final reply arrives at second `7`.
 
-**Example 2**
+#### Example 2
 
-- Input: `edges = [[0, 1], [0, 2], [1, 2]], patience = [0, 10, 10]`
-- Output: `3`
-- Explanation: Both data servers receive their only reply at second `2`.
+- **Input:** `edges = [[0, 1], [0, 2], [1, 2]], patience = [0, 10, 10]`
+- **Output:** `3`
+- **Explanation:** Both data servers receive their only reply at second `2`.
 
-**Example 3**
+#### Example 3
 
-- Input: `edges = [[0, 1]], patience = [0, 1]`
-- Output: `4`
-- Explanation: The resend at second `1` returns at second `3`, so the network
+- **Input:** `edges = [[0, 1]], patience = [0, 1]`
+- **Output:** `4`
+- **Explanation:** The resend at second `1` returns at second `3`, so the network
   is first idle at second `4`.

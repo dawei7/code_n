@@ -30,7 +30,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 Samples table:
@@ -69,7 +68,7 @@ Samples table:
 
 - Sample 1 (ATGCTAGCTAGCTAA):
 
-		<li>Starts with ATG (has_start = 1)
+		- Starts with ATG (has_start = 1)
 
 - Ends with TAA (has_stop = 1)
 
@@ -77,10 +76,9 @@ Samples table:
 
 - Does not contain at least 3 consecutive 'G's (has_ggg = 0)
 
-	</li>
 - Sample 2 (GGGTCAATCATC):
 
-		<li>Does not start with ATG (has_start = 0)
+		- Does not start with ATG (has_start = 0)
 
 - Does not end with TAA, TAG, or TGA (has_stop = 0)
 
@@ -88,10 +86,9 @@ Samples table:
 
 - Contains GGG (has_ggg = 1)
 
-	</li>
 - Sample 3 (ATATATCGTAGCTA):
 
-		<li>Does not start with ATG (has_start = 0)
+		- Does not start with ATG (has_start = 0)
 
 - Does not end with TAA, TAG, or TGA (has_stop = 0)
 
@@ -99,10 +96,9 @@ Samples table:
 
 - Does not contain at least 3 consecutive 'G's (has_ggg = 0)
 
-	</li>
 - Sample 4 (ATGGGGTCATCATAA):
 
-		<li>Starts with ATG (has_start = 1)
+		- Starts with ATG (has_start = 1)
 
 - Ends with TAA (has_stop = 1)
 
@@ -110,15 +106,13 @@ Samples table:
 
 - Contains GGGG (has_ggg = 1)
 
-	</li>
 - Sample 5 (TCAGTCAGTCAG):
 
-		<li>Does not match any patterns (all fields = 0)
+		- Does not match any patterns (all fields = 0)
 
-	</li>
 - Sample 6 (ATATCGCGCTAG):
 
-		<li>Does not start with ATG (has_start = 0)
+		- Does not start with ATG (has_start = 0)
 
 - Ends with TAG (has_stop = 1)
 
@@ -126,18 +120,15 @@ Samples table:
 
 - Does not contain at least 3 consecutive 'G's (has_ggg = 0)
 
-	</li>
 - Sample 7 (CGTATGCGTCGTA):
 
-		<li>Does not start with ATG (has_start = 0)
+		- Does not start with ATG (has_start = 0)
 
 - Does not end with TAA, "TAG", or "TGA" (has_stop = 0)
 
 - Does not contain ATAT (has_atat = 0)
 
 - Does not contain at least 3 consecutive 'G's (has_ggg = 0)
-
-	</li>
 
 ### 2. Function Contract
 
@@ -149,5 +140,3 @@ Samples table:
 - The result is ordered by sample_id in ascending order
 
 - For each pattern, 1 indicates the pattern is present and 0 indicates it is not present
-
-</div>

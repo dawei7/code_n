@@ -30,14 +30,11 @@ Return an $n$-by-$m$ integer matrix containing the final color of every cell aft
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 3, m = 3, sources = [[0,0,1],[2,2,2]]
+- **Input:** n = 3, m = 3, sources = [[0,0,1],[2,2,2]]
 
-**Output:** [[1,1,2],[1,2,2],[2,2,2]]
+- **Output:** [[1,1,2],[1,2,2],[2,2,2]]
 
-**Explanation:**
-
-The grid at each time step is as follows:
+- **Explanation:** The grid at each time step is as follows:
 
 ![](images/g50new.png)
 
@@ -45,39 +42,29 @@ The grid at each time step is as follows:
 
 At time step 2, cells `(0, 2)`, `(1, 1)`, and `(2, 0)` are reached by both colors, so they are assigned color 2 as it has the maximum value among them.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 3, m = 3, sources = [[0,1,3],[1,1,5]]
+- **Input:** n = 3, m = 3, sources = [[0,1,3],[1,1,5]]
 
-**Output:** [[3,3,3],[5,5,5],[5,5,5]]
+- **Output:** [[3,3,3],[5,5,5],[5,5,5]]
 
-**Explanation:**
-
-The grid at each time step is as follows:
+- **Explanation:** The grid at each time step is as follows:
 
 ![](images/g51new.png)
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 2, m = 2, sources = [[1,1,5]]
+- **Input:** n = 2, m = 2, sources = [[1,1,5]]
 
-**Output:** [[5,5],[5,5]]
+- **Output:** [[5,5],[5,5]]
 
-**Explanation:**
-
-The grid at each time step is as follows:
+- **Explanation:** The grid at each time step is as follows:
 
 ![](images/g52new.png)
 
 ​​​​​​​
 
 Since there is only one source, all cells are assigned the same color.
-
-</div>
 
 ### 4. Constraints
 

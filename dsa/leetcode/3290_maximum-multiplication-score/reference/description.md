@@ -8,35 +8,32 @@ Return the **maximum** score you can achieve.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `a`: Input parameter (`List[int]`).
+- `b`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** a = [3,2,5,6], b = [2,-6,4,-5,-3,2,-7]
+- **Input:** a = [3,2,5,6], b = [2,-6,4,-5,-3,2,-7]
 
-**Output:** 26
+- **Output:** 26
 
-**Explanation:**
+- **Explanation:** We can choose the indices 0, 1, 2, and 5. The score will be $3 * 2 + 2 * (-6) + 5 * 4 + 6 * 2 = 26$.
 
-We can choose the indices 0, 1, 2, and 5. The score will be $3 * 2 + 2 * (-6) + 5 * 4 + 6 * 2 = 26$.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** a = [-1,4,5,-2], b = [-5,-1,-3,-2,-4]
+- **Input:** a = [-1,4,5,-2], b = [-5,-1,-3,-2,-4]
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-We can choose the indices 0, 1, 3, and 4. The score will be $(-1) * (-5) + 4 * (-1) + 5 * (-2) + (-2) * (-4) = -1$.
-
-</div>
+- **Explanation:** We can choose the indices 0, 1, 3, and 4. The score will be $(-1) * (-5) + 4 * (-1) + 5 * (-2) + (-2) * (-4) = -1$.
 
 ### 4. Constraints
 

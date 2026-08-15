@@ -30,20 +30,20 @@ Return the lexicographically smallest string obtainable by decrementing every ch
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "cbabc"`
-- Output: `"baabc"`
-- Explanation: Decrementing the prefix `"cb"` changes it to `"ba"`; extending through the following `a` would wrap that position to `z`.
+- **Input:** `s = "cbabc"`
+- **Output:** `"baabc"`
+- **Explanation:** Decrementing the prefix `"cb"` changes it to `"ba"`; extending through the following `a` would wrap that position to `z`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "aa"`
-- Output: `"az"`
-- Explanation: Some character must change, and changing the last `a` delays the unavoidable `z` as far right as possible.
+- **Input:** `s = "aa"`
+- **Output:** `"az"`
+- **Explanation:** Some character must change, and changing the last `a` delays the unavoidable `z` as far right as possible.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "acbbc"`
-- Output: `"abaab"`
-- Explanation: The first `a` is skipped and the remaining non-`a` suffix is decremented.
+- **Input:** `s = "acbbc"`
+- **Output:** `"abaab"`
+- **Explanation:** The first `a` is skipped and the remaining non-`a` suffix is decremented.

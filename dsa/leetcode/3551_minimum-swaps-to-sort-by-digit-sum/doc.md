@@ -32,22 +32,22 @@ Return the minimum number of pairwise swaps required to arrange all values by `(
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [37,100]`
-- Output: `1`
-- Explanation: The digit sums are $10$ and $1$, so the target is `[100,37]`; one swap reaches it.
+- **Input:** `nums = [37,100]`
+- **Output:** `1`
+- **Explanation:** The digit sums are $10$ and $1$, so the target is `[100,37]`; one swap reaches it.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [22,14,33,7]`
-- Output: `0`
-- Explanation: Their digit sums are $4,5,6,7$, so the array already has the required order.
+- **Input:** `nums = [22,14,33,7]`
+- **Output:** `0`
+- **Explanation:** Their digit sums are $4,5,6,7$, so the array already has the required order.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [18,43,34,16]`
-- Output: `2`
-- Explanation: The target is `[16,34,43,18]`. Swapping `18` with `16`, then `43` with `34`, reaches it.
+- **Input:** `nums = [18,43,34,16]`
+- **Output:** `2`
+- **Explanation:** The target is `[16,34,43,18]`. Swapping `18` with `16`, then `43` with `34`, reaches it.
 
 ---

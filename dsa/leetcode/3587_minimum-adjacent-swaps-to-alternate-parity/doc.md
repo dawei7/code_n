@@ -32,26 +32,26 @@ Return the minimum adjacent-swap count as an integer, or `-1` when no alternatin
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 4, 6, 5, 7]`
-- Output: `3`
-- Explanation: Three adjacent swaps can produce `[2, 5, 4, 7, 6]`.
+- **Input:** `nums = [2, 4, 6, 5, 7]`
+- **Output:** `3`
+- **Explanation:** Three adjacent swaps can produce `[2, 5, 4, 7, 6]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, 4, 5, 7]`
-- Output: `1`
-- Explanation: Swapping the middle pair produces `[2, 5, 4, 7]`.
+- **Input:** `nums = [2, 4, 5, 7]`
+- **Output:** `1`
+- **Explanation:** Swapping the middle pair produces `[2, 5, 4, 7]`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 2, 3]`
-- Output: `0`
-- Explanation: The input already alternates between odd and even values.
+- **Input:** `nums = [1, 2, 3]`
+- **Output:** `0`
+- **Explanation:** The input already alternates between odd and even values.
 
-**Example 4**
+#### Example 4
 
-- Input: `nums = [4, 5, 6, 8]`
-- Output: `-1`
-- Explanation: Three even values and one odd value cannot alternate.
+- **Input:** `nums = [4, 5, 6, 8]`
+- **Output:** `-1`
+- **Explanation:** Three even values and one odd value cannot alternate.

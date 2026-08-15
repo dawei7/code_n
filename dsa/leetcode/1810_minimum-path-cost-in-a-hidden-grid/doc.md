@@ -34,23 +34,23 @@ The native `GridMaster` interface reveals the grid through interaction. `canMove
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 - Input fixture: `master = {"mode":"weighted","grid":[[2,3],[1,1]],"start":[0,1],"target":[1,0]}`
-- Output: `2`
+- **Output:** `2`
 
 Moving down and then left enters cells with costs `1` and `1`.
 
-**Example 2**
+#### Example 2
 
 - Input fixture: `master = {"mode":"weighted","grid":[[0,3,1],[3,4,2],[1,2,0]],"start":[2,0],"target":[0,2]}`
-- Output: `9`
+- **Output:** `9`
 
 The cheapest reachable route enters cells costing `2`, `4`, `2`, and `1`.
 
-**Example 3**
+#### Example 3
 
 - Input fixture: `master = {"mode":"weighted","grid":[[1,0],[0,1]],"start":[0,0],"target":[1,1]}`
-- Output: `-1`
+- **Output:** `-1`
 
 Blocked cells separate the start and target.

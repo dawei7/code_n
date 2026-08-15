@@ -20,12 +20,14 @@ We know that there is a defect in **at most one** of the sensors. Return *the se
 - **Output:** `1`
 - **Explanation:** Sensor 2 has the correct values.
 The second data point from sensor 2 is dropped, and the last value of sensor 1 is replaced by a 5.
+
 #### Example 2
 
 - **Input:** $sensor1 = [2,2,2,2,2], sensor2 = [2,2,2,2,5]$
 - **Output:** `-1`
 - **Explanation:** It is impossible to determine which sensor has a defect.
 Dropping the last value for either sensor could produce the output for the other sensor.
+
 #### Example 3
 
 - **Input:** $sensor1 = [2,3,2,2,3,2], sensor2 = [2,3,2,3,2,7]$

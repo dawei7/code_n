@@ -14,8 +14,15 @@ A string `a` is lexicographically smaller than a string `b` (of the same length)
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `a`: Input parameter (`int`).
+- `b`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -34,6 +41,7 @@ Add:    "5121"
 Rotate: "2151"
 Add:    "2050"​​​​​
 There is no way to obtain a string that is lexicographically smaller than "2050".
+
 #### Example 2
 
 - **Input:** `s = "74", a = 5, b = 1`
@@ -44,6 +52,7 @@ Rotate: "47"
 ​​​​​​​Add:    "42"
 ​​​​​​​Rotate: "24"​​​​​​​​​​​​
 There is no way to obtain a string that is lexicographically smaller than "24".
+
 #### Example 3
 
 - **Input:** `s = "0011", a = 4, b = 2`

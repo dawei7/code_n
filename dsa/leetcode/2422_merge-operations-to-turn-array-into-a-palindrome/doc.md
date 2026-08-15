@@ -32,23 +32,23 @@ The constraints are $1 \le \lvert\texttt{nums}\rvert \le 10^5$ and $1 \le \textt
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [4,3,2,1,2,3,1]`
-- Output: `2`
+- **Input:** `nums = [4,3,2,1,2,3,1]`
+- **Output:** `2`
 
 Merging `1 + 2` and then `3 + 1` can produce `[4,3,2,3,4]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,2,3,4]`
-- Output: `3`
+- **Input:** `nums = [1,2,3,4]`
+- **Output:** `3`
 
 No multi-element palindromic partition is possible, so three merges reduce the array to the singleton `[10]`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,2,3,2,1]`
-- Output: `0`
+- **Input:** `nums = [1,2,3,2,1]`
+- **Output:** `0`
 
 The original array is already a palindrome.

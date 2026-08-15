@@ -32,17 +32,17 @@ Let $L$ be the maximum word length.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `words = ["mass","as","hero","superhero"]`
-- Output: `["as","hero"]`
+- **Input:** `words = ["mass","as","hero","superhero"]`
+- **Output:** `["as","hero"]`
 
-**Example 2**
+#### Example 2
 
-- Input: `words = ["leetcode","et","code"]`
-- Output: `["et","code"]`
+- **Input:** `words = ["leetcode","et","code"]`
+- **Output:** `["et","code"]`
 
-**Example 3**
+#### Example 3
 
-- Input: `words = ["blue","green","red"]`
-- Output: `[]`
+- **Input:** `words = ["blue","green","red"]`
+- **Output:** `[]`

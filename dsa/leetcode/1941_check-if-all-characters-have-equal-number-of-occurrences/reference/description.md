@@ -6,8 +6,13 @@ A string `s` is **good** if **all** the characters that appear in `s` have the *
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -16,6 +21,7 @@ A string `s` is **good** if **all** the characters that appear in `s` have the *
 - **Input:** `s = "abacbc"`
 - **Output:** `true`
 - **Explanation:** The characters that appear in s are 'a', 'b', and 'c'. All characters occur 2 times in s.
+
 #### Example 2
 
 - **Input:** `s = "aaabb"`

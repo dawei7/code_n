@@ -30,20 +30,20 @@ Return the minimum number of strictly increasing subsequences whose removal empt
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [5, 3, 1, 4, 2]`
-- Output: `3`
-- Explanation: Remove `[1, 2]`, `[3, 4]`, and `[5]`.
+- **Input:** `nums = [5, 3, 1, 4, 2]`
+- **Output:** `3`
+- **Explanation:** Remove `[1, 2]`, `[3, 4]`, and `[5]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 2, 3, 4, 5]`
-- Output: `1`
-- Explanation: The whole array is already strictly increasing.
+- **Input:** `nums = [1, 2, 3, 4, 5]`
+- **Output:** `1`
+- **Explanation:** The whole array is already strictly increasing.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [5, 4, 3, 2, 1]`
-- Output: `5`
-- Explanation: No increasing subsequence can contain two elements.
+- **Input:** `nums = [5, 4, 3, 2, 1]`
+- **Output:** `5`
+- **Explanation:** No increasing subsequence can contain two elements.

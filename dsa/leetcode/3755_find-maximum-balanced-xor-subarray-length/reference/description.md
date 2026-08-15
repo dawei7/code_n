@@ -18,40 +18,27 @@ Return the maximum valid subarray length, or `0` when no nonempty subarray satis
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [3,1,3,2,0]
+- **Input:** nums = [3,1,3,2,0]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** The subarray `[1, 3, 2, 0]` has bitwise XOR $1 XOR 3 XOR 2 XOR 0 = 0$ and contains 2 even and 2 odd numbers.
 
-The subarray `[1, 3, 2, 0]` has bitwise XOR $1 XOR 3 XOR 2 XOR 0 = 0$ and contains 2 even and 2 odd numbers.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [3,2,8,5,4,14,9,15]
+- **Input:** nums = [3,2,8,5,4,14,9,15]
 
-**Output:** 8
+- **Output:** 8
 
-**Explanation:**
+- **Explanation:** The whole array has bitwise XOR `0` and contains 4 even and 4 odd numbers.
 
-The whole array has bitwise XOR `0` and contains 4 even and 4 odd numbers.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [0]
+- **Input:** nums = [0]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-No non-empty subarray satisfies both conditions.
-
-</div>
+- **Explanation:** No non-empty subarray satisfies both conditions.
 
 ### 4. Constraints
 

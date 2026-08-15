@@ -32,20 +32,20 @@ Return the number of distinct letters that occur in both cases and have all lowe
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word = "aaAbcBC"`
-- Output: `3`
-- Explanation: For `a`, `b`, and `c`, every lowercase occurrence precedes the first uppercase occurrence.
+- **Input:** `word = "aaAbcBC"`
+- **Output:** `3`
+- **Explanation:** For `a`, `b`, and `c`, every lowercase occurrence precedes the first uppercase occurrence.
 
-**Example 2**
+#### Example 2
 
-- Input: `word = "abc"`
-- Output: `0`
-- Explanation: No letter has an uppercase occurrence.
+- **Input:** `word = "abc"`
+- **Output:** `0`
+- **Explanation:** No letter has an uppercase occurrence.
 
-**Example 3**
+#### Example 3
 
-- Input: `word = "AbBCab"`
-- Output: `0`
-- Explanation: `a` begins with uppercase, and `b` has a lowercase occurrence after its first uppercase occurrence.
+- **Input:** `word = "AbBCab"`
+- **Output:** `0`
+- **Explanation:** `a` begins with uppercase, and `b` has a lowercase occurrence after its first uppercase occurrence.

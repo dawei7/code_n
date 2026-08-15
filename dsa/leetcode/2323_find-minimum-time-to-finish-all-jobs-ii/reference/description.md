@@ -23,17 +23,18 @@ Return an integer representing the minimum number of days required to finish all
 
 - **Input:** $jobs = [5,2,4], workers = [1,7,5]$
 - **Output:** `2`
-- **Explanation:**
+- **Explanation:** 
 - Assign the 2^nd worker to the 0^th job. It takes them 1 day to finish the job.
 - Assign the 0^th worker to the 1^st job. It takes them 2 days to finish the job.
 - Assign the 1^st worker to the 2^nd job. It takes them 1 day to finish the job.
 It takes 2 days for all the jobs to be completed, so return 2.
 It can be proven that 2 days is the minimum number of days needed.
+
 #### Example 2
 
 - **Input:** $jobs = [3,18,15,9], workers = [6,5,1,3]$
 - **Output:** `3`
-- **Explanation:**
+- **Explanation:** 
 - Assign the 2^nd worker to the 0^th job. It takes them 3 days to finish the job.
 - Assign the 0^th worker to the 1^st job. It takes them 3 days to finish the job.
 - Assign the 1^st worker to the 2^nd job. It takes them 3 days to finish the job.

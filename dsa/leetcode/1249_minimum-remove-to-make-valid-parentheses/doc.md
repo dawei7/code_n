@@ -30,17 +30,17 @@ A parentheses string is valid if it is empty, contains only lowercase letters, i
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "lee(t(c)o)de)"`
-- Output: `"lee(t(c)o)de"`
+- **Input:** `s = "lee(t(c)o)de)"`
+- **Output:** `"lee(t(c)o)de"`
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "a)b(c)d"`
-- Output: `"ab(c)d"`
+- **Input:** `s = "a)b(c)d"`
+- **Output:** `"ab(c)d"`
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "))(("`
-- Output: `""`
+- **Input:** `s = "))(("`
+- **Output:** `""`

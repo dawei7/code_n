@@ -14,8 +14,16 @@ Return *the final grid*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+- `row`: Input parameter (`int`).
+- `col`: Input parameter (`int`).
+- `color`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
@@ -23,10 +31,12 @@ Return *the final grid*.
 
 - **Input:** `grid = [[1,1],[1,2]], row = 0, col = 0, color = 3`
 - **Output:** `[[3,3],[3,2]]`
+
 #### Example 2
 
 - **Input:** `grid = [[1,2,2],[2,3,2]], row = 0, col = 1, color = 3`
 - **Output:** `[[1,3,3],[2,3,3]]`
+
 #### Example 3
 
 - **Input:** `grid = [[1,1,1],[1,1,1],[1,1,1]], row = 1, col = 1, color = 2`

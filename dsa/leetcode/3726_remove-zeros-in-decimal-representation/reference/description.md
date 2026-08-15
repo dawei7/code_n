@@ -20,28 +20,19 @@ Return the base-ten integer formed by concatenating all nonzero digits of `n` in
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 1020030
+- **Input:** n = 1020030
 
-**Output:** 123
+- **Output:** 123
 
-**Explanation:**
+- **Explanation:** After removing all zeros from 1**<u>0</u>**2**<u>00</u>**3**<u>0</u>**, we get 123.
 
-After removing all zeros from 1**<u>0</u>**2**<u>00</u>**3**<u>0</u>**, we get 123.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 1
+- **Input:** n = 1
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-1 has no zero in its decimal representation. Therefore, the answer is 1.
-
-</div>
+- **Explanation:** 1 has no zero in its decimal representation. Therefore, the answer is 1.
 
 ### 4. Constraints
 

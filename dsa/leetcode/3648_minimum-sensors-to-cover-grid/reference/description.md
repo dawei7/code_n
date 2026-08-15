@@ -10,35 +10,33 @@ Your task is to return the **minimum** number of sensors required to cover every
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `m`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 5, m = 5, k = 1
+- **Input:** n = 5, m = 5, k = 1
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** Placing sensors at positions `(0, 3)`, `(1, 0)`, `(3, 3)`, and `(4, 1)` ensures every cell in the grid is covered. Thus, the answer is 4.
 
-Placing sensors at positions `(0, 3)`, `(1, 0)`, `(3, 3)`, and `(4, 1)` ensures every cell in the grid is covered. Thus, the answer is 4.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 2, m = 2, k = 2
+- **Input:** n = 2, m = 2, k = 2
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-With $k = 2$, a single sensor can cover the entire $2 * 2$ grid regardless of its position. Thus, the answer is 1.
-
-</div>
+- **Explanation:** With $k = 2$, a single sensor can cover the entire $2 * 2$ grid regardless of its position. Thus, the answer is 1.
 
 ### 4. Constraints
 

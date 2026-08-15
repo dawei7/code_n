@@ -10,33 +10,32 @@ Return a **2D** array containing the arrays. If it is impossible to satisfy the 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,3,4,8,7,9,3,5,1], k = 2
+- **Input:** nums = [1,3,4,8,7,9,3,5,1], k = 2
 
-**Output:** [[1,1,3],[3,4,5],[7,8,9]]
+- **Output:** [[1,1,3],[3,4,5],[7,8,9]]
 
-**Explanation:**
+- **Explanation:** The difference between any two elements in each array is less than or equal to 2.
 
-The difference between any two elements in each array is less than or equal to 2.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,4,2,2,5,2], k = 2
+- **Input:** nums = [2,4,2,2,5,2], k = 2
 
-**Output:** []
+- **Output:** []
 
-**Explanation:**
-
-Different ways to divide `nums` into 2 arrays of size 3 are:
+- **Explanation:** Different ways to divide `nums` into 2 arrays of size 3 are:
 
 - [[2,2,2],[2,4,5]] (and its permutations)
 
@@ -44,19 +43,13 @@ Different ways to divide `nums` into 2 arrays of size 3 are:
 
 Because there are four 2s there will be an array with the elements 2 and 5 no matter how we divide it. since $5 - 2 = 3 > k$, the condition is not satisfied and so there is no valid division.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [4,2,9,8,2,12,7,12,10,5,8,5,5,7,9,2,5,11], k = 14
+- **Input:** nums = [4,2,9,8,2,12,7,12,10,5,8,5,5,7,9,2,5,11], k = 14
 
-**Output:** [[2,2,2],[4,5,5],[5,5,7],[7,8,8],[9,9,10],[11,12,12]]
+- **Output:** [[2,2,2],[4,5,5],[5,5,7],[7,8,8],[9,9,10],[11,12,12]]
 
-**Explanation:**
-
-The difference between any two elements in each array is less than or equal to 14.
-
-</div>
+- **Explanation:** The difference between any two elements in each array is less than or equal to 14.
 
 ### 4. Constraints
 

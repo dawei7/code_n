@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/best-position-for-a-service-centre/) |
 
 ## Problem Description
+
 ### Goal
 
 A delivery company knows the Cartesian coordinates of all customers in a city. It may place one service centre at any real-valued point in the plane, not only at an existing customer position or an integer coordinate.
@@ -16,6 +17,7 @@ A delivery company knows the Cartesian coordinates of all customers in a city. I
 Choose the centre so that the sum of its Euclidean distances to every customer is as small as possible, and return that minimum total. An answer within $10^{-5}$ of the true value is accepted.
 
 ### Function Contract
+
 **Inputs**
 
 Let $n$ be the number of customer positions and $I$ the fixed number of ternary-search iterations used per coordinate.
@@ -35,19 +37,20 @@ $$
 over all real centre positions $(x,y)$.
 
 ### Examples
-**Example 1**
 
-- Input: `positions = [[0, 1], [1, 0], [1, 2], [2, 1]]`
-- Output: `4.0`
-- Explanation: Placing the centre at `(1, 1)` gives distance 1 to each customer.
+#### Example 1
 
-**Example 2**
+- **Input:** `positions = [[0, 1], [1, 0], [1, 2], [2, 1]]`
+- **Output:** `4.0`
+- **Explanation:** Placing the centre at `(1, 1)` gives distance 1 to each customer.
 
-- Input: `positions = [[1, 1], [3, 3]]`
-- Output: `2.82843`
-- Explanation: Every point on the segment between the two customers has the same minimum total, equal to their separation.
+#### Example 2
 
-**Example 3**
+- **Input:** `positions = [[1, 1], [3, 3]]`
+- **Output:** `2.82843`
+- **Explanation:** Every point on the segment between the two customers has the same minimum total, equal to their separation.
 
-- Input: `positions = [[1, 1]]`
-- Output: `0.0`
+#### Example 3
+
+- **Input:** `positions = [[1, 1]]`
+- **Output:** `0.0`

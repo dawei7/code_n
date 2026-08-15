@@ -26,40 +26,27 @@ Return the largest possible number of performed transactions. The selected amoun
 
 #### Example 1
 
-<div class="example-block">
-**Input:** transactions = [2,-5,3,-1,-2]
+- **Input:** transactions = [2,-5,3,-1,-2]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** One optimal sequence is `[2, 3, -1, -2]`, balance: `0 → 2 → 5 → 4 → 2`.
 
-One optimal sequence is `[2, 3, -1, -2]`, balance: `0 → 2 → 5 → 4 → 2`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** transactions = [-1,-2,-3]
+- **Input:** transactions = [-1,-2,-3]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** All transactions are negative. Including any would make the balance negative.
 
-All transactions are negative. Including any would make the balance negative.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** transactions = [3,-2,3,-2,1,-1]
+- **Input:** transactions = [3,-2,3,-2,1,-1]
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
-
-All transactions can be taken in order, balance: `0 → 3 → 1 → 4 → 2 → 3 → 2`.
-
-</div>
+- **Explanation:** All transactions can be taken in order, balance: `0 → 3 → 1 → 4 → 2 → 3 → 2`.
 
 ### 4. Constraints
 

@@ -29,23 +29,23 @@ Two digit runs represent the same integer when they differ only by leading zeros
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word = "a123bc34d8ef34"`
-- Output: `3`
+- **Input:** `word = "a123bc34d8ef34"`
+- **Output:** `3`
 
 The digit runs represent `123`, `34`, `8`, and `34`.
 
-**Example 2**
+#### Example 2
 
-- Input: `word = "leet1234code234"`
-- Output: `2`
+- **Input:** `word = "leet1234code234"`
+- **Output:** `2`
 
 The two represented values are `1234` and `234`.
 
-**Example 3**
+#### Example 3
 
-- Input: `word = "a1b01c001"`
-- Output: `1`
+- **Input:** `word = "a1b01c001"`
+- **Output:** `1`
 
 All three runs normalize to the integer value one.

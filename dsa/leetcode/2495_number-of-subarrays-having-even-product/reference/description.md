@@ -19,6 +19,7 @@ Given a **0-indexed** integer array `nums`, return *the number of subarrays of *
 - nums[1..1] = 6.
 - nums[1..2] = 6 * 7 = 42.
 - nums[1..3] = 6 * 7 * 13 = 546.
+
 #### Example 2
 
 - **Input:** `nums = [7,3,5]`

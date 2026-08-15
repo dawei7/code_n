@@ -30,17 +30,17 @@ When the current number is even, divide it by two. When it is odd and greater th
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "1101"`
-- Output: `6`
+- **Input:** `s = "1101"`
+- **Output:** `6`
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "10"`
-- Output: `1`
+- **Input:** `s = "10"`
+- **Output:** `1`
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "1"`
-- Output: `0`
+- **Input:** `s = "1"`
+- **Output:** `0`

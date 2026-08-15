@@ -18,21 +18,23 @@ Return the **maximum** number of fruits the children can collect from the dungeo
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `fruits`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** fruits = [[1,2,3,4],[5,6,8,7],[9,10,11,12],[13,14,15,16]]
+- **Input:** fruits = [[1,2,3,4],[5,6,8,7],[9,10,11,12],[13,14,15,16]]
 
-**Output:** 100
+- **Output:** 100
 
-**Explanation:**
-
-![](images/clideo_editor_d0b446db9ba448e1a3fcdd0eecdb58d0-ezgifcom-crop.gif)
+- **Explanation:** ![](images/clideo_editor_d0b446db9ba448e1a3fcdd0eecdb58d0-ezgifcom-crop.gif)
 
 In this example:
 
@@ -44,17 +46,13 @@ In this example:
 
 In total they collect $1 + 6 + 11 + 16 + 4 + 8 + 12 + 13 + 14 + 15 = 100$ fruits.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** fruits = [[1,1],[1,1]]
+- **Input:** fruits = [[1,1],[1,1]]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-In this example:
+- **Explanation:** In this example:
 
 - The 1^st child moves on the path `(0,0) -> (1,1)`.
 
@@ -63,8 +61,6 @@ In this example:
 - The 3^rd child moves on the path `(1,0) -> (1,1)`.
 
 In total they collect $1 + 1 + 1 + 1 = 4$ fruits.
-
-</div>
 
 ### 4. Constraints
 

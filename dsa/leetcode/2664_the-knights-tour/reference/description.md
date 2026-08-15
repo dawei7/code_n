@@ -19,6 +19,7 @@ Note that a **knight** can **move** from cell `(r1, c1)` to cell `(r2, c2)` if $
 - **Input:** $m = 1, n = 1, r = 0, c = 0$
 - **Output:** `[[0]]`
 - **Explanation:** There is only 1 cell and the knight is initially on it so there is only a 0 inside the 1x1 grid.
+
 #### Example 2
 
 - **Input:** $m = 3, n = 4, r = 0, c = 0$

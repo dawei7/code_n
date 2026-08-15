@@ -30,20 +30,20 @@ The pair's score is the sum of both sightseeing values minus that distance, writ
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `values = [8, 1, 5, 2, 6]`
-- Output: `11`
-- Explanation: Indices `0` and `2` score `8 + 5 + 0 - 2 = 11`.
+- **Input:** `values = [8, 1, 5, 2, 6]`
+- **Output:** `11`
+- **Explanation:** Indices `0` and `2` score `8 + 5 + 0 - 2 = 11`.
 
-**Example 2**
+#### Example 2
 
-- Input: `values = [1, 2]`
-- Output: `2`
-- Explanation: The only pair scores `1 + 2 + 0 - 1 = 2`.
+- **Input:** `values = [1, 2]`
+- **Output:** `2`
+- **Explanation:** The only pair scores `1 + 2 + 0 - 1 = 2`.
 
-**Example 3**
+#### Example 3
 
-- Input: `values = [4, 7, 5, 8]`
-- Output: `13`
-- Explanation: Indices `1` and `3` score `7 + 8 + 1 - 3 = 13`.
+- **Input:** `values = [4, 7, 5, 8]`
+- **Output:** `13`
+- **Explanation:** Indices `1` and `3` score `7 + 8 + 1 - 3 = 13`.

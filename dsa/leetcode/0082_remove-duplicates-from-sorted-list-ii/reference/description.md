@@ -20,6 +20,7 @@ Return the head of the sorted list containing exactly those original values that
 
 - **Input:** $head = [1,2,3,3,4,4,5]$
 - **Output:** `[1,2,5]`
+
 #### Example 2
 
 ![](images/linkedlist2.jpg)

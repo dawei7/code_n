@@ -33,14 +33,14 @@ Return the $k$-th smallest distinct positive amount obtainable using only one de
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `coins = [3, 6, 9], k = 3`
-- Output: `9`
-- Explanation: The distinct obtainable amounts begin $3, 6, 9, 12, \ldots$, so the third is $9$.
+- **Input:** `coins = [3, 6, 9], k = 3`
+- **Output:** `9`
+- **Explanation:** The distinct obtainable amounts begin $3, 6, 9, 12, \ldots$, so the third is $9$.
 
-**Example 2**
+#### Example 2
 
-- Input: `coins = [5, 2], k = 7`
-- Output: `12`
-- Explanation: The increasing sequence begins $2, 4, 5, 6, 8, 10, 12, \ldots$. Although $10$ is a multiple of both denominations, it appears only once.
+- **Input:** `coins = [5, 2], k = 7`
+- **Output:** `12`
+- **Explanation:** The increasing sequence begins $2, 4, 5, 6, 8, 10, 12, \ldots$. Although $10$ is a multiple of both denominations, it appears only once.

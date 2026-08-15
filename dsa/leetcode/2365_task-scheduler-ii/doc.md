@@ -39,12 +39,12 @@ require a 64-bit integer.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `tasks = [1,2,1,2,3,1], space = 3`
-- Output: `9`
+- **Input:** `tasks = [1,2,1,2,3,1], space = 3`
+- **Output:** `9`
 
-**Example 2**
+#### Example 2
 
-- Input: `tasks = [5,8,8,5], space = 2`
-- Output: `6`
+- **Input:** `tasks = [5,8,8,5], space = 2`
+- **Output:** `6`

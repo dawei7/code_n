@@ -24,14 +24,11 @@ Return an array containing every input occurrence, ordered by the key $(R(x),x)$
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [4,5,4]
+- **Input:** nums = [4,5,4]
 
-**Output:** [4,4,5]
+- **Output:** [4,4,5]
 
-**Explanation:**
-
-Binary reflections are:
+- **Explanation:** Binary reflections are:
 
 - 4 -> (binary) `100` -> (reversed) `001` -> 1
 
@@ -39,17 +36,15 @@ Binary reflections are:
 
 - 4 -> (binary) `100` -> (reversed) `001` -> 1
 
-Sorting by the reflected values gives `[4, 4, 5]`.</div>
+Sorting by the reflected values gives `[4, 4, 5]`.
+
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [3,6,5,8]
+- **Input:** nums = [3,6,5,8]
 
-**Output:** [8,3,6,5]
+- **Output:** [8,3,6,5]
 
-**Explanation:**
-
-Binary reflections are:
+- **Explanation:** Binary reflections are:
 
 - 3 -> (binary) `11` -> (reversed) `11` -> 3
 
@@ -61,7 +56,7 @@ Binary reflections are:
 
 Sorting by the reflected values gives `[8, 3, 6, 5]`.
 
-Note that 3 and 6 have the same reflection, so we arrange them in increasing order of original value.</div>
+Note that 3 and 6 have the same reflection, so we arrange them in increasing order of original value.
 
 ### 4. Constraints
 

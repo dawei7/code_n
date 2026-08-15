@@ -14,8 +14,13 @@ The string is called **alternating** if no two adjacent characters are equal.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,11 +30,13 @@ The string is called **alternating** if no two adjacent characters are equal.
 - **Output:** `2`
 **Explanation**: Use the first operation two times to make s = "100011".
 Then, use the second operation on the third and sixth elements to make s = "10<u>1</u>01<u>0</u>".
+
 #### Example 2
 
 - **Input:** `s = "010"`
 - **Output:** `0`
 **Explanation**: The string is already alternating.
+
 #### Example 3
 
 - **Input:** `s = "1110"`

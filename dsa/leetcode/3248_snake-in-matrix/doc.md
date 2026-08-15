@@ -33,17 +33,17 @@ Return the row-major position of the cell occupied after the final command.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 2, commands = ["RIGHT","DOWN"]`
-- Output: `3`
+- **Input:** `n = 2, commands = ["RIGHT","DOWN"]`
+- **Output:** `3`
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3, commands = ["DOWN","RIGHT","UP"]`
-- Output: `1`
+- **Input:** `n = 3, commands = ["DOWN","RIGHT","UP"]`
+- **Output:** `1`
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 4, commands = ["DOWN","DOWN","RIGHT","UP"]`
-- Output: `5`
+- **Input:** `n = 4, commands = ["DOWN","DOWN","RIGHT","UP"]`
+- **Output:** `5`

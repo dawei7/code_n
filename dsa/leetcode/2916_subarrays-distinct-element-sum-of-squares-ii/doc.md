@@ -39,25 +39,25 @@ $1 \le n \le 10^5$ and $1 \le \texttt{nums[i]} \le 10^5$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 1]`
-- Output: `15`
-- Explanation: The three length-one subarrays each score $1$. The subarrays
+- **Input:** `nums = [1, 2, 1]`
+- **Output:** `15`
+- **Explanation:** The three length-one subarrays each score $1$. The subarrays
   `[1, 2]`, `[2, 1]`, and `[1, 2, 1]` each contain two distinct values
   and score $4$, so the total is $3 + 3 \cdot 4 = 15$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, 2]`
-- Output: `3`
-- Explanation: Both singletons and the whole array contain only one distinct
+- **Input:** `nums = [2, 2]`
+- **Output:** `3`
+- **Explanation:** Both singletons and the whole array contain only one distinct
   value, so each of the three subarrays scores $1$.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 2, 3]`
-- Output: `20`
-- Explanation: The three singletons contribute $3$, the two length-two
+- **Input:** `nums = [1, 2, 3]`
+- **Output:** `20`
+- **Explanation:** The three singletons contribute $3$, the two length-two
   subarrays contribute $2 \cdot 2^2=8$, and the whole array contributes
   $3^2=9$.

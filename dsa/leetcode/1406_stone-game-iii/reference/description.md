@@ -14,8 +14,13 @@ Return `"Alice"`* if Alice will win, *`"Bob"`* if Bob will win, or *`"Tie"`* if 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `stoneValue`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -24,6 +29,7 @@ Return `"Alice"`* if Alice will win, *`"Bob"`* if Bob will win, or *`"Tie"`* if 
 - **Input:** $stoneValue = [1,2,3,7]$
 - **Output:** `"Bob"`
 - **Explanation:** Alice will always lose. Her best move will be to take three piles and the score become 6. Now the score of Bob is 7 and Bob wins.
+
 #### Example 2
 
 - **Input:** $stoneValue = [1,2,3,-9]$
@@ -32,6 +38,7 @@ Return `"Alice"`* if Alice will win, *`"Bob"`* if Bob will win, or *`"Tie"`* if 
 If Alice chooses one pile her score will be 1 and the next move Bob's score becomes 5. In the next move, Alice will take the pile with value = -9 and lose.
 If Alice chooses two piles her score will be 3 and the next move Bob's score becomes 3. In the next move, Alice will take the pile with value = -9 and also lose.
 Remember that both play optimally so here Alice will choose the scenario that makes her win.
+
 #### Example 3
 
 - **Input:** $stoneValue = [1,2,3,6]$

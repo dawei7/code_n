@@ -18,8 +18,14 @@ Return *the **earliest second** starting from which the network becomes **idle**
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `edges`: Input parameter (`List[List[int]]`).
+- `patience`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -29,8 +35,7 @@ Return *the **earliest second** starting from which the network becomes **idle**
 
 - **Input:** $edges = [[0,1],[1,2]], patience = [0,2,1]$
 - **Output:** `8`
-- **Explanation:**
-At (the beginning of) second 0,
+- **Explanation:** At (the beginning of) second 0,
 - Data server 1 sends its message (denoted 1A) to the master server.
 - Data server 2 sends its message (denoted 2A) to the master server.
 At second 1,
@@ -48,6 +53,7 @@ At second 4,
 At second 7, reply 2D arrives at server 2.
 Starting from the beginning of the second 8, there are no messages passing between servers or arriving at servers.
 This is the time when the network becomes idle.
+
 #### Example 2
 
 ![example 2](images/network_a_quiet_place_2.png)

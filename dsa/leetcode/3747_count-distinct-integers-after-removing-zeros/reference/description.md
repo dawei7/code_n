@@ -22,28 +22,19 @@ Return the number of distinct positive integers obtained after removing all deci
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 10
+- **Input:** n = 10
 
-**Output:** 9
+- **Output:** 9
 
-**Explanation:**
+- **Explanation:** The integers we wrote down are 1, 2, 3, 4, 5, 6, 7, 8, 9, 1. There are 9 distinct integers (1, 2, 3, 4, 5, 6, 7, 8, 9).
 
-The integers we wrote down are 1, 2, 3, 4, 5, 6, 7, 8, 9, 1. There are 9 distinct integers (1, 2, 3, 4, 5, 6, 7, 8, 9).
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 3
+- **Input:** n = 3
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-The integers we wrote down are 1, 2, 3. There are 3 distinct integers (1, 2, 3).
-
-</div>
+- **Explanation:** The integers we wrote down are 1, 2, 3. There are 3 distinct integers (1, 2, 3).
 
 ### 4. Constraints
 

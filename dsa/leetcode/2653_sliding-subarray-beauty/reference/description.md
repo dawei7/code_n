@@ -10,8 +10,15 @@ Return *an integer array containing *$n - k + 1$ *integers, which denote the ***
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+- `x`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -23,6 +30,7 @@ Return *an integer array containing *$n - k + 1$ *integers, which denote the ***
 The first subarray is [1, -1, -3] and the 2^nd smallest negative integer is -1.
 The second subarray is [-1, -3, -2] and the 2^nd smallest negative integer is -2.
 The third subarray is [-3, -2, 3] and the 2^nd smallest negative integer is -2.
+
 #### Example 2
 
 - **Input:** `nums = [-1,-2,-3,-4,-5], k = 2, x = 2`
@@ -32,6 +40,7 @@ For [-1, -2], the 2^nd smallest negative integer is -1.
 For [-2, -3], the 2^nd smallest negative integer is -2.
 For [-3, -4], the 2^nd smallest negative integer is -3.
 For [-4, -5], the 2^nd smallest negative integer is -4.
+
 #### Example 3
 
 - **Input:** `nums = [-3,1,2,-3,0,-3], k = 2, x = 1`

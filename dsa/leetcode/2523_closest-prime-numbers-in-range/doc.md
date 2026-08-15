@@ -33,14 +33,14 @@ Return `[num1, num2]` for the required closest pair, or `[-1, -1]` if no such pa
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `left = 10, right = 19`
-- Output: `[11, 13]`
-- Explanation: The interval's primes are `11`, `13`, `17`, and `19`. Both `[11, 13]` and `[17, 19]` have difference $2$, so the pair with the smaller first value is returned.
+- **Input:** `left = 10, right = 19`
+- **Output:** `[11, 13]`
+- **Explanation:** The interval's primes are `11`, `13`, `17`, and `19`. Both `[11, 13]` and `[17, 19]` have difference $2$, so the pair with the smaller first value is returned.
 
-**Example 2**
+#### Example 2
 
-- Input: `left = 4, right = 6`
-- Output: `[-1, -1]`
-- Explanation: Only `5` is prime, so a pair cannot be formed.
+- **Input:** `left = 4, right = 6`
+- **Output:** `[-1, -1]`
+- **Explanation:** Only `5` is prime, so a pair cannot be formed.

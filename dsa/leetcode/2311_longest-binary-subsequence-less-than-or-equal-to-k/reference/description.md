@@ -14,8 +14,14 @@ Note:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,6 +32,7 @@ Note:
 - **Explanation:** The longest subsequence of s that makes up a binary number less than or equal to 5 is "00010", as this number is equal to 2 in decimal.
 Note that "00100" and "00101" are also possible, which are equal to 4 and 5 in decimal, respectively.
 The length of this subsequence is 5, so 5 is returned.
+
 #### Example 2
 
 - **Input:** `s = "00101001", k = 1`

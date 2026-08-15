@@ -8,8 +8,13 @@ Given an integer array `nums`, return `true`* if the given array is monotonic, o
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -17,10 +22,12 @@ Given an integer array `nums`, return `true`* if the given array is monotonic, o
 
 - **Input:** `nums = [1,2,2,3]`
 - **Output:** `true`
+
 #### Example 2
 
 - **Input:** `nums = [6,5,4,4]`
 - **Output:** `true`
+
 #### Example 3
 
 - **Input:** `nums = [1,3,2]`

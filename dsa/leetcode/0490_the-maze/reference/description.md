@@ -30,6 +30,7 @@ decision points.
 - **Input:** $maze = [[0,0,1,0,0],[0,0,0,0,0],[0,0,0,1,0],[1,1,0,1,1],[0,0,0,0,0]], start = [0,4], destination = [4,4]$
 - **Output:** `true`
 - **Explanation:** One possible way is : left -> down -> left -> down -> right -> down -> right.
+
 #### Example 2
 
 ![](images/maze1-2-grid.jpg)
@@ -37,6 +38,7 @@ decision points.
 - **Input:** $maze = [[0,0,1,0,0],[0,0,0,0,0],[0,0,0,1,0],[1,1,0,1,1],[0,0,0,0,0]], start = [0,4], destination = [3,2]$
 - **Output:** `false`
 - **Explanation:** There is no way for the ball to stop at the destination. Notice that you can pass through the destination but you cannot stop there.
+
 #### Example 3
 
 - **Input:** $maze = [[0,0,0,0,0],[1,1,0,0,1],[0,0,0,0,0],[0,1,0,0,1],[0,1,0,0,0]], start = [4,3], destination = [0,1]$

@@ -6,8 +6,13 @@ You can use each character in `text` **at most once**. Return the maximum number
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `text`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +26,7 @@ You can use each character in `text` **at most once**. Return the maximum number
 
 - **Input:** $text = "nlaebolko"$
 - **Output:** `1`
+
 #### Example 2
 
 **
@@ -31,6 +37,7 @@ You can use each character in `text` **at most once**. Return the maximum number
 
 - **Input:** $text = "loonbalxballpoon"$
 - **Output:** `2`
+
 #### Example 3
 
 - **Input:** $text = "leetcode"$

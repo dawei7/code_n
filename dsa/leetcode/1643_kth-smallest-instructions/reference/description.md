@@ -16,8 +16,14 @@ Given an integer array `destination` and an integer `k`, return *the *$$k^{\text
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `destination`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -29,6 +35,7 @@ Given an integer array `destination` and an integer `k`, return *the *$$k^{\text
 - **Output:** `"HHHVV"`
 - **Explanation:** All the instructions that reach (2, 3) in lexicographic order are as follows:
 ["HHHVV", "HHVHV", "HHVVH", "HVHHV", "HVHVH", "HVVHH", "VHHHV", "VHHVH", "VHVHH", "VVHHH"].
+
 #### Example 2
 
 **
@@ -39,6 +46,7 @@ Given an integer array `destination` and an integer `k`, return *the *$$k^{\text
 
 - **Input:** $destination = [2,3], k = 2$
 - **Output:** `"HHVHV"`
+
 #### Example 3
 
 **

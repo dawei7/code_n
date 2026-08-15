@@ -36,58 +36,49 @@ Return the maximum possible sum of final device ratings after zero or more legal
 
 #### Example 1
 
-<div class="example-block">
-**Input:** units = [[1,3],[2,2]]
+- **Input:** units = [[1,3],[2,2]]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** 
 
 - ​​​​​​​​​​​​​​Select device $i = 0$ and transfer $\text{units}[0][0] = 1$ to device $i = 1$.
 
 - After the transfer, the ratings are:
 
-		<li>Device $0 = [3]$: $\text{rating}[0] = 3$
+		- Device $0 = [3]$: $\text{rating}[0] = 3$
 
 - Device $1 = [2, 2, <u>1</u>]$: $\text{rating}[1] = 1$
 
-	</li>
 - Thus, the sum of ratings is $3 + 1 = 4$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** units = [[1,2,3],[4,5,6]]
+- **Input:** units = [[1,2,3],[4,5,6]]
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
+- **Explanation:** 
 
 - Select device $i = 1$ and transfer $\text{units}[1][0] = 4$ to device $i = 0$.
 
 - After the transfer, the ratings are:
 
-		<li>Device $0 = [1, 2, 3, <u>4</u>]$: $\text{rating}[0] = 1$
+		- Device $0 = [1, 2, 3, <u>4</u>]$: $\text{rating}[0] = 1$
 
 - Device $1 = [5, 6]$: $\text{rating}[1] = 5$
 
-	</li>
 - Thus, the sum of ratings is $1 + 5 = 6$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** units = [[5,5,5],[1,1,1]]
+- **Input:** units = [[5,5,5],[1,1,1]]
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
+- **Explanation:** 
 
 - No transfers increase the sum of ratings. Thus, the sum of ratings is $5 + 1 = 6$.
-
-</div>
 
 ### 5. Constraints
 

@@ -16,8 +16,14 @@ Given the two integers `n` and `presses`, return *the number of **different poss
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `presses`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -28,6 +34,7 @@ Given the two integers `n` and `presses`, return *the number of **different poss
 - **Explanation:** Status can be:
 - [off] by pressing button 1
 - [on] by pressing button 2
+
 #### Example 2
 
 - **Input:** $n = 2, presses = 1$
@@ -36,6 +43,7 @@ Given the two integers `n` and `presses`, return *the number of **different poss
 - [off, off] by pressing button 1
 - [on, off] by pressing button 2
 - [off, on] by pressing button 3
+
 #### Example 3
 
 - **Input:** $n = 3, presses = 1$

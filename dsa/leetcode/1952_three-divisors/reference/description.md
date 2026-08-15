@@ -6,8 +6,13 @@ An integer `m` is a **divisor** of `n` if there exists an integer `k` such that 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -16,6 +21,7 @@ An integer `m` is a **divisor** of `n` if there exists an integer `k` such that 
 - **Input:** $n = 2$
 - **Output:** `false`
 **Explantion:** 2 has only two divisors: 1 and 2.
+
 #### Example 2
 
 - **Input:** $n = 4$

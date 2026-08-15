@@ -30,20 +30,20 @@ Return the maximum product among all non-empty subsets of indices in `nums`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3,-1,-5,2,5,-9]`
-- Output: `1350`
-- Explanation: Choosing values $3,-5,2,5,-9$ gives $1350$.
+- **Input:** `nums = [3,-1,-5,2,5,-9]`
+- **Output:** `1350`
+- **Explanation:** Choosing values $3,-5,2,5,-9$ gives $1350$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [-4,-5,-4]`
-- Output: `20`
-- Explanation: The pair $-5$ and $-4$ has the greatest product.
+- **Input:** `nums = [-4,-5,-4]`
+- **Output:** `20`
+- **Explanation:** The pair $-5$ and $-4$ has the greatest product.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [-5,0]`
-- Output: `0`
-- Explanation: The one-element group containing zero is stronger than the group containing only $-5$.
+- **Input:** `nums = [-5,0]`
+- **Output:** `0`
+- **Explanation:** The one-element group containing zero is stronger than the group containing only $-5$.

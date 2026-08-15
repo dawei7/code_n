@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/recover-the-original-array/) |
 
 ## Problem Description
+
 ### Goal
 
 An unknown zero-indexed array `arr` contains $n$ positive integers. A positive
@@ -27,6 +28,7 @@ reproduces exactly the multiset in `nums`. At least one valid recovery is
 guaranteed, and different valid answers may exist.
 
 ### Function Contract
+
 **Inputs**
 
 - `nums`: A list of $2n$ positive integers formed by shuffling the complete
@@ -48,24 +50,25 @@ $$
 The equality is multiset equality, so duplicate counts must match.
 
 ### Examples
-**Example 1**
 
-- Input: `nums = [2, 10, 6, 4, 8, 12]`
-- Output: `[3, 7, 11]`
+#### Example 1
+
+- **Input:** `nums = [2, 10, 6, 4, 8, 12]`
+- **Output:** `[3, 7, 11]`
 
 With $k=1$, this yields lower values `[2, 6, 10]` and higher values
 `[4, 8, 12]`. The alternative `[5, 7, 9]` with $k=3$ is also valid.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 1, 3, 3]`
-- Output: `[2, 2]`
+- **Input:** `nums = [1, 1, 3, 3]`
+- **Output:** `[2, 2]`
 
 Here $k=1$ and both original values are equal.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [5, 435]`
-- Output: `[220]`
+- **Input:** `nums = [5, 435]`
+- **Output:** `[220]`
 
 The only pair has midpoint $220$ and half-difference $215$.

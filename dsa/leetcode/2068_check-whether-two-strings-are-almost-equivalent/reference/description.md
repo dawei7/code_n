@@ -8,8 +8,14 @@ The **frequency** of a letter `x` is the number of times it occurs in the string
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `word1`: Input parameter (`str`).
+- `word2`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -19,6 +25,7 @@ The **frequency** of a letter `x` is the number of times it occurs in the string
 - **Output:** `false`
 - **Explanation:** There are 4 'a's in "aaaa" but 0 'a's in "bccb".
 The difference is 4, which is more than the allowed 3.
+
 #### Example 2
 
 - **Input:** $word1 = "abcdeef", word2 = "abaaacc"$
@@ -30,6 +37,7 @@ The difference is 4, which is more than the allowed 3.
 - 'd' appears 1 time in word1 and 0 times in word2. The difference is 1.
 - 'e' appears 2 times in word1 and 0 times in word2. The difference is 2.
 - 'f' appears 1 time in word1 and 0 times in word2. The difference is 1.
+
 #### Example 3
 
 - **Input:** $word1 = "cccddabba", word2 = "babababab"$

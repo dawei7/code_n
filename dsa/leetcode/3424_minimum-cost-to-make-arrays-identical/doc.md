@@ -39,14 +39,14 @@ Return the minimum total cost as an integer.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [-7, 9, 5], brr = [7, -2, -5], k = 2`
-- Output: `13`
-- Explanation: Pay `2` to rearrange `arr` to `[9, 5, -7]`. Adjusting its elements by `-2`, `-7`, and `+2` then costs `11`, for a total of `13`.
+- **Input:** `arr = [-7, 9, 5], brr = [7, -2, -5], k = 2`
+- **Output:** `13`
+- **Explanation:** Pay `2` to rearrange `arr` to `[9, 5, -7]`. Adjusting its elements by `-2`, `-7`, and `+2` then costs `11`, for a total of `13`.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [2, 1], brr = [2, 1], k = 0`
-- Output: `0`
-- Explanation: The arrays are already identical, so no operation is necessary.
+- **Input:** `arr = [2, 1], brr = [2, 1], k = 0`
+- **Output:** `0`
+- **Explanation:** The arrays are already identical, so no operation is necessary.

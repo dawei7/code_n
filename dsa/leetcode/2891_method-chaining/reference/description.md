@@ -28,7 +28,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 DataFrame animals:
 +----------+---------+-----+--------+
 | name     | species | age | weight |
@@ -40,7 +40,7 @@ DataFrame animals:
 | Stefan   | Bear    | 100 | 50     |
 | Tommy    | Panda   | 26  | 349    |
 +----------+---------+-----+--------+
-**Output:**
+- **Output:** 
 +----------+
 | name     |
 +----------+
@@ -49,8 +49,7 @@ DataFrame animals:
 | Tommy    |
 | Alex     |
 +----------+
-**Explanation:**
-All animals weighing more than 100 should be included in the results table.
+- **Explanation:** All animals weighing more than 100 should be included in the results table.
 Tatiana's weight is 464, Jonathan's weight is 463, Tommy's weight is 349, and Alex's weight is 328.
 The results should be sorted in descending order of weight.
 ```

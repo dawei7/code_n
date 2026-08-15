@@ -39,21 +39,21 @@ be the number of legal $h$-digit palindrome halves.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 3, k = 5`
-- Output: `27`
+- **Input:** `n = 3, k = 5`
+- **Output:** `27`
 
 For example, `551` can become `515`, and `525` already qualifies.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 1, k = 4`
-- Output: `2`
+- **Input:** `n = 1, k = 4`
+- **Output:** `2`
 
 The qualifying one-digit integers are `4` and `8`.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 5, k = 6`
-- Output: `2468`
+- **Input:** `n = 5, k = 6`
+- **Output:** `2468`

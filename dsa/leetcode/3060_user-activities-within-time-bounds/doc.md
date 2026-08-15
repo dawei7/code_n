@@ -40,18 +40,18 @@ Let $n$ be the number of session rows and $u$ the number of qualifying users.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 User `102` has two `Viewer` sessions separated by one hour. User `103` has two
 `Viewer` sessions separated by ten hours. User `101` has no same-type pair
 within twelve hours, so the result is `102`, then `103`.
 
-**Example 2**
+#### Example 2
 
 If one session ends at midnight and a later same-type session starts exactly at
 noon, their twelve-hour gap qualifies.
 
-**Example 3**
+#### Example 3
 
 Two nearby sessions with different types do not qualify a user, because the
 type must match as well as the time bound.

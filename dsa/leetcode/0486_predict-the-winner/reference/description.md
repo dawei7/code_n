@@ -8,8 +8,13 @@ Return `true` if Player 1 can win the game. If the scores of both players are eq
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -21,6 +26,7 @@ Return `true` if Player 1 can win the game. If the scores of both players are eq
 If he chooses 2 (or 1), then player 2 can choose from 1 (or 2) and 5. If player 2 chooses 5, then player 1 will be left with 1 (or 2).
 So, final score of player 1 is 1 + 2 = 3, and player 2 is 5.
 Hence, player 1 will never be the winner and you need to return false.
+
 #### Example 2
 
 - **Input:** `nums = [1,5,233,7]`

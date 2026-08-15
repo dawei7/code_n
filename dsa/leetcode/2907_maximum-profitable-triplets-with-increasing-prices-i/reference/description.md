@@ -23,6 +23,7 @@ Return* the **maximum profit** we can get, and *`-1`* if it's not possible to pi
 - **Explanation:** We can't pick the item with index i=0 since there are no indices j and k such that the condition holds.
 So the only triplet we can pick, are the items with indices 1, 2 and 3 and it's a valid pick since prices[1] < prices[2] < prices[3].
 The answer would be sum of their profits which is 2 + 7 + 10 = 19.
+
 #### Example 2
 
 - **Input:** $prices = [1,2,3,4,5], profits = [1,5,3,4,6]$
@@ -30,6 +31,7 @@ The answer would be sum of their profits which is 2 + 7 + 10 = 19.
 - **Explanation:** We can select any triplet of items since for each triplet of indices i, j and k such that i < j < k, the condition holds.
 Therefore the maximum profit we can get would be the 3 most profitable items which are indices 1, 3 and 4.
 The answer would be sum of their profits which is 5 + 4 + 6 = 15.
+
 #### Example 3
 
 - **Input:** $prices = [4,3,2,1], profits = [33,20,19,87]$

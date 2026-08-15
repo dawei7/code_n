@@ -16,8 +16,15 @@ Return `true` if it's possible to convert `s` into `t` in no more than `k` moves
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `t`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -26,11 +33,13 @@ Return `true` if it's possible to convert `s` into `t` in no more than `k` moves
 - **Input:** `s = "input", t = "ouput", k = 9`
 - **Output:** `true`
 - **Explanation:** In the 6th move, we shift 'i' 6 times to get 'o'. And in the 7th move we shift 'n' to get 'u'.
+
 #### Example 2
 
 - **Input:** `s = "abc", t = "bcd", k = 10`
 - **Output:** `false`
 - **Explanation:** We need to shift each character in s one time to convert it into t. We can shift 'a' to 'b' during the 1st move. However, there is no way to shift the other characters in the remaining moves to obtain t from s.
+
 #### Example 3
 
 - **Input:** `s = "aab", t = "bbb", k = 27`

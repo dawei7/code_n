@@ -27,44 +27,37 @@ do so.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "dog"
+- **Input:** s = "dog"
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**​​​​​​​
+- **Explanation:** ​​​​​​​
 
 - Sort substring `"og"` to `"go"`.
 
 - Now, `s = "dgo"`, which is sorted in ascending order. Thus, the answer is 1.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "card"
+- **Input:** s = "card"
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - Sort substring `"car"` to `"acr"`, so `s = "acrd"`.
 
 - Sort substring `"rd"` to `"dr"`, making `s = "acdr"`, which is sorted in ascending order. Thus, the answer is 2.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "gf"
+- **Input:** s = "gf"
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
+- **Explanation:** 
 
 - It is impossible to sort `s` under the given constraints. Thus, the answer is -1.
-
-</div>
 
 ### 4. Constraints
 

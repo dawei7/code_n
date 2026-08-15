@@ -29,23 +29,23 @@ Given the positive integer array `nums`, consider every ascending subarray and c
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [10,20,30,5,10,50]`
-- Output: `65`
+- **Input:** `nums = [10,20,30,5,10,50]`
+- **Output:** `65`
 
 The final ascending run `[5,10,50]` has the greatest sum.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [10,20,30,40,50]`
-- Output: `150`
+- **Input:** `nums = [10,20,30,40,50]`
+- **Output:** `150`
 
 The entire array is strictly ascending.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [12,17,15,13,10,11,12]`
-- Output: `33`
+- **Input:** `nums = [12,17,15,13,10,11,12]`
+- **Output:** `33`
 
 The best run is `[10,11,12]`.

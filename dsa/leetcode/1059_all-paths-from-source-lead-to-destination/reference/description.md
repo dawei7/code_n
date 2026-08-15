@@ -36,6 +36,7 @@ Let $V = n$ and let $E = \lvert\texttt{edges}\rvert$.
 - **Input:** $n = 3, edges = [[0,1],[0,2]], source = 0, destination = 2$
 - **Output:** `false`
 - **Explanation:** It is possible to reach and get stuck on both node 1 and node 2.
+
 #### Example 2
 
 ![](images/485_example_2.png)
@@ -43,6 +44,7 @@ Let $V = n$ and let $E = \lvert\texttt{edges}\rvert$.
 - **Input:** $n = 4, edges = [[0,1],[0,3],[1,2],[2,1]], source = 0, destination = 3$
 - **Output:** `false`
 - **Explanation:** We have two possibilities: to end at node 3, or to loop over node 1 and node 2 indefinitely.
+
 #### Example 3
 
 ![](images/485_example_3.png)

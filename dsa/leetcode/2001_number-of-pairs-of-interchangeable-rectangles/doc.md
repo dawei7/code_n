@@ -38,20 +38,20 @@ Return the number of index pairs $(i,j)$ with $i<j$ whose rectangles have the sa
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `rectangles = [[4, 8], [3, 6], [10, 20], [15, 30]]`
-- Output: `6`
-- Explanation: All four ratios reduce to $1/2$, so every pair is interchangeable.
+- **Input:** `rectangles = [[4, 8], [3, 6], [10, 20], [15, 30]]`
+- **Output:** `6`
+- **Explanation:** All four ratios reduce to $1/2$, so every pair is interchangeable.
 
-**Example 2**
+#### Example 2
 
-- Input: `rectangles = [[4, 5], [7, 8]]`
-- Output: `0`
-- Explanation: The two ratios differ.
+- **Input:** `rectangles = [[4, 5], [7, 8]]`
+- **Output:** `0`
+- **Explanation:** The two ratios differ.
 
-**Example 3**
+#### Example 3
 
-- Input: `rectangles = [[1, 2], [2, 4], [3, 6], [4, 7]]`
-- Output: `3`
-- Explanation: The first three rectangles share ratio $1/2$ and create three pairs; the last rectangle has a different ratio.
+- **Input:** `rectangles = [[1, 2], [2, 4], [3, 6], [4, 7]]`
+- **Output:** `3`
+- **Explanation:** The first three rectangles share ratio $1/2$ and create three pairs; the last rectangle has a different ratio.

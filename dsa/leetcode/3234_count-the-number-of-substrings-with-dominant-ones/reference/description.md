@@ -8,23 +8,23 @@ A string has **dominant** ones if the number of ones in the string is **greater 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "00011"
+- **Input:** s = "00011"
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
-
-The substrings with dominant ones are shown in the table below.
-
-</div>
+- **Explanation:** The substrings with dominant ones are shown in the table below.
 
 <table>
 	<thead>
@@ -74,20 +74,16 @@ The substrings with dominant ones are shown in the table below.
 		</tr>
 	</tbody>
 </table>
+
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "101101"
+- **Input:** s = "101101"
 
-**Output:** 16
+- **Output:** 16
 
-**Explanation:**
-
-The substrings with **non-dominant** ones are shown in the table below.
+- **Explanation:** The substrings with **non-dominant** ones are shown in the table below.
 
 Since there are 21 substrings total and 5 of them have non-dominant ones, it follows that there are 16 substrings with dominant ones.
-
-</div>
 
 <table>
 	<thead>

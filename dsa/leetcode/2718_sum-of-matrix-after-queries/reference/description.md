@@ -12,8 +12,14 @@ Return *the sum of integers in the matrix after all queries are applied*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +30,7 @@ Return *the sum of integers in the matrix after all queries are applied*.
 - **Input:** $n = 3, queries = [[0,0,1],[1,2,2],[0,2,3],[1,0,4]]$
 - **Output:** `23`
 - **Explanation:** The image above describes the matrix after each query. The sum of the matrix after all queries are applied is 23.
+
 #### Example 2
 
 ![](images/exm2.png)

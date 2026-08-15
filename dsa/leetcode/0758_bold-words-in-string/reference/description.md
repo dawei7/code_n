@@ -26,6 +26,7 @@ Return `s` with each maximal consecutive range covered by at least one complete 
 - **Input:** $words = ["ab","bc"], s = "aabcd"$
 - **Output:** `"a**abc**d"`
 - **Explanation:** Note that returning "a**a<b>b**c</b>d" would use more tags, so it is incorrect.
+
 #### Example 2
 
 - **Input:** $words = ["ab","cb"], s = "aabcd"$

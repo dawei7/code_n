@@ -40,20 +40,20 @@ with $S\le 10^3$, and let $L=\max_{g\in\texttt{groups}}\lvert g\rvert$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `groups = [[1,-1,-1],[3,-2,0]], nums = [1,-1,0,1,-1,-1,3,-2,0]`
-- Output: `True`
-- Explanation: The first group starts at index `3`, and the second follows it at index `6`.
+- **Input:** `groups = [[1,-1,-1],[3,-2,0]], nums = [1,-1,0,1,-1,-1,3,-2,0]`
+- **Output:** `True`
+- **Explanation:** The first group starts at index `3`, and the second follows it at index `6`.
 
-**Example 2**
+#### Example 2
 
-- Input: `groups = [[10,-2],[1,2,3,4]], nums = [1,2,3,4,10,-2]`
-- Output: `False`
-- Explanation: Both arrays occur, but only in the reverse of the required group order.
+- **Input:** `groups = [[10,-2],[1,2,3,4]], nums = [1,2,3,4,10,-2]`
+- **Output:** `False`
+- **Explanation:** Both arrays occur, but only in the reverse of the required group order.
 
-**Example 3**
+#### Example 3
 
-- Input: `groups = [[1,2,3],[3,4]], nums = [7,7,1,2,3,4,7,7]`
-- Output: `False`
-- Explanation: The only occurrences share the value `3`, and overlapping matches are forbidden.
+- **Input:** `groups = [[1,2,3],[3,4]], nums = [7,7,1,2,3,4,7,7]`
+- **Output:** `False`
+- **Explanation:** The only occurrences share the value `3`, and overlapping matches are forbidden.

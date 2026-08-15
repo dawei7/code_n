@@ -6,21 +6,23 @@ Return the **maximum possible size** of the array after performing zero or more 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [4,2,5,3,5]
+- **Input:** nums = [4,2,5,3,5]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-One way to achieve the maximum size is:
+- **Explanation:** One way to achieve the maximum size is:
 
 - Replace subarray $nums[1..2] = [2, 5]$ with `5` → `[4, 5, 3, 5]`.
 
@@ -28,19 +30,13 @@ One way to achieve the maximum size is:
 
 The final array `[4, 5, 5]` is non-decreasing with size 3.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2,3]
+- **Input:** nums = [1,2,3]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-No operation is needed as the array `[1,2,3]` is already non-decreasing.
-
-</div>
+- **Explanation:** No operation is needed as the array `[1,2,3]` is already non-decreasing.
 
 ### 4. Constraints
 

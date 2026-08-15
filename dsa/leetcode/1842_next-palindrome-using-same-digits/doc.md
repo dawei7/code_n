@@ -33,23 +33,23 @@ Rearrange exactly the same digit occurrences to form another palindrome. Among a
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `num = "1221"`
-- Output: `"2112"`
+- **Input:** `num = "1221"`
+- **Output:** `"2112"`
 
 The two possible first-half arrangements are `12` and `21`; mirroring the next one produces `2112`.
 
-**Example 2**
+#### Example 2
 
-- Input: `num = "32123"`
-- Output: `""`
+- **Input:** `num = "32123"`
+- **Output:** `""`
 
 The first half `32` is already its greatest permutation, so no larger palindrome can use the same digits.
 
-**Example 3**
+#### Example 3
 
-- Input: `num = "45544554"`
-- Output: `"54455445"`
+- **Input:** `num = "45544554"`
+- **Output:** `"54455445"`
 
 The first half advances from `4554` to its next permutation, `5445`, and mirroring it gives the result.

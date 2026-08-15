@@ -6,8 +6,13 @@ A row and column pair is considered equal if they contain the same elements in t
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,6 +24,7 @@ A row and column pair is considered equal if they contain the same elements in t
 - **Output:** `1`
 - **Explanation:** There is 1 equal row and column pair:
 - (Row 2, Column 1): [2,7,7]
+
 #### Example 2
 
 ![](images/ex2.jpg)

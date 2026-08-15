@@ -14,8 +14,14 @@ Return *the *`target`* with the **maximum** count*. The test cases will be gener
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `key`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,6 +31,7 @@ Return *the *`target`* with the **maximum** count*. The test cases will be gener
 - **Output:** `100`
 - **Explanation:** For target = 100, there are 2 occurrences at indices 1 and 4 which follow an occurrence of key.
 No other integers follow an occurrence of key, so we return 100.
+
 #### Example 2
 
 - **Input:** `nums = [2,2,2,2,3], key = 2`

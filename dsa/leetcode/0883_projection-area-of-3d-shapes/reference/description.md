@@ -12,8 +12,13 @@ Return *the total area of all three projections*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,10 +29,12 @@ Return *the total area of all three projections*.
 - **Input:** `grid = [[1,2],[3,4]]`
 - **Output:** `17`
 - **Explanation:** Here are the three projections ("shadows") of the shape made with each axis-aligned plane.
+
 #### Example 2
 
 - **Input:** `grid = [[2]]`
 - **Output:** `5`
+
 #### Example 3
 
 - **Input:** `grid = [[1,0],[0,2]]`

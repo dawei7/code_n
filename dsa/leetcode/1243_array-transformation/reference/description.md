@@ -32,15 +32,14 @@ Return the stable array reached when a complete simultaneous day produces no cha
 
 - **Input:** `arr = [6,2,3,4]`
 - **Output:** `[6,3,3,4]`
-- **Explanation:**
-On the first day, the array is changed from [6,2,3,4] to [6,3,3,4].
+- **Explanation:** On the first day, the array is changed from [6,2,3,4] to [6,3,3,4].
 No more operations can be done to this array.
+
 #### Example 2
 
 - **Input:** `arr = [1,6,3,4,3,5]`
 - **Output:** `[1,4,4,4,4,5]`
-- **Explanation:**
-On the first day, the array is changed from [1,6,3,4,3,5] to [1,5,4,3,4,5].
+- **Explanation:** On the first day, the array is changed from [1,6,3,4,3,5] to [1,5,4,3,4,5].
 On the second day, the array is changed from [1,5,4,3,4,5] to [1,4,4,4,4,5].
 No more operations can be done to this array.
 

@@ -31,17 +31,17 @@ Given the resulting string `s` and the limit `k`, count how many different array
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "1000", k = 10000`
-- Output: `1`
+- **Input:** `s = "1000", k = 10000`
+- **Output:** `1`
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "1000", k = 10`
-- Output: `0`
+- **Input:** `s = "1000", k = 10`
+- **Output:** `0`
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "1317", k = 2000`
-- Output: `8`
+- **Input:** `s = "1317", k = 2000`
+- **Output:** `8`

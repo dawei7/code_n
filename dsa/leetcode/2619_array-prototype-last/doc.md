@@ -30,20 +30,20 @@ Return the element at the final array index when `nums` is non-empty; otherwise 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [null, {}, 3]`
-- Output: `3`
-- Explanation: The final element is the number `3`.
+- **Input:** `nums = [null, {}, 3]`
+- **Output:** `3`
+- **Explanation:** The final element is the number `3`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = []`
-- Output: `-1`
-- Explanation: The designated result for an empty array is `-1`.
+- **Input:** `nums = []`
+- **Output:** `-1`
+- **Explanation:** The designated result for an empty array is `-1`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 2, -1]`
-- Output: `-1`
-- Explanation: Here `-1` is an actual final element; the same value also serves as the empty-array sentinel.
+- **Input:** `nums = [1, 2, -1]`
+- **Output:** `-1`
+- **Explanation:** Here `-1` is an actual final element; the same value also serves as the empty-array sentinel.

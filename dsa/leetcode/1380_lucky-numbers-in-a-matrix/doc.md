@@ -30,17 +30,17 @@ Return a list containing every lucky value in the matrix. A matrix may have no l
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `matrix = [[3,7,8],[9,11,13],[15,16,17]]`
-- Output: `[15]`
+- **Input:** `matrix = [[3,7,8],[9,11,13],[15,16,17]]`
+- **Output:** `[15]`
 
-**Example 2**
+#### Example 2
 
-- Input: `matrix = [[1,10,4,2],[9,3,8,7],[15,16,17,12]]`
-- Output: `[12]`
+- **Input:** `matrix = [[1,10,4,2],[9,3,8,7],[15,16,17,12]]`
+- **Output:** `[12]`
 
-**Example 3**
+#### Example 3
 
-- Input: `matrix = [[7,8],[1,2]]`
-- Output: `[7]`
+- **Input:** `matrix = [[7,8],[1,2]]`
+- **Output:** `[7]`

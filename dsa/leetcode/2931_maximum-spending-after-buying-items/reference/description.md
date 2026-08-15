@@ -10,8 +10,13 @@ On each day, you would like to buy a single item from one of the shops. Specific
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `values`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -36,6 +41,7 @@ On the eighth day, we buy product 0 from shop 0 for a price of values[0][0] * 8 
 On the ninth day, we buy product 0 from shop 2 for a price of values[2][0] * 9 = 81.
 Hence, our total spending is equal to 285.
 It can be shown that 285 is the maximum amount of money that can be spent buying all m * n products.
+
 #### Example 2
 
 - **Input:** $values = [[10,8,6,4,2],[9,7,5,3,2]]$

@@ -14,21 +14,24 @@ Return an integer array `results` of size $n - k + 1$, where $\text{results}[i]$
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4,3,2,5], k = 3
+- **Input:** nums = [1,2,3,4,3,2,5], k = 3
 
-**Output:** [3,4,-1,-1,-1]
+- **Output:** [3,4,-1,-1,-1]
 
-**Explanation:**
-
-There are 5 subarrays of `nums` of size 3:
+- **Explanation:** There are 5 subarrays of `nums` of size 3:
 
 - `[1, 2, 3]` with the maximum element 3.
 
@@ -40,23 +43,17 @@ There are 5 subarrays of `nums` of size 3:
 
 - `[3, 2, 5]` whose elements are **not** consecutive.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,2,2,2,2], k = 4
+- **Input:** nums = [2,2,2,2,2], k = 4
 
-**Output:** [-1,-1]
+- **Output:** [-1,-1]
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [3,2,3,2,3,2], k = 2
+- **Input:** nums = [3,2,3,2,3,2], k = 2
 
-**Output:** [-1,3,-1,3,-1]
-
-</div>
+- **Output:** [-1,3,-1,3,-1]
 
 ### 4. Constraints
 

@@ -21,6 +21,7 @@ Return *the **minimum **number of **straight lines** needed to cover all the poi
 - **Explanation:** The minimum number of straight lines needed is two. One possible solution is to add:
 - One line connecting the point at (0, 1) to the point at (4, 5).
 - Another line connecting the point at (2, 3) to the point at (4, 3).
+
 #### Example 2
 
 ![](images/image-20220123200057-3.png)

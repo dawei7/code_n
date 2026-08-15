@@ -14,8 +14,12 @@ Implement the `FrequencyTracker` class.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `FrequencyTracker()`: Initializes the data structure.
+- `add(number: int)`: Executes operation.
+- `deleteOne(number: int)`: Executes operation.
+- `hasFrequency(frequency: int) -> `bool``: Executes operation.
 
 ### 3. Examples
 
@@ -34,6 +38,7 @@ frequencyTracker.add(3); // The data structure now contains [3]
 frequencyTracker.add(3); // The data structure now contains [3, 3]
 frequencyTracker.hasFrequency(2); // Returns true, because 3 occurs twice
 ```
+
 #### Example 2
 
 ```
@@ -49,6 +54,7 @@ frequencyTracker.add(1); // The data structure now contains [1]
 frequencyTracker.deleteOne(1); // The data structure becomes empty []
 frequencyTracker.hasFrequency(1); // Returns false, because the data structure is empty
 ```
+
 #### Example 3
 
 ```

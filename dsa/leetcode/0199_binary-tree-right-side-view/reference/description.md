@@ -16,44 +16,31 @@ Return one visible value per occupied level, ordered from top to bottom.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** root = [1,2,3,null,5,null,4]
+- **Input:** root = [1,2,3,null,5,null,4]
 
-**Output:** [1,3,4]
+- **Output:** [1,3,4]
 
-**Explanation:**
+- **Explanation:** ![](images/tmpd5jn43fs-1.png)
 
-![](images/tmpd5jn43fs-1.png)
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** root = [1,2,3,4,null,null,null,5]
+- **Input:** root = [1,2,3,4,null,null,null,5]
 
-**Output:** [1,3,4,5]
+- **Output:** [1,3,4,5]
 
-**Explanation:**
+- **Explanation:** ![](images/tmpkpe40xeh-1.png)
 
-![](images/tmpkpe40xeh-1.png)
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** root = [1,null,3]
+- **Input:** root = [1,null,3]
 
-**Output:** [1,3]
+- **Output:** [1,3]
 
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** root = []
+- **Input:** root = []
 
-**Output:** []
-
-</div>
+- **Output:** []
 
 ### 4. Constraints
 

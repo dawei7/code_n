@@ -30,20 +30,20 @@ Return all pairs `[x, y]` for which both entries are prime, $x \leq y$, and $x +
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 10`
-- Output: `[[3,7],[5,5]]`
-- Explanation: Both pairs sum to $10$, and their entries are prime. The pair beginning with $3$ comes first.
+- **Input:** `n = 10`
+- **Output:** `[[3,7],[5,5]]`
+- **Explanation:** Both pairs sum to $10$, and their entries are prime. The pair beginning with $3$ comes first.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 2`
-- Output: `[]`
-- Explanation: No two primes satisfying $x \leq y$ sum to $2$.
+- **Input:** `n = 2`
+- **Output:** `[]`
+- **Explanation:** No two primes satisfying $x \leq y$ sum to $2$.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 5`
-- Output: `[[2,3]]`
-- Explanation: The only representation of $5$ as the sum of two primes is $2 + 3$.
+- **Input:** `n = 5`
+- **Output:** `[[2,3]]`
+- **Explanation:** The only representation of $5$ as the sum of two primes is $2 + 3$.

@@ -37,30 +37,30 @@ Return the minimum prefix length `k` that can make every element zero, with `0` 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 0, 2]`, `queries = [[0,2,1],[0,2,1],[1,1,3]]`
-- Output: `2`
+- **Input:** `nums = [2, 0, 2]`, `queries = [[0,2,1],[0,2,1],[1,1,3]]`
+- **Output:** `2`
 
 Choose indices 0 and 2 in each of the first two queries.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4, 3, 2, 1]`, `queries = [[1,3,2],[0,2,1]]`
-- Output: `-1`
+- **Input:** `nums = [4, 3, 2, 1]`, `queries = [[1,3,2],[0,2,1]]`
+- **Output:** `-1`
 
 No allowed combination of exact decrements reaches every target.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 2, 3, 2, 1]`, `queries = [[0,1,1],[1,2,1],[2,3,2],[3,4,1],[4,4,1]]`
-- Output: `4`
+- **Input:** `nums = [1, 2, 3, 2, 1]`, `queries = [[0,1,1],[1,2,1],[2,3,2],[3,4,1],[4,4,1]]`
+- **Output:** `4`
 
 After the first four queries, independent subset choices can supply exact decrement totals 1, 2, 3, 2, and 1 at the five indices.
 
-**Example 4**
+#### Example 4
 
-- Input: `nums = [0, 0]`, `queries = [[0,1,5]]`
-- Output: `0`
+- **Input:** `nums = [0, 0]`, `queries = [[0,1,5]]`
+- **Output:** `0`
 
 No query is needed when the array starts at zero.

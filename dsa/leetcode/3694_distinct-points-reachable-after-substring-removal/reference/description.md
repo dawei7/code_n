@@ -33,40 +33,27 @@ Return the number of distinct endpoints produced by the valid substring removals
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "LUL", k = 1
+- **Input:** s = "LUL", k = 1
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** After removing a substring of length 1, `s` can be `"UL"`, `"LL"` or `"LU"`. Following these moves, the final coordinates will be `(-1, 1)`, `(-2, 0)` and `(-1, 1)` respectively. There are two distinct points `(-1, 1)` and `(-2, 0)` so the answer is 2.
 
-After removing a substring of length 1, `s` can be `"UL"`, `"LL"` or `"LU"`. Following these moves, the final coordinates will be `(-1, 1)`, `(-2, 0)` and `(-1, 1)` respectively. There are two distinct points `(-1, 1)` and `(-2, 0)` so the answer is 2.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "UDLR", k = 4
+- **Input:** s = "UDLR", k = 4
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** After removing a substring of length 4, `s` can only be the empty string. The final coordinates will be `(0, 0)`. There is only one distinct point `(0, 0)` so the answer is 1.
 
-After removing a substring of length 4, `s` can only be the empty string. The final coordinates will be `(0, 0)`. There is only one distinct point `(0, 0)` so the answer is 1.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "UU", k = 1
+- **Input:** s = "UU", k = 1
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-After removing a substring of length 1, `s` becomes `"U"`, which always ends at `(0, 1)`, so there is only one distinct final coordinate.
-
-</div>
+- **Explanation:** After removing a substring of length 1, `s` becomes `"U"`, which always ends at `(0, 1)`, so there is only one distinct final coordinate.
 
 ### 4. Constraints
 

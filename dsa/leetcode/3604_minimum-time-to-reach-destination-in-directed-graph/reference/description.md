@@ -14,21 +14,24 @@ Return the **minimum** time required to reach node $n - 1$. If it is impossible,
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,1,0,1],[1,2,2,5]]
+- **Input:** n = 3, edges = [[0,1,0,1],[1,2,2,5]]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-![](images/screenshot-2025-06-06-at-004535.png)
+- **Explanation:** ![](images/screenshot-2025-06-06-at-004535.png)
 
 The optimal path is:
 
@@ -38,17 +41,13 @@ The optimal path is:
 
 Hence, the minimum time to reach node 2 is 3.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 4, edges = [[0,1,0,3],[1,3,7,8],[0,2,1,5],[2,3,4,7]]
+- **Input:** n = 4, edges = [[0,1,0,3],[1,3,7,8],[0,2,1,5],[2,3,4,7]]
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
-
-![](images/screenshot-2025-06-06-at-004757.png)
+- **Explanation:** ![](images/screenshot-2025-06-06-at-004757.png)
 
 The optimal path is:
 
@@ -58,21 +57,15 @@ The optimal path is:
 
 Hence, the minimum time to reach node 3 is 5.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 3, edges = [[1,0,1,3],[1,2,3,5]]
+- **Input:** n = 3, edges = [[1,0,1,3],[1,2,3,5]]
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-![](images/screenshot-2025-06-06-at-004914.png)
+- **Explanation:** ![](images/screenshot-2025-06-06-at-004914.png)
 
 - Since there is no outgoing edge from node 0, it is impossible to reach node 2. Hence, the output is -1.
-
-</div>
 
 ### 4. Constraints
 

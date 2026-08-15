@@ -22,12 +22,14 @@ Return the vertical columns from leftmost to rightmost, with every column ordere
 
 - **Input:** `root = [3,9,20,null,null,15,7]`
 - **Output:** `[[9],[3,15],[20],[7]]`
+
 #### Example 2
 
 ![](images/image3.png)
 
 - **Input:** `root = [3,9,8,4,0,1,7]`
 - **Output:** `[[4],[9],[3,0,1],[8],[7]]`
+
 #### Example 3
 
 ![](images/image2.png)

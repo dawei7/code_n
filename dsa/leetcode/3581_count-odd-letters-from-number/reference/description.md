@@ -16,32 +16,23 @@ Return the number of **distinct** characters in `s` that appear an **odd** numbe
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 41
+- **Input:** n = 41
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
-
-41 → `"fourone"`
+- **Explanation:** 41 → `"fourone"`
 
 Characters with odd frequencies: `'f'`, `'u'`, `'r'`, `'n'`, `'e'`. Thus, the answer is 5.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 20
+- **Input:** n = 20
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
-
-20 → `"twozero"`
+- **Explanation:** 20 → `"twozero"`
 
 Characters with odd frequencies: `'t'`, `'w'`, `'z'`, `'e'`, `'r'`. Thus, the answer is 5.
-
-</div>
 
 ### 4. Constraints
 

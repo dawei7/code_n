@@ -17,6 +17,7 @@ Return *the price of the **most expensive** item which Alice can not gift to Bob
 - **Input:** $primeOne = 2, primeTwo = 5$
 - **Output:** `3`
 - **Explanation:** The prices of items which cannot be bought are [1,3]. It can be shown that all items with a price greater than 3 can be bought using a combination of coins of denominations 2 and 5.
+
 #### Example 2
 
 - **Input:** $primeOne = 5, primeTwo = 7$

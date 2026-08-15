@@ -32,12 +32,12 @@ A minimum-length valid command string that selects the letters of `target` in or
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `target = "leet"`
-- Output: `"DDR!UURRR!!DDD!"`
+- **Input:** `target = "leet"`
+- **Output:** `"DDR!UURRR!!DDD!"`
 
-**Example 2**
+#### Example 2
 
-- Input: `target = "code"`
-- Output: `"RR!DDRR!UUL!R!"`
+- **Input:** `target = "code"`
+- **Output:** `"RR!DDRR!UUL!R!"`

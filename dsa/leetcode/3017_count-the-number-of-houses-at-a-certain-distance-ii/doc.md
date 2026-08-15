@@ -36,20 +36,20 @@ The source constraints guarantee $2 \le N \le 10^5$ and $1 \le \texttt{x},\textt
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 3`, `x = 1`, `y = 3`
-- Output: `[6, 0, 0]`
-- Explanation: The added road turns the three houses into a triangle, so all six ordered pairs are one road apart.
+- **Input:** `n = 3`, `x = 1`, `y = 3`
+- **Output:** `[6, 0, 0]`
+- **Explanation:** The added road turns the three houses into a triangle, so all six ordered pairs are one road apart.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 4`, `x = 1`, `y = 1`
-- Output: `[6, 4, 2, 0]`
-- Explanation: A self-connection creates no shortcut, leaving the original chain distances.
+- **Input:** `n = 4`, `x = 1`, `y = 1`
+- **Output:** `[6, 4, 2, 0]`
+- **Explanation:** A self-connection creates no shortcut, leaving the original chain distances.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 5`, `x = 1`, `y = 5`
-- Output: `[10, 10, 0, 0, 0]`
-- Explanation: The graph is a five-house cycle. Five unordered pairs have distance one and five have distance two; both orientations are counted.
+- **Input:** `n = 5`, `x = 1`, `y = 5`
+- **Output:** `[10, 10, 0, 0, 0]`
+- **Explanation:** The graph is a five-house cycle. Five unordered pairs have distance one and five have distance two; both orientations are counted.

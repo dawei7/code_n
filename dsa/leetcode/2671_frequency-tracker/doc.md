@@ -33,20 +33,20 @@ The first operation constructs an empty tracker. Each `add` or `deleteOne` recei
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `operations = ["FrequencyTracker","add","add","hasFrequency"]`, `arguments = [[],[3],[3],[2]]`
-- Output: `[null,null,null,true]`
-- Explanation: After adding `3` twice, some number has frequency two.
+- **Input:** `operations = ["FrequencyTracker","add","add","hasFrequency"]`, `arguments = [[],[3],[3],[2]]`
+- **Output:** `[null,null,null,true]`
+- **Explanation:** After adding `3` twice, some number has frequency two.
 
-**Example 2**
+#### Example 2
 
-- Input: `operations = ["FrequencyTracker","add","deleteOne","hasFrequency"]`, `arguments = [[],[1],[1],[1]]`
-- Output: `[null,null,null,false]`
-- Explanation: Deleting the only occurrence of `1` leaves the tracker empty.
+- **Input:** `operations = ["FrequencyTracker","add","deleteOne","hasFrequency"]`, `arguments = [[],[1],[1],[1]]`
+- **Output:** `[null,null,null,false]`
+- **Explanation:** Deleting the only occurrence of `1` leaves the tracker empty.
 
-**Example 3**
+#### Example 3
 
-- Input: `operations = ["FrequencyTracker","hasFrequency","add","hasFrequency"]`, `arguments = [[],[2],[3],[1]]`
-- Output: `[null,false,null,true]`
-- Explanation: No frequency exists initially; after adding `3`, frequency one exists.
+- **Input:** `operations = ["FrequencyTracker","hasFrequency","add","hasFrequency"]`, `arguments = [[],[2],[3],[1]]`
+- **Output:** `[null,false,null,true]`
+- **Explanation:** No frequency exists initially; after adding `3`, frequency one exists.

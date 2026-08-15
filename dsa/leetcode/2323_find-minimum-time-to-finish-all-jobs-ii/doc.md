@@ -33,16 +33,16 @@ Return the minimum integer number of days after which every job can be complete 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `jobs = [5,2,4], workers = [1,7,5]`
-- Output: `2`
+- **Input:** `jobs = [5,2,4], workers = [1,7,5]`
+- **Output:** `2`
 
 Pairing sorted workloads `[2,4,5]` with sorted capacities `[1,5,7]` produces durations 2, 1, and 1 day.
 
-**Example 2**
+#### Example 2
 
-- Input: `jobs = [3,18,15,9], workers = [6,5,1,3]`
-- Output: `3`
+- **Input:** `jobs = [3,18,15,9], workers = [6,5,1,3]`
+- **Output:** `3`
 
 The sorted pairs finish in at most three days, and no assignment can make every pair finish sooner.

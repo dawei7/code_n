@@ -10,8 +10,13 @@ Return *the smallest number of *`0`*'s you must flip to connect the two islands*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,10 +24,12 @@ Return *the smallest number of *`0`*'s you must flip to connect the two islands*
 
 - **Input:** `grid = [[0,1],[1,0]]`
 - **Output:** `1`
+
 #### Example 2
 
 - **Input:** `grid = [[0,1,0],[0,0,0],[0,0,1]]`
 - **Output:** `2`
+
 #### Example 3
 
 - **Input:** `grid = [[1,1,1,1,1],[1,0,0,0,1],[1,0,1,0,1],[1,0,0,0,1],[1,1,1,1,1]]`

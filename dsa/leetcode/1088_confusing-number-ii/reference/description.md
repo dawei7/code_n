@@ -49,6 +49,7 @@ Let $D$ be the number of decimal digits in `n`.
 16 converts to 91.
 18 converts to 81.
 19 converts to 61.
+
 #### Example 2
 
 - **Input:** $n = 100$

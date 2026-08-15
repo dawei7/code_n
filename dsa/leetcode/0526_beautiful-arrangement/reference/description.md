@@ -10,8 +10,13 @@ Given an integer `n`, return *the **number** of the **beautiful arrangements** t
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,13 +24,13 @@ Given an integer `n`, return *the **number** of the **beautiful arrangements** t
 
 - **Input:** $n = 2$
 - **Output:** `2`
-- **Explanation:**
-The first beautiful arrangement is [1,2]:
+- **Explanation:** The first beautiful arrangement is [1,2]:
 - perm[1] = 1 is divisible by i = 1
 - perm[2] = 2 is divisible by i = 2
 The second beautiful arrangement is [2,1]:
 - perm[1] = 2 is divisible by i = 1
 - i = 2 is divisible by perm[2] = 1
+
 #### Example 2
 
 - **Input:** $n = 1$

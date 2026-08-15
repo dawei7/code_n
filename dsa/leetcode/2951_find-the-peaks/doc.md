@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/find-the-peaks/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given a 0-indexed integer array `mountain`. An element is a peak when
 it is strictly greater than both immediate neighboring elements. The first and
 last elements are never peaks because they do not have two neighbors.
@@ -25,6 +27,7 @@ Return an array containing the indices of every peak. The indices may appear
 in any order.
 
 ### Function Contract
+
 **Inputs**
 
 - `mountain`: the array of heights to inspect
@@ -38,14 +41,15 @@ An array containing exactly the indices whose values are strictly greater than
 both adjacent values; any index order is accepted.
 
 ### Examples
-**Example 1**
 
-- Input: `mountain = [2,4,4]`
-- Output: `[]`
-- Explanation: The only interior value equals its right neighbor, so it is not strictly greater.
+#### Example 1
 
-**Example 2**
+- **Input:** `mountain = [2,4,4]`
+- **Output:** `[]`
+- **Explanation:** The only interior value equals its right neighbor, so it is not strictly greater.
 
-- Input: `mountain = [1,4,3,8,5]`
-- Output: `[1,3]`
-- Explanation: Values at indices `1` and `3` are each greater than both neighbors.
+#### Example 2
+
+- **Input:** `mountain = [1,4,3,8,5]`
+- **Output:** `[1,3]`
+- **Explanation:** Values at indices `1` and `3` are each greater than both neighbors.

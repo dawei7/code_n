@@ -48,7 +48,7 @@ unrestricted.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 Employee 1 records sessions of 8 hours, 8 hours 4 minutes, and 4 hours
 1 minute after the required per-session rounding. The resulting 20 hours
@@ -60,7 +60,7 @@ Employee 1 records sessions of 8 hours, 8 hours 4 minutes, and 4 hours
 | 2 |
 | 3 |
 
-**Example 2**
+#### Example 2
 
 Two sessions lasting 30 minutes 1 second each are rounded separately to
 31 minutes. Their combined credited duration is therefore 62 minutes, which

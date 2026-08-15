@@ -32,18 +32,18 @@ Here, $m$ is the number of rows and $n$ is the number of columns.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `mat = [[0, 1], [1, 0]]`
-- Output: `[0, 1]`
-- Explanation: Both rows contain one one, so the smaller index wins the tie.
+- **Input:** `mat = [[0, 1], [1, 0]]`
+- **Output:** `[0, 1]`
+- **Explanation:** Both rows contain one one, so the smaller index wins the tie.
 
-**Example 2**
+#### Example 2
 
-- Input: `mat = [[0, 0, 0], [0, 1, 1]]`
-- Output: `[1, 2]`
+- **Input:** `mat = [[0, 0, 0], [0, 1, 1]]`
+- **Output:** `[1, 2]`
 
-**Example 3**
+#### Example 3
 
-- Input: `mat = [[0, 0], [1, 1], [0, 0]]`
-- Output: `[1, 2]`
+- **Input:** `mat = [[0, 0], [1, 1], [0, 0]]`
+- **Output:** `[1, 2]`

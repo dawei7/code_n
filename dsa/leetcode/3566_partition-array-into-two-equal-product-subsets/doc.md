@@ -31,16 +31,16 @@ Return `true` when all elements can be partitioned into two nonempty subsets who
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3,1,6,8,4], target = 24`
-- Output: `true`
-- Explanation: `[3,8]` and `[1,6,4]` are disjoint, cover the array, and both have product 24.
+- **Input:** `nums = [3,1,6,8,4], target = 24`
+- **Output:** `true`
+- **Explanation:** `[3,8]` and `[1,6,4]` are disjoint, cover the array, and both have product 24.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2,5,3,7], target = 15`
-- Output: `false`
-- Explanation: No complete two-way partition gives both subsets product 15.
+- **Input:** `nums = [2,5,3,7], target = 15`
+- **Output:** `false`
+- **Explanation:** No complete two-way partition gives both subsets product 15.
 
 ---

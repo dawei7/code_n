@@ -36,21 +36,21 @@ Let $m=\max(\texttt{nums})$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,3,2]`
-- Output: `4`
+- **Input:** `nums = [2,3,2]`
+- **Output:** `4`
 
 The valid first arrays are `[0,1,1]`, `[0,1,2]`, `[0,2,2]`, and `[1,2,2]`; subtracting each from `nums` produces its corresponding non-increasing second array.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [5,5,5,5]`
-- Output: `126`
+- **Input:** `nums = [5,5,5,5]`
+- **Output:** `126`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1]`
-- Output: `2`
+- **Input:** `nums = [1]`
+- **Output:** `2`
 
 The two decompositions are `([0],[1])` and `([1],[0])`.

@@ -38,23 +38,23 @@ Pairs whose two sums are equal do not count. Return the total over all possible 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [2,1,2,1], nums2 = [1,2,1,2]`
-- Output: `1`
+- **Input:** `nums1 = [2,1,2,1], nums2 = [1,2,1,2]`
+- **Output:** `1`
 
 Only pair `(0,2)` satisfies the required inequality.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [1,10,6,2], nums2 = [1,4,1,5]`
-- Output: `5`
+- **Input:** `nums1 = [1,10,6,2], nums2 = [1,4,1,5]`
+- **Output:** `5`
 
 Every pair except `(0,3)` has a strictly positive combined difference.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums1 = [5,1], nums2 = [3,3]`
-- Output: `0`
+- **Input:** `nums1 = [5,1], nums2 = [3,3]`
+- **Output:** `0`
 
 The two sides are equal, so the strict comparison rejects the pair.

@@ -32,20 +32,20 @@ Return columns `word` and `count`. The two output rows must label `bull` and `be
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: Three files contain valid `bull` occurrences; the second and third also contain valid `bear` occurrences.
-- Output: `("bull", 3)` and `("bear", 2)`
-- Explanation: Each qualifying file contributes once to the corresponding count.
+- **Input:** Three files contain valid `bull` occurrences; the second and third also contain valid `bear` occurrences.
+- **Output:** `("bull", 3)` and `("bear", 2)`
+- **Explanation:** Each qualifying file contributes once to the corresponding count.
 
-**Example 2**
+#### Example 2
 
-- Input: `Files = [("one.txt", " a bull bull bear bear z ")]`
-- Output: `("bull", 1)` and `("bear", 1)`
-- Explanation: Repetition inside one file does not increase the number of matching files.
+- **Input:** `Files = [("one.txt", " a bull bull bear bear z ")]`
+- **Output:** `("bull", 1)` and `("bear", 1)`
+- **Explanation:** Repetition inside one file does not increase the number of matching files.
 
-**Example 3**
+#### Example 3
 
-- Input: `Files = [("edges.txt", "bull starts while bears and bull. fail bear")]`
-- Output: `("bull", 0)` and `("bear", 0)`
-- Explanation: The targets are at a text boundary, embedded in a longer word, or adjacent to punctuation rather than spaces.
+- **Input:** `Files = [("edges.txt", "bull starts while bears and bull. fail bear")]`
+- **Output:** `("bull", 0)` and `("bear", 0)`
+- **Explanation:** The targets are at a text boundary, embedded in a longer word, or adjacent to punctuation rather than spaces.

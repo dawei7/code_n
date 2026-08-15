@@ -10,8 +10,14 @@ Return *the **maximum** total value that you can attain after selling *`orders`*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `inventory`: Input parameter (`List[int]`).
+- `orders`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,6 +29,7 @@ Return *the **maximum** total value that you can attain after selling *`orders`*
 - **Output:** `14`
 - **Explanation:** Sell the 1st color 1 time (2) and the 2nd color 3 times (5 + 4 + 3).
 The maximum total value is 2 + 5 + 4 + 3 = 14.
+
 #### Example 2
 
 - **Input:** $inventory = [3,5], orders = 6$

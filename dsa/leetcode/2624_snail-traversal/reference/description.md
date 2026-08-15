@@ -27,6 +27,7 @@ colsCount = 4
 [7,5,18,11],
 [9,8,6,13]
 ]
+
 #### Example 2
 
 - **Input:** ``
@@ -34,6 +35,7 @@ nums = [1,2,3,4]
 rowsCount = 1
 colsCount = 4
 - **Output:** `[[1, 2, 3, 4]]`
+
 #### Example 3
 
 - **Input:** ``

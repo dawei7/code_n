@@ -35,6 +35,7 @@ Return a list of $m$ city indices forming a valid walk on the graph with minimum
 [0,2,4,2] is equivalent to ["ATL","LAX","HND","LAX"] which has edit distance = 1 with targetPath.
 [0,3,0,2] is equivalent to ["ATL","DXB","ATL","LAX"] which has edit distance = 1 with targetPath.
 [0,3,1,2] is equivalent to ["ATL","DXB","PEK","LAX"] which has edit distance = 1 with targetPath.
+
 #### Example 2
 
 ![](images/e2.jpg)
@@ -42,6 +43,7 @@ Return a list of $m$ city indices forming a valid walk on the graph with minimum
 - **Input:** $n = 4, roads = [[1,0],[2,0],[3,0],[2,1],[3,1],[3,2]], names = ["ATL","PEK","LAX","DXB"], targetPath = ["ABC","DEF","GHI","JKL","MNO","PQR","STU","VWX"]$
 - **Output:** `[0,1,0,1,0,1,0,1]`
 - **Explanation:** Any path in this graph has edit distance = 8 with targetPath.
+
 #### Example 3
 
 **

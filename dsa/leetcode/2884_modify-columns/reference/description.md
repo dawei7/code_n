@@ -26,7 +26,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:
+- **Input:** 
 **DataFrame employees
 +---------+--------+
 | name    | salary |
@@ -36,7 +36,7 @@ The result format is in the following example.
 | Mia     | 62509  |
 | Ulysses | 54866  |
 +---------+--------+
-**Output:
+- **Output:** 
 **+---------+--------+
 | name    | salary |
 +---------+--------+
@@ -45,6 +45,6 @@ The result format is in the following example.
 | Mia     | 125018 |
 | Ulysses | 109732 |
 +---------+--------+
-**Explanation:
+- **Explanation:** 
 **Every salary has been doubled.
 ```

@@ -34,14 +34,14 @@ The input satisfies $2 \le n \le 100$, and every string has length from $1$ thro
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = ["cab", "ad", "bad", "c"]`
-- Output: `["ab", "", "ba", ""]`
-- Explanation: For `"cab"`, both `"ab"` and `"ca"` are shortest substrings absent from the other words, so `"ab"` wins lexicographically. The word `"bad"` contributes `"ba"`. Every substring of `"ad"` or `"c"` appears in another word, so those answers are empty.
+- **Input:** `arr = ["cab", "ad", "bad", "c"]`
+- **Output:** `["ab", "", "ba", ""]`
+- **Explanation:** For `"cab"`, both `"ab"` and `"ca"` are shortest substrings absent from the other words, so `"ab"` wins lexicographically. The word `"bad"` contributes `"ba"`. Every substring of `"ad"` or `"c"` appears in another word, so those answers are empty.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = ["abc", "bcd", "abcd"]`
-- Output: `["", "", "abcd"]`
-- Explanation: Every substring of each shorter word occurs in `"abcd"`. For the last word, every proper substring appears in one of the other two words, leaving the full string `"abcd"` as its shortest uncommon substring.
+- **Input:** `arr = ["abc", "bcd", "abcd"]`
+- **Output:** `["", "", "abcd"]`
+- **Explanation:** Every substring of each shorter word occurs in `"abcd"`. For the last word, every proper substring appears in one of the other two words, leaving the full string `"abcd"` as its shortest uncommon substring.

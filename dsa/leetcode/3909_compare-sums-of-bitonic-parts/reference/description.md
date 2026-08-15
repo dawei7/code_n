@@ -52,12 +52,11 @@ Return `0` if $A>B$, return `1` if $B>A$, and return `-1` if $A=B$.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,3,2,1]
+- **Input:** nums = [1,3,2,1]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - Peak element is $\text{nums}[1] = 3$
 
@@ -67,15 +66,13 @@ Return `0` if $A>B$, return `1` if $B>A$, and return `-1` if $A=B$.
 
 - Since the descending part has a larger sum, return 1.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,4,5,2]
+- **Input:** nums = [2,4,5,2]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** 
 
 - Peak element is $\text{nums}[2] = 5$
 
@@ -85,15 +82,13 @@ Return `0` if $A>B$, return `1` if $B>A$, and return `-1` if $A=B$.
 
 - Since the ascending part has a larger sum, return 0.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,2,4,3]
+- **Input:** nums = [1,2,4,3]
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
+- **Explanation:** 
 
 - Peak element is $\text{nums}[2] = 4$
 
@@ -102,8 +97,6 @@ Return `0` if $A>B$, return `1` if $B>A$, and return `-1` if $A=B$.
 - Descending part = `[4, 3]`, sum is $4 + 3 = 7$
 
 - Since both parts have equal sums, return -1.
-
-</div>
 
 ### 5. Constraints
 

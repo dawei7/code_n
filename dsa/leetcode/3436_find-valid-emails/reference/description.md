@@ -27,7 +27,6 @@ Return* the result table ordered by* $\text{user}_{id}$ *in* **ascending ***orde
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 Users table:
@@ -68,8 +67,6 @@ Users table:
 - **eve@invalid** is invalid because the domain does not end with `.com`.
 
 Result table is ordered by user_id in ascending order.
-
-</div>
 
 ### 2. Function Contract
 

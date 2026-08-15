@@ -18,21 +18,24 @@ The **Manhattan Distance** between two cells $(x_{i}, y_{i})$ and $(x_{j}, y_{j}
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "NWSE", k = 1
+- **Input:** s = "NWSE", k = 1
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-Change $s[2]$ from `'S'` to `'N'`. The string `s` becomes `"NWNE"`.
+- **Explanation:** Change $s[2]$ from `'S'` to `'N'`. The string `s` becomes `"NWNE"`.
 
 <table style="border: 1px solid black;">
 	<thead>
@@ -73,21 +76,15 @@ Change $s[2]$ from `'S'` to `'N'`. The string `s` becomes `"NWNE"`.
 
 The maximum Manhattan distance from the origin that can be achieved is 3. Hence, 3 is the output.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "NSWWEW", k = 3
+- **Input:** s = "NSWWEW", k = 3
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
-
-Change $s[1]$ from `'S'` to `'N'`, and $s[4]$ from `'E'` to `'W'`. The string `s` becomes `"NNWWWW"`.
+- **Explanation:** Change $s[1]$ from `'S'` to `'N'`, and $s[4]$ from `'E'` to `'W'`. The string `s` becomes `"NNWWWW"`.
 
 The maximum Manhattan distance from the origin that can be achieved is 6. Hence, 6 is the output.
-
-</div>
 
 ### 4. Constraints
 

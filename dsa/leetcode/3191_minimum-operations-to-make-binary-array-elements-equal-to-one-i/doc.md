@@ -37,15 +37,15 @@ equal to `1`, or `-1` if this is impossible.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [0, 1, 1, 1, 0, 0]`
-- Output: `3`
-- Explanation: Flip the windows beginning at indices `0`, `1`, and `3`.
+- **Input:** `nums = [0, 1, 1, 1, 0, 0]`
+- **Output:** `3`
+- **Explanation:** Flip the windows beginning at indices `0`, `1`, and `3`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [0, 1, 1, 1]`
-- Output: `-1`
-- Explanation: No sequence of length-three flips can make every bit equal to
+- **Input:** `nums = [0, 1, 1, 1]`
+- **Output:** `-1`
+- **Explanation:** No sequence of length-three flips can make every bit equal to
   `1`.

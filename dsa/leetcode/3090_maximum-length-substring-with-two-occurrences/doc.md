@@ -32,20 +32,20 @@ Return an integer equal to the greatest length of a contiguous substring in whic
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "bcbbbcba"`
-- Output: `4`
-- Explanation: `"bcba"` is a length-four substring whose characters each occur at most twice. No longer substring satisfies the limit.
+- **Input:** `s = "bcbbbcba"`
+- **Output:** `4`
+- **Explanation:** `"bcba"` is a length-four substring whose characters each occur at most twice. No longer substring satisfies the limit.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "aaaa"`
-- Output: `2`
-- Explanation: Any two adjacent letters are valid, while every substring of length three contains `'a'` three times.
+- **Input:** `s = "aaaa"`
+- **Output:** `2`
+- **Explanation:** Any two adjacent letters are valid, while every substring of length three contains `'a'` three times.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "abcdef"`
-- Output: `6`
-- Explanation: Every character is distinct, so the entire string is valid.
+- **Input:** `s = "abcdef"`
+- **Output:** `6`
+- **Explanation:** Every character is distinct, so the entire string is valid.

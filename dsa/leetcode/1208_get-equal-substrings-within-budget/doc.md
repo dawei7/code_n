@@ -31,23 +31,23 @@ Choose one contiguous substring of `s` and change all of its characters to match
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abcd"`, `t = "bcdf"`, `maxCost = 3`
-- Output: `3`
+- **Input:** `s = "abcd"`, `t = "bcdf"`, `maxCost = 3`
+- **Output:** `3`
 
 Changing `"abc"` into `"bcd"` costs $1+1+1=3$.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "abcd"`, `t = "cdef"`, `maxCost = 3`
-- Output: `1`
+- **Input:** `s = "abcd"`, `t = "cdef"`, `maxCost = 3`
+- **Output:** `1`
 
 Each corresponding character costs 2, so two adjacent changes would exceed the budget.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "abcd"`, `t = "acde"`, `maxCost = 0`
-- Output: `1`
+- **Input:** `s = "abcd"`, `t = "acde"`, `maxCost = 0`
+- **Output:** `1`
 
 Only positions that already match can belong to a zero-cost answer.

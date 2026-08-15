@@ -32,20 +32,20 @@ Return the number of digit occurrences `digit` in `num` for which `num % digit =
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `num = 7`
-- Output: `1`
-- Explanation: The only digit is `7`, which divides the original number.
+- **Input:** `num = 7`
+- **Output:** `1`
+- **Explanation:** The only digit is `7`, which divides the original number.
 
-**Example 2**
+#### Example 2
 
-- Input: `num = 121`
-- Output: `2`
-- Explanation: Each occurrence of `1` divides `121`, while `2` does not.
+- **Input:** `num = 121`
+- **Output:** `2`
+- **Explanation:** Each occurrence of `1` divides `121`, while `2` does not.
 
-**Example 3**
+#### Example 3
 
-- Input: `num = 1248`
-- Output: `4`
-- Explanation: The original number is divisible by each of its four digits.
+- **Input:** `num = 1248`
+- **Output:** `4`
+- **Explanation:** The original number is divisible by each of its four digits.

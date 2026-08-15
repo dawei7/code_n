@@ -10,8 +10,16 @@ Return *the count of all possible routes from *`start` *to* `finish`. Since the 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `locations`: Input parameter (`List[int]`).
+- `start`: Input parameter (`int`).
+- `finish`: Input parameter (`int`).
+- `fuel`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +32,7 @@ Return *the count of all possible routes from *`start` *to* `finish`. Since the 
 1 -> 2 -> 3
 1 -> 4 -> 3
 1 -> 4 -> 2 -> 3
+
 #### Example 2
 
 - **Input:** $locations = [4,3,1], start = 1, finish = 0, fuel = 6$
@@ -34,6 +43,7 @@ Return *the count of all possible routes from *`start` *to* `finish`. Since the 
 1 -> 2 -> 1 -> 0, used fuel = 5
 1 -> 0 -> 1 -> 0, used fuel = 3
 1 -> 0 -> 1 -> 0 -> 1 -> 0, used fuel = 5
+
 #### Example 3
 
 - **Input:** $locations = [5,2,1], start = 0, finish = 2, fuel = 3$

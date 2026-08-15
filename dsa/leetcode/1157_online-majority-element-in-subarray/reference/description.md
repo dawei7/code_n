@@ -12,8 +12,10 @@ Implementing the `MajorityChecker` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `MajorityChecker(arr: List[int])`: Initializes the data structure.
+- `query(left: int, right: int, threshold: int) -> `int``: Executes operation.
 
 ### 3. Examples
 

@@ -37,14 +37,14 @@ The constraints are $1 \le n \le 3 \cdot 10^4$, $0 \le \texttt{values[i]} \le 10
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 5, edges = [[0,2],[1,2],[1,3],[2,4]], values = [1,8,1,4,4], k = 6`
-- Output: `2`
-- Explanation: Removing edge `[1,2]` produces component sums $12$ and $6$, both divisible by $6$.
+- **Input:** `n = 5, edges = [[0,2],[1,2],[1,3],[2,4]], values = [1,8,1,4,4], k = 6`
+- **Output:** `2`
+- **Explanation:** Removing edge `[1,2]` produces component sums $12$ and $6$, both divisible by $6$.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 7, edges = [[0,1],[0,2],[1,3],[1,4],[2,5],[2,6]], values = [3,0,6,1,5,2,1], k = 3`
-- Output: `3`
-- Explanation: Cutting `[0,1]` and `[0,2]` produces component sums $3$, $6$, and $9$.
+- **Input:** `n = 7, edges = [[0,1],[0,2],[1,3],[1,4],[2,5],[2,6]], values = [3,0,6,1,5,2,1], k = 3`
+- **Output:** `3`
+- **Explanation:** Cutting `[0,1]` and `[0,2]` produces component sums $3$, $6$, and $9$.

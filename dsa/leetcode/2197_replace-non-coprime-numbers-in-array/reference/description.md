@@ -18,8 +18,13 @@ Two values `x` and `y` are **non-coprime** if `GCD(x, y) > 1` where `GCD(x, y)` 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -27,7 +32,7 @@ Two values `x` and `y` are **non-coprime** if `GCD(x, y) > 1` where `GCD(x, y)` 
 
 - **Input:** `nums = [6,4,3,2,7,6,2]`
 - **Output:** `[12,7,6]`
-- **Explanation:**
+- **Explanation:** 
 - (6, 4) are non-coprime with LCM(6, 4) = 12. Now, nums = [**<u>12</u>**,3,2,7,6,2].
 - (12, 3) are non-coprime with LCM(12, 3) = 12. Now, nums = [**<u>12</u>**,2,7,6,2].
 - (12, 2) are non-coprime with LCM(12, 2) = 12. Now, nums = [**<u>12</u>**,7,6,2].
@@ -35,11 +40,12 @@ Two values `x` and `y` are **non-coprime** if `GCD(x, y) > 1` where `GCD(x, y)` 
 There are no more adjacent non-coprime numbers in nums.
 Thus, the final modified array is [12,7,6].
 Note that there are other ways to obtain the same resultant array.
+
 #### Example 2
 
 - **Input:** `nums = [2,2,1,1,3,3,3]`
 - **Output:** `[2,1,1,3]`
-- **Explanation:**
+- **Explanation:** 
 - (3, 3) are non-coprime with LCM(3, 3) = 3. Now, nums = [2,2,1,1,<u>**3**</u>,3].
 - (3, 3) are non-coprime with LCM(3, 3) = 3. Now, nums = [2,2,1,1,<u>**3**</u>].
 - (2, 2) are non-coprime with LCM(2, 2) = 2. Now, nums = [<u>**2**</u>,1,1,3].

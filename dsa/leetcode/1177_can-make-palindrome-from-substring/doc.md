@@ -32,19 +32,19 @@ Decide whether those operations can turn the queried substring into a palindrome
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abcda"`, `queries = [[3,3,0],[1,2,0],[0,3,1],[0,3,2],[0,4,1]]`
-- Output: `[true,false,false,true,true]`
+- **Input:** `s = "abcda"`, `queries = [[3,3,0],[1,2,0],[0,3,1],[0,3,2],[0,4,1]]`
+- **Output:** `[true,false,false,true,true]`
 
 For `[0,3,2]`, the four distinct letters require two replacements; for `[0,4,1]`, changing one of the three unpaired character types is enough.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "lyb"`, `queries = [[0,1,0],[2,2,1]]`
-- Output: `[false,true]`
+- **Input:** `s = "lyb"`, `queries = [[0,1,0],[2,2,1]]`
+- **Output:** `[false,true]`
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "aaa"`, `queries = [[0,2,0],[0,2,2]]`
-- Output: `[true,true]`
+- **Input:** `s = "aaa"`, `queries = [[0,2,0],[0,2,2]]`
+- **Output:** `[true,true]`

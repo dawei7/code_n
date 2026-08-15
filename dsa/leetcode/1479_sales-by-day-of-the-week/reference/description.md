@@ -63,7 +63,7 @@ matching units were ordered. Sort the rows by `Category` ascending.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Orders table:
 +------------+--------------+-------------+--------------+-------------+
 | order_id   | customer_id  | order_date  | item_id      | quantity    |
@@ -89,7 +89,7 @@ Items table:
 | 5          | LC SmartGlass  | Glasses       |
 | 6          | LC T-Shirt XL  | T-Shirt       |
 +------------+----------------+---------------+
-**Output:**
+- **Output:** 
 +------------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
 | Category   | Monday    | Tuesday   | Wednesday | Thursday  | Friday    | Saturday  | Sunday    |
 +------------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
@@ -98,8 +98,7 @@ Items table:
 | Phone      | 0         | 0         | 5         | 1         | 0         | 0         | 10        |
 | T-Shirt    | 0         | 0         | 0         | 0         | 0         | 0         | 0         |
 +------------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
-**Explanation:**
-On Monday (2020-06-01, 2020-06-08) were sold a total of 20 units (10 + 10) in the category Book (ids: 1, 2).
+- **Explanation:** On Monday (2020-06-01, 2020-06-08) were sold a total of 20 units (10 + 10) in the category Book (ids: 1, 2).
 On Tuesday (2020-06-02) were sold a total of 5 units in the category Book (ids: 1, 2).
 On Wednesday (2020-06-03) were sold a total of 5 units in the category Phone (ids: 3, 4).
 On Thursday (2020-06-04) were sold a total of 1 unit in the category Phone (ids: 3, 4).

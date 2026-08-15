@@ -12,8 +12,14 @@ Return *an integer array *`answer`*, where *$\text{answer}[i]$* is the** * ***mi
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -32,6 +38,7 @@ For node 2: it is already possible to reach any other node starting from node 2.
 So, answer[2] = 0.
 For node 3: after reversing the edges [1,3] and [2,1], it is possible to reach any other node starting from node 3.
 So, answer[3] = 2.
+
 #### Example 2
 
 ![](images/image-20230826225541-2.png)

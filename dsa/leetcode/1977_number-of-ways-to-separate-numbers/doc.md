@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/number-of-ways-to-separate-numbers/) |
 
 ## Problem Description
+
 ### Goal
+
 A string `num` was formed by writing a list of positive integers consecutively
 and omitting the commas between them. The original list was non-decreasing:
 each integer was at least the integer immediately before it. No integer used a
@@ -21,6 +23,7 @@ mathematically even when they exceed machine integer range, and the result is
 returned modulo $10^9+7$.
 
 ### Function Contract
+
 **Inputs**
 
 - `num`: a digit string of length $N$, where $1 \le N \le 3500$.
@@ -31,17 +34,18 @@ returned modulo $10^9+7$.
   integers in non-decreasing order, reduced modulo $10^9+7$.
 
 ### Examples
-**Example 1**
 
-- Input: `num = "327"`
-- Output: `2`
+#### Example 1
 
-**Example 2**
+- **Input:** `num = "327"`
+- **Output:** `2`
 
-- Input: `num = "094"`
-- Output: `0`
+#### Example 2
 
-**Example 3**
+- **Input:** `num = "094"`
+- **Output:** `0`
 
-- Input: `num = "0"`
-- Output: `0`
+#### Example 3
+
+- **Input:** `num = "0"`
+- **Output:** `0`

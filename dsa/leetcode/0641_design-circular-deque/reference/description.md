@@ -24,8 +24,17 @@ Implement the `MyCircularDeque` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `MyCircularDeque(k: int)`: Initializes the data structure.
+- `insertFront(value: int) -> `bool``: Executes operation.
+- `insertLast(value: int) -> `bool``: Executes operation.
+- `deleteFront() -> `bool``: Executes operation.
+- `deleteLast() -> `bool``: Executes operation.
+- `getFront() -> `int``: Executes operation.
+- `getRear() -> `int``: Executes operation.
+- `isEmpty() -> `bool``: Executes operation.
+- `isFull() -> `bool``: Executes operation.
 
 ### 3. Examples
 

@@ -8,8 +8,13 @@ Return *the number of **weak** characters*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `properties`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,11 +23,13 @@ Return *the number of **weak** characters*.
 - **Input:** $properties = [[5,5],[6,3],[3,6]]$
 - **Output:** `0`
 - **Explanation:** No character has strictly greater attack and defense than the other.
+
 #### Example 2
 
 - **Input:** $properties = [[2,2],[3,3]]$
 - **Output:** `1`
 - **Explanation:** The first character is weak because the second character has a strictly greater attack and defense.
+
 #### Example 3
 
 - **Input:** $properties = [[1,5],[10,4],[4,3]]$

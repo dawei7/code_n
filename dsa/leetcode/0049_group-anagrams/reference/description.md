@@ -18,12 +18,11 @@ Return groups in which every pair of strings are anagrams. The group order and t
 
 #### Example 1
 
-<div class="example-block">
-**Input:** strs = ["eat","tea","tan","ate","nat","bat"]
+- **Input:** strs = ["eat","tea","tan","ate","nat","bat"]
 
-**Output:** [["bat"],["nat","tan"],["ate","eat","tea"]]
+- **Output:** [["bat"],["nat","tan"],["ate","eat","tea"]]
 
-**Explanation:**
+- **Explanation:** 
 
 - There is no string in strs that can be rearranged to form `"bat"`.
 
@@ -31,23 +30,17 @@ Return groups in which every pair of strings are anagrams. The group order and t
 
 - The strings `"ate"`, `"eat"`, and `"tea"` are anagrams as they can be rearranged to form each other.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** strs = [""]
+- **Input:** strs = [""]
 
-**Output:** [[""]]
+- **Output:** [[""]]
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** strs = ["a"]
+- **Input:** strs = ["a"]
 
-**Output:** [["a"]]
-
-</div>
+- **Output:** [["a"]]
 
 ### 4. Constraints
 

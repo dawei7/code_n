@@ -16,8 +16,14 @@ Return *the number of query strings that are **stretchy***.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `words`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,9 +31,9 @@ Return *the number of query strings that are **stretchy***.
 
 - **Input:** `s = "heeellooo", words = ["hello", "hi", "helo"]`
 - **Output:** `1`
-- **Explanation:**
-We can extend "e" and "o" in the word "hello" to get "heeellooo".
+- **Explanation:** We can extend "e" and "o" in the word "hello" to get "heeellooo".
 We can't extend "helo" to get "heeellooo" because the group "ll" is not size 3 or more.
+
 #### Example 2
 
 - **Input:** `s = "zzzzzyyyyy", words = ["zzyy","zy","zyy"]`

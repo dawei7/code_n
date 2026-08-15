@@ -28,6 +28,7 @@ Return *the number of **distinct** **house of cards** you can build using **all*
 - **Output:** `2`
 - **Explanation:** The two valid houses of cards are shown.
 The third house of cards in the diagram is not valid because the rightmost triangle on the top row is not placed on top of a horizontal card.
+
 #### Example 2
 
 ![](images/image-20220227213306-2.png)
@@ -35,6 +36,7 @@ The third house of cards in the diagram is not valid because the rightmost trian
 - **Input:** $n = 2$
 - **Output:** `1`
 - **Explanation:** The one valid house of cards is shown.
+
 #### Example 3
 
 ![](images/image-20220227213331-3.png)

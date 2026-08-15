@@ -36,17 +36,17 @@ Return the number of distinct valid houses that use exactly all $n$ cards.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 16`
-- Output: `2`
+- **Input:** `n = 16`
+- **Output:** `2`
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 2`
-- Output: `1`
+- **Input:** `n = 2`
+- **Output:** `1`
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 4`
-- Output: `0`
+- **Input:** `n = 4`
+- **Output:** `0`

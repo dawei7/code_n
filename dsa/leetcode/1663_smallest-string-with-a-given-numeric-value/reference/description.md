@@ -10,8 +10,14 @@ Note that a string `x` is lexicographically smaller than string `y` if `x` comes
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -20,6 +26,7 @@ Note that a string `x` is lexicographically smaller than string `y` if `x` comes
 - **Input:** $n = 3, k = 27$
 - **Output:** `"aay"`
 - **Explanation:** The numeric value of the string is 1 + 1 + 25 = 27, and it is the smallest string with such a value and length equal to 3.
+
 #### Example 2
 
 - **Input:** $n = 5, k = 73$

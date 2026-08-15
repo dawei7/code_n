@@ -39,7 +39,7 @@ Return a single-row table with column $\text{rich}_{count}$. $\text{rich}_{count
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Store table:
 +---------+-------------+--------+
 | bill_id | customer_id | amount |
@@ -50,14 +50,13 @@ Store table:
 | 11      | 3           | 657    |
 | 13      | 3           | 257    |
 +---------+-------------+--------+
-**Output:**
+- **Output:** 
 +------------+
 | rich_count |
 +------------+
 | 2          |
 +------------+
-**Explanation:**
-Customer 1 has two bills with amounts strictly greater than 500.
+- **Explanation:** Customer 1 has two bills with amounts strictly greater than 500.
 Customer 2 does not have any bills with an amount strictly greater than 500.
 Customer 3 has one bill with an amount strictly greater than 500.
 ```

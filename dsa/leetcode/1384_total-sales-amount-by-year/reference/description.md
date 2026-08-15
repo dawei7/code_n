@@ -61,7 +61,7 @@ Emit one row for each product-year overlap and no row for a product without a sa
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Product table:
 +------------+--------------+
 | product_id | product_name |
@@ -78,7 +78,7 @@ Sales table:
 | 2          | 2018-12-01   | 2020-01-01  | 10                  |
 | 3          | 2019-12-01   | 2020-01-31  | 1                   |
 +------------+--------------+-------------+---------------------+
-**Output:**
+- **Output:** 
 +------------+--------------+-------------+--------------+
 | product_id | product_name | report_year | total_amount |
 +------------+--------------+-------------+--------------+
@@ -89,8 +89,7 @@ Sales table:
 | 3          | LC Keychain  |    2019     | 31           |
 | 3          | LC Keychain  |    2020     | 31           |
 +------------+--------------+-------------+--------------+
-**Explanation:**
-LC Phone was sold for the period of 2019-01-25 to 2019-02-28, and there are 35 days for this period. Total amount 35*100 = 3500.
+- **Explanation:** LC Phone was sold for the period of 2019-01-25 to 2019-02-28, and there are 35 days for this period. Total amount 35*100 = 3500.
 LC T-shirt was sold for the period of 2018-12-01 to 2020-01-01, and there are 31, 365, 1 days for years 2018, 2019 and 2020 respectively.
 LC Keychain was sold for the period of 2019-12-01 to 2020-01-31, and there are 31, 31 days for years 2019 and 2020 respectively.
 ```

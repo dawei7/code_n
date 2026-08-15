@@ -32,17 +32,17 @@ Let $H$ be the tree height.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [0, 1, 2, 3, 4, 3, 4]`
-- Output: `"dba"`
+- **Input:** `root = [0, 1, 2, 3, 4, 3, 4]`
+- **Output:** `"dba"`
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [25, 1, 3, 1, 3, 0, 2]`
-- Output: `"adz"`
+- **Input:** `root = [25, 1, 3, 1, 3, 0, 2]`
+- **Output:** `"adz"`
 
-**Example 3**
+#### Example 3
 
-- Input: `root = [2, 2, 1, null, 1, 0, null, 0]`
-- Output: `"abc"`
+- **Input:** `root = [2, 2, 1, null, 1, 0, null, 0]`
+- **Output:** `"abc"`

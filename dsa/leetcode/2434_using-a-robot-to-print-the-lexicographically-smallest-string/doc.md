@@ -32,23 +32,23 @@ Its length $n$ satisfies $1 \le n \le 10^5$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "zza"`
-- Output: `"azz"`
+- **Input:** `s = "zza"`
+- **Output:** `"azz"`
 
 Push all three characters into `t`, then pop them in reverse order.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "bac"`
-- Output: `"abc"`
+- **Input:** `s = "bac"`
+- **Output:** `"abc"`
 
 After pushing `"ba"`, pop both characters to write `"ab"`, then move and print `"c"`.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "bdda"`
-- Output: `"addb"`
+- **Input:** `s = "bdda"`
+- **Output:** `"addb"`
 
 The smallest character is reached before printing the stack in the best available order.

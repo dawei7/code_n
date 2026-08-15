@@ -8,8 +8,13 @@ Return the number of groups that have the largest size, i.e. the **maximum** num
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +25,7 @@ Return the number of groups that have the largest size, i.e. the **maximum** num
 - **Explanation:** There are 9 groups in total, they are grouped according sum of its digits of numbers from 1 to 13:
 [1,10], [2,11], [3,12], [4,13], [5], [6], [7], [8], [9].
 There are 4 groups with largest size.
+
 #### Example 2
 
 - **Input:** $n = 2$

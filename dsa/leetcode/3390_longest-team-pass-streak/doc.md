@@ -33,7 +33,7 @@ Let $t$ be the number of player rows and $p$ the number of pass rows.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 `Teams`
 

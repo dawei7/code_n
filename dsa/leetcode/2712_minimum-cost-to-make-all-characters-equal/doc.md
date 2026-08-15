@@ -30,14 +30,14 @@ Return the minimum total cost of prefix and suffix inversions needed to make all
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "0011"`
-- Output: `2`
-- Explanation: Inverting the suffix beginning at index $2$ changes the string to `"0000"` and costs $4-2=2$.
+- **Input:** `s = "0011"`
+- **Output:** `2`
+- **Explanation:** Inverting the suffix beginning at index $2$ changes the string to `"0000"` and costs $4-2=2$.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "010101"`
-- Output: `9`
-- Explanation: Resolving the five alternating boundaries with the cheaper side of each boundary costs $1+2+3+2+1=9$.
+- **Input:** `s = "010101"`
+- **Output:** `9`
+- **Explanation:** Resolving the five alternating boundaries with the cheaper side of each boundary costs $1+2+3+2+1=9$.

@@ -58,7 +58,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 `Drivers` table:
@@ -118,8 +117,6 @@ The result format is in the following example.
 - For fuel type `Electric`, Bob (Driver 2) is the only driver with an average rating of 4.5, so he is selected.
 
 The output table is ordered by $\text{fuel}_{type}$ in ascending order.
-
-</div>
 
 ### 2. Function Contract
 

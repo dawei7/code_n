@@ -30,20 +30,20 @@ Equal digit values may be selected together only when that digit occurs in at le
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 31`
-- Output: `3`
-- Explanation: The only pair of digits is `3` and `1`, whose product is `3`.
+- **Input:** `n = 31`
+- **Output:** `3`
+- **Explanation:** The only pair of digits is `3` and `1`, whose product is `3`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 22`
-- Output: `4`
-- Explanation: The two separate occurrences of `2` may be multiplied together.
+- **Input:** `n = 22`
+- **Output:** `4`
+- **Explanation:** The two separate occurrences of `2` may be multiplied together.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 124`
-- Output: `8`
-- Explanation: Among the three digit pairs, `2 * 4` gives the largest product.
+- **Input:** `n = 124`
+- **Output:** `8`
+- **Explanation:** Among the three digit pairs, `2 * 4` gives the largest product.

@@ -24,8 +24,13 @@ Return `true` if and only if there exists a circle in the plane such that the ro
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `instructions`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -42,6 +47,7 @@ Return `true` if and only if there exists a circle in the plane such that the ro
 "G": move one step. Position: (0, 0). Direction: South.
 Repeating the instructions, the robot goes into the cycle: (0, 0) --> (0, 1) --> (0, 2) --> (0, 1) --> (0, 0).
 Based on that, we return true.
+
 #### Example 2
 
 - **Input:** $instructions = "GG"$
@@ -51,6 +57,7 @@ Based on that, we return true.
 "G": move one step. Position: (0, 2). Direction: North.
 Repeating the instructions, keeps advancing in the north direction and does not go into cycles.
 Based on that, we return false.
+
 #### Example 3
 
 - **Input:** $instructions = "GL"$

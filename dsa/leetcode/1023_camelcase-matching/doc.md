@@ -37,17 +37,17 @@ $$
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `queries = ["FooBar", "FooBarTest", "FootBall", "FrameBuffer", "ForceFeedBack"], pattern = "FB"`
-- Output: `[True, False, True, True, False]`
+- **Input:** `queries = ["FooBar", "FooBarTest", "FootBall", "FrameBuffer", "ForceFeedBack"], pattern = "FB"`
+- **Output:** `[True, False, True, True, False]`
 
-**Example 2**
+#### Example 2
 
-- Input: `queries = ["FooBar", "FooBarTest", "FootBall", "FrameBuffer", "ForceFeedBack"], pattern = "FoBa"`
-- Output: `[True, False, True, False, False]`
+- **Input:** `queries = ["FooBar", "FooBarTest", "FootBall", "FrameBuffer", "ForceFeedBack"], pattern = "FoBa"`
+- **Output:** `[True, False, True, False, False]`
 
-**Example 3**
+#### Example 3
 
-- Input: `queries = ["FooBar", "FooBarTest", "FootBall", "FrameBuffer", "ForceFeedBack"], pattern = "FoBaT"`
-- Output: `[False, True, False, False, False]`
+- **Input:** `queries = ["FooBar", "FooBarTest", "FootBall", "FrameBuffer", "ForceFeedBack"], pattern = "FoBaT"`
+- **Output:** `[False, True, False, False, False]`

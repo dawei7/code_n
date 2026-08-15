@@ -17,6 +17,7 @@ The **distance** between two nodes is the number of edges on the path from one t
 - **Input:** `root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 0`
 - **Output:** `3`
 - **Explanation:** There are 3 edges between 5 and 0: 5-3-1-0.
+
 #### Example 2
 
 ![](images/binarytree.png)
@@ -24,6 +25,7 @@ The **distance** between two nodes is the number of edges on the path from one t
 - **Input:** `root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 7`
 - **Output:** `2`
 - **Explanation:** There are 2 edges between 5 and 7: 5-2-7.
+
 #### Example 3
 
 ![](images/binarytree.png)

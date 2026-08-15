@@ -33,7 +33,7 @@ Report the products that were sold only during the first quarter of 2019: every 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 `Product`
 
@@ -52,7 +52,7 @@ Report the products that were sold only during the first quarter of 2019: every 
 | 2 | 2 | 3 | 2019-06-02 | 1 | 800 |
 | 3 | 3 | 4 | 2019-05-13 | 2 | 2800 |
 
-Output:
+- **Output:** 
 
 | product_id | product_name |
 |---:|---|

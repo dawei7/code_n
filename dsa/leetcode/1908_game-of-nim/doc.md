@@ -31,23 +31,23 @@ The players both choose their moves optimally. When no stones remain, the player
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `piles = [1]`
-- Output: `True`
+- **Input:** `piles = [1]`
+- **Output:** `True`
 
 Alice removes the only stone, leaving Bob without a legal move.
 
-**Example 2**
+#### Example 2
 
-- Input: `piles = [1,1]`
-- Output: `False`
+- **Input:** `piles = [1,1]`
+- **Output:** `False`
 
 After Alice empties either pile, Bob empties the other one and wins.
 
-**Example 3**
+#### Example 3
 
-- Input: `piles = [1,2,3]`
-- Output: `False`
+- **Input:** `piles = [1,2,3]`
+- **Output:** `False`
 
 The initial bitwise XOR is zero, so every move gives Bob a position from which the XOR can be restored to zero.

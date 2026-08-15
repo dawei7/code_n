@@ -27,63 +27,51 @@ Return the minimum number of paid between-array swaps required to make the two a
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums1 = [10,20], nums2 = [20,10]
+- **Input:** nums1 = [10,20], nums2 = [20,10]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** 
 
 - Swap $\text{nums2}[0] = 20$ and $\text{nums2}[1] = 10$.
 
-		<li>`nums2` becomes `[10, 20]`.
+		- `nums2` becomes `[10, 20]`.
 
 - This operation is free of charge.
 
-	</li>
 - `nums1` and `nums2` are now identical. The cost is 0.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums1 = [10,10], nums2 = [20,20]
+- **Input:** nums1 = [10,10], nums2 = [20,20]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - Swap $\text{nums1}[0] = 10$ and $\text{nums2}[0] = 20$.
 
-		<li>`nums1` becomes `[20, 10]`.
+		- `nums1` becomes `[20, 10]`.
 
 - `nums2` becomes `[10, 20]`.
 
 - This operation costs 1.
 
-	</li>
 - Swap $\text{nums2}[0] = 10$ and $\text{nums2}[1] = 20$.
 
-		<li>`nums2` becomes `[20, 10]`.
+		- `nums2` becomes `[20, 10]`.
 
 - This operation is free of charge.
 
-	</li>
 - `nums1` and `nums2` are now identical. The cost is 1.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums1 = [10,20], nums2 = [30,40]
+- **Input:** nums1 = [10,20], nums2 = [30,40]
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-It is impossible to make the two arrays identical. Therefore, the answer is -1.
-
-</div>
+- **Explanation:** It is impossible to make the two arrays identical. Therefore, the answer is -1.
 
 ### 4. Constraints
 

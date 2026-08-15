@@ -30,17 +30,17 @@ During one second, you may move one unit horizontally, one unit vertically, or o
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `points = [[1,1],[3,4],[-1,0]]`
-- Output: `7`
+- **Input:** `points = [[1,1],[3,4],[-1,0]]`
+- **Output:** `7`
 
-**Example 2**
+#### Example 2
 
-- Input: `points = [[3,2],[-2,2]]`
-- Output: `5`
+- **Input:** `points = [[3,2],[-2,2]]`
+- **Output:** `5`
 
-**Example 3**
+#### Example 3
 
-- Input: `points = [[0,0],[0,0],[2,1]]`
-- Output: `2`
+- **Input:** `points = [[0,0],[0,0],[2,1]]`
+- **Output:** `2`

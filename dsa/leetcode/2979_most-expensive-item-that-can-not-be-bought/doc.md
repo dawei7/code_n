@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/most-expensive-item-that-can-not-be-bought/) |
 
 ## Problem Description
+
 ### Goal
+
 The market contains an item at every positive integer price. Alice has an
 unlimited supply of coins in two denominations, `primeOne` and `primeTwo`,
 which are distinct prime numbers.
@@ -21,6 +23,7 @@ the two denominations; either coin may be used any number of times, including
 zero. Return the greatest positive price that cannot be formed in this way.
 
 ### Function Contract
+
 **Inputs**
 
 - `primeOne`: the first prime coin denomination
@@ -36,14 +39,15 @@ $x\cdot\texttt{primeOne}+y\cdot\texttt{primeTwo}$ for nonnegative integers
 $x$ and $y$.
 
 ### Examples
-**Example 1**
 
-- Input: `primeOne = 2`, `primeTwo = 5`
-- Output: `3`
-- Explanation: Prices `1` and `3` are impossible, while every larger price is representable.
+#### Example 1
 
-**Example 2**
+- **Input:** `primeOne = 2`, `primeTwo = 5`
+- **Output:** `3`
+- **Explanation:** Prices `1` and `3` are impossible, while every larger price is representable.
 
-- Input: `primeOne = 5`, `primeTwo = 7`
-- Output: `23`
-- Explanation: `23` is impossible and every greater integer is a combination of `5` and `7`.
+#### Example 2
+
+- **Input:** `primeOne = 5`, `primeTwo = 7`
+- **Output:** `23`
+- **Explanation:** `23` is impossible and every greater integer is a combination of `5` and `7`.

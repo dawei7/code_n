@@ -12,8 +12,14 @@ Return *the **XOR sum** of the aforementioned list*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr1`: Input parameter (`List[int]`).
+- `arr2`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,6 +29,7 @@ Return *the **XOR sum** of the aforementioned list*.
 - **Output:** `0`
 - **Explanation:** The list = [1 AND 6, 1 AND 5, 2 AND 6, 2 AND 5, 3 AND 6, 3 AND 5] = [0,1,2,0,2,1].
 The XOR sum = 0 XOR 1 XOR 2 XOR 0 XOR 2 XOR 1 = 0.
+
 #### Example 2
 
 - **Input:** $arr1 = [12], arr2 = [4]$

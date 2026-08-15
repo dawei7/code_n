@@ -14,8 +14,13 @@ Return *the minimum **non-zero** number of operations you need to perform on *`p
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,6 +31,7 @@ Return *the minimum **non-zero** number of operations you need to perform on *`p
 - **Explanation:** perm = [0,1] initially.
 After the 1^st operation, perm = [0,1]
 So it takes only 1 operation.
+
 #### Example 2
 
 - **Input:** $n = 4$
@@ -34,6 +40,7 @@ So it takes only 1 operation.
 After the 1^st operation, perm = [0,2,1,3]
 After the 2^nd operation, perm = [0,1,2,3]
 So it takes only 2 operations.
+
 #### Example 3
 
 - **Input:** $n = 6$

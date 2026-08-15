@@ -33,17 +33,17 @@ The frog never revisits a vertex. If no unvisited neighbor is available, it rema
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 7, edges = [[1,2],[1,3],[1,7],[2,4],[2,6],[3,5]], t = 2, target = 4`
-- Output: `0.16666666666666666`
+- **Input:** `n = 7, edges = [[1,2],[1,3],[1,7],[2,4],[2,6],[3,5]], t = 2, target = 4`
+- **Output:** `0.16666666666666666`
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 7, edges = [[1,2],[1,3],[1,7],[2,4],[2,6],[3,5]], t = 1, target = 7`
-- Output: `0.3333333333333333`
+- **Input:** `n = 7, edges = [[1,2],[1,3],[1,7],[2,4],[2,6],[3,5]], t = 1, target = 7`
+- **Output:** `0.3333333333333333`
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 7, edges = [[1,2],[1,3],[1,7],[2,4],[2,6],[3,5]], t = 20, target = 6`
-- Output: `0.16666666666666666`
+- **Input:** `n = 7, edges = [[1,2],[1,3],[1,7],[2,4],[2,6],[3,5]], t = 20, target = 6`
+- **Output:** `0.16666666666666666`

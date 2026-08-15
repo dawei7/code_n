@@ -8,8 +8,15 @@ If you choose a job that ends at time `X` you will be able to start another job 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `startTime`: Input parameter (`List[int]`).
+- `endTime`: Input parameter (`List[int]`).
+- `profit`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,6 +32,7 @@ If you choose a job that ends at time `X` you will be able to start another job 
 - **Output:** `120`
 - **Explanation:** The subset chosen is the first and fourth job.
 Time range [1-3]+[3-6] , we get profit of 120 = 50 + 70.
+
 #### Example 2
 
 **
@@ -37,6 +45,7 @@ Time range [1-3]+[3-6] , we get profit of 120 = 50 + 70.
 - **Output:** `150`
 - **Explanation:** The subset chosen is the first, fourth and fifth job.
 Profit obtained 150 = 20 + 70 + 60.
+
 #### Example 3
 
 **

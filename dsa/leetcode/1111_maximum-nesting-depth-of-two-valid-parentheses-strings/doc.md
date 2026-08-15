@@ -34,16 +34,16 @@ Return an array `answer` of the same length as `seq`: `answer[i] = 0` assigns `s
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `seq = "(()())"`
+- **Input:** `seq = "(()())"`
 - One valid output: `[0,1,1,1,1,0]`
 
 The outer pair goes to one subsequence and the two inner pairs go to the other, so neither result exceeds depth one.
 
-**Example 2**
+#### Example 2
 
-- Input: `seq = "()(())()"`
+- **Input:** `seq = "()(())()"`
 - One valid output: `[0,0,0,1,1,0,1,1]`
 
 Other arrays are accepted when they produce two valid subsequences with the same minimum possible maximum depth.

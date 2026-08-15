@@ -10,8 +10,13 @@ Given `nums`, an array of **non-negative** integers, return *the number of **goo
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +25,7 @@ Given `nums`, an array of **non-negative** integers, return *the number of **goo
 - **Input:** `nums = [1,1,1]`
 - **Output:** `1`
 - **Explanation:** The only good way to split nums is [1] [1] [1].
+
 #### Example 2
 
 - **Input:** `nums = [1,2,2,2,5,0]`
@@ -28,6 +34,7 @@ Given `nums`, an array of **non-negative** integers, return *the number of **goo
 [1] [2] [2,2,5,0]
 [1] [2,2] [2,5,0]
 [1,2] [2,2] [5,0]
+
 #### Example 3
 
 - **Input:** `nums = [3,2,1]`

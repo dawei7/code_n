@@ -30,20 +30,20 @@ Return every directed path from source node `0` to target node $n - 1$, with eac
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `graph = [[1,2],[3],[3],[]]`
-- Output: `[[0,1,3],[0,2,3]]`
-- Explanation: The source has two branches, and each reaches the target.
+- **Input:** `graph = [[1,2],[3],[3],[]]`
+- **Output:** `[[0,1,3],[0,2,3]]`
+- **Explanation:** The source has two branches, and each reaches the target.
 
-**Example 2**
+#### Example 2
 
-- Input: `graph = [[1],[]]`
-- Output: `[[0,1]]`
-- Explanation: The only edge is also the only complete path.
+- **Input:** `graph = [[1],[]]`
+- **Output:** `[[0,1]]`
+- **Explanation:** The only edge is also the only complete path.
 
-**Example 3**
+#### Example 3
 
-- Input: `graph = [[4,3,1],[3,2,4],[3],[4],[]]`
-- Output: `[[0,4],[0,3,4],[0,1,3,4],[0,1,2,3,4],[0,1,4]]`
-- Explanation: A path may go directly to node `4` or follow any directed branch that eventually reaches it.
+- **Input:** `graph = [[4,3,1],[3,2,4],[3],[4],[]]`
+- **Output:** `[[0,4],[0,3,4],[0,1,3,4],[0,1,2,3,4],[0,1,4]]`
+- **Explanation:** A path may go directly to node `4` or follow any directed branch that eventually reaches it.

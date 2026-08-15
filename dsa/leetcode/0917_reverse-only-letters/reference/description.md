@@ -10,8 +10,13 @@ Return `s`* after reversing it*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -19,10 +24,12 @@ Return `s`* after reversing it*.
 
 - **Input:** `s = "ab-cd"`
 - **Output:** `"dc-ba"`
+
 #### Example 2
 
 - **Input:** `s = "a-bC-dEf-ghIj"`
 - **Output:** `"j-Ih-gfE-dCba"`
+
 #### Example 3
 
 - **Input:** `s = "Test1ng-Leet=code-Q!"`

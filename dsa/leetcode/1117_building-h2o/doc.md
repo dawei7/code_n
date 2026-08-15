@@ -31,14 +31,14 @@ Release threads in complete water-molecule groups. Every consecutive group of th
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `water = "HOH"`
+- **Input:** `water = "HOH"`
 - Valid outputs: `"HHO"`, `"HOH"`, or `"OHH"`
 
-**Example 2**
+#### Example 2
 
-- Input: `water = "OOHHHH"`
+- **Input:** `water = "OOHHHH"`
 - One valid output: `"HHOHHO"`
 
 Other outputs are valid when both consecutive three-character blocks contain two hydrogens and one oxygen.

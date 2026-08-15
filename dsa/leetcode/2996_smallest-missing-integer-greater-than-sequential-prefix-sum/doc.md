@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/smallest-missing-integer-greater-than-sequential-prefix-sum/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given a 0-indexed integer array `nums`. A prefix is **sequential** when
 each element after the first is exactly one greater than its predecessor. The
 one-element prefix containing only `nums[0]` is always sequential.
@@ -21,6 +23,7 @@ sum, return the smallest integer that does not occur anywhere in `nums`; the
 answer must be greater than or equal to the prefix sum.
 
 ### Function Contract
+
 **Inputs**
 
 - `nums`: the positive integer array
@@ -34,18 +37,19 @@ Return the first integer at or above the longest sequential-prefix sum that is
 absent from the complete array.
 
 ### Examples
-**Example 1**
 
-- Input: `nums = [1,2,3,2,5]`
-- Output: `6`
+#### Example 1
 
-**Example 2**
+- **Input:** `nums = [1,2,3,2,5]`
+- **Output:** `6`
 
-- Input: `nums = [3,4,5,1,12,14,13]`
-- Output: `15`
-- Explanation: The prefix sum is `12`, while `12`, `13`, and `14` are present.
+#### Example 2
 
-**Example 3**
+- **Input:** `nums = [3,4,5,1,12,14,13]`
+- **Output:** `15`
+- **Explanation:** The prefix sum is `12`, while `12`, `13`, and `14` are present.
 
-- Input: `nums = [5]`
-- Output: `6`
+#### Example 3
+
+- **Input:** `nums = [5]`
+- **Output:** `6`

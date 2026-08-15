@@ -41,24 +41,24 @@ $10^9+7$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 6`, `delay = 2`, `forget = 4`
-- Output: `5`
-- Explanation: The original person shares on days 3 and 4, then forgets on
+- **Input:** `n = 6`, `delay = 2`, `forget = 4`
+- **Output:** `5`
+- **Explanation:** The original person shares on days 3 and 4, then forgets on
   day 5. By the end of day 6, five people still know the secret.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 4`, `delay = 1`, `forget = 3`
-- Output: `6`
-- Explanation: New recipients can share beginning the next day. The original
+- **Input:** `n = 4`, `delay = 1`, `forget = 3`
+- **Output:** `6`
+- **Explanation:** New recipients can share beginning the next day. The original
   person forgets on day 4, while the remaining sharers create three new
   recipients that day.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 2`, `delay = 1`, `forget = 2`
-- Output: `2`
-- Explanation: On day 2, the original person has not forgotten and shares
+- **Input:** `n = 2`, `delay = 1`, `forget = 2`
+- **Output:** `2`
+- **Explanation:** On day 2, the original person has not forgotten and shares
   with one new person.

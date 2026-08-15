@@ -31,23 +31,23 @@ The permutation is circular: the binary representations of its last and first el
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 2`, `start = 3`
-- Output: `[3,2,0,1]`
+- **Input:** `n = 2`, `start = 3`
+- **Output:** `[3,2,0,1]`
 
 In binary, `11`, `10`, `00`, and `01` differ by one bit around the full cycle.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3`, `start = 2`
-- Output: `[2,6,7,5,4,0,1,3]`
+- **Input:** `n = 3`, `start = 2`
+- **Output:** `[2,6,7,5,4,0,1,3]`
 
 The sequence contains every three-bit value and returns from `3` to `2` by one bit.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 1`, `start = 1`
-- Output: `[1,0]`
+- **Input:** `n = 1`, `start = 1`
+- **Output:** `[1,0]`
 
 The two one-bit values are adjacent in both circular directions.

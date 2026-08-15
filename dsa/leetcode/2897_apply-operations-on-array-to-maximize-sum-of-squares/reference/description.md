@@ -14,8 +14,14 @@ Since the answer can be very large, return it **modulo** $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -28,6 +34,7 @@ Since the answer can be very large, return it **modulo** $10^{9} + 7$.
 - Choose i = 2 and j = 3, then change nums[2] to (5 AND 10) = 0 and nums[3] to (5 OR 10) = 15. The resulting array is nums = [0,6,0,15].
 We can choose the elements 15 and 6 from the final array. The sum of squares is $15^{2}$ + $6^{2}$ = 261.
 It can be shown that this is the maximum value we can get.
+
 #### Example 2
 
 - **Input:** `nums = [4,5,4,7], k = 3`

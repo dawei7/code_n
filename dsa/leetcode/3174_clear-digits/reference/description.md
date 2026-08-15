@@ -10,8 +10,13 @@ Return the resulting string after removing all digits.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Note
 
@@ -21,30 +26,21 @@ that the operation *cannot* be performed on a digit that does not have any non-d
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "abc"
+- **Input:** s = "abc"
 
-**Output:** "abc"
+- **Output:** "abc"
 
-**Explanation:**
+- **Explanation:** There is no digit in the string.<!-- notionvc: ff07e34f-b1d6-41fb-9f83-5d0ba3c1ecde -->
 
-There is no digit in the string.<!-- notionvc: ff07e34f-b1d6-41fb-9f83-5d0ba3c1ecde -->
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "cb34"
+- **Input:** s = "cb34"
 
-**Output:** ""
+- **Output:** ""
 
-**Explanation:**
-
-First, we apply the operation on $s[2]$, and `s` becomes `"c4"`.
+- **Explanation:** First, we apply the operation on $s[2]$, and `s` becomes `"c4"`.
 
 Then we apply the operation on $s[1]$, and `s` becomes `""`.
-
-</div>
 
 ### 5. Constraints
 

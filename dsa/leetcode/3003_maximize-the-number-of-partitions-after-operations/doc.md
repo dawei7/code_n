@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/maximize-the-number-of-partitions-after-operations/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given a lowercase English string `s` and an integer `k`. Before
 partitioning, you may replace at most one character of `s` with any lowercase
 English letter.
@@ -24,6 +26,7 @@ Choose the optional replacement to maximize the number of partitions and
 return that maximum.
 
 ### Function Contract
+
 **Inputs**
 
 - `s`: the nonempty lowercase English string
@@ -38,26 +41,27 @@ Return the maximum greedy partition count obtainable after at most one
 character replacement.
 
 ### Examples
-**Example 1**
 
-- Input: `s = "accca", k = 2`
-- Output: `3`
+#### Example 1
+
+- **Input:** `s = "accca", k = 2`
+- **Output:** `3`
 
 Changing the middle character to `b` produces `"acbca"`, partitioned as
 `"ac"`, `"bc"`, and `"a"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "aabaab", k = 3`
-- Output: `1`
+- **Input:** `s = "aabaab", k = 3`
+- **Output:** `1`
 
 One replacement cannot make the string contain more than three distinct
 letters, so the whole string remains one prefix.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "xxyz", k = 1`
-- Output: `4`
+- **Input:** `s = "xxyz", k = 1`
+- **Output:** `4`
 
 Replacing one repeated `x` with a new letter makes every adjacent character
 start a separate one-distinct-letter partition.

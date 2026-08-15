@@ -6,8 +6,10 @@ Return `true` *if the value of the root is equal to the **sum** of the values of
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `checkTree(root: Optional[TreeNode]) -> `bool``: Executes operation.
 
 ### 3. Examples
 
@@ -19,6 +21,7 @@ Return `true` *if the value of the root is equal to the **sum** of the values of
 - **Output:** `true`
 - **Explanation:** The values of the root, its left child, and its right child are 10, 4, and 6, respectively.
 10 is equal to 4 + 6, so we return true.
+
 #### Example 2
 
 ![](images/graph3drawio-1.png)

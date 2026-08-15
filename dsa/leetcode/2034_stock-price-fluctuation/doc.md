@@ -45,21 +45,21 @@ $Q \le 10^5$. A query is made only after at least one update.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `operations = ["StockPrice", "update", "update", "current", "maximum", "update", "maximum", "update", "minimum"]`, `arguments = [[], [1, 10], [2, 5], [], [], [1, 3], [], [4, 2], []]`
-- Output: `[null, null, null, 5, 10, null, 5, null, 2]`
-- Explanation: Correcting timestamp `1` from `10` to `3` removes `10` from
+- **Input:** `operations = ["StockPrice", "update", "update", "current", "maximum", "update", "maximum", "update", "minimum"]`, `arguments = [[], [1, 10], [2, 5], [], [], [1, 3], [], [4, 2], []]`
+- **Output:** `[null, null, null, 5, 10, null, 5, null, 2]`
+- **Explanation:** Correcting timestamp `1` from `10` to `3` removes `10` from
   consideration, so the next maximum is `5`.
 
-**Example 2**
+#### Example 2
 
-- Input: `operations = ["StockPrice", "update", "update", "current"]`, `arguments = [[], [5, 100], [2, 200], []]`
-- Output: `[null, null, null, 100]`
-- Explanation: Timestamp `5` remains the latest even though timestamp `2` was
+- **Input:** `operations = ["StockPrice", "update", "update", "current"]`, `arguments = [[], [5, 100], [2, 200], []]`
+- **Output:** `[null, null, null, 100]`
+- **Explanation:** Timestamp `5` remains the latest even though timestamp `2` was
   reported afterward.
 
-**Example 3**
+#### Example 3
 
-- Input: `operations = ["StockPrice", "update", "update", "minimum", "maximum"]`, `arguments = [[], [7, 20], [7, 12], [], []]`
-- Output: `[null, null, null, 12, 12]`
+- **Input:** `operations = ["StockPrice", "update", "update", "minimum", "maximum"]`, `arguments = [[], [7, 20], [7, 12], [], []]`
+- **Output:** `[null, null, null, 12, 12]`

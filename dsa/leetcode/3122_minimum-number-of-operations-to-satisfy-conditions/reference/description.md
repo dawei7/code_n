@@ -10,19 +10,23 @@ Return the **minimum** number of operations needed.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** grid = [[1,0,2],[1,0,2]]
+- **Input:** grid = [[1,0,2],[1,0,2]]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** 
 
 **
 
@@ -32,15 +36,13 @@ Return the **minimum** number of operations needed.
 
 All the cells in the matrix already satisfy the properties.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** grid = [[1,1,1],[0,0,0]]
+- **Input:** grid = [[1,1,1],[0,0,0]]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 **
 
@@ -56,21 +58,15 @@ The matrix becomes `[[1,0,1],[1,0,1]]` which satisfies the properties, by doing 
 
 - Change $\text{grid}[1][2]$ to 1.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** grid = [[1],[2],[3]]
+- **Input:** grid = [[1],[2],[3]]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-![](images/changed.png)
+- **Explanation:** ![](images/changed.png)
 
 There is a single column. We can change the value to 1 in each cell using 2 operations.
-
-</div>
 
 ### 4. Constraints
 

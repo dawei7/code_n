@@ -16,8 +16,17 @@ Return *the maximum number of candies you can get following the rules above*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `status`: Input parameter (`List[int]`).
+- `candies`: Input parameter (`List[int]`).
+- `keys`: Input parameter (`List[List[int]]`).
+- `containedBoxes`: Input parameter (`List[List[int]]`).
+- `initialBoxes`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -29,6 +38,7 @@ Return *the maximum number of candies you can get following the rules above*.
 Box 1 is closed and you do not have a key for it so you will open box 2. You will find 4 candies and a key to box 1 in box 2.
 In box 1, you will find 5 candies and box 3 but you will not find a key to box 3 so box 3 will remain closed.
 Total number of candies collected = 7 + 4 + 5 = 16 candy.
+
 #### Example 2
 
 - **Input:** $status = [1,0,0,0,0,0], candies = [1,1,1,1,1,1], keys = [[1,2,3,4,5],[],[],[],[],[]], containedBoxes = [[1,2,3,4,5],[],[],[],[],[]], initialBoxes = [0]$

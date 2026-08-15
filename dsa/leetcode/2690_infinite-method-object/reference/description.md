@@ -16,10 +16,10 @@ For example, if you execute `obj.abc123()`, it will return `"abc123"`.
 
 - **Input:** $method = "abc123"$
 - **Output:** `"abc123"`
-- **Explanation:**
-const obj = createInfiniteObject();
+- **Explanation:** const obj = createInfiniteObject();
 obj['abc123'](); // "abc123"
 The returned string should always match the method name.
+
 #### Example 2
 
 - **Input:** $method = ".-qw73n|^2It"$

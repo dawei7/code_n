@@ -8,8 +8,13 @@ The bitwise OR of an array `a` is equal to $a[0] **OR** a[1] **OR** ... **OR** a
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,11 +25,13 @@ The bitwise OR of an array `a` is equal to $a[0] **OR** a[1] **OR** ... **OR** a
 - **Explanation:** The maximum possible bitwise OR of a subset is 3. There are 2 subsets with a bitwise OR of 3:
 - [3]
 - [3,1]
+
 #### Example 2
 
 - **Input:** `nums = [2,2,2]`
 - **Output:** `7`
 - **Explanation:** All non-empty subsets of [2,2,2] have a bitwise OR of 2. There are $2^{3}$ - 1 = 7 total subsets.
+
 #### Example 3
 
 - **Input:** `nums = [3,2,1,5]`

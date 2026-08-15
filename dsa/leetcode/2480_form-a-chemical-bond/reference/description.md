@@ -35,7 +35,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Elements table:
 +--------+----------+-----------+
 | symbol | type     | electrons |
@@ -48,7 +48,7 @@ Elements table:
 | O      | Nonmetal | 2         |
 | N      | Nonmetal | 3         |
 +--------+----------+-----------+
-**Output:**
+- **Output:** 
 +-------+----------+
 | metal | nonmetal |
 +-------+----------+
@@ -62,8 +62,7 @@ Elements table:
 | Ca    | N        |
 | Na    | N        |
 +-------+----------+
-**Explanation:**
-Metal elements are La, Ca, and Na.
+- **Explanation:** Metal elements are La, Ca, and Na.
 Nonmeal elements are Cl, O, and N.
 Each Metal element pairs with a Nonmetal element in the output table.
 ```

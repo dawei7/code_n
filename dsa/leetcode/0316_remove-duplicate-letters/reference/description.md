@@ -18,6 +18,7 @@ Return the lexicographically smallest subsequence that contains each distinct le
 
 - **Input:** `s = "bcabc"`
 - **Output:** `"abc"`
+
 #### Example 2
 
 - **Input:** `s = "cbacdcbc"`

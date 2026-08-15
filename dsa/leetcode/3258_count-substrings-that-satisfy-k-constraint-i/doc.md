@@ -31,23 +31,23 @@ The two conditions are joined by an inclusive OR. A substring may contain more t
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: \`s = "10101", k = 1\`
-- Output: \`12\`
+- **Input:** \`s = "10101", k = 1\`
+- **Output:** \`12\`
 
 Only \`"1010"\`, \`"0101"\`, and \`"10101"\` contain more than one of both bits.
 
-**Example 2**
+#### Example 2
 
-- Input: \`s = "1010101", k = 2\`
-- Output: \`25\`
+- **Input:** \`s = "1010101", k = 2\`
+- **Output:** \`25\`
 
 Exactly the substrings longer than five violate the constraint.
 
-**Example 3**
+#### Example 3
 
-- Input: \`s = "11111", k = 1\`
-- Output: \`15\`
+- **Input:** \`s = "11111", k = 1\`
+- **Output:** \`15\`
 
 Every substring has zero zeroes, so all $5 \cdot 6 / 2$ substrings are valid.

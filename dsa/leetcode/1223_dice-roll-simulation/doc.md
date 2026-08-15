@@ -37,21 +37,21 @@ $$
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 2`, `rollMax = [1,1,2,2,2,3]`
-- Output: `34`
+- **Input:** `n = 2`, `rollMax = [1,1,2,2,2,3]`
+- **Output:** `34`
 
 Of the `36` two-roll sequences, `11` and `22` violate their limits.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 2`, `rollMax = [1,1,1,1,1,1]`
-- Output: `30`
+- **Input:** `n = 2`, `rollMax = [1,1,1,1,1,1]`
+- **Output:** `30`
 
 The second roll must differ from the first, giving `6 * 5` choices.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 3`, `rollMax = [1,1,1,2,2,3]`
-- Output: `181`
+- **Input:** `n = 3`, `rollMax = [1,1,1,2,2,3]`
+- **Output:** `181`

@@ -37,24 +37,24 @@ It must also erase one occurrence of a supplied word. Every erase call is guaran
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 - Operations: `["Trie","insert","insert","countWordsEqualTo","countWordsStartingWith","erase","countWordsEqualTo"]`
 - Arguments: `[[],["apple"],["apple"],["apple"],["app"],["apple"],["apple"]]`
-- Output: `[null,null,null,2,2,null,1]`
+- **Output:** `[null,null,null,2,2,null,1]`
 
 Two equal insertions contribute two exact and prefix occurrences; one erase removes only one.
 
-**Example 2**
+#### Example 2
 
 - Operations: insert `"app"` and `"apple"`, erase `"app"`, then query exact `"app"` and prefix `"app"`
-- Output: `0` and `1`
+- **Output:** `0` and `1`
 
 Removing the shorter word does not remove the longer word that passes through the same nodes.
 
-**Example 3**
+#### Example 3
 
 - Operations: insert `"apple"` and `"apply"`, then count prefix `"appl"` and exact word `"app"`
-- Output: `2` and `0`
+- **Output:** `2` and `0`
 
 A path may be a shared prefix without representing a complete stored word.

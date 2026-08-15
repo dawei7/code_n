@@ -16,8 +16,13 @@ Assuming Alice and Bob play optimally, return `true`* if Alice wins, or return *
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `colors`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -25,27 +30,26 @@ Assuming Alice and Bob play optimally, return `true`* if Alice wins, or return *
 
 - **Input:** $colors = "AAABABB"$
 - **Output:** `true`
-- **Explanation:**
-A<u>A</u>ABABB -> AABABB
+- **Explanation:** A<u>A</u>ABABB -> AABABB
 Alice moves first.
 She removes the second 'A' from the left since that is the only 'A' whose neighbors are both 'A'.
 Now it's Bob's turn.
 Bob cannot make a move on his turn since there are no 'B's whose neighbors are both 'B'.
 Thus, Alice wins, so return true.
+
 #### Example 2
 
 - **Input:** $colors = "AA"$
 - **Output:** `false`
-- **Explanation:**
-Alice has her turn first.
+- **Explanation:** Alice has her turn first.
 There are only two 'A's and both are on the edge of the line, so she cannot move on her turn.
 Thus, Bob wins, so return false.
+
 #### Example 3
 
 - **Input:** $colors = "ABBBBBBBAAA"$
 - **Output:** `false`
-- **Explanation:**
-ABBBBBBBA<u>A</u>A -> ABBBBBBBAA
+- **Explanation:** ABBBBBBBA<u>A</u>A -> ABBBBBBBAA
 Alice moves first.
 Her only option is to remove the second to last 'A' from the right.
 ABBBB<u>B</u>BBAA -> ABBBBBBAA

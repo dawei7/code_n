@@ -6,8 +6,13 @@ A **substring** is a contiguous (non-empty) sequence of characters within a stri
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `word`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -19,21 +24,21 @@ Due to the large constraints, the answer may not fit in a signed 32-bit integer.
 
 - **Input:** $word = "aba"$
 - **Output:** `6`
-- **Explanation:**
-All possible substrings are: "a", "ab", "aba", "b", "ba", and "a".
+- **Explanation:** All possible substrings are: "a", "ab", "aba", "b", "ba", and "a".
 - "b" has 0 vowels in it
 - "a", "ab", "ba", and "a" have 1 vowel each
 - "aba" has 2 vowels in it
 Hence, the total sum of vowels = 0 + 1 + 1 + 1 + 1 + 2 = 6.
+
 #### Example 2
 
 - **Input:** $word = "abc"$
 - **Output:** `3`
-- **Explanation:**
-All possible substrings are: "a", "ab", "abc", "b", "bc", and "c".
+- **Explanation:** All possible substrings are: "a", "ab", "abc", "b", "bc", and "c".
 - "a", "ab", and "abc" have 1 vowel each
 - "b", "bc", and "c" have 0 vowels each
 Hence, the total sum of vowels = 1 + 1 + 1 + 0 + 0 + 0 = 3.
+
 #### Example 3
 
 - **Input:** $word = "ltcd"$

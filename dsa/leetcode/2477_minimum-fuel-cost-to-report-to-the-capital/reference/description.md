@@ -12,8 +12,14 @@ Return *the minimum number of liters of fuel to reach the capital city*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `roads`: Input parameter (`List[List[int]]`).
+- `seats`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,19 +29,20 @@ Return *the minimum number of liters of fuel to reach the capital city*.
 
 - **Input:** $roads = [[0,1],[0,2],[0,3]], seats = 5$
 - **Output:** `3`
-- **Explanation:**
+- **Explanation:** 
 - Representative_1 goes directly to the capital with 1 liter of fuel.
 - Representative_2 goes directly to the capital with 1 liter of fuel.
 - Representative_3 goes directly to the capital with 1 liter of fuel.
 It costs 3 liters of fuel at minimum.
 It can be proven that 3 is the minimum number of liters of fuel needed.
+
 #### Example 2
 
 ![](images/2.png)
 
 - **Input:** $roads = [[3,1],[3,2],[1,0],[0,4],[0,5],[4,6]], seats = 2$
 - **Output:** `7`
-- **Explanation:**
+- **Explanation:** 
 - Representative_2 goes directly to city 3 with 1 liter of fuel.
 - Representative_2 and representative_3 go together to city 1 with 1 liter of fuel.
 - Representative_2 and representative_3 go together to the capital with 1 liter of fuel.
@@ -45,6 +52,7 @@ It can be proven that 3 is the minimum number of liters of fuel needed.
 - Representative_4 and representative_6 go together to the capital with 1 liter of fuel.
 It costs 7 liters of fuel at minimum.
 It can be proven that 7 is the minimum number of liters of fuel needed.
+
 #### Example 3
 
 ![](images/efcf7f7be6830b8763639cfd01b690a.png)

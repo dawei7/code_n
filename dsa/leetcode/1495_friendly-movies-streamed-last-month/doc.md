@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/friendly-movies-streamed-last-month/) |
 
 ## Problem Description
+
 ### Goal
 
 The `TVProgram` table records when a content item was streamed and on which channel. The `Content` table stores that item's title, whether it is intended for children, and its content category.
@@ -16,6 +17,7 @@ The `TVProgram` table records when a content item was streamed and on which chan
 Report the distinct titles whose content is marked kid-friendly, whose category is exactly `Movies`, and which appeared in at least one television program during June 2020. A qualifying title must satisfy all three conditions through a matching `content_id`. Return the result rows in any order.
 
 ### Function Contract
+
 **Inputs**
 
 Let $P$ be the number of rows in `TVProgram`, $C$ the number of rows in `Content`, and $T$ the number of distinct qualifying titles.
@@ -44,7 +46,8 @@ Let $P$ be the number of rows in `TVProgram`, $C$ the number of rows in `Content
 Return one column named `title`, containing each distinct title of a `Kids_content = 'Y'`, `content_type = 'Movies'` item with at least one matching stream timestamp from June 1, 2020 inclusive through July 1, 2020 exclusive. Output order is unrestricted.
 
 ### Examples
-**Example 1**
+
+#### Example 1
 
 Input `TVProgram`:
 
@@ -67,7 +70,7 @@ Input `Content`:
 | 4 | Aladdin | Y | Movies |
 | 5 | Cinderella | Y | Movies |
 
-Output:
+- **Output:** 
 
 | title |
 |---|
@@ -75,11 +78,11 @@ Output:
 
 Only `Aladdin` satisfies the audience and type filters and has a June 2020 stream.
 
-**Example 2**
+#### Example 2
 
 - A kid-friendly movie streamed at `2020-06-01 00:00:00` qualifies.
 - A kid-friendly movie streamed at `2020-07-01 00:00:00` does not qualify because July is outside the requested month.
 
-**Example 3**
+#### Example 3
 
 - If two different content IDs share the same title and both qualify, return that title only once.

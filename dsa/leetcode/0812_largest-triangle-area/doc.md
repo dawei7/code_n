@@ -30,20 +30,20 @@ Return the maximum geometric area obtainable over all such triples. Collinear tr
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `points = [[0,0],[0,1],[1,0],[0,2],[2,0]]`
-- Output: `2.0`
-- Explanation: The points `[0,0]`, `[0,2]`, and `[2,0]` form a right triangle with area 2.
+- **Input:** `points = [[0,0],[0,1],[1,0],[0,2],[2,0]]`
+- **Output:** `2.0`
+- **Explanation:** The points `[0,0]`, `[0,2]`, and `[2,0]` form a right triangle with area 2.
 
-**Example 2**
+#### Example 2
 
-- Input: `points = [[0,0],[4,0],[0,3]]`
-- Output: `6.0`
-- Explanation: The only triangle has base 4, height 3, and area 6.
+- **Input:** `points = [[0,0],[4,0],[0,3]]`
+- **Output:** `6.0`
+- **Explanation:** The only triangle has base 4, height 3, and area 6.
 
-**Example 3**
+#### Example 3
 
-- Input: `points = [[0,0],[1,1],[2,2]]`
-- Output: `0.0`
-- Explanation: The three collinear points form a degenerate triangle.
+- **Input:** `points = [[0,0],[1,1],[2,2]]`
+- **Output:** `0.0`
+- **Explanation:** The three collinear points form a degenerate triangle.

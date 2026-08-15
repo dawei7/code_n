@@ -33,18 +33,18 @@ Choose any subset of the words. Every occurrence of a letter used by the chosen 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `words = ["dog", "cat", "dad", "good"]`, `letters = ["a", "a", "c", "d", "d", "d", "g", "o", "o"]`
-- Output: `23`
+- **Input:** `words = ["dog", "cat", "dad", "good"]`, `letters = ["a", "a", "c", "d", "d", "d", "g", "o", "o"]`
+- **Output:** `23`
 
-**Example 2**
+#### Example 2
 
-- Input: `words = ["xxxz", "ax", "bx", "cx"]`, `letters = ["z", "a", "b", "c", "x", "x", "x"]`
-- Output: `27`
+- **Input:** `words = ["xxxz", "ax", "bx", "cx"]`, `letters = ["z", "a", "b", "c", "x", "x", "x"]`
+- **Output:** `27`
 
-**Example 3**
+#### Example 3
 
-- Input: `words = ["leetcode"]`, `letters = ["l", "e", "t", "c", "o", "d"]`
-- Output: `0`
-- Explanation: The missing second `"e"` prevents forming the only candidate word.
+- **Input:** `words = ["leetcode"]`, `letters = ["l", "e", "t", "c", "o", "d"]`
+- **Output:** `0`
+- **Explanation:** The missing second `"e"` prevents forming the only candidate word.

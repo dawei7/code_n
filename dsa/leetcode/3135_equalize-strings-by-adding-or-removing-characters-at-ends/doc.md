@@ -37,20 +37,20 @@ Both strings consist only of lowercase English letters.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `initial = "abcde", target = "cdef"`
-- Output: `3`
-- Explanation: Remove `'a'` and `'b'` from the beginning, then add `'f'` to the end.
+- **Input:** `initial = "abcde", target = "cdef"`
+- **Output:** `3`
+- **Explanation:** Remove `'a'` and `'b'` from the beginning, then add `'f'` to the end.
 
-**Example 2**
+#### Example 2
 
-- Input: `initial = "axxy", target = "yabx"`
-- Output: `6`
-- Explanation: One optimal sequence adds `'y'` at the beginning, removes three characters from the end, and appends `'b'` and `'x'`.
+- **Input:** `initial = "axxy", target = "yabx"`
+- **Output:** `6`
+- **Explanation:** One optimal sequence adds `'y'` at the beginning, removes three characters from the end, and appends `'b'` and `'x'`.
 
-**Example 3**
+#### Example 3
 
-- Input: `initial = "xyz", target = "xyz"`
-- Output: `0`
-- Explanation: The strings already match, so no operation is necessary.
+- **Input:** `initial = "xyz", target = "xyz"`
+- **Output:** `0`
+- **Explanation:** The strings already match, so no operation is necessary.

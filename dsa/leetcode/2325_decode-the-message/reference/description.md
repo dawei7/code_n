@@ -16,8 +16,14 @@ Return *the decoded message*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `key`: Input parameter (`str`).
+- `message`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -29,6 +35,7 @@ Return *the decoded message*.
 - **Output:** `"this is a secret"`
 - **Explanation:** The diagram above shows the substitution table.
 It is obtained by taking the first appearance of each letter in "<u>**the**</u> <u>**quick**</u> <u>**brown**</u> <u>**f**</u>o<u>**x**</u> <u>**j**</u>u<u>**mps**</u> o<u>**v**</u>er the <u>**lazy**</u> <u>**d**</u>o<u>**g**</u>".
+
 #### Example 2
 
 ![](images/ex2new.jpg)

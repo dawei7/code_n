@@ -36,13 +36,13 @@ Return the elapsed time at which the worker carrying the final box finishes cros
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 1, k = 3, time = [[1, 1, 2, 1], [1, 1, 3, 1], [1, 1, 4, 1]]`
-- Output: `6`
-- Explanation: Worker `2` has highest priority, crosses right in one minute, picks up the box in one minute, and crosses left in four minutes. The following put-down minute is excluded.
+- **Input:** `n = 1, k = 3, time = [[1, 1, 2, 1], [1, 1, 3, 1], [1, 1, 4, 1]]`
+- **Output:** `6`
+- **Explanation:** Worker `2` has highest priority, crosses right in one minute, picks up the box in one minute, and crosses left in four minutes. The following put-down minute is excluded.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3, k = 2, time = [[1, 5, 1, 8], [10, 10, 10, 10]]`
-- Output: `37`
+- **Input:** `n = 3, k = 2, time = [[1, 5, 1, 8], [10, 10, 10, 10]]`
+- **Output:** `37`

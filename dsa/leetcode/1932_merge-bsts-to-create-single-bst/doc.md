@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/merge-bsts-to-create-single-bst/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given $K$ separate binary search trees in `trees`. Every input tree
 contains between one and three nodes, no node has grandchildren, and the root
 values are pairwise distinct. Each input tree already satisfies the strict BST
@@ -26,6 +28,7 @@ that node's value, and every value in its right subtree is strictly larger.
 A leaf has no children.
 
 ### Function Contract
+
 **Inputs**
 
 - `trees`: a list of $K$ valid `TreeNode` BST roots with distinct root values, where
@@ -41,20 +44,21 @@ $H$ be the height of the final tree, if one can be formed.
   trees, or `null` when no valid complete merge exists.
 
 ### Examples
-**Example 1**
 
-- Input: `trees = [[2, 1], [3, 2, 5], [5, 4]]`
-- Output: `[3, 2, 5, 1, null, 4]`
+#### Example 1
 
-**Example 2**
+- **Input:** `trees = [[2, 1], [3, 2, 5], [5, 4]]`
+- **Output:** `[3, 2, 5, 1, null, 4]`
 
-- Input: `trees = [[5, 3, 8], [3, 2, 6]]`
-- Output: `null`
+#### Example 2
+
+- **Input:** `trees = [[5, 3, 8], [3, 2, 6]]`
+- **Output:** `null`
 
 The only possible graft places `6` in the left subtree of `5`, violating the
 strict BST bounds.
 
-**Example 3**
+#### Example 3
 
-- Input: `trees = [[5, 4], [3]]`
-- Output: `null`
+- **Input:** `trees = [[5, 4], [3]]`
+- **Output:** `null`

@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/simplified-fractions/) |
 
 ## Problem Description
+
 ### Goal
 
 Given an integer `n`, list every simplified fraction strictly between $0$ and
@@ -22,6 +23,7 @@ Represent each retained fraction as a string in the form
 list may be arranged in any order.
 
 ### Function Contract
+
 **Inputs**
 
 - `n`: an integer satisfying $1 \le n \le 100$.
@@ -33,26 +35,27 @@ $1 \le a < b \le n$ and $\gcd(a,b)=1$. The order of the strings is not part of
 the result contract.
 
 ### Examples
-**Example 1**
 
-- Input: `n = 2`
-- Output: `["1/2"]`
+#### Example 1
 
-**Example 2**
+- **Input:** `n = 2`
+- **Output:** `["1/2"]`
 
-- Input: `n = 3`
-- Output: `["1/2", "1/3", "2/3"]`
+#### Example 2
 
-**Example 3**
+- **Input:** `n = 3`
+- **Output:** `["1/2", "1/3", "2/3"]`
 
-- Input: `n = 4`
-- Output: `["1/2", "1/3", "1/4", "2/3", "3/4"]`
-- Explanation: `"2/4"` is excluded because reducing it produces the already
+#### Example 3
+
+- **Input:** `n = 4`
+- **Output:** `["1/2", "1/3", "1/4", "2/3", "3/4"]`
+- **Explanation:** `"2/4"` is excluded because reducing it produces the already
   represented fraction `"1/2"`.
 
-**Example 4**
+#### Example 4
 
-- Input: `n = 1`
-- Output: `[]`
-- Explanation: No denominator at most one admits a positive numerator that is
+- **Input:** `n = 1`
+- **Output:** `[]`
+- **Explanation:** No denominator at most one admits a positive numerator that is
   smaller than it.

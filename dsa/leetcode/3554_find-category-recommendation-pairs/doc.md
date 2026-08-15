@@ -35,10 +35,10 @@ Return columns `category1`, `category2`, and `customer_count` for every category
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: The sample purchase data has five users buying products from Books, Clothing, Electronics, Kitchen, and Sports.
-- Output: `[(Books,Clothing,3), (Books,Electronics,3), (Clothing,Electronics,3), (Electronics,Sports,3)]`
-- Explanation: Each listed pair is shared by exactly three customers. Other pairs have fewer than three shared customers. Since the reported counts tie, the category names determine their order.
+- **Input:** The sample purchase data has five users buying products from Books, Clothing, Electronics, Kitchen, and Sports.
+- **Output:** `[(Books,Clothing,3), (Books,Electronics,3), (Clothing,Electronics,3), (Electronics,Sports,3)]`
+- **Explanation:** Each listed pair is shared by exactly three customers. Other pairs have fewer than three shared customers. Since the reported counts tie, the category names determine their order.
 
 ---

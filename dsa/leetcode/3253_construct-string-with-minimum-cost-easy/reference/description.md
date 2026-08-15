@@ -22,14 +22,11 @@ Return the **minimum** cost to make `s` equal to `target`. If it's not possible,
 
 #### Example 1
 
-<div class="example-block">
-**Input:** target = "abcdef", words = ["abdef","abc","d","def","ef"], costs = [100,1,1,10,5]
+- **Input:** target = "abcdef", words = ["abdef","abc","d","def","ef"], costs = [100,1,1,10,5]
 
-**Output:** 7
+- **Output:** 7
 
-**Explanation:**
-
-The minimum cost can be achieved by performing the following operations:
+- **Explanation:** The minimum cost can be achieved by performing the following operations:
 
 - Select index 1 and append `"abc"` to `s` at a cost of 1, resulting in `s = "abc"`.
 
@@ -37,19 +34,13 @@ The minimum cost can be achieved by performing the following operations:
 
 - Select index 4 and append `"ef"` to `s` at a cost of 5, resulting in `s = "abcdef"`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** target = "aaaa", words = ["z","zz","zzz"], costs = [1,10,100]
+- **Input:** target = "aaaa", words = ["z","zz","zzz"], costs = [1,10,100]
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-It is impossible to make `s` equal to `target`, so we return -1.
-
-</div>
+- **Explanation:** It is impossible to make `s` equal to `target`, so we return -1.
 
 ### 4. Constraints
 

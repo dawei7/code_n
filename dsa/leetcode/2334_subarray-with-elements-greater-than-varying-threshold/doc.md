@@ -37,21 +37,21 @@ than $\texttt{threshold}/k$, or `-1` when no such length exists.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,3,4,3,1]`, `threshold = 6`
-- Output: `3`
-- Explanation: Every element of `[3,4,3]` exceeds $6/3=2$.
+- **Input:** `nums = [1,3,4,3,1]`, `threshold = 6`
+- **Output:** `3`
+- **Explanation:** Every element of `[3,4,3]` exceeds $6/3=2$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [6,5,6,5,8]`, `threshold = 7`
-- Output: `1`
-- Explanation: The one-element subarray `[8]` satisfies $8>7$. Lengths 2
+- **Input:** `nums = [6,5,6,5,8]`, `threshold = 7`
+- **Output:** `1`
+- **Explanation:** The one-element subarray `[8]` satisfies $8>7$. Lengths 2
   through 5 are also valid, so any of them could be returned instead.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,2,3]`, `threshold = 10`
-- Output: `-1`
-- Explanation: No subarray minimum multiplied by its length exceeds 10.
+- **Input:** `nums = [1,2,3]`, `threshold = 10`
+- **Output:** `-1`
+- **Explanation:** No subarray minimum multiplied by its length exceeds 10.

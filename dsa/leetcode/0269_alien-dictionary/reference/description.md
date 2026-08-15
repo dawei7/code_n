@@ -27,10 +27,12 @@ Return any valid order of all distinct letters found in `words`, or `""` if the 
 
 - **Input:** $words = ["wrt","wrf","er","ett","rftt"]$
 - **Output:** `"wertf"`
+
 #### Example 2
 
 - **Input:** $words = ["z","x"]$
 - **Output:** `"zx"`
+
 #### Example 3
 
 - **Input:** $words = ["z","x","z"]$

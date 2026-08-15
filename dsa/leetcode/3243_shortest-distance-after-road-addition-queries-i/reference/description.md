@@ -10,21 +10,24 @@ Return an array `answer` where for each `i` in the range `[0, queries.length - 1
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 5, queries = [[2,4],[0,2],[0,4]]
+- **Input:** n = 5, queries = [[2,4],[0,2],[0,4]]
 
-**Output:** [3,2,1]
+- **Output:** [3,2,1]
 
-**Explanation: **
-
-![](images/image8.jpg)
+- **Explanation:** ![](images/image8.jpg)
 
 After the addition of the road from 2 to 4, the length of the shortest path from 0 to 4 is 3.
 
@@ -36,25 +39,19 @@ After the addition of the road from 0 to 2, the length of the shortest path from
 
 After the addition of the road from 0 to 4, the length of the shortest path from 0 to 4 is 1.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 4, queries = [[0,3],[0,2]]
+- **Input:** n = 4, queries = [[0,3],[0,2]]
 
-**Output:** [1,1]
+- **Output:** [1,1]
 
-**Explanation:**
-
-![](images/image11.jpg)
+- **Explanation:** ![](images/image11.jpg)
 
 After the addition of the road from 0 to 3, the length of the shortest path from 0 to 3 is 1.
 
 ![](images/image12.jpg)
 
 After the addition of the road from 0 to 2, the length of the shortest path remains 1.
-
-</div>
 
 ### 4. Constraints
 

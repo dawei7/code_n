@@ -30,20 +30,20 @@ Let `maxLen` be the greatest square side length obtainable from any supplied rec
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `rectangles = [[5,8],[3,9],[5,12],[16,5]]`
-- Output: `3`
-- Explanation: The largest square sides available from the four rectangles are `5`, `3`, `5`, and `5`, so three rectangles attain `maxLen = 5`.
+- **Input:** `rectangles = [[5,8],[3,9],[5,12],[16,5]]`
+- **Output:** `3`
+- **Explanation:** The largest square sides available from the four rectangles are `5`, `3`, `5`, and `5`, so three rectangles attain `maxLen = 5`.
 
-**Example 2**
+#### Example 2
 
-- Input: `rectangles = [[2,3],[3,7],[4,3],[3,7]]`
-- Output: `3`
-- Explanation: The obtainable maximum sides are `2`, `3`, `3`, and `3`.
+- **Input:** `rectangles = [[2,3],[3,7],[4,3],[3,7]]`
+- **Output:** `3`
+- **Explanation:** The obtainable maximum sides are `2`, `3`, `3`, and `3`.
 
-**Example 3**
+#### Example 3
 
-- Input: `rectangles = [[100,1]]`
-- Output: `1`
-- Explanation: With one rectangle, its smaller dimension necessarily determines `maxLen`.
+- **Input:** `rectangles = [[100,1]]`
+- **Output:** `1`
+- **Explanation:** With one rectangle, its smaller dimension necessarily determines `maxLen`.

@@ -10,8 +10,13 @@ Return *the smallest value *`n`* will take on.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +29,7 @@ Return *the smallest value *`n`* will take on.*
 8 = 2 * 2 * 2, so replace n with 2 + 2 + 2 = 6.
 6 = 2 * 3, so replace n with 2 + 3 = 5.
 5 is the smallest value n will take on.
+
 #### Example 2
 
 - **Input:** $n = 3$

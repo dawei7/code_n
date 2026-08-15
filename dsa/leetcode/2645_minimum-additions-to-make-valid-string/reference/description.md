@@ -6,8 +6,13 @@ A string is called **valid **if it can be formed by concatenating the string "ab
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `word`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,11 +21,13 @@ A string is called **valid **if it can be formed by concatenating the string "ab
 - **Input:** $word = "b"$
 - **Output:** `2`
 - **Explanation:** Insert the letter "a" right before "b", and the letter "c" right next to "b" to obtain the valid string "**a**b**c**".
+
 #### Example 2
 
 - **Input:** $word = "aaa"$
 - **Output:** `6`
 - **Explanation:** Insert letters "b" and "c" next to each "a" to obtain the valid string "a**bc**a**bc**a**bc**".
+
 #### Example 3
 
 - **Input:** $word = "abc"$

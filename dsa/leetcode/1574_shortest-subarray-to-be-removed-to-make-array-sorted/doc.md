@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/shortest-subarray-to-be-removed-to-make-array-sorted/) |
 
 ## Problem Description
+
 ### Goal
 
 Given an integer array `arr`, remove one contiguous subarray so that the elements left behind are in non-decreasing order. The removed subarray may be empty, which matters when the original array already satisfies the ordering requirement.
@@ -18,6 +19,7 @@ Removing a subarray preserves the relative order of every retained element. The 
 Return the minimum possible number of removed elements. The answer is zero for an already non-decreasing array, while removing all but one element is always sufficient.
 
 ### Function Contract
+
 **Inputs**
 
 - `arr`: An integer array of length $N$, where $1 \le N \le 10^5$ and $1 \le \texttt{arr[i]} \le 10^9$.
@@ -27,17 +29,18 @@ Return the minimum possible number of removed elements. The answer is zero for a
 Return the minimum length of a contiguous subarray whose removal leaves `arr` in non-decreasing order.
 
 ### Examples
-**Example 1**
 
-- Input: `arr = [1, 2, 3, 10, 4, 2, 3, 5]`
-- Output: `3`
+#### Example 1
 
-**Example 2**
+- **Input:** `arr = [1, 2, 3, 10, 4, 2, 3, 5]`
+- **Output:** `3`
 
-- Input: `arr = [5, 4, 3, 2, 1]`
-- Output: `4`
+#### Example 2
 
-**Example 3**
+- **Input:** `arr = [5, 4, 3, 2, 1]`
+- **Output:** `4`
 
-- Input: `arr = [1, 2, 3]`
-- Output: `0`
+#### Example 3
+
+- **Input:** `arr = [1, 2, 3]`
+- **Output:** `0`

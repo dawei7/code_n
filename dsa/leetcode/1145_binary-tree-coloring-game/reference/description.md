@@ -12,8 +12,10 @@ You are the second player. If it is possible to choose such a `y` to ensure you 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `btreeGameWinningMove(root: Optional[TreeNode], n: int, x: int) -> `bool``: Executes operation.
 
 ### 3. Examples
 
@@ -24,6 +26,7 @@ You are the second player. If it is possible to choose such a `y` to ensure you 
 - **Input:** `root = [1,2,3,4,5,6,7,8,9,10,11], n = 11, x = 3`
 - **Output:** `true`
 - **Explanation:** The second player can choose the node with value 2.
+
 #### Example 2
 
 - **Input:** `root = [1,2,3], n = 3, x = 1`

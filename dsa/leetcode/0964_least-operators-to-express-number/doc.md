@@ -38,20 +38,20 @@ Return the minimum number of binary operators in a valid expression whose value 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `x = 3, target = 19`
-- Output: `5`
-- Explanation: `3 * 3 + 3 * 3 + 3 / 3` uses five operators.
+- **Input:** `x = 3, target = 19`
+- **Output:** `5`
+- **Explanation:** `3 * 3 + 3 * 3 + 3 / 3` uses five operators.
 
-**Example 2**
+#### Example 2
 
-- Input: `x = 5, target = 501`
-- Output: `8`
-- Explanation: `5 * 5 * 5 * 5 - 5 * 5 * 5 + 5 / 5` uses eight operators.
+- **Input:** `x = 5, target = 501`
+- **Output:** `8`
+- **Explanation:** `5 * 5 * 5 * 5 - 5 * 5 * 5 + 5 / 5` uses eight operators.
 
-**Example 3**
+#### Example 3
 
-- Input: `x = 100, target = 100000000`
-- Output: `3`
-- Explanation: `100 * 100 * 100 * 100` uses three operators.
+- **Input:** `x = 100, target = 100000000`
+- **Output:** `3`
+- **Explanation:** `100 * 100 * 100 * 100` uses three operators.

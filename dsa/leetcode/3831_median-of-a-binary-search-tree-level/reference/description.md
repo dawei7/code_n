@@ -29,46 +29,33 @@ Return the requested level's median value, using the upper median when $K$ is ev
 
 ![](images/screenshot-2026-01-27-at-20801pm.png)
 
-<div class="example-block">
-**Input:** root = [4,null,5,null,7], level = 2
+- **Input:** root = [4,null,5,null,7], level = 2
 
-**Output:** 7
+- **Output:** 7
 
-**Explanation:**
+- **Explanation:** The nodes at $level = 2$ are `[7]`. The median value is 7.
 
-The nodes at $level = 2$ are `[7]`. The median value is 7.
-
-</div>
 #### Example 2
 
 ![](images/screenshot-2026-01-27-at-20926pm.png)
 
-<div class="example-block">
-**Input:** root = [6,3,8], level = 1
+- **Input:** root = [6,3,8], level = 1
 
-**Output:** 8
+- **Output:** 8
 
-**Explanation:**
+- **Explanation:** The nodes at $level = 1$ are `[3, 8]`. There are two possible median values, so the larger one 8 is the answer.
 
-The nodes at $level = 1$ are `[3, 8]`. There are two possible median values, so the larger one 8 is the answer.
-
-</div>
 #### Example 3
 
 **​​​​​​​​​​​​​​**
 
 ![](images/screenshot-2026-01-27-at-21001pm.png)
 
-<div class="example-block">
-**Input:** root = [2,1], level = 2
+- **Input:** root = [2,1], level = 2
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-There is no node present at $level = 2$​​​​​​​, so the answer is -1.
-
-</div>
+- **Explanation:** There is no node present at $level = 2$​​​​​​​, so the answer is -1.
 
 ### 4. Constraints
 

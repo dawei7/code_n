@@ -31,20 +31,20 @@ Return a promise that fulfills with the numeric sum of the two fulfillment value
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `promise1` fulfills with $2$ after $20$ ms, and `promise2` fulfills with $5$ after $60$ ms.
-- Output: `7`
-- Explanation: Once both values are available, their sum is $2+5=7$.
+- **Input:** `promise1` fulfills with $2$ after $20$ ms, and `promise2` fulfills with $5$ after $60$ ms.
+- **Output:** `7`
+- **Explanation:** Once both values are available, their sum is $2+5=7$.
 
-**Example 2**
+#### Example 2
 
-- Input: `promise1` fulfills with $10$ after $50$ ms, and `promise2` fulfills with $-12$ after $30$ ms.
-- Output: `-2`
-- Explanation: Negative fulfillment values participate in ordinary numeric addition.
+- **Input:** `promise1` fulfills with $10$ after $50$ ms, and `promise2` fulfills with $-12$ after $30$ ms.
+- **Output:** `-2`
+- **Explanation:** Negative fulfillment values participate in ordinary numeric addition.
 
-**Example 3**
+#### Example 3
 
-- Input: Both promises fulfill immediately with $0$.
-- Output: `0`
-- Explanation: The returned promise still settles asynchronously with the sum.
+- **Input:** Both promises fulfill immediately with $0$.
+- **Output:** `0`
+- **Explanation:** The returned promise still settles asynchronously with the sum.

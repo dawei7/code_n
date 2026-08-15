@@ -8,8 +8,14 @@ Return *the **minimum** unfairness of all distributions*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `cookies`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +28,7 @@ Return *the **minimum** unfairness of all distributions*.
 - The 2^nd child receives [10,20] which has a total of 10 + 20 = 30 cookies.
 The unfairness of the distribution is max(31,30) = 31.
 It can be shown that there is no distribution with an unfairness less than 31.
+
 #### Example 2
 
 - **Input:** $cookies = [6,1,3,2,2,4,1,2], k = 3$

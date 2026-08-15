@@ -34,20 +34,20 @@ increasing pair exists.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [7, 1, 5, 4]`
-- Output: `4`
-- Explanation: Indices $1$ and $2$ produce $5-1=4$.
+- **Input:** `nums = [7, 1, 5, 4]`
+- **Output:** `4`
+- **Explanation:** Indices $1$ and $2$ produce $5-1=4$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [9, 4, 3, 2]`
-- Output: `-1`
-- Explanation: No later value is strictly larger than an earlier one.
+- **Input:** `nums = [9, 4, 3, 2]`
+- **Output:** `-1`
+- **Explanation:** No later value is strictly larger than an earlier one.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 5, 2, 10]`
-- Output: `9`
-- Explanation: The first and last values produce $10-1=9$.
+- **Input:** `nums = [1, 5, 2, 10]`
+- **Output:** `9`
+- **Explanation:** The first and last values produce $10-1=9$.

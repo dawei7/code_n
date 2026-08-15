@@ -14,8 +14,13 @@ Return *an array *`answer`* of size *`n`* where *$\text{answer}[i]$* is the colu
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -35,11 +40,13 @@ Ball b1 is dropped at column 1 and will get stuck in the box between column 2 an
 Ball b2 is dropped at column 2 and will get stuck on the box between column 2 and 3 and row 0.
 Ball b3 is dropped at column 3 and will get stuck on the box between column 2 and 3 and row 0.
 Ball b4 is dropped at column 4 and will get stuck on the box between column 2 and 3 and row 1.
+
 #### Example 2
 
 - **Input:** `grid = [[-1]]`
 - **Output:** `[-1]`
 - **Explanation:** The ball gets stuck against the left wall.
+
 #### Example 3
 
 - **Input:** `grid = [[1,1,1,1,1,1],[-1,-1,-1,-1,-1,-1],[1,1,1,1,1,1],[-1,-1,-1,-1,-1,-1]]`

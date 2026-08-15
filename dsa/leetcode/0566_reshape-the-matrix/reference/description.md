@@ -10,8 +10,15 @@ If the `reshape` operation with given parameters is possible and legal, output t
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `mat`: Input parameter (`List[List[int]]`).
+- `r`: Input parameter (`int`).
+- `c`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
@@ -21,6 +28,7 @@ If the `reshape` operation with given parameters is possible and legal, output t
 
 - **Input:** $mat = [[1,2],[3,4]], r = 1, c = 4$
 - **Output:** `[[1,2,3,4]]`
+
 #### Example 2
 
 ![](images/reshape2-grid.jpg)

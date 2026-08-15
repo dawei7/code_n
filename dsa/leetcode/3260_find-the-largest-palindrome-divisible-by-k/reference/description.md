@@ -12,8 +12,14 @@ Return the** largest** integer having `n` digits (as a string) that is **k-palin
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Note
 
@@ -23,36 +29,25 @@ that the integer must **not** have leading zeros.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 3, k = 5
+- **Input:** n = 3, k = 5
 
-**Output:** "595"
+- **Output:** "595"
 
-**Explanation:**
+- **Explanation:** 595 is the largest k-palindromic integer with 3 digits.
 
-595 is the largest k-palindromic integer with 3 digits.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 1, k = 4
+- **Input:** n = 1, k = 4
 
-**Output:** "8"
+- **Output:** "8"
 
-**Explanation:**
+- **Explanation:** 4 and 8 are the only k-palindromic integers with 1 digit.
 
-4 and 8 are the only k-palindromic integers with 1 digit.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 5, k = 6
+- **Input:** n = 5, k = 6
 
-**Output:** "89898"
-
-</div>
+- **Output:** "89898"
 
 ### 5. Constraints
 

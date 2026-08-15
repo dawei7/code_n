@@ -35,8 +35,8 @@ The native LeetCode artifact instead exposes `RecentCounter()` and its stateful 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `operations = [["ping",1],["ping",100],["ping",3001],["ping",3002]]`
-- Output: `[1,2,3,3]`
-- Explanation: At time `3001`, timestamp `1` remains included at the left boundary. At time `3002`, it falls outside the window.
+- **Input:** `operations = [["ping",1],["ping",100],["ping",3001],["ping",3002]]`
+- **Output:** `[1,2,3,3]`
+- **Explanation:** At time `3001`, timestamp `1` remains included at the left boundary. At time `3002`, it falls outside the window.

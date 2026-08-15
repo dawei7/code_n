@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/separate-black-and-white-balls/) |
 
 ## Problem Description
+
 ### Goal
+
 There are $n$ balls arranged from left to right on a table. Their colors are
 encoded by a 0-indexed binary string `s`: each `1` is a black ball and each
 `0` is a white ball. The relative order among balls of the same color does
@@ -22,6 +24,7 @@ minimum number of such steps needed to place every white ball to the left of
 every black ball. A string already having that form requires zero steps.
 
 ### Function Contract
+
 **Inputs**
 
 - `s`: a binary string encoding the balls from left to right
@@ -35,21 +38,22 @@ The minimum number of adjacent swaps needed to group all white balls on the
 left and all black balls on the right.
 
 ### Examples
-**Example 1**
 
-- Input: `s = "101"`
-- Output: `1`
-- Explanation: Swap the first two balls to obtain `"011"`.
+#### Example 1
 
-**Example 2**
+- **Input:** `s = "101"`
+- **Output:** `1`
+- **Explanation:** Swap the first two balls to obtain `"011"`.
 
-- Input: `s = "100"`
-- Output: `2`
-- Explanation: Moving the leading black ball past both white balls produces
+#### Example 2
+
+- **Input:** `s = "100"`
+- **Output:** `2`
+- **Explanation:** Moving the leading black ball past both white balls produces
   `"001"` in two adjacent swaps.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "0111"`
-- Output: `0`
-- Explanation: Every white ball is already to the left of every black ball.
+- **Input:** `s = "0111"`
+- **Output:** `0`
+- **Explanation:** Every white ball is already to the left of every black ball.

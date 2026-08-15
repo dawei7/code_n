@@ -27,10 +27,10 @@ arr = [1,2,3],
 callback = (val, i, arr) => arr[i] = val * 2,
 context = {"context":true}
 - **Output:** `[2,4,6]`
-- **Explanation:**
-arr.forEach(callback, context)
+- **Explanation:** arr.forEach(callback, context)
 console.log(arr) // [2,4,6]
 The callback is executed on each element of the array.
+
 #### Example 2
 
 - **Input:** ``
@@ -38,10 +38,10 @@ arr = [true, true, false, false],
 callback = (val, i, arr) => arr[i] = this,
 context = {"context": false}
 - **Output:** `[{"context":false},{"context":false},{"context":false},{"context":false}]`
-- **Explanation:**
-arr.forEach(callback, context)
+- **Explanation:** arr.forEach(callback, context)
 console.log(arr) // [{"context":false},{"context":false},{"context":false},{"context":false}]
 The callback is executed on each element of the array with the right context.
+
 #### Example 3
 
 - **Input:** ``

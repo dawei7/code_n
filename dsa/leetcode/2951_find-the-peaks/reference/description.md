@@ -6,8 +6,13 @@ Return *an array that consists of *indices<!-- notionvc: c9879de8-88bd-43b0-8224
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `mountain`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -24,6 +29,7 @@ Return *an array that consists of *indices<!-- notionvc: c9879de8-88bd-43b0-8224
 - **Explanation:** mountain[0] and mountain[2] can not be a peak because they are first and last elements of the array.
 mountain[1] also can not be a peak because it is not strictly greater than mountain[2].
 So the answer is [].
+
 #### Example 2
 
 - **Input:** $mountain = [1,4,3,8,5]$

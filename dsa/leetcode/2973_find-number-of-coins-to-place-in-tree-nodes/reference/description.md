@@ -14,8 +14,14 @@ Return *an array *`coin`* of size *`n`* such that *$\text{coin}[i]$* is the numb
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `edges`: Input parameter (`List[List[int]]`).
+- `cost`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -26,6 +32,7 @@ Return *an array *`coin`* of size *`n`* such that *$\text{coin}[i]$* is the numb
 - **Input:** $edges = [[0,1],[0,2],[0,3],[0,4],[0,5]], cost = [1,2,3,4,5,6]$
 - **Output:** `[120,1,1,1,1,1]`
 - **Explanation:** For node 0 place 6 * 5 * 4 = 120 coins. All other nodes are leaves with subtree of size 1, place 1 coin on each of them.
+
 #### Example 2
 
 ![](images/screenshot-2023-11-10-012614.png)
@@ -37,6 +44,7 @@ Return *an array *`coin`* of size *`n`* such that *$\text{coin}[i]$* is the numb
 - Place 7 * 5 * 4 = 140 coins on node 1.
 - Place 8 * 2 * 2 = 32 coins on node 2.
 - All other nodes are leaves with subtree of size 1, place 1 coin on each of them.
+
 #### Example 3
 
 ![](images/screenshot-2023-11-10-012513.png)

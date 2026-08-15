@@ -31,20 +31,20 @@ For example, decimal 9 qualifies for base 2 because its binary representation is
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `k = 2, n = 5`
-- Output: `25`
-- Explanation: The first five values are `1, 3, 5, 7, 9`, whose binary forms are also palindromes.
+- **Input:** `k = 2, n = 5`
+- **Output:** `25`
+- **Explanation:** The first five values are `1, 3, 5, 7, 9`, whose binary forms are also palindromes.
 
-**Example 2**
+#### Example 2
 
-- Input: `k = 3, n = 7`
-- Output: `499`
-- Explanation: The values are `1, 2, 4, 8, 121, 151, 212`.
+- **Input:** `k = 3, n = 7`
+- **Output:** `499`
+- **Explanation:** The values are `1, 2, 4, 8, 121, 151, 212`.
 
-**Example 3**
+#### Example 3
 
-- Input: `k = 7, n = 17`
-- Output: `20379000`
-- Explanation: The first seventeen include the one-digit values `1` through `6`, followed by larger numbers that remain palindromic in both bases.
+- **Input:** `k = 7, n = 17`
+- **Output:** `20379000`
+- **Explanation:** The first seventeen include the one-digit values `1` through `6`, followed by larger numbers that remain palindromic in both bases.

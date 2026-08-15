@@ -8,8 +8,10 @@ Two trees are **duplicate** if they have the **same structure** with the **same 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `findDuplicateSubtrees(root: Optional[TreeNode]) -> `List[Optional[TreeNode]]``: Executes operation.
 
 ### 3. Examples
 
@@ -19,12 +21,14 @@ Two trees are **duplicate** if they have the **same structure** with the **same 
 
 - **Input:** `root = [1,2,3,4,null,2,4,null,null,4]`
 - **Output:** `[[2,4],[4]]`
+
 #### Example 2
 
 ![](images/e2.jpg)
 
 - **Input:** `root = [2,1,1]`
 - **Output:** `[[1]]`
+
 #### Example 3
 
 ![](images/e33.jpg)

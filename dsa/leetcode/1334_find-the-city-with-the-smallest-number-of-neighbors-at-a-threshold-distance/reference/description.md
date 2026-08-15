@@ -8,8 +8,15 @@ Notice that the distance of a path connecting cities ***i*** and ***j*** is equa
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+- `distanceThreshold`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,6 +33,7 @@ City 1 -> [City 0, City 2, City 3]
 City 2 -> [City 0, City 1, City 3]
 City 3 -> [City 1, City 2]
 Cities 0 and 3 have 2 neighboring cities at a distanceThreshold = 4, but we have to return city 3 since it has the greatest number.
+
 #### Example 2
 
 ![](images/problem1334example0.png)

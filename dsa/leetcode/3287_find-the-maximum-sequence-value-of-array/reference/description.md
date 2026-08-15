@@ -10,35 +10,32 @@ Return the **maximum** **value** of any subsequence of `nums` having size $2 * k
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,6,7], k = 1
+- **Input:** nums = [2,6,7], k = 1
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** The subsequence `[2, 7]` has the maximum value of $2 XOR 7 = 5$.
 
-The subsequence `[2, 7]` has the maximum value of $2 XOR 7 = 5$.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [4,2,5,6,7], k = 2
+- **Input:** nums = [4,2,5,6,7], k = 2
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The subsequence `[4, 5, 6, 7]` has the maximum value of $(4 OR 5) XOR (6 OR 7) = 2$.
-
-</div>
+- **Explanation:** The subsequence `[4, 5, 6, 7]` has the maximum value of $(4 OR 5) XOR (6 OR 7) = 2$.
 
 ### 4. Constraints
 

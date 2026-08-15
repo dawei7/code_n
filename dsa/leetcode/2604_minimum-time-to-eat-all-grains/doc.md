@@ -37,16 +37,16 @@ Let $C = 2 \cdot 10^9 + 1$, the size of the inclusive search range used for a gu
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `hens = [3,6,7], grains = [2,4,7,9]`
-- Output: `2`
+- **Input:** `hens = [3,6,7], grains = [2,4,7,9]`
+- **Output:** `2`
 
 In two seconds, the three hens can cover the grains near positions $3$, $6$, and $7$ concurrently. No assignment can cover every grain in less time.
 
-**Example 2**
+#### Example 2
 
-- Input: `hens = [4,6,109,111,213,215], grains = [5,110,214]`
-- Output: `1`
+- **Input:** `hens = [4,6,109,111,213,215], grains = [5,110,214]`
+- **Output:** `1`
 
 Three hens each move one unit to a grain while the others remain still.

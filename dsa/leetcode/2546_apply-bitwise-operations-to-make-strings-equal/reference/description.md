@@ -12,8 +12,14 @@ Return `true` *if you can make the string *`s`* equal to *`target`*, or *`false`
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `target`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -25,6 +31,7 @@ Return `true` *if you can make the string *`s`* equal to *`target`*, or *`false`
 - Choose i = 2 and j = 0. We have now s = "**<u>0</u>**0**<u>1</u>**0".
 - Choose i = 2 and j = 1. We have now s = "0**<u>11</u>**0".
 Since we can make s equal to target, we return true.
+
 #### Example 2
 
 - **Input:** `s = "11", target = "00"`

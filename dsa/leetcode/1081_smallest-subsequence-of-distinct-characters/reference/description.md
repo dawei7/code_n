@@ -4,8 +4,13 @@ Given a string `s`, return *the **lexicographically smallest* *subsequence** of*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -13,6 +18,7 @@ Given a string `s`, return *the **lexicographically smallest* *subsequence** of*
 
 - **Input:** `s = "bcabc"`
 - **Output:** `"abc"`
+
 #### Example 2
 
 - **Input:** `s = "cbacdcbc"`

@@ -36,14 +36,14 @@ Return the value of $n$ from before any API call was made.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 0`
-- Output: `0`
-- Explanation: All 30 bits in the initial hidden number are clear.
+- **Input:** `n = 0`
+- **Output:** `0`
+- **Explanation:** All 30 bits in the initial hidden number are clear.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 33`
-- Output: `33`
-- Explanation: The original number has set bits at positions zero and five, and it must be recovered despite the API's XOR mutations.
+- **Input:** `n = 33`
+- **Output:** `33`
+- **Explanation:** The original number has set bits at positions zero and five, and it must be recovered despite the API's XOR mutations.

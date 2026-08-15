@@ -56,7 +56,7 @@ A row qualifies exactly when its $\text{department}_{id}$ does not equal the `id
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Departments table:
 +------+--------------------------+
 | id   | name                     |
@@ -80,7 +80,7 @@ Students table:
 | 7    | Daiana   | 33            |
 | 11   | Madelynn | 1             |
 +------+----------+---------------+
-**Output:**
+- **Output:** 
 +------+----------+
 | id   | name     |
 +------+----------+
@@ -89,6 +89,5 @@ Students table:
 | 4    | Jasmine  |
 | 3    | Steve    |
 +------+----------+
-**Explanation:**
-John, Daiana, Steve, and Jasmine are enrolled in departments 14, 33, 74, and 77 respectively. department 14, 33, 74, and 77 do not exist in the Departments table.
+- **Explanation:** John, Daiana, Steve, and Jasmine are enrolled in departments 14, 33, 74, and 77 respectively. department 14, 33, 74, and 77 do not exist in the Departments table.
 ```

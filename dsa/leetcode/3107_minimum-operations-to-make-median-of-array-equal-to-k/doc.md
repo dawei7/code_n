@@ -33,20 +33,20 @@ Return the minimum number of operations needed to make the median of `nums` equa
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 5, 6, 8, 5], k = 4`
-- Output: `2`
-- Explanation: Decreasing the two values equal to $5$ once produces an array whose sorted form has median $4$.
+- **Input:** `nums = [2, 5, 6, 8, 5], k = 4`
+- **Output:** `2`
+- **Explanation:** Decreasing the two values equal to $5$ once produces an array whose sorted form has median $4$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, 5, 6, 8, 5], k = 7`
-- Output: `3`
-- Explanation: Increasing one $5$ twice and the $6$ once makes the median $7$.
+- **Input:** `nums = [2, 5, 6, 8, 5], k = 7`
+- **Output:** `3`
+- **Explanation:** Increasing one $5$ twice and the $6$ once makes the median $7$.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 2, 3, 4, 5, 6], k = 4`
-- Output: `0`
-- Explanation: For an even-length array the larger middle value is used, so the median is already $4$.
+- **Input:** `nums = [1, 2, 3, 4, 5, 6], k = 4`
+- **Output:** `0`
+- **Explanation:** For an even-length array the larger middle value is used, so the median is already $4$.

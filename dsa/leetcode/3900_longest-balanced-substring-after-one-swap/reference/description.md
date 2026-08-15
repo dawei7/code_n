@@ -24,32 +24,27 @@ Return the maximum length of a substring containing equal numbers of zeros and o
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "100001"
+- **Input:** s = "100001"
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** 
 
 - Swap `"10<u>**0**</u>00<u>**1**</u>"`. The string becomes `"101000"`.
 
 - Select the substring `"<u>**1010**</u>00"`, which is balanced because it has two `'0'`s and two `'1'`s.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "111"
+- **Input:** s = "111"
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** 
 
 - Choose not to perform any swaps.
 
 - Select the empty substring, which is balanced because it has zero `'0'`s and zero `'1'`s.
-
-</div>
 
 ### 4. Constraints
 

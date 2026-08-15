@@ -23,26 +23,19 @@ Return the number of elapsed seconds from `startTime` to `endTime`. The result l
 
 #### Example 1
 
-<div class="example-block">
-**Input:** startTime = "01:00:00", endTime = "01:00:25"
+- **Input:** startTime = "01:00:00", endTime = "01:00:25"
 
-**Output:** 25
+- **Output:** 25
 
-**Explanation:**
+- **Explanation:** `endTime` is 25 seconds ahead of `startTime`.
 
-`endTime` is 25 seconds ahead of `startTime`.</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** startTime = "12:34:56", endTime = "13:00:00"
+- **Input:** startTime = "12:34:56", endTime = "13:00:00"
 
-**Output:** 1504
+- **Output:** 1504
 
-**Explanation:**
-
-`endTime` is 25 minutes and 4 seconds ahead of `startTime`, which equals 1504 seconds.
-
-</div>
+- **Explanation:** `endTime` is 25 minutes and 4 seconds ahead of `startTime`, which equals 1504 seconds.
 
 ### 4. Constraints
 

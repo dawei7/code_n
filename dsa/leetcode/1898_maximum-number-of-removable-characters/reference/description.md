@@ -10,8 +10,15 @@ A **subsequence** of a string is a new string generated from the original string
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `p`: Input parameter (`str`).
+- `removable`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,12 +30,14 @@ A **subsequence** of a string is a new string generated from the original string
 "ab" is a subsequence of "**<u>a</u>**cc**<u>b</u>**".
 If we remove the characters at indices 3, 1, and 0, "<s>**ab**</s>c<s>**a**</s>cb" becomes "ccb", and "ab" is no longer a subsequence.
 Hence, the maximum k is 2.
+
 #### Example 2
 
 - **Input:** `s = "abcbddddd", p = "abcd", removable = [3,2,1,4,5,6]`
 - **Output:** `1`
 **Explanation**: After removing the character at index 3, "abc<s>**b**</s>ddddd" becomes "abcddddd".
 "abcd" is a subsequence of "<u>**abcd**</u>dddd".
+
 #### Example 3
 
 - **Input:** `s = "abcab", p = "abc", removable = [0,1,2,3,4]`

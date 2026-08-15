@@ -56,7 +56,7 @@ The output grain is one row for each distinct $\text{product}_{id}$ occurring in
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Sales table:
 +---------+------------+------+----------+-------+
 | sale_id | product_id | year | quantity | price |
@@ -73,7 +73,7 @@ Product table:
 | 200        | Apple        |
 | 300        | Samsung      |
 +------------+--------------+
-**Output:**
+- **Output:** 
 +--------------+----------------+
 | product_id   | total_quantity |
 +--------------+----------------+

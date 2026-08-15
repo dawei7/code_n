@@ -12,63 +12,51 @@ If it is impossible to rearrange `nums` such that no two adjacent elements have 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,4,6,5,7]
+- **Input:** nums = [2,4,6,5,7]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-Swapping 5 and 6, the array becomes `[2,4,5,6,7]`
+- **Explanation:** Swapping 5 and 6, the array becomes `[2,4,5,6,7]`
 
 Swapping 5 and 4, the array becomes `[2,5,4,6,7]`
 
 Swapping 6 and 7, the array becomes `[2,5,4,7,6]`. The array is now a valid arrangement. Thus, the answer is 3.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,4,5,7]
+- **Input:** nums = [2,4,5,7]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** By swapping 4 and 5, the array becomes `[2,5,4,7]`, which is a valid arrangement. Thus, the answer is 1.
 
-By swapping 4 and 5, the array becomes `[2,5,4,7]`, which is a valid arrangement. Thus, the answer is 1.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,2,3]
+- **Input:** nums = [1,2,3]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** The array is already a valid arrangement. Thus, no operations are needed.
 
-The array is already a valid arrangement. Thus, no operations are needed.
-
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** nums = [4,5,6,8]
+- **Input:** nums = [4,5,6,8]
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-No valid arrangement is possible. Thus, the answer is -1.
-
-</div>
+- **Explanation:** No valid arrangement is possible. Thus, the answer is -1.
 
 ### 4. Constraints
 

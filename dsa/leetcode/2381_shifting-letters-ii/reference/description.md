@@ -8,8 +8,14 @@ Return *the final string after all such shifts to *`s`* are applied*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `shifts`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -20,6 +26,7 @@ Return *the final string after all such shifts to *`s`* are applied*.
 - **Explanation:** Firstly, shift the characters from index 0 to index 1 backward. Now s = "zac".
 Secondly, shift the characters from index 1 to index 2 forward. Now s = "zbd".
 Finally, shift the characters from index 0 to index 2 forward. Now s = "ace".
+
 #### Example 2
 
 - **Input:** `s = "dztz", shifts = [[0,0,0],[1,1,1]]`

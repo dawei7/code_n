@@ -8,8 +8,13 @@ Return *the **maximum number of points** you can earn by applying the above oper
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +26,7 @@ Return *the **maximum number of points** you can earn by applying the above oper
 - Delete 4 to earn 4 points. Consequently, 3 is also deleted. nums = [2].
 - Delete 2 to earn 2 points. nums = [].
 You earn a total of 6 points.
+
 #### Example 2
 
 - **Input:** `nums = [2,2,3,3,3,4]`

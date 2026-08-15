@@ -22,12 +22,11 @@ Return the signed sum of all elements under that alternating sign pattern.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,3,5,7]
+- **Input:** nums = [1,3,5,7]
 
-**Output:** -4
+- **Output:** -4
 
-**Explanation:**
+- **Explanation:** 
 
 - Elements at even indices are $\text{nums}[0] = 1$ and $\text{nums}[2] = 5$ because 0 and 2 are even numbers.
 
@@ -35,23 +34,19 @@ Return the signed sum of all elements under that alternating sign pattern.
 
 - The alternating sum is $\text{nums}[0] - \text{nums}[1] + \text{nums}[2] - \text{nums}[3] = 1 - 3 + 5 - 7 = -4$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [100]
+- **Input:** nums = [100]
 
-**Output:** 100
+- **Output:** 100
 
-**Explanation:**
+- **Explanation:** 
 
 - The only element at even indices is $\text{nums}[0] = 100$ because 0 is an even number.
 
 - There are no elements on odd indices.
 
 - The alternating sum is $\text{nums}[0] = 100$.
-
-</div>
 
 ### 4. Constraints
 

@@ -35,20 +35,20 @@ Return an integer array `answer` of length `n`. `answer[i]` is the minimum opera
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 4, p = 0, banned = [1, 2], k = 4`
-- Output: `[0, -1, -1, 1]`
-- Explanation: Reversing the entire array moves the `1` from index `0` to index `3`; indices `1` and `2` are forbidden destinations.
+- **Input:** `n = 4, p = 0, banned = [1, 2], k = 4`
+- **Output:** `[0, -1, -1, 1]`
+- **Explanation:** Reversing the entire array moves the `1` from index `0` to index `3`; indices `1` and `2` are forbidden destinations.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 5, p = 0, banned = [2, 4], k = 3`
-- Output: `[0, -1, -1, -1, -1]`
-- Explanation: The only initial length-three reversal would place the `1` at banned index `2`, so no move is legal.
+- **Input:** `n = 5, p = 0, banned = [2, 4], k = 3`
+- **Output:** `[0, -1, -1, -1, -1]`
+- **Explanation:** The only initial length-three reversal would place the `1` at banned index `2`, so no move is legal.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 4, p = 2, banned = [0, 1, 3], k = 1`
-- Output: `[-1, -1, 0, -1]`
-- Explanation: A reversal of length one cannot change the position of the `1`.
+- **Input:** `n = 4, p = 2, banned = [0, 1, 3], k = 1`
+- **Output:** `[-1, -1, 0, -1]`
+- **Explanation:** A reversal of length one cannot change the position of the `1`.

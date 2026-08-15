@@ -16,8 +16,15 @@ Return *the latest time you may arrive at the bus station to catch a bus*. You *
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `buses`: Input parameter (`List[int]`).
+- `passengers`: Input parameter (`List[int]`).
+- `capacity`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -33,6 +40,7 @@ The arrays `buses` and `passengers` are not necessarily sorted.
 At time 10, the first bus departs with the 0^th passenger.
 At time 20, the second bus departs with you and the 1^st passenger.
 Note that you may not arrive at the same time as another passenger, which is why you must arrive before the 1^st passenger to catch the bus.
+
 #### Example 2
 
 - **Input:** $buses = [20,30,10], passengers = [19,13,26,4,25,11,21], capacity = 2$

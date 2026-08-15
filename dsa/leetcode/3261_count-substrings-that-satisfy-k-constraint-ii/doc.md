@@ -34,23 +34,23 @@ Let $q$ be the number of queries.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "0001111", k = 2, queries = [[0,6]]`
-- Output: `[26]`
+- **Input:** `s = "0001111", k = 2, queries = [[0,6]]`
+- **Output:** `[26]`
 
 Only `"000111"` and `"0001111"` exceed both count limits.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "010101", k = 1, queries = [[0,5],[1,4],[2,3]]`
-- Output: `[15,9,3]`
+- **Input:** `s = "010101", k = 1, queries = [[0,5],[1,4],[2,3]]`
+- **Output:** `[15,9,3]`
 
 Within this alternating string, substrings longer than three fail the constraint.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "11111", k = 1, queries = [[0,4],[1,3],[2,2]]`
-- Output: `[15,6,1]`
+- **Input:** `s = "11111", k = 1, queries = [[0,4],[1,3],[2,2]]`
+- **Output:** `[15,6,1]`
 
 Every queried substring is valid because its zero count is zero.

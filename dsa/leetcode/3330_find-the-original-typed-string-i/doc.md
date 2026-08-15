@@ -32,20 +32,20 @@ Return the number of distinct intended strings consistent with zero or one long 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word = "abbcccc"`
-- Output: `5`
-- Explanation: The possible originals are `"abbcccc"`, `"abbccc"`, `"abbcc"`, `"abbc"`, and `"abcccc"`.
+- **Input:** `word = "abbcccc"`
+- **Output:** `5`
+- **Explanation:** The possible originals are `"abbcccc"`, `"abbccc"`, `"abbcc"`, `"abbc"`, and `"abcccc"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `word = "abcd"`
-- Output: `1`
-- Explanation: No group is repeated, so only the displayed word itself is possible.
+- **Input:** `word = "abcd"`
+- **Output:** `1`
+- **Explanation:** No group is repeated, so only the displayed word itself is possible.
 
-**Example 3**
+#### Example 3
 
-- Input: `word = "aaaa"`
-- Output: `4`
-- Explanation: The intended run of `a` may have length one, two, three, or four.
+- **Input:** `word = "aaaa"`
+- **Output:** `4`
+- **Explanation:** The intended run of `a` may have length one, two, three, or four.

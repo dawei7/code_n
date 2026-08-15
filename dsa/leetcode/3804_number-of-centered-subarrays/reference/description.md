@@ -22,12 +22,11 @@ Return an integer equal to the number of contiguous intervals whose element sum 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [-1,1,0]
+- **Input:** nums = [-1,1,0]
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** 
 
 - All single-element subarrays (`[-1]`, `[1]`, `[0]`) are centered.
 
@@ -37,19 +36,13 @@ Return an integer equal to the number of contiguous intervals whose element sum 
 
 - Thus, the answer is 5.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,-3]
+- **Input:** nums = [2,-3]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-Only single-element subarrays (`[2]`, `[-3]`) are centered.
-
-</div>
+- **Explanation:** Only single-element subarrays (`[2]`, `[-3]`) are centered.
 
 ### 4. Constraints
 

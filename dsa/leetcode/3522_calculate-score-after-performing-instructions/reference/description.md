@@ -8,16 +8,13 @@ You need to simulate a process based on the following rules:
 
 - If $\text{instructions}[i]$ is `"add"`:
 
-		<li>Add $\text{values}[i]$ to your score.
+		- Add $\text{values}[i]$ to your score.
 
 - Move to the next instruction $(i + 1)$.
 
-	</li>
 - If $\text{instructions}[i]$ is `"jump"`:
 
-		<li>Move to the instruction at index $(i + \text{values}[i])$ without modifying your score.
-
-	</li>
+		- Move to the instruction at index $(i + \text{values}[i])$ without modifying your score.
 
 The process ends when you either:
 
@@ -29,21 +26,24 @@ Return your score at the end of the process.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `instructions`: Input parameter (`List[str]`).
+- `values`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** instructions = ["jump","add","add","jump","add","jump"], values = [2,1,3,1,-2,-3]
+- **Input:** instructions = ["jump","add","add","jump","add","jump"], values = [2,1,3,1,-2,-3]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-Simulate the process starting at instruction 0:
+- **Explanation:** Simulate the process starting at instruction 0:
 
 - At index 0: Instruction is `"jump"`, move to index $0 + 2 = 2$.
 
@@ -57,39 +57,29 @@ Simulate the process starting at instruction 0:
 
 - At index 2: Already visited. The process ends.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** instructions = ["jump","add","add"], values = [3,1,1]
+- **Input:** instructions = ["jump","add","add"], values = [3,1,1]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-Simulate the process starting at instruction 0:
+- **Explanation:** Simulate the process starting at instruction 0:
 
 - At index 0: Instruction is `"jump"`, move to index $0 + 3 = 3$.
 
 - At index 3: Out of bounds. The process ends.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** instructions = ["jump"], values = [0]
+- **Input:** instructions = ["jump"], values = [0]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-Simulate the process starting at instruction 0:
+- **Explanation:** Simulate the process starting at instruction 0:
 
 - At index 0: Instruction is `"jump"`, move to index $0 + 0 = 0$.
 
 - At index 0: Already visited. The process ends.
-
-</div>
 
 ### 4. Constraints
 

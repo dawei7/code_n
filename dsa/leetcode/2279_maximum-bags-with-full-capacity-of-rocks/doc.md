@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/maximum-bags-with-full-capacity-of-rocks/) |
 
 ## Problem Description
+
 ### Goal
+
 There are $n$ bags. Bag $i$ can hold at most `capacity[i]` rocks and currently
 contains `rocks[i]` rocks. A bag is full exactly when its current number of
 rocks equals its capacity.
@@ -19,6 +21,7 @@ receive more rocks than its remaining capacity, and unused rocks may be left
 over. Return the greatest number of bags that can be made full.
 
 ### Function Contract
+
 **Inputs**
 
 - `capacity`: An integer array of length $n$ whose value at index $i$ is the maximum number of rocks bag $i$ can contain.
@@ -35,17 +38,18 @@ The maximum number of bags that can be exactly full after distributing at most
 the available additional rocks.
 
 ### Examples
-**Example 1**
 
-- Input: `capacity = [2, 3, 4, 5]`, `rocks = [1, 2, 4, 4]`, `additionalRocks = 2`
-- Output: `3`
+#### Example 1
 
-**Example 2**
+- **Input:** `capacity = [2, 3, 4, 5]`, `rocks = [1, 2, 4, 4]`, `additionalRocks = 2`
+- **Output:** `3`
 
-- Input: `capacity = [10, 2, 2]`, `rocks = [2, 2, 0]`, `additionalRocks = 100`
-- Output: `3`
+#### Example 2
 
-**Example 3**
+- **Input:** `capacity = [10, 2, 2]`, `rocks = [2, 2, 0]`, `additionalRocks = 100`
+- **Output:** `3`
 
-- Input: `capacity = [5, 5]`, `rocks = [5, 0]`, `additionalRocks = 1`
-- Output: `1`
+#### Example 3
+
+- **Input:** `capacity = [5, 5]`, `rocks = [5, 0]`, `additionalRocks = 1`
+- **Output:** `1`

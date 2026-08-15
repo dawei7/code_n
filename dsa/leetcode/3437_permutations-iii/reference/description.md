@@ -12,28 +12,21 @@ Return *all such ***alternating permutations** sorted in lexicographical order.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 4
+- **Input:** n = 4
 
-**Output:** [[1,2,3,4],[1,4,3,2],[2,1,4,3],[2,3,4,1],[3,2,1,4],[3,4,1,2],[4,1,2,3],[4,3,2,1]]
+- **Output:** [[1,2,3,4],[1,4,3,2],[2,1,4,3],[2,3,4,1],[3,2,1,4],[3,4,1,2],[4,1,2,3],[4,3,2,1]]
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 2
+- **Input:** n = 2
 
-**Output:** [[1,2],[2,1]]
+- **Output:** [[1,2],[2,1]]
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 3
+- **Input:** n = 3
 
-**Output:** [[1,2,3],[3,2,1]]
-
-</div>
+- **Output:** [[1,2,3],[3,2,1]]
 
 ### 4. Constraints
 

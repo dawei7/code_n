@@ -14,8 +14,13 @@ Return *the **minimum** number of changes required to make the string *`s` *beau
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,6 +31,7 @@ Return *the **minimum** number of changes required to make the string *`s` *beau
 - **Explanation:** We change s[1] to 1 and s[3] to 0 to get string "1100".
 It can be seen that the string "1100" is beautiful because we can partition it into "11|00".
 It can be proven that 2 is the minimum number of changes needed to make the string beautiful.
+
 #### Example 2
 
 - **Input:** `s = "10"`
@@ -33,6 +39,7 @@ It can be proven that 2 is the minimum number of changes needed to make the stri
 - **Explanation:** We change s[1] to 1 to get string "11".
 It can be seen that the string "11" is beautiful because we can partition it into "11".
 It can be proven that 1 is the minimum number of changes needed to make the string beautiful.
+
 #### Example 3
 
 - **Input:** `s = "0000"`

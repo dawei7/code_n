@@ -37,19 +37,19 @@ $$
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `queries = ["cbd"]`, `words = ["zaaaz"]`
-- Output: `[1]`
+- **Input:** `queries = ["cbd"]`, `words = ["zaaaz"]`
+- **Output:** `[1]`
 
 Here `f("cbd") = 1` and `f("zaaaz") = 3`.
 
-**Example 2**
+#### Example 2
 
-- Input: `queries = ["bbb","cc"]`, `words = ["a","aa","aaa","aaaa"]`
-- Output: `[1,2]`
+- **Input:** `queries = ["bbb","cc"]`, `words = ["a","aa","aaa","aaaa"]`
+- **Output:** `[1,2]`
 
-**Example 3**
+#### Example 3
 
-- Input: `queries = ["abcd","aabb"]`, `words = ["zzzz","abc","aa"]`
-- Output: `[2,1]`
+- **Input:** `queries = ["abcd","aabb"]`, `words = ["zzzz","abc","aa"]`
+- **Output:** `[2,1]`

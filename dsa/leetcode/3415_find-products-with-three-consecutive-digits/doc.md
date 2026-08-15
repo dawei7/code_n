@@ -38,16 +38,16 @@ be the total number of characters across all names.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `Products = [(1, "ABC123XYZ"), (2, "A12B34C"), (3, "Product56789"), (4, "NoDigitsHere"), (5, "789Product"), (6, "Item003Description"), (7, "Product12X34")]`
-- Output: `[(1, "ABC123XYZ"), (5, "789Product"), (6, "Item003Description")]`
+- **Input:** `Products = [(1, "ABC123XYZ"), (2, "A12B34C"), (3, "Product56789"), (4, "NoDigitsHere"), (5, "789Product"), (6, "Item003Description"), (7, "Product12X34")]`
+- **Output:** `[(1, "ABC123XYZ"), (5, "789Product"), (6, "Item003Description")]`
 
 The names for products 1, 5, and 6 contain the complete three-digit runs `123`, `789`, and `003`. Product 3 has a five-digit run, which does not qualify.
 
-**Example 2**
+#### Example 2
 
-- Input: `Products = [(2, "123"), (1, "X1234Y"), (3, "A123B456C")]`
-- Output: `[(2, "123"), (3, "A123B456C")]`
+- **Input:** `Products = [(2, "123"), (1, "X1234Y"), (3, "A123B456C")]`
+- **Output:** `[(2, "123"), (3, "A123B456C")]`
 
 A qualifying run may occupy the entire name or appear among other characters; `1234` is too long.

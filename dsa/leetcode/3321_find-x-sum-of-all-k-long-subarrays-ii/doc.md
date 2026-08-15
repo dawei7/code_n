@@ -34,14 +34,14 @@ Return the $n-k+1$ x-sums in left-to-right window order.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 1, 2, 2, 3, 4, 2, 3], k = 6, x = 2`
-- Output: `[6, 10, 12]`
-- Explanation: The first window keeps values 2 and 1. In the second window, value 2 ranks first and value 4 wins the frequency-one tie; the final window keeps values 2 and 3.
+- **Input:** `nums = [1, 1, 2, 2, 3, 4, 2, 3], k = 6, x = 2`
+- **Output:** `[6, 10, 12]`
+- **Explanation:** The first window keeps values 2 and 1. In the second window, value 2 ranks first and value 4 wins the frequency-one tie; the final window keeps values 2 and 3.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3, 8, 7, 8, 7, 5], k = 2, x = 2`
-- Output: `[11, 15, 15, 15, 12]`
-- Explanation: Since `k == x`, every distinct value in every length-two window is retained, so each result is the ordinary window sum.
+- **Input:** `nums = [3, 8, 7, 8, 7, 5], k = 2, x = 2`
+- **Output:** `[11, 15, 15, 15, 12]`
+- **Explanation:** Since `k == x`, every distinct value in every length-two window is retained, so each result is the ordinary window sum.

@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/minimum-discards-to-balance-inventory/) |
 
 ## Problem Description
+
 ### Goal
 
 The array `arrivals` records the item type arriving on each successive day. On its arrival day, an item may either be kept or discarded; a discarded item never contributes to later inventory windows.
@@ -35,23 +36,23 @@ Return the minimum number of arrivals that must be discarded so every window con
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arrivals = [1, 2, 1, 3, 1], w = 4, m = 2`
-- Output: `0`
+- **Input:** `arrivals = [1, 2, 1, 3, 1], w = 4, m = 2`
+- **Output:** `0`
 
 The first type never appears more than twice among retained arrivals in a four-day window.
 
-**Example 2**
+#### Example 2
 
-- Input: `arrivals = [1, 2, 3, 3, 3, 4], w = 3, m = 2`
-- Output: `1`
+- **Input:** `arrivals = [1, 2, 3, 3, 3, 4], w = 3, m = 2`
+- **Output:** `1`
 
 The third consecutive arrival of type 3 must be discarded because the current three-day window already retains two of that type.
 
-**Example 3**
+#### Example 3
 
-- Input: `arrivals = [1, 1, 1, 1], w = 3, m = 2`
-- Output: `1`
+- **Input:** `arrivals = [1, 1, 1, 1], w = 3, m = 2`
+- **Output:** `1`
 
 Discarding the third arrival lets the first expire before the fourth arrives, so no second discard is needed.

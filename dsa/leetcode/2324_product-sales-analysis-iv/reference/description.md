@@ -44,7 +44,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Sales table:
 +---------+------------+---------+----------+
 | sale_id | product_id | user_id | quantity |
@@ -64,7 +64,7 @@ Product table:
 | 2          | 25    |
 | 3          | 15    |
 +------------+-------+
-**Output:**
+- **Output:** 
 +---------+------------+
 | user_id | product_id |
 +---------+------------+
@@ -73,8 +73,7 @@ Product table:
 | 102     | 2          |
 | 102     | 3          |
 +---------+------------+
-**Explanation:**
-User 101:
+- **Explanation:** User 101:
 - Spent 10 * 10 = 100 on product 1.
 - Spent 7 * 15 = 105 on product 3.
 User 101 spent the most money on product 3.

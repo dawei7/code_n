@@ -10,8 +10,14 @@ Return `true`* if it is possible to escape regardless of how the ghosts move, ot
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `ghosts`: Input parameter (`List[List[int]]`).
+- `target`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -20,11 +26,13 @@ Return `true`* if it is possible to escape regardless of how the ghosts move, ot
 - **Input:** $ghosts = [[1,0],[0,3]], target = [0,1]$
 - **Output:** `true`
 - **Explanation:** You can reach the destination (0, 1) after 1 turn, while the ghosts located at (1, 0) and (0, 3) cannot catch up with you.
+
 #### Example 2
 
 - **Input:** $ghosts = [[1,0]], target = [2,0]$
 - **Output:** `false`
 - **Explanation:** You need to reach the destination (2, 0), but the ghost at (1, 0) lies between you and the destination.
+
 #### Example 3
 
 - **Input:** $ghosts = [[2,0]], target = [1,0]$

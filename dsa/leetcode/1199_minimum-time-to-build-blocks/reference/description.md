@@ -32,11 +32,13 @@ Return the smallest possible time by which all $n$ blocks have been built, start
 - **Input:** $blocks = [1], split = 1$
 - **Output:** `1`
 - **Explanation:** We use 1 worker to build 1 block in 1 time unit.
+
 #### Example 2
 
 - **Input:** $blocks = [1,2], split = 5$
 - **Output:** `7`
 - **Explanation:** We split the worker into 2 workers in 5 time units then assign each of them to a block so the cost is 5 + max(1, 2) = 7.
+
 #### Example 3
 
 - **Input:** $blocks = [1,2,3], split = 1$

@@ -10,8 +10,13 @@ Return the **number of pawns** the white rook is **attacking**.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `board`: Input parameter (`List[List[str]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,44 +24,31 @@ Return the **number of pawns** the white rook is **attacking**.
 
 ![](images/1253_example_1_improved.PNG)
 
-<div class="example-block">
-**Input:** board = [[".",".",".",".",".",".",".","."],[".",".",".","p",".",".",".","."],[".",".",".","R",".",".",".","p"],[".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".","."],[".",".",".","p",".",".",".","."],[".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".","."]]
+- **Input:** board = [[".",".",".",".",".",".",".","."],[".",".",".","p",".",".",".","."],[".",".",".","R",".",".",".","p"],[".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".","."],[".",".",".","p",".",".",".","."],[".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".","."]]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** In this example, the rook is attacking all the pawns.
 
-In this example, the rook is attacking all the pawns.
-
-</div>
 #### Example 2
 
 ![](images/1253_example_2_improved.PNG)
 
-<div class="example-block">
-**Input:** board = [[".",".",".",".",".",".","."],[".","p","p","p","p","p",".","."],[".","p","p","B","p","p",".","."],[".","p","B","R","B","p",".","."],[".","p","p","B","p","p",".","."],[".","p","p","p","p","p",".","."],[".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".","."]]
+- **Input:** board = [[".",".",".",".",".",".","."],[".","p","p","p","p","p",".","."],[".","p","p","B","p","p",".","."],[".","p","B","R","B","p",".","."],[".","p","p","B","p","p",".","."],[".","p","p","p","p","p",".","."],[".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".","."]]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** The bishops are blocking the rook from attacking any of the pawns.
 
-The bishops are blocking the rook from attacking any of the pawns.
-
-</div>
 #### Example 3
 
 ![](images/1253_example_3_improved.PNG)
 
-<div class="example-block">
-**Input:** board = [[".",".",".",".",".",".",".","."],[".",".",".","p",".",".",".","."],[".",".",".","p",".",".",".","."],["p","p",".","R",".","p","B","."],[".",".",".",".",".",".",".","."],[".",".",".","B",".",".",".","."],[".",".",".","p",".",".",".","."],[".",".",".",".",".",".",".","."]]
+- **Input:** board = [[".",".",".",".",".",".",".","."],[".",".",".","p",".",".",".","."],[".",".",".","p",".",".",".","."],["p","p",".","R",".","p","B","."],[".",".",".",".",".",".",".","."],[".",".",".","B",".",".",".","."],[".",".",".","p",".",".",".","."],[".",".",".",".",".",".",".","."]]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-The rook is attacking the pawns at positions b5, d6, and f5.
-
-</div>
+- **Explanation:** The rook is attacking the pawns at positions b5, d6, and f5.
 
 ### 4. Constraints
 

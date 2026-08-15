@@ -36,23 +36,23 @@ $$
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "(name)is(age)yearsold", knowledge = [["name","bob"],["age","two"]]`
-- Output: `"bobistwoyearsold"`
+- **Input:** `s = "(name)is(age)yearsold", knowledge = [["name","bob"],["age","two"]]`
+- **Output:** `"bobistwoyearsold"`
 
 Both enclosed keys are known, so `(name)` becomes `"bob"` and `(age)` becomes `"two"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "hi(name)", knowledge = [["a","b"]]`
-- Output: `"hi?"`
+- **Input:** `s = "hi(name)", knowledge = [["a","b"]]`
+- **Output:** `"hi?"`
 
 The key `"name"` is absent from `knowledge`.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "(a)(a)(a)aaa", knowledge = [["a","yes"]]`
-- Output: `"yesyesyesaaa"`
+- **Input:** `s = "(a)(a)(a)aaa", knowledge = [["a","yes"]]`
+- **Output:** `"yesyesyesaaa"`
 
 The same bracketed key may be evaluated repeatedly. The trailing unbracketed letters are not evaluated.

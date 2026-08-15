@@ -30,17 +30,17 @@ Return the numerically largest value reachable after any number of swaps between
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `num = 1234`
-- Output: `3412`
+- **Input:** `num = 1234`
+- **Output:** `3412`
 
-**Example 2**
+#### Example 2
 
-- Input: `num = 65875`
-- Output: `87655`
+- **Input:** `num = 65875`
+- **Output:** `87655`
 
-**Example 3**
+#### Example 3
 
-- Input: `num = 7`
-- Output: `7`
+- **Input:** `num = 7`
+- **Output:** `7`

@@ -31,14 +31,14 @@ Return the largest bitwise OR obtainable after using at most `k` operations.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [12,9], k = 1`
-- Output: `30`
-- Explanation: Doubling 9 produces `[12,18]`, whose bitwise OR is 30.
+- **Input:** `nums = [12,9], k = 1`
+- **Output:** `30`
+- **Explanation:** Doubling 9 produces `[12,18]`, whose bitwise OR is 30.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [8,1,2], k = 2`
-- Output: `35`
-- Explanation: Applying both operations to 8 produces `[32,1,2]`, whose bitwise OR is 35.
+- **Input:** `nums = [8,1,2], k = 2`
+- **Output:** `35`
+- **Explanation:** Applying both operations to 8 produces `[32,1,2]`, whose bitwise OR is 35.

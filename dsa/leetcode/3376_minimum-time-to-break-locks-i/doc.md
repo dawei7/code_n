@@ -33,20 +33,20 @@ The constraints are $1\leq n\leq8$, $1\leq k\leq10$, and $1\leq\texttt{strength[
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `strength = [3,4,1]`, `k = 1`
-- Output: `4`
-- Explanation: Break strengths `1`, `4`, and `3` using factors `1`, `2`, and `3`.
+- **Input:** `strength = [3,4,1]`, `k = 1`
+- **Output:** `4`
+- **Explanation:** Break strengths `1`, `4`, and `3` using factors `1`, `2`, and `3`.
 
-**Example 2**
+#### Example 2
 
-- Input: `strength = [2,5,4]`, `k = 2`
-- Output: `5`
-- Explanation: One optimal order spends `2`, `2`, and `1` minutes as the factors become `1`, `3`, and `5`.
+- **Input:** `strength = [2,5,4]`, `k = 2`
+- **Output:** `5`
+- **Explanation:** One optimal order spends `2`, `2`, and `1` minutes as the factors become `1`, `3`, and `5`.
 
-**Example 3**
+#### Example 3
 
-- Input: `strength = [6,7]`, `k = 3`
-- Output: `8`
-- Explanation: Breaking strength `6` first takes six minutes; strength `7` then needs two minutes at factor four.
+- **Input:** `strength = [6,7]`, `k = 3`
+- **Output:** `8`
+- **Explanation:** Breaking strength `6` first takes six minutes; strength `7` then needs two minutes at factor four.

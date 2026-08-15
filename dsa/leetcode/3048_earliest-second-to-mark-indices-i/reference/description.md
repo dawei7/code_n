@@ -16,8 +16,14 @@ Return *an integer denoting the **earliest second** in the range *`[1, m]`* when
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `changeIndices`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -37,6 +43,7 @@ Second 8: Mark the index changeIndices[8], which is marking index 1, since nums[
 Now all indices have been marked.
 It can be shown that it is not possible to mark all indices earlier than the 8th second.
 Hence, the answer is 8.
+
 #### Example 2
 
 - **Input:** `nums = [1,3], changeIndices = [1,1,1,2,1,1,1]`
@@ -51,6 +58,7 @@ Second 6: Mark the index changeIndices[6], which is marking index 1, since nums[
 Now all indices have been marked.
 It can be shown that it is not possible to mark all indices earlier than the 6th second.
 Hence, the answer is 6.
+
 #### Example 3
 
 - **Input:** `nums = [0,1], changeIndices = [2,2,2]`

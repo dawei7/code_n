@@ -190,6 +190,7 @@ def submit_verified_solution(
         "typed_code": source,
         "questionSlug": slug,
     }
+    result: dict[str, Any] = {}
     try:
         response = client.post(
             f"{_BASE_URL}/problems/{slug}/submit/",
@@ -197,30 +198,43 @@ def submit_verified_solution(
             headers=headers,
             timeout=30,
         )
-        response.raise_for_status()
-        submission_id = str(response.json().get("submission_id") or "")
-    except (requests.RequestException, ValueError) as exc:
+        if response.status_code == 403:
+            from tools.leetcode_browser_submit import submit_with_chrome
+            submission_id, result = submit_with_chrome(
+                slug=slug,
+                question_id=str(manifest["question_id"]),
+                language=str(manifest["language"]),
+                source=source,
+                session_cookie=body.credentials.session,
+                csrf_token=body.credentials.csrf_token,
+                clearance=body.credentials.cloudflare_clearance or "",
+            )
+        else:
+            response.raise_for_status()
+            submission_id = str(response.json().get("submission_id") or "")
+    except (requests.RequestException, ValueError, RuntimeError) as exc:
         raise HTTPException(status_code=502, detail=f"LeetCode submission request failed: {exc}") from exc
     if not submission_id:
         raise HTTPException(status_code=502, detail="LeetCode did not return a submission ID.")
 
-    result: dict[str, Any] = {}
-    for _ in range(60):
-        time.sleep(0.5)
-        try:
-            check = client.get(
-                f"{_BASE_URL}/submissions/detail/{submission_id}/check/",
-                headers={"Referer": f"{_BASE_URL}/problems/{slug}/submissions/"},
-                timeout=20,
-            )
-            check.raise_for_status()
-            result = check.json()
-        except (requests.RequestException, ValueError) as exc:
-            raise HTTPException(status_code=502, detail=f"LeetCode result check failed: {exc}") from exc
-        if result.get("state") == "SUCCESS" or result.get("finished"):
-            break
-    else:
-        raise HTTPException(status_code=504, detail=f"LeetCode submission {submission_id} is still being judged.")
+    if not result:
+        for _ in range(60):
+            time.sleep(0.5)
+            try:
+                check = client.get(
+                    f"{_BASE_URL}/submissions/detail/{submission_id}/check/",
+                    headers={"Referer": f"{_BASE_URL}/problems/{slug}/submissions/"},
+                    timeout=20,
+                )
+                check.raise_for_status()
+                result = check.json()
+            except (requests.RequestException, ValueError) as exc:
+                raise HTTPException(status_code=502, detail=f"LeetCode result check failed: {exc}") from exc
+            if result.get("state") == "SUCCESS" or result.get("finished"):
+                break
+        else:
+            raise HTTPException(status_code=504, detail=f"LeetCode submission {submission_id} is still being judged.")
+
 
     status = str(result.get("status_msg") or result.get("state") or "Unknown")
     accepted = status == "Accepted" or result.get("status_code") == 10

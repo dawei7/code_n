@@ -28,9 +28,9 @@ The leading character is `#`; the remaining six characters encode the red, green
 
 - **Input:** $color = "#09f166"$
 - **Output:** `"#11ee66"`
-- **Explanation:**
-The similarity is -(0x09 - 0x11)^2 -(0xf1 - 0xee)^2 - (0x66 - 0x66)^2 = -64 -9 -0 = -73.
+- **Explanation:** The similarity is -(0x09 - 0x11)^2 -(0xf1 - 0xee)^2 - (0x66 - 0x66)^2 = -64 -9 -0 = -73.
 This is the highest among any shorthand color.
+
 #### Example 2
 
 - **Input:** $color = "#4e3fe1"$

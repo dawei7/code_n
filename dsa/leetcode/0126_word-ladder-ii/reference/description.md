@@ -31,6 +31,7 @@ Return every shortest valid transformation sequence. The order of the returned s
 - **Explanation:** There are 2 shortest transformation sequences:
 "hit" -> "hot" -> "dot" -> "dog" -> "cog"
 "hit" -> "hot" -> "lot" -> "log" -> "cog"
+
 #### Example 2
 
 - **Input:** $beginWord = "hit", endWord = "cog", wordList = ["hot","dot","dog","lot","log"]$

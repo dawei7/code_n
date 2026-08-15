@@ -6,8 +6,10 @@ Given the `root` of a binary tree, return *the length of the longest path, where
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `longestUnivaluePath(root: Optional[TreeNode]) -> `int``: Executes operation.
 
 ### 3. Examples
 
@@ -18,6 +20,7 @@ Given the `root` of a binary tree, return *the length of the longest path, where
 - **Input:** `root = [5,4,5,1,1,null,5]`
 - **Output:** `2`
 - **Explanation:** The shown image shows that the longest path of the same value (i.e. 5).
+
 #### Example 2
 
 ![](images/ex2.jpg)

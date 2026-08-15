@@ -12,8 +12,10 @@ Return *a list of the values of all **flipped** nodes. You may return the answer
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `flipMatchVoyage(root: Optional[TreeNode], voyage: List[int]) -> `List[int]``: Executes operation.
 
 ### 3. Examples
 
@@ -24,6 +26,7 @@ Return *a list of the values of all **flipped** nodes. You may return the answer
 - **Input:** `root = [1,2], voyage = [2,1]`
 - **Output:** `[-1]`
 - **Explanation:** It is impossible to flip the nodes such that the pre-order traversal matches voyage.
+
 #### Example 2
 
 ![](images/1219-02.png)
@@ -31,6 +34,7 @@ Return *a list of the values of all **flipped** nodes. You may return the answer
 - **Input:** `root = [1,2,3], voyage = [1,3,2]`
 - **Output:** `[1]`
 - **Explanation:** Flipping node 1 swaps nodes 2 and 3, so the pre-order traversal matches voyage.
+
 #### Example 3
 
 ![](images/1219-02.png)

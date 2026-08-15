@@ -6,8 +6,14 @@ Return *the **number of pairs** of different nodes that are **unreachable** from
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +24,7 @@ Return *the **number of pairs** of different nodes that are **unreachable** from
 - **Input:** $n = 3, edges = [[0,1],[0,2],[1,2]]$
 - **Output:** `0`
 - **Explanation:** There are no pairs of nodes that are unreachable from each other. Therefore, we return 0.
+
 #### Example 2
 
 ![](images/tc-2.png)

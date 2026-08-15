@@ -33,8 +33,8 @@ Let $R$ denote the number of rows in `Olympic`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `Olympic = [["China",10,10,20],["South Sudan",0,0,1],["USA",10,10,20],["Israel",2,2,3],["Egypt",2,2,2]]`
-- Output: `[["China",10,10,20],["USA",10,10,20],["Israel",2,2,3],["Egypt",2,2,2],["South Sudan",0,0,1]]`
-- Explanation: China precedes USA by country name after all medals tie; Israel precedes Egypt because its bronze count is greater.
+- **Input:** `Olympic = [["China",10,10,20],["South Sudan",0,0,1],["USA",10,10,20],["Israel",2,2,3],["Egypt",2,2,2]]`
+- **Output:** `[["China",10,10,20],["USA",10,10,20],["Israel",2,2,3],["Egypt",2,2,2],["South Sudan",0,0,1]]`
+- **Explanation:** China precedes USA by country name after all medals tie; Israel precedes Egypt because its bronze count is greater.

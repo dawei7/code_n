@@ -10,8 +10,13 @@ Return *the value of the **largest** element that you can possibly obtain in the
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +29,7 @@ Return *the value of the **largest** element that you can possibly obtain in the
 - Choose i = 1. The resulting array will be nums = [5,<u>16</u>,3].
 - Choose i = 0. The resulting array will be nums = [<u>21</u>,3].
 The largest element in the final array is 21. It can be shown that we cannot obtain a larger element.
+
 #### Example 2
 
 - **Input:** `nums = [5,3,3]`

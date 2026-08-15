@@ -32,23 +32,23 @@ Return all remaining method numbers after applying the all-or-nothing removal ru
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 4, k = 1, invocations = [[1, 2], [0, 1], [3, 2]]`
-- Output: `[0, 1, 2, 3]`
+- **Input:** `n = 4, k = 1, invocations = [[1, 2], [0, 1], [3, 2]]`
+- **Output:** `[0, 1, 2, 3]`
 
 Methods 1 and 2 are suspicious, but methods 0 and 3 invoke that group, so nothing can be removed.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 5, k = 0, invocations = [[1, 2], [0, 2], [0, 1], [3, 4]]`
-- Output: `[3, 4]`
+- **Input:** `n = 5, k = 0, invocations = [[1, 2], [0, 2], [0, 1], [3, 4]]`
+- **Output:** `[3, 4]`
 
 The suspicious set is `{0, 1, 2}` and has no incoming invocation from methods 3 or 4.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 3, k = 2, invocations = [[1, 2], [0, 1], [2, 0]]`
-- Output: `[]`
+- **Input:** `n = 3, k = 2, invocations = [[1, 2], [0, 1], [2, 0]]`
+- **Output:** `[]`
 
 Every method is reachable from method 2, so all methods may be removed.

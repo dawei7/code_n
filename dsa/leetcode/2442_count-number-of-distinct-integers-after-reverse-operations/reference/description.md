@@ -8,8 +8,13 @@ Return *the number of **distinct** integers in the final array*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +25,7 @@ Return *the number of **distinct** integers in the final array*.
 - **Explanation:** After including the reverse of each number, the resulting array is [1,13,10,12,31,<u>1,31,1,21,13</u>].
 The reversed integers that were added to the end of the array are underlined. Note that for the integer 10, after reversing it, it becomes 01 which is just 1.
 The number of distinct integers in this array is 6 (The numbers 1, 10, 12, 13, 21, and 31).
+
 #### Example 2
 
 - **Input:** `nums = [2,2,2]`

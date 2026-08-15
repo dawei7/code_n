@@ -6,25 +6,21 @@ The grammar can best be understood through simple examples:
 
 - Single letters represent a singleton set containing that word.
 
-		<li>$R("a") = {"a"}$
+		- $R("a") = {"a"}$
 
 - $R("w") = {"w"}$
 
-	</li>
 - When we take a comma-delimited list of two or more expressions, we take the union of possibilities.
 
-		<li>$R("{a,b,c}") = {"a","b","c"}$
+		- $R("{a,b,c}") = {"a","b","c"}$
 
 - $R("{{a,b},{b,c}}") = {"a","b","c"}$ (notice the final set only contains each word at most once)
 
-	</li>
 - When we concatenate two expressions, we take the set of possible concatenations between two words where the first word comes from the first expression and the second word comes from the second expression.
 
-		<li>$R("{a,b}{c,d}") = {"ac","ad","bc","bd"}$
+		- $R("{a,b}{c,d}") = {"ac","ad","bc","bd"}$
 
 - $R("a{b,c}{d,e}f{g,h}") = {"abdfg", "abdfh", "abefg", "abefh", "acdfg", "acdfh", "acefg", "acefh"}$
-
-	</li>
 
 Formally, the three rules for our grammar:
 
@@ -38,8 +34,13 @@ Given an expression representing a set of words under the given grammar, return 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `expression`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `List[str]`.
 
 ### 3. Examples
 
@@ -47,6 +48,7 @@ Given an expression representing a set of words under the given grammar, return 
 
 - **Input:** $expression = "{a,b}{c,{d,e}}"$
 - **Output:** `["ac","ad","ae","bc","bd","be"]`
+
 #### Example 2
 
 - **Input:** $expression = "{{a,z},a{b,c},{ab,z}}"$

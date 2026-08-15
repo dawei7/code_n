@@ -21,6 +21,7 @@ A **subarray** is a contiguous part of an array.
 - **Input:** `nums = [1,1,1,2,1,2], k = 3`
 - **Output:** `5`
 - **Explanation:** The subarray [2,1,2] has a frequency score equal to 5. It can be shown that it is the maximum frequency score we can have.
+
 #### Example 2
 
 - **Input:** `nums = [1,1,1,1,1,1], k = 4`

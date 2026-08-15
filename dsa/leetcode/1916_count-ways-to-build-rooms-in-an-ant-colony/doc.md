@@ -31,23 +31,23 @@ Only one room can be built at a time. Any unbuilt room may be chosen once its pa
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `prevRoom = [-1,0,1]`
-- Output: `1`
+- **Input:** `prevRoom = [-1,0,1]`
+- **Output:** `1`
 
 The chain forces the order `0, 1, 2`.
 
-**Example 2**
+#### Example 2
 
-- Input: `prevRoom = [-1,0,0,1,2]`
-- Output: `6`
+- **Input:** `prevRoom = [-1,0,0,1,2]`
+- **Output:** `6`
 
 The two child chains may be interleaved in six parent-respecting ways after room `0`.
 
-**Example 3**
+#### Example 3
 
-- Input: `prevRoom = [-1,0,0]`
-- Output: `2`
+- **Input:** `prevRoom = [-1,0,0]`
+- **Output:** `2`
 
 After room `0`, its two children may be built in either order.

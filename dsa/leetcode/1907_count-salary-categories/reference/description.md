@@ -37,7 +37,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Accounts table:
 +------------+--------+
 | account_id | income |
@@ -47,7 +47,7 @@ Accounts table:
 | 8          | 87709  |
 | 6          | 91796  |
 +------------+--------+
-**Output:**
+- **Output:** 
 +----------------+----------------+
 | category       | accounts_count |
 +----------------+----------------+
@@ -55,8 +55,7 @@ Accounts table:
 | Average Salary | 0              |
 | High Salary    | 3              |
 +----------------+----------------+
-**Explanation:**
-Low Salary: Account 2.
+- **Explanation:** Low Salary: Account 2.
 Average Salary: No accounts.
 High Salary: Accounts 3, 6, and 8.
 ```

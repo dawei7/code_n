@@ -6,20 +6,25 @@ You are further given two integers `lower` and `upper` that describe the **inclu
 
 - For example, given $differences = [1, -3, 4]$, $lower = 1$, $upper = 6$, the hidden sequence is a sequence of length `4` whose elements are in between `1` and `6` (**inclusive**).
 
-		<li>`[3, 4, 1, 5]` and `[4, 5, 2, 6]` are possible hidden sequences.
+		- `[3, 4, 1, 5]` and `[4, 5, 2, 6]` are possible hidden sequences.
 
 - `[5, 6, 3, 7]` is not possible since it contains an element greater than `6`.
 
 - `[1, 2, 3, 4]` is not possible since the differences are not correct.
 
-	</li>
-
 Return *the number of **possible** hidden sequences there are.* If there are no possible sequences, return `0`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `differences`: Input parameter (`List[int]`).
+- `lower`: Input parameter (`int`).
+- `upper`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -31,6 +36,7 @@ Return *the number of **possible** hidden sequences there are.* If there are no 
 - [3, 4, 1, 5]
 - [4, 5, 2, 6]
 Thus, we return 2.
+
 #### Example 2
 
 - **Input:** $differences = [3,-4,5,1,-2], lower = -4, upper = 5$
@@ -41,6 +47,7 @@ Thus, we return 2.
 - [-1, 2, -2, 3, 4, 2]
 - [0, 3, -1, 4, 5, 3]
 Thus, we return 4.
+
 #### Example 3
 
 - **Input:** $differences = [4,-7,2], lower = 3, upper = 6$

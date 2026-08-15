@@ -6,8 +6,14 @@ Return the **k-th** **lexicographically smallest** palindromic permutation of `s
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Note
 
@@ -17,46 +23,39 @@ Different rearrangements that yield the same palindromic string are considered i
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "abba", k = 2
+- **Input:** s = "abba", k = 2
 
-**Output:** "baab"
+- **Output:** "baab"
 
-**Explanation:**
+- **Explanation:** 
 
 - The two distinct palindromic rearrangements of `"abba"` are `"abba"` and `"baab"`.
 
 - Lexicographically, `"abba"` comes before `"baab"`. Since $k = 2$, the output is `"baab"`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "aa", k = 2
+- **Input:** s = "aa", k = 2
 
-**Output:** ""
+- **Output:** ""
 
-**Explanation:**
+- **Explanation:** 
 
 - There is only one palindromic rearrangement: `"aa"`.
 
 - The output is an empty string since $k = 2$ exceeds the number of possible rearrangements.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "bacab", k = 1
+- **Input:** s = "bacab", k = 1
 
-**Output:** "abcba"
+- **Output:** "abcba"
 
-**Explanation:**
+- **Explanation:** 
 
 - The two distinct palindromic rearrangements of `"bacab"` are `"abcba"` and `"bacab"`.
 
 - Lexicographically, `"abcba"` comes before `"bacab"`. Since $k = 1$, the output is `"abcba"`.
-
-</div>
 
 ### 5. Constraints
 

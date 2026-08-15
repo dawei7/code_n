@@ -31,13 +31,13 @@ Return any list of at most $10n$ valid stamp starting indices that constructs `t
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `stamp = "abc", target = "ababc"`
-- Output: `[0,2]`
-- Explanation: `[1,0,2]` is another valid answer.
+- **Input:** `stamp = "abc", target = "ababc"`
+- **Output:** `[0,2]`
+- **Explanation:** `[1,0,2]` is another valid answer.
 
-**Example 2**
+#### Example 2
 
-- Input: `stamp = "abca", target = "aabcaca"`
-- Output: `[3,0,1]`
+- **Input:** `stamp = "abca", target = "aabcaca"`
+- **Output:** `[3,0,1]`

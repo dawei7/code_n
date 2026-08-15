@@ -43,7 +43,7 @@ Return one row for every represented report reason with a nonzero post count, in
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Actions table:
 +---------+---------+-------------+--------+--------+
 | user_id | post_id | action_date | action | extra  |
@@ -62,12 +62,12 @@ Actions table:
 | 5       | 5       | 2019-07-04  | view   | null   |
 | 5       | 5       | 2019-07-04  | report | racism |
 +---------+---------+-------------+--------+--------+
-**Output:**
+- **Output:** 
 +---------------+--------------+
 | report_reason | report_count |
 +---------------+--------------+
 | spam          | 1            |
 | racism        | 2            |
 +---------------+--------------+
-**Explanation:** Note that we only care about report reasons with non-zero number of reports.
+- **Explanation:** Note that we only care about report reasons with non-zero number of reports.
 ```

@@ -6,8 +6,16 @@ Level **1** of videos are all watched videos by your friends, level **2** of vid
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `watchedVideos`: Input parameter (`List[List[str]]`).
+- `friends`: Input parameter (`List[List[int]]`).
+- `id`: Input parameter (`int`).
+- `level`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[str]`.
 
 ### 3. Examples
 
@@ -21,13 +29,13 @@ Level **1** of videos are all watched videos by your friends, level **2** of vid
 
 - **Input:** $watchedVideos = [["A","B"],["C"],["B","C"],["D"]], friends = [[1,2],[0,3],[0,3],[1,2]], id = 0, level = 1$
 - **Output:** `["B","C"]`
-- **Explanation:**
-You have id = 0 (green color in the figure) and your friends are (yellow color in the figure):
+- **Explanation:** You have id = 0 (green color in the figure) and your friends are (yellow color in the figure):
 Person with id = 1 -> watchedVideos = ["C"]
 Person with id = 2 -> watchedVideos = ["B","C"]
 The frequencies of watchedVideos by your friends are:
 B -> 1
 C -> 2
+
 #### Example 2
 
 **
@@ -38,8 +46,7 @@ C -> 2
 
 - **Input:** $watchedVideos = [["A","B"],["C"],["B","C"],["D"]], friends = [[1,2],[0,3],[0,3],[1,2]], id = 0, level = 2$
 - **Output:** `["D"]`
-- **Explanation:**
-You have id = 0 (green color in the figure) and the only friend of your friends is the person with id = 3 (yellow color in the figure).
+- **Explanation:** You have id = 0 (green color in the figure) and the only friend of your friends is the person with id = 3 (yellow color in the figure).
 
 ### 4. Constraints
 

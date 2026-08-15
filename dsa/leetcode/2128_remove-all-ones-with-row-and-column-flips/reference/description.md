@@ -21,6 +21,7 @@ Return `true`* if it is possible to remove all *`1`*'s from *`grid` using **any*
 - **Explanation:** One possible way to remove all 1's from grid is to:
 - Flip the middle row
 - Flip the middle column
+
 #### Example 2
 
 ![](images/image-20220103181204-7.png)
@@ -28,6 +29,7 @@ Return `true`* if it is possible to remove all *`1`*'s from *`grid` using **any*
 - **Input:** `grid = [[1,1,0],[0,0,0],[0,0,0]]`
 - **Output:** `false`
 - **Explanation:** It is impossible to remove all 1's from grid.
+
 #### Example 3
 
 ![](images/image-20220103181224-8.png)

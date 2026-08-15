@@ -11,12 +11,15 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/maximum-repeating-substring/) |
 
 ## Problem Description
+
 ### Goal
+
 A string `word` is called $k$-repeating within `sequence` when the concatenation of exactly $k$ consecutive copies of `word` occurs as a substring of `sequence`. The copies must touch one another; separate occurrences elsewhere in `sequence` do not combine into a larger value.
 
 Given the two nonempty lowercase strings, return the greatest integer $k$ for which that repeated block occurs. If even one copy of `word` is absent from `sequence`, return $0$. A repeated block may begin and end anywhere inside `sequence`; it does not need to consume the entire string.
 
 ### Function Contract
+
 **Inputs**
 
 - `sequence`: a nonempty string of lowercase English letters in which to search.
@@ -29,19 +32,20 @@ Let $n = \lvert\texttt{sequence}\rvert$ and $m = \lvert\texttt{word}\rvert$.
 Return the maximum nonnegative integer $k$ such that $k$ consecutive copies of `word` form a substring of `sequence`.
 
 ### Examples
-**Example 1**
 
-- Input: `sequence = "ababc", word = "ab"`
-- Output: `2`
-- Explanation: `"abab"` occurs in `sequence`.
+#### Example 1
 
-**Example 2**
+- **Input:** `sequence = "ababc", word = "ab"`
+- **Output:** `2`
+- **Explanation:** `"abab"` occurs in `sequence`.
 
-- Input: `sequence = "ababc", word = "ba"`
-- Output: `1`
-- Explanation: one copy occurs, but `"baba"` does not.
+#### Example 2
 
-**Example 3**
+- **Input:** `sequence = "ababc", word = "ba"`
+- **Output:** `1`
+- **Explanation:** one copy occurs, but `"baba"` does not.
 
-- Input: `sequence = "ababc", word = "ac"`
-- Output: `0`
+#### Example 3
+
+- **Input:** `sequence = "ababc", word = "ac"`
+- **Output:** `0`

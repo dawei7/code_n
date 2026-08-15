@@ -34,20 +34,20 @@ Return a promise that resolves after all $n$ produced promises settle. Its resol
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: One function returns a promise that fulfills with `15` after $100$ ms.
-- Output: `[{"status": "fulfilled", "value": 15}]` after approximately $100$ ms.
-- Explanation: The only operation fulfills, so its result record occupies index $0$.
+- **Input:** One function returns a promise that fulfills with `15` after $100$ ms.
+- **Output:** `[{"status": "fulfilled", "value": 15}]` after approximately $100$ ms.
+- **Explanation:** The only operation fulfills, so its result record occupies index $0$.
 
-**Example 2**
+#### Example 2
 
-- Input: Two functions return promises that fulfill with `20` and `15`, both after $100$ ms.
-- Output: `[{"status": "fulfilled", "value": 20}, {"status": "fulfilled", "value": 15}]` after approximately $100$ ms.
-- Explanation: Both operations begin together, and the output preserves their input positions.
+- **Input:** Two functions return promises that fulfill with `20` and `15`, both after $100$ ms.
+- **Output:** `[{"status": "fulfilled", "value": 20}, {"status": "fulfilled", "value": 15}]` after approximately $100$ ms.
+- **Explanation:** Both operations begin together, and the output preserves their input positions.
 
-**Example 3**
+#### Example 3
 
-- Input: One promise fulfills with `30` after $200$ ms while another rejects with `"Error"` after $100$ ms.
-- Output: `[{"status": "fulfilled", "value": 30}, {"status": "rejected", "reason": "Error"}]` after approximately $200$ ms.
-- Explanation: The aggregate waits for every promise to settle and records the rejection as data.
+- **Input:** One promise fulfills with `30` after $200$ ms while another rejects with `"Error"` after $100$ ms.
+- **Output:** `[{"status": "fulfilled", "value": 30}, {"status": "rejected", "reason": "Error"}]` after approximately $200$ ms.
+- **Explanation:** The aggregate waits for every promise to settle and records the rejection as data.

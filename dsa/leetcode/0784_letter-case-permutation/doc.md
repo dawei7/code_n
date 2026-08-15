@@ -30,20 +30,20 @@ Return all distinct strings obtainable from those choices, in any order. Every l
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "a1b2"`
-- Output: `["a1b2","a1B2","A1b2","A1B2"]`
-- Explanation: Each of the two letters has two independent case choices.
+- **Input:** `s = "a1b2"`
+- **Output:** `["a1b2","a1B2","A1b2","A1B2"]`
+- **Explanation:** Each of the two letters has two independent case choices.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "3z4"`
-- Output: `["3z4","3Z4"]`
-- Explanation: Only `z` branches into two choices.
+- **Input:** `s = "3z4"`
+- **Output:** `["3z4","3Z4"]`
+- **Explanation:** Only `z` branches into two choices.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "12345"`
-- Output: `["12345"]`
-- Explanation: With no letters, the original digit string is the sole permutation.
+- **Input:** `s = "12345"`
+- **Output:** `["12345"]`
+- **Explanation:** With no letters, the original digit string is the sole permutation.

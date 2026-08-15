@@ -33,21 +33,21 @@ Report each user who logged in at least once during calendar year 2020. For ever
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: user `6` logs in during 2019, 2020, and 2021; user `8` logs in twice during 2020; user `14` logs in only outside 2020.
-- Output: user `6` with `2020-06-30 15:06:07` and user `8` with `2020-12-30 00:46:50`; user `14` is omitted.
+- **Input:** user `6` logs in during 2019, 2020, and 2021; user `8` logs in twice during 2020; user `14` logs in only outside 2020.
+- **Output:** user `6` with `2020-06-30 15:06:07` and user `8` with `2020-12-30 00:46:50`; user `14` is omitted.
 
-**Example 2**
+#### Example 2
 
-- Input: `(1, "2020-01-01 00:00:00")`
-- Output: `(1, "2020-01-01 00:00:00")`
+- **Input:** `(1, "2020-01-01 00:00:00")`
+- **Output:** `(1, "2020-01-01 00:00:00")`
 
 The first instant of 2020 is included.
 
-**Example 3**
+#### Example 3
 
-- Input: `(2, "2021-01-01 00:00:00")`
-- Output: no rows.
+- **Input:** `(2, "2021-01-01 00:00:00")`
+- **Output:** no rows.
 
 The first instant of 2021 is outside the requested year.

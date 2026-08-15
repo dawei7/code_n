@@ -25,6 +25,7 @@ Return the removed integer value. Because neither original endpoint was removed,
 - **Input:** `arr = [5,7,11,13]`
 - **Output:** `9`
 - **Explanation:** The previous array was [5,7,**9**,11,13].
+
 #### Example 2
 
 - **Input:** `arr = [15,13,12]`

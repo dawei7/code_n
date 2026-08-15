@@ -34,20 +34,20 @@ The input satisfies $1 \le n \le 10^3$ and $1 \le \texttt{heights[i]} \le 10^9$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `heights = [5,3,4,1,1]`
-- Output: `13`
-- Explanation: `[5,3,3,1,1]` is a valid maximum-sum arrangement with its peak at index `0`.
+- **Input:** `heights = [5,3,4,1,1]`
+- **Output:** `13`
+- **Explanation:** `[5,3,3,1,1]` is a valid maximum-sum arrangement with its peak at index `0`.
 
-**Example 2**
+#### Example 2
 
-- Input: `heights = [6,5,3,9,2,7]`
-- Output: `22`
-- Explanation: One optimal arrangement is `[3,3,3,9,2,2]`, whose peak is at index `3`.
+- **Input:** `heights = [6,5,3,9,2,7]`
+- **Output:** `22`
+- **Explanation:** One optimal arrangement is `[3,3,3,9,2,2]`, whose peak is at index `3`.
 
-**Example 3**
+#### Example 3
 
-- Input: `heights = [3,2,5,5,2,3]`
-- Output: `18`
-- Explanation: `[2,2,5,5,2,2]` is optimal and has a two-tower peak.
+- **Input:** `heights = [3,2,5,5,2,3]`
+- **Output:** `18`
+- **Explanation:** `[2,2,5,5,2,2]` is optimal and has a two-tower peak.

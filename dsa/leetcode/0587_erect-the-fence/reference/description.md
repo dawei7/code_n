@@ -8,8 +8,13 @@ Return *the coordinates of trees that are exactly located on the fence perimeter
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `trees`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
@@ -20,6 +25,7 @@ Return *the coordinates of trees that are exactly located on the fence perimeter
 - **Input:** $trees = [[1,1],[2,2],[2,0],[2,4],[3,3],[4,2]]$
 - **Output:** `[[1,1],[2,0],[4,2],[3,3],[2,4]]`
 - **Explanation:** All the trees will be on the perimeter of the fence except the tree at [2, 2], which will be inside the fence.
+
 #### Example 2
 
 ![](images/erect1-plane.jpg)

@@ -16,8 +16,17 @@ Return the **maximum** profit that can be achieved without exceeding the given b
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `present`: Input parameter (`List[int]`).
+- `future`: Input parameter (`List[int]`).
+- `hierarchy`: Input parameter (`List[List[int]]`).
+- `budget`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -29,14 +38,11 @@ Return the **maximum** profit that can be achieved without exceeding the given b
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 2, present = [1,2], future = [4,3], hierarchy = [[1,2]], budget = 3
+- **Input:** n = 2, present = [1,2], future = [4,3], hierarchy = [[1,2]], budget = 3
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
-
-![](images/screenshot-2025-04-10-at-053641.png)
+- **Explanation:** ![](images/screenshot-2025-04-10-at-053641.png)
 
 - Employee 1 buys the stock at price 1 and earns a profit of $4 - 1 = 3$.
 
@@ -46,33 +52,25 @@ Return the **maximum** profit that can be achieved without exceeding the given b
 
 - The total buying cost is $1 + 1 = 2 \le budget$. Thus, the maximum total profit achieved is $3 + 2 = 5$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 2, present = [3,4], future = [5,8], hierarchy = [[1,2]], budget = 4
+- **Input:** n = 2, present = [3,4], future = [5,8], hierarchy = [[1,2]], budget = 4
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-![](images/screenshot-2025-04-10-at-053641.png)
+- **Explanation:** ![](images/screenshot-2025-04-10-at-053641.png)
 
 - Employee 2 buys the stock at price 4 and earns a profit of $8 - 4 = 4$.
 
 - Since both employees cannot buy together, the maximum profit is 4.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 3, present = [4,6,8], future = [7,9,11], hierarchy = [[1,2],[1,3]], budget = 10
+- **Input:** n = 3, present = [4,6,8], future = [7,9,11], hierarchy = [[1,2],[1,3]], budget = 10
 
-**Output:** 10
+- **Output:** 10
 
-**Explanation:**
-
-![](images/image.png)
+- **Explanation:** ![](images/image.png)
 
 - Employee 1 buys the stock at price 4 and earns a profit of $7 - 4 = 3$.
 
@@ -80,17 +78,13 @@ Return the **maximum** profit that can be achieved without exceeding the given b
 
 - Employee 1 and Employee 3 buy their stocks at a total cost of $4 + 4 = 8 \le budget$. Thus, the maximum total profit achieved is $3 + 7 = 10$.
 
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** n = 3, present = [5,2,3], future = [8,5,6], hierarchy = [[1,2],[2,3]], budget = 7
+- **Input:** n = 3, present = [5,2,3], future = [8,5,6], hierarchy = [[1,2],[2,3]], budget = 7
 
-**Output:** 12
+- **Output:** 12
 
-**Explanation:**
-
-![](images/screenshot-2025-04-10-at-054114.png)
+- **Explanation:** ![](images/screenshot-2025-04-10-at-054114.png)
 
 - Employee 1 buys the stock at price 5 and earns a profit of $8 - 5 = 3$.
 
@@ -99,8 +93,6 @@ Return the **maximum** profit that can be achieved without exceeding the given b
 - Employee 3 would get a discounted price of $floor(3 / 2) = 1$ and earns a profit of $6 - 1 = 5$.
 
 - The total cost becomes $5 + 1 + 1 = 7 \le budget$. Thus, the maximum total profit achieved is $3 + 4 + 5 = 12$.
-
-</div>
 
 ### 5. Constraints
 

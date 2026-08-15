@@ -12,8 +12,14 @@ Return *the maximum subarray sum of all the subarrays that meet the conditions**
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -28,6 +34,7 @@ Return *the maximum subarray sum of all the subarrays that meet the conditions**
 - [2,9,9] which does not meet the requirements because the element 9 is repeated.
 - [9,9,9] which does not meet the requirements because the element 9 is repeated.
 We return 15 because it is the maximum subarray sum of all the subarrays that meet the conditions
+
 #### Example 2
 
 - **Input:** `nums = [4,4,4], k = 3`

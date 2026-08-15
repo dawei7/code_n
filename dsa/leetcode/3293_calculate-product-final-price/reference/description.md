@@ -35,7 +35,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 `Products` table:
@@ -85,7 +84,7 @@ The result format is in the following example.
 
 - For product 4, no discount is available for the Home category, so the final price remains 500.
 
-Result table is ordered by product_id in ascending order.</div>
+Result table is ordered by product_id in ascending order.
 
 ### 2. Function Contract
 

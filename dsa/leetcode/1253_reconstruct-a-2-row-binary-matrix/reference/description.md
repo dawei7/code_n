@@ -20,8 +20,15 @@ If no valid solution exists, return an empty 2-D array.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `upper`: Input parameter (`int`).
+- `lower`: Input parameter (`int`).
+- `colsum`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
@@ -30,10 +37,12 @@ If no valid solution exists, return an empty 2-D array.
 - **Input:** $upper = 2, lower = 1, colsum = [1,1,1]$
 - **Output:** `[[1,1,0],[0,0,1]]`
 - **Explanation:** [[1,0,1],[0,1,0]], and [[0,1,1],[1,0,0]] are also correct answers.
+
 #### Example 2
 
 - **Input:** $upper = 2, lower = 3, colsum = [2,2,1,1]$
 - **Output:** `[]`
+
 #### Example 3
 
 - **Input:** $upper = 5, lower = 5, colsum = [2,1,2,0,1,0,1,2,0,1]$

@@ -36,20 +36,20 @@ Return the optimal total number of moves when Alice maximizes and Bob minimizes,
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `kx = 1, ky = 1, positions = [[0, 0]]`
-- Output: `4`
-- Explanation: Board boundaries make the shortest knight path to the corner four moves long.
+- **Input:** `kx = 1, ky = 1, positions = [[0, 0]]`
+- **Output:** `4`
+- **Explanation:** Board boundaries make the shortest knight path to the corner four moves long.
 
-**Example 2**
+#### Example 2
 
-- Input: `kx = 0, ky = 2, positions = [[1, 1], [2, 2], [3, 3]]`
-- Output: `8`
-- Explanation: Optimal choices contribute `2`, `2`, and `4` moves.
+- **Input:** `kx = 0, ky = 2, positions = [[1, 1], [2, 2], [3, 3]]`
+- **Output:** `8`
+- **Explanation:** Optimal choices contribute `2`, `2`, and `4` moves.
 
-**Example 3**
+#### Example 3
 
-- Input: `kx = 0, ky = 0, positions = [[1, 2], [2, 4]]`
-- Output: `3`
-- Explanation: Passing through the first pawn while targeting the second does not capture it.
+- **Input:** `kx = 0, ky = 0, positions = [[1, 2], [2, 4]]`
+- **Output:** `3`
+- **Explanation:** Passing through the first pawn while targeting the second does not capture it.

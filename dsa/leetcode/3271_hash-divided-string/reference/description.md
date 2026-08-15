@@ -20,37 +20,34 @@ Return `result`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "abcd", k = 2
+- **Input:** s = "abcd", k = 2
 
-**Output:** "bf"
+- **Output:** "bf"
 
-**Explanation:**
-
-First substring: `"ab"`, $0 + 1 = 1$, $1 \% 26 = 1$, $\text{result}[0] = 'b'$.
+- **Explanation:** First substring: `"ab"`, $0 + 1 = 1$, $1 \% 26 = 1$, $\text{result}[0] = 'b'$.
 
 Second substring: `"cd"`, $2 + 3 = 5$, $5 \% 26 = 5$, $\text{result}[1] = 'f'$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "mxz", k = 3
+- **Input:** s = "mxz", k = 3
 
-**Output:** "i"
+- **Output:** "i"
 
-**Explanation:**
-
-The only substring: `"mxz"`, $12 + 23 + 25 = 60$, $60 \% 26 = 8$, $\text{result}[0] = 'i'$.
-
-</div>
+- **Explanation:** The only substring: `"mxz"`, $12 + 23 + 25 = 60$, $60 \% 26 = 8$, $\text{result}[0] = 'i'$.
 
 ### 4. Constraints
 

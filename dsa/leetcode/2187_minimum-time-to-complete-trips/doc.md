@@ -44,17 +44,17 @@ count is at least `totalTrips`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `time = [1,2,3]`, `totalTrips = 5`
-- Output: `3`
+- **Input:** `time = [1,2,3]`, `totalTrips = 5`
+- **Output:** `3`
 
-**Example 2**
+#### Example 2
 
-- Input: `time = [2]`, `totalTrips = 1`
-- Output: `2`
+- **Input:** `time = [2]`, `totalTrips = 1`
+- **Output:** `2`
 
-**Example 3**
+#### Example 3
 
-- Input: `time = [5,5]`, `totalTrips = 3`
-- Output: `10`
+- **Input:** `time = [5,5]`, `totalTrips = 3`
+- **Output:** `10`

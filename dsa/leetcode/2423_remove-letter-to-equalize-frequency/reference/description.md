@@ -6,8 +6,13 @@ Return* *`true`* if it is possible to remove one letter so that the frequency of
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `word`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Note
 
@@ -22,6 +27,7 @@ Return* *`true`* if it is possible to remove one letter so that the frequency of
 - **Input:** $word = "abcc"$
 - **Output:** `true`
 - **Explanation:** Select index 3 and delete it: word becomes "abc" and each character has a frequency of 1.
+
 #### Example 2
 
 - **Input:** $word = "aazz"$

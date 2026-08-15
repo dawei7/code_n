@@ -20,8 +20,15 @@ A **suffix** of an array is a subarray that starts at any point within the array
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -35,61 +42,49 @@ that x-value has a *different* definition in this version.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4,5], k = 3, queries = [[2,2,0,2],[3,3,3,0],[0,1,0,1]]
+- **Input:** nums = [1,2,3,4,5], k = 3, queries = [[2,2,0,2],[3,3,3,0],[0,1,0,1]]
 
-**Output:** [2,2,2]
+- **Output:** [2,2,2]
 
-**Explanation:**
+- **Explanation:** 
 
 - For query 0, `nums` becomes `[1, 2, 2, 4, 5]`, and the empty prefix **must** be removed. The possible operations are:
 
-		<li>Remove the suffix `[2, 4, 5]`. `nums` becomes `[1, 2]`.
+		- Remove the suffix `[2, 4, 5]`. `nums` becomes `[1, 2]`.
 
 - Remove the empty suffix. `nums` becomes `[1, 2, 2, 4, 5]` with a product 80, which gives remainder 2 when divided by 3.
 
-	</li>
 - For query 1, `nums` becomes `[1, 2, 2, 3, 5]`, and the prefix `[1, 2, 2]` **must** be removed. The possible operations are:
 
-		<li>Remove the empty suffix. `nums` becomes `[3, 5]`.
+		- Remove the empty suffix. `nums` becomes `[3, 5]`.
 
 - Remove the suffix `[5]`. `nums` becomes `[3]`.
 
-	</li>
 - For query 2, `nums` becomes `[1, 2, 2, 3, 5]`, and the empty prefix **must** be removed. The possible operations are:
 
-		<li>Remove the suffix `[2, 2, 3, 5]`. `nums` becomes `[1]`.
+		- Remove the suffix `[2, 2, 3, 5]`. `nums` becomes `[1]`.
 
 - Remove the suffix `[3, 5]`. `nums` becomes `[1, 2, 2]`.
 
-	</li>
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2,4,8,16,32], k = 4, queries = [[0,2,0,2],[0,2,0,1]]
+- **Input:** nums = [1,2,4,8,16,32], k = 4, queries = [[0,2,0,2],[0,2,0,1]]
 
-**Output:** [1,0]
+- **Output:** [1,0]
 
-**Explanation:**
+- **Explanation:** 
 
 - For query 0, `nums` becomes `[2, 2, 4, 8, 16, 32]`. The only possible operation is:
 
-		<li>Remove the suffix `[2, 4, 8, 16, 32]`.
+		- Remove the suffix `[2, 4, 8, 16, 32]`.
 
-	</li>
 - For query 1, `nums` becomes `[2, 2, 4, 8, 16, 32]`. There is no possible way to perform the operation.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,1,2,1,1], k = 2, queries = [[2,1,0,1]]
+- **Input:** nums = [1,1,2,1,1], k = 2, queries = [[2,1,0,1]]
 
-**Output:** [5]
-
-</div>
+- **Output:** [5]
 
 ### 6. Constraints
 

@@ -18,8 +18,13 @@ Return `true` *if the number of **global inversions** is equal to the number of 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -28,6 +33,7 @@ Return `true` *if the number of **global inversions** is equal to the number of 
 - **Input:** `nums = [1,0,2]`
 - **Output:** `true`
 - **Explanation:** There is 1 global inversion and 1 local inversion.
+
 #### Example 2
 
 - **Input:** `nums = [1,2,0]`

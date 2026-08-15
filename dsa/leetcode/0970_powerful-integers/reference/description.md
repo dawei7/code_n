@@ -8,8 +8,15 @@ You may return the answer in **any order**. In your answer, each value should oc
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `x`: Input parameter (`int`).
+- `y`: Input parameter (`int`).
+- `bound`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -17,14 +24,14 @@ You may return the answer in **any order**. In your answer, each value should oc
 
 - **Input:** $x = 2, y = 3, bound = 10$
 - **Output:** `[2,3,4,5,7,9,10]`
-- **Explanation:**
-2 = $2^{0}$ + $3^{0}$
+- **Explanation:** 2 = $2^{0}$ + $3^{0}$
 3 = $2^{1}$ + $3^{0}$
 4 = $2^{0}$ + $3^{1}$
 5 = $2^{1}$ + $3^{1}$
 7 = $2^{2}$ + $3^{1}$
 9 = $2^{3}$ + $3^{0}$
 10 = $2^{0}$ + $3^{2}$
+
 #### Example 2
 
 - **Input:** $x = 3, y = 5, bound = 15$

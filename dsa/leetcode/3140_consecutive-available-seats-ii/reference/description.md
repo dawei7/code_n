@@ -27,7 +27,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 Cinema table:
@@ -58,7 +57,7 @@ Cinema table:
 
 - Longest consecutive sequence of available seats starts from seat 3 and ends at seat 5 with a length of 3.
 
-Output table is ordered by first_seat_id in ascending order.</div>
+Output table is ordered by first_seat_id in ascending order.
 
 ### 2. Function Contract
 

@@ -34,26 +34,26 @@ Return `True` exactly when an obstacle-free path satisfying all boundary restric
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `xCorner = 3, yCorner = 4, circles = [[2, 1, 1]]`
-- Output: `True`
-- Explanation: The single circle does not separate the two corners.
+- **Input:** `xCorner = 3, yCorner = 4, circles = [[2, 1, 1]]`
+- **Output:** `True`
+- **Explanation:** The single circle does not separate the two corners.
 
-**Example 2**
+#### Example 2
 
-- Input: `xCorner = 3, yCorner = 3, circles = [[1, 1, 2]]`
-- Output: `False`
-- Explanation: The circle blocks the starting corner and connects opposing boundary groups.
+- **Input:** `xCorner = 3, yCorner = 3, circles = [[1, 1, 2]]`
+- **Output:** `False`
+- **Explanation:** The circle blocks the starting corner and connects opposing boundary groups.
 
-**Example 3**
+#### Example 3
 
-- Input: `xCorner = 3, yCorner = 3, circles = [[2, 1, 1], [1, 2, 1]]`
-- Output: `False`
-- Explanation: The tangent circles form a barrier between the two required corners.
+- **Input:** `xCorner = 3, yCorner = 3, circles = [[2, 1, 1], [1, 2, 1]]`
+- **Output:** `False`
+- **Explanation:** The tangent circles form a barrier between the two required corners.
 
-**Example 4**
+#### Example 4
 
-- Input: `xCorner = 4, yCorner = 4, circles = [[5, 5, 1]]`
-- Output: `True`
-- Explanation: The circle lies outside the rectangle and does not reach even its top-right corner.
+- **Input:** `xCorner = 4, yCorner = 4, circles = [[5, 5, 1]]`
+- **Output:** `True`
+- **Explanation:** The circle lies outside the rectangle and does not reach even its top-right corner.

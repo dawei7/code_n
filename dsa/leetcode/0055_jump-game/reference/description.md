@@ -23,6 +23,7 @@ Return `true` if some sequence of permitted jumps reaches the final index; other
 - **Input:** `nums = [2,3,1,1,4]`
 - **Output:** `true`
 - **Explanation:** Jump 1 step from index 0 to 1, then 3 steps to the last index.
+
 #### Example 2
 
 - **Input:** `nums = [3,2,1,0,4]`

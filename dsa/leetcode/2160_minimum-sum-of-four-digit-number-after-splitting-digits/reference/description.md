@@ -8,8 +8,13 @@ Return *the **minimum** possible sum of *`new1`* and *`new2`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `num`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,6 +24,7 @@ Return *the **minimum** possible sum of *`new1`* and *`new2`.
 - **Output:** `52`
 - **Explanation:** Some possible pairs [new1, new2] are [29, 23], [223, 9], etc.
 The minimum sum can be obtained by the pair [29, 23]: 29 + 23 = 52.
+
 #### Example 2
 
 - **Input:** $num = 4009$

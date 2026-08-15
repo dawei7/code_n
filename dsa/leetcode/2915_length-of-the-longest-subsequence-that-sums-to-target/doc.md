@@ -38,20 +38,20 @@ Return the maximum length of a subsequence whose sum is exactly `target`, or
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3, 4, 5], target = 9`
-- Output: `3`
-- Explanation: `[1, 3, 5]` and `[2, 3, 4]` have length three, longer than `[4, 5]`.
+- **Input:** `nums = [1, 2, 3, 4, 5], target = 9`
+- **Output:** `3`
+- **Explanation:** `[1, 3, 5]` and `[2, 3, 4]` have length three, longer than `[4, 5]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4, 1, 3, 2, 1, 5], target = 7`
-- Output: `4`
-- Explanation: The subsequence `[1, 3, 2, 1]` reaches seven using four positions.
+- **Input:** `nums = [4, 1, 3, 2, 1, 5], target = 7`
+- **Output:** `4`
+- **Explanation:** The subsequence `[1, 3, 2, 1]` reaches seven using four positions.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 1, 5, 4, 5], target = 3`
-- Output: `-1`
-- Explanation: No selection of positions sums to three.
+- **Input:** `nums = [1, 1, 5, 4, 5], target = 3`
+- **Output:** `-1`
+- **Explanation:** No selection of positions sums to three.

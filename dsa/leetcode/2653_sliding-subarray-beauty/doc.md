@@ -32,20 +32,20 @@ Return the $n-k+1$ beauty values in window order, beginning with the subarray at
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,-1,-3,-2,3], k = 3, x = 2`
-- Output: `[-1,-2,-2]`
-- Explanation: The second-smallest values of the three windows are `-1`, `-2`, and `-2`, and all are negative.
+- **Input:** `nums = [1,-1,-3,-2,3], k = 3, x = 2`
+- **Output:** `[-1,-2,-2]`
+- **Explanation:** The second-smallest values of the three windows are `-1`, `-2`, and `-2`, and all are negative.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [-1,-2,-3,-4,-5], k = 2, x = 2`
-- Output: `[-1,-2,-3,-4]`
-- Explanation: Each window contains two negatives, so its larger value is its second-smallest value and its beauty.
+- **Input:** `nums = [-1,-2,-3,-4,-5], k = 2, x = 2`
+- **Output:** `[-1,-2,-3,-4]`
+- **Explanation:** Each window contains two negatives, so its larger value is its second-smallest value and its beauty.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [-3,1,2,-3,0,-3], k = 2, x = 1`
-- Output: `[-3,0,-3,-3,-3]`
-- Explanation: The window `[1,2]` has no negative value and therefore contributes `0`; every other window has `-3` as its smallest value.
+- **Input:** `nums = [-3,1,2,-3,0,-3], k = 2, x = 1`
+- **Output:** `[-3,0,-3,-3,-3]`
+- **Explanation:** The window `[1,2]` has no negative value and therefore contributes `0`; every other window has `-3` as its smallest value.

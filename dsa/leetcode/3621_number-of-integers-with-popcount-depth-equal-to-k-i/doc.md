@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/number-of-integers-with-popcount-depth-equal-to-k-i/) |
 
 ## Problem Description
+
 ### Goal
 
 For a positive integer `x`, begin with $p_0=x$ and repeatedly replace the current value by its popcount, the number of set bits in its binary representation. This process eventually reaches 1. The popcount-depth of `x` is the smallest index $d\ge 0$ for which $p_d=1$; in particular, 1 itself has depth 0.
@@ -32,20 +33,20 @@ Return the number of positive integers no greater than `n` whose popcount-depth 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 4, k = 1`
-- Output: `2`
-- Explanation: The qualifying values are 2 and 4, since each is a power of two greater than 1 and reaches 1 after one popcount.
+- **Input:** `n = 4, k = 1`
+- **Output:** `2`
+- **Explanation:** The qualifying values are 2 and 4, since each is a power of two greater than 1 and reaches 1 after one popcount.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 7, k = 2`
-- Output: `3`
-- Explanation: Values 3, 5, and 6 each contain two set bits, so their sequence reaches 2 and then 1.
+- **Input:** `n = 7, k = 2`
+- **Output:** `3`
+- **Explanation:** Values 3, 5, and 6 each contain two set bits, so their sequence reaches 2 and then 1.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 1, k = 0`
-- Output: `1`
-- Explanation: The initial value is already 1, so its depth is zero.
+- **Input:** `n = 1, k = 0`
+- **Output:** `1`
+- **Explanation:** The initial value is already 1, so its depth is zero.

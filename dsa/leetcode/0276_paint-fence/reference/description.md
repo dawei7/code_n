@@ -29,10 +29,12 @@ Return the number of color assignments in which no three consecutive posts have 
 - **Output:** `6`
 - **Explanation:** All the possibilities are shown.
 Note that painting all the posts red or all the posts green is invalid because there cannot be three posts in a row with the same color.
+
 #### Example 2
 
 - **Input:** $n = 1, k = 1$
 - **Output:** `1`
+
 #### Example 3
 
 - **Input:** $n = 7, k = 2$

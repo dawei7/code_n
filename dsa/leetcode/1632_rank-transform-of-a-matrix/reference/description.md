@@ -8,21 +8,25 @@ The **rank** is an **integer** that represents how large an element is compared 
 
 - If two elements `p` and `q` are in the **same row or column**, then:
 
-		<li>If `p < q` then `rank(p) < rank(q)`
+		- If `p < q` then `rank(p) < rank(q)`
 
 - If $p = q$ then $rank(p) = rank(q)$
 
 - If `p > q` then `rank(p) > rank(q)`
 
-	</li>
 - The **rank** should be as **small** as possible.
 
 The test cases are generated so that `answer` is unique under the given rules.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `matrix`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
@@ -32,17 +36,18 @@ The test cases are generated so that `answer` is unique under the given rules.
 
 - **Input:** $matrix = [[1,2],[3,4]]$
 - **Output:** `[[1,2],[2,3]]`
-- **Explanation:**
-The rank of matrix[0][0] is 1 because it is the smallest integer in its row and column.
+- **Explanation:** The rank of matrix[0][0] is 1 because it is the smallest integer in its row and column.
 The rank of matrix[0][1] is 2 because matrix[0][1] > matrix[0][0] and matrix[0][0] is rank 1.
 The rank of matrix[1][0] is 2 because matrix[1][0] > matrix[0][0] and matrix[0][0] is rank 1.
 The rank of matrix[1][1] is 3 because matrix[1][1] > matrix[0][1], matrix[1][1] > matrix[1][0], and both matrix[0][1] and matrix[1][0] are rank 2.
+
 #### Example 2
 
 ![](images/rank2.jpg)
 
 - **Input:** $matrix = [[7,7],[7,7]]$
 - **Output:** `[[1,1],[1,1]]`
+
 #### Example 3
 
 ![](images/rank3.jpg)

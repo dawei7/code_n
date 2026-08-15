@@ -14,8 +14,15 @@ Return *an integer array *`answer`* of length *`2`* where*:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `a`: Input parameter (`int`).
+- `b`: Input parameter (`int`).
+- `c`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -24,11 +31,13 @@ Return *an integer array *`answer`* of length *`2`* where*:
 - **Input:** $a = 1, b = 2, c = 5$
 - **Output:** `[1,2]`
 - **Explanation:** Move the stone from 5 to 3, or move the stone from 5 to 4 to 3.
+
 #### Example 2
 
 - **Input:** $a = 4, b = 3, c = 2$
 - **Output:** `[0,0]`
 - **Explanation:** We cannot make any moves.
+
 #### Example 3
 
 - **Input:** $a = 3, b = 5, c = 1$

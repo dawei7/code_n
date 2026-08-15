@@ -8,8 +8,15 @@ Return the answer as one of the following values `{"Sunday", "Monday", "Tuesday"
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `day`: Input parameter (`int`).
+- `month`: Input parameter (`int`).
+- `year`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Note
 
@@ -21,10 +28,12 @@ January 1, 1971 was a Friday.
 
 - **Input:** $day = 31, month = 8, year = 2019$
 - **Output:** `"Saturday"`
+
 #### Example 2
 
 - **Input:** $day = 18, month = 7, year = 1999$
 - **Output:** `"Sunday"`
+
 #### Example 3
 
 - **Input:** $day = 15, month = 8, year = 1993$

@@ -33,14 +33,14 @@ Let $N=\lvert a\rvert+\lvert b\rvert+\lvert c\rvert$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `a = [1], b = [2], c = [3]`
-- Output: `1`
-- Explanation: `1 ^ 2 ^ 3 = 0`, which has zero set bits.
+- **Input:** `a = [1], b = [2], c = [3]`
+- **Output:** `1`
+- **Explanation:** `1 ^ 2 ^ 3 = 0`, which has zero set bits.
 
-**Example 2**
+#### Example 2
 
-- Input: `a = [1,1], b = [2,3], c = [1,5]`
-- Output: `4`
-- Explanation: Four index triplets produce XOR values with two set bits.
+- **Input:** `a = [1,1], b = [2,3], c = [1,5]`
+- **Output:** `4`
+- **Explanation:** Four index triplets produce XOR values with two set bits.

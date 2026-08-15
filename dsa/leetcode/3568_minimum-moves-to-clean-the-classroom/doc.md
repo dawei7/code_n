@@ -35,22 +35,22 @@ Return the minimum number of orthogonal moves required to collect all litter, or
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `classroom = ["S.","XL"], energy = 2`
-- Output: `2`
-- Explanation: Moving right and then down reaches the litter exactly as the energy is exhausted.
+- **Input:** `classroom = ["S.","XL"], energy = 2`
+- **Output:** `2`
+- **Explanation:** Moving right and then down reaches the litter exactly as the energy is exhausted.
 
-**Example 2**
+#### Example 2
 
-- Input: `classroom = ["LS","RL"], energy = 4`
-- Output: `3`
-- Explanation: Collect the upper-left litter, step onto the reset, and then collect the lower-right litter.
+- **Input:** `classroom = ["LS","RL"], energy = 4`
+- **Output:** `3`
+- **Explanation:** Collect the upper-left litter, step onto the reset, and then collect the lower-right litter.
 
-**Example 3**
+#### Example 3
 
-- Input: `classroom = ["L.S","RXL"], energy = 3`
-- Output: `-1`
-- Explanation: Obstacles and the energy limit prevent any route from collecting both litter cells.
+- **Input:** `classroom = ["L.S","RXL"], energy = 3`
+- **Output:** `-1`
+- **Explanation:** Obstacles and the energy limit prevent any route from collecting both litter cells.
 
 ---

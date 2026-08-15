@@ -33,17 +33,17 @@ Produce one result row for every possible student-and-subject pair, including pa
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: students Alice, Bob, Alex, and John; subjects Math, Physics, and Programming; and the provided repeated attendance records.
-- Output: twelve rows. Alice has counts `3,2,1` by those subjects, Bob has `1,0,1`, Alex has `0,0,0`, and John has `1,1,1`.
+- **Input:** students Alice, Bob, Alex, and John; subjects Math, Physics, and Programming; and the provided repeated attendance records.
+- **Output:** twelve rows. Alice has counts `3,2,1` by those subjects, Bob has `1,0,1`, Alex has `0,0,0`, and John has `1,1,1`.
 
-**Example 2**
+#### Example 2
 
-- Input: two students, two subjects, and no examination rows.
-- Output: all four student-subject pairs with `attended_exams = 0`.
+- **Input:** two students, two subjects, and no examination rows.
+- **Output:** all four student-subject pairs with `attended_exams = 0`.
 
-**Example 3**
+#### Example 3
 
-- Input: one student, one subject, and three identical attendance rows.
-- Output: that pair with `attended_exams = 3`.
+- **Input:** one student, one subject, and three identical attendance rows.
+- **Output:** that pair with `attended_exams = 3`.

@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/warehouse-manager/) |
 
 ## Problem Description
+
 ### Goal
 
 The `Warehouse` table records how many units of each product are stored at each warehouse. The `Products` table supplies every product's width, length, and height. One unit occupies the rectangular volume obtained by multiplying those three dimensions.
@@ -18,6 +19,7 @@ The `Warehouse` table records how many units of each product are stored at each 
 For every warehouse represented in the inventory table, calculate the total volume occupied by all stored units. Return the warehouse name and its aggregated volume; result rows may appear in any order.
 
 ### Function Contract
+
 **Inputs**
 
 - `Warehouse(name, product_id, units)`: $W$ inventory rows. The pair `(name, product_id)` is unique, and `units` is the number of that product stored at the named warehouse.
@@ -28,17 +30,18 @@ For every warehouse represented in the inventory table, calculate the total volu
 Return a table with columns `warehouse_name` and `volume`. For each warehouse name, `volume` is the sum of `units * Width * Length * Height` over its inventory rows.
 
 ### Examples
-**Example 1**
 
-- Input: three warehouses containing TVs, keychains, phones, and T-shirts in different quantities
-- Output: `LCHouse1` has volume `12250`, `LCHouse2` has `20250`, and `LCHouse3` has `800`
+#### Example 1
 
-**Example 2**
+- **Input:** three warehouses containing TVs, keychains, phones, and T-shirts in different quantities
+- **Output:** `LCHouse1` has volume `12250`, `LCHouse2` has `20250`, and `LCHouse3` has `800`
 
-- Input: warehouse `A` stores three units of a `2 × 3 × 4` product
-- Output: `(A, 72)`
+#### Example 2
 
-**Example 3**
+- **Input:** warehouse `A` stores three units of a `2 × 3 × 4` product
+- **Output:** `(A, 72)`
 
-- Input: two warehouses store different quantities of the same product
-- Output: one independently calculated volume row for each warehouse
+#### Example 3
+
+- **Input:** two warehouses store different quantities of the same product
+- **Output:** one independently calculated volume row for each warehouse

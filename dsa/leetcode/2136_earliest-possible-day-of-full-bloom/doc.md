@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/earliest-possible-day-of-full-bloom/) |
 
 ## Problem Description
+
 ### Goal
+
 You have $n$ seeds. Seed $i$ requires `plantTime[i]` full days of planting
 work before it can grow. You can plant only one seed on any day, but a seed's
 planting days need not be consecutive; it is complete after receiving the
@@ -21,6 +23,7 @@ last growth day and remains bloomed. Starting at day `0`, schedule the planting
 work to minimize the first day on which every seed is blooming.
 
 ### Function Contract
+
 **Inputs**
 
 - `plantTime`: Positive planting durations for $n$ seeds.
@@ -34,17 +37,18 @@ $10^4$.
 The earliest achievable day on which all seeds have bloomed.
 
 ### Examples
-**Example 1**
 
-- Input: `plantTime = [1,4,3]`, `growTime = [2,3,1]`
-- Output: `9`
+#### Example 1
 
-**Example 2**
+- **Input:** `plantTime = [1,4,3]`, `growTime = [2,3,1]`
+- **Output:** `9`
 
-- Input: `plantTime = [1,2,3,2]`, `growTime = [2,1,2,1]`
-- Output: `9`
+#### Example 2
 
-**Example 3**
+- **Input:** `plantTime = [1,2,3,2]`, `growTime = [2,1,2,1]`
+- **Output:** `9`
 
-- Input: `plantTime = [1]`, `growTime = [1]`
-- Output: `2`
+#### Example 3
+
+- **Input:** `plantTime = [1]`, `growTime = [1]`
+- **Output:** `2`

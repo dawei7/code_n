@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/longest-common-subsequence-between-sorted-arrays/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given a collection `arrays` of integer arrays. Every inner array is
 sorted in strictly increasing order. A subsequence may delete any elements
 without changing the relative order of those that remain.
@@ -20,6 +22,7 @@ in the same ascending order, so the required result consists of all such
 common values in increasing order.
 
 ### Function Contract
+
 **Inputs**
 
 - `arrays`: between 2 and 100 arrays. Each contains between 1 and 100 distinct
@@ -35,18 +38,19 @@ the fixed value-domain size.
   all arrays.
 
 ### Examples
-**Example 1**
 
-- Input: `arrays = [[1, 3, 4], [1, 4, 7, 9]]`
-- Output: `[1, 4]`
+#### Example 1
 
-**Example 2**
+- **Input:** `arrays = [[1, 3, 4], [1, 4, 7, 9]]`
+- **Output:** `[1, 4]`
 
-- Input:
+#### Example 2
+
+- **Input:** 
   `arrays = [[2, 3, 6, 8], [1, 2, 3, 5, 6, 7, 10], [2, 3, 4, 6, 9]]`
-- Output: `[2, 3, 6]`
+- **Output:** `[2, 3, 6]`
 
-**Example 3**
+#### Example 3
 
-- Input: `arrays = [[1, 2, 3, 4, 5], [6, 7, 8]]`
-- Output: `[]`
+- **Input:** `arrays = [[1, 2, 3, 4, 5], [6, 7, 8]]`
+- **Output:** `[]`

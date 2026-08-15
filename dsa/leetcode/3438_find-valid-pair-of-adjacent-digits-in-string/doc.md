@@ -30,17 +30,17 @@ Return the first valid two-character adjacent substring, or `""` when no such pa
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "2523533"`
-- Output: `"23"`
+- **Input:** `s = "2523533"`
+- **Output:** `"23"`
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "221"`
-- Output: `"21"`
+- **Input:** `s = "221"`
+- **Output:** `"21"`
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "22"`
-- Output: `""`
+- **Input:** `s = "22"`
+- **Output:** `""`

@@ -34,26 +34,26 @@ Return a curried function. Each partial call returns another function carrying t
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `fn = (a, b, c) => a + b + c`, `inputs = [[1], [2], [3]]`
-- Output: `6`
-- Explanation: Three one-argument calls collectively supply the three declared parameters.
+- **Input:** `fn = (a, b, c) => a + b + c`, `inputs = [[1], [2], [3]]`
+- **Output:** `6`
+- **Explanation:** Three one-argument calls collectively supply the three declared parameters.
 
-**Example 2**
+#### Example 2
 
-- Input: `fn = (a, b, c) => a + b + c`, `inputs = [[1, 2], [3]]`
-- Output: `6`
-- Explanation: The first call supplies two parameters and the second completes the invocation.
+- **Input:** `fn = (a, b, c) => a + b + c`, `inputs = [[1, 2], [3]]`
+- **Output:** `6`
+- **Explanation:** The first call supplies two parameters and the second completes the invocation.
 
-**Example 3**
+#### Example 3
 
-- Input: `fn = (a, b, c) => a + b + c`, `inputs = [[], [], [1, 2, 3]]`
-- Output: `6`
-- Explanation: Empty calls preserve the pending curry without adding arguments.
+- **Input:** `fn = (a, b, c) => a + b + c`, `inputs = [[], [], [1, 2, 3]]`
+- **Output:** `6`
+- **Explanation:** Empty calls preserve the pending curry without adding arguments.
 
-**Example 4**
+#### Example 4
 
-- Input: `fn = () => 42`, `inputs = [[]]`
-- Output: `42`
-- Explanation: Calling a curried zero-parameter function evaluates the original immediately.
+- **Input:** `fn = () => 42`, `inputs = [[]]`
+- **Output:** `42`
+- **Explanation:** Calling a curried zero-parameter function evaluates the original immediately.

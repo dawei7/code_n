@@ -18,21 +18,24 @@ Return the initial index of the *winning* player.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `skills`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** skills = [4,2,6,3,9], k = 2
+- **Input:** skills = [4,2,6,3,9], k = 2
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-Initially, the queue of players is `[0,1,2,3,4]`. The following process happens:
+- **Explanation:** Initially, the queue of players is `[0,1,2,3,4]`. The following process happens:
 
 - Players 0 and 1 play a game, since the skill of player 0 is higher than that of player 1, player 0 wins. The resulting queue is `[0,2,3,4,1]`.
 
@@ -42,17 +45,13 @@ Initially, the queue of players is `[0,1,2,3,4]`. The following process happens:
 
 Player 2 won $k = 2$ games in a row, so the winner is player 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** skills = [2,5,4], k = 3
+- **Input:** skills = [2,5,4], k = 3
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-Initially, the queue of players is `[0,1,2]`. The following process happens:
+- **Explanation:** Initially, the queue of players is `[0,1,2]`. The following process happens:
 
 - Players 0 and 1 play a game, since the skill of player 1 is higher than that of player 0, player 1 wins. The resulting queue is `[1,2,0]`.
 
@@ -61,8 +60,6 @@ Initially, the queue of players is `[0,1,2]`. The following process happens:
 - Players 1 and 0 play a game, since the skill of player 1 is higher than that of player 0, player 1 wins. The resulting queue is `[1,2,0]`.
 
 Player 1 won $k = 3$ games in a row, so the winner is player 1.
-
-</div>
 
 ### 4. Constraints
 

@@ -12,8 +12,13 @@ Return *the resulting array *`arr`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -23,6 +28,7 @@ Return *the resulting array *`arr`.
 - **Output:** `[3,2,5,4]`
 - **Explanation:** In round one, first Alice removes 2 and then Bob removes 3. Then in arr firstly Bob appends 3 and then Alice appends 2. So arr = [3,2].
 At the begining of round two, nums = [5,4]. Now, first Alice removes 4 and then Bob removes 5. Then both append in arr which becomes [3,2,5,4].
+
 #### Example 2
 
 - **Input:** `nums = [2,5]`

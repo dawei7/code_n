@@ -37,7 +37,7 @@ Let $r$ be the number of rows in `user_permissions`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 Input table `user_permissions`:
 
@@ -48,7 +48,7 @@ Input table `user_permissions`:
 | 3 | 7 |
 | 4 | 3 |
 
-Output:
+- **Output:** 
 
 | common_perms | any_perms |
 |---:|---:|

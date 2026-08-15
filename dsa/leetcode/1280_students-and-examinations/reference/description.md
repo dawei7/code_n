@@ -55,7 +55,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Students table:
 +------------+--------------+
 | student_id | student_name |
@@ -89,7 +89,7 @@ Examinations table:
 | 2          | Math         |
 | 1          | Math         |
 +------------+--------------+
-**Output:**
+- **Output:** 
 +------------+--------------+--------------+----------------+
 | student_id | student_name | subject_name | attended_exams |
 +------------+--------------+--------------+----------------+
@@ -106,8 +106,7 @@ Examinations table:
 | 13         | John         | Physics      | 1              |
 | 13         | John         | Programming  | 1              |
 +------------+--------------+--------------+----------------+
-**Explanation:**
-The result table should contain all students and all subjects.
+- **Explanation:** The result table should contain all students and all subjects.
 Alice attended the Math exam 3 times, the Physics exam 2 times, and the Programming exam 1 time.
 Bob attended the Math exam 1 time, the Programming exam 1 time, and did not attend the Physics exam.
 Alex did not attend any exams.

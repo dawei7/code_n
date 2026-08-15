@@ -32,19 +32,19 @@ Return the minimum score among every valid triangulation of the polygon.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `values = [1,2,3]`
-- Output: `6`
-- Explanation: The polygon is already one triangle, whose weight is $1\cdot2\cdot3=6$.
+- **Input:** `values = [1,2,3]`
+- **Output:** `6`
+- **Explanation:** The polygon is already one triangle, whose weight is $1\cdot2\cdot3=6$.
 
-**Example 2**
+#### Example 2
 
-- Input: `values = [3,7,4,5]`
-- Output: `144`
-- Explanation: The better diagonal produces weights `3 * 4 * 5` and `3 * 4 * 7`, totaling `144`.
+- **Input:** `values = [3,7,4,5]`
+- **Output:** `144`
+- **Explanation:** The better diagonal produces weights `3 * 4 * 5` and `3 * 4 * 7`, totaling `144`.
 
-**Example 3**
+#### Example 3
 
-- Input: `values = [1,3,1,4,1,5]`
-- Output: `13`
+- **Input:** `values = [1,3,1,4,1,5]`
+- **Output:** `13`

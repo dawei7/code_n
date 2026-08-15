@@ -6,8 +6,14 @@ Notice that you can not jump outside of the array at any time.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+- `start`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -15,17 +21,18 @@ Notice that you can not jump outside of the array at any time.
 
 - **Input:** `arr = [4,2,3,0,3,1,2], start = 5`
 - **Output:** `true`
-- **Explanation:**
-All possible ways to reach at index 3 with value 0 are:
+- **Explanation:** All possible ways to reach at index 3 with value 0 are:
 index 5 -> index 4 -> index 1 -> index 3
 index 5 -> index 6 -> index 4 -> index 1 -> index 3
+
 #### Example 2
 
 - **Input:** `arr = [4,2,3,0,3,1,2], start = 0`
 - **Output:** `true`
-- **Explanation:**
+- **Explanation:** 
 **One possible way to reach at index 3 with value 0 is:
 index 0 -> index 4 -> index 1 -> index 3
+
 #### Example 3
 
 - **Input:** `arr = [3,0,2,1,2], start = 2`

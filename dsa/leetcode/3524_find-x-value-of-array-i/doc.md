@@ -33,17 +33,17 @@ The constraints are $1 \le \lvert\texttt{nums}\rvert \le 10^5$, $1 \le \texttt{n
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3, 4, 5], k = 3`
-- Output: `[9, 2, 4]`
+- **Input:** `nums = [1, 2, 3, 4, 5], k = 3`
+- **Output:** `[9, 2, 4]`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 2, 4, 8, 16, 32], k = 4`
-- Output: `[18, 1, 2, 0]`
+- **Input:** `nums = [1, 2, 4, 8, 16, 32], k = 4`
+- **Output:** `[18, 1, 2, 0]`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 1, 2, 1, 1], k = 2`
-- Output: `[9, 6]`
+- **Input:** `nums = [1, 1, 2, 1, 1], k = 2`
+- **Output:** `[9, 6]`

@@ -8,8 +8,13 @@ To separate the digits of an integer is to get all the digits it has in the same
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -17,12 +22,13 @@ To separate the digits of an integer is to get all the digits it has in the same
 
 - **Input:** `nums = [13,25,83,77]`
 - **Output:** `[1,3,2,5,8,3,7,7]`
-- **Explanation:**
+- **Explanation:** 
 - The separation of 13 is [1,3].
 - The separation of 25 is [2,5].
 - The separation of 83 is [8,3].
 - The separation of 77 is [7,7].
 answer = [1,3,2,5,8,3,7,7]. Note that answer contains the separations in the same order.
+
 #### Example 2
 
 - **Input:** `nums = [7,1,3,9]`

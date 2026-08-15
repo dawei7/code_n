@@ -6,35 +6,31 @@ Return the **maximum** number of non-intersecting **substrings** of word that ar
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `word`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** word = "abcdeafdef"
+- **Input:** word = "abcdeafdef"
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** The two substrings are `"abcdea"` and `"fdef"`.
 
-The two substrings are `"abcdea"` and `"fdef"`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** word = "bcdaaaab"
+- **Input:** word = "bcdaaaab"
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-The only substring is `"aaaa"`. Note that we cannot **also** choose `"bcdaaaab"` since it intersects with the other substring.
-
-</div>
+- **Explanation:** The only substring is `"aaaa"`. Note that we cannot **also** choose `"bcdaaaab"` since it intersects with the other substring.
 
 ### 4. Constraints
 

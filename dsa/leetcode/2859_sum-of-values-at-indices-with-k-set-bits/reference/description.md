@@ -10,8 +10,14 @@ The **set bits** in an integer are the `1`'s present when it is written in binar
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -27,6 +33,7 @@ The **set bits** in an integer are the `1`'s present when it is written in binar
 4 = 100_2
 Indices 1, 2, and 4 have k = 1 set bits in their binary representation.
 Hence, the answer is nums[1] + nums[2] + nums[4] = 13.
+
 #### Example 2
 
 - **Input:** `nums = [4,3,2,1], k = 2`

@@ -36,22 +36,22 @@ Return the number of special index triplets modulo $10^9+7$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [6, 3, 6]`
-- Output: `1`
-- Explanation: The indices $(0,1,2)$ form the only valid triplet because both outer values are $2\cdot3$.
+- **Input:** `nums = [6, 3, 6]`
+- **Output:** `1`
+- **Explanation:** The indices $(0,1,2)$ form the only valid triplet because both outer values are $2\cdot3$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [0, 1, 0, 0]`
-- Output: `1`
-- Explanation: The indices $(0,2,3)$ qualify; doubling the middle value zero still gives zero.
+- **Input:** `nums = [0, 1, 0, 0]`
+- **Output:** `1`
+- **Explanation:** The indices $(0,2,3)$ qualify; doubling the middle value zero still gives zero.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [8, 4, 2, 8, 4]`
-- Output: `2`
-- Explanation: The valid index triplets are $(0,1,3)$ and $(1,2,4)$.
+- **Input:** `nums = [8, 4, 2, 8, 4]`
+- **Output:** `2`
+- **Explanation:** The valid index triplets are $(0,1,3)$ and $(1,2,4)$.
 
 ---

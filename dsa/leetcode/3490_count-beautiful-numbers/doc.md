@@ -33,14 +33,14 @@ Return the number of beautiful integers in the inclusive interval $[l,r]$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `l = 10, r = 20`
-- Output: `2`
-- Explanation: `10` and `20` have digit product zero, so both are beautiful; no other number in the interval qualifies.
+- **Input:** `l = 10, r = 20`
+- **Output:** `2`
+- **Explanation:** `10` and `20` have digit product zero, so both are beautiful; no other number in the interval qualifies.
 
-**Example 2**
+#### Example 2
 
-- Input: `l = 1, r = 15`
-- Output: `10`
-- Explanation: Every one-digit number from `1` through `9` qualifies because its product equals its sum, and `10` also qualifies because its product is zero.
+- **Input:** `l = 1, r = 15`
+- **Output:** `10`
+- **Explanation:** Every one-digit number from `1` through `9` qualifies because its product equals its sum, and `10` also qualifies because its product is zero.

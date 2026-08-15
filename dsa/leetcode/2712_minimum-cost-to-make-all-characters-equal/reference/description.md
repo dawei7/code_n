@@ -12,8 +12,13 @@ Return *the **minimum cost **to make all characters of the string **equal***.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +27,7 @@ Return *the **minimum cost **to make all characters of the string **equal***.
 - **Input:** `s = "0011"`
 - **Output:** `2`
 - **Explanation:** Apply the second operation with i = 2 to obtain s = "0000" for a cost of 2. It can be shown that 2 is the minimum cost to make all characters equal.
+
 #### Example 2
 
 - **Input:** `s = "010101"`

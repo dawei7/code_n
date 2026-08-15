@@ -40,9 +40,9 @@ All numeric arguments lie between $1$ and $100$. Descriptions have length from $
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `commands = ["TodoList","addTask","addTask","getAllTasks","getAllTasks","addTask","getTasksForTag","completeTask","completeTask","getTasksForTag","getAllTasks"]`, `inputs = [[],[1,"Task1",50,[]],[1,"Task2",100,["P1"]],[1],[5],[1,"Task3",30,["P1"]],[1,"P1"],[5,1],[1,2],[1,"P1"],[1]]`
-- Output: `[null,1,2,["Task1","Task2"],[],3,["Task3","Task2"],null,null,["Task3"],["Task3","Task1"]]`
+- **Input:** `commands = ["TodoList","addTask","addTask","getAllTasks","getAllTasks","addTask","getTasksForTag","completeTask","completeTask","getTasksForTag","getAllTasks"]`, `inputs = [[],[1,"Task1",50,[]],[1,"Task2",100,["P1"]],[1],[5],[1,"Task3",30,["P1"]],[1,"P1"],[5,1],[1,2],[1,"P1"],[1]]`
+- **Output:** `[null,1,2,["Task1","Task2"],[],3,["Task3","Task2"],null,null,["Task3"],["Task3","Task1"]]`
 
 The invalid completion by user `5` has no effect. Completing task `2` for its owner removes that task from later results.

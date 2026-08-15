@@ -6,8 +6,13 @@ The **next greater number** of a number `x` is the first greater number to its t
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -18,6 +23,7 @@ The **next greater number** of a number `x` is the first greater number to its t
 - **Explanation:** The first 1's next greater number is 2;
 The number 2 can't find next greater number.
 The second 1's next greater number needs to search circularly, which is also 2.
+
 #### Example 2
 
 - **Input:** `nums = [1,2,3,4,3]`

@@ -30,20 +30,20 @@ Given a positive target position, determine the minimum number of instructions r
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `target = 3`
-- Output: `2`
-- Explanation: Two accelerations visit positions `1` and `3`.
+- **Input:** `target = 3`
+- **Output:** `2`
+- **Explanation:** Two accelerations visit positions `1` and `3`.
 
-**Example 2**
+#### Example 2
 
-- Input: `target = 6`
-- Output: `5`
-- Explanation: `AAARA` reaches `7`, reverses, then accelerates back to `6`.
+- **Input:** `target = 6`
+- **Output:** `5`
+- **Explanation:** `AAARA` reaches `7`, reverses, then accelerates back to `6`.
 
-**Example 3**
+#### Example 3
 
-- Input: `target = 4`
-- Output: `5`
-- Explanation: `AARRA` reaches `3`, turns twice to face forward again, and advances to `4`.
+- **Input:** `target = 4`
+- **Output:** `5`
+- **Explanation:** `AARRA` reaches `3`, turns twice to face forward again, and advances to `4`.

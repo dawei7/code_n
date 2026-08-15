@@ -40,17 +40,17 @@ $0\le\texttt{nums1[i]},\texttt{nums2[i]}\le 10^6$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [3, 2, 0, 1, 0], nums2 = [6, 5, 0]`
-- Output: `12`
-- Explanation: Replacing the first array's zeros with `2` and `4`, and
+- **Input:** `nums1 = [3, 2, 0, 1, 0], nums2 = [6, 5, 0]`
+- **Output:** `12`
+- **Explanation:** Replacing the first array's zeros with `2` and `4`, and
   the second array's zero with `1`, gives sums of 12. No smaller common sum
   is possible.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [2, 0, 2, 0], nums2 = [1, 4]`
-- Output: `-1`
-- Explanation: The first array has minimum attainable sum 6, while the
+- **Input:** `nums1 = [2, 0, 2, 0], nums2 = [1, 4]`
+- **Output:** `-1`
+- **Explanation:** The first array has minimum attainable sum 6, while the
   zero-free second array is fixed at 5 and cannot be increased.

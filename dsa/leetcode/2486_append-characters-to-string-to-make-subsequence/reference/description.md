@@ -8,8 +8,14 @@ A **subsequence** is a string that can be derived from another string by deletin
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `t`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,11 +26,13 @@ A **subsequence** is a string that can be derived from another string by deletin
 - **Explanation:** Append the characters "ding" to the end of s so that s = "coachingding".
 Now, t is a subsequence of s ("<u>**co**</u>aching<u>**ding**</u>").
 It can be shown that appending any 3 characters to the end of s will never make t a subsequence.
+
 #### Example 2
 
 - **Input:** `s = "abcde", t = "a"`
 - **Output:** `0`
 - **Explanation:** t is already a subsequence of s ("<u>**a**</u>bcde").
+
 #### Example 3
 
 - **Input:** `s = "z", t = "abcde"`

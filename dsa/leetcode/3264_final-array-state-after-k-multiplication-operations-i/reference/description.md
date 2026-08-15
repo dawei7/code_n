@@ -12,21 +12,25 @@ Return an integer array denoting the *final state* of `nums` after performing al
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+- `multiplier`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,1,3,5,6], k = 5, multiplier = 2
+- **Input:** nums = [2,1,3,5,6], k = 5, multiplier = 2
 
-**Output:** [8,4,6,5,6]
+- **Output:** [8,4,6,5,6]
 
-**Explanation:**
-
-<table>
+- **Explanation:** <table>
 	<tbody>
 		<tr>
 			<th>Operation</th>
@@ -54,17 +58,14 @@ Return an integer array denoting the *final state* of `nums` after performing al
 		</tr>
 	</tbody>
 </table>
-</div>
+
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2], k = 3, multiplier = 4
+- **Input:** nums = [1,2], k = 3, multiplier = 4
 
-**Output:** [16,8]
+- **Output:** [16,8]
 
-**Explanation:**
-
-<table>
+- **Explanation:** <table>
 	<tbody>
 		<tr>
 			<th>Operation</th>
@@ -84,7 +85,6 @@ Return an integer array denoting the *final state* of `nums` after performing al
 		</tr>
 	</tbody>
 </table>
-</div>
 
 ### 4. Constraints
 

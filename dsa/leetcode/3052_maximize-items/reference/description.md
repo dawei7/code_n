@@ -38,7 +38,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Inventory table:
 +---------+----------------+---------------+----------------+
 | item_id | item_type      | item_category | square_footage |
@@ -54,14 +54,14 @@ Inventory table:
 | 4256    | prime_eligible | Furniture     | 55.50          |
 | 6325    | prime_eligible | Food          | 13.20          |
 +---------+----------------+---------------+----------------+
-**Output:**
+- **Output:** 
 +----------------+-------------+
 | item_type      | item_count  |
 +----------------+-------------+
 | prime_eligible | 5400        |
 | not_prime      | 8           |
 +----------------+-------------+
-**Explanation:**
+- **Explanation:** 
 - The prime-eligible category comprises a total of 6 items, amounting to a combined square footage of 555.20 (68 + 325 + 85 + 8.50 + 55.50 + 13.20). It is possible to store 900 combinations of these 6 items, totaling 5400 items and occupying 499,680 square footage.
 - In the not_prime category, there are a total of 4 items with a combined square footage of 128.50. After deducting the storage used by prime-eligible items (500,000 - 499,680 = 320), there is room for 2 combinations of non-prime items, accommodating a total of 8 non-prime items within the available 320 square footage.
 Output table is ordered by item count in descending order.

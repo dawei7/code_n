@@ -12,8 +12,14 @@ Implement the `Solution` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `blacklist`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `the result`.
 
 ### 3. Examples
 

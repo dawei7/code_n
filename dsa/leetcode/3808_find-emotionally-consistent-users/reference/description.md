@@ -54,7 +54,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 reactions table:
@@ -96,7 +95,7 @@ reactions table:
 
 - **User 1**:
 
-		<li>Total reactions = 5
+		- Total reactions = 5
 
 - like appears 4 times
 
@@ -104,10 +103,9 @@ reactions table:
 
 - Meets the 60% consistency requirement
 
-	</li>
 - **User 2**:
 
-		<li>Total reactions = 5
+		- Total reactions = 5
 
 - Most frequent reaction appears only 2 times
 
@@ -115,10 +113,9 @@ reactions table:
 
 - Does not meet the consistency requirement
 
-	</li>
 - **User 3**:
 
-		<li>Total reactions = 5
+		- Total reactions = 5
 
 - 'love' appears 5 times
 
@@ -126,8 +123,4 @@ reactions table:
 
 - Meets the consistency requirement
 
-	</li>
-
 The Results table is ordered by reaction_ratio in descending order, then by user_id in ascending order.
-
-</div>

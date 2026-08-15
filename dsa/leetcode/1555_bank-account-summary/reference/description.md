@@ -63,7 +63,7 @@ Return a table with columns $\text{user}_{id}$ (int), $\text{user}_{name}$ (varc
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Users table:
 +------------+--------------+-------------+
 | user_id    | user_name    | credit      |
@@ -81,7 +81,7 @@ Transactions table:
 | 2          | 3          | 2          | 500      | 2020-08-02    |
 | 3          | 2          | 1          | 200      | 2020-08-03    |
 +------------+------------+------------+----------+---------------+
-**Output:**
+- **Output:** 
 +------------+------------+------------+-----------------------+
 | user_id    | user_name  | credit     | credit_limit_breached |
 +------------+------------+------------+-----------------------+
@@ -90,8 +90,7 @@ Transactions table:
 | 3          | Winston    | 9900       | No                    |
 | 4          | Luis       | 800        | No                    |
 +------------+------------+------------+-----------------------+
-**Explanation:**
-Moustafa paid $400 on "2020-08-01" and received $200 on "2020-08-03", credit (100 -400 +200) = -$100
+- **Explanation:** Moustafa paid $400 on "2020-08-01" and received $200 on "2020-08-03", credit (100 -400 +200) = -$100
 Jonathan received $500 on "2020-08-02" and paid $200 on "2020-08-08", credit (200 +500 -200) = $500
 Winston received $400 on "2020-08-01" and paid $500 on "2020-08-03", credit (10000 +400 -500) = $9990
 Luis did not received any transfer, credit = $800

@@ -33,11 +33,13 @@ IPv6 compression such as `::` is not part of the accepted grammar because all ei
 - **Input:** $queryIP = "172.16.254.1"$
 - **Output:** `"IPv4"`
 - **Explanation:** This is a valid IPv4 address, return "IPv4".
+
 #### Example 2
 
 - **Input:** $queryIP = "2001:0db8:85a3:0:0:8A2E:0370:7334"$
 - **Output:** `"IPv6"`
 - **Explanation:** This is a valid IPv6 address, return "IPv6".
+
 #### Example 3
 
 - **Input:** $queryIP = "256.256.256.256"$

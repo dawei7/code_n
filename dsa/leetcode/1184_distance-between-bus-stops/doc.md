@@ -32,21 +32,21 @@ The bus can travel around the circle in either direction: clockwise or countercl
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `distance = [1,2,3,4]`, `start = 0`, `destination = 1`
-- Output: `1`
+- **Input:** `distance = [1,2,3,4]`, `start = 0`, `destination = 1`
+- **Output:** `1`
 
 The direct edge has length `1`; the route around the other three edges has length `9`.
 
-**Example 2**
+#### Example 2
 
-- Input: `distance = [1,2,3,4]`, `start = 0`, `destination = 2`
-- Output: `3`
+- **Input:** `distance = [1,2,3,4]`, `start = 0`, `destination = 2`
+- **Output:** `3`
 
 The two direction lengths are `1 + 2 = 3` and `3 + 4 = 7`.
 
-**Example 3**
+#### Example 3
 
-- Input: `distance = [1,2,3,4]`, `start = 0`, `destination = 3`
-- Output: `4`
+- **Input:** `distance = [1,2,3,4]`, `start = 0`, `destination = 3`
+- **Output:** `4`

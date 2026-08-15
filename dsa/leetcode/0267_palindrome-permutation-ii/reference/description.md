@@ -22,6 +22,7 @@ Return all distinct palindromic permutations of `s` in any order, or an empty li
 
 - **Input:** `s = "aabb"`
 - **Output:** `["abba","baab"]`
+
 #### Example 2
 
 - **Input:** `s = "abc"`

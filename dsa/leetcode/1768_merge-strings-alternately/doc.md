@@ -33,20 +33,20 @@ Return the resulting merged string.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word1 = "abc", word2 = "pqr"`
-- Output: `"apbqcr"`
-- Explanation: Both strings have the same length, so every character belongs to an alternating pair.
+- **Input:** `word1 = "abc", word2 = "pqr"`
+- **Output:** `"apbqcr"`
+- **Explanation:** Both strings have the same length, so every character belongs to an alternating pair.
 
-**Example 2**
+#### Example 2
 
-- Input: `word1 = "ab", word2 = "pqrs"`
-- Output: `"apbqrs"`
-- Explanation: After `"apbq"`, the remaining suffix `"rs"` from `word2` is appended.
+- **Input:** `word1 = "ab", word2 = "pqrs"`
+- **Output:** `"apbqrs"`
+- **Explanation:** After `"apbq"`, the remaining suffix `"rs"` from `word2` is appended.
 
-**Example 3**
+#### Example 3
 
-- Input: `word1 = "abcd", word2 = "pq"`
-- Output: `"apbqcd"`
-- Explanation: After two alternating pairs, the suffix `"cd"` from `word1` remains.
+- **Input:** `word1 = "abcd", word2 = "pq"`
+- **Output:** `"apbqcd"`
+- **Explanation:** After two alternating pairs, the suffix `"cd"` from `word1` remains.

@@ -16,8 +16,13 @@ Return *the **minimum length** of *`s` *after performing the above operation any
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,6 +31,7 @@ Return *the **minimum length** of *`s` *after performing the above operation any
 - **Input:** `s = "ca"`
 - **Output:** `2`
 - **Explanation:** You can't remove any characters, so the string stays as is.
+
 #### Example 2
 
 - **Input:** `s = "cabaabac"`
@@ -35,6 +41,7 @@ Return *the **minimum length** of *`s` *after performing the above operation any
 - Take prefix = "a" and suffix = "a" and remove them, s = "baab".
 - Take prefix = "b" and suffix = "b" and remove them, s = "aa".
 - Take prefix = "a" and suffix = "a" and remove them, s = "".
+
 #### Example 3
 
 - **Input:** `s = "aabccabba"`

@@ -46,7 +46,7 @@ Return one output row for every input row. Sort first by `gender` in ascending o
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Scores table:
 +-------------+--------+------------+--------------+
 | player_name | gender | day        | score_points |
@@ -61,7 +61,7 @@ Scores table:
 | Priya       | F      | 2019-12-31 | 23           |
 | Priyanka    | F      | 2019-12-30 | 17           |
 +-------------+--------+------------+--------------+
-**Output:**
+- **Output:** 
 +--------+------------+-------+
 | gender | day        | total |
 +--------+------------+-------+
@@ -75,8 +75,7 @@ Scores table:
 | M      | 2019-12-31 | 29    |
 | M      | 2020-01-07 | 36    |
 +--------+------------+-------+
-**Explanation:**
-For the female team:
+- **Explanation:** For the female team:
 The first day is 2019-12-30, Priyanka scored 17 points and the total score for the team is 17.
 The second day is 2019-12-31, Priya scored 23 points and the total score for the team is 40.
 The third day is 2020-01-01, Aron scored 17 points and the total score for the team is 57.

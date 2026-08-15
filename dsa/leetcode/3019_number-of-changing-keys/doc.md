@@ -34,20 +34,20 @@ The source constraints guarantee $1 \le \lvert\texttt{s}\rvert \le 100$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "aAbBcC"`
-- Output: `2`
-- Explanation: Case-only transitions keep the same key; the changes are from `a` to `b` and from `b` to `c`.
+- **Input:** `s = "aAbBcC"`
+- **Output:** `2`
+- **Explanation:** Case-only transitions keep the same key; the changes are from `a` to `b` and from `b` to `c`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "AaAaAaaA"`
-- Output: `0`
-- Explanation: Every character uses the `a` key regardless of case.
+- **Input:** `s = "AaAaAaaA"`
+- **Output:** `0`
+- **Explanation:** Every character uses the `a` key regardless of case.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "abBA"`
-- Output: `2`
-- Explanation: Ignoring case gives `"abba"`, with changes at `a -> b` and `b -> a`.
+- **Input:** `s = "abBA"`
+- **Output:** `2`
+- **Explanation:** Ignoring case gives `"abba"`, with changes at `a -> b` and `b -> a`.

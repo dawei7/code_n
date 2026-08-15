@@ -30,21 +30,21 @@ Return an integer array of length $n$ containing the minimum valid value for eve
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 3, 5, 7]`
-- Output: `[-1, 1, 4, 3]`
+- **Input:** `nums = [2, 3, 5, 7]`
+- **Output:** `[-1, 1, 4, 3]`
 
 No pair of consecutive non-negative integers has OR equal to 2. For 7, the minimum choice is 3 because `3 | 4 == 7`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [11, 13, 31]`
-- Output: `[9, 12, 15]`
+- **Input:** `nums = [11, 13, 31]`
+- **Output:** `[9, 12, 15]`
 
 For example, `9 | 10 == 11`, and no smaller non-negative value produces 11.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [17, 19, 23]`
-- Output: `[16, 17, 19]`
+- **Input:** `nums = [17, 19, 23]`
+- **Output:** `[16, 17, 19]`

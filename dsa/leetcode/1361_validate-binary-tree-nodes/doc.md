@@ -31,19 +31,19 @@ Determine whether these links form exactly one valid binary tree containing all 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 4, leftChild = [1,-1,3,-1], rightChild = [2,-1,-1,-1]`
-- Output: `true`
+- **Input:** `n = 4, leftChild = [1,-1,3,-1], rightChild = [2,-1,-1,-1]`
+- **Output:** `true`
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 4, leftChild = [1,-1,3,-1], rightChild = [2,3,-1,-1]`
-- Output: `false`
-- Explanation: node `3` is assigned to two parents.
+- **Input:** `n = 4, leftChild = [1,-1,3,-1], rightChild = [2,3,-1,-1]`
+- **Output:** `false`
+- **Explanation:** node `3` is assigned to two parents.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 2, leftChild = [1,0], rightChild = [-1,-1]`
-- Output: `false`
-- Explanation: the two links form a cycle, leaving no root.
+- **Input:** `n = 2, leftChild = [1,0], rightChild = [-1,-1]`
+- **Output:** `false`
+- **Explanation:** the two links form a cycle, leaving no root.

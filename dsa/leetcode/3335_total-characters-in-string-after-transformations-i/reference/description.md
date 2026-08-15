@@ -12,23 +12,28 @@ Since the answer may be very large, return it **modulo**<!-- notionvc: eb142f2b-
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `t`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "abcyy", t = 2
+- **Input:** s = "abcyy", t = 2
 
-**Output:** 7
+- **Output:** 7
 
-**Explanation:**
+- **Explanation:** 
 
 - **First Transformation (t = 1)**:
 
-		<li>`'a'` becomes `'b'`
+		- `'a'` becomes `'b'`
 
 - `'b'` becomes `'c'`
 
@@ -40,10 +45,9 @@ Since the answer may be very large, return it **modulo**<!-- notionvc: eb142f2b-
 
 - String after the first transformation: `"bcdzz"`
 
-	</li>
 - **Second Transformation (t = 2)**:
 
-		<li>`'b'` becomes `'c'`
+		- `'b'` becomes `'c'`
 
 - `'c'` becomes `'d'`
 
@@ -55,22 +59,19 @@ Since the answer may be very large, return it **modulo**<!-- notionvc: eb142f2b-
 
 - String after the second transformation: `"cdeabab"`
 
-	</li>
 - **Final Length of the string**: The string is `"cdeabab"`, which has 7 characters.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "azbk", t = 1
+- **Input:** s = "azbk", t = 1
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** 
 
 - **First Transformation (t = 1)**:
 
-		<li>`'a'` becomes `'b'`
+		- `'a'` becomes `'b'`
 
 - `'z'` becomes `"ab"`
 
@@ -80,10 +81,7 @@ Since the answer may be very large, return it **modulo**<!-- notionvc: eb142f2b-
 
 - String after the first transformation: `"babcl"`
 
-	</li>
 - **Final Length of the string**: The string is `"babcl"`, which has 5 characters.
-
-</div>
 
 ### 4. Constraints
 

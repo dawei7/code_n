@@ -22,19 +22,23 @@ Return *a string denoting the modified string with replaced occurrences of *`'?'
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
-**Input: **  s = "???"
+- **Input:** s = "???"
 
-**Output: **  "abc"
+- **Output:** "abc"
 
-**Explanation: ** In this example, we can replace the occurrences of `'?'` to make `s` equal to `"abc"`.
+- **Explanation:** In this example, we can replace the occurrences of `'?'` to make `s` equal to `"abc"`.
 
 For `"abc"`, $cost(0) = 0$, $cost(1) = 0$, and $cost(2) = 0$.
 
@@ -44,21 +48,17 @@ Some other modifications of `s` that have a value of `0` are `"cba"`, `"abz"`, a
 
 Among all of them, we choose the lexicographically smallest.
 
-</div>
 #### Example 2
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
-**Input: ** s = "a?a?"
+- **Input:** s = "a?a?"
 
-**Output: ** "abac"
+- **Output:** "abac"
 
-**Explanation: ** In this example, the occurrences of `'?'` can be replaced to make `s` equal to `"abac"`.
+- **Explanation:** In this example, the occurrences of `'?'` can be replaced to make `s` equal to `"abac"`.
 
 For `"abac"`, $cost(0) = 0$, $cost(1) = 0$, $cost(2) = 1$, and $cost(3) = 0$.
 
 The value of `"abac"` is `1`.
-
-</div>
 
 ### 4. Constraints
 

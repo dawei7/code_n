@@ -10,38 +10,38 @@ You can perform **either** of the following operations **zero **or multiple time
 
 - Choose an **unmarked** enemy, `i`, such that $currentEnergy \ge \text{enemyEnergies}[i]$. By choosing this option:
 
-		<li>You gain 1 point.
+		- You gain 1 point.
 
 - Your energy is reduced by the enemy's energy, i.e. $currentEnergy = currentEnergy - \text{enemyEnergies}[i]$.
 
-	</li>
 - If you have **at least** 1 point, you can choose an **unmarked** enemy, `i`. By choosing this option:
 
-		<li>Your energy increases by the enemy's energy, i.e. $currentEnergy = currentEnergy + \text{enemyEnergies}[i]$.
+		- Your energy increases by the enemy's energy, i.e. $currentEnergy = currentEnergy + \text{enemyEnergies}[i]$.
 
 - The enemy `i` is **marked**.
-
-	</li>
 
 Return an integer denoting the **maximum** points you can get in the end by optimally performing operations.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `enemyEnergies`: Input parameter (`List[int]`).
+- `currentEnergy`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** enemyEnergies = [3,2,2], currentEnergy = 2
+- **Input:** enemyEnergies = [3,2,2], currentEnergy = 2
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-The following operations can be performed to get 3 points, which is the maximum:
+- **Explanation:** The following operations can be performed to get 3 points, which is the maximum:
 
 - First operation on enemy 1: `points` increases by 1, and `currentEnergy` decreases by 2. So, $points = 1$, and $currentEnergy = 0$.
 
@@ -53,19 +53,13 @@ The following operations can be performed to get 3 points, which is the maximum:
 
 - First operation on enemy 1: `points` increases by 1, and `currentEnergy` decreases by 2. So, $points = 3$, $currentEnergy = 1$, and marked enemies = `[0, 2]`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** enemyEnergies = [2], currentEnergy = 10
+- **Input:** enemyEnergies = [2], currentEnergy = 10
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation: **
-
-Performing the first operation 5 times on enemy 0 results in the maximum number of points.
-
-</div>
+- **Explanation:** Performing the first operation 5 times on enemy 0 results in the maximum number of points.
 
 ### 4. Constraints
 

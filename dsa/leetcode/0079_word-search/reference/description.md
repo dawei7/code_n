@@ -23,12 +23,14 @@ Return `true` if one non-reusing, horizontally or vertically adjacent cell path 
 
 - **Input:** $board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCCED"$
 - **Output:** `true`
+
 #### Example 2
 
 ![](images/word-1.jpg)
 
 - **Input:** $board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "SEE"$
 - **Output:** `true`
+
 #### Example 3
 
 ![](images/word3.jpg)

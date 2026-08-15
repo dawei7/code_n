@@ -18,8 +18,13 @@ Return *an integer denoting the minimum possible length of* $\text{str}_{n} - 1$
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -32,6 +37,7 @@ str_0 = "aa"
 str_1 = join(str_0, "ab") = "aab"
 str_2 = join(str_1, "bc") = "aabc"
 It can be shown that the minimum possible length of str_2 is 4.
+
 #### Example 2
 
 - **Input:** $words = ["ab","b"]$
@@ -39,6 +45,7 @@ It can be shown that the minimum possible length of str_2 is 4.
 - **Explanation:** In this example, str_0 = "ab", there are two ways to get str_1:
 join(str_0, "b") = "ab" or join("b", str_0) = "bab".
 The first string, "ab", has the minimum length. Hence, the answer is 2.
+
 #### Example 3
 
 - **Input:** $words = ["aaa","c","aba"]$
@@ -49,7 +56,7 @@ str_1 = join(str_0, "c") = "aaac"
 str_2 = join("aba", str_1) = "abaaac"
 It can be shown that the minimum possible length of str_2 is 6.
 
-<div class="notranslate" style="all: initial;"> </div>
+ 
 
 ### 4. Constraints
 

@@ -36,14 +36,14 @@ Let $A=\lvert\texttt{a}\rvert$, $B=\lvert\texttt{b}\rvert$, and $C=\lvert\texttt
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `a = [1], b = [2], c = [3]`
-- Output: `1`
-- Explanation: The only XOR is `1 XOR 2 XOR 3 = 0`, whose binary representation contains zero set bits.
+- **Input:** `a = [1], b = [2], c = [3]`
+- **Output:** `1`
+- **Explanation:** The only XOR is `1 XOR 2 XOR 3 = 0`, whose binary representation contains zero set bits.
 
-**Example 2**
+#### Example 2
 
-- Input: `a = [1,1], b = [2,3], c = [1,5]`
-- Output: `4`
-- Explanation: Exactly four index triplets produce an XOR with two set bits, including both choices of the repeated `1` in `a`.
+- **Input:** `a = [1,1], b = [2,3], c = [1,5]`
+- **Output:** `4`
+- **Explanation:** Exactly four index triplets produce an XOR with two set bits, including both choices of the repeated `1` in `a`.

@@ -10,8 +10,15 @@ Return *a **1-indexed** array *`result`* of length *`n`* where *$\text{result}[k
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `x`: Input parameter (`int`).
+- `y`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -32,6 +39,7 @@ that `x` and `y` can be **equal**.
 - For the pair (3, 1), we can go from house 3 to house 1 directly.
 - For the pair (2, 3), we can go from house 2 to house 3 directly.
 - For the pair (3, 2), we can go from house 3 to house 2 directly.
+
 #### Example 2
 
 ![](images/example3.png)
@@ -43,6 +51,7 @@ that `x` and `y` can be **equal**.
 - For k == 2, the pairs are (1, 3), (3, 1), (1, 4), (4, 1), (2, 5), (5, 2), (3, 5), and (5, 3).
 - For k == 3, the pairs are (1, 5), and (5, 1).
 - For k == 4 and k == 5, there are no pairs.
+
 #### Example 3
 
 ![](images/example5.png)

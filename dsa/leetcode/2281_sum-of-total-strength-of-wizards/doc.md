@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/sum-of-total-strength-of-wizards/) |
 
 ## Problem Description
+
 ### Goal
+
 An army is represented by the 0-indexed array `strength`, where
 `strength[i]` is the strength of wizard $i$. Every contiguous, non-empty
 subarray describes one group of wizards.
@@ -19,6 +21,7 @@ and the sum of all strengths in that group. Sum this value over every
 contiguous group and return the result modulo $10^9+7$.
 
 ### Function Contract
+
 **Inputs**
 
 - `strength`: An integer array of length $n$ containing the individual wizard strengths.
@@ -37,17 +40,18 @@ $$
 over all non-empty contiguous subarrays.
 
 ### Examples
-**Example 1**
 
-- Input: `strength = [1, 3, 1, 2]`
-- Output: `44`
+#### Example 1
 
-**Example 2**
+- **Input:** `strength = [1, 3, 1, 2]`
+- **Output:** `44`
 
-- Input: `strength = [5, 4, 6]`
-- Output: `213`
+#### Example 2
 
-**Example 3**
+- **Input:** `strength = [5, 4, 6]`
+- **Output:** `213`
 
-- Input: `strength = [7]`
-- Output: `49`
+#### Example 3
+
+- **Input:** `strength = [7]`
+- **Output:** `49`

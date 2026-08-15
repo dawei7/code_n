@@ -35,14 +35,14 @@ The constraints are $1\le\lvert\texttt{s}\rvert\le2\cdot10^5$ and $1\le k\le\lve
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "bcca", k = 2`
-- Output: `4`
-- Explanation: The frequencies are $f(a)=1$, $f(b)=1$, and $f(c)=2$. Maximum beauty is $3$, and four different pairs of indices select `c` together with either `a` or `b`.
+- **Input:** `s = "bcca", k = 2`
+- **Output:** `4`
+- **Explanation:** The frequencies are $f(a)=1$, $f(b)=1$, and $f(c)=2$. Maximum beauty is $3$, and four different pairs of indices select `c` together with either `a` or `b`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "abbcd", k = 4`
-- Output: `2`
-- Explanation: All four distinct characters must be chosen. Either occurrence of `b` can supply its character, producing two different subsequences with beauty $5$.
+- **Input:** `s = "abbcd", k = 4`
+- **Output:** `2`
+- **Explanation:** All four distinct characters must be chosen. Either occurrence of `b` can supply its character, producing two different subsequences with beauty $5$.

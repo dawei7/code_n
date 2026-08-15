@@ -10,8 +10,14 @@ Return the **minimum** number of elements to remove so that the remaining array 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -21,44 +27,37 @@ An array of size 1 is considered balanced as its maximum and minimum are equal, 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,1,5], k = 2
+- **Input:** nums = [2,1,5], k = 2
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - Remove $\text{nums}[2] = 5$ to get `nums = [2, 1]`.
 
 - Now $max = 2$, $min = 1$ and $max \le min * k$ as $2 \le 1 * 2$. Thus, the answer is 1.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,6,2,9], k = 3
+- **Input:** nums = [1,6,2,9], k = 3
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - Remove $\text{nums}[0] = 1$ and $\text{nums}[3] = 9$ to get `nums = [6, 2]`.
 
 - Now $max = 6$, $min = 2$ and $max \le min * k$ as $6 \le 2 * 3$. Thus, the answer is 2.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [4,6], k = 2
+- **Input:** nums = [4,6], k = 2
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** 
 
 - Since `nums` is already balanced as $6 \le 4 * 2$, no elements need to be removed.
-
-</div>
 
 ### 5. Constraints
 

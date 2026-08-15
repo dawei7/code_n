@@ -30,12 +30,11 @@ Once you jump onto the first block, you cannot return to the ground.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** heights = [1,7,9]
+- **Input:** heights = [1,7,9]
 
-**Output:** 181
+- **Output:** 181
 
-**Explanation:**​​​​​​​
+- **Explanation:** ​​​​​​​
 
 The optimal sequence is `[9, 1, 7]`.
 
@@ -47,17 +46,13 @@ The optimal sequence is `[9, 1, 7]`.
 
 Total calories burned = $81 + 64 + 36 = 181$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** heights = [5,2,4]
+- **Input:** heights = [5,2,4]
 
-**Output:** 38
+- **Output:** 38
 
-**Explanation:**
-
-The optimal sequence is `[5, 2, 4]`.
+- **Explanation:** The optimal sequence is `[5, 2, 4]`.
 
 - Initial jump from the ground to $\text{heights}[0] = 5$: $(0 - 5)^2 = 25$.
 
@@ -67,25 +62,19 @@ The optimal sequence is `[5, 2, 4]`.
 
 Total calories burned = $25 + 9 + 4 = 38$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** heights = [3,3]
+- **Input:** heights = [3,3]
 
-**Output:** 9
+- **Output:** 9
 
-**Explanation:**
-
-The optimal sequence is `[3, 3]`.
+- **Explanation:** The optimal sequence is `[3, 3]`.
 
 - Initial jump from the ground to $\text{heights}[0] = 3$: $(0 - 3)^2 = 9$.
 
 - Next jump to $\text{heights}[1] = 3$: $(3 - 3)^2 = 0$.
 
 Total calories burned = $9 + 0 = 9$.
-
-</div>
 
 ### 5. Constraints
 

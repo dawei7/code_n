@@ -35,14 +35,14 @@ The constraints are $1\le\texttt{low}\le\texttt{high}\le10^5$ and $1\le\texttt{z
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `low = 3, high = 3, zero = 1, one = 1`
-- Output: `8`
-- Explanation: Every binary string of length three can be built one character at a time.
+- **Input:** `low = 3, high = 3, zero = 1, one = 1`
+- **Output:** `8`
+- **Explanation:** Every binary string of length three can be built one character at a time.
 
-**Example 2**
+#### Example 2
 
-- Input: `low = 2, high = 3, zero = 1, one = 2`
-- Output: `5`
-- Explanation: The good strings are `"00"`, `"11"`, `"000"`, `"011"`, and `"110"`.
+- **Input:** `low = 2, high = 3, zero = 1, one = 2`
+- **Output:** `5`
+- **Explanation:** The good strings are `"00"`, `"11"`, `"000"`, `"011"`, and `"110"`.

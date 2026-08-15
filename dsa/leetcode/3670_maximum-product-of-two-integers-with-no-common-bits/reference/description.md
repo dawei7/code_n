@@ -8,47 +8,39 @@ Return the **maximum** possible product of such a pair. If no such pair exists, 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4,5,6,7]
+- **Input:** nums = [1,2,3,4,5,6,7]
 
-**Output:** 12
+- **Output:** 12
 
-**Explanation:**
+- **Explanation:** The best pair is 3 (011) and 4 (100). They share no set bits and $3 * 4 = 12$.
 
-The best pair is 3 (011) and 4 (100). They share no set bits and $3 * 4 = 12$.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [5,6,4]
+- **Input:** nums = [5,6,4]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** Every pair of numbers has at least one common set bit. Hence, the answer is 0.
 
-Every pair of numbers has at least one common set bit. Hence, the answer is 0.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [64,8,32]
+- **Input:** nums = [64,8,32]
 
-**Output:** 2048
+- **Output:** 2048
 
-**Explanation:**
-
-No pair of numbers share a common bit, so the answer is the product of the two maximum elements, 64 and 32 ($64 * 32 = 2048$).
-
-</div>
+- **Explanation:** No pair of numbers share a common bit, so the answer is the product of the two maximum elements, 64 and 32 ($64 * 32 = 2048$).
 
 ### 4. Constraints
 

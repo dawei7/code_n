@@ -16,8 +16,14 @@ Return *the number of **valid** move combinations*​​​​​.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `pieces`: Input parameter (`List[str]`).
+- `positions`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -36,6 +42,7 @@ Return *the number of **valid** move combinations*​​​​​.
 - **Input:** $pieces = ["rook"], positions = [[1,1]]$
 - **Output:** `15`
 - **Explanation:** The image above shows the possible squares the piece can move to.
+
 #### Example 2
 
 ![](images/a2.png)
@@ -43,6 +50,7 @@ Return *the number of **valid** move combinations*​​​​​.
 - **Input:** $pieces = ["queen"], positions = [[1,1]]$
 - **Output:** `22`
 - **Explanation:** The image above shows the possible squares the piece can move to.
+
 #### Example 3
 
 ![](images/a3.png)

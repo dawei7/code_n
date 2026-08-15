@@ -14,8 +14,10 @@ Return *the step-by-step directions of the **shortest path** from node *`s`* to 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `getDirections(root: Optional[TreeNode], startValue: int, destValue: int) -> `str``: Executes operation.
 
 ### 3. Examples
 
@@ -26,6 +28,7 @@ Return *the step-by-step directions of the **shortest path** from node *`s`* to 
 - **Input:** `root = [5,1,2,3,null,6,4], startValue = 3, destValue = 6`
 - **Output:** `"UURL"`
 - **Explanation:** The shortest path is: 3 → 1 → 5 → 2 → 6.
+
 #### Example 2
 
 ![](images/eg2.png)

@@ -30,17 +30,17 @@ The input can be highly skewed, and more than one balanced shape may satisfy the
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [1,null,2,null,3,null,4]`
-- Output: `[2,1,3,null,null,null,4]`
+- **Input:** `root = [1,null,2,null,3,null,4]`
+- **Output:** `[2,1,3,null,null,null,4]`
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [2,1,3]`
-- Output: `[2,1,3]`
+- **Input:** `root = [2,1,3]`
+- **Output:** `[2,1,3]`
 
-**Example 3**
+#### Example 3
 
-- Input: `root = [1]`
-- Output: `[1]`
+- **Input:** `root = [1]`
+- **Output:** `[1]`

@@ -32,20 +32,20 @@ Let $n=\lvert\texttt{nums}\rvert$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3, 4, 5, 1, 2]`
-- Output: `True`
-- Explanation: Rotating `[1, 2, 3, 4, 5]` to begin at `3` produces the input.
+- **Input:** `nums = [3, 4, 5, 1, 2]`
+- **Output:** `True`
+- **Explanation:** Rotating `[1, 2, 3, 4, 5]` to begin at `3` produces the input.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, 1, 3, 4]`
-- Output: `False`
-- Explanation: No single rotation cut makes all values non-decreasing.
+- **Input:** `nums = [2, 1, 3, 4]`
+- **Output:** `False`
+- **Explanation:** No single rotation cut makes all values non-decreasing.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 2, 3]`
-- Output: `True`
-- Explanation: The array is already non-decreasing, corresponding to a zero-position rotation.
+- **Input:** `nums = [1, 2, 3]`
+- **Output:** `True`
+- **Explanation:** The array is already non-decreasing, corresponding to a zero-position rotation.

@@ -31,23 +31,23 @@ Bob wins exactly when the sum of the digits in the first half equals the sum in 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `num = "5023"`
-- Output: `false`
+- **Input:** `num = "5023"`
+- **Output:** `false`
 
 There are no moves, and both halves sum to five.
 
-**Example 2**
+#### Example 2
 
-- Input: `num = "25??"`
-- Output: `true`
+- **Input:** `num = "25??"`
+- **Output:** `true`
 
 Alice can make equality impossible with her first replacement.
 
-**Example 3**
+#### Example 3
 
-- Input: `num = "?3295???"`
-- Output: `false`
+- **Input:** `num = "?3295???"`
+- **Output:** `false`
 
 Under optimal replies, Bob can always balance the final sums.

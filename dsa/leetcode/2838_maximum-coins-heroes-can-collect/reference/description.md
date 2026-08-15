@@ -29,11 +29,13 @@ Return* an array *`ans`* of length *`n`* where *$\text{ans}[i]$* is the **maximu
 2^nd hero: [1,2,4,5] since the power of this hero is 4 and monsters[1], monsters[2], monsters[4], monsters[5] <= 4. So this hero collects coins[1] + coins[2] + coins[4] + coins[5] = 16 coins.
 3^rd hero: [1,2,4] since the power of this hero is 2 and monsters[1], monsters[2], monsters[4] <= 2. So this hero collects coins[1] + coins[2] + coins[4] = 10 coins.
 So the answer would be [5,16,10].
+
 #### Example 2
 
 - **Input:** $heroes = [5], monsters = [2,3,1,2], coins = [10,6,5,2]$
 - **Output:** `[23]`
 - **Explanation:** This hero can defeat all the monsters since monsters[i] <= 5. So he collects all of the coins: coins[1] + coins[2] + coins[3] + coins[4] = 23, and the answer would be [23].
+
 #### Example 3
 
 - **Input:** $heroes = [4,4], monsters = [5,7,8], coins = [1,1,1]$

@@ -33,23 +33,23 @@ After processing every order, return the total amount still present across both 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `orders = [[10,5,0],[15,2,1],[25,1,1],[30,4,0]]`
-- Output: `6`
+- **Input:** `orders = [[10,5,0],[15,2,1],[25,1,1],[30,4,0]]`
+- **Output:** `6`
 
 The final buy consumes both sell orders, leaving two units of that buy and four units from the first buy.
 
-**Example 2**
+#### Example 2
 
-- Input: `orders = [[7,1000000000,1],[15,3,0],[5,999999995,0],[5,1,1]]`
-- Output: `999999984`
+- **Input:** `orders = [[7,1000000000,1],[15,3,0],[5,999999995,0],[5,1,1]]`
+- **Output:** `999999984`
 
 The remaining total is reduced modulo $10^9+7$ only after matching is complete.
 
-**Example 3**
+#### Example 3
 
-- Input: `orders = [[19,28,0],[9,4,1],[25,15,1]]`
-- Output: `39`
+- **Input:** `orders = [[19,28,0],[9,4,1],[25,15,1]]`
+- **Output:** `39`
 
 The price-nine sell consumes four units of the buy; the price-25 sell cannot match the remaining price-19 buy.

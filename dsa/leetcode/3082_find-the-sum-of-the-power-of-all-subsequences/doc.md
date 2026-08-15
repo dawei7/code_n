@@ -35,20 +35,20 @@ Elements are selected by index, so equal values at different positions form dist
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3], k = 3`
-- Output: `6`
-- Explanation: The full array has two target-sum subsequences, while four other outer subsequences each have one. Their powers sum to $2+1+1+1+1=6$.
+- **Input:** `nums = [1, 2, 3], k = 3`
+- **Output:** `6`
+- **Explanation:** The full array has two target-sum subsequences, while four other outer subsequences each have one. Their powers sum to $2+1+1+1+1=6$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, 3, 3], k = 5`
-- Output: `4`
-- Explanation: Either occurrence of `3` can pair with `2`. Across all outer subsequences, those two indexed pairs contribute four times in total.
+- **Input:** `nums = [2, 3, 3], k = 5`
+- **Output:** `4`
+- **Explanation:** Either occurrence of `3` can pair with `2`. Across all outer subsequences, those two indexed pairs contribute four times in total.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 2, 3], k = 7`
-- Output: `0`
-- Explanation: No subsequence sums to `7`, so every outer subsequence has power zero.
+- **Input:** `nums = [1, 2, 3], k = 7`
+- **Output:** `0`
+- **Explanation:** No subsequence sums to `7`, so every outer subsequence has power zero.

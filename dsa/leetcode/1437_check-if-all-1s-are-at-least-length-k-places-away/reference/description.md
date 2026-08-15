@@ -4,8 +4,14 @@ Given an binary array `nums` and an integer `k`, return `true`* if all *`1`*'s a
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -16,6 +22,7 @@ Given an binary array `nums` and an integer `k`, return `true`* if all *`1`*'s a
 - **Input:** `nums = [1,0,0,0,1,0,0,1], k = 2`
 - **Output:** `true`
 - **Explanation:** Each of the 1s are at least 2 places away from each other.
+
 #### Example 2
 
 ![](images/sample_2_1791.png)

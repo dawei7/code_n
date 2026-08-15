@@ -30,20 +30,20 @@ Return an integer equal to the number of increasing index triplets whose three v
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [4,4,2,4,3]`
-- Output: `3`
-- Explanation: Choosing the value `4` from any of its three positions together with `2` and `3` produces one valid index triplet.
+- **Input:** `nums = [4,4,2,4,3]`
+- **Output:** `3`
+- **Explanation:** Choosing the value `4` from any of its three positions together with `2` and `3` produces one valid index triplet.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,1,1,1,1]`
-- Output: `0`
-- Explanation: Three pairwise distinct values cannot be selected.
+- **Input:** `nums = [1,1,1,1,1]`
+- **Output:** `0`
+- **Explanation:** Three pairwise distinct values cannot be selected.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,2,3]`
-- Output: `1`
-- Explanation: The only three positions contain three distinct values.
+- **Input:** `nums = [1,2,3]`
+- **Output:** `1`
+- **Explanation:** The only three positions contain three distinct values.

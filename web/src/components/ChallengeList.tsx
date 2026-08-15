@@ -411,12 +411,14 @@ function sortByLeetcodeId(items: ChallengeSummary[]): ChallengeSummary[] {
 
 function sortByEloAscending(items: ChallengeSummary[]): ChallengeSummary[] {
   return [...items].sort((left, right) => {
-    if (left.elo_rating !== null && right.elo_rating !== null) {
-      const byElo = left.elo_rating - right.elo_rating;
+    const leftElo = left.elo_rating ?? left.estimated_elo_rating;
+    const rightElo = right.elo_rating ?? right.estimated_elo_rating;
+    if (leftElo !== null && rightElo !== null && leftElo !== undefined && rightElo !== undefined) {
+      const byElo = leftElo - rightElo;
       if (byElo !== 0) return byElo;
-    } else if (left.elo_rating !== null) {
+    } else if (leftElo !== null && leftElo !== undefined) {
       return -1;
-    } else if (right.elo_rating !== null) {
+    } else if (rightElo !== null && rightElo !== undefined) {
       return 1;
     }
     return leetcodeProblemOrder(left) - leetcodeProblemOrder(right);
@@ -436,12 +438,14 @@ function sortByDifficultyThenId(items: ChallengeSummary[]): ChallengeSummary[] {
   return [...items].sort((left, right) => {
     const byTier = (tierOrder[left.difficulty_label] ?? 3) - (tierOrder[right.difficulty_label] ?? 3);
     if (byTier !== 0) return byTier;
-    if (left.elo_rating !== null && right.elo_rating !== null) {
-      const byElo = left.elo_rating - right.elo_rating;
+    const leftElo = left.elo_rating ?? left.estimated_elo_rating;
+    const rightElo = right.elo_rating ?? right.estimated_elo_rating;
+    if (leftElo !== null && rightElo !== null && leftElo !== undefined && rightElo !== undefined) {
+      const byElo = leftElo - rightElo;
       if (byElo !== 0) return byElo;
-    } else if (left.elo_rating !== null) {
+    } else if (leftElo !== null && leftElo !== undefined) {
       return -1;
-    } else if (right.elo_rating !== null) {
+    } else if (rightElo !== null && rightElo !== undefined) {
       return 1;
     }
     return leetcodeProblemOrder(left) - leetcodeProblemOrder(right);
@@ -691,7 +695,7 @@ function buildCategoryGroups(challenges: ChallengeSummary[]): NavigationGroup[] 
 function buildEloGroups(challenges: ChallengeSummary[]): NavigationGroup[] {
   const root = makeGroup('root', 'root');
   for (const challenge of challenges) {
-    if (challenge.elo_rating === null) continue;
+    if (challenge.elo_rating === null && challenge.estimated_elo_rating === null) continue;
     addChallengeToTopicGroups(root, challenge, 'elo');
   }
   sortLeetcodeTopicNodes(root.children);
@@ -704,8 +708,9 @@ function buildEloGroups(challenges: ChallengeSummary[]): NavigationGroup[] {
 function buildEloBucketGroups(challenges: ChallengeSummary[]): NavigationGroup[] {
   const root = makeGroup('root', 'root');
   for (const challenge of challenges) {
-    if (challenge.elo_rating === null) continue;
-    const band = eloBandForRating(challenge.elo_rating);
+    const elo = challenge.elo_rating ?? challenge.estimated_elo_rating;
+    if (elo === null || elo === undefined) continue;
+    const band = eloBandForRating(elo);
     if (band === null) continue;
     const bandOrder = ELO_BANDS.indexOf(band);
     const bandNode = getOrCreateChild(
@@ -2423,7 +2428,7 @@ export function ChallengeList() {
     const ratingTitle = eloDisplay === null
       ? 'Official LeetCode difficulty'
       : eloDisplay.estimated
-        ? `Stored estimated Elo, not a contest rating. It is recalculated from official difficulty, acceptance percentile, real-Elo bands, and the calibrated legacy cohort by tools/update_leetcode_metrics.py. ${ELO_HEAT_SCALE_DESCRIPTION}`
+        ? `Stored estimated Elo, not a contest rating. It is recalculated from official difficulty, failure log-odds of acceptance rate, empirical topic adjustments, and the calibrated legacy cohort by tools/update_leetcode_metrics.py. ${ELO_HEAT_SCALE_DESCRIPTION}`
         : `Contest Elo from ZeroTrac; displayed as a rounded whole number. ${ELO_HEAT_SCALE_DESCRIPTION}`;
     const frequencyTitle = c.frequency === null
       ? 'LeetCode Frequency is unavailable until the authenticated Premium metadata updater succeeds.'
@@ -2832,6 +2837,21 @@ export function ChallengeList() {
             </div>
           </div>
         )}
+        {submissionNotice && (
+          <div className={`mt-2 rounded border px-2 py-1.5 text-[11px] ${submissionNotice.status === 'done' ? 'border-coden-accent/40 bg-coden-accent/10 text-coden-accent' : submissionNotice.status === 'error' ? 'border-amber-500/40 bg-amber-500/10 text-amber-300' : 'border-coden-border bg-coden-bg/60 text-coden-muted'}`}>
+            {submissionNotice.message}
+          </div>
+        )}
+        {resetNotice && (
+          <div className="mt-2 rounded border border-rose-500/30 bg-rose-500/10 px-2 py-1.5 text-[11px] text-rose-200">
+            {resetNotice.message}
+          </div>
+        )}
+        {activeSet === 'custom' && customProblemSetsError && (
+          <div className="mt-2 rounded border border-amber-500/40 bg-amber-500/10 px-2 py-1.5 text-[11px] text-amber-300">
+            {customProblemSetsError}
+          </div>
+        )}
       </div>
       
       <div className="flex-1 overflow-y-auto p-2 scrollbar-hide">
@@ -2846,21 +2866,6 @@ export function ChallengeList() {
             <p className="pt-1 text-center text-xs text-coden-muted">
               Loading the complete LeetCode library...
             </p>
-          </div>
-        )}
-        {submissionNotice && (
-          <div className={`mt-2 rounded border px-2 py-1.5 text-[11px] ${submissionNotice.status === 'done' ? 'border-coden-accent/40 bg-coden-accent/10 text-coden-accent' : submissionNotice.status === 'error' ? 'border-amber-500/40 bg-amber-500/10 text-amber-300' : 'border-coden-border bg-coden-bg/60 text-coden-muted'}`}>
-            {submissionNotice.message}
-          </div>
-        )}
-        {resetNotice && (
-          <div className="mt-2 rounded border border-rose-500/30 bg-rose-500/10 px-2 py-1.5 text-[11px] text-rose-200">
-            {resetNotice.message}
-          </div>
-        )}
-        {activeSet === 'custom' && customProblemSetsError && (
-          <div className="mt-2 rounded border border-amber-500/40 bg-amber-500/10 px-2 py-1.5 text-[11px] text-amber-300">
-            {customProblemSetsError}
           </div>
         )}
 

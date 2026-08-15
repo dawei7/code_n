@@ -40,20 +40,20 @@ One of `"Flush"`, `"Three of a Kind"`, `"Pair"`, or `"High Card"`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `ranks = [13,2,3,1,9]`, `suits = ["a","a","a","a","a"]`
-- Output: `"Flush"`
-- Explanation: Every card has suit `"a"`.
+- **Input:** `ranks = [13,2,3,1,9]`, `suits = ["a","a","a","a","a"]`
+- **Output:** `"Flush"`
+- **Explanation:** Every card has suit `"a"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `ranks = [4,4,2,4,4]`, `suits = ["d","a","a","b","c"]`
-- Output: `"Three of a Kind"`
-- Explanation: Rank 4 occurs four times, which includes at least three cards.
+- **Input:** `ranks = [4,4,2,4,4]`, `suits = ["d","a","a","b","c"]`
+- **Output:** `"Three of a Kind"`
+- **Explanation:** Rank 4 occurs four times, which includes at least three cards.
 
-**Example 3**
+#### Example 3
 
-- Input: `ranks = [10,10,2,12,9]`, `suits = ["a","b","c","a","d"]`
-- Output: `"Pair"`
-- Explanation: Rank 10 occurs twice, while no stronger category applies.
+- **Input:** `ranks = [10,10,2,12,9]`, `suits = ["a","b","c","a","d"]`
+- **Output:** `"Pair"`
+- **Explanation:** Rank 10 occurs twice, while no stronger category applies.

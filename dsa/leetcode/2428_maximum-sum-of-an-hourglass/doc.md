@@ -32,23 +32,23 @@ Let $m$ be the number of rows and $n$ the number of columns. The constraints are
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[6,2,1,3],[4,2,1,5],[9,2,8,7],[4,1,2,9]]`
-- Output: `30`
+- **Input:** `grid = [[6,2,1,3],[4,2,1,5],[9,2,8,7],[4,1,2,9]]`
+- **Output:** `30`
 
 The top-left hourglass contributes `6 + 2 + 1 + 2 + 9 + 2 + 8`.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[1,2,3],[4,5,6],[7,8,9]]`
-- Output: `35`
+- **Input:** `grid = [[1,2,3],[4,5,6],[7,8,9]]`
+- **Output:** `35`
 
 The matrix contains exactly one placement, whose selected cells sum to 35.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[1,1,1],[100,2,100],[1,1,1]]`
-- Output: `8`
+- **Input:** `grid = [[1,1,1],[100,2,100],[1,1,1]]`
+- **Output:** `8`
 
 The two large outer cells in the middle row do not belong to the hourglass.

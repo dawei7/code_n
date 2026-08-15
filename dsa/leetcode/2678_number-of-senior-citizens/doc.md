@@ -30,14 +30,14 @@ Return the number of records whose two-digit age field represents a value greate
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `details = ["7868190130M7522","5303914400F9211","9273338290F4010"]`
-- Output: `2`
-- Explanation: The three ages are 75, 92, and 40, so two exceed 60.
+- **Input:** `details = ["7868190130M7522","5303914400F9211","9273338290F4010"]`
+- **Output:** `2`
+- **Explanation:** The three ages are 75, 92, and 40, so two exceed 60.
 
-**Example 2**
+#### Example 2
 
-- Input: `details = ["1313579440F2036","2921522980M5644"]`
-- Output: `0`
-- Explanation: Ages 20 and 56 are not greater than 60.
+- **Input:** `details = ["1313579440F2036","2921522980M5644"]`
+- **Output:** `0`
+- **Explanation:** Ages 20 and 56 are not greater than 60.

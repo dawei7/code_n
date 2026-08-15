@@ -37,14 +37,14 @@ Let $N = mn$ denote the number of cells.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[3,1],[2,5]]`
-- Output: `[[2,1],[1,2]]`
-- Explanation: Both row orders and both column orders are preserved, and no valid replacement can have a maximum below $2$.
+- **Input:** `grid = [[3,1],[2,5]]`
+- **Output:** `[[2,1],[1,2]]`
+- **Explanation:** Both row orders and both column orders are preserved, and no valid replacement can have a maximum below $2$.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[10]]`
-- Output: `[[1]]`
-- Explanation: The only cell can receive the smallest positive integer.
+- **Input:** `grid = [[10]]`
+- **Output:** `[[1]]`
+- **Explanation:** The only cell can receive the smallest positive integer.

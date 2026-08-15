@@ -29,7 +29,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Salaries table:
 +----------+-------------+--------+
 | emp_name | department  | salary |
@@ -45,12 +45,12 @@ Salaries table:
 | Evelyn   | Marketing   | 53000  |
 | Arthur   | Engineering | 32000  |
 +----------+-------------+--------+
-**Output:**
+- **Output:** 
 +-------------------+
 | salary_difference |
 +-------------------+
 | 49000             |
 +-------------------+
-**Explanation:**
+- **Explanation:** 
 - The Engineering and Marketing departments have the highest salaries of 102,000 and 53,000, respectively. Resulting in an absolute difference of 49,000.
 ```

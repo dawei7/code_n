@@ -38,12 +38,12 @@ return 42;
 }
 cancelledAt = 100
 - **Output:** `{"resolved": 42}`
-- **Explanation:**
-const generator = generatorFunction();
+- **Explanation:** const generator = generatorFunction();
 const [cancel, promise] = cancellable(generator);
 setTimeout(cancel, 100);
 promise.then(console.log); // resolves 42 at t=0ms
 The generator immediately yields 42 and finishes. Because of that, the returned promise immediately resolves 42. Note that cancelling a finished generator does nothing.
+
 #### Example 2
 
 - **Input:** ``
@@ -53,8 +53,8 @@ throw `Error: ${msg}`;
 }
 cancelledAt = null
 - **Output:** `{"rejected": "Error: Hello"}`
-- **Explanation:**
-A promise is yielded. The function handles this by waiting for it to resolve and then passes the resolved value back to the generator. Then an error is thrown which has the effect of causing the promise to reject with the same thrown error.
+- **Explanation:** A promise is yielded. The function handles this by waiting for it to resolve and then passes the resolved value back to the generator. Then an error is thrown which has the effect of causing the promise to reject with the same thrown error.
+
 #### Example 3
 
 - **Input:** ``
@@ -64,8 +64,8 @@ return "Success";
 }
 cancelledAt = 100
 - **Output:** `{"rejected": "Cancelled"}`
-- **Explanation:**
-While the function is waiting for the yielded promise to resolve, cancel() is called. This causes an error message to be sent back to the generator. Since this error is uncaught, the returned promise rejected with this error.
+- **Explanation:** While the function is waiting for the yielded promise to resolve, cancel() is called. This causes an error message to be sent back to the generator. Since this error is uncaught, the returned promise rejected with this error.
+
 #### Example 4
 
 - **Input:** ``
@@ -79,8 +79,8 @@ return result;
 }
 cancelledAt = null
 - **Output:** `{"resolved": 2}`
-- **Explanation:**
-4 promises are yielded. Two of those promises have their values added to the result. After 200ms, the generator finishes with a value of 2, and that value is resolved by the returned promise.
+- **Explanation:** 4 promises are yielded. Two of those promises have their values added to the result. After 200ms, the generator finishes with a value of 2, and that value is resolved by the returned promise.
+
 #### Example 5
 
 - **Input:** ``
@@ -98,8 +98,8 @@ return result;
 }
 cancelledAt = 150
 - **Output:** `{"resolved": 1}`
-- **Explanation:**
-The first two yielded promises resolve and cause the result to increment. However, at t=150ms, the generator is cancelled. The error sent to the generator is caught and the result is returned and finally resolved by the returned promise.
+- **Explanation:** The first two yielded promises resolve and cause the result to increment. However, at t=150ms, the generator is cancelled. The error sent to the generator is caught and the result is returned and finally resolved by the returned promise.
+
 #### Example 6
 
 - **Input:** ``
@@ -114,8 +114,7 @@ return a + b;
 }
 cancelledAt = null
 - **Output:** `{"resolved": 4}`
-- **Explanation:**
-The first yielded promise immediately rejects. This error is caught. Because the generator hasn't been cancelled, execution continues as usual. It ends up resolving 2 + 2 = 4.
+- **Explanation:** The first yielded promise immediately rejects. This error is caught. Because the generator hasn't been cancelled, execution continues as usual. It ends up resolving 2 + 2 = 4.
 
 ### 4. Constraints
 

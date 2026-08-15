@@ -14,8 +14,13 @@ A node is a **leaf** if and only if it has zero children.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -27,6 +32,7 @@ A node is a **leaf** if and only if it has zero children.
 - **Output:** `32`
 - **Explanation:** There are two possible trees shown.
 The first has a non-leaf node sum 36, and the second has non-leaf node sum 32.
+
 #### Example 2
 
 ![](images/tree2.jpg)

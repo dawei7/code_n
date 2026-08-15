@@ -47,7 +47,7 @@ Return one column named $\text{recommended}_{page}$. Include a page exactly when
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Friendship table:
 +----------+----------+
 | user1_id | user2_id |
@@ -74,7 +74,7 @@ Likes table:
 | 3       | 77      |
 | 6       | 88      |
 +---------+---------+
-**Output:**
+- **Output:** 
 +------------------+
 | recommended_page |
 +------------------+
@@ -84,8 +84,7 @@ Likes table:
 | 33               |
 | 77               |
 +------------------+
-**Explanation:**
-User one is friend with users 2, 3, 4 and 6.
+- **Explanation:** User one is friend with users 2, 3, 4 and 6.
 Suggested pages are 23 from user 2, 24 from user 3, 56 from user 3 and 33 from user 6.
 Page 77 is suggested from both user 2 and user 3.
 Page 88 is not suggested because user 1 already likes it.

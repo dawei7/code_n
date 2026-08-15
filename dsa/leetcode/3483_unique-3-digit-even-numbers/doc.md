@@ -32,30 +32,30 @@ Return the number of distinct three-digit even integers constructible from the a
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `digits = [1, 2, 3, 4]`
-- Output: `12`
+- **Input:** `digits = [1, 2, 3, 4]`
+- **Output:** `12`
 
 There are twelve valid integers, including `124`, `132`, `214`, and `432`. The number `222` is unavailable because the input contains only one copy of 2.
 
-**Example 2**
+#### Example 2
 
-- Input: `digits = [0, 2, 2]`
-- Output: `2`
+- **Input:** `digits = [0, 2, 2]`
+- **Output:** `2`
 
 The two valid integers are `202` and `220`; the repeated 2 is legal because two copies are supplied.
 
-**Example 3**
+#### Example 3
 
-- Input: `digits = [6, 6, 6]`
-- Output: `1`
+- **Input:** `digits = [6, 6, 6]`
+- **Output:** `1`
 
 Only `666` can be formed.
 
-**Example 4**
+#### Example 4
 
-- Input: `digits = [1, 3, 5]`
-- Output: `0`
+- **Input:** `digits = [1, 3, 5]`
+- **Output:** `0`
 
 No supplied digit can occupy the even units position.

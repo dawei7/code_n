@@ -32,21 +32,21 @@ Return `counts`, where `counts[k - 1]` is the number of ordered pairs of distinc
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 3, x = 1, y = 3`
-- Output: `[6,0,0]`
+- **Input:** `n = 3, x = 1, y = 3`
+- **Output:** `[6,0,0]`
 
 The shortcut completes a triangle, so every ordered pair of distinct houses is one street apart.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 5, x = 2, y = 4`
-- Output: `[10,8,2,0,0]`
+- **Input:** `n = 5, x = 2, y = 4`
+- **Output:** `[10,8,2,0,0]`
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 4, x = 1, y = 1`
-- Output: `[6,4,2,0]`
+- **Input:** `n = 4, x = 1, y = 1`
+- **Output:** `[6,4,2,0]`
 
 The self-loop does not improve the ordinary path distances.

@@ -8,14 +8,11 @@ A binary string is **good** if it satisfies the following conditions:
 
 - The size of each block of consecutive `1`'s is a multiple of `oneGroup`.
 
-		<li>For example in a binary string `00<u>11</u>0<u>1111</u>00` sizes of each block of consecutive ones are `[2,4]`.
+		- For example in a binary string `00<u>11</u>0<u>1111</u>00` sizes of each block of consecutive ones are `[2,4]`.
 
-	</li>
 - The size of each block of consecutive `0`'s is a multiple of `zeroGroup`.
 
-		<li>For example, in a binary string `<u>00</u>11<u>0</u>1111<u>00</u>` sizes of each block of consecutive zeros are `[2,1,2]`.
-
-	</li>
+		- For example, in a binary string `<u>00</u>11<u>0</u>1111<u>00</u>` sizes of each block of consecutive zeros are `[2,1,2]`.
 
 Return *the number of **good** binary strings*. Since the answer may be too large, return it **modulo** $10^{9} + 7$.
 
@@ -35,6 +32,7 @@ that `0` is considered a multiple of all the numbers.
 - **Output:** `5`
 - **Explanation:** There are 5 good binary strings in this example: "00", "11", "001", "100", and "111".
 It can be proven that there are only 5 good strings satisfying all conditions.
+
 #### Example 2
 
 - **Input:** $minLength = 4, maxLength = 4, oneGroup = 4, zeroGroup = 3$

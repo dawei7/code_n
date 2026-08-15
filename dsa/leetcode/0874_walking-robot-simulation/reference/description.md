@@ -14,8 +14,14 @@ Return the **maximum squared Euclidean distance** that the robot reaches at any 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `commands`: Input parameter (`List[int]`).
+- `obstacles`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -33,14 +39,11 @@ Return the **maximum squared Euclidean distance** that the robot reaches at any 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** commands = [4,-1,3], obstacles = []
+- **Input:** commands = [4,-1,3], obstacles = []
 
-**Output:** 25
+- **Output:** 25
 
-**Explanation: **
-
-The robot starts at `(0, 0)`:
+- **Explanation:** The robot starts at `(0, 0)`:
 
 - Move north 4 units to `(0, 4)`.
 
@@ -50,17 +53,13 @@ The robot starts at `(0, 0)`:
 
 The furthest point the robot ever gets from the origin is `(3, 4)`, which squared is $3^{2} + 4^{2} = 25$ units away.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** commands = [4,-1,4,-2,4], obstacles = [[2,4]]
+- **Input:** commands = [4,-1,4,-2,4], obstacles = [[2,4]]
 
-**Output:** 65
+- **Output:** 65
 
-**Explanation:**
-
-The robot starts at `(0, 0)`:
+- **Explanation:** The robot starts at `(0, 0)`:
 
 - Move north 4 units to `(0, 4)`.
 
@@ -74,17 +73,13 @@ The robot starts at `(0, 0)`:
 
 The furthest point the robot ever gets from the origin is `(1, 8)`, which squared is $1^{2} + 8^{2} = 65$ units away.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** commands = [6,-1,-1,6], obstacles = [[0,0]]
+- **Input:** commands = [6,-1,-1,6], obstacles = [[0,0]]
 
-**Output:** 36
+- **Output:** 36
 
-**Explanation:**
-
-The robot starts at `(0, 0)`:
+- **Explanation:** The robot starts at `(0, 0)`:
 
 - Move north 6 units to `(0, 6)`.
 
@@ -95,8 +90,6 @@ The robot starts at `(0, 0)`:
 - Move south 5 units and get blocked by the obstacle at `(0,0)`, robot is at `(0, 1)`.
 
 The furthest point the robot ever gets from the origin is `(0, 6)`, which squared is $6^{2} = 36$ units away.
-
-</div>
 
 ### 5. Constraints
 

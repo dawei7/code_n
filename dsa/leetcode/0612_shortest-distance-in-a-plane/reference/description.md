@@ -34,7 +34,7 @@ Return one row with one column named `shortest`. Its value is the minimum Euclid
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Point2D table:
 +----+----+
 | x  | y  |
@@ -43,11 +43,11 @@ Point2D table:
 | 0  | 0  |
 | -1 | -2 |
 +----+----+
-**Output:**
+- **Output:** 
 +----------+
 | shortest |
 +----------+
 | 1.00     |
 +----------+
-**Explanation:** The shortest distance is 1.00 from point (-1, -1) to (-1, 2).
+- **Explanation:** The shortest distance is 1.00 from point (-1, -1) to (-1, 2).
 ```

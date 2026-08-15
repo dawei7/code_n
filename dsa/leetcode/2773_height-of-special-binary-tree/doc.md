@@ -32,20 +32,20 @@ Return $h$, the greatest number of original tree edges from `root` to any node.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [1, 2, 3, null, null, 4, 5]`
-- Output: `2`
-- Explanation: Nodes `2`, `4`, and `5` form the leaf cycle, but each is two original edges or fewer from the root.
+- **Input:** `root = [1, 2, 3, null, null, 4, 5]`
+- **Output:** `2`
+- **Explanation:** Nodes `2`, `4`, and `5` form the leaf cycle, but each is two original edges or fewer from the root.
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [1, 2]`
-- Output: `1`
-- Explanation: The tree has one original leaf and one edge from the root to that leaf.
+- **Input:** `root = [1, 2]`
+- **Output:** `1`
+- **Explanation:** The tree has one original leaf and one edge from the root to that leaf.
 
-**Example 3**
+#### Example 3
 
-- Input: `root = [1, 2, 3, null, null, 4, null, 5, 6]`
-- Output: `3`
-- Explanation: The deepest original nodes are three edges below the root.
+- **Input:** `root = [1, 2, 3, null, null, 4, null, 5, 6]`
+- **Output:** `3`
+- **Explanation:** The deepest original nodes are three edges below the root.

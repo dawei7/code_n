@@ -21,6 +21,7 @@ A **subarray** is a **contiguous** part of an array.
 - Subarrays of length 2: [1,3], [3,5], [4,6].
 - Subarrays of length 3: [1,3,5].
 The total number of subarrays is 6 + 3 + 1 = 10.
+
 #### Example 2
 
 - **Input:** `nums = [1,2,3,4,5]`

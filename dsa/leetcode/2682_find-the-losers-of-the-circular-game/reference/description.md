@@ -22,8 +22,14 @@ Given the number of friends, `n`, and an integer `k`, return *the array answer, 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -36,6 +42,7 @@ Given the number of friends, `n`, and an integer `k`, return *the array answer, 
 2) 3^rd friend passes the ball to the friend who is 4 steps away from them - 2^nd friend.
 3) 2^nd friend passes the ball to the friend who is 6 steps away from them  - 3^rd friend.
 4) The game ends as 3^rd friend receives the ball for the second time.
+
 #### Example 2
 
 - **Input:** $n = 4, k = 4$

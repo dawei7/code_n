@@ -30,17 +30,17 @@ Return the lexicographically smallest good caption among those requiring the min
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `caption = "cdcd"`
-- Output: `"cccc"`
+- **Input:** `caption = "cdcd"`
+- **Output:** `"cccc"`
 
-**Example 2**
+#### Example 2
 
-- Input: `caption = "aca"`
-- Output: `"aaa"`
+- **Input:** `caption = "aca"`
+- **Output:** `"aaa"`
 
-**Example 3**
+#### Example 3
 
-- Input: `caption = "bc"`
-- Output: `""`
+- **Input:** `caption = "bc"`
+- **Output:** `""`

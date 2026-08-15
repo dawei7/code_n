@@ -12,33 +12,33 @@ Return the **maximum** number of customers that can be *satisfied* throughout th
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `customers`: Input parameter (`List[int]`).
+- `grumpy`: Input parameter (`List[int]`).
+- `minutes`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** customers = [1,0,1,2,1,1,7,5], grumpy = [0,1,0,1,0,1,0,1], minutes = 3
+- **Input:** customers = [1,0,1,2,1,1,7,5], grumpy = [0,1,0,1,0,1,0,1], minutes = 3
 
-**Output:** 16
+- **Output:** 16
 
-**Explanation:**
-
-The bookstore owner keeps themselves not grumpy for the last 3 minutes.
+- **Explanation:** The bookstore owner keeps themselves not grumpy for the last 3 minutes.
 
 The maximum number of customers that can be satisfied = 1 + 1 + 1 + 1 + 7 + 5 = 16.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** customers = [1], grumpy = [0], minutes = 1
+- **Input:** customers = [1], grumpy = [0], minutes = 1
 
-**Output:** 1
-
-</div>
+- **Output:** 1
 
 ### 4. Constraints
 

@@ -30,17 +30,17 @@ Return `true` exactly when `nums` contains each integer from its minimum through
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 3, 4, 2]`
-- Output: `true`
+- **Input:** `nums = [1, 3, 4, 2]`
+- **Output:** `true`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 3]`
-- Output: `false`
+- **Input:** `nums = [1, 3]`
+- **Output:** `false`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [3, 5, 4]`
-- Output: `true`
+- **Input:** `nums = [3, 5, 4]`
+- **Output:** `true`

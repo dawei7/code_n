@@ -8,8 +8,14 @@ You are also given another integer array `nums`. Return *the array *`nums`* sort
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `mapping`: Input parameter (`List[int]`).
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -23,8 +29,7 @@ You are also given another integer array `nums`. Return *the array *`nums`* sort
 
 - **Input:** $mapping = [8,9,4,0,2,1,3,5,7,6], nums = [991,338,38]$
 - **Output:** `[338,38,991]`
-- **Explanation:**
-Map the number 991 as follows:
+- **Explanation:** Map the number 991 as follows:
 1. mapping[9] = 6, so all occurrences of the digit 9 will become 6.
 2. mapping[1] = 9, so all occurrences of the digit 1 will become 9.
 Therefore, the mapped value of 991 is 669.
@@ -32,6 +37,7 @@ Therefore, the mapped value of 991 is 669.
 38 maps to 07, which is also 7 after removing leading zeros.
 Since 338 and 38 share the same mapped value, they should remain in the same relative order, so 338 comes before 38.
 Thus, the sorted array is [338,38,991].
+
 #### Example 2
 
 - **Input:** $mapping = [0,1,2,3,4,5,6,7,8,9], nums = [789,456,123]$

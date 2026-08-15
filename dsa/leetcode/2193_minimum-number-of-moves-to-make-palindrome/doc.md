@@ -35,17 +35,17 @@ Return the minimum number of adjacent swaps needed to make `s` a palindrome.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "aabb"`
-- Output: `2`
+- **Input:** `s = "aabb"`
+- **Output:** `2`
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "letelt"`
-- Output: `2`
+- **Input:** `s = "letelt"`
+- **Output:** `2`
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "ntiin"`
-- Output: `1`
+- **Input:** `s = "ntiin"`
+- **Output:** `1`

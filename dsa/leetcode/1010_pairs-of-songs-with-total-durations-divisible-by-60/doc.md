@@ -30,20 +30,20 @@ Return the number of index pairs `i`, `j` with $i<j$ whose total duration is div
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `time = [30, 20, 150, 100, 40]`
-- Output: `3`
-- Explanation: The valid index pairs have duration sums `180`, `120`, and `60`.
+- **Input:** `time = [30, 20, 150, 100, 40]`
+- **Output:** `3`
+- **Explanation:** The valid index pairs have duration sums `180`, `120`, and `60`.
 
-**Example 2**
+#### Example 2
 
-- Input: `time = [60, 60, 60]`
-- Output: `3`
-- Explanation: Each of the three index pairs totals `120` seconds.
+- **Input:** `time = [60, 60, 60]`
+- **Output:** `3`
+- **Explanation:** Each of the three index pairs totals `120` seconds.
 
-**Example 3**
+#### Example 3
 
-- Input: `time = [10, 50, 90, 30]`
-- Output: `2`
-- Explanation: Remainders `10` and `50` pair, and the two remainder-`30` songs pair.
+- **Input:** `time = [10, 50, 90, 30]`
+- **Output:** `2`
+- **Explanation:** Remainders `10` and `50` pair, and the two remainder-`30` songs pair.

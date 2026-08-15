@@ -22,6 +22,7 @@ Return the nearest `TreeNode` to the right of `u` at the same depth level, or `n
 - **Input:** `root = [1,2,3,null,4,5,6], u = 4`
 - **Output:** `5`
 - **Explanation:** The nearest node on the same level to the right of node 4 is node 5.
+
 #### Example 2
 
 ![](images/p2.png)

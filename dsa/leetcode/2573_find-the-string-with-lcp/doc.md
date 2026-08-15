@@ -34,20 +34,20 @@ The matrix dimension satisfies $1 \le n \le 1000$, and every entry lies between 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `lcp = [[4,0,2,0],[0,3,0,1],[2,0,2,0],[0,1,0,1]]`
-- Output: `"abab"`
-- Explanation: The matrix requires two alternating character groups. Assigning the earliest possible letters to those groups gives `"abab"`.
+- **Input:** `lcp = [[4,0,2,0],[0,3,0,1],[2,0,2,0],[0,1,0,1]]`
+- **Output:** `"abab"`
+- **Explanation:** The matrix requires two alternating character groups. Assigning the earliest possible letters to those groups gives `"abab"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `lcp = [[4,3,2,1],[3,3,2,1],[2,2,2,1],[1,1,1,1]]`
-- Output: `"aaaa"`
-- Explanation: Every pair of suffixes shares as much prefix as their remaining lengths allow, so all positions contain the same character.
+- **Input:** `lcp = [[4,3,2,1],[3,3,2,1],[2,2,2,1],[1,1,1,1]]`
+- **Output:** `"aaaa"`
+- **Explanation:** Every pair of suffixes shares as much prefix as their remaining lengths allow, so all positions contain the same character.
 
-**Example 3**
+#### Example 3
 
-- Input: `lcp = [[4,3,2,1],[3,3,2,1],[2,2,2,1],[1,1,1,3]]`
-- Output: `""`
-- Explanation: A suffix starting at the final position has length one, so `lcp[3][3]` cannot equal three.
+- **Input:** `lcp = [[4,3,2,1],[3,3,2,1],[2,2,2,1],[1,1,1,3]]`
+- **Output:** `""`
+- **Explanation:** A suffix starting at the final position has length one, so `lcp[3][3]` cannot equal three.

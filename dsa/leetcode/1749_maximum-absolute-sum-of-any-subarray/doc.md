@@ -32,20 +32,20 @@ Let $n = \lvert\texttt{nums}\rvert$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, -3, 2, 3, -4]`
-- Output: `5`
-- Explanation: The subarray `[2, 3]` has sum `5`, whose absolute value is `5`.
+- **Input:** `nums = [1, -3, 2, 3, -4]`
+- **Output:** `5`
+- **Explanation:** The subarray `[2, 3]` has sum `5`, whose absolute value is `5`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, -5, 1, -4, 3, -2]`
-- Output: `8`
-- Explanation: The subarray `[-5, 1, -4]` sums to `-8`, giving absolute sum `8`.
+- **Input:** `nums = [2, -5, 1, -4, 3, -2]`
+- **Output:** `8`
+- **Explanation:** The subarray `[-5, 1, -4]` sums to `-8`, giving absolute sum `8`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [0, 0, 0]`
-- Output: `0`
-- Explanation: Every subarray, including the empty one, has sum zero.
+- **Input:** `nums = [0, 0, 0]`
+- **Output:** `0`
+- **Explanation:** Every subarray, including the empty one, has sum zero.

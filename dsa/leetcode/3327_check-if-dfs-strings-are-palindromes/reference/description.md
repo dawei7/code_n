@@ -12,8 +12,14 @@ Consider an empty string `dfsStr`, and define a recursive function `dfs(int x)` 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `parent`: Input parameter (`List[int]`).
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `List[bool]`.
 
 ### 3. Note
 
@@ -33,12 +39,11 @@ Return the array `answer`.
 
 ![](images/tree1drawio.png)
 
-<div class="example-block">
-**Input:** parent = [-1,0,0,1,1,2], s = "aababa"
+- **Input:** parent = [-1,0,0,1,1,2], s = "aababa"
 
-**Output:** [true,true,false,true,true,true]
+- **Output:** [true,true,false,true,true,true]
 
-**Explanation:**
+- **Explanation:** 
 
 - Calling `dfs(0)` results in the string $dfsStr = "abaaba"$, which is a palindrome.
 
@@ -52,21 +57,15 @@ Return the array `answer`.
 
 - Calling `dfs(5)` results in the string $dfsStr = "a"$, which is a palindrome.
 
-</div>
 #### Example 2
 
 ![](images/tree2drawio-1.png)
 
-<div class="example-block">
-**Input:** parent = [-1,0,0,0,0], s = "aabcb"
+- **Input:** parent = [-1,0,0,0,0], s = "aabcb"
 
-**Output:** [true,true,true,true,true]
+- **Output:** [true,true,true,true,true]
 
-**Explanation:**
-
-Every call on `dfs(x)` results in a palindrome string.
-
-</div>
+- **Explanation:** Every call on `dfs(x)` results in a palindrome string.
 
 ### 5. Constraints
 

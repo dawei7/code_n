@@ -32,12 +32,11 @@ Return every $b$ with odd $C(b)$ in ascending numeric order. If no such bulb exi
 
 #### Example 1
 
-<div class="example-block">
-**Input:** bulbs = [10,30,20,10]
+- **Input:** bulbs = [10,30,20,10]
 
-**Output:** [20,30]
+- **Output:** [20,30]
 
-**Explanation:**
+- **Explanation:** 
 
 - The $\text{bulbs}[0] = 10^th$ light bulb is currently off. We switch it on.
 
@@ -49,23 +48,19 @@ Return every $b$ with odd $C(b)$ in ascending numeric order. If no such bulb exi
 
 - In the end, the 20^th and the 30^th light bulbs are on.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** bulbs = [100,100]
+- **Input:** bulbs = [100,100]
 
-**Output:** []
+- **Output:** []
 
-**Explanation:**
+- **Explanation:** 
 
 - The $\text{bulbs}[0] = 100^th$ light bulb is currently off. We switch it on.
 
 - The $\text{bulbs}[1] = 100^th$ light bulb is currently on. We switch it off.
 
 - In the end, no light bulb is on.
-
-</div>
 
 ### 4. Constraints
 

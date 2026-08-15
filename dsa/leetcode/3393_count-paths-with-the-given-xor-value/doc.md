@@ -33,21 +33,21 @@ Let $m$ be the row count and $n$ the column count. Every valid path visits exact
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[2, 1, 5], [7, 10, 0], [12, 6, 4]], k = 11`
-- Output: `3`
+- **Input:** `grid = [[2, 1, 5], [7, 10, 0], [12, 6, 4]], k = 11`
+- **Output:** `3`
 
 Exactly three right/down routes have cumulative XOR 11.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[1, 3, 3, 3], [0, 3, 3, 2], [3, 0, 1, 1]], k = 2`
-- Output: `5`
+- **Input:** `grid = [[1, 3, 3, 3], [0, 3, 3, 2], [3, 0, 1, 1]], k = 2`
+- **Output:** `5`
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[1, 1, 1, 2], [3, 0, 3, 2], [3, 0, 2, 2]], k = 10`
-- Output: `0`
+- **Input:** `grid = [[1, 1, 1, 2], [3, 0, 3, 2], [3, 0, 2, 2]], k = 10`
+- **Output:** `0`
 
 No valid route produces the target XOR.

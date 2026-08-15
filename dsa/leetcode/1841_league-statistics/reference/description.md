@@ -60,7 +60,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Teams table:
 +---------+-----------+
 | team_id | team_name |
@@ -78,7 +78,7 @@ Matches table:
 | 4            | 1            | 5               | 2               |
 | 6            | 1            | 0               | 0               |
 +--------------+--------------+-----------------+-----------------+
-**Output:**
+- **Output:** 
 +-----------+----------------+--------+----------+--------------+-----------+
 | team_name | matches_played | points | goal_for | goal_against | goal_diff |
 +-----------+----------------+--------+----------+--------------+-----------+
@@ -86,8 +86,7 @@ Matches table:
 | Arsenal   | 2              | 2      | 3        | 3            | 0         |
 | Ajax      | 4              | 2      | 5        | 9            | -4        |
 +-----------+----------------+--------+----------+--------------+-----------+
-**Explanation:**
-Ajax (team_id=1) played 4 matches: 2 losses and 2 draws. Total points = 0 + 0 + 1 + 1 = 2.
+- **Explanation:** Ajax (team_id=1) played 4 matches: 2 losses and 2 draws. Total points = 0 + 0 + 1 + 1 = 2.
 Dortmund (team_id=4) played 2 matches: 2 wins. Total points = 3 + 3 = 6.
 Arsenal (team_id=6) played 2 matches: 2 draws. Total points = 1 + 1 = 2.
 Dortmund is the first team in the table. Ajax and Arsenal have the same points, but since Arsenal has a higher goal_diff than Ajax, Arsenal comes before Ajax in the table.

@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/clone-n-ary-tree/) |
 
 ## Problem Description
+
 ### Goal
 
 An N-ary tree node stores an integer value and an ordered list of zero or more child nodes. Given the tree's root, construct a deep copy of the entire tree.
@@ -16,6 +17,7 @@ An N-ary tree node stores an integer value and an ordered list of zero or more c
 The returned root must belong to a newly allocated tree. For every original node, its copy must hold the same value, and the copied node's children must be the copies of the original children in the same left-to-right order. No node object in the result may be one of the original node objects. Return null when the input tree is empty.
 
 ### Function Contract
+
 **Inputs**
 
 - `root`: The N-ary `Node` root, or `None` for an empty tree. Each node exposes `val` and an ordered `children` list.
@@ -29,19 +31,20 @@ Let $N$ be the number of nodes and $H$ the tree height. Authored JSON cases enco
 Return the root of a newly allocated N-ary tree with the same values, shape, and child ordering as the input. For the app-local representation, return an equal but independently allocated nested `[value, children]` structure. Return `None` for an empty tree.
 
 ### Examples
-**Example 1**
 
-- Input: `root = [1, [[3, [[5, []], [6, []]]], [2, []], [4, []]]]`
-- Output: `[1, [[3, [[5, []], [6, []]]], [2, []], [4, []]]]`
-- Explanation: The clone preserves the root's child order `3, 2, 4` and the two children below node `3`, but every encoded node list is newly allocated.
+#### Example 1
 
-**Example 2**
+- **Input:** `root = [1, [[3, [[5, []], [6, []]]], [2, []], [4, []]]]`
+- **Output:** `[1, [[3, [[5, []], [6, []]]], [2, []], [4, []]]]`
+- **Explanation:** The clone preserves the root's child order `3, 2, 4` and the two children below node `3`, but every encoded node list is newly allocated.
 
-- Input: `root = [1, [[2, []], [3, [[6, []], [7, [[11, [[14, []]]]]]]], [4, [[8, [[12, []]]]]], [5, [[9, [[13, []]]], [10, []]]]]]`
-- Output: `[1, [[2, []], [3, [[6, []], [7, [[11, [[14, []]]]]]]], [4, [[8, [[12, []]]]]], [5, [[9, [[13, []]]], [10, []]]]]]`
-- Explanation: Different branching factors and depths are copied without flattening or reordering the tree.
+#### Example 2
 
-**Example 3**
+- **Input:** `root = [1, [[2, []], [3, [[6, []], [7, [[11, [[14, []]]]]]]], [4, [[8, [[12, []]]]]], [5, [[9, [[13, []]]], [10, []]]]]]`
+- **Output:** `[1, [[2, []], [3, [[6, []], [7, [[11, [[14, []]]]]]]], [4, [[8, [[12, []]]]]], [5, [[9, [[13, []]]], [10, []]]]]]`
+- **Explanation:** Different branching factors and depths are copied without flattening or reordering the tree.
 
-- Input: `root = None`
-- Output: `None`
+#### Example 3
+
+- **Input:** `root = None`
+- **Output:** `None`

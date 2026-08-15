@@ -8,8 +8,14 @@ Return *the matrix after sorting it.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `score`: Input parameter (`List[List[int]]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
@@ -23,6 +29,7 @@ Return *the matrix after sorting it.*
 - The student with index 1 scored 11 in exam 2, which is the highest score, so they got first place.
 - The student with index 0 scored 9 in exam 2, which is the second highest score, so they got second place.
 - The student with index 2 scored 3 in exam 2, which is the lowest score, so they got third place.
+
 #### Example 2
 
 ![](images/example2.png)

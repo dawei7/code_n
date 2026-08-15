@@ -6,8 +6,14 @@ Return* the number of paths where the sum of the elements on the path is divisib
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +26,7 @@ Return* the number of paths where the sum of the elements on the path is divisib
 - **Explanation:** There are two paths where the sum of the elements on the path is divisible by k.
 The first path highlighted in red has a sum of 5 + 2 + 4 + 5 + 2 = 18 which is divisible by 3.
 The second path highlighted in blue has a sum of 5 + 3 + 0 + 5 + 2 = 15 which is divisible by 3.
+
 #### Example 2
 
 ![](images/image-20220817112930-3.png)
@@ -27,6 +34,7 @@ The second path highlighted in blue has a sum of 5 + 3 + 0 + 5 + 2 = 15 which is
 - **Input:** `grid = [[0,0]], k = 5`
 - **Output:** `1`
 - **Explanation:** The path highlighted in red has a sum of 0 + 0 = 0 which is divisible by 5.
+
 #### Example 3
 
 ![](images/image-20220812224605-3.png)

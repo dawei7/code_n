@@ -30,19 +30,19 @@ Return the maximum score obtainable by choosing the black-prefix height of every
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[0,0,0,0,0],[0,0,3,0,0],[0,1,0,0,0],[5,0,0,3,0],[0,0,0,0,2]]`
-- Output: `11`
-- Explanation: Appropriate black prefixes expose the white values `5`, `3`, and `3` beside black cells.
+- **Input:** `grid = [[0,0,0,0,0],[0,0,3,0,0],[0,1,0,0,0],[5,0,0,3,0],[0,0,0,0,2]]`
+- **Output:** `11`
+- **Explanation:** Appropriate black prefixes expose the white values `5`, `3`, and `3` beside black cells.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[10,9,0,0,15],[7,1,0,8,0],[5,20,0,11,0],[0,0,0,1,2],[8,12,1,10,3]]`
-- Output: `94`
+- **Input:** `grid = [[10,9,0,0,15],[7,1,0,8,0],[5,20,0,11,0],[0,0,0,1,2],[8,12,1,10,3]]`
+- **Output:** `94`
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[7]]`
-- Output: `0`
-- Explanation: A one-column grid has no horizontal neighbors.
+- **Input:** `grid = [[7]]`
+- **Output:** `0`
+- **Explanation:** A one-column grid has no horizontal neighbors.

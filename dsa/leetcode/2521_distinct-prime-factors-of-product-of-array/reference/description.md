@@ -4,8 +4,13 @@ Given an array of positive integers `nums`, return *the number of **distinct pri
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -21,15 +26,14 @@ that:
 
 - **Input:** `nums = [2,4,3,7,10,6]`
 - **Output:** `4`
-- **Explanation:**
-The product of all the elements in nums is: 2 * 4 * 3 * 7 * 10 * 6 = 10080 = $2^{5}$ * $3^{2}$ * 5 * 7.
+- **Explanation:** The product of all the elements in nums is: 2 * 4 * 3 * 7 * 10 * 6 = 10080 = $2^{5}$ * $3^{2}$ * 5 * 7.
 There are 4 distinct prime factors so we return 4.
+
 #### Example 2
 
 - **Input:** `nums = [2,4,8,16]`
 - **Output:** `1`
-- **Explanation:**
-The product of all the elements in nums is: 2 * 4 * 8 * 16 = 1024 = $2^{10}$.
+- **Explanation:** The product of all the elements in nums is: 2 * 4 * 8 * 16 = 1024 = $2^{10}$.
 There is 1 distinct prime factor so we return 1.
 
 ### 5. Constraints

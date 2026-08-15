@@ -24,12 +24,11 @@ Return $\text{nums}[i]$ for the smallest index $i$ satisfying $M(F(\texttt{nums}
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [20,10,30,30]
+- **Input:** nums = [20,10,30,30]
 
-**Output:** 30
+- **Output:** 30
 
-**Explanation:**
+- **Explanation:** 
 
 - 20 appears once.
 
@@ -39,15 +38,13 @@ Return $\text{nums}[i]$ for the smallest index $i$ satisfying $M(F(\texttt{nums}
 
 - The frequency of 30 is unique because no other integer appears exactly twice.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [20,20,10,30,30,30]
+- **Input:** nums = [20,20,10,30,30,30]
 
-**Output:** 20
+- **Output:** 20
 
-**Explanation:**
+- **Explanation:** 
 
 - 20 appears twice.
 
@@ -57,23 +54,19 @@ Return $\text{nums}[i]$ for the smallest index $i$ satisfying $M(F(\texttt{nums}
 
 - The frequency of 20, 10, and 30 are unique. The first element that has unique frequency is 20.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [10,10,20,20]
+- **Input:** nums = [10,10,20,20]
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
+- **Explanation:** 
 
 - 10 appears twice.
 
 - 20 appears twice.
 
 - No element has a unique frequency.
-
-</div>
 
 ### 4. Constraints
 

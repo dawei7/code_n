@@ -12,21 +12,25 @@ The Manhattan Distance between two cells $(x_{i}, y_{i})$ and $(x_{j}, y_{j})$ i
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `m`: Input parameter (`int`).
+- `n`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** m = 2, n = 2, k = 2
+- **Input:** m = 2, n = 2, k = 2
 
-**Output:** 8
+- **Output:** 8
 
-**Explanation:**
-
-The valid arrangements of pieces on the board are:
+- **Explanation:** The valid arrangements of pieces on the board are:
 
 ![](images/4040example1.drawio)
 
@@ -38,17 +42,13 @@ The valid arrangements of pieces on the board are:
 
 Thus, the total Manhattan distance across all valid arrangements is $1 + 1 + 1 + 1 + 2 + 2 = 8$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** m = 1, n = 4, k = 3
+- **Input:** m = 1, n = 4, k = 3
 
-**Output:** 20
+- **Output:** 20
 
-**Explanation:**
-
-The valid arrangements of pieces on the board are:
+- **Explanation:** The valid arrangements of pieces on the board are:
 
 ![](images/4040example2drawio.png)
 
@@ -57,8 +57,6 @@ The valid arrangements of pieces on the board are:
 - The middle two arrangements have a total Manhattan distance of $1 + 2 + 3 = 6$.
 
 The total Manhattan distance between all pairs of pieces across all arrangements is $4 + 6 + 6 + 4 = 20$.
-
-</div>
 
 ### 4. Constraints
 

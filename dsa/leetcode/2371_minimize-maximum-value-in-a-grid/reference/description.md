@@ -34,6 +34,7 @@ Return an $m \times n$ matrix of positive integers that preserves row-wise and c
 - **Output:** `[[2,1],[1,2]]`
 - **Explanation:** The above diagram shows a valid replacement.
 The maximum number in the matrix is 2. It can be shown that no smaller value can be obtained.
+
 #### Example 2
 
 - **Input:** `grid = [[10]]`

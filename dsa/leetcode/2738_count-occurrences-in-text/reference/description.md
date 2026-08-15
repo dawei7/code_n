@@ -34,7 +34,7 @@ Return a table with columns `word` (varchar) and `count` (int) containing two ro
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Files table:
 +------------+----------------------------------------------------------------------------------+
 | file_name  | content                                                                         |
@@ -48,14 +48,14 @@ Files table:
 |            | awaiting a bear market. As always predicting the future market is an uncertain   |
 |            | game and all investors should follow their instincts and best practices.         |
 +------------+----------------------------------------------------------------------------------+
-**Output:**
+- **Output:** 
 +------+-------+
 | word | count |
 +------+-------+
 | bull | 3     |
 | bear | 2     |
 +------+-------+
-**Explanation:**
+- **Explanation:** 
 - The word "bull" appears 1 time in "draft1.txt", 1 time in "draft2.txt", and 1 time in "draft3.txt". Therefore, the total number of occurrences for the word "bull" is 3.
 - The word "bear" appears 1 time in "draft2.txt", and 1 time in "draft3.txt". Therefore, the total number of occurrences for the word "bear" is 2.
 ```

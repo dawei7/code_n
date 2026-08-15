@@ -40,18 +40,18 @@ belonging to any one user.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 In the supplied network, pairs such as `(1, 2)` are excluded because user `5`
 is connected to both endpoints. Pairs `(6, 7)` and `(8, 9)` have no mutual
 friend, so they are returned in identifier order.
 
-**Example 2**
+#### Example 2
 
 A single friendship has no third user connected to both endpoints and is
 therefore returned.
 
-**Example 3**
+#### Example 3
 
 Every edge of a triangle is excluded: for each pair, the triangle's remaining
 vertex is a mutual friend.

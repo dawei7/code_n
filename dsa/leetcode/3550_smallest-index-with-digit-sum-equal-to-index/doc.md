@@ -32,22 +32,22 @@ Return the smallest index `i` satisfying `digit_sum(nums[i]) == i`, or `-1` if n
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,3,2]`
-- Output: `2`
-- Explanation: The value at index `2` is `2`, whose digit sum is also $2$.
+- **Input:** `nums = [1,3,2]`
+- **Output:** `2`
+- **Explanation:** The value at index `2` is `2`, whose digit sum is also $2$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,10,11]`
-- Output: `1`
-- Explanation: Values at indices `1` and `2` have digit sums $1$ and $2$ respectively, so the smaller qualifying index is `1`.
+- **Input:** `nums = [1,10,11]`
+- **Output:** `1`
+- **Explanation:** Values at indices `1` and `2` have digit sums $1$ and $2$ respectively, so the smaller qualifying index is `1`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,2,3]`
-- Output: `-1`
-- Explanation: None of the three stored values has a digit sum equal to its position.
+- **Input:** `nums = [1,2,3]`
+- **Output:** `-1`
+- **Explanation:** None of the three stored values has a digit sum equal to its position.
 
 ---

@@ -22,12 +22,11 @@ Return the **minimum** total cost required to reach $(m - 1, n - 1)$. If it is i
 
 #### Example 1
 
-<div class="example-block">
-**Input:** m = 1, n = 1
+- **Input:** m = 1, n = 1
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - You start at cell `(0, 0)`.
 
@@ -35,23 +34,19 @@ Return the **minimum** total cost required to reach $(m - 1, n - 1)$. If it is i
 
 - Since you're at the destination, the total cost is 1.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** m = 2, n = 1
+- **Input:** m = 2, n = 1
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - You start at cell `(0, 0)` with cost $(0 + 1) * (0 + 1) = 1$.
 
 - Move 1 (odd): You can move down to `(1, 0)` with cost $(1 + 1) * (0 + 1) = 2$.
 
 - Thus, the total cost is $1 + 2 = 3$.
-
-</div>
 
 ### 4. Constraints
 

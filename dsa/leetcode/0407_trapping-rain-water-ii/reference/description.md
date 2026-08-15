@@ -23,6 +23,7 @@ Return the number of unit cubes of water trapped above the terrain after levels 
 - **Explanation:** After the rain, water is trapped between the blocks.
 We have two small ponds 1 and 3 units trapped.
 The total volume of water trapped is 4.
+
 #### Example 2
 
 ![](images/trap2-3d.jpg)

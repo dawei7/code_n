@@ -6,8 +6,14 @@ Return the count of days when the employee is available for work but no meetings
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `days`: Input parameter (`int`).
+- `meetings`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -17,40 +23,27 @@ The meetings may overlap.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** days = 10, meetings = [[5,7],[1,3],[9,10]]
+- **Input:** days = 10, meetings = [[5,7],[1,3],[9,10]]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** There is no meeting scheduled on the 4^th and 8^th days.
 
-There is no meeting scheduled on the 4^th and 8^th days.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** days = 5, meetings = [[2,4],[1,3]]
+- **Input:** days = 5, meetings = [[2,4],[1,3]]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** There is no meeting scheduled on the 5^th day.
 
-There is no meeting scheduled on the 5^th day.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** days = 6, meetings = [[1,6]]
+- **Input:** days = 6, meetings = [[1,6]]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-Meetings are scheduled for all working days.
-
-</div>
+- **Explanation:** Meetings are scheduled for all working days.
 
 ### 5. Constraints
 

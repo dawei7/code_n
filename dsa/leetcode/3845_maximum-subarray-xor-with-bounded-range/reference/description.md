@@ -35,12 +35,11 @@ Return the maximum XOR value over all valid pairs of boundaries $(l,r)$. A lengt
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [5,4,5,6], k = 2
+- **Input:** nums = [5,4,5,6], k = 2
 
-**Output:** 7
+- **Output:** 7
 
-**Explanation:**
+- **Explanation:** 
 
 - Select the subarray `[5, <u>**4, 5, 6**</u>]`.
 
@@ -48,23 +47,19 @@ Return the maximum XOR value over all valid pairs of boundaries $(l,r)$. A lengt
 
 - The value is $4 XOR 5 XOR 6 = 7$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [5,4,5,6], k = 1
+- **Input:** nums = [5,4,5,6], k = 1
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
+- **Explanation:** 
 
 - Select the subarray `[5, 4, 5, <u>**6**</u>]`.
 
 - The difference between its maximum and minimum elements is $6 - 6 = 0 \le k$.
 
 - The value is 6.
-
-</div>
 
 ### 4. Constraints
 

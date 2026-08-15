@@ -50,16 +50,16 @@ The leftmost length-`k` substring whose defined hash equals `hashValue`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "leetcode", power = 7, modulo = 20, k = 2, hashValue = 0`
-- Output: `"ee"`
-- Explanation: The hash is `(5 * 1 + 5 * 7) % 20 = 0`, and `"ee"` is the
+- **Input:** `s = "leetcode", power = 7, modulo = 20, k = 2, hashValue = 0`
+- **Output:** `"ee"`
+- **Explanation:** The hash is `(5 * 1 + 5 * 7) % 20 = 0`, and `"ee"` is the
   first matching length-two substring.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "fbxzaad", power = 31, modulo = 100, k = 3, hashValue = 32`
-- Output: `"fbx"`
-- Explanation: Both `"fbx"` and the later substring `"bxz"` hash to `32`, so
+- **Input:** `s = "fbxzaad", power = 31, modulo = 100, k = 3, hashValue = 32`
+- **Output:** `"fbx"`
+- **Explanation:** Both `"fbx"` and the later substring `"bxz"` hash to `32`, so
   the earlier one is returned.

@@ -18,8 +18,13 @@ Given a string `password`, return `true`* if it is a **strong** password*. Other
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `password`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -28,11 +33,13 @@ Given a string `password`, return `true`* if it is a **strong** password*. Other
 - **Input:** $password = "IloveLe3tcode!"$
 - **Output:** `true`
 - **Explanation:** The password meets all the requirements. Therefore, we return true.
+
 #### Example 2
 
 - **Input:** $password = "Me+You--IsMyDream"$
 - **Output:** `false`
 - **Explanation:** The password does not contain a digit and also contains 2 of the same character in adjacent positions. Therefore, we return false.
+
 #### Example 3
 
 - **Input:** $password = "1aB!"$

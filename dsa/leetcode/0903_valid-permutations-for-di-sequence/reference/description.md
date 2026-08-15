@@ -16,8 +16,13 @@ Return *the number of **valid permutations** *`perm`. Since the answer may be la
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -31,6 +36,7 @@ Return *the number of **valid permutations** *`perm`. Since the answer may be la
 (2, 1, 3, 0)
 (3, 0, 2, 1)
 (3, 1, 2, 0)
+
 #### Example 2
 
 - **Input:** `s = "D"`

@@ -6,8 +6,14 @@ A **special path** is defined as a **downward** path from an ancestor node to a 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `edges`: Input parameter (`List[List[int]]`).
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -19,12 +25,11 @@ Return an array `result` of size 2, where $\text{result}[0]$ is the **length** o
 
 #### Example 1
 
-<div class="example-block">
-**Input:** edges = [[0,1,2],[1,2,3],[1,3,5],[1,4,4],[2,5,6]], nums = [2,1,2,1,3,1]
+- **Input:** edges = [[0,1,2],[1,2,3],[1,3,5],[1,4,4],[2,5,6]], nums = [2,1,2,1,3,1]
 
-**Output:** [6,2]
+- **Output:** [6,2]
 
-**Explanation:**
+- **Explanation:** 
 
 #### In the image below, nodes are colored by their corresponding values in `nums`
 
@@ -32,21 +37,15 @@ Return an array `result` of size 2, where $\text{result}[0]$ is the **length** o
 
 The longest special paths are `2 -> 5` and `0 -> 1 -> 4`, both having a length of 6. The minimum number of nodes across all longest special paths is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** edges = [[1,0,8]], nums = [2,2]
+- **Input:** edges = [[1,0,8]], nums = [2,2]
 
-**Output:** [0,1]
+- **Output:** [0,1]
 
-**Explanation:**
-
-![](images/tree4.jpeg)
+- **Explanation:** ![](images/tree4.jpeg)
 
 The longest special paths are `0` and `1`, both having a length of 0. The minimum number of nodes across all longest special paths is 1.
-
-</div>
 
 ### 5. Constraints
 

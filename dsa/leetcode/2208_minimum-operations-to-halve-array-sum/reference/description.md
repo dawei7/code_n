@@ -6,8 +6,13 @@ Return* the **minimum** number of operations to reduce the sum of *`nums`* by **
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +29,7 @@ The final array is [5, 4.75, 4, 1] with a total sum of 5 + 4.75 + 4 + 1 = 14.75.
 The sum of nums has been reduced by 33 - 14.75 = 18.25, which is at least half of the initial sum, 18.25 >= 33/2 = 16.5.
 Overall, 3 operations were used so we return 3.
 It can be shown that we cannot reduce the sum by at least half in less than 3 operations.
+
 #### Example 2
 
 - **Input:** `nums = [3,8,20]`

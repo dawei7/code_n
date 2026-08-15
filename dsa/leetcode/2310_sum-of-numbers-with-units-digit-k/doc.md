@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/sum-of-numbers-with-units-digit-k/) |
 
 ## Problem Description
+
 ### Goal
+
 Given `num` and the decimal digit `k`, form a collection of positive integers
 such that every chosen integer has units digit `k` and all chosen values sum to
 `num`. Repeated instances of the same value are permitted despite the
@@ -20,6 +22,7 @@ can produce `num`, return `-1`. The empty collection has sum zero, so `num = 0`
 requires no integers. A units digit is the rightmost decimal digit.
 
 ### Function Contract
+
 **Inputs**
 
 - `num`: The nonnegative target sum.
@@ -34,20 +37,21 @@ The minimum collection size producing `num`, zero for the empty target, or
 `-1` when no valid sum exists.
 
 ### Examples
-**Example 1**
 
-- Input: `num = 58`, `k = 9`
-- Output: `2`
-- Explanation: `9 + 49 = 58`, and both summands end in 9.
+#### Example 1
 
-**Example 2**
+- **Input:** `num = 58`, `k = 9`
+- **Output:** `2`
+- **Explanation:** `9 + 49 = 58`, and both summands end in 9.
 
-- Input: `num = 37`, `k = 2`
-- Output: `-1`
-- Explanation: No count of positive integers ending in 2 can have this sum.
+#### Example 2
 
-**Example 3**
+- **Input:** `num = 37`, `k = 2`
+- **Output:** `-1`
+- **Explanation:** No count of positive integers ending in 2 can have this sum.
 
-- Input: `num = 0`, `k = 7`
-- Output: `0`
-- Explanation: The empty collection supplies the zero sum.
+#### Example 3
+
+- **Input:** `num = 0`, `k = 7`
+- **Output:** `0`
+- **Explanation:** The empty collection supplies the zero sum.

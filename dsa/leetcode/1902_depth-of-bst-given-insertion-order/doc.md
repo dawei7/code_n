@@ -30,20 +30,20 @@ Return the maximum number of nodes on a root-to-leaf path in the BST produced by
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `order = [2, 1, 4, 3]`
-- Output: `3`
-- Explanation: One longest path is `2 -> 4 -> 3`.
+- **Input:** `order = [2, 1, 4, 3]`
+- **Output:** `3`
+- **Explanation:** One longest path is `2 -> 4 -> 3`.
 
-**Example 2**
+#### Example 2
 
-- Input: `order = [2, 1, 3, 4]`
-- Output: `3`
-- Explanation: The path `2 -> 3 -> 4` has three nodes.
+- **Input:** `order = [2, 1, 3, 4]`
+- **Output:** `3`
+- **Explanation:** The path `2 -> 3 -> 4` has three nodes.
 
-**Example 3**
+#### Example 3
 
-- Input: `order = [1, 2, 3, 4]`
-- Output: `4`
-- Explanation: Increasing insertion order creates a right-only chain.
+- **Input:** `order = [1, 2, 3, 4]`
+- **Output:** `4`
+- **Explanation:** Increasing insertion order creates a right-only chain.

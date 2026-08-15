@@ -37,14 +37,14 @@ For the app-local harness, `calls` is a sequence of zero to 1000 strings, each e
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `init = 5, calls = ["increment","reset","decrement"]`
-- Output: `[6,5,4]`
-- Explanation: Increment changes the value to `6`, reset restores `5`, and decrement then changes it to `4`.
+- **Input:** `init = 5, calls = ["increment","reset","decrement"]`
+- **Output:** `[6,5,4]`
+- **Explanation:** Increment changes the value to `6`, reset restores `5`, and decrement then changes it to `4`.
 
-**Example 2**
+#### Example 2
 
-- Input: `init = 0, calls = ["increment","increment","decrement","reset","reset"]`
-- Output: `[1,2,1,0,0]`
-- Explanation: Updates share one current value, while either reset returns to the unchanged original value `0`.
+- **Input:** `init = 0, calls = ["increment","increment","decrement","reset","reset"]`
+- **Output:** `[1,2,1,0,0]`
+- **Explanation:** Updates share one current value, while either reset returns to the unchanged original value `0`.

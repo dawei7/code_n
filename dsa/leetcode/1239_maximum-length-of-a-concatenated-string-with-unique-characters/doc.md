@@ -36,23 +36,23 @@ $$
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = ["un","iq","ue"]`
-- Output: `4`
+- **Input:** `arr = ["un","iq","ue"]`
+- **Output:** `4`
 
 Either `"uniq"` or `"ique"` has four distinct characters.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = ["cha","r","act","ers"]`
-- Output: `6`
+- **Input:** `arr = ["cha","r","act","ers"]`
+- **Output:** `6`
 
 Valid longest choices include `"chaers"` and `"acters"`.
 
-**Example 3**
+#### Example 3
 
-- Input: `arr = ["abcdefghijklmnopqrstuvwxyz"]`
-- Output: `26`
+- **Input:** `arr = ["abcdefghijklmnopqrstuvwxyz"]`
+- **Output:** `26`
 
 The only source string already contains every lowercase letter exactly once.

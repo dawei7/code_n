@@ -26,12 +26,11 @@ Return the remaining values in their current order after every possible leftmost
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [3,1,1,2]
+- **Input:** nums = [3,1,1,2]
 
-**Output:** [3,4]
+- **Output:** [3,4]
 
-**Explanation:**
+- **Explanation:** 
 
 - The middle two elements are equal and merged into $1 + 1 = 2$, resulting in `[3, 2, 2]`.
 
@@ -39,33 +38,25 @@ Return the remaining values in their current order after every possible leftmost
 
 - No adjacent equal elements remain. Thus, the answer is `[3, 4]`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,2,4]
+- **Input:** nums = [2,2,4]
 
-**Output:** [8]
+- **Output:** [8]
 
-**Explanation:**
+- **Explanation:** 
 
 - The first two elements are equal and merged into $2 + 2 = 4$, resulting in `[4, 4]`.
 
 - The first two elements are equal and merged into $4 + 4 = 8$, resulting in `[8]`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [3,7,5]
+- **Input:** nums = [3,7,5]
 
-**Output:** [3,7,5]
+- **Output:** [3,7,5]
 
-**Explanation:**
-
-There are no adjacent equal elements in the array, so no operations are performed.
-
-</div>
+- **Explanation:** There are no adjacent equal elements in the array, so no operations are performed.
 
 ### 4. Constraints
 

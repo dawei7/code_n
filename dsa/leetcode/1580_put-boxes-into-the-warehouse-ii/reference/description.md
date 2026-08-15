@@ -33,22 +33,21 @@ Return an integer representing the maximum number of boxes that can be placed in
 
 - **Input:** $boxes = [1,2,2,3,4], warehouse = [3,4,1,2]$
 - **Output:** `4`
-- **Explanation:**
-![](images/22-1.png)
+- **Explanation:** ![](images/22-1.png)
 We can store the boxes in the following order:
 1- Put the yellow box in room 2 from either the left or right side.
 2- Put the orange box in room 3 from the right side.
 3- Put the green box in room 1 from the left side.
 4- Put the red box in room 0 from the left side.
 Notice that there are other valid ways to put 4 boxes such as swapping the red and green boxes or the red and orange boxes.
+
 #### Example 2
 
 ![](images/22-2.png)
 
 - **Input:** $boxes = [3,5,5,2], warehouse = [2,1,3,4,5]$
 - **Output:** `3`
-- **Explanation:**
-![](images/22-3.png)
+- **Explanation:** ![](images/22-3.png)
 It is not possible to put the two boxes of height 5 in the warehouse since there's only 1 room of height >= 5.
 Other valid solutions are to put the green box in room 2 or to put the orange box first in room 2 before putting the green and red boxes.
 

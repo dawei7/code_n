@@ -6,8 +6,13 @@ Return the **maximum** product of any two digits in `n`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -17,12 +22,11 @@ You may use the **same** digit twice if it appears more than once in `n`.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 31
+- **Input:** n = 31
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - The digits of `n` are `[3, 1]`.
 
@@ -30,15 +34,13 @@ You may use the **same** digit twice if it appears more than once in `n`.
 
 - The maximum product is 3.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 22
+- **Input:** n = 22
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** 
 
 - The digits of `n` are `[2, 2]`.
 
@@ -46,23 +48,19 @@ You may use the **same** digit twice if it appears more than once in `n`.
 
 - The maximum product is 4.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 124
+- **Input:** n = 124
 
-**Output:** 8
+- **Output:** 8
 
-**Explanation:**
+- **Explanation:** 
 
 - The digits of `n` are `[1, 2, 4]`.
 
 - The possible products of any two digits are: $1 * 2 = 2$, $1 * 4 = 4$, $2 * 4 = 8$.
 
 - The maximum product is 8.
-
-</div>
 
 ### 5. Constraints
 

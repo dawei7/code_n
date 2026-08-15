@@ -10,8 +10,13 @@ Return *the **minimum** possible **sum** of the cost of these subarrays*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,12 +28,14 @@ Return *the **minimum** possible **sum** of the cost of these subarrays*.
 The other possible ways to form 3 subarrays are:
 - [1], [2,3], and [12] at a total cost of 1 + 2 + 12 = 15.
 - [1,2], [3], and [12] at a total cost of 1 + 3 + 12 = 16.
+
 #### Example 2
 
 - **Input:** `nums = [5,4,3]`
 - **Output:** `12`
 - **Explanation:** The best possible way to form 3 subarrays is: [5], [4], and [3] at a total cost of 5 + 4 + 3 = 12.
 It can be shown that 12 is the minimum cost achievable.
+
 #### Example 3
 
 - **Input:** `nums = [10,3,1,1]`

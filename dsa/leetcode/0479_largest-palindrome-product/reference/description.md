@@ -21,6 +21,7 @@ Determine the largest original palindrome before applying the modulo operation.
 - **Input:** $n = 2$
 - **Output:** `987`
 - **Explanation:** 99 x 91 = 9009, 9009 % 1337 = 987
+
 #### Example 2
 
 - **Input:** $n = 1$

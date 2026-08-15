@@ -8,8 +8,13 @@ Two paths are considered different if they do not have exactly the same sequence
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +29,7 @@ Two paths are considered different if they do not have exactly the same sequence
 - Paths with length 2: [1 -> 3], [1 -> 4], [3 -> 4].
 - Paths with length 3: [1 -> 3 -> 4].
 The total number of paths is 4 + 3 + 1 = 8.
+
 #### Example 2
 
 - **Input:** `grid = [[1],[2]]`

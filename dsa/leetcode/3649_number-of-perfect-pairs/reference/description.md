@@ -8,18 +8,21 @@ A pair of indices `(i, j)` is called **perfect** if the following conditions are
 
 - Let $a = \text{nums}[i]$, $b = \text{nums}[j]$. Then:
 
-		<li>$min(|a - b|, |a + b|) \le min(|a|, |b|)$
+		- $min(|a - b|, |a + b|) \le min(|a|, |b|)$
 
 - $max(|a - b|, |a + b|) \ge max(|a|, |b|)$
-
-	</li>
 
 Return the number of **distinct** perfect pairs.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -29,14 +32,11 @@ The absolute value `|x|` refers to the **non-negative** value of `x`.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [0,1,2,3]
+- **Input:** nums = [0,1,2,3]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-There are 2 perfect pairs:
+- **Explanation:** There are 2 perfect pairs:
 
 <table style="border: 1px solid black;">
 	<thead>
@@ -68,17 +68,14 @@ There are 2 perfect pairs:
 		</tr>
 	</tbody>
 </table>
-</div>
+
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [-3,2,-1,4]
+- **Input:** nums = [-3,2,-1,4]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-There are 4 perfect pairs:
+- **Explanation:** There are 4 perfect pairs:
 
 <table style="border: 1px solid black;">
 	<thead>
@@ -126,19 +123,14 @@ There are 4 perfect pairs:
 		</tr>
 	</tbody>
 </table>
-</div>
+
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,10,100,1000]
+- **Input:** nums = [1,10,100,1000]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-There are no perfect pairs. Thus, the answer is 0.
-
-</div>
+- **Explanation:** There are no perfect pairs. Thus, the answer is 0.
 
 ### 5. Constraints
 

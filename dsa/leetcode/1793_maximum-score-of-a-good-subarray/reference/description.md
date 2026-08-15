@@ -8,8 +8,14 @@ Return *the maximum possible **score** of a **good** subarray.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +24,7 @@ Return *the maximum possible **score** of a **good** subarray.*
 - **Input:** `nums = [1,4,3,7,4,5], k = 3`
 - **Output:** `15`
 - **Explanation:** The optimal subarray is (1, 5) with a score of min(4,3,7,4,5) * (5-1+1) = 3 * 5 = 15.
+
 #### Example 2
 
 - **Input:** `nums = [5,5,4,5,4,1,1,1], k = 0`

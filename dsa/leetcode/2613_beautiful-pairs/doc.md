@@ -41,20 +41,20 @@ Return `[i, j]`, where $i<j$ and the corresponding points have minimum Manhattan
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [1, 2, 3, 2, 4], nums2 = [2, 3, 1, 2, 3]`
-- Output: `[0, 3]`
-- Explanation: Points $0$ and $3$ have Manhattan distance $1$, the smallest attainable distance.
+- **Input:** `nums1 = [1, 2, 3, 2, 4], nums2 = [2, 3, 1, 2, 3]`
+- **Output:** `[0, 3]`
+- **Explanation:** Points $0$ and $3$ have Manhattan distance $1$, the smallest attainable distance.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [1, 2, 4, 3, 2, 5], nums2 = [1, 4, 2, 3, 5, 1]`
-- Output: `[1, 4]`
-- Explanation: Points $1$ and $4$ have Manhattan distance $1$.
+- **Input:** `nums1 = [1, 2, 4, 3, 2, 5], nums2 = [1, 4, 2, 3, 5, 1]`
+- **Output:** `[1, 4]`
+- **Explanation:** Points $1$ and $4$ have Manhattan distance $1$.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums1 = [0, 0, 0], nums2 = [1, 1, 1]`
-- Output: `[0, 1]`
-- Explanation: Every pair has distance zero, so lexicographic order selects `[0, 1]`.
+- **Input:** `nums1 = [0, 0, 0], nums2 = [1, 1, 1]`
+- **Output:** `[0, 1]`
+- **Explanation:** Every pair has distance zero, so lexicographic order selects `[0, 1]`.

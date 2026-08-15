@@ -33,22 +33,22 @@ Return the minimum number of characters that must be deleted so the remaining st
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abc", k = 2`
-- Output: `1`
-- Explanation: Removing the only occurrence of any one letter leaves two distinct letters.
+- **Input:** `s = "abc", k = 2`
+- **Output:** `1`
+- **Explanation:** Removing the only occurrence of any one letter leaves two distinct letters.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "aabb", k = 2`
-- Output: `0`
-- Explanation: The string already has exactly two distinct letters.
+- **Input:** `s = "aabb", k = 2`
+- **Output:** `0`
+- **Explanation:** The string already has exactly two distinct letters.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "yyyzz", k = 1`
-- Output: `2`
-- Explanation: Deleting both `z` characters is cheaper than deleting the three `y` characters.
+- **Input:** `s = "yyyzz", k = 1`
+- **Output:** `2`
+- **Explanation:** Deleting both `z` characters is cheaper than deleting the three `y` characters.
 
 ---

@@ -12,8 +12,11 @@ Implement the `SmallestInfiniteSet` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `SmallestInfiniteSet()`: Initializes the data structure.
+- `popSmallest() -> `int``: Executes operation.
+- `addBack(num: int)`: Executes operation.
 
 ### 3. Examples
 

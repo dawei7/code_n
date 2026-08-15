@@ -12,8 +12,14 @@ Return *the length of the **longest** common prefix among all pairs*.* If no com
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr1`: Input parameter (`List[int]`).
+- `arr2`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,6 +32,7 @@ Return *the length of the **longest** common prefix among all pairs*.* If no com
 - The longest common prefix of (10, 1000) is 10.
 - The longest common prefix of (100, 1000) is 100.
 The longest common prefix is 100 with a length of 3.
+
 #### Example 2
 
 - **Input:** $arr1 = [1,2,3], arr2 = [4,4,4]$

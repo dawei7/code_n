@@ -38,20 +38,20 @@ $$
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[0,1,1],[1,0,1],[0,0,1]]`
-- Output: `[[0,0,4],[0,0,4],[-2,-2,2]]`
-- Explanation: The row one-counts are `[2,2,1]` and the column one-counts are `[1,1,3]`.
+- **Input:** `grid = [[0,1,1],[1,0,1],[0,0,1]]`
+- **Output:** `[[0,0,4],[0,0,4],[-2,-2,2]]`
+- **Explanation:** The row one-counts are `[2,2,1]` and the column one-counts are `[1,1,3]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[1,1,1],[1,1,1]]`
-- Output: `[[5,5,5],[5,5,5]]`
-- Explanation: Each row contributes three more ones than zeros and each column contributes two more ones than zeros.
+- **Input:** `grid = [[1,1,1],[1,1,1]]`
+- **Output:** `[[5,5,5],[5,5,5]]`
+- **Explanation:** Each row contributes three more ones than zeros and each column contributes two more ones than zeros.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[0]]`
-- Output: `[[-2]]`
-- Explanation: The only row and column each contribute one more zero than one.
+- **Input:** `grid = [[0]]`
+- **Output:** `[[-2]]`
+- **Explanation:** The only row and column each contribute one more zero than one.

@@ -10,8 +10,13 @@ Return *an integer denoting the **maximum** number of palindromes *`words`* can 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -27,6 +32,7 @@ Return *an integer denoting the **maximum** number of palindromes *`words`* can 
 Choose i = 0, j = 1, x = 0, y = 0, so we swap words[0][0] and words[1][0]. words becomes ["bbbb","aa","aa"].
 All strings in words are now palindromes.
 Hence, the maximum number of palindromes achievable is 3.
+
 #### Example 2
 
 - **Input:** $words = ["abc","ab"]$
@@ -36,6 +42,7 @@ Choose i = 0, j = 1, x = 1, y = 0, so we swap words[0][1] and words[1][0]. words
 Choose i = 0, j = 0, x = 1, y = 2, so we swap words[0][1] and words[0][2]. words becomes ["aca","bb"].
 Both strings are now palindromes.
 Hence, the maximum number of palindromes achievable is 2.
+
 #### Example 3
 
 - **Input:** $words = ["cd","ef","a"]$

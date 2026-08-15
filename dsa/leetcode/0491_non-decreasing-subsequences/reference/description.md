@@ -4,8 +4,13 @@ Given an integer array `nums`, return *all the different possible non-decreasing
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
@@ -13,6 +18,7 @@ Given an integer array `nums`, return *all the different possible non-decreasing
 
 - **Input:** `nums = [4,6,7,7]`
 - **Output:** `[[4,6],[4,6,7],[4,6,7,7],[4,7],[4,7,7],[6,7],[6,7,7],[7,7]]`
+
 #### Example 2
 
 - **Input:** `nums = [4,4,3,2,1]`

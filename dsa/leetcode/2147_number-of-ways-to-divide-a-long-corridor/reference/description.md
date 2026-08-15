@@ -10,8 +10,13 @@ Return *the number of ways to divide the corridor*. Since the answer may be very
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `corridor`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +29,7 @@ Return *the number of ways to divide the corridor*. Since the answer may be very
 - **Explanation:** There are 3 different ways to divide the corridor.
 The black bars in the above image indicate the two room dividers already installed.
 Note that in each of the ways, **each** section has exactly **two** seats.
+
 #### Example 2
 
 ![](images/2.png)
@@ -32,6 +38,7 @@ Note that in each of the ways, **each** section has exactly **two** seats.
 - **Output:** `1`
 - **Explanation:** There is only 1 way to divide the corridor, by not installing any additional dividers.
 Installing any would create some section that does not have exactly two seats.
+
 #### Example 3
 
 ![](images/3.png)

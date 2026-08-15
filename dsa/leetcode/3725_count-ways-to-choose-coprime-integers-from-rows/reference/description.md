@@ -22,14 +22,11 @@ Return the number of row-by-row selections whose overall greatest common divisor
 
 #### Example 1
 
-<div class="example-block">
-**Input:** mat = [[1,2],[3,4]]
+- **Input:** mat = [[1,2],[3,4]]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<tbody>
 		<tr>
 			<th align="center" style="border: 1px solid black;">Chosen integer in the first row</th>
@@ -61,19 +58,13 @@ Return the number of row-by-row selections whose overall greatest common divisor
 
 3 of these combinations have a greatest common divisor of 1. Therefore, the answer is 3.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** mat = [[2,2],[2,2]]
+- **Input:** mat = [[2,2],[2,2]]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-Every combination has a greatest common divisor of 2. Therefore, the answer is 0.
-
-</div>
+- **Explanation:** Every combination has a greatest common divisor of 2. Therefore, the answer is 0.
 
 ### 4. Constraints
 

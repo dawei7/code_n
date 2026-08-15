@@ -30,17 +30,17 @@ If a dish with satisfaction $s$ finishes at time $t$, it contributes $t \cdot s$
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `satisfaction = [-1,-8,0,5,-9]`
-- Output: `14`
+- **Input:** `satisfaction = [-1,-8,0,5,-9]`
+- **Output:** `14`
 
-**Example 2**
+#### Example 2
 
-- Input: `satisfaction = [4,3,2]`
-- Output: `20`
+- **Input:** `satisfaction = [4,3,2]`
+- **Output:** `20`
 
-**Example 3**
+#### Example 3
 
-- Input: `satisfaction = [-1,-4,-5]`
-- Output: `0`
+- **Input:** `satisfaction = [-1,-4,-5]`
+- **Output:** `0`

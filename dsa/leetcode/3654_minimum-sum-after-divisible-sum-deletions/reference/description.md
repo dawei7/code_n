@@ -10,41 +10,42 @@ Return the minimum possible **sum** of `nums` after performing any number of suc
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,1,1], k = 2
+- **Input:** nums = [1,1,1], k = 2
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - Delete the subarray $nums[0..1] = [1, 1]$, whose sum is 2 (divisible by 2), leaving `[1]`.
 
 - The remaining sum is 1.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [3,1,4,1,5], k = 3
+- **Input:** nums = [3,1,4,1,5], k = 3
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** 
 
 - First, delete $nums[1..3] = [1, 4, 1]$, whose sum is 6 (divisible by 3), leaving `[3, 5]`.
 
 - Then, delete $nums[0..0] = [3]$, whose sum is 3 (divisible by 3), leaving `[5]`.
 
 - The remaining sum is 5.**​​​​​​​**
-
-</div>
 
 ### 4. Constraints
 

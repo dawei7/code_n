@@ -8,8 +8,14 @@ Return *the **minimum** number of increments you need to make the cost of paths 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `cost`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -34,6 +40,7 @@ Return *the **minimum** number of increments you need to make the cost of paths 
 Each path from the root to a leaf will have a total cost of 9.
 The total increments we did is 1 + 3 + 2 = 6.
 It can be shown that this is the minimum answer we can achieve.
+
 #### Example 2
 
 ![](images/binaryytreee2drawio.png)

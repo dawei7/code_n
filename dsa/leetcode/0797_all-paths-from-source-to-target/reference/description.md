@@ -6,8 +6,13 @@ The graph is given as follows: $\text{graph}[i]$ is a list of all nodes you can 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `graph`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
@@ -18,6 +23,7 @@ The graph is given as follows: $\text{graph}[i]$ is a list of all nodes you can 
 - **Input:** $graph = [[1,2],[3],[3],[]]$
 - **Output:** `[[0,1,3],[0,2,3]]`
 - **Explanation:** There are two paths: 0 -> 1 -> 3 and 0 -> 2 -> 3.
+
 #### Example 2
 
 ![](images/all_2.jpg)

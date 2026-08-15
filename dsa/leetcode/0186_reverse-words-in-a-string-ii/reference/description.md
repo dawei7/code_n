@@ -22,6 +22,7 @@ Your code must solve the problem **in-place,** i.e. without allocating extra spa
 
 - **Input:** $s = ["t","h","e"," ","s","k","y"," ","i","s"," ","b","l","u","e"]$
 - **Output:** `["b","l","u","e"," ","i","s"," ","s","k","y"," ","t","h","e"]`
+
 #### Example 2
 
 - **Input:** $s = ["a"]$

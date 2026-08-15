@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/) |
 
 ## Problem Description
+
 ### Goal
 
 A connected, weighted, undirected graph has `n` vertices numbered from `0` through `n - 1`. Each `edges[i] = [a, b, weight]` describes one bidirectional edge, and index `i` is that edge's identity in the requested output. A minimum spanning tree (MST) connects every vertex without a cycle and has the minimum possible total weight.
@@ -16,6 +17,7 @@ A connected, weighted, undirected graph has `n` vertices numbered from `0` throu
 Classify the original edge indices. An edge is **critical** when removing it makes the best possible spanning-tree weight larger, so it belongs to every MST. An edge is **pseudo-critical** when it can belong to at least one MST but does not belong to all MSTs. Return `[critical, pseudo_critical]`; indices within either list may be in any order.
 
 ### Function Contract
+
 **Inputs**
 
 Let $V=n$ and let $E$ be the number of edges.
@@ -38,14 +40,15 @@ Return two lists:
 An edge that occurs in no MST belongs to neither list. Index order inside each category is unrestricted, but the two category positions are fixed.
 
 ### Examples
-**Example 1**
 
-- Input: `n = 5, edges = [[0,1,1],[1,2,1],[2,3,2],[0,3,2],[0,4,3],[3,4,3],[1,4,6]]`
-- Output: `[[0,1],[2,3,4,5]]`
-- Explanation: Edges zero and one are forced in every optimum. Each of edges two through five can be selected in some optimum, while the heavier final edge cannot.
+#### Example 1
 
-**Example 2**
+- **Input:** `n = 5, edges = [[0,1,1],[1,2,1],[2,3,2],[0,3,2],[0,4,3],[3,4,3],[1,4,6]]`
+- **Output:** `[[0,1],[2,3,4,5]]`
+- **Explanation:** Edges zero and one are forced in every optimum. Each of edges two through five can be selected in some optimum, while the heavier final edge cannot.
 
-- Input: `n = 4, edges = [[0,1,1],[1,2,1],[2,3,1],[0,3,1]]`
-- Output: `[[],[0,1,2,3]]`
-- Explanation: Removing any one edge from the equal-weight cycle gives an MST, so every edge is optional but eligible.
+#### Example 2
+
+- **Input:** `n = 4, edges = [[0,1,1],[1,2,1],[2,3,1],[0,3,1]]`
+- **Output:** `[[],[0,1,2,3]]`
+- **Explanation:** Removing any one edge from the equal-weight cycle gives an MST, so every edge is optional but eligible.

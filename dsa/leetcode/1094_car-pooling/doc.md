@@ -31,14 +31,14 @@ Return `True` if every trip can be served without exceeding `capacity`; otherwis
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `trips = [[2, 1, 5], [3, 3, 7]], capacity = 4`
-- Output: `False`
+- **Input:** `trips = [[2, 1, 5], [3, 3, 7]], capacity = 4`
+- **Output:** `False`
 
 At location 3, both groups are aboard and require five seats.
 
-**Example 2**
+#### Example 2
 
-- Input: `trips = [[2, 1, 5], [3, 3, 7]], capacity = 5`
-- Output: `True`
+- **Input:** `trips = [[2, 1, 5], [3, 3, 7]], capacity = 5`
+- **Output:** `True`

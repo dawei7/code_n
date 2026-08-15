@@ -9,12 +9,15 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/subtree-of-another-tree/) |
 
 ## Problem Description
+
 ### Goal
+
 Given the roots of two binary trees, `root` and `subRoot`, determine whether `subRoot` is a subtree of `root`. A subtree begins at some node of `root` and consists of that node together with all of its descendants; no descendant may be omitted from the selected tree.
 
 Return `True` if some node in `root` begins a tree that is identical to `subRoot`, and `False` otherwise. Identical means that the subtree has the same structure and node values as `subRoot`, including the placement of missing children.
 
 ### Function Contract
+
 **Inputs**
 
 - `root`: the root `TreeNode` of the main binary tree
@@ -25,17 +28,18 @@ Return `True` if some node in `root` begins a tree that is identical to `subRoot
 - `True` if some node of `root` begins a tree identical to `subRoot`; otherwise `False`
 
 ### Examples
-**Example 1**
 
-- Input: `root = [3,4,5,1,2], subRoot = [4,1,2]`
-- Output: `True`
+#### Example 1
 
-**Example 2**
+- **Input:** `root = [3,4,5,1,2], subRoot = [4,1,2]`
+- **Output:** `True`
 
-- Input: `root = [3,4,5,1,2,null,null,null,null,0], subRoot = [4,1,2]`
-- Output: `False`
+#### Example 2
 
-**Example 3**
+- **Input:** `root = [3,4,5,1,2,null,null,null,null,0], subRoot = [4,1,2]`
+- **Output:** `False`
 
-- Input: `root = [1,2,3], subRoot = [1,2,3]`
-- Output: `True`
+#### Example 3
+
+- **Input:** `root = [1,2,3], subRoot = [1,2,3]`
+- **Output:** `True`

@@ -32,16 +32,16 @@ Return the greatest number of pairwise non-intersecting substrings of length at 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word = "abcdeafdef"`
-- Output: `2`
-- Explanation: Choose `"abcdea"` followed by `"fdef"`.
+- **Input:** `word = "abcdeafdef"`
+- **Output:** `2`
+- **Explanation:** Choose `"abcdea"` followed by `"fdef"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `word = "bcdaaaab"`
-- Output: `1`
-- Explanation: Choosing `"aaaa"` prevents also choosing the surrounding `"bcdaaaab"`, so at most one valid substring can be selected.
+- **Input:** `word = "bcdaaaab"`
+- **Output:** `1`
+- **Explanation:** Choosing `"aaaa"` prevents also choosing the surrounding `"bcdaaaab"`, so at most one valid substring can be selected.
 
 ---

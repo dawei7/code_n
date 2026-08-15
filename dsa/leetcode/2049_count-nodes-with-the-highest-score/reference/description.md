@@ -8,8 +8,13 @@ Return *the **number** of nodes that have the **highest score***.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `parents`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,20 +24,21 @@ Return *the **number** of nodes that have the **highest score***.
 
 - **Input:** $parents = [-1,2,0,2,0]$
 - **Output:** `3`
-- **Explanation:**
+- **Explanation:** 
 - The score of node 0 is: 3 * 1 = 3
 - The score of node 1 is: 4 = 4
 - The score of node 2 is: 1 * 1 * 2 = 2
 - The score of node 3 is: 4 = 4
 - The score of node 4 is: 4 = 4
 The highest score is 4, and three nodes (node 1, node 3, and node 4) have the highest score.
+
 #### Example 2
 
 ![example-2](images/example-2.png)
 
 - **Input:** $parents = [-1,2,0]$
 - **Output:** `2`
-- **Explanation:**
+- **Explanation:** 
 - The score of node 0 is: 2 = 2
 - The score of node 1 is: 2 = 2
 - The score of node 2 is: 1 * 1 = 1

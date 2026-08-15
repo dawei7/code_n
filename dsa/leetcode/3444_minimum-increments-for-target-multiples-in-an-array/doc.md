@@ -33,23 +33,23 @@ Return the minimum total number of unit increments needed so every target has at
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,2,3], target = [4]`
-- Output: `1`
+- **Input:** `nums = [1,2,3], target = [4]`
+- **Output:** `1`
 
 Incrementing `3` once produces the required multiple `4`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [8,4], target = [10,5]`
-- Output: `2`
+- **Input:** `nums = [8,4], target = [10,5]`
+- **Output:** `2`
 
 Incrementing `8` to `10` makes one number divisible by both targets.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [7,9,10], target = [7]`
-- Output: `0`
+- **Input:** `nums = [7,9,10], target = [7]`
+- **Output:** `0`
 
 The existing value `7` already satisfies the target.

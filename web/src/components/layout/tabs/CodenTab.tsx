@@ -787,8 +787,8 @@ export function CodenTab() {
                         onChange={(e) => setSqlEngine(e.target.value as 'sqlite' | 'postgres')}
                         className="bg-transparent font-bold text-coden-accent cursor-pointer focus:outline-none"
                       >
-                        <option value="sqlite" className="bg-coden-surface text-coden-text">SQLite (In-Memory)</option>
                         <option value="postgres" className="bg-coden-surface text-coden-text">PostgreSQL (PGlite WASM)</option>
+                        <option value="sqlite" className="bg-coden-surface text-coden-text">SQLite (In-Memory)</option>
                       </select>
                     </div>
                   )}

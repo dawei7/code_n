@@ -42,7 +42,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Users table:
 +---------+-----------+
 | user_id | user_name |
@@ -68,7 +68,7 @@ Register table:
 | 207        | 2       |
 | 210        | 7       |
 +------------+---------+
-**Output:**
+- **Output:** 
 +------------+------------+
 | contest_id | percentage |
 +------------+------------+
@@ -78,8 +78,7 @@ Register table:
 | 215        | 66.67      |
 | 207        | 33.33      |
 +------------+------------+
-**Explanation:**
-All the users registered in contests 208, 209, and 210. The percentage is 100% and we sort them in the answer table by contest_id in ascending order.
+- **Explanation:** All the users registered in contests 208, 209, and 210. The percentage is 100% and we sort them in the answer table by contest_id in ascending order.
 Alice and Alex registered in contest 215 and the percentage is ((2/3) * 100) = 66.67%
 Bob registered in contest 207 and the percentage is ((1/3) * 100) = 33.33%
 ```

@@ -8,8 +8,13 @@ Given the 2D array `wall` that contains the information about the wall, return *
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `wall`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,6 +24,7 @@ Given the 2D array `wall` that contains the information about the wall, return *
 
 - **Input:** $wall = [[1,2,2,1],[3,1,2],[1,3,2],[2,4],[3,1,2],[1,3,1,1]]$
 - **Output:** `2`
+
 #### Example 2
 
 - **Input:** $wall = [[1],[1],[1]]$

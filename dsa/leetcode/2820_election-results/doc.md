@@ -36,7 +36,7 @@ Include all tied winners and order the rows by `candidate` ascending. Abstention
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 Suppose Charles selects Ryan, Christine, and Kathy, so each receives one third of his vote. Benjamin and Arthur each give a full vote to Christine; Anthony and Edward each give a full vote to Ryan; Evelyn gives a full vote to Kathy; Kathy and Terry abstain.
 
@@ -47,10 +47,10 @@ Christine and Ryan each finish with $2+rac{1}{3}$ votes, ahead of Kathy's $1+r
 | Christine |
 | Ryan |
 
-**Example 2**
+#### Example 2
 
 If one voter chooses Alice and Bob while another voter chooses only Bob, Alice receives $rac{1}{2}$ vote and Bob receives $1+rac{1}{2}$ votes. The result contains only `Bob`.
 
-**Example 3**
+#### Example 3
 
 If two voters each choose both Alice and Bob, both candidates receive one vote. Return `Alice` and `Bob` in ascending order.

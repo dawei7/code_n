@@ -34,14 +34,11 @@ Return the level sums from the root level through the deepest level. A level con
 
 #### Example 1
 
-<div class="example-block">
-**Input:** root = [5,2,8,1,null,9,6]
+- **Input:** root = [5,2,8,1,null,9,6]
 
-**Output:** [5,8,0]
+- **Output:** [5,8,0]
 
-**Explanation:**
-
-![](images/screenshot-2026-04-13-at-22054am.png)
+- **Explanation:** ![](images/screenshot-2026-04-13-at-22054am.png)
 
 ​​​​​​​
 
@@ -53,17 +50,13 @@ Return the level sums from the root level through the deepest level. A level con
 
 - Thus, $ans = [5, 8, 0]$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** root = [1,2,3,4,5,null,7]
+- **Input:** root = [1,2,3,4,5,null,7]
 
-**Output:** [1,5,0]
+- **Output:** [1,5,0]
 
-**Explanation:**
-
-![](images/screenshot-2026-04-13-at-22232am.png)
+- **Explanation:** ![](images/screenshot-2026-04-13-at-22232am.png)
 
 - At level 1, nodes are processed left to right. Node 1 is included, thus $\text{ans}[0] = 1$.
 
@@ -72,8 +65,6 @@ Return the level sums from the root level through the deepest level. A level con
 - At level 3, nodes are processed left to right. The first node 4 lacks a left child, so no nodes are included, and $\text{ans}[2] = 0$.
 
 - Thus, $ans = [1, 5, 0]$.
-
-</div>
 
 ### 4. Constraints
 

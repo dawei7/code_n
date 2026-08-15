@@ -23,23 +23,20 @@ You have a very powerful program that can solve any equation of one variable in 
 
 - Each term of the LHS should follow the format $"<sign><fact>X^<pow>"$ where:
 
-		<li>`<sign>` is either `"+"` or `"-"`.
+		- `<sign>` is either `"+"` or `"-"`.
 
 - `<fact>` is the **absolute value** of the `factor`.
 
 - `<pow>` is the value of the `power`.
 
-	</li>
 - If the power is `1`, do not add $"^<pow>"$.
 
-		<li>For example, if $power = 1$ and $factor = 3$, the term will be `"+3X"`.
+		- For example, if $power = 1$ and $factor = 3$, the term will be `"+3X"`.
 
-	</li>
 - If the power is `0`, add neither `"X"` nor $"^<pow>"$.
 
-		<li>For example, if $power = 0$ and $factor = -3$, the term will be `"-3"`.
+		- For example, if $power = 0$ and $factor = -3$, the term will be `"-3"`.
 
-	</li>
 - The powers in the LHS should be sorted in **descending order**.
 
 Write a solution to build the equation.
@@ -55,7 +52,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Terms table:
 +-------+--------+
 | power | factor |
@@ -64,17 +61,18 @@ Terms table:
 | 1     | -4     |
 | 0     | 2      |
 +-------+--------+
-**Output:**
+- **Output:** 
 +--------------+
 | equation     |
 +--------------+
 | +1X^2-4X+2=0 |
 +--------------+
 ```
+
 #### Example 2
 
 ```
-**Input:**
+- **Input:** 
 Terms table:
 +-------+--------+
 | power | factor |
@@ -83,7 +81,7 @@ Terms table:
 | 2     | 1      |
 | 1     | -1     |
 +-------+--------+
-**Output:**
+- **Output:** 
 +-----------------+
 | equation        |
 +-----------------+

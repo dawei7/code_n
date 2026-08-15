@@ -35,7 +35,6 @@ The query result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 `Employees` table:
@@ -90,5 +89,3 @@ The query result format is in the following example.
 ### 3. Note
 
 The output is ordered first by hierarchy_level in ascending order, then by subordinate_id in ascending order.
-
-</div>

@@ -30,7 +30,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Purchases table:
 +---------+---------------+--------------+
 | user_id | purchase_date | amount_spend |
@@ -44,7 +44,7 @@ Purchases table:
 | 10      | 2023-11-12    | 8266         |
 | 13      | 2023-11-24    | 12000        |
 +---------+---------------+--------------+
-**Output:**
+- **Output:** 
 +---------------+---------------+--------------+
 | week_of_month | purchase_date | total_amount |
 +---------------+---------------+--------------+
@@ -53,7 +53,7 @@ Purchases table:
 | 3             | 2023-11-17    | 0            |
 | 4             | 2023-11-24    | 21692        |
 +---------------+---------------+--------------+
-**Explanation:**
+- **Explanation:** 
 - During the first week of November 2023, transactions amounting to $5,117 occurred on Friday, 2023-11-03.
 - For the second week of November 2023, there were no transactions on Friday, 2023-11-10, resulting in a value of 0 in the output table for that day.
 - Similarly, during the third week of November 2023, there were no transactions on Friday, 2023-11-17, reflected as 0 in the output table for that specific day.

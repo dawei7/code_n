@@ -8,8 +8,14 @@ Return *the length of the **shortest** subarray of the array *$\text{infinite}_{
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `target`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +26,7 @@ Return *the length of the **shortest** subarray of the array *$\text{infinite}_{
 - **Explanation:** In this example infinite_nums = [1,2,3,1,2,3,1,2,...].
 The subarray in the range [1,2], has the sum equal to target = 5 and length = 2.
 It can be proven that 2 is the shortest length of a subarray with sum equal to target = 5.
+
 #### Example 2
 
 - **Input:** `nums = [1,1,1,2,3], target = 4`
@@ -27,6 +34,7 @@ It can be proven that 2 is the shortest length of a subarray with sum equal to t
 - **Explanation:** In this example infinite_nums = [1,1,1,2,3,1,1,1,2,3,1,1,...].
 The subarray in the range [4,5], has the sum equal to target = 4 and length = 2.
 It can be proven that 2 is the shortest length of a subarray with sum equal to target = 4.
+
 #### Example 3
 
 - **Input:** `nums = [2,4,6,8], target = 3`

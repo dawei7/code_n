@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/find-the-least-frequent-digit/) |
 
 ## Problem Description
+
 ### Goal
 
 Given a positive integer `n`, inspect the digits that occur in its ordinary decimal representation. For each present digit, its frequency is the number of positions in that representation containing the digit.
@@ -33,20 +34,20 @@ Return the smallest digit among those appearing the minimum positive number of t
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 1553322`
-- Output: `1`
+- **Input:** `n = 1553322`
+- **Output:** `1`
 - Digit `1` occurs once, while `2`, `3`, and `5` each occur twice.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 723344511`
-- Output: `2`
+- **Input:** `n = 723344511`
+- **Output:** `2`
 - Digits `2`, `5`, and `7` each occur once, so the smallest tied digit is `2`.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 1012`
-- Output: `0`
+- **Input:** `n = 1012`
+- **Output:** `0`
 - Digits `0` and `2` each occur once; the smaller tied digit is `0`.

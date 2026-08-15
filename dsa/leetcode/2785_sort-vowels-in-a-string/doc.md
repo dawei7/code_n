@@ -32,20 +32,20 @@ Return a string of length $n$ in which consonants occupy their original indices 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "lEetcOde"`
-- Output: `"lEOtcede"`
-- Explanation: The vowels are `E`, `e`, `O`, and `e`; their ASCII order is `E`, `O`, `e`, `e`, while `l`, `t`, `c`, and `d` stay fixed.
+- **Input:** `s = "lEetcOde"`
+- **Output:** `"lEOtcede"`
+- **Explanation:** The vowels are `E`, `e`, `O`, and `e`; their ASCII order is `E`, `O`, `e`, `e`, while `l`, `t`, `c`, and `d` stay fixed.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "lYmpH"`
-- Output: `"lYmpH"`
-- Explanation: The string has no vowels, so no position changes.
+- **Input:** `s = "lYmpH"`
+- **Output:** `"lYmpH"`
+- **Explanation:** The string has no vowels, so no position changes.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "aeiouAEIOU"`
-- Output: `"AEIOUaeiou"`
-- Explanation: All characters are vowels, and uppercase ASCII codes precede the lowercase codes.
+- **Input:** `s = "aeiouAEIOU"`
+- **Output:** `"AEIOUaeiou"`
+- **Explanation:** All characters are vowels, and uppercase ASCII codes precede the lowercase codes.

@@ -38,8 +38,7 @@ Return the $n$ final column levels after all `volume` droplets have settled sequ
 
 - **Input:** $heights = [2,1,1,2,1,2,2], volume = 4, k = 3$
 - **Output:** `[2,2,2,3,2,2,2]`
-- **Explanation:**
-The first drop of water lands at index k = 3. When moving left or right, the water can only move to the same level or a lower level. (By level, we mean the total height of the terrain plus any water in that column.)
+- **Explanation:** The first drop of water lands at index k = 3. When moving left or right, the water can only move to the same level or a lower level. (By level, we mean the total height of the terrain plus any water in that column.)
 Since moving left will eventually make it fall, it moves left. (A droplet "made to fall" means go to a lower height than it was at previously.) Since moving left will not make it fall, it stays in place.
 ![](images/pour12-grid.jpg)
 The next droplet falls at index k = 3. Since the new droplet moving left will eventually make it fall, it moves left. Notice that the droplet still preferred to move left, even though it could move right (and moving right makes it fall quicker.)
@@ -48,11 +47,13 @@ The third droplet falls at index k = 3. Since moving left would not eventually m
 ![](images/pour14-grid.jpg)
 Finally, the fourth droplet falls at index k = 3. Since moving left would not eventually make it fall, it tries to move right. Since moving right would not eventually make it fall, it stays in place.
 ![](images/pour15-grid.jpg)
+
 #### Example 2
 
 - **Input:** $heights = [1,2,3,4], volume = 2, k = 2$
 - **Output:** `[2,3,3,4]`
 - **Explanation:** The last droplet settles at index 1, since moving further left would not cause it to eventually fall to a lower height.
+
 #### Example 3
 
 - **Input:** $heights = [3,1,3], volume = 5, k = 1$

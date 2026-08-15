@@ -35,20 +35,20 @@ The source constraints guarantee $1 \le \lvert\texttt{nums}\rvert,\lvert\texttt{
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3, 4, 5]`, `queries = [1, 2, 3, 4, 6]`
-- Output: `4`
-- Explanation: Keep the full array and remove `1`, `2`, `3`, then `4` from the front. The remaining value cannot meet query `6`.
+- **Input:** `nums = [1, 2, 3, 4, 5]`, `queries = [1, 2, 3, 4, 6]`
+- **Output:** `4`
+- **Explanation:** Keep the full array and remove `1`, `2`, `3`, then `4` from the front. The remaining value cannot meet query `6`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, 3, 2]`, `queries = [2, 2, 3]`
-- Output: `3`
-- Explanation: Remove the left `2`, the right `2`, and finally `3`.
+- **Input:** `nums = [2, 3, 2]`, `queries = [2, 2, 3]`
+- **Output:** `3`
+- **Explanation:** Remove the left `2`, the right `2`, and finally `3`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [3, 4, 3]`, `queries = [4, 3, 2]`
-- Output: `2`
-- Explanation: Choose subsequence `[4, 3]`, then remove its two values from the front. No value remains for the third query.
+- **Input:** `nums = [3, 4, 3]`, `queries = [4, 3, 2]`
+- **Output:** `2`
+- **Explanation:** Choose subsequence `[4, 3]`, then remove its two values from the front. No value remains for the third query.

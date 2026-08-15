@@ -36,20 +36,20 @@ Return the lexicographically smallest rearrangement that is an anti-palindrome. 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abca"`
-- Output: `"aabc"`
-- Explanation: The mirrored pairs are `a` with `c` and `a` with `b`, and no valid rearrangement is lexicographically smaller.
+- **Input:** `s = "abca"`
+- **Output:** `"aabc"`
+- **Explanation:** The mirrored pairs are `a` with `c` and `a` with `b`, and no valid rearrangement is lexicographically smaller.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "abba"`
-- Output: `"aabb"`
-- Explanation: Both `a` characters occupy the first half and both `b` characters the second, so each mirror pair differs.
+- **Input:** `s = "abba"`
+- **Output:** `"aabb"`
+- **Explanation:** Both `a` characters occupy the first half and both `b` characters the second, so each mirror pair differs.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "cccd"`
-- Output: `"-1"`
-- Explanation: Three copies of `c` cannot be distributed among two mirrored pairs without placing `c` at both ends of at least one pair.
+- **Input:** `s = "cccd"`
+- **Output:** `"-1"`
+- **Explanation:** Three copies of `c` cannot be distributed among two mirrored pairs without placing `c` at both ends of at least one pair.

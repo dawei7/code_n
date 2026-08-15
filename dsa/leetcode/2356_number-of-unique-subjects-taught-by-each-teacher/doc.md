@@ -41,7 +41,7 @@ associated with that teacher. Row order is unrestricted.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 Teacher 1 teaches subject 2 in two departments and subject 3 in one, so their
 distinct-subject count is 2. Teacher 2 teaches four different subjects:

@@ -30,17 +30,17 @@ Evaluate every legal boundary between adjacent characters and return the maximum
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "011101"`
-- Output: `5`
+- **Input:** `s = "011101"`
+- **Output:** `5`
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "00111"`
-- Output: `5`
+- **Input:** `s = "00111"`
+- **Output:** `5`
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "1111"`
-- Output: `3`
+- **Input:** `s = "1111"`
+- **Output:** `3`

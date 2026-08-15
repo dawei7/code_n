@@ -36,14 +36,14 @@ The subsequence is ideal when the absolute difference between the alphabet posit
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "acfgbd", k = 2`
-- Output: `4`
-- Explanation: `"acbd"` is an ideal subsequence. In contrast, keeping `'c'` next to `'f'` would create an alphabet distance of $3$.
+- **Input:** `s = "acfgbd", k = 2`
+- **Output:** `4`
+- **Explanation:** `"acbd"` is an ideal subsequence. In contrast, keeping `'c'` next to `'f'` would create an alphabet distance of $3$.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "abcd", k = 3`
-- Output: `4`
-- Explanation: Every adjacent pair already satisfies the limit, so the complete string is ideal.
+- **Input:** `s = "abcd", k = 3`
+- **Output:** `4`
+- **Explanation:** Every adjacent pair already satisfies the limit, so the complete string is ideal.

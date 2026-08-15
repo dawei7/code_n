@@ -32,20 +32,20 @@ Return the maximum number of cells in a strictly increasing sequence whose conse
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `mat = [[3,1],[3,4]]`
-- Output: `2`
-- Explanation: Starting at value $1$, one may move to either value $3$ in its row or value $4$ in its column. No valid sequence visits three cells.
+- **Input:** `mat = [[3,1],[3,4]]`
+- **Output:** `2`
+- **Explanation:** Starting at value $1$, one may move to either value $3$ in its row or value $4$ in its column. No valid sequence visits three cells.
 
-**Example 2**
+#### Example 2
 
-- Input: `mat = [[1,1],[1,1]]`
-- Output: `1`
-- Explanation: A strict increase is impossible, so a sequence contains only its starting cell.
+- **Input:** `mat = [[1,1],[1,1]]`
+- **Output:** `1`
+- **Explanation:** A strict increase is impossible, so a sequence contains only its starting cell.
 
-**Example 3**
+#### Example 3
 
-- Input: `mat = [[3,1,6],[-9,5,7]]`
-- Output: `4`
-- Explanation: The values $-9 \to 1 \to 5 \to 7$ form a valid four-cell sequence by alternating column and row moves.
+- **Input:** `mat = [[3,1,6],[-9,5,7]]`
+- **Output:** `4`
+- **Explanation:** The values $-9 \to 1 \to 5 \to 7$ form a valid four-cell sequence by alternating column and row moves.

@@ -6,8 +6,13 @@ Determine whether the largest element in the array is **at least twice** as much
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +23,7 @@ Determine whether the largest element in the array is **at least twice** as much
 - **Explanation:** 6 is the largest integer.
 For every other number in the array x, 6 is at least twice as big as x.
 The index of value 6 is 1, so we return 1.
+
 #### Example 2
 
 - **Input:** `nums = [1,2,3,4]`

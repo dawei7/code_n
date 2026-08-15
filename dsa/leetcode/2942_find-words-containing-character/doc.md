@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/find-words-containing-character/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given a 0-indexed array of lowercase strings `words` and one
 lowercase English character `x`. Examine each word independently and decide
 whether `x` occurs anywhere within it. Multiple occurrences inside the same
@@ -22,6 +24,7 @@ indices may appear in any order; preserving their order from `words` is one
 valid choice.
 
 ### Function Contract
+
 **Inputs**
 
 - `words`: the nonempty array of lowercase English words
@@ -42,20 +45,21 @@ A list containing each index `i` for which `x in words[i]` is true, in any
 order.
 
 ### Examples
-**Example 1**
 
-- Input: `words = ["leet","code"], x = "e"`
-- Output: `[0,1]`
-- Explanation: Both words contain `"e"`.
+#### Example 1
 
-**Example 2**
+- **Input:** `words = ["leet","code"], x = "e"`
+- **Output:** `[0,1]`
+- **Explanation:** Both words contain `"e"`.
 
-- Input: `words = ["abc","bcd","aaaa","cbc"], x = "a"`
-- Output: `[0,2]`
-- Explanation: Only the words at indices `0` and `2` contain `"a"`.
+#### Example 2
 
-**Example 3**
+- **Input:** `words = ["abc","bcd","aaaa","cbc"], x = "a"`
+- **Output:** `[0,2]`
+- **Explanation:** Only the words at indices `0` and `2` contain `"a"`.
 
-- Input: `words = ["abc","bcd","aaaa","cbc"], x = "z"`
-- Output: `[]`
-- Explanation: None of the words contains `"z"`.
+#### Example 3
+
+- **Input:** `words = ["abc","bcd","aaaa","cbc"], x = "z"`
+- **Output:** `[]`
+- **Explanation:** None of the words contains `"z"`.

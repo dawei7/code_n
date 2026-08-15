@@ -16,8 +16,13 @@ Given an integer `n`, return *the number of **good** integers in the range *`[1,
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -27,10 +32,12 @@ Given an integer `n`, return *the number of **good** integers in the range *`[1,
 - **Output:** `4`
 - **Explanation:** There are four good numbers in the range [1, 10] : 2, 5, 6, 9.
 Note that 1 and 10 are not good numbers, since they remain unchanged after rotating.
+
 #### Example 2
 
 - **Input:** $n = 1$
 - **Output:** `0`
+
 #### Example 3
 
 - **Input:** $n = 2$

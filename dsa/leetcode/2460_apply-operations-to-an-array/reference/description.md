@@ -14,8 +14,13 @@ Return *the resulting array*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -34,6 +39,7 @@ that the operations are applied **sequentially**, not all at once.
 - i = 3: nums[3] and nums[4] are equal, we multiply nums[3] by 2 and change nums[4] to 0. The array becomes [1,4,0,**<u>2</u>**,**<u>0</u>**,0].
 - i = 4: nums[4] and nums[5] are equal, we multiply nums[4] by 2 and change nums[5] to 0. The array becomes [1,4,0,2,**<u>0</u>**,**<u>0</u>**].
 After that, we shift the 0's to the end, which gives the array [1,4,2,0,0,0].
+
 #### Example 2
 
 - **Input:** `nums = [0,1]`

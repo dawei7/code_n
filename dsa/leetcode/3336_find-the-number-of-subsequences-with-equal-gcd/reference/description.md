@@ -14,21 +14,23 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4]
+- **Input:** nums = [1,2,3,4]
 
-**Output:** 10
+- **Output:** 10
 
-**Explanation:**
-
-The subsequence pairs which have the GCD of their elements equal to 1 are:
+- **Explanation:** The subsequence pairs which have the GCD of their elements equal to 1 are:
 
 - `([**<u>1</u>**, 2, 3, 4], [1, **<u>2</u>**, **<u>3</u>**, 4])`
 
@@ -50,31 +52,23 @@ The subsequence pairs which have the GCD of their elements equal to 1 are:
 
 - $([1, 2, **<u>3</u>**, **<u>4</u>**], [**<u>1</u>**, **<u>2</u>**, 3, 4])$
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [10,20,30]
+- **Input:** nums = [10,20,30]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The subsequence pairs which have the GCD of their elements equal to 10 are:
+- **Explanation:** The subsequence pairs which have the GCD of their elements equal to 10 are:
 
 - `([**<u>10</u>**, 20, 30], [10, **<u>20</u>**, **<u>30</u>**])`
 
 - `([10, **<u>20</u>**, **<u>30</u>**], [**<u>10</u>**, 20, 30])`
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,1,1,1]
+- **Input:** nums = [1,1,1,1]
 
-**Output:** 50
-
-</div>
+- **Output:** 50
 
 ### 4. Constraints
 

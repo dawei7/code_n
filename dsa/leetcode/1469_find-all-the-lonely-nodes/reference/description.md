@@ -30,6 +30,7 @@ Result order is unrestricted.
 - **Explanation:** Light blue node is the only lonely node.
 Node 1 is the root and is not lonely.
 Nodes 2 and 3 have the same parent and are not lonely.
+
 #### Example 2
 
 ![](images/e2.png)
@@ -38,6 +39,7 @@ Nodes 2 and 3 have the same parent and are not lonely.
 - **Output:** `[6,2]`
 - **Explanation:** Light blue nodes are lonely nodes.
 Please remember that order doesn't matter, [2,6] is also an acceptable answer.
+
 #### Example 3
 
 ![](images/tree.png)

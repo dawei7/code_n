@@ -6,8 +6,15 @@ Given three integers `m`, `n`, and `k`, return *the *$$k^{\text{th}}$$* smallest
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `m`: Input parameter (`int`).
+- `n`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +25,7 @@ Given three integers `m`, `n`, and `k`, return *the *$$k^{\text{th}}$$* smallest
 - **Input:** $m = 3, n = 3, k = 5$
 - **Output:** `3`
 - **Explanation:** The 5^th smallest number is 3.
+
 #### Example 2
 
 ![](images/multtable2-grid.jpg)

@@ -12,20 +12,15 @@ Return an integer array which contains the elements of the linked list **in orde
 
 #### Example 1
 
-<div class="example-block">
-**Input:** head = [1,2,3,4,5], node = 5
+- **Input:** head = [1,2,3,4,5], node = 5
 
-**Output:** [1,2,3,4,5]
+- **Output:** [1,2,3,4,5]
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** head = [4,5,6,7,8], node = 8
+- **Input:** head = [4,5,6,7,8], node = 8
 
-**Output:** [4,5,6,7,8]
-
-</div>
+- **Output:** [4,5,6,7,8]
 
 ### 4. Constraints
 

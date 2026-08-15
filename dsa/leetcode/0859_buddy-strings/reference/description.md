@@ -8,8 +8,14 @@ Swapping letters is defined as taking two indices `i` and `j` (0-indexed) such t
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `goal`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -18,11 +24,13 @@ Swapping letters is defined as taking two indices `i` and `j` (0-indexed) such t
 - **Input:** `s = "ab", goal = "ba"`
 - **Output:** `true`
 - **Explanation:** You can swap s[0] = 'a' and s[1] = 'b' to get "ba", which is equal to goal.
+
 #### Example 2
 
 - **Input:** `s = "ab", goal = "ab"`
 - **Output:** `false`
 - **Explanation:** The only letters you can swap are s[0] = 'a' and s[1] = 'b', which results in "ba" != goal.
+
 #### Example 3
 
 - **Input:** `s = "aa", goal = "aa"`

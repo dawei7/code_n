@@ -30,20 +30,20 @@ You are given a valid parentheses string `s`. Decompose it uniquely into consecu
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "(()())(())"`
-- Output: `"()()()"`
-- Explanation: `"(()())" + "(())"` becomes `"()()" + "()"`.
+- **Input:** `s = "(()())(())"`
+- **Output:** `"()()()"`
+- **Explanation:** `"(()())" + "(())"` becomes `"()()" + "()"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "(()())(())(()(()))"`
-- Output: `"()()()()(())"`
-- Explanation: Removing the outer pair from its three primitives yields `"()()"`, `"()"`, and `"()(())"`.
+- **Input:** `s = "(()())(())(()(()))"`
+- **Output:** `"()()()()(())"`
+- **Explanation:** Removing the outer pair from its three primitives yields `"()()"`, `"()"`, and `"()(())"`.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "()()"`
-- Output: `""`
-- Explanation: Both primitives are `"()"`, so both become empty.
+- **Input:** `s = "()()"`
+- **Output:** `""`
+- **Explanation:** Both primitives are `"()"`, so both become empty.

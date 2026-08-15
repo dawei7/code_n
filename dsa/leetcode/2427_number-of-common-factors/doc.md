@@ -33,23 +33,23 @@ Let $g=\gcd(a,b)$. The common factors of `a` and `b` are exactly the positive di
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `a = 12, b = 6`
-- Output: `4`
+- **Input:** `a = 12, b = 6`
+- **Output:** `4`
 
 The common factors are 1, 2, 3, and 6.
 
-**Example 2**
+#### Example 2
 
-- Input: `a = 25, b = 30`
-- Output: `2`
+- **Input:** `a = 25, b = 30`
+- **Output:** `2`
 
 Only 1 and 5 divide both values.
 
-**Example 3**
+#### Example 3
 
-- Input: `a = 17, b = 19`
-- Output: `1`
+- **Input:** `a = 17, b = 19`
+- **Output:** `1`
 
 The two primes are coprime, so their only common factor is 1.

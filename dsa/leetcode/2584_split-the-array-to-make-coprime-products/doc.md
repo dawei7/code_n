@@ -34,14 +34,14 @@ Let $n = \lvert\texttt{nums}\rvert$ and $M = \max(\texttt{nums})$. The constrain
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [4,7,8,15,3,5]`
-- Output: `2`
-- Explanation: The two products are $224$ and $225$, whose greatest common divisor is $1$.
+- **Input:** `nums = [4,7,8,15,3,5]`
+- **Output:** `2`
+- **Explanation:** The two products are $224$ and $225$, whose greatest common divisor is $1$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4,7,15,8,3,5]`
-- Output: `-1`
-- Explanation: Every possible prefix product shares a prime factor with its corresponding suffix product.
+- **Input:** `nums = [4,7,15,8,3,5]`
+- **Output:** `-1`
+- **Explanation:** Every possible prefix product shares a prime factor with its corresponding suffix product.

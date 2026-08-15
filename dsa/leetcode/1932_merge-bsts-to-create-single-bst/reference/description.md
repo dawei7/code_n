@@ -20,8 +20,10 @@ A leaf is a node that has no children.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `canMerge(trees: List[TreeNode]) -> `Optional[TreeNode]``: Executes operation.
 
 ### 3. Examples
 
@@ -31,25 +33,25 @@ A leaf is a node that has no children.
 
 - **Input:** $trees = [[2,1],[3,2,5],[5,4]]$
 - **Output:** `[3,2,5,1,null,4]`
-- **Explanation:**
-In the first operation, pick i=1 and j=0, and merge trees[0] into trees[1].
+- **Explanation:** In the first operation, pick i=1 and j=0, and merge trees[0] into trees[1].
 Delete trees[0], so trees = [[3,2,5,1],[5,4]].
 ![](images/diagram.png)
 In the second operation, pick i=0 and j=1, and merge trees[1] into trees[0].
 Delete trees[1], so trees = [[3,2,5,1,null,4]].
 ![](images/diagram-2.png)
 The resulting tree, shown above, is a valid BST, so return its root.
+
 #### Example 2
 
 ![](images/d2.png)
 
 - **Input:** $trees = [[5,3,8],[3,2,6]]$
 - **Output:** `[]`
-- **Explanation:**
-Pick i=0 and j=1 and merge trees[1] into trees[0].
+- **Explanation:** Pick i=0 and j=1 and merge trees[1] into trees[0].
 Delete trees[1], so trees = [[5,3,8,2,6]].
 ![](images/diagram-3.png)
 The resulting tree is shown above. This is the only valid operation that can be performed, but the resulting tree is not a valid BST, so return null.
+
 #### Example 3
 
 ![](images/d3.png)

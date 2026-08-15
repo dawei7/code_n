@@ -31,20 +31,20 @@ Return `money` minus the sum of the two cheapest prices when that sum is afforda
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `prices = [1,2,2]`, `money = 3`
-- Output: `0`
-- Explanation: Prices $1$ and $2$ form the cheapest pair and use all available money.
+- **Input:** `prices = [1,2,2]`, `money = 3`
+- **Output:** `0`
+- **Explanation:** Prices $1$ and $2$ form the cheapest pair and use all available money.
 
-**Example 2**
+#### Example 2
 
-- Input: `prices = [3,2,3]`, `money = 3`
-- Output: `3`
-- Explanation: The cheapest pair costs $5$, so buying two chocolates would create debt.
+- **Input:** `prices = [3,2,3]`, `money = 3`
+- **Output:** `3`
+- **Explanation:** The cheapest pair costs $5$, so buying two chocolates would create debt.
 
-**Example 3**
+#### Example 3
 
-- Input: `prices = [6,4,1,2]`, `money = 10`
-- Output: `7`
-- Explanation: Buying the chocolates priced $1$ and $2$ leaves $10-3=7$.
+- **Input:** `prices = [6,4,1,2]`, `money = 10`
+- **Output:** `7`
+- **Explanation:** Buying the chocolates priced $1$ and $2$ leaves $10-3=7$.

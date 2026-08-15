@@ -12,11 +12,9 @@ You want to **describe** the painting with the **minimum** number of non-overlap
 
 - For example, the painting created with $segments = [[1,4,5],[1,7,7]]$ can be described by $painting = [[1,4,12],[4,7,7]]$ because:
 
-		<li>$[1,4)$ is colored `{5,7}` (with a sum of `12`) from both the first and second segments.
+		- $[1,4)$ is colored `{5,7}` (with a sum of `12`) from both the first and second segments.
 
 - $[4,7)$ is colored `{7}` from only the second segment.
-
-	</li>
 
 Return *the 2D array *`painting`* describing the finished painting (excluding any parts that are **not **painted). You may return the segments in **any order***.
 
@@ -24,8 +22,13 @@ A **half-closed segment** `[a, b)` is the section of the number line between poi
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `segments`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
@@ -38,6 +41,7 @@ A **half-closed segment** `[a, b)` is the section of the number line between poi
 - **Explanation:** The painting can be described as follows:
 - [1,4) is colored {5,9} (with a sum of 14) from the first and third segments.
 - [4,7) is colored {7,9} (with a sum of 16) from the second and third segments.
+
 #### Example 2
 
 ![](images/2.png)
@@ -49,6 +53,7 @@ A **half-closed segment** `[a, b)` is the section of the number line between poi
 - [6,7) is colored {9,15} (with a sum of 24) from the first and second segments.
 - [7,8) is colored 15 from the second segment.
 - [8,10) is colored 7 from the third segment.
+
 #### Example 3
 
 ![](images/c1.png)

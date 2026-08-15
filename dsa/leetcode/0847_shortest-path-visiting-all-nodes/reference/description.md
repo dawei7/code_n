@@ -6,8 +6,13 @@ Return *the length of the shortest path that visits every node*. You may start a
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `graph`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +23,7 @@ Return *the length of the shortest path that visits every node*. You may start a
 - **Input:** $graph = [[1,2,3],[0],[0],[0]]$
 - **Output:** `4`
 - **Explanation:** One possible path is [1,0,2,0,3]
+
 #### Example 2
 
 ![](images/shortest2-graph.jpg)

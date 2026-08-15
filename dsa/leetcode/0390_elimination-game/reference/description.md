@@ -26,11 +26,11 @@ Return the sole integer left after alternating left-to-right and right-to-left e
 
 - **Input:** $n = 9$
 - **Output:** `6`
-- **Explanation:**
-arr = [<u>1</u>, 2, <u>3</u>, 4, <u>5</u>, 6, <u>7</u>, 8, <u>9</u>]
+- **Explanation:** arr = [<u>1</u>, 2, <u>3</u>, 4, <u>5</u>, 6, <u>7</u>, 8, <u>9</u>]
 arr = [2, <u>4</u>, 6, <u>8</u>]
 arr = [<u>2</u>, 6]
 arr = [6]
+
 #### Example 2
 
 - **Input:** $n = 1$

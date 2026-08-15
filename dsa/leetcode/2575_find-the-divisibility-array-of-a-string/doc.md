@@ -35,14 +35,14 @@ The string length satisfies $1 \le n \le 10^5$, and $1 \le m \le 10^9$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word = "998244353", m = 3`
-- Output: `[1,1,0,0,0,1,1,0,0]`
-- Explanation: The divisible prefixes represent `9`, `99`, `998244`, and `9982443`.
+- **Input:** `word = "998244353", m = 3`
+- **Output:** `[1,1,0,0,0,1,1,0,0]`
+- **Explanation:** The divisible prefixes represent `9`, `99`, `998244`, and `9982443`.
 
-**Example 2**
+#### Example 2
 
-- Input: `word = "1010", m = 10`
-- Output: `[0,1,0,1]`
-- Explanation: The prefixes representing `10` and `1010` are divisible by ten.
+- **Input:** `word = "1010", m = 10`
+- **Output:** `[0,1,0,1]`
+- **Explanation:** The prefixes representing `10` and `1010` are divisible by ten.

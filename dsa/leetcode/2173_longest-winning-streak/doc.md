@@ -47,21 +47,21 @@ match exists.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: player `1` records `Win, Win, Win, Draw, Win`; player `2` records
+- **Input:** player `1` records `Win, Win, Win, Draw, Win`; player `2` records
   `Lose, Lose`; and player `3` records one `Win`.
-- Output: `(1, 3)`, `(2, 0)`, and `(3, 1)`.
+- **Output:** `(1, 3)`, `(2, 0)`, and `(3, 1)`.
 
-**Example 2**
+#### Example 2
 
-- Input: one player's chronological results are `Win, Draw, Win, Win, Lose,
+- **Input:** one player's chronological results are `Win, Draw, Win, Win, Lose,
   Win`.
-- Output: that player's `longest_streak` is `2`.
+- **Output:** that player's `longest_streak` is `2`.
 
-**Example 3**
+#### Example 3
 
-- Input: a player wins on two non-adjacent calendar dates and has no match
+- **Input:** a player wins on two non-adjacent calendar dates and has no match
   between them.
-- Output: that player's `longest_streak` is `2`, because only intervening match
+- **Output:** that player's `longest_streak` is `2`, because only intervening match
   results—not idle calendar days—break a streak.

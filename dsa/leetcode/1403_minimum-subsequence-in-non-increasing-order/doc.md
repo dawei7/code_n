@@ -30,17 +30,17 @@ Use the minimum possible number of elements. If several minimum-length selection
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [4,3,10,9,8]`
-- Output: `[10,9]`
+- **Input:** `nums = [4,3,10,9,8]`
+- **Output:** `[10,9]`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4,4,7,6,7]`
-- Output: `[7,7,6]`
+- **Input:** `nums = [4,4,7,6,7]`
+- **Output:** `[7,7,6]`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [6]`
-- Output: `[6]`
+- **Input:** `nums = [6]`
+- **Output:** `[6]`

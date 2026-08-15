@@ -16,8 +16,13 @@ Note that an empty sequence of cars is considered to have no cars containing ill
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,8 +30,7 @@ Note that an empty sequence of cars is considered to have no cars containing ill
 
 - **Input:** `s = "**<u>11</u>**00**<u>1</u>**0**<u>1</u>**"`
 - **Output:** `5`
-- **Explanation:**
-One way to remove all the cars containing illegal goods from the sequence is to
+- **Explanation:** One way to remove all the cars containing illegal goods from the sequence is to
 - remove a car from the left end 2 times. Time taken is 2 * 1 = 2.
 - remove a car from the right end. Time taken is 1.
 - remove the car containing illegal goods found in the middle. Time taken is 2.
@@ -37,12 +41,12 @@ An alternative way is to
 This also obtains a total time of 2 + 3 = 5.
 5 is the minimum time taken to remove all the cars containing illegal goods.
 There are no other ways to remove them with less time.
+
 #### Example 2
 
 - **Input:** `s = "00**<u>1</u>**0"`
 - **Output:** `2`
-- **Explanation:**
-One way to remove all the cars containing illegal goods from the sequence is to
+- **Explanation:** One way to remove all the cars containing illegal goods from the sequence is to
 - remove a car from the left end 3 times. Time taken is 3 * 1 = 3.
 This obtains a total time of 3.
 Another way to remove all the cars containing illegal goods from the sequence is to

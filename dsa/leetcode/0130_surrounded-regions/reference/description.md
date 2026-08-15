@@ -24,26 +24,19 @@ Return nothing; mutate `board` in place so that all and only surrounded `'O'` re
 
 #### Example 1
 
-<div class="example-block">
-**Input:** board = [["X","X","X","X"],["X","O","O","X"],["X","X","O","X"],["X","O","X","X"]]
+- **Input:** board = [["X","X","X","X"],["X","O","O","X"],["X","X","O","X"],["X","O","X","X"]]
 
-**Output:** [["X","X","X","X"],["X","X","X","X"],["X","X","X","X"],["X","O","X","X"]]
+- **Output:** [["X","X","X","X"],["X","X","X","X"],["X","X","X","X"],["X","O","X","X"]]
 
-**Explanation:**
-
-![](images/xogrid.jpg)
+- **Explanation:** ![](images/xogrid.jpg)
 
 In the above diagram, the bottom region is not captured because it is on the edge of the board and cannot be surrounded.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** board = [["X"]]
+- **Input:** board = [["X"]]
 
-**Output:** [["X"]]
-
-</div>
+- **Output:** [["X"]]
 
 ### 4. Constraints
 

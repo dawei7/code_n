@@ -40,20 +40,20 @@ Return a complete legal edge assignment whose shortest `source`-to-`destination`
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 5`, `edges = [[4,1,-1],[2,0,-1],[0,3,-1],[4,3,-1]]`, `source = 0`, `destination = 1`, `target = 5`
-- Output: `[[4,1,1],[2,0,1],[0,3,3],[4,3,1]]`
-- Explanation: This is one valid assignment whose shortest distance from $0$ to $1$ is $5$.
+- **Input:** `n = 5`, `edges = [[4,1,-1],[2,0,-1],[0,3,-1],[4,3,-1]]`, `source = 0`, `destination = 1`, `target = 5`
+- **Output:** `[[4,1,1],[2,0,1],[0,3,3],[4,3,1]]`
+- **Explanation:** This is one valid assignment whose shortest distance from $0$ to $1$ is $5$.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3`, `edges = [[0,1,-1],[0,2,5]]`, `source = 0`, `destination = 2`, `target = 6`
-- Output: `[]`
-- Explanation: The fixed edge of weight $5$ is already a shorter route and cannot be increased.
+- **Input:** `n = 3`, `edges = [[0,1,-1],[0,2,5]]`, `source = 0`, `destination = 2`, `target = 6`
+- **Output:** `[]`
+- **Explanation:** The fixed edge of weight $5$ is already a shorter route and cannot be increased.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 4`, `edges = [[1,0,4],[1,2,3],[2,3,5],[0,3,-1]]`, `source = 0`, `destination = 2`, `target = 6`
-- Output: `[[1,0,4],[1,2,3],[2,3,5],[0,3,1]]`
-- Explanation: Assigning the direct unknown edge weight $1$ makes the shortest distance equal $6$.
+- **Input:** `n = 4`, `edges = [[1,0,4],[1,2,3],[2,3,5],[0,3,-1]]`, `source = 0`, `destination = 2`, `target = 6`
+- **Output:** `[[1,0,4],[1,2,3],[2,3,5],[0,3,1]]`
+- **Explanation:** Assigning the direct unknown edge weight $1$ makes the shortest distance equal $6$.

@@ -14,8 +14,15 @@ Return *an array* `answer` *of length* `m` *where* $\text{answer}[i]$ *is **the 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `startPos`: Input parameter (`List[int]`).
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -32,17 +39,19 @@ Return *an array* `answer` *of length* `m` *where* $\text{answer}[i]$ *is **the 
 - 3^rd:    "<u>**DLU**</u>". All three instructions can be executed while it stays in the grid and ends at (0, 0).
 - 4^th:     "<u>**L**</u>U". Only one instruction "L" can be executed before it moves off the grid.
 - 5^th:      "U". If moving up, it would move off the grid.
+
 #### Example 2
 
 ![](images/2.png)
 
 - **Input:** $n = 2, startPos = [1,1], s = "LURD"$
 - **Output:** `[4,1,0,0]`
-- **Explanation:**
+- **Explanation:** 
 - 0^th: "<u>**LURD**</u>".
 - 1^st:  "<u>**U**</u>RD".
 - 2^nd:   "RD".
 - 3^rd:    "D".
+
 #### Example 3
 
 ![](images/3.png)

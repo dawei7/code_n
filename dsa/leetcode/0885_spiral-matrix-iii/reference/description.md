@@ -8,8 +8,16 @@ Return *an array of coordinates representing the positions of the grid in the or
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `rows`: Input parameter (`int`).
+- `cols`: Input parameter (`int`).
+- `rStart`: Input parameter (`int`).
+- `cStart`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
@@ -19,6 +27,7 @@ Return *an array of coordinates representing the positions of the grid in the or
 
 - **Input:** $rows = 1, cols = 4, rStart = 0, cStart = 0$
 - **Output:** `[[0,0],[0,1],[0,2],[0,3]]`
+
 #### Example 2
 
 ![](images/example_2.png)

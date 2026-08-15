@@ -14,11 +14,13 @@ Given a **0-indexed** integer array `nums` and an integer `d`, return *the numbe
 - **Output:** `3`
 - **Explanation:** The triplets which are divisible by 5 are: (0, 1, 2), (0, 2, 4), (1, 2, 4).
 It can be shown that no other triplet is divisible by 5. Hence, the answer is 3.
+
 #### Example 2
 
 - **Input:** `nums = [3,3,3,3], d = 3`
 - **Output:** `4`
 - **Explanation:** Any triplet chosen here has a sum of 9, which is divisible by 3. Hence, the answer is the total number of triplets which is 4.
+
 #### Example 3
 
 - **Input:** `nums = [3,3,3,3], d = 6`

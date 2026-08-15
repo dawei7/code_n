@@ -43,7 +43,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 patients table:
@@ -97,16 +96,15 @@ covid_tests table:
 
 - **Alice Smith (patient_id = 1):**
 
-		<li>First positive test: 2023-01-15
+		- First positive test: 2023-01-15
 
 - First negative test after positive: 2023-01-25
 
 - Recovery time: 25 - 15 = 10 days
 
-	</li>
 - **Bob Johnson (patient_id = 2):**
 
-		<li>First positive test: 2023-02-01
+		- First positive test: 2023-02-01
 
 - Inconclusive test on 2023-02-05 (ignored for recovery calculation)
 
@@ -114,10 +112,9 @@ covid_tests table:
 
 - Recovery time: 12 - 1 = 11 days
 
-	</li>
 - **Carol Davis (patient_id = 3):**
 
-		<li>Had negative test on 2023-01-20 (before positive test)
+		- Had negative test on 2023-01-20 (before positive test)
 
 - First positive test: 2023-02-10
 
@@ -125,18 +122,13 @@ covid_tests table:
 
 - Recovery time: 20 - 10 = 10 days
 
-	</li>
 - **Patients not included:**
 
-		<li>David Wilson (patient_id = 4): Only has positive tests, no negative test after positive
+		- David Wilson (patient_id = 4): Only has positive tests, no negative test after positive
 
 - Emma Brown (patient_id = 5): Only has negative tests, never tested positive
 
-	</li>
-
 Output table is ordered by recovery_time in ascending order, and then by patient_name in ascending order.
-
-</div>
 
 ### 2. Function Contract
 

@@ -34,20 +34,20 @@ A phone number contains between 10 and 13 digits, possibly separated by characte
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "LeetCode@LeetCode.com"`
-- Output: `"l*****e@leetcode.com"`
-- Explanation: The email is lowercased, and the middle of the name is replaced by five asterisks.
+- **Input:** `s = "LeetCode@LeetCode.com"`
+- **Output:** `"l*****e@leetcode.com"`
+- **Explanation:** The email is lowercased, and the middle of the name is replaced by five asterisks.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "AB@qq.com"`
-- Output: `"a*****b@qq.com"`
-- Explanation: A two-letter name still receives exactly five asterisks between its endpoints.
+- **Input:** `s = "AB@qq.com"`
+- **Output:** `"a*****b@qq.com"`
+- **Explanation:** A two-letter name still receives exactly five asterisks between its endpoints.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "1(234)567-890"`
-- Output: `"***-***-7890"`
-- Explanation: The input has exactly 10 digits, so there is no country-code prefix.
+- **Input:** `s = "1(234)567-890"`
+- **Output:** `"***-***-7890"`
+- **Explanation:** The input has exactly 10 digits, so there is no country-code prefix.

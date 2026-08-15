@@ -29,12 +29,11 @@ Return the maximum team size for which some member's interval overlaps every oth
 
 #### Example 1
 
-<div class="example-block">
-**Input:** startTime = [1,2,3], endTime = [4,5,6]
+- **Input:** startTime = [1,2,3], endTime = [4,5,6]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - For $i = 0$ with interval `[1, 4]`.
 
@@ -42,15 +41,13 @@ Return the maximum team size for which some member's interval overlaps every oth
 
 - Thus, index 0 can interact with all other indices, so the team size is 3.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** startTime = [2,5,8], endTime = [3,7,9]
+- **Input:** startTime = [2,5,8], endTime = [3,7,9]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - For $i = 0$, interval `[2, 3]` does not overlap with `[5, 7]` or `[8, 9]`.
 
@@ -60,23 +57,19 @@ Return the maximum team size for which some member's interval overlaps every oth
 
 - Thus, no index can interact with others, so the maximum team size is 1.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** startTime = [3,4,6], endTime = [8,5,7]
+- **Input:** startTime = [3,4,6], endTime = [8,5,7]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - For $i = 0$ with interval `[3, 8]`.
 
 - It overlaps with $i = 1$ having interval `[4, 5]` and $i = 2$ having interval `[6, 7]`.
 
 - Thus, index 0 can interact with all other indices, so the team size is 3.
-
-</div>
 
 ### 4. Constraints
 

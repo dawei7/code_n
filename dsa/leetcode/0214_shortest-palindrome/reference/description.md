@@ -20,6 +20,7 @@ Return the shortest palindrome formed solely by prepending characters to `s`.
 
 - **Input:** `s = "aacecaaa"`
 - **Output:** `"aaacecaaa"`
+
 #### Example 2
 
 - **Input:** `s = "abcd"`

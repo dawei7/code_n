@@ -16,8 +16,14 @@ Given two integers `targetX` and `targetY` representing the X-coordinate and Y-c
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `targetX`: Input parameter (`int`).
+- `targetY`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -26,6 +32,7 @@ Given two integers `targetX` and `targetY` representing the X-coordinate and Y-c
 - **Input:** $targetX = 6, targetY = 9$
 - **Output:** `false`
 - **Explanation:** It is impossible to reach (6,9) from (1,1) using any sequence of moves, so false is returned.
+
 #### Example 2
 
 - **Input:** $targetX = 4, targetY = 7$

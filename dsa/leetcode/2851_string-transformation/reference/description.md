@@ -12,8 +12,15 @@ Since the answer can be large, return it **modulo** $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `t`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,19 +28,18 @@ Since the answer can be large, return it **modulo** $10^{9} + 7$.
 
 - **Input:** `s = "abcd", t = "cdab", k = 2`
 - **Output:** `2`
-- **Explanation:**
-First way:
+- **Explanation:** First way:
 In first operation, choose suffix from index = 3, so resulting s = "dabc".
 In second operation, choose suffix from index = 3, so resulting s = "cdab".
 Second way:
 In first operation, choose suffix from index = 1, so resulting s = "bcda".
 In second operation, choose suffix from index = 1, so resulting s = "cdab".
+
 #### Example 2
 
 - **Input:** `s = "ababab", t = "ababab", k = 1`
 - **Output:** `2`
-- **Explanation:**
-First way:
+- **Explanation:** First way:
 Choose suffix from index = 2, so resulting s = "ababab".
 Second way:
 Choose suffix from index = 4, so resulting s = "ababab".

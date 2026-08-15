@@ -6,8 +6,10 @@ The **subtree sum** of a node is defined as the sum of all the node values forme
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `findFrequentTreeSum(root: Optional[TreeNode]) -> `List[int]``: Executes operation.
 
 ### 3. Examples
 
@@ -17,6 +19,7 @@ The **subtree sum** of a node is defined as the sum of all the node values forme
 
 - **Input:** `root = [5,2,-3]`
 - **Output:** `[2,-3,4]`
+
 #### Example 2
 
 ![](images/freq2-tree.jpg)

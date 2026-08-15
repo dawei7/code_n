@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/smallest-value-of-the-rearranged-number/) |
 
 ## Problem Description
+
 ### Goal
 
 Rearrange all decimal digits of an integer `num` to produce the smallest
@@ -24,6 +25,7 @@ signed result smaller therefore means maximizing the magnitude formed by its
 digits.
 
 ### Function Contract
+
 **Inputs**
 
 - `num`: an integer satisfying $-10^{15}\le\texttt{num}\le 10^{15}$.
@@ -36,25 +38,26 @@ Return the smallest signed integer obtainable by permuting every decimal digit
 of `num` without a leading zero.
 
 ### Examples
-**Example 1**
 
-- Input: `num = 310`
-- Output: `103`
+#### Example 1
+
+- **Input:** `num = 310`
+- **Output:** `103`
 
 Ascending digits would begin with zero, so the smallest nonzero digit is placed
 first and the zero follows it.
 
-**Example 2**
+#### Example 2
 
-- Input: `num = -7605`
-- Output: `-7650`
+- **Input:** `num = -7605`
+- **Output:** `-7650`
 
 Descending magnitude digits form `7650`; applying the preserved negative sign
 makes this the smallest value.
 
-**Example 3**
+#### Example 3
 
-- Input: `num = 0`
-- Output: `0`
+- **Input:** `num = 0`
+- **Output:** `0`
 
 Zero has one digit and its only rearrangement is itself.

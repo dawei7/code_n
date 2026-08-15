@@ -34,22 +34,22 @@ Return an integer array whose $j$-th value is the first node reaching at least h
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 2, edges = [[0, 1, 7]], queries = [[1, 0], [0, 1]]`
-- Output: `[0, 1]`
-- Explanation: Either direction crosses the only edge immediately, so the destination is the median.
+- **Input:** `n = 2, edges = [[0, 1, 7]], queries = [[1, 0], [0, 1]]`
+- **Output:** `[0, 1]`
+- **Explanation:** Either direction crosses the only edge immediately, so the destination is the median.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3, edges = [[0, 1, 2], [2, 0, 4]], queries = [[0, 1], [2, 0], [1, 2]]`
-- Output: `[1, 0, 2]`
-- Explanation: For `[1, 2]`, reaching node 0 accumulates only 2 of the total weight 6; the following edge reaches node 2 and passes the halfway threshold.
+- **Input:** `n = 3, edges = [[0, 1, 2], [2, 0, 4]], queries = [[0, 1], [2, 0], [1, 2]]`
+- **Output:** `[1, 0, 2]`
+- **Explanation:** For `[1, 2]`, reaching node 0 accumulates only 2 of the total weight 6; the following edge reaches node 2 and passes the halfway threshold.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 5, edges = [[0, 1, 2], [0, 2, 5], [1, 3, 1], [2, 4, 3]], queries = [[3, 4], [1, 2]]`
-- Output: `[2, 2]`
-- Explanation: Both directed paths first reach at least half of their total weight at node 2.
+- **Input:** `n = 5, edges = [[0, 1, 2], [0, 2, 5], [1, 3, 1], [2, 4, 3]], queries = [[3, 4], [1, 2]]`
+- **Output:** `[2, 2]`
+- **Explanation:** Both directed paths first reach at least half of their total weight at node 2.
 
 ---

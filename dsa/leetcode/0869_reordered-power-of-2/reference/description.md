@@ -6,8 +6,13 @@ Return `true` *if and only if we can do this so that the resulting number is a p
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -15,6 +20,7 @@ Return `true` *if and only if we can do this so that the resulting number is a p
 
 - **Input:** $n = 1$
 - **Output:** `true`
+
 #### Example 2
 
 - **Input:** $n = 10$

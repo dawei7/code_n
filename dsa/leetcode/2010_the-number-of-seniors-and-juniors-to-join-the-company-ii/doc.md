@@ -38,26 +38,26 @@ senior and junior IDs.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: seniors `(11, 16000)`, `(2, 20000)`, `(13, 50000)` and juniors
+- **Input:** seniors `(11, 16000)`, `(2, 20000)`, `(13, 50000)` and juniors
   `(1, 10000)`, `(9, 15000)`, `(4, 40000)`
-- Output: employee IDs `11`, `2`, `1`, and `9`
-- Explanation: The two seniors cost $36{,}000$; the remaining $34{,}000$
+- **Output:** employee IDs `11`, `2`, `1`, and `9`
+- **Explanation:** The two seniors cost $36{,}000$; the remaining $34{,}000$
   admits the two cheapest juniors.
 
-**Example 2**
+#### Example 2
 
-- Input: all senior salaries exceed $70{,}000$; junior salaries are
+- **Input:** all senior salaries exceed $70{,}000$; junior salaries are
   $10{,}000$, $25{,}000$, and $30{,}000$
-- Output: all three junior employee IDs
-- Explanation: No senior is affordable, so the juniors receive the full
+- **Output:** all three junior employee IDs
+- **Explanation:** No senior is affordable, so the juniors receive the full
   budget.
 
-**Example 3**
+#### Example 3
 
-- Input: senior salaries $30{,}000$ and $40{,}000$, plus a junior salary of
+- **Input:** senior salaries $30{,}000$ and $40{,}000$, plus a junior salary of
   $1$
-- Output: the two senior employee IDs
-- Explanation: The seniors consume the budget exactly, leaving nothing for the
+- **Output:** the two senior employee IDs
+- **Explanation:** The seniors consume the budget exactly, leaving nothing for the
   junior.

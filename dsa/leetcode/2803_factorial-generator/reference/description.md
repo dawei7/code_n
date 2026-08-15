@@ -16,27 +16,26 @@ The factorial of 0 is defined as 1.
 
 - **Input:** $n = 5$
 - **Output:** `[1,2,6,24,120]`
-- **Explanation:**
-const gen = factorial(5)
+- **Explanation:** const gen = factorial(5)
 gen.next().value // 1
 gen.next().value // 2
 gen.next().value // 6
 gen.next().value // 24
 gen.next().value // 120
+
 #### Example 2
 
 - **Input:** $n = 2$
 - **Output:** `[1,2]`
-- **Explanation:**
-const gen = factorial(2)
+- **Explanation:** const gen = factorial(2)
 gen.next().value // 1
 gen.next().value // 2
+
 #### Example 3
 
 - **Input:** $n = 0$
 - **Output:** `[1]`
-- **Explanation:**
-const gen = factorial(0)
+- **Explanation:** const gen = factorial(0)
 gen.next().value // 1
 
 ### 4. Constraints

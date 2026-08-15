@@ -10,8 +10,14 @@ Given `n` and `rides`, return *the **maximum** number of dollars you can earn by
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `rides`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -24,6 +30,7 @@ You may drop off a passenger and pick up a different passenger at the same point
 - **Input:** $n = 5, rides = [<u>[2,5,4]</u>,[1,5,1]]$
 - **Output:** `7`
 - **Explanation:** We can pick up passenger 0 to earn 5 - 2 + 4 = 7 dollars.
+
 #### Example 2
 
 - **Input:** $n = 20, rides = [[1,6,1],<u>[3,10,2]</u>,<u>[10,12,3]</u>,[11,12,2],[12,15,2],<u>[13,18,1]</u>]$

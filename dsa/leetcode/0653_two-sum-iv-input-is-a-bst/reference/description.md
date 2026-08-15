@@ -4,8 +4,10 @@ Given the `root` of a binary search tree and an integer `k`, return `true` *if t
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `findTarget(root: Optional[TreeNode], k: int) -> `bool``: Executes operation.
 
 ### 3. Examples
 
@@ -15,6 +17,7 @@ Given the `root` of a binary search tree and an integer `k`, return `true` *if t
 
 - **Input:** `root = [5,3,6,2,4,null,7], k = 9`
 - **Output:** `true`
+
 #### Example 2
 
 ![](images/sum_tree_2.jpg)

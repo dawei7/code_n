@@ -30,20 +30,20 @@ The process stops immediately after a turn empties either soup. Return the proba
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 50`
-- Output: `0.625`
-- Explanation: Averaging the four first-serving outcomes gives the weighted probability `0.625`.
+- **Input:** `n = 50`
+- **Output:** `0.625`
+- **Explanation:** Averaging the four first-serving outcomes gives the weighted probability `0.625`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 100`
-- Output: `0.71875`
-- Explanation: Several serving rounds may occur; combining their equally likely branches gives `0.71875`.
+- **Input:** `n = 100`
+- **Output:** `0.71875`
+- **Explanation:** Several serving rounds may occur; combining their equally likely branches gives `0.71875`.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 0`
-- Output: `0.5`
-- Explanation: Both soups are empty together before any serving, so the tie contributes one half.
+- **Input:** `n = 0`
+- **Output:** `0.5`
+- **Explanation:** Both soups are empty together before any serving, so the tie contributes one half.

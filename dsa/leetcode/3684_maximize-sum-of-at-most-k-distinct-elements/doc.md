@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/maximize-sum-of-at-most-k-distinct-elements/) |
 
 ## Problem Description
+
 ### Goal
 
 Given an array `nums` of positive integers, choose at most `k` elements whose values are pairwise distinct. Among all valid choices, maximize the sum of the selected values.
@@ -32,23 +33,23 @@ Return the largest $\min(k,U)$ distinct values in strictly descending order.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [84, 93, 100, 77, 90], k = 3`
-- Output: `[100, 93, 90]`
+- **Input:** `nums = [84, 93, 100, 77, 90], k = 3`
+- **Output:** `[100, 93, 90]`
 
 These three distinct values produce the maximum sum 283.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [84, 93, 100, 77, 93], k = 3`
-- Output: `[100, 93, 84]`
+- **Input:** `nums = [84, 93, 100, 77, 93], k = 3`
+- **Output:** `[100, 93, 84]`
 
 The repeated 93 can be selected only once.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 1, 1, 2, 2, 2], k = 6`
-- Output: `[2, 1]`
+- **Input:** `nums = [1, 1, 1, 2, 2, 2], k = 6`
+- **Output:** `[2, 1]`
 
 Only two distinct values are available, so the result contains fewer than `k` elements.

@@ -25,6 +25,7 @@ Return the maximum sum of the node values along any valid non-empty path.
 - **Input:** `root = [1,2,3]`
 - **Output:** `6`
 - **Explanation:** The optimal path is 2 -> 1 -> 3 with a path sum of 2 + 1 + 3 = 6.
+
 #### Example 2
 
 ![](images/exx2.jpg)

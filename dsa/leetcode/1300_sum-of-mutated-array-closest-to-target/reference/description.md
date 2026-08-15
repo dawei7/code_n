@@ -8,8 +8,14 @@ Notice that the answer is not neccesarilly a number from `arr`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+- `target`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,10 +24,12 @@ Notice that the answer is not neccesarilly a number from `arr`.
 - **Input:** `arr = [4,9,3], target = 10`
 - **Output:** `3`
 - **Explanation:** When using 3 arr converts to [3, 3, 3] which sums 9 and that's the optimal answer.
+
 #### Example 2
 
 - **Input:** `arr = [2,3,5], target = 10`
 - **Output:** `5`
+
 #### Example 3
 
 - **Input:** `arr = [60864,25176,27249,21296,20204], target = 56803`

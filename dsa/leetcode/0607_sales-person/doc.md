@@ -9,12 +9,15 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/sales-person/) |
 
 ## Problem Description
+
 ### Goal
+
 Given tables of salespeople, companies, and orders linking a salesperson to a company, find every salesperson who did not have any orders related to the company whose name is `RED`.
 
 Return the qualifying salesperson names in any order. A salesperson is excluded when even one of their orders is associated with a `RED` company, regardless of other orders they handled. Salespeople with no orders at all have no order for `RED` and therefore must be included.
 
 ### Function Contract
+
 **Inputs**
 
 - `SalesPerson(sales_id, name, salary, commission_rate, hire_date)`: salesperson records
@@ -27,17 +30,18 @@ Return the qualifying salesperson names in any order. A salesperson is excluded 
 - Salespeople with no orders qualify
 
 ### Examples
-**Example 1**
 
-- Input: Alice has an order for `RED`; Bob has only an order for `BLUE`
-- Output: `Bob`
+#### Example 1
 
-**Example 2**
+- **Input:** Alice has an order for `RED`; Bob has only an order for `BLUE`
+- **Output:** `Bob`
 
-- Input: Cara has no orders
-- Output: `Cara`
+#### Example 2
 
-**Example 3**
+- **Input:** Cara has no orders
+- **Output:** `Cara`
 
-- Input: Dan has both `RED` and non-`RED` orders
-- Output: no row for Dan
+#### Example 3
+
+- **Input:** Dan has both `RED` and non-`RED` orders
+- **Output:** no row for Dan

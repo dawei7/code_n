@@ -40,12 +40,11 @@ Return the query results in chronological order. The returned array has one bool
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,1],[1,2]], s = "aac", queries = ["query 0 2","update 1 b","query 0 2"]
+- **Input:** n = 3, edges = [[0,1],[1,2]], s = "aac", queries = ["query 0 2","update 1 b","query 0 2"]
 
-**Output:** [true,false]
+- **Output:** [true,false]
 
-**Explanation:**
+- **Explanation:** 
 
 - `"query 0 2"`: Path `0 → 1 → 2` gives `"aac"`, which can be rearranged to form `"aca"`, a palindrome. Thus, $\text{answer}[0] = true$.
 
@@ -55,15 +54,13 @@ Return the query results in chronological order. The returned array has one bool
 
 Thus, $answer = [true, false]$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 4, edges = [[0,1],[0,2],[0,3]], s = "abca", queries = ["query 1 2","update 0 b","query 2 3","update 3 a","query 1 3"]
+- **Input:** n = 4, edges = [[0,1],[0,2],[0,3]], s = "abca", queries = ["query 1 2","update 0 b","query 2 3","update 3 a","query 1 3"]
 
-**Output:** [false,false,true]
+- **Output:** [false,false,true]
 
-**Explanation:**
+- **Explanation:** 
 
 - `"query 1 2"`: Path `1 → 0 → 2` gives `"bac"`, which cannot be rearranged to form a palindrome. Thus, $\text{answer}[0] = false$.
 
@@ -76,8 +73,6 @@ Thus, $answer = [true, false]$.
 - `"query 1 3"`: Path `1 → 0 → 3` gives `"bba"`, which can be rearranged to form `"bab"`, a palindrome. Thus, $\text{answer}[2] = true$.
 
 Thus, $answer = [false, false, true]$.
-
-</div>
 
 ### 4. Constraints
 
@@ -95,12 +90,10 @@ Thus, $answer = [false, false, true]$.
 
 - $1 \le \text{queries.length} \le 5 * 10^{4}$​​​​​​​
 
-		<li>$\text{queries}[i] = "update u_{i} c"$ or
+		- $\text{queries}[i] = "update u_{i} c"$ or
 
 - $\text{queries}[i] = "query u_{i} v_{i}"$
 
 - $0 \le u_{i}, v_{i} \le n - 1$
 
 - `c` is a lowercase English letter.
-
-	</li>

@@ -35,20 +35,20 @@ Return the number of integers in the inclusive interval whose digit sum is betwe
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `num1 = "1", num2 = "12", min_sum = 1, max_sum = 8`
-- Output: `11`
-- Explanation: Every integer in the interval except $9$ has a digit sum between $1$ and $8$.
+- **Input:** `num1 = "1", num2 = "12", min_sum = 1, max_sum = 8`
+- **Output:** `11`
+- **Explanation:** Every integer in the interval except $9$ has a digit sum between $1$ and $8$.
 
-**Example 2**
+#### Example 2
 
-- Input: `num1 = "1", num2 = "5", min_sum = 1, max_sum = 5`
-- Output: `5`
-- Explanation: Each one-digit integer in the interval has an allowed digit sum.
+- **Input:** `num1 = "1", num2 = "5", min_sum = 1, max_sum = 5`
+- **Output:** `5`
+- **Explanation:** Each one-digit integer in the interval has an allowed digit sum.
 
-**Example 3**
+#### Example 3
 
-- Input: `num1 = "1", num2 = "100", min_sum = 1, max_sum = 1`
-- Output: `3`
-- Explanation: The qualifying integers are $1$, $10$, and $100$.
+- **Input:** `num1 = "1", num2 = "100", min_sum = 1, max_sum = 1`
+- **Output:** `3`
+- **Explanation:** The qualifying integers are $1$, $10$, and $100$.

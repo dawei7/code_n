@@ -12,8 +12,13 @@ Return *the intervals of every **large** group sorted in **increasing order by s
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
@@ -22,11 +27,13 @@ Return *the intervals of every **large** group sorted in **increasing order by s
 - **Input:** `s = "abbxxxxzzy"`
 - **Output:** `[[3,6]]`
 - **Explanation:** "xxxx" is the only large group with start index 3 and end index 6.
+
 #### Example 2
 
 - **Input:** `s = "abc"`
 - **Output:** `[]`
 - **Explanation:** We have groups "a", "b", and "c", none of which are large groups.
+
 #### Example 3
 
 - **Input:** `s = "abcdddeeeeaabbbcd"`

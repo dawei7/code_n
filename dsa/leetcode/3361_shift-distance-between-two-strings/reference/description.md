@@ -14,19 +14,26 @@ Return the **shift distance** from `s` to `t`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `t`: Input parameter (`str`).
+- `nextCost`: Input parameter (`List[int]`).
+- `previousCost`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "abab", t = "baba", nextCost = [100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], previousCost = [1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+- **Input:** s = "abab", t = "baba", nextCost = [100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], previousCost = [1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - We choose index $i = 0$ and shift $s[0]$ 25 times to the previous character for a total cost of 1.
 
@@ -36,15 +43,13 @@ Return the **shift distance** from `s` to `t`.
 
 - We choose index $i = 3$ and shift $s[3]$ 25 times to the next character for a total cost of 0.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "leet", t = "code", nextCost = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], previousCost = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+- **Input:** s = "leet", t = "code", nextCost = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], previousCost = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 
-**Output:** 31
+- **Output:** 31
 
-**Explanation:**
+- **Explanation:** 
 
 - We choose index $i = 0$ and shift $s[0]$ 9 times to the previous character for a total cost of 9.
 
@@ -53,8 +58,6 @@ Return the **shift distance** from `s` to `t`.
 - We choose index $i = 2$ and shift $s[2]$ 1 time to the previous character for a total cost of 1.
 
 - We choose index $i = 3$ and shift $s[3]$ 11 times to the next character for a total cost of 11.
-
-</div>
 
 ### 4. Constraints
 

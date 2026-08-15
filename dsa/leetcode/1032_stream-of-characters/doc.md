@@ -37,8 +37,8 @@ and $W=\max_{w\in\texttt{words}}\lvert w\rvert$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `words = ["cd","f","kl"], queries = ["a","b","c","d","e","f","g","h","i","j","k","l"]`
-- Output: `[false,false,false,true,false,true,false,false,false,false,false,true]`
-- Explanation: The stream ends with `"cd"` after `d`, with `"f"` after `f`, and with `"kl"` after `l`.
+- **Input:** `words = ["cd","f","kl"], queries = ["a","b","c","d","e","f","g","h","i","j","k","l"]`
+- **Output:** `[false,false,false,true,false,true,false,false,false,false,false,true]`
+- **Explanation:** The stream ends with `"cd"` after `d`, with `"f"` after `f`, and with `"kl"` after `l`.

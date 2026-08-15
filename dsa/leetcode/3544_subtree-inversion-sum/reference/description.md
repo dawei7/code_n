@@ -8,72 +8,61 @@ You may perform **inversion operations** on a subset of nodes subject to the fol
 
 - **Subtree Inversion Operation:**
 
-		<li data-end="887" data-start="802">
-		When you invert a node, every value in the subtree rooted at that node is multiplied by -1.
+		- When you invert a node, every value in the subtree rooted at that node is multiplied by -1.
 
-	</li>
 - **Distance Constraint on Inversions:**
 
-		<li data-end="1020" data-start="934">
-		You may only invert a node if it is "sufficiently far" from any other inverted node.
+		- You may only invert a node if it is "sufficiently far" from any other inverted node.
 
 - Specifically, if you invert two nodes `a` and `b` such that one is an ancestor of the other (i.e., if $LCA(a, b) = a$ or $LCA(a, b) = b$), then the distance (the number of edges on the unique path between them) must be at least `k`.
-
-	</li>
 
 Return the **maximum** possible **sum** of the tree's node values after applying **inversion operations**.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `edges`: Input parameter (`List[List[int]]`).
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** edges = [[0,1],[0,2],[1,3],[1,4],[2,5],[2,6]], nums = [4,-8,-6,3,7,-2,5], k = 2
+- **Input:** edges = [[0,1],[0,2],[1,3],[1,4],[2,5],[2,6]], nums = [4,-8,-6,3,7,-2,5], k = 2
 
-**Output:** 27
+- **Output:** 27
 
-**Explanation:**
-
-![](images/tree1-3.jpg)
+- **Explanation:** ![](images/tree1-3.jpg)
 
 - Apply inversion operations at nodes 0, 3, 4 and 6.
 
 - The final `nums` array is `[-4, 8, 6, 3, 7, 2, 5]`, and the total sum is 27.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** edges = [[0,1],[1,2],[2,3],[3,4]], nums = [-1,3,-2,4,-5], k = 2
+- **Input:** edges = [[0,1],[1,2],[2,3],[3,4]], nums = [-1,3,-2,4,-5], k = 2
 
-**Output:** 9
+- **Output:** 9
 
-**Explanation:**
-
-![](images/tree2-1.jpg)
+- **Explanation:** ![](images/tree2-1.jpg)
 
 - Apply the inversion operation at node 4.
 
 - The final `nums` array becomes `[-1, 3, -2, 4, 5]`, and the total sum is 9.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** edges = [[0,1],[0,2]], nums = [0,-1,-2], k = 3
+- **Input:** edges = [[0,1],[0,2]], nums = [0,-1,-2], k = 3
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-Apply inversion operations at nodes 1 and 2.
-
-</div>
+- **Explanation:** Apply inversion operations at nodes 1 and 2.
 
 ### 4. Constraints
 

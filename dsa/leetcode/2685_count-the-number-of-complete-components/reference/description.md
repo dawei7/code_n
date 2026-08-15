@@ -10,8 +10,14 @@ A connected component is said to be **complete** if there exists an edge between
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,6 +32,7 @@ A connected component is said to be **complete** if there exists an edge between
 - **Input:** $n = 6, edges = [[0,1],[0,2],[1,2],[3,4]]$
 - **Output:** `3`
 - **Explanation:** From the picture above, one can see that all of the components of this graph are complete.
+
 #### Example 2
 
 **

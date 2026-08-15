@@ -6,8 +6,13 @@ Return *the selected integer.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,11 +21,13 @@ Return *the selected integer.*
 - **Input:** `nums = [3,2,1,4]`
 - **Output:** `2`
 - **Explanation:** In this example, the minimum value is 1 and the maximum value is 4. Therefore, either 2 or 3 can be valid answers.
+
 #### Example 2
 
 - **Input:** `nums = [1,2]`
 - **Output:** `-1`
 - **Explanation:** Since there is no number in nums that is neither the maximum nor the minimum, we cannot select a number that satisfies the given condition. Therefore, there is no answer.
+
 #### Example 3
 
 - **Input:** `nums = [2,1,3]`

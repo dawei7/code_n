@@ -71,7 +71,7 @@ Return a table with columns `month`, $\text{active}_{drivers}$, and $\text{accep
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Drivers table:
 +-----------+------------+
 | driver_id | join_date  |
@@ -120,7 +120,7 @@ AcceptedRides table:
 | 12      | 8         | 38            | 34            |
 | 14      | 1         | 90            | 74            |
 +---------+-----------+---------------+---------------+
-**Output:**
+- **Output:** 
 +-------+----------------+----------------+
 | month | active_drivers | accepted_rides |
 +-------+----------------+----------------+
@@ -137,8 +137,7 @@ AcceptedRides table:
 | 11    | 6              | 2              |
 | 12    | 6              | 1              |
 +-------+----------------+----------------+
-**Explanation:**
-By the end of January --> two active drivers (10, 8) and no accepted rides.
+- **Explanation:** By the end of January --> two active drivers (10, 8) and no accepted rides.
 By the end of February --> three active drivers (10, 8, 5) and no accepted rides.
 By the end of March --> four active drivers (10, 8, 5, 7) and one accepted ride (10).
 By the end of April --> four active drivers (10, 8, 5, 7) and no accepted rides.

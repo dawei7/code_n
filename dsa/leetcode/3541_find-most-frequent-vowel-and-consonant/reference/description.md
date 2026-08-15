@@ -12,8 +12,13 @@ Return the sum of the two frequencies.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -25,12 +30,11 @@ The **frequency** of a letter `x` is the number of times it occurs in the string
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "successes"
+- **Input:** s = "successes"
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
+- **Explanation:** 
 
 - The vowels are: `'u'` (frequency 1), `'e'` (frequency 2). The maximum frequency is 2.
 
@@ -38,23 +42,19 @@ The **frequency** of a letter `x` is the number of times it occurs in the string
 
 - The output is $2 + 4 = 6$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "aeiaeia"
+- **Input:** s = "aeiaeia"
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - The vowels are: `'a'` (frequency 3), `'e'` ( frequency 2), `'i'` (frequency 2). The maximum frequency is 3.
 
 - There are no consonants in `s`. Hence, maximum consonant frequency = 0.
 
 - The output is $3 + 0 = 3$.
-
-</div>
 
 ### 5. Constraints
 

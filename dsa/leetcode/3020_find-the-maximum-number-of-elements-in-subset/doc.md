@@ -40,20 +40,20 @@ The source constraints guarantee $2 \le N \le 10^5$, $1 \le \texttt{nums}[i] \le
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [5, 4, 1, 2, 2]`
-- Output: `3`
-- Explanation: Select two copies of `2` and one `4`, then arrange them as `[2, 4, 2]`.
+- **Input:** `nums = [5, 4, 1, 2, 2]`
+- **Output:** `3`
+- **Explanation:** Select two copies of `2` and one `4`, then arrange them as `[2, 4, 2]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 3, 2, 4]`
-- Output: `1`
-- Explanation: No value has the duplicate needed for a noncentral layer, so any single value is optimal.
+- **Input:** `nums = [1, 3, 2, 4]`
+- **Output:** `1`
+- **Explanation:** No value has the duplicate needed for a noncentral layer, so any single value is optimal.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [2, 2, 4, 4, 16]`
-- Output: `5`
-- Explanation: All five values form `[2, 4, 16, 4, 2]`.
+- **Input:** `nums = [2, 2, 4, 4, 16]`
+- **Output:** `5`
+- **Explanation:** All five values form `[2, 4, 16, 4, 2]`.

@@ -8,8 +8,14 @@ You can freely rearrange the ordering of the groups. Return *the **maximum** pos
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `batchSize`: Input parameter (`int`).
+- `groups`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +24,7 @@ You can freely rearrange the ordering of the groups. Return *the **maximum** pos
 - **Input:** $batchSize = 3, groups = [1,2,3,4,5,6]$
 - **Output:** `4`
 - **Explanation:** You can arrange the groups as [6,2,4,5,1,3]. Then the 1^st, 2^nd, 4^th, and 6^th groups will be happy.
+
 #### Example 2
 
 - **Input:** $batchSize = 4, groups = [1,3,2,5,2,2,1,6]$

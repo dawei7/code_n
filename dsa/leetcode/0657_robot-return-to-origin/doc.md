@@ -9,12 +9,15 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/robot-return-to-origin/) |
 
 ## Problem Description
+
 ### Goal
+
 A robot starts at `(0, 0)`, the origin of a two-dimensional plane. The string `moves` gives its sequence of unit movements: `R` moves right, `L` left, `U` up, and `D` down.
 
 Return `True` if the robot is back at `(0, 0)` after completing every move, and `False` otherwise. The robot's facing direction is irrelevant: each character always moves in its named absolute direction, and every move has the same magnitude. Visiting the origin before the sequence ends is insufficient unless the final position is also the origin.
 
 ### Function Contract
+
 **Inputs**
 
 - `moves`: a nonempty string containing only `U`, `D`, `L`, and `R`
@@ -24,17 +27,18 @@ Return `True` if the robot is back at `(0, 0)` after completing every move, and 
 - `True` when the final position is the origin; otherwise `False`
 
 ### Examples
-**Example 1**
 
-- Input: `moves = "UD"`
-- Output: `True`
+#### Example 1
 
-**Example 2**
+- **Input:** `moves = "UD"`
+- **Output:** `True`
 
-- Input: `moves = "LL"`
-- Output: `False`
+#### Example 2
 
-**Example 3**
+- **Input:** `moves = "LL"`
+- **Output:** `False`
 
-- Input: `moves = "URDL"`
-- Output: `True`
+#### Example 3
+
+- **Input:** `moves = "URDL"`
+- **Output:** `True`

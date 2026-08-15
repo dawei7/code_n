@@ -31,11 +31,13 @@ Return all ordered index pairs `[i,j]` with distinct indices whose corresponding
 - **Input:** $words = ["abcd","dcba","lls","s","sssll"]$
 - **Output:** `[[0,1],[1,0],[3,2],[2,4]]`
 - **Explanation:** The palindromes are ["abcddcba","dcbaabcd","slls","llssssll"]
+
 #### Example 2
 
 - **Input:** $words = ["bat","tab","cat"]$
 - **Output:** `[[0,1],[1,0]]`
 - **Explanation:** The palindromes are ["battab","tabbat"]
+
 #### Example 3
 
 - **Input:** $words = ["a",""]$

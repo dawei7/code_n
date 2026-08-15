@@ -32,23 +32,23 @@ Its length satisfies $1 \le n \le 10^5$, and every value lies in $[0,10^6]$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `pref = [5, 2, 0, 3, 1]`
-- Output: `[5, 7, 2, 3, 2]`
+- **Input:** `pref = [5, 2, 0, 3, 1]`
+- **Output:** `[5, 7, 2, 3, 2]`
 
 Successively XORing the returned values produces the supplied prefixes 5, 2, 0, 3, and 1.
 
-**Example 2**
+#### Example 2
 
-- Input: `pref = [13]`
-- Output: `[13]`
+- **Input:** `pref = [13]`
+- **Output:** `[13]`
 
 The first prefix contains only the first original value.
 
-**Example 3**
+#### Example 3
 
-- Input: `pref = [7, 7, 7]`
-- Output: `[7, 0, 0]`
+- **Input:** `pref = [7, 7, 7]`
+- **Output:** `[7, 0, 0]`
 
 An unchanged prefix XOR means the newly added original value is zero.

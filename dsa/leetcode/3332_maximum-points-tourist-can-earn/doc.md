@@ -33,14 +33,14 @@ On each day, the tourist must choose one of two actions. Staying in the current 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 2, k = 1, stayScore = [[2, 3]], travelScore = [[0, 2], [1, 0]]`
-- Output: `3`
-- Explanation: Start in city $1$ and stay there.
+- **Input:** `n = 2, k = 1, stayScore = [[2, 3]], travelScore = [[0, 2], [1, 0]]`
+- **Output:** `3`
+- **Explanation:** Start in city $1$ and stay there.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3, k = 2, stayScore = [[3, 4, 2], [2, 1, 2]], travelScore = [[0, 2, 1], [2, 0, 4], [3, 2, 0]]`
-- Output: `8`
-- Explanation: Start in city $1$, stay there on day $0$, then travel to city $2$ on day $1$.
+- **Input:** `n = 3, k = 2, stayScore = [[3, 4, 2], [2, 1, 2]], travelScore = [[0, 2, 1], [2, 0, 4], [3, 2, 0]]`
+- **Output:** `8`
+- **Explanation:** Start in city $1$, stay there on day $0$, then travel to city $2$ on day $1$.

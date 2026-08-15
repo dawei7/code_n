@@ -34,20 +34,20 @@ Return the number of valid arrays modulo $10^9+7$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `zero = 1, one = 1, limit = 2`
-- Output: `2`
-- Explanation: Both `[0,1]` and `[1,0]` use the required values, and neither contains a run longer than two.
+- **Input:** `zero = 1, one = 1, limit = 2`
+- **Output:** `2`
+- **Explanation:** Both `[0,1]` and `[1,0]` use the required values, and neither contains a run longer than two.
 
-**Example 2**
+#### Example 2
 
-- Input: `zero = 1, one = 2, limit = 1`
-- Output: `1`
-- Explanation: Only `[1,0,1]` alternates throughout; the other arrangements contain two adjacent ones.
+- **Input:** `zero = 1, one = 2, limit = 1`
+- **Output:** `1`
+- **Explanation:** Only `[1,0,1]` alternates throughout; the other arrangements contain two adjacent ones.
 
-**Example 3**
+#### Example 3
 
-- Input: `zero = 3, one = 3, limit = 2`
-- Output: `14`
-- Explanation: Fourteen arrangements use three of each value without ever placing three equal values consecutively.
+- **Input:** `zero = 3, one = 3, limit = 2`
+- **Output:** `14`
+- **Explanation:** Fourteen arrangements use three of each value without ever placing three equal values consecutively.

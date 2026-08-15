@@ -12,19 +12,23 @@ Return an integer denoting the length of the **minimized** string.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "aaabc"
+- **Input:** s = "aaabc"
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - Operation 2: we choose $i = 1$ so `c` is 'a', then we remove $s[2]$ as it is closest 'a' character to the right of $s[1]$.
 
@@ -34,29 +38,25 @@ Return an integer denoting the length of the **minimized** string.
 
 	`s` becomes "abc" after this.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "cbbd"
+- **Input:** s = "cbbd"
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - Operation 1: we choose $i = 2$ so `c` is 'b', then we remove $s[1]$ as it is closest 'b' character to the left of $s[1]$.
 
 	`s` becomes "cbd" after this.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "baadccab"
+- **Input:** s = "baadccab"
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** 
 
 - Operation 1: we choose $i = 6$ so `c` is 'a', then we remove $s[2]$ as it is closest 'a' character to the left of $s[6]$.
 
@@ -73,8 +73,6 @@ Return an integer denoting the length of the **minimized** string.
 - Operation 1: we choose $i = 4$ so `c` is 'a', then we remove $s[1]$ as it is closest 'a' character to the left of $s[4]$.
 
 	`s` becomes "bdca" after this.
-
-</div>
 
 ### 4. Constraints
 

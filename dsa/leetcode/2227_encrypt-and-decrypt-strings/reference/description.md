@@ -26,8 +26,11 @@ Implement the `Encrypter` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `Encrypter(keys: List[str], values: List[str], dictionary: List[str])`: Initializes the data structure.
+- `encrypt(word1: str) -> `str``: Executes operation.
+- `decrypt(word2: str) -> `int``: Executes operation.
 
 ### 3. Examples
 

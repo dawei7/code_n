@@ -33,14 +33,14 @@ Return the number of node pairs $(u,v)$ with $u < v$ whose path-label multiset c
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `parent = [-1, 0, 0, 1, 1, 2], s = "acaabc"`
-- Output: `8`
-- Explanation: Five parent-child paths are valid immediately, and three longer paths have character parities that permit a palindromic arrangement.
+- **Input:** `parent = [-1, 0, 0, 1, 1, 2], s = "acaabc"`
+- **Output:** `8`
+- **Explanation:** Five parent-child paths are valid immediately, and three longer paths have character parities that permit a palindromic arrangement.
 
-**Example 2**
+#### Example 2
 
-- Input: `parent = [-1, 0, 0, 0, 0], s = "aaaaa"`
-- Output: `10`
-- Explanation: Every one of the $\binom{5}{2}=10$ node pairs has a path containing only the letter `a`, so every pair is valid.
+- **Input:** `parent = [-1, 0, 0, 0, 0], s = "aaaaa"`
+- **Output:** `10`
+- **Explanation:** Every one of the $\binom{5}{2}=10$ node pairs has a path containing only the letter `a`, so every pair is valid.

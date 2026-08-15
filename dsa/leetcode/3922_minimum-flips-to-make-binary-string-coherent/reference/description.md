@@ -24,40 +24,27 @@ Return the minimum number of character flips that transform `s` into a string co
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "1010"
+- **Input:** s = "1010"
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** Flip $s[0]$ to get `"0010"`, which contains no `"011"` or `"110"` subsequences.
 
-Flip $s[0]$ to get `"0010"`, which contains no `"011"` or `"110"` subsequences.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "0110"
+- **Input:** s = "0110"
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** Flip $s[1]$ to get `"0010"`, removing all forbidden subsequences `"011"` and `"110"`.
 
-Flip $s[1]$ to get `"0010"`, removing all forbidden subsequences `"011"` and `"110"`.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "1000"
+- **Input:** s = "1000"
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-The string already has no `"011"` or `"110"` subsequences, so no flips are needed.
-
-</div>
+- **Explanation:** The string already has no `"011"` or `"110"` subsequences, so no flips are needed.
 
 ### 4. Constraints
 

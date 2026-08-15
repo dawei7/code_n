@@ -31,20 +31,20 @@ Return how many owned stones are jewels. Count repeated occurrences in `stones` 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `jewels = "aA"`, `stones = "aAAbbbb"`
-- Output: `3`
-- Explanation: The lowercase `a` and both uppercase `A` stones are jewels.
+- **Input:** `jewels = "aA"`, `stones = "aAAbbbb"`
+- **Output:** `3`
+- **Explanation:** The lowercase `a` and both uppercase `A` stones are jewels.
 
-**Example 2**
+#### Example 2
 
-- Input: `jewels = "z"`, `stones = "ZZ"`
-- Output: `0`
-- Explanation: Uppercase `Z` does not match lowercase `z`.
+- **Input:** `jewels = "z"`, `stones = "ZZ"`
+- **Output:** `0`
+- **Explanation:** Uppercase `Z` does not match lowercase `z`.
 
-**Example 3**
+#### Example 3
 
-- Input: `jewels = "b"`, `stones = "bbbb"`
-- Output: `4`
-- Explanation: Every occurrence is counted as a separate jewel stone.
+- **Input:** `jewels = "b"`, `stones = "bbbb"`
+- **Output:** `4`
+- **Explanation:** Every occurrence is counted as a separate jewel stone.

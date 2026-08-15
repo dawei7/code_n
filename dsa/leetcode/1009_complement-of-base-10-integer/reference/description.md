@@ -8,8 +8,13 @@ Given an integer `n`, return *its complement*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,11 +23,13 @@ Given an integer `n`, return *its complement*.
 - **Input:** $n = 5$
 - **Output:** `2`
 - **Explanation:** 5 is "101" in binary, with complement "010" in binary, which is 2 in base-10.
+
 #### Example 2
 
 - **Input:** $n = 7$
 - **Output:** `0`
 - **Explanation:** 7 is "111" in binary, with complement "000" in binary, which is 0 in base-10.
+
 #### Example 3
 
 - **Input:** $n = 10$

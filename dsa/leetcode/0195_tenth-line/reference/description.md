@@ -25,11 +25,11 @@ Your script should output the tenth line, which is:
 Line 10
 ```
 
-<div class="spoilers">**Note:**
+**Note:**
 
 1. If the file contains less than 10 lines, what should you output?
 
-2. There's at least three different solutions. Try to explore all possibilities.</div>
+2. There's at least three different solutions. Try to explore all possibilities.
 
 ### 2. Function Contract
 

@@ -29,7 +29,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Users table:
 +---------+-------+
 | user_id | name  |
@@ -37,7 +37,7 @@ Users table:
 | 1       | aLice |
 | 2       | bOB   |
 +---------+-------+
-**Output:**
+- **Output:** 
 +---------+-------+
 | user_id | name  |
 +---------+-------+

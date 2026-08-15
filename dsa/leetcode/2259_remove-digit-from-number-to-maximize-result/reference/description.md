@@ -6,8 +6,14 @@ Return *the resulting string after removing **exactly one occurrence** of *`digi
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `number`: Input parameter (`str`).
+- `digit`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -16,12 +22,14 @@ Return *the resulting string after removing **exactly one occurrence** of *`digi
 - **Input:** $number = "123", digit = "3"$
 - **Output:** `"12"`
 - **Explanation:** There is only one '3' in "123". After removing '3', the result is "12".
+
 #### Example 2
 
 - **Input:** $number = "1231", digit = "1"$
 - **Output:** `"231"`
 - **Explanation:** We can remove the first '1' to get "231" or remove the second '1' to get "123".
 Since 231 > 123, we return "231".
+
 #### Example 3
 
 - **Input:** $number = "551", digit = "5"$

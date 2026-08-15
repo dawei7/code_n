@@ -16,8 +16,14 @@ Return *an integer array* `count` *of length* `n` *where* $\text{count}[i]$ *is 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `edges`: Input parameter (`List[List[int]]`).
+- `signalSpeed`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -29,6 +35,7 @@ Return *an integer array* `count` *of length* `n` *where* $\text{count}[i]$ *is 
 - **Output:** `[0,4,6,6,4,0]`
 - **Explanation:** Since signalSpeed is 1, count[c] is equal to the number of pairs of paths that start at c and do not share any edges.
 In the case of the given path graph, count[c] is equal to the number of servers to the left of c multiplied by the servers to the right of c.
+
 #### Example 2
 
 ![](images/example11.png)

@@ -33,20 +33,20 @@ Return the elements sorted in ascending order of `fn(element)`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [5,4,1,2,3], fn = (x) => x`
-- Output: `[1,2,3,4,5]`
-- Explanation: Each number is also its own key.
+- **Input:** `arr = [5,4,1,2,3], fn = (x) => x`
+- **Output:** `[1,2,3,4,5]`
+- **Explanation:** Each number is also its own key.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [{"x":1},{"x":0},{"x":-1}], fn = (d) => d.x`
-- Output: `[{"x":-1},{"x":0},{"x":1}]`
-- Explanation: Object order is determined by the numeric `x` property.
+- **Input:** `arr = [{"x":1},{"x":0},{"x":-1}], fn = (d) => d.x`
+- **Output:** `[{"x":-1},{"x":0},{"x":1}]`
+- **Explanation:** Object order is determined by the numeric `x` property.
 
-**Example 3**
+#### Example 3
 
-- Input: `arr = [[3,4],[5,2],[10,1]], fn = (x) => x[1]`
-- Output: `[[10,1],[5,2],[3,4]]`
-- Explanation: The second array entry supplies keys $1$, $2$, and $4$.
+- **Input:** `arr = [[3,4],[5,2],[10,1]], fn = (x) => x[1]`
+- **Output:** `[[10,1],[5,2],[3,4]]`
+- **Explanation:** The second array entry supplies keys $1$, $2$, and $4$.

@@ -31,20 +31,20 @@ Normalize the paragraph's words to lowercase, discard every occurrence whose nor
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `paragraph = "Bob hit a ball, the hit BALL flew far after it was hit.", banned = ["hit"]`
-- Output: `"ball"`
-- Explanation: After case folding and excluding `hit`, `ball` is the only word appearing twice.
+- **Input:** `paragraph = "Bob hit a ball, the hit BALL flew far after it was hit.", banned = ["hit"]`
+- **Output:** `"ball"`
+- **Explanation:** After case folding and excluding `hit`, `ball` is the only word appearing twice.
 
-**Example 2**
+#### Example 2
 
-- Input: `paragraph = "a, a, a, a, b,b,b,c, c", banned = ["a"]`
-- Output: `"b"`
-- Explanation: Punctuation separates the words, and `b` occurs three times among the allowed words.
+- **Input:** `paragraph = "a, a, a, a, b,b,b,c, c", banned = ["a"]`
+- **Output:** `"b"`
+- **Explanation:** Punctuation separates the words, and `b` occurs three times among the allowed words.
 
-**Example 3**
+#### Example 3
 
-- Input: `paragraph = "Bob. hIt, baLl", banned = ["bob","hit"]`
-- Output: `"ball"`
-- Explanation: Comparisons are case-insensitive, and the result is normalized to lowercase.
+- **Input:** `paragraph = "Bob. hIt, baLl", banned = ["bob","hit"]`
+- **Output:** `"ball"`
+- **Explanation:** Comparisons are case-insensitive, and the result is normalized to lowercase.

@@ -36,12 +36,12 @@ $D = \sum_{w \in \texttt{words}} \lvert w \rvert.$
 - **Output:** `"**abc**xyz**123**"`
 - **Explanation:** The two strings of words are substrings of s as following: "<u>abc</u>xyz<u>123</u>".
 We add ** before each substring and ** after each substring.
+
 #### Example 2
 
 - **Input:** `s = "aaabbb", words = ["aa","b"]`
 - **Output:** `"**aaabbb**"`
-- **Explanation:**
-"aa" appears as a substring two times: "<u>aa</u>abbb" and "a<u>aa</u>bbb".
+- **Explanation:** "aa" appears as a substring two times: "<u>aa</u>abbb" and "a<u>aa</u>bbb".
 "b" appears as a substring three times: "aaa<u>b</u>bb", "aaab<u>b</u>b", and "aaabb<u>b</u>".
 We add ** before each substring and ** after each substring: "**a<b>a**a</b>**b****b****b**".
 Since the first two **'s overlap, we merge them: "<b>aaa****b****b****b**".

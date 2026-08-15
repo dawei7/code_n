@@ -34,7 +34,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:
+- **Input:** 
 df1**
 +------------+---------+-----+
 | student_id | name    | age |
@@ -51,7 +51,7 @@ df1**
 | 5          | Leo  | 7   |
 | 6          | Alex | 7   |
 +------------+------+-----+
-**Output:**
+- **Output:** 
 +------------+---------+-----+
 | student_id | name    | age |
 +------------+---------+-----+
@@ -62,6 +62,6 @@ df1**
 | 5          | Leo     | 7   |
 | 6          | Alex    | 7   |
 +------------+---------+-----+
-**Explanation:
+- **Explanation:** 
 **The two DataFramess are stacked vertically, and their rows are combined.
 ```

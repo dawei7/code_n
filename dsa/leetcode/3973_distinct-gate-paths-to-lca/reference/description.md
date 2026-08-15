@@ -67,14 +67,11 @@ For one query, Alice's and Bob's route counts are independent and are multiplied
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 3, parent = [-1,0,0], gates = [[1,0,1],[0,1,1],[1,1,0]], queries = [[1,0,2,0],[1,1,2,0],[1,0,2,1]]
+- **Input:** n = 3, parent = [-1,0,0], gates = [[1,0,1],[0,1,1],[1,1,0]], queries = [[1,0,2,0],[1,1,2,0],[1,0,2,1]]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-<table border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0" style="border-collapse:collapse;">
+- **Explanation:** <table border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0" style="border-collapse:collapse;">
 	<thead>
 		<tr>
 			<th align="center">`i`</th>
@@ -135,18 +132,13 @@ For one query, Alice's and Bob's route counts are independent and are multiplied
 
 Thus, the XOR of all values: $2 XOR 1 XOR 2 = 1$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 3, parent = [-1,0,1], gates = [[0,1,2],[1,0,1],[0,0,3]], queries = [[2,0,1,0],[2,1,0,0],[1,1,2,1]]
+- **Input:** n = 3, parent = [-1,0,1], gates = [[0,1,2],[1,0,1],[0,0,3]], queries = [[2,0,1,0],[2,1,0,0],[1,1,2,1]]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-<div class="example-block">
-<table border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0" style="border-collapse:collapse;">
+- **Explanation:** <table border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0" style="border-collapse:collapse;">
 	<thead>
 		<tr>
 			<th align="center">`i`</th>
@@ -202,9 +194,6 @@ Thus, the XOR of all values: $2 XOR 1 XOR 2 = 1$.
 </table>
 
 Thus, the XOR of all values: $3 XOR 3 XOR 3 = 3$.
-
-</div>
-</div>
 
 ### 5. Constraints
 

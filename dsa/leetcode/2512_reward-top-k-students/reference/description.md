@@ -10,8 +10,17 @@ Given an integer `k`, return *the top *`k`* students after ranking them in **non
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `positive_feedback`: Input parameter (`List[str]`).
+- `negative_feedback`: Input parameter (`List[str]`).
+- `report`: Input parameter (`List[str]`).
+- `student_id`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -19,13 +28,13 @@ Given an integer `k`, return *the top *`k`* students after ranking them in **non
 
 - **Input:** $\text{positive}_{feedback} = ["smart","brilliant","studious"], \text{negative}_{feedback} = ["not"], report = ["this student is studious","the student is smart"], \text{student}_{id} = [1,2], k = 2$
 - **Output:** `[1,2]`
-- **Explanation:**
-Both the students have 1 positive feedback and 3 points but since student 1 has a lower ID he ranks higher.
+- **Explanation:** Both the students have 1 positive feedback and 3 points but since student 1 has a lower ID he ranks higher.
+
 #### Example 2
 
 - **Input:** $\text{positive}_{feedback} = ["smart","brilliant","studious"], \text{negative}_{feedback} = ["not"], report = ["this student is not studious","the student is smart"], \text{student}_{id} = [1,2], k = 2$
 - **Output:** `[2,1]`
-- **Explanation:**
+- **Explanation:** 
 - The student with ID 1 has 1 positive feedback and 1 negative feedback, so he has 3-1=2 points.
 - The student with ID 2 has 1 positive feedback, so he has 3 points.
 Since student 2 has more points, [2,1] is returned.

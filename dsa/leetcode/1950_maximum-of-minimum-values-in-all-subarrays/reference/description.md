@@ -22,8 +22,7 @@ A **subarray** is a contiguous sequence of elements in an array.
 
 - **Input:** `nums = [0,1,2,4]`
 - **Output:** `[4,2,1,0]`
-- **Explanation:**
-i=0:
+- **Explanation:** i=0:
 - The subarrays of size 1 are [0], [1], [2], [4]. The minimum values are 0, 1, 2, 4.
 - The maximum of the minimum values is 4.
 i=1:
@@ -35,12 +34,12 @@ i=2:
 i=3:
 - There is one subarray of size 4, which is [0,1,2,4]. The minimum value is 0.
 - There is only one value, so the maximum is 0.
+
 #### Example 2
 
 - **Input:** `nums = [10,20,50,10]`
 - **Output:** `[50,20,10,10]`
-- **Explanation:**
-i=0:
+- **Explanation:** i=0:
 - The subarrays of size 1 are [10], [20], [50], [10]. The minimum values are 10, 20, 50, 10.
 - The maximum of the minimum values is 50.
 i=1:

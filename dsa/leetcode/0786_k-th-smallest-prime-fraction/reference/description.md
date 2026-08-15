@@ -8,8 +8,14 @@ Return *the* $$k^{\text{th}}$$ *smallest fraction considered*. Return your answe
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -20,6 +26,7 @@ Return *the* $$k^{\text{th}}$$ *smallest fraction considered*. Return your answe
 - **Explanation:** The fractions to be considered in sorted order are:
 1/5, 1/3, 2/5, 1/2, 3/5, and 2/3.
 The third fraction is 2/5.
+
 #### Example 2
 
 - **Input:** `arr = [1,7], k = 1`

@@ -34,14 +34,14 @@ Return the greatest possible value of the minimum city power after placing the a
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `stations = [1, 2, 4, 5, 0], r = 1, k = 2`
-- Output: `5`
-- Explanation: Placing both new stations at city `1` produces city powers whose minimum is `5`, and no placement can make that minimum larger.
+- **Input:** `stations = [1, 2, 4, 5, 0], r = 1, k = 2`
+- **Output:** `5`
+- **Explanation:** Placing both new stations at city `1` produces city powers whose minimum is `5`, and no placement can make that minimum larger.
 
-**Example 2**
+#### Example 2
 
-- Input: `stations = [4, 4, 4, 4], r = 0, k = 3`
-- Output: `4`
-- Explanation: With range zero, raising all four cities above `4` would require at least four additional stations.
+- **Input:** `stations = [4, 4, 4, 4], r = 0, k = 3`
+- **Output:** `4`
+- **Explanation:** With range zero, raising all four cities above `4` would require at least four additional stations.

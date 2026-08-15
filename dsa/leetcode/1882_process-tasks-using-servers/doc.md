@@ -31,23 +31,23 @@ Waiting tasks remain in arrival order. Whenever both a waiting task and a free s
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `servers = [3,3,2], tasks = [1,2,3,2,1,2]`
-- Output: `[2,2,0,2,1,2]`
+- **Input:** `servers = [3,3,2], tasks = [1,2,3,2,1,2]`
+- **Output:** `[2,2,0,2,1,2]`
 
 Server `2` has the smallest weight; the two weight-`3` servers tie by index.
 
-**Example 2**
+#### Example 2
 
-- Input: `servers = [5,1,4,3,2], tasks = [2,1,2,4,5,2,1]`
-- Output: `[1,4,1,4,1,3,2]`
+- **Input:** `servers = [5,1,4,3,2], tasks = [2,1,2,4,5,2,1]`
+- **Output:** `[1,4,1,4,1,3,2]`
 
 Several servers become free together at second `2`, after which weight priority applies again.
 
-**Example 3**
+#### Example 3
 
-- Input: `servers = [1], tasks = [5,1,1]`
-- Output: `[0,0,0]`
+- **Input:** `servers = [1], tasks = [5,1,1]`
+- **Output:** `[0,0,0]`
 
 Later tasks wait in order for the only server.

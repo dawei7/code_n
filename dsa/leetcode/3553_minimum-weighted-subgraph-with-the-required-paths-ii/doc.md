@@ -35,16 +35,16 @@ Return an integer array in query order. Each value is the total weight of the mi
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `edges = [[0,1,2],[1,2,3],[1,3,5],[1,4,4],[2,5,6]], queries = [[2,3,4],[0,2,5]]`
-- Output: `[12,11]`
-- Explanation: The first subtree uses the three edges incident to node `1`, with total $3+5+4=12$. The second is the path from `0` through `1` and `2` to `5`, with total $2+3+6=11$.
+- **Input:** `edges = [[0,1,2],[1,2,3],[1,3,5],[1,4,4],[2,5,6]], queries = [[2,3,4],[0,2,5]]`
+- **Output:** `[12,11]`
+- **Explanation:** The first subtree uses the three edges incident to node `1`, with total $3+5+4=12$. The second is the path from `0` through `1` and `2` to `5`, with total $2+3+6=11$.
 
-**Example 2**
+#### Example 2
 
-- Input: `edges = [[1,0,8],[0,2,7]], queries = [[0,1,2]]`
-- Output: `[15]`
-- Explanation: Both tree edges are required, so their weights sum to $8+7=15$.
+- **Input:** `edges = [[1,0,8],[0,2,7]], queries = [[0,1,2]]`
+- **Output:** `[15]`
+- **Explanation:** Both tree edges are required, so their weights sum to $8+7=15$.
 
 ---

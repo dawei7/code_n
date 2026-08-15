@@ -19,11 +19,13 @@ Return *the **first starting** index where the pattern matches the bits read fro
 - **Input:** $stream = [1,1,1,0,1,1,1,...], pattern = [0,1]$
 - **Output:** `3`
 - **Explanation:** The first occurrence of the pattern [0,1] is highlighted in the stream [1,1,1,**<u>0,1</u>**,...], which starts at index 3.
+
 #### Example 2
 
 - **Input:** $stream = [0,0,0,0,...], pattern = [0]$
 - **Output:** `0`
 - **Explanation:** The first occurrence of the pattern [0] is highlighted in the stream [**<u>0</u>**,...], which starts at index 0.
+
 #### Example 3
 
 - **Input:** $stream = [1,0,1,1,0,1,1,0,1,...], pattern = [1,1,0,1]$

@@ -31,19 +31,19 @@ Return every index $i$ from `1` through `n - 1` for which `height[i - 1] > thres
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `height = [1, 2, 3, 4, 5], threshold = 2`
-- Output: `[3, 4]`
-- Explanation: The predecessors at indices `2` and `3` exceed `2`.
+- **Input:** `height = [1, 2, 3, 4, 5], threshold = 2`
+- **Output:** `[3, 4]`
+- **Explanation:** The predecessors at indices `2` and `3` exceed `2`.
 
-**Example 2**
+#### Example 2
 
-- Input: `height = [10, 1, 10, 1, 10], threshold = 3`
-- Output: `[1, 3]`
+- **Input:** `height = [10, 1, 10, 1, 10], threshold = 3`
+- **Output:** `[1, 3]`
 
-**Example 3**
+#### Example 3
 
-- Input: `height = [10, 1, 10, 1, 10], threshold = 10`
-- Output: `[]`
-- Explanation: Equality with the threshold is not sufficient.
+- **Input:** `height = [10, 1, 10, 1, 10], threshold = 10`
+- **Output:** `[]`
+- **Explanation:** Equality with the threshold is not sufficient.

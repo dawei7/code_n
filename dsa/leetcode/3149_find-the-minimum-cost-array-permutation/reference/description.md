@@ -8,19 +8,23 @@ Return the permutation `perm` which has the **minimum** possible score. If *mult
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,0,2]
+- **Input:** nums = [1,0,2]
 
-**Output:** [0,1,2]
+- **Output:** [0,1,2]
 
-**Explanation:**
+- **Explanation:** 
 
 **
 
@@ -30,15 +34,13 @@ Return the permutation `perm` which has the **minimum** possible score. If *mult
 
 The lexicographically smallest permutation with minimum cost is `[0,1,2]`. The cost of this permutation is $|0 - 0| + |1 - 2| + |2 - 1| = 2$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [0,2,1]
+- **Input:** nums = [0,2,1]
 
-**Output:** [0,2,1]
+- **Output:** [0,2,1]
 
-**Explanation:**
+- **Explanation:** 
 
 **
 
@@ -47,8 +49,6 @@ The lexicographically smallest permutation with minimum cost is `[0,1,2]`. The c
 **
 
 The lexicographically smallest permutation with minimum cost is `[0,2,1]`. The cost of this permutation is $|0 - 1| + |2 - 2| + |1 - 0| = 2$.
-
-</div>
 
 ### 4. Constraints
 

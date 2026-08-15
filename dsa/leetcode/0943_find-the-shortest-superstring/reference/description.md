@@ -6,8 +6,13 @@ You may assume that no string in `words` is a substring of another string in `wo
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -16,6 +21,7 @@ You may assume that no string in `words` is a substring of another string in `wo
 - **Input:** $words = ["alex","loves","leetcode"]$
 - **Output:** `"alexlovesleetcode"`
 - **Explanation:** All permutations of "alex","loves","leetcode" would also be accepted.
+
 #### Example 2
 
 - **Input:** $words = ["catg","ctaagt","gcta","ttca","atgcatc"]$

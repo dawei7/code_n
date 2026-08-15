@@ -38,20 +38,20 @@ Return a function. When invoked with `inputs`, that function must call `fn` with
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `fn = function(multiplier) { return this.x * multiplier; }, obj = {"x":10}, inputs = [5]`
-- Output: `50`
-- Explanation: The bound context supplies `x = 10`, and the invocation forwards multiplier `5`.
+- **Input:** `fn = function(multiplier) { return this.x * multiplier; }, obj = {"x":10}, inputs = [5]`
+- **Output:** `50`
+- **Explanation:** The bound context supplies `x = 10`, and the invocation forwards multiplier `5`.
 
-**Example 2**
+#### Example 2
 
-- Input: `fn = function() { return "My name is " + this.name; }, obj = {"name":"Kathy"}, inputs = []`
-- Output: `"My name is Kathy"`
-- Explanation: Binding must work even when the returned function receives no arguments.
+- **Input:** `fn = function() { return "My name is " + this.name; }, obj = {"name":"Kathy"}, inputs = []`
+- **Output:** `"My name is Kathy"`
+- **Explanation:** Binding must work even when the returned function receives no arguments.
 
-**Example 3**
+#### Example 3
 
-- Input: a target that increments `this.count`, with `obj = {"count":40}` and `inputs = [2]`
-- Output: `42`
-- Explanation: The target operates on the original context object, not on a copy.
+- **Input:** a target that increments `this.count`, with `obj = {"count":40}` and `inputs = [2]`
+- **Output:** `42`
+- **Explanation:** The target operates on the original context object, not on a copy.

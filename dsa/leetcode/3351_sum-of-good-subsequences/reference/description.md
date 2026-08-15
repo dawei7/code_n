@@ -8,8 +8,13 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -19,32 +24,27 @@ that a subsequence of size 1 is considered good by definition.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,1]
+- **Input:** nums = [1,2,1]
 
-**Output:** 14
+- **Output:** 14
 
-**Explanation:**
+- **Explanation:** 
 
 - Good subsequences are: `[1]`, `[2]`, `[1]`, `[1,2]`, `[2,1]`, `[1,2,1]`.
 
 - The sum of elements in these subsequences is 14.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [3,4,5]
+- **Input:** nums = [3,4,5]
 
-**Output:** 40
+- **Output:** 40
 
-**Explanation:**
+- **Explanation:** 
 
 - Good subsequences are: `[3]`, `[4]`, `[5]`, `[3,4]`, `[4,5]`, `[3,4,5]`.
 
 - The sum of elements in these subsequences is 40.
-
-</div>
 
 ### 5. Constraints
 

@@ -6,8 +6,13 @@ Given a string `n` that represents a positive decimal integer, return *the **min
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,10 +21,12 @@ Given a string `n` that represents a positive decimal integer, return *the **min
 - **Input:** $n = "32"$
 - **Output:** `3`
 - **Explanation:** 10 + 11 + 11 = 32
+
 #### Example 2
 
 - **Input:** $n = "82734"$
 - **Output:** `8`
+
 #### Example 3
 
 - **Input:** $n = "27346209830709182346"$

@@ -6,8 +6,14 @@ Note that the integers should not have leading zeros. Integers as `02` and `043`
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -16,6 +22,7 @@ Note that the integers should not have leading zeros. Integers as `02` and `043`
 - **Input:** $n = 3, k = 7$
 - **Output:** `[181,292,707,818,929]`
 - **Explanation:** Note that 070 is not a valid number, because it has leading zeroes.
+
 #### Example 2
 
 - **Input:** $n = 2, k = 1$

@@ -8,8 +8,14 @@ The cost of a path in `grid` is the **sum** of all values of cells visited plus 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+- `moveCost`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +30,7 @@ The cost of a path in `grid` is the **sum** of all values of cells visited plus 
 - The cost of moving from 5 to 0 is 3.
 - The cost of moving from 0 to 1 is 8.
 So the total cost of the path is 6 + 3 + 8 = 17.
+
 #### Example 2
 
 - **Input:** `grid = [[5,1,2],[4,0,3]], moveCost = [[12,10,15],[20,23,8],[21,7,1],[8,1,13],[9,10,25],[5,3,2]]`

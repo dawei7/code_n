@@ -31,7 +31,6 @@ Return *the result table ordered by <em>the result ordered by **level** in **asc
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 Employees table:
@@ -76,7 +75,7 @@ Employees table:
 
 - **Organization Structure:**
 
-		<li>Alice (ID: 1) is the CEO (level 1) with no manager
+		- Alice (ID: 1) is the CEO (level 1) with no manager
 
 - Bob (ID: 2) and Charlie (ID: 3) report directly to Alice (level 2)
 
@@ -84,17 +83,15 @@ Employees table:
 
 - Hank (ID: 8) reports to David, and Ivy (ID: 9) and Judy (ID: 10) report to Frank (level 4)
 
-	</li>
 - **Level Calculation:**
 
-		<li>The CEO (Alice) is at level 1
+		- The CEO (Alice) is at level 1
 
 - Each subsequent level of management adds 1 to the level
 
-	</li>
 - **Team Size Calculation:**
 
-		<li>Alice has 9 employees under her (the entire company except herself)
+		- Alice has 9 employees under her (the entire company except herself)
 
 - Bob has 3 employees (David, Eva, and Hank)
 
@@ -106,10 +103,9 @@ Employees table:
 
 - Eva, Grace, Hank, Ivy, and Judy have no direct reports (team_size = 0)
 
-	</li>
 - **Budget Calculation:**
 
-		<li>Alice's budget: Her salary (12000) + all employees' salaries (72500) = 84500
+		- Alice's budget: Her salary (12000) + all employees' salaries (72500) = 84500
 
 - Charlie's budget: His salary (10000) + Frank's budget (23000) + Grace's salary (8500) = 41500
 
@@ -121,8 +117,6 @@ Employees table:
 
 - Employees with no direct reports have budgets equal to their own salary
 
-	</li>
-
 ### 2. Function Contract
 
 - `n`: Input parameter.
@@ -133,5 +127,3 @@ Employees table:
 - The result is ordered first by level in ascending order
 
 - Within the same level, employees are ordered by budget in descending order then by name in ascending order
-
-</div>

@@ -31,14 +31,11 @@ Return the minimum number of increments, decrements, and append operations requi
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums1 = [2,8], nums2 = [1,7,3]
+- **Input:** nums1 = [2,8], nums2 = [1,7,3]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th align="center" style="border: 1px solid black;">Step</th>
@@ -82,17 +79,13 @@ Return the minimum number of increments, decrements, and append operations requi
 
 Thus, after 4 operations `nums1` is transformed into `nums2`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums1 = [1,3,6], nums2 = [2,4,5,3]
+- **Input:** nums1 = [1,3,6], nums2 = [2,4,5,3]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th align="center" style="border: 1px solid black;">Step</th>
@@ -136,17 +129,13 @@ Thus, after 4 operations `nums1` is transformed into `nums2`.
 
 Thus, after 4 operations `nums1` is transformed into `nums2`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums1 = [2], nums2 = [3,4]
+- **Input:** nums1 = [2], nums2 = [3,4]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th align="center" style="border: 1px solid black;">Step</th>
@@ -182,8 +171,6 @@ Thus, after 4 operations `nums1` is transformed into `nums2`.
 </table>
 
 Thus, after 3 operations `nums1` is transformed into `nums2`.
-
-</div>
 
 ### 4. Constraints
 

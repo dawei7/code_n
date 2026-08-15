@@ -10,8 +10,10 @@ The **level** of a node is the number of edges along the path between it and the
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `minimumOperations(root: Optional[TreeNode]) -> `int``: Executes operation.
 
 ### 3. Examples
 
@@ -21,24 +23,26 @@ The **level** of a node is the number of edges along the path between it and the
 
 - **Input:** `root = [1,4,3,7,6,8,5,null,null,null,null,9,null,10]`
 - **Output:** `3`
-- **Explanation:**
+- **Explanation:** 
 - Swap 4 and 3. The 2^nd level becomes [3,4].
 - Swap 7 and 5. The 3^rd level becomes [5,6,8,7].
 - Swap 8 and 7. The 3^rd level becomes [5,6,7,8].
 We used 3 operations so return 3.
 It can be proven that 3 is the minimum number of operations needed.
+
 #### Example 2
 
 ![](images/image-20220918174026-3.png)
 
 - **Input:** `root = [1,3,2,7,6,5,4]`
 - **Output:** `3`
-- **Explanation:**
+- **Explanation:** 
 - Swap 3 and 2. The 2^nd level becomes [2,3].
 - Swap 7 and 4. The 3^rd level becomes [4,6,5,7].
 - Swap 6 and 5. The 3^rd level becomes [4,5,6,7].
 We used 3 operations so return 3.
 It can be proven that 3 is the minimum number of operations needed.
+
 #### Example 3
 
 ![](images/image-20220918174052-4.png)

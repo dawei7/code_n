@@ -30,8 +30,13 @@ An **ancestor** of a node is any node on the path from the root to that node (ex
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `pairs`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -42,6 +47,7 @@ An **ancestor** of a node is any node on the path from the root to that node (ex
 - **Input:** $pairs = [[1,2],[2,3]]$
 - **Output:** `1`
 - **Explanation:** There is exactly one valid rooted tree, which is shown in the above figure.
+
 #### Example 2
 
 ![](images/tree.png)
@@ -49,6 +55,7 @@ An **ancestor** of a node is any node on the path from the root to that node (ex
 - **Input:** $pairs = [[1,2],[2,3],[1,3]]$
 - **Output:** `2`
 - **Explanation:** There are multiple valid rooted trees. Three of them are shown in the above figures.
+
 #### Example 3
 
 - **Input:** $pairs = [[1,2],[2,3],[2,4],[1,5]]$

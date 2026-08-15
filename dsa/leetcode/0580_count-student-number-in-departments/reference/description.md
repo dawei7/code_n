@@ -50,7 +50,7 @@ Return one row per department with columns $\text{dept}_{name}$ and $\text{stude
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Student table:
 +------------+--------------+--------+---------+
 | student_id | student_name | gender | dept_id |
@@ -67,7 +67,7 @@ Department table:
 | 2       | Science     |
 | 3       | Law         |
 +---------+-------------+
-**Output:**
+- **Output:** 
 +-------------+----------------+
 | dept_name   | student_number |
 +-------------+----------------+

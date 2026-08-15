@@ -14,8 +14,11 @@ Implement the `LUPrefix `class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `LUPrefix(n: int)`: Initializes the data structure.
+- `upload(video: int)`: Executes operation.
+- `longest() -> `int``: Executes operation.
 
 ### 3. Examples
 

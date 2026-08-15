@@ -28,12 +28,11 @@ Return the minimum possible sum of all array elements. The result may exceed the
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [3,6,2]
+- **Input:** nums = [3,6,2]
 
-**Output:** 7
+- **Output:** 7
 
-**Explanation:**
+- **Explanation:** 
 
 - Choose $a = 1$, $b = 2$, where $\text{nums}[a] = 6$ and $\text{nums}[b] = 2$. Since $6 \% 2 = 0$, replace $\text{nums}[1]$ with $\text{nums}[2]$.
 
@@ -41,15 +40,13 @@ Return the minimum possible sum of all array elements. The result may exceed the
 
 - No further operation reduces the sum. Thus, the final sum is $3 + 2 + 2 = 7$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [4,2,8,3]
+- **Input:** nums = [4,2,8,3]
 
-**Output:** 9
+- **Output:** 9
 
-**Explanation:**
+- **Explanation:** 
 
 - Choose $a = 0$, $b = 1$, where $\text{nums}[a] = 4$ and $\text{nums}[b] = 2$. Since $4 \% 2 = 0$, replace $\text{nums}[0]$ with $\text{nums}[1]$.
 
@@ -59,21 +56,17 @@ Return the minimum possible sum of all array elements. The result may exceed the
 
 - No further operation reduces the sum. Thus, the final sum is $2 + 2 + 2 + 3 = 9$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [7,5,9]
+- **Input:** nums = [7,5,9]
 
-**Output:** 21
+- **Output:** 21
 
-**Explanation:**
+- **Explanation:** 
 
 - There is no pair `(a, b)` such that $\text{nums}[a] \% \text{nums}[b] = 0$.
 
 - Hence, no operation can be performed. The sum remains $7 + 5 + 9 = 21$.
-
-</div>
 
 ### 4. Constraints
 

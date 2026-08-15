@@ -41,14 +41,11 @@ Return the length-$N$ array containing the delayed count for every original inde
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,1,1], k = 1
+- **Input:** nums = [1,2,1,1], k = 1
 
-**Output:** [2,0,0,0]
+- **Output:** [2,0,0,0]
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">`i`</th>
@@ -99,17 +96,13 @@ Return the length-$N$ array containing the delayed count for every original inde
 
 Thus, $ans = [2, 0, 0, 0]$​​​​​​​.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [3,1,3,1], k = 0
+- **Input:** nums = [3,1,3,1], k = 0
 
-**Output:** [1,1,0,0]
+- **Output:** [1,1,0,0]
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">`i`</th>
@@ -159,8 +152,6 @@ Thus, $ans = [2, 0, 0, 0]$​​​​​​​.
 </table>
 
 Thus, $ans = [1, 1, 0, 0]$​​​​​​​.
-
-</div>
 
 ### 4. Constraints
 

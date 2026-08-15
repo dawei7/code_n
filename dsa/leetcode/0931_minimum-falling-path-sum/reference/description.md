@@ -6,8 +6,13 @@ A **falling path** starts at any element in the first row and chooses the elemen
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `matrix`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +23,7 @@ A **falling path** starts at any element in the first row and chooses the elemen
 - **Input:** $matrix = [[2,1,3],[6,5,4],[7,8,9]]$
 - **Output:** `13`
 - **Explanation:** There are two falling paths with a minimum sum as shown.
+
 #### Example 2
 
 ![](images/failing2-grid.jpg)

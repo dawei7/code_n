@@ -26,26 +26,19 @@ Note that the money from one data center **cannot** be used for another data cen
 
 #### Example 1
 
-<div class="example-block">
-**Input:** count = [4,3], upgrade = [3,5], sell = [4,2], money = [8,9]
+- **Input:** count = [4,3], upgrade = [3,5], sell = [4,2], money = [8,9]
 
-**Output:** [3,2]
+- **Output:** [3,2]
 
-**Explanation:**
-
-For the first data center, if we sell one server, we'll have $8 + 4 = 12$ units of money and we can upgrade the remaining 3 servers.
+- **Explanation:** For the first data center, if we sell one server, we'll have $8 + 4 = 12$ units of money and we can upgrade the remaining 3 servers.
 
 For the second data center, if we sell one server, we'll have $9 + 2 = 11$ units of money and we can upgrade the remaining 2 servers.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** count = [1], upgrade = [2], sell = [1], money = [1]
+- **Input:** count = [1], upgrade = [2], sell = [1], money = [1]
 
-**Output:** [0]
-
-</div>
+- **Output:** [0]
 
 ### 4. Constraints
 

@@ -10,21 +10,24 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 4, k = 5
+- **Input:** n = 4, k = 5
 
-**Output:** 56
+- **Output:** 56
 
-**Explanation:**
-
-<table border="1">
+- **Explanation:** <table border="1">
 	<tbody>
 		<tr>
 			<th>Second</th>
@@ -56,17 +59,14 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 		</tr>
 	</tbody>
 </table>
-</div>
+
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 5, k = 3
+- **Input:** n = 5, k = 3
 
-**Output:** 35
+- **Output:** 35
 
-**Explanation:**
-
-<table border="1">
+- **Explanation:** <table border="1">
 	<tbody>
 		<tr>
 			<th>Second</th>
@@ -90,7 +90,6 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 		</tr>
 	</tbody>
 </table>
-</div>
 
 ### 4. Constraints
 

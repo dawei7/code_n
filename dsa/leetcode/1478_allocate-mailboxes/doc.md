@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/allocate-mailboxes/) |
 
 ## Problem Description
+
 ### Goal
 
 The array `houses` gives the distinct positions of houses along a one-dimensional street. Place exactly `k` mailboxes at any street positions. Each house is served by its nearest mailbox and contributes the absolute distance between its position and that mailbox.
@@ -16,6 +17,7 @@ The array `houses` gives the distinct positions of houses along a one-dimensiona
 Choose the mailbox positions to minimize the sum of these nearest-mailbox distances over every house, and return that minimum total. The input positions need not be sorted, and the result is guaranteed to fit in a 32-bit integer.
 
 ### Function Contract
+
 **Inputs**
 
 Let $N$ be the number of houses.
@@ -34,20 +36,21 @@ $$
 where $B$ is the set of the $k$ chosen mailbox positions.
 
 ### Examples
-**Example 1**
 
-- Input: `houses = [1,4,8,10,20], k = 3`
-- Output: `5`
-- Explanation: Mailboxes at positions $3$, $9$, and $20$ give distances $2+1+1+1+0=5$.
+#### Example 1
 
-**Example 2**
+- **Input:** `houses = [1,4,8,10,20], k = 3`
+- **Output:** `5`
+- **Explanation:** Mailboxes at positions $3$, $9$, and $20$ give distances $2+1+1+1+0=5$.
 
-- Input: `houses = [2,3,5,12,18], k = 2`
-- Output: `9`
-- Explanation: Mailboxes at $3$ and $14$ give total distance $1+0+2+2+4=9$.
+#### Example 2
 
-**Example 3**
+- **Input:** `houses = [2,3,5,12,18], k = 2`
+- **Output:** `9`
+- **Explanation:** Mailboxes at $3$ and $14$ give total distance $1+0+2+2+4=9$.
 
-- Input: `houses = [7,4,6,1], k = 1`
-- Output: `8`
-- Explanation: After sorting to `[1,4,6,7]`, any point between the two middle positions $4$ and $6$ is optimal; choosing either endpoint gives total distance $8$.
+#### Example 3
+
+- **Input:** `houses = [7,4,6,1], k = 1`
+- **Output:** `8`
+- **Explanation:** After sorting to `[1,4,6,7]`, any point between the two middle positions $4$ and $6$ is optimal; choosing either endpoint gives total distance $8$.

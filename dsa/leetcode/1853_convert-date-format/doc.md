@@ -32,17 +32,17 @@ The required text has the form `"day_name, month_name day, year"`. Spell out the
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 - Input row: `2022-04-12`
 - Output row: `Tuesday, April 12, 2022`
 
-**Example 2**
+#### Example 2
 
 - Input row: `2021-08-09`
 - Output row: `Monday, August 9, 2021`
 
-**Example 3**
+#### Example 3
 
 - Input row: `2020-06-26`
 - Output row: `Friday, June 26, 2020`

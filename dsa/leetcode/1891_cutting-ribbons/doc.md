@@ -36,23 +36,23 @@ $$
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `ribbons = [9,7,5], k = 3`
-- Output: `5`
+- **Input:** `ribbons = [9,7,5], k = 3`
+- **Output:** `5`
 
 Each ribbon can provide one length-`5` piece.
 
-**Example 2**
+#### Example 2
 
-- Input: `ribbons = [7,5,9], k = 4`
-- Output: `4`
+- **Input:** `ribbons = [7,5,9], k = 4`
+- **Output:** `4`
 
 The ribbons yield one, one, and two length-`4` pieces.
 
-**Example 3**
+#### Example 3
 
-- Input: `ribbons = [5,7,9], k = 22`
-- Output: `0`
+- **Input:** `ribbons = [5,7,9], k = 22`
+- **Output:** `0`
 
 Their total length is only `21`, so 22 positive-length pieces are impossible.

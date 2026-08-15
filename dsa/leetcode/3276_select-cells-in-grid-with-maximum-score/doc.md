@@ -32,20 +32,20 @@ Return the maximum sum of one or more selected cells such that selected rows and
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[1, 2, 3], [4, 3, 2], [1, 1, 1]]`
-- Output: `8`
-- Explanation: Values `3`, `4`, and `1` can be taken from three different rows.
+- **Input:** `grid = [[1, 2, 3], [4, 3, 2], [1, 1, 1]]`
+- **Output:** `8`
+- **Explanation:** Values `3`, `4`, and `1` can be taken from three different rows.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[8, 7, 6], [8, 3, 2]]`
-- Output: `15`
-- Explanation: Choose `7` from the first row and `8` from the second.
+- **Input:** `grid = [[8, 7, 6], [8, 3, 2]]`
+- **Output:** `15`
+- **Explanation:** Choose `7` from the first row and `8` from the second.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[7, 7], [7], [7, 7, 7]]`
-- Output: `7`
-- Explanation: Repeated occurrences of the same value cannot all be selected.
+- **Input:** `grid = [[7, 7], [7], [7, 7, 7]]`
+- **Output:** `7`
+- **Explanation:** Repeated occurrences of the same value cannot all be selected.

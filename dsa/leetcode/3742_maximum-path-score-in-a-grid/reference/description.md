@@ -41,12 +41,11 @@ If you reach the last cell but the total cost exceeds `k`, the path is invalid.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** grid = [[0, 1],[2, 0]], k = 1
+- **Input:** grid = [[0, 1],[2, 0]], k = 1
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**​​​​​​​
+- **Explanation:** ​​​​​​​
 
 The optimal path is:
 
@@ -95,19 +94,13 @@ The optimal path is:
 
 Thus, the maximum possible score is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** grid = [[0, 1],[1, 2]], k = 1
+- **Input:** grid = [[0, 1],[1, 2]], k = 1
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-There is no path that reaches cell `(1, 1)`​​​​​​​ without exceeding cost k. Thus, the answer is -1.
-
-</div>
+- **Explanation:** There is no path that reaches cell `(1, 1)`​​​​​​​ without exceeding cost k. Thus, the answer is -1.
 
 ### 5. Constraints
 

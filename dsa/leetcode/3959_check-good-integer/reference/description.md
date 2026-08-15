@@ -24,12 +24,11 @@ Return `true` when $squareSum - digitSum \ge 50$; otherwise, return `false`.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 1000
+- **Input:** n = 1000
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
+- **Explanation:** 
 
 - The digits of 1000 are 1, 0, 0, and 0.
 
@@ -39,15 +38,13 @@ Return `true` when $squareSum - digitSum \ge 50$; otherwise, return `false`.
 
 - The $squareSum - digitSum$ is $1 - 1 = 0$. As 0 is not greater than or equal to 50, the output is `false`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 19
+- **Input:** n = 19
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
+- **Explanation:** 
 
 - The digits of 19 are 1 and 9.
 
@@ -56,8 +53,6 @@ Return `true` when $squareSum - digitSum \ge 50$; otherwise, return `false`.
 - The `squareSum` is $1^{2} + 9^{2} = 1 + 81 = 82$.
 
 - The $squareSum - digitSum$ is $82 - 10 = 72$. As 72 is greater than or equal to 50, the output is `true`.
-
-</div>
 
 ### 4. Constraints
 

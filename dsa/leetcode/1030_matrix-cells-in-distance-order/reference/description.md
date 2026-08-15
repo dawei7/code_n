@@ -8,8 +8,16 @@ The **distance** between two cells $(r_{1}, c_{1})$ and $(r_{2}, c_{2})$ is $|r_
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `rows`: Input parameter (`int`).
+- `cols`: Input parameter (`int`).
+- `rCenter`: Input parameter (`int`).
+- `cCenter`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
@@ -18,12 +26,14 @@ The **distance** between two cells $(r_{1}, c_{1})$ and $(r_{2}, c_{2})$ is $|r_
 - **Input:** $rows = 1, cols = 2, rCenter = 0, cCenter = 0$
 - **Output:** `[[0,0],[0,1]]`
 - **Explanation:** The distances from (0, 0) to other cells are: [0,1]
+
 #### Example 2
 
 - **Input:** $rows = 2, cols = 2, rCenter = 0, cCenter = 1$
 - **Output:** `[[0,1],[0,0],[1,1],[1,0]]`
 - **Explanation:** The distances from (0, 1) to other cells are: [0,1,1,2]
 The answer [[0,1],[1,1],[0,0],[1,0]] would also be accepted as correct.
+
 #### Example 3
 
 - **Input:** $rows = 2, cols = 3, rCenter = 1, cCenter = 2$

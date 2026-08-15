@@ -8,8 +8,14 @@ Given the integer array `position` and the integer `m`. Return *the required for
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `position`: Input parameter (`List[int]`).
+- `m`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +26,7 @@ Given the integer array `position` and the integer `m`. Return *the required for
 - **Input:** $position = [1,2,3,4,7], m = 3$
 - **Output:** `3`
 - **Explanation:** Distributing the 3 balls into baskets 1, 4 and 7 will make the magnetic force between ball pairs [3, 3, 6]. The minimum magnetic force is 3. We cannot achieve a larger minimum magnetic force than 3.
+
 #### Example 2
 
 - **Input:** $position = [5,4,3,2,1,1000000000], m = 2$

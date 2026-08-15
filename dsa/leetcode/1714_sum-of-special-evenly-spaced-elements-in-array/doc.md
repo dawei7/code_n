@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/sum-of-special-evenly-spaced-elements-in-array/) |
 
 ## Problem Description
+
 ### Goal
 
 You are given an integer array `nums` and a list of queries. Each query is `[x, y]`. Its special sum starts at index `x` and includes `nums[x]`, `nums[x + y]`, `nums[x + 2 * y]`, and so on while the selected index remains inside the array.
@@ -18,6 +19,7 @@ You are given an integer array `nums` and a list of queries. Each query is `[x, 
 Return the special sum for every query in its original order, with each result reduced modulo $10^9+7$. Queries do not modify `nums`, and repeated starting positions or step sizes must each produce their own output.
 
 ### Function Contract
+
 **Inputs**
 
 - `nums`: a list of $n$ non-negative integers
@@ -37,23 +39,24 @@ $$
 $$
 
 ### Examples
-**Example 1**
 
-- Input: `nums = [0, 1, 2, 3, 4, 5, 6, 7], queries = [[0, 3], [5, 1], [4, 2]]`
-- Output: `[9, 18, 10]`
+#### Example 1
+
+- **Input:** `nums = [0, 1, 2, 3, 4, 5, 6, 7], queries = [[0, 3], [5, 1], [4, 2]]`
+- **Output:** `[9, 18, 10]`
 
 The selected index sequences are `(0, 3, 6)`, `(5, 6, 7)`, and `(4, 6)`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [100, 200, 101, 201, 102, 202, 103, 203], queries = [[0, 7]]`
-- Output: `[303]`
+- **Input:** `nums = [100, 200, 101, 201, 102, 202, 103, 203], queries = [[0, 7]]`
+- **Output:** `[303]`
 
 The query selects indices `0` and `7`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 2, 3, 4, 5], queries = [[0, 2], [1, 2], [4, 1]]`
-- Output: `[9, 6, 5]`
+- **Input:** `nums = [1, 2, 3, 4, 5], queries = [[0, 2], [1, 2], [4, 1]]`
+- **Output:** `[9, 6, 5]`
 
 Different starts with the same step reuse the same evenly spaced suffix relation.

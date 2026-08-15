@@ -24,6 +24,7 @@ Every integer in the closed interval from `low` through `high` is interpreted us
 - **Output:** `6`
 - **Explanation:** The digit d = 1 occurs 6 times in 1, 10, 11, 12, 13.
 Note that the digit d = 1 occurs twice in the number 11.
+
 #### Example 2
 
 - **Input:** $d = 3, low = 100, high = 250$

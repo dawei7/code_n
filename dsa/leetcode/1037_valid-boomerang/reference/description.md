@@ -6,8 +6,13 @@ A **boomerang** is a set of three points that are **all distinct** and **not in 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `points`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -15,6 +20,7 @@ A **boomerang** is a set of three points that are **all distinct** and **not in 
 
 - **Input:** $points = [[1,1],[2,3],[3,2]]$
 - **Output:** `true`
+
 #### Example 2
 
 - **Input:** $points = [[1,1],[2,2],[3,3]]$

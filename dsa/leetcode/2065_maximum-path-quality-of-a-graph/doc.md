@@ -36,20 +36,20 @@ Let $L$ be the maximum number of edges any route within the time budget can trav
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `values = [0,32,10,43], edges = [[0,1,10],[1,2,15],[0,3,10]], maxTime = 49`
-- Output: `75`
-- Explanation: The route `0 -> 1 -> 0 -> 3 -> 0` takes $40$ seconds and collects nodes $0$, $1$, and $3$.
+- **Input:** `values = [0,32,10,43], edges = [[0,1,10],[1,2,15],[0,3,10]], maxTime = 49`
+- **Output:** `75`
+- **Explanation:** The route `0 -> 1 -> 0 -> 3 -> 0` takes $40$ seconds and collects nodes $0$, $1$, and $3$.
 
-**Example 2**
+#### Example 2
 
-- Input: `values = [5,10,15,20], edges = [[0,1,10],[1,2,10],[0,3,10]], maxTime = 30`
-- Output: `25`
-- Explanation: Visiting node $3$ and returning takes $20$ seconds and collects values $5+20$.
+- **Input:** `values = [5,10,15,20], edges = [[0,1,10],[1,2,10],[0,3,10]], maxTime = 30`
+- **Output:** `25`
+- **Explanation:** Visiting node $3$ and returning takes $20$ seconds and collects values $5+20$.
 
-**Example 3**
+#### Example 3
 
-- Input: `values = [1,2,3,4], edges = [[0,1,10],[1,2,11],[2,3,12],[1,3,13]], maxTime = 50`
-- Output: `7`
-- Explanation: The route `0 -> 1 -> 3 -> 1 -> 0` takes $46$ seconds and counts nodes $0$, $1$, and $3$ once each.
+- **Input:** `values = [1,2,3,4], edges = [[0,1,10],[1,2,11],[2,3,12],[1,3,13]], maxTime = 50`
+- **Output:** `7`
+- **Explanation:** The route `0 -> 1 -> 3 -> 1 -> 0` takes $46$ seconds and counts nodes $0$, $1$, and $3$ once each.

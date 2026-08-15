@@ -1,4 +1,3 @@
-
 # Count the Number of Good Subarrays
 
 | Field | Value |
@@ -34,14 +33,14 @@ Return the number of contiguous subarrays containing at least `k` pairs of equal
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,1,1,1,1], k = 10`
-- Output: `1`
-- Explanation: Five equal elements create $\binom{5}{2}=10$ pairs, and only the full array reaches the threshold.
+- **Input:** `nums = [1,1,1,1,1], k = 10`
+- **Output:** `1`
+- **Explanation:** Five equal elements create $\binom{5}{2}=10$ pairs, and only the full array reaches the threshold.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3,1,4,3,2,2,4], k = 2`
-- Output: `4`
-- Explanation: Four contiguous ranges contain at least two equal-value pairs.
+- **Input:** `nums = [3,1,4,3,2,2,4], k = 2`
+- **Output:** `4`
+- **Explanation:** Four contiguous ranges contain at least two equal-value pairs.

@@ -14,8 +14,13 @@ A **substring** is a contiguous sequence of characters in a string.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `word`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,11 +29,13 @@ A **substring** is a contiguous sequence of characters in a string.
 - **Input:** $word = "aeiaaio<u>aaaaeiiiiouuu</u>ooaauuaeiu"$
 - **Output:** `13`
 - **Explanation:** The longest beautiful substring in word is "aaaaeiiiiouuu" of length 13.
+
 #### Example 2
 
 - **Input:** $word = "aeeeiiiioooauuu<u>aeiou</u>"$
 - **Output:** `5`
 - **Explanation:** The longest beautiful substring in word is "aeiou" of length 5.
+
 #### Example 3
 
 - **Input:** $word = "a"$

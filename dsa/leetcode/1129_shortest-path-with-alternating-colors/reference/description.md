@@ -12,8 +12,15 @@ Return an array `answer` of length `n`, where each $\text{answer}[x]$ is the len
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `redEdges`: Input parameter (`List[List[int]]`).
+- `blueEdges`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -21,6 +28,7 @@ Return an array `answer` of length `n`, where each $\text{answer}[x]$ is the len
 
 - **Input:** $n = 3, redEdges = [[0,1],[1,2]], blueEdges = []$
 - **Output:** `[0,1,-1]`
+
 #### Example 2
 
 - **Input:** $n = 3, redEdges = [[0,1]], blueEdges = [[2,1]]$

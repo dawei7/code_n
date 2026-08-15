@@ -8,47 +8,40 @@ Return a string representing the **smallest** **zero-free** number greater than 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `num`: Input parameter (`str`).
+- `t`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** num = "1234", t = 256
+- **Input:** num = "1234", t = 256
 
-**Output:** "1488"
+- **Output:** "1488"
 
-**Explanation:**
+- **Explanation:** The smallest zero-free number that is greater than 1234 and has the product of its digits divisible by 256 is 1488, with the product of its digits equal to 256.
 
-The smallest zero-free number that is greater than 1234 and has the product of its digits divisible by 256 is 1488, with the product of its digits equal to 256.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** num = "12355", t = 50
+- **Input:** num = "12355", t = 50
 
-**Output:** "12355"
+- **Output:** "12355"
 
-**Explanation:**
+- **Explanation:** 12355 is already zero-free and has the product of its digits divisible by 50, with the product of its digits equal to 150.
 
-12355 is already zero-free and has the product of its digits divisible by 50, with the product of its digits equal to 150.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** num = "11111", t = 26
+- **Input:** num = "11111", t = 26
 
-**Output:** "-1"
+- **Output:** "-1"
 
-**Explanation:**
-
-No number greater than 11111 has the product of its digits divisible by 26.
-
-</div>
+- **Explanation:** No number greater than 11111 has the product of its digits divisible by 26.
 
 ### 4. Constraints
 

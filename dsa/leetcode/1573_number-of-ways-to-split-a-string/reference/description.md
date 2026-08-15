@@ -6,8 +6,13 @@ Return the number of ways `s` can be split such that the number of ones is the s
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,10 +25,12 @@ Return the number of ways `s` can be split such that the number of ones is the s
 "1|01|01"
 "10|10|1"
 "10|1|01"
+
 #### Example 2
 
 - **Input:** `s = "1001"`
 - **Output:** `0`
+
 #### Example 3
 
 - **Input:** `s = "0000"`

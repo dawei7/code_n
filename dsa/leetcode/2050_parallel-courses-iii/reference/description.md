@@ -12,8 +12,15 @@ Return *the **minimum** number of months needed to complete all the courses*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `relations`: Input parameter (`List[List[int]]`).
+- `time`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -35,6 +42,7 @@ The test cases are generated such that it is possible to complete every course (
 We start course 1 and course 2 simultaneously at month 0.
 Course 1 takes 3 months and course 2 takes 2 months to complete respectively.
 Thus, the earliest time we can start course 3 is at month 3, and the total time required is 3 + 5 = 8 months.
+
 #### Example 2
 
 **

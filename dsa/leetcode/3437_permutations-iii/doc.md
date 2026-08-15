@@ -30,17 +30,17 @@ Return all permutations of $[1,2,\ldots,n]$ whose adjacent values have opposite 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 4`
-- Output: `[[1,2,3,4],[1,4,3,2],[2,1,4,3],[2,3,4,1],[3,2,1,4],[3,4,1,2],[4,1,2,3],[4,3,2,1]]`
+- **Input:** `n = 4`
+- **Output:** `[[1,2,3,4],[1,4,3,2],[2,1,4,3],[2,3,4,1],[3,2,1,4],[3,4,1,2],[4,1,2,3],[4,3,2,1]]`
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 2`
-- Output: `[[1,2],[2,1]]`
+- **Input:** `n = 2`
+- **Output:** `[[1,2],[2,1]]`
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 3`
-- Output: `[[1,2,3],[3,2,1]]`
+- **Input:** `n = 3`
+- **Output:** `[[1,2,3],[3,2,1]]`

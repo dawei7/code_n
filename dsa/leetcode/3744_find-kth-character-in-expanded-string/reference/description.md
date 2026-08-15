@@ -31,28 +31,19 @@ Return the one-character string $t[k]$ without requiring `t` to be materialized.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "hello world", k = 0
+- **Input:** s = "hello world", k = 0
 
-**Output:** "h"
+- **Output:** "h"
 
-**Explanation:**
+- **Explanation:** $t = "heelllllllooooo woorrrllllddddd"$. Therefore, the answer is $t[0] = "h"$.
 
-$t = "heelllllllooooo woorrrllllddddd"$. Therefore, the answer is $t[0] = "h"$.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "hello world", k = 15
+- **Input:** s = "hello world", k = 15
 
-**Output:** " "
+- **Output:** " "
 
-**Explanation:**
-
-$t = "heelllllllooooo woorrrllllddddd"$. Therefore, the answer is $t[15] = " "$.
-
-</div>
+- **Explanation:** $t = "heelllllllooooo woorrrllllddddd"$. Therefore, the answer is $t[15] = " "$.
 
 ### 4. Constraints
 

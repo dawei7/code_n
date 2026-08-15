@@ -8,37 +8,36 @@ Return an array of booleans `answer` such that $\text{answer}[i]$ is `true` if $
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[bool]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [3,4,1,2,6], queries = [[0,4]]
+- **Input:** nums = [3,4,1,2,6], queries = [[0,4]]
 
-**Output:** [false]
+- **Output:** [false]
 
-**Explanation:**
+- **Explanation:** The subarray is `[3,4,1,2,6]`. 2 and 6 are both even.
 
-The subarray is `[3,4,1,2,6]`. 2 and 6 are both even.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [4,3,1,6], queries = [[0,2],[2,3]]
+- **Input:** nums = [4,3,1,6], queries = [[0,2],[2,3]]
 
-**Output:** [false,true]
+- **Output:** [false,true]
 
-**Explanation:**
+- **Explanation:** 
 
 - The subarray is `[4,3,1]`. 3 and 1 are both odd. So the answer to this query is `false`.
 
 - The subarray is `[1,6]`. There is only one pair: `(1,6)` and it contains numbers with different parity. So the answer to this query is `true`.
-
-</div>
 
 ### 4. Constraints
 

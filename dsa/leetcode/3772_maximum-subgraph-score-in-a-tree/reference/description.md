@@ -34,12 +34,11 @@ Return `answer`, where $\text{answer}[i]$ is the maximum weight sum of any conne
 
 ![Tree Example 1](images/tree1fixed.png)
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,1],[1,2]], good = [1,0,1]
+- **Input:** n = 3, edges = [[0,1],[1,2]], good = [1,0,1]
 
-**Output:** [1,1,1]
+- **Output:** [1,1,1]
 
-**Explanation:**
+- **Explanation:** 
 
 - Green nodes are good and red nodes are bad.
 
@@ -47,17 +46,15 @@ Return `answer`, where $\text{answer}[i]$ is the maximum weight sum of any conne
 
 - Other connected subgraphs containing a node may have the same score.
 
-</div>
 #### Example 2
 
 ![Tree Example 2](images/tree2.png)
 
-<div class="example-block">
-**Input:** n = 5, edges = [[1,0],[1,2],[1,3],[3,4]], good = [0,1,0,1,1]
+- **Input:** n = 5, edges = [[1,0],[1,2],[1,3],[3,4]], good = [0,1,0,1,1]
 
-**Output:** [2,3,2,3,3]
+- **Output:** [2,3,2,3,3]
 
-**Explanation:**
+- **Explanation:** 
 
 - Node 0: The best connected subgraph consists of nodes `0, 1, 3, 4`, which has 3 good nodes and 1 bad node, resulting in a score of $3 - 1 = 2$.
 
@@ -65,21 +62,15 @@ Return `answer`, where $\text{answer}[i]$ is the maximum weight sum of any conne
 
 - Node 2: The best connected subgraph consists of nodes `1, 2, 3, 4`, which has 3 good nodes and 1 bad node, resulting in a score of $3 - 1 = 2$.
 
-</div>
 #### Example 3
 
 ![Tree Example 3](images/tree3.png)
 
-<div class="example-block">
-**Input:** n = 2, edges = [[0,1]], good = [0,0]
+- **Input:** n = 2, edges = [[0,1]], good = [0,0]
 
-**Output:** [-1,-1]
+- **Output:** [-1,-1]
 
-**Explanation:**
-
-For each node, including the other node only adds another bad node, so the best score for both nodes is -1.
-
-</div>
+- **Explanation:** For each node, including the other node only adds another bad node, so the best score for both nodes is -1.
 
 ### 4. Constraints
 

@@ -31,20 +31,20 @@ Return the largest-valued odd integer obtainable as a nonempty substring of `num
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `num = "52"`
-- Output: `"5"`
-- Explanation: `"5"` is the only odd-valued substring.
+- **Input:** `num = "52"`
+- **Output:** `"5"`
+- **Explanation:** `"5"` is the only odd-valued substring.
 
-**Example 2**
+#### Example 2
 
-- Input: `num = "4206"`
-- Output: `""`
-- Explanation: Every digit is even, so every substring ends in an even digit.
+- **Input:** `num = "4206"`
+- **Output:** `""`
+- **Explanation:** Every digit is even, so every substring ends in an even digit.
 
-**Example 3**
+#### Example 3
 
-- Input: `num = "35427"`
-- Output: `"35427"`
-- Explanation: The full input is already odd and is longer than every proper substring.
+- **Input:** `num = "35427"`
+- **Output:** `"35427"`
+- **Explanation:** The full input is already odd and is longer than every proper substring.

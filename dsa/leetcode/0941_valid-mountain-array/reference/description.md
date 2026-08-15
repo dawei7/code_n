@@ -8,18 +8,21 @@ Recall that arr is a mountain array if and only if:
 
 - There exists some `i` with $0 < i < \text{arr.length} - 1$ such that:
 
-		<li>$\text{arr}[0] < \text{arr}[1] < ... < arr[i - 1] < \text{arr}[i]$
+		- $\text{arr}[0] < \text{arr}[1] < ... < arr[i - 1] < \text{arr}[i]$
 
 - $\text{arr}[i] > arr[i + 1] > ... > arr[\text{arr.length} - 1]$
-
-	</li>
 
 ![](images/hint_valid_mountain_array.png)
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -27,10 +30,12 @@ Recall that arr is a mountain array if and only if:
 
 - **Input:** `arr = [2,1]`
 - **Output:** `false`
+
 #### Example 2
 
 - **Input:** `arr = [3,5,5]`
 - **Output:** `false`
+
 #### Example 3
 
 - **Input:** `arr = [0,3,2,1]`

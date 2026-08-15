@@ -30,17 +30,17 @@ The native `createInfiniteObject()` returns an object whose every string propert
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `method = "abc123"`
-- Output: `"abc123"`
+- **Input:** `method = "abc123"`
+- **Output:** `"abc123"`
 
-**Example 2**
+#### Example 2
 
-- Input: `method = ".-qw73n|^2It"`
-- Output: `".-qw73n|^2It"`
+- **Input:** `method = ".-qw73n|^2It"`
+- **Output:** `".-qw73n|^2It"`
 
-**Example 3**
+#### Example 3
 
-- Input: `method = ""`
-- Output: `""`
+- **Input:** `method = ""`
+- **Output:** `""`

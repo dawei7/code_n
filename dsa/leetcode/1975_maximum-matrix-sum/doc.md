@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/maximum-matrix-sum/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given an $n\times n$ integer matrix. In one operation, choose two
 cells that share an edge and multiply both values by `-1`. You may perform the
 operation any number of times and may reuse cells.
@@ -19,6 +21,7 @@ optimal sequence of operations. Adjacency is only horizontal or vertical;
 diagonally touching cells are not adjacent.
 
 ### Function Contract
+
 **Inputs**
 
 - `matrix`: an $n\times n$ integer grid, where $2 \le n \le 250$.
@@ -31,17 +34,18 @@ diagonally touching cells are not adjacent.
   adjacent-pair sign flips.
 
 ### Examples
-**Example 1**
 
-- Input: `matrix = [[1, -1], [-1, 1]]`
-- Output: `4`
+#### Example 1
 
-**Example 2**
+- **Input:** `matrix = [[1, -1], [-1, 1]]`
+- **Output:** `4`
 
-- Input: `matrix = [[1, 2, 3], [-1, -2, -3], [1, 2, 3]]`
-- Output: `16`
+#### Example 2
 
-**Example 3**
+- **Input:** `matrix = [[1, 2, 3], [-1, -2, -3], [1, 2, 3]]`
+- **Output:** `16`
 
-- Input: `matrix = [[-1, 0], [-2, -3]]`
-- Output: `6`
+#### Example 3
+
+- **Input:** `matrix = [[-1, 0], [-2, -3]]`
+- **Output:** `6`

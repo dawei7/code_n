@@ -32,21 +32,21 @@ Return the minimum total cost needed to move all chips to the same position.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `position = [1,2,3]`
-- Output: `1`
+- **Input:** `position = [1,2,3]`
+- **Output:** `1`
 
 The chip at `3` can move to `1` by two units for free. Moving the chip at `2` to `1` costs `1`.
 
-**Example 2**
+#### Example 2
 
-- Input: `position = [2,2,2,3,3]`
-- Output: `2`
+- **Input:** `position = [2,2,2,3,3]`
+- **Output:** `2`
 
 Move both chips at `3` to `2`; each one-unit move costs `1`.
 
-**Example 3**
+#### Example 3
 
-- Input: `position = [1,1000000000]`
-- Output: `1`
+- **Input:** `position = [1,1000000000]`
+- **Output:** `1`

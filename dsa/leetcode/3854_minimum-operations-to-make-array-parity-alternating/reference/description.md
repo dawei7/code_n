@@ -36,14 +36,11 @@ Return `[minimum operations, minimum final range]`, where the range is the final
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [-2,-3,1,4]
+- **Input:** nums = [-2,-3,1,4]
 
-**Output:** [2,6]
+- **Output:** [2,6]
 
-**Explanation:**
-
-Applying the following operations:
+- **Explanation:** Applying the following operations:
 
 - Increase $\text{nums}[2]$ by 1, resulting in `nums = [-2, -3, 2, 4]`.
 
@@ -51,35 +48,25 @@ Applying the following operations:
 
 The resulting array is parity alternating, and the value of $max(nums) - min(nums) = 3 - (-3) = 6$ is the minimum possible among all parity alternating arrays obtainable using exactly 2 operations.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [0,2,-2]
+- **Input:** nums = [0,2,-2]
 
-**Output:** [1,3]
+- **Output:** [1,3]
 
-**Explanation:**
-
-Applying the following operation:
+- **Explanation:** Applying the following operation:
 
 - Decrease $\text{nums}[1]$ by 1, resulting in `nums = [0, 1, -2]`.
 
 The resulting array is parity alternating, and the value of $max(nums) - min(nums) = 1 - (-2) = 3$ is the minimum possible among all parity alternating arrays obtainable using exactly 1 operation.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [7]
+- **Input:** nums = [7]
 
-**Output:** [0,0]
+- **Output:** [0,0]
 
-**Explanation:**
-
-No operations are required. The array is already parity alternating, and the value of $max(nums) - min(nums) = 7 - 7 = 0$, which is the minimum possible.
-
-</div>
+- **Explanation:** No operations are required. The array is already parity alternating, and the value of $max(nums) - min(nums) = 7 - 7 = 0$, which is the minimum possible.
 
 ### 4. Constraints
 

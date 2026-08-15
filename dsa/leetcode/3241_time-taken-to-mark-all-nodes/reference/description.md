@@ -12,8 +12,13 @@ Return an array `times` where $\text{times}[i]$ is the time when all nodes get m
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `edges`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -23,67 +28,47 @@ that the answer for each $\text{times}[i]$ is **independent**, i.e. when you mar
 
 #### Example 1
 
-<div class="example-block">
-**Input:** edges = [[0,1],[0,2]]
+- **Input:** edges = [[0,1],[0,2]]
 
-**Output:** [2,4,3]
+- **Output:** [2,4,3]
 
-**Explanation:**
-
-![](images/screenshot-2024-06-02-122236.png)
+- **Explanation:** ![](images/screenshot-2024-06-02-122236.png)
 
 - For $i = 0$:
 
-		<li>Node 1 is marked at $t = 1$, and Node 2 at $t = 2$.
+		- Node 1 is marked at $t = 1$, and Node 2 at $t = 2$.
 
-	</li>
 - For $i = 1$:
 
-		<li>Node 0 is marked at $t = 2$, and Node 2 at $t = 4$.
+		- Node 0 is marked at $t = 2$, and Node 2 at $t = 4$.
 
-	</li>
 - For $i = 2$:
 
-		<li>Node 0 is marked at $t = 2$, and Node 1 at $t = 3$.
+		- Node 0 is marked at $t = 2$, and Node 1 at $t = 3$.
 
-	</li>
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** edges = [[0,1]]
+- **Input:** edges = [[0,1]]
 
-**Output:** [1,2]
+- **Output:** [1,2]
 
-**Explanation:**
-
-![](images/screenshot-2024-06-02-122249.png)
+- **Explanation:** ![](images/screenshot-2024-06-02-122249.png)
 
 - For $i = 0$:
 
-		<li>Node 1 is marked at $t = 1$.
+		- Node 1 is marked at $t = 1$.
 
-	</li>
 - For $i = 1$:
 
-		<li>Node 0 is marked at $t = 2$.
+		- Node 0 is marked at $t = 2$.
 
-	</li>
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** edges = [[2,4],[0,1],[2,3],[0,2]]
+- **Input:** edges = [[2,4],[0,1],[2,3],[0,2]]
 
-**Output:** [4,6,3,5,5]
+- **Output:** [4,6,3,5,5]
 
-**Explanation:**
-
-![](images/screenshot-2024-06-03-210550.png)
-
-</div>
+- **Explanation:** ![](images/screenshot-2024-06-03-210550.png)
 
 ### 5. Constraints
 

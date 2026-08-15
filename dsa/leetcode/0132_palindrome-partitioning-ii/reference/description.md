@@ -21,10 +21,12 @@ Return the fewest boundaries that must be inserted so every resulting substring 
 - **Input:** `s = "aab"`
 - **Output:** `1`
 - **Explanation:** The palindrome partitioning ["aa","b"] could be produced using 1 cut.
+
 #### Example 2
 
 - **Input:** `s = "a"`
 - **Output:** `0`
+
 #### Example 3
 
 - **Input:** `s = "ab"`

@@ -32,17 +32,17 @@ Return the node object in the cloned tree that occupies the same structural posi
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `original = [7,4,3,null,null,6,19], target = node 3`
-- Output: `node 3 in cloned`
+- **Input:** `original = [7,4,3,null,null,6,19], target = node 3`
+- **Output:** `node 3 in cloned`
 
-**Example 2**
+#### Example 2
 
-- Input: `original = [7], target = node 7`
-- Output: `node 7 in cloned`
+- **Input:** `original = [7], target = node 7`
+- **Output:** `node 7 in cloned`
 
-**Example 3**
+#### Example 3
 
-- Input: `original = [8,null,6,null,5,null,4], target = node 6`
-- Output: `node 6 in cloned`
+- **Input:** `original = [8,null,6,null,5,null,4], target = node 6`
+- **Output:** `node 6 in cloned`

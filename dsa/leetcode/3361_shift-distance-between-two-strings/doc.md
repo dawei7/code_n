@@ -35,14 +35,14 @@ The common string length $n$ satisfies $1\le n\le10^5$. Both cost arrays have le
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abab"`, `t = "baba"`, `nextCost = [100, 0, ..., 0]`, `previousCost = [1, 100, 0, ..., 0]`
-- Output: `2`
-- Explanation: Each `a` moves backward around the alphabet for cost 1, while each `b` moves forward around the alphabet at zero cost.
+- **Input:** `s = "abab"`, `t = "baba"`, `nextCost = [100, 0, ..., 0]`, `previousCost = [1, 100, 0, ..., 0]`
+- **Output:** `2`
+- **Explanation:** Each `a` moves backward around the alphabet for cost 1, while each `b` moves forward around the alphabet at zero cost.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "leet"`, `t = "code"`, with every entry of both cost arrays equal to 1
-- Output: `31`
-- Explanation: The cheapest per-position shift counts are $9$, $10$, $1$, and $11$.
+- **Input:** `s = "leet"`, `t = "code"`, with every entry of both cost arrays equal to 1
+- **Output:** `31`
+- **Explanation:** The cheapest per-position shift counts are $9$, $10$, $1$, and $11$.

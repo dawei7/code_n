@@ -9,12 +9,15 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/throne-inheritance/) |
 
 ## Problem Description
+
 ### Goal
+
 A royal family begins with one king and grows through births. The inheritance order starts with the king, then recursively visits each person's children from oldest to youngest before moving to the next younger sibling's branch. Thus each person precedes all of their descendants, and siblings retain their birth order.
 
 Implement a stateful inheritance system. A birth appends a new child to the named living parent's children. A death only marks a known person as dead: it does not remove that person's position, descendants, or family relationships. An order query returns the current recursive succession order with dead people omitted while their living descendants remain in their normal positions.
 
 ### Function Contract
+
 **Platform interface**
 
 - `ThroneInheritance(kingName)` creates the family with the named king.
@@ -33,17 +36,18 @@ Implement a stateful inheritance system. A birth appends a new child to the name
 Return one output per operation: `null` for births and deaths, and the returned name list for an order query.
 
 ### Examples
-**Example 1**
 
-- Input: king `"king"`; births create children `andy`, `bob`, and `catherine`, then grandchildren `matthew`, `alex`, and `asha`.
+#### Example 1
+
+- **Input:** king `"king"`; births create children `andy`, `bob`, and `catherine`, then grandchildren `matthew`, `alex`, and `asha`.
 - Output before any death: `["king", "andy", "matthew", "bob", "alex", "asha", "catherine"]`.
 
-**Example 2**
+#### Example 2
 
-- Input: the same family after `death("bob")`.
-- Output: `["king", "andy", "matthew", "alex", "asha", "catherine"]`; Bob is omitted but his children remain.
+- **Input:** the same family after `death("bob")`.
+- **Output:** `["king", "andy", "matthew", "alex", "asha", "catherine"]`; Bob is omitted but his children remain.
 
-**Example 3**
+#### Example 3
 
-- Input: a king with no births followed by `getInheritanceOrder()`.
-- Output: `["king"]`.
+- **Input:** a king with no births followed by `getInheritanceOrder()`.
+- **Output:** `["king"]`.

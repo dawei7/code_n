@@ -30,14 +30,14 @@ Return the minimum possible size of such a containing set. The same selected int
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `intervals = [[1,3],[1,4],[2,5],[3,5]]`
-- Output: `3`
-- Explanation: Three carefully shared points can give every interval two members.
+- **Input:** `intervals = [[1,3],[1,4],[2,5],[3,5]]`
+- **Output:** `3`
+- **Explanation:** Three carefully shared points can give every interval two members.
 
-**Example 2**
+#### Example 2
 
-- Input: `intervals = [[1,2],[2,3],[2,4],[4,5]]`
-- Output: `5`
-- Explanation: The two short boundary intervals force two points at each end, with one additional shared middle point.
+- **Input:** `intervals = [[1,2],[2,3],[2,4],[4,5]]`
+- **Output:** `5`
+- **Explanation:** The two short boundary intervals force two points at each end, with one additional shared middle point.

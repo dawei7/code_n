@@ -26,12 +26,11 @@ Return the maximum sum of capacities among all valid choices. Return `0` if no i
 
 #### Example 1
 
-<div class="example-block">
-**Input:** costs = [4,8,5,3], capacity = [1,5,2,7], budget = 8
+- **Input:** costs = [4,8,5,3], capacity = [1,5,2,7], budget = 8
 
-**Output:** 8
+- **Output:** 8
 
-**Explanation:**
+- **Explanation:** 
 
 - Choose two machines with $\text{costs}[0] = 4$ and $\text{costs}[3] = 3$.
 
@@ -39,15 +38,13 @@ Return the maximum sum of capacities among all valid choices. Return `0` if no i
 
 - The maximum total capacity is $\text{capacity}[0] + \text{capacity}[3] = 1 + 7 = 8$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** costs = [3,5,7,4], capacity = [2,4,3,6], budget = 7
+- **Input:** costs = [3,5,7,4], capacity = [2,4,3,6], budget = 7
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
+- **Explanation:** 
 
 - Choose one machine with $\text{costs}[3] = 4$.
 
@@ -55,23 +52,19 @@ Return the maximum sum of capacities among all valid choices. Return `0` if no i
 
 - The maximum total capacity is $\text{capacity}[3] = 6$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** costs = [2,2,2], capacity = [3,5,4], budget = 5
+- **Input:** costs = [2,2,2], capacity = [3,5,4], budget = 5
 
-**Output:** 9
+- **Output:** 9
 
-**Explanation:**
+- **Explanation:** 
 
 - Choose two machines with $\text{costs}[1] = 2$ and $\text{costs}[2] = 2$.
 
 - The total cost is $2 + 2 = 4$, which is strictly less than $budget = 5$.
 
 - The maximum total capacity is $\text{capacity}[1] + \text{capacity}[2] = 5 + 4 = 9$.
-
-</div>
 
 ### 4. Constraints
 

@@ -14,8 +14,15 @@ Given the two integers `r` and `k`, return *the **maximum possible minimum power
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `stations`: Input parameter (`List[int]`).
+- `r`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -27,8 +34,7 @@ that you can build the `k` power stations in multiple cities.
 
 - **Input:** $stations = [1,2,4,5,0], r = 1, k = 2$
 - **Output:** `5`
-- **Explanation:**
-One of the optimal ways is to install both the power stations at city 1.
+- **Explanation:** One of the optimal ways is to install both the power stations at city 1.
 So stations will become [1,4,4,5,0].
 - City 0 is provided by 1 + 4 = 5 power stations.
 - City 1 is provided by 1 + 4 + 4 = 9 power stations.
@@ -37,12 +43,12 @@ So stations will become [1,4,4,5,0].
 - City 4 is provided by 5 + 0 = 5 power stations.
 So the minimum power of a city is 5.
 Since it is not possible to obtain a larger power, we return 5.
+
 #### Example 2
 
 - **Input:** $stations = [4,4,4,4], r = 0, k = 3$
 - **Output:** `4`
-- **Explanation:**
-It can be proved that we cannot make the minimum power of a city greater than 4.
+- **Explanation:** It can be proved that we cannot make the minimum power of a city greater than 4.
 
 ### 5. Constraints
 

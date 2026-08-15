@@ -33,12 +33,11 @@ Return the maximum number of purchased plus awarded free copies achievable with 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** items = [[1,6],[2,4],[3,5]], budget = 19
+- **Input:** items = [[1,6],[2,4],[3,5]], budget = 19
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** 
 
 - You can buy 2 copies of item 0 and 1 copy of item 1 for a total cost of $2 * 6 + 4 = 16$, which is not greater than $budget = 19$.
 
@@ -48,15 +47,13 @@ Return the maximum number of purchased plus awarded free copies achievable with 
 
 - You leave with 3 purchased copies and 2 free copies, for a total of 5 item copies.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** items = [[2,8],[1,10],[6,6],[4,12],[5,20],[5,17]], budget = 35
+- **Input:** items = [[2,8],[1,10],[6,6],[4,12],[5,20],[5,17]], budget = 35
 
-**Output:** 7
+- **Output:** 7
 
-**Explanation:**
+- **Explanation:** 
 
 - You can buy 2 copies of item 0, 1 copy of item 1, and 1 copy of item 2 for a total cost of $2 * 8 + 10 + 6 = 32$, which is not greater than $budget = 35$.
 
@@ -69,8 +66,6 @@ Return the maximum number of purchased plus awarded free copies achievable with 
 - Buying item 2 gives no free copy, because $\text{factor}_{2} = 6$ does not divide the factor of any other item.
 
 - You leave with 4 purchased copies and 3 free copies, for a total of 7 item copies.
-
-</div>
 
 ### 4. Constraints
 

@@ -31,17 +31,17 @@ Return the minimum number of indices to unlock, or `-1` if the array cannot be s
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,2,1,2,3,2], locked = [1,0,1,1,0,1]`
-- Output: `0`
+- **Input:** `nums = [1,2,1,2,3,2], locked = [1,0,1,1,0,1]`
+- **Output:** `0`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,2,1,1,3,2,2], locked = [1,0,1,1,0,1,0]`
-- Output: `2`
+- **Input:** `nums = [1,2,1,1,3,2,2], locked = [1,0,1,1,0,1,0]`
+- **Output:** `2`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,2,1,2,3,2,1], locked = [0,0,0,0,0,0,0]`
-- Output: `-1`
+- **Input:** `nums = [1,2,1,2,3,2,1], locked = [0,0,0,0,0,0,0]`
+- **Output:** `-1`

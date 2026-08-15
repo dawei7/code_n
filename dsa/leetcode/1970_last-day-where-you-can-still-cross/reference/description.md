@@ -10,8 +10,15 @@ Return *the **last** day where it is possible to walk from the **top** to the **
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `row`: Input parameter (`int`).
+- `col`: Input parameter (`int`).
+- `cells`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,6 +30,7 @@ Return *the **last** day where it is possible to walk from the **top** to the **
 - **Output:** `2`
 - **Explanation:** The above image depicts how the matrix changes each day starting from day 0.
 The last day where it is possible to cross from top to bottom is on day 2.
+
 #### Example 2
 
 ![](images/2.png)
@@ -31,6 +39,7 @@ The last day where it is possible to cross from top to bottom is on day 2.
 - **Output:** `1`
 - **Explanation:** The above image depicts how the matrix changes each day starting from day 0.
 The last day where it is possible to cross from top to bottom is on day 1.
+
 #### Example 3
 
 ![](images/3.png)

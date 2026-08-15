@@ -32,14 +32,14 @@ Let $n=\lvert\texttt{nums}\rvert$. The source guarantees $1 \le n \le 100$, $0 \
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 0, 2, 0, 3]`
-- Output: `2`
-- Explanation: Starting at index $3$ succeeds in either initial direction; every other selection leaves a positive value behind.
+- **Input:** `nums = [1, 0, 2, 0, 3]`
+- **Output:** `2`
+- **Explanation:** Starting at index $3$ succeeds in either initial direction; every other selection leaves a positive value behind.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, 3, 4, 0, 4, 1, 0]`
-- Output: `0`
-- Explanation: No starting zero and direction can decrement every value before the pointer exits.
+- **Input:** `nums = [2, 3, 4, 0, 4, 1, 0]`
+- **Output:** `0`
+- **Explanation:** No starting zero and direction can decrement every value before the pointer exits.

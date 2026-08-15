@@ -31,20 +31,20 @@ A point on a rectangle's interior or boundary is covered, and rectangles may ove
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `points = [[2,1],[1,0],[1,4],[1,8],[3,5],[4,6]], w = 1`
-- Output: `2`
-- Explanation: Horizontal spans $[1,2]$ and $[3,4]$ cover every point.
+- **Input:** `points = [[2,1],[1,0],[1,4],[1,8],[3,5],[4,6]], w = 1`
+- **Output:** `2`
+- **Explanation:** Horizontal spans $[1,2]$ and $[3,4]$ cover every point.
 
-**Example 2**
+#### Example 2
 
-- Input: `points = [[0,0],[1,1],[2,2],[3,3],[4,4],[5,5],[6,6]], w = 2`
-- Output: `3`
-- Explanation: Spans $[0,2]$, $[3,5]$, and $[6,6]$ are sufficient.
+- **Input:** `points = [[0,0],[1,1],[2,2],[3,3],[4,4],[5,5],[6,6]], w = 2`
+- **Output:** `3`
+- **Explanation:** Spans $[0,2]$, $[3,5]$, and $[6,6]$ are sufficient.
 
-**Example 3**
+#### Example 3
 
-- Input: `points = [[2,3],[1,2]], w = 0`
-- Output: `2`
-- Explanation: A zero-width rectangle covers only one distinct $x$-coordinate.
+- **Input:** `points = [[2,3],[1,2]], w = 0`
+- **Output:** `2`
+- **Explanation:** A zero-width rectangle covers only one distinct $x$-coordinate.

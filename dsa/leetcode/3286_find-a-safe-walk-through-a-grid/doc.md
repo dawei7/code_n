@@ -33,23 +33,23 @@ Return `true` if a walk from `(0, 0)` to `(m - 1, n - 1)` visits fewer than `hea
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[0,1,0,0,0],[0,1,0,1,0],[0,0,0,1,0]], health = 1`
-- Output: `true`
+- **Input:** `grid = [[0,1,0,0,0],[0,1,0,1,0],[0,0,0,1,0]], health = 1`
+- **Output:** `true`
 
 A route of only zero-valued cells reaches the destination without reducing health.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[0,1,1,0,0,0],[1,0,1,0,0,0],[0,1,1,1,0,1],[0,0,1,0,1,0]], health = 3`
-- Output: `false`
+- **Input:** `grid = [[0,1,1,0,0,0],[1,0,1,0,0,0],[0,1,1,1,0,1],[0,0,1,0,1,0]], health = 3`
+- **Output:** `false`
 
 Every route requires at least four initial health points to remain positive at the destination.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[1,1,1],[1,0,1],[1,1,1]], health = 5`
-- Output: `true`
+- **Input:** `grid = [[1,1,1],[1,0,1],[1,1,1]], health = 5`
+- **Output:** `true`
 
 The starting cell also costs health. Passing through the safe center permits arrival with positive health.

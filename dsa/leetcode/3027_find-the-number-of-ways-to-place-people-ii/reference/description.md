@@ -10,8 +10,13 @@ Return *the number of **pairs of points** where you can place Alice and Bob, suc
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `points`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -32,6 +37,7 @@ that Alice can only build a fence with Alice's position as the upper left corner
 - **Input:** $points = [[1,1],[2,2],[3,3]]$
 - **Output:** `0`
 - **Explanation:** There is no way to place Alice and Bob such that Alice can build a fence with Alice's position as the upper left corner and Bob's position as the lower right corner. Hence we return 0.
+
 #### Example 2
 
 ![](images/example2alicebob.png)
@@ -42,6 +48,7 @@ that Alice can only build a fence with Alice's position as the upper left corner
 - Place Alice at (4, 4) and Bob at (6, 2).
 - Place Alice at (2, 6) and Bob at (4, 4).
 You cannot place Alice at (2, 6) and Bob at (6, 2) because the person at (4, 4) will be inside the fence.
+
 #### Example 3
 
 ![](images/example4alicebob.png)

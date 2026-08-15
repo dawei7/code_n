@@ -40,17 +40,17 @@ weight equal to the sum of all input weights for that value.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `items1 = [[1,1],[4,5],[3,8]], items2 = [[3,1],[1,5]]`
-- Output: `[[1,6],[3,9],[4,5]]`
+- **Input:** `items1 = [[1,1],[4,5],[3,8]], items2 = [[3,1],[1,5]]`
+- **Output:** `[[1,6],[3,9],[4,5]]`
 
-**Example 2**
+#### Example 2
 
-- Input: `items1 = [[1,1],[3,2],[2,3]], items2 = [[2,1],[3,2],[1,3]]`
-- Output: `[[1,4],[2,4],[3,4]]`
+- **Input:** `items1 = [[1,1],[3,2],[2,3]], items2 = [[2,1],[3,2],[1,3]]`
+- **Output:** `[[1,4],[2,4],[3,4]]`
 
-**Example 3**
+#### Example 3
 
-- Input: `items1 = [[1,3],[2,2]], items2 = [[7,1],[2,2],[1,4]]`
-- Output: `[[1,7],[2,4],[7,1]]`
+- **Input:** `items1 = [[1,3],[2,2]], items2 = [[7,1],[2,2],[1,4]]`
+- **Output:** `[[1,7],[2,4],[7,1]]`

@@ -38,20 +38,20 @@ Return the total number of such fair pairs. The array may contain negative value
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [0, 1, 7, 4, 4, 5], lower = 3, upper = 6`
-- Output: `6`
-- Explanation: The six fair index pairs have sums in the inclusive range from $3$ through $6$.
+- **Input:** `nums = [0, 1, 7, 4, 4, 5], lower = 3, upper = 6`
+- **Output:** `6`
+- **Explanation:** The six fair index pairs have sums in the inclusive range from $3$ through $6$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 7, 9, 2, 5], lower = 11, upper = 11`
-- Output: `1`
-- Explanation: Only the values `9` and `2` form a pair whose sum is exactly $11$.
+- **Input:** `nums = [1, 7, 9, 2, 5], lower = 11, upper = 11`
+- **Output:** `1`
+- **Explanation:** Only the values `9` and `2` form a pair whose sum is exactly $11$.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [-2, 0, 2], lower = 0, upper = 0`
-- Output: `1`
-- Explanation: Only the pair containing `-2` and `2` has a sum of zero.
+- **Input:** `nums = [-2, 0, 2], lower = 0, upper = 0`
+- **Output:** `1`
+- **Explanation:** Only the pair containing `-2` and `2` has a sum of zero.

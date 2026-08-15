@@ -6,8 +6,14 @@ Given the string `s` and the integer `k`, return *the number of the possible arr
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,11 +22,13 @@ Given the string `s` and the integer `k`, return *the number of the possible arr
 - **Input:** `s = "1000", k = 10000`
 - **Output:** `1`
 - **Explanation:** The only possible array is [1000]
+
 #### Example 2
 
 - **Input:** `s = "1000", k = 10`
 - **Output:** `0`
 - **Explanation:** There cannot be an array that was printed this way and has all integer >= 1 and <= 10.
+
 #### Example 3
 
 - **Input:** `s = "1317", k = 2000`

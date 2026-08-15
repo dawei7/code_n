@@ -73,11 +73,13 @@ buf[] is a destination, not a source. You will need to write the results to buf[
 - **Output:** `3`
 - **Explanation:** After calling your read method, buf should contain "abc". We read a total of 3 characters from the file, so return 3.
 Note that "abc" is the file's content, not buf. buf is the destination buffer that you will have to write the results to.
+
 #### Example 2
 
 - **Input:** $file = "abcde", n = 5$
 - **Output:** `5`
 - **Explanation:** After calling your read method, buf should contain "abcde". We read a total of 5 characters from the file, so return 5.
+
 #### Example 3
 
 - **Input:** $file = "abcdABCD1234", n = 12$

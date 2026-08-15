@@ -8,8 +8,17 @@ Return *the **minimum** cost to convert the string *`source`* to the string *`ta
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `source`: Input parameter (`str`).
+- `target`: Input parameter (`str`).
+- `original`: Input parameter (`List[str]`).
+- `changed`: Input parameter (`List[str]`).
+- `cost`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -28,11 +37,13 @@ that there may exist indices `i`, `j` such that $\text{original}[j] = \text{orig
 - Change value at index 3 from 'd' to 'e' at a cost of 20.
 The total cost incurred is 5 + 1 + 2 + 20 = 28.
 It can be shown that this is the minimum possible cost.
+
 #### Example 2
 
 - **Input:** $source = "aaaa", target = "bbbb", original = ["a","c"], changed = ["c","b"], cost = [1,2]$
 - **Output:** `12`
 - **Explanation:** To change the character 'a' to 'b' change the character 'a' to 'c' at a cost of 1, followed by changing the character 'c' to 'b' at a cost of 2, for a total cost of 1 + 2 = 3. To change all occurrences of 'a' to 'b', a total cost of 3 * 4 = 12 is incurred.
+
 #### Example 3
 
 - **Input:** $source = "abcd", target = "abce", original = ["a"], changed = ["e"], cost = [10000]$

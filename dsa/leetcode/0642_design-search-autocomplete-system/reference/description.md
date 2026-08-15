@@ -20,11 +20,9 @@ Implement the `AutocompleteSystem` class:
 
 - `List<String> input(char c)` This indicates that the user typed the character `c`.
 
-		<li>Returns an empty array `[]` if $c = '#'$ and stores the inputted sentence in the system.
+		- Returns an empty array `[]` if $c = '#'$ and stores the inputted sentence in the system.
 
 - Returns the top `3` historical hot sentences that have the same prefix as the part of the sentence already typed. If there are fewer than `3` matches, return them all.
-
-	</li>
 
 ### 2. Function Contract
 

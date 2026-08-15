@@ -16,8 +16,13 @@ A subarray is a contiguous **non-empty** sequence of elements within an array.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -37,6 +42,7 @@ A subarray is a contiguous **non-empty** sequence of elements within an array.
 - Choose [<u>4</u>, 3, 1, 2, <u>4</u>] and k = 2. Subtract $2^{2}$ from both numbers. The subarray becomes [0, 3, 1, 2, 0].
 - Choose [0, <u>3</u>, <u>1</u>, 2, 0] and k = 0. Subtract $2^{0}$ from both numbers. The subarray becomes [0, 2, 0, 2, 0].
 - Choose [0, <u>2</u>, 0, <u>2</u>, 0] and k = 1. Subtract $2^{1}$ from both numbers. The subarray becomes [0, 0, 0, 0, 0].
+
 #### Example 2
 
 - **Input:** `nums = [1,10,4]`

@@ -30,14 +30,14 @@ Return `true` if the array can be the preorder traversal of that tree; otherwise
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nodes = [[0,-1],[1,0],[2,0],[3,2],[4,2]]`
-- Output: `true`
-- Explanation: After visiting node `0`, the traversal may finish the singleton subtree rooted at `1`, then traverse the subtree rooted at `2` as `[2,3,4]`.
+- **Input:** `nodes = [[0,-1],[1,0],[2,0],[3,2],[4,2]]`
+- **Output:** `true`
+- **Explanation:** After visiting node `0`, the traversal may finish the singleton subtree rooted at `1`, then traverse the subtree rooted at `2` as `[2,3,4]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nodes = [[0,-1],[1,0],[2,0],[3,1],[4,1]]`
-- Output: `false`
-- Explanation: Visiting node `2` closes the unfinished subtree rooted at `1`; nodes `3` and `4` cannot later return to `1` in a preorder traversal.
+- **Input:** `nodes = [[0,-1],[1,0],[2,0],[3,1],[4,1]]`
+- **Output:** `false`
+- **Explanation:** Visiting node `2` closes the unfinished subtree rooted at `1`; nodes `3` and `4` cannot later return to `1` in a preorder traversal.

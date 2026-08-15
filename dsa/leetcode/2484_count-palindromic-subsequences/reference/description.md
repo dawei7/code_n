@@ -4,8 +4,13 @@ Given a string of digits `s`, return *the number of **palindromic subsequences**
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -19,14 +24,15 @@ Given a string of digits `s`, return *the number of **palindromic subsequences**
 
 - **Input:** `s = "103301"`
 - **Output:** `2`
-- **Explanation:**
-There are 6 possible subsequences of length 5: "10330","10331","10301","10301","13301","03301".
+- **Explanation:** There are 6 possible subsequences of length 5: "10330","10331","10301","10301","13301","03301".
 Two of them (both equal to "10301") are palindromic.
+
 #### Example 2
 
 - **Input:** `s = "0000000"`
 - **Output:** `21`
 - **Explanation:** All 21 subsequences are "00000", which is palindromic.
+
 #### Example 3
 
 - **Input:** `s = "9999900000"`

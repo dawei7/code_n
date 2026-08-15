@@ -43,7 +43,7 @@ The query result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Subscriptions table:
 +------------+------------+------------+
 | account_id | start_date | end_date   |
@@ -66,12 +66,12 @@ Streams table:
 | 19         | 4          | 2020-12-31  |
 | 13         | 5          | 2021-01-05  |
 +------------+------------+-------------+
-**Output:**
+- **Output:** 
 +----------------+
 | accounts_count |
 +----------------+
 | 2              |
 +----------------+
-**Explanation:** Users 4 and 9 did not stream in 2021.
+- **Explanation:** Users 4 and 9 did not stream in 2021.
 User 11 did not subscribe in 2021.
 ```

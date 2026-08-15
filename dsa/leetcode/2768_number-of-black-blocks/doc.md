@@ -34,14 +34,14 @@ Return an integer list `answer` of length $5$, where `answer[i]` is the number o
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `m = 3, n = 3, coordinates = [[0, 0]]`
-- Output: `[3, 1, 0, 0, 0]`
-- Explanation: The black corner belongs only to the block whose top-left cell is `[0, 0]`; the other three blocks contain no black cells.
+- **Input:** `m = 3, n = 3, coordinates = [[0, 0]]`
+- **Output:** `[3, 1, 0, 0, 0]`
+- **Explanation:** The black corner belongs only to the block whose top-left cell is `[0, 0]`; the other three blocks contain no black cells.
 
-**Example 2**
+#### Example 2
 
-- Input: `m = 3, n = 3, coordinates = [[0, 0], [1, 1], [0, 2]]`
-- Output: `[0, 2, 2, 0, 0]`
-- Explanation: Two blocks contain one black cell and the other two contain two black cells.
+- **Input:** `m = 3, n = 3, coordinates = [[0, 0], [1, 1], [0, 2]]`
+- **Output:** `[0, 2, 2, 0, 0]`
+- **Explanation:** Two blocks contain one black cell and the other two contain two black cells.

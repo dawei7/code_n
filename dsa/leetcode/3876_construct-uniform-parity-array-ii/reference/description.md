@@ -30,12 +30,11 @@ Return `true` if one legal choice per index can make every constructed value odd
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums1 = [1,4,7]
+- **Input:** nums1 = [1,4,7]
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**​​​​​​​​​​​​​​
+- **Explanation:** ​​​​​​​​​​​​​​
 
 - Set $\text{nums2}[0] = \text{nums1}[0] = 1$.
 
@@ -45,35 +44,27 @@ Return `true` if one legal choice per index can make every constructed value odd
 
 - $nums2 = [1, 3, 7]$, and all elements are odd. Thus, the answer is `true`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums1 = [2,3]
+- **Input:** nums1 = [2,3]
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
+- **Explanation:** It is not possible to construct `nums2` such that all elements have the same parity. Thus, the answer is `false`.
 
-It is not possible to construct `nums2` such that all elements have the same parity. Thus, the answer is `false`.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums1 = [4,6]
+- **Input:** nums1 = [4,6]
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
+- **Explanation:** 
 
 - Set $\text{nums2}[0] = \text{nums1}[0] = 4$.
 
 - Set $\text{nums2}[1] = \text{nums1}[1] = 6$.
 
 - $nums2 = [4, 6]$, and all elements are even. Thus, the answer is `true`.
-
-</div>
 
 ### 4. Constraints
 

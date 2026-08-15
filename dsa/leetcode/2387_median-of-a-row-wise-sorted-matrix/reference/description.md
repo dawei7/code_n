@@ -15,6 +15,7 @@ You must solve the problem in less than $O(m * n)$ time complexity.
 - **Input:** `grid = [[1,1,2],[2,3,3],[1,3,4]]`
 - **Output:** `2`
 - **Explanation:** The elements of the matrix in sorted order are 1,1,1,2,<u>2</u>,3,3,3,4. The median is 2.
+
 #### Example 2
 
 - **Input:** `grid = [[1,1,3,3,4]]`

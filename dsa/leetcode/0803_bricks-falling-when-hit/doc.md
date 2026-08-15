@@ -31,20 +31,20 @@ Apply each hit in order by erasing the brick at its coordinate if one exists. An
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[1,0,0,0],[1,1,1,0]], hits = [[1,0]]`
-- Output: `[2]`
-- Explanation: Removing the lower-left support disconnects the other two bricks in its row from the top.
+- **Input:** `grid = [[1,0,0,0],[1,1,1,0]], hits = [[1,0]]`
+- **Output:** `[2]`
+- **Explanation:** Removing the lower-left support disconnects the other two bricks in its row from the top.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[1,0,0,0],[1,1,0,0]], hits = [[1,1],[1,0]]`
-- Output: `[0,0]`
-- Explanation: The first removed brick supports nothing, and the second hit does not count the brick it directly removes.
+- **Input:** `grid = [[1,0,0,0],[1,1,0,0]], hits = [[1,1],[1,0]]`
+- **Output:** `[0,0]`
+- **Explanation:** The first removed brick supports nothing, and the second hit does not count the brick it directly removes.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[1],[1],[1]], hits = [[1,0],[2,0],[0,0]]`
-- Output: `[1,0,0]`
-- Explanation: The first hit makes the bottom brick fall; later hits strike an empty cell and then the remaining top brick.
+- **Input:** `grid = [[1],[1],[1]], hits = [[1,0],[2,0],[0,0]]`
+- **Output:** `[1,0,0]`
+- **Explanation:** The first hit makes the bottom brick fall; later hits strike an empty cell and then the remaining top brick.

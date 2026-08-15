@@ -8,8 +8,13 @@ Return *the final string after all the conversions (possibly zero) have been mad
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -18,6 +23,7 @@ Return *the final string after all the conversions (possibly zero) have been mad
 - **Input:** `s = "?zs"`
 - **Output:** `"azs"`
 - **Explanation:** There are 25 solutions for this problem. From "azs" to "yzs", all are valid. Only "z" is an invalid modification as the string will consist of consecutive repeating characters in "zzs".
+
 #### Example 2
 
 - **Input:** `s = "ubv?w"`

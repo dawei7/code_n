@@ -31,17 +31,17 @@ Given a positive integer array `target`, determine whether some finite sequence 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `target = [9, 3, 5]`
-- Output: `true`
+- **Input:** `target = [9, 3, 5]`
+- **Output:** `true`
 
-**Example 2**
+#### Example 2
 
-- Input: `target = [1, 1, 1, 2]`
-- Output: `false`
+- **Input:** `target = [1, 1, 1, 2]`
+- **Output:** `false`
 
-**Example 3**
+#### Example 3
 
-- Input: `target = [8, 5]`
-- Output: `true`
+- **Input:** `target = [8, 5]`
+- **Output:** `true`

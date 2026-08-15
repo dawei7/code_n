@@ -29,6 +29,7 @@ A **permutation** of an array is a rearrangement of the elements of that array, 
 - **Input:** $n = 1$
 - **Output:** `1`
 - **Explanation:** The array [1] has only 1 permutation which is self-divisible.
+
 #### Example 2
 
 - **Input:** $n = 2$
@@ -36,6 +37,7 @@ A **permutation** of an array is a rearrangement of the elements of that array, 
 - **Explanation:** The array [1,2] has 2 permutations and only one of them is self-divisible:
 nums = [1,2]: This is not self-divisible since gcd(nums[2], 2) != 1.
 nums = [2,1]: This is self-divisible since gcd(nums[1], 1) == 1 and gcd(nums[2], 2) == 1.
+
 #### Example 3
 
 - **Input:** $n = 3$

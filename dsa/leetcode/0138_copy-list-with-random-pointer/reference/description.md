@@ -34,12 +34,14 @@ Return an independently allocated copy with the same values and pointer relation
 
 - **Input:** $head = [[7,null],[13,0],[11,4],[10,2],[1,0]]$
 - **Output:** `[[7,null],[13,0],[11,4],[10,2],[1,0]]`
+
 #### Example 2
 
 ![](images/e2.png)
 
 - **Input:** $head = [[1,1],[2,1]]$
 - **Output:** `[[1,1],[2,1]]`
+
 #### Example 3
 
 **

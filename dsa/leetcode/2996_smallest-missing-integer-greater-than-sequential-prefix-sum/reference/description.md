@@ -8,8 +8,13 @@ Return *the **smallest** integer* `x` *missing from* `nums` *such that* `x` *is 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +23,7 @@ Return *the **smallest** integer* `x` *missing from* `nums` *such that* `x` *is 
 - **Input:** `nums = [1,2,3,2,5]`
 - **Output:** `6`
 - **Explanation:** The longest sequential prefix of nums is [1,2,3] with a sum of 6. 6 is not in the array, therefore 6 is the smallest missing integer greater than or equal to the sum of the longest sequential prefix.
+
 #### Example 2
 
 - **Input:** `nums = [3,4,5,1,12,14,13]`

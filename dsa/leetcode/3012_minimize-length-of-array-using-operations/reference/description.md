@@ -14,8 +14,13 @@ Return *an integer denoting the **minimum** **length** of *`nums`* after perform
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -32,6 +37,7 @@ Operation 3: Select indices 1 and 0, insert nums[1] % nums[0] at the end and it 
 nums becomes [0].
 The length of nums cannot be reduced further. Hence, the answer is 1.
 It can be shown that 1 is the minimum achievable length.
+
 #### Example 2
 
 - **Input:** `nums = [5,5,5,10,5]`
@@ -45,6 +51,7 @@ Operation 3: Select indices 0 and 1, insert nums[0] % nums[1] at the end and it 
 nums becomes [0,0].
 The length of nums cannot be reduced further. Hence, the answer is 2.
 It can be shown that 2 is the minimum achievable length.
+
 #### Example 3
 
 - **Input:** `nums = [2,3,4]`

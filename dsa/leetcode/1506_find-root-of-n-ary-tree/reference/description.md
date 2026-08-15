@@ -47,6 +47,7 @@ The driver code creates the tree and gives findRoot the Node objects in an arbit
 For example, the passed array could be [Node(5),Node(4),Node(3),Node(6),Node(2),Node(1)] or [Node(2),Node(6),Node(1),Node(3),Node(5),Node(4)].
 The findRoot function should return the root Node(1), and the driver code will serialize it and compare with the input data.
 The input data and serialized Node(1) are the same, so the test passes.
+
 #### Example 2
 
 ![](images/sample_4_964.png)

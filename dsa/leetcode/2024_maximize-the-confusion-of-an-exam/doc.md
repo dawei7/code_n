@@ -38,19 +38,19 @@ Let $N$ be the length of `answerKey`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `answerKey = "TTFF", k = 2`
-- Output: `4`
-- Explanation: Changing both `F` answers produces four consecutive `T`
+- **Input:** `answerKey = "TTFF", k = 2`
+- **Output:** `4`
+- **Explanation:** Changing both `F` answers produces four consecutive `T`
   answers.
 
-**Example 2**
+#### Example 2
 
-- Input: `answerKey = "TFFT", k = 1`
-- Output: `3`
+- **Input:** `answerKey = "TFFT", k = 1`
+- **Output:** `3`
 
-**Example 3**
+#### Example 3
 
-- Input: `answerKey = "TTFTTFTT", k = 1`
-- Output: `5`
+- **Input:** `answerKey = "TTFTTFTT", k = 1`
+- **Output:** `5`

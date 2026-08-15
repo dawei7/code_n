@@ -6,8 +6,14 @@ For each subarray of `nums`, you can apply **up to** `k` operations on it. In ea
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -21,28 +27,19 @@ An array is said to be **non-decreasing** if each element is greater than or equ
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [6,3,1,2,4,4], k = 7
+- **Input:** nums = [6,3,1,2,4,4], k = 7
 
-**Output:** 17
+- **Output:** 17
 
-**Explanation:**
+- **Explanation:** Out of all 21 possible subarrays of `nums`, only the subarrays `[6, 3, 1]`, `[6, 3, 1, 2]`, `[6, 3, 1, 2, 4]` and `[6, 3, 1, 2, 4, 4]` cannot be made non-decreasing after applying up to k = 7 operations. Thus, the number of non-decreasing subarrays is $21 - 4 = 17$.
 
-Out of all 21 possible subarrays of `nums`, only the subarrays `[6, 3, 1]`, `[6, 3, 1, 2]`, `[6, 3, 1, 2, 4]` and `[6, 3, 1, 2, 4, 4]` cannot be made non-decreasing after applying up to k = 7 operations. Thus, the number of non-decreasing subarrays is $21 - 4 = 17$.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [6,3,1,3,6], k = 4
+- **Input:** nums = [6,3,1,3,6], k = 4
 
-**Output:** 12
+- **Output:** 12
 
-**Explanation:**
-
-The subarray `[3, 1, 3, 6]` along with all subarrays of `nums` with three or fewer elements, except `[6, 3, 1]`, can be made non-decreasing after `k` operations. There are 5 subarrays of a single element, 4 subarrays of two elements, and 2 subarrays of three elements except `[6, 3, 1]`, so there are $1 + 5 + 4 + 2 = 12$ subarrays that can be made non-decreasing.
-
-</div>
+- **Explanation:** The subarray `[3, 1, 3, 6]` along with all subarrays of `nums` with three or fewer elements, except `[6, 3, 1]`, can be made non-decreasing after `k` operations. There are 5 subarrays of a single element, 4 subarrays of two elements, and 2 subarrays of three elements except `[6, 3, 1]`, so there are $1 + 5 + 4 + 2 = 12$ subarrays that can be made non-decreasing.
 
 ### 5. Constraints
 

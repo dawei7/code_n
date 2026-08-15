@@ -4,8 +4,14 @@ Given an array `nums` and an integer `target`, return *the maximum number of **n
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `target`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -14,6 +20,7 @@ Given an array `nums` and an integer `target`, return *the maximum number of **n
 - **Input:** `nums = [1,1,1,1,1], target = 2`
 - **Output:** `2`
 - **Explanation:** There are 2 non-overlapping subarrays [**1,1**,1,**1,1**] with sum equals to target(2).
+
 #### Example 2
 
 - **Input:** `nums = [-1,3,5,1,4,2,-9], target = 6`

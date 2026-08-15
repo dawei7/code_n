@@ -30,20 +30,20 @@ One move walks from a land cell to another 4-directionally adjacent land cell, o
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[0,0,0,0],[1,0,1,0],[0,1,1,0],[0,0,0,0]]`
-- Output: `3`
-- Explanation: Three connected interior land cells are enclosed; the boundary land cell is not.
+- **Input:** `grid = [[0,0,0,0],[1,0,1,0],[0,1,1,0],[0,0,0,0]]`
+- **Output:** `3`
+- **Explanation:** Three connected interior land cells are enclosed; the boundary land cell is not.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[0,1,1,0],[0,0,1,0],[0,0,1,0],[0,0,0,0]]`
-- Output: `0`
-- Explanation: Every land cell is on the boundary or connected to boundary land.
+- **Input:** `grid = [[0,1,1,0],[0,0,1,0],[0,0,1,0],[0,0,0,0]]`
+- **Output:** `0`
+- **Explanation:** Every land cell is on the boundary or connected to boundary land.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[1,1,1],[1,1,1],[1,1,1]]`
-- Output: `0`
-- Explanation: All land belongs to a component touching the boundary.
+- **Input:** `grid = [[1,1,1],[1,1,1],[1,1,1]]`
+- **Output:** `0`
+- **Explanation:** All land belongs to a component touching the boundary.

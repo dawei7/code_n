@@ -30,23 +30,23 @@ Every starting position defines a separate occurrence. Consequently, if the same
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "xyzzaz"`
-- Output: `1`
+- **Input:** `s = "xyzzaz"`
+- **Output:** `1`
 
 Among `"xyz"`, `"yzz"`, `"zza"`, and `"zaz"`, only `"xyz"` has three distinct characters.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "aababcabc"`
-- Output: `4`
+- **Input:** `s = "aababcabc"`
+- **Output:** `4`
 
 The good occurrences are `"abc"`, `"bca"`, `"cab"`, and the later `"abc"`.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "abca"`
-- Output: `2`
+- **Input:** `s = "abca"`
+- **Output:** `2`
 
 Both overlapping windows, `"abc"` and `"bca"`, are good.

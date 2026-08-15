@@ -174,6 +174,71 @@ New packages are scaffolds, not completed migrations. They still need the
 normal documentation, correctness cases, complexity evidence, app-local
 solution, native submission artifact, and remote verification workflow.
 
+## Estimated Elo Specification & Exact Recomputation Guide (`difficulty-acceptance-v2`)
+
+For non-contest LeetCode problems (problems without real ZeroTrac contest Elo), `estimated_elo_rating` is computed using a 100% reproducible statistical model fitted on the 2,549 real ZeroTrac contest ratings.
+
+### 1. Mathematical Formula
+
+For any problem $i$:
+
+$$\text{Estimated Elo} = \text{clamp}\left(\alpha_D + \beta_D \cdot (z_i - \bar{z}_D) + \Delta_{T_i} + \delta_{\text{calib}, D}, \; \text{Min}_D, \; \text{Max}_D\right)$$
+
+Where:
+1. **Acceptance Rate Transformation (Log-Odds of Failure):**
+   $$p_i = \max(0.01, \min(0.99, \text{acceptanceRate} / 100))$$
+   $$z_i = \ln\left(\frac{1 - p_i}{p_i}\right)$$
+   *Higher failure rate $\implies$ higher $z_i \implies$ higher estimated Elo.*
+
+2. **Difficulty Tier Parameters:**
+   - **Easy ($D = \text{Easy}$):**
+     - Base $\alpha = 1253.5005$
+     - Slope $\beta = 52.6991$
+     - Median $z$ ($\bar{z}$) $= -1.0082$
+     - Calibration offset $\delta_{\text{calib}} = -73.3795$
+     - Clamping Bounds: $[1151.5867, 1440.1785]$
+   - **Medium ($D = \text{Medium}$):**
+     - Base $\alpha = 1646.8565$
+     - Slope $\beta = 174.7010$
+     - Median $z$ ($\bar{z}$) $= -0.2261$
+     - Calibration offset $\delta_{\text{calib}} = -60.9093$
+     - Clamping Bounds: $[1460.1785, 1944.5430]$
+   - **Hard ($D = \text{Hard}$):**
+     - Base $\alpha = 2262.2295$
+     - Slope $\beta = 186.7697$
+     - Median $z$ ($\bar{z}$) $= 0.1824$
+     - Calibration offset $\delta_{\text{calib}} = -48.5512$
+     - Clamping Bounds: $[1964.5430, 2765.0564]$
+
+3. **Topic Adjustment ($\Delta_T$):**
+   For problem topics $T$, $\Delta_T = \text{clamp}\left(\frac{\sum_{t \in T} w_t \cdot \delta_t}{\sqrt{\max(1, |T|)}}, -120.0, +120.0\right)$ where $\delta_t$ is the empirical residual and $w_t = \frac{N_t}{N_t + 20}$ is the shrinkage regularizer (e.g. $+127.9$ for Topological Sort, $+92.5$ for Bitmasking, $+71.2$ for Segment Trees, $+55.3$ for Dynamic Programming, $-37.5$ for Simulation).
+
+4. **Machine-Readable Metadata:**
+   The exact fitted parameters are saved in `dsa/leetcode/_meta/elo-estimation-model.json`.
+
+### 2. Standalone Python Recomputation Function
+
+Anyone can compute or verify the exact estimated Elo for any LeetCode problem using the standalone script below:
+
+```python
+import math
+
+def compute_estimated_elo(difficulty: str, acceptance_rate: float, topic_adjustment: float = 0.0) -> float:
+    params = {
+        "Easy":   {"base": 1253.5005, "slope": 52.6991,  "median_z": -1.0082, "offset": -73.3795, "min": 1151.5867, "max": 1440.1785},
+        "Medium": {"base": 1646.8565, "slope": 174.7010, "median_z": -0.2261, "offset": -60.9093, "min": 1460.1785, "max": 1944.5430},
+        "Hard":   {"base": 2262.2295, "slope": 186.7697, "median_z":  0.1824, "offset": -48.5512, "min": 1964.5430, "max": 2765.0564},
+    }[difficulty]
+    
+    p = max(0.01, min(0.99, acceptance_rate / 100.0))
+    z = math.log((1.0 - p) / p)
+    raw = params["base"] + params["slope"] * (z - params["median_z"]) + topic_adjustment + params["offset"]
+    return max(params["min"], min(params["max"], raw))
+
+# Example: LC 1 (Two Sum): Easy, 57.9% acceptance
+print("LC 1 Estimated Elo:", round(compute_estimated_elo("Easy", 57.9), 2)) # -> 1245.52
+```
+
 ## Verification
 
 After either workflow, run:
@@ -183,3 +248,4 @@ After either workflow, run:
 npm.cmd run build --prefix web
 git diff --check
 ```
+

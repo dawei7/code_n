@@ -69,7 +69,7 @@ Count visits rather than distinct users: one user may have several visits on dif
 ![](images/chart.png)
 
 ```
-**Input:**
+- **Input:** 
 Visits table:
 +---------+------------+
 | user_id | visit_date |
@@ -98,7 +98,7 @@ Transactions table:
 | 8       | 2020-01-28       | 1      |
 | 9       | 2020-01-25       | 99     |
 +---------+------------------+--------+
-**Output:**
+- **Output:** 
 +--------------------+--------------+
 | transactions_count | visits_count |
 +--------------------+--------------+
@@ -107,7 +107,7 @@ Transactions table:
 | 2                  | 0            |
 | 3                  | 1            |
 +--------------------+--------------+
-**Explanation:** The chart drawn for this example is shown above.
+- **Explanation:** The chart drawn for this example is shown above.
 * For transactions_count = 0, The visits (1, "2020-01-01"), (2, "2020-01-02"), (12, "2020-01-01") and (19, "2020-01-03") did no transactions so visits_count = 4.
 * For transactions_count = 1, The visits (2, "2020-01-03"), (7, "2020-01-11"), (8, "2020-01-28"), (1, "2020-01-02") and (1, "2020-01-04") did one transaction so visits_count = 5.
 * For transactions_count = 2, No customers visited the bank and did two transactions so visits_count = 0.

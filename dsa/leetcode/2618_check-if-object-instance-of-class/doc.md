@@ -35,26 +35,26 @@ Return a boolean indicating whether `obj` has access to methods from `classFunct
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `checkIfInstanceOf(new Date(), Date)`
-- Output: `true`
-- Explanation: A value constructed by `Date` inherits from `Date.prototype`.
+- **Input:** `checkIfInstanceOf(new Date(), Date)`
+- **Output:** `true`
+- **Explanation:** A value constructed by `Date` inherits from `Date.prototype`.
 
-**Example 2**
+#### Example 2
 
-- Input: `class Animal {}; class Dog extends Animal {}; checkIfInstanceOf(new Dog(), Animal)`
-- Output: `true`
-- Explanation: A `Dog` instance's prototype chain includes `Animal.prototype`.
+- **Input:** `class Animal {}; class Dog extends Animal {}; checkIfInstanceOf(new Dog(), Animal)`
+- **Output:** `true`
+- **Explanation:** A `Dog` instance's prototype chain includes `Animal.prototype`.
 
-**Example 3**
+#### Example 3
 
-- Input: `checkIfInstanceOf(Date, Date)`
-- Output: `false`
-- Explanation: The `Date` constructor is a function object, not an object inheriting from `Date.prototype`.
+- **Input:** `checkIfInstanceOf(Date, Date)`
+- **Output:** `false`
+- **Explanation:** The `Date` constructor is a function object, not an object inheriting from `Date.prototype`.
 
-**Example 4**
+#### Example 4
 
-- Input: `checkIfInstanceOf(5, Number)`
-- Output: `true`
-- Explanation: Method access boxes the primitive number, exposing `Number.prototype`.
+- **Input:** `checkIfInstanceOf(5, Number)`
+- **Output:** `true`
+- **Explanation:** Method access boxes the primitive number, exposing `Number.prototype`.

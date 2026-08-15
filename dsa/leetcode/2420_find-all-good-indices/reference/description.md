@@ -12,8 +12,14 @@ Return *an array of all good indices sorted in **increasing** order*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -25,6 +31,7 @@ Return *an array of all good indices sorted in **increasing** order*.
 - Index 2. The subarray [2,1] is in non-increasing order, and the subarray [1,3] is in non-decreasing order.
 - Index 3. The subarray [1,1] is in non-increasing order, and the subarray [3,4] is in non-decreasing order.
 Note that the index 4 is not good because [4,1] is not non-decreasing.
+
 #### Example 2
 
 - **Input:** `nums = [2,1,1,2], k = 2`

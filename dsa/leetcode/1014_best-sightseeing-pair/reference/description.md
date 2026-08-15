@@ -8,8 +8,13 @@ Return *the maximum score of a pair of sightseeing spots*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `values`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +23,7 @@ Return *the maximum score of a pair of sightseeing spots*.
 - **Input:** $values = [8,1,5,2,6]$
 - **Output:** `11`
 - **Explanation:** i = 0, j = 2, values[i] + values[j] + i - j = 8 + 5 + 0 - 2 = 11
+
 #### Example 2
 
 - **Input:** $values = [1,2]$

@@ -12,35 +12,32 @@ Return the count of numbers in the range `[l, r]` that are **not** **special**.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `l`: Input parameter (`int`).
+- `r`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** l = 5, r = 7
+- **Input:** l = 5, r = 7
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** There are no special numbers in the range `[5, 7]`.
 
-There are no special numbers in the range `[5, 7]`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** l = 4, r = 16
+- **Input:** l = 4, r = 16
 
-**Output:** 11
+- **Output:** 11
 
-**Explanation:**
-
-The special numbers in the range `[4, 16]` are 4 and 9.
-
-</div>
+- **Explanation:** The special numbers in the range `[4, 16]` are 4 and 9.
 
 ### 4. Constraints
 

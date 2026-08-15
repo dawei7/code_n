@@ -34,14 +34,11 @@ At each step, adding the original value and adding its product with the current 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [6,1,2,9], k = 3, mul = 2
+- **Input:** nums = [6,1,2,9], k = 3, mul = 2
 
-**Output:** 26
+- **Output:** 26
 
-**Explanation:**
-
-One optimal way:
+- **Explanation:** One optimal way:
 
 - One optimal selection is $\text{nums}[3] = 9$, $\text{nums}[0] = 6$, and $\text{nums}[2] = 2$.
 
@@ -53,17 +50,13 @@ One optimal way:
 
 - The total sum is $18 + 6 + 2 = 26$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [3,7,5,2], k = 2, mul = 4
+- **Input:** nums = [3,7,5,2], k = 2, mul = 4
 
-**Output:** 43
+- **Output:** 43
 
-**Explanation:**
-
-One optimal way:
+- **Explanation:** One optimal way:
 
 - One optimal selection is $\text{nums}[1] = 7$ and $\text{nums}[2] = 5$.
 
@@ -73,25 +66,19 @@ One optimal way:
 
 - The total sum is $28 + 15 = 43$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [4,4], k = 1, mul = 1
+- **Input:** nums = [4,4], k = 1, mul = 1
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-One optimal way:
+- **Explanation:** One optimal way:
 
 - One optimal selection is $\text{nums}[0] = 4$.
 
 - Process $\text{nums}[0] = 4$: choose multiplication, so it contributes $4 * 1 = 4$.
 
 - The total sum is 4.
-
-</div>
 
 ### 4. Constraints
 

@@ -14,12 +14,11 @@ Return an integer array `result` of length $(\text{poly1.length} + \text{poly2.l
 
 #### Example 1
 
-<div class="example-block">
-**Input:** poly1 = [3,2,5], poly2 = [1,4]
+- **Input:** poly1 = [3,2,5], poly2 = [1,4]
 
-**Output:** [3,14,13,20]
+- **Output:** [3,14,13,20]
 
-**Explanation:**
+- **Explanation:** 
 
 - $A(x) = 3 + 2x + 5x^2$ and $B(x) = 1 + 4x$
 
@@ -31,15 +30,13 @@ Return an integer array `result` of length $(\text{poly1.length} + \text{poly2.l
 
 - Thus, result = `[3, 14, 13, 20]`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** poly1 = [1,0,-2], poly2 = [-1]
+- **Input:** poly1 = [1,0,-2], poly2 = [-1]
 
-**Output:** [-1,0,2]
+- **Output:** [-1,0,2]
 
-**Explanation:**
+- **Explanation:** 
 
 - $A(x) = 1 + 0x - 2x^2$ and $B(x) = -1$
 
@@ -49,15 +46,13 @@ Return an integer array `result` of length $(\text{poly1.length} + \text{poly2.l
 
 - Thus, result = `[-1, 0, 2]`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** poly1 = [1,5,-3], poly2 = [-4,2,0]
+- **Input:** poly1 = [1,5,-3], poly2 = [-4,2,0]
 
-**Output:** [-4,-18,22,-6,0]
+- **Output:** [-4,-18,22,-6,0]
 
-**Explanation:**
+- **Explanation:** 
 
 - $A(x) = 1 + 5x - 3x^2$ and $B(x) = -4 + 2x + 0x^2$
 
@@ -68,8 +63,6 @@ Return an integer array `result` of length $(\text{poly1.length} + \text{poly2.l
 - $R(x) = -4 -18x + 22x^2 -6x^3 + 0x^4$
 
 - Thus, result = `[-4, -18, 22, -6, 0]`.
-
-</div>
 
 ### 4. Constraints
 

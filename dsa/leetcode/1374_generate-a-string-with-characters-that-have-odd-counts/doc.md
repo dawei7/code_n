@@ -32,17 +32,17 @@ The same letter may be used in many positions, and letters that do not appear ha
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 4`
-- Output: `"aaab"`
+- **Input:** `n = 4`
+- **Output:** `"aaab"`
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 2`
-- Output: `"ab"`
+- **Input:** `n = 2`
+- **Output:** `"ab"`
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 7`
-- Output: `"aaaaaaa"`
+- **Input:** `n = 7`
+- **Output:** `"aaaaaaa"`

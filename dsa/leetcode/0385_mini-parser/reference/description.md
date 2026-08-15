@@ -21,6 +21,7 @@ Return one `NestedInteger` containing the parsed integer or list hierarchy. The 
 - **Input:** `s = "324"`
 - **Output:** `324`
 - **Explanation:** You should return a NestedInteger object which contains a single integer 324.
+
 #### Example 2
 
 - **Input:** `s = "[123,[456,[789]]]"`

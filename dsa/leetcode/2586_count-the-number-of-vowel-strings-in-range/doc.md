@@ -34,16 +34,16 @@ Count the vowel strings whose indices lie in the inclusive range `[left, right]`
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `words = ["are","amy","u"], left = 0, right = 2`
-- Output: `2`
+- **Input:** `words = ["are","amy","u"], left = 0, right = 2`
+- **Output:** `2`
 
 `"are"` and `"u"` start and end with vowels; `"amy"` does not.
 
-**Example 2**
+#### Example 2
 
-- Input: `words = ["hey","aeo","mu","ooo","artro"], left = 1, right = 4`
-- Output: `3`
+- **Input:** `words = ["hey","aeo","mu","ooo","artro"], left = 1, right = 4`
+- **Output:** `3`
 
 The qualifying words in that range are `"aeo"`, `"ooo"`, and `"artro"`.

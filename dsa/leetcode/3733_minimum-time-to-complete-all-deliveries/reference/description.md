@@ -27,46 +27,39 @@ Return the smallest final hour by which both delivery quotas can be assigned leg
 
 #### Example 1
 
-<div class="example-block">
-**Input:** d = [3,1], r = [2,3]
+- **Input:** d = [3,1], r = [2,3]
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** 
 
 - The first drone delivers at hours 1, 3, 5 (recharges at hours 2, 4).
 
 - The second drone delivers at hour 2 (recharges at hour 3).
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** d = [1,3], r = [2,2]
+- **Input:** d = [1,3], r = [2,2]
 
-**Output:** 7
+- **Output:** 7
 
-**Explanation:**
+- **Explanation:** 
 
 - The first drone delivers at hour 3 (recharges at hours 2, 4, 6).
 
 - The second drone delivers at hours 1, 5, 7 (recharges at hours 2, 4, 6).
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** d = [2,1], r = [3,4]
+- **Input:** d = [2,1], r = [3,4]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - The first drone delivers at hours 1, 2 (recharges at hour 3).
 
 - The second drone delivers at hour 3.
-
-</div>
 
 ### 4. Constraints
 

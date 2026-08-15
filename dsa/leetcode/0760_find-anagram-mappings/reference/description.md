@@ -26,6 +26,7 @@ When a value occurs more than once, the contract requires only value equality at
 - **Input:** $nums1 = [12,28,46,32,50], nums2 = [50,12,32,46,28]$
 - **Output:** `[1,4,3,2,0]`
 - **Explanation:** As mapping[0] = 1 because the 0^th element of nums1 appears at nums2[1], and mapping[1] = 4 because the 1^st element of nums1 appears at nums2[4], and so on.
+
 #### Example 2
 
 - **Input:** $nums1 = [84,46], nums2 = [84,46]$

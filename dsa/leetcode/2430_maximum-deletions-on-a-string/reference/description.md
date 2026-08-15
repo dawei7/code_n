@@ -12,8 +12,13 @@ Return *the **maximum** number of operations needed to delete all of *`s`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,21 +26,23 @@ Return *the **maximum** number of operations needed to delete all of *`s`.
 
 - **Input:** `s = "abcabcdabc"`
 - **Output:** `2`
-- **Explanation:**
+- **Explanation:** 
 - Delete the first 3 letters ("abc") since the next 3 letters are equal. Now, s = "abcdabc".
 - Delete all the letters.
 We used 2 operations so return 2. It can be proven that 2 is the maximum number of operations needed.
 Note that in the second operation we cannot delete "abc" again because the next occurrence of "abc" does not happen in the next 3 letters.
+
 #### Example 2
 
 - **Input:** `s = "aaabaab"`
 - **Output:** `4`
-- **Explanation:**
+- **Explanation:** 
 - Delete the first letter ("a") since the next letter is equal. Now, s = "aabaab".
 - Delete the first 3 letters ("aab") since the next 3 letters are equal. Now, s = "aab".
 - Delete the first letter ("a") since the next letter is equal. Now, s = "ab".
 - Delete all the letters.
 We used 4 operations so return 4. It can be proven that 4 is the maximum number of operations needed.
+
 #### Example 3
 
 - **Input:** `s = "aaaaa"`

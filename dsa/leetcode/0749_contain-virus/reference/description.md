@@ -10,8 +10,13 @@ Return *the number of walls used to quarantine all the infected regions*. If the
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `isInfected`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,6 +31,7 @@ On the first day, add 5 walls to quarantine the viral region on the left. The bo
 ![](images/virus12edited-grid.jpg)
 On the second day, add 5 walls to quarantine the viral region on the right. The virus is fully contained.
 ![](images/virus13edited-grid.jpg)
+
 #### Example 2
 
 ![](images/virus2-grid.jpg)
@@ -34,6 +40,7 @@ On the second day, add 5 walls to quarantine the viral region on the right. The 
 - **Output:** `4`
 - **Explanation:** Even though there is only one cell saved, there are 4 walls built.
 Notice that walls are only built on the shared boundary of two different cells.
+
 #### Example 3
 
 - **Input:** $isInfected = [[1,1,1,0,0,0,0,0,0],[1,0,1,0,1,1,1,1,1],[1,1,1,0,0,0,0,0,0]]$

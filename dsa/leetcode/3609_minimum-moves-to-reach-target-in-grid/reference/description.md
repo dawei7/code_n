@@ -14,21 +14,26 @@ Return the **minimum** number of moves required to reach `(tx, ty)`. If it is im
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `sx`: Input parameter (`int`).
+- `sy`: Input parameter (`int`).
+- `tx`: Input parameter (`int`).
+- `ty`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** sx = 1, sy = 2, tx = 5, ty = 4
+- **Input:** sx = 1, sy = 2, tx = 5, ty = 4
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The optimal path is:
+- **Explanation:** The optimal path is:
 
 - Move 1: $max(1, 2) = 2$. Increase the y-coordinate by 2, moving from `(1, 2)` to $(1, 2 + 2) = (1, 4)$.
 
@@ -36,17 +41,13 @@ The optimal path is:
 
 Thus, the minimum number of moves to reach `(5, 4)` is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** sx = 0, sy = 1, tx = 2, ty = 3
+- **Input:** sx = 0, sy = 1, tx = 2, ty = 3
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-The optimal path is:
+- **Explanation:** The optimal path is:
 
 - Move 1: $max(0, 1) = 1$. Increase the x-coordinate by 1, moving from `(0, 1)` to $(0 + 1, 1) = (1, 1)$.
 
@@ -56,19 +57,15 @@ The optimal path is:
 
 Thus, the minimum number of moves to reach `(2, 3)` is 3.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** sx = 1, sy = 1, tx = 2, ty = 2
+- **Input:** sx = 1, sy = 1, tx = 2, ty = 2
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
+- **Explanation:** 
 
 - It is impossible to reach `(2, 2)` from `(1, 1)` using the allowed moves. Thus, the answer is -1.
-
-</div>
 
 ### 4. Constraints
 

@@ -24,6 +24,7 @@ that `word1` and `word2` may be the same. It is guaranteed that they represent *
 
 - **Input:** $wordsDict = ["practice", "makes", "perfect", "coding", "makes"], word1 = "makes", word2 = "coding"$
 - **Output:** `1`
+
 #### Example 2
 
 - **Input:** $wordsDict = ["practice", "makes", "perfect", "coding", "makes"], word1 = "makes", word2 = "makes"$

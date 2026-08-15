@@ -31,16 +31,16 @@ The minimum total height of a bookcase containing all books in the given order.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `books = [[1,1],[2,3],[2,3],[1,1],[1,1],[1,1],[1,2]], shelfWidth = 4`
-- Output: `6`
+- **Input:** `books = [[1,1],[2,3],[2,3],[1,1],[1,1],[1,1],[1,2]], shelfWidth = 4`
+- **Output:** `6`
 
 An optimal arrangement has shelf heights 1, 3, and 2. The second book does not need to share the first shelf.
 
-**Example 2**
+#### Example 2
 
-- Input: `books = [[1,3],[2,4],[3,2]], shelfWidth = 6`
-- Output: `4`
+- **Input:** `books = [[1,3],[2,4],[3,2]], shelfWidth = 6`
+- **Output:** `4`
 
 All three books fit on one shelf, whose height is 4.

@@ -44,8 +44,13 @@ Implement the `FizzBuzz` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `FizzBuzz(n: int)`: Initializes the data structure.
+- `fizz(printFizz: 'Callable[[], None]')`: Executes operation.
+- `buzz(printBuzz: 'Callable[[], None]')`: Executes operation.
+- `fizzbuzz(printFizzBuzz: 'Callable[[], None]')`: Executes operation.
+- `number(printNumber: 'Callable[[int], None]')`: Executes operation.
 
 ### 3. Examples
 
@@ -53,6 +58,7 @@ Implement the `FizzBuzz` class:
 
 - **Input:** $n = 15$
 - **Output:** `[1,2,"fizz",4,"buzz","fizz",7,8,"fizz","buzz",11,"fizz",13,14,"fizzbuzz"]`
+
 #### Example 2
 
 - **Input:** $n = 5$

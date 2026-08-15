@@ -35,16 +35,16 @@ Return an integer array whose value for query `[u, v]` is the number of assignme
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `edges = [[1,2]], queries = [[1,1],[1,2]]`
-- Output: `[0,1]`
-- Explanation: The empty path has even cost zero. On the one-edge path, only weight `1` gives an odd cost.
+- **Input:** `edges = [[1,2]], queries = [[1,1],[1,2]]`
+- **Output:** `[0,1]`
+- **Explanation:** The empty path has even cost zero. On the one-edge path, only weight `1` gives an odd cost.
 
-**Example 2**
+#### Example 2
 
-- Input: `edges = [[1,2],[1,3],[3,4],[3,5]], queries = [[1,4],[3,4],[2,5]]`
-- Output: `[2,1,4]`
-- Explanation: The path lengths are two, one, and three. Exactly half of the assignments on each nonempty path have odd total weight.
+- **Input:** `edges = [[1,2],[1,3],[3,4],[3,5]], queries = [[1,4],[3,4],[2,5]]`
+- **Output:** `[2,1,4]`
+- **Explanation:** The path lengths are two, one, and three. Exactly half of the assignments on each nonempty path have odd total weight.
 
 ---

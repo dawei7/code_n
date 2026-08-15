@@ -30,12 +30,11 @@ Return the minimum sum of on-bulb time units needed over the union of all interv
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 5, brightness = 5, intervals = [[6,12]]
+- **Input:** n = 5, brightness = 5, intervals = [[6,12]]
 
-**Output:** 14
+- **Output:** 14
 
-**Explanation:**
+- **Explanation:** 
 
 - Turn on the light bulbs at positions 1 and 4.
 
@@ -45,15 +44,13 @@ Return the minimum sum of on-bulb time units needed over the union of all interv
 
 - The active interval has length $12 - 6 + 1 = 7$, so the total energy is $2 * 7 = 14$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 2, brightness = 1, intervals = [[0,0],[2,2]]
+- **Input:** n = 2, brightness = 1, intervals = [[0,0],[2,2]]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - Turn on one light bulb during each active interval.
 
@@ -61,23 +58,19 @@ Return the minimum sum of on-bulb time units needed over the union of all interv
 
 - The total energy is $1 * 2 = 2$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 4, brightness = 2, intervals = [[1,3],[2,4]]
+- **Input:** n = 4, brightness = 2, intervals = [[1,3],[2,4]]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** 
 
 - Turn on one light bulb. It can illuminate at least 2 positions.
 
 - The active intervals overlap, so the total active time is the length of `[1,4]`, which is 4.
 
 - The total energy is $1 * 4 = 4$.
-
-</div>
 
 ### 4. Constraints
 

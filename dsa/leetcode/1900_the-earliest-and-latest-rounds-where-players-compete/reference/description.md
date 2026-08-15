@@ -6,13 +6,11 @@ The tournament consists of multiple rounds (starting from round number `1`). In 
 
 - For example, if the row consists of players `1, 2, 4, 6, 7`
 
-		<li>Player `1` competes against player `7`.
+		- Player `1` competes against player `7`.
 
 - Player `2` competes against player `6`.
 
 - Player `4` automatically advances to the next round.
-
-	</li>
 
 After each round is over, the winners are lined back up in the row based on the **original ordering** assigned to them initially (ascending order).
 
@@ -22,8 +20,15 @@ Given the integers `n`, `firstPlayer`, and `secondPlayer`, return *an integer ar
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `firstPlayer`: Input parameter (`int`).
+- `secondPlayer`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -31,8 +36,7 @@ Given the integers `n`, `firstPlayer`, and `secondPlayer`, return *an integer ar
 
 - **Input:** $n = 11, firstPlayer = 2, secondPlayer = 4$
 - **Output:** `[3,4]`
-- **Explanation:**
-One possible scenario which leads to the earliest round number:
+- **Explanation:** One possible scenario which leads to the earliest round number:
 First round: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
 Second round: 2, 3, 4, 5, 6, 11
 Third round: 2, 3, 4
@@ -41,6 +45,7 @@ First round: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
 Second round: 1, 2, 3, 4, 5, 6
 Third round: 1, 2, 4
 Fourth round: 2, 4
+
 #### Example 2
 
 - **Input:** $n = 5, firstPlayer = 1, secondPlayer = 5$

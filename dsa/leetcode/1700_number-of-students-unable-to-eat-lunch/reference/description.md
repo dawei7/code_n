@@ -14,8 +14,14 @@ You are given two integer arrays `students` and `sandwiches` where $\text{sandwi
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `students`: Input parameter (`List[int]`).
+- `sandwiches`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,7 +29,7 @@ You are given two integer arrays `students` and `sandwiches` where $\text{sandwi
 
 - **Input:** $students = [1,1,0,0], sandwiches = [0,1,0,1]$
 - **Output:** `0**`
-- **Explanation:**
+- **Explanation:** 
 - Front student leaves the top sandwich and returns to the end of the line making students = [1,0,0,1].
 - Front student leaves the top sandwich and returns to the end of the line making students = [0,0,1,1].
 - Front student takes the top sandwich and leaves the line making students = [0,1,1] and sandwiches = [1,0,1].
@@ -33,6 +39,7 @@ You are given two integer arrays `students` and `sandwiches` where $\text{sandwi
 - Front student takes the top sandwich and leaves the line making students = [1] and sandwiches = [1].
 - Front student takes the top sandwich and leaves the line making students = [] and sandwiches = [].
 Hence all students are able to eat.
+
 #### Example 2
 
 - **Input:** $students = [1,1,1,0,0,1], sandwiches = [1,0,0,0,1,1]$

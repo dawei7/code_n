@@ -14,8 +14,13 @@ Return *a list that contains the names of **high-access** employees with any ord
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `access_times`: Input parameter (`List[List[str]]`).
+
+**Return value**
+
+- Returns `List[str]`.
 
 ### 3. Examples
 
@@ -26,6 +31,7 @@ Return *a list that contains the names of **high-access** employees with any ord
 - **Explanation:** "a" has three access times in the one-hour period of [05:32, 06:31] which are 05:32, 05:49, and 06:21.
 But "b" does not have more than two access times at all.
 So the answer is ["a"].
+
 #### Example 2
 
 - **Input:** $\text{access}_{times} = [["d","0002"],["c","0808"],["c","0829"],["e","0215"],["d","1508"],["d","1444"],["d","1410"],["c","0809"]]$
@@ -33,6 +39,7 @@ So the answer is ["a"].
 - **Explanation:** "c" has three access times in the one-hour period of [08:08, 09:07] which are 08:08, 08:09, and 08:29.
 "d" has also three access times in the one-hour period of [14:10, 15:09] which are 14:10, 14:44, and 15:08.
 However, "e" has just one access time, so it can not be in the answer and the final answer is ["c","d"].
+
 #### Example 3
 
 - **Input:** $\text{access}_{times} = [["cd","1025"],["ab","1025"],["cd","1046"],["cd","1055"],["ab","1124"],["ab","1120"]]$

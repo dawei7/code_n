@@ -6,8 +6,13 @@ The final result should be an <a href="https://en.wikipedia.org/wiki/Irreducible
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `expression`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -15,10 +20,12 @@ The final result should be an <a href="https://en.wikipedia.org/wiki/Irreducible
 
 - **Input:** $expression = "-1/2+1/2"$
 - **Output:** `"0/1"`
+
 #### Example 2
 
 - **Input:** $expression = "-1/2+1/2+1/3"$
 - **Output:** `"1/3"`
+
 #### Example 3
 
 - **Input:** $expression = "1/3-1/2"$

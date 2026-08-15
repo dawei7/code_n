@@ -31,13 +31,13 @@ The maximum total number of stones Alice can collect when both Alice and Bob pla
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `piles = [2, 7, 9, 4, 4]`
-- Output: `10`
-- Explanation: Taking one pile first lets Bob take two, after which Alice can take the final two and collect `2 + 4 + 4 = 10`. Taking two initially gives Alice only `9` because Bob can then take all remaining piles.
+- **Input:** `piles = [2, 7, 9, 4, 4]`
+- **Output:** `10`
+- **Explanation:** Taking one pile first lets Bob take two, after which Alice can take the final two and collect `2 + 4 + 4 = 10`. Taking two initially gives Alice only `9` because Bob can then take all remaining piles.
 
-**Example 2**
+#### Example 2
 
-- Input: `piles = [1, 2, 3, 4, 5, 100]`
-- Output: `104`
+- **Input:** `piles = [1, 2, 3, 4, 5, 100]`
+- **Output:** `104`

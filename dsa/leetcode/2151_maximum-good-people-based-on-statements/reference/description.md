@@ -20,8 +20,13 @@ Return *the **maximum** number of people who can be **good** based on the statem
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `statements`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -52,6 +57,7 @@ Let's take person 2 as the key.
 - **Following that person 2 is bad and lied, there will be two good persons in the group**.
 We can see that at most 2 persons are good in the best case, so we return 2.
 Note that there is more than one way to arrive at this conclusion.
+
 #### Example 2
 
 ![](images/logic2.jpg)

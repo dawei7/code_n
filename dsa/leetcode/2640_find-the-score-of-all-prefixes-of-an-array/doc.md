@@ -30,14 +30,14 @@ You are given a 0-indexed positive-integer array `nums` of length $n$. Return an
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 3, 7, 5, 10]`
-- Output: `[4, 10, 24, 36, 56]`
-- Explanation: The conversion array is `[4, 6, 14, 12, 20]`; its successive prefix sums form the answer.
+- **Input:** `nums = [2, 3, 7, 5, 10]`
+- **Output:** `[4, 10, 24, 36, 56]`
+- **Explanation:** The conversion array is `[4, 6, 14, 12, 20]`; its successive prefix sums form the answer.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 1, 2, 4, 8, 16]`
-- Output: `[2, 4, 8, 16, 32, 64]`
-- Explanation: Every new power of two is also the running maximum, while the repeated initial one contributes another two.
+- **Input:** `nums = [1, 1, 2, 4, 8, 16]`
+- **Output:** `[2, 4, 8, 16, 32, 64]`
+- **Explanation:** Every new power of two is also the running maximum, while the repeated initial one contributes another two.

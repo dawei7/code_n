@@ -16,8 +16,13 @@ Given an integer `n`, return *the clumsy factorial of *`n`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,6 +31,7 @@ Given an integer `n`, return *the clumsy factorial of *`n`.
 - **Input:** $n = 4$
 - **Output:** `7`
 - **Explanation:** 7 = 4 * 3 / 2 + 1
+
 #### Example 2
 
 - **Input:** $n = 10$

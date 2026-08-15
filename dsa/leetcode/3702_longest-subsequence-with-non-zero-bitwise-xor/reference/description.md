@@ -20,28 +20,19 @@ Return the greatest attainable subsequence length, or `0` when no qualifying sub
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3]
+- **Input:** nums = [1,2,3]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** One longest subsequence is `[2, 3]`. The bitwise XOR is computed as $2 XOR 3 = 1$, which is non-zero.
 
-One longest subsequence is `[2, 3]`. The bitwise XOR is computed as $2 XOR 3 = 1$, which is non-zero.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,3,4]
+- **Input:** nums = [2,3,4]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-The longest subsequence is `[2, 3, 4]`. The bitwise XOR is computed as $2 XOR 3 XOR 4 = 5$, which is non-zero.
-
-</div>
+- **Explanation:** The longest subsequence is `[2, 3, 4]`. The bitwise XOR is computed as $2 XOR 3 XOR 4 = 5$, which is non-zero.
 
 ### 4. Constraints
 

@@ -33,19 +33,19 @@ Consider every index whose value equals `target`. Return the least distance from
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3, 4, 5]`, `target = 5`, `start = 3`
-- Output: `1`
+- **Input:** `nums = [1, 2, 3, 4, 5]`, `target = 5`, `start = 3`
+- **Output:** `1`
 
 The target is at index 4, one step from index 3.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1]`, `target = 1`, `start = 0`
-- Output: `0`
+- **Input:** `nums = [1]`, `target = 1`, `start = 0`
+- **Output:** `0`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]`, `target = 1`, `start = 0`
-- Output: `0`
+- **Input:** `nums = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]`, `target = 1`, `start = 0`
+- **Output:** `0`

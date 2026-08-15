@@ -12,47 +12,40 @@ Return an integer denoting the number of substrings of `s` that satisfy the **k-
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "10101", k = 1
+- **Input:** s = "10101", k = 1
 
-**Output:** 12
+- **Output:** 12
 
-**Explanation:**
+- **Explanation:** Every substring of `s` except the substrings `"1010"`, `"10101"`, and `"0101"` satisfies the k-constraint.
 
-Every substring of `s` except the substrings `"1010"`, `"10101"`, and `"0101"` satisfies the k-constraint.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "1010101", k = 2
+- **Input:** s = "1010101", k = 2
 
-**Output:** 25
+- **Output:** 25
 
-**Explanation:**
+- **Explanation:** Every substring of `s` except the substrings with a length greater than 5 satisfies the k-constraint.
 
-Every substring of `s` except the substrings with a length greater than 5 satisfies the k-constraint.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "11111", k = 1
+- **Input:** s = "11111", k = 1
 
-**Output:** 15
+- **Output:** 15
 
-**Explanation:**
-
-All substrings of `s` satisfy the k-constraint.
-
-</div>
+- **Explanation:** All substrings of `s` satisfy the k-constraint.
 
 ### 4. Constraints
 

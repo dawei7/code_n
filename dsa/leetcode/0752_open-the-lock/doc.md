@@ -31,14 +31,14 @@ The listed `deadends` are forbidden combinations: if the lock displays one, its 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `deadends = ["0201", "0101", "0102", "1212", "2002"]`, `target = "0202"`
-- Output: `6`
-- Explanation: A shortest legal route avoids the forbidden combinations and uses six wheel turns.
+- **Input:** `deadends = ["0201", "0101", "0102", "1212", "2002"]`, `target = "0202"`
+- **Output:** `6`
+- **Explanation:** A shortest legal route avoids the forbidden combinations and uses six wheel turns.
 
-**Example 2**
+#### Example 2
 
-- Input: `deadends = ["8888"]`, `target = "0009"`
-- Output: `1`
-- Explanation: Rotate the last wheel backward once, wrapping from `0` to `9`.
+- **Input:** `deadends = ["8888"]`, `target = "0009"`
+- **Output:** `1`
+- **Explanation:** Rotate the last wheel backward once, wrapping from `0` to `9`.

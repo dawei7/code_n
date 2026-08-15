@@ -14,8 +14,13 @@ Return *the array `ans`. *Answers within $10^{-5}$ of the actual answer will be 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `celsius`: Input parameter (`float`).
+
+**Return value**
+
+- Returns `List[float]`.
 
 ### 3. Examples
 
@@ -24,6 +29,7 @@ Return *the array `ans`. *Answers within $10^{-5}$ of the actual answer will be 
 - **Input:** $celsius = 36.50$
 - **Output:** `[309.65000,97.70000]`
 - **Explanation:** Temperature at 36.50 Celsius converted in Kelvin is 309.65 and converted in Fahrenheit is 97.70.
+
 #### Example 2
 
 - **Input:** $celsius = 122.11$

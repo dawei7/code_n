@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/minimum-index-sum-of-common-elements/) |
 
 ## Problem Description
+
 ### Goal
 
 Given two integer arrays `nums1` and `nums2` of the same length, call an index pair `(i, j)` good when `nums1[i]` equals `nums2[j]`.
@@ -32,23 +33,23 @@ Return the smallest $i+j$ over all pairs with `nums1[i] == nums2[j]`, or `-1` wh
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [3, 2, 1], nums2 = [1, 3, 1]`
-- Output: `1`
+- **Input:** `nums1 = [3, 2, 1], nums2 = [1, 3, 1]`
+- **Output:** `1`
 
 Value 3 occurs at indices 0 and 1, producing the minimum sum 1.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [5, 1, 2], nums2 = [2, 1, 3]`
-- Output: `2`
+- **Input:** `nums1 = [5, 1, 2], nums2 = [2, 1, 3]`
+- **Output:** `2`
 
 Both common values 1 and 2 yield an index sum of 2.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums1 = [6, 4], nums2 = [7, 8]`
-- Output: `-1`
+- **Input:** `nums1 = [6, 4], nums2 = [7, 8]`
+- **Output:** `-1`
 
 No value appears in both arrays.

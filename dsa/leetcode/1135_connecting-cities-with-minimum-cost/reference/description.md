@@ -30,6 +30,7 @@ The input can include redundant connections, including more than one entry with 
 - **Input:** $n = 3, connections = [[1,2,5],[1,3,6],[2,3,1]]$
 - **Output:** `6`
 - **Explanation:** Choosing any 2 edges will connect all cities so we choose the minimum 2.
+
 #### Example 2
 
 ![](images/1314_ex1.png)

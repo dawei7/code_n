@@ -32,20 +32,20 @@ Return the minimum number of cell-replacement operations needed to make each col
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[1,0,2],[1,0,2]]`
-- Output: `0`
-- Explanation: Each column is already constant, and neighboring column values differ.
+- **Input:** `grid = [[1,0,2],[1,0,2]]`
+- **Output:** `0`
+- **Explanation:** Each column is already constant, and neighboring column values differ.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[1,1,1],[0,0,0]]`
-- Output: `3`
-- Explanation: Three changes can produce `[[1,0,1],[1,0,1]]`, which satisfies both conditions.
+- **Input:** `grid = [[1,1,1],[0,0,0]]`
+- **Output:** `3`
+- **Explanation:** Three changes can produce `[[1,0,1],[1,0,1]]`, which satisfies both conditions.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[1],[2],[3]]`
-- Output: `2`
-- Explanation: With one column, two cells can be changed to `1` so the entire column is equal.
+- **Input:** `grid = [[1],[2],[3]]`
+- **Output:** `2`
+- **Explanation:** With one column, two cells can be changed to `1` so the entire column is equal.

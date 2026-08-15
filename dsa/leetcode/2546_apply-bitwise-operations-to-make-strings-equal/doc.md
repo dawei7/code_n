@@ -33,14 +33,14 @@ Return `true` if the allowed simultaneous updates can make `s` equal `target`; o
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "1010", target = "0110"`
-- Output: `true`
-- Explanation: The existing `1` bits allow operations to move, create, and remove additional `1` bits until the target pattern is reached.
+- **Input:** `s = "1010", target = "0110"`
+- **Output:** `true`
+- **Explanation:** The existing `1` bits allow operations to move, create, and remove additional `1` bits until the target pattern is reached.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "11", target = "00"`
-- Output: `false`
-- Explanation: An operation on a pair containing a `1` never produces two zeros, so the last `1` cannot be removed.
+- **Input:** `s = "11", target = "00"`
+- **Output:** `false`
+- **Explanation:** An operation on a pair containing a `1` never produces two zeros, so the last `1` cannot be removed.

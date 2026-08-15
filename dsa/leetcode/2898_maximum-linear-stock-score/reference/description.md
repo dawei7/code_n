@@ -31,6 +31,7 @@ indexes[3] - indexes[2] = 5 - 4 = 1.
 prices[5] - prices[4] = 8 - 7 = 1.
 The sum of the elements is: prices[2] + prices[4] + prices[5] = 20.
 It can be shown that the maximum sum a linear selection can have is 20.
+
 #### Example 2
 
 - **Input:** $prices = [5,6,7,8,9]$

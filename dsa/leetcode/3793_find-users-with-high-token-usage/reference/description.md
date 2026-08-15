@@ -30,7 +30,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 prompts table:
@@ -66,7 +65,7 @@ prompts table:
 
 - **User 1**:
 
-		<li>Total prompts = 3
+		- Total prompts = 3
 
 - Average tokens = (120 + 80 + 200) / 3 = 133.33
 
@@ -74,17 +73,15 @@ prompts table:
 
 - Included in the result
 
-	</li>
 - **User 2**:
 
-		<li>Total prompts = 2 (less than the required minimum)
+		- Total prompts = 2 (less than the required minimum)
 
 - Excluded from the result
 
-	</li>
 - **User 3**:
 
-		<li>Total prompts = 4
+		- Total prompts = 4
 
 - Average tokens = (300 + 250 + 180 + 220) / 4 = 237.5
 
@@ -92,11 +89,7 @@ prompts table:
 
 - Included in the result
 
-	</li>
-
 The Results table is ordered by avg_tokens in descending order, then by user_id in ascending order
-
-</div>
 
 ### 2. Function Contract
 

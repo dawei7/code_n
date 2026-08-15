@@ -46,7 +46,7 @@ Return columns `customer_id`, `total_amount`, `transaction_count`, `unique_categ
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 Given purchases of `100.00`, `150.00`, and `200.00` by customer `101` in categories A, B, and C, and purchases of `100.00` and `200.00` by customer `102` in categories A and C, the result begins:
 

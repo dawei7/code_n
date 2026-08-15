@@ -8,8 +8,13 @@ Note that backslash characters are escaped, so a `'\'` is represented as `'\\'`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,12 +24,14 @@ Note that backslash characters are escaped, so a `'\'` is represented as `'\\'`.
 
 - **Input:** $grid = [" /","/ "]$
 - **Output:** `2`
+
 #### Example 2
 
 ![](images/2.png)
 
 - **Input:** $grid = [" /"," "]$
 - **Output:** `1`
+
 #### Example 3
 
 ![](images/4.png)

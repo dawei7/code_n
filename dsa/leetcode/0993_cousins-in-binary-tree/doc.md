@@ -31,20 +31,20 @@ The root has depth $0$, and every child of a node at depth $d$ has depth $d+1$. 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [1, 2, 3, 4], x = 4, y = 3`
-- Output: `false`
-- Explanation: Node $4$ is deeper than node $3$.
+- **Input:** `root = [1, 2, 3, 4], x = 4, y = 3`
+- **Output:** `false`
+- **Explanation:** Node $4$ is deeper than node $3$.
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [1, 2, 3, null, 4, null, 5], x = 5, y = 4`
-- Output: `true`
-- Explanation: The selected nodes share a depth and have different parents.
+- **Input:** `root = [1, 2, 3, null, 4, null, 5], x = 5, y = 4`
+- **Output:** `true`
+- **Explanation:** The selected nodes share a depth and have different parents.
 
-**Example 3**
+#### Example 3
 
-- Input: `root = [1, 2, 3, null, 4], x = 2, y = 3`
-- Output: `false`
-- Explanation: Nodes $2$ and $3$ are siblings, so their parent is the same.
+- **Input:** `root = [1, 2, 3, null, 4], x = 2, y = 3`
+- **Output:** `false`
+- **Explanation:** Nodes $2$ and $3$ are siblings, so their parent is the same.

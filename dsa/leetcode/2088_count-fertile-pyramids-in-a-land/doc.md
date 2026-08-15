@@ -40,20 +40,20 @@ Return the number of valid upright and inverse pyramidal plots.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[0,1,1,0],[1,1,1,1]]`
-- Output: `2`
-- Explanation: Two different top-row apexes form height-two upright pyramids.
+- **Input:** `grid = [[0,1,1,0],[1,1,1,1]]`
+- **Output:** `2`
+- **Explanation:** Two different top-row apexes form height-two upright pyramids.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[1,1,1],[1,1,1]]`
-- Output: `2`
-- Explanation: The matrix contains one upright and one inverse height-two pyramid.
+- **Input:** `grid = [[1,1,1],[1,1,1]]`
+- **Output:** `2`
+- **Explanation:** The matrix contains one upright and one inverse height-two pyramid.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[1,1,1,1,0],[1,1,1,1,1],[1,1,1,1,1],[0,1,0,0,1]]`
-- Output: `13`
-- Explanation: Seven plots are upright and six are inverse.
+- **Input:** `grid = [[1,1,1,1,0],[1,1,1,1,1],[1,1,1,1,1],[0,1,0,0,1]]`
+- **Output:** `13`
+- **Explanation:** Seven plots are upright and six are inverse.

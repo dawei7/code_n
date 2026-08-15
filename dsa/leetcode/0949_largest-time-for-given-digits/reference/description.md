@@ -8,8 +8,13 @@ Return *the latest 24-hour time in `"HH:MM"` format*. If no valid time can be ma
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -18,6 +23,7 @@ Return *the latest 24-hour time in `"HH:MM"` format*. If no valid time can be ma
 - **Input:** `arr = [1,2,3,4]`
 - **Output:** `"23:41"`
 - **Explanation:** The valid 24-hour times are "12:34", "12:43", "13:24", "13:42", "14:23", "14:32", "21:34", "21:43", "23:14", and "23:41". Of these times, "23:41" is the latest.
+
 #### Example 2
 
 - **Input:** `arr = [5,5,5,5]`

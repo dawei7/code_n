@@ -31,20 +31,20 @@ Return the maximum number of subsequences equal to `pattern` after exactly one a
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `text = "abdcdbc"`, `pattern = "ac"`
-- Output: `4`
-- Explanation: inserting another `a` sufficiently early lets it precede both existing `c` characters while preserving the two existing `ac` subsequences.
+- **Input:** `text = "abdcdbc"`, `pattern = "ac"`
+- **Output:** `4`
+- **Explanation:** inserting another `a` sufficiently early lets it precede both existing `c` characters while preserving the two existing `ac` subsequences.
 
-**Example 2**
+#### Example 2
 
-- Input: `text = "aabb"`, `pattern = "ab"`
-- Output: `6`
-- Explanation: inserting `a` before the `b` characters or inserting `b` after the `a` characters creates two additional subsequences.
+- **Input:** `text = "aabb"`, `pattern = "ab"`
+- **Output:** `6`
+- **Explanation:** inserting `a` before the `b` characters or inserting `b` after the `a` characters creates two additional subsequences.
 
-**Example 3**
+#### Example 3
 
-- Input: `text = "aaaa"`, `pattern = "aa"`
-- Output: `10`
-- Explanation: after inserting another `a`, any two of the five positions form the pattern.
+- **Input:** `text = "aaaa"`, `pattern = "aa"`
+- **Output:** `10`
+- **Explanation:** after inserting another `a`, any two of the five positions form the pattern.

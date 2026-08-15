@@ -30,14 +30,14 @@ A player cannot choose a different amount or skip a turn. If the pile contains f
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 12`
-- Output: `true`
-- Explanation: Alice removes $10$, leaving $2$. Bob needs to remove $9$ but cannot, so Alice wins.
+- **Input:** `n = 12`
+- **Output:** `true`
+- **Explanation:** Alice removes $10$, leaving $2$. Bob needs to remove $9$ but cannot, so Alice wins.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 1`
-- Output: `false`
-- Explanation: Alice cannot make the required opening move of $10$ stones.
+- **Input:** `n = 1`
+- **Output:** `false`
+- **Explanation:** Alice cannot make the required opening move of $10$ stones.

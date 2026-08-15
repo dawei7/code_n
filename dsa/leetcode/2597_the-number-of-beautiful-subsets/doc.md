@@ -33,16 +33,16 @@ Return the number of non-empty beautiful subsets of `nums`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,4,6], k = 2`
-- Output: `4`
+- **Input:** `nums = [2,4,6], k = 2`
+- **Output:** `4`
 
 The beautiful subsets are `[2]`, `[4]`, `[6]`, and `[2,6]`. Selecting adjacent values in the progression would create the forbidden difference.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1], k = 1`
-- Output: `1`
+- **Input:** `nums = [1], k = 1`
+- **Output:** `1`
 
 The only non-empty subset contains the single array element, so no pair can violate the condition.

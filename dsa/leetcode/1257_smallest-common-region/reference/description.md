@@ -43,6 +43,7 @@ Return the smallest region that contains both queried regions. Containment inclu
 region1 = "Quebec",
 region2 = "New York"
 - **Output:** `"North America"`
+
 #### Example 2
 
 - **Input:** $regions = [["Earth", "North America", "South America"],["North America", "United States", "Canada"],["United States", "New York", "Boston"],["Canada", "Ontario", "Quebec"],["South America", "Brazil"]], region1 = "Canada", region2 = "South America"$

@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/palindrome-rearrangement-queries/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given a 0-indexed lowercase string `s` of even length and a list of
 queries. A query `[a, b, c, d]` permits arbitrary rearrangement of the
 characters in the inclusive substring `s[a:b]` in the first half and,
@@ -24,6 +26,7 @@ one query never changes the input seen by another. Return the Boolean answers
 in query order.
 
 ### Function Contract
+
 **Inputs**
 
 - `s`: an even-length lowercase English string
@@ -38,18 +41,19 @@ Return a length-$Q$ Boolean list whose $i$th value states whether the
 rearrangements allowed by query $i$ can produce a palindrome.
 
 ### Examples
-**Example 1**
 
-- Input: `s = "abcabc", queries = [[1,1,3,5],[0,2,5,5]]`
-- Output: `[true,true]`
+#### Example 1
 
-**Example 2**
+- **Input:** `s = "abcabc", queries = [[1,1,3,5],[0,2,5,5]]`
+- **Output:** `[true,true]`
 
-- Input: `s = "abbcdecbba", queries = [[0,2,7,9]]`
-- Output: `[false]`
-- Explanation: The fixed middle characters cannot be made symmetric.
+#### Example 2
 
-**Example 3**
+- **Input:** `s = "abbcdecbba", queries = [[0,2,7,9]]`
+- **Output:** `[false]`
+- **Explanation:** The fixed middle characters cannot be made symmetric.
 
-- Input: `s = "acbcab", queries = [[1,2,4,5]]`
-- Output: `[true]`
+#### Example 3
+
+- **Input:** `s = "acbcab", queries = [[1,2,4,5]]`
+- **Output:** `[true]`

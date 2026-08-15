@@ -16,8 +16,15 @@ Return *a list containing the IDs (0-indexed) of the **busiest server(s)***. You
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `k`: Input parameter (`int`).
+- `arrival`: Input parameter (`List[int]`).
+- `load`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -27,20 +34,20 @@ Return *a list containing the IDs (0-indexed) of the **busiest server(s)***. You
 
 - **Input:** $k = 3, arrival = [1,2,3,4,5], load = [5,2,3,3,3]$
 - **Output:** `[1]`
-- **Explanation:**
-All of the servers start out available.
+- **Explanation:** All of the servers start out available.
 The first 3 requests are handled by the first 3 servers in order.
 Request 3 comes in. Server 0 is busy, so it's assigned to the next available server, which is 1.
 Request 4 comes in. It cannot be handled since all servers are busy, so it is dropped.
 Servers 0 and 2 handled one request each, while server 1 handled two requests. Hence server 1 is the busiest server.
+
 #### Example 2
 
 - **Input:** $k = 3, arrival = [1,2,3,4], load = [1,2,1,2]$
 - **Output:** `[0]`
-- **Explanation:**
-The first 3 requests are handled by first 3 servers.
+- **Explanation:** The first 3 requests are handled by first 3 servers.
 Request 3 comes in. It is handled by server 0 since the server is available.
 Server 0 handled two requests, while servers 1 and 2 handled one request each. Hence server 0 is the busiest server.
+
 #### Example 3
 
 - **Input:** $k = 3, arrival = [1,2,3], load = [10,12,11]$

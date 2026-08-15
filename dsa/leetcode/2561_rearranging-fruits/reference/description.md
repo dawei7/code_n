@@ -12,8 +12,14 @@ Return *the minimum cost to make both the baskets equal or *`-1`* if impossible.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `basket1`: Input parameter (`List[int]`).
+- `basket2`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +28,7 @@ Return *the minimum cost to make both the baskets equal or *`-1`* if impossible.
 - **Input:** $basket1 = [4,2,2,2], basket2 = [1,4,1,2]$
 - **Output:** `1`
 - **Explanation:** Swap index 1 of basket1 with index 0 of basket2, which has cost 1. Now basket1 = [4,1,2,2] and basket2 = [2,4,1,2]. Rearranging both the arrays makes them equal.
+
 #### Example 2
 
 - **Input:** $basket1 = [2,3,4,1], basket2 = [3,2,5,1]$

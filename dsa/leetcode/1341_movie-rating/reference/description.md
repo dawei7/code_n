@@ -61,7 +61,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Movies table:
 +-------------+--------------+
 | movie_id    |  title       |
@@ -93,14 +93,13 @@ MovieRating table:
 | 3           | 1            | 3            | 2020-02-22  |
 | 3           | 2            | 4            | 2020-02-25  |
 +-------------+--------------+--------------+-------------+
-**Output:**
+- **Output:** 
 +--------------+
 | results      |
 +--------------+
 | Daniel       |
 | Frozen 2     |
 +--------------+
-**Explanation:**
-Daniel and Monica have rated 3 movies ("Avengers", "Frozen 2" and "Joker") but Daniel is smaller lexicographically.
+- **Explanation:** Daniel and Monica have rated 3 movies ("Avengers", "Frozen 2" and "Joker") but Daniel is smaller lexicographically.
 Frozen 2 and Joker have a rating average of 3.5 in February but Frozen 2 is smaller lexicographically.
 ```

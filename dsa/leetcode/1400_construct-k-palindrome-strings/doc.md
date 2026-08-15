@@ -31,17 +31,17 @@ Determine whether all `k` strings can be palindromes. A palindrome reads identic
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "annabelle", k = 2`
-- Output: `true`
+- **Input:** `s = "annabelle", k = 2`
+- **Output:** `true`
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "leetcode", k = 3`
-- Output: `false`
+- **Input:** `s = "leetcode", k = 3`
+- **Output:** `false`
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "true", k = 4`
-- Output: `true`
+- **Input:** `s = "true", k = 4`
+- **Output:** `true`

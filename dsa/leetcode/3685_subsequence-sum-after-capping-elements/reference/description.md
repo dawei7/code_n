@@ -10,19 +10,24 @@ Return a **0-indexed** boolean array `answer` of size `n`, where $\text{answer}[
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[bool]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [4,3,2,4], k = 5
+- **Input:** nums = [4,3,2,4], k = 5
 
-**Output:** [false,false,true,true]
+- **Output:** [false,false,true,true]
 
-**Explanation:**
+- **Explanation:** 
 
 - For $x = 1$, the capped array is `[1, 1, 1, 1]`. Possible sums are `1, 2, 3, 4`, so it is impossible to form a sum of `5`.
 
@@ -32,19 +37,13 @@ Return a **0-indexed** boolean array `answer` of size `n`, where $\text{answer}[
 
 - For $x = 4$, the capped array is `[4, 3, 2, 4]`. A subsequence `[3, 2]` sums to `5`, so it is possible.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4,5], k = 3
+- **Input:** nums = [1,2,3,4,5], k = 3
 
-**Output:** [true,true,true,true,true]
+- **Output:** [true,true,true,true,true]
 
-**Explanation:**
-
-For every value of `x`, it is always possible to select a subsequence from the capped array that sums exactly to `3`.
-
-</div>
+- **Explanation:** For every value of `x`, it is always possible to select a subsequence from the capped array that sums exactly to `3`.
 
 ### 4. Constraints
 

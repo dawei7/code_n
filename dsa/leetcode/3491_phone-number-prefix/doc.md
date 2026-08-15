@@ -40,14 +40,14 @@ Return `true` if the array is prefix-free; otherwise return `false`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `numbers = ["1", "2", "4", "3"]`
-- Output: `true`
-- Explanation: Every number differs at its first character, so none prefixes another.
+- **Input:** `numbers = ["1", "2", "4", "3"]`
+- **Output:** `true`
+- **Explanation:** Every number differs at its first character, so none prefixes another.
 
-**Example 2**
+#### Example 2
 
-- Input: `numbers = ["001", "007", "15", "00153"]`
-- Output: `false`
-- Explanation: `"001"` is the opening part of `"00153"`.
+- **Input:** `numbers = ["001", "007", "15", "00153"]`
+- **Output:** `false`
+- **Explanation:** `"001"` is the opening part of `"00153"`.

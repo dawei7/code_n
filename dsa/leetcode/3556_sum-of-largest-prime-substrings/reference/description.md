@@ -6,8 +6,13 @@ Return the **sum** of the three largest unique prime numbers that can be formed.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -17,32 +22,27 @@ Each prime number should be counted only **once**, even if it appears in **multi
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "12234"
+- **Input:** s = "12234"
 
-**Output:** 1469
+- **Output:** 1469
 
-**Explanation:**
+- **Explanation:** 
 
 - The unique prime numbers formed from the substrings of `"12234"` are 2, 3, 23, 223, and 1223.
 
 - The 3 largest primes are 1223, 223, and 23. Their sum is 1469.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "111"
+- **Input:** s = "111"
 
-**Output:** 11
+- **Output:** 11
 
-**Explanation:**
+- **Explanation:** 
 
 - The unique prime number formed from the substrings of `"111"` is 11.
 
 - Since there is only one prime number, the sum is 11.
-
-</div>
 
 ### 5. Constraints
 

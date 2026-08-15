@@ -51,10 +51,10 @@ proxy => { proxy.val -= 1; }
 {"val": 11},
 {"val": 9}
 ]
-- **Explanation:**
-const helper = new ImmutableHelper({val: 10});
+- **Explanation:** const helper = new ImmutableHelper({val: 10});
 helper.produce(proxy => { proxy.val += 1; }); // { "val": 11 }
 helper.produce(proxy => { proxy.val -= 1; }); // { "val": 9 }
+
 #### Example 2
 
 - **Input:** ``
@@ -70,6 +70,7 @@ proxy.newVal = proxy.arr[0] + proxy.arr[1];
 {"arr": [5, 2, 3], "newVal": 7 }
 ]
 - **Explanation:** Two edits were made to the original array. The first element in the array was to set 5. Then a new key was added with a value of 7.
+
 #### Example 3
 
 - **Input:** ``

@@ -10,8 +10,16 @@ Since the answer may be large, return it **modulo** $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `m`: Input parameter (`int`).
+- `n`: Input parameter (`int`).
+- `hFences`: Input parameter (`List[int]`).
+- `vFences`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -26,6 +34,7 @@ The field is surrounded by two horizontal fences from the coordinates `(1, 1)` t
 - **Input:** $m = 4, n = 3, hFences = [2,3], vFences = [2]$
 - **Output:** `4`
 - **Explanation:** Removing the horizontal fence at 2 and the vertical fence at 2 will give a square field of area 4.
+
 #### Example 2
 
 ![](images/maxsquareareaexample1.png)

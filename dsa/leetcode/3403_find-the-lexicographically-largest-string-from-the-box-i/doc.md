@@ -33,16 +33,16 @@ Let $n=\lvert\texttt{word}\rvert$. The constraints are $1\le n\le5000$ and $1\le
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word = "dbca", numFriends = 2`
-- Output: `"dbc"`
+- **Input:** `word = "dbca", numFriends = 2`
+- **Output:** `"dbc"`
 
 The three possible splits produce `("d", "bca")`, `("db", "ca")`, and `("dbc", "a")`. The largest piece among them is `"dbc"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `word = "gggg", numFriends = 4`
-- Output: `"g"`
+- **Input:** `word = "gggg", numFriends = 4`
+- **Output:** `"g"`
 
 Every friend must receive one character, so there is only one possible split and every piece equals `"g"`.

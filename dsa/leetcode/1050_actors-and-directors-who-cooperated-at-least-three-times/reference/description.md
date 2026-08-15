@@ -29,7 +29,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 ActorDirector table:
 +-------------+-------------+-------------+
 | actor_id    | director_id | timestamp   |
@@ -42,11 +42,11 @@ ActorDirector table:
 | 2           | 1           | 5           |
 | 2           | 1           | 6           |
 +-------------+-------------+-------------+
-**Output:**
+- **Output:** 
 +-------------+-------------+
 | actor_id    | director_id |
 +-------------+-------------+
 | 1           | 1           |
 +-------------+-------------+
-**Explanation:** The only pair is (1, 1) where they cooperated exactly 3 times.
+- **Explanation:** The only pair is (1, 1) where they cooperated exactly 3 times.
 ```

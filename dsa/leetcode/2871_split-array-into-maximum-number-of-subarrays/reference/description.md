@@ -16,8 +16,13 @@ A **subarray** is a contiguous part of an array.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -31,6 +36,7 @@ A **subarray** is a contiguous part of an array.
 - [1,2]. The score of this subarray is 1 AND 2 = 0.
 The sum of scores is 0 + 0 + 0 = 0, which is the minimum possible score that we can obtain.
 It can be shown that we cannot split the array into more than 3 subarrays with a total score of 0. So we return 3.
+
 #### Example 2
 
 - **Input:** `nums = [5,7,1,3]`

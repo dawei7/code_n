@@ -20,21 +20,24 @@ Return the **minimum **time required for Bob to break all `n` locks.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `strength`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** strength = [3,4,1], k = 1
+- **Input:** strength = [3,4,1], k = 1
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<tbody>
 		<tr>
 			<th style="border: 1px solid black;">Time</th>
@@ -83,17 +86,13 @@ Return the **minimum **time required for Bob to break all `n` locks.
 
 The locks cannot be broken in less than 4 minutes; thus, the answer is 4.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** strength = [2,5,4], k = 2
+- **Input:** strength = [2,5,4], k = 2
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<tbody>
 		<tr>
 			<th style="border: 1px solid black;">Time</th>
@@ -148,8 +147,6 @@ The locks cannot be broken in less than 4 minutes; thus, the answer is 4.
 </table>
 
 The locks cannot be broken in less than 5 minutes; thus, the answer is 5.
-
-</div>
 
 ### 4. Constraints
 

@@ -8,8 +8,14 @@ Return *the **number of symmetric** integers in the range* `[low, high]`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `low`: Input parameter (`int`).
+- `high`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +24,7 @@ Return *the **number of symmetric** integers in the range* `[low, high]`.
 - **Input:** $low = 1, high = 100$
 - **Output:** `9`
 - **Explanation:** There are 9 symmetric integers between 1 and 100: 11, 22, 33, 44, 55, 66, 77, 88, and 99.
+
 #### Example 2
 
 - **Input:** $low = 1200, high = 1230$

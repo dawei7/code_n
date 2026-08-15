@@ -36,14 +36,14 @@ The input satisfies `maxChanges + sum(nums) >= k`. Alice's chosen position is no
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,1,0,0,0,1,1,0,0,1], k = 3, maxChanges = 1`
-- Output: `3`
-- Explanation: Alice can stand at index `1` and take its one for free. She creates a one at index `2` and swaps it left, then swaps the original one at index `0` right. The creation and two swaps use three moves.
+- **Input:** `nums = [1,1,0,0,0,1,1,0,0,1], k = 3, maxChanges = 1`
+- **Output:** `3`
+- **Explanation:** Alice can stand at index `1` and take its one for free. She creates a one at index `2` and swaps it left, then swaps the original one at index `0` right. The creation and two swaps use three moves.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [0,0,0,0], k = 2, maxChanges = 3`
-- Output: `4`
-- Explanation: Alice can repeatedly create a one next to her position and swap it onto her position. Each pickup requires one creation and one swap, so two pickups cost four moves.
+- **Input:** `nums = [0,0,0,0], k = 2, maxChanges = 3`
+- **Output:** `4`
+- **Explanation:** Alice can repeatedly create a one next to her position and swap it onto her position. Each pickup requires one creation and one swap, so two pickups cost four moves.

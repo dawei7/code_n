@@ -8,8 +8,15 @@ Return* the **maximum** number of **consecutive** robots you can run such that t
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `chargeTimes`: Input parameter (`List[int]`).
+- `runningCosts`: Input parameter (`List[int]`).
+- `budget`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -17,10 +24,10 @@ Return* the **maximum** number of **consecutive** robots you can run such that t
 
 - **Input:** $chargeTimes = [3,6,1,3,4], runningCosts = [2,1,3,4,5], budget = 25$
 - **Output:** `3`
-- **Explanation:**
-It is possible to run all individual and consecutive pairs of robots within budget.
+- **Explanation:** It is possible to run all individual and consecutive pairs of robots within budget.
 To obtain answer 3, consider the first 3 robots. The total cost will be max(3,6,1) + 3 * sum(2,1,3) = 6 + 3 * 6 = 24 which is less than 25.
 It can be shown that it is not possible to run more than 3 consecutive robots within budget, so we return 3.
+
 #### Example 2
 
 - **Input:** $chargeTimes = [11,12,19], runningCosts = [10,8,7], budget = 19$

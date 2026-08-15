@@ -31,24 +31,19 @@ Return the minimum number of legal operations needed to transform `s1` into `s2`
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s1 = "11", s2 = "00"
+- **Input:** s1 = "11", s2 = "00"
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** Change indices 0 and 1 from `'1'` to `'0'` in one operation, so `"11"` becomes `"00"`. Thus, the answer is 1.
 
-Change indices 0 and 1 from `'1'` to `'0'` in one operation, so `"11"` becomes `"00"`. Thus, the answer is 1.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s1 = "01", s2 = "10"
+- **Input:** s1 = "01", s2 = "10"
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - Change index 0 from `'0'` to `'1'`, so `"01"` becomes `"11"`.
 
@@ -58,19 +53,13 @@ Change indices 0 and 1 from `'1'` to `'0'` in one operation, so `"11"` becomes `
 
 - Thus, the answer is 3.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s1 = "1", s2 = "0"
+- **Input:** s1 = "1", s2 = "0"
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-The first operation cannot change `'1'` to `'0'`, and the second operation requires two adjacent characters. Therefore, it is impossible.
-
-</div>
+- **Explanation:** The first operation cannot change `'1'` to `'0'`, and the second operation requires two adjacent characters. Therefore, it is impossible.
 
 ### 4. Constraints
 

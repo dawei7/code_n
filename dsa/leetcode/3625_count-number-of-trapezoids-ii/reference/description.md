@@ -8,21 +8,23 @@ A** ****trapezoid** is a convex quadrilateral with **at least one pair** of para
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `points`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** points = [[-3,2],[3,0],[2,3],[3,2],[2,-3]]
+- **Input:** points = [[-3,2],[3,0],[2,3],[3,2],[2,-3]]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-![](images/desmos-graph-4.png)
+- **Explanation:** ![](images/desmos-graph-4.png)
 
 ![](images/desmos-graph-3.png)
 
@@ -32,21 +34,15 @@ There are two distinct ways to pick four points that form a trapezoid:
 
 - The points `[2,3], [3,2], [3,0], [2,-3]` form another trapezoid.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** points = [[0,0],[1,0],[0,1],[2,1]]
+- **Input:** points = [[0,0],[1,0],[0,1],[2,1]]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-![](images/desmos-graph-5.png)
+- **Explanation:** ![](images/desmos-graph-5.png)
 
 There is only one trapezoid which can be formed.
-
-</div>
 
 ### 4. Constraints
 

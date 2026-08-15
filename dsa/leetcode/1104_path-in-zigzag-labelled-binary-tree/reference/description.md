@@ -10,8 +10,13 @@ Given the `label` of a node in this tree, return the labels in the path from the
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `label`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -19,6 +24,7 @@ Given the `label` of a node in this tree, return the labels in the path from the
 
 - **Input:** $label = 14$
 - **Output:** `[1,3,4,14]`
+
 #### Example 2
 
 - **Input:** $label = 26$

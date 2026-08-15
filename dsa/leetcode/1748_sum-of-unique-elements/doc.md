@@ -32,20 +32,20 @@ Let $n = \lvert\texttt{nums}\rvert$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3, 2]`
-- Output: `4`
-- Explanation: Only `1` and `3` appear exactly once, so their sum is `4`.
+- **Input:** `nums = [1, 2, 3, 2]`
+- **Output:** `4`
+- **Explanation:** Only `1` and `3` appear exactly once, so their sum is `4`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 1, 1, 1, 1]`
-- Output: `0`
-- Explanation: No value occurs exactly once.
+- **Input:** `nums = [1, 1, 1, 1, 1]`
+- **Output:** `0`
+- **Explanation:** No value occurs exactly once.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 2, 3, 4, 5]`
-- Output: `15`
-- Explanation: Every value is unique, so all five values contribute.
+- **Input:** `nums = [1, 2, 3, 4, 5]`
+- **Output:** `15`
+- **Explanation:** Every value is unique, so all five values contribute.

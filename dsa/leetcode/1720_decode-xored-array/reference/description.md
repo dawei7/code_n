@@ -10,8 +10,14 @@ Return *the original array* `arr`. It can be proved that the answer exists and i
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `encoded`: Input parameter (`List[int]`).
+- `first`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -20,6 +26,7 @@ Return *the original array* `arr`. It can be proved that the answer exists and i
 - **Input:** $encoded = [1,2,3], first = 1$
 - **Output:** `[1,0,2,1]`
 - **Explanation:** If arr = [1,0,2,1], then first = 1 and encoded = [1 XOR 0, 0 XOR 2, 2 XOR 1] = [1,2,3]
+
 #### Example 2
 
 - **Input:** $encoded = [6,2,7,3], first = 4$

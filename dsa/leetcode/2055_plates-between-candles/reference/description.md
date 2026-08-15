@@ -10,8 +10,14 @@ Return *an integer array* `answer` *where* $\text{answer}[i]$ *is the answer to 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -21,16 +27,17 @@ Return *an integer array* `answer` *where* $\text{answer}[i]$ *is the answer to 
 
 - **Input:** `s = "**|**|***|", queries = [[2,5],[5,9]]`
 - **Output:** `[2,3]`
-- **Explanation:**
+- **Explanation:** 
 - queries[0] has two plates between candles.
 - queries[1] has three plates between candles.
+
 #### Example 2
 
 ![ex-2](images/ex-2.png)
 
 - **Input:** `s = "***|**|*****|**||**|*", queries = [[1,17],[4,5],[14,17],[5,11],[15,16]]`
 - **Output:** `[9,0,0,0,0]`
-- **Explanation:**
+- **Explanation:** 
 - queries[0] has nine plates between candles.
 - The other queries have zero plates between candles.
 

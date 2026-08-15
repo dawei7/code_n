@@ -31,17 +31,17 @@ Return the maximum possible sum of such a constrained subsequence. The answer ma
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [10,2,-10,5,20], k = 2`
-- Output: `37`
+- **Input:** `nums = [10,2,-10,5,20], k = 2`
+- **Output:** `37`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [-1,-2,-3], k = 1`
-- Output: `-1`
+- **Input:** `nums = [-1,-2,-3], k = 1`
+- **Output:** `-1`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [10,-2,-10,-5,20], k = 2`
-- Output: `23`
+- **Input:** `nums = [10,-2,-10,-5,20], k = 2`
+- **Output:** `23`

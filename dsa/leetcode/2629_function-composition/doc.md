@@ -34,20 +34,20 @@ Return a function that applies every function in `functions` exactly once from t
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `functions = [x => x + 1, x => x * x, x => 2 * x]`, `x = 4`
-- Output: `65`
-- Explanation: Right-to-left evaluation produces `8`, then `64`, then `65`.
+- **Input:** `functions = [x => x + 1, x => x * x, x => 2 * x]`, `x = 4`
+- **Output:** `65`
+- **Explanation:** Right-to-left evaluation produces `8`, then `64`, then `65`.
 
-**Example 2**
+#### Example 2
 
-- Input: `functions = [x => 10 * x, x => 10 * x, x => 10 * x]`, `x = 1`
-- Output: `1000`
-- Explanation: Each of the three functions multiplies the current value by ten.
+- **Input:** `functions = [x => 10 * x, x => 10 * x, x => 10 * x]`, `x = 1`
+- **Output:** `1000`
+- **Explanation:** Each of the three functions multiplies the current value by ten.
 
-**Example 3**
+#### Example 3
 
-- Input: `functions = []`, `x = 42`
-- Output: `42`
-- Explanation: The composition of an empty function array is the identity function.
+- **Input:** `functions = []`, `x = 42`
+- **Output:** `42`
+- **Explanation:** The composition of an empty function array is the identity function.

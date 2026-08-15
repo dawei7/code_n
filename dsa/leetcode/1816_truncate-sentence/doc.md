@@ -31,21 +31,21 @@ Given such a sentence `s` and an integer `k`, retain the first `k` words in thei
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "Hello how are you Contestant", k = 4`
-- Output: `"Hello how are you"`
+- **Input:** `s = "Hello how are you Contestant", k = 4`
+- **Output:** `"Hello how are you"`
 
 The fourth word ends before `"Contestant"`, so that later word and its preceding separator are excluded.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "What is the solution to this problem", k = 4`
-- Output: `"What is the solution"`
+- **Input:** `s = "What is the solution to this problem", k = 4`
+- **Output:** `"What is the solution"`
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "chopper is not a tanuki", k = 5`
-- Output: `"chopper is not a tanuki"`
+- **Input:** `s = "chopper is not a tanuki", k = 5`
+- **Output:** `"chopper is not a tanuki"`
 
 Here `k` equals the sentence's word count, so the complete sentence remains.

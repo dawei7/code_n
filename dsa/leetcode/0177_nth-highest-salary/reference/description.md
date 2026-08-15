@@ -34,7 +34,7 @@ Return the $N$th-highest distinct salary under the column `getNthHighestSalary`,
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Employee table:
 +----+--------+
 | id | salary |
@@ -44,17 +44,18 @@ Employee table:
 | 3  | 300    |
 +----+--------+
 n = 2
-**Output:**
+- **Output:** 
 +------------------------+
 | getNthHighestSalary(2) |
 +------------------------+
 | 200                    |
 +------------------------+
 ```
+
 #### Example 2
 
 ```
-**Input:**
+- **Input:** 
 Employee table:
 +----+--------+
 | id | salary |
@@ -62,7 +63,7 @@ Employee table:
 | 1  | 100    |
 +----+--------+
 n = 2
-**Output:**
+- **Output:** 
 +------------------------+
 | getNthHighestSalary(2) |
 +------------------------+

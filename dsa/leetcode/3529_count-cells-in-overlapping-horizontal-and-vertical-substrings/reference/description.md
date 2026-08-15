@@ -14,8 +14,14 @@ Return the count of these cells.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[str]]`).
+- `pattern`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,38 +29,27 @@ Return the count of these cells.
 
 ![](images/gridtwosubstringsdrawio.png)
 
-<div class="example-block">
-**Input:** grid = [["a","a","c","c"],["b","b","b","c"],["a","a","b","a"],["c","a","a","c"],["a","a","b","a"]], pattern = "abaca"
+- **Input:** grid = [["a","a","c","c"],["b","b","b","c"],["a","a","b","a"],["c","a","a","c"],["a","a","b","a"]], pattern = "abaca"
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** The pattern `"abaca"` appears once as a horizontal substring (colored blue) and once as a vertical substring (colored red), intersecting at one cell (colored purple).
 
-The pattern `"abaca"` appears once as a horizontal substring (colored blue) and once as a vertical substring (colored red), intersecting at one cell (colored purple).
-
-</div>
 #### Example 2
 
 ![](images/gridexample2fixeddrawio.png)
 
-<div class="example-block">
-**Input:** grid = [["c","a","a","a"],["a","a","b","a"],["b","b","a","a"],["a","a","b","a"]], pattern = "aba"
+- **Input:** grid = [["c","a","a","a"],["a","a","b","a"],["b","b","a","a"],["a","a","b","a"]], pattern = "aba"
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** The cells colored above are all part of at least one horizontal and one vertical substring matching the pattern `"aba"`.
 
-The cells colored above are all part of at least one horizontal and one vertical substring matching the pattern `"aba"`.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** grid = [["a"]], pattern = "a"
+- **Input:** grid = [["a"]], pattern = "a"
 
-**Output:** 1
-
-</div>
+- **Output:** 1
 
 ### 4. Constraints
 

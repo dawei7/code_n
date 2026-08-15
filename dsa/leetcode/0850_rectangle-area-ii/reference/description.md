@@ -8,8 +8,13 @@ Return *the **total area***. Since the answer may be too large, return it **modu
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `rectangles`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +27,7 @@ Return *the **total area***. Since the answer may be too large, return it **modu
 - **Explanation:** A total area of 6 is covered by all three rectangles, as illustrated in the picture.
 From (1,1) to (2,2), the green and red rectangles overlap.
 From (1,0) to (2,3), all three rectangles overlap.
+
 #### Example 2
 
 - **Input:** $rectangles = [[0,0,1000000000,1000000000]]$

@@ -28,8 +28,12 @@ Note that duplicates may exist in the Skiplist, your code needs to handle this s
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `Skiplist()`: Initializes the data structure.
+- `search(target: int) -> `bool``: Executes operation.
+- `add(num: int)`: Executes operation.
+- `erase(num: int) -> `bool``: Executes operation.
 
 ### 3. Examples
 

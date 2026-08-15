@@ -34,7 +34,7 @@ Return one row for each duplicated address under the column `Email`, in any orde
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Person table:
 +----+---------+
 | id | email   |
@@ -43,11 +43,11 @@ Person table:
 | 2  | c@d.com |
 | 3  | a@b.com |
 +----+---------+
-**Output:**
+- **Output:** 
 +---------+
 | Email   |
 +---------+
 | a@b.com |
 +---------+
-**Explanation:** a@b.com is repeated two times.
+- **Explanation:** a@b.com is repeated two times.
 ```

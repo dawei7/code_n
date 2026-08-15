@@ -31,12 +31,12 @@ Return the maximum attainable frequency of `k` after one subarray addition.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,2,3,4,5,6], k = 1`
-- Output: `2`
+- **Input:** `nums = [1,2,3,4,5,6], k = 1`
+- **Output:** `2`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [10,2,3,4,5,5,4,3,2,2], k = 10`
-- Output: `4`
+- **Input:** `nums = [10,2,3,4,5,5,4,3,2,2], k = 10`
+- **Output:** `4`

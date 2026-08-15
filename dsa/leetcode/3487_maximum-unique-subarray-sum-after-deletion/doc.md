@@ -34,30 +34,30 @@ Return the maximum sum of a non-empty, all-unique subarray after deleting any nu
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3, 4, 5]`
-- Output: `15`
+- **Input:** `nums = [1, 2, 3, 4, 5]`
+- **Output:** `15`
 
 All elements are already distinct and positive, so no deletion improves the complete array.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 1, 0, 1, 1]`
-- Output: `1`
+- **Input:** `nums = [1, 1, 0, 1, 1]`
+- **Output:** `1`
 
 Delete all but one copy of 1; retaining zero would not increase the sum.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 2, -1, -2, 1, 0, -1]`
-- Output: `3`
+- **Input:** `nums = [1, 2, -1, -2, 1, 0, -1]`
+- **Output:** `3`
 
 One copy each of 1 and 2 produces the maximum sum.
 
-**Example 4**
+#### Example 4
 
-- Input: `nums = [-5, -1, -3]`
-- Output: `-1`
+- **Input:** `nums = [-5, -1, -3]`
+- **Output:** `-1`
 
 With no positive or zero value available, the non-empty requirement forces retaining the greatest negative element.

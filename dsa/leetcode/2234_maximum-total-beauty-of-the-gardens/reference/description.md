@@ -14,8 +14,17 @@ Return *the **maximum** total beauty that Alice can obtain after planting at mos
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `flowers`: Input parameter (`List[int]`).
+- `newFlowers`: Input parameter (`int`).
+- `target`: Input parameter (`int`).
+- `full`: Input parameter (`int`).
+- `partial`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -33,6 +42,7 @@ There is 1 garden that is complete.
 The minimum number of flowers in the incomplete gardens is 2.
 Thus, the total beauty is 1 * 12 + 2 * 1 = 12 + 2 = 14.
 No other way of planting flowers can obtain a total beauty higher than 14.
+
 #### Example 2
 
 - **Input:** $flowers = [2,4,5,3], newFlowers = 10, target = 5, full = 2, partial = 6$

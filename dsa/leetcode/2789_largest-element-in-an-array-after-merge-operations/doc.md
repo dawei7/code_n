@@ -32,14 +32,14 @@ Return the maximum element value attainable after any sequence of allowed adjace
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 3, 7, 9, 3]`
-- Output: `21`
-- Explanation: Merge $2$ into $3$, then $7$ into $9$, and finally $5$ into $16$. The array becomes `[21, 3]`, and no larger value can be formed.
+- **Input:** `nums = [2, 3, 7, 9, 3]`
+- **Output:** `21`
+- **Explanation:** Merge $2$ into $3$, then $7$ into $9$, and finally $5$ into $16$. The array becomes `[21, 3]`, and no larger value can be formed.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [5, 3, 3]`
-- Output: `11`
-- Explanation: The two threes first merge into $6$. The leading $5$ can then merge into that value, leaving `[11]`.
+- **Input:** `nums = [5, 3, 3]`
+- **Output:** `11`
+- **Explanation:** The two threes first merge into $6$. The leading $5$ can then merge into that value, leaving `[11]`.

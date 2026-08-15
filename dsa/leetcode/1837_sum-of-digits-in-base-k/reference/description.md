@@ -6,8 +6,14 @@ After converting, each digit should be interpreted as a base `10` number, and th
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,6 +22,7 @@ After converting, each digit should be interpreted as a base `10` number, and th
 - **Input:** $n = 34, k = 6$
 - **Output:** `9`
 - **Explanation:** 34 (base 10) expressed in base 6 is 54. 5 + 4 = 9.
+
 #### Example 2
 
 - **Input:** $n = 10, k = 10$

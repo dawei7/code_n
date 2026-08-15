@@ -32,14 +32,14 @@ Let $D$ be the number of distinct input values and $U$ the number of distinct ma
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 1, 3]`
-- Output: `12`
-- Explanation: twelve ordered choices of `(i, j, k)` produce zero after the two bitwise-AND operations.
+- **Input:** `nums = [2, 1, 3]`
+- **Output:** `12`
+- **Explanation:** twelve ordered choices of `(i, j, k)` produce zero after the two bitwise-AND operations.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [0, 0, 0]`
-- Output: `27`
-- Explanation: all $3^3$ ordered triples qualify.
+- **Input:** `nums = [0, 0, 0]`
+- **Output:** `27`
+- **Explanation:** all $3^3$ ordered triples qualify.

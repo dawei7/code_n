@@ -31,12 +31,12 @@ Return the number of non-empty contiguous subarrays of `nums` whose sum is exact
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,0,1,0,1], goal = 2`
-- Output: `4`
+- **Input:** `nums = [1,0,1,0,1], goal = 2`
+- **Output:** `4`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [0,0,0,0,0], goal = 0`
-- Output: `15`
+- **Input:** `nums = [0,0,0,0,0], goal = 0`
+- **Output:** `15`

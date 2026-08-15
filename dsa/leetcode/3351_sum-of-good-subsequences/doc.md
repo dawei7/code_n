@@ -32,20 +32,20 @@ The source guarantees $1 \le n \le 10^5$ and $0 \le \texttt{nums[i]} \le 10^5$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 1]`
-- Output: `14`
-- Explanation: The good subsequences are the three singletons, `[1, 2]`, `[2, 1]`, and `[1, 2, 1]`. Their element sums total $1+2+1+3+3+4=14$.
+- **Input:** `nums = [1, 2, 1]`
+- **Output:** `14`
+- **Explanation:** The good subsequences are the three singletons, `[1, 2]`, `[2, 1]`, and `[1, 2, 1]`. Their element sums total $1+2+1+3+3+4=14$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3, 4, 5]`
-- Output: `40`
-- Explanation: The good subsequences are `[3]`, `[4]`, `[5]`, `[3, 4]`, `[4, 5]`, and `[3, 4, 5]`; their sums total $40$.
+- **Input:** `nums = [3, 4, 5]`
+- **Output:** `40`
+- **Explanation:** The good subsequences are `[3]`, `[4]`, `[5]`, `[3, 4]`, `[4, 5]`, and `[3, 4, 5]`; their sums total $40$.
 
 **Zero-value example**
 
-- Input: `nums = [0, 1, 0]`
-- Output: `4`
-- Explanation: Zero-valued singletons contribute zero, while `[1]`, both index-distinct `[0, 1]` or `[1, 0]` pairs, and `[0, 1, 0]` produce a total contribution of four.
+- **Input:** `nums = [0, 1, 0]`
+- **Output:** `4`
+- **Explanation:** Zero-valued singletons contribute zero, while `[1]`, both index-distinct `[0, 1]` or `[1, 0]` pairs, and `[0, 1, 0]` produce a total contribution of four.

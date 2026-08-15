@@ -6,8 +6,14 @@ Given two positive integers `left` and `right` represented as strings, return *t
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `left`: Input parameter (`str`).
+- `right`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -17,6 +23,7 @@ Given two positive integers `left` and `right` represented as strings, return *t
 - **Output:** `4`
 **Explanation**: 4, 9, 121, and 484 are superpalindromes.
 Note that 676 is not a superpalindrome: 26 * 26 = 676, but 26 is not a palindrome.
+
 #### Example 2
 
 - **Input:** $left = "1", right = "2"$

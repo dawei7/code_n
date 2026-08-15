@@ -31,26 +31,26 @@ Return the smallest achievable maximum retained edge weight while all nodes can 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 5`, `edges = [[1,0,1],[2,0,2],[3,0,1],[4,3,1],[2,1,1]]`, `threshold = 2`
-- Output: `1`
-- Explanation: Removing edge `2 -> 0` leaves paths to node `0` whose heaviest retained edge has weight `1`.
+- **Input:** `n = 5`, `edges = [[1,0,1],[2,0,2],[3,0,1],[4,3,1],[2,1,1]]`, `threshold = 2`
+- **Output:** `1`
+- **Explanation:** Removing edge `2 -> 0` leaves paths to node `0` whose heaviest retained edge has weight `1`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 5`, `edges = [[0,1,1],[0,2,2],[0,3,1],[0,4,1],[1,2,1],[1,4,1]]`, `threshold = 1`
-- Output: `-1`
-- Explanation: Node `2` cannot reach node `0`, regardless of which edges are removed.
+- **Input:** `n = 5`, `edges = [[0,1,1],[0,2,2],[0,3,1],[0,4,1],[1,2,1],[1,4,1]]`, `threshold = 1`
+- **Output:** `-1`
+- **Explanation:** Node `2` cannot reach node `0`, regardless of which edges are removed.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 5`, `edges = [[1,2,1],[1,3,3],[1,4,5],[2,3,2],[3,4,2],[4,0,1]]`, `threshold = 1`
-- Output: `2`
-- Explanation: Retaining the route `1 -> 2 -> 3 -> 4 -> 0` gives every node a path to `0` and uses no edge heavier than `2`.
+- **Input:** `n = 5`, `edges = [[1,2,1],[1,3,3],[1,4,5],[2,3,2],[3,4,2],[4,0,1]]`, `threshold = 1`
+- **Output:** `2`
+- **Explanation:** Retaining the route `1 -> 2 -> 3 -> 4 -> 0` gives every node a path to `0` and uses no edge heavier than `2`.
 
-**Example 4**
+#### Example 4
 
-- Input: `n = 5`, `edges = [[1,2,1],[1,3,3],[1,4,5],[2,3,2],[4,0,1]]`, `threshold = 1`
-- Output: `-1`
-- Explanation: The available edges do not give node `3` a path to node `0`.
+- **Input:** `n = 5`, `edges = [[1,2,1],[1,3,3],[1,4,5],[2,3,2],[4,0,1]]`, `threshold = 1`
+- **Output:** `-1`
+- **Explanation:** The available edges do not give node `3` a path to node `0`.

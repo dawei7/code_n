@@ -24,6 +24,7 @@ Let $d = \lfloor \log_{16} n \rfloor + 1$ be the number of digits in the upperca
 - **Input:** $num = "257"$
 - **Output:** `"IOI"`
 - **Explanation:** 257 is 101 in hexadecimal.
+
 #### Example 2
 
 - **Input:** $num = "3"$

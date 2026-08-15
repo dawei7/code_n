@@ -14,8 +14,14 @@ The frequency of an element is the number of occurences of that element in the a
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -29,6 +35,7 @@ The frequency of an element is the number of occurences of that element in the a
 - Choose i = 3, and decrease the value of nums[3] by 1. The resulting array is [2,2,6,2].
 The element 2 is the most frequent in the final array so our score is 3.
 It can be shown that we cannot achieve a better score.
+
 #### Example 2
 
 - **Input:** `nums = [1,4,4,2,4], k = 0`

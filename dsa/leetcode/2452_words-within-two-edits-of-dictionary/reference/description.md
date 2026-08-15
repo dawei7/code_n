@@ -8,8 +8,14 @@ Return* a list of all words from *`queries`*, **that match with some word from *
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `queries`: Input parameter (`List[str]`).
+- `dictionary`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `List[str]`.
 
 ### 3. Examples
 
@@ -17,18 +23,18 @@ Return* a list of all words from *`queries`*, **that match with some word from *
 
 - **Input:** $queries = ["word","note","ants","wood"], dictionary = ["wood","joke","moat"]$
 - **Output:** `["word","note","wood"]`
-- **Explanation:**
+- **Explanation:** 
 - Changing the 'r' in "word" to 'o' allows it to equal the dictionary word "wood".
 - Changing the 'n' to 'j' and the 't' to 'k' in "note" changes it to "joke".
 - It would take more than 2 edits for "ants" to equal a dictionary word.
 - "wood" can remain unchanged (0 edits) and match the corresponding dictionary word.
 Thus, we return ["word","note","wood"].
+
 #### Example 2
 
 - **Input:** $queries = ["yes"], dictionary = ["not"]$
 - **Output:** `[]`
-- **Explanation:**
-Applying any two edits to "yes" cannot make it equal to "not". Thus, we return an empty array.
+- **Explanation:** Applying any two edits to "yes" cannot make it equal to "not". Thus, we return an empty array.
 
 ### 4. Constraints
 

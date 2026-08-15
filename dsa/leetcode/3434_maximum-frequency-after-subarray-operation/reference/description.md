@@ -12,35 +12,32 @@ Find the **maximum** frequency of the value `k` after the operation.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4,5,6], k = 1
+- **Input:** nums = [1,2,3,4,5,6], k = 1
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** After adding -5 to `nums[2..5]`, 1 has a frequency of 2 in `[1, 2, -2, -1, 0, 1]`.
 
-After adding -5 to `nums[2..5]`, 1 has a frequency of 2 in `[1, 2, -2, -1, 0, 1]`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [10,2,3,4,5,5,4,3,2,2], k = 10
+- **Input:** nums = [10,2,3,4,5,5,4,3,2,2], k = 10
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-After adding 8 to `nums[1..9]`, 10 has a frequency of 4 in `[10, 10, 11, 12, 13, 13, 12, 11, 10, 10]`.
-
-</div>
+- **Explanation:** After adding 8 to `nums[1..9]`, 10 has a frequency of 4 in `[10, 10, 11, 12, 13, 13, 12, 11, 10, 10]`.
 
 ### 4. Constraints
 

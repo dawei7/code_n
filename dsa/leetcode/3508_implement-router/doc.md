@@ -37,14 +37,14 @@ The constraints are $2 \le \texttt{memoryLimit} \le 10^5$, $1 \le \texttt{source
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `operations = ["Router","addPacket","addPacket","addPacket","addPacket","addPacket","forwardPacket","addPacket","getCount"]`, `arguments = [[3],[1,4,90],[2,5,90],[1,4,90],[3,5,95],[4,5,105],[],[5,2,110],[5,100,110]]`
-- Output: `[null,true,true,false,true,true,[2,5,90],true,1]`
-- Explanation: The repeated `(1,4,90)` packet is rejected. Adding `(4,5,105)` at capacity evicts `(1,4,90)`, and forwarding then removes `(2,5,90)`.
+- **Input:** `operations = ["Router","addPacket","addPacket","addPacket","addPacket","addPacket","forwardPacket","addPacket","getCount"]`, `arguments = [[3],[1,4,90],[2,5,90],[1,4,90],[3,5,95],[4,5,105],[],[5,2,110],[5,100,110]]`
+- **Output:** `[null,true,true,false,true,true,[2,5,90],true,1]`
+- **Explanation:** The repeated `(1,4,90)` packet is rejected. Adding `(4,5,105)` at capacity evicts `(1,4,90)`, and forwarding then removes `(2,5,90)`.
 
-**Example 2**
+#### Example 2
 
-- Input: `operations = ["Router","addPacket","forwardPacket","forwardPacket"]`, `arguments = [[2],[7,4,90],[],[]]`
-- Output: `[null,true,[7,4,90],[]]`
-- Explanation: The first forwarding call removes the only packet; the next call finds the router empty.
+- **Input:** `operations = ["Router","addPacket","forwardPacket","forwardPacket"]`, `arguments = [[2],[7,4,90],[],[]]`
+- **Output:** `[null,true,[7,4,90],[]]`
+- **Explanation:** The first forwarding call removes the only packet; the next call finds the router empty.

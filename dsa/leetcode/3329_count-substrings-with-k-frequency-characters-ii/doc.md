@@ -33,14 +33,14 @@ Return the number of pairs $(i,j)$ with $0\leq i\leq j<n$ for which some charact
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abacb", k = 2`
-- Output: `4`
-- Explanation: `"aba"`, `"abac"`, and `"abacb"` qualify through `a`; `"bacb"` qualifies through `b`.
+- **Input:** `s = "abacb", k = 2`
+- **Output:** `4`
+- **Explanation:** `"aba"`, `"abac"`, and `"abacb"` qualify through `a`; `"bacb"` qualifies through `b`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "abcde", k = 1`
-- Output: `15`
-- Explanation: Every nonempty substring contains a character at least once, so all $5\cdot6/2$ substrings qualify.
+- **Input:** `s = "abcde", k = 1`
+- **Output:** `15`
+- **Explanation:** Every nonempty substring contains a character at least once, so all $5\cdot6/2$ substrings qualify.

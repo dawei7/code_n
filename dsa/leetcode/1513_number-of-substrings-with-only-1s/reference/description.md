@@ -4,8 +4,13 @@ Given a binary string `s`, return *the number of substrings with all characters*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -17,11 +22,13 @@ Given a binary string `s`, return *the number of substrings with all characters*
 "1" -> 5 times.
 "11" -> 3 times.
 "111" -> 1 time.
+
 #### Example 2
 
 - **Input:** `s = "101"`
 - **Output:** `2`
 - **Explanation:** Substring "1" is shown 2 times in s.
+
 #### Example 3
 
 - **Input:** `s = "111111"`

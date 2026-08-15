@@ -12,8 +12,15 @@ Return *the number of beautiful integers in the range* `[low, high]`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `low`: Input parameter (`int`).
+- `high`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -28,6 +35,7 @@ Additionally we can see that:
 - 16 is not beautiful because it is not divisible by k = 3.
 - 15 is not beautiful because it does not contain equal counts even and odd digits.
 It can be shown that there are only 2 beautiful integers in the given range.
+
 #### Example 2
 
 - **Input:** $low = 1, high = 10, k = 1$
@@ -35,6 +43,7 @@ It can be shown that there are only 2 beautiful integers in the given range.
 - **Explanation:** There is 1 beautiful integer in the given range: [10].
 - 10 is beautiful because it contains 1 odd digit and 1 even digit, and is divisible by k = 1.
 It can be shown that there is only 1 beautiful integer in the given range.
+
 #### Example 3
 
 - **Input:** $low = 5, high = 5, k = 2$

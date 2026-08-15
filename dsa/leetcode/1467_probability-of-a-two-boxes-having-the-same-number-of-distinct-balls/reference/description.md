@@ -10,8 +10,13 @@ Return* the probability* that the two boxes have the same number of distinct bal
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `balls`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `float`.
 
 ### 3. Examples
 
@@ -23,6 +28,7 @@ Return* the probability* that the two boxes have the same number of distinct bal
 - A ball of color 1 to box 1 and a ball of color 2 to box 2
 - A ball of color 2 to box 1 and a ball of color 1 to box 2
 In both ways, the number of distinct colors in each box is equal. The probability is 2/2 = 1
+
 #### Example 2
 
 - **Input:** $balls = [2,1,1]$
@@ -33,6 +39,7 @@ This set of balls will be shuffled randomly and we may have one of the 12 distin
 After that, we add the first two balls to the first box and the second two balls to the second box.
 We can see that 8 of these 12 possible random distributions have the same number of distinct colors of balls in each box.
 Probability is 8/12 = 0.66667
+
 #### Example 3
 
 - **Input:** $balls = [1,2,1,2]$

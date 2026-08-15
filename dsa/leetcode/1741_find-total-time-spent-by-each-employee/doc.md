@@ -33,20 +33,20 @@ Let $R$ be the number of visit rows and $G$ the number of distinct `(event_day, 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: employee `1` visits on `2020-11-28` during minutes `4..32` and `55..200`.
-- Output: `("2020-11-28", 1, 173)`
-- Explanation: The two durations are $28$ and $145$ minutes, totaling $173$.
+- **Input:** employee `1` visits on `2020-11-28` during minutes `4..32` and `55..200`.
+- **Output:** `("2020-11-28", 1, 173)`
+- **Explanation:** The two durations are $28$ and $145$ minutes, totaling $173$.
 
-**Example 2**
+#### Example 2
 
-- Input: employee `1` has one visit on `2020-12-03` from minute `1` to minute `42`.
-- Output: `("2020-12-03", 1, 41)`
-- Explanation: A group containing one visit keeps that visit's duration.
+- **Input:** employee `1` has one visit on `2020-12-03` from minute `1` to minute `42`.
+- **Output:** `("2020-12-03", 1, 41)`
+- **Explanation:** A group containing one visit keeps that visit's duration.
 
-**Example 3**
+#### Example 3
 
-- Input: employees `1` and `2` each visit on `2020-11-28`.
-- Output: one independently aggregated row for each employee.
-- Explanation: Sharing a day does not combine different employee identifiers.
+- **Input:** employees `1` and `2` each visit on `2020-11-28`.
+- **Output:** one independently aggregated row for each employee.
+- **Explanation:** Sharing a day does not combine different employee identifiers.

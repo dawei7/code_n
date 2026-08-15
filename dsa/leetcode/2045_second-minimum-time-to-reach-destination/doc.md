@@ -44,23 +44,23 @@ Both timing values are at most $10^3$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 5, edges = [[1, 2], [1, 3], [1, 4], [3, 4], [4, 5]], time = 3, change = 5`
-- Output: `13`
-- Explanation: A two-edge route arrives in `6` minutes. A three-edge route
+- **Input:** `n = 5, edges = [[1, 2], [1, 3], [1, 4], [3, 4], [4, 5]], time = 3, change = 5`
+- **Output:** `13`
+- **Explanation:** A two-edge route arrives in `6` minutes. A three-edge route
   reaches a red signal after `6` minutes, waits until `10`, and arrives at
   `13`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 2, edges = [[1, 2]], time = 3, change = 2`
-- Output: `11`
-- Explanation: The second route is the walk `1 -> 2 -> 1 -> 2`.
+- **Input:** `n = 2, edges = [[1, 2]], time = 3, change = 2`
+- **Output:** `11`
+- **Explanation:** The second route is the walk `1 -> 2 -> 1 -> 2`.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 3, edges = [[1, 2], [2, 3], [1, 3]], time = 2, change = 3`
-- Output: `4`
-- Explanation: The direct edge is minimum; the two-edge route is the second
+- **Input:** `n = 3, edges = [[1, 2], [2, 3], [1, 3]], time = 2, change = 3`
+- **Output:** `4`
+- **Explanation:** The direct edge is minimum; the two-edge route is the second
   distinct arrival.

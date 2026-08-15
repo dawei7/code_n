@@ -22,6 +22,7 @@ A **subarray** is defined as a **non-empty** contiguous sequence of elements in 
 - [1,3] with sum 4
 - [2,1,3] with sum 6
 Ordering the sums from smallest to largest gives 1, 2, 3, <u>3</u>, 4, 6. The 4th smallest is 3.
+
 #### Example 2
 
 - **Input:** `nums = [3,3,5,5], k = 7`

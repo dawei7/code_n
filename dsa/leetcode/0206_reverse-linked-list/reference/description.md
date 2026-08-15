@@ -20,12 +20,14 @@ Return the head whose traversal visits all original nodes in reverse order.
 
 - **Input:** $head = [1,2,3,4,5]$
 - **Output:** `[5,4,3,2,1]`
+
 #### Example 2
 
 ![](images/rev1ex2.jpg)
 
 - **Input:** $head = [1,2]$
 - **Output:** `[2,1]`
+
 #### Example 3
 
 - **Input:** $head = []$

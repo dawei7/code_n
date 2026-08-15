@@ -12,8 +12,15 @@ Return *an integer denoting the count of interesting subarrays. *
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `modulo`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -36,6 +43,7 @@ The subarray nums[0..2] which is [3,2,4].
 - There is only one index, i = 0, in the range [0, 2] that satisfies nums[i] % modulo == k.
 - Hence, cnt = 1 and cnt % modulo == k.
 It can be shown that there are no other interesting subarrays. So, the answer is 3.
+
 #### Example 2
 
 - **Input:** `nums = [3,1,9,6], modulo = 3, k = 0`

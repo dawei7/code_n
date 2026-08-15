@@ -19,6 +19,7 @@ Given an integer `k`, return *the **minimum integer** number of days for **any**
 - **Input:** $points = [[1,1],[6,1]], k = 2$
 - **Output:** `3`
 - **Explanation:** On day 3, points (3,1) and (4,1) will contain both virus variants. Note that these are not the only points that will contain both virus variants.
+
 #### Example 2
 
 ![](images/case-2.png)
@@ -26,6 +27,7 @@ Given an integer `k`, return *the **minimum integer** number of days for **any**
 - **Input:** $points = [[3,3],[1,2],[9,2]], k = 2$
 - **Output:** `2`
 - **Explanation:** On day 2, points (1,3), (2,3), (2,2), and (3,2) will contain the first two viruses. Note that these are not the only points that will contain both virus variants.
+
 #### Example 3
 
 ![](images/case-2.png)

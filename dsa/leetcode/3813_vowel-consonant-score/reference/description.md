@@ -30,44 +30,31 @@ Return $\lfloor v/c\rfloor$ when the consonant count $c$ is positive. Return `0`
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "cooear"
+- **Input:** s = "cooear"
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The string `s = "cooear"` contains $v = 4$ vowels `('o', 'o', 'e', 'a')` and $c = 2$ consonants `('c', 'r')`.
+- **Explanation:** The string `s = "cooear"` contains $v = 4$ vowels `('o', 'o', 'e', 'a')` and $c = 2$ consonants `('c', 'r')`.
 
 The score is $floor(v / c) = floor(4 / 2) = 2$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "axeyizou"
+- **Input:** s = "axeyizou"
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-The string `s = "axeyizou"` contains $v = 5$ vowels `('a', 'e', 'i', 'o', 'u')` and $c = 3$ consonants `('x', 'y', 'z')`.
+- **Explanation:** The string `s = "axeyizou"` contains $v = 5$ vowels `('a', 'e', 'i', 'o', 'u')` and $c = 3$ consonants `('x', 'y', 'z')`.
 
 The score is $floor(v / c) = floor(5 / 3) = 1$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "au 123"
+- **Input:** s = "au 123"
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-The string `s = "au 123"` contains no consonants $(c = 0)$, so the score is 0.
-
-</div>
+- **Explanation:** The string `s = "au 123"` contains no consonants $(c = 0)$, so the score is 0.
 
 ### 4. Constraints
 

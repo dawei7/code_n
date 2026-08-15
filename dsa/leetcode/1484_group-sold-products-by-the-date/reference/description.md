@@ -31,7 +31,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Activities table:
 +------------+------------+
 | sell_date  | product     |
@@ -44,7 +44,7 @@ Activities table:
 | 2020-06-02 | Mask       |
 | 2020-05-30 | T-Shirt    |
 +------------+------------+
-**Output:**
+- **Output:** 
 +------------+----------+------------------------------+
 | sell_date  | num_sold | products                     |
 +------------+----------+------------------------------+
@@ -52,8 +52,7 @@ Activities table:
 | 2020-06-01 | 2        | Bible,Pencil                 |
 | 2020-06-02 | 1        | Mask                         |
 +------------+----------+------------------------------+
-**Explanation:**
-For 2020-05-30, Sold items were (Headphone, Basketball, T-shirt), we sort them lexicographically and separate them by a comma.
+- **Explanation:** For 2020-05-30, Sold items were (Headphone, Basketball, T-shirt), we sort them lexicographically and separate them by a comma.
 For 2020-06-01, Sold items were (Pencil, Bible), we sort them lexicographically and separate them by a comma.
 For 2020-06-02, the Sold item is (Mask), we just return it.
 ```

@@ -65,7 +65,7 @@ Return a table with the single column $\text{candidate}_{id}$. Include candidate
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Candidates table:
 +--------------+---------+--------------+--------------+
 | candidate_id | name    | years_of_exp | interview_id |
@@ -92,13 +92,13 @@ Rounds table:
 | 107          | 2        | 3     |
 | 101          | 1        | 8     |
 +--------------+----------+-------+
-**Output:**
+- **Output:** 
 +--------------+
 | candidate_id |
 +--------------+
 | 9            |
 +--------------+
-**Explanation:**
+- **Explanation:** 
 - Candidate 11: The total score is 16, and they have one year of experience. We do not include them in the result table because of their years of experience.
 - Candidate 9: The total score is 22, and they have six years of experience. We include them in the result table.
 - Candidate 6: The total score is 10, and they have ten years of experience. We do not include them in the result table because the score is not good enough.

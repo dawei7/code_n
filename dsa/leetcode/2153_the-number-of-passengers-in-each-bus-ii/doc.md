@@ -40,12 +40,12 @@ ordered by `bus_id` ascending.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input:
+- **Input:** 
   - `Buses = [(1,2,1),(2,4,10),(3,7,2)]`
   - `Passengers = [(11,1),(12,1),(13,5),(14,6),(15,7)]`
-- Output: `[(1,1),(2,1),(3,2)]`
-- Explanation: The first bus takes one of the two waiting passengers. The
+- **Output:** `[(1,1),(2,1),(3,2)]`
+- **Explanation:** The first bus takes one of the two waiting passengers. The
   second takes the remaining passenger. Three passengers are waiting by time
   `7`, but the final bus can take only two.

@@ -36,20 +36,20 @@ Return the number of valid partitions modulo $10^9 + 7$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "23542185131", k = 3, minLength = 2`
-- Output: `3`
-- Explanation: The three valid splits are `2354 | 218 | 5131`, `2354 | 21851 | 31`, and `2354218 | 51 | 31`.
+- **Input:** `s = "23542185131", k = 3, minLength = 2`
+- **Output:** `3`
+- **Explanation:** The three valid splits are `2354 | 218 | 5131`, `2354 | 21851 | 31`, and `2354218 | 51 | 31`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "23542185131", k = 3, minLength = 3`
-- Output: `1`
-- Explanation: Only `2354 | 218 | 5131` gives every part at least three characters.
+- **Input:** `s = "23542185131", k = 3, minLength = 3`
+- **Output:** `1`
+- **Explanation:** Only `2354 | 218 | 5131` gives every part at least three characters.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "3312958", k = 3, minLength = 1`
-- Output: `1`
-- Explanation: The unique beautiful partition is `331 | 29 | 58`.
+- **Input:** `s = "3312958", k = 3, minLength = 1`
+- **Output:** `1`
+- **Explanation:** The unique beautiful partition is `331 | 29 | 58`.

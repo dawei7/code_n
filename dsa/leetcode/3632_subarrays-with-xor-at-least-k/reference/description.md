@@ -12,28 +12,19 @@ Return the number of **contiguous subarrays** whose bitwise XOR of all elements 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [3,1,2,3], k = 2
+- **Input:** nums = [3,1,2,3], k = 2
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
+- **Explanation:** The valid subarrays with $XOR \ge 2$ are `[3]` at index 0, `[3, 1]` at indices 0 - 1, `[3, 1, 2, 3]` at indices 0 - 3, `[1, 2]` at indices 1 - 2, `[2]` at index 2, and `[3]` at index 3; there are 6 in total.
 
-The valid subarrays with $XOR \ge 2$ are `[3]` at index 0, `[3, 1]` at indices 0 - 1, `[3, 1, 2, 3]` at indices 0 - 3, `[1, 2]` at indices 1 - 2, `[2]` at index 2, and `[3]` at index 3; there are 6 in total.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [0,0,0], k = 0
+- **Input:** nums = [0,0,0], k = 0
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
-
-Every contiguous subarray yields $XOR = 0$, which meets $k = 0$. There are 6 such subarrays in total.
-
-</div>
+- **Explanation:** Every contiguous subarray yields $XOR = 0$, which meets $k = 0$. There are 6 such subarrays in total.
 
 ### 4. Constraints
 

@@ -6,8 +6,10 @@ A node `a` is an ancestor of `b` if either: any child of `a` is equal to `b` or 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `maxAncestorDiff(root: Optional[TreeNode]) -> `int``: Executes operation.
 
 ### 3. Examples
 
@@ -16,15 +18,16 @@ A node `a` is an ancestor of `b` if either: any child of `a` is equal to `b` or 
 ![](images/tmp-tree.jpg)
 
 ```
-**Input:** root = [8,3,10,1,6,null,14,null,null,4,7,13]
-**Output:** 7
-**Explanation: **We have various ancestor-node differences, some of which are given below :
+- **Input:** root = [8,3,10,1,6,null,14,null,null,4,7,13]
+- **Output:** 7
+- **Explanation:** We have various ancestor-node differences, some of which are given below :
 |8 - 3| = 5
 |3 - 7| = 4
 |8 - 1| = 7
 |10 - 13| = 3
 Among all possible differences, the maximum value of 7 is obtained by |8 - 1| = 7.
 ```
+
 #### Example 2
 
 ![](images/tmp-tree-1.jpg)

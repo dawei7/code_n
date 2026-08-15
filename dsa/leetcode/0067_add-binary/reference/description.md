@@ -19,6 +19,7 @@ Return the exact sum of `a` and `b` in binary string form.
 
 - **Input:** $a = "11", b = "1"$
 - **Output:** `"100"`
+
 #### Example 2
 
 - **Input:** $a = "1010", b = "1011"$

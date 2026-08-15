@@ -36,14 +36,14 @@ Given a target length `k`, determine the fewest recoloring operations needed so 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `blocks = "WBBWWBBWBW", k = 7`
-- Output: `3`
-- Explanation: A length-seven window with three white blocks can be made entirely black in three operations, and no window needs fewer.
+- **Input:** `blocks = "WBBWWBBWBW", k = 7`
+- **Output:** `3`
+- **Explanation:** A length-seven window with three white blocks can be made entirely black in three operations, and no window needs fewer.
 
-**Example 2**
+#### Example 2
 
-- Input: `blocks = "WBWBBBW", k = 2`
-- Output: `0`
-- Explanation: The string already contains consecutive black blocks of the required length.
+- **Input:** `blocks = "WBWBBBW", k = 2`
+- **Output:** `0`
+- **Explanation:** The string already contains consecutive black blocks of the required length.

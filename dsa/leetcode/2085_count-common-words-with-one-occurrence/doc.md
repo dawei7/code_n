@@ -39,20 +39,20 @@ Return the number of word values whose frequency is exactly one in each array.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `words1 = ["leetcode", "is", "amazing", "as", "is"]`, `words2 = ["amazing", "leetcode", "is"]`
-- Output: `2`
-- Explanation: `"leetcode"` and `"amazing"` occur once in each array. `"is"` is repeated in `words1`, while `"as"` is absent from `words2`.
+- **Input:** `words1 = ["leetcode", "is", "amazing", "as", "is"]`, `words2 = ["amazing", "leetcode", "is"]`
+- **Output:** `2`
+- **Explanation:** `"leetcode"` and `"amazing"` occur once in each array. `"is"` is repeated in `words1`, while `"as"` is absent from `words2`.
 
-**Example 2**
+#### Example 2
 
-- Input: `words1 = ["b", "bb", "bbb"]`, `words2 = ["a", "aa", "aaa"]`
-- Output: `0`
-- Explanation: No word occurs in both arrays.
+- **Input:** `words1 = ["b", "bb", "bbb"]`, `words2 = ["a", "aa", "aaa"]`
+- **Output:** `0`
+- **Explanation:** No word occurs in both arrays.
 
-**Example 3**
+#### Example 3
 
-- Input: `words1 = ["a", "ab"]`, `words2 = ["a", "a", "a", "ab"]`
-- Output: `1`
-- Explanation: Only `"ab"` occurs exactly once in both arrays.
+- **Input:** `words1 = ["a", "ab"]`, `words2 = ["a", "a", "a", "ab"]`
+- **Output:** `1`
+- **Explanation:** Only `"ab"` occurs exactly once in both arrays.

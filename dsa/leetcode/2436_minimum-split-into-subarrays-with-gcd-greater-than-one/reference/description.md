@@ -32,6 +32,7 @@ that:
 - The GCD of 12, 6 and 3 is 3, which is strictly greater than 1.
 - The GCD of 14 and 8 is 2, which is strictly greater than 1.
 It can be shown that splitting the array into one subarray will make the GCD = 1.
+
 #### Example 2
 
 - **Input:** `nums = [4,12,6,14]`

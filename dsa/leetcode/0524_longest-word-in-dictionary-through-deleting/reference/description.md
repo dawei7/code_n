@@ -4,8 +4,14 @@ Given a string `s` and a string array `dictionary`, return *the longest string i
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `dictionary`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -13,6 +19,7 @@ Given a string `s` and a string array `dictionary`, return *the longest string i
 
 - **Input:** `s = "abpcplea", dictionary = ["ale","apple","monkey","plea"]`
 - **Output:** `"apple"`
+
 #### Example 2
 
 - **Input:** `s = "abpcplea", dictionary = ["a","b","c"]`

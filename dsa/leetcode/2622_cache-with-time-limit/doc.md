@@ -36,20 +36,20 @@ The local adapter receives parallel `actions`, `values`, and `timeDelays` arrays
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `set(1, 42, 100)` at $t=0$, `get(1)` and `count()` at $t=50$, then `get(1)` at $t=150$
-- Output: `[false, 42, 1, -1]`
-- Explanation: Key `1` is active through the first two queries and has expired before the final query.
+- **Input:** `set(1, 42, 100)` at $t=0$, `get(1)` and `count()` at $t=50$, then `get(1)` at $t=150$
+- **Output:** `[false, 42, 1, -1]`
+- **Explanation:** Key `1` is active through the first two queries and has expired before the final query.
 
-**Example 2**
+#### Example 2
 
-- Input: `set(1, 42, 50)` at $t=0$, then `set(1, 50, 100)` at $t=40$
-- Output: `[false, true]`
-- Explanation: The second call replaces an active key and establishes a new deadline at $t=140$.
+- **Input:** `set(1, 42, 50)` at $t=0$, then `set(1, 50, 100)` at $t=40$
+- **Output:** `[false, true]`
+- **Explanation:** The second call replaces an active key and establishes a new deadline at $t=140$.
 
-**Example 3**
+#### Example 3
 
-- Input: `set(7, 9, 0)`, followed immediately in the same turn by `get(7)`
-- Output: `[false, 9]`
-- Explanation: A zero-delay timer expires asynchronously; the entry exists until its timer callback executes.
+- **Input:** `set(7, 9, 0)`, followed immediately in the same turn by `get(7)`
+- **Output:** `[false, 9]`
+- **Explanation:** A zero-delay timer expires asynchronously; the entry exists until its timer callback executes.

@@ -31,20 +31,20 @@ Find the longest contiguous substring of `s` that is nice. When several qualifyi
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "YazaAay"`
-- Output: `"aAa"`
-- Explanation: The returned substring contains both `a` and `A`; no longer substring satisfies the paired-case condition.
+- **Input:** `s = "YazaAay"`
+- **Output:** `"aAa"`
+- **Explanation:** The returned substring contains both `a` and `A`; no longer substring satisfies the paired-case condition.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "Bb"`
-- Output: `"Bb"`
-- Explanation: Both cases of `b` occur, so the complete string is nice.
+- **Input:** `s = "Bb"`
+- **Output:** `"Bb"`
+- **Explanation:** Both cases of `b` occur, so the complete string is nice.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "c"`
-- Output: `""`
-- Explanation: The only appearing letter lacks its uppercase counterpart.
+- **Input:** `s = "c"`
+- **Output:** `""`
+- **Explanation:** The only appearing letter lacks its uppercase counterpart.

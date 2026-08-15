@@ -32,14 +32,14 @@ Return the number of pairs $(i,j)$ with $i<j$ for which the first digit of `nums
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,5,1,4]`
-- Output: `5`
-- Explanation: Every index pair is beautiful except `(0,3)`, whose relevant digits are $2$ and $4$.
+- **Input:** `nums = [2,5,1,4]`
+- **Output:** `5`
+- **Explanation:** Every index pair is beautiful except `(0,3)`, whose relevant digits are $2$ and $4$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [11,21,12]`
-- Output: `2`
-- Explanation: The pairs beginning at index `0` are beautiful; the relevant digits for `(1,2)` are both $2$.
+- **Input:** `nums = [11,21,12]`
+- **Output:** `2`
+- **Explanation:** The pairs beginning at index `0` are beautiful; the relevant digits for `(1,2)` are both $2$.

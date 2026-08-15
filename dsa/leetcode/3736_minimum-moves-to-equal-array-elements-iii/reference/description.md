@@ -22,14 +22,11 @@ Return the minimum total number of single-element increments after which all arr
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,1,3]
+- **Input:** nums = [2,1,3]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-To make all elements equal:
+- **Explanation:** To make all elements equal:
 
 - Increase $\text{nums}[0] = 2$ by 1 to make it 3.
 
@@ -39,25 +36,19 @@ To make all elements equal:
 
 Now, all elements of `nums` are equal to 3. The minimum total moves is `3`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [4,4,5]
+- **Input:** nums = [4,4,5]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-To make all elements equal:
+- **Explanation:** To make all elements equal:
 
 - Increase $\text{nums}[0] = 4$ by 1 to make it 5.
 
 - Increase $\text{nums}[1] = 4$ by 1 to make it 5.
 
 Now, all elements of `nums` are equal to 5. The minimum total moves is `2`.
-
-</div>
 
 ### 4. Constraints
 

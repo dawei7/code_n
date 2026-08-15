@@ -10,8 +10,14 @@ A node `u` is an **ancestor** of another node `v` if `u` can reach `v` via a set
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
@@ -21,22 +27,21 @@ A node `u` is an **ancestor** of another node `v` if `u` can reach `v` via a set
 
 - **Input:** $n = 8, edgeList = [[0,3],[0,4],[1,3],[2,4],[2,7],[3,5],[3,6],[3,7],[4,6]]$
 - **Output:** `[[],[],[],[0,1],[0,2],[0,1,3],[0,1,2,3,4],[0,1,2,3]]`
-- **Explanation:**
-The above diagram represents the input graph.
+- **Explanation:** The above diagram represents the input graph.
 - Nodes 0, 1, and 2 do not have any ancestors.
 - Node 3 has two ancestors 0 and 1.
 - Node 4 has two ancestors 0 and 2.
 - Node 5 has three ancestors 0, 1, and 3.
 - Node 6 has five ancestors 0, 1, 2, 3, and 4.
 - Node 7 has four ancestors 0, 1, 2, and 3.
+
 #### Example 2
 
 ![](images/e2.png)
 
 - **Input:** $n = 5, edgeList = [[0,1],[0,2],[0,3],[0,4],[1,2],[1,3],[1,4],[2,3],[2,4],[3,4]]$
 - **Output:** `[[],[0],[0,1],[0,1,2],[0,1,2,3]]`
-- **Explanation:**
-The above diagram represents the input graph.
+- **Explanation:** The above diagram represents the input graph.
 - Node 0 does not have any ancestor.
 - Node 1 has one ancestor 0.
 - Node 2 has two ancestors 0 and 1.

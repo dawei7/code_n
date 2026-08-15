@@ -10,9 +10,8 @@ Your goal is to **clear all** of the balls from the board. On each turn:
 
 - If there is a group of **three or more consecutive balls** of the **same color**, remove the group of balls from the board.
 
-		<li>If this removal causes more groups of three or more of the same color to form, then continue removing each group until there are none left.
+		- If this removal causes more groups of three or more of the same color to form, then continue removing each group until there are none left.
 
-	</li>
 - If there are no more balls on the board, then you win the game.
 
 - Repeat this process until you either win or do not have any more balls in your hand.
@@ -21,8 +20,14 @@ Given a string `board`, representing the row of balls on the board, and a string
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `board`: Input parameter (`str`).
+- `hand`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -34,6 +39,7 @@ Given a string `board`, representing the row of balls on the board, and a string
 - Insert 'R' so the board becomes WRR<u>R</u>BBW. W<u>RRR</u>BBW -> WBBW.
 - Insert 'B' so the board becomes WBB<u>B</u>W. W<u>BBB</u>W -> WW.
 There are still balls remaining on the board, and you are out of balls to insert.
+
 #### Example 2
 
 - **Input:** $board = "WWRRBBWW", hand = "WRBRW"$
@@ -42,6 +48,7 @@ There are still balls remaining on the board, and you are out of balls to insert
 - Insert 'R' so the board becomes WWRR<u>R</u>BBWW. WW<u>RRR</u>BBWW -> WWBBWW.
 - Insert 'B' so the board becomes WWBB<u>B</u>WW. WW<u>BBB</u>WW -> <u>WWWW</u> -> empty.
 2 balls from your hand were needed to clear the board.
+
 #### Example 3
 
 - **Input:** $board = "G", hand = "GGGGG"$

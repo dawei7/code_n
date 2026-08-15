@@ -36,7 +36,7 @@ Return `product_id`, `product_name`, and `description` for every row containing 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 Input table `products`:
 
@@ -48,7 +48,7 @@ Input table `products`:
 | 4 | Widget D | `No serial number here` |
 | 5 | Widget E | `Check out SN4321-8765 in this description` |
 
-Output:
+- **Output:** 
 
 | product_id | product_name | description |
 |---:|---|---|

@@ -35,20 +35,20 @@ For every node, find its closest ancestor whose value is coprime with the node's
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,3,3,2], edges = [[0,1],[1,2],[1,3]]`
-- Output: `[-1,0,0,1]`
-- Explanation: Node `2` skips its value-`3` parent and uses node `0`; node `3` is coprime with its parent.
+- **Input:** `nums = [2,3,3,2], edges = [[0,1],[1,2],[1,3]]`
+- **Output:** `[-1,0,0,1]`
+- **Explanation:** Node `2` skips its value-`3` parent and uses node `0`; node `3` is coprime with its parent.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [5,6,10,2,3,6,15], edges = [[0,1],[0,2],[1,3],[1,4],[2,5],[2,6]]`
-- Output: `[-1,0,-1,0,0,0,-1]`
-- Explanation: Each entry selects the nearest qualifying node on that node's path to root `0`.
+- **Input:** `nums = [5,6,10,2,3,6,15], edges = [[0,1],[0,2],[1,3],[1,4],[2,5],[2,6]]`
+- **Output:** `[-1,0,-1,0,0,0,-1]`
+- **Explanation:** Each entry selects the nearest qualifying node on that node's path to root `0`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [7], edges = []`
-- Output: `[-1]`
-- Explanation: The root has no proper ancestors.
+- **Input:** `nums = [7], edges = []`
+- **Output:** `[-1]`
+- **Explanation:** The root has no proper ancestors.

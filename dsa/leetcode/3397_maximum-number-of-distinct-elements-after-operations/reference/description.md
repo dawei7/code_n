@@ -10,35 +10,32 @@ Return the **maximum** possible number of **distinct** elements in `nums` after 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,2,3,3,4], k = 2
+- **Input:** nums = [1,2,2,3,3,4], k = 2
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
+- **Explanation:** `nums` changes to `[-1, 0, 1, 2, 3, 4]` after performing operations on the first four elements.
 
-`nums` changes to `[-1, 0, 1, 2, 3, 4]` after performing operations on the first four elements.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [4,4,4,4], k = 1
+- **Input:** nums = [4,4,4,4], k = 1
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-By adding -1 to $\text{nums}[0]$ and 1 to $\text{nums}[1]$, `nums` changes to `[3, 5, 4, 4]`.
-
-</div>
+- **Explanation:** By adding -1 to $\text{nums}[0]$ and 1 to $\text{nums}[1]$, `nums` changes to `[3, 5, 4, 4]`.
 
 ### 4. Constraints
 

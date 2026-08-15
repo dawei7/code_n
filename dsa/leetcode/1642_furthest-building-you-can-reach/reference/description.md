@@ -14,8 +14,15 @@ While moving from building `i` to building `i+1` (**0-indexed**),
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `heights`: Input parameter (`List[int]`).
+- `bricks`: Input parameter (`int`).
+- `ladders`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -31,10 +38,12 @@ While moving from building `i` to building `i+1` (**0-indexed**),
 - Go to building 3 without using ladders nor bricks since 7 >= 6.
 - Go to building 4 using your only ladder. You must use either bricks or ladders because 6 < 9.
 It is impossible to go beyond building 4 because you do not have any more bricks or ladders.
+
 #### Example 2
 
 - **Input:** $heights = [4,12,2,7,3,18,20,3,19], bricks = 10, ladders = 2$
 - **Output:** `7`
+
 #### Example 3
 
 - **Input:** $heights = [14,3,19,3], bricks = 17, ladders = 0$

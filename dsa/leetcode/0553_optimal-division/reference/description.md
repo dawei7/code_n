@@ -10,8 +10,13 @@ Return *the corresponding expression that has the maximum value in string format
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Note
 
@@ -31,6 +36,7 @@ Other cases:
 1000/(100/(10/2)) = 50
 1000/100/10/2 = 0.5
 1000/100/(10/2) = 2
+
 #### Example 2
 
 - **Input:** `nums = [2,3,4]`

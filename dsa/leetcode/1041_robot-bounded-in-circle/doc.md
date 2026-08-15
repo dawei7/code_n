@@ -32,20 +32,20 @@ The robot performs every character of `instructions` in order, then repeats that
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `instructions = "GGLLGG"`
-- Output: `true`
-- Explanation: One execution moves north twice, turns to face south, and returns to $(0,0)$. Repetition follows the same bounded cycle.
+- **Input:** `instructions = "GGLLGG"`
+- **Output:** `true`
+- **Explanation:** One execution moves north twice, turns to face south, and returns to $(0,0)$. Repetition follows the same bounded cycle.
 
-**Example 2**
+#### Example 2
 
-- Input: `instructions = "GG"`
-- Output: `false`
-- Explanation: Each repetition moves two more units north, so the robot travels arbitrarily far from the origin.
+- **Input:** `instructions = "GG"`
+- **Output:** `false`
+- **Explanation:** Each repetition moves two more units north, so the robot travels arbitrarily far from the origin.
 
-**Example 3**
+#### Example 3
 
-- Input: `instructions = "GL"`
-- Output: `true`
-- Explanation: Successive repetitions trace the four sides of a unit square and return to $(0,0)$.
+- **Input:** `instructions = "GL"`
+- **Output:** `true`
+- **Explanation:** Successive repetitions trace the four sides of a unit square and return to $(0,0)$.

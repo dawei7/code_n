@@ -8,39 +8,36 @@ Return the **maximum **possible value of `x`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `num`: Input parameter (`int`).
+- `t`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** num = 4, t = 1
+- **Input:** num = 4, t = 1
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
-
-Apply the following operation once to make the maximum achievable number equal to `num`:
+- **Explanation:** Apply the following operation once to make the maximum achievable number equal to `num`:
 
 - Decrease the maximum achievable number by 1, and increase `num` by 1.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** num = 3, t = 2
+- **Input:** num = 3, t = 2
 
-**Output:** 7
+- **Output:** 7
 
-**Explanation:**
-
-Apply the following operation twice to make the maximum achievable number equal to `num`:
+- **Explanation:** Apply the following operation twice to make the maximum achievable number equal to `num`:
 
 - Decrease the maximum achievable number by 1, and increase `num` by 1.
-
-</div>
 
 ### 4. Constraints
 

@@ -21,8 +21,7 @@ Return the number of ordered sequences of values from `nums` whose sum equals `t
 
 - **Input:** `nums = [1,2,3], target = 4`
 - **Output:** `7`
-- **Explanation:**
-The possible combination ways are:
+- **Explanation:** The possible combination ways are:
 (1, 1, 1, 1)
 (1, 1, 2)
 (1, 2, 1)
@@ -31,6 +30,7 @@ The possible combination ways are:
 (2, 2)
 (3, 1)
 Note that different sequences are counted as different combinations.
+
 #### Example 2
 
 - **Input:** `nums = [9], target = 3`

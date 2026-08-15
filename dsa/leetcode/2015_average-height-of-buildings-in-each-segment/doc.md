@@ -41,22 +41,22 @@ half-closed segments.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `buildings = [[1, 4, 2], [3, 9, 4]]`
-- Output: `[[1, 3, 2], [3, 4, 3], [4, 9, 4]]`
-- Explanation: The overlap has integer average $(2+4)/2=3$.
+- **Input:** `buildings = [[1, 4, 2], [3, 9, 4]]`
+- **Output:** `[[1, 3, 2], [3, 4, 3], [4, 9, 4]]`
+- **Explanation:** The overlap has integer average $(2+4)/2=3$.
 
-**Example 2**
+#### Example 2
 
-- Input: `buildings = [[1, 3, 2], [2, 5, 3], [2, 8, 3]]`
-- Output: `[[1, 3, 2], [3, 8, 3]]`
-- Explanation: Event boundaries at $2$ and $5$ do not appear in the output
+- **Input:** `buildings = [[1, 3, 2], [2, 5, 3], [2, 8, 3]]`
+- **Output:** `[[1, 3, 2], [3, 8, 3]]`
+- **Explanation:** Event boundaries at $2$ and $5$ do not appear in the output
   because the integer average remains unchanged across them.
 
-**Example 3**
+#### Example 3
 
-- Input: `buildings = [[1, 2, 1], [5, 6, 1]]`
-- Output: `[[1, 2, 1], [5, 6, 1]]`
-- Explanation: The uncovered interval `[2, 5)` prevents the equal averages
+- **Input:** `buildings = [[1, 2, 1], [5, 6, 1]]`
+- **Output:** `[[1, 2, 1], [5, 6, 1]]`
+- **Explanation:** The uncovered interval `[2, 5)` prevents the equal averages
   from merging.

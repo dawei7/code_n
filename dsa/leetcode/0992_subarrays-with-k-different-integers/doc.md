@@ -31,20 +31,20 @@ A subarray is a contiguous part of the original array, so equal value sequences 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 1, 2, 3], k = 2`
-- Output: `7`
-- Explanation: Four length-two-or-more ranges ending before the final $3$, two shorter alternating ranges, and `[2, 3]` give seven qualifying subarrays.
+- **Input:** `nums = [1, 2, 1, 2, 3], k = 2`
+- **Output:** `7`
+- **Explanation:** Four length-two-or-more ranges ending before the final $3$, two shorter alternating ranges, and `[2, 3]` give seven qualifying subarrays.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 2, 1, 3, 4], k = 3`
-- Output: `3`
-- Explanation: The qualifying ranges are `[1, 2, 1, 3]`, `[2, 1, 3]`, and `[1, 3, 4]`.
+- **Input:** `nums = [1, 2, 1, 3, 4], k = 3`
+- **Output:** `3`
+- **Explanation:** The qualifying ranges are `[1, 2, 1, 3]`, `[2, 1, 3]`, and `[1, 3, 4]`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 1, 1], k = 1`
-- Output: `6`
-- Explanation: Every nonempty subarray contains exactly one different integer.
+- **Input:** `nums = [1, 1, 1], k = 1`
+- **Output:** `6`
+- **Explanation:** Every nonempty subarray contains exactly one different integer.

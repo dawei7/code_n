@@ -30,20 +30,20 @@ Return the length of the longest subarray that satisfies either of these two str
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 4, 3, 3, 2]`
-- Output: `2`
-- Explanation: The longest strictly increasing run is `[1, 4]`; `[4, 3]` and `[3, 2]` are strictly decreasing runs of the same length. The equal middle pair separates the latter two runs.
+- **Input:** `nums = [1, 4, 3, 3, 2]`
+- **Output:** `2`
+- **Explanation:** The longest strictly increasing run is `[1, 4]`; `[4, 3]` and `[3, 2]` are strictly decreasing runs of the same length. The equal middle pair separates the latter two runs.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3, 3, 3, 3]`
-- Output: `1`
-- Explanation: Equal adjacent values are neither strictly increasing nor strictly decreasing, so only one-element subarrays qualify.
+- **Input:** `nums = [3, 3, 3, 3]`
+- **Output:** `1`
+- **Explanation:** Equal adjacent values are neither strictly increasing nor strictly decreasing, so only one-element subarrays qualify.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [3, 2, 1]`
-- Output: `3`
-- Explanation: The entire array is strictly decreasing.
+- **Input:** `nums = [3, 2, 1]`
+- **Output:** `3`
+- **Explanation:** The entire array is strictly decreasing.

@@ -18,11 +18,11 @@ Return* the **maximum** cost of your trip. If there is no trip that meets the re
 
 - **Input:** $n = 5, highways = [[0,1,4],[2,1,3],[1,4,11],[3,2,3],[3,4,2]], k = 3$
 - **Output:** `17`
-- **Explanation:**
-One possible trip is to go from 0 -> 1 -> 4 -> 3. The cost of this trip is 4 + 11 + 2 = 17.
+- **Explanation:** One possible trip is to go from 0 -> 1 -> 4 -> 3. The cost of this trip is 4 + 11 + 2 = 17.
 Another possible trip is to go from 4 -> 1 -> 2 -> 3. The cost of this trip is 11 + 3 + 3 = 17.
 It can be proven that 17 is the maximum possible cost of any valid trip.
 Note that the trip 4 -> 1 -> 0 -> 1 is not allowed because you visit the city 1 twice.
+
 #### Example 2
 
 ![](images/image-20220418173342-2.png)

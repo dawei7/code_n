@@ -32,14 +32,14 @@ Return the number of simultaneous direction assignments causing at least one col
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 3`
-- Output: `6`
-- Explanation: There are $2^3 = 8$ direction assignments, and only the two uniform directions avoid collisions.
+- **Input:** `n = 3`
+- **Output:** `6`
+- **Explanation:** There are $2^3 = 8$ direction assignments, and only the two uniform directions avoid collisions.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 4`
-- Output: `14`
-- Explanation: Of the 16 assignments, all except the all-clockwise and all-counterclockwise choices collide.
+- **Input:** `n = 4`
+- **Output:** `14`
+- **Explanation:** Of the 16 assignments, all except the all-clockwise and all-counterclockwise choices collide.

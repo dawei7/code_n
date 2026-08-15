@@ -10,8 +10,14 @@ Given two integers `left` and `right`, return *a list of all the **self-dividing
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `left`: Input parameter (`int`).
+- `right`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -19,6 +25,7 @@ Given two integers `left` and `right`, return *a list of all the **self-dividing
 
 - **Input:** $left = 1, right = 22$
 - **Output:** `[1,2,3,4,5,6,7,8,9,11,12,15,22]`
+
 #### Example 2
 
 - **Input:** $left = 47, right = 85$

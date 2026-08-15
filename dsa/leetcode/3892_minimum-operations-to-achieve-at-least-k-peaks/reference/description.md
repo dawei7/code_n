@@ -31,12 +31,11 @@ Return the fewest unit increases that can produce at least `k` peaks, or $-1$ if
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,1,2], k = 1
+- **Input:** nums = [2,1,2], k = 1
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - To achieve at least $k = 1$ peak, we can increase $\text{nums}[2] = 2$ to 3.
 
@@ -44,15 +43,13 @@ Return the fewest unit increases that can produce at least `k` peaks, or $-1$ if
 
 - Therefore, the minimum number of operations required is 1.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [4,5,3,6], k = 2
+- **Input:** nums = [4,5,3,6], k = 2
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** 
 
 - The array already contains at least $k = 2$ peaks with zero operations.
 
@@ -62,19 +59,13 @@ Return the fewest unit increases that can produce at least `k` peaks, or $-1$ if
 
 - Therefore, the minimum number of operations required is 0.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [3,7,3], k = 2
+- **Input:** nums = [3,7,3], k = 2
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-It is impossible to have at least $k = 2$ peaks in this array. Therefore, the answer is -1.
-
-</div>
+- **Explanation:** It is impossible to have at least $k = 2$ peaks in this array. Therefore, the answer is -1.
 
 ### 4. Constraints
 

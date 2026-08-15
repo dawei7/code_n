@@ -30,20 +30,20 @@ Return the parsed JavaScript value: `null`, a boolean, a number, a string, an ar
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `str = '{"a":2,"b":[1,2,3]}'`
-- Output: `{"a":2,"b":[1,2,3]}`
-- Explanation: The outer value is an object whose second property contains an array.
+- **Input:** `str = '{"a":2,"b":[1,2,3]}'`
+- **Output:** `{"a":2,"b":[1,2,3]}`
+- **Explanation:** The outer value is an object whose second property contains an array.
 
-**Example 2**
+#### Example 2
 
-- Input: `str = 'true'`
-- Output: `true`
-- Explanation: A JSON document may consist of a primitive value.
+- **Input:** `str = 'true'`
+- **Output:** `true`
+- **Explanation:** A JSON document may consist of a primitive value.
 
-**Example 3**
+#### Example 3
 
-- Input: `str = '[1,5,"false",{"a":2}]'`
-- Output: `[1,5,"false",{"a":2}]`
-- Explanation: The quoted `"false"` is a string, while the remaining entries retain their own JSON types.
+- **Input:** `str = '[1,5,"false",{"a":2}]'`
+- **Output:** `[1,5,"false",{"a":2}]`
+- **Explanation:** The quoted `"false"` is a string, while the remaining entries retain their own JSON types.

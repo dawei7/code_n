@@ -4,31 +4,32 @@ You are given a string `s` and a character `c`. Return *the total number of subs
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `c`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
-**Input: **s = "abada", c = "a"
+- **Input:** s = "abada", c = "a"
 
-**Output: **6
+- **Output:** 6
 
-**Explanation:** Substrings starting and ending with `"a"` are: `"**<u>a</u>**bada"`, `"<u>**aba**</u>da"`, `"<u>**abada**</u>"`, `"ab<u>**a**</u>da"`, `"ab<u>**ada**</u>"`, `"abad<u>**a**</u>"`.
+- **Explanation:** Substrings starting and ending with `"a"` are: `"**<u>a</u>**bada"`, `"<u>**aba**</u>da"`, `"<u>**abada**</u>"`, `"ab<u>**a**</u>da"`, `"ab<u>**ada**</u>"`, `"abad<u>**a**</u>"`.
 
-</div>
 #### Example 2
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
-**Input: **s = "zzz", c = "z"
+- **Input:** s = "zzz", c = "z"
 
-**Output: **6
+- **Output:** 6
 
-**Explanation:** There are a total of `6` substrings in `s` and all start and end with `"z"`.
-
-</div>
+- **Explanation:** There are a total of `6` substrings in `s` and all start and end with `"z"`.
 
 ### 4. Constraints
 

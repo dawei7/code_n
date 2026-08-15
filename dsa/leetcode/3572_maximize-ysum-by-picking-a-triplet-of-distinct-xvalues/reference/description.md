@@ -14,37 +14,38 @@ If no such triplet exists, return -1.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `x`: Input parameter (`List[int]`).
+- `y`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** x = [1,2,1,3,2], y = [5,3,4,6,2]
+- **Input:** x = [1,2,1,3,2], y = [5,3,4,6,2]
 
-**Output:** 14
+- **Output:** 14
 
-**Explanation:**
+- **Explanation:** 
 
 - Choose $i = 0$ ($x[i] = 1$, $y[i] = 5$), $j = 1$ ($x[j] = 2$, $y[j] = 3$), $k = 3$ ($x[k] = 3$, $y[k] = 6$).
 
 - All three values chosen from `x` are distinct. $5 + 3 + 6 = 14$ is the maximum we can obtain. Hence, the output is 14.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** x = [1,2,1,2], y = [4,5,6,7]
+- **Input:** x = [1,2,1,2], y = [4,5,6,7]
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
+- **Explanation:** 
 
 - There are only two distinct values in `x`. Hence, the output is -1.
-
-</div>
 
 ### 4. Constraints
 

@@ -32,17 +32,17 @@ Return the least integer $k \ge n$ whose decimal digits contain exactly $d/2$ ev
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 2`
-- Output: `10`
+- **Input:** `n = 2`
+- **Output:** `10`
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 403`
-- Output: `1001`
+- **Input:** `n = 403`
+- **Output:** `1001`
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 99`
-- Output: `1001`
+- **Input:** `n = 99`
+- **Output:** `1001`

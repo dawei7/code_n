@@ -33,23 +33,23 @@ The `Ads` table records individual advertisements, including the customer who sa
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: sessions `(1,1,1,5)`, `(2,1,15,23)`, `(3,2,10,12)`, `(4,2,17,28)`, `(5,2,2,8)`; ads `(1,1,5)`, `(2,2,15)`, `(3,2,20)`
-- Output: `[[2],[3],[5]]`
+- **Input:** sessions `(1,1,1,5)`, `(2,1,15,23)`, `(3,2,10,12)`, `(4,2,17,28)`, `(5,2,2,8)`; ads `(1,1,5)`, `(2,2,15)`, `(3,2,20)`
+- **Output:** `[[2],[3],[5]]`
 
 The ad at time `5` belongs to session `1`, and the ad at time `20` belongs to session `4`. The remaining sessions are ad-free.
 
-**Example 2**
+#### Example 2
 
-- Input: `Playback = [[7,3,10,20]]`, `Ads = [[1,3,10]]`
-- Output: `[]`
+- **Input:** `Playback = [[7,3,10,20]]`, `Ads = [[1,3,10]]`
+- **Output:** `[]`
 
 An ad at the inclusive start boundary makes the session ineligible.
 
-**Example 3**
+#### Example 3
 
-- Input: `Playback = [[8,4,10,20]]`, `Ads = [[1,9,15]]`
-- Output: `[[8]]`
+- **Input:** `Playback = [[8,4,10,20]]`, `Ads = [[1,9,15]]`
+- **Output:** `[[8]]`
 
 An ad at the right time but for a different customer does not affect the session.

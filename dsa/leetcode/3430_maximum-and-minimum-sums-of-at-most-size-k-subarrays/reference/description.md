@@ -4,21 +4,24 @@ You are given an integer array `nums` and a **positive** integer `k`. Return the
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3], k = 2
+- **Input:** nums = [1,2,3], k = 2
 
-**Output:** 20
+- **Output:** 20
 
-**Explanation:**
-
-The subarrays of `nums` with at most 2 elements are:
+- **Explanation:** The subarrays of `nums` with at most 2 elements are:
 
 <table style="border: 1px solid black;">
 	<tbody>
@@ -69,17 +72,13 @@ The subarrays of `nums` with at most 2 elements are:
 
 The output would be 20.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,-3,1], k = 2
+- **Input:** nums = [1,-3,1], k = 2
 
-**Output:** -6
+- **Output:** -6
 
-**Explanation:**
-
-The subarrays of `nums` with at most 2 elements are:
+- **Explanation:** The subarrays of `nums` with at most 2 elements are:
 
 <table style="border: 1px solid black;">
 	<tbody>
@@ -129,8 +128,6 @@ The subarrays of `nums` with at most 2 elements are:
 </table>
 
 The output would be -6.
-
-</div>
 
 ### 4. Constraints
 

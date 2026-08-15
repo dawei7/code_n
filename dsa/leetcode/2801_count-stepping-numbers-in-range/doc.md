@@ -37,14 +37,14 @@ Return the number of stepping integers in the inclusive interval $[\texttt{low},
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `low = "1"`, `high = "11"`
-- Output: `10`
-- Explanation: The qualifying values are the nine one-digit positive integers and `10`.
+- **Input:** `low = "1"`, `high = "11"`
+- **Output:** `10`
+- **Explanation:** The qualifying values are the nine one-digit positive integers and `10`.
 
-**Example 2**
+#### Example 2
 
-- Input: `low = "90"`, `high = "101"`
-- Output: `2`
-- Explanation: Only `98` and `101` are stepping numbers in this interval.
+- **Input:** `low = "90"`, `high = "101"`
+- **Output:** `2`
+- **Explanation:** Only `98` and `101` are stepping numbers in this interval.

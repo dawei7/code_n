@@ -10,8 +10,14 @@ Return *the largest possible overlap*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `img1`: Input parameter (`List[List[int]]`).
+- `img2`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,10 +31,12 @@ Return *the largest possible overlap*.
 ![](images/overlap_step1.jpg)
 The number of positions that have a 1 in both images is 3 (shown in red).
 ![](images/overlap_step2.jpg)
+
 #### Example 2
 
 - **Input:** $img1 = [[1]], img2 = [[1]]$
 - **Output:** `1`
+
 #### Example 3
 
 - **Input:** $img1 = [[0]], img2 = [[0]]$

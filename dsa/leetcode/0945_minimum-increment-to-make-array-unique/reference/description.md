@@ -8,8 +8,13 @@ The test cases are generated so that the answer fits in a 32-bit integer.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +23,7 @@ The test cases are generated so that the answer fits in a 32-bit integer.
 - **Input:** `nums = [1,2,2]`
 - **Output:** `1`
 - **Explanation:** After 1 move, the array could be [1, 2, 3].
+
 #### Example 2
 
 - **Input:** `nums = [3,2,1,2,1,7]`

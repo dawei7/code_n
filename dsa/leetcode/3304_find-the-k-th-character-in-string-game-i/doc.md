@@ -30,14 +30,14 @@ Repeat until the word contains at least `k` characters, then return its $k$-th c
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `k = 5`
-- Output: `"b"`
-- Explanation: After three operations the word begins `"abbcbccd"`, whose fifth character is `b`.
+- **Input:** `k = 5`
+- **Output:** `"b"`
+- **Explanation:** After three operations the word begins `"abbcbccd"`, whose fifth character is `b`.
 
-**Example 2**
+#### Example 2
 
-- Input: `k = 10`
-- Output: `"c"`
-- Explanation: The character at the tenth one-based position has been shifted twice from `a`.
+- **Input:** `k = 10`
+- **Output:** `"c"`
+- **Explanation:** The character at the tenth one-based position has been shifted twice from `a`.

@@ -6,47 +6,39 @@ Return the **maximum possible sum** of heights of a mountain-shaped tower arrang
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `heights`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** heights = [5,3,4,1,1]
+- **Input:** heights = [5,3,4,1,1]
 
-**Output:** 13
+- **Output:** 13
 
-**Explanation:**
+- **Explanation:** We remove some bricks to make $heights = [5,3,3,1,1]$, the peak is at index 0.
 
-We remove some bricks to make $heights = [5,3,3,1,1]$, the peak is at index 0.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** heights = [6,5,3,9,2,7]
+- **Input:** heights = [6,5,3,9,2,7]
 
-**Output:** 22
+- **Output:** 22
 
-**Explanation:**
+- **Explanation:** We remove some bricks to make $heights = [3,3,3,9,2,2]$, the peak is at index 3.
 
-We remove some bricks to make $heights = [3,3,3,9,2,2]$, the peak is at index 3.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** heights = [3,2,5,5,2,3]
+- **Input:** heights = [3,2,5,5,2,3]
 
-**Output:** 18
+- **Output:** 18
 
-**Explanation:**
-
-We remove some bricks to make $heights = [2,2,5,5,2,2]$, the peak is at index 2 or 3.
-
-</div>
+- **Explanation:** We remove some bricks to make $heights = [2,2,5,5,2,2]$, the peak is at index 2 or 3.
 
 ### 4. Constraints
 

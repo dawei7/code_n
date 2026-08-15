@@ -35,14 +35,14 @@ Return the minimum number of required two-smallest combination operations.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 11, 10, 1, 3], k = 10`
-- Output: `2`
-- Explanation: Combine `1` and `2` into `4`, then combine `3` and `4` into `10`. The remaining values are `[10, 11, 10]`.
+- **Input:** `nums = [2, 11, 10, 1, 3], k = 10`
+- **Output:** `2`
+- **Explanation:** Combine `1` and `2` into `4`, then combine `3` and `4` into `10`. The remaining values are `[10, 11, 10]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 1, 2, 4, 9], k = 20`
-- Output: `4`
-- Explanation: The successive arrays can contain `[2, 4, 9, 3]`, then `[7, 4, 9]`, then `[15, 9]`, and finally `[33]`.
+- **Input:** `nums = [1, 1, 2, 4, 9], k = 20`
+- **Output:** `4`
+- **Explanation:** The successive arrays can contain `[2, 4, 9, 3]`, then `[7, 4, 9]`, then `[15, 9]`, and finally `[33]`.

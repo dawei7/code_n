@@ -34,23 +34,23 @@ The constraints are $2 \le n \le 10^5$, $-10^4 \le \texttt{nums1[i]},\texttt{num
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [3,2,5], nums2 = [2,2,1], diff = 1`
-- Output: `3`
+- **Input:** `nums1 = [3,2,5], nums2 = [2,2,1], diff = 1`
+- **Output:** `3`
 
 All three possible index pairs satisfy the inequality.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [3,-1], nums2 = [-2,2], diff = -1`
-- Output: `0`
+- **Input:** `nums1 = [3,-1], nums2 = [-2,2], diff = -1`
+- **Output:** `0`
 
 The only possible pair fails after the negative tolerance is applied.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums1 = [1,2,3], nums2 = [0,0,0], diff = 0`
-- Output: `3`
+- **Input:** `nums1 = [1,2,3], nums2 = [0,0,0], diff = 0`
+- **Output:** `3`
 
 The transformed differences are increasing, so every earlier value is at most every later value.

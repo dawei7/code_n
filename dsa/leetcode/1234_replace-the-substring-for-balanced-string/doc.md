@@ -30,23 +30,23 @@ Choose one contiguous substring and replace it with any other string having the 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "QWER"`
-- Output: `0`
+- **Input:** `s = "QWER"`
+- **Output:** `0`
 
 Every character already appears once.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "QQWE"`
-- Output: `1`
+- **Input:** `s = "QQWE"`
+- **Output:** `1`
 
 Replacing one `"Q"` with `"R"` balances the string.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "QQQW"`
-- Output: `2`
+- **Input:** `s = "QQQW"`
+- **Output:** `2`
 
 The first `"QQ"` can be replaced by `"ER"`.

@@ -14,35 +14,33 @@ Return an integer array `answer`, where $\text{answer}[i]$ is the number of subs
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "0001111", k = 2, queries = [[0,6]]
+- **Input:** s = "0001111", k = 2, queries = [[0,6]]
 
-**Output:** [26]
+- **Output:** [26]
 
-**Explanation:**
+- **Explanation:** For the query `[0, 6]`, all substrings of $s[0..6] = "0001111"$ satisfy the k-constraint except for the substrings $s[0..5] = "000111"$ and $s[0..6] = "0001111"$.
 
-For the query `[0, 6]`, all substrings of $s[0..6] = "0001111"$ satisfy the k-constraint except for the substrings $s[0..5] = "000111"$ and $s[0..6] = "0001111"$.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "010101", k = 1, queries = [[0,5],[1,4],[2,3]]
+- **Input:** s = "010101", k = 1, queries = [[0,5],[1,4],[2,3]]
 
-**Output:** [15,9,3]
+- **Output:** [15,9,3]
 
-**Explanation:**
-
-The substrings of `s` with a length greater than 3 do not satisfy the k-constraint.
-
-</div>
+- **Explanation:** The substrings of `s` with a length greater than 3 do not satisfy the k-constraint.
 
 ### 4. Constraints
 

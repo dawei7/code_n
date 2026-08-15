@@ -6,8 +6,14 @@ Given strings `sequence` and `word`, return *the **maximum `k`-repeating value**
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `sequence`: Input parameter (`str`).
+- `word`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,11 +22,13 @@ Given strings `sequence` and `word`, return *the **maximum `k`-repeating value**
 - **Input:** $sequence = "ababc", word = "ab"$
 - **Output:** `2`
 - **Explanation:** "abab" is a substring in "<u>abab</u>c".
+
 #### Example 2
 
 - **Input:** $sequence = "ababc", word = "ba"$
 - **Output:** `1`
 - **Explanation:** "ba" is a substring in "a<u>ba</u>bc". "baba" is not a substring in "ababc".
+
 #### Example 3
 
 - **Input:** $sequence = "ababc", word = "ac"$

@@ -22,40 +22,27 @@ Return the string representation of the largest attainable even integer. Return 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "1112"
+- **Input:** s = "1112"
 
-**Output:** "1112"
+- **Output:** "1112"
 
-**Explanation:**
+- **Explanation:** The string already represents the largest possible even number, so no deletions are needed.
 
-The string already represents the largest possible even number, so no deletions are needed.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "221"
+- **Input:** s = "221"
 
-**Output:** "22"
+- **Output:** "22"
 
-**Explanation:**
+- **Explanation:** Deleting `'1'` results in the largest possible even number which is equal to 22.
 
-Deleting `'1'` results in the largest possible even number which is equal to 22.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "1"
+- **Input:** s = "1"
 
-**Output:** ""
+- **Output:** ""
 
-**Explanation:**
-
-There is no way to get an even number.
-
-</div>
+- **Explanation:** There is no way to get an even number.
 
 ### 4. Constraints
 

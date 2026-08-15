@@ -32,20 +32,20 @@ Return the sum of pairwise distances after `d` seconds, reduced modulo $10^9+7$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [-2,0,2], s = "RLL", d = 3`
-- Output: `8`
-- Explanation: After all movements and collisions, the occupied coordinates are `[-3,-1,1]`; their three pair distances sum to `2 + 4 + 2 = 8`.
+- **Input:** `nums = [-2,0,2], s = "RLL", d = 3`
+- **Output:** `8`
+- **Explanation:** After all movements and collisions, the occupied coordinates are `[-3,-1,1]`; their three pair distances sum to `2 + 4 + 2 = 8`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,0], s = "RL", d = 2`
-- Output: `5`
-- Explanation: The two final coordinates are `3` and `-2`, whose distance is five.
+- **Input:** `nums = [1,0], s = "RL", d = 2`
+- **Output:** `5`
+- **Explanation:** The two final coordinates are `3` and `-2`, whose distance is five.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [-5,0,7], s = "LRL", d = 0`
-- Output: `24`
-- Explanation: No robot moves, so the distances are `5`, `12`, and `7`.
+- **Input:** `nums = [-5,0,7], s = "LRL", d = 0`
+- **Output:** `24`
+- **Explanation:** No robot moves, so the distances are `5`, `12`, and `7`.

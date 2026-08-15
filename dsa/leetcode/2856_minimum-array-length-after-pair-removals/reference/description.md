@@ -12,59 +12,47 @@ Return the **minimum** length of `nums` after applying the operation zero or mor
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4]
+- **Input:** nums = [1,2,3,4]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** ![](images/tcase1.gif)
 
-![](images/tcase1.gif)
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,1,2,2,3,3]
+- **Input:** nums = [1,1,2,2,3,3]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** ![](images/tcase2.gif)
 
-![](images/tcase2.gif)
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1000000000,1000000000]
+- **Input:** nums = [1000000000,1000000000]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** Since both numbers are equal, they cannot be removed.
 
-Since both numbers are equal, they cannot be removed.
-
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** nums = [2,3,4,4,4]
+- **Input:** nums = [2,3,4,4,4]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-![](images/tcase3.gif)
-
-</div>
+- **Explanation:** ![](images/tcase3.gif)
 
 ### 4. Constraints
 

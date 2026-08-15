@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/longest-word-with-all-prefixes/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given an array `words` containing lowercase English words. A word is
 eligible when every nonempty prefix obtained by taking its first $1, 2, \ldots,
 \lvert w \rvert$ characters also occurs as an element of `words`. Thus the word
@@ -23,6 +25,7 @@ maximum length, choose the lexicographically smallest one. If no input word has
 all of its required prefixes, return the empty string.
 
 ### Function Contract
+
 **Inputs**
 
 - `words`: an array of between $1$ and $10^5$ nonempty strings. Every character
@@ -41,24 +44,25 @@ A string: the longest word whose every nonempty prefix belongs to `words`,
 breaking length ties lexicographically, or `""` if no such word exists.
 
 ### Examples
-**Example 1**
 
-- Input: `words = ["k","ki","kir","kira","kiran"]`
-- Output: `"kiran"`
+#### Example 1
+
+- **Input:** `words = ["k","ki","kir","kira","kiran"]`
+- **Output:** `"kiran"`
 
 Every prefix along the chain from `"k"` through `"kiran"` is present.
 
-**Example 2**
+#### Example 2
 
-- Input: `words = ["a","banana","app","appl","ap","apply","apple"]`
-- Output: `"apple"`
+- **Input:** `words = ["a","banana","app","appl","ap","apply","apple"]`
+- **Output:** `"apple"`
 
 Both five-letter words have complete prefix chains, and `"apple"` is
 lexicographically smaller than `"apply"`.
 
-**Example 3**
+#### Example 3
 
-- Input: `words = ["abc","bc","ab","qwe"]`
-- Output: `""`
+- **Input:** `words = ["abc","bc","ab","qwe"]`
+- **Output:** `""`
 
 No one-letter word is present, so no word can begin a complete prefix chain.

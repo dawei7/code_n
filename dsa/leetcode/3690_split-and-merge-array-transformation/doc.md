@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/split-and-merge-array-transformation/) |
 
 ## Problem Description
+
 ### Goal
 
 Transform `nums1` into `nums2` using as few split-and-merge operations as possible. In one operation, choose a nonempty contiguous subarray, remove it without changing the order of its elements, and insert that whole block at any position in the remaining array. The insertion may occur at the beginning, at the end, or between two retained elements.
@@ -30,23 +31,23 @@ Return the minimum number of legal split-and-merge operations needed to make `nu
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [3, 1, 2], nums2 = [1, 2, 3]`
-- Output: `1`
+- **Input:** `nums1 = [3, 1, 2], nums2 = [1, 2, 3]`
+- **Output:** `1`
 
 Removing the initial `[3]` and inserting it at the end reaches the target.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [1, 1, 2, 3, 4, 5], nums2 = [5, 4, 3, 2, 1, 1]`
-- Output: `3`
+- **Input:** `nums1 = [1, 1, 2, 3, 4, 5], nums2 = [5, 4, 3, 2, 1, 1]`
+- **Output:** `3`
 
 No sequence of fewer than three block moves reaches the reversed arrangement.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums1 = [1, 2, 3], nums2 = [1, 2, 3]`
-- Output: `0`
+- **Input:** `nums1 = [1, 2, 3], nums2 = [1, 2, 3]`
+- **Output:** `0`
 
 No operation is required when the arrays already match.

@@ -36,20 +36,20 @@ Return the number of edges in a shortest start-to-target path, or `-1` when the 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 - Input fixture: `master = {"mode":"unweighted","grid":[[-1,2]]}`
-- Output: `1`
-- Explanation: The target is one legal move to the right.
+- **Output:** `1`
+- **Explanation:** The target is one legal move to the right.
 
-**Example 2**
+#### Example 2
 
 - Input fixture: `master = {"mode":"unweighted","grid":[[0,0,-1],[1,1,1],[2,0,0]]}`
-- Output: `4`
-- Explanation: The robot moves left across the middle row and then down to the target.
+- **Output:** `4`
+- **Explanation:** The robot moves left across the middle row and then down to the target.
 
-**Example 3**
+#### Example 3
 
 - Input fixture: `master = {"mode":"unweighted","grid":[[-1,0],[0,2]]}`
-- Output: `-1`
-- Explanation: Blocked cells isolate the target from the start.
+- **Output:** `-1`
+- **Explanation:** Blocked cells isolate the target from the start.

@@ -35,20 +35,20 @@ If none of the conditions holds, $x$ sends a friend request to $y$. Requests are
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `ages = [16, 16]`
-- Output: `2`
-- Explanation: Each person may send one request to the other person of age `16`.
+- **Input:** `ages = [16, 16]`
+- **Output:** `2`
+- **Explanation:** Each person may send one request to the other person of age `16`.
 
-**Example 2**
+#### Example 2
 
-- Input: `ages = [16, 17, 18]`
-- Output: `2`
-- Explanation: The permitted requests are from age `17` to age `16` and from age `18` to age `17`.
+- **Input:** `ages = [16, 17, 18]`
+- **Output:** `2`
+- **Explanation:** The permitted requests are from age `17` to age `16` and from age `18` to age `17`.
 
-**Example 3**
+#### Example 3
 
-- Input: `ages = [20, 30, 100, 110, 120]`
-- Output: `3`
-- Explanation: The permitted requests are `110 -> 100`, `120 -> 110`, and `120 -> 100`.
+- **Input:** `ages = [20, 30, 100, 110, 120]`
+- **Output:** `3`
+- **Explanation:** The permitted requests are `110 -> 100`, `120 -> 110`, and `120 -> 100`.

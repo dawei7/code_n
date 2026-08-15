@@ -6,8 +6,14 @@ Given the integer `n` and the array `dislikes` where $\text{dislikes}[i] = [a_{i
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `dislikes`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -16,6 +22,7 @@ Given the integer `n` and the array `dislikes` where $\text{dislikes}[i] = [a_{i
 - **Input:** $n = 4, dislikes = [[1,2],[1,3],[2,4]]$
 - **Output:** `true`
 - **Explanation:** The first group has [1,4], and the second group has [2,3].
+
 #### Example 2
 
 - **Input:** $n = 3, dislikes = [[1,2],[1,3],[2,3]]$

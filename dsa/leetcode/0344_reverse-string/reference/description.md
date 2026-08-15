@@ -20,6 +20,7 @@ Return nothing; after the call, `s` itself must contain the characters in revers
 
 - **Input:** $s = ["h","e","l","l","o"]$
 - **Output:** `["o","l","l","e","h"]`
+
 #### Example 2
 
 - **Input:** $s = ["H","a","n","n","a","h"]$

@@ -14,8 +14,16 @@ Return *the probability that the knight remains on the board after it has stoppe
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+- `row`: Input parameter (`int`).
+- `column`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `float`.
 
 ### 3. Examples
 
@@ -26,6 +34,7 @@ Return *the probability that the knight remains on the board after it has stoppe
 - **Explanation:** There are two moves (to (1,2), (2,1)) that will keep the knight on the board.
 From each of those positions, there are also two moves that will keep the knight on the board.
 The total probability the knight stays on the board is 0.0625.
+
 #### Example 2
 
 - **Input:** $n = 1, k = 0, row = 0, column = 0$

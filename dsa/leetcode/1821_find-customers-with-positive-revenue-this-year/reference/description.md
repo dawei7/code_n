@@ -44,7 +44,7 @@ Return a table with the single column $\text{customer}_{id}$. Include each $\tex
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Customers table:
 +-------------+------+---------+
 | customer_id | year | revenue |
@@ -57,15 +57,14 @@ Customers table:
 | 3           | 2016 | 50      |
 | 4           | 2021 | 20      |
 +-------------+------+---------+
-**Output:**
+- **Output:** 
 +-------------+
 | customer_id |
 +-------------+
 | 1           |
 | 4           |
 +-------------+
-**Explanation:**
-Customer 1 has revenue equal to 30 in the year 2021.
+- **Explanation:** Customer 1 has revenue equal to 30 in the year 2021.
 Customer 2 has revenue equal to -50 in the year 2021.
 Customer 3 has no revenue in the year 2021.
 Customer 4 has revenue equal to 20 in the year 2021.

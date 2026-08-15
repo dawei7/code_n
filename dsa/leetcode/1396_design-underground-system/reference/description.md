@@ -6,19 +6,17 @@ Implement the `UndergroundSystem` class:
 
 - `void checkIn(int id, string stationName, int t)`
 
-		<li>A customer with a card ID equal to `id`, checks in at the station `stationName` at time `t`.
+		- A customer with a card ID equal to `id`, checks in at the station `stationName` at time `t`.
 
 - A customer can only be checked into one place at a time.
 
-	</li>
 - `void checkOut(int id, string stationName, int t)`
 
-		<li>A customer with a card ID equal to `id`, checks out from the station `stationName` at time `t`.
+		- A customer with a card ID equal to `id`, checks out from the station `stationName` at time `t`.
 
-	</li>
 - `double getAverageTime(string startStation, string endStation)`
 
-		<li>Returns the average time it takes to travel from `startStation` to `endStation`.
+		- Returns the average time it takes to travel from `startStation` to `endStation`.
 
 - The average time is computed from all the previous traveling times from `startStation` to `endStation` that happened **directly**, meaning a check in at `startStation` followed by a check out from `endStation`.
 
@@ -26,14 +24,16 @@ Implement the `UndergroundSystem` class:
 
 - There will be at least one customer that has traveled from `startStation` to `endStation` before `getAverageTime` is called.
 
-	</li>
-
 You may assume all calls to the `checkIn` and `checkOut` methods are consistent. If a customer checks in at time $t_{1}$ then checks out at time $t_{2}$, then $t_{1} < t_{2}$. All events happen in chronological order.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `UndergroundSystem()`: Initializes the data structure.
+- `checkIn(id: int, stationName: str, t: int)`: Executes operation.
+- `checkOut(id: int, stationName: str, t: int)`: Executes operation.
+- `getAverageTime(startStation: str, endStation: str) -> `float``: Executes operation.
 
 ### 3. Examples
 
@@ -62,6 +62,7 @@ undergroundSystem.getAverageTime("Leyton", "Waterloo");    // return 11.00000
 undergroundSystem.checkOut(10, "Waterloo", 38);  // Customer 10 "Leyton" -> "Waterloo" in 38-24 = 14
 undergroundSystem.getAverageTime("Leyton", "Waterloo");    // return 12.00000. Three trips "Leyton" -> "Waterloo", (10 + 12 + 14) / 3 = 12
 ```
+
 #### Example 2
 
 ```

@@ -70,12 +70,11 @@ Typing a character already under the finger contributes zero distance.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "hello"
+- **Input:** s = "hello"
 
-**Output:** 17
+- **Output:** 17
 
-**Explanation:**
+- **Explanation:** 
 
 - Your finger starts at `'a'`, which is at `(1, 0)`.
 
@@ -91,23 +90,19 @@ Typing a character already under the finger contributes zero distance.
 
 - Total distance is $5 + 4 + 7 + 0 + 1 = 17$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "a"
+- **Input:** s = "a"
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** 
 
 - Your finger starts at `'a'`, which is at `(1, 0)`.
 
 - Move to `'a'`, which is at `(1, 0)`. The distance is $|1 - 1| + |0 - 0| = 0$.
 
 - Total distance is 0.
-
-</div>
 
 ### 4. Constraints
 

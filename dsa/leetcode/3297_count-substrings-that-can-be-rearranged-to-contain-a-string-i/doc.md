@@ -33,20 +33,20 @@ The length of `word1` is from 1 through $10^5$, and the length of `word2` is fro
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word1 = "bcca"`, `word2 = "abc"`
-- Output: `1`
-- Explanation: Only the whole string contains an `a`, a `b`, and a `c`; it can be rearranged to begin with `"abc"`.
+- **Input:** `word1 = "bcca"`, `word2 = "abc"`
+- **Output:** `1`
+- **Explanation:** Only the whole string contains an `a`, a `b`, and a `c`; it can be rearranged to begin with `"abc"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `word1 = "abcabc"`, `word2 = "abc"`
-- Output: `10`
-- Explanation: Every substring of length at least three contains the required characters except no additional ranges beyond those ten qualify.
+- **Input:** `word1 = "abcabc"`, `word2 = "abc"`
+- **Output:** `10`
+- **Explanation:** Every substring of length at least three contains the required characters except no additional ranges beyond those ten qualify.
 
-**Example 3**
+#### Example 3
 
-- Input: `word1 = "abcabc"`, `word2 = "aaabc"`
-- Output: `0`
-- Explanation: The source contains only two copies of `a`, fewer than the three required copies.
+- **Input:** `word1 = "abcabc"`, `word2 = "aaabc"`
+- **Output:** `0`
+- **Explanation:** The source contains only two copies of `a`, fewer than the three required copies.

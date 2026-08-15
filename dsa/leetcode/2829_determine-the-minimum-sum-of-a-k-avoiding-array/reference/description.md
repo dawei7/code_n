@@ -8,8 +8,14 @@ Return *the **minimum** possible sum of a k-avoiding array of length *`n`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,6 +25,7 @@ Return *the **minimum** possible sum of a k-avoiding array of length *`n`.
 - **Output:** `18`
 - **Explanation:** Consider the k-avoiding array [1,2,4,5,6], which has a sum of 18.
 It can be proven that there is no k-avoiding array with a sum less than 18.
+
 #### Example 2
 
 - **Input:** $n = 2, k = 6$

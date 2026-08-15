@@ -29,7 +29,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Problems table:
 +------------+-------+----------+
 | problem_id | likes | dislikes |
@@ -41,7 +41,7 @@ Problems table:
 | 13         | 2050  | 4164     |
 | 10         | 9002  | 7446     |
 +------------+-------+----------+
-**Output:**
+- **Output:** 
 +------------+
 | problem_id |
 +------------+
@@ -50,7 +50,7 @@ Problems table:
 | 11         |
 | 13         |
 +------------+
-**Explanation:** The like percentages are as follows:
+- **Explanation:** The like percentages are as follows:
 - Problem 1: (4446 / (4446 + 2760)) * 100 = 61.69858%
 - Problem 6: (1290 / (1290 + 425)) * 100 = 75.21866%
 - Problem 7: (8569 / (8569 + 6086)) * 100 = 58.47151%

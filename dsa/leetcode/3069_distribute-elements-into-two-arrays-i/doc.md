@@ -34,14 +34,14 @@ Return the final contents of `arr1` followed immediately by the final contents o
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 1, 3]`
-- Output: `[2, 3, 1]`
-- Explanation: The initial arrays are `[2]` and `[1]`. Since `2 > 1`, append `3` to the first array before concatenation.
+- **Input:** `nums = [2, 1, 3]`
+- **Output:** `[2, 3, 1]`
+- **Explanation:** The initial arrays are `[2]` and `[1]`. Since `2 > 1`, append `3` to the first array before concatenation.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [5, 4, 3, 8]`
-- Output: `[5, 3, 4, 8]`
-- Explanation: Append `3` to the first array because `5 > 4`; then append `8` to the second because its last value `4` is greater than the first array's last value `3`.
+- **Input:** `nums = [5, 4, 3, 8]`
+- **Output:** `[5, 3, 4, 8]`
+- **Explanation:** Append `3` to the first array because `5 > 4`; then append `8` to the second because its last value `4` is greater than the first array's last value `3`.

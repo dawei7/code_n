@@ -6,8 +6,14 @@ Return *the **number** of submatrices that contain the top-left element of the* 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +24,7 @@ Return *the **number** of submatrices that contain the top-left element of the* 
 - **Input:** `grid = [[7,6,3],[6,6,1]], k = 18`
 - **Output:** `4`
 - **Explanation:** There are only 4 submatrices, shown in the image above, that contain the top-left element of grid, and have a sum less than or equal to 18.
+
 #### Example 2
 
 ![](images/example21.png)

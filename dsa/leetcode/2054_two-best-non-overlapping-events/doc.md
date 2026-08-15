@@ -30,20 +30,20 @@ Chosen events must not overlap. Because endpoints are inclusive, an event beginn
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `events = [[1,3,2],[4,5,2],[2,4,3]]`
-- Output: `4`
-- Explanation: The first two events are compatible and contribute $2+2$.
+- **Input:** `events = [[1,3,2],[4,5,2],[2,4,3]]`
+- **Output:** `4`
+- **Explanation:** The first two events are compatible and contribute $2+2$.
 
-**Example 2**
+#### Example 2
 
-- Input: `events = [[1,3,2],[4,5,2],[1,5,5]]`
-- Output: `5`
-- Explanation: The single long event is worth more than the available pair.
+- **Input:** `events = [[1,3,2],[4,5,2],[1,5,5]]`
+- **Output:** `5`
+- **Explanation:** The single long event is worth more than the available pair.
 
-**Example 3**
+#### Example 3
 
-- Input: `events = [[1,5,3],[1,5,1],[6,6,5]]`
-- Output: `8`
-- Explanation: Choose the value-$3$ event followed by the event at time $6$.
+- **Input:** `events = [[1,5,3],[1,5,1],[6,6,5]]`
+- **Output:** `8`
+- **Explanation:** Choose the value-$3$ event followed by the event at time $6$.

@@ -30,23 +30,23 @@ Return the number of non-empty substrings whose last digit is non-zero and divid
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "12936"`
-- Output: `11`
+- **Input:** `s = "12936"`
+- **Output:** `11`
 
 Four of the fifteen substrings fail the divisibility rule, leaving eleven valid substrings.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "5701283"`
-- Output: `18`
+- **Input:** `s = "5701283"`
+- **Output:** `18`
 
 The count includes substrings with leading zeroes as well as each valid one-digit non-zero substring.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "1010101010"`
-- Output: `25`
+- **Input:** `s = "1010101010"`
+- **Output:** `25`
 
 Only substrings ending at one of the five `1` digits qualify; their possible starting positions total twenty-five.

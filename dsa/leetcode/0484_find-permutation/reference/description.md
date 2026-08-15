@@ -28,6 +28,7 @@ The result has length $\lvert \texttt{s} \rvert + 1$ and uses every integer in t
 - **Input:** `s = "I"`
 - **Output:** `[1,2]`
 - **Explanation:** [1,2] is the only legal permutation that can represented by s, where the number 1 and 2 construct an increasing relationship.
+
 #### Example 2
 
 - **Input:** `s = "DI"`

@@ -22,40 +22,27 @@ Return the smallest possible length of the string after any number of valid remo
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = `"aabbab"`
+- **Input:** s = `"aabbab"`
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** The substring `"aabbab"` has three `'a'` and three `'b'`. Since their counts are equal, we can remove the entire string directly. The minimum length is 0.
 
-The substring `"aabbab"` has three `'a'` and three `'b'`. Since their counts are equal, we can remove the entire string directly. The minimum length is 0.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = `"aaaa"`
+- **Input:** s = `"aaaa"`
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** Every substring of `"aaaa"` contains only `'a'` characters. No substring can be removed as a result, so the minimum length remains 4.
 
-Every substring of `"aaaa"` contains only `'a'` characters. No substring can be removed as a result, so the minimum length remains 4.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = `"aaabb"`
+- **Input:** s = `"aaabb"`
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-First, remove the substring `"ab"`, leaving `"aab"`. Next, remove the new substring `"ab"`, leaving `"a"`. No further removals are possible, so the minimum length is 1.
-
-</div>
+- **Explanation:** First, remove the substring `"ab"`, leaving `"aab"`. Next, remove the new substring `"ab"`, leaving `"a"`. No further removals are possible, so the minimum length is 1.
 
 ### 4. Constraints
 

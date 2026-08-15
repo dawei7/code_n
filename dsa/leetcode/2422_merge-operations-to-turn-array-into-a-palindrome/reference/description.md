@@ -6,9 +6,7 @@ You can perform the following operation on the array **any** number of times:
 
 - Choose any two **adjacent** elements and **replace** them with their **sum**.
 
-		<li>For example, if `nums = [1,<u>2,3</u>,1]`, you can apply one operation to make it `[1,5,1]`.
-
-	</li>
+		- For example, if `nums = [1,<u>2,3</u>,1]`, you can apply one operation to make it `[1,5,1]`.
 
 Return *the **minimum** number of operations needed to turn the array into a **palindrome***.
 
@@ -33,6 +31,7 @@ Return an integer representing the minimum number of adjacent pair merges requir
 - Apply the operation on the fifth and sixth element of the array, nums becomes equal to [4,3,2,3,**<u>4</u>**].
 The array [4,3,2,3,4] is a palindrome.
 It can be shown that 2 is the minimum number of operations needed.
+
 #### Example 2
 
 - **Input:** `nums = [1,2,3,4]`

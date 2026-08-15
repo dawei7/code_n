@@ -10,25 +10,29 @@ Return `true` if the final two digits in `s` are the **same**; otherwise, return
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "3902"
+- **Input:** s = "3902"
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
+- **Explanation:** 
 
 - Initially, `s = "3902"`
 
 - First operation:
 
-		<li>$(s[0] + s[1]) \% 10 = (3 + 9) \% 10 = 2$
+		- $(s[0] + s[1]) \% 10 = (3 + 9) \% 10 = 2$
 
 - $(s[1] + s[2]) \% 10 = (9 + 0) \% 10 = 9$
 
@@ -36,27 +40,23 @@ Return `true` if the final two digits in `s` are the **same**; otherwise, return
 
 - `s` becomes `"292"`
 
-	</li>
 - Second operation:
 
-		<li>$(s[0] + s[1]) \% 10 = (2 + 9) \% 10 = 1$
+		- $(s[0] + s[1]) \% 10 = (2 + 9) \% 10 = 1$
 
 - $(s[1] + s[2]) \% 10 = (9 + 2) \% 10 = 1$
 
 - `s` becomes `"11"`
 
-	</li>
 - Since the digits in `"11"` are the same, the output is `true`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "34789"
+- **Input:** s = "34789"
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
+- **Explanation:** 
 
 - Initially, `s = "34789"`.
 
@@ -67,8 +67,6 @@ Return `true` if the final two digits in `s` are the **same**; otherwise, return
 - After the third operation, `s = "48"`.
 
 - Since $'4' \neq '8'$, the output is `false`.
-
-</div>
 
 ### 4. Constraints
 

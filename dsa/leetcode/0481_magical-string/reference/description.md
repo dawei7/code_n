@@ -12,8 +12,13 @@ Given an integer `n`, return the number of `1`'s in the first `n` number in the 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +27,7 @@ Given an integer `n`, return the number of `1`'s in the first `n` number in the 
 - **Input:** $n = 6$
 - **Output:** `3`
 - **Explanation:** The first 6 elements of magical string s is "122112" and it contains three 1's, so return 3.
+
 #### Example 2
 
 - **Input:** $n = 1$

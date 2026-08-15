@@ -6,8 +6,13 @@ Given an integer `n`, return *the number of **square triples** such that *$1 \le
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,6 +21,7 @@ Given an integer `n`, return *the number of **square triples** such that *$1 \le
 - **Input:** $n = 5$
 - **Output:** `2`
 **Explanation**: The square triples are (3,4,5) and (4,3,5).
+
 #### Example 2
 
 - **Input:** $n = 10$

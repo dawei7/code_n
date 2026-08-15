@@ -32,14 +32,14 @@ Let $n$ be the length of `s`. The input satisfies $1 \le n \le 100$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "010"`
-- Output: `"001"`
-- Explanation: The only available `1` must occupy the final position. Leading zeros are permitted.
+- **Input:** `s = "010"`
+- **Output:** `"001"`
+- **Explanation:** The only available `1` must occupy the final position. Leading zeros are permitted.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "0101"`
-- Output: `"1001"`
-- Explanation: Reserve one `1` for the last bit, then place the other `1` before both zeros.
+- **Input:** `s = "0101"`
+- **Output:** `"1001"`
+- **Explanation:** Reserve one `1` for the last bit, then place the other `1` before both zeros.

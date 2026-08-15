@@ -32,16 +32,16 @@ Return the number of qualifying index pairs.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `hours = [12, 12, 30, 24, 24]`
-- Output: `2`
+- **Input:** `hours = [12, 12, 30, 24, 24]`
+- **Output:** `2`
 
 Indices $(0,1)$ sum to 24 hours, and indices $(3,4)$ sum to 48 hours.
 
-**Example 2**
+#### Example 2
 
-- Input: `hours = [72, 48, 24, 3]`
-- Output: `3`
+- **Input:** `hours = [72, 48, 24, 3]`
+- **Output:** `3`
 
 The three durations divisible by 24 form the qualifying pairs $(0,1)$, $(0,2)$, and $(1,2)$.

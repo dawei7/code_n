@@ -30,14 +30,14 @@ Return the minimum number of moves required to land exactly on `target`. The dir
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `target = 2`
-- Output: `3`
-- Explanation: Moves `+1`, `-2`, and `+3` finish at `2`.
+- **Input:** `target = 2`
+- **Output:** `3`
+- **Explanation:** Moves `+1`, `-2`, and `+3` finish at `2`.
 
-**Example 2**
+#### Example 2
 
-- Input: `target = 3`
-- Output: `2`
-- Explanation: Moving `+1` and then `+2` reaches `3` directly.
+- **Input:** `target = 3`
+- **Output:** `2`
+- **Explanation:** Moving `+1` and then `+2` reaches `3` directly.

@@ -29,8 +29,7 @@ The result format is in the following example.
 
 #### Example 1
 
-<div class="example-block">
-**Input:**
+- **Input:** 
 
 Tweets table:
 
@@ -48,7 +47,7 @@ Tweets table:
 +---------+----------+----------------------------------------------+------------+
 ```
 
-**Output:**
+- **Output:** 
 
 ```
 +-----------+--------------+
@@ -60,7 +59,7 @@ Tweets table:
 +-----------+--------------+
 ```
 
-**Explanation:**
+- **Explanation:** 
 
 - **#HappyDay:** Appeared in tweet IDs 13, 14, and 17, with a total count of 3 mentions.
 
@@ -71,5 +70,3 @@ Tweets table:
 ### 4. Note
 
 Output table is sorted in descending order by hashtag_count and hashtag respectively.
-
-</div>

@@ -8,8 +8,13 @@ Since the answer may be large, return the answer **modulo $10^{9} + 7$**.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +23,7 @@ Since the answer may be large, return the answer **modulo $10^{9} + 7$**.
 - **Input:** $n = 5$
 - **Output:** `12`
 - **Explanation:** For example [1,2,5,4,3] is a valid permutation, but [5,2,3,4,1] is not because the prime number 5 is at index 1.
+
 #### Example 2
 
 - **Input:** $n = 100$

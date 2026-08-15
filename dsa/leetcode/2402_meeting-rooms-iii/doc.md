@@ -42,23 +42,23 @@ assigned meetings after applying all allocation and delay rules.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 2`, `meetings = [[0,10],[1,5],[2,7],[3,4]]`
-- Output: `0`
-- Explanation: Each room handles two meetings, so the smaller room wins the
+- **Input:** `n = 2`, `meetings = [[0,10],[1,5],[2,7],[3,4]]`
+- **Output:** `0`
+- **Explanation:** Each room handles two meetings, so the smaller room wins the
   tie.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3`, `meetings = [[1,20],[2,10],[3,5],[4,9],[6,8]]`
-- Output: `1`
-- Explanation: Rooms 1 and 2 each handle two meetings, while room 0 handles
+- **Input:** `n = 3`, `meetings = [[1,20],[2,10],[3,5],[4,9],[6,8]]`
+- **Output:** `1`
+- **Explanation:** Rooms 1 and 2 each handle two meetings, while room 0 handles
   one; the smaller tied room is 1.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 1`, `meetings = [[5,8],[0,2],[3,4]]`
-- Output: `0`
-- Explanation: The only room necessarily hosts all three meetings, regardless
+- **Input:** `n = 1`, `meetings = [[5,8],[0,2],[3,4]]`
+- **Output:** `0`
+- **Explanation:** The only room necessarily hosts all three meetings, regardless
   of the input ordering.

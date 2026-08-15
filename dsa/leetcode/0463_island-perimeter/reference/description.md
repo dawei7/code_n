@@ -27,10 +27,12 @@ Diagonal contact does not join cells and does not hide an edge.
 - **Input:** `grid = [[0,1,0,0],[1,1,1,0],[0,1,0,0],[1,1,0,0]]`
 - **Output:** `16`
 - **Explanation:** The perimeter is the 16 yellow stripes in the image above.
+
 #### Example 2
 
 - **Input:** `grid = [[1]]`
 - **Output:** `4`
+
 #### Example 3
 
 - **Input:** `grid = [[1,0]]`

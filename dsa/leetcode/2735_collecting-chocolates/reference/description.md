@@ -10,8 +10,14 @@ Return *the minimum cost to collect chocolates of all types, given that you can 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `x`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,6 +29,7 @@ Return *the minimum cost to collect chocolates of all types, given that you can 
 Now, we will perform the operation at a cost of 5, and the types of chocolates will become [1,2,0]. We will buy the 2^nd^ type of chocolate at a cost of 1.
 Now, we will again perform the operation at a cost of 5, and the chocolate types will become [2,0,1]. We will buy the 0^th type of chocolate at a cost of 1.
 Thus, the total cost will become (1 + 5 + 1 + 5 + 1) = 13. We can prove that this is optimal.
+
 #### Example 2
 
 - **Input:** `nums = [1,2,3], x = 4`

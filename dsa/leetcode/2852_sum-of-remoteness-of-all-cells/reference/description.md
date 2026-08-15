@@ -29,6 +29,7 @@ Let's jump on the bottom-left grid in the above picture and calculate R[0][1] (t
 Now let's jump on the bottom-right grid in the above picture and calculate R[1][2] (the target cell is colored green). We should sum up the value of cells that can't be reached by the cell (1, 2). These cells are colored yellow in this grid. So R[1][2] = 1 + 5 + 3 = 9.
 
 ![](images/2.png)
+
 #### Example 2
 
 - **Input:** `grid = [[-1,3,4],[-1,-1,-1],[3,-1,-1]]`
@@ -36,6 +37,7 @@ Now let's jump on the bottom-right grid in the above picture and calculate R[1][
 - **Explanation:** In the picture above, there are four grids. The top-left grid contains the initial values in the grid. Blocked cells are colored black, and other cells get their values as it is in the input. In the top-right grid, you can see the value of R[i][j] for all cells. So the answer would be the sum of them. That is: 3 + 3 + 0 + 0 + 0 + 0 + 7 + 0 + 0 = 13.
 Let's jump on the bottom-left grid in the above picture and calculate R[0][2] (the target cell is colored green). We should sum up the value of cells that can't be reached by the cell (0, 2). This cell is colored yellow in this grid. So R[0][2] = 3.
 Now let's jump on the bottom-right grid in the above picture and calculate R[2][0] (the target cell is colored green). We should sum up the value of cells that can't be reached by the cell (2, 0). These cells are colored yellow in this grid. So R[2][0] = 3 + 4 = 7.
+
 #### Example 3
 
 - **Input:** `grid = [[1]]`

@@ -10,8 +10,13 @@ Perform the following operation until `grid` becomes empty:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -32,6 +37,7 @@ Return *the answer after performing the operations described above*.
 - In the second operation, we remove 2 from the first row and 3 from the second row. We add 3 to the answer.
 - In the third operation, we remove 1 from the first row and 1 from the second row. We add 1 to the answer.
 The final answer = 4 + 3 + 1 = 8.
+
 #### Example 2
 
 ![](images/q1ex2.jpg)

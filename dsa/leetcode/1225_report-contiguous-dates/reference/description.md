@@ -54,7 +54,7 @@ $Failed(\text{fail}_{date})$ and $Succeeded(\text{success}_{date})$ contain uniq
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Failed table:
 +-------------------+
 | fail_date         |
@@ -75,7 +75,7 @@ Succeeded table:
 | 2019-01-03        |
 | 2019-01-06        |
 +-------------------+
-**Output:**
+- **Output:** 
 +--------------+--------------+--------------+
 | period_state | start_date   | end_date     |
 +--------------+--------------+--------------+
@@ -83,8 +83,7 @@ Succeeded table:
 | failed       | 2019-01-04   | 2019-01-05   |
 | succeeded    | 2019-01-06   | 2019-01-06   |
 +--------------+--------------+--------------+
-**Explanation:**
-The report ignored the system state in 2018 as we care about the system in the period 2019-01-01 to 2019-12-31.
+- **Explanation:** The report ignored the system state in 2018 as we care about the system in the period 2019-01-01 to 2019-12-31.
 From 2019-01-01 to 2019-01-03 all tasks succeeded and the system state was "succeeded".
 From 2019-01-04 to 2019-01-05 all tasks failed and the system state was "failed".
 From 2019-01-06 to 2019-01-06 all tasks succeeded and the system state was "succeeded".

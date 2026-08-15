@@ -10,8 +10,13 @@ Your goal is to **maximize** the summation of the matrix's elements. Return *the
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `matrix`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +29,7 @@ Your goal is to **maximize** the summation of the matrix's elements. Return *the
 - **Explanation:** We can follow the following steps to reach sum equals 4:
 - Multiply the 2 elements in the first row by -1.
 - Multiply the 2 elements in the first column by -1.
+
 #### Example 2
 
 ![](images/pc79-q2ex2.png)

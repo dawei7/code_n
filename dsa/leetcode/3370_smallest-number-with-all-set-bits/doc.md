@@ -30,20 +30,20 @@ The eligible values therefore have the form $1$, $3$, $7$, $15$, and so on. If `
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 5`
-- Output: `7`
-- Explanation: `7` is `111` in binary.
+- **Input:** `n = 5`
+- **Output:** `7`
+- **Explanation:** `7` is `111` in binary.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 10`
-- Output: `15`
-- Explanation: `15` is `1111` in binary.
+- **Input:** `n = 10`
+- **Output:** `15`
+- **Explanation:** `15` is `1111` in binary.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 3`
-- Output: `3`
-- Explanation: `3` already has binary representation `11`.
+- **Input:** `n = 3`
+- **Output:** `3`
+- **Explanation:** `3` already has binary representation `11`.

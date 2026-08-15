@@ -10,21 +10,24 @@ A **subtree** here is any connected subset of nodes and edges of the original tr
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `edges`: Input parameter (`List[List[int]]`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** edges = [[0,1,2],[1,2,3],[1,3,5],[1,4,4],[2,5,6]], queries = [[2,3,4],[0,2,5]]
+- **Input:** edges = [[0,1,2],[1,2,3],[1,3,5],[1,4,4],[2,5,6]], queries = [[2,3,4],[0,2,5]]
 
-**Output:** [12,11]
+- **Output:** [12,11]
 
-**Explanation:**
-
-The blue edges represent one of the subtrees that yield the optimal answer.
+- **Explanation:** The blue edges represent one of the subtrees that yield the optimal answer.
 
 ![](images/tree1-4.jpg)
 
@@ -32,21 +35,15 @@ The blue edges represent one of the subtrees that yield the optimal answer.
 
 - $\text{answer}[1]$: The total weight of the selected subtree that ensures a path from $src1 = 0$ and $src2 = 2$ to $dest = 5$ is $2 + 3 + 6 = 11$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** edges = [[1,0,8],[0,2,7]], queries = [[0,1,2]]
+- **Input:** edges = [[1,0,8],[0,2,7]], queries = [[0,1,2]]
 
-**Output:** [15]
+- **Output:** [15]
 
-**Explanation:**
-
-![](images/tree1-5.jpg)
+- **Explanation:** ![](images/tree1-5.jpg)
 
 - $\text{answer}[0]$: The total weight of the selected subtree that ensures a path from $src1 = 0$ and $src2 = 1$ to $dest = 2$ is $8 + 7 = 15$.
-
-</div>
 
 ### 4. Constraints
 

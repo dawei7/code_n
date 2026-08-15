@@ -10,8 +10,10 @@ Implement the `ParkingSystem` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `ParkingSystem(big: int, medium: int, small: int)`: Initializes the data structure.
+- `addCar(carType: int) -> `bool``: Executes operation.
 
 ### 3. Examples
 

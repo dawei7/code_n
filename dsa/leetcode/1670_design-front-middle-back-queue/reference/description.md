@@ -20,8 +20,15 @@ Implement the `FrontMiddleBack` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `FrontMiddleBackQueue()`: Initializes the data structure.
+- `pushFront(val: int)`: Executes operation.
+- `pushMiddle(val: int)`: Executes operation.
+- `pushBack(val: int)`: Executes operation.
+- `popFront() -> `int``: Executes operation.
+- `popMiddle() -> `int``: Executes operation.
+- `popBack() -> `int``: Executes operation.
 
 ### 3. Notice
 
@@ -40,8 +47,7 @@ that when there are **two** middle position choices, the operation is performed 
 [[], [1], [2], [3], [4], [], [], [], [], []]
 - **Output:** ``
 [null, null, null, null, null, 1, 3, 4, 2, -1]
-- **Explanation:**
-FrontMiddleBackQueue q = new FrontMiddleBackQueue();
+- **Explanation:** FrontMiddleBackQueue q = new FrontMiddleBackQueue();
 q.pushFront(1);   // [<u>1</u>]
 q.pushBack(2);    // [1, <u>2</u>]
 q.pushMiddle(3);  // [1, <u>3</u>, 2]

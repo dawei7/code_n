@@ -30,21 +30,21 @@ Return, modulo $1{,}000{,}000{,}007$, the number of Bob sequences satisfying the
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "FFF"`
-- Output: `3`
+- **Input:** `s = "FFF"`
+- **Output:** `3`
 
 The winning legal sequences are `WFW`, `FWF`, and `WEW`; sequences with adjacent repeated moves are forbidden.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "FWEFW"`
-- Output: `18`
+- **Input:** `s = "FWEFW"`
+- **Output:** `18`
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "F"`
-- Output: `1`
+- **Input:** `s = "F"`
+- **Output:** `1`
 
 Only Water gives Bob a positive score in the single round.

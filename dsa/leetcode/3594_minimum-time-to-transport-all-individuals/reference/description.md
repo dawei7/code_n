@@ -22,35 +22,39 @@ Return the **minimum** total time required to transport all individuals. If it i
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+- `m`: Input parameter (`int`).
+- `time`: Input parameter (`List[int]`).
+- `mul`: Input parameter (`List[float]`).
+
+**Return value**
+
+- Returns `float`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 1, k = 1, m = 2, time = [5], mul = [1.0,1.3]
+- **Input:** n = 1, k = 1, m = 2, time = [5], mul = [1.0,1.3]
 
-**Output:** 5.00000
+- **Output:** 5.00000
 
-**Explanation:**
+- **Explanation:** 
 
 - Individual 0 departs from stage 0, so crossing time = $5 × 1.00 = 5.00$ minutes.
 
 - All team members are now at the destination. Thus, the total time taken is `5.00` minutes.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 3, k = 2, m = 3, time = [2,5,8], mul = [1.0,1.5,0.75]
+- **Input:** n = 3, k = 2, m = 3, time = [2,5,8], mul = [1.0,1.5,0.75]
 
-**Output:** 14.50000
+- **Output:** 14.50000
 
-**Explanation:**
-
-The optimal strategy is:
+- **Explanation:** The optimal strategy is:
 
 - Send individuals 0 and 2 from the base camp to the destination from stage 0. The crossing time is $max(2, 8) × \text{mul}[0] = 8 × 1.00 = 8.00$ minutes. The stage advances by $floor(8.00) \% 3 = 2$, so the next stage is $(0 + 2) \% 3 = 2$.
 
@@ -60,19 +64,15 @@ The optimal strategy is:
 
 - All team members are now at the destination. The total time taken is $8.00 + 1.50 + 5.00 = 14.50$ minutes.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 2, k = 1, m = 2, time = [10,10], mul = [2.0,2.0]
+- **Input:** n = 2, k = 1, m = 2, time = [10,10], mul = [2.0,2.0]
 
-**Output:** -1.00000
+- **Output:** -1.00000
 
-**Explanation:**
+- **Explanation:** 
 
 - Since the boat can only carry one person at a time, it is impossible to transport both individuals as one must always return. Thus, the answer is `-1.00`.
-
-</div>
 
 ### 4. Constraints
 

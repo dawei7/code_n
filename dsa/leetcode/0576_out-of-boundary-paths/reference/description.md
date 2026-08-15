@@ -6,8 +6,17 @@ Given the five integers `m`, `n`, `maxMove`, `startRow`, `startColumn`, return t
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `m`: Input parameter (`int`).
+- `n`: Input parameter (`int`).
+- `maxMove`: Input parameter (`int`).
+- `startRow`: Input parameter (`int`).
+- `startColumn`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -17,6 +26,7 @@ Given the five integers `m`, `n`, `maxMove`, `startRow`, `startColumn`, return t
 
 - **Input:** $m = 2, n = 2, maxMove = 2, startRow = 0, startColumn = 0$
 - **Output:** `6`
+
 #### Example 2
 
 ![](images/out_of_boundary_paths_2.png)

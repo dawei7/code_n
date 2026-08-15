@@ -35,14 +35,14 @@ values divisible by $3$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3, 4]`
-- Output: `3`
-- Explanation: Decrement `1`, increment `2`, and decrement `4`; `3` already
+- **Input:** `nums = [1, 2, 3, 4]`
+- **Output:** `3`
+- **Explanation:** Decrement `1`, increment `2`, and decrement `4`; `3` already
   needs no change.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3, 6, 9]`
-- Output: `0`
+- **Input:** `nums = [3, 6, 9]`
+- **Output:** `0`

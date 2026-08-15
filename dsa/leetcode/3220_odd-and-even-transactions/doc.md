@@ -32,17 +32,17 @@ Return columns `transaction_date`, `odd_sum`, and `even_sum`, with one row per d
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: transactions `(150, 2024-07-01)`, `(200, 2024-07-01)`, `(75, 2024-07-01)`, `(300, 2024-07-02)`, `(50, 2024-07-02)`, `(120, 2024-07-03)`
-- Output: `(2024-07-01, 75, 350)`, `(2024-07-02, 0, 350)`, `(2024-07-03, 0, 120)`
+- **Input:** transactions `(150, 2024-07-01)`, `(200, 2024-07-01)`, `(75, 2024-07-01)`, `(300, 2024-07-02)`, `(50, 2024-07-02)`, `(120, 2024-07-03)`
+- **Output:** `(2024-07-01, 75, 350)`, `(2024-07-02, 0, 350)`, `(2024-07-03, 0, 120)`
 
-**Example 2**
+#### Example 2
 
-- Input: one transaction with amount `9` on `2024-01-01`
-- Output: `(2024-01-01, 9, 0)`
+- **Input:** one transaction with amount `9` on `2024-01-01`
+- **Output:** `(2024-01-01, 9, 0)`
 
-**Example 3**
+#### Example 3
 
-- Input: amounts `2`, `4`, and `6` on one date
-- Output: that date with `odd_sum = 0` and `even_sum = 12`
+- **Input:** amounts `2`, `4`, and `6` on one date
+- **Output:** that date with `odd_sum = 0` and `even_sum = 12`

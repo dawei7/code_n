@@ -14,8 +14,14 @@ Return *a string array containing the words corresponding to the indices **(in o
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+- `groups`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[str]`.
 
 ### 3. Note
 
@@ -25,12 +31,11 @@ strings in `words` may be **unequal** in length.
 
 #### Example 1
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
-**Input: **words = ["bab","dab","cab"], groups = [1,2,2]
+- **Input:** words = ["bab","dab","cab"], groups = [1,2,2]
 
-**Output: **["bab","cab"]
+- **Output:** ["bab","cab"]
 
-**Explanation: **A subsequence that can be selected is `[0,2]`.
+- **Explanation:** A subsequence that can be selected is `[0,2]`.
 
 - $\text{groups}[0] \neq \text{groups}[2]$
 
@@ -48,15 +53,13 @@ So, another valid answer is `[words[0],words[1]] = ["bab","dab"]`.
 
 It can be shown that the length of the longest subsequence of indices that satisfies the conditions is `2`.
 
-</div>
 #### Example 2
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
-**Input: **words = ["a","b","c","d"], groups = [1,2,3,4]
+- **Input:** words = ["a","b","c","d"], groups = [1,2,3,4]
 
-**Output: **["a","b","c","d"]
+- **Output:** ["a","b","c","d"]
 
-**Explanation: **We can select the subsequence `[0,1,2,3]`.
+- **Explanation:** We can select the subsequence `[0,1,2,3]`.
 
 It satisfies both conditions.
 
@@ -65,8 +68,6 @@ Hence, the answer is `[words[0],words[1],words[2],words[3]] = ["a","b","c","d"]`
 It has the longest length among all subsequences of indices that satisfy the conditions.
 
 Hence, it is the only answer.
-
-</div>
 
 ### 5. Constraints
 

@@ -64,7 +64,7 @@ Sort the result by $\text{num}_{points}$ in decreasing order. When totals tie, s
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Teams table:
 +-----------+--------------+
 | team_id   | team_name    |
@@ -85,7 +85,7 @@ Matches table:
 | 4          | 20           | 30            | 1           | 0            |
 | 5          | 50           | 30            | 1           | 0            |
 +------------+--------------+---------------+-------------+--------------+
-**Output:**
+- **Output:** 
 +------------+--------------+---------------+
 | team_id    | team_name    | num_points    |
 +------------+--------------+---------------+

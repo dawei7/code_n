@@ -39,21 +39,21 @@ qualifying accounts.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: the supplied account subscriptions and stream sessions
-- Output: `accounts_count = 2`
-- Explanation: Accounts `4` and `9` have subscriptions active during 2021 but
+- **Input:** the supplied account subscriptions and stream sessions
+- **Output:** `accounts_count = 2`
+- **Explanation:** Accounts `4` and `9` have subscriptions active during 2021 but
   no stream in that year.
 
-**Example 2**
+#### Example 2
 
-- Input: a subscription ending on `2021-01-01` and no streams
-- Output: `accounts_count = 1`
-- Explanation: The subscription overlaps the first day of the target year.
+- **Input:** a subscription ending on `2021-01-01` and no streams
+- **Output:** `accounts_count = 1`
+- **Explanation:** The subscription overlaps the first day of the target year.
 
-**Example 3**
+#### Example 3
 
-- Input: a 2021 subscription with only a stream dated in 2020
-- Output: `accounts_count = 1`
-- Explanation: An out-of-year stream does not exclude the account.
+- **Input:** a 2021 subscription with only a stream dated in 2020
+- **Output:** `accounts_count = 1`
+- **Explanation:** An out-of-year stream does not exclude the account.

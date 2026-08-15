@@ -33,23 +33,23 @@ Let $n = \lvert\texttt{meetings}\rvert$. The constraints satisfy $1 \le \texttt{
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `days = 10, meetings = [[5,7],[1,3],[9,10]]`
-- Output: `2`
+- **Input:** `days = 10, meetings = [[5,7],[1,3],[9,10]]`
+- **Output:** `2`
 
 Only days 4 and 8 have no scheduled meeting.
 
-**Example 2**
+#### Example 2
 
-- Input: `days = 5, meetings = [[2,4],[1,3]]`
-- Output: `1`
+- **Input:** `days = 5, meetings = [[2,4],[1,3]]`
+- **Output:** `1`
 
 The overlapping intervals jointly cover days 1 through 4, leaving only day 5 free.
 
-**Example 3**
+#### Example 3
 
-- Input: `days = 6, meetings = [[1,6]]`
-- Output: `0`
+- **Input:** `days = 6, meetings = [[1,6]]`
+- **Output:** `0`
 
 The single meeting covers the entire work period.

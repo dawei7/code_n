@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/selling-pieces-of-wood/) |
 
 ## Problem Description
+
 ### Goal
+
 An $m\times n$ rectangular board may be sold whole when its ordered
 `[height, width]` shape appears in `prices`. It may instead be cut horizontally
 or vertically, but each cut must cross the entire current piece and divide it
@@ -23,6 +25,7 @@ grain prevents rotating a piece, so a price for `[h, w]` says nothing about
 board.
 
 ### Function Contract
+
 **Inputs**
 
 - `m`: The original board's height.
@@ -40,16 +43,17 @@ The maximum revenue obtainable through any sequence of full horizontal and
 vertical cuts followed by sales of any chosen pieces.
 
 ### Examples
-**Example 1**
 
-- Input: `m = 3`, `n = 5`, `prices = [[1,4,2],[2,2,7],[2,1,3]]`
-- Output: `19`
-- Explanation: Two `2 x 2` pieces, one `2 x 1` piece, and one `1 x 4` piece
+#### Example 1
+
+- **Input:** `m = 3`, `n = 5`, `prices = [[1,4,2],[2,2,7],[2,1,3]]`
+- **Output:** `19`
+- **Explanation:** Two `2 x 2` pieces, one `2 x 1` piece, and one `1 x 4` piece
   sell for $14+3+2=19$.
 
-**Example 2**
+#### Example 2
 
-- Input: `m = 4`, `n = 6`, `prices = [[3,2,10],[1,4,2],[4,1,3]]`
-- Output: `32`
-- Explanation: Three `3 x 2` pieces and one `1 x 4` piece sell for $30+2$.
+- **Input:** `m = 4`, `n = 6`, `prices = [[3,2,10],[1,4,2],[4,1,3]]`
+- **Output:** `32`
+- **Explanation:** Three `3 x 2` pieces and one `1 x 4` piece sell for $30+2$.
   The `1 x 4` listing cannot be rotated into a `4 x 1` listing.

@@ -31,14 +31,14 @@ Return the number of top-left-anchored submatrices whose sum is at most `k`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[7,6,3],[6,6,1]], k = 18`
-- Output: `4`
-- Explanation: Four choices of bottom-right corner produce anchored submatrices with sums no greater than `18`.
+- **Input:** `grid = [[7,6,3],[6,6,1]], k = 18`
+- **Output:** `4`
+- **Explanation:** Four choices of bottom-right corner produce anchored submatrices with sums no greater than `18`.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[7,2,9],[1,5,0],[2,6,6]], k = 20`
-- Output: `6`
-- Explanation: Six anchored submatrices have sums no greater than `20`.
+- **Input:** `grid = [[7,2,9],[1,5,0],[2,6,6]], k = 20`
+- **Output:** `6`
+- **Explanation:** Six anchored submatrices have sums no greater than `20`.

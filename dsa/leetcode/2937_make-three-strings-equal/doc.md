@@ -40,14 +40,14 @@ $L=\min(\lvert\texttt{s1}\rvert,\lvert\texttt{s2}\rvert,\lvert\texttt{s3}\rvert)
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s1 = "abc", s2 = "abb", s3 = "ab"`
-- Output: `2`
-- Explanation: Delete the final character from `s1` and `s2`, leaving `"ab"` in all three strings.
+- **Input:** `s1 = "abc", s2 = "abb", s3 = "ab"`
+- **Output:** `2`
+- **Explanation:** Delete the final character from `s1` and `s2`, leaving `"ab"` in all three strings.
 
-**Example 2**
+#### Example 2
 
-- Input: `s1 = "dac", s2 = "bac", s3 = "cac"`
-- Output: `-1`
-- Explanation: Their first characters differ, and right-end deletion cannot change that mismatch without emptying a string.
+- **Input:** `s1 = "dac", s2 = "bac", s3 = "cac"`
+- **Output:** `-1`
+- **Explanation:** Their first characters differ, and right-end deletion cannot change that mismatch without emptying a string.

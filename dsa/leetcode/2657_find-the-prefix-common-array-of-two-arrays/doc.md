@@ -31,14 +31,14 @@ Construct a prefix common array `C` of length $n$. For every index `i`, `C[i]` i
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `A = [1,3,2,4], B = [3,1,2,4]`
-- Output: `[0,2,3,4]`
-- Explanation: The common-value counts for the growing prefixes are zero, two, three, and four.
+- **Input:** `A = [1,3,2,4], B = [3,1,2,4]`
+- **Output:** `[0,2,3,4]`
+- **Explanation:** The common-value counts for the growing prefixes are zero, two, three, and four.
 
-**Example 2**
+#### Example 2
 
-- Input: `A = [2,3,1], B = [3,1,2]`
-- Output: `[0,1,3]`
-- Explanation: No value is common after the first positions, only `3` is common after the second, and all values are common at the end.
+- **Input:** `A = [2,3,1], B = [3,1,2]`
+- **Output:** `[0,1,3]`
+- **Explanation:** No value is common after the first positions, only `3` is common after the second, and all values are common at the end.

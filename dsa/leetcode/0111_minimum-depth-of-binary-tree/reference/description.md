@@ -26,6 +26,7 @@ A leaf is a node with no children.
 
 - **Input:** `root = [3,9,20,null,null,15,7]`
 - **Output:** `2`
+
 #### Example 2
 
 - **Input:** `root = [2,null,3,null,4,null,5,null,6]`

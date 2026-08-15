@@ -12,8 +12,13 @@ Return *the number of times the ant **returns** to the boundary.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -31,6 +36,7 @@ Return *the number of times the ant **returns** to the boundary.*
 After the second step, the ant is 5 steps to the right of the boundary<!-- notionvc: 61ace51c-559f-4bc6-800f-0a0db2540433 -->.
 After the third step, the ant is on the boundary.
 So the answer is 1.
+
 #### Example 2
 
 - **Input:** `nums = [3,2,-3,-4]`

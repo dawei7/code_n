@@ -31,7 +31,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Patients table:
 +------------+--------------+--------------+
 | patient_id | patient_name | conditions   |
@@ -42,12 +42,12 @@ Patients table:
 | 4          | George       | ACNE DIAB100 |
 | 5          | Alain        | DIAB201      |
 +------------+--------------+--------------+
-**Output:**
+- **Output:** 
 +------------+--------------+--------------+
 | patient_id | patient_name | conditions   |
 +------------+--------------+--------------+
 | 3          | Bob          | DIAB100 MYOP |
 | 4          | George       | ACNE DIAB100 |
 +------------+--------------+--------------+
-**Explanation:** Bob and George both have a condition that starts with DIAB1.
+- **Explanation:** Bob and George both have a condition that starts with DIAB1.
 ```

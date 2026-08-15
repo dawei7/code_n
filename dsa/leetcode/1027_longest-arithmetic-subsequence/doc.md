@@ -30,20 +30,20 @@ A subsequence is formed by deleting zero or more elements without changing the r
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3,6,9,12]`
-- Output: `4`
-- Explanation: The entire array is arithmetic with common difference $3$.
+- **Input:** `nums = [3,6,9,12]`
+- **Output:** `4`
+- **Explanation:** The entire array is arithmetic with common difference $3$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [9,4,7,2,10]`
-- Output: `3`
-- Explanation: The subsequence `[4,7,10]` has common difference $3$.
+- **Input:** `nums = [9,4,7,2,10]`
+- **Output:** `3`
+- **Explanation:** The subsequence `[4,7,10]` has common difference $3$.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [20,1,15,3,10,5,8]`
-- Output: `4`
-- Explanation: The subsequence `[20,15,10,5]` has common difference $-5$.
+- **Input:** `nums = [20,1,15,3,10,5,8]`
+- **Output:** `4`
+- **Explanation:** The subsequence `[20,15,10,5]` has common difference $-5$.

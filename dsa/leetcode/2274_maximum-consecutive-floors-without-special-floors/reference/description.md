@@ -8,8 +8,15 @@ Return *the **maximum** number of consecutive floors without a special floor*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `bottom`: Input parameter (`int`).
+- `top`: Input parameter (`int`).
+- `special`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +29,7 @@ Return *the **maximum** number of consecutive floors without a special floor*.
 - (5, 5) with a total amount of 1 floor.
 - (7, 9) with a total amount of 3 floors.
 Therefore, we return the maximum number which is 3 floors.
+
 #### Example 2
 
 - **Input:** $bottom = 6, top = 8, special = [7,6,8]$

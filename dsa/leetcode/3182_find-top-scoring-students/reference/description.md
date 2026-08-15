@@ -52,7 +52,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 students table:
@@ -126,5 +125,3 @@ enrollments table:
 ### 3. Note
 
 Output table is ordered by student_id in ascending order.
-
-</div>

@@ -33,20 +33,20 @@ Return exactly eight rows with columns `week_of_month`, `membership`, and `total
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: Purchases on November 3, 10, 17, and 24 by users from all three membership categories.
-- Output: Eight rows covering weeks 1 through 4 and memberships `Premium` and `VIP`.
-- Explanation: A `Premium` purchase of `1126` on November 3 produces `(1, Premium, 1126)`, while the missing `VIP` total for that Friday is reported as zero.
+- **Input:** Purchases on November 3, 10, 17, and 24 by users from all three membership categories.
+- **Output:** Eight rows covering weeks 1 through 4 and memberships `Premium` and `VIP`.
+- **Explanation:** A `Premium` purchase of `1126` on November 3 produces `(1, Premium, 1126)`, while the missing `VIP` total for that Friday is reported as zero.
 
-**Example 2**
+#### Example 2
 
-- Input: No `Premium` or `VIP` member purchases anything on November 17.
-- Output: `(3, Premium, 0)` and `(3, VIP, 0)` are both present.
-- Explanation: Missing fact rows do not remove required Friday-membership combinations.
+- **Input:** No `Premium` or `VIP` member purchases anything on November 17.
+- **Output:** `(3, Premium, 0)` and `(3, VIP, 0)` are both present.
+- **Explanation:** Missing fact rows do not remove required Friday-membership combinations.
 
-**Example 3**
+#### Example 3
 
-- Input: `VIP` members spend `9692` and `5241` on November 24.
-- Output: `(4, VIP, 14933)`.
-- Explanation: All qualifying purchases for the same Friday and membership are summed.
+- **Input:** `VIP` members spend `9692` and `5241` on November 24.
+- **Output:** `(4, VIP, 14933)`.
+- **Explanation:** All qualifying purchases for the same Friday and membership are summed.

@@ -64,7 +64,7 @@ Return columns $\text{customer}_{name}$, $\text{customer}_{id}$, $\text{order}_{
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Customers table:
 +-------------+-----------+
 | customer_id | name      |
@@ -90,7 +90,7 @@ Orders table:
 | 9        | 2020-08-07 | 2           | 32   |
 | 10       | 2020-07-15 | 1           | 2    |
 +----------+------------+-------------+------+
-**Output:**
+- **Output:** 
 +---------------+-------------+----------+------------+
 | customer_name | customer_id | order_id | order_date |
 +---------------+-------------+----------+------------+
@@ -104,8 +104,7 @@ Orders table:
 | Winston       | 1           | 1        | 2020-07-31 |
 | Winston       | 1           | 10       | 2020-07-15 |
 +---------------+-------------+----------+------------+
-**Explanation:**
-Winston has 4 orders, we discard the order of "2020-06-10" because it is the oldest order.
+- **Explanation:** Winston has 4 orders, we discard the order of "2020-06-10" because it is the oldest order.
 Annabelle has only 2 orders, we return them.
 Jonathan has exactly 3 orders.
 Marwan ordered only one time.

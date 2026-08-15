@@ -22,14 +22,11 @@ Return the minimum number of allowed swaps needed to make the last $Z$ positions
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [0,1,0,3,12]
+- **Input:** nums = [0,1,0,3,12]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-We perform the following swap operations:
+- **Explanation:** We perform the following swap operations:
 
 - Swap $\text{nums}[0]$ and $\text{nums}[3]$, giving `nums = [3, 1, 0, 0, 12]`.
 
@@ -37,35 +34,25 @@ We perform the following swap operations:
 
 Thus, the answer is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [0,1,0,2]
+- **Input:** nums = [0,1,0,2]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-We perform the following swap operations:
+- **Explanation:** We perform the following swap operations:
 
 - Swap $\text{nums}[0]$ and $\text{nums}[3]$, giving `nums = [2, 1, 0, 0]`.
 
 Thus, the answer is 1.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,2,0]
+- **Input:** nums = [1,2,0]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-The array already satisfies the condition. Therefore, no swap operations are needed.
-
-</div>
+- **Explanation:** The array already satisfies the condition. Therefore, no swap operations are needed.
 
 ### 4. Constraints
 

@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/find-root-of-n-ary-tree/) |
 
 ## Problem Description
+
 ### Goal
 
 An N-ary tree consists of nodes that each store a unique integer value and a list of zero or more children. Instead of receiving a pointer to the root, you are given an array containing every node object in the tree. The nodes may appear in any order, but their child references still describe the original directed parent-to-child edges.
@@ -16,6 +17,7 @@ An N-ary tree consists of nodes that each store a unique integer value and a lis
 Find and return the one node that is the root. The input is guaranteed to describe one valid N-ary tree, so exactly one node has no parent. LeetCode's displayed level-order serialization is only a way to construct tests; the array supplied to the function is randomly ordered.
 
 ### Function Contract
+
 **Inputs**
 
 Let $N$ be the number of nodes in the tree.
@@ -30,18 +32,19 @@ JSON cases encode the node collection as `[value, child_values]` records. The ru
 Return the root `Node`. The runner displays and validates its integer `val`.
 
 ### Examples
-**Example 1**
 
-- Input: `tree = [[3, [5, 6]], [2, []], [4, []], [1, [3, 2, 4]], [5, []], [6, []]]`
-- Output: `1`
-- Explanation: Every value except `1` occurs in a child list, so the node with value `1` is the root.
+#### Example 1
 
-**Example 2**
+- **Input:** `tree = [[3, [5, 6]], [2, []], [4, []], [1, [3, 2, 4]], [5, []], [6, []]]`
+- **Output:** `1`
+- **Explanation:** Every value except `1` occurs in a child list, so the node with value `1` is the root.
 
-- Input: `tree = [[8, []], [9, []], [7, [8, 9]]]`
-- Output: `7`
+#### Example 2
 
-**Example 3**
+- **Input:** `tree = [[8, []], [9, []], [7, [8, 9]]]`
+- **Output:** `7`
 
-- Input: `tree = [[42, []]]`
-- Output: `42`
+#### Example 3
+
+- **Input:** `tree = [[42, []]]`
+- **Output:** `42`

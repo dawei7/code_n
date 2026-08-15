@@ -8,8 +8,14 @@ Given `num`, the **array-form** of an integer, and an integer `k`, return *the *
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `num`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -18,11 +24,13 @@ Given `num`, the **array-form** of an integer, and an integer `k`, return *the *
 - **Input:** $num = [1,2,0,0], k = 34$
 - **Output:** `[1,2,3,4]`
 - **Explanation:** 1200 + 34 = 1234
+
 #### Example 2
 
 - **Input:** $num = [2,7,4], k = 181$
 - **Output:** `[4,5,5]`
 - **Explanation:** 274 + 181 = 455
+
 #### Example 3
 
 - **Input:** $num = [2,1,5], k = 806$

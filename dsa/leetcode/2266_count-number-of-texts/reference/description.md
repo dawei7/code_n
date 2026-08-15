@@ -20,8 +20,13 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `pressedKeys`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -29,16 +34,15 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 - **Input:** $pressedKeys = "22233"$
 - **Output:** `8`
-- **Explanation:**
-The possible text messages Alice could have sent are:
+- **Explanation:** The possible text messages Alice could have sent are:
 "aaadd", "abdd", "badd", "cdd", "aaae", "abe", "bae", and "ce".
 Since there are 8 possible messages, we return 8.
+
 #### Example 2
 
 - **Input:** $pressedKeys = "222222222222222222222222222222222222"$
 - **Output:** `82876089`
-- **Explanation:**
-There are 2082876103 possible text messages Alice could have sent.
+- **Explanation:** There are 2082876103 possible text messages Alice could have sent.
 Since we need to return the answer modulo $10^{9}$ + 7, we return 2082876103 % ($10^{9}$ + 7) = 82876089.
 
 ### 4. Constraints

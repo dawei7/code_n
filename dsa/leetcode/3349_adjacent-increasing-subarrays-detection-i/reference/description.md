@@ -10,19 +10,24 @@ Return `true` if it is *possible* to find **two **such subarrays, and `false` ot
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,5,7,8,9,2,3,4,3,1], k = 3
+- **Input:** nums = [2,5,7,8,9,2,3,4,3,1], k = 3
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
+- **Explanation:** 
 
 - The subarray starting at index `2` is `[7, 8, 9]`, which is strictly increasing.
 
@@ -30,15 +35,11 @@ Return `true` if it is *possible* to find **two **such subarrays, and `false` ot
 
 - These two subarrays are adjacent, so the result is `true`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4,4,4,4,5,6,7], k = 5
+- **Input:** nums = [1,2,3,4,4,4,4,5,6,7], k = 5
 
-**Output:** false
-
-</div>
+- **Output:** false
 
 ### 4. Constraints
 

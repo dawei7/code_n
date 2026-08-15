@@ -16,8 +16,13 @@ Return *an integer array *`answer`* of length *`2`* where*:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `stones`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -27,6 +32,7 @@ Return *an integer array *`answer`* of length *`2`* where*:
 - **Output:** `[1,2]`
 - **Explanation:** We can move 4 -> 8 for one move to finish the game.
 Or, we can move 9 -> 5, 4 -> 6 for two moves to finish the game.
+
 #### Example 2
 
 - **Input:** $stones = [6,5,4,3,10]$

@@ -32,19 +32,19 @@ Return the number of complete 15-minute tournament rounds played from login thro
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `loginTime = "09:31", logoutTime = "10:14"`
-- Output: `1`
-- Explanation: Only the round from `09:45` through `10:00` is fully contained in the session.
+- **Input:** `loginTime = "09:31", logoutTime = "10:14"`
+- **Output:** `1`
+- **Explanation:** Only the round from `09:45` through `10:00` is fully contained in the session.
 
-**Example 2**
+#### Example 2
 
-- Input: `loginTime = "21:30", logoutTime = "03:00"`
-- Output: `22`
-- Explanation: Ten complete rounds occur before midnight and twelve after it.
+- **Input:** `loginTime = "21:30", logoutTime = "03:00"`
+- **Output:** `22`
+- **Explanation:** Ten complete rounds occur before midnight and twelve after it.
 
-**Example 3**
+#### Example 3
 
-- Input: `loginTime = "00:00", logoutTime = "00:15"`
-- Output: `1`
+- **Input:** `loginTime = "00:00", logoutTime = "00:15"`
+- **Output:** `1`

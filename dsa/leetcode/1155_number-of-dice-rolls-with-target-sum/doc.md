@@ -32,19 +32,19 @@ Among the $k^n$ possible ordered roll outcomes, count how many have face-up numb
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 1`, `k = 6`, `target = 3`
-- Output: `1`
+- **Input:** `n = 1`, `k = 6`, `target = 3`
+- **Output:** `1`
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 2`, `k = 6`, `target = 7`
-- Output: `6`
+- **Input:** `n = 2`, `k = 6`, `target = 7`
+- **Output:** `6`
 
 The six ordered outcomes are `(1, 6)`, `(2, 5)`, `(3, 4)`, `(4, 3)`, `(5, 2)`, and `(6, 1)`.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 30`, `k = 30`, `target = 500`
-- Output: `222616187`
+- **Input:** `n = 30`, `k = 30`, `target = 500`
+- **Output:** `222616187`

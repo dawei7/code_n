@@ -38,20 +38,20 @@ the integer sum of the squared values at all 1-based indices that divide $n$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,2,3,4]`
-- Output: `21`
-- Explanation: The special indices are $1$, $2$, and $4$, so the result is $1^2 + 2^2 + 4^2 = 21$.
+- **Input:** `nums = [1,2,3,4]`
+- **Output:** `21`
+- **Explanation:** The special indices are $1$, $2$, and $4$, so the result is $1^2 + 2^2 + 4^2 = 21$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2,7,1,19,18,3]`
-- Output: `63`
-- Explanation: The divisors of $6$ are $1$, $2$, $3$, and $6$. Their values contribute $2^2 + 7^2 + 1^2 + 3^2 = 63$.
+- **Input:** `nums = [2,7,1,19,18,3]`
+- **Output:** `63`
+- **Explanation:** The divisors of $6$ are $1$, $2$, $3$, and $6$. Their values contribute $2^2 + 7^2 + 1^2 + 3^2 = 63$.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [9]`
-- Output: `81`
-- Explanation: Index $1$ divides the array length $1$, so the only value is special.
+- **Input:** `nums = [9]`
+- **Output:** `81`
+- **Explanation:** Index $1$ divides the array length $1$, so the only value is special.

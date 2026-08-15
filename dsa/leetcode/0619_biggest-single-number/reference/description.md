@@ -30,7 +30,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 MyNumbers table:
 +-----+
 | num |
@@ -44,19 +44,20 @@ MyNumbers table:
 | 5   |
 | 6   |
 +-----+
-**Output:**
+- **Output:** 
 +-----+
 | num |
 +-----+
 | 6   |
 +-----+
-**Explanation:** The single numbers are 1, 4, 5, and 6.
+- **Explanation:** The single numbers are 1, 4, 5, and 6.
 Since 6 is the largest single number, we return it.
 ```
+
 #### Example 2
 
 ```
-**Input:**
+- **Input:** 
 MyNumbers table:
 +-----+
 | num |
@@ -69,11 +70,11 @@ MyNumbers table:
 | 3   |
 | 3   |
 +-----+
-**Output:**
+- **Output:** 
 +------+
 | num  |
 +------+
 | null |
 +------+
-**Explanation:** There are no single numbers in the input table so we return null.
+- **Explanation:** There are no single numbers in the input table so we return null.
 ```

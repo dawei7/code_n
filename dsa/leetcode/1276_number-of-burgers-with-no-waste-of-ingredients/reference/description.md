@@ -10,8 +10,14 @@ Return $[\text{total}_{jumbo}, \text{total}_{small}]$ so that the number of rema
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `tomatoSlices`: Input parameter (`int`).
+- `cheeseSlices`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -21,11 +27,13 @@ Return $[\text{total}_{jumbo}, \text{total}_{small}]$ so that the number of rema
 - **Output:** `[1,6]`
 **Explantion:** To make one jumbo burger and 6 small burgers we need 4*1 + 2*6 = 16 tomato and 1 + 6 = 7 cheese.
 There will be no remaining ingredients.
+
 #### Example 2
 
 - **Input:** $tomatoSlices = 17, cheeseSlices = 4$
 - **Output:** `[]`
 **Explantion:** There will be no way to use all ingredients to make small and jumbo burgers.
+
 #### Example 3
 
 - **Input:** $tomatoSlices = 4, cheeseSlices = 17$

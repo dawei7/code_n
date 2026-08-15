@@ -40,20 +40,20 @@ $$
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `customers = "YYNY"`
-- Output: `2`
-- Explanation: Closing at hour `2` or `4` gives penalty $1$, so the earlier hour is returned.
+- **Input:** `customers = "YYNY"`
+- **Output:** `2`
+- **Explanation:** Closing at hour `2` or `4` gives penalty $1$, so the earlier hour is returned.
 
-**Example 2**
+#### Example 2
 
-- Input: `customers = "NNNNN"`
-- Output: `0`
-- Explanation: Closing immediately avoids every penalty.
+- **Input:** `customers = "NNNNN"`
+- **Output:** `0`
+- **Explanation:** Closing immediately avoids every penalty.
 
-**Example 3**
+#### Example 3
 
-- Input: `customers = "YYYY"`
-- Output: `4`
-- Explanation: Remaining open through every recorded hour gives penalty $0$.
+- **Input:** `customers = "YYYY"`
+- **Output:** `4`
+- **Explanation:** Remaining open through every recorded hour gives penalty $0$.

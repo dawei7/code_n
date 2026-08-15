@@ -8,8 +8,14 @@ Return *the *$$k^{\text{th}}$$* smallest array sum among all possible arrays*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `mat`: Input parameter (`List[List[int]]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,10 +25,12 @@ Return *the *$$k^{\text{th}}$$* smallest array sum among all possible arrays*.
 - **Output:** `7`
 - **Explanation:** Choosing one element from each row, the first k smallest sum are:
 [1,2], [1,4], [3,2], [3,4], [1,6]. Where the 5th sum is 7.
+
 #### Example 2
 
 - **Input:** $mat = [[1,3,11],[2,4,6]], k = 9$
 - **Output:** `17`
+
 #### Example 3
 
 - **Input:** $mat = [[1,10,10],[1,4,5],[2,3,6]], k = 7$

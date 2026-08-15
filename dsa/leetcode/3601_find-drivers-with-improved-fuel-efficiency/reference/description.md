@@ -47,7 +47,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 drivers table:
@@ -100,7 +99,7 @@ trips table:
 
 - **Alice Johnson (driver_id = 1):**
 
-		<li>First half trips (Jan-Jun): Feb 15 (120.5/10.2 = 11.81), Mar 20 (200.0/16.5 = 12.12)
+		- First half trips (Jan-Jun): Feb 15 (120.5/10.2 = 11.81), Mar 20 (200.0/16.5 = 12.12)
 
 - First half average efficiency: (11.81 + 12.12) / 2 = 11.97
 
@@ -110,10 +109,9 @@ trips table:
 
 - Efficiency improvement: 14.02 - 11.97 = 2.05
 
-	</li>
 - **Bob Smith (driver_id = 2):**
 
-		<li>First half trips: Jan 10 (100.0/9.0 = 11.11), Apr 15 (250.0/22.0 = 11.36)
+		- First half trips: Jan 10 (100.0/9.0 = 11.11), Apr 15 (250.0/22.0 = 11.36)
 
 - First half average efficiency: (11.11 + 11.36) / 2 = 11.24
 
@@ -123,20 +121,15 @@ trips table:
 
 - Efficiency improvement: 13.33 - 11.24 = 2.10 (rounded to 2 decimal places)
 
-	</li>
 - **Drivers not included:**
 
-		<li>Carol Davis (driver_id = 3): Only has trips in first half (Mar, May)
+		- Carol Davis (driver_id = 3): Only has trips in first half (Mar, May)
 
 - David Wilson (driver_id = 4): Only has trips in second half (Jul, Nov)
 
 - Emma Brown (driver_id = 5): Only has trips in first half (Feb)
 
-	</li>
-
 The output table is ordered by efficiency improvement in descending order then by name in ascending order.
-
-</div>
 
 ### 2. Function Contract
 

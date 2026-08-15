@@ -31,14 +31,14 @@ Return the minimum possible number of connected groups after inserting exactly o
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `intervals = [[1, 3], [5, 6], [8, 10]], k = 3`
-- Output: `2`
-- Explanation: Adding `[3, 5]` joins the first two groups. The group `[8, 10]` remains separate.
+- **Input:** `intervals = [[1, 3], [5, 6], [8, 10]], k = 3`
+- **Output:** `2`
+- **Explanation:** Adding `[3, 5]` joins the first two groups. The group `[8, 10]` remains separate.
 
-**Example 2**
+#### Example 2
 
-- Input: `intervals = [[5, 10], [1, 1], [3, 3]], k = 1`
-- Output: `3`
-- Explanation: Neither positive gap can be bridged by an interval of length at most one, so a new zero-length interval may be placed inside an existing group without changing the count.
+- **Input:** `intervals = [[5, 10], [1, 1], [3, 3]], k = 1`
+- **Output:** `3`
+- **Explanation:** Neither positive gap can be bridged by an interval of length at most one, so a new zero-length interval may be placed inside an existing group without changing the count.

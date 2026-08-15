@@ -6,8 +6,14 @@ You are given a **0-indexed** integer array `piles`, where $\text{piles}[i]$ rep
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `piles`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Notice
 
@@ -27,6 +33,7 @@ Return *the **minimum** possible total number of stones remaining after applying
 - Apply the operation on pile 2. The resulting piles are [5,4,<u>5</u>].
 - Apply the operation on pile 0. The resulting piles are [<u>3</u>,4,5].
 The total number of stones in [3,4,5] is 12.
+
 #### Example 2
 
 - **Input:** $piles = [4,3,6,7], k = 3$

@@ -33,14 +33,14 @@ Return the maximum frequency score, modulo $10^9 + 7$, among all length-`k` suba
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 1, 1, 2, 1, 2], k = 3`
-- Output: `5`
-- Explanation: The window `[2, 1, 2]` contributes $2^2 + 1^1 = 5$, which is the maximum score.
+- **Input:** `nums = [1, 1, 1, 2, 1, 2], k = 3`
+- **Output:** `5`
+- **Explanation:** The window `[2, 1, 2]` contributes $2^2 + 1^1 = 5$, which is the maximum score.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 1, 1, 1, 1, 1], k = 4`
-- Output: `1`
-- Explanation: Every length-four window contains only `1`, so each score is $1^4 = 1$.
+- **Input:** `nums = [1, 1, 1, 1, 1, 1], k = 4`
+- **Output:** `1`
+- **Explanation:** Every length-four window contains only `1`, so each score is $1^4 = 1$.

@@ -8,8 +8,14 @@ You are given an integer `n` representing the dimensions of an `n x n`<!-- notio
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `rectangles`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Note
 
@@ -25,44 +31,31 @@ Return `true` if such cuts can be made; otherwise, return `false`.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 5, rectangles = [[1,0,5,2],[0,2,2,4],[3,2,5,3],[0,4,4,5]]
+- **Input:** n = 5, rectangles = [[1,0,5,2],[0,2,2,4],[3,2,5,3],[0,4,4,5]]
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
-
-![](images/tt1drawio.png)
+- **Explanation:** ![](images/tt1drawio.png)
 
 The grid is shown in the diagram. We can make horizontal cuts at $y = 2$ and $y = 4$. Hence, output is true.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 4, rectangles = [[0,0,1,1],[2,0,3,4],[0,2,2,3],[3,0,4,3]]
+- **Input:** n = 4, rectangles = [[0,0,1,1],[2,0,3,4],[0,2,2,3],[3,0,4,3]]
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
-
-![](images/tc2drawio.png)
+- **Explanation:** ![](images/tc2drawio.png)
 
 We can make vertical cuts at $x = 2$ and $x = 3$. Hence, output is true.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 4, rectangles = [[0,2,2,4],[1,0,3,2],[2,2,3,4],[3,0,4,2],[3,2,4,4]]
+- **Input:** n = 4, rectangles = [[0,2,2,4],[1,0,3,2],[2,2,3,4],[3,0,4,2],[3,2,4,4]]
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
-
-We cannot make two horizontal or two vertical cuts that satisfy the conditions. Hence, output is false.
-
-</div>
+- **Explanation:** We cannot make two horizontal or two vertical cuts that satisfy the conditions. Hence, output is false.
 
 ### 5. Constraints
 

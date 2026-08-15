@@ -12,8 +12,10 @@ Given the `root` of a binary tree, *return *`true`* if the binary tree is **Even
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `isEvenOddTree(root: Optional[TreeNode]) -> `bool``: Executes operation.
 
 ### 3. Examples
 
@@ -29,6 +31,7 @@ Level 1: [10,4]
 Level 2: [3,7,9]
 Level 3: [12,8,6,2]
 Since levels 0 and 2 are all odd and increasing and levels 1 and 3 are all even and decreasing, the tree is Even-Odd.
+
 #### Example 2
 
 ![](images/sample_2_1966.png)
@@ -40,6 +43,7 @@ Level 0: [5]
 Level 1: [4,2]
 Level 2: [3,3,7]
 Node values in level 2 must be in strictly increasing order, so the tree is not Even-Odd.
+
 #### Example 3
 
 ![](images/sample_1_333_1966.png)

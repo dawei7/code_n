@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/maximum-score-of-spliced-array/) |
 
 ## Problem Description
+
 ### Goal
+
 Two integer arrays `nums1` and `nums2` have the same length. At most once,
 choose an inclusive interval `[left, right]` and exchange the elements at those
 indices between the arrays. The chosen indices must be contiguous, and the
@@ -20,6 +22,7 @@ sums. Find the greatest score attainable. Choosing no interval is allowed, so
 the original larger sum always remains a candidate.
 
 ### Function Contract
+
 **Inputs**
 
 - `nums1`: The first length-$n$ array.
@@ -34,18 +37,19 @@ The maximum of the two array sums after zero or one equal-index contiguous
 subarray swap.
 
 ### Examples
-**Example 1**
 
-- Input: `nums1 = [60,60,60]`, `nums2 = [10,90,10]`
-- Output: `210`
+#### Example 1
 
-**Example 2**
+- **Input:** `nums1 = [60,60,60]`, `nums2 = [10,90,10]`
+- **Output:** `210`
 
-- Input: `nums1 = [20,40,20,70,30]`, `nums2 = [50,20,50,40,20]`
-- Output: `220`
+#### Example 2
 
-**Example 3**
+- **Input:** `nums1 = [20,40,20,70,30]`, `nums2 = [50,20,50,40,20]`
+- **Output:** `220`
 
-- Input: `nums1 = [7,11,13]`, `nums2 = [1,1,1]`
-- Output: `31`
-- Explanation: Not swapping is optimal.
+#### Example 3
+
+- **Input:** `nums1 = [7,11,13]`, `nums2 = [1,1,1]`
+- **Output:** `31`
+- **Explanation:** Not swapping is optimal.

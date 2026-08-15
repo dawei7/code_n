@@ -47,7 +47,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Sales table:
 +---------+------------+------+----------+-------+
 | sale_id | product_id | year | quantity | price |
@@ -64,7 +64,7 @@ Product table:
 | 200        | Apple        |
 | 300        | Samsung      |
 +------------+--------------+
-**Output:**
+- **Output:** 
 +--------------+-------+-------+
 | product_name | year  | price |
 +--------------+-------+-------+
@@ -72,8 +72,7 @@ Product table:
 | Nokia        | 2009  | 5000  |
 | Apple        | 2011  | 9000  |
 +--------------+-------+-------+
-**Explanation:**
-From sale_id = 1, we can conclude that Nokia was sold for 5000 in the year 2008.
+- **Explanation:** From sale_id = 1, we can conclude that Nokia was sold for 5000 in the year 2008.
 From sale_id = 2, we can conclude that Nokia was sold for 5000 in the year 2009.
 From sale_id = 7, we can conclude that Apple was sold for 9000 in the year 2011.
 ```

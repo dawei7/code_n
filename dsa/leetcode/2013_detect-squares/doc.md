@@ -42,23 +42,23 @@ construction and additions, and the integer result for each count.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: add `[3, 10]`, `[11, 2]`, and `[3, 2]`; then count `[11, 10]`
-- Output: `1`
-- Explanation: The three stored points complete one square of side length
+- **Input:** add `[3, 10]`, `[11, 2]`, and `[3, 2]`; then count `[11, 10]`
+- **Output:** `1`
+- **Explanation:** The three stored points complete one square of side length
   eight.
 
-**Example 2**
+#### Example 2
 
-- Input: the preceding points followed by count `[14, 8]`
-- Output: `0`
-- Explanation: No stored horizontal partner can complete an axis-aligned
+- **Input:** the preceding points followed by count `[14, 8]`
+- **Output:** `0`
+- **Explanation:** No stored horizontal partner can complete an axis-aligned
   square for that query.
 
-**Example 3**
+#### Example 3
 
-- Input: add a second occurrence of `[11, 2]`; then count `[11, 10]` again
-- Output: `2`
-- Explanation: Either occurrence at `[11, 2]` can be chosen, so the same
+- **Input:** add a second occurrence of `[11, 2]`; then count `[11, 10]` again
+- **Output:** `2`
+- **Explanation:** Either occurrence at `[11, 2]` can be chosen, so the same
   coordinate square contributes twice.

@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/sum-of-weighted-modes-in-subarrays/) |
 
 ## Problem Description
+
 ### Goal
 
 Given an integer array `nums` and a window length `k`, consider every contiguous subarray containing exactly `k` elements.
@@ -32,20 +33,20 @@ Return the sum, over all $n-k+1$ windows, of `mode * frequency(mode)`, using the
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 2, 3]`, `k = 3`
-- Output: `8`
+- **Input:** `nums = [1, 2, 2, 3]`, `k = 3`
+- **Output:** `8`
 - Both windows choose mode `2` with frequency `2`, contributing `4` each.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 2, 1, 2]`, `k = 2`
-- Output: `3`
+- **Input:** `nums = [1, 2, 1, 2]`, `k = 2`
+- **Output:** `3`
 - Every window is tied at frequency one, so each chooses the smaller value `1`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [4, 3, 4, 3]`, `k = 3`
-- Output: `14`
+- **Input:** `nums = [4, 3, 4, 3]`, `k = 3`
+- **Output:** `14`
 - The two weights are `4 * 2 = 8` and `3 * 2 = 6`.

@@ -34,17 +34,17 @@ Let $T$ be the number of distinct table numbers and $F$ the number of distinct f
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `orders = [["David","3","Ceviche"],["Corina","10","Beef Burrito"],["David","3","Fried Chicken"],["Carla","5","Water"],["Carla","5","Ceviche"],["Rous","3","Ceviche"]]`
-- Output: `[["Table","Beef Burrito","Ceviche","Fried Chicken","Water"],["3","0","2","1","0"],["5","0","1","0","1"],["10","1","0","0","0"]]`
+- **Input:** `orders = [["David","3","Ceviche"],["Corina","10","Beef Burrito"],["David","3","Fried Chicken"],["Carla","5","Water"],["Carla","5","Ceviche"],["Rous","3","Ceviche"]]`
+- **Output:** `[["Table","Beef Burrito","Ceviche","Fried Chicken","Water"],["3","0","2","1","0"],["5","0","1","0","1"],["10","1","0","0","0"]]`
 
-**Example 2**
+#### Example 2
 
-- Input: `orders = [["James","12","Fried Chicken"],["Ratesh","12","Fried Chicken"],["Amadeus","12","Fried Chicken"],["Adam","1","Canadian Waffles"],["Brianna","1","Canadian Waffles"]]`
-- Output: `[["Table","Canadian Waffles","Fried Chicken"],["1","2","0"],["12","0","3"]]`
+- **Input:** `orders = [["James","12","Fried Chicken"],["Ratesh","12","Fried Chicken"],["Amadeus","12","Fried Chicken"],["Adam","1","Canadian Waffles"],["Brianna","1","Canadian Waffles"]]`
+- **Output:** `[["Table","Canadian Waffles","Fried Chicken"],["1","2","0"],["12","0","3"]]`
 
-**Example 3**
+#### Example 3
 
-- Input: `orders = [["Laura","2","Bean Burrito"],["Jhon","2","Beef Burrito"],["Melissa","2","Soda"]]`
-- Output: `[["Table","Bean Burrito","Beef Burrito","Soda"],["2","1","1","1"]]`
+- **Input:** `orders = [["Laura","2","Bean Burrito"],["Jhon","2","Beef Burrito"],["Melissa","2","Soda"]]`
+- **Output:** `[["Table","Bean Burrito","Beef Burrito","Soda"],["2","1","1","1"]]`

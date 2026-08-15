@@ -34,16 +34,16 @@ Return, modulo $10^9+7$, the number of assignments of weights `1` and `2` to the
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `edges = [[1,2]]`
-- Output: `1`
-- Explanation: Weight `1` gives the only odd path cost; weight `2` gives an even cost.
+- **Input:** `edges = [[1,2]]`
+- **Output:** `1`
+- **Explanation:** Weight `1` gives the only odd path cost; weight `2` gives an even cost.
 
-**Example 2**
+#### Example 2
 
-- Input: `edges = [[1,2],[1,3],[3,4],[3,5]]`
-- Output: `2`
-- Explanation: A deepest path has two edges. Assignments `(1,2)` and `(2,1)` have odd total cost.
+- **Input:** `edges = [[1,2],[1,3],[3,4],[3,5]]`
+- **Output:** `2`
+- **Explanation:** A deepest path has two edges. Assignments `(1,2)` and `(2,1)` have odd total cost.
 
 ---

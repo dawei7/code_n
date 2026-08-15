@@ -38,14 +38,14 @@ over those rows.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 The supplied February rows contain `#HappyDay` three times, `#TechLife` twice, and both `#WorkLife` and `#Nature` once. The first two occupy the leading ranks; the descending hashtag tie break places `#WorkLife` ahead of `#Nature`, so the result is `(#HappyDay, 3)`, `(#TechLife, 2)`, and `(#WorkLife, 1)`.
 
-**Example 2**
+#### Example 2
 
 A tweet dated `2024-01-31` or `2024-03-01` does not contribute, while every date from `2024-02-01` through `2024-02-29` does.
 
-**Example 3**
+#### Example 3
 
 For the text `"New #SQL tips today"`, the extracted hashtag is `#SQL`; the words following its next space are not part of the token.

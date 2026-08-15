@@ -29,7 +29,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Coordinates table:
 +----+----+
 | X  | Y  |
@@ -41,7 +41,7 @@ Coordinates table:
 | 22 | 23 |
 | 21 | 20 |
 +----+----+
-**Output:**
+- **Output:** 
 +----+----+
 | x  | y  |
 +----+----+
@@ -49,7 +49,7 @@ Coordinates table:
 | 20 | 21 |
 | 22 | 23 |
 +----+----+
-**Explanation:**
+- **Explanation:** 
 - (20, 20) and (20, 20) are symmetric coordinates because, X1 == Y2 and X2 == Y1. This results in displaying (20, 20) as a distinctive coordinates.
 - (20, 21) and (21, 20) are symmetric coordinates because, X1 == Y2 and X2 == Y1. However, only (20, 21) will be displayed because X1 <= Y1.
 - (23, 22) and (22, 23) are symmetric coordinates because, X1 == Y2 and X2 == Y1. However, only (22, 23) will be displayed because X1 <= Y1.

@@ -24,6 +24,7 @@ Return the positive integer at sequence position `n`. The returned integer must 
 
 - **Input:** $n = 9$
 - **Output:** `10`
+
 #### Example 2
 
 - **Input:** $n = 10$

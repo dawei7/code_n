@@ -12,8 +12,13 @@ Return *a string representing* *the type of triangle that can be formed **or *`"
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -22,12 +27,12 @@ Return *a string representing* *the type of triangle that can be formed **or *`"
 - **Input:** `nums = [3,3,3]`
 - **Output:** `"equilateral"`
 - **Explanation:** Since all the sides are of equal length, therefore, it will form an equilateral triangle.
+
 #### Example 2
 
 - **Input:** `nums = [3,4,5]`
 - **Output:** `"scalene"`
-- **Explanation:**
-nums[0] + nums[1] = 3 + 4 = 7, which is greater than nums[2] = 5.
+- **Explanation:** nums[0] + nums[1] = 3 + 4 = 7, which is greater than nums[2] = 5.
 nums[0] + nums[2] = 3 + 5 = 8, which is greater than nums[1] = 4.
 nums[1] + nums[2] = 4 + 5 = 9, which is greater than nums[0] = 3.
 Since the sum of the two sides is greater than the third side for all three cases, therefore, it can form a triangle.

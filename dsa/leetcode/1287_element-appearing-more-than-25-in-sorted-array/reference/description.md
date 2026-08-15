@@ -4,8 +4,13 @@ Given an integer array **sorted** in non-decreasing order, there is exactly one 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -13,6 +18,7 @@ Given an integer array **sorted** in non-decreasing order, there is exactly one 
 
 - **Input:** `arr = [1,2,2,6,6,6,6,7,10]`
 - **Output:** `6`
+
 #### Example 2
 
 - **Input:** `arr = [1,1]`

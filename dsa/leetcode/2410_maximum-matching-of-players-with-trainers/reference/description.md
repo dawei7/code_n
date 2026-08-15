@@ -8,8 +8,14 @@ Return *the **maximum** number of matchings between *`players`* and *`trainers`*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `players`: Input parameter (`List[int]`).
+- `trainers`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -17,17 +23,16 @@ Return *the **maximum** number of matchings between *`players`* and *`trainers`*
 
 - **Input:** $players = [4,7,9], trainers = [8,2,5,8]$
 - **Output:** `2`
-- **Explanation:**
-One of the ways we can form two matchings is as follows:
+- **Explanation:** One of the ways we can form two matchings is as follows:
 - players[0] can be matched with trainers[0] since 4 <= 8.
 - players[1] can be matched with trainers[3] since 7 <= 8.
 It can be proven that 2 is the maximum number of matchings that can be formed.
+
 #### Example 2
 
 - **Input:** $players = [1,1,1], trainers = [10]$
 - **Output:** `1`
-- **Explanation:**
-The trainer can be matched with any of the 3 players.
+- **Explanation:** The trainer can be matched with any of the 3 players.
 Each player can only be matched with one trainer, so the maximum answer is 1.
 
 ### 4. Constraints

@@ -8,8 +8,10 @@ If no such second minimum value exists, output -1 instead.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `findSecondMinimumValue(root: Optional[TreeNode]) -> `int``: Executes operation.
 
 ### 3. Examples
 
@@ -20,6 +22,7 @@ If no such second minimum value exists, output -1 instead.
 - **Input:** `root = [2,2,5,null,null,5,7]`
 - **Output:** `5`
 - **Explanation:** The smallest value is 2, the second smallest value is 5.
+
 #### Example 2
 
 ![](images/smbt2.jpg)

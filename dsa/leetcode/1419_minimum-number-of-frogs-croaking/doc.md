@@ -30,17 +30,17 @@ Determine the minimum number of frogs that could produce the complete recording.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `croakOfFrogs = "croakcroak"`
-- Output: `1`
+- **Input:** `croakOfFrogs = "croakcroak"`
+- **Output:** `1`
 
-**Example 2**
+#### Example 2
 
-- Input: `croakOfFrogs = "crcoakroak"`
-- Output: `2`
+- **Input:** `croakOfFrogs = "crcoakroak"`
+- **Output:** `2`
 
-**Example 3**
+#### Example 3
 
-- Input: `croakOfFrogs = "croakcrook"`
-- Output: `-1`
+- **Input:** `croakOfFrogs = "croakcrook"`
+- **Output:** `-1`

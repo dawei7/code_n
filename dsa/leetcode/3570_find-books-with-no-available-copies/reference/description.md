@@ -43,7 +43,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 library_books table:
@@ -95,7 +94,7 @@ borrowing_records table:
 
 - **The Great Gatsby (book_id = 1):**
 
-		<li>Total copies: 3
+		- Total copies: 3
 
 - Currently borrowed by Alice Smith, Bob Johnson, and Grace Miller (3 borrowers)
 
@@ -103,10 +102,9 @@ borrowing_records table:
 
 - Included because available_copies = 0
 
-	</li>
 - **1984 (book_id = 3):**
 
-		<li>Total copies: 1
+		- Total copies: 1
 
 - Currently borrowed by David Brown (1 borrower)
 
@@ -114,10 +112,9 @@ borrowing_records table:
 
 - Included because available_copies = 0
 
-	</li>
 - **Books not included:**
 
-		<li>To Kill a Mockingbird (book_id = 2): Total copies = 3, current borrowers = 2, available = 1
+		- To Kill a Mockingbird (book_id = 2): Total copies = 3, current borrowers = 2, available = 1
 
 - Pride and Prejudice (book_id = 4): Total copies = 2, current borrowers = 1, available = 1
 
@@ -125,18 +122,13 @@ borrowing_records table:
 
 - Brave New World (book_id = 6): Total copies = 4, current borrowers = 1, available = 3
 
-	</li>
 - **Result ordering:**
 
-		<li>The Great Gatsby appears first with 3 current borrowers
+		- The Great Gatsby appears first with 3 current borrowers
 
 - 1984 appears second with 1 current borrower
 
-	</li>
-
 Output table is ordered by current_borrowers in descending order, then by book_title in ascending order.
-
-</div>
 
 ### 2. Function Contract
 

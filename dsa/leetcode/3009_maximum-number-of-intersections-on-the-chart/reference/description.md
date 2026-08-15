@@ -21,6 +21,7 @@ We can draw an infinitely long horizontal line. Return *the **maximum** number o
 - **Input:** $y = [1,2,1,2,1,3,2]$
 - **Output:** `5`
 - **Explanation:** As you can see in the image above, the line y = 1.5 has 5 intersections with the chart (in red crosses). You can also see the line y = 2 which intersects the chart in 4 points (in red crosses). It can be shown that there is no horizontal line intersecting the chart at more than 5 points. So the answer would be 5.
+
 #### Example 2
 
 **

@@ -30,6 +30,7 @@ Return the inverse-depth weighted sum.
 - **Output:** `8`
 - **Explanation:** Four 1's with a weight of 1, one 2 with a weight of 2.
 1*1 + 1*1 + 2*2 + 1*1 + 1*1 = 8
+
 #### Example 2
 
 ![](images/nestedlistweightsumiiex2.png)

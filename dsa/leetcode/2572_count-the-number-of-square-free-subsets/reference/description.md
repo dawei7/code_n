@@ -12,8 +12,13 @@ A **non-empty** **subset** of `nums` is an array that can be obtained by deletin
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,6 +31,7 @@ A **non-empty** **subset** of `nums` is an array that can be obtained by deletin
 - The subset consisting of the 3^rd element [5]. The product of its elements is 5, which is a square-free integer.
 - The subset consisting of 0^th and 3^rd elements [3,5]. The product of its elements is 15, which is a square-free integer.
 It can be proven that there are no more than 3 square-free subsets in the given array.
+
 #### Example 2
 
 - **Input:** `nums = [1]`

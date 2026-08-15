@@ -10,8 +10,14 @@ Return *an integer representing the length of the **longest non-decreasing** sub
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums1`: Input parameter (`List[int]`).
+- `nums2`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -27,6 +33,7 @@ A **subarray** is a contiguous **non-empty** sequence of elements within an arra
 nums3 = [nums1[0], nums2[1], nums2[2]] => [2,2,1].
 The subarray starting from index 0 and ending at index 1, [2,2], forms a non-decreasing subarray of length 2.
 We can show that 2 is the maximum achievable length.
+
 #### Example 2
 
 - **Input:** $nums1 = [1,3,2,1], nums2 = [2,2,3,4]$
@@ -34,6 +41,7 @@ We can show that 2 is the maximum achievable length.
 - **Explanation:** One way to construct nums3 is:
 nums3 = [nums1[0], nums2[1], nums2[2], nums2[3]] => [1,2,3,4].
 The entire array forms a non-decreasing subarray of length 4, making it the maximum achievable length.
+
 #### Example 3
 
 - **Input:** $nums1 = [1,1], nums2 = [2,2]$

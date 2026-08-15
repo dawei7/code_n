@@ -27,7 +27,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:
+- **Input:** 
 **+------------+---------+-----+
 | student_id | name    | age |
 +------------+---------+-----+
@@ -36,7 +36,7 @@ The result format is in the following example.
 | 779        | Georgia | 20  |
 | 849        | Willow  | 14  |
 +------------+---------+-----+
-**Output:
+- **Output:** 
 **+------------+---------+-----+
 | student_id | name    | age |
 +------------+---------+-----+
@@ -44,6 +44,5 @@ The result format is in the following example.
 | 779        | Georgia | 20  |
 | 849        | Willow  | 14  |
 +------------+---------+-----+
-**Explanation:**
-Student with id 217 havs empty value in the name column, so it will be removed.
+- **Explanation:** Student with id 217 havs empty value in the name column, so it will be removed.
 ```

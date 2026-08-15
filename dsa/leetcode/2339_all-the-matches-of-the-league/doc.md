@@ -30,9 +30,9 @@ Return columns `home_team` and `away_team` containing every ordered pair of diff
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `Teams = [("Leetcode FC"),("Ahly SC"),("Real Madrid")]`
-- Output: `[("Real Madrid","Leetcode FC"),("Real Madrid","Ahly SC"),("Leetcode FC","Real Madrid"),("Leetcode FC","Ahly SC"),("Ahly SC","Real Madrid"),("Ahly SC","Leetcode FC")]`
+- **Input:** `Teams = [("Leetcode FC"),("Ahly SC"),("Real Madrid")]`
+- **Output:** `[("Real Madrid","Leetcode FC"),("Real Madrid","Ahly SC"),("Leetcode FC","Real Madrid"),("Leetcode FC","Ahly SC"),("Ahly SC","Real Madrid"),("Ahly SC","Leetcode FC")]`
 
 Three teams produce six directed matches because each of the three unordered pairs is played in both home-away orientations.

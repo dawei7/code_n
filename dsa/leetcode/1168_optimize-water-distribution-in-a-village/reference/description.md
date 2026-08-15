@@ -30,6 +30,7 @@ Parallel offers between the same two houses are allowed. Water may travel throug
 - **Output:** `3`
 - **Explanation:** The image shows the costs of connecting houses using pipes.
 The best strategy is to build a well in the first house with cost 1 and connect the other houses to it with cost 2 so the total cost is 3.
+
 #### Example 2
 
 - **Input:** $n = 2, wells = [1,1], pipes = [[1,2,1],[1,2,2]]$

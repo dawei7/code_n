@@ -48,28 +48,28 @@ and the selected food name for each cuisine query.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input:
+- **Input:** 
   `operations = ["FoodRatings","highestRated","highestRated","changeRating","highestRated","changeRating","highestRated"]`,
   `arguments = [[["kimchi","miso","sushi","moussaka","ramen","bulgogi"],["korean","japanese","japanese","greek","japanese","korean"],[9,12,8,15,14,7]],["korean"],["japanese"],["sushi",16],["japanese"],["ramen",16],["japanese"]]`
-- Output: `[null,"kimchi","ramen",null,"sushi",null,"ramen"]`
-- Explanation: The updates first make `sushi` the Japanese leader, then tie it
+- **Output:** `[null,"kimchi","ramen",null,"sushi",null,"ramen"]`
+- **Explanation:** The updates first make `sushi` the Japanese leader, then tie it
   with `ramen`; lexicographic order selects `ramen`.
 
-**Example 2**
+#### Example 2
 
-- Input:
+- **Input:** 
   `operations = ["FoodRatings","highestRated","changeRating","highestRated"]`,
   `arguments = [[["apple","apricot"],["fruit","fruit"],[5,5]],["fruit"],["apricot",6],["fruit"]]`
-- Output: `[null,"apple",null,"apricot"]`
-- Explanation: The initial rating tie selects `apple`; the update gives
+- **Output:** `[null,"apple",null,"apricot"]`
+- **Explanation:** The initial rating tie selects `apple`; the update gives
   `apricot` the higher rating.
 
-**Example 3**
+#### Example 3
 
-- Input:
+- **Input:** 
   `operations = ["FoodRatings","changeRating","highestRated"]`,
   `arguments = [[["tea"],["drink"],[10]],["tea",1],["drink"]]`
-- Output: `[null,null,"tea"]`
-- Explanation: A cuisine containing one food always returns that food.
+- **Output:** `[null,null,"tea"]`
+- **Explanation:** A cuisine containing one food always returns that food.

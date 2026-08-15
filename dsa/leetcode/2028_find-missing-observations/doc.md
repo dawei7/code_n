@@ -41,21 +41,21 @@ Let $M$ be the length of `rolls`, and let $N$ be the given missing count.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `rolls = [3, 2, 4, 3], mean = 4, n = 2`
-- Output: `[6, 6]`
-- Explanation: The six rolls then sum to `24`, so their average is `4`.
+- **Input:** `rolls = [3, 2, 4, 3], mean = 4, n = 2`
+- **Output:** `[6, 6]`
+- **Explanation:** The six rolls then sum to `24`, so their average is `4`.
 
-**Example 2**
+#### Example 2
 
-- Input: `rolls = [1, 5, 6], mean = 3, n = 4`
-- Output: `[2, 3, 2, 2]`
-- Explanation: Any four legal values summing to `9` are valid.
+- **Input:** `rolls = [1, 5, 6], mean = 3, n = 4`
+- **Output:** `[2, 3, 2, 2]`
+- **Explanation:** Any four legal values summing to `9` are valid.
 
-**Example 3**
+#### Example 3
 
-- Input: `rolls = [1, 2, 3, 4], mean = 6, n = 4`
-- Output: `[]`
-- Explanation: The missing rolls would need a sum greater than the maximum
+- **Input:** `rolls = [1, 2, 3, 4], mean = 6, n = 4`
+- **Output:** `[]`
+- **Explanation:** The missing rolls would need a sum greater than the maximum
   possible value $6N$.

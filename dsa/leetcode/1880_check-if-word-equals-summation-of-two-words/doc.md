@@ -29,23 +29,23 @@ Given `firstWord`, `secondWord`, and `targetWord`, determine whether the numeric
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `firstWord = "acb", secondWord = "cba", targetWord = "cdb"`
-- Output: `true`
+- **Input:** `firstWord = "acb", secondWord = "cba", targetWord = "cdb"`
+- **Output:** `true`
 
 The values are $21$, $210$, and $231$.
 
-**Example 2**
+#### Example 2
 
-- Input: `firstWord = "aaa", secondWord = "a", targetWord = "aab"`
-- Output: `false`
+- **Input:** `firstWord = "aaa", secondWord = "a", targetWord = "aab"`
+- **Output:** `false`
 
 The comparison is $0+0\ne1$.
 
-**Example 3**
+#### Example 3
 
-- Input: `firstWord = "aaa", secondWord = "a", targetWord = "aaaa"`
-- Output: `true`
+- **Input:** `firstWord = "aaa", secondWord = "a", targetWord = "aaaa"`
+- **Output:** `true`
 
 All three words have numerical value zero.

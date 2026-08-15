@@ -35,20 +35,20 @@ Return the greatest achievable value of the minimum absolute price difference am
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `price = [13, 5, 1, 8, 21, 2], k = 3`
-- Output: `8`
-- Explanation: Selecting the candies priced `13`, `5`, and `21` produces pairwise differences `8`, `8`, and `16`, so the basket's tastiness is `8`.
+- **Input:** `price = [13, 5, 1, 8, 21, 2], k = 3`
+- **Output:** `8`
+- **Explanation:** Selecting the candies priced `13`, `5`, and `21` produces pairwise differences `8`, `8`, and `16`, so the basket's tastiness is `8`.
 
-**Example 2**
+#### Example 2
 
-- Input: `price = [1, 3, 1], k = 2`
-- Output: `2`
-- Explanation: Select one candy priced `1` and the candy priced `3`.
+- **Input:** `price = [1, 3, 1], k = 2`
+- **Output:** `2`
+- **Explanation:** Select one candy priced `1` and the candy priced `3`.
 
-**Example 3**
+#### Example 3
 
-- Input: `price = [7, 7, 7, 7], k = 2`
-- Output: `0`
-- Explanation: Any two distinct candies have equal prices, so their price difference is zero.
+- **Input:** `price = [7, 7, 7, 7], k = 2`
+- **Output:** `0`
+- **Explanation:** Any two distinct candies have equal prices, so their price difference is zero.

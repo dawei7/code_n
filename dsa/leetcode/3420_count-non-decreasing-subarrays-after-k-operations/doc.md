@@ -30,14 +30,14 @@ Return the number of contiguous subarrays whose elements can be made non-decreas
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [6,3,1,2,4,4]`, `k = 7`
-- Output: `17`
-- Explanation: Among the 21 subarrays, exactly the four starting with `[6,3,1]` and extending through positions 2, 3, 4, or 5 require more than seven increments.
+- **Input:** `nums = [6,3,1,2,4,4]`, `k = 7`
+- **Output:** `17`
+- **Explanation:** Among the 21 subarrays, exactly the four starting with `[6,3,1]` and extending through positions 2, 3, 4, or 5 require more than seven increments.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [6,3,1,3,6]`, `k = 4`
-- Output: `12`
-- Explanation: `[3,1,3,6]` is the only valid length-four subarray, and every subarray of length at most three is valid except `[6,3,1]`.
+- **Input:** `nums = [6,3,1,3,6]`, `k = 4`
+- **Output:** `12`
+- **Explanation:** `[3,1,3,6]` is the only valid length-four subarray, and every subarray of length at most three is valid except `[6,3,1]`.

@@ -36,14 +36,11 @@ Return a list of length $Q$. Its entry at index $i$ is the updated `p` after ins
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2], p = 4, queries = [[3,1],[1,2]]
+- **Input:** nums = [2], p = 4, queries = [[3,1],[1,2]]
 
-**Output:** [64,4096]
+- **Output:** [64,4096]
 
-**Explanation:**
-
-<table border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0">
+- **Explanation:** <table border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0">
 	<thead>
 		<tr>
 			<th>`i`</th>
@@ -83,17 +80,13 @@ Return a list of length $Q$. Its entry at index $i$ is the updated `p` after ins
 
 Thus, $ans = [64, 4096]$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [7,5], p = 6, queries = [[4,3],[7,2]]
+- **Input:** nums = [7,5], p = 6, queries = [[4,3],[7,2]]
 
-**Output:** [1296,220296870]
+- **Output:** [1296,220296870]
 
-**Explanation:**
-
-<table border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0">
+- **Explanation:** <table border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0">
 	<thead>
 		<tr>
 			<th>`i`</th>
@@ -132,8 +125,6 @@ Thus, $ans = [64, 4096]$.
 </table>
 
 Thus, $ans = [1296, 220296870]$
-
-</div>
 
 ### 4. Constraints
 

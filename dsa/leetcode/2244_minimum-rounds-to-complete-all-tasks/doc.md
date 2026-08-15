@@ -34,17 +34,17 @@ difficulty groups of size two or three, or `-1` if no such partition exists.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `tasks = [2,2,3,3,2,4,4,4,4,4]`
-- Output: `4`
+- **Input:** `tasks = [2,2,3,3,2,4,4,4,4,4]`
+- **Output:** `4`
 
-**Example 2**
+#### Example 2
 
-- Input: `tasks = [2,3,3]`
-- Output: `-1`
+- **Input:** `tasks = [2,3,3]`
+- **Output:** `-1`
 
-**Example 3**
+#### Example 3
 
-- Input: `tasks = [7,7,7,7]`
-- Output: `2`
+- **Input:** `tasks = [7,7,7,7]`
+- **Output:** `2`

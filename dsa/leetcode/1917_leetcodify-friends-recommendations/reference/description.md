@@ -49,7 +49,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Listens table:
 +---------+---------+------------+
 | user_id | song_id | day        |
@@ -76,7 +76,7 @@ Friendship table:
 +----------+----------+
 | 1        | 2        |
 +----------+----------+
-**Output:**
+- **Output:** 
 +---------+----------------+
 | user_id | recommended_id |
 +---------+----------------+
@@ -85,8 +85,7 @@ Friendship table:
 | 3       | 1              |
 | 3       | 2              |
 +---------+----------------+
-**Explanation:**
-Users 1 and 2 listened to songs 10, 11, and 12 on the same day, but they are already friends.
+- **Explanation:** Users 1 and 2 listened to songs 10, 11, and 12 on the same day, but they are already friends.
 Users 1 and 3 listened to songs 10, 11, and 12 on the same day. Since they are not friends, we recommend them to each other.
 Users 1 and 4 did not listen to the same three songs.
 Users 1 and 5 listened to songs 10, 11, and 12, but on different days.

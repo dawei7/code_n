@@ -36,19 +36,19 @@ Return the first palindromic string in `words`, or `""` if no palindrome exists.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `words = ["abc", "car", "ada", "racecar", "cool"]`
-- Output: `"ada"`
-- Explanation: Both `"ada"` and `"racecar"` are palindromes, but `"ada"` occurs first.
+- **Input:** `words = ["abc", "car", "ada", "racecar", "cool"]`
+- **Output:** `"ada"`
+- **Explanation:** Both `"ada"` and `"racecar"` are palindromes, but `"ada"` occurs first.
 
-**Example 2**
+#### Example 2
 
-- Input: `words = ["notapalindrome", "racecar"]`
-- Output: `"racecar"`
+- **Input:** `words = ["notapalindrome", "racecar"]`
+- **Output:** `"racecar"`
 
-**Example 3**
+#### Example 3
 
-- Input: `words = ["def", "ghi"]`
-- Output: `""`
-- Explanation: Neither string is palindromic.
+- **Input:** `words = ["def", "ghi"]`
+- **Output:** `""`
+- **Explanation:** Neither string is palindromic.

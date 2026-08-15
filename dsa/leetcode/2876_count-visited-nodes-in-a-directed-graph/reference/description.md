@@ -12,8 +12,13 @@ Return *an array *`answer`* where *$\text{answer}[i]$* is the number of **differ
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `edges`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -28,6 +33,7 @@ Return *an array *`answer`* where *$\text{answer}[i]$* is the number of **differ
 - Starting from node 1, we visit the nodes 1 -> 2 -> 0 -> 1. The number of different nodes we visit is 3.
 - Starting from node 2, we visit the nodes 2 -> 0 -> 1 -> 2. The number of different nodes we visit is 3.
 - Starting from node 3, we visit the nodes 3 -> 0 -> 1 -> 2 -> 0. The number of different nodes we visit is 4.
+
 #### Example 2
 
 ![](images/graaph2drawio.png)

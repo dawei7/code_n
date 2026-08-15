@@ -20,8 +20,13 @@ Return *a string representing the final state*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `dominoes`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -30,6 +35,7 @@ Return *a string representing the final state*.
 - **Input:** $dominoes = "\text{RR.L}"$
 - **Output:** `"RR.L"`
 - **Explanation:** The first domino expends no additional force on the second domino.
+
 #### Example 2
 
 ![](images/domino.png)

@@ -32,7 +32,7 @@ Report the identifiers of customers whose revenue in the year 2021 is strictly g
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 `Customers`
 
@@ -46,7 +46,7 @@ Report the identifiers of customers whose revenue in the year 2021 is strictly g
 | 3 | 2016 | 50 |
 | 4 | 2021 | 20 |
 
-Output:
+- **Output:** 
 
 | customer_id |
 |---:|

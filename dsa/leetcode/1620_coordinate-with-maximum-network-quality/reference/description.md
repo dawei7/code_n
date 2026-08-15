@@ -10,18 +10,23 @@ Return *the array *`[c_x, c_y]`* representing the **integral** coordinate *$(c_{
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `towers`: Input parameter (`List[List[int]]`).
+- `radius`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
 - A coordinate `(x1, y1)` is lexicographically smaller than `(x2, y2)` if either:
 
-		<li>`x1 < x2`, or
+		- `x1 < x2`, or
 
 - $x1 = x2$ and `y1 < y2`.
 
-	</li>
 - `⌊val⌋` is the greatest integer less than or equal to `val` (the floor function).
 
 ### 4. Examples
@@ -37,11 +42,13 @@ Return *the array *`[c_x, c_y]`* representing the **integral** coordinate *$(c_{
 - Quality of 5 from (1, 2) results in ⌊5 / (1 + sqrt(2)⌋ = ⌊2.07⌋ = 2
 - Quality of 9 from (3, 1) results in ⌊9 / (1 + sqrt(1)⌋ = ⌊4.5⌋ = 4
 No other coordinate has a higher network quality.
+
 #### Example 2
 
 - **Input:** $towers = [[23,11,21]], radius = 9$
 - **Output:** `[23,11]`
 - **Explanation:** Since there is only one tower, the network quality is highest right at the tower's location.
+
 #### Example 3
 
 - **Input:** $towers = [[1,2,13],[2,1,7],[0,1,9]], radius = 2$

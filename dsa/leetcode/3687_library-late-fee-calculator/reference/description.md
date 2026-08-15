@@ -20,12 +20,11 @@ Return the total penalty for all books.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** daysLate = [5,1,7]
+- **Input:** daysLate = [5,1,7]
 
-**Output:** 32
+- **Output:** 32
 
-**Explanation:**
+- **Explanation:** 
 
 - $\text{daysLate}[0] = 5$: Penalty is $2 * \text{daysLate}[0] = 2 * 5 = 10$.
 
@@ -35,23 +34,19 @@ Return the total penalty for all books.
 
 - Thus, the total penalty is $10 + 1 + 21 = 32$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** daysLate = [1,1]
+- **Input:** daysLate = [1,1]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - $\text{daysLate}[0] = 1$: Penalty is `1`.
 
 - $\text{daysLate}[1] = 1$: Penalty is `1`.
 
 - Thus, the total penalty is $1 + 1 = 2$.
-
-</div>
 
 ### 4. Constraints
 

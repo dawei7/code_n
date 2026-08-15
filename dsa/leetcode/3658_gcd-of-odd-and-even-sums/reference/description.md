@@ -10,19 +10,23 @@ Return the GCD of `sumOdd` and `sumEven`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 4
+- **Input:** n = 4
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** 
 
 - Sum of the first 4 odd numbers $sumOdd = 1 + 3 + 5 + 7 = 16$
 
@@ -30,23 +34,19 @@ Return the GCD of `sumOdd` and `sumEven`.
 
 Hence, $GCD(sumOdd, sumEven) = GCD(16, 20) = 4$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 5
+- **Input:** n = 5
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** 
 
 - Sum of the first 5 odd numbers $sumOdd = 1 + 3 + 5 + 7 + 9 = 25$
 
 - Sum of the first 5 even numbers $sumEven = 2 + 4 + 6 + 8 + 10 = 30$
 
 Hence, $GCD(sumOdd, sumEven) = GCD(25, 30) = 5$.
-
-</div>
 
 ### 4. Constraints
 

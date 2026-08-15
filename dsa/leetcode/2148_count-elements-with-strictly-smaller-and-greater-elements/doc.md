@@ -37,16 +37,16 @@ array element and a strictly greater array element exist.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [11, 7, 2, 15]`
-- Output: `2`
-- Explanation: The occurrences `7` and `11` each have values on both sides of
+- **Input:** `nums = [11, 7, 2, 15]`
+- **Output:** `2`
+- **Explanation:** The occurrences `7` and `11` each have values on both sides of
   them.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [-3, 3, 3, 90]`
-- Output: `2`
-- Explanation: Both occurrences of `3` lie strictly between `-3` and `90`, so
+- **Input:** `nums = [-3, 3, 3, 90]`
+- **Output:** `2`
+- **Explanation:** Both occurrences of `3` lie strictly between `-3` and `90`, so
   both are counted.

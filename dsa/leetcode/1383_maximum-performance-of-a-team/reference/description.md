@@ -10,8 +10,16 @@ Return *the maximum performance of this team*. Since the answer can be a huge nu
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `speed`: Input parameter (`List[int]`).
+- `efficiency`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,14 +27,15 @@ Return *the maximum performance of this team*. Since the answer can be a huge nu
 
 - **Input:** $n = 6, speed = [2,10,3,1,5,8], efficiency = [5,4,3,9,7,2], k = 2$
 - **Output:** `60`
-- **Explanation:**
-We have the maximum performance of the team by selecting engineer 2 (with speed=10 and efficiency=4) and engineer 5 (with speed=5 and efficiency=7). That is, performance = (10 + 5) * min(4, 7) = 60.
+- **Explanation:** We have the maximum performance of the team by selecting engineer 2 (with speed=10 and efficiency=4) and engineer 5 (with speed=5 and efficiency=7). That is, performance = (10 + 5) * min(4, 7) = 60.
+
 #### Example 2
 
 - **Input:** $n = 6, speed = [2,10,3,1,5,8], efficiency = [5,4,3,9,7,2], k = 3$
 - **Output:** `68`
-- **Explanation:**
+- **Explanation:** 
 **This is the same example as the first but k = 3. We can select engineer 1, engineer 2 and engineer 5 to get the maximum performance of the team. That is, performance = (2 + 10 + 5) * min(5, 4, 7) = 68.
+
 #### Example 3
 
 - **Input:** $n = 6, speed = [2,10,3,1,5,8], efficiency = [5,4,3,9,7,2], k = 4$

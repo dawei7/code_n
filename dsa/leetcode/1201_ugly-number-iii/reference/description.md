@@ -6,8 +6,16 @@ Given four integers `n`, `a`, `b`, and `c`, return the $$n^{\text{th}}$$ **ugly 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `a`: Input parameter (`int`).
+- `b`: Input parameter (`int`).
+- `c`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,11 +24,13 @@ Given four integers `n`, `a`, `b`, and `c`, return the $$n^{\text{th}}$$ **ugly 
 - **Input:** $n = 3, a = 2, b = 3, c = 5$
 - **Output:** `4`
 - **Explanation:** The ugly numbers are 2, 3, 4, 5, 6, 8, 9, 10... The 3^rd is 4.
+
 #### Example 2
 
 - **Input:** $n = 4, a = 2, b = 3, c = 4$
 - **Output:** `6`
 - **Explanation:** The ugly numbers are 2, 3, 4, 6, 8, 9, 10, 12... The 4^th is 6.
+
 #### Example 3
 
 - **Input:** $n = 5, a = 2, b = 11, c = 13$

@@ -30,19 +30,19 @@ From a room, you may move through a shared wall to the room immediately above, b
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `moveTime = [[0,4],[4,4]]`
-- Output: `6`
-- Explanation: Wait until time `4`, finish the first move at time `5`, and finish the second at time `6`.
+- **Input:** `moveTime = [[0,4],[4,4]]`
+- **Output:** `6`
+- **Explanation:** Wait until time `4`, finish the first move at time `5`, and finish the second at time `6`.
 
-**Example 2**
+#### Example 2
 
-- Input: `moveTime = [[0,0,0],[0,0,0]]`
-- Output: `3`
-- Explanation: No waiting is required, so any three-move shortest grid path arrives at time `3`.
+- **Input:** `moveTime = [[0,0,0],[0,0,0]]`
+- **Output:** `3`
+- **Explanation:** No waiting is required, so any three-move shortest grid path arrives at time `3`.
 
-**Example 3**
+#### Example 3
 
-- Input: `moveTime = [[0,1],[1,2]]`
-- Output: `3`
+- **Input:** `moveTime = [[0,1],[1,2]]`
+- **Output:** `3`

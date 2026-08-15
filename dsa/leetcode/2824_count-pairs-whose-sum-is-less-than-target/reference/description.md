@@ -4,8 +4,14 @@ Given a **0-indexed** integer array `nums` of length `n` and an integer `target`
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `target`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +24,7 @@ Given a **0-indexed** integer array `nums` of length `n` and an integer `target`
 - (0, 2) since 0 < 2 and nums[0] + nums[2] = 1 < target
 - (0, 4) since 0 < 4 and nums[0] + nums[4] = 0 < target
 Note that (0, 3) is not counted since nums[0] + nums[3] is not strictly less than the target.
+
 #### Example 2
 
 - **Input:** `nums = [-6,2,5,-2,-7,-1,3], target = -2`

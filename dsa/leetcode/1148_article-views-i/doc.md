@@ -36,7 +36,7 @@ A one-column relation named `id`, containing each qualifying author ID once and 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 `Views`
 
@@ -50,7 +50,7 @@ A one-column relation named `id`, containing each qualifying author ID once and 
 | 3 | 4 | 4 | 2019-07-21 |
 | 3 | 4 | 4 | 2019-07-21 |
 
-Output:
+- **Output:** 
 
 | id |
 |---:|

@@ -35,20 +35,20 @@ Return the minimum total index cost required to make `nums1[i] != nums2[i]` for 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [1, 2, 3, 4, 5]`, `nums2 = [1, 2, 3, 4, 5]`
-- Output: `10`
-- Explanation: Every index initially conflicts, and a feasible rearrangement can involve them with total index contribution `0 + 1 + 2 + 3 + 4 = 10`.
+- **Input:** `nums1 = [1, 2, 3, 4, 5]`, `nums2 = [1, 2, 3, 4, 5]`
+- **Output:** `10`
+- **Explanation:** Every index initially conflicts, and a feasible rearrangement can involve them with total index contribution `0 + 1 + 2 + 3 + 4 = 10`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [2, 2, 2, 1, 3]`, `nums2 = [1, 2, 2, 3, 3]`
-- Output: `10`
-- Explanation: The conflicting indices require safe additional positions so the repeated values can be reassigned without creating new equalities.
+- **Input:** `nums1 = [2, 2, 2, 1, 3]`, `nums2 = [1, 2, 2, 3, 3]`
+- **Output:** `10`
+- **Explanation:** The conflicting indices require safe additional positions so the repeated values can be reassigned without creating new equalities.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums1 = [1, 2, 2]`, `nums2 = [1, 2, 2]`
-- Output: `-1`
-- Explanation: Value `2` dominates the required positions, and no safe additional index exists to receive enough copies.
+- **Input:** `nums1 = [1, 2, 2]`, `nums2 = [1, 2, 2]`
+- **Output:** `-1`
+- **Explanation:** Value `2` dominates the required positions, and no safe additional index exists to receive enough copies.

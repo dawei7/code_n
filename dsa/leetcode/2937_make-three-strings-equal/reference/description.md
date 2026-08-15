@@ -6,31 +6,33 @@ Return the *minimum number of operations* required to make the strings equal*. *
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s1`: Input parameter (`str`).
+- `s2`: Input parameter (`str`).
+- `s3`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
-**Input: **s1 = "abc", s2 = "abb", s3 = "ab"
+- **Input:** s1 = "abc", s2 = "abb", s3 = "ab"
 
-**Output: **2
+- **Output:** 2
 
-**Explanation: **Deleting the rightmost character from both `s1` and `s2` will result in three equal strings.
+- **Explanation:** Deleting the rightmost character from both `s1` and `s2` will result in three equal strings.
 
-</div>
 #### Example 2
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
-**Input: **s1 = "dac", s2 = "bac", s3 = "cac"
+- **Input:** s1 = "dac", s2 = "bac", s3 = "cac"
 
-**Output: **-1
+- **Output:** -1
 
-**Explanation:** Since the first letters of `s1` and `s2` differ, they cannot be made equal.
-
-</div>
+- **Explanation:** Since the first letters of `s1` and `s2` differ, they cannot be made equal.
 
 ### 4. Constraints
 

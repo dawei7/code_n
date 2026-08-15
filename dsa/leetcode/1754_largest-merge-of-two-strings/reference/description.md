@@ -4,14 +4,11 @@ You are given two strings `word1` and `word2`. You want to construct a string `m
 
 - If `word1` is non-empty, append the **first** character in `word1` to `merge` and delete it from `word1`.
 
-		<li>For example, if $word1 = "abc"$and $merge = "dv"$, then after choosing this operation, $word1 = "bc"$ and $merge = "dva"$.
+		- For example, if $word1 = "abc"$and $merge = "dv"$, then after choosing this operation, $word1 = "bc"$ and $merge = "dva"$.
 
-	</li>
 - If `word2` is non-empty, append the **first** character in `word2` to `merge` and delete it from `word2`.
 
-		<li>For example, if $word2 = "abc"$and $merge = ""$, then after choosing this operation, $word2 = "bc"$ and $merge = "a"$.
-
-	</li>
+		- For example, if $word2 = "abc"$and $merge = ""$, then after choosing this operation, $word2 = "bc"$ and $merge = "a"$.
 
 Return *the lexicographically **largest** *`merge`* you can construct*.
 
@@ -19,8 +16,14 @@ A string `a` is lexicographically larger than a string `b` (of the same length) 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `word1`: Input parameter (`str`).
+- `word2`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -35,6 +38,7 @@ A string `a` is lexicographically larger than a string `b` (of the same length) 
 - Take from word1: merge = "cbca", word1 = "baa", word2 = "aaa"
 - Take from word1: merge = "cbcab", word1 = "aa", word2 = "aaa"
 - Append the remaining 5 a's from word1 and word2 at the end of merge.
+
 #### Example 2
 
 - **Input:** $word1 = "abcabc", word2 = "abdcaba"$

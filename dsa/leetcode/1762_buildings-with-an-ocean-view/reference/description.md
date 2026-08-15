@@ -17,11 +17,13 @@ Return a list of indices **(0-indexed)** of buildings that have an ocean view, s
 - **Input:** $heights = [4,2,3,1]$
 - **Output:** `[0,2,3]`
 - **Explanation:** Building 1 (0-indexed) does not have an ocean view because building 2 is taller.
+
 #### Example 2
 
 - **Input:** $heights = [4,3,2,1]$
 - **Output:** `[0,1,2,3]`
 - **Explanation:** All the buildings have an ocean view.
+
 #### Example 3
 
 - **Input:** $heights = [1,3,2,4]$

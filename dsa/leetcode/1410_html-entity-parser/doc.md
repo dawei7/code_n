@@ -30,17 +30,17 @@ Preserve every character that is not part of one of those six complete spellings
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `text = "&amp; is an HTML entity but &ambassador; is not."`
-- Output: `"& is an HTML entity but &ambassador; is not."`
+- **Input:** `text = "&amp; is an HTML entity but &ambassador; is not."`
+- **Output:** `"& is an HTML entity but &ambassador; is not."`
 
-**Example 2**
+#### Example 2
 
-- Input: `text = "x &gt; y &amp;&amp; x &lt; y is false"`
-- Output: `"x > y && x < y is false"`
+- **Input:** `text = "x &gt; y &amp;&amp; x &lt; y is false"`
+- **Output:** `"x > y && x < y is false"`
 
-**Example 3**
+#### Example 3
 
-- Input: `text = "leetcode.com&frasl;problemset&frasl;all"`
-- Output: `"leetcode.com/problemset/all"`
+- **Input:** `text = "leetcode.com&frasl;problemset&frasl;all"`
+- **Output:** `"leetcode.com/problemset/all"`

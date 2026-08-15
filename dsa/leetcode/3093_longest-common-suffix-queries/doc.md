@@ -43,20 +43,20 @@ Return a list of indices. For each `wordsQuery[i]`, choose the index maximizing 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `wordsContainer = ["abcd", "bcd", "xbcd"]`, `wordsQuery = ["cd", "bcd", "xyz"]`
-- Output: `[1, 1, 1]`
-- Explanation: All three words match `"cd"` and `"bcd"`, so shortest word `"bcd"` wins. No final character matches `"xyz"`, and the same globally shortest word wins the empty-suffix tie.
+- **Input:** `wordsContainer = ["abcd", "bcd", "xbcd"]`, `wordsQuery = ["cd", "bcd", "xyz"]`
+- **Output:** `[1, 1, 1]`
+- **Explanation:** All three words match `"cd"` and `"bcd"`, so shortest word `"bcd"` wins. No final character matches `"xyz"`, and the same globally shortest word wins the empty-suffix tie.
 
-**Example 2**
+#### Example 2
 
-- Input: `wordsContainer = ["abcdefgh", "poiuygh", "ghghgh"]`, `wordsQuery = ["gh", "acbfgh", "acbfegh"]`
-- Output: `[2, 0, 2]`
-- Explanation: The shortest word wins the two-character `"gh"` ties, but index 0 uniquely matches the longer suffix `"fgh"` for the middle query.
+- **Input:** `wordsContainer = ["abcdefgh", "poiuygh", "ghghgh"]`, `wordsQuery = ["gh", "acbfgh", "acbfegh"]`
+- **Output:** `[2, 0, 2]`
+- **Explanation:** The shortest word wins the two-character `"gh"` ties, but index 0 uniquely matches the longer suffix `"fgh"` for the middle query.
 
-**Example 3**
+#### Example 3
 
-- Input: `wordsContainer = ["za", "ya", "b"]`, `wordsQuery = ["qa", "x"]`
-- Output: `[0, 2]`
-- Explanation: Equal-length `"a"` matches use the earlier index, while no match for `"x"` falls back to the globally shortest word.
+- **Input:** `wordsContainer = ["za", "ya", "b"]`, `wordsQuery = ["qa", "x"]`
+- **Output:** `[0, 2]`
+- **Explanation:** Equal-length `"a"` matches use the earlier index, while no match for `"x"` falls back to the globally shortest word.

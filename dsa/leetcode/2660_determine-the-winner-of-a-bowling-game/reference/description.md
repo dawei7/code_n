@@ -22,67 +22,56 @@ Return
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `player1`: Input parameter (`List[int]`).
+- `player2`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** player1 = [5,10,3,2], player2 = [6,5,7,3]
+- **Input:** player1 = [5,10,3,2], player2 = [6,5,7,3]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-The score of player 1 is 5 + 10 + 2*3 + 2*2 = 25.
+- **Explanation:** The score of player 1 is 5 + 10 + 2*3 + 2*2 = 25.
 
 The score of player 2 is 6 + 5 + 7 + 3 = 21.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** player1 = [3,5,7,6], player2 = [8,10,10,2]
+- **Input:** player1 = [3,5,7,6], player2 = [8,10,10,2]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The score of player 1 is 3 + 5 + 7 + 6 = 21.
+- **Explanation:** The score of player 1 is 3 + 5 + 7 + 6 = 21.
 
 The score of player 2 is 8 + 10 + 2*10 + 2*2 = 42.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** player1 = [2,3], player2 = [4,1]
+- **Input:** player1 = [2,3], player2 = [4,1]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-The score of player1 is 2 + 3 = 5.
+- **Explanation:** The score of player1 is 2 + 3 = 5.
 
 The score of player2 is 4 + 1 = 5.
 
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** player1 = [1,1,1,10,10,10,10], player2 = [10,10,10,10,1,1,1]
+- **Input:** player1 = [1,1,1,10,10,10,10], player2 = [10,10,10,10,1,1,1]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The score of player1 is 1 + 1 + 1 + 10 + 2*10 + 2*10 + 2*10 = 73.
+- **Explanation:** The score of player1 is 1 + 1 + 1 + 10 + 2*10 + 2*10 + 2*10 = 73.
 
 The score of player2 is 10 + 2*10 + 2*10 + 2*10 + 2*1 + 2*1 + 1 = 75.
-
-</div>
 
 ### 4. Constraints
 

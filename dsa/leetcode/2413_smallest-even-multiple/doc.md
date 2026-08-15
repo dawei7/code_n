@@ -30,17 +30,17 @@ Return the smallest positive integer that is a multiple of both 2 and `n`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 5`
-- Output: `10`
+- **Input:** `n = 5`
+- **Output:** `10`
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 6`
-- Output: `6`
+- **Input:** `n = 6`
+- **Output:** `6`
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 1`
-- Output: `2`
+- **Input:** `n = 1`
+- **Output:** `2`

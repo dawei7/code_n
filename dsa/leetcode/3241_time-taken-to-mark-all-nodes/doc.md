@@ -34,17 +34,17 @@ The constraints guarantee $2 \le n \le 10^5$. Each endpoint is a valid node numb
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `edges = [[0,1],[0,2]]`
-- Output: `[2,4,3]`
+- **Input:** `edges = [[0,1],[0,2]]`
+- **Output:** `[2,4,3]`
 
-**Example 2**
+#### Example 2
 
-- Input: `edges = [[0,1]]`
-- Output: `[1,2]`
+- **Input:** `edges = [[0,1]]`
+- **Output:** `[1,2]`
 
-**Example 3**
+#### Example 3
 
-- Input: `edges = [[2,4],[0,1],[2,3],[0,2]]`
-- Output: `[4,6,3,5,5]`
+- **Input:** `edges = [[2,4],[0,1],[2,3],[0,2]]`
+- **Output:** `[4,6,3,5,5]`

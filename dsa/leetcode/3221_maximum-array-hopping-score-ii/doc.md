@@ -30,20 +30,20 @@ Return the maximum hopping score obtainable when the final visited index is $\lv
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 5, 8]`
-- Output: `16`
-- Explanation: Hopping directly from index `0` to index `2` scores `2 * 8 = 16`.
+- **Input:** `nums = [1, 5, 8]`
+- **Output:** `16`
+- **Explanation:** Hopping directly from index `0` to index `2` scores `2 * 8 = 16`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4, 5, 2, 8, 9, 1, 3]`
-- Output: `42`
-- Explanation: The path `0 -> 4 -> 6` scores `4 * 9 + 2 * 3 = 42`.
+- **Input:** `nums = [4, 5, 2, 8, 9, 1, 3]`
+- **Output:** `42`
+- **Explanation:** The path `0 -> 4 -> 6` scores `4 * 9 + 2 * 3 = 42`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [9, 8, 7, 6]`
-- Output: `21`
-- Explanation: Visiting every later index scores `8 + 7 + 6`.
+- **Input:** `nums = [9, 8, 7, 6]`
+- **Output:** `21`
+- **Explanation:** Visiting every later index scores `8 + 7 + 6`.

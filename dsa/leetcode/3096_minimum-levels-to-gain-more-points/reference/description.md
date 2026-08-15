@@ -12,8 +12,13 @@ Return *the **minimum** number of levels Alice should play to gain more points*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `possible`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -23,14 +28,11 @@ that each player must play at least `1` level.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** possible = [1,0,1,0]
+- **Input:** possible = [1,0,1,0]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-Let's look at all the levels that Alice can play up to:
+- **Explanation:** Let's look at all the levels that Alice can play up to:
 
 - If Alice plays only level 0 and Bob plays the rest of the levels, Alice has 1 point, while Bob has -1 + 1 - 1 = -1 point.
 
@@ -40,17 +42,13 @@ Let's look at all the levels that Alice can play up to:
 
 Alice must play a minimum of 1 level to gain more points.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** possible = [1,1,1,1,1]
+- **Input:** possible = [1,1,1,1,1]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-Let's look at all the levels that Alice can play up to:
+- **Explanation:** Let's look at all the levels that Alice can play up to:
 
 - If Alice plays only level 0 and Bob plays the rest of the levels, Alice has 1 point, while Bob has 4 points.
 
@@ -62,19 +60,13 @@ Let's look at all the levels that Alice can play up to:
 
 Alice must play a minimum of 3 levels to gain more points.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** possible = [0,0]
+- **Input:** possible = [0,0]
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-The only possible way is for both players to play 1 level each. Alice plays level 0 and loses 1 point. Bob plays level 1 and loses 1 point. As both players have equal points, Alice can't gain more points than Bob.
-
-</div>
+- **Explanation:** The only possible way is for both players to play 1 level each. Alice plays level 0 and loses 1 point. Bob plays level 1 and loses 1 point. As both players have equal points, Alice can't gain more points than Bob.
 
 ### 5. Constraints
 

@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/count-islands-with-total-value-divisible-by-k/) |
 
 ## Problem Description
+
 ### Goal
 
 The matrix `grid` contains nonnegative integers. A positive cell represents land, while a zero cell represents water. An island is a maximal group of positive cells connected horizontally or vertically; diagonal contact does not connect two cells.
@@ -32,20 +33,20 @@ Return the number of four-directionally connected positive-cell islands whose ce
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[0,2,1,0,0],[0,5,0,0,5],[0,0,1,0,0],[0,1,4,7,0],[0,2,0,0,8]], k = 5`
-- Output: `2`
-- Explanation: Four islands exist, and two of their totals are multiples of 5.
+- **Input:** `grid = [[0,2,1,0,0],[0,5,0,0,5],[0,0,1,0,0],[0,1,4,7,0],[0,2,0,0,8]], k = 5`
+- **Output:** `2`
+- **Explanation:** Four islands exist, and two of their totals are multiples of 5.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[3,0,3,0],[0,3,0,3],[3,0,3,0]], k = 3`
-- Output: `6`
-- Explanation: The six positive cells are diagonally separated one-cell islands, each totaling 3.
+- **Input:** `grid = [[3,0,3,0],[0,3,0,3],[3,0,3,0]], k = 3`
+- **Output:** `6`
+- **Explanation:** The six positive cells are diagonally separated one-cell islands, each totaling 3.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[1, 2], [3, 4]], k = 5`
-- Output: `1`
-- Explanation: All four cells form one island with total 10.
+- **Input:** `grid = [[1, 2], [3, 4]], k = 5`
+- **Output:** `1`
+- **Explanation:** All four cells form one island with total 10.

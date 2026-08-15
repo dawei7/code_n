@@ -28,11 +28,11 @@ Return `true` if repeated digit-square sums reach `1`; otherwise return `false`.
 
 - **Input:** $n = 19$
 - **Output:** `true`
-- **Explanation:**
-$1^{2}$ + $9^{2}$ = 82
+- **Explanation:** $1^{2}$ + $9^{2}$ = 82
 $8^{2}$ + $2^{2}$ = 68
 $6^{2}$ + $8^{2}$ = 100
 $1^{2}$ + $0^{2}$ + $0^{2}$ = 1
+
 #### Example 2
 
 - **Input:** $n = 2$

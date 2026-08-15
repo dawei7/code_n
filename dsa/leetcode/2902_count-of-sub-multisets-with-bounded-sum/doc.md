@@ -34,20 +34,20 @@ Return the number of distinct sub-multisets with sums in $[l,r]$, reduced modulo
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 2, 3], l = 6, r = 6`
-- Output: `1`
-- Explanation: The only qualifying multiset is `{1, 2, 3}`.
+- **Input:** `nums = [1, 2, 2, 3], l = 6, r = 6`
+- **Output:** `1`
+- **Explanation:** The only qualifying multiset is `{1, 2, 3}`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, 1, 4, 2, 7], l = 1, r = 5`
-- Output: `7`
-- Explanation: The qualifying multisets are `{1}`, `{2}`, `{4}`, `{2, 2}`, `{1, 2}`, `{1, 4}`, and `{1, 2, 2}`.
+- **Input:** `nums = [2, 1, 4, 2, 7], l = 1, r = 5`
+- **Output:** `7`
+- **Explanation:** The qualifying multisets are `{1}`, `{2}`, `{4}`, `{2, 2}`, `{1, 2}`, `{1, 4}`, and `{1, 2, 2}`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 2, 1, 3, 5, 2], l = 3, r = 5`
-- Output: `9`
-- Explanation: Nine distinct multiplicity selections have sums between $3$ and $5$ inclusive.
+- **Input:** `nums = [1, 2, 1, 3, 5, 2], l = 3, r = 5`
+- **Output:** `9`
+- **Explanation:** Nine distinct multiplicity selections have sums between $3$ and $5$ inclusive.

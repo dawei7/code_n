@@ -10,8 +10,13 @@ Given an integer `n`, return *the minimum number of operations to get the charac
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,6 +28,7 @@ Given an integer `n`, return *the minimum number of operations to get the charac
 In step 1, we use Copy All operation.
 In step 2, we use Paste operation to get 'AA'.
 In step 3, we use Paste operation to get 'AAA'.
+
 #### Example 2
 
 - **Input:** $n = 1$

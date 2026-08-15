@@ -23,6 +23,7 @@ Return the sum of values belonging to leaf nodes reached through a parent's left
 - **Input:** `root = [3,9,20,null,null,15,7]`
 - **Output:** `24`
 - **Explanation:** There are two left leaves in the binary tree, with values 9 and 15 respectively.
+
 #### Example 2
 
 - **Input:** `root = [1]`

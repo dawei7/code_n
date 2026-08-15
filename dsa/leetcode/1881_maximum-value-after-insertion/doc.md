@@ -30,23 +30,23 @@ Insert exactly one copy of `x` somewhere among the decimal digits so that the re
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = "99", x = 9`
-- Output: `"999"`
+- **Input:** `n = "99", x = 9`
+- **Output:** `"999"`
 
 All insertion positions produce the same representation.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = "-13", x = 2`
-- Output: `"-123"`
+- **Input:** `n = "-13", x = 2`
+- **Output:** `"-123"`
 
 Among `"-213"`, `"-123"`, and `"-132"`, the middle value is greatest.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = "73", x = 6`
-- Output: `"763"`
+- **Input:** `n = "73", x = 6`
+- **Output:** `"763"`
 
 Placing `6` before the first smaller digit `3` gives the largest result.

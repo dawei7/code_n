@@ -8,8 +8,13 @@ Return *the **number of different orders** you can build all the rooms in*. Sinc
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `prevRoom`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +25,7 @@ Return *the **number of different orders** you can build all the rooms in*. Sinc
 - **Input:** $prevRoom = [-1,0,1]$
 - **Output:** `1`
 - **Explanation:** There is only one way to build the additional rooms: 0 → 1 → 2
+
 #### Example 2
 
 **
@@ -30,7 +36,7 @@ Return *the **number of different orders** you can build all the rooms in*. Sinc
 
 - **Input:** $prevRoom = [-1,0,0,1,2]$
 - **Output:** `6`
-- **Explanation:**
+- **Explanation:** 
 **The 6 ways are:
 0 → 1 → 3 → 2 → 4
 0 → 2 → 4 → 1 → 3

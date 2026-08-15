@@ -40,14 +40,14 @@ At least one choice of $(i, j, k)$ satisfies the required index and value orderi
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [5, 6, 9]`
-- Output: `8`
-- Explanation: The only possible triplet uses all three values, and `5 - 6 + 9 = 8`.
+- **Input:** `nums = [5, 6, 9]`
+- **Output:** `8`
+- **Explanation:** The only possible triplet uses all three values, and `5 - 6 + 9 = 8`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 5, 3, 6]`
-- Output: `4`
-- Explanation: The valid choices have values `(1, 5, 6)` and `(1, 3, 6)`, worth `2` and `4` respectively, so the maximum is `4`.
+- **Input:** `nums = [1, 5, 3, 6]`
+- **Output:** `4`
+- **Explanation:** The valid choices have values `(1, 5, 6)` and `(1, 3, 6)`, worth `2` and `4` respectively, so the maximum is `4`.

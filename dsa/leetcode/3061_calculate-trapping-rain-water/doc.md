@@ -40,16 +40,16 @@ Let $n$ be the number of bars.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 For heights `[0,1,0,2,1,0,1,3,2,1,2,1]`, the individual bounded depressions
 hold a total of `6` water units.
 
-**Example 2**
+#### Example 2
 
 Heights `[3,0,3]` form one three-unit basin, so the result is `3`.
 
-**Example 3**
+#### Example 3
 
 A monotonically increasing or decreasing landscape traps no water because no
 interior position has a sufficiently high boundary on both sides.

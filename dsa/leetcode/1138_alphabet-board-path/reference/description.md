@@ -24,8 +24,13 @@ Return a sequence of moves that makes our answer equal to `target` in the minimu
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `target`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -33,6 +38,7 @@ Return a sequence of moves that makes our answer equal to `target` in the minimu
 
 - **Input:** $target = "leet"$
 - **Output:** `"DDR!UURRR!!DDD!"`
+
 #### Example 2
 
 - **Input:** $target = "code"$

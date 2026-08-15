@@ -32,17 +32,17 @@ Let $d$ be the number of decimal digits in $n$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 13`
-- Output: `4`
+- **Input:** `n = 13`
+- **Output:** `4`
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 2`
-- Output: `2`
+- **Input:** `n = 2`
+- **Output:** `2`
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 15`
-- Output: `6`
+- **Input:** `n = 15`
+- **Output:** `6`

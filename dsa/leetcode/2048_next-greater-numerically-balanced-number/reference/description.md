@@ -6,8 +6,13 @@ Given an integer `n`, return *the **smallest numerically balanced** number **str
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -15,26 +20,25 @@ Given an integer `n`, return *the **smallest numerically balanced** number **str
 
 - **Input:** $n = 1$
 - **Output:** `22`
-- **Explanation:**
-22 is numerically balanced since:
+- **Explanation:** 22 is numerically balanced since:
 - The digit 2 occurs 2 times.
 It is also the smallest numerically balanced number strictly greater than 1.
+
 #### Example 2
 
 - **Input:** $n = 1000$
 - **Output:** `1333`
-- **Explanation:**
-1333 is numerically balanced since:
+- **Explanation:** 1333 is numerically balanced since:
 - The digit 1 occurs 1 time.
 - The digit 3 occurs 3 times.
 It is also the smallest numerically balanced number strictly greater than 1000.
 Note that 1022 cannot be the answer because 0 appeared more than 0 times.
+
 #### Example 3
 
 - **Input:** $n = 3000$
 - **Output:** `3133`
-- **Explanation:**
-3133 is numerically balanced since:
+- **Explanation:** 3133 is numerically balanced since:
 - The digit 1 occurs 1 time.
 - The digit 3 occurs 3 times.
 It is also the smallest numerically balanced number strictly greater than 3000.

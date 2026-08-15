@@ -38,20 +38,20 @@ among indices satisfying $a_i=x$ or $b_i=y$. Return `-1` if that set is empty.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `x = 3, y = 4, points = [[1,2],[3,1],[2,4],[2,3],[4,4]]`
-- Output: `2`
-- Explanation: Indices `2` and `4` are both one unit away, so the smaller index is returned.
+- **Input:** `x = 3, y = 4, points = [[1,2],[3,1],[2,4],[2,3],[4,4]]`
+- **Output:** `2`
+- **Explanation:** Indices `2` and `4` are both one unit away, so the smaller index is returned.
 
-**Example 2**
+#### Example 2
 
-- Input: `x = 3, y = 4, points = [[3,4]]`
-- Output: `0`
-- Explanation: The point equals the current location and has distance zero.
+- **Input:** `x = 3, y = 4, points = [[3,4]]`
+- **Output:** `0`
+- **Explanation:** The point equals the current location and has distance zero.
 
-**Example 3**
+#### Example 3
 
-- Input: `x = 3, y = 4, points = [[2,3]]`
-- Output: `-1`
-- Explanation: The point shares neither coordinate.
+- **Input:** `x = 3, y = 4, points = [[2,3]]`
+- **Output:** `-1`
+- **Explanation:** The point shares neither coordinate.

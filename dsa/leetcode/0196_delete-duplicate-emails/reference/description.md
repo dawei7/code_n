@@ -38,7 +38,7 @@ Modify `Person` so each email remains exactly once at its smallest original `id`
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Person table:
 +----+------------------+
 | id | email            |
@@ -47,12 +47,12 @@ Person table:
 | 2  | bob@example.com  |
 | 3  | john@example.com |
 +----+------------------+
-**Output:**
+- **Output:** 
 +----+------------------+
 | id | email            |
 +----+------------------+
 | 1  | john@example.com |
 | 2  | bob@example.com  |
 +----+------------------+
-**Explanation:** john@example.com is repeated two times. We keep the row with the smallest Id = 1.
+- **Explanation:** john@example.com is repeated two times. We keep the row with the smallest Id = 1.
 ```

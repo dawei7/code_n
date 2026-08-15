@@ -8,8 +8,13 @@ Answers within $10^{-5}$ of the actual answer will be accepted.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `squares`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `float`.
 
 ### 3. Note
 
@@ -19,28 +24,21 @@ Answers within $10^{-5}$ of the actual answer will be accepted.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** squares = [[0,0,1],[2,2,1]]
+- **Input:** squares = [[0,0,1],[2,2,1]]
 
-**Output:** 1.00000
+- **Output:** 1.00000
 
-**Explanation:**
-
-![](images/4062example1drawio.png)
+- **Explanation:** ![](images/4062example1drawio.png)
 
 Any horizontal line between $y = 1$ and $y = 2$ will have 1 square unit above it and 1 square unit below it. The lowest option is 1.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** squares = [[0,0,2],[1,1,1]]
+- **Input:** squares = [[0,0,2],[1,1,1]]
 
-**Output:** 1.16667
+- **Output:** 1.16667
 
-**Explanation:**
-
-![](images/4062example2drawio.png)
+- **Explanation:** ![](images/4062example2drawio.png)
 
 The areas are:
 
@@ -49,8 +47,6 @@ The areas are:
 - Above the line: $5/6 * 2 (Red) + 5/6 (Blue) = 15/6 = 2.5$.
 
 Since the areas above and below the line are equal, the output is $7/6 = 1.16667$.
-
-</div>
 
 ### 5. Constraints
 

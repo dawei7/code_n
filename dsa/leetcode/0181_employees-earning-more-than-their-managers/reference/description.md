@@ -36,7 +36,7 @@ Return one column named `Employee` containing the names of employees who earn mo
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Employee table:
 +----+-------+--------+-----------+
 | id | name  | salary | managerId |
@@ -46,11 +46,11 @@ Employee table:
 | 3  | Sam   | 60000  | Null      |
 | 4  | Max   | 90000  | Null      |
 +----+-------+--------+-----------+
-**Output:**
+- **Output:** 
 +----------+
 | Employee |
 +----------+
 | Joe      |
 +----------+
-**Explanation:** Joe is the only employee who earns more than his manager.
+- **Explanation:** Joe is the only employee who earns more than his manager.
 ```

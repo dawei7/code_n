@@ -14,8 +14,13 @@ A **substring** is a contiguous sequence of characters in a string.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -27,6 +32,7 @@ A **substring** is a contiguous sequence of characters in a string.
 - The string "101" does not contain leading zeros and is the binary representation of integer $5^{1}$ = 5.
 - The string "1" does not contain leading zeros and is the binary representation of integer $5^{0}$ = 1.
 It can be shown that 2 is the minimum number of beautiful substrings that s can be partitioned into.
+
 #### Example 2
 
 - **Input:** `s = "111"`
@@ -34,6 +40,7 @@ It can be shown that 2 is the minimum number of beautiful substrings that s can 
 - **Explanation:** We can paritition the given string into ["1", "1", "1"].
 - The string "1" does not contain leading zeros and is the binary representation of integer $5^{0}$ = 1.
 It can be shown that 3 is the minimum number of beautiful substrings that s can be partitioned into.
+
 #### Example 3
 
 - **Input:** `s = "0"`

@@ -32,20 +32,20 @@ Let $B$ be the number of bits in the standard binary representation of `n`, taki
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 5`
-- Output: `2`
-- Explanation: `101` becomes `010`.
+- **Input:** `n = 5`
+- **Output:** `2`
+- **Explanation:** `101` becomes `010`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 7`
-- Output: `0`
-- Explanation: `111` becomes `000`.
+- **Input:** `n = 7`
+- **Output:** `0`
+- **Explanation:** `111` becomes `000`.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 10`
-- Output: `5`
-- Explanation: `1010` becomes `0101`.
+- **Input:** `n = 10`
+- **Output:** `5`
+- **Explanation:** `1010` becomes `0101`.

@@ -25,6 +25,7 @@ Return the greatest possible number of selected apples whose combined weight is 
 - **Input:** $weight = [100,200,150,1000]$
 - **Output:** `4`
 - **Explanation:** All 4 apples can be carried by the basket since their sum of weights is 1450.
+
 #### Example 2
 
 - **Input:** $weight = [900,950,800,1000,700,800]$

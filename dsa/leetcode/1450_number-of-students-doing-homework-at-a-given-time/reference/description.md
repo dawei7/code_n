@@ -8,8 +8,15 @@ Return *the number of students* doing their homework at time `queryTime`. More f
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `startTime`: Input parameter (`List[int]`).
+- `endTime`: Input parameter (`List[int]`).
+- `queryTime`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +28,7 @@ Return *the number of students* doing their homework at time `queryTime`. More f
 The first student started doing homework at time 1 and finished at time 3 and wasn't doing anything at time 4.
 The second student started doing homework at time 2 and finished at time 2 and also wasn't doing anything at time 4.
 The third student started doing homework at time 3 and finished at time 7 and was the only student doing homework at time 4.
+
 #### Example 2
 
 - **Input:** $startTime = [4], endTime = [4], queryTime = 4$

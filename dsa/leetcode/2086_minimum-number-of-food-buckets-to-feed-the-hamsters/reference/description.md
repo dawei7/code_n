@@ -12,8 +12,13 @@ Return *the minimum number of food buckets you should **place at empty indices**
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `hamsters`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,6 +30,7 @@ Return *the minimum number of food buckets you should **place at empty indices**
 - **Output:** `2`
 - **Explanation:** We place two food buckets at indices 1 and 2.
 It can be shown that if we place only one food bucket, one of the hamsters will not be fed.
+
 #### Example 2
 
 ![](images/example2.png)
@@ -32,6 +38,7 @@ It can be shown that if we place only one food bucket, one of the hamsters will 
 - **Input:** $hamsters = ".\text{H.H}."$
 - **Output:** `1`
 - **Explanation:** We place one food bucket at index 2.
+
 #### Example 3
 
 ![](images/example3.png)

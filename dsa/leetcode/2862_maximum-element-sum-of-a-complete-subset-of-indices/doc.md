@@ -32,14 +32,14 @@ Let $n$ be the length of `nums`. The input satisfies $1 \le n \le 10^4$ and $1 \
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [8, 7, 3, 5, 7, 2, 4, 9]`
-- Output: `16`
-- Explanation: Select 1-indexed positions $2$ and $8$. Their product is $2 \cdot 8 = 16$, and their values sum to `7 + 9 = 16`.
+- **Input:** `nums = [8, 7, 3, 5, 7, 2, 4, 9]`
+- **Output:** `16`
+- **Explanation:** Select 1-indexed positions $2$ and $8$. Their product is $2 \cdot 8 = 16$, and their values sum to `7 + 9 = 16`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [8, 10, 3, 8, 1, 13, 7, 9, 4]`
-- Output: `20`
-- Explanation: Positions $1$, $4$, and $9$ are pairwise compatible because $1 \cdot 4$, $1 \cdot 9$, and $4 \cdot 9$ are perfect squares. Their values sum to `8 + 8 + 4 = 20`.
+- **Input:** `nums = [8, 10, 3, 8, 1, 13, 7, 9, 4]`
+- **Output:** `20`
+- **Explanation:** Positions $1$, $4$, and $9$ are pairwise compatible because $1 \cdot 4$, $1 \cdot 9$, and $4 \cdot 9$ are perfect squares. Their values sum to `8 + 8 + 4 = 20`.

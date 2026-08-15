@@ -27,6 +27,7 @@ Return *an integer array* `ans` *where* $\text{ans}[i]$ *is Bob's **minimum rela
 - **Explanation:** For the 1^st query Bob selects the chocolates with prices [1,9,10,22]. He pays 1 + 9 + 10 + 18 = 38 and Alice pays 0 + 0 + 0 + 4 = 4. So Bob's relative loss is 38 - 4 = 34.
 For the 2^nd query Bob selects the chocolates with prices [19,22]. He pays 5 + 5 = 10 and Alice pays 14 + 17 = 31. So Bob's relative loss is 10 - 31 = -21.
 It can be shown that these are the minimum possible relative losses.
+
 #### Example 2
 
 - **Input:** $prices = [1,5,4,3,7,11,9], queries = [[5,4],[5,7],[7,3],[4,5]]$
@@ -36,6 +37,7 @@ For the 2^nd query Bob has to select all the chocolates. He pays 1 + 5 + 4 + 3 +
 For the 3^rd query Bob selects the chocolates with prices [1,3,11] and he pays 1 + 3 + 7 = 11 and Alice pays 0 + 0 + 4 = 4. So Bob's relative loss is 11 - 4 = 7.
 For the 4^th query Bob selects the chocolates with prices [1,3,7,9,11] and he pays 1 + 3 + 4 + 4 + 4 = 16 and Alice pays 0 + 0 + 3 + 5 + 7 = 15. So Bob's relative loss is 16 - 15 = 1.
 It can be shown that these are the minimum possible relative losses.
+
 #### Example 3
 
 - **Input:** $prices = [5,6,7], queries = [[10,1],[5,3],[3,3]]$

@@ -8,8 +8,14 @@ An **axis-aligned plus sign** of `1`'s of order `k` has some center $\text{grid}
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `mines`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +26,7 @@ An **axis-aligned plus sign** of `1`'s of order `k` has some center $\text{grid}
 - **Input:** $n = 5, mines = [[4,2]]$
 - **Output:** `2`
 - **Explanation:** In the above grid, the largest plus sign can only be of order 2. One of them is shown.
+
 #### Example 2
 
 ![](images/plus2-grid.jpg)

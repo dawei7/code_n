@@ -30,17 +30,17 @@ Return columns `bike_number` and `end_time`, where `end_time` is that bike's lat
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: Bike `W00576` has rides ending at `2012-03-25 12:40:00`, `2012-03-25 09:10:00`, and `2012-03-28 02:50:00`; bike `W00455` has two rides; bike `W00300` has one.
-- Output: `[["W00576","2012-03-28 02:50:00"],["W00455","2012-03-26 17:40:00"],["W00300","2012-03-25 10:50:00"]]`
+- **Input:** Bike `W00576` has rides ending at `2012-03-25 12:40:00`, `2012-03-25 09:10:00`, and `2012-03-28 02:50:00`; bike `W00455` has two rides; bike `W00300` has one.
+- **Output:** `[["W00576","2012-03-28 02:50:00"],["W00455","2012-03-26 17:40:00"],["W00300","2012-03-25 10:50:00"]]`
 
-**Example 2**
+#### Example 2
 
-- Input: `Bikes = [[1,"A1","2024-01-01 09:00:00","2024-01-01 10:00:00"]]`
-- Output: `[["A1","2024-01-01 10:00:00"]]`
+- **Input:** `Bikes = [[1,"A1","2024-01-01 09:00:00","2024-01-01 10:00:00"]]`
+- **Output:** `[["A1","2024-01-01 10:00:00"]]`
 
-**Example 3**
+#### Example 3
 
-- Input: Two rides of bike `B2` end on consecutive days.
-- Output: One row for `B2` containing the later end time.
+- **Input:** Two rides of bike `B2` end on consecutive days.
+- **Output:** One row for `B2` containing the later end time.

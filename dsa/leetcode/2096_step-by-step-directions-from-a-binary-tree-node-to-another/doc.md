@@ -34,13 +34,13 @@ Return the shortest direction string over `"L"`, `"R"`, and `"U"` from `startVal
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [5,1,2,3,null,6,4]`, `startValue = 3`, `destValue = 6`
-- Output: `"UURL"`
-- Explanation: The node sequence is `3 -> 1 -> 5 -> 2 -> 6`.
+- **Input:** `root = [5,1,2,3,null,6,4]`, `startValue = 3`, `destValue = 6`
+- **Output:** `"UURL"`
+- **Explanation:** The node sequence is `3 -> 1 -> 5 -> 2 -> 6`.
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [2,1]`, `startValue = 2`, `destValue = 1`
-- Output: `"L"`
+- **Input:** `root = [2,1]`, `startValue = 2`, `destValue = 1`
+- **Output:** `"L"`

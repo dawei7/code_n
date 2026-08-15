@@ -6,8 +6,13 @@ An **outlier** is defined as a number that is *neither* one of the original spec
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -19,40 +24,27 @@ Return the **largest**** **potential** outlier** in `nums`.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,3,5,10]
+- **Input:** nums = [2,3,5,10]
 
-**Output:** 10
+- **Output:** 10
 
-**Explanation:**
+- **Explanation:** The special numbers could be 2 and 3, thus making their sum 5 and the outlier 10.
 
-The special numbers could be 2 and 3, thus making their sum 5 and the outlier 10.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [-2,-1,-3,-6,4]
+- **Input:** nums = [-2,-1,-3,-6,4]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** The special numbers could be -2, -1, and -3, thus making their sum -6 and the outlier 4.
 
-The special numbers could be -2, -1, and -3, thus making their sum -6 and the outlier 4.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,1,1,1,1,5,5]
+- **Input:** nums = [1,1,1,1,1,5,5]
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
-
-The special numbers could be 1, 1, 1, 1, and 1, thus making their sum 5 and the other 5 as the outlier.
-
-</div>
+- **Explanation:** The special numbers could be 1, 1, 1, 1, and 1, thus making their sum 5 and the other 5 as the outlier.
 
 ### 5. Constraints
 

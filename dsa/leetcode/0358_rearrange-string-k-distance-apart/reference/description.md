@@ -20,11 +20,13 @@ Return a permutation of every character in `s` that satisfies the distance requi
 - **Input:** `s = "aabbcc", k = 3`
 - **Output:** `"abcabc"`
 - **Explanation:** The same letters are at least a distance of 3 from each other.
+
 #### Example 2
 
 - **Input:** `s = "aaabc", k = 3`
 - **Output:** `""`
 - **Explanation:** It is not possible to rearrange the string.
+
 #### Example 3
 
 - **Input:** `s = "aaadbbcc", k = 2`

@@ -33,14 +33,14 @@ Return the number of indices `i` having at least `k` earlier indices `j` with $\
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 3, 6, 5, 2, 3], k = 2`
-- Output: `2`
-- Explanation: Indices `2` and `3` each have at least two strictly smaller values on both their left and right sides.
+- **Input:** `nums = [2, 3, 6, 5, 2, 3], k = 2`
+- **Output:** `2`
+- **Explanation:** Indices `2` and `3` each have at least two strictly smaller values on both their left and right sides.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 1, 1], k = 3`
-- Output: `0`
-- Explanation: No value has three earlier and three later indices, and equal values would not satisfy the strict comparison anyway.
+- **Input:** `nums = [1, 1, 1], k = 3`
+- **Output:** `0`
+- **Explanation:** No value has three earlier and three later indices, and equal values would not satisfy the strict comparison anyway.

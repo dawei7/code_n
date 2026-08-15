@@ -40,8 +40,10 @@ os.insert(4, "ddddd"); // Inserts (4, "ddddd"), returns ["ddddd", "eeeee"].
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `OrderedStream(n: int)`: Initializes the data structure.
+- `insert(idKey: int, value: str) -> `List[str]``: Executes operation.
 
 ### 3. Constraints
 

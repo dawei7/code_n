@@ -24,6 +24,7 @@ On round 2, take 7 damage. You have 11 - 7 = 4 health.
 On round 3, use your armor to protect you from 4 damage. You have 4 - 0 = 4 health.
 On round 4, take 3 damage. You have 4 - 3 = 1 health.
 Note that 13 is the minimum health you need to start with to beat the game.
+
 #### Example 2
 
 - **Input:** $damage = [2,5,3,4], armor = 7$
@@ -34,6 +35,7 @@ On round 2, use your armor to protect you from 5 damage. You have 8 - 0 = 8 heal
 On round 3, take 3 damage. You have 8 - 3 = 5 health.
 On round 4, take 4 damage. You have 5 - 4 = 1 health.
 Note that 10 is the minimum health you need to start with to beat the game.
+
 #### Example 3
 
 - **Input:** $damage = [3,3,3], armor = 0$

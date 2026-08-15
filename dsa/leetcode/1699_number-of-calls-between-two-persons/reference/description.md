@@ -44,7 +44,7 @@ Return a table with columns `person1`, `person2`, $\text{call}_{count}$, and $\t
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Calls table:
 +---------+-------+----------+
 | from_id | to_id | duration |
@@ -57,7 +57,7 @@ Calls table:
 | 3       | 4     | 200      |
 | 4       | 3     | 499      |
 +---------+-------+----------+
-**Output:**
+- **Output:** 
 +---------+---------+------------+----------------+
 | person1 | person2 | call_count | total_duration |
 +---------+---------+------------+----------------+
@@ -65,8 +65,7 @@ Calls table:
 | 1       | 3       | 1          | 20             |
 | 3       | 4       | 4          | 999            |
 +---------+---------+------------+----------------+
-**Explanation:**
-Users 1 and 2 had 2 calls and the total duration is 70 (59 + 11).
+- **Explanation:** Users 1 and 2 had 2 calls and the total duration is 70 (59 + 11).
 Users 1 and 3 had 1 call and the total duration is 20.
 Users 3 and 4 had 4 calls and the total duration is 999 (100 + 200 + 200 + 499).
 ```

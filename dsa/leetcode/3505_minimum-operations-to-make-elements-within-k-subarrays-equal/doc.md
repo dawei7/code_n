@@ -34,14 +34,14 @@ Return the minimum total number of increment or decrement operations that makes 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [5,-2,1,3,7,3,6,4,-1], x = 3, k = 2`
-- Output: `8`
-- Explanation: Indices $1$ through $3$ can become all $1$ at cost $5$, and indices $5$ through $7$ can become all $4$ at cost $3$.
+- **Input:** `nums = [5,-2,1,3,7,3,6,4,-1], x = 3, k = 2`
+- **Output:** `8`
+- **Explanation:** Indices $1$ through $3$ can become all $1$ at cost $5$, and indices $5$ through $7$ can become all $4$ at cost $3$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [9,-2,-2,-2,1,5], x = 2, k = 2`
-- Output: `3`
-- Explanation: The pair at indices $1$ and $2$ already matches. Changing the value at index $4$ from $1$ to $-2$ makes indices $3$ and $4$ a second disjoint equal pair.
+- **Input:** `nums = [9,-2,-2,-2,1,5], x = 2, k = 2`
+- **Output:** `3`
+- **Explanation:** The pair at indices $1$ and $2$ already matches. Changing the value at index $4$ from $1$ to $-2$ makes indices $3$ and $4$ a second disjoint equal pair.

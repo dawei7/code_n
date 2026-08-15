@@ -30,20 +30,20 @@ In one move, swap the people in any two seats. Return the minimum number of swap
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `row = [0,2,1,3]`
-- Output: `1`
-- Explanation: Swap people `2` and `1` so both seat pairs contain couples.
+- **Input:** `row = [0,2,1,3]`
+- **Output:** `1`
+- **Explanation:** Swap people `2` and `1` so both seat pairs contain couples.
 
-**Example 2**
+#### Example 2
 
-- Input: `row = [3,2,0,1]`
-- Output: `0`
-- Explanation: Both couples already sit together, regardless of order within a pair.
+- **Input:** `row = [3,2,0,1]`
+- **Output:** `0`
+- **Explanation:** Both couples already sit together, regardless of order within a pair.
 
-**Example 3**
+#### Example 3
 
-- Input: `row = [0,2,4,1,3,5]`
-- Output: `2`
-- Explanation: The three couples form one misplacement cycle, which requires two swaps.
+- **Input:** `row = [0,2,4,1,3,5]`
+- **Output:** `2`
+- **Explanation:** The three couples form one misplacement cycle, which requires two swaps.

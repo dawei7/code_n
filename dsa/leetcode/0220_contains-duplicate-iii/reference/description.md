@@ -35,6 +35,7 @@ We satisfy the three conditions:
 i != j --> 0 != 3
 abs(i - j) <= indexDiff --> abs(0 - 3) <= 3
 abs(nums[i] - nums[j]) <= valueDiff --> abs(1 - 1) <= 0
+
 #### Example 2
 
 - **Input:** `nums = [1,5,9,1,5,9], indexDiff = 2, valueDiff = 3`

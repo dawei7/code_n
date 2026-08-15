@@ -33,10 +33,10 @@ Return columns `employee_id`, `name`, and `improvement_score` for employees whos
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: Five employees with review histories of varying lengths and trends.
-- Output: Bob Smith with score `3`, followed by Alice Johnson and Carol Davis with score `2`.
-- Explanation: Each included employee's latest three ratings rise strictly. David's ratings are flat, and Emma has only two reviews.
+- **Input:** Five employees with review histories of varying lengths and trends.
+- **Output:** Bob Smith with score `3`, followed by Alice Johnson and Carol Davis with score `2`.
+- **Explanation:** Each included employee's latest three ratings rise strictly. David's ratings are flat, and Emma has only two reviews.
 
 ---

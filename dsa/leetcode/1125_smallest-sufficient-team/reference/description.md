@@ -12,8 +12,14 @@ It is **guaranteed** an answer exists.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `req_skills`: Input parameter (`List[str]`).
+- `people`: Input parameter (`List[List[str]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -21,6 +27,7 @@ It is **guaranteed** an answer exists.
 
 - **Input:** $\text{req}_{skills} = ["java","nodejs","reactjs"], people = [["java"],["nodejs"],["nodejs","reactjs"]]$
 - **Output:** `[0,2]`
+
 #### Example 2
 
 - **Input:** $\text{req}_{skills} = ["algorithms","math","java","reactjs","csharp","aws"], people = [["algorithms","math","java"],["algorithms","math","reactjs"],["java","csharp","aws"],["reactjs","csharp"],["csharp","math"],["aws","java"]]$

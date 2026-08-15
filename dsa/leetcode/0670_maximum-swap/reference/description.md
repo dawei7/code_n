@@ -6,8 +6,13 @@ Return *the maximum valued number you can get*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `num`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,6 +21,7 @@ Return *the maximum valued number you can get*.
 - **Input:** $num = 2736$
 - **Output:** `7236`
 - **Explanation:** Swap the number 2 and the number 7.
+
 #### Example 2
 
 - **Input:** $num = 9973$

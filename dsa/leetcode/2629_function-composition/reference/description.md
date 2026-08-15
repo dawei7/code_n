@@ -19,27 +19,26 @@ You may assume each function in the array accepts one integer as input and retur
 
 - **Input:** $functions = [x => x + 1, x => x * x, x => 2 * x], x = 4$
 - **Output:** `65`
-- **Explanation:**
-Evaluating from right to left ...
+- **Explanation:** Evaluating from right to left ...
 Starting with x = 4.
 2 * (4) = 8
 (8) * (8) = 64
 (64) + 1 = 65
+
 #### Example 2
 
 - **Input:** $functions = [x => 10 * x, x => 10 * x, x => 10 * x], x = 1$
 - **Output:** `1000`
-- **Explanation:**
-Evaluating from right to left ...
+- **Explanation:** Evaluating from right to left ...
 10 * (1) = 10
 10 * (10) = 100
 10 * (100) = 1000
+
 #### Example 3
 
 - **Input:** $functions = [], x = 42$
 - **Output:** `42`
-- **Explanation:**
-The composition of zero functions is the identity function
+- **Explanation:** The composition of zero functions is the identity function
 
 ### 4. Constraints
 

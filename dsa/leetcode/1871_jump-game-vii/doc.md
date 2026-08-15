@@ -32,23 +32,23 @@ Determine whether some sequence of valid jumps reaches the final index. Jumps ca
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "011010", minJump = 2, maxJump = 3`
-- Output: `true`
+- **Input:** `s = "011010", minJump = 2, maxJump = 3`
+- **Output:** `true`
 
 Jump from index `0` to `3`, then from `3` to `5`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "01101110", minJump = 2, maxJump = 3`
-- Output: `false`
+- **Input:** `s = "01101110", minJump = 2, maxJump = 3`
+- **Output:** `false`
 
 The zero positions do not form a valid chain to the final index.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "0000", minJump = 1, maxJump = 2`
-- Output: `true`
+- **Input:** `s = "0000", minJump = 1, maxJump = 2`
+- **Output:** `true`
 
 Several paths exist, including `0 -> 1 -> 3`.

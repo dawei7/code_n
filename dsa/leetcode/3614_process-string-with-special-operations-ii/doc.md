@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/process-string-with-special-operations-ii/) |
 
 ## Problem Description
+
 ### Goal
 
 Process `s` from left to right while conceptually building a result string. Lowercase English letters append themselves. The special character `*` removes the last result character when one exists, `#` duplicates the current result and appends the copy, and `%` reverses the result.
@@ -32,20 +33,20 @@ Return the final result's character at index `k`, or `'.'` when `k` lies outside
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "a#b%*", k = 1`
-- Output: `"a"`
-- Explanation: The final result is `"ba"`, whose character at index 1 is `a`.
+- **Input:** `s = "a#b%*", k = 1`
+- **Output:** `"a"`
+- **Explanation:** The final result is `"ba"`, whose character at index 1 is `a`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "cd%#*#", k = 3`
-- Output: `"d"`
-- Explanation: Processing produces `"dcddcd"`; index 3 contains `d`.
+- **Input:** `s = "cd%#*#", k = 3`
+- **Output:** `"d"`
+- **Explanation:** Processing produces `"dcddcd"`; index 3 contains `d`.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "z*#", k = 0`
-- Output: `"."`
-- Explanation: The final result is empty, so index 0 is out of bounds.
+- **Input:** `s = "z*#", k = 0`
+- **Output:** `"."`
+- **Explanation:** The final result is empty, so index 0 is out of bounds.

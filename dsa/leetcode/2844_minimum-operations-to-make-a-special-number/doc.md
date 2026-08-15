@@ -32,20 +32,20 @@ The constraints are $1\le\lvert\texttt{num}\rvert\le100$, and every character is
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `num = "2245047"`
-- Output: `2`
-- Explanation: Deleting the final two digits leaves `22450`, which is divisible by $25$.
+- **Input:** `num = "2245047"`
+- **Output:** `2`
+- **Explanation:** Deleting the final two digits leaves `22450`, which is divisible by $25$.
 
-**Example 2**
+#### Example 2
 
-- Input: `num = "2908305"`
-- Output: `3`
-- Explanation: Deleting the digits at original indices `3`, `4`, and `6` leaves `2900`.
+- **Input:** `num = "2908305"`
+- **Output:** `3`
+- **Explanation:** Deleting the digits at original indices `3`, `4`, and `6` leaves `2900`.
 
-**Example 3**
+#### Example 3
 
-- Input: `num = "10"`
-- Output: `1`
-- Explanation: Deleting the leading `1` leaves `0`, a multiple of $25$.
+- **Input:** `num = "10"`
+- **Output:** `1`
+- **Explanation:** Deleting the leading `1` leaves `0`, a multiple of $25$.

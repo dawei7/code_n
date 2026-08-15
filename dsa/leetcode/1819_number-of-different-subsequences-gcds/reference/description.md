@@ -14,8 +14,13 @@ Return *the **number** of **different** GCDs among all **non-empty** subsequence
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -27,6 +32,7 @@ Return *the **number** of **different** GCDs among all **non-empty** subsequence
 - **Output:** `5`
 - **Explanation:** The figure shows all the non-empty subsequences and their GCDs.
 The different GCDs are 6, 10, 3, 2, and 1.
+
 #### Example 2
 
 - **Input:** `nums = [5,15,40,5,6]`

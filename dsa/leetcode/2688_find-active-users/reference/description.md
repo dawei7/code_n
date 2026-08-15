@@ -32,7 +32,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:
+- **Input:** 
 **Users table:
 +---------+-------------------+------------+--------+
 | user_id | item              | created_at | amount |
@@ -44,13 +44,13 @@ The result format is in the following example.
 | 4       | Smart Cat Feeder  | 2021-09-02 | 693545 |
 | 4       | Smart Bed         | 2021-09-13 | 170249 |
 +---------+-------------------+------------+--------+
-**Output:**
+- **Output:** 
 +---------+
 | user_id |
 +---------+
 | 6       |
 +---------+
-**Explanation:**
+- **Explanation:** 
 - User with user_id 5 has only one transaction, so he is not an active user.
 - User with user_id 6 has two transaction his first transaction was on 2021-09-10 and second transation was on 2021-09-14. The distance between the first and second transactions date is <= 7 days. So he is an active user.
 - User with user_id 8 has only one transaction, so he is not an active user.

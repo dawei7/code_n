@@ -32,20 +32,20 @@ Let $M=10^9+7$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abbcccaa"`
-- Output: `13`
-- Explanation: Runs of lengths $1$, $2$, $3$, and $2$ contribute $1$, $3$, $6$, and $3$ homogenous substrings.
+- **Input:** `s = "abbcccaa"`
+- **Output:** `13`
+- **Explanation:** Runs of lengths $1$, $2$, $3$, and $2$ contribute $1$, $3$, $6$, and $3$ homogenous substrings.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "xy"`
-- Output: `2`
-- Explanation: Only the two one-character substrings are homogenous.
+- **Input:** `s = "xy"`
+- **Output:** `2`
+- **Explanation:** Only the two one-character substrings are homogenous.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "zzzzz"`
-- Output: `15`
-- Explanation: A length-five uniform run contains $5+4+3+2+1=15$ homogenous substrings.
+- **Input:** `s = "zzzzz"`
+- **Output:** `15`
+- **Explanation:** A length-five uniform run contains $5+4+3+2+1=15$ homogenous substrings.

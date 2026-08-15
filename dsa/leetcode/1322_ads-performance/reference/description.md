@@ -49,7 +49,7 @@ An advertisement represented only by `Ignored` rows still appears, with `ctr` eq
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Ads table:
 +-------+---------+---------+
 | ad_id | user_id | action  |
@@ -65,7 +65,7 @@ Ads table:
 | 2     | 11      | Viewed  |
 | 1     | 2       | Clicked |
 +-------+---------+---------+
-**Output:**
+- **Output:** 
 +-------+-------+
 | ad_id | ctr   |
 +-------+-------+
@@ -74,8 +74,7 @@ Ads table:
 | 2     | 33.33 |
 | 5     | 0.00  |
 +-------+-------+
-**Explanation:**
-for ad_id = 1, ctr = (2/(2+1)) * 100 = 66.67
+- **Explanation:** for ad_id = 1, ctr = (2/(2+1)) * 100 = 66.67
 for ad_id = 2, ctr = (1/(1+2)) * 100 = 33.33
 for ad_id = 3, ctr = (1/(1+1)) * 100 = 50.00
 for ad_id = 5, ctr = 0.00, Note that ad_id = 5 has no clicks or views.

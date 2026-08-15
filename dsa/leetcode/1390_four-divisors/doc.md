@@ -32,20 +32,20 @@ Let $V = \max(\texttt{nums})$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [21,4,7]`
-- Output: `32`
-- Explanation: `21` has divisors `1, 3, 7, 21`, while `4` and `7` do not have four divisors.
+- **Input:** `nums = [21,4,7]`
+- **Output:** `32`
+- **Explanation:** `21` has divisors `1, 3, 7, 21`, while `4` and `7` do not have four divisors.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [21,21]`
-- Output: `64`
-- Explanation: Each occurrence of `21` contributes `32`.
+- **Input:** `nums = [21,21]`
+- **Output:** `64`
+- **Explanation:** Each occurrence of `21` contributes `32`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [8,9,16]`
-- Output: `15`
-- Explanation: `8` contributes `1 + 2 + 4 + 8`; the square `9` has three divisors, and `16` has five.
+- **Input:** `nums = [8,9,16]`
+- **Output:** `15`
+- **Explanation:** `8` contributes `1 + 2 + 4 + 8`; the square `9` has three divisors, and `16` has five.

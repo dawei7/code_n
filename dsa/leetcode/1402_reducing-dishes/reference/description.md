@@ -10,8 +10,13 @@ Dishes can be prepared in **any **order and the chef can discard some dishes to 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `satisfaction`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,11 +26,13 @@ Dishes can be prepared in **any **order and the chef can discard some dishes to 
 - **Output:** `14`
 - **Explanation:** After Removing the second and last dish, the maximum total **like-time coefficient** will be equal to (-1*1 + 0*2 + 5*3 = 14).
 Each dish is prepared in one unit of time.
+
 #### Example 2
 
 - **Input:** $satisfaction = [4,3,2]$
 - **Output:** `20`
 - **Explanation:** Dishes can be prepared in any order, (2*1 + 3*2 + 4*3 = 20)
+
 #### Example 3
 
 - **Input:** $satisfaction = [-1,-4,-5]$

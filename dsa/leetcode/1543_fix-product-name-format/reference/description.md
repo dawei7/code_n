@@ -43,7 +43,7 @@ Return a table with columns $\text{product}_{name}$ (varchar), $\text{sale}_{dat
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Sales table:
 +---------+--------------+------------+
 | sale_id | product_name | sale_date  |
@@ -55,7 +55,7 @@ Sales table:
 | 5       | LCKeyChain   | 2000-02-28 |
 | 6       | Matryoshka   | 2000-03-31 |
 +---------+--------------+------------+
-**Output:**
+- **Output:** 
 +--------------+-----------+-------+
 | product_name | sale_date | total |
 +--------------+-----------+-------+
@@ -64,8 +64,7 @@ Sales table:
 | lcphone      | 2000-02   | 1     |
 | matryoshka   | 2000-03   | 1     |
 +--------------+-----------+-------+
-**Explanation:**
-In January, 2 LcPhones were sold. Please note that the product names are not case sensitive and may contain spaces.
+- **Explanation:** In January, 2 LcPhones were sold. Please note that the product names are not case sensitive and may contain spaces.
 In February, 2 LCKeychains and 1 LCPhone were sold.
 In March, one matryoshka was sold.
 ```

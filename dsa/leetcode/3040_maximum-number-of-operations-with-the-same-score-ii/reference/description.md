@@ -16,8 +16,13 @@ Return *the **maximum** number of operations possible that satisfy the condition
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -30,6 +35,7 @@ Return *the **maximum** number of operations possible that satisfy the condition
 - Delete the first and the last elements, with score 1 + 4 = 5, nums = [2,3].
 - Delete the first and the last elements, with score 2 + 3 = 5, nums = [].
 We are unable to perform any more operations as nums is empty.
+
 #### Example 2
 
 - **Input:** `nums = [3,2,6,1,4]`

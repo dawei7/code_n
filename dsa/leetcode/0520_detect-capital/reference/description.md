@@ -12,8 +12,13 @@ Given a string `word`, return `true` if the usage of capitals in it is right.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `word`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -21,6 +26,7 @@ Given a string `word`, return `true` if the usage of capitals in it is right.
 
 - **Input:** $word = "USA"$
 - **Output:** `true`
+
 #### Example 2
 
 - **Input:** $word = "FlaG"$

@@ -12,23 +12,29 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `t`: Input parameter (`int`).
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "abcyy", t = 2, nums = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2]
+- **Input:** s = "abcyy", t = 2, nums = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2]
 
-**Output:** 7
+- **Output:** 7
 
-**Explanation:**
+- **Explanation:** 
 
 - **First Transformation (t = 1):**
 
-		<li>`'a'` becomes `'b'` as $\text{nums}[0] = 1$
+		- `'a'` becomes `'b'` as $\text{nums}[0] = 1$
 
 - `'b'` becomes `'c'` as $\text{nums}[1] = 1$
 
@@ -40,10 +46,9 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 - String after the first transformation: `"bcdzz"`
 
-	</li>
 - **Second Transformation (t = 2):**
 
-		<li>`'b'` becomes `'c'` as $\text{nums}[1] = 1$
+		- `'b'` becomes `'c'` as $\text{nums}[1] = 1$
 
 - `'c'` becomes `'d'` as $\text{nums}[2] = 1$
 
@@ -55,22 +60,19 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 - String after the second transformation: `"cdeabab"`
 
-	</li>
 - **Final Length of the string:** The string is `"cdeabab"`, which has 7 characters.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "azbk", t = 1, nums = [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]
+- **Input:** s = "azbk", t = 1, nums = [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]
 
-**Output:** 8
+- **Output:** 8
 
-**Explanation:**
+- **Explanation:** 
 
 - **First Transformation (t = 1):**
 
-		<li>`'a'` becomes `'bc'` as $\text{nums}[0] = 2$
+		- `'a'` becomes `'bc'` as $\text{nums}[0] = 2$
 
 - `'z'` becomes `'ab'` as $\text{nums}[25] = 2$
 
@@ -80,10 +82,7 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 - String after the first transformation: `"bcabcdlm"`
 
-	</li>
 - **Final Length of the string:** The string is `"bcabcdlm"`, which has 8 characters.
-
-</div>
 
 ### 4. Constraints
 

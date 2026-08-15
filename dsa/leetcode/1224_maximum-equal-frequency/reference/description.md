@@ -6,8 +6,13 @@ If after removing one element there are no remaining elements, it's still consid
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,6 +21,7 @@ If after removing one element there are no remaining elements, it's still consid
 - **Input:** `nums = [2,2,1,1,5,3,3,5]`
 - **Output:** `7`
 - **Explanation:** For the subarray [2,2,1,1,5,3,3] of length 7, if we remove nums[4] = 5, we will get [2,2,1,1,3,3], so that each number will appear exactly twice.
+
 #### Example 2
 
 - **Input:** `nums = [1,1,1,2,2,2,3,3,3,4,4,4,5]`

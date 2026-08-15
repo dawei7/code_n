@@ -4,7 +4,7 @@ Given a **circular linked list** `list` of positive integers, your task is to sp
 
 Return *an array answer of length 2 in which the first element is a **circular linked list** representing the **first half** and the second element is a **circular linked list** representing the **second half**.*
 
-<div>A **circular linked list** is a normal linked list with the only difference being that the last node's next node, is the first node.</div>
+A **circular linked list** is a normal linked list with the only difference being that the last node's next node, is the first node.
 
 ### 2. Function Contract
 
@@ -17,6 +17,7 @@ Return *an array answer of length 2 in which the first element is a **circular l
 - **Input:** `nums = [1,5,7]`
 - **Output:** `[[1,5],[7]]`
 - **Explanation:** The initial list has 3 nodes so the first half would be the first 2 elements since ceil(3 / 2) = 2 and the rest which is 1 node is in the second half.
+
 #### Example 2
 
 - **Input:** `nums = [2,6,1,5]`

@@ -8,8 +8,14 @@ Return *the length of the **longest path** in the tree such that no pair of **ad
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `parent`: Input parameter (`List[int]`).
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +27,7 @@ Return *the length of the **longest path** in the tree such that no pair of **ad
 - **Output:** `3`
 - **Explanation:** The longest path where each two adjacent nodes have different characters in the tree is the path: 0 -> 1 -> 3. The length of this path is 3, so 3 is returned.
 It can be proven that there is no longer path that satisfies the conditions.
+
 #### Example 2
 
 ![](images/graph2drawio.png)

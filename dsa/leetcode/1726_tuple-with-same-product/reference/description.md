@@ -4,8 +4,13 @@ Given an array `nums` of **distinct** positive integers, return *the number of t
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,6 +21,7 @@ Given an array `nums` of **distinct** positive integers, return *the number of t
 - **Explanation:** There are 8 valid tuples:
 (2,6,3,4) , (2,6,4,3) , (6,2,3,4) , (6,2,4,3)
 (3,4,2,6) , (4,3,2,6) , (3,4,6,2) , (4,3,6,2)
+
 #### Example 2
 
 - **Input:** `nums = [1,2,4,5,10]`

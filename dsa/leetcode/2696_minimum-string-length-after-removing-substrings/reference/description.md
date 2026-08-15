@@ -8,8 +8,13 @@ Return *the **minimum** possible length of the resulting string that you can obt
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -27,6 +32,7 @@ that the string concatenates after removing the substring and could produce new 
 - Remove the substring "FC<u>AB</u>", so s = "FC".
 So the resulting length of the string is 2.
 It can be shown that it is the minimum length that we can obtain.
+
 #### Example 2
 
 - **Input:** `s = "ACBBD"`

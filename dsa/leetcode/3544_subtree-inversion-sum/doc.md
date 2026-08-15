@@ -36,22 +36,22 @@ Return the maximum possible total node value after any valid collection of subtr
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `edges = [[0, 1], [0, 2], [1, 3], [1, 4], [2, 5], [2, 6]], nums = [4, -8, -6, 3, 7, -2, 5], k = 2`
-- Output: `27`
-- Explanation: Inverting nodes `0`, `3`, `4`, and `6` produces `[-4, 8, 6, 3, 7, 2, 5]`.
+- **Input:** `edges = [[0, 1], [0, 2], [1, 3], [1, 4], [2, 5], [2, 6]], nums = [4, -8, -6, 3, 7, -2, 5], k = 2`
+- **Output:** `27`
+- **Explanation:** Inverting nodes `0`, `3`, `4`, and `6` produces `[-4, 8, 6, 3, 7, 2, 5]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `edges = [[0, 1], [1, 2], [2, 3], [3, 4]], nums = [-1, 3, -2, 4, -5], k = 2`
-- Output: `9`
-- Explanation: Inverting the leaf at node `4` changes only `-5` to `5`.
+- **Input:** `edges = [[0, 1], [1, 2], [2, 3], [3, 4]], nums = [-1, 3, -2, 4, -5], k = 2`
+- **Output:** `9`
+- **Explanation:** Inverting the leaf at node `4` changes only `-5` to `5`.
 
-**Example 3**
+#### Example 3
 
-- Input: `edges = [[0, 1], [0, 2]], nums = [0, -1, -2], k = 3`
-- Output: `3`
-- Explanation: Nodes `1` and `2` are in different branches, so both may be inverted despite their common parent.
+- **Input:** `edges = [[0, 1], [0, 2]], nums = [0, -1, -2], k = 3`
+- **Output:** `3`
+- **Explanation:** Nodes `1` and `2` are in different branches, so both may be inverted despite their common parent.
 
 ---

@@ -22,32 +22,23 @@ Return `true` if `nums[n // 2]` has total frequency exactly one in `nums`; other
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3]
+- **Input:** nums = [1,2,3]
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
-
-The middle element of `nums` is 2, which appears exactly once.
+- **Explanation:** The middle element of `nums` is 2, which appears exactly once.
 
 Thus, the answer is `true`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2,2]
+- **Input:** nums = [1,2,2]
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
-
-The middle element of `nums` is 2, which appears twice.
+- **Explanation:** The middle element of `nums` is 2, which appears twice.
 
 Thus, the answer is `false`.
-
-</div>
 
 ### 4. Constraints
 

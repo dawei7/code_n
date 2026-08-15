@@ -30,6 +30,7 @@ sorted predecessor and `right` points to the sorted successor. Return `None` whe
 - **Output:** `[1,2,3,4,5]`
 - **Explanation:** The figure below shows the transformed BST. The solid line indicates the successor relationship, while the dashed line means the predecessor relationship.
 ![](images/bstdllreturnbst.png)
+
 #### Example 2
 
 - **Input:** `root = [2,1,3]`

@@ -27,11 +27,13 @@ same region literal.
 - **Input:** `s = "aaa"`
 - **Output:** `"aaa"`
 - **Explanation:** There is no way to encode it such that it is shorter than the input string, so we do not encode it.
+
 #### Example 2
 
 - **Input:** `s = "aaaaa"`
 - **Output:** $"5[a]"$
 - **Explanation:** "5[a]" is shorter than "aaaaa" by 1 character.
+
 #### Example 3
 
 - **Input:** `s = "aaaaaaaaaa"`

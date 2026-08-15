@@ -18,12 +18,11 @@ A submatrix `(x1, y1, x2, y2)` is a matrix that forms by choosing all cells $\te
 
 #### Example 1
 
-<div class="example-block">
-**Input:** grid = [[4,3,2,1],[8,7,6,1]], k = 3
+- **Input:** grid = [[4,3,2,1],[8,7,6,1]], k = 3
 
-**Output:** 8
+- **Output:** 8
 
-**Explanation:**
+- **Explanation:** 
 
 **
 
@@ -49,27 +48,19 @@ The 8 submatrices are:
 
 - `[[3,2]]`
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** grid = [[1,1,1],[1,1,1],[1,1,1]], k = 1
+- **Input:** grid = [[1,1,1],[1,1,1],[1,1,1]], k = 1
 
-**Output:** 36
+- **Output:** 36
 
-**Explanation:**
+- **Explanation:** There are 36 submatrices of grid. All submatrices have their maximum element equal to 1.
 
-There are 36 submatrices of grid. All submatrices have their maximum element equal to 1.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** grid = [[1]], k = 1
+- **Input:** grid = [[1]], k = 1
 
-**Output:** 1
-
-</div>
+- **Output:** 1
 
 ### 4. Constraints
 

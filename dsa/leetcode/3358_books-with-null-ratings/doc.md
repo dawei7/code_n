@@ -38,7 +38,7 @@ Return columns `book_id`, `title`, `author`, and `published_year` for rows whose
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 Input table:
 
@@ -51,7 +51,7 @@ Input table:
 | 5 | Animal Farm | George Orwell | 1945 | 4.2 |
 | 6 | Lord of the Flies | William Golding | 1954 | `NULL` |
 
-Output:
+- **Output:** 
 
 | book_id | title | author | published_year |
 |---:|---|---|---:|

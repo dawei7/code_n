@@ -33,14 +33,13 @@ Return one result per operation: `null` for construction and `record`, and the i
 
 #### Example 1
 
-<div class="example-block">
-**Input:**
+- **Input:** 
 
 ["ExamTracker", "record", "totalScore", "record", "totalScore", "totalScore", "totalScore", "totalScore"]
 
 [[], [1, 98], [1, 1], [5, 99], [1, 3], [1, 5], [3, 4], [2, 5]]
 
-**Output:**
+- **Output:** 
 
 [null, null, 98, null, 98, 197, 0, 99]
 
@@ -60,7 +59,7 @@ examTracker.totalScore(1, 5); // Between time 1 and time 5, Alice took 2 exams a
 
 examTracker.totalScore(3, 4); // Alice did not take any exam between time 3 and time 4. Therefore, the answer is 0.
 
-examTracker.totalScore(2, 5); // Between time 2 and time 5, Alice took 1 exam at time 5, scoring 99. The total score is 99.</div>
+examTracker.totalScore(2, 5); // Between time 2 and time 5, Alice took 1 exam at time 5, scoring 99. The total score is 99.
 
 ### 4. Constraints
 

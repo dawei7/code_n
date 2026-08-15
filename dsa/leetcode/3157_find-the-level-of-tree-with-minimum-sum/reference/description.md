@@ -14,40 +14,27 @@ that the root of the tree is at level 1 and the level of any other node is its d
 
 #### Example 1
 
-<div class="example-block">
-**Input:** root = [50,6,2,30,80,7]
+- **Input:** root = [50,6,2,30,80,7]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** ![](images/image_2024-05-17_16-15-46.png)
 
-![](images/image_2024-05-17_16-15-46.png)
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** root = [36,17,10,null,null,24]
+- **Input:** root = [36,17,10,null,null,24]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** ![](images/image_2024-05-17_16-14-18.png)
 
-![](images/image_2024-05-17_16-14-18.png)
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** root = [5,null,5,null,5]
+- **Input:** root = [5,null,5,null,5]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-![](images/image_2024-05-19_19-07-20.png)
-
-</div>
+- **Explanation:** ![](images/image_2024-05-19_19-07-20.png)
 
 ### 5. Constraints
 

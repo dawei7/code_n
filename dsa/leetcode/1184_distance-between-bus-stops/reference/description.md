@@ -8,8 +8,15 @@ Return the shortest distance between the given `start` and `destination` stops.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `distance`: Input parameter (`List[int]`).
+- `start`: Input parameter (`int`).
+- `destination`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +27,7 @@ Return the shortest distance between the given `start` and `destination` stops.
 - **Input:** $distance = [1,2,3,4], start = 0, destination = 1$
 - **Output:** `1`
 - **Explanation:** Distance between 0 and 1 is 1 or 9, minimum is 1.
+
 #### Example 2
 
 ![](images/untitled-diagram-1-1.jpg)
@@ -27,6 +35,7 @@ Return the shortest distance between the given `start` and `destination` stops.
 - **Input:** $distance = [1,2,3,4], start = 0, destination = 2$
 - **Output:** `3`
 - **Explanation:** Distance between 0 and 2 is 3 or 7, minimum is 3.
+
 #### Example 3
 
 ![](images/untitled-diagram-1-2.jpg)

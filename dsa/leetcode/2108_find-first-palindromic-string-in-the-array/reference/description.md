@@ -6,8 +6,13 @@ A string is **palindromic** if it reads the same forward and backward.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -17,11 +22,13 @@ A string is **palindromic** if it reads the same forward and backward.
 - **Output:** `"ada"`
 - **Explanation:** The first string that is palindromic is "ada".
 Note that "racecar" is also palindromic, but it is not the first.
+
 #### Example 2
 
 - **Input:** $words = ["notapalindrome","racecar"]$
 - **Output:** `"racecar"`
 - **Explanation:** The first and only string that is palindromic is "racecar".
+
 #### Example 3
 
 - **Input:** $words = ["def","ghi"]$

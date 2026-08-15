@@ -41,7 +41,7 @@ The query result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Products table:
 +------------+----------+--------+------+------+
 | product_id | LC_Store | Nozama | Shop | Souq |
@@ -50,7 +50,7 @@ Products table:
 | 2          | null     | 200    | null | 190  |
 | 3          | null     | null   | 1000 | 1900 |
 +------------+----------+--------+------+------+
-**Output:**
+- **Output:** 
 +------------+----------+-------+
 | product_id | store    | price |
 +------------+----------+-------+
@@ -61,8 +61,7 @@ Products table:
 | 3          | Shop     | 1000  |
 | 3          | Souq     | 1900  |
 +------------+----------+-------+
-**Explanation:**
-Product 1 is sold in LC_Store and Shop with prices of 100 and 110 respectively.
+- **Explanation:** Product 1 is sold in LC_Store and Shop with prices of 100 and 110 respectively.
 Product 2 is sold in Nozama and Souq with prices of 200 and 190.
 Product 3 is sold in Shop and Souq with prices of 1000 and 1900.
 ```

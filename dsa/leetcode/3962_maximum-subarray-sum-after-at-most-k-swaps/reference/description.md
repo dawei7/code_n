@@ -25,46 +25,37 @@ Return the maximum possible sum of a nonempty contiguous subarray after performi
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,-1,0,2], k = 1
+- **Input:** nums = [1,-1,0,2], k = 1
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - We can swap on indices 1 and 3, resulting in the array `[1, 2, 0, -1]`.
 
 - The subarray `[1, 2]` has a sum of 3, which is the maximum possible subarray sum after at most $k = 1$​​​​​​​ swap.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [4,3,2,4], k = 2
+- **Input:** nums = [4,3,2,4], k = 2
 
-**Output:** 13
+- **Output:** 13
 
-**Explanation:**
+- **Explanation:** The maximum possible subarray sum after at most $k = 2$ swaps is the sum of the entire array, which is 13.
 
-The maximum possible subarray sum after at most $k = 2$ swaps is the sum of the entire array, which is 13.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [-1,-2], k = 0
+- **Input:** nums = [-1,-2], k = 0
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
+- **Explanation:** 
 
 - $k = 0$ swaps are allowed.
 
 - The possible subarrays are `[-1]`, `[-2]`, and `[-1, -2]`, with sums -1, -2, and -3 respectively.
 
 - Among these sums, the maximum is -1.
-
-</div>
 
 ### 4. Constraints
 

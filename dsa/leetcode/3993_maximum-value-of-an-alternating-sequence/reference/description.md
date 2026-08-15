@@ -8,11 +8,10 @@ A sequence `seq` of integers of length `n` is considered **valid** if:
 
 - The sequence is **alternating**, meaning that either:
 
-		<li>$\text{seq}[0] > \text{seq}[1] < \text{seq}[2] > ...$, or
+		- $\text{seq}[0] > \text{seq}[1] < \text{seq}[2] > ...$, or
 
 - $\text{seq}[0] < \text{seq}[1] > \text{seq}[2] < ...$.
 
-	</li>
 - For every adjacent pair, $|\text{seq}[i] - seq[i - 1]| \le m$.
 
 A sequence of length 1 is considered alternating.
@@ -37,32 +36,27 @@ Return the maximum integer that can appear in any valid length-`n` alternating s
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 4, s = 3, m = 5
+- **Input:** n = 4, s = 3, m = 5
 
-**Output:** 12
+- **Output:** 12
 
-**Explanation:**
+- **Explanation:** 
 
 - One valid sequence is `[3, 8, 7, 12]`.
 
 - The maximum element in the sequence is 12.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 2, s = 4, m = 3
+- **Input:** n = 2, s = 4, m = 3
 
-**Output:** 7
+- **Output:** 7
 
-**Explanation:**
+- **Explanation:** 
 
 - One valid sequence is `[4, 7]`.
 
 - The maximum element in the sequence is 7.
-
-</div>
 
 ### 4. Constraints
 

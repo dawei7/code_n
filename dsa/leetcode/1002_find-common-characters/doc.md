@@ -36,18 +36,18 @@ $$
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `words = ["bella", "label", "roller"]`
-- Output: `["e", "l", "l"]`
+- **Input:** `words = ["bella", "label", "roller"]`
+- **Output:** `["e", "l", "l"]`
 
-**Example 2**
+#### Example 2
 
-- Input: `words = ["cool", "lock", "cook"]`
-- Output: `["c", "o"]`
+- **Input:** `words = ["cool", "lock", "cook"]`
+- **Output:** `["c", "o"]`
 
-**Example 3**
+#### Example 3
 
-- Input: `words = ["aaa", "aa", "aaaa"]`
-- Output: `["a", "a"]`
-- Explanation: Every word contains at least two copies of `"a"`, but not every word contains three.
+- **Input:** `words = ["aaa", "aa", "aaaa"]`
+- **Output:** `["a", "a"]`
+- **Explanation:** Every word contains at least two copies of `"a"`, but not every word contains three.

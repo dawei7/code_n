@@ -31,20 +31,20 @@ Given `word1` and `word2`, return whether they are almost equivalent. A differen
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word1 = "aaaa", word2 = "bccb"`
-- Output: `false`
-- Explanation: The frequency of `a` differs by $4$, exceeding the limit.
+- **Input:** `word1 = "aaaa", word2 = "bccb"`
+- **Output:** `false`
+- **Explanation:** The frequency of `a` differs by $4$, exceeding the limit.
 
-**Example 2**
+#### Example 2
 
-- Input: `word1 = "abcdeef", word2 = "abaaacc"`
-- Output: `true`
-- Explanation: The largest frequency difference is $3$, which is allowed.
+- **Input:** `word1 = "abcdeef", word2 = "abaaacc"`
+- **Output:** `true`
+- **Explanation:** The largest frequency difference is $3$, which is allowed.
 
-**Example 3**
+#### Example 3
 
-- Input: `word1 = "cccddabba", word2 = "babababab"`
-- Output: `true`
-- Explanation: Every letter's frequency difference is at most $3$.
+- **Input:** `word1 = "cccddabba", word2 = "babababab"`
+- **Output:** `true`
+- **Explanation:** Every letter's frequency difference is at most $3$.

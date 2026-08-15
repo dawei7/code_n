@@ -30,20 +30,20 @@ Evaluate the resulting expression with the usual arithmetic order of operations:
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 4`
-- Output: `7`
-- Explanation: The expression is `4 * 3 / 2 + 1`, which evaluates to `7`.
+- **Input:** `n = 4`
+- **Output:** `7`
+- **Explanation:** The expression is `4 * 3 / 2 + 1`, which evaluates to `7`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 10`
-- Output: `12`
-- Explanation: The expression is `10 * 9 / 8 + 7 - 6 * 5 / 4 + 3 - 2 * 1`.
+- **Input:** `n = 10`
+- **Output:** `12`
+- **Explanation:** The expression is `10 * 9 / 8 + 7 - 6 * 5 / 4 + 3 - 2 * 1`.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 3`
-- Output: `6`
-- Explanation: The available operators produce `3 * 2 / 1`.
+- **Input:** `n = 3`
+- **Output:** `6`
+- **Explanation:** The available operators produce `3 * 2 / 1`.

@@ -8,8 +8,10 @@ Return an integer array `answer` where $\text{answer}[i]$ is the value of the ne
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `ListNode(val=0, next=None)`: Initializes the data structure.
+- `nextLargerNodes(head: Optional[ListNode]) -> `List[int]``: Executes operation.
 
 ### 3. Examples
 
@@ -19,6 +21,7 @@ Return an integer array `answer` where $\text{answer}[i]$ is the value of the ne
 
 - **Input:** $head = [2,1,5]$
 - **Output:** `[5,5,0]`
+
 #### Example 2
 
 ![](images/linkedlistnext2.jpg)

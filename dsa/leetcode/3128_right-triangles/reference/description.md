@@ -8,14 +8,18 @@ Return an integer that is the number of **right triangles** that can be made wit
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div style="display:flex; gap: 12px;">
 <table border="1" cellspacing="3" style="border-collapse: separate; text-align: center;">
 	<tbody>
 		<tr>
@@ -75,21 +79,15 @@ Return an integer that is the number of **right triangles** that can be made wit
 		</tr>
 	</tbody>
 </table>
-</div>
 
-<div class="example-block">
-**Input:** grid = [[0,1,0],[0,1,1],[0,1,0]]
+- **Input:** grid = [[0,1,0],[0,1,1],[0,1,0]]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** There are two right triangles with elements of the value 1. Notice that the blue ones do **not **form a right triangle because the 3 elements are in the same column.
 
-There are two right triangles with elements of the value 1. Notice that the blue ones do **not **form a right triangle because the 3 elements are in the same column.
-
-</div>
 #### Example 2
 
-<div style="display:flex; gap: 12px;">
 <table border="1" cellspacing="3" style="border-collapse: separate; text-align: center;">
 	<tbody>
 		<tr>
@@ -112,21 +110,15 @@ There are two right triangles with elements of the value 1. Notice that the blue
 		</tr>
 	</tbody>
 </table>
-</div>
 
-<div class="example-block">
-**Input:** grid = [[1,0,0,0],[0,1,0,1],[1,0,0,0]]
+- **Input:** grid = [[1,0,0,0],[0,1,0,1],[1,0,0,0]]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** There are no right triangles with elements of the value 1.  Notice that the blue ones do **not** form a right triangle.
 
-There are no right triangles with elements of the value 1.  Notice that the blue ones do **not** form a right triangle.
-
-</div>
 #### Example 3
 
-<div style="display:flex; gap: 12px;">
 <table border="1" cellspacing="3" style="border-collapse: separate; text-align: center;">
 	<tbody>
 		<tr>
@@ -166,18 +158,12 @@ There are no right triangles with elements of the value 1.  Notice that the blue
 		</tr>
 	</tbody>
 </table>
-</div>
 
-<div class="example-block">
-**Input:** grid = [[1,0,1],[1,0,0],[1,0,0]]
+- **Input:** grid = [[1,0,1],[1,0,0],[1,0,0]]
 
-**Output: **2
+- **Output:** 2
 
-**Explanation:**
-
-There are two right triangles with elements of the value 1.
-
-</div>
+- **Explanation:** There are two right triangles with elements of the value 1.
 
 ### 4. Constraints
 

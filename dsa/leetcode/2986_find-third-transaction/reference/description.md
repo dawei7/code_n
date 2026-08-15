@@ -29,7 +29,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Transactions table:
 +---------+--------+---------------------+
 | user_id | spend  | transaction_date    |

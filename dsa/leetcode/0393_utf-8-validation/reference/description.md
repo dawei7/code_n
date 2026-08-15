@@ -44,6 +44,7 @@ The input is an array of integers. Only the **least significant 8 bits** of each
 - **Output:** `true`
 - **Explanation:** data represents the octet sequence: 11000101 10000010 00000001.
 It is a valid utf-8 encoding for a 2-bytes character followed by a 1-byte character.
+
 #### Example 2
 
 - **Input:** $data = [235,140,4]$

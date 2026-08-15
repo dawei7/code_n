@@ -14,8 +14,14 @@ Return *an integer denoting the length of the longest such subarray.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `threshold`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -29,12 +35,14 @@ A **subarray** is a contiguous non-empty sequence of elements within an array.
 - **Output:** `3`
 - **Explanation:** In this example, we can select the subarray that starts at l = 1 and ends at r = 3 => [2,5,4]. This subarray satisfies the conditions.
 Hence, the answer is the length of the subarray, 3. We can show that 3 is the maximum possible achievable length.
+
 #### Example 2
 
 - **Input:** `nums = [1,2], threshold = 2`
 - **Output:** `1`
 - **Explanation:** In this example, we can select the subarray that starts at l = 1 and ends at r = 1 => [2].
 It satisfies all the conditions and we can show that 1 is the maximum possible achievable length.
+
 #### Example 3
 
 - **Input:** `nums = [2,3,4,5], threshold = 4`

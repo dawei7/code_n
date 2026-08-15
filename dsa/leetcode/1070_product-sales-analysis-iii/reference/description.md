@@ -38,7 +38,7 @@ Return the result in any order.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Sales table:
 +---------+------------+------+----------+-------+
 | sale_id | product_id | year | quantity | price |
@@ -48,7 +48,7 @@ Sales table:
 | 7       | 200        | 2011 | 15       | 9000  |
 +---------+------------+------+----------+-------+
 
-**Output:**
+- **Output:** 
 +------------+------------+----------+-------+
 | product_id | first_year | quantity | price |
 +------------+------------+----------+-------+

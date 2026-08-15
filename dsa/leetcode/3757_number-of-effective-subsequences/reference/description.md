@@ -26,41 +26,37 @@ Return the number of nonempty subsequences whose removal strictly lowers the bit
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3]
+- **Input:** nums = [1,2,3]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - The Bitwise OR of the array is $1 OR 2 OR 3 = 3$.
 
 - Subsequences that are effective are:
 
-		<li>`[1, 3]`: The remaining element `[2]` has a Bitwise OR of 2.
+		- `[1, 3]`: The remaining element `[2]` has a Bitwise OR of 2.
 
 - `[2, 3]`: The remaining element `[1]` has a Bitwise OR of 1.
 
 - `[1, 2, 3]`: The remaining elements `[]` have a Bitwise OR of 0.
 
-	</li>
 - Thus, the total number of effective subsequences is 3.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [7,4,6]
+- **Input:** nums = [7,4,6]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**​​​​​​​
+- **Explanation:** ​​​​​​​
 
 - The Bitwise OR of the array is $7 OR 4 OR 6 = 7$.
 
 - Subsequences that are effective are:
 
-		<li>`[7]`: The remaining elements `[4, 6]` have a Bitwise OR of 6.
+		- `[7]`: The remaining elements `[4, 6]` have a Bitwise OR of 6.
 
 - `[7, 4]`: The remaining element `[6]` has a Bitwise OR of 6.
 
@@ -68,18 +64,15 @@ Return the number of nonempty subsequences whose removal strictly lowers the bit
 
 - `[7, 4, 6]`: The remaining elements `[]` have a Bitwise OR of 0.
 
-	</li>
 - Thus, the total number of effective subsequences is 4.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [8,8]
+- **Input:** nums = [8,8]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - The Bitwise OR of the array is $8 OR 8 = 8$.
 
@@ -87,21 +80,19 @@ Return the number of nonempty subsequences whose removal strictly lowers the bit
 
 - Thus, the total number of effective subsequences is 1.
 
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** nums = [2,2,1]
+- **Input:** nums = [2,2,1]
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** 
 
 - The Bitwise OR of the array is $2 OR 2 OR 1 = 3$.
 
 - Subsequences that are effective are:
 
-		<li>`[1]`: The remaining elements `[2, 2]` have a Bitwise OR of 2.
+		- `[1]`: The remaining elements `[2, 2]` have a Bitwise OR of 2.
 
 - `[2, 1]` (using $\text{nums}[0]$, $\text{nums}[2]$): The remaining element `[2]` has a Bitwise OR of 2.
 
@@ -111,10 +102,7 @@ Return the number of nonempty subsequences whose removal strictly lowers the bit
 
 - `[2, 2, 1]`: The remaining elements `[]` have a Bitwise OR of 0.
 
-	</li>
 - Thus, the total number of effective subsequences is 5.
-
-</div>
 
 ### 4. Constraints
 

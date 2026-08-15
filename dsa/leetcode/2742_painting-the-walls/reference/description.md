@@ -10,8 +10,14 @@ Return *the minimum amount of money required to paint the *`n`* walls.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `cost`: Input parameter (`list[int]`).
+- `time`: Input parameter (`list[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +26,7 @@ Return *the minimum amount of money required to paint the *`n`* walls.*
 - **Input:** $cost = [1,2,3,2], time = [1,2,3,2]$
 - **Output:** `3`
 - **Explanation:** The walls at index 0 and 1 will be painted by the paid painter, and it will take 3 units of time; meanwhile, the free painter will paint the walls at index 2 and 3, free of cost in 2 units of time. Thus, the total cost is 1 + 2 = 3.
+
 #### Example 2
 
 - **Input:** $cost = [2,3,4,2], time = [1,1,1,1]$

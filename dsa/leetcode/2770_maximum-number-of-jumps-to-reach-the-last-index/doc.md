@@ -31,20 +31,20 @@ Return the maximum number of valid jumps needed by any route from index $0$ to i
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 3, 6, 4, 1, 2], target = 2`
-- Output: `3`
-- Explanation: One longest valid route uses indices $0 \to 1 \to 3 \to 5$.
+- **Input:** `nums = [1, 3, 6, 4, 1, 2], target = 2`
+- **Output:** `3`
+- **Explanation:** One longest valid route uses indices $0 \to 1 \to 3 \to 5$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 3, 6, 4, 1, 2], target = 3`
-- Output: `5`
-- Explanation: Every consecutive jump is valid, so all six indices can be visited.
+- **Input:** `nums = [1, 3, 6, 4, 1, 2], target = 3`
+- **Output:** `5`
+- **Explanation:** Every consecutive jump is valid, so all six indices can be visited.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 3, 6, 4, 1, 2], target = 0`
-- Output: `-1`
-- Explanation: No forward route reaches the final value while requiring equal endpoint values for every jump.
+- **Input:** `nums = [1, 3, 6, 4, 1, 2], target = 0`
+- **Output:** `-1`
+- **Explanation:** No forward route reaches the final value while requiring equal endpoint values for every jump.

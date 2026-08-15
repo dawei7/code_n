@@ -28,8 +28,13 @@ Implement the `StockPrice` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `StockPrice()`: Initializes the data structure.
+- `update(timestamp: int, price: int)`: Executes operation.
+- `current() -> `int``: Executes operation.
+- `maximum() -> `int``: Executes operation.
+- `minimum() -> `int``: Executes operation.
 
 ### 3. Examples
 

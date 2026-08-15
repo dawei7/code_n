@@ -6,8 +6,15 @@ Given the three integers `n`, `a`, and `b`, return the $$n^{\text{th}}$$ magical
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `a`: Input parameter (`int`).
+- `b`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -15,6 +22,7 @@ Given the three integers `n`, `a`, and `b`, return the $$n^{\text{th}}$$ magical
 
 - **Input:** $n = 1, a = 2, b = 3$
 - **Output:** `2`
+
 #### Example 2
 
 - **Input:** $n = 4, a = 2, b = 3$

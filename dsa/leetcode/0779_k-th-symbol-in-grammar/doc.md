@@ -31,20 +31,20 @@ Given a one-based row number `n` and a one-based position `k`, return the symbol
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 1, k = 1`
-- Output: `0`
-- Explanation: The first row contains only its initial zero.
+- **Input:** `n = 1, k = 1`
+- **Output:** `0`
+- **Explanation:** The first row contains only its initial zero.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 2, k = 1`
-- Output: `0`
-- Explanation: Expanding the first row produces `01`.
+- **Input:** `n = 2, k = 1`
+- **Output:** `0`
+- **Explanation:** Expanding the first row produces `01`.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 2, k = 2`
-- Output: `1`
-- Explanation: The second position of `01` is one.
+- **Input:** `n = 2, k = 2`
+- **Output:** `1`
+- **Explanation:** The second position of `01` is one.

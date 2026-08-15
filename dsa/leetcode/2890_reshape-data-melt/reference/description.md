@@ -27,14 +27,14 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:
+- **Input:** 
 **+-------------+-----------+-----------+-----------+-----------+
 | product     | quarter_1 | quarter_2 | quarter_3 | quarter_4 |
 +-------------+-----------+-----------+-----------+-----------+
 | Umbrella    | 417       | 224       | 379       | 611       |
 | SleepingBag | 800       | 936       | 93        | 875       |
 +-------------+-----------+-----------+-----------+-----------+
-**Output:**
+- **Output:** 
 +-------------+-----------+-------+
 | product     | quarter   | sales |
 +-------------+-----------+-------+
@@ -47,6 +47,5 @@ The result format is in the following example.
 | Umbrella    | quarter_4 | 611   |
 | SleepingBag | quarter_4 | 875   |
 +-------------+-----------+-------+
-**Explanation:**
-The DataFrame is reshaped from wide to long format. Each row represents the sales of a product in a quarter.
+- **Explanation:** The DataFrame is reshaped from wide to long format. Each row represents the sales of a product in a quarter.
 ```

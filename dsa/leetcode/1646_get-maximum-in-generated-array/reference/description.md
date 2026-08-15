@@ -14,8 +14,13 @@ Return** ***the **maximum** integer in the array *`nums`​​​.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -33,11 +38,13 @@ nums[(2 * 2) + 1 = 5] = nums[2] + nums[3] = 1 + 2 = 3
 nums[(3 * 2) = 6] = nums[3] = 2
 nums[(3 * 2) + 1 = 7] = nums[3] + nums[4] = 2 + 1 = 3
 Hence, nums = [0,1,1,2,1,3,2,3], and the maximum is max(0,1,1,2,1,3,2,3) = 3.
+
 #### Example 2
 
 - **Input:** $n = 2$
 - **Output:** `1`
 - **Explanation:** According to the given rules, nums = [0,1,1]. The maximum is max(0,1,1) = 1.
+
 #### Example 3
 
 - **Input:** $n = 3$

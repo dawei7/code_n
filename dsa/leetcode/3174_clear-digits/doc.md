@@ -32,14 +32,14 @@ The input guarantees that repeated legal operations can delete every digit.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abc"`
-- Output: `"abc"`
-- Explanation: The string contains no digit, so no operation is performed.
+- **Input:** `s = "abc"`
+- **Output:** `"abc"`
+- **Explanation:** The string contains no digit, so no operation is performed.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "cb34"`
-- Output: `""`
-- Explanation: Removing `3` with the closest letter `b` leaves `"c4"`; removing `4` with `c` then leaves the empty string.
+- **Input:** `s = "cb34"`
+- **Output:** `""`
+- **Explanation:** Removing `3` with the closest letter `b` leaves `"c4"`; removing `4` with `c` then leaves the empty string.

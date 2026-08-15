@@ -22,6 +22,7 @@ Return the smallest integer present in every row of `mat`, or `-1` when no such 
 
 - **Input:** $mat = [[1,2,3,4,5],[2,4,5,8,10],[3,5,7,9,11],[1,3,5,7,9]]$
 - **Output:** `5`
+
 #### Example 2
 
 - **Input:** $mat = [[1,2,3],[2,3,4],[2,3,5]]$

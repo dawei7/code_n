@@ -33,21 +33,21 @@ Assign team identifiers by increasing team salary. The lowest salary that forms 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `(2,"Meir",3000)`, `(3,"Michael",3000)`, `(7,"Addilyn",7400)`, `(8,"Juan",6100)`, `(9,"Kannon",7400)`
-- Output: `[[2,"Meir",3000,1],[3,"Michael",3000,1],[7,"Addilyn",7400,2],[9,"Kannon",7400,2]]`
+- **Input:** `(2,"Meir",3000)`, `(3,"Michael",3000)`, `(7,"Addilyn",7400)`, `(8,"Juan",6100)`, `(9,"Kannon",7400)`
+- **Output:** `[[2,"Meir",3000,1],[3,"Michael",3000,1],[7,"Addilyn",7400,2],[9,"Kannon",7400,2]]`
 
 Salary `6100` is unique and omitted; it also creates no gap in team numbering.
 
-**Example 2**
+#### Example 2
 
-- Input: salaries `[100,200,100,200,300]` for employee IDs `1` through `5`
-- Output: employees `1,3` in team `1`, followed by employees `2,4` in team `2`
+- **Input:** salaries `[100,200,100,200,300]` for employee IDs `1` through `5`
+- **Output:** employees `1,3` in team `1`, followed by employees `2,4` in team `2`
 
-**Example 3**
+#### Example 3
 
-- Input: three employees with distinct salaries
-- Output: `[]`
+- **Input:** three employees with distinct salaries
+- **Output:** `[]`
 
 No salary has enough employees to form a team.

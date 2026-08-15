@@ -29,6 +29,7 @@ Return an integer representing the number of mountains whose peaks are not conta
 - Mountain 1 is not visible since its peak lies within the side of mountain 2.
 - Mountain 2 is visible since its peak does not lie within another mountain or its sides.
 There are 2 mountains that are visible.
+
 #### Example 2
 
 ![](images/ex2new1.png)

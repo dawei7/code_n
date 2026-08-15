@@ -8,29 +8,33 @@ Items are managed according to the following rules:
 
 - For each day `i`, consider the window of days `[max(1, i - w + 1), i]` (the `w` most recent days up to day `i`):
 
-		<li>For **any** such window, each item type may appear **at most** `m` times among kept arrivals whose arrival day lies in that window.
+		- For **any** such window, each item type may appear **at most** `m` times among kept arrivals whose arrival day lies in that window.
 
 - If keeping the arrival on day `i` would cause its type to appear **more than** `m` times in the window, that arrival **must** be discarded.
-
-	</li>
 
 Return the **minimum** number of arrivals to be discarded so that every `w`-day window contains at most `m` occurrences of each type.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arrivals`: Input parameter (`List[int]`).
+- `w`: Input parameter (`int`).
+- `m`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** arrivals = [1,2,1,3,1], w = 4, m = 2
+- **Input:** arrivals = [1,2,1,3,1], w = 4, m = 2
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** 
 
 - On day 1, Item 1 arrives; the window contains no more than `m` occurrences of this type, so we keep it.
 
@@ -44,15 +48,13 @@ Return the **minimum** number of arrivals to be discarded so that every `w`-day 
 
 There are no discarded items, so return 0.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** arrivals = [1,2,3,3,3,4], w = 3, m = 2
+- **Input:** arrivals = [1,2,3,3,3,4], w = 3, m = 2
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - On day 1, Item 1 arrives. We keep it.
 
@@ -67,8 +69,6 @@ There are no discarded items, so return 0.
 - On day 6, Item 4 arrives, window `[3, 4]` is fine.
 
 Item 3 on day 5 is discarded, and this is the minimum number of arrivals to discard, so return 1.
-
-</div>
 
 ### 4. Constraints
 

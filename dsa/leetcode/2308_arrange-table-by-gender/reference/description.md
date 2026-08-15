@@ -30,7 +30,7 @@ The result format is shown in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Genders table:
 +---------+--------+
 | user_id | gender |
@@ -45,7 +45,7 @@ Genders table:
 | 1       | other  |
 | 9       | female |
 +---------+--------+
-**Output:**
+- **Output:** 
 +---------+--------+
 | user_id | gender |
 +---------+--------+
@@ -59,8 +59,7 @@ Genders table:
 | 6       | other  |
 | 8       | male   |
 +---------+--------+
-**Explanation:**
-Female gender: IDs 3, 7, and 9.
+- **Explanation:** Female gender: IDs 3, 7, and 9.
 Other gender: IDs 1, 2, and 6.
 Male gender: IDs 4, 5, and 8.
 We arrange the table alternating between 'female', 'other', and 'male'.

@@ -34,20 +34,20 @@ Return the root object or array after every nested `undefined` value has become 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `obj = {"a": undefined, "b": 3}`
-- Output: `{"a": null, "b": 3}`
-- Explanation: Only the value at key `"a"` changes.
+- **Input:** `obj = {"a": undefined, "b": 3}`
+- **Output:** `{"a": null, "b": 3}`
+- **Explanation:** Only the value at key `"a"` changes.
 
-**Example 2**
+#### Example 2
 
-- Input: `obj = {"a": undefined, "b": ["a", undefined]}`
-- Output: `{"a": null, "b": ["a", null]}`
-- Explanation: The traversal converts values in both objects and nested arrays.
+- **Input:** `obj = {"a": undefined, "b": ["a", undefined]}`
+- **Output:** `{"a": null, "b": ["a", null]}`
+- **Explanation:** The traversal converts values in both objects and nested arrays.
 
-**Example 3**
+#### Example 3
 
-- Input: `obj = [null, {"ready": false, "value": undefined}]`
-- Output: `[null, {"ready": false, "value": null}]`
-- Explanation: The existing `null` and boolean stay unchanged.
+- **Input:** `obj = [null, {"ready": false, "value": undefined}]`
+- **Output:** `[null, {"ready": false, "value": null}]`
+- **Explanation:** The existing `null` and boolean stay unchanged.

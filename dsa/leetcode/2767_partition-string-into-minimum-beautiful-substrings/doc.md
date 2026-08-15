@@ -30,20 +30,20 @@ Return the minimum number of beautiful contiguous pieces in a complete partition
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "1011"`
-- Output: `2`
-- Explanation: Split the string as `"101" | "1"`, representing $5^1$ and $5^0$.
+- **Input:** `s = "1011"`
+- **Output:** `2`
+- **Explanation:** Split the string as `"101" | "1"`, representing $5^1$ and $5^0$.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "111"`
-- Output: `3`
-- Explanation: Each `"1"` is beautiful, and no longer piece is a power of $5$.
+- **Input:** `s = "111"`
+- **Output:** `3`
+- **Explanation:** Each `"1"` is beautiful, and no longer piece is a power of $5$.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "0"`
-- Output: `-1`
-- Explanation: A beautiful substring cannot begin with zero.
+- **Input:** `s = "0"`
+- **Output:** `-1`
+- **Explanation:** A beautiful substring cannot begin with zero.

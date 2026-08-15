@@ -6,8 +6,14 @@ Return *the smallest character in *`letters`* that is lexicographically greater 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `letters`: Input parameter (`List[str]`).
+- `target`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -16,11 +22,13 @@ Return *the smallest character in *`letters`* that is lexicographically greater 
 - **Input:** $letters = ["c","f","j"], target = "a"$
 - **Output:** `"c"`
 - **Explanation:** The smallest character that is lexicographically greater than 'a' in letters is 'c'.
+
 #### Example 2
 
 - **Input:** $letters = ["c","f","j"], target = "c"$
 - **Output:** `"f"`
 - **Explanation:** The smallest character that is lexicographically greater than 'c' in letters is 'f'.
+
 #### Example 3
 
 - **Input:** $letters = ["x","x","y","y"], target = "z"$

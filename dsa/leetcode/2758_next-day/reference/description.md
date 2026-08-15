@@ -12,9 +12,9 @@ Write code that enhances all date objects such that you can call the `date.nextD
 
 - **Input:** $date = "2014-06-20"$
 - **Output:** `"2014-06-21"`
-- **Explanation:**
-const date = new Date("2014-06-20");
+- **Explanation:** const date = new Date("2014-06-20");
 date.nextDay(); // "2014-06-21"
+
 #### Example 2
 
 - **Input:** $date = "2017-10-31"$

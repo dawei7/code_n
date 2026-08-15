@@ -6,18 +6,22 @@ With respect to a given `puzzle` string, a `word` is *valid* if both the followi
 
 - For each letter in `word`, that letter is in `puzzle`.
 
-		<li>For example, if the puzzle is `"abcdefg"`, then valid words are `"faced"`, `"cabbage"`, and `"baggage"`, while
+		- For example, if the puzzle is `"abcdefg"`, then valid words are `"faced"`, `"cabbage"`, and `"baggage"`, while
 
 - invalid words are `"beefed"` (does not include `'a'`) and `"based"` (includes `'s'` which is not in the puzzle).
-
-	</li>
 
 Return *an array *`answer`*, where *$\text{answer}[i]$* is the number of words in the given word list *`words`* that is valid with respect to the puzzle *$\text{puzzles}[i]$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+- `puzzles`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -25,13 +29,13 @@ Return *an array *`answer`*, where *$\text{answer}[i]$* is the number of words i
 
 - **Input:** $words = ["aaaa","asas","able","ability","actt","actor","access"], puzzles = ["aboveyz","abrodyz","abslute","absoryz","actresz","gaswxyz"]$
 - **Output:** `[1,1,3,2,4,0]`
-- **Explanation:**
-1 valid word for "aboveyz" : "aaaa"
+- **Explanation:** 1 valid word for "aboveyz" : "aaaa"
 1 valid word for "abrodyz" : "aaaa"
 3 valid words for "abslute" : "aaaa", "asas", "able"
 2 valid words for "absoryz" : "aaaa", "asas"
 4 valid words for "actresz" : "aaaa", "asas", "actt", "access"
 There are no valid words for "gaswxyz" cause none of the words in the list contains letter 'g'.
+
 #### Example 2
 
 - **Input:** $words = ["apple","pleas","please"], puzzles = ["aelwxyz","aelpxyz","aelpsxy","saelpxy","xaelpsy"]$

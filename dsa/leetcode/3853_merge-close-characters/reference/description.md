@@ -33,12 +33,11 @@ Return the stable string in which no equal characters have current-index distanc
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "abca", k = 3
+- **Input:** s = "abca", k = 3
 
-**Output:** "abc"
+- **Output:** "abc"
 
-**Explanation:**
+- **Explanation:** 
 
 - **​​​​​​​**Characters `'a'` at indices $i = 0$ and $i = 3$ are close as $3 - 0 = 3 \le k$.
 
@@ -46,15 +45,13 @@ Return the stable string in which no equal characters have current-index distanc
 
 - No other equal characters are close, so no further merges occur.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "aabca", k = 2
+- **Input:** s = "aabca", k = 2
 
-**Output:** "abca"
+- **Output:** "abca"
 
-**Explanation:**
+- **Explanation:** 
 
 - Characters `'a'` at indices $i = 0$ and $i = 1$ are close as $1 - 0 = 1 \le k$.
 
@@ -62,15 +59,13 @@ Return the stable string in which no equal characters have current-index distanc
 
 - Now the remaining `'a'` characters at indices $i = 0$ and $i = 3$ are not close as `k < 3`, so no further merges occur.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "yybyzybz", k = 2
+- **Input:** s = "yybyzybz", k = 2
 
-**Output:** "ybzybz"
+- **Output:** "ybzybz"
 
-**Explanation:**
+- **Explanation:** 
 
 - Characters `'y'` at indices $i = 0$ and $i = 1$ are close as $1 - 0 = 1 \le k$.
 
@@ -81,8 +76,6 @@ Return the stable string in which no equal characters have current-index distanc
 - Merge them into the left `'y'` and `s = "ybzybz"`.
 
 - No other equal characters are close, so no further merges occur.
-
-</div>
 
 ### 5. Constraints
 

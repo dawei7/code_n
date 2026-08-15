@@ -8,8 +8,14 @@ A **prefix** of a string is a substring that occurs at the beginning of the stri
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -17,15 +23,15 @@ A **prefix** of a string is a substring that occurs at the beginning of the stri
 
 - **Input:** $words = ["a","b","c","ab","bc","abc"], s = "abc"$
 - **Output:** `3`
-- **Explanation:**
-The strings in words which are a prefix of s = "abc" are:
+- **Explanation:** The strings in words which are a prefix of s = "abc" are:
 "a", "ab", and "abc".
 Thus the number of strings in words which are a prefix of s is 3.
+
 #### Example 2
 
 - **Input:** $words = ["a","a"], s = "aa"$
 - **Output:** `2`
-- **Explanation:**
+- **Explanation:** 
 **Both of the strings are a prefix of s.
 Note that the same string can occur multiple times in words, and it should be counted each time.
 

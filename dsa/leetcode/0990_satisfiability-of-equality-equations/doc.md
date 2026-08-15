@@ -30,20 +30,20 @@ Determine whether integers can be assigned to all variable names so that every e
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `equations = ["a==b", "b!=a"]`
-- Output: `false`
-- Explanation: The equality requires the two variables to match, while the inequality requires them to differ.
+- **Input:** `equations = ["a==b", "b!=a"]`
+- **Output:** `false`
+- **Explanation:** The equality requires the two variables to match, while the inequality requires them to differ.
 
-**Example 2**
+#### Example 2
 
-- Input: `equations = ["b==a", "a==b"]`
-- Output: `true`
-- Explanation: Assigning the same integer to both variables satisfies both equations.
+- **Input:** `equations = ["b==a", "a==b"]`
+- **Output:** `true`
+- **Explanation:** Assigning the same integer to both variables satisfies both equations.
 
-**Example 3**
+#### Example 3
 
-- Input: `equations = ["a==b", "b==c", "a!=c"]`
-- Output: `false`
-- Explanation: The first two equalities imply that `a` and `c` are equal.
+- **Input:** `equations = ["a==b", "b==c", "a!=c"]`
+- **Output:** `false`
+- **Explanation:** The first two equalities imply that `a` and `c` are equal.

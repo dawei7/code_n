@@ -37,20 +37,20 @@ Return the integer $n$, the exact number of houses in the circle.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `street = [1,1,1,1], k = 10`
-- Output: `4`
-- Explanation: Four houses form the cycle; the bound may be larger than the answer.
+- **Input:** `street = [1,1,1,1], k = 10`
+- **Output:** `4`
+- **Explanation:** Four houses form the cycle; the bound may be larger than the answer.
 
-**Example 2**
+#### Example 2
 
-- Input: `street = [1,0,1,1,0], k = 5`
-- Output: `5`
-- Explanation: Door states do not change the number of houses, and the bound is tight.
+- **Input:** `street = [1,0,1,1,0], k = 5`
+- **Output:** `5`
+- **Explanation:** Door states do not change the number of houses, and the bound is tight.
 
-**Example 3**
+#### Example 3
 
-- Input: `street = [0,0,1,0,0,0,0], k = 20`
-- Output: `7`
-- Explanation: Even one initially open door is sufficient as a reference point.
+- **Input:** `street = [0,0,1,0,0,0,0], k = 20`
+- **Output:** `7`
+- **Explanation:** Even one initially open door is sufficient as a reference point.

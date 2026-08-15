@@ -10,8 +10,14 @@ Return *all the **common strings with the least index sum***. Return the answer 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `list1`: Input parameter (`List[str]`).
+- `list2`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `List[str]`.
 
 ### 3. Examples
 
@@ -20,11 +26,13 @@ Return *all the **common strings with the least index sum***. Return the answer 
 - **Input:** $list1 = ["Shogun","Tapioca Express","Burger King","KFC"], list2 = ["Piatti","The Grill at Torrey Pines","Hungry Hunter Steakhouse","Shogun"]$
 - **Output:** `["Shogun"]`
 - **Explanation:** The only common string is "Shogun".
+
 #### Example 2
 
 - **Input:** $list1 = ["Shogun","Tapioca Express","Burger King","KFC"], list2 = ["KFC","Shogun","Burger King"]$
 - **Output:** `["Shogun"]`
 - **Explanation:** The common string with the least index sum is "Shogun" with index sum = (0 + 1) = 1.
+
 #### Example 3
 
 - **Input:** $list1 = ["happy","sad","good"], list2 = ["sad","happy","good"]$

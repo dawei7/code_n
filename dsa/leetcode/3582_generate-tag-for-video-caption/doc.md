@@ -32,20 +32,20 @@ Return the normalized camelCase tag beginning with `#` and containing at most 10
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `caption = "Leetcode daily streak achieved"`
-- Output: `"#leetcodeDailyStreakAchieved"`
+- **Input:** `caption = "Leetcode daily streak achieved"`
+- **Output:** `"#leetcodeDailyStreakAchieved"`
 
-**Example 2**
+#### Example 2
 
-- Input: `caption = "can I Go There"`
-- Output: `"#canIGoThere"`
+- **Input:** `caption = "can I Go There"`
+- **Output:** `"#canIGoThere"`
 
-**Example 3**
+#### Example 3
 
-- Input: A single word containing 101 lowercase `h` characters.
-- Output: `#` followed by 99 lowercase `h` characters.
-- Explanation: The complete tag would contain 102 characters, so its final two letters are removed.
+- **Input:** A single word containing 101 lowercase `h` characters.
+- **Output:** `#` followed by 99 lowercase `h` characters.
+- **Explanation:** The complete tag would contain 102 characters, so its final two letters are removed.
 
 ---

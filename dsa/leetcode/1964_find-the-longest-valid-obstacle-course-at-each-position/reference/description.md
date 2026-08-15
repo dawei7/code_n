@@ -16,8 +16,13 @@ Return *an array* `ans` *of length* `n`, *where* $\text{ans}[i]$ *is the length 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `obstacles`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -30,6 +35,7 @@ Return *an array* `ans` *of length* `n`, *where* $\text{ans}[i]$ *is the length 
 - i = 1: [<u>1</u>,<u>2</u>], [1,2] has length 2.
 - i = 2: [<u>1</u>,<u>2</u>,<u>3</u>], [1,2,3] has length 3.
 - i = 3: [<u>1</u>,<u>2</u>,3,<u>2</u>], [1,2,2] has length 3.
+
 #### Example 2
 
 - **Input:** $obstacles = [2,2,1]$
@@ -38,6 +44,7 @@ Return *an array* `ans` *of length* `n`, *where* $\text{ans}[i]$ *is the length 
 - i = 0: [<u>2</u>], [2] has length 1.
 - i = 1: [<u>2</u>,<u>2</u>], [2,2] has length 2.
 - i = 2: [2,2,<u>1</u>], [1] has length 1.
+
 #### Example 3
 
 - **Input:** $obstacles = [3,1,5,6,4,2]$

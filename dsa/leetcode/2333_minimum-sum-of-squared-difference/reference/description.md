@@ -10,8 +10,16 @@ Return *the minimum **sum of squared difference** after modifying array *`nums1`
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums1`: Input parameter (`List[int]`).
+- `nums2`: Input parameter (`List[int]`).
+- `k1`: Input parameter (`int`).
+- `k2`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -25,6 +33,7 @@ Return *the minimum **sum of squared difference** after modifying array *`nums1`
 - **Output:** `579`
 - **Explanation:** The elements in nums1 and nums2 cannot be modified because k1 = 0 and k2 = 0.
 The sum of square difference will be: (1 - 2)^2 + (2 - 10)^2 + (3 - 20)^2 + (4 - 19)^2 = 579.
+
 #### Example 2
 
 - **Input:** $nums1 = [1,4,10,12], nums2 = [5,8,6,9], k1 = 1, k2 = 1$

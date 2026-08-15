@@ -16,21 +16,24 @@ Return *an array answer of size *`m`* where *$\text{answer}[i]$* is the **sum** 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
-**Input: **nums = [1,2,2,1,2,3,1], queries = [[1,2],[3,3],[4,2]]
+- **Input:** nums = [1,2,2,1,2,3,1], queries = [[1,2],[3,3],[4,2]]
 
-**Output: **[8,3,0]
+- **Output:** [8,3,0]
 
-**Explanation:**
-
-We do the following queries on the array:
+- **Explanation:** We do the following queries on the array:
 
 - Mark the element at index `1`, and `2` of the smallest unmarked elements with the smallest indices if they exist, the marked elements now are `nums = [**<u>1</u>**,<u>**2**</u>,2,<u>**1**</u>,2,3,1]`. The sum of unmarked elements is $2 + 2 + 3 + 1 = 8$.
 
@@ -38,17 +41,13 @@ We do the following queries on the array:
 
 - Mark the element at index `4`, since it is already marked we skip it. Then we mark `2` of the smallest unmarked elements with the smallest indices if they exist, the marked elements now are `nums = [**<u>1</u>**,<u>**2**</u>,<u>**2**</u>,<u>**1**</u>,<u>**2**</u>,**<u>3</u>**,<u>**1**</u>]`. The sum of unmarked elements is `0`.
 
-</div>
 #### Example 2
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
-**Input: **nums = [1,4,2,3], queries = [[0,1]]
+- **Input:** nums = [1,4,2,3], queries = [[0,1]]
 
-**Output: **[7]
+- **Output:** [7]
 
-**Explanation: ** We do one query which is mark the element at index `0` and mark the smallest element among unmarked elements. The marked elements will be `nums = [**<u>1</u>**,4,<u>**2**</u>,3]`, and the sum of unmarked elements is $4 + 3 = 7$.
-
-</div>
+- **Explanation:** We do one query which is mark the element at index `0` and mark the smallest element among unmarked elements. The marked elements will be `nums = [**<u>1</u>**,4,<u>**2**</u>,3]`, and the sum of unmarked elements is $4 + 3 = 7$.
 
 ### 4. Constraints
 

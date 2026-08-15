@@ -32,26 +32,26 @@ Return the maximum number of indices from `targetIndices` whose characters can b
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `source = "abbaa", pattern = "aba", targetIndices = [0, 1, 2]`
-- Output: `1`
+- **Input:** `source = "abbaa", pattern = "aba", targetIndices = [0, 1, 2]`
+- **Output:** `1`
 
 Index 0 must remain, but either index 1 or index 2 may be removed while another `b` still supports the pattern.
 
-**Example 2**
+#### Example 2
 
-- Input: `source = "bcda", pattern = "d", targetIndices = [0, 3]`
-- Output: `2`
+- **Input:** `source = "bcda", pattern = "d", targetIndices = [0, 3]`
+- **Output:** `2`
 
 Neither eligible endpoint is needed for the one-character pattern.
 
-**Example 3**
+#### Example 3
 
-- Input: `source = "dda", pattern = "dda", targetIndices = [0, 1, 2]`
-- Output: `0`
+- **Input:** `source = "dda", pattern = "dda", targetIndices = [0, 1, 2]`
+- **Output:** `0`
 
-**Example 4**
+#### Example 4
 
-- Input: `source = "yeyeykyded", pattern = "yeyyd", targetIndices = [0, 2, 3, 4]`
-- Output: `2`
+- **Input:** `source = "yeyeykyded", pattern = "yeyyd", targetIndices = [0, 2, 3, 4]`
+- **Output:** `2`

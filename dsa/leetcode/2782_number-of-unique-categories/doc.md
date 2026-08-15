@@ -33,20 +33,20 @@ Return the number of equivalence classes induced by the hidden same-category rel
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 6`, `categoryHandler = [1,1,2,2,3,3]`
-- Output: `3`
-- Explanation: Indices `0` and `1` form one category, indices `2` and `3` form another, and indices `4` and `5` form the third.
+- **Input:** `n = 6`, `categoryHandler = [1,1,2,2,3,3]`
+- **Output:** `3`
+- **Explanation:** Indices `0` and `1` form one category, indices `2` and `3` form another, and indices `4` and `5` form the third.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 5`, `categoryHandler = [1,2,3,4,5]`
-- Output: `5`
-- Explanation: No pair belongs to the same category, so every index represents a distinct category.
+- **Input:** `n = 5`, `categoryHandler = [1,2,3,4,5]`
+- **Output:** `5`
+- **Explanation:** No pair belongs to the same category, so every index represents a distinct category.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 3`, `categoryHandler = [1,1,1]`
-- Output: `1`
-- Explanation: Every pair belongs to the same category, leaving one unique category.
+- **Input:** `n = 3`, `categoryHandler = [1,1,1]`
+- **Output:** `1`
+- **Explanation:** Every pair belongs to the same category, leaving one unique category.

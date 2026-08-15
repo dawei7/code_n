@@ -38,12 +38,11 @@ Return the number of complete `L`/`R` assignments that make exactly `k` of those
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 3, pos = 1, k = 0
+- **Input:** n = 3, pos = 1, k = 0
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**​​​​​​​
+- **Explanation:** ​​​​​​​
 
 - Index 0 is to the left of $pos = 1$, and index 2 is to the right of $pos = 1$.
 
@@ -51,15 +50,13 @@ Return the number of complete `L`/`R` assignments that make exactly `k` of those
 
 - The person at index 1 can choose `'L'` or `'R'` since it does not affect the count. Thus, the answer is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 3, pos = 2, k = 1
+- **Input:** n = 3, pos = 2, k = 1
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** 
 
 - Index 0 and index 1 are left of $pos = 2$, and there is no index to the right.
 
@@ -69,23 +66,19 @@ Return the number of complete `L`/`R` assignments that make exactly `k` of those
 
 - The person at index 2 can choose `'L'` or `'R'` since it does not affect the count. Thus, the answer is $2 + 2 = 4$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 1, pos = 0, k = 0
+- **Input:** n = 1, pos = 0, k = 0
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - There are no indices to the left or right of $pos = 0$.
 
 - To see $k = 0$ people, no additional condition is required.
 
 - The person at index 0 can choose `'L'` or `'R'`. Thus, the answer is 2.
-
-</div>
 
 ### 4. Constraints
 

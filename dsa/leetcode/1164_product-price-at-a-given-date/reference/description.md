@@ -32,7 +32,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Products table:
 +------------+-----------+-------------+
 | product_id | new_price | change_date |
@@ -44,7 +44,7 @@ Products table:
 | 2          | 65        | 2019-08-17  |
 | 3          | 20        | 2019-08-18  |
 +------------+-----------+-------------+
-**Output:**
+- **Output:** 
 +------------+-------+
 | product_id | price |
 +------------+-------+

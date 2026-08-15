@@ -34,18 +34,18 @@ Charge the full subtotal to ordinary customers. Every $n$th customer receives th
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 - Configuration: `n = 3, discount = 50, products = [1,2], prices = [100,200]`.
 - First order: product `1`, quantity `1`.
-- Output: `100.0`.
+- **Output:** `100.0`.
 
-**Example 2**
+#### Example 2
 
 - Under the same configuration, the second order buys two units of product `2`.
-- Output: `400.0`.
+- **Output:** `400.0`.
 
-**Example 3**
+#### Example 3
 
 - The third order buys one unit each of products `1` and `2`.
-- Output: `150.0`, because the $50\%$ discount applies to the $300$ subtotal.
+- **Output:** `150.0`, because the $50\%$ discount applies to the $300$ subtotal.

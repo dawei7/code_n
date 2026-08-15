@@ -31,12 +31,11 @@ Return the maximum number of purchased plus awarded free copies achievable with 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** items = [[6,2],[2,6],[3,4]], budget = 9
+- **Input:** items = [[6,2],[2,6],[3,4]], budget = 9
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** 
 
 - You can buy 2 copies of item 0 and 1 copy of item 2 for a total cost of $2 * 2 + 4 = 8$, which is not greater than $budget = 9$.
 
@@ -44,15 +43,13 @@ Return the maximum number of purchased plus awarded free copies achievable with 
 
 - You leave with 3 purchased copies and 1 free copy, for a total of 4 item copies.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** items = [[2,4],[3,2],[4,1],[6,4],[12,4]], budget = 8
+- **Input:** items = [[2,4],[3,2],[4,1],[6,4],[12,4]], budget = 8
 
-**Output:** 10
+- **Output:** 10
 
-**Explanation:**
+- **Explanation:** 
 
 - You can buy 1 copy of item 0, 1 copy of item 1, and 2 copies of item 2 for a total cost of $4 + 2 + 2 * 1 = 8$.
 
@@ -63,8 +60,6 @@ Return the maximum number of purchased plus awarded free copies achievable with 
 - Buying item 2 gives 1 free copy of item 4.
 
 - Thus, you receive 6 free copies. You leave with 4 purchased copies and 6 free copies, for a total of 10 item copies.
-
-</div>
 
 ### 4. Constraints
 

@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/find-number-of-coins-to-place-in-tree-nodes/) |
 
 ## Problem Description
+
 ### Goal
+
 An undirected tree has $N$ nodes labeled from `0` through `N - 1` and is rooted
 at node `0`. Each edge in `edges` connects its two listed endpoints, and
 `cost[i]` assigns a nonzero integer cost to node `i`.
@@ -25,6 +27,7 @@ replaced by zero.
 Return the coin count for every node in label order.
 
 ### Function Contract
+
 **Inputs**
 
 - `edges`: the `N - 1` undirected edges of the valid tree
@@ -39,20 +42,21 @@ An array `coin` of length $N$ whose entry `coin[i]` follows the subtree rule
 for node `i`.
 
 ### Examples
-**Example 1**
 
-- Input: `edges = [[0,1],[0,2],[0,3],[0,4],[0,5]]`, `cost = [1,2,3,4,5,6]`
-- Output: `[120,1,1,1,1,1]`
-- Explanation: The root uses `6 * 5 * 4`; every other subtree is a singleton.
+#### Example 1
 
-**Example 2**
+- **Input:** `edges = [[0,1],[0,2],[0,3],[0,4],[0,5]]`, `cost = [1,2,3,4,5,6]`
+- **Output:** `[120,1,1,1,1,1]`
+- **Explanation:** The root uses `6 * 5 * 4`; every other subtree is a singleton.
 
-- Input: `edges = [[0,1],[0,2],[1,3],[1,4],[1,5],[2,6],[2,7],[2,8]]`, `cost = [1,4,2,3,5,7,8,-4,2]`
-- Output: `[280,140,32,1,1,1,1,1,1]`
-- Explanation: The best triples in the three nontrivial subtrees produce `280`, `140`, and `32`.
+#### Example 2
 
-**Example 3**
+- **Input:** `edges = [[0,1],[0,2],[1,3],[1,4],[1,5],[2,6],[2,7],[2,8]]`, `cost = [1,4,2,3,5,7,8,-4,2]`
+- **Output:** `[280,140,32,1,1,1,1,1,1]`
+- **Explanation:** The best triples in the three nontrivial subtrees produce `280`, `140`, and `32`.
 
-- Input: `edges = [[0,1],[0,2]]`, `cost = [1,2,-2]`
-- Output: `[0,1,1]`
-- Explanation: The root's only triple has negative product, while both leaves receive one coin.
+#### Example 3
+
+- **Input:** `edges = [[0,1],[0,2]]`, `cost = [1,2,-2]`
+- **Output:** `[0,1,1]`
+- **Explanation:** The root's only triple has negative product, while both leaves receive one coin.

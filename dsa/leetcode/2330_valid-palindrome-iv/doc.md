@@ -30,23 +30,23 @@ Return `true` if exactly one or two character replacements can produce a palindr
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abcdba"`
-- Output: `true`
+- **Input:** `s = "abcdba"`
+- **Output:** `true`
 
 Only the mirrored pair `c` and `d` disagrees, so changing either character fixes the string in one operation.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "aa"`
-- Output: `true`
+- **Input:** `s = "aa"`
+- **Output:** `true`
 
 Changing both characters to the same different letter uses two operations and preserves a palindrome.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "abcdef"`
-- Output: `false`
+- **Input:** `s = "abcdef"`
+- **Output:** `false`
 
 All three mirrored pairs differ, and each pair requires at least one operation.

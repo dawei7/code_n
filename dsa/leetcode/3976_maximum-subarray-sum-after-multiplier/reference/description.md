@@ -8,11 +8,9 @@ You must choose **exactly** one subarray of `nums` and perform **exactly** one o
 
 - Divide each number in the chosen subarray by `k`.
 
-		<li>When dividing a positive number by `k`, use the **floor** value of the division result.
+		- When dividing a positive number by `k`, use the **floor** value of the division result.
 
 - When dividing a negative number by `k`, use the **ceiling** value of the division result.
-
-	</li>
 
 Return the **maximum** possible sum of a **non-empty** subarray in the resulting array.
 
@@ -35,12 +33,11 @@ Return the maximum sum of a nonempty contiguous subarray after performing exactl
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,-2,3,4,-5], k = 2
+- **Input:** nums = [1,-2,3,4,-5], k = 2
 
-**Output:** 14
+- **Output:** 14
 
-**Explanation:**
+- **Explanation:** 
 
 - Multiply each number in the subarray `[3, 4]` by 2.
 
@@ -48,23 +45,19 @@ Return the maximum sum of a nonempty contiguous subarray after performing exactl
 
 - The subarray with the largest sum is `[6, 8]`, so the output is $6 + 8 = 14$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [-5,-4,-3], k = 2
+- **Input:** nums = [-5,-4,-3], k = 2
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
+- **Explanation:** 
 
 - Divide each number in the subarray `[-3]` by 2.
 
 - This results in `nums = [-5, -4, -1]`.
 
 - The subarray with the largest sum is `[-1]`, so the output is -1.
-
-</div>
 
 ### 4. Constraints
 

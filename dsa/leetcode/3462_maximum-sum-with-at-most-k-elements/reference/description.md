@@ -8,41 +8,43 @@ Return the **maximum sum**.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+- `limits`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** grid = [[1,2],[3,4]], limits = [1,2], k = 2
+- **Input:** grid = [[1,2],[3,4]], limits = [1,2], k = 2
 
-**Output:** 7
+- **Output:** 7
 
-**Explanation:**
+- **Explanation:** 
 
 - From the second row, we can take at most 2 elements. The elements taken are 4 and 3.
 
 - The maximum possible sum of at most 2 selected elements is $4 + 3 = 7$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** grid = [[5,3,7],[8,2,6]], limits = [2,2], k = 3
+- **Input:** grid = [[5,3,7],[8,2,6]], limits = [2,2], k = 3
 
-**Output:** 21
+- **Output:** 21
 
-**Explanation:**
+- **Explanation:** 
 
 - From the first row, we can take at most 2 elements. The element taken is 7.
 
 - From the second row, we can take at most 2 elements. The elements taken are 8 and 6.
 
 - The maximum possible sum of at most 3 selected elements is $7 + 8 + 6 = 21$.
-
-</div>
 
 ### 4. Constraints
 

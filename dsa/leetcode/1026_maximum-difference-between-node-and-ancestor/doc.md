@@ -32,14 +32,14 @@ A node is an ancestor of each of its children and of every node that is an ances
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [8,3,10,1,6,null,14,null,null,4,7,13]`
-- Output: `7`
-- Explanation: Node `8` is an ancestor of node `1`, and their difference is $\lvert 8-1 \rvert=7$, the largest valid value.
+- **Input:** `root = [8,3,10,1,6,null,14,null,null,4,7,13]`
+- **Output:** `7`
+- **Explanation:** Node `8` is an ancestor of node `1`, and their difference is $\lvert 8-1 \rvert=7$, the largest valid value.
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [1,null,2,null,0,3]`
-- Output: `3`
-- Explanation: The root `1` is an ancestor of node `3`, giving $\lvert 1-3 \rvert=2$, while node `0` is a descendant of `1` and an ancestor of `3`; the pair `0` and `3` gives the maximum $3$.
+- **Input:** `root = [1,null,2,null,0,3]`
+- **Output:** `3`
+- **Explanation:** The root `1` is an ancestor of node `3`, giving $\lvert 1-3 \rvert=2$, while node `0` is a descendant of `1` and an ancestor of `3`; the pair `0` and `3` gives the maximum $3$.

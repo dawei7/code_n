@@ -8,8 +8,14 @@ Return `true` *if it is possible to make *`str2` *a subsequence of *`str1` *by p
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `str1`: Input parameter (`str`).
+- `str2`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Note
 
@@ -24,6 +30,7 @@ A subsequence of a string is a new string that is formed from the original strin
 - **Explanation:** Select index 2 in str1.
 Increment str1[2] to become 'd'.
 Hence, str1 becomes "abd" and str2 is now a subsequence. Therefore, true is returned.
+
 #### Example 2
 
 - **Input:** $str1 = "zc", str2 = "ad"$
@@ -32,6 +39,7 @@ Hence, str1 becomes "abd" and str2 is now a subsequence. Therefore, true is retu
 Increment str1[0] to become 'a'.
 Increment str1[1] to become 'd'.
 Hence, str1 becomes "ad" and str2 is now a subsequence. Therefore, true is returned.
+
 #### Example 3
 
 - **Input:** $str1 = "ab", str2 = "d"$

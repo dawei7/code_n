@@ -37,6 +37,7 @@ Picture (0) shows the initial state and picture (3) shows the final state when w
 It can be shown that 3 is the minimum time needed to reach from S to D.
 
 ![](images/ex1.png)
+
 #### Example 2
 
 - **Input:** $land = [["D","X","*"],[".",".","."],[".",".","S"]]$
@@ -46,6 +47,7 @@ Picture (0) shows the initial state. As you see, no matter which paths we choose
 So the answer would be -1.
 
 ![](images/ex2-2.png)
+
 #### Example 3
 
 - **Input:** $land = [["D",".",".",".","*","."],[".","X",".","X",".","."],[".",".",".",".","S","."]]$

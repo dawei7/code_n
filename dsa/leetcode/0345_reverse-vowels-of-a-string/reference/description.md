@@ -18,24 +18,17 @@ Return `s` with the vowel characters placed in reverse occurrence order and ever
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "IceCreAm"
+- **Input:** s = "IceCreAm"
 
-**Output:** "AceCreIm"
+- **Output:** "AceCreIm"
 
-**Explanation:**
+- **Explanation:** The vowels in `s` are `['I', 'e', 'e', 'A']`. On reversing the vowels, s becomes `"AceCreIm"`.
 
-The vowels in `s` are `['I', 'e', 'e', 'A']`. On reversing the vowels, s becomes `"AceCreIm"`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "leetcode"
+- **Input:** s = "leetcode"
 
-**Output:** "leotcede"
-
-</div>
+- **Output:** "leotcede"
 
 ### 4. Constraints
 

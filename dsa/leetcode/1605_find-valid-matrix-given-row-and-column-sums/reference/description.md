@@ -8,8 +8,14 @@ Return *a 2D array representing **any** matrix that fulfills the requirements*. 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `rowSum`: Input parameter (`List[int]`).
+- `colSum`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
@@ -18,14 +24,14 @@ Return *a 2D array representing **any** matrix that fulfills the requirements*. 
 - **Input:** $rowSum = [3,8], colSum = [4,7]$
 - **Output:** $[[3,0],$
 [1,7]]
-- **Explanation:**
-0^th row: 3 + 0 = 3 == rowSum[0]
+- **Explanation:** 0^th row: 3 + 0 = 3 == rowSum[0]
 1^st row: 1 + 7 = 8 == rowSum[1]
 0^th column: 3 + 1 = 4 == colSum[0]
 1^st column: 0 + 7 = 7 == colSum[1]
 The row and column sums match, and all matrix elements are non-negative.
 Another possible matrix is: [[1,2],
 [3,5]]
+
 #### Example 2
 
 - **Input:** $rowSum = [5,7,10], colSum = [8,6,8]$

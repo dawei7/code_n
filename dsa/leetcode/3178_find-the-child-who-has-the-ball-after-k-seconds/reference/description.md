@@ -8,21 +8,24 @@ Return the number of the child who receives the ball after `k` seconds.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 3, k = 5
+- **Input:** n = 3, k = 5
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-<table>
+- **Explanation:** <table>
 	<tbody>
 		<tr>
 			<th>Time elapsed</th>
@@ -54,17 +57,14 @@ Return the number of the child who receives the ball after `k` seconds.
 		</tr>
 	</tbody>
 </table>
-</div>
+
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 5, k = 6
+- **Input:** n = 5, k = 6
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-<table>
+- **Explanation:** <table>
 	<tbody>
 		<tr>
 			<th>Time elapsed</th>
@@ -100,17 +100,14 @@ Return the number of the child who receives the ball after `k` seconds.
 		</tr>
 	</tbody>
 </table>
-</div>
+
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 4, k = 2
+- **Input:** n = 4, k = 2
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-<table>
+- **Explanation:** <table>
 	<tbody>
 		<tr>
 			<th>Time elapsed</th>
@@ -130,7 +127,6 @@ Return the number of the child who receives the ball after `k` seconds.
 		</tr>
 	</tbody>
 </table>
-</div>
 
 ### 4. Constraints
 

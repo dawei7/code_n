@@ -30,19 +30,19 @@ Return the year, month, and day written in binary without leading zeros and sepa
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `date = "2080-02-29"`
-- Output: `"100000100000-10-11101"`
-- Explanation: Decimal `2080`, `2`, and `29` become the three displayed binary components.
+- **Input:** `date = "2080-02-29"`
+- **Output:** `"100000100000-10-11101"`
+- **Explanation:** Decimal `2080`, `2`, and `29` become the three displayed binary components.
 
-**Example 2**
+#### Example 2
 
-- Input: `date = "1900-01-01"`
-- Output: `"11101101100-1-1"`
+- **Input:** `date = "1900-01-01"`
+- **Output:** `"11101101100-1-1"`
 
-**Example 3**
+#### Example 3
 
-- Input: `date = "2000-12-31"`
-- Output: `"11111010000-1100-11111"`
-- Explanation: Formatting zeros in the decimal month and day do not survive integer conversion.
+- **Input:** `date = "2000-12-31"`
+- **Output:** `"11111010000-1100-11111"`
+- **Explanation:** Formatting zeros in the decimal month and day do not survive integer conversion.

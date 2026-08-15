@@ -8,8 +8,14 @@ Return *the **number of ways** you can arrive at your destination in the **short
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `roads`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,6 +31,7 @@ The four ways to get there in 7 minutes are:
 - 0 ➝ 4 ➝ 6
 - 0 ➝ 1 ➝ 2 ➝ 5 ➝ 6
 - 0 ➝ 1 ➝ 3 ➝ 5 ➝ 6
+
 #### Example 2
 
 - **Input:** $n = 2, roads = [[1,0,10]]$

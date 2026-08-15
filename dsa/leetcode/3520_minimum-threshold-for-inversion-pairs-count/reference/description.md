@@ -22,14 +22,11 @@ If no such integer exists, return `-1`.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4,3,2,1], k = 7
+- **Input:** nums = [1,2,3,4,3,2,1], k = 7
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-For threshold $x = 2$, the pairs are:
+- **Explanation:** For threshold $x = 2$, the pairs are:
 
 - `(3, 4)` where $\text{nums}[3] = 4$ and $\text{nums}[4] = 3$.
 
@@ -49,17 +46,13 @@ For threshold $x = 2$, the pairs are:
 
 There are less than `k` inversion pairs if we choose any integer less than 2 as threshold.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [10,9,9,9,1], k = 4
+- **Input:** nums = [10,9,9,9,1], k = 4
 
-**Output:** 8
+- **Output:** 8
 
-**Explanation:**
-
-For threshold $x = 8$, the pairs are:
+- **Explanation:** For threshold $x = 8$, the pairs are:
 
 - `(0, 1)` where $\text{nums}[0] = 10$ and $\text{nums}[1] = 9$.
 
@@ -74,8 +67,6 @@ For threshold $x = 8$, the pairs are:
 - `(3, 4)` where $\text{nums}[3] = 9$ and $\text{nums}[4] = 1$.
 
 There are less than `k` inversion pairs if we choose any integer less than 8 as threshold.
-
-</div>
 
 ### 4. Constraints
 

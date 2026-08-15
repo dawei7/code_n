@@ -12,8 +12,10 @@ Recall that:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `lcaDeepestLeaves(root: Optional[TreeNode]) -> `Optional[TreeNode]``: Executes operation.
 
 ### 3. Examples
 
@@ -26,11 +28,13 @@ Recall that:
 - **Explanation:** We return the node with value 2, colored in yellow in the diagram.
 The nodes coloured in blue are the deepest leaf-nodes of the tree.
 Note that nodes 6, 0, and 8 are also leaf nodes, but the depth of them is 2, but the depth of nodes 7 and 4 is 3.
+
 #### Example 2
 
 - **Input:** `root = [1]`
 - **Output:** `[1]`
 - **Explanation:** The root is the deepest node in the tree, and it's the lca of itself.
+
 #### Example 3
 
 - **Input:** `root = [0,1,3,null,2]`

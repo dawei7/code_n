@@ -35,14 +35,14 @@ Let $n = \lvert\texttt{nums}\rvert$. The constraints are $2 \le n \le 10^5$ and 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,3,3,2,2,4,2,3,4]`
-- Output: `4`
-- Explanation: Delete the four copies of `2` as two pairs, the three copies of `3` as one triple, and the two copies of `4` as one pair.
+- **Input:** `nums = [2,3,3,2,2,4,2,3,4]`
+- **Output:** `4`
+- **Explanation:** Delete the four copies of `2` as two pairs, the three copies of `3` as one triple, and the two copies of `4` as one pair.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2,1,2,2,3,3]`
-- Output: `-1`
-- Explanation: The only occurrence of `1` cannot be included in either permitted operation.
+- **Input:** `nums = [2,1,2,2,3,3]`
+- **Output:** `-1`
+- **Explanation:** The only occurrence of `1` cannot be included in either permitted operation.

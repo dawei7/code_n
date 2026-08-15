@@ -30,20 +30,20 @@ Return `true` if the decimal concatenation of `n`, `2 * n`, and `3 * n` uses eve
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 192`
-- Output: `true`
-- Explanation: Concatenating `192`, `384`, and `576` gives `192384576`, which contains each nonzero decimal digit once.
+- **Input:** `n = 192`
+- **Output:** `true`
+- **Explanation:** Concatenating `192`, `384`, and `576` gives `192384576`, which contains each nonzero decimal digit once.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 100`
-- Output: `false`
-- Explanation: The sequence `100200300` contains zeros and repeats other digits.
+- **Input:** `n = 100`
+- **Output:** `false`
+- **Explanation:** The sequence `100200300` contains zeros and repeats other digits.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 219`
-- Output: `true`
-- Explanation: The sequence is `219438657`, another permutation of the digits from `1` through `9`.
+- **Input:** `n = 219`
+- **Output:** `true`
+- **Explanation:** The sequence is `219438657`, another permutation of the digits from `1` through `9`.

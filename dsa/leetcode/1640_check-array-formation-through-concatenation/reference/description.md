@@ -6,8 +6,14 @@ Return `true` *if it is possible **to form the array *`arr`* from *`pieces`. Oth
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+- `pieces`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -16,11 +22,13 @@ Return `true` *if it is possible **to form the array *`arr`* from *`pieces`. Oth
 - **Input:** `arr = [15,88], pieces = [[88],[15]]`
 - **Output:** `true`
 - **Explanation:** Concatenate [15] then [88]
+
 #### Example 2
 
 - **Input:** `arr = [49,18,16], pieces = [[16,18,49]]`
 - **Output:** `false`
 - **Explanation:** Even though the numbers match, we cannot reorder pieces[0].
+
 #### Example 3
 
 - **Input:** `arr = [91,4,64,78], pieces = [[78],[4,64],[91]]`

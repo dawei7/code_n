@@ -26,46 +26,33 @@ that an array of length 1 is also considered consecutive.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3]
+- **Input:** nums = [1,2,3]
 
-**Output:** 20
+- **Output:** 20
 
-**Explanation:**
-
-The consecutive subarrays are: `[1]`, `[2]`, `[3]`, `[1, 2]`, `[2, 3]`, `[1, 2, 3]`.
+- **Explanation:** The consecutive subarrays are: `[1]`, `[2]`, `[3]`, `[1, 2]`, `[2, 3]`, `[1, 2, 3]`.
 
 Sum of their values would be: $1 + 2 + 3 + 3 + 5 + 6 = 20$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,3,5,7]
+- **Input:** nums = [1,3,5,7]
 
-**Output:** 16
+- **Output:** 16
 
-**Explanation:**
-
-The consecutive subarrays are: `[1]`, `[3]`, `[5]`, `[7]`.
+- **Explanation:** The consecutive subarrays are: `[1]`, `[3]`, `[5]`, `[7]`.
 
 Sum of their values would be: $1 + 3 + 5 + 7 = 16$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [7,6,1,2]
+- **Input:** nums = [7,6,1,2]
 
-**Output:** 32
+- **Output:** 32
 
-**Explanation:**
-
-The consecutive subarrays are: `[7]`, `[6]`, `[1]`, `[2]`, `[7, 6]`, `[1, 2]`.
+- **Explanation:** The consecutive subarrays are: `[7]`, `[6]`, `[1]`, `[2]`, `[7, 6]`, `[1, 2]`.
 
 Sum of their values would be: $7 + 6 + 1 + 2 + 13 + 3 = 32$.
-
-</div>
 
 ### 5. Constraints
 

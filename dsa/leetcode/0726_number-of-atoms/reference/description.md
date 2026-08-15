@@ -22,8 +22,13 @@ The test cases are generated so that all the values in the output fit in a **32-
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `formula`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -32,11 +37,13 @@ The test cases are generated so that all the values in the output fit in a **32-
 - **Input:** $formula = "H2O"$
 - **Output:** `"H2O"`
 - **Explanation:** The count of elements are {'H': 2, 'O': 1}.
+
 #### Example 2
 
 - **Input:** $formula = "Mg(OH)2"$
 - **Output:** `"H2MgO2"`
 - **Explanation:** The count of elements are {'H': 2, 'Mg': 1, 'O': 2}.
+
 #### Example 3
 
 - **Input:** $formula = "K4(ON(SO3)2)2"$

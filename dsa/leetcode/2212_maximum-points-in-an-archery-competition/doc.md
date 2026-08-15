@@ -33,20 +33,20 @@ Return a length-twelve nonnegative integer array `bobArrows` whose sum is `numAr
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `numArrows = 9`, `aliceArrows = [1, 1, 0, 1, 0, 0, 2, 1, 0, 1, 2, 0]`
-- Output: `[0, 0, 0, 0, 1, 1, 0, 0, 1, 2, 3, 1]`
-- Explanation: this allocation wins sections `4`, `5`, `8`, `9`, `10`, and `11` for `47` points.
+- **Input:** `numArrows = 9`, `aliceArrows = [1, 1, 0, 1, 0, 0, 2, 1, 0, 1, 2, 0]`
+- **Output:** `[0, 0, 0, 0, 1, 1, 0, 0, 1, 2, 3, 1]`
+- **Explanation:** this allocation wins sections `4`, `5`, `8`, `9`, `10`, and `11` for `47` points.
 
-**Example 2**
+#### Example 2
 
-- Input: `numArrows = 3`, `aliceArrows = [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 2]`
-- Output: `[0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0]`
-- Explanation: winning sections `8`, `9`, and `10` yields the optimal score `27`.
+- **Input:** `numArrows = 3`, `aliceArrows = [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 2]`
+- **Output:** `[0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0]`
+- **Explanation:** winning sections `8`, `9`, and `10` yields the optimal score `27`.
 
-**Example 3**
+#### Example 3
 
-- Input: `numArrows = 1`, `aliceArrows = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]`
-- Output: `[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]`
-- Explanation: Bob spends the arrow on the highest section and earns `11`.
+- **Input:** `numArrows = 1`, `aliceArrows = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]`
+- **Output:** `[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]`
+- **Explanation:** Bob spends the arrow on the highest section and earns `11`.

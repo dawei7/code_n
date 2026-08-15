@@ -12,8 +12,14 @@ A **subarray** is a contiguous part of the array.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -27,6 +33,7 @@ The array after the operation is [1,3,1,3]
 - Subarray starts at index 1 is [3, 1], and its sum is 4
 - Subarray starts at index 2 is [1, 3], and its sum is 4
 - Subarray starts at index 3 is [3, 1], and its sum is 4
+
 #### Example 2
 
 - **Input:** `arr = [2,5,5,7], k = 3`

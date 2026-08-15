@@ -19,6 +19,7 @@ Return `true` when `nums` can be partitioned into two subsets with equal sums; o
 - **Input:** `nums = [1,5,11,5]`
 - **Output:** `true`
 - **Explanation:** The array can be partitioned as [1, 5, 5] and [11].
+
 #### Example 2
 
 - **Input:** `nums = [1,2,3,5]`

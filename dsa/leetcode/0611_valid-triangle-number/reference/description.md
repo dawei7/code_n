@@ -4,8 +4,13 @@ Given an integer array `nums`, return *the number of triplets chosen from the ar
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -17,6 +22,7 @@ Given an integer array `nums`, return *the number of triplets chosen from the ar
 2,3,4 (using the first 2)
 2,3,4 (using the second 2)
 2,2,3
+
 #### Example 2
 
 - **Input:** `nums = [4,2,3,4]`

@@ -12,8 +12,11 @@ Implement the `TimeMap` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TimeMap()`: Initializes the data structure.
+- `set(key: str, value: str, timestamp: int)`: Executes operation.
+- `get(key: str, timestamp: int) -> `str``: Executes operation.
 
 ### 3. Examples
 

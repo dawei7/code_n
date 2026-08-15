@@ -32,19 +32,19 @@ Return the number of submatrices satisfying all three conditions.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [["X","Y","."],["Y",".","."]]`
-- Output: `3`
+- **Input:** `grid = [["X","Y","."],["Y",".","."]]`
+- **Output:** `3`
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [["X","X"],["X","Y"]]`
-- Output: `0`
-- Explanation: No anchored rectangle contains equal frequencies of `"X"` and `"Y"`.
+- **Input:** `grid = [["X","X"],["X","Y"]]`
+- **Output:** `0`
+- **Explanation:** No anchored rectangle contains equal frequencies of `"X"` and `"Y"`.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[".","."],[".","."]]`
-- Output: `0`
-- Explanation: Equal zero frequencies do not qualify because at least one `"X"` is required.
+- **Input:** `grid = [[".","."],[".","."]]`
+- **Output:** `0`
+- **Explanation:** Equal zero frequencies do not qualify because at least one `"X"` is required.

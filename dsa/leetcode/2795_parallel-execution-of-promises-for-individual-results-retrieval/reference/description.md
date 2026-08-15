@@ -26,14 +26,14 @@ Try to implement it without using the built-in method `Promise.allSettled()`.
 () => new Promise(resolve => setTimeout(() => resolve(15), 100))
 ]
 - **Output:** `{"t":100,"values":[{"status":"fulfilled","value":15}]}`
-- **Explanation:**
-const time = performance.now()
+- **Explanation:** const time = performance.now()
 const promise = promiseAllSettled(functions);
 promise.then(res => {
 const out = {t: Math.floor(performance.now() - time), values: res}
 console.log(out) // {"t":100,"values":[{"status":"fulfilled","value":15}]}
 })
 The returned promise resolves within 100 milliseconds. Since promise from the array functions is fulfilled, the resolved value of the returned promise is set to [{"status":"fulfilled","value":15}].
+
 #### Example 2
 
 - **Input:** $functions = [$
@@ -49,6 +49,7 @@ The returned promise resolves within 100 milliseconds. Since promise from the ar
 ]
 }
 - **Explanation:** The returned promise resolves within 100 milliseconds, because the resolution time is determined by the promise that takes the longest time to fulfill. Since promises from the array functions are fulfilled, the resolved value of the returned promise is set to [{"status":"fulfilled","value":20},{"status":"fulfilled","value":15}].
+
 #### Example 3
 
 - **Input:** $functions = [$

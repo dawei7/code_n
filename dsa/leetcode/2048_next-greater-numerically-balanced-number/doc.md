@@ -30,20 +30,20 @@ Given an integer `n`, find the smallest numerically balanced integer that is str
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 1`
-- Output: `22`
-- Explanation: Digit `2` occurs exactly twice, and no smaller balanced integer is greater than `1`.
+- **Input:** `n = 1`
+- **Output:** `22`
+- **Explanation:** Digit `2` occurs exactly twice, and no smaller balanced integer is greater than `1`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 1000`
-- Output: `1333`
-- Explanation: Digit `1` occurs once and digit `3` occurs three times. A value such as `1022` is invalid because an occurring zero can never have zero occurrences.
+- **Input:** `n = 1000`
+- **Output:** `1333`
+- **Explanation:** Digit `1` occurs once and digit `3` occurs three times. A value such as `1022` is invalid because an occurring zero can never have zero occurrences.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 3000`
-- Output: `3133`
-- Explanation: `3133` has one `1` and three `3` digits and is the first balanced value after `3000`.
+- **Input:** `n = 3000`
+- **Output:** `3133`
+- **Explanation:** `3133` has one `1` and three `3` digits and is the first balanced value after `3000`.

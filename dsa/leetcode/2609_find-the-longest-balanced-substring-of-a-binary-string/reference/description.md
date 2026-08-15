@@ -10,8 +10,13 @@ A **substring** is a contiguous sequence of characters within a string.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,11 +25,13 @@ A **substring** is a contiguous sequence of characters within a string.
 - **Input:** `s = "01000111"`
 - **Output:** `6`
 - **Explanation:** The longest balanced substring is "000111", which has length 6.
+
 #### Example 2
 
 - **Input:** `s = "00111"`
 - **Output:** `4`
 - **Explanation:** The longest balanced substring is "0011", which has length 4.
+
 #### Example 3
 
 - **Input:** `s = "111"`

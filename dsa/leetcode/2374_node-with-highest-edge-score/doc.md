@@ -36,14 +36,14 @@ The edge score of a target node is the sum of the labels of all source nodes poi
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `edges = [1,0,0,0,0,7,7,5]`
-- Output: `7`
-- Explanation: Node `0` has score $1+2+3+4=10$, while node `7` has score $5+6=11$, which is greatest.
+- **Input:** `edges = [1,0,0,0,0,7,7,5]`
+- **Output:** `7`
+- **Explanation:** Node `0` has score $1+2+3+4=10$, while node `7` has score $5+6=11$, which is greatest.
 
-**Example 2**
+#### Example 2
 
-- Input: `edges = [2,0,0,2]`
-- Output: `0`
-- Explanation: Nodes `0` and `2` both have score $3$, so the smaller index `0` is returned.
+- **Input:** `edges = [2,0,0,2]`
+- **Output:** `0`
+- **Explanation:** Nodes `0` and `2` both have score $3$, so the smaller index `0` is returned.

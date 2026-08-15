@@ -30,32 +30,27 @@ Return the integer sum of the category weight for every distinct character prese
 
 #### Example 1
 
-<div class="example-block">
-**Input:** password = "aA1!"
+- **Input:** password = "aA1!"
 
-**Output:** 11
+- **Output:** 11
 
-**Explanation:**
+- **Explanation:** 
 
 - The distinct characters are `'a'`, `'A'`, `'1'` and `'!'`.
 
 - Thus, the $strength = 1 + 2 + 3 + 5 = 11$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** password = "bbB11#"
+- **Input:** password = "bbB11#"
 
-**Output:** 11
+- **Output:** 11
 
-**Explanation:**
+- **Explanation:** 
 
 - The distinct characters are `'b'`, `'B'`, `'1'` and `'#'`.
 
 - Thus, the $strength = 1 + 2 + 3 + 5 = 11$.​​​​​​​
-
-</div>
 
 ### 4. Constraints
 

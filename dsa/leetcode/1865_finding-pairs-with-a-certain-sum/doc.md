@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/finding-pairs-with-a-certain-sum/) |
 
 ## Problem Description
+
 ### Goal
+
 Build a stateful data structure over integer arrays `nums1` and `nums2`.
 Updates affect only `nums2`: an `add(index, val)` operation increases the
 element at `index` by the positive amount `val`.
@@ -23,6 +25,7 @@ their full index multiplicity, and every operation observes all preceding
 updates.
 
 ### Function Contract
+
 **Inputs**
 
 - `FindSumPairs(nums1, nums2)`: initializes arrays of lengths $n_1$ and $n_2$,
@@ -42,17 +45,18 @@ Construction and `add` produce `null`; each `count` produces the integer number
 of matching index pairs.
 
 ### Examples
-**Example 1**
 
-- Input: `operations = ["FindSumPairs","count","add","count","count","add","add","count"]`, `arguments = [[[1,1,2,2,2,3],[1,4,5,2,5,4]],[7],[3,2],[8],[4],[0,1],[1,1],[7]]`
-- Output: `[null,8,null,2,1,null,null,11]`
+#### Example 1
 
-**Example 2**
+- **Input:** `operations = ["FindSumPairs","count","add","count","count","add","add","count"]`, `arguments = [[[1,1,2,2,2,3],[1,4,5,2,5,4]],[7],[3,2],[8],[4],[0,1],[1,1],[7]]`
+- **Output:** `[null,8,null,2,1,null,null,11]`
 
-- Input: `operations = ["FindSumPairs","count","add","count"]`, `arguments = [[[1,2],[3,4]],[5],[0,2],[5]]`
-- Output: `[null,2,null,1]`
+#### Example 2
 
-**Example 3**
+- **Input:** `operations = ["FindSumPairs","count","add","count"]`, `arguments = [[[1,2],[3,4]],[5],[0,2],[5]]`
+- **Output:** `[null,2,null,1]`
 
-- Input: `operations = ["FindSumPairs","count"]`, `arguments = [[[1],[1]],[2]]`
-- Output: `[null,1]`
+#### Example 3
+
+- **Input:** `operations = ["FindSumPairs","count"]`, `arguments = [[[1],[1]],[2]]`
+- **Output:** `[null,1]`

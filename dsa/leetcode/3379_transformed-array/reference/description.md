@@ -14,8 +14,13 @@ Return the new array `result`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -25,12 +30,11 @@ Since `nums` is circular, moving past the last element wraps around to the begin
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [3,-2,1,1]
+- **Input:** nums = [3,-2,1,1]
 
-**Output:** [1,1,1,3]
+- **Output:** [1,1,1,3]
 
-**Explanation:**
+- **Explanation:** 
 
 - For $\text{nums}[0]$ that is equal to 3, If we move 3 steps to right, we reach $\text{nums}[3]$. So $\text{result}[0]$ should be 1.
 
@@ -40,23 +44,19 @@ Since `nums` is circular, moving past the last element wraps around to the begin
 
 - For $\text{nums}[3]$ that is equal to 1, If we move 1 step to right, we reach $\text{nums}[0]$. So $\text{result}[3]$ should be 3.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [-1,4,-1]
+- **Input:** nums = [-1,4,-1]
 
-**Output:** [-1,-1,4]
+- **Output:** [-1,-1,4]
 
-**Explanation:**
+- **Explanation:** 
 
 - For $\text{nums}[0]$ that is equal to -1, If we move 1 step to left, we reach $\text{nums}[2]$. So $\text{result}[0]$ should be -1.
 
 - For $\text{nums}[1]$ that is equal to 4, If we move 4 steps to right, we reach $\text{nums}[2]$. So $\text{result}[1]$ should be -1.
 
 - For $\text{nums}[2]$ that is equal to -1, If we move 1 step to left, we reach $\text{nums}[1]$. So $\text{result}[2]$ should be 4.
-
-</div>
 
 ### 5. Constraints
 

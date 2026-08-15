@@ -30,14 +30,14 @@ Return any two-dimensional array that contains exactly the multiset of values fr
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 3, 4, 1, 2, 3, 1]`
-- Output: `[[1, 3, 4, 2], [1, 3], [1]]`
-- Explanation: Three copies of `1` force at least three rows, and the displayed arrangement achieves that bound while keeping every row distinct.
+- **Input:** `nums = [1, 3, 4, 1, 2, 3, 1]`
+- **Output:** `[[1, 3, 4, 2], [1, 3], [1]]`
+- **Explanation:** Three copies of `1` force at least three rows, and the displayed arrangement achieves that bound while keeping every row distinct.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 2, 3, 4]`
-- Output: `[[4, 3, 2, 1]]`
-- Explanation: Because all values are distinct, a single row is valid and therefore minimal.
+- **Input:** `nums = [1, 2, 3, 4]`
+- **Output:** `[[4, 3, 2, 1]]`
+- **Explanation:** Because all values are distinct, a single row is valid and therefore minimal.

@@ -31,26 +31,26 @@ Compute both players' total scores under this rule. Return `1` when player 1 has
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `player1 = [5,10,3,2], player2 = [6,5,7,3]`
-- Output: `1`
-- Explanation: Player 1 scores `25` because the final two turns are doubled; player 2 scores `21`.
+- **Input:** `player1 = [5,10,3,2], player2 = [6,5,7,3]`
+- **Output:** `1`
+- **Explanation:** Player 1 scores `25` because the final two turns are doubled; player 2 scores `21`.
 
-**Example 2**
+#### Example 2
 
-- Input: `player1 = [3,5,7,6], player2 = [8,10,10,2]`
-- Output: `2`
-- Explanation: Player 2's strikes make the later eligible turns worth twice their pin counts.
+- **Input:** `player1 = [3,5,7,6], player2 = [8,10,10,2]`
+- **Output:** `2`
+- **Explanation:** Player 2's strikes make the later eligible turns worth twice their pin counts.
 
-**Example 3**
+#### Example 3
 
-- Input: `player1 = [2,3], player2 = [4,1]`
-- Output: `0`
-- Explanation: Both players score `5`.
+- **Input:** `player1 = [2,3], player2 = [4,1]`
+- **Output:** `0`
+- **Explanation:** Both players score `5`.
 
-**Example 4**
+#### Example 4
 
-- Input: `player1 = [1,1,1,10,10,10,10], player2 = [10,10,10,10,1,1,1]`
-- Output: `2`
-- Explanation: The respective totals are `73` and `75`.
+- **Input:** `player1 = [1,1,1,10,10,10,10], player2 = [10,10,10,10,1,1,1]`
+- **Output:** `2`
+- **Explanation:** The respective totals are `73` and `75`.

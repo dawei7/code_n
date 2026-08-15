@@ -35,14 +35,14 @@ Continue until the string contains no `"01"` pair, meaning that every `'1'` appe
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "0110101"`
-- Output: `4`
-- Explanation: The successive strings are `"1011010"`, `"1101100"`, `"1110100"`, and `"1111000"`.
+- **Input:** `s = "0110101"`
+- **Output:** `4`
+- **Explanation:** The successive strings are `"1011010"`, `"1101100"`, `"1110100"`, and `"1111000"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "11100"`
-- Output: `0`
-- Explanation: No `"01"` occurs initially, so the process is already complete.
+- **Input:** `s = "11100"`
+- **Output:** `0`
+- **Explanation:** No `"01"` occurs initially, so the process is already complete.

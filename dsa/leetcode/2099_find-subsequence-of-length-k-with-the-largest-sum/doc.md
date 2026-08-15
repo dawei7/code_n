@@ -33,20 +33,20 @@ Return any length-$k$ subsequence whose element sum is maximum.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,1,3,3]`, `k = 2`
-- Output: `[3,3]`
-- Explanation: The maximum sum is $6$.
+- **Input:** `nums = [2,1,3,3]`, `k = 2`
+- **Output:** `[3,3]`
+- **Explanation:** The maximum sum is $6$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [-1,-2,3,4]`, `k = 3`
-- Output: `[-1,3,4]`
-- Explanation: These values retain their original order and sum to $6$.
+- **Input:** `nums = [-1,-2,3,4]`, `k = 3`
+- **Output:** `[-1,3,4]`
+- **Explanation:** These values retain their original order and sum to $6$.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [3,4,3,3]`, `k = 2`
-- Output: `[3,4]`
-- Explanation: `[4,3]` is another valid subsequence with the same maximum sum $7$.
+- **Input:** `nums = [3,4,3,3]`, `k = 2`
+- **Output:** `[3,4]`
+- **Explanation:** `[4,3]` is another valid subsequence with the same maximum sum $7$.

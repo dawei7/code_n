@@ -44,7 +44,7 @@ Return `sample_id`, `dna_sequence`, `species`, `has_start`, `has_stop`, `has_ata
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 Input table `Samples`:
 
@@ -58,7 +58,7 @@ Input table `Samples`:
 | 6 | `ATATCGCGCTAG` | Zebrafish |
 | 7 | `CGTATGCGTCGTA` | Zebrafish |
 
-Output:
+- **Output:** 
 
 | sample_id | dna_sequence | species | has_start | has_stop | has_atat | has_ggg |
 |---:|---|---|---:|---:|---:|---:|

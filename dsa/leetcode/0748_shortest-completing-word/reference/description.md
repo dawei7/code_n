@@ -10,8 +10,14 @@ Return *the shortest **completing** word in *`words`*.* It is guaranteed an answ
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `licensePlate`: Input parameter (`str`).
+- `words`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -25,6 +31,7 @@ Return *the shortest **completing** word in *`words`*.* It is guaranteed an answ
 "stripe" is missing an 's'.
 "stepple" is missing an 's'.
 Since "steps" is the only word containing all the letters, that is the answer.
+
 #### Example 2
 
 - **Input:** $licensePlate = "1s3 456", words = ["looks","pest","stew","show"]$

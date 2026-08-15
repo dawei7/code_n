@@ -20,6 +20,7 @@ Return the maximum number of input points that are collinear.
 
 - **Input:** $points = [[1,1],[2,2],[3,3]]$
 - **Output:** `3`
+
 #### Example 2
 
 ![](images/plane2.jpg)

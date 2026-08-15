@@ -33,14 +33,14 @@ For equal-length strings, lexicographic order is decided at their first differin
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abcz", k = 26`
-- Output: `"abda"`
-- Explanation: Increasing the third character to `d` permits the suffix to restart at `a`; no closer larger beautiful string exists.
+- **Input:** `s = "abcz", k = 26`
+- **Output:** `"abda"`
+- **Explanation:** Increasing the third character to `d` permits the suffix to restart at `a`; no closer larger beautiful string exists.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "dc", k = 4`
-- Output: `""`
-- Explanation: No length-two beautiful string over `a` through `d` is lexicographically larger than `dc`.
+- **Input:** `s = "dc", k = 4`
+- **Output:** `""`
+- **Explanation:** No length-two beautiful string over `a` through `d` is lexicographically larger than `dc`.

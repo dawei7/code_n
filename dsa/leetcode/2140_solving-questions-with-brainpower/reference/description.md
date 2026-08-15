@@ -6,18 +6,21 @@ The array describes the questions of an exam, where you have to process the ques
 
 - For example, given $questions = [[3, 2], [4, 3], [4, 4], [2, 5]]$:
 
-		<li>If question `0` is solved, you will earn `3` points but you will be unable to solve questions `1` and `2`.
+		- If question `0` is solved, you will earn `3` points but you will be unable to solve questions `1` and `2`.
 
 - If instead, question `0` is skipped and question `1` is solved, you will earn `4` points but you will be unable to solve questions `2` and `3`.
-
-	</li>
 
 Return *the **maximum** points you can earn for the exam*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `questions`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -30,6 +33,7 @@ Return *the **maximum** points you can earn for the exam*.
 - Unable to solve questions 1 and 2
 - Solve question 3: Earn 2 points
 Total points earned: 3 + 2 = 5. There is no other way to earn 5 or more points.
+
 #### Example 2
 
 - **Input:** $questions = [[1,1],[2,2],[3,3],[4,4],[5,5]]$

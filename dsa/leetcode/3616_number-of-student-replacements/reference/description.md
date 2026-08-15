@@ -16,12 +16,11 @@ Return the total number of replacements made.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** ranks = [4,1,2]
+- **Input:** ranks = [4,1,2]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - The first student with $\text{ranks}[0] = 4$ is initially selected.
 
@@ -31,23 +30,19 @@ Return the total number of replacements made.
 
 - Thus, the number of replacements is 1.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** ranks = [2,2,3]
+- **Input:** ranks = [2,2,3]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** 
 
 - The first student with $\text{ranks}[0] = 2$ is initially selected.
 
 - Neither of $\text{ranks}[1] = 2$ or $\text{ranks}[2] = 3$ is better than the current selection.
 
 - Thus, the number of replacements is 0.
-
-</div>
 
 ### 4. Constraints
 

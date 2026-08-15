@@ -35,16 +35,16 @@ Return a list of $V$ coordinate pairs `[row, column]` describing a valid path, o
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[0,0,0],[0,1,2]], k = 2`
-- Output: `[[0,0],[1,0],[1,1],[1,2],[0,2],[0,1]]`
-- Explanation: Consecutive coordinates share an edge, every cell appears once, and checkpoints 1 and 2 occur in order.
+- **Input:** `grid = [[0,0,0],[0,1,2]], k = 2`
+- **Output:** `[[0,0],[1,0],[1,1],[1,2],[0,2],[0,1]]`
+- **Explanation:** Consecutive coordinates share an edge, every cell appears once, and checkpoints 1 and 2 occur in order.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[1,0,4],[3,0,2]], k = 4`
-- Output: `[]`
-- Explanation: No Hamiltonian grid path can encounter all four numbered cells in their required order.
+- **Input:** `grid = [[1,0,4],[3,0,2]], k = 4`
+- **Output:** `[]`
+- **Explanation:** No Hamiltonian grid path can encounter all four numbered cells in their required order.
 
 ---

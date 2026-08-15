@@ -10,8 +10,15 @@ Given an integer `n` and two integer arrays `left` and `right`, the positions of
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `left`: Input parameter (`List[int]`).
+- `right`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -27,6 +34,7 @@ Given an integer `n` and two integer arrays `left` and `right`, the positions of
 -The ant at index 3 is named C and going to the left.
 -The ant at index 4 is named D and going to the left.
 The last moment when an ant was on the plank is t = 4 seconds. After that, it falls immediately out of the plank. (i.e., We can say that at t = 4.0000000001, there are no ants on the plank).
+
 #### Example 2
 
 ![](images/ants2.jpg)
@@ -34,6 +42,7 @@ The last moment when an ant was on the plank is t = 4 seconds. After that, it fa
 - **Input:** $n = 7, left = [], right = [0,1,2,3,4,5,6,7]$
 - **Output:** `7`
 - **Explanation:** All ants are going to the right, the ant at index 0 needs 7 seconds to fall.
+
 #### Example 3
 
 ![](images/ants3.jpg)

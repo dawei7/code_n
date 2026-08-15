@@ -6,8 +6,14 @@ A **subarray** is a **contiguous** part of an array.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -15,10 +21,12 @@ A **subarray** is a **contiguous** part of an array.
 
 - **Input:** `nums = [1], k = 1`
 - **Output:** `1`
+
 #### Example 2
 
 - **Input:** `nums = [1,2], k = 4`
 - **Output:** `-1`
+
 #### Example 3
 
 - **Input:** `nums = [2,-1,2], k = 3`

@@ -30,12 +30,11 @@ Return the minimum number of unit increments required so every even-indexed valu
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4]
+- **Input:** nums = [1,2,3,4]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - The element at index 0 must be prime. Increment $\text{nums}[0] = 1$ to 2, using 1 operation.
 
@@ -47,15 +46,13 @@ Return the minimum number of unit increments required so every even-indexed valu
 
 Total operations = $1 + 2 = 3$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [5,6,7,8]
+- **Input:** nums = [5,6,7,8]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** 
 
 - The elements at indices 0 and 2 are already prime.
 
@@ -63,23 +60,19 @@ Total operations = $1 + 2 = 3$.
 
 No operations are needed.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [4,4]
+- **Input:** nums = [4,4]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - The element at index 0 must be prime. Increment $\text{nums}[0] = 4$ to 5, using 1 operation.
 
 - The element at index 1 is already non-prime.
 
 Total operations = 1.
-
-</div>
 
 ### 4. Constraints
 

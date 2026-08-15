@@ -30,14 +30,14 @@ The minimum total number of single-unit decrements that produces either valid zi
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3]`
-- Output: `2`
-- Explanation: Decrementing `nums[2]` twice gives `[1, 2, 1]`, which follows the valley-peak-valley pattern.
+- **Input:** `nums = [1, 2, 3]`
+- **Output:** `2`
+- **Explanation:** Decrementing `nums[2]` twice gives `[1, 2, 1]`, which follows the valley-peak-valley pattern.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [9, 6, 1, 6, 2]`
-- Output: `4`
-- Explanation: Four decrements can make the even-indexed positions the peaks of a valid zigzag array.
+- **Input:** `nums = [9, 6, 1, 6, 2]`
+- **Output:** `4`
+- **Explanation:** Four decrements can make the even-indexed positions the peaks of a valid zigzag array.

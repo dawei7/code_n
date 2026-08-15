@@ -31,16 +31,16 @@ A user's user active minutes (UAM) is the number of distinct minutes in which th
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `logs = [[0,5],[1,2],[0,2],[0,5],[1,3]], k = 5`
-- Output: `[0,2,0,0,0]`
+- **Input:** `logs = [[0,5],[1,2],[0,2],[0,5],[1,3]], k = 5`
+- **Output:** `[0,2,0,0,0]`
 
 User 0 is active in minutes 2 and 5; the repeated action at minute 5 does not add another minute. User 1 is active in minutes 2 and 3. Both therefore contribute to UAM 2.
 
-**Example 2**
+#### Example 2
 
-- Input: `logs = [[1,1],[2,2],[2,3]], k = 4`
-- Output: `[1,1,0,0]`
+- **Input:** `logs = [[1,1],[2,2],[2,3]], k = 4`
+- **Output:** `[1,1,0,0]`
 
 User 1 contributes to UAM 1, while user 2 contributes to UAM 2.

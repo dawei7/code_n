@@ -16,8 +16,13 @@ Starting from the point `(0, 0)`, return *the minimum steps you need to walk to 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `forest`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -32,6 +37,7 @@ The input is generated such that no two trees have the same height, and there is
 - **Input:** $forest = [[1,2,3],[0,0,4],[7,6,5]]$
 - **Output:** `6`
 - **Explanation:** Following the path above allows you to cut off the trees from shortest to tallest in 6 steps.
+
 #### Example 2
 
 ![](images/trees2.jpg)
@@ -39,6 +45,7 @@ The input is generated such that no two trees have the same height, and there is
 - **Input:** $forest = [[1,2,3],[0,0,0],[7,6,5]]$
 - **Output:** `-1`
 - **Explanation:** The trees in the bottom row cannot be accessed as the middle row is blocked.
+
 #### Example 3
 
 - **Input:** $forest = [[2,3,4],[0,0,5],[8,7,6]]$

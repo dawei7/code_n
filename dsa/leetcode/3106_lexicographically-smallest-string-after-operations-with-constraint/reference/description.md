@@ -14,47 +14,40 @@ Return a string denoting the **lexicographically smallest** string `t` you can g
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "zbbz", k = 3
+- **Input:** s = "zbbz", k = 3
 
-**Output:** "aaaz"
+- **Output:** "aaaz"
 
-**Explanation:**
+- **Explanation:** Change `s` to `"aaaz"`. The distance between `"zbbz"` and `"aaaz"` is equal to $k = 3$.
 
-Change `s` to `"aaaz"`. The distance between `"zbbz"` and `"aaaz"` is equal to $k = 3$.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "xaxcd", k = 4
+- **Input:** s = "xaxcd", k = 4
 
-**Output:** "aawcd"
+- **Output:** "aawcd"
 
-**Explanation:**
+- **Explanation:** The distance between "xaxcd" and "aawcd" is equal to k = 4.
 
-The distance between "xaxcd" and "aawcd" is equal to k = 4.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "lol", k = 0
+- **Input:** s = "lol", k = 0
 
-**Output:** "lol"
+- **Output:** "lol"
 
-**Explanation:**
-
-It's impossible to change any character as $k = 0$.
-
-</div>
+- **Explanation:** It's impossible to change any character as $k = 0$.
 
 ### 4. Constraints
 

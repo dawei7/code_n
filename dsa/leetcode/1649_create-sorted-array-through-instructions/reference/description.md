@@ -12,8 +12,13 @@ Return *the **total cost** to insert all elements from *`instructions`* into *`n
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `instructions`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -27,6 +32,7 @@ Insert 5 with cost min(1, 0) = 0, now nums = [1,5].
 Insert 6 with cost min(2, 0) = 0, now nums = [1,5,6].
 Insert 2 with cost min(1, 2) = 1, now nums = [1,2,5,6].
 The total cost is 0 + 0 + 0 + 1 = 1.
+
 #### Example 2
 
 - **Input:** $instructions = [1,2,3,6,5,4]$
@@ -39,6 +45,7 @@ Insert 6 with cost min(3, 0) = 0, now nums = [1,2,3,6].
 Insert 5 with cost min(3, 1) = 1, now nums = [1,2,3,5,6].
 Insert 4 with cost min(3, 2) = 2, now nums = [1,2,3,4,5,6].
 The total cost is 0 + 0 + 0 + 0 + 1 + 2 = 3.
+
 #### Example 3
 
 - **Input:** $instructions = [1,3,3,3,2,4,2,1,2]$

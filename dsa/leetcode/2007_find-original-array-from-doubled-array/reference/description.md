@@ -6,8 +6,13 @@ Given an array `changed`, return `original`* if *`changed`* is a **doubled** arr
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `changed`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -20,11 +25,13 @@ Given an array `changed`, return `original`* if *`changed`* is a **doubled** arr
 - Twice the value of 3 is 3 * 2 = 6.
 - Twice the value of 4 is 4 * 2 = 8.
 Other original arrays could be [4,3,1] or [3,1,4].
+
 #### Example 2
 
 - **Input:** $changed = [6,3,0,1]$
 - **Output:** `[]`
 - **Explanation:** changed is not a doubled array.
+
 #### Example 3
 
 - **Input:** $changed = [1]$

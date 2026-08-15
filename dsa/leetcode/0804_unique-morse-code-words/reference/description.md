@@ -22,8 +22,13 @@ Return *the number of different **transformations** among all words we have*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -37,6 +42,7 @@ Return *the number of different **transformations** among all words we have*.
 "gig" -> "--...--."
 "msg" -> "--...--."
 There are 2 different transformations: "--...-." and "--...--.".
+
 #### Example 2
 
 - **Input:** $words = ["a"]$

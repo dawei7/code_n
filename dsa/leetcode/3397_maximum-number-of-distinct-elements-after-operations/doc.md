@@ -33,16 +33,16 @@ Return the largest achievable distinct-element count.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 2, 3, 3, 4], k = 2`
-- Output: `6`
+- **Input:** `nums = [1, 2, 2, 3, 3, 4], k = 2`
+- **Output:** `6`
 
 One valid result is `[-1, 0, 1, 2, 3, 4]`, in which all six values are distinct.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4, 4, 4, 4], k = 1`
-- Output: `3`
+- **Input:** `nums = [4, 4, 4, 4], k = 1`
+- **Output:** `3`
 
 The available integer targets are 3, 4, and 5, so at most three of the four elements can contribute distinct values.

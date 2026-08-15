@@ -35,7 +35,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 restaurant_orders table:
@@ -79,7 +78,7 @@ restaurant_orders table:
 
 - **Customer 101**:
 
-		<li>Total orders: 4 (at least 3)
+		- Total orders: 4 (at least 3)
 
 - Peak hour orders: 4 out of 4 (12:30, 19:15, 13:45, and 20:30 are in peak hours)
 
@@ -91,10 +90,9 @@ restaurant_orders table:
 
 - Result: **Golden hour customer**
 
-	</li>
 - **Customer 102**:
 
-		<li>Total orders: 3 (at least 3)
+		- Total orders: 3 (at least 3)
 
 - Peak hour orders: 2 out of 3 (11:30, 12:00 are in peak hours; 15:30 is not)
 
@@ -106,10 +104,9 @@ restaurant_orders table:
 
 - Result: **Not a golden hour customer** (average rating too low)
 
-	</li>
 - **Customer 103**:
 
-		<li>Total orders: 3 (at least 3)
+		- Total orders: 3 (at least 3)
 
 - Peak hour orders: 3 out of 3 (19:00, 20:45, 18:30 all in evening peak)
 
@@ -121,10 +118,9 @@ restaurant_orders table:
 
 - Result: **Golden hour customer**
 
-	</li>
 - **Customer 104**:
 
-		<li>Total orders: 3 (at least 3)
+		- Total orders: 3 (at least 3)
 
 - Peak hour orders: 0 out of 3 (10:00, 09:30, 16:00 all outside peak hours)
 
@@ -132,10 +128,9 @@ restaurant_orders table:
 
 - Result: **Not a golden hour customer** (insufficient peak hour orders)
 
-	</li>
 - **Customer 105**:
 
-		<li>Total orders: 3 (at least 3)
+		- Total orders: 3 (at least 3)
 
 - Peak hour orders: 3 out of 3 (12:15, 13:00, 11:45 all in lunch peak)
 
@@ -147,11 +142,7 @@ restaurant_orders table:
 
 - Result: **Golden hour customer**
 
-	</li>
-
 The results table is ordered by average_rating DESC, then customer_id DESC.
-
-</div>
 
 ### 2. Function Contract
 

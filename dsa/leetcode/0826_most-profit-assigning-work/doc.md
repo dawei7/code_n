@@ -32,20 +32,20 @@ Each worker may be assigned at most one job. A job is reusable and may be comple
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `difficulty = [2, 4, 6, 8, 10], profit = [10, 20, 30, 40, 50], worker = [4, 5, 6, 7]`
-- Output: `100`
-- Explanation: The workers can take jobs with difficulties `[4, 4, 6, 6]` and earn `[20, 20, 30, 30]`.
+- **Input:** `difficulty = [2, 4, 6, 8, 10], profit = [10, 20, 30, 40, 50], worker = [4, 5, 6, 7]`
+- **Output:** `100`
+- **Explanation:** The workers can take jobs with difficulties `[4, 4, 6, 6]` and earn `[20, 20, 30, 30]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `difficulty = [85, 47, 57], profit = [24, 66, 99], worker = [40, 25, 25]`
-- Output: `0`
-- Explanation: No worker has enough ability for any listed job.
+- **Input:** `difficulty = [85, 47, 57], profit = [24, 66, 99], worker = [40, 25, 25]`
+- **Output:** `0`
+- **Explanation:** No worker has enough ability for any listed job.
 
-**Example 3**
+#### Example 3
 
-- Input: `difficulty = [2], profit = [10], worker = [1, 2, 2, 3]`
-- Output: `30`
-- Explanation: Three workers can independently complete the same job, while the worker with ability `1` earns nothing.
+- **Input:** `difficulty = [2], profit = [10], worker = [1, 2, 2, 3]`
+- **Output:** `30`
+- **Explanation:** Three workers can independently complete the same job, while the worker with ability `1` earns nothing.

@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/shuffle-the-array/) |
 
 ## Problem Description
+
 ### Goal
 
 The array `nums` contains exactly $2n$ elements arranged as two consecutive halves:
@@ -26,6 +27,7 @@ $$
 The pairing is positional: the first item of the first half is matched with the first item of the second half, and so on through position $n$. Equal values remain separate occurrences and do not change this mapping.
 
 ### Function Contract
+
 **Inputs**
 
 - `nums`: an integer array of length exactly $2n$.
@@ -37,19 +39,20 @@ The pairing is positional: the first item of the first half is matched with the 
 Return an array of length $2n$ in which `nums[i]` is followed by `nums[i + n]` for every index $0 \le i < n$.
 
 ### Examples
-**Example 1**
 
-- Input: `nums = [2,5,1,3,4,7], n = 3`
-- Output: `[2,3,5,4,1,7]`
-- Explanation: The halves `[2,5,1]` and `[3,4,7]` are interleaved pair by pair.
+#### Example 1
 
-**Example 2**
+- **Input:** `nums = [2,5,1,3,4,7], n = 3`
+- **Output:** `[2,3,5,4,1,7]`
+- **Explanation:** The halves `[2,5,1]` and `[3,4,7]` are interleaved pair by pair.
 
-- Input: `nums = [1,2,3,4,4,3,2,1], n = 4`
-- Output: `[1,4,2,3,3,2,4,1]`
+#### Example 2
 
-**Example 3**
+- **Input:** `nums = [1,2,3,4,4,3,2,1], n = 4`
+- **Output:** `[1,4,2,3,3,2,4,1]`
 
-- Input: `nums = [1,1,2,2], n = 2`
-- Output: `[1,2,1,2]`
-- Explanation: Repeated values retain their positions; the operation rearranges indices, not distinct values.
+#### Example 3
+
+- **Input:** `nums = [1,1,2,2], n = 2`
+- **Output:** `[1,2,1,2]`
+- **Explanation:** Repeated values retain their positions; the operation rearranges indices, not distinct values.

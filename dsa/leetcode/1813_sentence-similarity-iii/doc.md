@@ -33,23 +33,23 @@ The sentences are similar when an arbitrary sentence, possibly empty, can be ins
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `sentence1 = "My name is Haley", sentence2 = "My Haley"`
-- Output: `true`
+- **Input:** `sentence1 = "My name is Haley", sentence2 = "My Haley"`
+- **Output:** `true`
 
 Insert `"name is"` between the two words of `sentence2`.
 
-**Example 2**
+#### Example 2
 
-- Input: `sentence1 = "of", sentence2 = "A lot of words"`
-- Output: `false`
+- **Input:** `sentence1 = "of", sentence2 = "A lot of words"`
+- **Output:** `false`
 
 The shorter word matches an interior word, leaving unmatched words on both sides; one insertion cannot preserve the shorter sentence's order at a single boundary.
 
-**Example 3**
+#### Example 3
 
-- Input: `sentence1 = "Eating right now", sentence2 = "Eating"`
-- Output: `true`
+- **Input:** `sentence1 = "Eating right now", sentence2 = "Eating"`
+- **Output:** `true`
 
 Insert `"right now"` after the shorter sentence.

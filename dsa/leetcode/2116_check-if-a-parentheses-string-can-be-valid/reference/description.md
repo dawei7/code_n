@@ -18,8 +18,14 @@ Return `true` *if you can make `s` a valid parentheses string*. Otherwise, retur
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `locked`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -31,17 +37,20 @@ Return `true` *if you can make `s` a valid parentheses string*. Otherwise, retur
 - **Output:** `true`
 - **Explanation:** locked[1] == '1' and locked[3] == '1', so we cannot change s[1] or s[3].
 We change s[0] and s[4] to '(' while leaving s[2] and s[5] unchanged to make s valid.
+
 #### Example 2
 
 - **Input:** `s = "()()", locked = "0000"`
 - **Output:** `true`
 - **Explanation:** We do not need to make any changes because s is already valid.
+
 #### Example 3
 
 - **Input:** `s = ")", locked = "0"`
 - **Output:** `false`
 - **Explanation:** locked permits us to change s[0].
 Changing s[0] to either '(' or ')' will not make s valid.
+
 #### Example 4
 
 - **Input:** `s = "(((())(((())", locked = "111111010111"`

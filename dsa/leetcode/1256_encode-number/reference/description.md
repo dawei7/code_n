@@ -24,6 +24,7 @@ Return the binary-character string assigned to `num` by the deduced function. Le
 
 - **Input:** $num = 23$
 - **Output:** `"1000"`
+
 #### Example 2
 
 - **Input:** $num = 107$

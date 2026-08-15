@@ -10,8 +10,13 @@ Return *the **minimum number of moves** that you need to determine **with certai
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,6 +28,7 @@ Return *the **minimum number of moves** that you need to determine **with certai
 If the first egg breaks, we know that f = 0.
 If the second egg breaks but the first egg didn't, we know that f = 1.
 Otherwise, if both eggs survive, we know that f = 2.
+
 #### Example 2
 
 - **Input:** $n = 100$

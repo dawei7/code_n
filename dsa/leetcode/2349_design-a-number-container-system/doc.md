@@ -40,10 +40,10 @@ when no such index exists.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `operations = ["NumberContainers","find","change","change","change","change","find","change","find"]`,
+- **Input:** `operations = ["NumberContainers","find","change","change","change","change","find","change","find"]`,
   `arguments = [[],[10],[2,10],[1,10],[3,10],[5,10],[10],[1,20],[10]]`
-- Output: `[null,-1,null,null,null,null,1,null,2]`
-- Explanation: Number 10 is initially absent, later has minimum index 1, and
+- **Output:** `[null,-1,null,null,null,null,1,null,2]`
+- **Explanation:** Number 10 is initially absent, later has minimum index 1, and
   has minimum index 2 after index 1 is reassigned to 20.

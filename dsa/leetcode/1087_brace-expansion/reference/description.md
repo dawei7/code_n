@@ -31,6 +31,7 @@ Let $n$ be the length of `s`, $L$ the number of output positions after each brac
 
 - **Input:** `s = "{a,b}c{d,e}f"`
 - **Output:** `["acdf","acef","bcdf","bcef"]`
+
 #### Example 2
 
 - **Input:** `s = "abcd"`

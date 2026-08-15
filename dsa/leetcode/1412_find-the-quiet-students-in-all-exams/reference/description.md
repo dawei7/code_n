@@ -53,7 +53,7 @@ One extreme result in any exam disqualifies an otherwise quiet student. Exclude 
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Student table:
 +-------------+---------------+
 | student_id  | student_name  |
@@ -79,14 +79,13 @@ Exam table:
 | 40         |     2        |    70     |
 | 40         |     4        |    80     |
 +------------+--------------+-----------+
-**Output:**
+- **Output:** 
 +-------------+---------------+
 | student_id  | student_name  |
 +-------------+---------------+
 | 2           | Jade          |
 +-------------+---------------+
-**Explanation:**
-For exam 1: Student 1 and 3 hold the lowest and high scores respectively.
+- **Explanation:** For exam 1: Student 1 and 3 hold the lowest and high scores respectively.
 For exam 2: Student 1 hold both highest and lowest score.
 For exam 3 and 4: Student 1 and 4 hold the lowest and high scores respectively.
 Student 2 and 5 have never got the highest or lowest in any of the exams.

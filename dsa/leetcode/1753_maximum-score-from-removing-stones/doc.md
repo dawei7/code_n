@@ -32,20 +32,20 @@ Let $S=a+b+c$ and $M=\max(a,b,c)$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `a = 2, b = 4, c = 6`
-- Output: `6`
-- Explanation: All twelve stones can be consumed in six cross-pile pairs.
+- **Input:** `a = 2, b = 4, c = 6`
+- **Output:** `6`
+- **Explanation:** All twelve stones can be consumed in six cross-pile pairs.
 
-**Example 2**
+#### Example 2
 
-- Input: `a = 4, b = 4, c = 6`
-- Output: `7`
-- Explanation: The fourteen stones can be paired completely across seven turns.
+- **Input:** `a = 4, b = 4, c = 6`
+- **Output:** `7`
+- **Explanation:** The fourteen stones can be paired completely across seven turns.
 
-**Example 3**
+#### Example 3
 
-- Input: `a = 1, b = 8, c = 8`
-- Output: `8`
-- Explanation: Pair the two size-eight piles until both are empty; the remaining single stone cannot form another move.
+- **Input:** `a = 1, b = 8, c = 8`
+- **Output:** `8`
+- **Explanation:** Pair the two size-eight piles until both are empty; the remaining single stone cannot form another move.

@@ -6,8 +6,15 @@ Count and return *the number of maximum integers in the matrix after performing 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `m`: Input parameter (`int`).
+- `n`: Input parameter (`int`).
+- `ops`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,10 +25,12 @@ Count and return *the number of maximum integers in the matrix after performing 
 - **Input:** $m = 3, n = 3, ops = [[2,2],[3,3]]$
 - **Output:** `4`
 - **Explanation:** The maximum integer in M is 2, and there are four of it in M. So return 4.
+
 #### Example 2
 
 - **Input:** $m = 3, n = 3, ops = [[2,2],[3,3],[3,3],[3,3],[2,2],[3,3],[3,3],[3,3],[2,2],[3,3],[3,3],[3,3]]$
 - **Output:** `4`
+
 #### Example 3
 
 - **Input:** $m = 3, n = 3, ops = []$

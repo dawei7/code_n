@@ -12,21 +12,25 @@ A **connected component** is a subgraph of a graph in which there exists a path 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 2, edges = [[0,1,3]], k = 2
+- **Input:** n = 2, edges = [[0,1,3]], k = 2
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-![](images/screenshot-2025-06-01-at-022724.png)
+- **Explanation:** ![](images/screenshot-2025-06-01-at-022724.png)
 
 - Initially, there is one connected component `{0, 1}`.
 
@@ -34,17 +38,13 @@ A **connected component** is a subgraph of a graph in which there exists a path 
 
 - At $time = 3$, edge `[0, 1]` is removed, resulting in $k = 2$ connected components `{0}`, `{1}`. Thus, the answer is 3.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,1,2],[1,2,4]], k = 3
+- **Input:** n = 3, edges = [[0,1,2],[1,2,4]], k = 3
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-![](images/screenshot-2025-06-01-at-022812.png)
+- **Explanation:** ![](images/screenshot-2025-06-01-at-022812.png)
 
 - Initially, there is one connected component `{0, 1, 2}`.
 
@@ -52,21 +52,15 @@ A **connected component** is a subgraph of a graph in which there exists a path 
 
 - At $time = 4$, edge `[1, 2]` is removed, resulting in $k = 3$ connected components `{0}`, `{1}`, `{2}`. Thus, the answer is 4.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,2,5]], k = 2
+- **Input:** n = 3, edges = [[0,2,5]], k = 2
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-![](images/screenshot-2025-06-01-at-022930.png)
+- **Explanation:** ![](images/screenshot-2025-06-01-at-022930.png)
 
 - Since there are already $k = 2$ disconnected components `{1}`, `{0, 2}`, no edge removal is needed. Thus, the answer is 0.
-
-</div>
 
 ### 4. Constraints
 

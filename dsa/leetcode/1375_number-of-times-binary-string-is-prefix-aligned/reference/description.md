@@ -8,8 +8,13 @@ Return *the number of times the binary string is **prefix-aligned** during the f
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `flips`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +29,7 @@ After applying step 3: The string becomes "01110", which is not prefix-aligned.
 After applying step 4: The string becomes "11110", which is prefix-aligned.
 After applying step 5: The string becomes "11111", which is prefix-aligned.
 We can see that the string was prefix-aligned 2 times, so we return 2.
+
 #### Example 2
 
 - **Input:** $flips = [4,1,2,3]$

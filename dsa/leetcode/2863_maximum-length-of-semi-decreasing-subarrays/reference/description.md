@@ -22,6 +22,7 @@ Return *the length of the **longest semi-decreasing** subarray of *`nums`*, and 
 The first element is 7 and the last one is 6 so the condition is met.
 Hence, the answer would be the length of the subarray or 8.
 It can be shown that there aren't any subarrays with the given condition with a length greater than 8.
+
 #### Example 2
 
 - **Input:** `nums = [57,55,50,60,61,58,63,59,64,60,63]`
@@ -30,6 +31,7 @@ It can be shown that there aren't any subarrays with the given condition with a 
 The first element is 61 and the last one is 60 so the condition is met.
 Hence, the answer would be the length of the subarray or 6.
 It can be shown that there aren't any subarrays with the given condition with a length greater than 6.
+
 #### Example 3
 
 - **Input:** `nums = [1,2,3,4]`

@@ -38,20 +38,20 @@ Let $n=\lvert\texttt{nums}\rvert$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,2,3,4]`
-- Output: `4`
-- Explanation: The entire array alternates parity, so every adjacent sum is odd.
+- **Input:** `nums = [1,2,3,4]`
+- **Output:** `4`
+- **Explanation:** The entire array alternates parity, so every adjacent sum is odd.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,2,1,1,2,1,2]`
-- Output: `6`
-- Explanation: `[1,2,1,2,1,2]` is a longest valid subsequence; each adjacent sum is odd.
+- **Input:** `nums = [1,2,1,1,2,1,2]`
+- **Output:** `6`
+- **Explanation:** `[1,2,1,2,1,2]` is a longest valid subsequence; each adjacent sum is odd.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,3]`
-- Output: `2`
-- Explanation: Both values are odd, so their sum is even and the two-element subsequence is valid.
+- **Input:** `nums = [1,3]`
+- **Output:** `2`
+- **Explanation:** Both values are odd, so their sum is even and the two-element subsequence is valid.

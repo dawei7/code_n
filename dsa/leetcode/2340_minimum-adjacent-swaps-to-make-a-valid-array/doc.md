@@ -32,16 +32,16 @@ Return the smallest number of adjacent swaps that places a minimum value first a
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3,4,5,5,3,1]`
-- Output: `6`
+- **Input:** `nums = [3,4,5,5,3,1]`
+- **Output:** `6`
 
 Use the rightmost `5`, move it two steps right, and move `1` five steps left. The two chosen elements cross once, so that crossing contributes to both movements and the total is $2+5-1=6$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [9]`
-- Output: `0`
+- **Input:** `nums = [9]`
+- **Output:** `0`
 
 The only element is simultaneously a minimum and maximum and is already at both endpoints.

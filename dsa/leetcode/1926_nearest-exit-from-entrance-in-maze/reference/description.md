@@ -8,8 +8,14 @@ Return *the **number of steps** in the shortest path from the *`entrance`* to th
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `maze`: Input parameter (`List[List[str]]`).
+- `entrance`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,6 +31,7 @@ Initially, you are at the entrance cell [1,2].
 - You can reach [0,2] by moving 1 step up.
 It is impossible to reach [2,3] from the entrance.
 Thus, the nearest exit is [0,2], which is 1 step away.
+
 #### Example 2
 
 ![](images/nearesr2-grid.jpg)
@@ -36,6 +43,7 @@ Thus, the nearest exit is [0,2], which is 1 step away.
 Initially, you are at the entrance cell [1,0].
 - You can reach [1,2] by moving 2 steps right.
 Thus, the nearest exit is [1,2], which is 2 steps away.
+
 #### Example 3
 
 ![](images/nearest3-grid.jpg)

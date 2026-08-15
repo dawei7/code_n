@@ -12,41 +12,40 @@ Return the **maximum **possible sum of weights for the remaining edges after mak
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `edges`: Input parameter (`List[List[int]]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** edges = [[0,1,4],[0,2,2],[2,3,12],[2,4,6]], k = 2
+- **Input:** edges = [[0,1,4],[0,2,2],[2,3,12],[2,4,6]], k = 2
 
-**Output:** 22
+- **Output:** 22
 
-**Explanation:**
-
-![](images/test1drawio.png)
+- **Explanation:** ![](images/test1drawio.png)
 
 - Node 2 has edges with 3 other nodes. We remove the edge `[0, 2, 2]`, ensuring that no node has edges with more than $k = 2$ nodes.
 
 - The sum of weights is 22, and we can't achieve a greater sum. Thus, the answer is 22.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** edges = [[0,1,5],[1,2,10],[0,3,15],[3,4,20],[3,5,5],[0,6,10]], k = 3
+- **Input:** edges = [[0,1,5],[1,2,10],[0,3,15],[3,4,20],[3,5,5],[0,6,10]], k = 3
 
-**Output:** 65
+- **Output:** 65
 
-**Explanation:**
+- **Explanation:** 
 
 - Since no node has edges connecting it to more than $k = 3$ nodes, we don't remove any edges.
 
 - The sum of weights is 65. Thus, the answer is 65.
-
-</div>
 
 ### 4. Constraints
 

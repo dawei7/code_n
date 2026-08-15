@@ -35,7 +35,7 @@ Let $e$ and $t$ denote the numbers of rows in `emails` and `texts`, and let $r =
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 Input `emails`:
 
@@ -53,7 +53,7 @@ Input `texts`:
 | 2 | 433 | `Not Verified` | `2022-07-10 10:45:00` |
 | 4 | 234 | `Verified` | `2022-08-21 09:30:00` |
 
-Output:
+- **Output:** 
 
 | user_id |
 |---:|

@@ -12,8 +12,14 @@ Return* the **chair number** that the friend numbered *`targetFriend`* will sit 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `times`: Input parameter (`List[List[int]]`).
+- `targetFriend`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,18 +27,19 @@ Return* the **chair number** that the friend numbered *`targetFriend`* will sit 
 
 - **Input:** $times = [[1,4],[2,3],[4,6]], targetFriend = 1$
 - **Output:** `1`
-- **Explanation:**
+- **Explanation:** 
 - Friend 0 arrives at time 1 and sits on chair 0.
 - Friend 1 arrives at time 2 and sits on chair 1.
 - Friend 1 leaves at time 3 and chair 1 becomes empty.
 - Friend 0 leaves at time 4 and chair 0 becomes empty.
 - Friend 2 arrives at time 4 and sits on chair 0.
 Since friend 1 sat on chair 1, we return 1.
+
 #### Example 2
 
 - **Input:** $times = [[3,10],[1,5],[2,6]], targetFriend = 0$
 - **Output:** `2`
-- **Explanation:**
+- **Explanation:** 
 - Friend 1 arrives at time 1 and sits on chair 0.
 - Friend 2 arrives at time 2 and sits on chair 1.
 - Friend 0 arrives at time 3 and sits on chair 2.

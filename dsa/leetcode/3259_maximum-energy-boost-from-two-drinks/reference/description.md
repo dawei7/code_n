@@ -8,8 +8,14 @@ Return the **maximum** total energy boost you can gain in the next `n` hours.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `energyDrinkA`: Input parameter (`List[int]`).
+- `energyDrinkB`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -19,34 +25,25 @@ that you can start consuming *either* of the two energy drinks.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** energyDrinkA = [1,3,1], energyDrinkB = [3,1,1]
+- **Input:** energyDrinkA = [1,3,1], energyDrinkB = [3,1,1]
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** To gain an energy boost of 5, drink only the energy drink A (or only B).
 
-To gain an energy boost of 5, drink only the energy drink A (or only B).
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** energyDrinkA = [4,1,1], energyDrinkB = [1,1,3]
+- **Input:** energyDrinkA = [4,1,1], energyDrinkB = [1,1,3]
 
-**Output:** 7
+- **Output:** 7
 
-**Explanation:**
-
-To gain an energy boost of 7:
+- **Explanation:** To gain an energy boost of 7:
 
 - Drink the energy drink A for the first hour.
 
 - Switch to the energy drink B and we lose the energy boost of the second hour.
 
 - Gain the energy boost of the drink B in the third hour.
-
-</div>
 
 ### 5. Constraints
 

@@ -6,8 +6,13 @@ Note that the **average** of `n` elements is the **sum** of the `n` elements div
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,6 +21,7 @@ Note that the **average** of `n` elements is the **sum** of the `n` elements div
 - **Input:** `nums = [1,3,6,10,12,15]`
 - **Output:** `9`
 - **Explanation:** 6 and 12 are even numbers that are divisible by 3. (6 + 12) / 2 = 9.
+
 #### Example 2
 
 - **Input:** `nums = [1,2,4,7,10]`

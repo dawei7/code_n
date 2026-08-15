@@ -25,12 +25,11 @@ An element is included in the sum **exactly** as many times as it appears in the
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,2,3,3,3,3,4], k = 2
+- **Input:** nums = [1,2,2,3,3,3,3,4], k = 2
 
-**Output:** 16
+- **Output:** 16
 
-**Explanation:**
+- **Explanation:** 
 
 - The number 1 appears once (odd frequency).
 
@@ -42,27 +41,21 @@ An element is included in the sum **exactly** as many times as it appears in the
 
 So, the total sum is $2 + 2 + 3 + 3 + 3 + 3 = 16$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4,5], k = 2
+- **Input:** nums = [1,2,3,4,5], k = 2
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** There are no elements that appear an even number of times, so the total sum is 0.
 
-There are no elements that appear an even number of times, so the total sum is 0.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [4,4,4,1,2,3], k = 3
+- **Input:** nums = [4,4,4,1,2,3], k = 3
 
-**Output:** 12
+- **Output:** 12
 
-**Explanation:**
+- **Explanation:** 
 
 - The number 1 appears once.
 
@@ -73,8 +66,6 @@ There are no elements that appear an even number of times, so the total sum is 0
 - The number 4 appears three times.
 
 So, the total sum is $4 + 4 + 4 = 12$.
-
-</div>
 
 ### 5. Constraints
 

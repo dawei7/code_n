@@ -42,12 +42,12 @@ reach stop $i$ on either route. Totals may require 64-bit integers.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `regular = [1,6,9,5], express = [5,2,3,10], expressCost = 8`
-- Output: `[1,7,14,19]`
+- **Input:** `regular = [1,6,9,5], express = [5,2,3,10], expressCost = 8`
+- **Output:** `[1,7,14,19]`
 
-**Example 2**
+#### Example 2
 
-- Input: `regular = [11,5,13], express = [7,10,6], expressCost = 3`
-- Output: `[10,15,24]`
+- **Input:** `regular = [11,5,13], express = [7,10,6], expressCost = 3`
+- **Output:** `[10,15,24]`

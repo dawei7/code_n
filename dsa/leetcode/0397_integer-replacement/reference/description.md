@@ -25,12 +25,14 @@ Return the fewest legal replacements required to transform `n` into `1`.
 - **Input:** $n = 8$
 - **Output:** `3`
 - **Explanation:** 8 -> 4 -> 2 -> 1
+
 #### Example 2
 
 - **Input:** $n = 7$
 - **Output:** `4`
 - **Explanation:** 7 -> 8 -> 4 -> 2 -> 1
 or 7 -> 6 -> 3 -> 2 -> 1
+
 #### Example 3
 
 - **Input:** $n = 4$

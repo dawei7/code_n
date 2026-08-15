@@ -14,24 +14,23 @@ A **subarray** is a contiguous sequence of elements within an array.
 
 - **Input:** `nums = [0,1,1,0,1]`
 - **Output:** `9`
-- **Explanation:**
-The subarrays of size 1 that have more ones than zeros are: [1], [1], [1]
+- **Explanation:** The subarrays of size 1 that have more ones than zeros are: [1], [1], [1]
 The subarrays of size 2 that have more ones than zeros are: [1,1]
 The subarrays of size 3 that have more ones than zeros are: [0,1,1], [1,1,0], [1,0,1]
 The subarrays of size 4 that have more ones than zeros are: [1,1,0,1]
 The subarrays of size 5 that have more ones than zeros are: [0,1,1,0,1]
+
 #### Example 2
 
 - **Input:** `nums = [0]`
 - **Output:** `0`
-- **Explanation:**
-No subarrays have more ones than zeros.
+- **Explanation:** No subarrays have more ones than zeros.
+
 #### Example 3
 
 - **Input:** `nums = [1]`
 - **Output:** `1`
-- **Explanation:**
-The subarrays of size 1 that have more ones than zeros are: [1]
+- **Explanation:** The subarrays of size 1 that have more ones than zeros are: [1]
 
 ### 4. Constraints
 

@@ -33,23 +33,23 @@ Choose exactly one supplier and obtain every required box from that supplier. Pl
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `packages = [2,3,5], boxes = [[4,8],[2,8]]`
-- Output: `6`
+- **Input:** `packages = [2,3,5], boxes = [[4,8],[2,8]]`
+- **Output:** `6`
 
 The first supplier uses sizes `4`, `4`, and `8`, wasting $(4-2)+(4-3)+(8-5)=6$.
 
-**Example 2**
+#### Example 2
 
-- Input: `packages = [2,3,5], boxes = [[1,4],[2,3],[3,4]]`
-- Output: `-1`
+- **Input:** `packages = [2,3,5], boxes = [[1,4],[2,3],[3,4]]`
+- **Output:** `-1`
 
 No supplier offers a box large enough for the size-`5` package.
 
-**Example 3**
+#### Example 3
 
-- Input: `packages = [3,5,8,10,11,12], boxes = [[12],[11,9],[10,5,14]]`
-- Output: `9`
+- **Input:** `packages = [3,5,8,10,11,12], boxes = [[12],[11,9],[10,5,14]]`
+- **Output:** `9`
 
 The third supplier provides the minimum-waste assignment.

@@ -22,15 +22,13 @@ Return the number of nodes whose value is equal to the maximum value in the subt
 
 #### Example 1
 
-<div class="example-block">
-
 ![](images/tnew.png)
 
-**Input:** root = [5,3,8,2,4,7,1]
+- **Input:** root = [5,3,8,2,4,7,1]
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** 
 
 - The leaf nodes with values 2, 4, 7, and 1 are dominant.
 
@@ -38,26 +36,21 @@ Return the number of nodes whose value is equal to the maximum value in the subt
 
 - Thus, the answer is 5.
 
-</div>
 #### Example 2
-
-<div class="example-block">
 
 ![](images/t9.png)
 
-**Input:** root = [1,2,3,1,2]
+- **Input:** root = [1,2,3,1,2]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** 
 
 - The leaf nodes with values 1, 2, and 3 are dominant.
 
 - The node with value 2 whose subtree is `[2, 1, 2]` is dominant because its value is the maximum value in its subtree.
 
 - Thus, the answer is 4.
-
-</div>
 
 ### 4. Constraints
 

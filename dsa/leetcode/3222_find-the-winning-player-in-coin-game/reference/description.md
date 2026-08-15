@@ -8,41 +8,38 @@ Return the *name* of the player who wins the game if both players play **optimal
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `x`: Input parameter (`int`).
+- `y`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** x = 2, y = 7
+- **Input:** x = 2, y = 7
 
-**Output:** "Alice"
+- **Output:** "Alice"
 
-**Explanation:**
-
-The game ends in a single turn:
+- **Explanation:** The game ends in a single turn:
 
 - Alice picks 1 coin with a value of 75 and 4 coins with a value of 10.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** x = 4, y = 11
+- **Input:** x = 4, y = 11
 
-**Output:** "Bob"
+- **Output:** "Bob"
 
-**Explanation:**
-
-The game ends in 2 turns:
+- **Explanation:** The game ends in 2 turns:
 
 - Alice picks 1 coin with a value of 75 and 4 coins with a value of 10.
 
 - Bob picks 1 coin with a value of 75 and 4 coins with a value of 10.
-
-</div>
 
 ### 4. Constraints
 

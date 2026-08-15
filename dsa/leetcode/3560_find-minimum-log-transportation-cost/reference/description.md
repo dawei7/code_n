@@ -10,35 +10,33 @@ Return the **minimum total cost** to distribute the logs onto the trucks. If the
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `m`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 6, m = 5, k = 5
+- **Input:** n = 6, m = 5, k = 5
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** Cut the log with length 6 into logs with length 1 and 5, at a cost equal to $1 * 5 = 5$. Now the three logs of length 1, 5, and 5 can fit in one truck each.
 
-Cut the log with length 6 into logs with length 1 and 5, at a cost equal to $1 * 5 = 5$. Now the three logs of length 1, 5, and 5 can fit in one truck each.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 4, m = 4, k = 6
+- **Input:** n = 4, m = 4, k = 6
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-The two logs can fit in the trucks already, hence we don't need to cut the logs.
-
-</div>
+- **Explanation:** The two logs can fit in the trucks already, hence we don't need to cut the logs.
 
 ### 4. Constraints
 

@@ -18,19 +18,24 @@ Two cards are **compatible** if the strings differ in **exactly** 1 position.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `cards`: Input parameter (`List[str]`).
+- `x`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** cards = ["aa","ab","ba","ac"], x = "a"
+- **Input:** cards = ["aa","ab","ba","ac"], x = "a"
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - On the first turn, select and remove cards `"ab"` and `"ac"`, which are compatible because they differ at only index 1.
 
@@ -38,33 +43,25 @@ Two cards are **compatible** if the strings differ in **exactly** 1 position.
 
 Because there are no more compatible pairs, the total score is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** cards = ["aa","ab","ba"], x = "a"
+- **Input:** cards = ["aa","ab","ba"], x = "a"
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - On the first turn, select and remove cards `"aa"` and `"ba"`.
 
 Because there are no more compatible pairs, the total score is 1.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** cards = ["aa","ab","ba","ac"], x = "b"
+- **Input:** cards = ["aa","ab","ba","ac"], x = "b"
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-The only cards that contain the character `'b'` are `"ab"` and `"ba"`. However, they differ in both indices, so they are not compatible. Thus, the output is 0.
-
-</div>
+- **Explanation:** The only cards that contain the character `'b'` are `"ab"` and `"ba"`. However, they differ in both indices, so they are not compatible. Thus, the output is 0.
 
 ### 4. Constraints
 

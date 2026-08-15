@@ -38,18 +38,18 @@ Let $L$ be the length of `original`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `original = [1, 2, 3, 4], m = 2, n = 2`
-- Output: `[[1, 2], [3, 4]]`
+- **Input:** `original = [1, 2, 3, 4], m = 2, n = 2`
+- **Output:** `[[1, 2], [3, 4]]`
 
-**Example 2**
+#### Example 2
 
-- Input: `original = [1, 2, 3], m = 1, n = 3`
-- Output: `[[1, 2, 3]]`
+- **Input:** `original = [1, 2, 3], m = 1, n = 3`
+- **Output:** `[[1, 2, 3]]`
 
-**Example 3**
+#### Example 3
 
-- Input: `original = [1, 2], m = 1, n = 1`
-- Output: `[]`
-- Explanation: One cell cannot contain both source elements.
+- **Input:** `original = [1, 2], m = 1, n = 1`
+- **Output:** `[]`
+- **Explanation:** One cell cannot contain both source elements.

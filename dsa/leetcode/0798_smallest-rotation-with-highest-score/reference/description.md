@@ -8,8 +8,13 @@ Return *the rotation index *`k`* that corresponds to the highest score we can ac
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +29,7 @@ k = 2,  nums = [1,4,0,2,3],    score 3
 k = 3,  nums = [4,0,2,3,1],    score 4
 k = 4,  nums = [0,2,3,1,4],    score 3
 So we should choose k = 3, which has the highest score.
+
 #### Example 2
 
 - **Input:** `nums = [1,3,0,2,4]`

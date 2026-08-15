@@ -6,8 +6,15 @@ Given three integers `n`, `k`, and `target`, return *the number of possible ways
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+- `target`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -17,12 +24,14 @@ Given three integers `n`, `k`, and `target`, return *the number of possible ways
 - **Output:** `1`
 - **Explanation:** You throw one die with 6 faces.
 There is only one way to get a sum of 3.
+
 #### Example 2
 
 - **Input:** $n = 2, k = 6, target = 7$
 - **Output:** `6`
 - **Explanation:** You throw two dice, each with 6 faces.
 There are 6 ways to get a sum of 7: 1+6, 2+5, 3+4, 4+3, 5+2, 6+1.
+
 #### Example 3
 
 - **Input:** $n = 30, k = 30, target = 500$

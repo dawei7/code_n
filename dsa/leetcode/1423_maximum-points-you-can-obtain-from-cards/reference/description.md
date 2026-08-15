@@ -10,8 +10,14 @@ Given the integer array `cardPoints` and the integer `k`, return the *maximum sc
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `cardPoints`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,11 +26,13 @@ Given the integer array `cardPoints` and the integer `k`, return the *maximum sc
 - **Input:** $cardPoints = [1,2,3,4,5,6,1], k = 3$
 - **Output:** `12`
 - **Explanation:** After the first step, your score will always be 1. However, choosing the rightmost card first will maximize your total score. The optimal strategy is to take the three cards on the right, giving a final score of 1 + 6 + 5 = 12.
+
 #### Example 2
 
 - **Input:** $cardPoints = [2,2,2], k = 2$
 - **Output:** `4`
 - **Explanation:** Regardless of which two cards you take, your score will always be 4.
+
 #### Example 3
 
 - **Input:** $cardPoints = [9,7,7,9,7,7,9], k = 7$

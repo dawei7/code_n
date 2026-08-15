@@ -30,20 +30,20 @@ A **word chain** is a sequence of one or more chosen words in which each word is
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `words = ["a","b","ba","bca","bda","bdca"]`
-- Output: `4`
-- Explanation: One longest chain is `["a","ba","bda","bdca"]`.
+- **Input:** `words = ["a","b","ba","bca","bda","bdca"]`
+- **Output:** `4`
+- **Explanation:** One longest chain is `["a","ba","bda","bdca"]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `words = ["xbc","pcxbcf","xb","cxbc","pcxbc"]`
-- Output: `5`
-- Explanation: All five words form `["xb","xbc","cxbc","pcxbc","pcxbcf"]`.
+- **Input:** `words = ["xbc","pcxbcf","xb","cxbc","pcxbc"]`
+- **Output:** `5`
+- **Explanation:** All five words form `["xb","xbc","cxbc","pcxbc","pcxbcf"]`.
 
-**Example 3**
+#### Example 3
 
-- Input: `words = ["abcd","dbqca"]`
-- Output: `1`
-- Explanation: The second word cannot be formed from the first while preserving character order, so only trivial one-word chains exist.
+- **Input:** `words = ["abcd","dbqca"]`
+- **Output:** `1`
+- **Explanation:** The second word cannot be formed from the first while preserving character order, so only trivial one-word chains exist.

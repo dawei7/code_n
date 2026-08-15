@@ -35,17 +35,17 @@ Every selected engineer contributes speed to the sum.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 6, speed = [2,10,3,1,5,8], efficiency = [5,4,3,9,7,2], k = 2`
-- Output: `60`
+- **Input:** `n = 6, speed = [2,10,3,1,5,8], efficiency = [5,4,3,9,7,2], k = 2`
+- **Output:** `60`
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 6, speed = [2,10,3,1,5,8], efficiency = [5,4,3,9,7,2], k = 3`
-- Output: `68`
+- **Input:** `n = 6, speed = [2,10,3,1,5,8], efficiency = [5,4,3,9,7,2], k = 3`
+- **Output:** `68`
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 6, speed = [2,10,3,1,5,8], efficiency = [5,4,3,9,7,2], k = 4`
-- Output: `72`
+- **Input:** `n = 6, speed = [2,10,3,1,5,8], efficiency = [5,4,3,9,7,2], k = 4`
+- **Output:** `72`

@@ -22,8 +22,12 @@ Implement the `Robot` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `Robot(width: int, height: int)`: Initializes the data structure.
+- `step(num: int)`: Executes operation.
+- `getPos() -> `List[int]``: Executes operation.
+- `getDir() -> `str``: Executes operation.
 
 ### 3. Examples
 

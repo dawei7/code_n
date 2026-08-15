@@ -14,8 +14,14 @@ Since the answer may be large, apply **modulo** $10^{9} + 7$ to each $\text{answ
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `edges`: Input parameter (`List[List[int]]`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -25,39 +31,33 @@ For each query, disregard all edges **not** in the path between node $u_{i}$ and
 
 #### Example 1
 
-<div class="example-block">
-
 ![](images/screenshot-2025-03-24-at-060006.png)
 
-**Input:** edges = [[1,2]], queries = [[1,1],[1,2]]
+- **Input:** edges = [[1,2]], queries = [[1,1],[1,2]]
 
-**Output:** [0,1]
+- **Output:** [0,1]
 
-**Explanation:**
+- **Explanation:** 
 
 - Query `[1,1]`: The path from Node 1 to itself consists of no edges, so the cost is 0. Thus, the number of valid assignments is 0.
 
 - Query `[1,2]`: The path from Node 1 to Node 2 consists of one edge (`1 → 2`). Assigning weight 1 makes the cost odd, while 2 makes it even. Thus, the number of valid assignments is 1.
 
-</div>
 #### Example 2
 
 ![](images/screenshot-2025-03-24-at-055820.png)
 
-<div class="example-block">
-**Input:** edges = [[1,2],[1,3],[3,4],[3,5]], queries = [[1,4],[3,4],[2,5]]
+- **Input:** edges = [[1,2],[1,3],[3,4],[3,5]], queries = [[1,4],[3,4],[2,5]]
 
-**Output:** [2,1,4]
+- **Output:** [2,1,4]
 
-**Explanation:**
+- **Explanation:** 
 
 - Query `[1,4]`: The path from Node 1 to Node 4 consists of two edges (`1 → 3` and `3 → 4`). Assigning weights (1,2) or (2,1) results in an odd cost. Thus, the number of valid assignments is 2.
 
 - Query `[3,4]`: The path from Node 3 to Node 4 consists of one edge (`3 → 4`). Assigning weight 1 makes the cost odd, while 2 makes it even. Thus, the number of valid assignments is 1.
 
 - Query `[2,5]`: The path from Node 2 to Node 5 consists of three edges (`2 → 1, 1 → 3`, and `3 → 5`). Assigning (1,2,2), (2,1,2), (2,2,1), or (1,1,1) makes the cost odd. Thus, the number of valid assignments is 4.
-
-</div>
 
 ### 5. Constraints
 

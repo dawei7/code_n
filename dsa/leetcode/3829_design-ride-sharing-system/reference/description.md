@@ -33,14 +33,13 @@ Return one result for every operation. The constructor and methods without a ret
 
 #### Example 1
 
-<div class="example-block">
-**Input:**
+- **Input:** 
 
 ["RideSharingSystem", "addRider", "addDriver", "addRider", "matchDriverWithRider", "addDriver", "cancelRider", "matchDriverWithRider", "matchDriverWithRider"]
 
 [[], [3], [2], [1], [], [5], [3], [], []]
 
-**Output:**
+- **Output:** 
 
 [null, null, null, null, [2, 3], null, null, [5, 1], [-1, -1]]
 
@@ -62,17 +61,17 @@ rideSharingSystem.cancelRider(3); // rider 3 is already matched, cancel has no e
 
 rideSharingSystem.matchDriverWithRider(); // returns [5, 1]
 
-rideSharingSystem.matchDriverWithRider(); // returns [-1, -1]</div>
+rideSharingSystem.matchDriverWithRider(); // returns [-1, -1]
+
 #### Example 2
 
-<div class="example-block">
-**Input:**
+- **Input:** 
 
 ["RideSharingSystem", "addRider", "addDriver", "addDriver", "matchDriverWithRider", "addRider", "cancelRider", "matchDriverWithRider"]
 
 [[], [8], [8], [6], [], [2], [2], []]
 
-**Output:**
+- **Output:** 
 
 [null, null, null, null, [8, 8], null, null, [-1, -1]]
 
@@ -92,7 +91,7 @@ rideSharingSystem.addRider(2); // rider 2 joins the queue
 
 rideSharingSystem.cancelRider(2); // rider 2 cancels
 
-rideSharingSystem.matchDriverWithRider(); // returns [-1, -1]</div>
+rideSharingSystem.matchDriverWithRider(); // returns [-1, -1]
 
 ### 4. Constraints
 

@@ -31,20 +31,20 @@ In one operation, choose one fruit from each basket and swap them. The operation
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `basket1 = [4, 2, 2, 2], basket2 = [1, 4, 1, 2]`
-- Output: `1`
-- Explanation: Swapping a `2` from the first basket with a `1` from the second costs `1` and equalizes their sorted contents.
+- **Input:** `basket1 = [4, 2, 2, 2], basket2 = [1, 4, 1, 2]`
+- **Output:** `1`
+- **Explanation:** Swapping a `2` from the first basket with a `1` from the second costs `1` and equalizes their sorted contents.
 
-**Example 2**
+#### Example 2
 
-- Input: `basket1 = [2, 3, 4, 1], basket2 = [3, 2, 5, 1]`
-- Output: `-1`
-- Explanation: The combined multiplicities of `4` and `5` are odd, so neither value can be divided equally between the baskets.
+- **Input:** `basket1 = [2, 3, 4, 1], basket2 = [3, 2, 5, 1]`
+- **Output:** `-1`
+- **Explanation:** The combined multiplicities of `4` and `5` are odd, so neither value can be divided equally between the baskets.
 
-**Example 3**
+#### Example 3
 
-- Input: `basket1 = [1, 100, 100], basket2 = [1, 200, 200]`
-- Output: `2`
-- Explanation: Routing the exchange of `100` and `200` through the shared minimum fruit `1` uses two swaps costing `1` each.
+- **Input:** `basket1 = [1, 100, 100], basket2 = [1, 200, 200]`
+- **Output:** `2`
+- **Explanation:** Routing the exchange of `100` and `200` through the shared minimum fruit `1` uses two swaps costing `1` each.

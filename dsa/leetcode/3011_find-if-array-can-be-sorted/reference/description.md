@@ -8,8 +8,13 @@ Return `true` *if you can sort the array in ascending order, else return *`false
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -25,11 +30,13 @@ We can sort the array using 4 operations:
 - Swap nums[3] with nums[4]. This operation is valid because 30 and 15 have four set bits each. The array becomes [2,4,8,15,30].
 The array has become sorted, hence we return true.
 Note that there may be other sequences of operations which also sort the array.
+
 #### Example 2
 
 - **Input:** `nums = [1,2,3,4,5]`
 - **Output:** `true`
 - **Explanation:** The array is already sorted, hence we return true.
+
 #### Example 3
 
 - **Input:** `nums = [3,16,8,4,2]`

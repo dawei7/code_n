@@ -42,20 +42,20 @@ Return a generator object. Iterating it yields the $k$ dates in increasing order
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `start = "2023-04-01"`, `end = "2023-04-04"`, `step = 1`
-- Output: `["2023-04-01","2023-04-02","2023-04-03","2023-04-04"]`
-- Explanation: Advancing one day at a time lands exactly on the inclusive endpoint.
+- **Input:** `start = "2023-04-01"`, `end = "2023-04-04"`, `step = 1`
+- **Output:** `["2023-04-01","2023-04-02","2023-04-03","2023-04-04"]`
+- **Explanation:** Advancing one day at a time lands exactly on the inclusive endpoint.
 
-**Example 2**
+#### Example 2
 
-- Input: `start = "2023-04-10"`, `end = "2023-04-20"`, `step = 3`
-- Output: `["2023-04-10","2023-04-13","2023-04-16","2023-04-19"]`
-- Explanation: The next three-day step would be April 22, which is beyond `end`.
+- **Input:** `start = "2023-04-10"`, `end = "2023-04-20"`, `step = 3`
+- **Output:** `["2023-04-10","2023-04-13","2023-04-16","2023-04-19"]`
+- **Explanation:** The next three-day step would be April 22, which is beyond `end`.
 
-**Example 3**
+#### Example 3
 
-- Input: `start = "2023-04-10"`, `end = "2023-04-10"`, `step = 1`
-- Output: `["2023-04-10"]`
-- Explanation: An equal start and end still produces that one inclusive date.
+- **Input:** `start = "2023-04-10"`, `end = "2023-04-10"`, `step = 1`
+- **Output:** `["2023-04-10"]`
+- **Explanation:** An equal start and end still produces that one inclusive date.

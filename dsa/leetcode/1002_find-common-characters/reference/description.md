@@ -4,8 +4,13 @@ Given a string array `words`, return *an array of all characters that show up in
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `List[str]`.
 
 ### 3. Examples
 
@@ -13,6 +18,7 @@ Given a string array `words`, return *an array of all characters that show up in
 
 - **Input:** $words = ["bella","label","roller"]$
 - **Output:** `["e","l","l"]`
+
 #### Example 2
 
 - **Input:** $words = ["cool","lock","cook"]$

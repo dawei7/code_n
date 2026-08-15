@@ -8,8 +8,13 @@ Return *the **sum of the squares** of all **special** elements of *`nums`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,6 +24,7 @@ Return *the **sum of the squares** of all **special** elements of *`nums`.
 - **Output:** `21`
 - **Explanation:** There are exactly 3 special elements in nums: nums[1] since 1 divides 4, nums[2] since 2 divides 4, and nums[4] since 4 divides 4.
 Hence, the sum of the squares of all special elements of nums is nums[1] * nums[1] + nums[2] * nums[2] + nums[4] * nums[4] = 1 * 1 + 2 * 2 + 4 * 4 = 21.
+
 #### Example 2
 
 - **Input:** `nums = [2,7,1,19,18,3]`

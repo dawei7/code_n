@@ -41,14 +41,14 @@ Here $1 \le n \le 100$, and every initial or opponent value lies between 1 and 1
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `initialEnergy = 5, initialExperience = 3, energy = [1,4,3,2], experience = [2,6,3,1]`
-- Output: `8`
-- Explanation: Six energy hours and two experience hours provide enough strength to win all four encounters in order.
+- **Input:** `initialEnergy = 5, initialExperience = 3, energy = [1,4,3,2], experience = [2,6,3,1]`
+- **Output:** `8`
+- **Explanation:** Six energy hours and two experience hours provide enough strength to win all four encounters in order.
 
-**Example 2**
+#### Example 2
 
-- Input: `initialEnergy = 2, initialExperience = 4, energy = [1], experience = [3]`
-- Output: `0`
-- Explanation: Both starting statistics are already strictly greater than the only opponent's values.
+- **Input:** `initialEnergy = 2, initialExperience = 4, energy = [1], experience = [3]`
+- **Output:** `0`
+- **Explanation:** Both starting statistics are already strictly greater than the only opponent's values.

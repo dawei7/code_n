@@ -20,6 +20,7 @@ Return the head of the sorted list with one retained node for each distinct valu
 
 - **Input:** $head = [1,1,2]$
 - **Output:** `[1,2]`
+
 #### Example 2
 
 ![](images/list2.jpg)

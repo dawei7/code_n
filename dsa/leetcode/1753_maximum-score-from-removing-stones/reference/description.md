@@ -6,8 +6,15 @@ Given three integers `a`​​​​​, `b`,​​​​​ and `c`​​​​
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `a`: Input parameter (`int`).
+- `b`: Input parameter (`int`).
+- `c`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,6 +30,7 @@ Given three integers `a`​​​​​, `b`,​​​​​ and `c`​​​​
 - Take from 2nd and 3rd piles, state is now (0, 1, 1)
 - Take from 2nd and 3rd piles, state is now (0, 0, 0)
 There are fewer than two non-empty piles, so the game ends. Total: 6 points.
+
 #### Example 2
 
 - **Input:** $a = 4, b = 4, c = 6$
@@ -36,6 +44,7 @@ There are fewer than two non-empty piles, so the game ends. Total: 6 points.
 - Take from 2nd and 3rd piles, state is now (0, 1, 1)
 - Take from 2nd and 3rd piles, state is now (0, 0, 0)
 There are fewer than two non-empty piles, so the game ends. Total: 7 points.
+
 #### Example 3
 
 - **Input:** $a = 1, b = 8, c = 8$

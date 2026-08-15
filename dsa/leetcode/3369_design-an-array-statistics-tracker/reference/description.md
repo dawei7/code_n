@@ -34,14 +34,13 @@ Implement the `StatisticsTracker` class.
 
 #### Example 1
 
-<div class="example-block">
-**Input:**
+- **Input:** 
 
 ["StatisticsTracker", "addNumber", "addNumber", "addNumber", "addNumber", "getMean", "getMedian", "getMode", "removeFirstAddedNumber", "getMode"]
 
 [[], [4], [4], [2], [3], [], [], [], [], []]
 
-**Output:**
+- **Output:** 
 
 [null, null, null, null, null, 3, 4, 4, null, 2]
 
@@ -65,17 +64,17 @@ statisticsTracker.getMode(); // return 4
 
 statisticsTracker.removeFirstAddedNumber(); // The data structure now contains [4, 2, 3]
 
-statisticsTracker.getMode(); // return 2</div>
+statisticsTracker.getMode(); // return 2
+
 #### Example 2
 
-<div class="example-block">
-**Input:**
+- **Input:** 
 
 ["StatisticsTracker", "addNumber", "addNumber", "getMean", "removeFirstAddedNumber", "addNumber", "addNumber", "removeFirstAddedNumber", "getMedian", "addNumber", "getMode"]
 
 [[], [9], [5], [], [], [5], [6], [], [], [8], []]
 
-**Output:**
+- **Output:** 
 
 [null, null, null, 7, null, null, null, null, 6, null, 5]
 
@@ -101,7 +100,7 @@ statisticsTracker.getMedian(); // return 6
 
 statisticsTracker.addNumber(8); // The data structure now contains [5, 6, 8]
 
-statisticsTracker.getMode(); // return 5</div>
+statisticsTracker.getMode(); // return 5
 
 ### 5. Constraints
 

@@ -33,20 +33,20 @@ Let $m=\lvert\texttt{word1}\rvert$, $n=\lvert\texttt{word2}\rvert$, and $S=m+n$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word1 = "cabaa", word2 = "bcaaa"`
-- Output: `"cbcabaaaaa"`
-- Explanation: Choosing `c` from `word1`, then `b` and `c` from the appropriate remaining prefixes, produces the largest possible beginning and ultimately the displayed merge.
+- **Input:** `word1 = "cabaa", word2 = "bcaaa"`
+- **Output:** `"cbcabaaaaa"`
+- **Explanation:** Choosing `c` from `word1`, then `b` and `c` from the appropriate remaining prefixes, produces the largest possible beginning and ultimately the displayed merge.
 
-**Example 2**
+#### Example 2
 
-- Input: `word1 = "abcabc", word2 = "abdcaba"`
-- Output: `"abdcabcabcaba"`
-- Explanation: The equal initial `a` characters require comparing what follows; taking the `a` from `word2` preserves its larger suffix beginning with `b`, then `d`.
+- **Input:** `word1 = "abcabc", word2 = "abdcaba"`
+- **Output:** `"abdcabcabcaba"`
+- **Explanation:** The equal initial `a` characters require comparing what follows; taking the `a` from `word2` preserves its larger suffix beginning with `b`, then `d`.
 
-**Example 3**
+#### Example 3
 
-- Input: `word1 = "zz", word2 = "a"`
-- Output: `"zza"`
-- Explanation: Both leading `z` characters are larger than `a`, so they must precede it.
+- **Input:** `word1 = "zz", word2 = "a"`
+- **Output:** `"zza"`
+- **Explanation:** Both leading `z` characters are larger than `a`, so they must precede it.

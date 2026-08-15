@@ -6,8 +6,10 @@ A binary search tree is **balanced** if the depth of the two subtrees of every n
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `balanceBST(root: Optional[TreeNode]) -> `Optional[TreeNode]``: Executes operation.
 
 ### 3. Examples
 
@@ -18,6 +20,7 @@ A binary search tree is **balanced** if the depth of the two subtrees of every n
 - **Input:** `root = [1,null,2,null,3,null,4,null,null]`
 - **Output:** `[2,1,3,null,null,null,4]`
 - **Explanation:** This is not the only correct answer, [3,1,4,null,2] is also correct.
+
 #### Example 2
 
 ![](images/balanced2-tree.jpg)

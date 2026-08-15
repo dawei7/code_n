@@ -8,8 +8,13 @@ Return *the **minimum** number of moves required so that all the characters of *
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,6 +24,7 @@ Return *the **minimum** number of moves required so that all the characters of *
 - **Output:** `1`
 - **Explanation:** <u>XXX</u> -> OOO
 We select all the 3 characters and convert them in one move.
+
 #### Example 2
 
 - **Input:** `s = "XXOX"`
@@ -26,6 +32,7 @@ We select all the 3 characters and convert them in one move.
 - **Explanation:** <u>XXO</u>X -> O<u>OOX</u> -> OOOO
 We select the first 3 characters in the first move, and convert them to 'O'.
 Then we select the last 3 characters and convert them so that the final string contains all 'O's.
+
 #### Example 3
 
 - **Input:** `s = "OOOO"`

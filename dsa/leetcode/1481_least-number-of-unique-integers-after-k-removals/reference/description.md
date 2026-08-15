@@ -4,8 +4,14 @@ Given an array of integers `arr` and an integer `k`. Find the *least number of u
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -14,6 +20,7 @@ Given an array of integers `arr` and an integer `k`. Find the *least number of u
 - **Input:** `arr = [5,5,4], k = 1`
 - **Output:** `1`
 **Explanation**: Remove the single 4, only 5 is left.
+
 #### Example 2
 
 - **Input:** `arr = [4,3,1,1,3,3,2], k = 3`

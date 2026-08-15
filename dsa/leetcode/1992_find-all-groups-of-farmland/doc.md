@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/find-all-groups-of-farmland/) |
 
 ## Problem Description
+
 ### Goal
+
 The 0-indexed binary matrix `land` represents a rectangular map. A cell holding
 `0` is forest, while `1` is farmland. Every farmland group is a filled,
 axis-aligned rectangle. Separate groups never share an edge, although they may
@@ -21,6 +23,7 @@ descriptions in any order. If the map contains no farmland, return an empty
 list.
 
 ### Function Contract
+
 **Inputs**
 
 - `land`: an $M \times N$ binary matrix, where $1 \le M, N \le 300$.
@@ -34,17 +37,18 @@ list.
 - Rectangle order is irrelevant.
 
 ### Examples
-**Example 1**
 
-- Input: `land = [[1, 0, 0], [0, 1, 1], [0, 1, 1]]`
-- Output: `[[0, 0, 0, 0], [1, 1, 2, 2]]`
+#### Example 1
 
-**Example 2**
+- **Input:** `land = [[1, 0, 0], [0, 1, 1], [0, 1, 1]]`
+- **Output:** `[[0, 0, 0, 0], [1, 1, 2, 2]]`
 
-- Input: `land = [[1, 1], [1, 1]]`
-- Output: `[[0, 0, 1, 1]]`
+#### Example 2
 
-**Example 3**
+- **Input:** `land = [[1, 1], [1, 1]]`
+- **Output:** `[[0, 0, 1, 1]]`
 
-- Input: `land = [[0]]`
-- Output: `[]`
+#### Example 3
+
+- **Input:** `land = [[0]]`
+- **Output:** `[]`

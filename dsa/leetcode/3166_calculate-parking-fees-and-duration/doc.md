@@ -34,7 +34,7 @@ Let $r$ be the number of transaction rows and $c$ the number of distinct cars.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 Input `ParkingTransactions`:
 
@@ -47,7 +47,7 @@ Input `ParkingTransactions`:
 | 3 | 1001 | `2023-06-03 07:00:00` | `2023-06-03 09:00:00` | 4.00 |
 | 3 | 1002 | `2023-06-02 12:00:00` | `2023-06-02 14:00:00` | 2.00 |
 
-Output:
+- **Output:** 
 
 | car_id | total_fee_paid | avg_hourly_fee | most_time_lot |
 |---:|---:|---:|---:|

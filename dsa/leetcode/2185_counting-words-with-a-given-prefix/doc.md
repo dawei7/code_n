@@ -45,17 +45,17 @@ Return the number of entries in `words` whose leading characters equal
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `words = ["pay","attention","practice","attend"]`, `pref = "at"`
-- Output: `2`
+- **Input:** `words = ["pay","attention","practice","attend"]`, `pref = "at"`
+- **Output:** `2`
 
-**Example 2**
+#### Example 2
 
-- Input: `words = ["leetcode","win","loops","success"]`, `pref = "code"`
-- Output: `0`
+- **Input:** `words = ["leetcode","win","loops","success"]`, `pref = "code"`
+- **Output:** `0`
 
-**Example 3**
+#### Example 3
 
-- Input: `words = ["a","a","ab"]`, `pref = "a"`
-- Output: `3`
+- **Input:** `words = ["a","a","ab"]`, `pref = "a"`
+- **Output:** `3`

@@ -40,14 +40,11 @@ Return the minimum integer $T$ for which some `source`-to-`target` path contains
 
 ![](images/g6.png)
 
-<div class="example-block">
-**Input:** n = 6, edges = [[0,1,5],[1,2,3],[3,4,4],[4,5,1],[1,4,2]], source = 0, target = 3, k = 1
+- **Input:** n = 6, edges = [[0,1,5],[1,2,3],[3,4,4],[4,5,1],[1,4,2]], source = 0, target = 3, k = 1
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-The minimum `threshold` such that a path from node 0 to node 3 uses at most 1 heavy edge is 4.
+- **Explanation:** The minimum `threshold` such that a path from node 0 to node 3 uses at most 1 heavy edge is 4.
 
 - Light edges: `[1, 2, 3]`, `[3, 4, 4]`, `[4, 5, 1]`, `[1, 4, 2]`
 
@@ -57,21 +54,16 @@ A valid path is `0 → 1 → 4 → 3`. It uses only 1 heavy edge (`[0, 1, 5]`), 
 
 Any smaller `threshold` would make it impossible to reach node 3 without exceeding 1 heavy edge.
 
-</div>
 #### Example 2
 
 ![](images/g3_f.png)
 
-<div class="example-block">
-**Input:** n = 6, edges = [[0,1,3],[1,2,4],[3,4,5],[4,5,6]], source = 0, target = 4, k = 1
+- **Input:** n = 6, edges = [[0,1,3],[1,2,4],[3,4,5],[4,5,6]], source = 0, target = 4, k = 1
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
+- **Explanation:** There is no path from node 0 to node 4. Since the target cannot be reached, the output is -1.
 
-There is no path from node 0 to node 4. Since the target cannot be reached, the output is -1.
-
-</div>
 #### Example 3
 
 **
@@ -80,16 +72,11 @@ There is no path from node 0 to node 4. Since the target cannot be reached, the 
 
 **
 
-<div class="example-block">
-**Input:** n = 4, edges = [[0,1,2],[1,2,2],[2,3,2],[3,0,2]], source = 0, target = 0, k = 0
+- **Input:** n = 4, edges = [[0,1,2],[1,2,2],[2,3,2],[3,0,2]], source = 0, target = 0, k = 0
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-The source and target are the same node. No edges need to be traversed, so the minimum `threshold` is 0.
-
-</div>
+- **Explanation:** The source and target are the same node. No edges need to be traversed, so the minimum `threshold` is 0.
 
 ### 4. Constraints
 

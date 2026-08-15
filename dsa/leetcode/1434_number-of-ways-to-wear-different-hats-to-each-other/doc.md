@@ -31,17 +31,17 @@ Count the assignments in which every person receives exactly one liked hat and n
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `hats = [[3,4],[4,5],[5]]`
-- Output: `1`
+- **Input:** `hats = [[3,4],[4,5],[5]]`
+- **Output:** `1`
 
-**Example 2**
+#### Example 2
 
-- Input: `hats = [[3,5,1],[3,5]]`
-- Output: `4`
+- **Input:** `hats = [[3,5,1],[3,5]]`
+- **Output:** `4`
 
-**Example 3**
+#### Example 3
 
-- Input: `hats = [[1,2,3],[2,3,5],[1,3,5]]`
-- Output: `11`
+- **Input:** `hats = [[1,2,3],[2,3,5],[1,3,5]]`
+- **Output:** `11`

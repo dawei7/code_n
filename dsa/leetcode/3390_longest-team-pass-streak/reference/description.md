@@ -33,14 +33,11 @@ Write a solution to find the **longest successful pass streak** for **each team*
 
 - A successful pass streak is defined as consecutive passes where:
 
-		<li>Both the $\text{pass}_{from}$ and $\text{pass}_{to}$ players belong to the same team
+		- Both the $\text{pass}_{from}$ and $\text{pass}_{to}$ players belong to the same team
 
-	</li>
 - A streak breaks when either:
 
-		<li>The pass is intercepted (received by a player from the opposing team)
-
-	</li>
+		- The pass is intercepted (received by a player from the opposing team)
 
 Return *the result table ordered by* $\text{team}_{name}$ *in **ascending** order*.
 
@@ -48,7 +45,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 Teams table:
@@ -102,22 +98,17 @@ Passes table:
 
 - **Arsenal**'s streaks:
 
-		<li>First streak: 3 passes (1→2→3→4) ended when player 4 passed to Chelsea's player 5
+		- First streak: 3 passes (1→2→3→4) ended when player 4 passed to Chelsea's player 5
 
 - Second streak: 2 passes (1→2→3)
 
 - Longest streak = 3
 
-	</li>
 - **Chelsea**'s streaks:
 
-		<li>First streak: 3 passes (6→7→8→6→5)
+		- First streak: 3 passes (6→7→8→6→5)
 
 - Longest streak = 4
-
-	</li>
-
-</div>
 
 ### 2. Function Contract
 

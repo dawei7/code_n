@@ -31,20 +31,20 @@ A group is large when it contains at least three characters. Return the interval
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abbxxxxzzy"`
-- Output: `[[3, 6]]`
-- Explanation: `"xxxx"` is the only group whose length is at least three.
+- **Input:** `s = "abbxxxxzzy"`
+- **Output:** `[[3, 6]]`
+- **Explanation:** `"xxxx"` is the only group whose length is at least three.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "abc"`
-- Output: `[]`
-- Explanation: Each group has length one.
+- **Input:** `s = "abc"`
+- **Output:** `[]`
+- **Explanation:** Each group has length one.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "abcdddeeeeaabbbcd"`
-- Output: `[[3, 5], [6, 9], [12, 14]]`
-- Explanation: The large groups are `"ddd"`, `"eeee"`, and `"bbb"`.
+- **Input:** `s = "abcdddeeeeaabbbcd"`
+- **Output:** `[[3, 5], [6, 9], [12, 14]]`
+- **Explanation:** The large groups are `"ddd"`, `"eeee"`, and `"bbb"`.

@@ -36,14 +36,14 @@ Return the maximum achievable sum of `k` squared values, reduced modulo $10^9+7$
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 6, 5, 8], k = 2`
-- Output: `261`
-- Explanation: The bit occurrences can be concentrated to produce values $15$ and $6$; their squares sum to $225+36=261$.
+- **Input:** `nums = [2, 6, 5, 8], k = 2`
+- **Output:** `261`
+- **Explanation:** The bit occurrences can be concentrated to produce values $15$ and $6$; their squares sum to $225+36=261$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4, 5, 4, 7], k = 3`
-- Output: `90`
-- Explanation: Choosing $7$, $5$, and $4$ already gives the optimal sum $49+25+16=90$.
+- **Input:** `nums = [4, 5, 4, 7], k = 3`
+- **Output:** `90`
+- **Explanation:** Choosing $7$, $5$, and $4$ already gives the optimal sum $49+25+16=90$.

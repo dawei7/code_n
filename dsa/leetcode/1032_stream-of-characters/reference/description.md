@@ -12,8 +12,10 @@ Implement the `StreamChecker` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `StreamChecker(words: List[str])`: Initializes the data structure.
+- `query(letter: str) -> `bool``: Executes operation.
 
 ### 3. Examples
 

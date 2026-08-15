@@ -8,8 +8,13 @@ Return *the final string after the deletion*. It can be shown that the answer wi
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -17,17 +22,17 @@ Return *the final string after the deletion*. It can be shown that the answer wi
 
 - **Input:** `s = "le<u>e</u>etcode"`
 - **Output:** `"leetcode"`
-- **Explanation:**
-Remove an 'e' from the first group of 'e's to create "leetcode".
+- **Explanation:** Remove an 'e' from the first group of 'e's to create "leetcode".
 No three consecutive characters are equal, so return "leetcode".
+
 #### Example 2
 
 - **Input:** `s = "<u>a</u>aab<u>aa</u>aa"`
 - **Output:** `"aabaa"`
-- **Explanation:**
-Remove an 'a' from the first group of 'a's to create "aabaaaa".
+- **Explanation:** Remove an 'a' from the first group of 'a's to create "aabaaaa".
 Remove two 'a's from the second group of 'a's to create "aabaa".
 No three consecutive characters are equal, so return "aabaa".
+
 #### Example 3
 
 - **Input:** `s = "aab"`

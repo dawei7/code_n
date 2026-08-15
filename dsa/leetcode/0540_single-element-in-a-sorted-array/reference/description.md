@@ -8,8 +8,13 @@ Your solution must run in `O(log n)` time and `O(1)` space.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -17,6 +22,7 @@ Your solution must run in `O(log n)` time and `O(1)` space.
 
 - **Input:** `nums = [1,1,2,3,3,4,4,8,8]`
 - **Output:** `2`
+
 #### Example 2
 
 - **Input:** `nums = [3,3,7,7,10,11,11]`

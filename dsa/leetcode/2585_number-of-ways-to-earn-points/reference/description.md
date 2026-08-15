@@ -6,8 +6,14 @@ Return *the number of ways you can earn **exactly** *`target`* points in the exa
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `target`: Input parameter (`int`).
+- `types`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -29,6 +35,7 @@ that questions of the same type are indistinguishable.
 - Solve 1 question of the 0^th type, 1 question of the 1^st type and 1 question of the 2^nd type: 1 + 2 + 3 = 6
 - Solve 3 questions of the 1^st type: 2 + 2 + 2 = 6
 - Solve 2 questions of the 2^nd type: 3 + 3 = 6
+
 #### Example 2
 
 - **Input:** $target = 5, types = [[50,1],[50,2],[50,5]]$
@@ -38,6 +45,7 @@ that questions of the same type are indistinguishable.
 - Solve 3 questions of the 0^th type and 1 question of the 1^st type: 1 + 1 + 1 + 2 = 5
 - Solve 1 questions of the 0^th type and 2 questions of the 1^st type: 1 + 2 + 2 = 5
 - Solve 1 question of the 2^nd type: 5
+
 #### Example 3
 
 - **Input:** $target = 18, types = [[6,1],[3,2],[2,3]]$

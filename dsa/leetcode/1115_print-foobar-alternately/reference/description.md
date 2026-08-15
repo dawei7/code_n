@@ -28,8 +28,11 @@ Modify the given program to output `"foobar"` `n` times.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `FooBar(n)`: Initializes the data structure.
+- `foo(printFoo: 'Callable[[], None]')`: Executes operation.
+- `bar(printBar: 'Callable[[], None]')`: Executes operation.
 
 ### 3. Examples
 
@@ -39,6 +42,7 @@ Modify the given program to output `"foobar"` `n` times.
 - **Output:** `"foobar"`
 - **Explanation:** There are two threads being fired asynchronously. One of them calls foo(), while the other calls bar().
 "foobar" is being output 1 time.
+
 #### Example 2
 
 - **Input:** $n = 2$

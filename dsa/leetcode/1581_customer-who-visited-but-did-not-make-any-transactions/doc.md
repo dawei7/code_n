@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/customer-who-visited-but-did-not-make-any-transactions/) |
 
 ## Problem Description
+
 ### Goal
 
 The `Visits` table records each store visit and the customer who made it. The `Transactions` table records purchases, with every transaction linked to the visit during which it occurred.
@@ -18,6 +19,7 @@ Identify visits for which no transaction was made. A visit with several transact
 Return each customer who has at least one transaction-free visit together with the number of such visits. Result rows may appear in any order.
 
 ### Function Contract
+
 **Inputs**
 
 - `Visits(visit_id, customer_id)`: visit records keyed by `visit_id`.
@@ -28,17 +30,18 @@ Return each customer who has at least one transaction-free visit together with t
 Return columns `customer_id` and `count_no_trans`, with one row per customer and the count of that customer's visits having no matching transaction.
 
 ### Examples
-**Example 1**
 
-- Input: visits by customers 23, 9, 30, 54, and 96, with transactions attached only to visit IDs 1, 2, and 5
-- Output: customer 30 has one transaction-free visit, customer 54 has two, and customer 96 has one
+#### Example 1
 
-**Example 2**
+- **Input:** visits by customers 23, 9, 30, 54, and 96, with transactions attached only to visit IDs 1, 2, and 5
+- **Output:** customer 30 has one transaction-free visit, customer 54 has two, and customer 96 has one
 
-- Input: one visit with no transaction
-- Output: that customer with `count_no_trans = 1`
+#### Example 2
 
-**Example 3**
+- **Input:** one visit with no transaction
+- **Output:** that customer with `count_no_trans = 1`
 
-- Input: every visit has at least one transaction
-- Output: an empty result
+#### Example 3
+
+- **Input:** every visit has at least one transaction
+- **Output:** an empty result

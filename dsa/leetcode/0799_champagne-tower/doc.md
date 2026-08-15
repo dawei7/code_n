@@ -32,20 +32,20 @@ Pour `poured` cups into the top glass and let all overflow propagate downward. R
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `poured = 1, query_row = 1, query_glass = 1`
-- Output: `0.0`
-- Explanation: The top glass is exactly full, so nothing reaches the second row.
+- **Input:** `poured = 1, query_row = 1, query_glass = 1`
+- **Output:** `0.0`
+- **Explanation:** The top glass is exactly full, so nothing reaches the second row.
 
-**Example 2**
+#### Example 2
 
-- Input: `poured = 2, query_row = 1, query_glass = 1`
-- Output: `0.5`
-- Explanation: One excess cup leaves the top and splits equally between its two children.
+- **Input:** `poured = 2, query_row = 1, query_glass = 1`
+- **Output:** `0.5`
+- **Explanation:** One excess cup leaves the top and splits equally between its two children.
 
-**Example 3**
+#### Example 3
 
-- Input: `poured = 4, query_row = 2, query_glass = 1`
-- Output: `0.5`
-- Explanation: Each glass in row one receives `1.5` cups and sends `0.25` cup to the middle glass below.
+- **Input:** `poured = 4, query_row = 2, query_glass = 1`
+- **Output:** `0.5`
+- **Explanation:** Each glass in row one receives `1.5` cups and sends `0.25` cup to the middle glass below.

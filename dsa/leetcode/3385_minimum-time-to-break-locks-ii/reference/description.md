@@ -26,14 +26,11 @@ Return the **minimum **time required for Bob to break all `n` locks.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** strength = [3,4,1]
+- **Input:** strength = [3,4,1]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-<table>
+- **Explanation:** <table>
 	<tbody>
 		<tr>
 			<th>Time</th>
@@ -82,17 +79,13 @@ Return the **minimum **time required for Bob to break all `n` locks.
 
 The locks cannot be broken in less than 4 minutes; thus, the answer is 4.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** strength = [2,5,4]
+- **Input:** strength = [2,5,4]
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
-
-<table>
+- **Explanation:** <table>
 	<tbody>
 		<tr>
 			<th>Time</th>
@@ -154,8 +147,6 @@ The locks cannot be broken in less than 4 minutes; thus, the answer is 4.
 </table>
 
 The locks cannot be broken in less than 6 minutes; thus, the answer is 6.
-
-</div>
 
 ### 4. Constraints
 

@@ -10,8 +10,14 @@ The $$i^{\text{th}}$$ rectangle **contains** the $$j^{\text{th}}$$ point if $0 \
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `rectangles`: Input parameter (`List[List[int]]`).
+- `points`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -21,20 +27,20 @@ The $$i^{\text{th}}$$ rectangle **contains** the $$j^{\text{th}}$$ point if $0 \
 
 - **Input:** $rectangles = [[1,2],[2,3],[2,5]], points = [[2,1],[1,4]]$
 - **Output:** `[2,1]`
-- **Explanation:**
-The first rectangle contains no points.
+- **Explanation:** The first rectangle contains no points.
 The second rectangle contains only the point (2, 1).
 The third rectangle contains the points (2, 1) and (1, 4).
 The number of rectangles that contain the point (2, 1) is 2.
 The number of rectangles that contain the point (1, 4) is 1.
 Therefore, we return [2, 1].
+
 #### Example 2
 
 ![](images/example2.png)
 
 - **Input:** $rectangles = [[1,1],[2,2],[3,3]], points = [[1,3],[1,1]]$
 - **Output:** `[1,3]`
-- **Explanation:**
+- **Explanation:** 
 **The first rectangle contains only the point (1, 1).
 The second rectangle contains only the point (1, 1).
 The third rectangle contains the points (1, 3) and (1, 1).

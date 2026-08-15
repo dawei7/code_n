@@ -8,8 +8,15 @@ Two ways are considered different if the order of the steps made is not exactly 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `startPos`: Input parameter (`int`).
+- `endPos`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -26,6 +33,7 @@ that the number line includes negative integers.
 - 1 -> 2 -> 1 -> 2.
 - 1 -> 0 -> 1 -> 2.
 It can be proven that no other way is possible, so we return 3.
+
 #### Example 2
 
 - **Input:** $startPos = 2, endPos = 5, k = 10$

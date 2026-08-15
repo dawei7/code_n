@@ -12,8 +12,15 @@ A **subarray** is defined as a **non-empty** contiguous sequence of elements in 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+- `p`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,18 +28,17 @@ A **subarray** is defined as a **non-empty** contiguous sequence of elements in 
 
 - **Input:** `nums = [<u>**2**</u>,3,3,<u>**2**</u>,<u>**2**</u>], k = 2, p = 2`
 - **Output:** `11`
-- **Explanation:**
-The elements at indices 0, 3, and 4 are divisible by p = 2.
+- **Explanation:** The elements at indices 0, 3, and 4 are divisible by p = 2.
 The 11 distinct subarrays which have at most k = 2 elements divisible by 2 are:
 [2], [2,3], [2,3,3], [2,3,3,2], [3], [3,3], [3,3,2], [3,3,2,2], [3,2], [3,2,2], and [2,2].
 Note that the subarrays [2] and [3] occur more than once in nums, but they should each be counted only once.
 The subarray [2,3,3,2,2] should not be counted because it has 3 elements that are divisible by 2.
+
 #### Example 2
 
 - **Input:** `nums = [1,2,3,4], k = 4, p = 1`
 - **Output:** `10`
-- **Explanation:**
-All element of nums are divisible by p = 1.
+- **Explanation:** All element of nums are divisible by p = 1.
 Also, every subarray of nums will have at most 4 elements that are divisible by 1.
 Since all subarrays are distinct, the total number of subarrays satisfying all the constraints is 10.
 

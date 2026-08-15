@@ -6,13 +6,11 @@ Alice and Bob are opponents in an archery competition. The competition has set t
 
 - The points are then calculated as follows:
 
-		<li>The target has integer scoring sections ranging from `0` to `11` **inclusive**.
+		- The target has integer scoring sections ranging from `0` to `11` **inclusive**.
 
 - For **each** section of the target with score `k` (in between `0` to `11`), say Alice and Bob have shot $a_{k}$ and $b_{k}$ arrows on that section respectively. If $a_{k} \ge b_{k}$, then Alice takes `k` points. If $a_{k} < b_{k}$, then Bob takes `k` points.
 
 - However, if $a_{k} = b_{k} = 0$, then **nobody** takes `k` points.
-
-	</li>
 
 - For example, if Alice and Bob both shot `2` arrows on the section with score `11`, then Alice takes `11` points. On the other hand, if Alice shot `0` arrows on the section with score `11` and Bob shot `2` arrows on that same section, then Bob takes `11` points.
 
@@ -24,8 +22,14 @@ If there are multiple ways for Bob to earn the maximum total points, return **an
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `numArrows`: Input parameter (`int`).
+- `aliceArrows`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -38,6 +42,7 @@ If there are multiple ways for Bob to earn the maximum total points, return **an
 - **Explanation:** The table above shows how the competition is scored.
 Bob earns a total point of 4 + 5 + 8 + 9 + 10 + 11 = 47.
 It can be shown that Bob cannot obtain a score higher than 47 points.
+
 #### Example 2
 
 ![](images/ex2new.jpg)

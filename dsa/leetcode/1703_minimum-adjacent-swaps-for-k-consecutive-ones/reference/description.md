@@ -6,8 +6,14 @@ Return *the **minimum** number of moves required so that *`nums`* has *`k`* **co
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,11 +22,13 @@ Return *the **minimum** number of moves required so that *`nums`* has *`k`* **co
 - **Input:** `nums = [1,0,0,1,0,1], k = 2`
 - **Output:** `1`
 - **Explanation:** In 1 move, nums could be [1,0,0,0,<u>1</u>,<u>1</u>] and have 2 consecutive 1's.
+
 #### Example 2
 
 - **Input:** `nums = [1,0,0,0,0,0,1,1], k = 3`
 - **Output:** `5`
 - **Explanation:** In 5 moves, the leftmost 1 can be shifted right until nums = [0,0,0,0,0,<u>1</u>,<u>1</u>,<u>1</u>].
+
 #### Example 3
 
 - **Input:** `nums = [1,1,0,1], k = 2`

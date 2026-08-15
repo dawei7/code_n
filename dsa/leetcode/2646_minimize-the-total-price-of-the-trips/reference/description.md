@@ -14,8 +14,16 @@ Return *the minimum total price sum to perform all the given trips*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+- `price`: Input parameter (`List[int]`).
+- `trips`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -31,6 +39,7 @@ For the 2^nd trip, we choose path [2,1]. The price sum of that path is 2 + 5 = 7
 For the 3^rd trip, we choose path [2,1,3]. The price sum of that path is 5 + 2 + 3 = 10.
 The total price sum of all trips is 6 + 7 + 10 = 23.
 It can be proven, that 23 is the minimum answer that we can achieve.
+
 #### Example 2
 
 ![](images/diagram3.png)

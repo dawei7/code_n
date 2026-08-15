@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/kth-ancestor-of-a-tree-node/) |
 
 ## Problem Description
+
 ### Goal
 
 A rooted tree contains `n` nodes numbered from `0` through `n - 1`. It is supplied as a `parent` array: `parent[i]` gives the direct parent of node `i`, and node `0` is the root with `parent[0] = -1`.
@@ -16,6 +17,7 @@ A rooted tree contains `n` nodes numbered from `0` through `n - 1`. It is suppli
 Build a `TreeAncestor` object that answers repeated ancestor queries. For `getKthAncestor(node, k)`, follow the path from `node` toward the root and return the node reached after exactly `k` parent steps. If that many ancestors do not exist, return `-1`.
 
 ### Function Contract
+
 **Inputs**
 
 Let $Q$ be the number of calls to `getKthAncestor`.
@@ -35,9 +37,10 @@ Let $Q$ be the number of calls to `getKthAncestor`.
 Each query returns the node exactly `k` edges above `node`, or `-1` if the path reaches above the root. The app-local wrapper returns these query results in operation order.
 
 ### Examples
-**Example 1**
+
+#### Example 1
 
 - Constructor: `TreeAncestor(7, [-1,0,0,1,1,2,2])`
 - Operations: `getKthAncestor(3, 1)`, `getKthAncestor(5, 2)`, `getKthAncestor(6, 3)`
-- Output: `[1,0,-1]`
-- Explanation: Node `3` has parent `1`; node `5` reaches root `0` in two steps; node `6` has depth two, so a third ancestor does not exist.
+- **Output:** `[1,0,-1]`
+- **Explanation:** Node `3` has parent `1`; node `5` reaches root `0` in two steps; node `6` has depth two, so a third ancestor does not exist.

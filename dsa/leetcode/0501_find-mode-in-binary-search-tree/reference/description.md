@@ -14,8 +14,10 @@ Assume a BST is defined as follows:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `findMode(root: Optional[TreeNode]) -> `List[int]``: Executes operation.
 
 ### 3. Examples
 
@@ -25,6 +27,7 @@ Assume a BST is defined as follows:
 
 - **Input:** `root = [1,null,2,2]`
 - **Output:** `[2]`
+
 #### Example 2
 
 - **Input:** `root = [0]`

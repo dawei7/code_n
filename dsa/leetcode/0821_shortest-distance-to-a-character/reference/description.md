@@ -6,8 +6,14 @@ The **distance** between two indices `i` and `j` is $abs(i - j)$, where `abs` is
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `c`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -20,6 +26,7 @@ The closest occurrence of 'e' for index 0 is at index 3, so the distance is abs(
 The closest occurrence of 'e' for index 1 is at index 3, so the distance is abs(1 - 3) = 2.
 For index 4, there is a tie between the 'e' at index 3 and the 'e' at index 5, but the distance is still the same: abs(4 - 3) == abs(4 - 5) = 1.
 The closest occurrence of 'e' for index 8 is at index 6, so the distance is abs(8 - 6) = 2.
+
 #### Example 2
 
 - **Input:** `s = "aaab", c = "b"`

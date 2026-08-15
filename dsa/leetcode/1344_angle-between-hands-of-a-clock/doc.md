@@ -31,18 +31,18 @@ Return the smaller angle, measured in degrees, between the two hands. Either dir
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `hour = 12, minutes = 30`
-- Output: `165.0`
-- Explanation: The minute hand is at $180$ degrees while the hour hand has advanced to $15$ degrees.
+- **Input:** `hour = 12, minutes = 30`
+- **Output:** `165.0`
+- **Explanation:** The minute hand is at $180$ degrees while the hour hand has advanced to $15$ degrees.
 
-**Example 2**
+#### Example 2
 
-- Input: `hour = 3, minutes = 30`
-- Output: `75.0`
+- **Input:** `hour = 3, minutes = 30`
+- **Output:** `75.0`
 
-**Example 3**
+#### Example 3
 
-- Input: `hour = 3, minutes = 15`
-- Output: `7.5`
+- **Input:** `hour = 3, minutes = 15`
+- **Output:** `7.5`

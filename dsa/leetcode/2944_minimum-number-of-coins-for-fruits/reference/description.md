@@ -8,8 +8,13 @@ The fruit market has the following reward for each fruit:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `prices`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -21,12 +26,11 @@ Return the **minimum** number of coins needed to acquire all the fruits.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** prices = [3,1,2]
+- **Input:** prices = [3,1,2]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** 
 
 - Purchase the 1^st fruit with $\text{prices}[0] = 3$ coins, you are allowed to take the 2^nd fruit for free.
 
@@ -36,15 +40,13 @@ Return the **minimum** number of coins needed to acquire all the fruits.
 
 Note that even though you could take the 2^nd fruit for free as a reward of buying 1^st fruit, you purchase it to receive its reward, which is more optimal.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** prices = [1,10,1,1]
+- **Input:** prices = [1,10,1,1]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - Purchase the 1^st fruit with $\text{prices}[0] = 1$ coin, you are allowed to take the 2^nd fruit for free.
 
@@ -54,15 +56,13 @@ Note that even though you could take the 2^nd fruit for free as a reward of buyi
 
 - Take the 4^t^h fruit for free.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** prices = [26,18,6,12,49,7,45,45]
+- **Input:** prices = [26,18,6,12,49,7,45,45]
 
-**Output:** 39
+- **Output:** 39
 
-**Explanation:**
+- **Explanation:** 
 
 - Purchase the 1^st fruit with $\text{prices}[0] = 26$ coin, you are allowed to take the 2^nd fruit for free.
 
@@ -81,8 +81,6 @@ Note that even though you could take the 2^nd fruit for free as a reward of buyi
 - Take the 8^t^h fruit for free.
 
 Note that even though you could take the 6^th fruit for free as a reward of buying 3^rd fruit, you purchase it to receive its reward, which is more optimal.
-
-</div>
 
 ### 5. Constraints
 

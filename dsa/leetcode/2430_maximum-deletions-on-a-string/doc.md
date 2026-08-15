@@ -32,23 +32,23 @@ Its length $n$ satisfies $1 \le n \le 4000$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abcabcdabc"`
-- Output: `2`
+- **Input:** `s = "abcabcdabc"`
+- **Output:** `2`
 
 Delete the first `"abc"` because the next three characters match it, leaving `"abcdabc"`, and then delete the entire remainder.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "aaabaab"`
-- Output: `4`
+- **Input:** `s = "aaabaab"`
+- **Output:** `4`
 
 One optimal sequence removes `"a"`, then `"aab"`, then `"a"`, and finally deletes the remaining `"ab"`.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "aaaaa"`
-- Output: `5`
+- **Input:** `s = "aaaaa"`
+- **Output:** `5`
 
 Each operation can remove one character because the first two remaining characters are equal until only one remains.

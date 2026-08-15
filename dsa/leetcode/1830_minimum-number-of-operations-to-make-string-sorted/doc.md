@@ -29,23 +29,23 @@ Next choose the largest $j \ge i$ such that every character from index $i$ throu
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "cba"`
-- Output: `5`
+- **Input:** `s = "cba"`
+- **Output:** `5`
 
 The operation visits the five preceding permutations before reaching `"abc"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "aabaa"`
-- Output: `2`
+- **Input:** `s = "aabaa"`
+- **Output:** `2`
 
 The successive strings are `"aaaba"` and then `"aaaab"`.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "abc"`
-- Output: `0`
+- **Input:** `s = "abc"`
+- **Output:** `0`
 
 The string is already sorted, so no operation is needed.

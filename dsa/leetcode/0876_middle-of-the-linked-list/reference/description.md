@@ -6,8 +6,10 @@ If there are two middle nodes, return **the second middle** node.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `ListNode(val=0, next=None)`: Initializes the data structure.
+- `middleNode(head: Optional[ListNode]) -> `Optional[ListNode]``: Executes operation.
 
 ### 3. Examples
 
@@ -18,6 +20,7 @@ If there are two middle nodes, return **the second middle** node.
 - **Input:** $head = [1,2,3,4,5]$
 - **Output:** `[3,4,5]`
 - **Explanation:** The middle node of the list is node 3.
+
 #### Example 2
 
 ![](images/lc-midlist2.jpg)

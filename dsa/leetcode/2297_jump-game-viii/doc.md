@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/jump-game-viii/) |
 
 ## Problem Description
+
 ### Goal
+
 A 0-indexed array `nums` describes $n$ positions, and the walk begins at index
 $0$. A forward jump from $i$ to $j$, where $i<j$, is allowed in either of two
 cases: if `nums[i] <= nums[j]`, every value strictly between them must be less
@@ -22,6 +24,7 @@ Choose valid forward jumps that reach index $n-1$ and return the minimum total
 landing cost.
 
 ### Function Contract
+
 **Inputs**
 
 - `nums`: The values that determine which forward jumps are legal.
@@ -36,17 +39,18 @@ The minimum sum of destination costs along a valid path from index $0$ to
 index $n-1$. For $n=1$, return `0`.
 
 ### Examples
-**Example 1**
 
-- Input: `nums = [3, 2, 4, 4, 1], costs = [3, 7, 6, 4, 2]`
-- Output: `8`
+#### Example 1
 
-**Example 2**
+- **Input:** `nums = [3, 2, 4, 4, 1], costs = [3, 7, 6, 4, 2]`
+- **Output:** `8`
 
-- Input: `nums = [0, 1, 2], costs = [1, 1, 1]`
-- Output: `2`
+#### Example 2
 
-**Example 3**
+- **Input:** `nums = [0, 1, 2], costs = [1, 1, 1]`
+- **Output:** `2`
 
-- Input: `nums = [7], costs = [100]`
-- Output: `0`
+#### Example 3
+
+- **Input:** `nums = [7], costs = [100]`
+- **Output:** `0`

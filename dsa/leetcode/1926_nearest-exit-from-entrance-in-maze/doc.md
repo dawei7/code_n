@@ -32,21 +32,21 @@ An exit is an open cell on the outer border of the maze, except that the entranc
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `maze = [["+","+",".","+"],[".",".",".","+"],["+","+","+","."]], entrance = [1,2]`
-- Output: `1`
+- **Input:** `maze = [["+","+",".","+"],[".",".",".","+"],["+","+","+","."]], entrance = [1,2]`
+- **Output:** `1`
 
 The open cell directly above the entrance is an exit.
 
-**Example 2**
+#### Example 2
 
-- Input: `maze = [["+","+","+"],[".",".","."],["+","+","+"]], entrance = [1,0]`
-- Output: `2`
+- **Input:** `maze = [["+","+","+"],[".",".","."],["+","+","+"]], entrance = [1,0]`
+- **Output:** `2`
 
 The entrance is on the border but is excluded; the exit is at the other end of the row.
 
-**Example 3**
+#### Example 3
 
-- Input: `maze = [[".","+"]], entrance = [0,0]`
-- Output: `-1`
+- **Input:** `maze = [[".","+"]], entrance = [0,0]`
+- **Output:** `-1`

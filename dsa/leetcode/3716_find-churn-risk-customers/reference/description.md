@@ -36,7 +36,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 subscription_events table:
@@ -79,7 +78,7 @@ subscription_events table:
 
 - **User 501**:
 
-		<li>Currently active: Last event is downgrade to basic (not cancelled)
+		- Currently active: Last event is downgrade to basic (not cancelled)
 
 - Has downgrades: Yes, 2 downgrades in history
 
@@ -89,10 +88,9 @@ subscription_events table:
 
 - Result: **Churn Risk Customer**
 
-	</li>
 - **User 502**:
 
-		<li>Currently active: Last event is downgrade to basic (not cancelled)
+		- Currently active: Last event is downgrade to basic (not cancelled)
 
 - Has downgrades: Yes, 1 downgrade in history
 
@@ -102,35 +100,31 @@ subscription_events table:
 
 - Result: **Churn Risk Customer**
 
-	</li>
 - **User 503**:
 
-		<li>Currently active: Last event is upgrade to premium (not cancelled)
+		- Currently active: Last event is upgrade to premium (not cancelled)
 
 - Has downgrades: No downgrades in history
 
 - Result: **Not at-risk** (no downgrade history)
 
-	</li>
 - **User 504**:
 
-		<li>Currently active: Last event is cancel
+		- Currently active: Last event is cancel
 
 - Result: **Not at-risk** (subscription cancelled)
 
-	</li>
 - **User 505**:
 
-		<li>Currently active: Last event is 'upgrade' to standard (not cancelled)
+		- Currently active: Last event is 'upgrade' to standard (not cancelled)
 
 - Has downgrades: No downgrades in history
 
 - Result: **Not at-risk** (no downgrade history)
 
-	</li>
 - **User 506**:
 
-		<li>Currently active: Last event is downgrade to basic (not cancelled)
+		- Currently active: Last event is downgrade to basic (not cancelled)
 
 - Has downgrades: Yes, 1 downgrade in history
 
@@ -139,8 +133,6 @@ subscription_events table:
 - Days as subscriber: Jan 20 to Mar 10 = 50 days (less than 60)
 
 - Result: **Not at-risk** (insufficient subscription duration)
-
-	</li>
 
 Result table is ordered by days_as_subscriber DESC, then user_id ASC.
 
@@ -167,5 +159,3 @@ Return an ordered table with columns:
 ### 3. Note
 
 days_as_subscriber is calculated from the first event date to the last event date for each user.
-
-</div>

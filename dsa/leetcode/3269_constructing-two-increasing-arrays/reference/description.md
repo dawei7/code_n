@@ -14,40 +14,27 @@ Return the *minimum possible largest number* after applying the changes.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums1 = [], nums2 = [1,0,1,1]
+- **Input:** nums1 = [], nums2 = [1,0,1,1]
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** After replacing, $nums1 = []$, and $nums2 = [1, 2, 3, 5]$.
 
-After replacing, $nums1 = []$, and $nums2 = [1, 2, 3, 5]$.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums1 = [0,1,0,1], nums2 = [1,0,0,1]
+- **Input:** nums1 = [0,1,0,1], nums2 = [1,0,0,1]
 
-**Output:** 9
+- **Output:** 9
 
-**Explanation:**
+- **Explanation:** One way to replace, having 9 as the largest element is $nums1 = [2, 3, 8, 9]$, and $nums2 = [1, 4, 6, 7]$.
 
-One way to replace, having 9 as the largest element is $nums1 = [2, 3, 8, 9]$, and $nums2 = [1, 4, 6, 7]$.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums1 = [0,1,0,0,1], nums2 = [0,0,0,1]
+- **Input:** nums1 = [0,1,0,0,1], nums2 = [0,0,0,1]
 
-**Output:** 13
+- **Output:** 13
 
-**Explanation:**
-
-One way to replace, having 13 as the largest element is $nums1 = [2, 3, 4, 6, 7]$, and $nums2 = [8, 10, 12, 13]$.
-
-</div>
+- **Explanation:** One way to replace, having 13 as the largest element is $nums1 = [2, 3, 4, 6, 7]$, and $nums2 = [8, 10, 12, 13]$.
 
 ### 4. Constraints
 

@@ -18,8 +18,15 @@ A **substring** is a contiguous sequence of characters within a string.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `a`: Input parameter (`int`).
+- `b`: Input parameter (`int`).
+- `c`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -28,6 +35,7 @@ A **substring** is a contiguous sequence of characters within a string.
 - **Input:** $a = 1, b = 1, c = 7$
 - **Output:** `"ccaccbcc"`
 - **Explanation:** "ccbccacc" would also be a correct answer.
+
 #### Example 2
 
 - **Input:** $a = 7, b = 1, c = 0$

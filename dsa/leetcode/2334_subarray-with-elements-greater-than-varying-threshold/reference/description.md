@@ -10,8 +10,14 @@ A **subarray** is a contiguous non-empty sequence of elements within an array.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `threshold`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +27,7 @@ A **subarray** is a contiguous non-empty sequence of elements within an array.
 - **Output:** `3`
 - **Explanation:** The subarray [3,4,3] has a size of 3, and every element is greater than 6 / 3 = 2.
 Note that this is the only valid subarray.
+
 #### Example 2
 
 - **Input:** `nums = [6,5,6,5,8], threshold = 7`

@@ -12,8 +12,13 @@ Return `true` if such a partition exists; otherwise, return `false`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Note
 
@@ -23,42 +28,33 @@ A section is **connected** if every cell in it can be reached from any other cel
 
 #### Example 1
 
-<div class="example-block">
-**Input:** grid = [[1,4],[2,3]]
+- **Input:** grid = [[1,4],[2,3]]
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
-
-![](images/lc.jpeg)
+- **Explanation:** ![](images/lc.jpeg)
 
 - A horizontal cut after the first row gives sums $1 + 4 = 5$ and $2 + 3 = 5$, which are equal. Thus, the answer is `true`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** grid = [[1,2],[3,4]]
+- **Input:** grid = [[1,2],[3,4]]
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
-
-![](images/chatgpt-image-apr-1-2025-at-05_28_12-pm.png)
+- **Explanation:** ![](images/chatgpt-image-apr-1-2025-at-05_28_12-pm.png)
 
 - A vertical cut after the first column gives sums $1 + 3 = 4$ and $2 + 4 = 6$.
 
 - By discounting 2 from the right section ($6 - 2 = 4$), both sections have equal sums and remain connected. Thus, the answer is `true`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** grid = [[1,2,4],[2,3,5]]
+- **Input:** grid = [[1,2,4],[2,3,5]]
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
+- **Explanation:** 
 
 **
 
@@ -70,19 +66,13 @@ A section is **connected** if every cell in it can be reached from any other cel
 
 - By discounting 3 from the bottom section ($10 - 3 = 7$), both sections have equal sums, but they do not remain connected as it splits the bottom section into two parts (`[2]` and `[5]`). Thus, the answer is `false`.
 
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** grid = [[4,1,8],[3,2,6]]
+- **Input:** grid = [[4,1,8],[3,2,6]]
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
-
-No valid cut exists, so the answer is `false`.
-
-</div>
+- **Explanation:** No valid cut exists, so the answer is `false`.
 
 ### 5. Constraints
 

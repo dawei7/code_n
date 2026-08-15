@@ -38,20 +38,20 @@ subarrays of `nums`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 1]`
-- Output: `15`
-- Explanation: The three singleton subarrays contribute $1$ each, while `[1, 2]`, `[2, 1]`, and `[1, 2, 1]` each have two distinct values and contribute $4$.
+- **Input:** `nums = [1, 2, 1]`
+- **Output:** `15`
+- **Explanation:** The three singleton subarrays contribute $1$ each, while `[1, 2]`, `[2, 1]`, and `[1, 2, 1]` each have two distinct values and contribute $4$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 1]`
-- Output: `3`
-- Explanation: Both singletons and the length-two subarray have distinct count one.
+- **Input:** `nums = [1, 1]`
+- **Output:** `3`
+- **Explanation:** Both singletons and the length-two subarray have distinct count one.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 2, 3]`
-- Output: `20`
-- Explanation: The three length-one, two length-two, and one length-three subarrays contribute $3\cdot1^2+2\cdot2^2+1\cdot3^2=20$.
+- **Input:** `nums = [1, 2, 3]`
+- **Output:** `20`
+- **Explanation:** The three length-one, two length-two, and one length-three subarrays contribute $3\cdot1^2+2\cdot2^2+1\cdot3^2=20$.

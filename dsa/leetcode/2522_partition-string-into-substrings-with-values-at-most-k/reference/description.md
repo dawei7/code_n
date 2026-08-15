@@ -12,8 +12,14 @@ Return *the **minimum** number of substrings in a **good** partition of* `s`. If
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -31,6 +37,7 @@ that:
 - **Output:** `4`
 - **Explanation:** We can partition the string into substrings "16", "54", "6", and "2". Each substring has a value less than or equal to k = 60.
 It can be shown that we cannot partition the string into less than 4 substrings.
+
 #### Example 2
 
 - **Input:** `s = "238182", k = 5`
@@ -45,10 +52,9 @@ It can be shown that we cannot partition the string into less than 4 substrings.
 
 - $1 \le k \le 10^{9}$
 
-<style type="text/css">.spoilerbutton {display:block; border:dashed; padding: 0px 0px; margin:10px 0px; font-size:150%; font-weight: bold; color:#000000; background-color:cyan; outline:0;
+.spoilerbutton {display:block; border:dashed; padding: 0px 0px; margin:10px 0px; font-size:150%; font-weight: bold; color:#000000; background-color:cyan; outline:0;
 }
 .spoiler {overflow:hidden;}
 .spoiler > div {-webkit-transition: all 0s ease;-moz-transition: margin 0s ease;-o-transition: all 0s ease;transition: margin 0s ease;}
 .spoilerbutton[value="Show Message"] + .spoiler > div {margin-top:-500%;}
 .spoilerbutton[value="Hide Message"] + .spoiler {padding:5px;}
-</style>

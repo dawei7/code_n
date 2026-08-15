@@ -40,15 +40,15 @@ respecting every forced-skip interval.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `questions = [[3,2],[4,3],[4,4],[2,5]]`
-- Output: `5`
-- Explanation: Solving questions `0` and `3` earns $3+2=5$ points.
+- **Input:** `questions = [[3,2],[4,3],[4,4],[2,5]]`
+- **Output:** `5`
+- **Explanation:** Solving questions `0` and `3` earns $3+2=5$ points.
 
-**Example 2**
+#### Example 2
 
-- Input: `questions = [[1,1],[2,2],[3,3],[4,4],[5,5]]`
-- Output: `7`
-- Explanation: Skip question `0`, then solve questions `1` and `4` for
+- **Input:** `questions = [[1,1],[2,2],[3,3],[4,4],[5,5]]`
+- **Output:** `7`
+- **Explanation:** Skip question `0`, then solve questions `1` and `4` for
   $2+5=7$ points.

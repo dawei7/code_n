@@ -10,8 +10,13 @@ A cycle is a path that starts and ends at the **same** node.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `edges`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,6 +28,7 @@ A cycle is a path that starts and ends at the **same** node.
 - **Output:** `3`
 - **Explanation:** The longest cycle in the graph is the cycle: 2 -> 4 -> 3 -> 2.
 The length of this cycle is 3, so 3 is returned.
+
 #### Example 2
 
 ![](images/graph4drawio-1.png)

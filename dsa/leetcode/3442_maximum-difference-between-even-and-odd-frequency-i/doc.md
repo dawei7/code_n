@@ -32,16 +32,16 @@ Return the maximum value of $\operatorname{freq}(a_1)-\operatorname{freq}(a_2)$ 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "aaaaabbc"`
-- Output: `3`
+- **Input:** `s = "aaaaabbc"`
+- **Output:** `3`
 
 The largest odd frequency is $5$ for `a`, while `b` has the smallest even frequency $2$.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "abcabcab"`
-- Output: `1`
+- **Input:** `s = "abcabcab"`
+- **Output:** `1`
 
 The odd frequency $3$ of `a` minus the even frequency $2$ of `c` gives $1$.

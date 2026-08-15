@@ -6,8 +6,13 @@ A matrix is **Toeplitz** if every diagonal from top-left to bottom-right has the
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `matrix`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -17,18 +22,17 @@ A matrix is **Toeplitz** if every diagonal from top-left to bottom-right has the
 
 - **Input:** $matrix = [[1,2,3,4],[5,1,2,3],[9,5,1,2]]$
 - **Output:** `true`
-- **Explanation:**
-In the above grid, the diagonals are:
+- **Explanation:** In the above grid, the diagonals are:
 "[9]", "[5, 5]", "[1, 1, 1]", "[2, 2, 2]", "[3, 3]", "[4]".
 In each diagonal all elements are the same, so the answer is True.
+
 #### Example 2
 
 ![](images/ex2.jpg)
 
 - **Input:** $matrix = [[1,2],[2,2]]$
 - **Output:** `false`
-- **Explanation:**
-The diagonal "[1, 2]" has different elements.
+- **Explanation:** The diagonal "[1, 2]" has different elements.
 
 ### 4. Constraints
 

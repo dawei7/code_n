@@ -22,28 +22,19 @@ Return the maximum value of $a + b - c$ over all choices of three distinct indic
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,4,2,5]
+- **Input:** nums = [1,4,2,5]
 
-**Output:** 8
+- **Output:** 8
 
-**Explanation:**
+- **Explanation:** We can choose $a = 4$, $b = 5$, and $c = 1$. The expression value is $4 + 5 - 1 = 8$, which is the maximum possible.
 
-We can choose $a = 4$, $b = 5$, and $c = 1$. The expression value is $4 + 5 - 1 = 8$, which is the maximum possible.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [-2,0,5,-2,4]
+- **Input:** nums = [-2,0,5,-2,4]
 
-**Output:** 11
+- **Output:** 11
 
-**Explanation:**
-
-We can choose $a = 5$, $b = 4$, and $c = -2$. The expression value is $5 + 4 - (-2) = 11$, which is the maximum possible.
-
-</div>
+- **Explanation:** We can choose $a = 5$, $b = 4$, and $c = -2$. The expression value is $5 + 4 - (-2) = 11$, which is the maximum possible.
 
 ### 4. Constraints
 

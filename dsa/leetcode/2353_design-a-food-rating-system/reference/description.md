@@ -10,13 +10,12 @@ Implement the `FoodRatings` class:
 
 - `FoodRatings(String[] foods, String[] cuisines, int[] ratings)` Initializes the system. The food items are described by `foods`, `cuisines` and `ratings`, all of which have a length of `n`.
 
-		<li>$\text{foods}[i]$ is the name of the $$i^{\text{th}}$$ food,
+		- $\text{foods}[i]$ is the name of the $$i^{\text{th}}$$ food,
 
 - $\text{cuisines}[i]$ is the type of cuisine of the $$i^{\text{th}}$$ food, and
 
 - $\text{ratings}[i]$ is the initial rating of the $$i^{\text{th}}$$ food.
 
-	</li>
 - `void changeRating(String food, int newRating)` Changes the rating of the food item with the name `food`.
 
 - `String highestRated(String cuisine)` Returns the name of the food item that has the highest rating for the given type of `cuisine`. If there is a tie, return the item with the **lexicographically smaller** name.
@@ -25,8 +24,11 @@ Note that a string `x` is lexicographically smaller than string `y` if `x` comes
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `FoodRatings(foods: List[str], cuisines: List[str], ratings: List[int])`: Initializes the data structure.
+- `changeRating(food: str, newRating: int)`: Executes operation.
+- `highestRated(cuisine: str) -> `str``: Executes operation.
 
 ### 3. Examples
 

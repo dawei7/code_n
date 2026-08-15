@@ -30,8 +30,8 @@ Count how many table rows belong to each artist. Return the artist name beside t
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: Two rows credit DJ Khalid, two credit Ed Sheeran, and one credits Sia.
-- Output: `DJ Khalid, 2`; `Ed Sheeran, 2`; `Sia, 1`.
-- Explanation: The two tied leaders are alphabetized before the artist with one occurrence.
+- **Input:** Two rows credit DJ Khalid, two credit Ed Sheeran, and one credits Sia.
+- **Output:** `DJ Khalid, 2`; `Ed Sheeran, 2`; `Sia, 1`.
+- **Explanation:** The two tied leaders are alphabetized before the artist with one occurrence.

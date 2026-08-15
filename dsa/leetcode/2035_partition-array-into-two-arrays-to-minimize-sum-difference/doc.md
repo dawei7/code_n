@@ -37,20 +37,20 @@ Let $n$ be half the length of `nums`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3, 9, 7, 3]`
-- Output: `2`
-- Explanation: Groups `[3, 9]` and `[7, 3]` have sums `12` and `10`.
+- **Input:** `nums = [3, 9, 7, 3]`
+- **Output:** `2`
+- **Explanation:** Groups `[3, 9]` and `[7, 3]` have sums `12` and `10`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [-36, 36]`
-- Output: `72`
-- Explanation: Each of the two single-element groups must contain one value.
+- **Input:** `nums = [-36, 36]`
+- **Output:** `72`
+- **Explanation:** Each of the two single-element groups must contain one value.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [2, -1, 0, 4, -2, -9]`
-- Output: `0`
-- Explanation: `[2, 4, -9]` and `[-1, 0, -2]` both sum to `-3`.
+- **Input:** `nums = [2, -1, 0, 4, -2, -9]`
+- **Output:** `0`
+- **Explanation:** `[2, 4, -9]` and `[-1, 0, -2]` both sum to `-3`.

@@ -22,40 +22,29 @@ Return the maximum length among all balanced substrings. Any non-empty one-chara
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "abbac"
+- **Input:** s = "abbac"
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** The longest balanced substring is `"abba"` because both distinct characters `'a'` and `'b'` each appear exactly 2 times.
 
-The longest balanced substring is `"abba"` because both distinct characters `'a'` and `'b'` each appear exactly 2 times.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "zzabccy"
+- **Input:** s = "zzabccy"
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** The longest balanced substring is `"zabc"` because the distinct characters `'z'`, `'a'`, `'b'`, and `'c'` each appear exactly 1 time.​​​​​​​
 
-The longest balanced substring is `"zabc"` because the distinct characters `'z'`, `'a'`, `'b'`, and `'c'` each appear exactly 1 time.​​​​​​​
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "aba"
+- **Input:** s = "aba"
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 **​​​​​​​**One of the longest balanced substrings is `"ab"` because both distinct characters `'a'` and `'b'` each appear exactly 1 time. Another longest balanced substring is `"ba"`.
-
-</div>
 
 ### 4. Constraints
 

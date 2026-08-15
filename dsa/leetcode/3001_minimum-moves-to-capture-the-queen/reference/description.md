@@ -14,8 +14,18 @@ Given that you can only move the white pieces, return *the **minimum** number of
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `a`: Input parameter (`int`).
+- `b`: Input parameter (`int`).
+- `c`: Input parameter (`int`).
+- `d`: Input parameter (`int`).
+- `e`: Input parameter (`int`).
+- `f`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -39,6 +49,7 @@ that:
 - **Output:** `2`
 - **Explanation:** We can capture the black queen in two moves by moving the white rook to (1, 3) then to (2, 3).
 It is impossible to capture the black queen in less than two moves since it is not being attacked by any of the pieces at the beginning.
+
 #### Example 2
 
 ![](images/ex2.png)

@@ -22,14 +22,11 @@ If the first `min(a.length, b.length)` characters do not differ, then the shorte
 
 #### Example 1
 
-<div class="example-block">
-**Input:** word = "dbca", numFriends = 2
+- **Input:** word = "dbca", numFriends = 2
 
-**Output:** "dbc"
+- **Output:** "dbc"
 
-**Explanation:**
-
-All possible splits are:
+- **Explanation:** All possible splits are:
 
 - `"d"` and `"bca"`.
 
@@ -37,19 +34,13 @@ All possible splits are:
 
 - `"dbc"` and `"a"`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** word = "gggg", numFriends = 4
+- **Input:** word = "gggg", numFriends = 4
 
-**Output:** "g"
+- **Output:** "g"
 
-**Explanation:**
-
-The only possible split is: `"g"`, `"g"`, `"g"`, and `"g"`.
-
-</div>
+- **Explanation:** The only possible split is: `"g"`, `"g"`, `"g"`, and `"g"`.
 
 ### 4. Constraints
 

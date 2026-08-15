@@ -34,23 +34,23 @@ Let $M = \max(\texttt{nums})$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [4,9,6,10]`
-- Output: `true`
+- **Input:** `nums = [4,9,6,10]`
+- **Output:** `true`
 
 Subtracting `3` from `4` and `7` from `9` yields `[1,2,6,10]`, which is strictly increasing.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [6,8,11,12]`
-- Output: `true`
+- **Input:** `nums = [6,8,11,12]`
+- **Output:** `true`
 
 The array is already strictly increasing, so no subtraction is required.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [5,8,3]`
-- Output: `false`
+- **Input:** `nums = [5,8,3]`
+- **Output:** `false`
 
 No permitted choices can make the final value strictly greater than its predecessor.

@@ -26,12 +26,11 @@ Return the sole integer left after all alternating deletion operations finish.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 8
+- **Input:** n = 8
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - Write `[1, 2, 3, 4, 5, 6, 7, 8]` in a sequence.
 
@@ -41,15 +40,13 @@ Return the sole integer left after all alternating deletion operations finish.
 
 - Starting from the left, we delete every second number: `[3, <u>**7**</u>]`. The remaining integer is `[3]`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 5
+- **Input:** n = 5
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - Write `[1, 2, 3, 4, 5]` in a sequence.
 
@@ -59,21 +56,17 @@ Return the sole integer left after all alternating deletion operations finish.
 
 - Starting from the left, we delete every second number: `[1, <u>**5**</u>]`. The remaining integer is `[1]`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 1
+- **Input:** n = 1
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - Write `[1]` in a sequence.
 
 - The last remaining integer is 1.
-
-</div>
 
 ### 4. Constraints
 

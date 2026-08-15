@@ -10,8 +10,14 @@ Return *the integer denoting the number of employees who worked at least* `targe
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `hours`: Input parameter (`List[int]`).
+- `target`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,6 +32,7 @@ Return *the integer denoting the number of employees who worked at least* `targe
 - Employee 3 worked for 3 hours and met the target.
 - Employee 4 worked for 4 hours and met the target.
 There are 3 employees who met the target.
+
 #### Example 2
 
 - **Input:** $hours = [5,1,4,2,2], target = 6$

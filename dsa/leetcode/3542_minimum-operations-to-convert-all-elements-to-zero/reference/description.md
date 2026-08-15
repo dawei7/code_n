@@ -8,33 +8,35 @@ Return the **minimum** number of operations required to make all elements in the
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [0,2]
+- **Input:** nums = [0,2]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - Select the subarray `[1,1]` (which is `[2]`), where the minimum non-negative integer is 2. Setting all occurrences of 2 to 0 results in `[0,0]`.
 
 - Thus, the minimum number of operations required is 1.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [3,1,2,1]
+- **Input:** nums = [3,1,2,1]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - Select subarray `[1,3]` (which is `[1,2,1]`), where the minimum non-negative integer is 1. Setting all occurrences of 1 to 0 results in `[3,0,2,0]`.
 
@@ -44,15 +46,13 @@ Return the **minimum** number of operations required to make all elements in the
 
 - Thus, the minimum number of operations required is 3.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,2,1,2,1,2]
+- **Input:** nums = [1,2,1,2,1,2]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** 
 
 - Select subarray `[0,5]` (which is `[1,2,1,2,1,2]`), where the minimum non-negative integer is 1. Setting all occurrences of 1 to 0 results in `[0,2,0,2,0,2]`.
 
@@ -63,8 +63,6 @@ Return the **minimum** number of operations required to make all elements in the
 - Select subarray `[5,5]` (which is `[2]`), where the minimum non-negative integer is 2. Setting all occurrences of 2 to 0 results in `[0,0,0,0,0,0]`.
 
 - Thus, the minimum number of operations required is 4.
-
-</div>
 
 ### 4. Constraints
 

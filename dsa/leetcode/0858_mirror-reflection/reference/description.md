@@ -10,8 +10,14 @@ The test cases are guaranteed so that the ray will meet a receptor eventually.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `p`: Input parameter (`int`).
+- `q`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +28,7 @@ The test cases are guaranteed so that the ray will meet a receptor eventually.
 - **Input:** $p = 2, q = 1$
 - **Output:** `2`
 - **Explanation:** The ray meets receptor 2 the first time it gets reflected back to the left wall.
+
 #### Example 2
 
 - **Input:** $p = 3, q = 1$

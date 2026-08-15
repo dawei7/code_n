@@ -12,8 +12,14 @@ Return *the **minimum** total cost such that all the elements of the array *`num
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `cost`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -27,6 +33,7 @@ Return *the **minimum** total cost such that all the elements of the array *`num
 - Decrease the 2^nd element three times. The cost is 1 + 1 + 1 = 3.
 The total cost is 2 + 3 + 3 = 8.
 It can be shown that we cannot make the array equal with a smaller cost.
+
 #### Example 2
 
 - **Input:** `nums = [2,2,2,2,2], cost = [4,2,8,1,3]`

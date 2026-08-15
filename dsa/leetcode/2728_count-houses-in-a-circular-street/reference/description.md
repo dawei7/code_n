@@ -30,6 +30,7 @@ Return `ans` *which represents the number of houses on this street.*
 - **Output:** `4`
 - **Explanation:** There are 4 houses, and all their doors are closed.
 The number of houses is less than k, which is 10.
+
 #### Example 2
 
 - **Input:** $street = [1,0,1,1,0], k = 5$

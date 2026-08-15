@@ -37,14 +37,14 @@ $$
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [3, 0, 0]`
-- Output: `2`
-- Explanation: the root sends one coin to each child.
+- **Input:** `root = [3, 0, 0]`
+- **Output:** `2`
+- **Explanation:** the root sends one coin to each child.
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [0, 3, 0]`
-- Output: `3`
-- Explanation: the left child sends two coins to the root, after which the root sends one coin to the right child.
+- **Input:** `root = [0, 3, 0]`
+- **Output:** `3`
+- **Explanation:** the left child sends two coins to the root, after which the root sends one coin to the right child.

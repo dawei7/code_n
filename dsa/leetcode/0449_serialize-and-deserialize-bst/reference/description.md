@@ -25,6 +25,7 @@ The standalone app defines a minimal local equivalent of LeetCode's injected `Tr
 
 - **Input:** `root = [2,1,3]`
 - **Output:** `[2,1,3]`
+
 #### Example 2
 
 - **Input:** `root = []`

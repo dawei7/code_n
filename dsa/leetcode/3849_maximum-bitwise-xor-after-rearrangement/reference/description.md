@@ -25,46 +25,39 @@ Return the length-$N$ binary string representing the maximum possible XOR value.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "101", t = "011"
+- **Input:** s = "101", t = "011"
 
-**Output:** "110"
+- **Output:** "110"
 
-**Explanation:**
+- **Explanation:** 
 
 - One optimal rearrangement of `t` is `"011"`.
 
 - The bitwise XOR of `s` and rearranged `t` is $"101" XOR "011" = "110"$, which is the maximum possible.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "0110", t = "1110"
+- **Input:** s = "0110", t = "1110"
 
-**Output:** "1101"
+- **Output:** "1101"
 
-**Explanation:**
+- **Explanation:** 
 
 - One optimal rearrangement of `t` is `"1011"`.
 
 - The bitwise XOR of `s` and rearranged `t` is $"0110" XOR "1011" = "1101"$, which is the maximum possible.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "0101", t = "1001"
+- **Input:** s = "0101", t = "1001"
 
-**Output:** "1111"
+- **Output:** "1111"
 
-**Explanation:**
+- **Explanation:** 
 
 - One optimal rearrangement of `t` is `"1010"`.
 
 - The bitwise XOR of `s` and rearranged `t` is $"0101" XOR "1010" = "1111"$, which is the maximum possible.
-
-</div>
 
 ### 4. Constraints
 

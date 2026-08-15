@@ -28,14 +28,11 @@ Return an integer equal to the smallest attainable sum of merge costs after comb
 
 #### Example 1
 
-<div class="example-block">
-**Input:** lists = [[1,3,5],[2,4],[6,7,8]]
+- **Input:** lists = [[1,3,5],[2,4],[6,7,8]]
 
-**Output:** 18
+- **Output:** 18
 
-**Explanation:**
-
-Merge $a = [1, 3, 5]$ and $b = [2, 4]$:
+- **Explanation:** Merge $a = [1, 3, 5]$ and $b = [2, 4]$:
 
 - $len(a) = 3$ and $len(b) = 2$
 
@@ -55,17 +52,13 @@ Merge $a = [1, 2, 3, 4, 5]$ and $b = [6, 7, 8]$:
 
 So `lists` becomes `[[1, 2, 3, 4, 5, 6, 7, 8]]`, and total cost is $6 + 12 = 18$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** lists = [[1,1,5],[1,4,7,8]]
+- **Input:** lists = [[1,1,5],[1,4,7,8]]
 
-**Output:** 10
+- **Output:** 10
 
-**Explanation:**
-
-Merge $a = [1, 1, 5]$ and $b = [1, 4, 7, 8]$:
+- **Explanation:** Merge $a = [1, 1, 5]$ and $b = [1, 4, 7, 8]$:
 
 - $len(a) = 3$ and $len(b) = 4$
 
@@ -75,17 +68,13 @@ Merge $a = [1, 1, 5]$ and $b = [1, 4, 7, 8]$:
 
 So `lists` becomes `[[1, 1, 1, 4, 5, 7, 8]]`, and total cost is 10.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** lists = [[1],[3]]
+- **Input:** lists = [[1],[3]]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-Merge $a = [1]$ and $b = [3]$:
+- **Explanation:** Merge $a = [1]$ and $b = [3]$:
 
 - $len(a) = 1$ and $len(b) = 1$
 
@@ -95,19 +84,13 @@ Merge $a = [1]$ and $b = [3]$:
 
 So `lists` becomes `[[1, 3]]`, and total cost is 4.
 
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** lists = [[1],[1]]
+- **Input:** lists = [[1],[1]]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The total cost is $len(a) + len(b) + abs(median(a) - median(b)) = 1 + 1 + abs(1 - 1) = 2$.
-
-</div>
+- **Explanation:** The total cost is $len(a) + len(b) + abs(median(a) - median(b)) = 1 + 1 + abs(1 - 1) = 2$.
 
 ### 4. Constraints
 

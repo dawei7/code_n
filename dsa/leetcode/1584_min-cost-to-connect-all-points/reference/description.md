@@ -8,8 +8,13 @@ Return *the minimum cost to make all points connected.* All points are connected
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `points`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,10 +24,10 @@ Return *the minimum cost to make all points connected.* All points are connected
 
 - **Input:** $points = [[0,0],[2,2],[3,10],[5,2],[7,0]]$
 - **Output:** `20`
-- **Explanation:**
-![](images/c.png)
+- **Explanation:** ![](images/c.png)
 We can connect the points as shown above to get the minimum cost of 20.
 Notice that there is a unique path between every pair of points.
+
 #### Example 2
 
 - **Input:** $points = [[3,12],[-2,5],[-4,1]]$

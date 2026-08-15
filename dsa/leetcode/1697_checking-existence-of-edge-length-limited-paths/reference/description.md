@@ -8,8 +8,15 @@ Return *a **boolean array** *`answer`*, where *$\text{answer.length} = \text{que
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edgeList`: Input parameter (`List[List[int]]`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[bool]`.
 
 ### 3. Examples
 
@@ -22,6 +29,7 @@ Return *a **boolean array** *`answer`*, where *$\text{answer.length} = \text{que
 - **Explanation:** The above figure shows the given graph. Note that there are two overlapping edges between 0 and 1 with distances 2 and 16.
 For the first query, between 0 and 1 there is no path where each distance is less than 2, thus we return false for this query.
 For the second query, there is a path (0 -> 1 -> 2) of two edges with distances less than 5, thus we return true for this query.
+
 #### Example 2
 
 ![](images/q.png)

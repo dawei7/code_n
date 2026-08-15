@@ -28,6 +28,7 @@ Return `true` if `s` and `t` are exactly one edit distance apart (insert 1 char,
 - **Input:** `s = "ab", t = "acb"`
 - **Output:** `true`
 - **Explanation:** We can insert 'c' into s to get t.
+
 #### Example 2
 
 - **Input:** `s = "", t = ""`

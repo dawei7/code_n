@@ -8,8 +8,13 @@ Return *an array of strings of length *`n` where $\text{ans}[i]$ is the actual n
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `names`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `List[str]`.
 
 ### 3. Examples
 
@@ -22,6 +27,7 @@ Return *an array of strings of length *`n` where $\text{ans}[i]$ is the actual n
 "fifa" --> not assigned before, remains "fifa"
 "gta" --> not assigned before, remains "gta"
 "pes(2019)" --> not assigned before, remains "pes(2019)"
+
 #### Example 2
 
 - **Input:** $names = ["gta","gta(1)","gta","avalon"]$
@@ -31,6 +37,7 @@ Return *an array of strings of length *`n` where $\text{ans}[i]$ is the actual n
 "gta(1)" --> not assigned before, remains "gta(1)"
 "gta" --> the name is reserved, system adds (k), since "gta(1)" is also reserved, systems put k = 2. it becomes "gta(2)"
 "avalon" --> not assigned before, remains "avalon"
+
 #### Example 3
 
 - **Input:** $names = ["onepiece","onepiece(1)","onepiece(2)","onepiece(3)","onepiece"]$

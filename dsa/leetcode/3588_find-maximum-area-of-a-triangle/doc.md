@@ -32,20 +32,20 @@ Return twice the greatest positive area of a qualifying triangle, or `-1` if no 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `coords = [[1, 1], [1, 2], [3, 2], [3, 3]]`
-- Output: `2`
-- Explanation: A vertical base of length $1$ and horizontal height $2$ gives twice-area $1 \cdot 2 = 2$.
+- **Input:** `coords = [[1, 1], [1, 2], [3, 2], [3, 3]]`
+- **Output:** `2`
+- **Explanation:** A vertical base of length $1$ and horizontal height $2$ gives twice-area $1 \cdot 2 = 2$.
 
-**Example 2**
+#### Example 2
 
-- Input: `coords = [[1, 1], [2, 2], [3, 3]]`
-- Output: `-1`
-- Explanation: No pair of points shares an x-coordinate or a y-coordinate, so no side is axis-parallel.
+- **Input:** `coords = [[1, 1], [2, 2], [3, 3]]`
+- **Output:** `-1`
+- **Explanation:** No pair of points shares an x-coordinate or a y-coordinate, so no side is axis-parallel.
 
-**Example 3**
+#### Example 3
 
-- Input: `coords = [[1, 2], [5, 2], [3, 10]]`
-- Output: `32`
-- Explanation: The horizontal base has length $4$ and the third point is $8$ units from its line.
+- **Input:** `coords = [[1, 2], [5, 2], [3, 10]]`
+- **Output:** `32`
+- **Explanation:** The horizontal base has length $4$ and the third point is $8$ units from its line.

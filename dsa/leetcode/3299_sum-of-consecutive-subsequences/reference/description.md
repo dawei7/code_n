@@ -26,28 +26,19 @@ that an array of length 1 is also considered consecutive.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2]
+- **Input:** nums = [1,2]
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
+- **Explanation:** The consecutive subsequences are: `[1]`, `[2]`, `[1, 2]`.
 
-The consecutive subsequences are: `[1]`, `[2]`, `[1, 2]`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,4,2,3]
+- **Input:** nums = [1,4,2,3]
 
-**Output:** 31
+- **Output:** 31
 
-**Explanation:**
-
-The consecutive subsequences are: `[1]`, `[4]`, `[2]`, `[3]`, `[1, 2]`, `[2, 3]`, `[4, 3]`, `[1, 2, 3]`.
-
-</div>
+- **Explanation:** The consecutive subsequences are: `[1]`, `[4]`, `[2]`, `[3]`, `[1, 2]`, `[2, 3]`, `[4, 3]`, `[1, 2, 3]`.
 
 ### 5. Constraints
 

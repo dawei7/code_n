@@ -38,7 +38,7 @@ The result format is shown in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Olympic table:
 +-------------+-------------+---------------+---------------+
 | country     | gold_medals | silver_medals | bronze_medals |
@@ -49,7 +49,7 @@ Olympic table:
 | Israel      | 2           | 2             | 3             |
 | Egypt       | 2           | 2             | 2             |
 +-------------+-------------+---------------+---------------+
-**Output:**
+- **Output:** 
 +-------------+-------------+---------------+---------------+
 | country     | gold_medals | silver_medals | bronze_medals |
 +-------------+-------------+---------------+---------------+
@@ -59,7 +59,6 @@ Olympic table:
 | Egypt       | 2           | 2             | 2             |
 | South Sudan | 0           | 0             | 1             |
 +-------------+-------------+---------------+---------------+
-**Explanation:**
-The tie between China and USA is broken by their lexicographical names. Since "China" is lexicographically smaller than "USA", it comes first.
+- **Explanation:** The tie between China and USA is broken by their lexicographical names. Since "China" is lexicographically smaller than "USA", it comes first.
 Israel comes before Egypt because it has more bronze medals.
 ```

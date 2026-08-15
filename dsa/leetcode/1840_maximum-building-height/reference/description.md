@@ -18,8 +18,14 @@ Return *the **maximum possible height** of the **tallest** building*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `restrictions`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -31,6 +37,7 @@ Return *the **maximum possible height** of the **tallest** building*.
 - **Output:** `2`
 - **Explanation:** The green area in the image indicates the maximum allowed height for each building.
 We can build the buildings with heights [0,1,2,1,2], and the tallest building has a height of 2.
+
 #### Example 2
 
 ![](images/ic236-q4-ex2.png)
@@ -39,6 +46,7 @@ We can build the buildings with heights [0,1,2,1,2], and the tallest building ha
 - **Output:** `5`
 - **Explanation:** The green area in the image indicates the maximum allowed height for each building.
 We can build the buildings with heights [0,1,2,3,4,5], and the tallest building has a height of 5.
+
 #### Example 3
 
 ![](images/ic236-q4-ex3.png)

@@ -40,17 +40,17 @@ $ac_1+bc_2\le T$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `total = 20, cost1 = 10, cost2 = 5`
-- Output: `9`
+- **Input:** `total = 20, cost1 = 10, cost2 = 5`
+- **Output:** `9`
 
-**Example 2**
+#### Example 2
 
-- Input: `total = 5, cost1 = 10, cost2 = 10`
-- Output: `1`
+- **Input:** `total = 5, cost1 = 10, cost2 = 10`
+- **Output:** `1`
 
-**Example 3**
+#### Example 3
 
-- Input: `total = 6, cost1 = 2, cost2 = 3`
-- Output: `7`
+- **Input:** `total = 6, cost1 = 2, cost2 = 3`
+- **Output:** `7`

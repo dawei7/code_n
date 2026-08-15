@@ -16,8 +16,14 @@ Return *the array *`ans`​​​​.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `servers`: Input parameter (`List[int]`).
+- `tasks`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -32,6 +38,7 @@ Return *the array *`ans`​​​​.
 - At second 3, server 2 becomes free. Task 3 is added and processed using server 2 until second 5.
 - At second 4, task 4 is added and processed using server 1 until second 5.
 - At second 5, all servers become free. Task 5 is added and processed using server 2 until second 7.
+
 #### Example 2
 
 - **Input:** $servers = [5,1,4,3,2], tasks = [2,1,2,4,5,2,1]$

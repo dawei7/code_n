@@ -8,49 +8,41 @@ Return the **maximum** sum or -1 if no such pair exists.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [112,131,411]
+- **Input:** nums = [112,131,411]
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
+- **Explanation:** Each numbers largest digit in order is [2,3,4].
 
-Each numbers largest digit in order is [2,3,4].
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2536,1613,3366,162]
+- **Input:** nums = [2536,1613,3366,162]
 
-**Output:** 5902
+- **Output:** 5902
 
-**Explanation:**
+- **Explanation:** All the numbers have 6 as their largest digit, so the answer is 2536 + 3366 = 5902.
 
-All the numbers have 6 as their largest digit, so the answer is 2536 + 3366 = 5902.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [51,71,17,24,42]
+- **Input:** nums = [51,71,17,24,42]
 
-**Output:** 88
+- **Output:** 88
 
-**Explanation:**
-
-Each number's largest digit in order is [5,7,7,4,4].
+- **Explanation:** Each number's largest digit in order is [5,7,7,4,4].
 
 So we have only two possible pairs, 71 + 17 = 88 and 24 + 42 = 66.
-
-</div>
 
 ### 4. Constraints
 

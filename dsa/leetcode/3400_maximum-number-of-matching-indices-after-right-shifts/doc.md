@@ -33,16 +33,16 @@ The shared length satisfies $1\le n\le3000$, and every element of both arrays li
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [3, 1, 2, 3, 1, 2], nums2 = [1, 2, 3, 1, 2, 3]`
-- Output: `6`
+- **Input:** `nums1 = [3, 1, 2, 3, 1, 2], nums2 = [1, 2, 3, 1, 2, 3]`
+- **Output:** `6`
 
 Two right shifts make `nums1` equal to `nums2`, so all six indices match.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [1, 4, 2, 5, 3, 1], nums2 = [2, 3, 1, 2, 4, 6]`
-- Output: `3`
+- **Input:** `nums1 = [1, 4, 2, 5, 3, 1], nums2 = [2, 3, 1, 2, 4, 6]`
+- **Output:** `3`
 
 After three right shifts, indices 1, 2, and 4 match; no circular alignment matches more positions.

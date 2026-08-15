@@ -8,8 +8,13 @@ Return *a string representing the maximum odd binary number that can be created 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Note
 
@@ -22,6 +27,7 @@ that the resulting string **can** have leading zeros.
 - **Input:** `s = "010"`
 - **Output:** `"001"`
 - **Explanation:** Because there is just one '1', it must be in the last position. So the answer is "001".
+
 #### Example 2
 
 - **Input:** `s = "0101"`

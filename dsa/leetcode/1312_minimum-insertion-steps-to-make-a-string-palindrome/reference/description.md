@@ -8,8 +8,13 @@ A **Palindrome String** is one that reads the same backward as well as forward.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,11 +23,13 @@ A **Palindrome String** is one that reads the same backward as well as forward.
 - **Input:** `s = "zzazz"`
 - **Output:** `0`
 - **Explanation:** The string "zzazz" is already palindrome we do not need any insertions.
+
 #### Example 2
 
 - **Input:** `s = "mbadm"`
 - **Output:** `2`
 - **Explanation:** String can be "mbdadbm" or "mdbabdm".
+
 #### Example 3
 
 - **Input:** `s = "leetcode"`

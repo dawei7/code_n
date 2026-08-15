@@ -8,8 +8,14 @@ Return the lexicographically smallest string that `s` can be changed to after us
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `pairs`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -20,6 +26,7 @@ Return the lexicographically smallest string that `s` can be changed to after us
 **Explaination:**
 Swap s[0] and s[3], s = "bcad"
 Swap s[1] and s[2], s = "bacd"
+
 #### Example 2
 
 - **Input:** `s = "dcab", pairs = [[0,3],[1,2],[0,2]]`
@@ -28,6 +35,7 @@ Swap s[1] and s[2], s = "bacd"
 Swap s[0] and s[3], s = "bcad"
 Swap s[0] and s[2], s = "acbd"
 Swap s[1] and s[2], s = "abcd"
+
 #### Example 3
 
 - **Input:** `s = "cba", pairs = [[0,1],[1,2]]`

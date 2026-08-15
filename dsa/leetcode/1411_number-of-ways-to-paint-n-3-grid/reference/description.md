@@ -6,8 +6,13 @@ Given `n` the number of rows of the grid, return *the number of ways* you can pa
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +23,7 @@ Given `n` the number of rows of the grid, return *the number of ways* you can pa
 - **Input:** $n = 1$
 - **Output:** `12`
 - **Explanation:** There are 12 possible way to paint the grid as shown.
+
 #### Example 2
 
 - **Input:** $n = 5000$

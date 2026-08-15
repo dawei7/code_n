@@ -31,10 +31,12 @@ Return the corresponding positive column number.
 
 - **Input:** $columnTitle = "A"$
 - **Output:** `1`
+
 #### Example 2
 
 - **Input:** $columnTitle = "AB"$
 - **Output:** `28`
+
 #### Example 3
 
 - **Input:** $columnTitle = "ZY"$

@@ -14,8 +14,14 @@ Return *the** count** of subarrays in* `nums` *that match the* `pattern`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `pattern`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,6 +31,7 @@ Return *the** count** of subarrays in* `nums` *that match the* `pattern`.
 - **Output:** `4`
 - **Explanation:** The pattern [1,1] indicates that we are looking for strictly increasing subarrays of size 3. In the array nums, the subarrays [1,2,3], [2,3,4], [3,4,5], and [4,5,6] match this pattern.
 Hence, there are 4 subarrays in nums that match the pattern.
+
 #### Example 2
 
 - **Input:** `nums = [1,4,4,1,3,5,5,3], pattern = [1,0,-1]`

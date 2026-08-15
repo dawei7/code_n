@@ -31,16 +31,16 @@ Return the maximum total profit obtainable from at most `k` completed normal or 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `prices = [1,7,9,8,2], k = 2`
-- Output: `14`
-- Explanation: Buy at `1` and sell at `9` for `8`, then short at `8` and buy back at `2` for `6`.
+- **Input:** `prices = [1,7,9,8,2], k = 2`
+- **Output:** `14`
+- **Explanation:** Buy at `1` and sell at `9` for `8`, then short at `8` and buy back at `2` for `6`.
 
-**Example 2**
+#### Example 2
 
-- Input: `prices = [12,16,19,19,8,1,19,13,9], k = 3`
-- Output: `36`
-- Explanation: A normal trade from `12` to `19`, a short sale from `19` to `8`, and a normal trade from `1` to `19` earn `7 + 11 + 18`.
+- **Input:** `prices = [12,16,19,19,8,1,19,13,9], k = 3`
+- **Output:** `36`
+- **Explanation:** A normal trade from `12` to `19`, a short sale from `19` to `8`, and a normal trade from `1` to `19` earn `7 + 11 + 18`.
 
 ---

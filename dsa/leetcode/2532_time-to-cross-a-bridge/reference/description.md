@@ -30,21 +30,25 @@ Return the **elapsed minutes** at which the last box reaches the **left side of 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+- `time`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 1, k = 3, time = [[1,1,2,1],[1,1,3,1],[1,1,4,1]]
+- **Input:** n = 1, k = 3, time = [[1,1,2,1],[1,1,3,1],[1,1,4,1]]
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
-
-```
+- **Explanation:** ```
 From 0 to 1 minutes: worker 2 crosses the bridge to the right.
 From 1 to 2 minutes: worker 2 picks up a box from the right warehouse.
 From 2 to 6 minutes: worker 2 crosses the bridge to the left.
@@ -52,23 +56,17 @@ From 6 to 7 minutes: worker 2 puts a box at the left warehouse.
 The whole process ends after 7 minutes. We return 6 because the problem asks for the instance of time at which the last worker reaches the left side of the bridge.
 ```
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 3, k = 2, time = [[1,5,1,8],[10,10,10,10]]
+- **Input:** n = 3, k = 2, time = [[1,5,1,8],[10,10,10,10]]
 
-**Output:** 37
+- **Output:** 37
 
-**Explanation:**
-
-```
+- **Explanation:** ```
 ![](images/378539249-c6ce3c73-40e7-4670-a8b5-7ddb9abede11.png)
 ```
 
 The last box reaches the left side at 37 seconds. Notice, how we **do not** put the last boxes down, as that would take more time, and they are already on the left with the workers.
-
-</div>
 
 ### 4. Constraints
 

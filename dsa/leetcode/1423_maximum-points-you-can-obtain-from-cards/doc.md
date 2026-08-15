@@ -31,17 +31,17 @@ Return the maximum total value of the selected cards. Choices at the two ends in
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `cardPoints = [1,2,3,4,5,6,1], k = 3`
-- Output: `12`
+- **Input:** `cardPoints = [1,2,3,4,5,6,1], k = 3`
+- **Output:** `12`
 
-**Example 2**
+#### Example 2
 
-- Input: `cardPoints = [2,2,2], k = 2`
-- Output: `4`
+- **Input:** `cardPoints = [2,2,2], k = 2`
+- **Output:** `4`
 
-**Example 3**
+#### Example 3
 
-- Input: `cardPoints = [9,7,7,9,7,7,9], k = 7`
-- Output: `55`
+- **Input:** `cardPoints = [9,7,7,9,7,7,9], k = 7`
+- **Output:** `55`

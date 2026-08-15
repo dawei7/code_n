@@ -12,8 +12,15 @@ Given `m`, `n`, and `indices`, return *the **number of odd-valued cells** in the
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `m`: Input parameter (`int`).
+- `n`: Input parameter (`int`).
+- `indices`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,6 +33,7 @@ Given `m`, `n`, and `indices`, return *the **number of odd-valued cells** in the
 - **Explanation:** Initial matrix = [[0,0,0],[0,0,0]].
 After applying first increment it becomes [[1,2,1],[0,1,0]].
 The final matrix is [[1,3,1],[1,3,1]], which contains 6 odd numbers.
+
 #### Example 2
 
 ![](images/e2.png)

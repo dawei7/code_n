@@ -25,6 +25,7 @@ Given the integer `k`, return *a 1-based array *`answer`* of size *`n`* where *$
 - Starting at city 2: You directly buy an apple at city 2. The total cost is 42.
 - Starting at city 3: You take the path 3 -> 2, buy an apple at city 2, and finally take the path 2 -> 3. The total cost is 2 + 42 + 2 * 2 = 48.
 - Starting at city 4: You take the path 4 -> 3 -> 2 then you buy at city 2, and finally take the path 2 -> 3 -> 4. The total cost is 1 + 2 + 42 + 1 * 2 + 2 * 2 = 51.
+
 #### Example 2
 
 ![](images/graph4.png)

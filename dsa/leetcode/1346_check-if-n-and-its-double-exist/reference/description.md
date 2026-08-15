@@ -10,8 +10,13 @@ Given an array `arr` of integers, check if there exist two indices `i` and `j` s
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -20,6 +25,7 @@ Given an array `arr` of integers, check if there exist two indices `i` and `j` s
 - **Input:** `arr = [10,2,5,3]`
 - **Output:** `true`
 - **Explanation:** For i = 0 and j = 2, arr[i] == 10 == 2 * 5 == 2 * arr[j]
+
 #### Example 2
 
 - **Input:** `arr = [3,1,7,11]`

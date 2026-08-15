@@ -33,16 +33,16 @@ Return the minimum number of operations required to make the sums of all circula
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [1,4,1,3], k = 2`
-- Output: `1`
+- **Input:** `arr = [1,4,1,3], k = 2`
+- **Output:** `1`
 
 Decreasing the value at index $1$ from $4$ to $3$ produces `[1,3,1,3]`; every circular length-$2$ subarray then sums to $4$.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [2,5,5,7], k = 3`
-- Output: `5`
+- **Input:** `arr = [2,5,5,7], k = 3`
+- **Output:** `5`
 
 Changing the first and last values to $5$ costs $3+2=5$ and makes the array constant, so every circular length-$3$ sum is equal.

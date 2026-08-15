@@ -20,8 +20,13 @@ The **cost** of changing the final value of an expression is the **number of ope
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `expression`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -35,12 +40,14 @@ The **cost** of changing the final value of an expression is the **number of ope
 - **Output:** `1`
 - **Explanation:** We can turn "1&(0<u>**|**</u>1)" into "1&(0<u>**&**</u>1)" by changing the '|' to a '&' using 1 operation.
 The new expression evaluates to 0.
+
 #### Example 2
 
 - **Input:** $expression = "(0\&0)\&(0\&0\&0)"$
 - **Output:** `3`
 - **Explanation:** We can turn "(0<u>**&0**</u>)**<u>&</u>**(0&0&0)" into "(0<u>**|1**</u>)<u>**|**</u>(0&0&0)" using 3 operations.
 The new expression evaluates to 1.
+
 #### Example 3
 
 - **Input:** $expression = "(0|(1|0\&1))"$

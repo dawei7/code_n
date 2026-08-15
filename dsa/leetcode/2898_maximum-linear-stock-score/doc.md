@@ -41,14 +41,14 @@ Return the greatest sum of prices obtainable from a nonempty linear subsequence 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `prices = [1, 5, 3, 7, 8]`
-- Output: `20`
-- Explanation: Selecting days $2$, $4$, and $5$ gives price changes $2$ and $1$, matching the corresponding day gaps. The score is $5+7+8=20$.
+- **Input:** `prices = [1, 5, 3, 7, 8]`
+- **Output:** `20`
+- **Explanation:** Selecting days $2$, $4$, and $5$ gives price changes $2$ and $1$, matching the corresponding day gaps. The score is $5+7+8=20$.
 
-**Example 2**
+#### Example 2
 
-- Input: `prices = [5, 6, 7, 8, 9]`
-- Output: `35`
-- Explanation: Every consecutive price rises by one as the day index rises by one, so all five days form a linear selection.
+- **Input:** `prices = [5, 6, 7, 8, 9]`
+- **Output:** `35`
+- **Explanation:** Every consecutive price rises by one as the day index rises by one, so all five days form a linear selection.

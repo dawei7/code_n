@@ -16,8 +16,12 @@ Note that if a token expires at time `t`, and another action happens on time `t`
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `AuthenticationManager(timeToLive: int)`: Initializes the data structure.
+- `generate(tokenId: str, currentTime: int)`: Executes operation.
+- `renew(tokenId: str, currentTime: int)`: Executes operation.
+- `countUnexpiredTokens(currentTime: int) -> `int``: Executes operation.
 
 ### 3. Examples
 

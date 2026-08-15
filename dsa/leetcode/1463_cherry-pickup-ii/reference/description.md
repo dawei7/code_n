@@ -22,8 +22,13 @@ Return *the maximum number of cherries collection using both robots by following
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -37,6 +42,7 @@ Return *the maximum number of cherries collection using both robots by following
 Cherries taken by Robot #1, (3 + 2 + 5 + 2) = 12.
 Cherries taken by Robot #2, (1 + 5 + 5 + 1) = 12.
 Total of cherries: 12 + 12 = 24.
+
 #### Example 2
 
 ![](images/sample_2_1802.png)

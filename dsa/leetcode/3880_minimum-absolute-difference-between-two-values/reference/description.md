@@ -24,14 +24,11 @@ Return $\min \lvert i-j\rvert$ over all indices satisfying $\text{nums}[i] = 1$ 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,0,0,2,0,1]
+- **Input:** nums = [1,0,0,2,0,1]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The valid pairs are:
+- **Explanation:** The valid pairs are:
 
 - (0, 3) which has absolute difference of $abs(0 - 3) = 3$.
 
@@ -39,19 +36,13 @@ The valid pairs are:
 
 Thus, the answer is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,0,1,0]
+- **Input:** nums = [1,0,1,0]
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-There are no valid pairs in the array, thus the answer is -1.
-
-</div>
+- **Explanation:** There are no valid pairs in the array, thus the answer is -1.
 
 ### 4. Constraints
 

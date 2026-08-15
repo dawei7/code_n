@@ -36,18 +36,15 @@ Return a list of all valid four-word arrays in the role order `[top, left, right
 
 #### Example 1
 
-<div class="example-block">
-**Input:** words = ["able","area","echo","also"]
+- **Input:** words = ["able","area","echo","also"]
 
-**Output:** [["able","area","echo","also"],["area","able","also","echo"]]
+- **Output:** [["able","area","echo","also"],["area","able","also","echo"]]
 
-**Explanation:**
-
-There are exactly two valid 4-word squares that satisfy all corner constraints:
+- **Explanation:** There are exactly two valid 4-word squares that satisfy all corner constraints:
 
 - `"able"` (top), `"area"` (left), `"echo"` (right), `"also"` (bottom)
 
-		<li>$\text{top}[0] = \text{left}[0] = 'a'$
+		- $\text{top}[0] = \text{left}[0] = 'a'$
 
 - $\text{top}[3] = \text{right}[0] = 'e'$
 
@@ -55,28 +52,19 @@ There are exactly two valid 4-word squares that satisfy all corner constraints:
 
 - $\text{bottom}[3] = \text{right}[3] = 'o'$
 
-	</li>
 - `"area"` (top), `"able"` (left), `"also"` (right), `"echo"` (bottom)
 
-		<li>All corner constraints are satisfied.
-
-	</li>
+		- All corner constraints are satisfied.
 
 Thus, the answer is `[["able","area","echo","also"],["area","able","also","echo"]]`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** words = ["code","cafe","eden","edge"]
+- **Input:** words = ["code","cafe","eden","edge"]
 
-**Output:** []
+- **Output:** []
 
-**Explanation:**
-
-No combination of four words satisfies all four corner constraints. Thus, the answer is empty array `[]`.
-
-</div>
+- **Explanation:** No combination of four words satisfies all four corner constraints. Thus, the answer is empty array `[]`.
 
 ### 4. Constraints
 

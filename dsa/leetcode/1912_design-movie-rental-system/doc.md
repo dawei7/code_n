@@ -36,23 +36,23 @@ Build a stateful system that searches for the five cheapest available copies of 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `operations = ["MovieRentingSystem","search","rent","rent","report","drop","search"]`, `arguments = [[3,[[0,1,5],[0,2,6],[0,3,7],[1,1,4],[1,2,7],[2,1,5]]],[1],[0,1],[1,2],[],[1,2],[2]]`
-- Output: `[null,[1,0,2],null,null,[[0,1],[1,2]],null,[0,1]]`
+- **Input:** `operations = ["MovieRentingSystem","search","rent","rent","report","drop","search"]`, `arguments = [[3,[[0,1,5],[0,2,6],[0,3,7],[1,1,4],[1,2,7],[2,1,5]]],[1],[0,1],[1,2],[],[1,2],[2]]`
+- **Output:** `[null,[1,0,2],null,null,[[0,1],[1,2]],null,[0,1]]`
 
 Movie `1` is initially cheapest at shop `1`; after the two rentals, the report orders the rented copies by price.
 
-**Example 2**
+#### Example 2
 
-- Input: `operations = ["MovieRentingSystem","search","report"]`, `arguments = [[1,[[0,10,3]]],[10],[]]`
-- Output: `[null,[0],[]]`
+- **Input:** `operations = ["MovieRentingSystem","search","report"]`, `arguments = [[1,[[0,10,3]]],[10],[]]`
+- **Output:** `[null,[0],[]]`
 
 The only copy is available, and no copy is rented.
 
-**Example 3**
+#### Example 3
 
-- Input: `operations = ["MovieRentingSystem","rent","report","drop","report"]`, `arguments = [[2,[[0,5,2],[1,5,2]]],[1,5],[],[1,5],[]]`
-- Output: `[null,null,[[1,5]],null,[]]`
+- **Input:** `operations = ["MovieRentingSystem","rent","report","drop","report"]`, `arguments = [[2,[[0,5,2],[1,5,2]]],[1,5],[],[1,5],[]]`
+- **Output:** `[null,null,[[1,5]],null,[]]`
 
 Returning the only rented copy empties the report.

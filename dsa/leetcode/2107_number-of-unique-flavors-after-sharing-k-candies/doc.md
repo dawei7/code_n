@@ -31,20 +31,20 @@ Return the maximum number of unique flavors among the candies kept after sharing
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `candies = [1, 2, 2, 3, 4, 3], k = 3`
-- Output: `3`
-- Explanation: Share the block `[2, 2, 3]` at indices $1$ through $3$. The kept flavors are `[1, 4, 3]`, all distinct.
+- **Input:** `candies = [1, 2, 2, 3, 4, 3], k = 3`
+- **Output:** `3`
+- **Explanation:** Share the block `[2, 2, 3]` at indices $1$ through $3$. The kept flavors are `[1, 4, 3]`, all distinct.
 
-**Example 2**
+#### Example 2
 
-- Input: `candies = [2, 2, 2, 2, 3, 3], k = 2`
-- Output: `2`
-- Explanation: A suitable shared block leaves at least one candy of flavors $2$ and $3`.
+- **Input:** `candies = [2, 2, 2, 2, 3, 3], k = 2`
+- **Output:** `2`
+- **Explanation:** A suitable shared block leaves at least one candy of flavors $2$ and $3`.
 
-**Example 3**
+#### Example 3
 
-- Input: `candies = [2, 4, 5], k = 0`
-- Output: `3`
-- Explanation: No candies are shared, so all three unique flavors remain.
+- **Input:** `candies = [2, 4, 5], k = 0`
+- **Output:** `3`
+- **Explanation:** No candies are shared, so all three unique flavors remain.

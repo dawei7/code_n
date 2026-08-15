@@ -1,8 +1,6 @@
 ### 1. Description
 
-<div data-docx-has-block-data="false" data-lark-html-role="root" data-page-id="Rax8d6clvoFeVtx7bzXcvkVynwf">
-<div class="old-record-id-Y5dGdSKIMoNTttxGhHLccrpEnaf">There is an endless straight line populated with some robots and walls. You are given integer arrays `robots`, `distance`, and `walls`:</div>
-</div>
+There is an endless straight line populated with some robots and walls. You are given integer arrays `robots`, `distance`, and `walls`:
 
 - $\text{robots}[i]$ is the position of the $$i^{\text{th}}$$ robot.
 
@@ -24,33 +22,37 @@ Notes:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `robots`: Input parameter (`List[int]`).
+- `distance`: Input parameter (`List[int]`).
+- `walls`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** robots = [4], distance = [3], walls = [1,10]
+- **Input:** robots = [4], distance = [3], walls = [1,10]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - $\text{robots}[0] = 4$ fires **left** with $\text{distance}[0] = 3$, covering `[1, 4]` and destroys $\text{walls}[0] = 1$.
 
 - Thus, the answer is 1.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** robots = [10,2], distance = [5,1], walls = [5,2,7]
+- **Input:** robots = [10,2], distance = [5,1], walls = [5,2,7]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - $\text{robots}[0] = 10$ fires **left** with $\text{distance}[0] = 5$, covering `[5, 10]` and destroys $\text{walls}[0] = 5$ and $\text{walls}[2] = 7$.
 
@@ -58,19 +60,13 @@ Notes:
 
 - Thus, the answer is 3.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** robots = [1,2], distance = [100,1], walls = [10]
+- **Input:** robots = [1,2], distance = [100,1], walls = [10]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-In this example, only $\text{robots}[0]$ can reach the wall, but its shot to the **right** is blocked by $\text{robots}[1]$; thus the answer is 0.
-
-</div>
+- **Explanation:** In this example, only $\text{robots}[0]$ can reach the wall, but its shot to the **right** is blocked by $\text{robots}[1]$; thus the answer is 0.
 
 ### 4. Constraints
 

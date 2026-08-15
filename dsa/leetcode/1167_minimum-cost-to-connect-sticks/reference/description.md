@@ -28,6 +28,7 @@ Each connection removes two current lengths, adds their sum to the cost, and ins
 1. Combine sticks 2 and 3 for a cost of 2 + 3 = 5. Now you have sticks = [5,4].
 2. Combine sticks 5 and 4 for a cost of 5 + 4 = 9. Now you have sticks = [9].
 There is only one stick left, so you are done. The total cost is 5 + 9 = 14.
+
 #### Example 2
 
 - **Input:** $sticks = [1,8,3,5]$
@@ -37,6 +38,7 @@ There is only one stick left, so you are done. The total cost is 5 + 9 = 14.
 2. Combine sticks 4 and 5 for a cost of 4 + 5 = 9. Now you have sticks = [9,8].
 3. Combine sticks 9 and 8 for a cost of 9 + 8 = 17. Now you have sticks = [17].
 There is only one stick left, so you are done. The total cost is 4 + 9 + 17 = 30.
+
 #### Example 3
 
 - **Input:** $sticks = [5]$

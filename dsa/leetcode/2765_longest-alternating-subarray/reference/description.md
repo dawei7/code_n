@@ -14,35 +14,31 @@ A subarray is a contiguous **non-empty** sequence of elements within an array.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,3,4,3,4]
+- **Input:** nums = [2,3,4,3,4]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** The alternating subarrays are `[2, 3]`, `[3,4]`, `[3,4,3]`, and `[3,4,3,4]`. The longest of these is `[3,4,3,4]`, which is of length 4.
 
-The alternating subarrays are `[2, 3]`, `[3,4]`, `[3,4,3]`, and `[3,4,3,4]`. The longest of these is `[3,4,3,4]`, which is of length 4.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [4,5,6]
+- **Input:** nums = [4,5,6]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-`[4,5]` and `[5,6]` are the only two alternating subarrays. They are both of length 2.
-
-</div>
+- **Explanation:** `[4,5]` and `[5,6]` are the only two alternating subarrays. They are both of length 2.
 
 ### 4. Constraints
 

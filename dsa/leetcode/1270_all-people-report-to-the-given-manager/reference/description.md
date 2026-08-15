@@ -40,7 +40,7 @@ Return a one-column table named $\text{employee}_{id}$. It must contain each non
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Employees table:
 +-------------+---------------+------------+
 | employee_id | employee_name | manager_id |
@@ -54,7 +54,7 @@ Employees table:
 | 9           | Angela        | 8          |
 | 77          | Robert        | 1          |
 +-------------+---------------+------------+
-**Output:**
+- **Output:** 
 +-------------+
 | employee_id |
 +-------------+
@@ -63,8 +63,7 @@ Employees table:
 | 4           |
 | 7           |
 +-------------+
-**Explanation:**
-The head of the company is the employee with employee_id 1.
+- **Explanation:** The head of the company is the employee with employee_id 1.
 The employees with employee_id 2 and 77 report their work directly to the head of the company.
 The employee with employee_id 4 reports their work indirectly to the head of the company 4 --> 2 --> 1.
 The employee with employee_id 7 reports their work indirectly to the head of the company 7 --> 4 --> 2 --> 1.

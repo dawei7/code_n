@@ -12,8 +12,14 @@ Return the positive integer array $ans = [num1, num2]$. If there are multiple pa
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `left`: Input parameter (`int`).
+- `right`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -24,6 +30,7 @@ Return the positive integer array $ans = [num1, num2]$. If there are multiple pa
 - **Explanation:** The prime numbers between 10 and 19 are 11, 13, 17, and 19.
 The closest gap between any pair is 2, which can be achieved by [11,13] or [17,19].
 Since 11 is smaller than 17, we return the first pair.
+
 #### Example 2
 
 - **Input:** $left = 4, right = 6$
@@ -34,10 +41,9 @@ Since 11 is smaller than 17, we return the first pair.
 
 - $1 \le left \le right \le 10^{6}$
 
-<style type="text/css">.spoilerbutton {display:block; border:dashed; padding: 0px 0px; margin:10px 0px; font-size:150%; font-weight: bold; color:#000000; background-color:cyan; outline:0;
+.spoilerbutton {display:block; border:dashed; padding: 0px 0px; margin:10px 0px; font-size:150%; font-weight: bold; color:#000000; background-color:cyan; outline:0;
 }
 .spoiler {overflow:hidden;}
 .spoiler > div {-webkit-transition: all 0s ease;-moz-transition: margin 0s ease;-o-transition: all 0s ease;transition: margin 0s ease;}
 .spoilerbutton[value="Show Message"] + .spoiler > div {margin-top:-500%;}
 .spoilerbutton[value="Hide Message"] + .spoiler {padding:5px;}
-</style>

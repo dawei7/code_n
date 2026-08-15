@@ -29,14 +29,11 @@ Return the maximum good integer among those attaining the maximum digit-square s
 
 #### Example 1
 
-<div class="example-block">
-**Input:** num = 2, sum = 3
+- **Input:** num = 2, sum = 3
 
-**Output:** "30"
+- **Output:** "30"
 
-**Explanation:**
-
-There are 3 good integers: 12, 21, and 30.
+- **Explanation:** There are 3 good integers: 12, 21, and 30.
 
 - The score of 12 is $1^{2} + 2^{2} = 5$.
 
@@ -46,17 +43,13 @@ There are 3 good integers: 12, 21, and 30.
 
 The maximum score is 9, which is achieved by the good integer 30. Therefore, the answer is `"30"`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** num = 2, sum = 17
+- **Input:** num = 2, sum = 17
 
-**Output:** "98"
+- **Output:** "98"
 
-**Explanation:**
-
-There are 2 good integers: 89 and 98.
+- **Explanation:** There are 2 good integers: 89 and 98.
 
 - The score of 89 is $8^{2} + 9^{2} = 145$.
 
@@ -64,19 +57,13 @@ There are 2 good integers: 89 and 98.
 
 The maximum score is 145. The maximum good integer that achieves this score is 98. Therefore, the answer is `"98"`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** num = 1, sum = 10
+- **Input:** num = 1, sum = 10
 
-**Output:** ""
+- **Output:** ""
 
-**Explanation:**
-
-There are no integers that have exactly 1 digit and whose digits sum to 10. Therefore, the answer is `""`.
-
-</div>
+- **Explanation:** There are no integers that have exactly 1 digit and whose digits sum to 10. Therefore, the answer is `""`.
 
 ### 4. Constraints
 

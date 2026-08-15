@@ -14,32 +14,23 @@ Your task is to find the **minimum** number of operations required to make the a
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [5,3,1,4,2]
+- **Input:** nums = [5,3,1,4,2]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** We remove subsequences `[1, 2]`, `[3, 4]`, `[5]`.
 
-We remove subsequences `[1, 2]`, `[3, 4]`, `[5]`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4,5]
+- **Input:** nums = [1,2,3,4,5]
 
-**Output:** 1
+- **Output:** 1
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [5,4,3,2,1]
+- **Input:** nums = [5,4,3,2,1]
 
-**Output:** 5
-
-</div>
+- **Output:** 5
 
 ### 4. Constraints
 

@@ -16,8 +16,13 @@ Zigzag pattern traversal is defined as following the below actions:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -29,12 +34,11 @@ Return an array of integers `result` containing, **in order**, the value of the 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** grid = [[1,2],[3,4]]
+- **Input:** grid = [[1,2],[3,4]]
 
-**Output:** [1,4]
+- **Output:** [1,4]
 
-**Explanation:**
+- **Explanation:** 
 
 **
 
@@ -42,31 +46,21 @@ Return an array of integers `result` containing, **in order**, the value of the 
 
 **
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** grid = [[2,1],[2,1],[2,1]]
+- **Input:** grid = [[2,1],[2,1],[2,1]]
 
-**Output:** [2,1,2]
+- **Output:** [2,1,2]
 
-**Explanation:**
+- **Explanation:** ![](images/4012_example1.png)
 
-![](images/4012_example1.png)
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** grid = [[1,2,3],[4,5,6],[7,8,9]]
+- **Input:** grid = [[1,2,3],[4,5,6],[7,8,9]]
 
-**Output:** [1,3,5,7,9]
+- **Output:** [1,3,5,7,9]
 
-**Explanation:**
-
-![](images/4012_example2.png)
-
-</div>
+- **Explanation:** ![](images/4012_example2.png)
 
 ### 5. Constraints
 

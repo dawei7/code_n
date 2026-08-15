@@ -10,8 +10,13 @@ Notice that the modulo is performed after getting the maximum product.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +27,7 @@ Notice that the modulo is performed after getting the maximum product.
 - **Input:** `grid = [[-1,-2,-3],[-2,-3,-3],[-3,-3,-2]]`
 - **Output:** `-1`
 - **Explanation:** It is not possible to get non-negative product in the path from (0, 0) to (2, 2), so return -1.
+
 #### Example 2
 
 ![](images/product2.jpg)
@@ -29,6 +35,7 @@ Notice that the modulo is performed after getting the maximum product.
 - **Input:** `grid = [[1,-2,1],[1,-2,1],[3,-4,1]]`
 - **Output:** `8`
 - **Explanation:** Maximum non-negative product is shown (1 * 1 * -2 * -4 * 1 = 8).
+
 #### Example 3
 
 ![](images/product3.jpg)

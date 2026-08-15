@@ -14,26 +14,20 @@ The **centre** is the middle value in an ordered integer list. More formally, if
 
 - For `arr = [-7, 22, 17, 3]`, $n = 4$ and the centre is obtained by sorting the array `arr = [-7, 3, 17, 22]` and the centre is $\text{arr}[m]$ where $m = ((4 - 1) / 2) = 1$. The centre is `3`.
 
-<div class="simple-translate-system-theme" id="simple-translate">
-<div>
-<div class="simple-translate-button isShow" style="background-image: url("moz-extension://8a9ffb6b-7e69-4e93-aae1-436a1448eff6/icons/512.png"); height: 22px; width: 22px; top: 266px; left: 381px;"> </div>
+ 
 
-<div class="simple-translate-panel " style="width: 300px; height: 200px; top: 0px; left: 0px; font-size: 13px;">
-<div class="simple-translate-result-wrapper" style="overflow: hidden;">
-<div class="simple-translate-move" draggable="true"> </div>
-
-<div class="simple-translate-result-contents">
-
-</div>
-</div>
-</div>
-</div>
-</div>
+ 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -43,11 +37,13 @@ The **centre** is the middle value in an ordered integer list. More formally, if
 - **Output:** `[5,1]`
 - **Explanation:** Centre is 3, the elements of the array sorted by the strongest are [5,1,4,2,3]. The strongest 2 elements are [5, 1]. [1, 5] is also **accepted** answer.
 Please note that although |5 - 3| == |1 - 3| but 5 is stronger than 1 because 5 > 1.
+
 #### Example 2
 
 - **Input:** `arr = [1,1,3,5,5], k = 2`
 - **Output:** `[5,5]`
 - **Explanation:** Centre is 3, the elements of the array sorted by the strongest are [5,5,1,1,3]. The strongest 2 elements are [5, 5].
+
 #### Example 3
 
 - **Input:** `arr = [6,7,11,7,6,8], k = 5`

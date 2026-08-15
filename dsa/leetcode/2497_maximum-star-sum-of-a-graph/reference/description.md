@@ -16,8 +16,15 @@ Given an integer `k`, return *the **maximum star sum** of a star graph containin
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `vals`: Input parameter (`List[int]`).
+- `edges`: Input parameter (`List[List[int]]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -30,6 +37,7 @@ Given an integer `k`, return *the **maximum star sum** of a star graph containin
 - **Explanation:** The above diagram represents the input graph.
 The star graph with the maximum star sum is denoted by blue. It is centered at 3 and includes its neighbors 1 and 4.
 It can be shown it is not possible to get a star graph with a sum greater than 16.
+
 #### Example 2
 
 - **Input:** $vals = [-5], edges = [], k = 0$

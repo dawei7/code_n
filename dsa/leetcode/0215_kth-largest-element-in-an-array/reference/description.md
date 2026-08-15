@@ -23,6 +23,7 @@ Return the value at rank `k` in descending sorted order.
 
 - **Input:** `nums = [3,2,1,5,6,4], k = 2`
 - **Output:** `5`
+
 #### Example 2
 
 - **Input:** `nums = [3,2,3,1,2,4,5,5,6], k = 4`

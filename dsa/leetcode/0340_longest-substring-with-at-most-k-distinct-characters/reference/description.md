@@ -20,6 +20,7 @@ Return the maximum length of a contiguous substring with no more than `k` distin
 - **Input:** `s = "eceba", k = 2`
 - **Output:** `3`
 - **Explanation:** The substring is "ece" with length 3.
+
 #### Example 2
 
 - **Input:** `s = "aa", k = 1`

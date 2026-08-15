@@ -35,20 +35,20 @@ A subarray is a contiguous part of the original array; elements cannot be skippe
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [0,6,5,2,2,5,1,9,4], firstLen = 1, secondLen = 2`
-- Output: `20`
-- Explanation: Choose `[9]` and `[6,5]`.
+- **Input:** `nums = [0,6,5,2,2,5,1,9,4], firstLen = 1, secondLen = 2`
+- **Output:** `20`
+- **Explanation:** Choose `[9]` and `[6,5]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3,8,1,3,2,1,8,9,0], firstLen = 3, secondLen = 2`
-- Output: `29`
-- Explanation: Choose `[3,8,1]` and `[8,9]`.
+- **Input:** `nums = [3,8,1,3,2,1,8,9,0], firstLen = 3, secondLen = 2`
+- **Output:** `29`
+- **Explanation:** Choose `[3,8,1]` and `[8,9]`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [2,1,5,6,0,9,5,0,3,8], firstLen = 4, secondLen = 3`
-- Output: `31`
-- Explanation: Choose `[5,6,0,9]` and `[0,3,8]`.
+- **Input:** `nums = [2,1,5,6,0,9,5,0,3,8], firstLen = 4, secondLen = 3`
+- **Output:** `31`
+- **Explanation:** Choose `[5,6,0,9]` and `[0,3,8]`.

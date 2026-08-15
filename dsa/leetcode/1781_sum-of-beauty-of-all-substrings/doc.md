@@ -38,19 +38,19 @@ $$
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "aabcb"`
-- Output: `5`
-- Explanation: Five substrings have beauty one, and every other substring has beauty zero.
+- **Input:** `s = "aabcb"`
+- **Output:** `5`
+- **Explanation:** Five substrings have beauty one, and every other substring has beauty zero.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "aabcbaa"`
-- Output: `17`
+- **Input:** `s = "aabcbaa"`
+- **Output:** `17`
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "aaaa"`
-- Output: `0`
-- Explanation: Every substring contains only `a`, so its maximum and minimum present frequencies are equal.
+- **Input:** `s = "aaaa"`
+- **Output:** `0`
+- **Explanation:** Every substring contains only `a`, so its maximum and minimum present frequencies are equal.

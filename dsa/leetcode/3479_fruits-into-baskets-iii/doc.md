@@ -35,16 +35,16 @@ Return the number of fruit types for which no qualifying available basket exists
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `fruits = [4, 2, 5]`, `baskets = [3, 5, 4]`
-- Output: `1`
+- **Input:** `fruits = [4, 2, 5]`, `baskets = [3, 5, 4]`
+- **Output:** `1`
 
 Quantity 4 uses capacity 5 at index 1, the first sufficient basket. Quantity 2 then uses capacity 3 at index 0. Capacity 4 cannot hold the final quantity 5, leaving one fruit type unplaced.
 
-**Example 2**
+#### Example 2
 
-- Input: `fruits = [3, 6, 1]`, `baskets = [6, 4, 7]`
-- Output: `0`
+- **Input:** `fruits = [3, 6, 1]`, `baskets = [6, 4, 7]`
+- **Output:** `0`
 
 The fruit types use basket capacities 6, 7, and 4 in order, so none remain unplaced.

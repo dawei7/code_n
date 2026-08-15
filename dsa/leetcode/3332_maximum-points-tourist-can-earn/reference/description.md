@@ -14,35 +14,34 @@ Return the **maximum** possible points the tourist can earn.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+- `stayScore`: Input parameter (`List[List[int]]`).
+- `travelScore`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 2, k = 1, stayScore = [[2,3]], travelScore = [[0,2],[1,0]]
+- **Input:** n = 2, k = 1, stayScore = [[2,3]], travelScore = [[0,2],[1,0]]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** The tourist earns the maximum number of points by starting in city 1 and staying in that city.
 
-The tourist earns the maximum number of points by starting in city 1 and staying in that city.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 3, k = 2, stayScore = [[3,4,2],[2,1,2]], travelScore = [[0,2,1],[2,0,4],[3,2,0]]
+- **Input:** n = 3, k = 2, stayScore = [[3,4,2],[2,1,2]], travelScore = [[0,2,1],[2,0,4],[3,2,0]]
 
-**Output:** 8
+- **Output:** 8
 
-**Explanation:**
-
-The tourist earns the maximum number of points by starting in city 1, staying in that city on day 0, and traveling to city 2 on day 1.
-
-</div>
+- **Explanation:** The tourist earns the maximum number of points by starting in city 1, staying in that city on day 0, and traveling to city 2 on day 1.
 
 ### 4. Constraints
 

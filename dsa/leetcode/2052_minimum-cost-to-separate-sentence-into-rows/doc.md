@@ -33,20 +33,20 @@ Let $w$ be the number of words.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `sentence = "i love leetcode", k = 12`
-- Output: `36`
-- Explanation: Rows `"i love"` and `"leetcode"` cost $(12-6)^2+0=36$.
+- **Input:** `sentence = "i love leetcode", k = 12`
+- **Output:** `36`
+- **Explanation:** Rows `"i love"` and `"leetcode"` cost $(12-6)^2+0=36$.
 
-**Example 2**
+#### Example 2
 
-- Input: `sentence = "apples and bananas taste great", k = 7`
-- Output: `21`
-- Explanation: Each word occupies its own row; only the first four contribute costs.
+- **Input:** `sentence = "apples and bananas taste great", k = 7`
+- **Output:** `21`
+- **Explanation:** Each word occupies its own row; only the first four contribute costs.
 
-**Example 3**
+#### Example 3
 
-- Input: `sentence = "a", k = 5`
-- Output: `0`
-- Explanation: The only row is also the last row, whose cost is excluded.
+- **Input:** `sentence = "a", k = 5`
+- **Output:** `0`
+- **Explanation:** The only row is also the last row, whose cost is excluded.

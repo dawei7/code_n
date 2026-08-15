@@ -34,20 +34,20 @@ Return the minimum possible total cost as an integer.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3,1,4], cost = [4,6,6], k = 1`
-- Output: `110`
-- Explanation: Divide after index $1$. The first subarray costs `(3 + 1 + 1 * 1) * (4 + 6) = 50`, and the second costs `(3 + 1 + 4 + 1 * 2) * 6 = 60`.
+- **Input:** `nums = [3,1,4], cost = [4,6,6], k = 1`
+- **Output:** `110`
+- **Explanation:** Divide after index $1$. The first subarray costs `(3 + 1 + 1 * 1) * (4 + 6) = 50`, and the second costs `(3 + 1 + 4 + 1 * 2) * 6 = 60`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4,8,5,1,14,2,2,12,1], cost = [7,2,8,4,2,2,1,1,2], k = 7`
-- Output: `985`
-- Explanation: One optimal division is `[4,8,5,1]`, `[14,2,2]`, and `[12,1]`, whose respective costs are `525`, `250`, and `210`.
+- **Input:** `nums = [4,8,5,1,14,2,2,12,1], cost = [7,2,8,4,2,2,1,1,2], k = 7`
+- **Output:** `985`
+- **Explanation:** One optimal division is `[4,8,5,1]`, `[14,2,2]`, and `[12,1]`, whose respective costs are `525`, `250`, and `210`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [2], cost = [3], k = 5`
-- Output: `21`
-- Explanation: The only subarray has cost `(2 + 5 * 1) * 3 = 21`.
+- **Input:** `nums = [2], cost = [3], k = 5`
+- **Output:** `21`
+- **Explanation:** The only subarray has cost `(2 + 5 * 1) * 3 = 21`.

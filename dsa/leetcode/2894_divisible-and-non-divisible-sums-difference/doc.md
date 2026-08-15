@@ -31,20 +31,20 @@ Return the sum of the non-divisible values minus the sum of the divisible values
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 10, m = 3`
-- Output: `19`
-- Explanation: The non-divisible values sum to $37$, while $3+6+9=18$, so the result is $37-18=19$.
+- **Input:** `n = 10, m = 3`
+- **Output:** `19`
+- **Explanation:** The non-divisible values sum to $37$, while $3+6+9=18$, so the result is $37-18=19$.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 5, m = 6`
-- Output: `15`
-- Explanation: No value in $[1,5]$ is divisible by $6$, so the entire range contributes positively.
+- **Input:** `n = 5, m = 6`
+- **Output:** `15`
+- **Explanation:** No value in $[1,5]$ is divisible by $6$, so the entire range contributes positively.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 5, m = 1`
-- Output: `-15`
-- Explanation: Every value is divisible by $1$, so the whole range contributes negatively.
+- **Input:** `n = 5, m = 1`
+- **Output:** `-15`
+- **Explanation:** Every value is divisible by $1$, so the whole range contributes negatively.

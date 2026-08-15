@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/find-overbooked-employees/) |
 
 ## Problem Description
+
 ### Goal
 
 The `employees` table identifies each employee by name and department. The `meetings` table records meetings attended by employees, including each meeting's date, type, and duration in hours. A standard working week contains 40 hours.
@@ -34,14 +35,14 @@ Return an ordered table with columns `employee_id`, `employee_name`, `department
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 Alice has 21 meeting hours in each of two consecutive weeks, so her `meeting_heavy_weeks` value is `2` and she qualifies.
 
-**Example 2**
+#### Example 2
 
 Bob has 23 meeting hours in one week but only 10 in the next. He is excluded because only one week exceeds 20 hours.
 
-**Example 3**
+#### Example 3
 
 Two weekly totals of exactly 20 hours do not qualify because the threshold is strict. A total must be greater than 20.

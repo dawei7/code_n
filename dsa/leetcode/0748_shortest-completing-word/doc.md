@@ -31,14 +31,14 @@ Return the shortest completing word from `words`. If several candidates have the
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `licensePlate = "1s3 PSt"`, `words = ["step", "steps", "stripe", "stepple"]`
-- Output: `"steps"`
-- Explanation: A completing word needs one `s`, one `p`, and two `t` letters.
+- **Input:** `licensePlate = "1s3 PSt"`, `words = ["step", "steps", "stripe", "stepple"]`
+- **Output:** `"steps"`
+- **Explanation:** A completing word needs one `s`, one `p`, and two `t` letters.
 
-**Example 2**
+#### Example 2
 
-- Input: `licensePlate = "1s3 456"`, `words = ["looks", "pest", "stew", "show"]`
-- Output: `"pest"`
-- Explanation: Both `"pest"` and `"stew"` cover `s`, but `"pest"` appears first among the shortest valid words.
+- **Input:** `licensePlate = "1s3 456"`, `words = ["looks", "pest", "stew", "show"]`
+- **Output:** `"pest"`
+- **Explanation:** Both `"pest"` and `"stew"` cover `s`, but `"pest"` appears first among the shortest valid words.

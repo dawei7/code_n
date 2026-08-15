@@ -10,8 +10,14 @@ A **substring** is a contiguous sequence of characters in a string.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `part`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -24,6 +30,7 @@ A **substring** is a contiguous sequence of characters in a string.
 - s = "daba**<u>abc</u>**bc", remove "abc" starting at index 4, so s = "dababc".
 - s = "dab**<u>abc</u>**", remove "abc" starting at index 3, so s = "dab".
 Now s has no occurrences of "abc".
+
 #### Example 2
 
 - **Input:** `s = "axxxxyyyyb", part = "xy"`

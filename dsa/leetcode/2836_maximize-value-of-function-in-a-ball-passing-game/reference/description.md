@@ -8,8 +8,14 @@ Return the **maximum** possible score.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `receiver`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -21,14 +27,11 @@ Return the **maximum** possible score.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** receiver = [2,0,1], k = 4
+- **Input:** receiver = [2,0,1], k = 4
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
-
-Starting with player $i = 2$ the initial score is 2:
+- **Explanation:** Starting with player $i = 2$ the initial score is 2:
 
 <table>
 	<tbody>
@@ -64,17 +67,14 @@ Starting with player $i = 2$ the initial score is 2:
 		</tr>
 	</tbody>
 </table>
-</div>
+
 #### Example 2
 
-<div class="example-block">
-**Input:** receiver = [1,1,1,2,3], k = 3
+- **Input:** receiver = [1,1,1,2,3], k = 3
 
-**Output:** 10
+- **Output:** 10
 
-**Explanation:**
-
-Starting with player $i = 4$ the initial score is 4:
+- **Explanation:** Starting with player $i = 4$ the initial score is 4:
 
 <table>
 	<tbody>
@@ -104,7 +104,6 @@ Starting with player $i = 4$ the initial score is 4:
 		</tr>
 	</tbody>
 </table>
-</div>
 
 ### 5. Constraints
 

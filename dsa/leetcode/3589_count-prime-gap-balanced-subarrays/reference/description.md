@@ -14,8 +14,14 @@ Return the count of **prime-gap balanced subarrays** in `nums`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -27,14 +33,11 @@ Return the count of **prime-gap balanced subarrays** in `nums`.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3], k = 1
+- **Input:** nums = [1,2,3], k = 1
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-Prime-gap balanced subarrays are:
+- **Explanation:** Prime-gap balanced subarrays are:
 
 - `[2,3]`: contains two primes (2 and 3), max - min = $3 - 2 = 1 \le k$.
 
@@ -42,17 +45,13 @@ Prime-gap balanced subarrays are:
 
 Thus, the answer is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,3,5,7], k = 3
+- **Input:** nums = [2,3,5,7], k = 3
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-Prime-gap balanced subarrays are:
+- **Explanation:** Prime-gap balanced subarrays are:
 
 - `[2,3]`: contains two primes (2 and 3), max - min = $3 - 2 = 1 \le k$.
 
@@ -63,8 +62,6 @@ Prime-gap balanced subarrays are:
 - `[5,7]`: contains two primes (5 and 7), max - min = $7 - 5 = 2 \le k$.
 
 Thus, the answer is 4.
-
-</div>
 
 ### 5. Constraints
 

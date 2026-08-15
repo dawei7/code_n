@@ -22,12 +22,11 @@ Return the sum of all primes $p$ satisfying $L\le p\le U$. Return `0` when the i
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 13
+- **Input:** n = 13
 
-**Output:** 132
+- **Output:** 132
 
-**Explanation:**
+- **Explanation:** 
 
 - The reverse of 13 is 31. Thus, the range is `[13, 31]`.
 
@@ -35,15 +34,13 @@ Return the sum of all primes $p$ satisfying $L\le p\le U$. Return `0` when the i
 
 - The sum of these prime numbers is $13 + 17 + 19 + 23 + 29 + 31 = 132$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 10
+- **Input:** n = 10
 
-**Output:** 17
+- **Output:** 17
 
-**Explanation:**
+- **Explanation:** 
 
 - The reverse of 10 is 1. Thus, the range is `[1, 10]`.
 
@@ -51,21 +48,17 @@ Return the sum of all primes $p$ satisfying $L\le p\le U$. Return `0` when the i
 
 - The sum of these prime numbers is $2 + 3 + 5 + 7 = 17$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 8
+- **Input:** n = 8
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** 
 
 - The reverse of 8 is 8. Thus, the range is `[8, 8]`.
 
 - There are no prime numbers in this range, so the sum is 0.
-
-</div>
 
 ### 4. Constraints
 

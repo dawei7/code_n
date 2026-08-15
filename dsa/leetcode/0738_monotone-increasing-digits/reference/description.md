@@ -6,8 +6,13 @@ Given an integer `n`, return *the largest number that is less than or equal to *
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -15,10 +20,12 @@ Given an integer `n`, return *the largest number that is less than or equal to *
 
 - **Input:** $n = 10$
 - **Output:** `9`
+
 #### Example 2
 
 - **Input:** $n = 1234$
 - **Output:** `1234`
+
 #### Example 3
 
 - **Input:** $n = 332$

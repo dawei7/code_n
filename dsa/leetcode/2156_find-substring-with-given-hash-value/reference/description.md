@@ -14,8 +14,17 @@ A **substring** is a contiguous non-empty sequence of characters within a string
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `power`: Input parameter (`int`).
+- `modulo`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+- `hashValue`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -25,6 +34,7 @@ A **substring** is a contiguous non-empty sequence of characters within a string
 - **Output:** `"ee"`
 - **Explanation:** The hash of "ee" can be computed to be hash("ee", 7, 20) = (5 * 1 + 5 * 7) mod 20 = 40 mod 20 = 0.
 "ee" is the first substring of length 2 with hashValue 0. Hence, we return "ee".
+
 #### Example 2
 
 - **Input:** `s = "fbxzaad", power = 31, modulo = 100, k = 3, hashValue = 32`

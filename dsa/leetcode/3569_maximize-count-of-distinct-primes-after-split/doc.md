@@ -35,16 +35,16 @@ Return an array of $q$ integers. Its $i$th element is the maximum distinct-prime
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,1,3,1,2], queries = [[1,2],[3,3]]`
-- Output: `[3,4]`
-- Explanation: After the first update, a split after the first element counts prime `2` on both sides and prime `3` on the right. After the second update, splitting between the middle `3` values counts both `2` and `3` on each side.
+- **Input:** `nums = [2,1,3,1,2], queries = [[1,2],[3,3]]`
+- **Output:** `[3,4]`
+- **Explanation:** After the first update, a split after the first element counts prime `2` on both sides and prime `3` on the right. After the second update, splitting between the middle `3` values counts both `2` and `3` on each side.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2,1,4], queries = [[0,1]]`
-- Output: `[0]`
-- Explanation: The update removes the only prime value, so every split has a total of zero.
+- **Input:** `nums = [2,1,4], queries = [[0,1]]`
+- **Output:** `[0]`
+- **Explanation:** The update removes the only prime value, so every split has a total of zero.
 
 ---

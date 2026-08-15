@@ -10,8 +10,13 @@ Return `true` *if and only if Alice wins the game, assuming both players play op
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -19,14 +24,15 @@ Return `true` *if and only if Alice wins the game, assuming both players play op
 
 - **Input:** `nums = [1,1,2]`
 - **Output:** `false`
-- **Explanation:**
-Alice has two choices: erase 1 or erase 2.
+- **Explanation:** Alice has two choices: erase 1 or erase 2.
 If she erases 1, the nums array becomes [1, 2]. The bitwise XOR of all the elements of the chalkboard is 1 XOR 2 = 3. Now Bob can remove any element he wants, because Alice will be the one to erase the last element and she will lose.
 If Alice erases 2 first, now nums become [1, 1]. The bitwise XOR of all the elements of the chalkboard is 1 XOR 1 = 0. Alice will lose.
+
 #### Example 2
 
 - **Input:** `nums = [0,1]`
 - **Output:** `true`
+
 #### Example 3
 
 - **Input:** `nums = [1,2,3]`

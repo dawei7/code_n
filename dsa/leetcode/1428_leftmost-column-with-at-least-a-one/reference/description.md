@@ -39,12 +39,14 @@ Return the smallest column index containing a `1` in any row. Return `-1` if eve
 
 - **Input:** $mat = [[0,0],[1,1]]$
 - **Output:** `0`
+
 #### Example 2
 
 ![](images/untitled-diagram-4.jpg)
 
 - **Input:** $mat = [[0,0],[0,1]]$
 - **Output:** `1`
+
 #### Example 3
 
 ![](images/untitled-diagram-3.jpg)

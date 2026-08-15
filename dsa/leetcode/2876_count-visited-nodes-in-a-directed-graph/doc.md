@@ -34,14 +34,14 @@ Let $n = \lvert\texttt{edges}\rvert$. The constraints are $2 \le n \le 10^5$, $0
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `edges = [1,2,0,0]`
-- Output: `[3,3,3,4]`
-- Explanation: Nodes $0$, $1$, and $2$ form a cycle of length $3$. Starting from node $3$ visits node $3$ before entering that cycle.
+- **Input:** `edges = [1,2,0,0]`
+- **Output:** `[3,3,3,4]`
+- **Explanation:** Nodes $0$, $1$, and $2$ form a cycle of length $3$. Starting from node $3$ visits node $3$ before entering that cycle.
 
-**Example 2**
+#### Example 2
 
-- Input: `edges = [1,2,3,4,0]`
-- Output: `[5,5,5,5,5]`
-- Explanation: All five nodes form one directed cycle, so every starting point visits all five distinct nodes.
+- **Input:** `edges = [1,2,3,4,0]`
+- **Output:** `[5,5,5,5,5]`
+- **Explanation:** All five nodes form one directed cycle, so every starting point visits all five distinct nodes.

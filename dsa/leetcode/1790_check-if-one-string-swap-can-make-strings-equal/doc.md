@@ -30,23 +30,23 @@ Determine whether the strings can be made equal by performing at most one swap o
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s1 = "bank", s2 = "kanb"`
-- Output: `true`
+- **Input:** `s1 = "bank", s2 = "kanb"`
+- **Output:** `true`
 
 Swapping the first and last characters of either string repairs the two mismatches.
 
-**Example 2**
+#### Example 2
 
-- Input: `s1 = "attack", s2 = "defend"`
-- Output: `false`
+- **Input:** `s1 = "attack", s2 = "defend"`
+- **Output:** `false`
 
 One swap cannot repair all differing positions.
 
-**Example 3**
+#### Example 3
 
-- Input: `s1 = "kelb", s2 = "kelb"`
-- Output: `true`
+- **Input:** `s1 = "kelb", s2 = "kelb"`
+- **Output:** `true`
 
 The strings already match, so no operation is required.

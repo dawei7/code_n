@@ -31,7 +31,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Scores table:
 +------------+--------------+-------------+-------------+-------------+
 | student_id | student_name | assignment1 | assignment2 | assignment3 |

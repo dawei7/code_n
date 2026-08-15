@@ -6,8 +6,14 @@ A string `x` can break string `y` (both of size `n`) if $x[i] \ge y[i]$ (in alph
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s1`: Input parameter (`str`).
+- `s2`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -16,11 +22,13 @@ A string `x` can break string `y` (both of size `n`) if $x[i] \ge y[i]$ (in alph
 - **Input:** $s1 = "abc", s2 = "xya"$
 - **Output:** `true`
 - **Explanation:** "ayx" is a permutation of s2="xya" which can break to string "abc" which is a permutation of s1="abc".
+
 #### Example 2
 
 - **Input:** $s1 = "abe", s2 = "acd"$
 - **Output:** `false`
 - **Explanation:** All permutations for s1="abe" are: "abe", "aeb", "bae", "bea", "eab" and "eba" and all permutation for s2="acd" are: "acd", "adc", "cad", "cda", "dac" and "dca". However, there is not any permutation from s1 which can break some permutation from s2 and vice-versa.
+
 #### Example 3
 
 - **Input:** $s1 = "leetcodee", s2 = "interview"$

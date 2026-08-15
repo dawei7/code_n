@@ -8,8 +8,13 @@ Return *the minimum cost to reach the top of the floor*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `cost`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +25,7 @@ Return *the minimum cost to reach the top of the floor*.
 - **Explanation:** You will start at index 1.
 - Pay 15 and climb two steps to reach the top.
 The total cost is 15.
+
 #### Example 2
 
 - **Input:** $cost = [<u>1</u>,100,<u>1</u>,1,<u>1</u>,100,<u>1</u>,<u>1</u>,100,<u>1</u>]$

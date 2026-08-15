@@ -42,11 +42,13 @@ Return the integer represented by `s`.
 - **Input:** `s = "III"`
 - **Output:** `3`
 - **Explanation:** III = 3.
+
 #### Example 2
 
 - **Input:** `s = "LVIII"`
 - **Output:** `58`
 - **Explanation:** L = 50, V= 5, III = 3.
+
 #### Example 3
 
 - **Input:** `s = "MCMXCIV"`

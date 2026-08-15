@@ -8,8 +8,14 @@ Return the length of the **shortest** substring in `s` that matches `p`. If ther
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `p`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -19,52 +25,35 @@ The empty substring is considered valid.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "abaacbaecebce", p = "ba*c*ce"
+- **Input:** s = "abaacbaecebce", p = "ba*c*ce"
 
-**Output:** 8
+- **Output:** 8
 
-**Explanation:**
+- **Explanation:** The shortest matching substring of `p` in `s` is `"<u>**ba**</u>e<u>**c**</u>eb<u>**ce**</u>"`.
 
-The shortest matching substring of `p` in `s` is `"<u>**ba**</u>e<u>**c**</u>eb<u>**ce**</u>"`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "baccbaadbc", p = "cc*baa*adb"
+- **Input:** s = "baccbaadbc", p = "cc*baa*adb"
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
+- **Explanation:** There is no matching substring in `s`.
 
-There is no matching substring in `s`.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "a", p = "**"
+- **Input:** s = "a", p = "**"
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** The empty substring is the shortest matching substring.
 
-The empty substring is the shortest matching substring.
-
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** s = "madlogic", p = "*adlogi*"
+- **Input:** s = "madlogic", p = "*adlogi*"
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
-
-The shortest matching substring of `p` in `s` is `"**<u>adlogi</u>**"`.
-
-</div>
+- **Explanation:** The shortest matching substring of `p` in `s` is `"**<u>adlogi</u>**"`.
 
 ### 5. Constraints
 

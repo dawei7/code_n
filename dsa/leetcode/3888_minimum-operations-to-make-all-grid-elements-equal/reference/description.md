@@ -29,14 +29,11 @@ Return the minimum number of $k \times k$ increments needed to make all $mn$ ent
 
 #### Example 1
 
-<div class="example-block">
-**Input:** grid = [[3,3,5],[3,3,5]], k = 2
+- **Input:** grid = [[3,3,5],[3,3,5]], k = 2
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-Choose the left `2 x 2` submatrix (covering the first two columns) and apply the operation twice.
+- **Explanation:** Choose the left `2 x 2` submatrix (covering the first two columns) and apply the operation twice.
 
 - After 1 operation: `[[4, 4, 5], [4, 4, 5]]`
 
@@ -44,17 +41,13 @@ Choose the left `2 x 2` submatrix (covering the first two columns) and apply the
 
 All elements become equal to 5. Thus, the minimum number of operations is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** grid = [[1,2],[2,3]], k = 1
+- **Input:** grid = [[1,2],[2,3]], k = 1
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-Since $k = 1$, each operation increments a single cell $\text{grid}[i][j]$ by 1. To make all elements equal, the final value must be 3.
+- **Explanation:** Since $k = 1$, each operation increments a single cell $\text{grid}[i][j]$ by 1. To make all elements equal, the final value must be 3.
 
 - Increase $\text{grid}[0][0] = 1$ to 3, requiring 2 operations.
 
@@ -63,8 +56,6 @@ Since $k = 1$, each operation increments a single cell $\text{grid}[i][j]$ by 1.
 - Increase $\text{grid}[1][0] = 2$ to 3, requiring 1 operation.
 
 Thus, the minimum number of operations is $2 + 1 + 1 + 0 = 4$.
-
-</div>
 
 ### 4. Constraints
 

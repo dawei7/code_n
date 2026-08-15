@@ -37,23 +37,23 @@ Let $m$ be the number of shift rows.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: Employee 1 has shifts `09:00-17:00`, `15:00-23:00`, and `16:00-00:00`; employee 2 has `09:00-17:00` and `11:00-19:00`; employee 3 has one shift.
-- Output: `[[1,3,600],[2,2,360],[3,1,0]]`
+- **Input:** Employee 1 has shifts `09:00-17:00`, `15:00-23:00`, and `16:00-00:00`; employee 2 has `09:00-17:00` and `11:00-19:00`; employee 3 has one shift.
+- **Output:** `[[1,3,600],[2,2,360],[3,1,0]]`
 
 Employee 1 reaches three simultaneous shifts and its three pair intersections total ten hours.
 
-**Example 2**
+#### Example 2
 
-- Input: One employee has shifts `08:00-10:00` and `10:00-12:00` on the same date.
-- Output: `[[1,1,0]]`
+- **Input:** One employee has shifts `08:00-10:00` and `10:00-12:00` on the same date.
+- **Output:** `[[1,1,0]]`
 
 The endpoint equality creates no positive overlap.
 
-**Example 3**
+#### Example 3
 
-- Input: One employee has nested shifts `08:00-18:00`, `09:00-17:00`, and `10:00-16:00`.
-- Output: `[[1,3,1200]]`
+- **Input:** One employee has nested shifts `08:00-18:00`, `09:00-17:00`, and `10:00-16:00`.
+- **Output:** `[[1,3,1200]]`
 
 All three pairs overlap for 480, 360, and 360 minutes respectively.

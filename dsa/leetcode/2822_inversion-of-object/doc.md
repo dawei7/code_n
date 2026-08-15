@@ -37,14 +37,14 @@ Array indices therefore appear as strings such as `"0"` and `"1"`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 For `{"a":"1","b":"2","c":"3","d":"4"}`, every value is unique. The result is `{"1":"a","2":"b","3":"c","4":"d"}`.
 
-**Example 2**
+#### Example 2
 
 For `{"a":"1","b":"2","c":"2","d":"4"}`, the value `"2"` occurs under both `"b"` and `"c"`. The result is `{"1":"a","2":["b","c"],"4":"d"}`.
 
-**Example 3**
+#### Example 3
 
 For the array `["1","2","3","4"]`, the original keys are its indices. The result is `{"1":"0","2":"1","3":"2","4":"3"}`.

@@ -21,6 +21,7 @@ Return `true` if the characters of `s` can be matched in order within `t`; other
 
 - **Input:** `s = "abc", t = "ahbgdc"`
 - **Output:** `true`
+
 #### Example 2
 
 - **Input:** `s = "axc", t = "ahbgdc"`

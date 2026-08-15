@@ -20,14 +20,11 @@ Return the largest $S_j\leq N$ that is prime. Return `0` when no such prefix sum
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 20
+- **Input:** n = 20
 
-**Output:** 17
+- **Output:** 17
 
-**Explanation:**
-
-The prime numbers less than or equal to $n = 20$ which are consecutive prime sums are:
+- **Explanation:** The prime numbers less than or equal to $n = 20$ which are consecutive prime sums are:
 
 - $2 = 2$
 
@@ -37,19 +34,13 @@ The prime numbers less than or equal to $n = 20$ which are consecutive prime sum
 
 The largest is 17, so it is the answer.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 2
+- **Input:** n = 2
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The only consecutive prime sum less than or equal to 2 is 2 itself.
-
-</div>
+- **Explanation:** The only consecutive prime sum less than or equal to 2 is 2 itself.
 
 ### 4. Constraints
 

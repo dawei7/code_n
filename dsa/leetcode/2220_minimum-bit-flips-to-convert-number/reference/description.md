@@ -8,8 +8,14 @@ Given two integers `start` and `goal`, return* the **minimum** number of **bit f
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `start`: Input parameter (`int`).
+- `goal`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +28,7 @@ Given two integers `start` and `goal`, return* the **minimum** number of **bit f
 - Flip the third bit from the right: 1<u>0</u>11 -> 1<u>1</u>11.
 - Flip the fourth bit from the right: <u>1</u>111 -> <u>0</u>111.
 It can be shown we cannot convert 10 to 7 in less than 3 steps. Hence, we return 3.
+
 #### Example 2
 
 - **Input:** $start = 3, goal = 4$

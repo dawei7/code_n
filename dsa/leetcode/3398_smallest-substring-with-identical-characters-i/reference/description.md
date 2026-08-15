@@ -12,43 +12,38 @@ Return the **minimum** length after the operations.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `numOps`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "000001", numOps = 1
+- **Input:** s = "000001", numOps = 1
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** By changing $s[2]$ to `'1'`, `s` becomes `"001001"`. The longest substrings with identical characters are `s[0..1]` and `s[3..4]`.
 
-By changing $s[2]$ to `'1'`, `s` becomes `"001001"`. The longest substrings with identical characters are `s[0..1]` and `s[3..4]`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "0000", numOps = 2
+- **Input:** s = "0000", numOps = 2
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** By changing $s[0]$ and $s[2]$ to `'1'`, `s` becomes `"1010"`.
 
-By changing $s[0]$ and $s[2]$ to `'1'`, `s` becomes `"1010"`.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "0101", numOps = 0
+- **Input:** s = "0101", numOps = 0
 
-**Output:** 1
-
-</div>
+- **Output:** 1
 
 ### 4. Constraints
 

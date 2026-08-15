@@ -12,8 +12,13 @@ Return `true`* if such partition is possible, or *`false`* otherwise*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `deck`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -22,6 +27,7 @@ Return `true`* if such partition is possible, or *`false`* otherwise*.
 - **Input:** $deck = [1,2,3,4,4,3,2,1]$
 - **Output:** `true`
 **Explanation**: Possible partition [1,1],[2,2],[3,3],[4,4].
+
 #### Example 2
 
 - **Input:** $deck = [1,1,1,2,2,2,3,3]$

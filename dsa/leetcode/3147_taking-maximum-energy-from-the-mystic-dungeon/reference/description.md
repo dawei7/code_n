@@ -10,8 +10,14 @@ You are given an array `energy` and an integer `k`. Return the **maximum** possi
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `energy`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -21,42 +27,19 @@ that when you reach a magician, you *must* take energy from them, whether it is 
 
 #### Example 1
 
-<div class="example-block" style="
-    border-color: var(--border-tertiary);
-    border-left-width: 2px;
-    color: var(--text-secondary);
-    font-size: .875rem;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-    overflow: visible;
-    padding-left: 1rem;
-">
-**Input:**  energy = [5,2,-10,-5,1], k = 3
+- **Input:** energy = [5,2,-10,-5,1], k = 3
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:** We can gain a total energy of 3 by starting from magician 1 absorbing 2 + 1 = 3.
+- **Explanation:** We can gain a total energy of 3 by starting from magician 1 absorbing 2 + 1 = 3.
 
-</div>
 #### Example 2
 
-<div class="example-block" style="
-    border-color: var(--border-tertiary);
-    border-left-width: 2px;
-    color: var(--text-secondary);
-    font-size: .875rem;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-    overflow: visible;
-    padding-left: 1rem;
-">
-**Input:** energy = [-2,-3,-1], k = 2
+- **Input:** energy = [-2,-3,-1], k = 2
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:** We can gain a total energy of -1 by starting from magician 2.
-
-</div>
+- **Explanation:** We can gain a total energy of -1 by starting from magician 2.
 
 ### 5. Constraints
 

@@ -31,21 +31,21 @@ Find the maximum sum of a contiguous subarray in that modified array. The chosen
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [1,2]`, `k = 3`
-- Output: `9`
+- **Input:** `arr = [1,2]`, `k = 3`
+- **Output:** `9`
 
 All six values in the conceptual array have positive sum.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [1,-2,1]`, `k = 5`
-- Output: `2`
+- **Input:** `arr = [1,-2,1]`, `k = 5`
+- **Output:** `2`
 
-**Example 3**
+#### Example 3
 
-- Input: `arr = [-1,-2]`, `k = 7`
-- Output: `0`
+- **Input:** `arr = [-1,-2]`, `k = 7`
+- **Output:** `0`
 
 The empty subarray is better than every non-empty subarray.

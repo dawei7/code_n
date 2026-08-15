@@ -20,8 +20,14 @@ Since the answer may be large, return it modulo $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -33,6 +39,7 @@ Since the answer may be large, return it modulo $10^{9} + 7$.
 - Choose subarray nums[2, ..., 2]. nums[2] is the only element in this subarray. Hence, we multiply the score by nums[2]. The score becomes 1 * 9 = 9.
 - Choose subarray nums[2, ..., 3]. Both nums[2] and nums[3] have a prime score of 1, but nums[2] has the smaller index. Hence, we multiply the score by nums[2]. The score becomes 9 * 9 = 81.
 It can be proven that 81 is the highest score one can obtain.
+
 #### Example 2
 
 - **Input:** `nums = [19,12,14,6,10,18], k = 3`

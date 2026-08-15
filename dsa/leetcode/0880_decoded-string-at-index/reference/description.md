@@ -10,8 +10,14 @@ Given an integer `k`, return *the *$$k^{\text{th}}$$* letter (**1-indexed)** in 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -21,12 +27,14 @@ Given an integer `k`, return *the *$$k^{\text{th}}$$* letter (**1-indexed)** in 
 - **Output:** `"o"`
 - **Explanation:** The decoded string is "leetleetcodeleetleetcodeleetleetcode".
 The 10^th letter in the string is "o".
+
 #### Example 2
 
 - **Input:** `s = "ha22", k = 5`
 - **Output:** `"h"`
 - **Explanation:** The decoded string is "hahahaha".
 The 5^th letter is "h".
+
 #### Example 3
 
 - **Input:** `s = "a2345678999999999999999", k = 1`

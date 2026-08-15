@@ -16,8 +16,13 @@ Return *the minimum number of insertions* needed to make `s` balanced.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,11 +31,13 @@ Return *the minimum number of insertions* needed to make `s` balanced.
 - **Input:** `s = "(()))"`
 - **Output:** `1`
 - **Explanation:** The second '(' has two matching '))', but the first '(' has only ')' matching. We need to add one more ')' at the end of the string to be "(())))" which is balanced.
+
 #### Example 2
 
 - **Input:** `s = "())"`
 - **Output:** `0`
 - **Explanation:** The string is already balanced.
+
 #### Example 3
 
 - **Input:** `s = "))())("`

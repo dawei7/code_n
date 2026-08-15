@@ -16,8 +16,11 @@ Implement the `FindSumPairs` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `FindSumPairs(nums1: List[int], nums2: List[int])`: Initializes the data structure.
+- `add(index: int, val: int)`: Executes operation.
+- `count(tot: int) -> `int``: Executes operation.
 
 ### 3. Examples
 

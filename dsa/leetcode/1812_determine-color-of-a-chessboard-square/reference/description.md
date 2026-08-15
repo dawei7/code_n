@@ -10,8 +10,13 @@ The coordinate will always represent a valid chessboard square. The coordinate w
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `coordinates`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -20,11 +25,13 @@ The coordinate will always represent a valid chessboard square. The coordinate w
 - **Input:** $coordinates = "a1"$
 - **Output:** `false`
 - **Explanation:** From the chessboard above, the square with coordinates "a1" is black, so return false.
+
 #### Example 2
 
 - **Input:** $coordinates = "h3"$
 - **Output:** `true`
 - **Explanation:** From the chessboard above, the square with coordinates "h3" is white, so return true.
+
 #### Example 3
 
 - **Input:** $coordinates = "c7"$

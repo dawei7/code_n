@@ -8,8 +8,14 @@ Return *the **minimum** equal sum you can obtain, or *`-1`* if it is impossible*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums1`: Input parameter (`List[int]`).
+- `nums2`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +27,7 @@ Return *the **minimum** equal sum you can obtain, or *`-1`* if it is impossible*
 - Replace the two 0's in nums1 with the values 2 and 4. The resulting array is nums1 = [3,2,2,1,4].
 - Replace the 0 in nums2 with the value 1. The resulting array is nums2 = [6,5,1].
 Both arrays have an equal sum of 12. It can be shown that it is the minimum sum we can obtain.
+
 #### Example 2
 
 - **Input:** $nums1 = [2,0,2,0], nums2 = [1,4]$

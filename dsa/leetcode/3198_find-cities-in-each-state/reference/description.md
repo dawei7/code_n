@@ -21,7 +21,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 cities table:
@@ -69,5 +68,3 @@ cities table:
 ### 3. Note
 
 The output table is ordered by the state name in ascending order.
-
-</div>

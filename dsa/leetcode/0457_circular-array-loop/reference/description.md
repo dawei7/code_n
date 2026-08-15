@@ -40,6 +40,7 @@ The destination of position `i` is $(i + \text{nums}[i]) \% len(nums)$. A one-po
 - **Output:** `true`
 - **Explanation:** The graph shows how the indices are connected. White nodes are jumping forward, while red is jumping backward.
 We can see the cycle 0 --> 2 --> 3 --> 0 --> ..., and all of its nodes are white (jumping in the same direction).
+
 #### Example 2
 
 ![](images/img2.jpg)
@@ -48,6 +49,7 @@ We can see the cycle 0 --> 2 --> 3 --> 0 --> ..., and all of its nodes are white
 - **Output:** `false`
 - **Explanation:** The graph shows how the indices are connected. White nodes are jumping forward, while red is jumping backward.
 The only cycle is of size 1, so we return false.
+
 #### Example 3
 
 ![](images/img3.jpg)

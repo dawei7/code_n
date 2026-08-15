@@ -36,17 +36,17 @@ Return whether `root.val == root.left.val + root.right.val`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [10, 4, 6]`
-- Output: `true`
+- **Input:** `root = [10, 4, 6]`
+- **Output:** `true`
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [5, 3, 1]`
-- Output: `false`
+- **Input:** `root = [5, 3, 1]`
+- **Output:** `false`
 
-**Example 3**
+#### Example 3
 
-- Input: `root = [0, -8, 8]`
-- Output: `true`
+- **Input:** `root = [0, -8, 8]`
+- **Output:** `true`

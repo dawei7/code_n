@@ -32,16 +32,19 @@ Return `true` if `o1` and `o2` are deeply equal according to JSON semantics; oth
 - **Input:** $o1 = {"x":1,"y":2}, o2 = {"x":1,"y":2}$
 - **Output:** `true`
 - **Explanation:** The keys and values match exactly.
+
 #### Example 2
 
 - **Input:** $o1 = {"y":2,"x":1}, o2 = {"x":1,"y":2}$
 - **Output:** `true`
 - **Explanation:** Although the keys are in a different order, they still match exactly.
+
 #### Example 3
 
 - **Input:** $o1 = {"x":null,"L":[1,2,3]}, o2 = {"x":null,"L":["1","2","3"]}$
 - **Output:** `false`
 - **Explanation:** The array of numbers is different from the array of strings.
+
 #### Example 4
 
 - **Input:** $o1 = true, o2 = false$

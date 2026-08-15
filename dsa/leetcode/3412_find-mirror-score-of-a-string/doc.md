@@ -32,16 +32,16 @@ The constraint is $1\le\lvert\texttt{s}\rvert\le10^5$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "aczzx"`
-- Output: `5`
+- **Input:** `s = "aczzx"`
+- **Output:** `5`
 
 The `z` at index 2 pairs with the `a` at index 0 for 2 points. The `x` at index 4 then pairs with the `c` at index 1 for 3 more points.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "abcdef"`
-- Output: `0`
+- **Input:** `s = "abcdef"`
+- **Output:** `0`
 
 No character has an earlier unmarked mirror.

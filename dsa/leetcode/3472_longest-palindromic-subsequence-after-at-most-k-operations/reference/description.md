@@ -8,19 +8,24 @@ Return the length of the **longest palindromic subsequence** of `s` that can be 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "abced", k = 2
+- **Input:** s = "abced", k = 2
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - Replace $s[1]$ with the next letter, and `s` becomes `"acced"`.
 
@@ -28,15 +33,13 @@ Return the length of the **longest palindromic subsequence** of `s` that can be 
 
 The subsequence `"ccc"` forms a palindrome of length 3, which is the maximum.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "aaazzz", k = 4
+- **Input:** s = "aaazzz", k = 4
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
+- **Explanation:** 
 
 - Replace $s[0]$ with the previous letter, and `s` becomes `"zaazzz"`.
 
@@ -45,8 +48,6 @@ The subsequence `"ccc"` forms a palindrome of length 3, which is the maximum.
 - Replace $s[3]$ with the next letter, and `s` becomes `"zaaaaz"`.
 
 The entire string forms a palindrome of length 6.
-
-</div>
 
 ### 4. Constraints
 

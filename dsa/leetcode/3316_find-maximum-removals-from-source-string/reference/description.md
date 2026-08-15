@@ -14,63 +14,53 @@ Return the **maximum** number of *operations* that can be performed.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `source`: Input parameter (`str`).
+- `pattern`: Input parameter (`str`).
+- `targetIndices`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** source = "abbaa", pattern = "aba", targetIndices = [0,1,2]
+- **Input:** source = "abbaa", pattern = "aba", targetIndices = [0,1,2]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-We can't remove $\text{source}[0]$ but we can do either of these two operations:
+- **Explanation:** We can't remove $\text{source}[0]$ but we can do either of these two operations:
 
 - Remove $\text{source}[1]$, so that `source` becomes $"a_{baa}"$.
 
 - Remove $\text{source}[2]$, so that `source` becomes $"\text{ab}_{aa}"$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** source = "bcda", pattern = "d", targetIndices = [0,3]
+- **Input:** source = "bcda", pattern = "d", targetIndices = [0,3]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** We can remove $\text{source}[0]$ and $\text{source}[3]$ in two operations.
 
-We can remove $\text{source}[0]$ and $\text{source}[3]$ in two operations.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** source = "dda", pattern = "dda", targetIndices = [0,1,2]
+- **Input:** source = "dda", pattern = "dda", targetIndices = [0,1,2]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** We can't remove any character from `source`.
 
-We can't remove any character from `source`.
-
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** source = "yeyeykyded", pattern = "yeyyd", targetIndices = [0,2,3,4]
+- **Input:** source = "yeyeykyded", pattern = "yeyyd", targetIndices = [0,2,3,4]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-We can remove $\text{source}[2]$ and $\text{source}[3]$ in two operations.
-
-</div>
+- **Explanation:** We can remove $\text{source}[2]$ and $\text{source}[3]$ in two operations.
 
 ### 4. Constraints
 

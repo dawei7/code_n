@@ -46,7 +46,7 @@ Return a table with the single column $\text{account}_{id}$. Include each $\text
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 LogInfo table:
 +------------+------------+---------------------+---------------------+
 | account_id | ip_address | login               | logout              |
@@ -60,15 +60,14 @@ LogInfo table:
 | 4          | 10         | 2021-02-01 16:00:00 | 2021-02-01 17:00:00 |
 | 4          | 11         | 2021-02-01 17:00:00 | 2021-02-01 17:59:59 |
 +------------+------------+---------------------+---------------------+
-**Output:**
+- **Output:** 
 +------------+
 | account_id |
 +------------+
 | 1          |
 | 4          |
 +------------+
-**Explanation:**
-Account ID 1 --> The account was active from "2021-02-01 09:00:00" to "2021-02-01 09:30:00" with two different IP addresses (1 and 2). It should be banned.
+- **Explanation:** Account ID 1 --> The account was active from "2021-02-01 09:00:00" to "2021-02-01 09:30:00" with two different IP addresses (1 and 2). It should be banned.
 Account ID 2 --> The account was active from two different addresses (6, 7) but in **two different times**.
 Account ID 3 --> The account was active from two different addresses (9, 13) on the same day but **they do not intersect at any moment**.
 Account ID 4 --> The account was active from "2021-02-01 17:00:00" to "2021-02-01 17:00:00" with two different IP addresses (10 and 11). It should be banned.

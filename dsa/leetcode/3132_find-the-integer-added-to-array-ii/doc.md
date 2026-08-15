@@ -33,14 +33,14 @@ Every element of both arrays is between $0$ and $1000$, inclusive.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [4, 20, 16, 12, 8], nums2 = [14, 18, 10]`
-- Output: `-2`
-- Explanation: Remove the values at indices `0` and `4`. Adding `-2` to `[20, 16, 12]` produces `[18, 14, 10]`.
+- **Input:** `nums1 = [4, 20, 16, 12, 8], nums2 = [14, 18, 10]`
+- **Output:** `-2`
+- **Explanation:** Remove the values at indices `0` and `4`. Adding `-2` to `[20, 16, 12]` produces `[18, 14, 10]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [3, 5, 5, 3], nums2 = [7, 7]`
-- Output: `2`
-- Explanation: Remove the two values equal to `3`, then add `2` to the remaining pair.
+- **Input:** `nums1 = [3, 5, 5, 3], nums2 = [7, 7]`
+- **Output:** `2`
+- **Explanation:** Remove the two values equal to `3`, then add `2` to the remaining pair.

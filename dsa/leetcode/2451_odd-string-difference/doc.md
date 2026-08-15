@@ -32,14 +32,14 @@ Let $m$ be the common word length. The constraints guarantee $2 \le m \le 20$ an
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `words = ["adc", "wzy", "abc"]`
-- Output: `"abc"`
-- Explanation: The first two words produce `[3, -1]`, while `"abc"` produces `[1, 1]`.
+- **Input:** `words = ["adc", "wzy", "abc"]`
+- **Output:** `"abc"`
+- **Explanation:** The first two words produce `[3, -1]`, while `"abc"` produces `[1, 1]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `words = ["aaa", "bob", "ccc", "ddd"]`
-- Output: `"bob"`
-- Explanation: Every constant-letter word produces `[0, 0]`; `"bob"` produces `[13, -13]`.
+- **Input:** `words = ["aaa", "bob", "ccc", "ddd"]`
+- **Output:** `"bob"`
+- **Explanation:** Every constant-letter word produces `[0, 0]`; `"bob"` produces `[13, -13]`.

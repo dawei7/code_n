@@ -14,8 +14,14 @@ Return *the **maximum** total score you can get*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `x`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -30,6 +36,7 @@ that initially you have $\text{nums}[0]$ points.
 - **Explanation:** We can visit the following positions in the array: 0 -> 2 -> 3 -> 4.
 The corresponding values are 2, 6, 1 and 9. Since the integers 6 and 1 have different parities, the move 2 -> 3 will make you lose a score of x = 5.
 The total score will be: 2 + 6 + 1 + 9 - 5 = 13.
+
 #### Example 2
 
 - **Input:** `nums = [2,4,6,8], x = 3`

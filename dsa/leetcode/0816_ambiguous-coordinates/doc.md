@@ -30,20 +30,20 @@ Each restored number must use ordinary decimal notation: a multi-digit integer p
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "(123)"`
-- Output: `["(1, 23)","(1, 2.3)","(12, 3)","(1.2, 3)"]`
-- Explanation: Each interior split supplies the comma, and each side may contain at most one legal decimal point.
+- **Input:** `s = "(123)"`
+- **Output:** `["(1, 23)","(1, 2.3)","(12, 3)","(1.2, 3)"]`
+- **Explanation:** Each interior split supplies the comma, and each side may contain at most one legal decimal point.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "(00011)"`
-- Output: `["(0, 0.011)","(0.001, 1)"]`
-- Explanation: Leading-zero rules eliminate every other placement.
+- **Input:** `s = "(00011)"`
+- **Output:** `["(0, 0.011)","(0.001, 1)"]`
+- **Explanation:** Leading-zero rules eliminate every other placement.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "(0123)"`
-- Output: `["(0, 123)","(0, 12.3)","(0, 1.23)","(0.1, 23)","(0.1, 2.3)","(0.12, 3)"]`
-- Explanation: A multi-digit whole part cannot begin with zero, but `0` followed by a nonzero fractional suffix is valid.
+- **Input:** `s = "(0123)"`
+- **Output:** `["(0, 123)","(0, 12.3)","(0, 1.23)","(0.1, 23)","(0.1, 2.3)","(0.12, 3)"]`
+- **Explanation:** A multi-digit whole part cannot begin with zero, but `0` followed by a nonzero fractional suffix is valid.

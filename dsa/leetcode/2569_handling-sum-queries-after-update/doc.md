@@ -32,20 +32,20 @@ A query `[1, l, r]` flips every bit of `nums1` from index `l` through `r`, inclu
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [1, 0, 1], nums2 = [0, 0, 0], queries = [[1, 1, 1], [2, 1, 0], [3, 0, 0]]`
-- Output: `[3]`
-- Explanation: The flip makes `nums1 = [1, 1, 1]`; the type-2 query then adds $1$ at all three positions of `nums2`.
+- **Input:** `nums1 = [1, 0, 1], nums2 = [0, 0, 0], queries = [[1, 1, 1], [2, 1, 0], [3, 0, 0]]`
+- **Output:** `[3]`
+- **Explanation:** The flip makes `nums1 = [1, 1, 1]`; the type-2 query then adds $1$ at all three positions of `nums2`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [1], nums2 = [5], queries = [[2, 0, 0], [3, 0, 0]]`
-- Output: `[5]`
-- Explanation: A zero multiplier leaves the sum unchanged.
+- **Input:** `nums1 = [1], nums2 = [5], queries = [[2, 0, 0], [3, 0, 0]]`
+- **Output:** `[5]`
+- **Explanation:** A zero multiplier leaves the sum unchanged.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums1 = [0, 1], nums2 = [2, 3], queries = [[3, 0, 0], [1, 0, 1], [2, 2, 0], [3, 0, 0]]`
-- Output: `[5, 7]`
-- Explanation: After the flip, only the first bit is one, so the type-2 query increases the total by $2$.
+- **Input:** `nums1 = [0, 1], nums2 = [2, 3], queries = [[3, 0, 0], [1, 0, 1], [2, 2, 0], [3, 0, 0]]`
+- **Output:** `[5, 7]`
+- **Explanation:** After the flip, only the first bit is one, so the type-2 query increases the total by $2$.

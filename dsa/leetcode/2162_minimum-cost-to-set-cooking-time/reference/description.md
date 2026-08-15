@@ -26,8 +26,16 @@ Remember that one minute consists of `60` seconds.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `startAt`: Input parameter (`int`).
+- `moveCost`: Input parameter (`int`).
+- `pushCost`: Input parameter (`int`).
+- `targetSeconds`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -47,6 +55,7 @@ The cost is: 2 + 1 + 2 + 1 + 2 + 1 + 2 + 1 = 12.
 - 9 6 0, normalized as 0960 and interpreted as 9 minutes and 60 seconds.
 The finger moves to 9 (with cost 2), pushes 9 (with cost 1), moves to 6 (with cost 2), pushes 6 (with cost 1), moves to 0 (with cost 2), and pushes 0 (with cost 1).
 The cost is: 2 + 1 + 2 + 1 + 2 + 1 = 9.
+
 #### Example 2
 
 ![](images/2.png)

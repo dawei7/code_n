@@ -44,7 +44,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Signups table:
 +---------+---------------------+
 | user_id | time_stamp          |
@@ -67,7 +67,7 @@ Confirmations table:
 | 6       | 2021-10-23 14:14:14 | confirmed |
 | 6       | 2021-10-24 14:14:13 | timeout   |
 +---------+---------------------+-----------+
-**Output:**
+- **Output:** 
 +---------+
 | user_id |
 +---------+
@@ -75,8 +75,7 @@ Confirmations table:
 | 3       |
 | 6       |
 +---------+
-**Explanation:**
-User 2 requested two messages within exactly 24 hours of each other, so we include them.
+- **Explanation:** User 2 requested two messages within exactly 24 hours of each other, so we include them.
 User 3 requested two messages within 6 minutes and 59 seconds of each other, so we include them.
 User 6 requested two messages within 23 hours, 59 minutes, and 59 seconds of each other, so we include them.
 User 7 requested two messages within 24 hours and 1 second of each other, so we exclude them from the answer.

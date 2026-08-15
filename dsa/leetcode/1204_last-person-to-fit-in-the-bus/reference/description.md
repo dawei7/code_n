@@ -38,7 +38,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Queue table:
 +-----------+-------------+--------+------+
 | person_id | person_name | weight | turn |
@@ -50,13 +50,13 @@ Queue table:
 | 1         | Winston     | 500    | 6    |
 | 2         | Marie       | 200    | 4    |
 +-----------+-------------+--------+------+
-**Output:**
+- **Output:** 
 +-------------+
 | person_name |
 +-------------+
 | John Cena   |
 +-------------+
-**Explanation:** The folowing table is ordered by the turn for simplicity.
+- **Explanation:** The folowing table is ordered by the turn for simplicity.
 +------+----+-----------+--------+--------------+
 | Turn | ID | Name      | Weight | Total Weight |
 +------+----+-----------+--------+--------------+

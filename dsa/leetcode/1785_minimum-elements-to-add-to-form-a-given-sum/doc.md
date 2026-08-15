@@ -31,23 +31,23 @@ You may add any integers to the array, but each new value must preserve the same
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,-1,1], limit = 3, goal = -4`
-- Output: `2`
+- **Input:** `nums = [1,-1,1], limit = 3, goal = -4`
+- **Output:** `2`
 
 The current sum is `1`. Adding `-2` and `-3` supplies the missing `-5`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,-10,9,1], limit = 100, goal = 0`
-- Output: `1`
+- **Input:** `nums = [1,-10,9,1], limit = 100, goal = 0`
+- **Output:** `1`
 
 The current sum is `1`, so one added value `-1` is sufficient.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [4,-7,3], limit = 5, goal = 0`
-- Output: `0`
+- **Input:** `nums = [4,-7,3], limit = 5, goal = 0`
+- **Output:** `0`
 
 The array already has the requested sum.

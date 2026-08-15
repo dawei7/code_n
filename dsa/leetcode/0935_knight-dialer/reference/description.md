@@ -18,8 +18,13 @@ As the answer may be very large, **return the answer modulo** $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -28,11 +33,13 @@ As the answer may be very large, **return the answer modulo** $10^{9} + 7$.
 - **Input:** $n = 1$
 - **Output:** `10`
 - **Explanation:** We need to dial a number of length 1, so placing the knight over any numeric cell of the 10 cells is sufficient.
+
 #### Example 2
 
 - **Input:** $n = 2$
 - **Output:** `20`
 - **Explanation:** All the valid number we can dial are [04, 06, 16, 18, 27, 29, 34, 38, 40, 43, 49, 60, 61, 67, 72, 76, 81, 83, 92, 94]
+
 #### Example 3
 
 - **Input:** $n = 3131$

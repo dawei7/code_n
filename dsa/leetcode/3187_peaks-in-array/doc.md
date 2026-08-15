@@ -35,16 +35,16 @@ Return the answers to the type-1 queries in their original order.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3, 1, 4, 2, 5], queries = [[2, 3, 4], [1, 0, 4]]`
-- Output: `[0]`
+- **Input:** `nums = [3, 1, 4, 2, 5], queries = [[2, 3, 4], [1, 0, 4]]`
+- **Output:** `[0]`
 
 The update produces `[3, 1, 4, 4, 5]`, which has no element strictly greater than both neighbors inside the requested range.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4, 1, 4, 2, 1, 5], queries = [[2, 2, 4], [1, 0, 2], [1, 0, 4]]`
-- Output: `[0, 1]`
+- **Input:** `nums = [4, 1, 4, 2, 1, 5], queries = [[2, 2, 4], [1, 0, 2], [1, 0, 4]]`
+- **Output:** `[0, 1]`
 
 The update leaves the array unchanged. The first range has no interior peak; in the second range, the value at index 2 is an interior peak.

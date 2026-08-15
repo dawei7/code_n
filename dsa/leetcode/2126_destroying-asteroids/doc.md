@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/destroying-asteroids/) |
 
 ## Problem Description
+
 ### Goal
 
 A planet begins with the positive integer mass `mass`. Each value in
@@ -27,6 +28,7 @@ is sufficient for a successful collision, and mass gained from earlier
 asteroids is available for every later collision.
 
 ### Function Contract
+
 **Inputs**
 
 - `mass`: The planet's positive initial mass.
@@ -39,18 +41,19 @@ Return `true` if all asteroids can be destroyed in some order; otherwise return
 `false`.
 
 ### Examples
-**Example 1**
 
-- Input: `mass = 10, asteroids = [3, 9, 19, 5, 21]`
-- Output: `true`
+#### Example 1
+
+- **Input:** `mass = 10, asteroids = [3, 9, 19, 5, 21]`
+- **Output:** `true`
 
 Destroying accessible smaller asteroids first grows the planet enough to
 destroy every later one.
 
-**Example 2**
+#### Example 2
 
-- Input: `mass = 5, asteroids = [4, 9, 23, 4]`
-- Output: `false`
+- **Input:** `mass = 5, asteroids = [4, 9, 23, 4]`
+- **Output:** `false`
 
 Even after absorbing the other three asteroids, the planet reaches only mass
 $22$, which is less than $23$.

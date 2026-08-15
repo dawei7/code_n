@@ -16,20 +16,19 @@ A **subsequence** is an array that can be derived from another array by deleting
 
 - **Input:** `nums = [4,1,5,3,1], k = 3`
 - **Output:** `12`
-- **Explanation:**
-The subsequence with the largest possible even sum is [4,5,3]. It has a sum of 4 + 5 + 3 = 12.
+- **Explanation:** The subsequence with the largest possible even sum is [4,5,3]. It has a sum of 4 + 5 + 3 = 12.
+
 #### Example 2
 
 - **Input:** `nums = [4,6,2], k = 3`
 - **Output:** `12`
-- **Explanation:**
-The subsequence with the largest possible even sum is [4,6,2]. It has a sum of 4 + 6 + 2 = 12.
+- **Explanation:** The subsequence with the largest possible even sum is [4,6,2]. It has a sum of 4 + 6 + 2 = 12.
+
 #### Example 3
 
 - **Input:** `nums = [1,3,5], k = 1`
 - **Output:** `-1`
-- **Explanation:**
-No subsequence of nums with length 1 has an even sum.
+- **Explanation:** No subsequence of nums with length 1 has an even sum.
 
 ### 4. Constraints
 

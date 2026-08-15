@@ -39,20 +39,20 @@ An evaluated sequence contains between $2$ and $2\cdot10^4$ actions, begins with
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `new Calculator(10).add(5).subtract(7).getResult()`
-- Output: `8`
-- Explanation: Operations apply from left to right, giving $10+5-7$.
+- **Input:** `new Calculator(10).add(5).subtract(7).getResult()`
+- **Output:** `8`
+- **Explanation:** Operations apply from left to right, giving $10+5-7$.
 
-**Example 2**
+#### Example 2
 
-- Input: `new Calculator(2).multiply(5).power(2).getResult()`
-- Output: `100`
-- Explanation: Multiplication occurs before the later exponentiation: $(2\cdot5)^2=100$.
+- **Input:** `new Calculator(2).multiply(5).power(2).getResult()`
+- **Output:** `100`
+- **Explanation:** Multiplication occurs before the later exponentiation: $(2\cdot5)^2=100$.
 
-**Example 3**
+#### Example 3
 
-- Input: `new Calculator(20).divide(0).getResult()`
-- Output: `"Division by zero is not allowed"`
-- Explanation: Division by zero throws before a result can be returned.
+- **Input:** `new Calculator(20).divide(0).getResult()`
+- **Output:** `"Division by zero is not allowed"`
+- **Explanation:** Division by zero throws before a result can be returned.

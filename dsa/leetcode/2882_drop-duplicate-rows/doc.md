@@ -32,17 +32,17 @@ Return a DataFrame containing the first row for each distinct `email`, with colu
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `customers = [{"customer_id": 1, "name": "Ella", "email": "emily@example.com"}, {"customer_id": 2, "name": "David", "email": "michael@example.com"}, {"customer_id": 3, "name": "Zachary", "email": "sarah@example.com"}, {"customer_id": 4, "name": "Alice", "email": "john@example.com"}, {"customer_id": 5, "name": "Finn", "email": "john@example.com"}, {"customer_id": 6, "name": "Violet", "email": "alice@example.com"}]`
-- Output: `[{"customer_id": 1, "name": "Ella", "email": "emily@example.com"}, {"customer_id": 2, "name": "David", "email": "michael@example.com"}, {"customer_id": 3, "name": "Zachary", "email": "sarah@example.com"}, {"customer_id": 4, "name": "Alice", "email": "john@example.com"}, {"customer_id": 6, "name": "Violet", "email": "alice@example.com"}]`
+- **Input:** `customers = [{"customer_id": 1, "name": "Ella", "email": "emily@example.com"}, {"customer_id": 2, "name": "David", "email": "michael@example.com"}, {"customer_id": 3, "name": "Zachary", "email": "sarah@example.com"}, {"customer_id": 4, "name": "Alice", "email": "john@example.com"}, {"customer_id": 5, "name": "Finn", "email": "john@example.com"}, {"customer_id": 6, "name": "Violet", "email": "alice@example.com"}]`
+- **Output:** `[{"customer_id": 1, "name": "Ella", "email": "emily@example.com"}, {"customer_id": 2, "name": "David", "email": "michael@example.com"}, {"customer_id": 3, "name": "Zachary", "email": "sarah@example.com"}, {"customer_id": 4, "name": "Alice", "email": "john@example.com"}, {"customer_id": 6, "name": "Violet", "email": "alice@example.com"}]`
 
-**Example 2**
+#### Example 2
 
-- Input: `customers = [{"customer_id": 10, "name": "Mia", "email": "mia@example.com"}, {"customer_id": 11, "name": "Noah", "email": "noah@example.com"}]`
-- Output: `[{"customer_id": 10, "name": "Mia", "email": "mia@example.com"}, {"customer_id": 11, "name": "Noah", "email": "noah@example.com"}]`
+- **Input:** `customers = [{"customer_id": 10, "name": "Mia", "email": "mia@example.com"}, {"customer_id": 11, "name": "Noah", "email": "noah@example.com"}]`
+- **Output:** `[{"customer_id": 10, "name": "Mia", "email": "mia@example.com"}, {"customer_id": 11, "name": "Noah", "email": "noah@example.com"}]`
 
-**Example 3**
+#### Example 3
 
-- Input: `customers = [{"customer_id": 20, "name": "Ada", "email": "team@example.com"}, {"customer_id": 21, "name": "Bo", "email": "team@example.com"}, {"customer_id": 22, "name": "Cy", "email": "team@example.com"}]`
-- Output: `[{"customer_id": 20, "name": "Ada", "email": "team@example.com"}]`
+- **Input:** `customers = [{"customer_id": 20, "name": "Ada", "email": "team@example.com"}, {"customer_id": 21, "name": "Bo", "email": "team@example.com"}, {"customer_id": 22, "name": "Cy", "email": "team@example.com"}]`
+- **Output:** `[{"customer_id": 20, "name": "Ada", "email": "team@example.com"}]`

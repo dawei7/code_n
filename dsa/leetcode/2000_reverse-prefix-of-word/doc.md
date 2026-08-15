@@ -29,20 +29,20 @@ Return `word` with the prefix ending at the first occurrence of `ch` reversed, o
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word = "abcdefd", ch = "d"`
-- Output: `"dcbaefd"`
-- Explanation: The first `d` is at index $3$, so `"abcd"` becomes `"dcba"`.
+- **Input:** `word = "abcdefd", ch = "d"`
+- **Output:** `"dcbaefd"`
+- **Explanation:** The first `d` is at index $3$, so `"abcd"` becomes `"dcba"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `word = "xyxzxe", ch = "z"`
-- Output: `"zxyxxe"`
-- Explanation: The first `z` ends the prefix `"xyxz"`, whose reversal is `"zxyx"`.
+- **Input:** `word = "xyxzxe", ch = "z"`
+- **Output:** `"zxyxxe"`
+- **Explanation:** The first `z` ends the prefix `"xyxz"`, whose reversal is `"zxyx"`.
 
-**Example 3**
+#### Example 3
 
-- Input: `word = "abcd", ch = "z"`
-- Output: `"abcd"`
-- Explanation: Since `z` is absent, the string is unchanged.
+- **Input:** `word = "abcd", ch = "z"`
+- **Output:** `"abcd"`
+- **Explanation:** Since `z` is absent, the string is unchanged.

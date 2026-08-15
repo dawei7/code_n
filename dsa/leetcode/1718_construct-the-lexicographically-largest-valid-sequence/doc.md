@@ -30,20 +30,20 @@ Among all sequences satisfying those distance rules, return the lexicographicall
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 3`
-- Output: `[3,1,2,3,2]`
-- Explanation: Both copies of $2$ and $3$ are separated by their values, and no valid sequence begins with a larger lexicographic prefix.
+- **Input:** `n = 3`
+- **Output:** `[3,1,2,3,2]`
+- **Explanation:** Both copies of $2$ and $3$ are separated by their values, and no valid sequence begins with a larger lexicographic prefix.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 5`
-- Output: `[5,3,1,4,3,5,2,4,2]`
-- Explanation: Each value above $1$ appears at indices whose difference equals that value.
+- **Input:** `n = 5`
+- **Output:** `[5,3,1,4,3,5,2,4,2]`
+- **Explanation:** Each value above $1$ appears at indices whose difference equals that value.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 1`
-- Output: `[1]`
-- Explanation: The sole required value is also the complete sequence.
+- **Input:** `n = 1`
+- **Output:** `[1]`
+- **Explanation:** The sole required value is also the complete sequence.

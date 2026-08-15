@@ -31,16 +31,16 @@ Return the greatest achievable top value after exactly `k` legal moves, or `-1` 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [5,2,2,4,0,6]`, `k = 4`
-- Output: `5`
+- **Input:** `nums = [5,2,2,4,0,6]`, `k = 4`
+- **Output:** `5`
 
 Remove the first three values, then restore `5` on the fourth move.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2]`, `k = 1`
-- Output: `-1`
+- **Input:** `nums = [2]`, `k = 1`
+- **Output:** `-1`
 
 The only legal move removes the sole element, leaving the pile empty.

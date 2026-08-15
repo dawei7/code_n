@@ -6,8 +6,13 @@ The distance between two cells sharing a common edge is `1`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `mat`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
@@ -17,6 +22,7 @@ The distance between two cells sharing a common edge is `1`.
 
 - **Input:** $mat = [[0,0,0],[0,1,0],[0,0,0]]$
 - **Output:** `[[0,0,0],[0,1,0],[0,0,0]]`
+
 #### Example 2
 
 ![](images/01-2-grid.jpg)

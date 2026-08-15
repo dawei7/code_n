@@ -31,20 +31,20 @@ The cost of a move is the total number of stones in the selected piles. Return t
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `stones = [3, 2, 4, 1], k = 2`
-- Output: `20`
-- Explanation: Merge the first pair for $5$, the last pair for $5$, then the two remaining piles for $10$.
+- **Input:** `stones = [3, 2, 4, 1], k = 2`
+- **Output:** `20`
+- **Explanation:** Merge the first pair for $5$, the last pair for $5$, then the two remaining piles for $10$.
 
-**Example 2**
+#### Example 2
 
-- Input: `stones = [3, 2, 4, 1], k = 3`
-- Output: `-1`
-- Explanation: One merge leaves two piles, which cannot be merged by an exactly-three operation.
+- **Input:** `stones = [3, 2, 4, 1], k = 3`
+- **Output:** `-1`
+- **Explanation:** One merge leaves two piles, which cannot be merged by an exactly-three operation.
 
-**Example 3**
+#### Example 3
 
-- Input: `stones = [3, 5, 1, 2, 6], k = 3`
-- Output: `25`
-- Explanation: Merge `[5, 1, 2]` for $8$, then merge the remaining three piles for $17$.
+- **Input:** `stones = [3, 5, 1, 2, 6], k = 3`
+- **Output:** `25`
+- **Explanation:** Merge `[5, 1, 2]` for $8$, then merge the remaining three piles for $17$.

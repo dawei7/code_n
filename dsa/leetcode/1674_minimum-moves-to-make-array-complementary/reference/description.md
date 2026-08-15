@@ -8,8 +8,14 @@ Return the ***minimum** number of moves required to make *`nums`* **complementar
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `limit`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,11 +29,13 @@ nums[1] + nums[2] = 2 + 2 = 4.
 nums[2] + nums[1] = 2 + 2 = 4.
 nums[3] + nums[0] = 3 + 1 = 4.
 Therefore, nums[i] + nums[n-1-i] = 4 for every i, so nums is complementary.
+
 #### Example 2
 
 - **Input:** `nums = [1,2,2,1], limit = 2`
 - **Output:** `2`
 - **Explanation:** In 2 moves, you can change nums to [<u>2</u>,2,2,<u>2</u>]. You cannot change any number to 3 since 3 > limit.
+
 #### Example 3
 
 - **Input:** `nums = [1,2,1,2], limit = 2`

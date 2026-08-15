@@ -12,8 +12,14 @@ Return* the divisibility array of** *`word`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `word`: Input parameter (`str`).
+- `m`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -22,6 +28,7 @@ Return* the divisibility array of** *`word`.
 - **Input:** $word = "998244353", m = 3$
 - **Output:** `[1,1,0,0,0,1,1,0,0]`
 - **Explanation:** There are only 4 prefixes that are divisible by 3: "9", "99", "998244", and "9982443".
+
 #### Example 2
 
 - **Input:** $word = "1010", m = 10$

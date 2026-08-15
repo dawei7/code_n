@@ -34,23 +34,23 @@ A subarray is good exactly when it contains the required index, so its endpoints
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 4, 3, 7, 4, 5], k = 3`
-- Output: `15`
+- **Input:** `nums = [1, 4, 3, 7, 4, 5], k = 3`
+- **Output:** `15`
 
 The interval from index `1` through `5` has minimum `3`, length `5`, and score `15`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [5, 5, 4, 5, 4, 1, 1, 1], k = 0`
-- Output: `20`
+- **Input:** `nums = [5, 5, 4, 5, 4, 1, 1, 1], k = 0`
+- **Output:** `20`
 
 The prefix ending at index `4` has minimum `4` and length `5`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [2, 3, 3, 1], k = 1`
-- Output: `6`
+- **Input:** `nums = [2, 3, 3, 1], k = 1`
+- **Output:** `6`
 
 Either the first three values or the two adjacent `3` values attain score `6`.

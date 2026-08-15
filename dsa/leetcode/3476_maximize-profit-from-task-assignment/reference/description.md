@@ -18,12 +18,11 @@ Return the **maximum** total profit that can be earned by optimally assigning th
 
 #### Example 1
 
-<div class="example-block">
-**Input:** workers = [1,2,3,4,5], tasks = [[1,100],[2,400],[3,100],[3,400]]
+- **Input:** workers = [1,2,3,4,5], tasks = [[1,100],[2,400],[3,100],[3,400]]
 
-**Output:** 1000
+- **Output:** 1000
 
-**Explanation:**
+- **Explanation:** 
 
 - Worker 0 completes task 0.
 
@@ -33,31 +32,21 @@ Return the **maximum** total profit that can be earned by optimally assigning th
 
 - The additional worker completes task 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** workers = [10,10000,100000000], tasks = [[1,100]]
+- **Input:** workers = [10,10000,100000000], tasks = [[1,100]]
 
-**Output:** 100
+- **Output:** 100
 
-**Explanation:**
+- **Explanation:** Since no worker matches the skill requirement, only the additional worker can complete task 0.
 
-Since no worker matches the skill requirement, only the additional worker can complete task 0.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** workers = [7], tasks = [[3,3],[3,3]]
+- **Input:** workers = [7], tasks = [[3,3],[3,3]]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-The additional worker completes task 1. Worker 0 cannot work since no task has a skill requirement of 7.
-
-</div>
+- **Explanation:** The additional worker completes task 1. Worker 0 cannot work since no task has a skill requirement of 7.
 
 ### 4. Constraints
 

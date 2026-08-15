@@ -33,17 +33,17 @@ List every integer from `lo` through `hi`, inclusive, ordered first by increasin
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `lo = 12, hi = 15, k = 2`
-- Output: `13`
+- **Input:** `lo = 12, hi = 15, k = 2`
+- **Output:** `13`
 
-**Example 2**
+#### Example 2
 
-- Input: `lo = 7, hi = 11, k = 4`
-- Output: `7`
+- **Input:** `lo = 7, hi = 11, k = 4`
+- **Output:** `7`
 
-**Example 3**
+#### Example 3
 
-- Input: `lo = 1, hi = 1, k = 1`
-- Output: `1`
+- **Input:** `lo = 1, hi = 1, k = 1`
+- **Output:** `1`

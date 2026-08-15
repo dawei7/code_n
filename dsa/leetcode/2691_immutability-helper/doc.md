@@ -33,17 +33,17 @@ The native class returns one structurally shared immutable result per `produce` 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `obj = {"val":10}` with independent assignments of `11` and `9` to `val`.
-- Output: `[{"val":11},{"val":9}]`
+- **Input:** `obj = {"val":10}` with independent assignments of `11` and `9` to `val`.
+- **Output:** `[{"val":11},{"val":9}]`
 
-**Example 2**
+#### Example 2
 
-- Input: `obj = {"arr":[1,2,3]}` with one batch setting `arr[0]` to `5` and adding `newVal = 7`.
-- Output: `[{"arr":[5,2,3],"newVal":7}]`
+- **Input:** `obj = {"arr":[1,2,3]}` with one batch setting `arr[0]` to `5` and adding `newVal = 7`.
+- **Output:** `[{"arr":[5,2,3],"newVal":7}]`
 
-**Example 3**
+#### Example 3
 
-- Input: `obj = {"obj":{"val":{"x":10,"y":20}}}` with one batch swapping the two leaf values.
-- Output: `[{"obj":{"val":{"x":20,"y":10}}}]`
+- **Input:** `obj = {"obj":{"val":{"x":10,"y":20}}}` with one batch swapping the two leaf values.
+- **Output:** `[{"obj":{"val":{"x":20,"y":10}}}]`

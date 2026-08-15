@@ -37,17 +37,17 @@ Return the minimum possible sum of the `k` appended integers.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,4,25,10,25]`, `k = 2`
-- Output: `5`
+- **Input:** `nums = [1,4,25,10,25]`, `k = 2`
+- **Output:** `5`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [5,6]`, `k = 6`
-- Output: `25`
+- **Input:** `nums = [5,6]`, `k = 6`
+- **Output:** `25`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,1,2]`, `k = 3`
-- Output: `12`
+- **Input:** `nums = [1,1,2]`, `k = 3`
+- **Output:** `12`

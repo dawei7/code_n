@@ -43,7 +43,7 @@ Return `Id`, `Month`, and `Salary`, where `Salary` is the sum of the current rec
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Employee table:
 +----+-------+--------+
 | id | month | salary |
@@ -60,7 +60,7 @@ Employee table:
 | 1  | 7     | 90     |
 | 1  | 8     | 90     |
 +----+-------+--------+
-**Output:**
+- **Output:** 
 +----+-------+--------+
 | id | month | Salary |
 +----+-------+--------+
@@ -73,8 +73,7 @@ Employee table:
 | 3  | 3     | 100    |
 | 3  | 2     | 40     |
 +----+-------+--------+
-**Explanation:**
-Employee '1' has five salary records excluding their most recent month '8':
+- **Explanation:** Employee '1' has five salary records excluding their most recent month '8':
 - 90 for month '7'.
 - 60 for month '4'.
 - 40 for month '3'.

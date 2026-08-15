@@ -34,14 +34,14 @@ Let $n=\lvert\texttt{nums}\rvert$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,5,8]`
-- Output: `16`
-- Explanation: Hopping directly from `0` to `2` scores `(2 - 0) * 8 = 16`, which beats visiting index `1` first.
+- **Input:** `nums = [1,5,8]`
+- **Output:** `16`
+- **Explanation:** Hopping directly from `0` to `2` scores `(2 - 0) * 8 = 16`, which beats visiting index `1` first.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4,5,2,8,9,1,3]`
-- Output: `42`
-- Explanation: The hops `0 -> 4 -> 6` score `(4 - 0) * 9 + (6 - 4) * 3 = 42`.
+- **Input:** `nums = [4,5,2,8,9,1,3]`
+- **Output:** `42`
+- **Explanation:** The hops `0 -> 4 -> 6` score `(4 - 0) * 9 + (6 - 4) * 3 = 42`.

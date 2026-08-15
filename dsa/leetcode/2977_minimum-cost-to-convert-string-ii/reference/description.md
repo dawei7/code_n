@@ -12,8 +12,17 @@ Return *the **minimum** cost to convert the string *`source`* to the string *`ta
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `source`: Input parameter (`str`).
+- `target`: Input parameter (`str`).
+- `original`: Input parameter (`List[str]`).
+- `changed`: Input parameter (`List[str]`).
+- `cost`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -32,6 +41,7 @@ that there may exist indices `i`, `j` such that $\text{original}[j] = \text{orig
 - Change substring source[3..3] from "d" to "e" at a cost of 20.
 The total cost incurred is 5 + 1 + 2 + 20 = 28.
 It can be shown that this is the minimum possible cost.
+
 #### Example 2
 
 - **Input:** $source = "abcdefgh", target = "acdeeghh", original = ["bcd","fgh","thh"], changed = ["cde","thh","ghh"], cost = [1,3,5]$
@@ -42,6 +52,7 @@ It can be shown that this is the minimum possible cost.
 - Change substring source[5..7] from "thh" to "ghh" at a cost of 5. We can do this operation because indices [5,7] are disjoint with indices picked in the first operation, and identical with indices picked in the second operation.
 The total cost incurred is 1 + 3 + 5 = 9.
 It can be shown that this is the minimum possible cost.
+
 #### Example 3
 
 - **Input:** $source = "abcdefgh", target = "addddddd", original = ["bcd","defgh"], changed = ["ddd","ddddd"], cost = [100,1578]$

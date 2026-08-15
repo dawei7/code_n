@@ -31,23 +31,23 @@ Return that integer as a string so lengths up to $10^5$ are representable. Its f
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: \`n = 3, k = 5\`
-- Output: \`"595"\`
+- **Input:** \`n = 3, k = 5\`
+- **Output:** \`"595"\`
 
 Among three-digit palindromes divisible by 5, 595 is the largest.
 
-**Example 2**
+#### Example 2
 
-- Input: \`n = 1, k = 4\`
-- Output: \`"8"\`
+- **Input:** \`n = 1, k = 4\`
+- **Output:** \`"8"\`
 
 The valid one-digit choices are 4 and 8.
 
-**Example 3**
+#### Example 3
 
-- Input: \`n = 5, k = 6\`
-- Output: \`"89898"\`
+- **Input:** \`n = 5, k = 6\`
+- **Output:** \`"89898"\`
 
 The result is palindromic and divisible by both 2 and 3.

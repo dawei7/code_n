@@ -30,19 +30,19 @@ Return the minimum number of permitted single-character changes that makes the f
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `expression = "1&(0|1)"`
-- Output: `1`
-- Explanation: Replacing the inner `|` with `&` makes the expression false.
+- **Input:** `expression = "1&(0|1)"`
+- **Output:** `1`
+- **Explanation:** Replacing the inner `|` with `&` makes the expression false.
 
-**Example 2**
+#### Example 2
 
-- Input: `expression = "(0&0)&(0&0&0)"`
-- Output: `3`
+- **Input:** `expression = "(0&0)&(0&0&0)"`
+- **Output:** `3`
 
-**Example 3**
+#### Example 3
 
-- Input: `expression = "(0|(1|0&1))"`
-- Output: `1`
-- Explanation: Flipping the nested `1` to `0` changes the final result.
+- **Input:** `expression = "(0|(1|0&1))"`
+- **Output:** `1`
+- **Explanation:** Flipping the nested `1` to `0` changes the final result.

@@ -34,7 +34,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Tree table:
 +---+------+
 | N | P    |
@@ -47,7 +47,7 @@ Tree table:
 | 8 | 5    |
 | 5 | null |
 +---+------+
-**Output:**
+- **Output:** 
 +---+-------+
 | N | Type  |
 +---+-------+
@@ -59,7 +59,7 @@ Tree table:
 | 8 | Inner |
 | 9 | Leaf  |
 +---+-------+
-**Explanation:**
+- **Explanation:** 
 - Node 5 is the root node since it has no parent node.
 - Nodes 1, 3, 6, and 9 are leaf nodes because they don't have any child nodes.
 - Nodes 2, and 8 are inner nodes as they serve as parents to some of the nodes in the structure.

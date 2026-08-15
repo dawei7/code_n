@@ -31,20 +31,20 @@ The array is *good* when some choice of subset and integer multipliers produces 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [12, 5, 7, 23]`
-- Output: `true`
-- Explanation: The values admit an integer linear combination equal to $1$.
+- **Input:** `nums = [12, 5, 7, 23]`
+- **Output:** `true`
+- **Explanation:** The values admit an integer linear combination equal to $1$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [29, 6, 10]`
-- Output: `true`
-- Explanation: For example, $29 + 6 - 3 \cdot 10 = 5$ and further integer combinations yield $1$ because the common greatest divisor is $1$.
+- **Input:** `nums = [29, 6, 10]`
+- **Output:** `true`
+- **Explanation:** For example, $29 + 6 - 3 \cdot 10 = 5$ and further integer combinations yield $1$ because the common greatest divisor is $1$.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [3, 6]`
-- Output: `false`
-- Explanation: Every integer linear combination is divisible by $3$, so it cannot equal $1$.
+- **Input:** `nums = [3, 6]`
+- **Output:** `false`
+- **Explanation:** Every integer linear combination is divisible by $3$, so it cannot equal $1$.

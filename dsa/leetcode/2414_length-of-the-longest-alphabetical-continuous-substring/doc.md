@@ -32,17 +32,17 @@ Return the length of the longest contiguous substring whose adjacent letters eac
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abacaba"`
-- Output: `2`
+- **Input:** `s = "abacaba"`
+- **Output:** `2`
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "abcde"`
-- Output: `5`
+- **Input:** `s = "abcde"`
+- **Output:** `5`
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "za"`
-- Output: `1`
+- **Input:** `s = "za"`
+- **Output:** `1`

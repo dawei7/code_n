@@ -8,8 +8,14 @@ Return *the sum of lengths of all good strings in words*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+- `chars`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +24,7 @@ Return *the sum of lengths of all good strings in words*.
 - **Input:** $words = ["cat","bt","hat","tree"], chars = "atach"$
 - **Output:** `6`
 - **Explanation:** The strings that can be formed are "cat" and "hat" so the answer is 3 + 3 = 6.
+
 #### Example 2
 
 - **Input:** $words = ["hello","world","leetcode"], chars = "welldonehoneyr"$

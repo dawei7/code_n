@@ -8,8 +8,13 @@ Given a **0-indexed** integer array `nums`, return *the number of **distinct** q
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,11 +23,13 @@ Given a **0-indexed** integer array `nums`, return *the number of **distinct** q
 - **Input:** `nums = [1,2,3,6]`
 - **Output:** `1`
 - **Explanation:** The only quadruplet that satisfies the requirement is (0, 1, 2, 3) because 1 + 2 + 3 == 6.
+
 #### Example 2
 
 - **Input:** `nums = [3,3,6,4,5]`
 - **Output:** `0`
 - **Explanation:** There are no such quadruplets in [3,3,6,4,5].
+
 #### Example 3
 
 - **Input:** `nums = [1,1,1,3,5]`

@@ -18,8 +18,14 @@ Return *the sum of the points of the students*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `answers`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -32,6 +38,7 @@ Return *the sum of the points of the students*.
 - **Explanation:** As illustrated above, the correct answer of the expression is 13, therefore one student is rewarded 5 points: [20,<u>**13**</u>,42]
 A student might have applied the operators in this wrong order: ((7+3)*1)*2 = 20. Therefore one student is rewarded 2 points: [<u>**20**</u>,13,42]
 The points for the students are: [2,5,0]. The sum of the points is 2+5+0=7.
+
 #### Example 2
 
 - **Input:** `s = "3+5*2", answers = [13,0,10,13,13,16,16]`
@@ -39,6 +46,7 @@ The points for the students are: [2,5,0]. The sum of the points is 2+5+0=7.
 - **Explanation:** The correct answer of the expression is 13, therefore three students are rewarded 5 points each: [**<u>13</u>**,0,10,**<u>13</u>**,**<u>13</u>**,16,16]
 A student might have applied the operators in this wrong order: ((3+5)*2 = 16. Therefore two students are rewarded 2 points: [13,0,10,13,13,**<u>16</u>**,**<u>16</u>**]
 The points for the students are: [5,0,0,5,5,2,2]. The sum of the points is 5+0+0+5+5+2+2=19.
+
 #### Example 3
 
 - **Input:** `s = "6+0*1", answers = [12,9,6,4,8,6]`

@@ -25,6 +25,7 @@ Return the smallest achievable value of the largest subarray sum among all valid
 - **Output:** `18`
 - **Explanation:** There are four ways to split nums into two subarrays.
 The best way is to split it into [7,2,5] and [10,8], where the largest sum among the two subarrays is only 18.
+
 #### Example 2
 
 - **Input:** `nums = [1,2,3,4,5], k = 2`

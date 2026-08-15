@@ -16,8 +16,15 @@ Note that there can be **multiple edges** between the same two nodes.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+- `queries`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -31,6 +38,7 @@ Note that there can be **multiple edges** between the same two nodes.
 The answers for each of the queries are as follows:
 - answers[0] = 6. All the pairs have an incident(a, b) value greater than 2.
 - answers[1] = 5. All the pairs except (3, 4) have an incident(a, b) value greater than 3.
+
 #### Example 2
 
 - **Input:** $n = 5, edges = [[1,5],[1,5],[3,4],[2,5],[1,3],[5,1],[2,3],[2,5]], queries = [1,2,3,4,5]$

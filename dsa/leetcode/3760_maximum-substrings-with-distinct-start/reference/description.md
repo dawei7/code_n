@@ -20,46 +20,39 @@ Return the greatest possible number of substrings in a valid complete partition 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "abab"
+- **Input:** s = "abab"
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - Split `"abab"` into `"a"` and `"bab"`.
 
 - Each substring starts with a distinct character i.e `'a'` and `'b'`. Thus, the answer is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "abcd"
+- **Input:** s = "abcd"
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** 
 
 - Split `"abcd"` into `"a"`, `"b"`, `"c"`, and `"d"`.
 
 - Each substring starts with a distinct character. Thus, the answer is 4.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "aaaa"
+- **Input:** s = "aaaa"
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - All characters in `"aaaa"` are `'a'`.
 
 - Only one substring can start with `'a'`. Thus, the answer is 1.
-
-</div>
 
 ### 4. Constraints
 

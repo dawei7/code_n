@@ -53,7 +53,7 @@ $Project(\text{project}_{id}, \text{employee}_{id})$ contains $R$ distinct proje
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Project table:
 +-------------+-------------+
 | project_id  | employee_id |
@@ -73,7 +73,7 @@ Employee table:
 | 3           | John   | 3                |
 | 4           | Doe    | 2                |
 +-------------+--------+------------------+
-**Output:**
+- **Output:** 
 +-------------+---------------+
 | project_id  | employee_id   |
 +-------------+---------------+
@@ -81,5 +81,5 @@ Employee table:
 | 1           | 3             |
 | 2           | 1             |
 +-------------+---------------+
-**Explanation:** Both employees with id 1 and 3 have the most experience among the employees of the first project. For the second project, the employee with id 1 has the most experience.
+- **Explanation:** Both employees with id 1 and 3 have the most experience among the employees of the first project. For the second project, the employee with id 1 has the most experience.
 ```

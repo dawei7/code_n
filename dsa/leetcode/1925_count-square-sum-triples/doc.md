@@ -33,16 +33,16 @@ Given an upper bound `n`, count all square triples for which each of `a`, `b`, a
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 5`
-- Output: `2`
+- **Input:** `n = 5`
+- **Output:** `2`
 
 The triples are `(3,4,5)` and `(4,3,5)`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 10`
-- Output: `4`
+- **Input:** `n = 10`
+- **Output:** `4`
 
 The two orientations of `(3,4,5)` and `(6,8,10)` qualify.

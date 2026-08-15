@@ -14,8 +14,14 @@ Return *the matrix after applying *`k` *cyclic rotations to it*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
@@ -26,6 +32,7 @@ Return *the matrix after applying *`k` *cyclic rotations to it*.
 - **Input:** `grid = [[40,10],[30,20]], k = 1`
 - **Output:** `[[10,20],[40,30]]`
 - **Explanation:** The figures above represent the grid at every state.
+
 #### Example 2
 
 **

@@ -27,7 +27,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Teams table:
 +-------------+
 | team_name   |
@@ -36,7 +36,7 @@ Teams table:
 | Ahly SC     |
 | Real Madrid |
 +-------------+
-**Output:**
+- **Output:** 
 +-------------+-------------+
 | home_team   | away_team   |
 +-------------+-------------+
@@ -47,5 +47,5 @@ Teams table:
 | Ahly SC     | Real Madrid |
 | Ahly SC     | Leetcode FC |
 +-------------+-------------+
-**Explanation:** All the matches of the league are shown in the table.
+- **Explanation:** All the matches of the league are shown in the table.
 ```

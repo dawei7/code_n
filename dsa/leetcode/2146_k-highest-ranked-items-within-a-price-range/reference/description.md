@@ -26,8 +26,16 @@ Return *the *`k`* highest-ranked items within the price range **sorted** by thei
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+- `pricing`: Input parameter (`List[int]`).
+- `start`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
@@ -45,6 +53,7 @@ The ranks of these items are:
 - (2,1) with distance 3
 - (2,2) with distance 4
 Thus, the 3 highest ranked items in the price range are (0,1), (1,1), and (2,1).
+
 #### Example 2
 
 ![](images/example2drawio1.png)
@@ -59,6 +68,7 @@ The ranks of these items are:
 - (1,1) with distance 3
 - (0,1) with distance 4
 Thus, the 2 highest ranked items in the price range are (2,1) and (1,2).
+
 #### Example 3
 
 ![](images/example3.png)

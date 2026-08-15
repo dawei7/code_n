@@ -4,8 +4,10 @@ Given the `root` of a Binary Search Tree (BST), return *the minimum difference b
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `minDiffInBST(root: Optional[TreeNode]) -> `int``: Executes operation.
 
 ### 3. Examples
 
@@ -15,6 +17,7 @@ Given the `root` of a Binary Search Tree (BST), return *the minimum difference b
 
 - **Input:** `root = [4,2,6,1,3]`
 - **Output:** `1`
+
 #### Example 2
 
 ![](images/bst2.jpg)

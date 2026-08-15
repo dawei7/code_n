@@ -6,8 +6,13 @@ Return *any possible rearrangement of* `s` *or return* `""` *if not possible*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -15,6 +20,7 @@ Return *any possible rearrangement of* `s` *or return* `""` *if not possible*.
 
 - **Input:** `s = "aab"`
 - **Output:** `"aba"`
+
 #### Example 2
 
 - **Input:** `s = "aaab"`

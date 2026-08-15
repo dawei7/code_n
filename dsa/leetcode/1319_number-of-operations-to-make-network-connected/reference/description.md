@@ -8,8 +8,14 @@ Return *the minimum number of times you need to do this in order to make all the
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `connections`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,12 +26,14 @@ Return *the minimum number of times you need to do this in order to make all the
 - **Input:** $n = 4, connections = [[0,1],[0,2],[1,2]]$
 - **Output:** `1`
 - **Explanation:** Remove cable between computer 1 and 2 and place between computers 1 and 3.
+
 #### Example 2
 
 ![](images/sample_2_1677.png)
 
 - **Input:** $n = 6, connections = [[0,1],[0,2],[0,3],[1,2],[1,3]]$
 - **Output:** `2`
+
 #### Example 3
 
 - **Input:** $n = 6, connections = [[0,1],[0,2],[0,3],[1,2]]$

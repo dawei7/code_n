@@ -8,41 +8,38 @@ Return an array `result` of size 2, where $\text{result}[0]$ is the **length** o
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `edges`: Input parameter (`List[List[int]]`).
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** edges = [[0,1,1],[1,2,3],[1,3,1],[2,4,6],[4,7,2],[3,5,2],[3,6,5],[6,8,3]], nums = [1,1,0,3,1,2,1,1,0]
+- **Input:** edges = [[0,1,1],[1,2,3],[1,3,1],[2,4,6],[4,7,2],[3,5,2],[3,6,5],[6,8,3]], nums = [1,1,0,3,1,2,1,1,0]
 
-**Output:** [9,3]
+- **Output:** [9,3]
 
-**Explanation:**
-
-In the image below, nodes are colored by their corresponding values in `nums`.
+- **Explanation:** In the image below, nodes are colored by their corresponding values in `nums`.
 
 ![](images/e1.png)
 
 The longest special paths are `1 -> 2 -> 4` and `1 -> 3 -> 6 -> 8`, both having a length of 9. The minimum number of nodes across all longest special paths is 3.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** edges = [[1,0,3],[0,2,4],[0,3,5]], nums = [1,1,0,2]
+- **Input:** edges = [[1,0,3],[0,2,4],[0,3,5]], nums = [1,1,0,2]
 
-**Output:** [5,2]
+- **Output:** [5,2]
 
-**Explanation:**
-
-![](images/e2.png)
+- **Explanation:** ![](images/e2.png)
 
 The longest path is `0 -> 3` consisting of 2 nodes with a length of 5.
-
-</div>
 
 ### 4. Constraints
 

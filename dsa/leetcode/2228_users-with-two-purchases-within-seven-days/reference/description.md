@@ -29,7 +29,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Purchases table:
 +-------------+---------+---------------+
 | purchase_id | user_id | purchase_date |
@@ -41,15 +41,14 @@ Purchases table:
 | 5           | 7       | 2022-06-19    |
 | 2           | 2       | 2022-06-08    |
 +-------------+---------+---------------+
-**Output:**
+- **Output:** 
 +---------+
 | user_id |
 +---------+
 | 2       |
 | 7       |
 +---------+
-**Explanation:**
-User 2 had two purchases on 2022-03-13 and 2022-03-20. Since the second purchase is within 7 days of the first purchase, we add their ID.
+- **Explanation:** User 2 had two purchases on 2022-03-13 and 2022-03-20. Since the second purchase is within 7 days of the first purchase, we add their ID.
 User 5 had only 1 purchase.
 User 7 had two purchases on the same day so we add their ID.
 ```

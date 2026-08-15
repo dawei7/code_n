@@ -8,8 +8,14 @@ Return `true`* if *`s`* is a **prefix string** of *`words`*, or *`false`* otherw
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `words`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -17,14 +23,13 @@ Return `true`* if *`s`* is a **prefix string** of *`words`*, or *`false`* otherw
 
 - **Input:** `s = "iloveleetcode", words = ["i","love","leetcode","apples"]`
 - **Output:** `true`
-- **Explanation:**
-s can be made by concatenating "i", "love", and "leetcode" together.
+- **Explanation:** s can be made by concatenating "i", "love", and "leetcode" together.
+
 #### Example 2
 
 - **Input:** `s = "iloveleetcode", words = ["apples","i","love","leetcode"]`
 - **Output:** `false`
-- **Explanation:**
-It is impossible to make s using a prefix of arr.
+- **Explanation:** It is impossible to make s using a prefix of arr.
 
 ### 4. Constraints
 

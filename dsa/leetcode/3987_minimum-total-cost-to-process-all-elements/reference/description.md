@@ -33,12 +33,11 @@ Return the minimum total cost of all operations needed to process every element,
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4], k = 4
+- **Input:** nums = [1,2,3,4], k = 4
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - After processing $\text{nums}[0]$, we have $4 - 1 = 3$ units of resources left.
 
@@ -50,15 +49,13 @@ Return the minimum total cost of all operations needed to process every element,
 
 - Thus, the total cost is $1 + 2 = 3$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,1,7,14], k = 4
+- **Input:** nums = [1,1,7,14], k = 4
 
-**Output:** 15
+- **Output:** 15
 
-**Explanation:**
+- **Explanation:** 
 
 - After processing $\text{nums}[0]$, we have $4 - 1 = 3$ units of resources left.
 
@@ -70,19 +67,13 @@ Return the minimum total cost of all operations needed to process every element,
 
 - Thus, the total cost is $3 + 12 = 15$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4], k = 10
+- **Input:** nums = [1,2,3,4], k = 10
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-To process all elements, we can use the initial 10 units of resources without performing any operations. Thus, the total cost required is 0.
-
-</div>
+- **Explanation:** To process all elements, we can use the initial 10 units of resources without performing any operations. Thus, the total cost required is 0.
 
 ### 4. Constraints
 

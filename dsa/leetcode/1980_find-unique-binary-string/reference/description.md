@@ -4,8 +4,13 @@ Given an array of strings `nums` containing `n` **unique** binary strings each o
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -14,11 +19,13 @@ Given an array of strings `nums` containing `n` **unique** binary strings each o
 - **Input:** `nums = ["01","10"]`
 - **Output:** `"11"`
 - **Explanation:** "11" does not appear in nums. "00" would also be correct.
+
 #### Example 2
 
 - **Input:** `nums = ["00","01"]`
 - **Output:** `"11"`
 - **Explanation:** "11" does not appear in nums. "10" would also be correct.
+
 #### Example 3
 
 - **Input:** `nums = ["111","011","001"]`

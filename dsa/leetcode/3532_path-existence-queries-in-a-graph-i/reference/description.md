@@ -12,19 +12,26 @@ Return a boolean array `answer`, where $\text{answer}[i]$ is `true` if there exi
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `nums`: Input parameter (`List[int]`).
+- `maxDiff`: Input parameter (`int`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[bool]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 2, nums = [1,3], maxDiff = 1, queries = [[0,0],[0,1]]
+- **Input:** n = 2, nums = [1,3], maxDiff = 1, queries = [[0,0],[0,1]]
 
-**Output:** [true,false]
+- **Output:** [true,false]
 
-**Explanation:**
+- **Explanation:** 
 
 - Query `[0,0]`: Node 0 has a trivial path to itself.
 
@@ -32,17 +39,13 @@ Return a boolean array `answer`, where $\text{answer}[i]$ is `true` if there exi
 
 - Thus, the final answer after processing all the queries is `[true, false]`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 4, nums = [2,5,6,8], maxDiff = 2, queries = [[0,1],[0,2],[1,3],[2,3]]
+- **Input:** n = 4, nums = [2,5,6,8], maxDiff = 2, queries = [[0,1],[0,2],[1,3],[2,3]]
 
-**Output:** [false,false,true,true]
+- **Output:** [false,false,true,true]
 
-**Explanation:**
-
-The resulting graph is:
+- **Explanation:** The resulting graph is:
 
 ![](images/screenshot-2025-03-26-at-122249.png)
 
@@ -55,8 +58,6 @@ The resulting graph is:
 - Query `[2,3]`: There is an edge between Node 2 and Node 3 because $|\text{nums}[2] - \text{nums}[3]| = |6 - 8| = 2$, which is equal to `maxDiff`.
 
 - Thus, the final answer after processing all the queries is `[false, false, true, true]`.
-
-</div>
 
 ### 4. Constraints
 

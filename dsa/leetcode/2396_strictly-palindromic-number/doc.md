@@ -37,22 +37,22 @@ $b \in \{2,3,\ldots,n-2\}$; otherwise return `False`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 9`
-- Output: `False`
-- Explanation: Although 9 is `1001` in base 2, its base-3 representation
+- **Input:** `n = 9`
+- **Output:** `False`
+- **Explanation:** Although 9 is `1001` in base 2, its base-3 representation
   `100` is not palindromic.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 4`
-- Output: `False`
-- Explanation: The only required base is 2, where 4 is represented as `100`.
+- **Input:** `n = 4`
+- **Output:** `False`
+- **Explanation:** The only required base is 2, where 4 is represented as `100`.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 5`
-- Output: `False`
-- Explanation: Base 3 is included, and $5 = 1\cdot3+2$ has representation
+- **Input:** `n = 5`
+- **Output:** `False`
+- **Explanation:** Base 3 is included, and $5 = 1\cdot3+2$ has representation
   `12`, whose two digits differ.

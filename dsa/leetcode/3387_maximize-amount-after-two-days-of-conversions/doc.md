@@ -38,17 +38,17 @@ Return the maximum amount of `initialCurrency` obtainable after the two days, in
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `initialCurrency = "EUR", pairs1 = [["EUR", "USD"], ["USD", "JPY"]], rates1 = [2.0, 3.0], pairs2 = [["JPY", "USD"], ["USD", "CHF"], ["CHF", "EUR"]], rates2 = [4.0, 5.0, 6.0]`
-- Output: `720.0`
+- **Input:** `initialCurrency = "EUR", pairs1 = [["EUR", "USD"], ["USD", "JPY"]], rates1 = [2.0, 3.0], pairs2 = [["JPY", "USD"], ["USD", "CHF"], ["CHF", "EUR"]], rates2 = [4.0, 5.0, 6.0]`
+- **Output:** `720.0`
 
-**Example 2**
+#### Example 2
 
-- Input: `initialCurrency = "NGN", pairs1 = [["NGN", "EUR"]], rates1 = [9.0], pairs2 = [["NGN", "EUR"]], rates2 = [6.0]`
-- Output: `1.5`
+- **Input:** `initialCurrency = "NGN", pairs1 = [["NGN", "EUR"]], rates1 = [9.0], pairs2 = [["NGN", "EUR"]], rates2 = [6.0]`
+- **Output:** `1.5`
 
-**Example 3**
+#### Example 3
 
-- Input: `initialCurrency = "USD", pairs1 = [["USD", "EUR"]], rates1 = [1.0], pairs2 = [["EUR", "JPY"]], rates2 = [10.0]`
-- Output: `1.0`
+- **Input:** `initialCurrency = "USD", pairs1 = [["USD", "EUR"]], rates1 = [1.0], pairs2 = [["EUR", "JPY"]], rates2 = [10.0]`
+- **Output:** `1.0`

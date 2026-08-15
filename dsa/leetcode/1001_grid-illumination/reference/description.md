@@ -12,8 +12,15 @@ Return *an array of integers *`ans`*,** where *$\text{ans}[j]$* should be *`1`* 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `lamps`: Input parameter (`List[List[int]]`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -28,10 +35,12 @@ The 0^th query asks if the lamp at grid[1][1] is illuminated or not (the blue sq
 ![](images/illu_step1.jpg)
 The 1^st query asks if the lamp at grid[1][0] is illuminated or not (the blue square). It is not illuminated, so set ans[1] = 0. Then, we turn off all lamps in the red rectangle.
 ![](images/illu_step2.jpg)
+
 #### Example 2
 
 - **Input:** $n = 5, lamps = [[0,0],[4,4]], queries = [[1,1],[1,1]]$
 - **Output:** `[1,1]`
+
 #### Example 3
 
 - **Input:** $n = 5, lamps = [[0,0],[0,4]], queries = [[0,4],[0,1],[1,4]]$

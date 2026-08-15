@@ -31,16 +31,16 @@ Among all distributions satisfying those rules, maximize the number of children 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `money = 20, children = 3`
-- Output: `1`
+- **Input:** `money = 20, children = 3`
+- **Output:** `1`
 
 One valid optimum is `[8,9,3]`. Trying to give eight dollars to two children would force the last child to receive four dollars.
 
-**Example 2**
+#### Example 2
 
-- Input: `money = 16, children = 2`
-- Output: `2`
+- **Input:** `money = 16, children = 2`
+- **Output:** `2`
 
 Both children can receive exactly eight dollars.

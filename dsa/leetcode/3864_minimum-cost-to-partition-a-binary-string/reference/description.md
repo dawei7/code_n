@@ -48,12 +48,11 @@ recursive equal-halving partition.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "1010", encCost = 2, flatCost = 1
+- **Input:** s = "1010", encCost = 2, flatCost = 1
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
+- **Explanation:** 
 
 - The entire string `s = "1010"` has length 4 and contains 2 sensitive elements, giving a cost of $4 * 2 * 2 = 16$.
 
@@ -63,15 +62,13 @@ recursive equal-halving partition.
 
 - ​​​​​​​The total cost is thus $2 + 1 + 2 + 1 = 6$, which is the minimum possible total cost.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "1010", encCost = 3, flatCost = 10
+- **Input:** s = "1010", encCost = 3, flatCost = 10
 
-**Output:** 12
+- **Output:** 12
 
-**Explanation:**
+- **Explanation:** 
 
 - The entire string `s = "1010"` has length 4 and contains 2 sensitive elements, giving a cost of $4 * 2 * 3 = 24$.
 
@@ -79,19 +76,13 @@ recursive equal-halving partition.
 
 - Each segment has length 2 and contains one sensitive element, so each costs $2 * 1 * 3 = 6$, giving a total of 12, which is the minimum possible total cost.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "00", encCost = 1, flatCost = 2
+- **Input:** s = "00", encCost = 1, flatCost = 2
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The string `s = "00"` has length 2 and contains no sensitive elements, so storing it as a single segment costs $flatCost = 2$, which is the minimum possible total cost.
-
-</div>
+- **Explanation:** The string `s = "00"` has length 2 and contains no sensitive elements, so storing it as a single segment costs $flatCost = 2$, which is the minimum possible total cost.
 
 ### 4. Constraints
 

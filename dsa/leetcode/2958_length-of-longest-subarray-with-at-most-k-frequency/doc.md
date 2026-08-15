@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/length-of-longest-subarray-with-at-most-k-frequency/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given an integer array `nums` and an integer `k`. The frequency of a
 value within an array is the number of positions at which that value occurs.
 Call an array good when every value in it has frequency at most `k`.
@@ -21,6 +23,7 @@ a contiguous, non-empty sequence of the original array; elements cannot be
 skipped or reordered.
 
 ### Function Contract
+
 **Inputs**
 
 - `nums`: the integer array whose contiguous ranges are considered
@@ -35,20 +38,21 @@ The length of the longest contiguous subarray in which no value occurs more
 than `k` times.
 
 ### Examples
-**Example 1**
 
-- Input: `nums = [1,2,3,1,2,3,1,2], k = 2`
-- Output: `6`
-- Explanation: `[1,2,3,1,2,3]` is good, and no longer subarray keeps every frequency at most two.
+#### Example 1
 
-**Example 2**
+- **Input:** `nums = [1,2,3,1,2,3,1,2], k = 2`
+- **Output:** `6`
+- **Explanation:** `[1,2,3,1,2,3]` is good, and no longer subarray keeps every frequency at most two.
 
-- Input: `nums = [1,2,1,2,1,2,1,2], k = 1`
-- Output: `2`
-- Explanation: Any adjacent `1,2` pair is good, while every longer range repeats at least one value.
+#### Example 2
 
-**Example 3**
+- **Input:** `nums = [1,2,1,2,1,2,1,2], k = 1`
+- **Output:** `2`
+- **Explanation:** Any adjacent `1,2` pair is good, while every longer range repeats at least one value.
 
-- Input: `nums = [5,5,5,5,5,5,5], k = 4`
-- Output: `4`
-- Explanation: Four consecutive copies meet the limit, but any fifth copy exceeds it.
+#### Example 3
+
+- **Input:** `nums = [5,5,5,5,5,5,5], k = 4`
+- **Output:** `4`
+- **Explanation:** Four consecutive copies meet the limit, but any fifth copy exceeds it.

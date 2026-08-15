@@ -4,11 +4,9 @@ You are given an integer array `nums`. We call a subset of `nums` **good** if it
 
 - For example, if `nums = [1, 2, 3, 4]`:
 
-		<li>`[2, 3]`, `[1, 2, 3]`, and `[1, 3]` are **good** subsets with products $6 = 2*3$, $6 = 2*3$, and $3 = 3$ respectively.
+		- `[2, 3]`, `[1, 2, 3]`, and `[1, 3]` are **good** subsets with products $6 = 2*3$, $6 = 2*3$, and $3 = 3$ respectively.
 
 - `[1, 4]` and `[4]` are not **good** subsets with products $4 = 2*2$ and $4 = 2*2$ respectively.
-
-	</li>
 
 Return *the number of different **good** subsets in *`nums`* **modulo** *$10^{9} + 7$.
 
@@ -16,8 +14,13 @@ A **subset** of `nums` is any array that can be obtained by deleting some (possi
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -32,6 +35,7 @@ A **subset** of `nums` is any array that can be obtained by deleting some (possi
 - [2]: product is 2, which is the product of distinct prime 2.
 - [2,3]: product is 6, which is the product of distinct primes 2 and 3.
 - [3]: product is 3, which is the product of distinct prime 3.
+
 #### Example 2
 
 - **Input:** `nums = [4,2,3,15]`

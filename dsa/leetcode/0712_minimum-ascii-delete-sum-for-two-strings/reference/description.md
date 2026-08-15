@@ -4,8 +4,14 @@ Given two strings `s1` and `s2`, return *the lowest **ASCII** sum of deleted cha
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s1`: Input parameter (`str`).
+- `s2`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,6 +22,7 @@ Given two strings `s1` and `s2`, return *the lowest **ASCII** sum of deleted cha
 - **Explanation:** Deleting "s" from "sea" adds the ASCII value of "s" (115) to the sum.
 Deleting "t" from "eat" adds 116 to the sum.
 At the end, both strings are equal, and 115 + 116 = 231 is the minimum sum possible to achieve this.
+
 #### Example 2
 
 - **Input:** $s1 = "delete", s2 = "leet"$

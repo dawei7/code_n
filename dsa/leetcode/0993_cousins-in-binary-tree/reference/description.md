@@ -8,8 +8,10 @@ Note that in a binary tree, the root node is at the depth `0`, and children of e
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `isCousins(root: Optional[TreeNode], x: int, y: int) -> `bool``: Executes operation.
 
 ### 3. Examples
 
@@ -19,12 +21,14 @@ Note that in a binary tree, the root node is at the depth `0`, and children of e
 
 - **Input:** `root = [1,2,3,4], x = 4, y = 3`
 - **Output:** `false`
+
 #### Example 2
 
 ![](images/q1248-02.png)
 
 - **Input:** `root = [1,2,3,null,4,null,5], x = 5, y = 4`
 - **Output:** `true`
+
 #### Example 3
 
 ![](images/q1248-03.png)

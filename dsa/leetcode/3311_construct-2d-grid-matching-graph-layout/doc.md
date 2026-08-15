@@ -33,21 +33,21 @@ Return any rectangular matrix containing every vertex once such that its horizon
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 4, edges = [[0, 1], [0, 2], [1, 3], [2, 3]]`
-- Output: `[[3, 1], [2, 0]]`
+- **Input:** `n = 4, edges = [[0, 1], [0, 2], [1, 3], [2, 3]]`
+- **Output:** `[[3, 1], [2, 0]]`
 
 Every side of this $2\times2$ arrangement corresponds to one supplied edge.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 5, edges = [[0, 1], [1, 3], [2, 3], [2, 4]]`
-- Output: `[[4, 2, 3, 1, 0]]`
+- **Input:** `n = 5, edges = [[0, 1], [1, 3], [2, 3], [2, 4]]`
+- **Output:** `[[4, 2, 3, 1, 0]]`
 
 The graph is a path, so a one-row layout is valid.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 9, edges = [[0,1],[0,4],[0,5],[1,7],[2,3],[2,4],[2,5],[3,6],[4,6],[4,7],[6,8],[7,8]]`
-- Output: `[[8, 6, 3], [7, 4, 2], [1, 0, 5]]`
+- **Input:** `n = 9, edges = [[0,1],[0,4],[0,5],[1,7],[2,3],[2,4],[2,5],[3,6],[4,6],[4,7],[6,8],[7,8]]`
+- **Output:** `[[8, 6, 3], [7, 4, 2], [1, 0, 5]]`

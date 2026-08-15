@@ -37,14 +37,14 @@ Return the minimum achievable total cost, or `-1` when equality is impossible.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s1 = "1100011000", s2 = "0101001010", x = 2`
-- Output: `4`
-- Explanation: Two adjacent-pair operations and one arbitrary-pair operation can resolve all mismatches for total cost $1+1+2=4$.
+- **Input:** `s1 = "1100011000", s2 = "0101001010", x = 2`
+- **Output:** `4`
+- **Explanation:** Two adjacent-pair operations and one arbitrary-pair operation can resolve all mismatches for total cost $1+1+2=4$.
 
-**Example 2**
+#### Example 2
 
-- Input: `s1 = "10110", s2 = "00011", x = 4`
-- Output: `-1`
-- Explanation: The strings differ at an odd number of positions, while every operation flips exactly two positions.
+- **Input:** `s1 = "10110", s2 = "00011", x = 4`
+- **Output:** `-1`
+- **Explanation:** The strings differ at an odd number of positions, while every operation flips exactly two positions.

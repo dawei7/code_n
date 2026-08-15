@@ -22,8 +22,14 @@ Implement the `MyLinkedList` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `MyLinkedList()`: Initializes the data structure.
+- `get(index: int) -> `int``: Executes operation.
+- `addAtHead(val: int)`: Executes operation.
+- `addAtTail(val: int)`: Executes operation.
+- `addAtIndex(index: int, val: int)`: Executes operation.
+- `deleteAtIndex(index: int)`: Executes operation.
 
 ### 3. Examples
 

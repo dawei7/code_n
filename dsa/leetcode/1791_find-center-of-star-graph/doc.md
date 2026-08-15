@@ -30,23 +30,23 @@ You are given the graph as `edges`, where each pair `edges[i] = [u_i, v_i]` repr
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `edges = [[1, 2], [2, 3], [4, 2]]`
-- Output: `2`
+- **Input:** `edges = [[1, 2], [2, 3], [4, 2]]`
+- **Output:** `2`
 
 Node `2` is incident to every edge.
 
-**Example 2**
+#### Example 2
 
-- Input: `edges = [[1, 2], [5, 1], [1, 3], [1, 4]]`
-- Output: `1`
+- **Input:** `edges = [[1, 2], [5, 1], [1, 3], [1, 4]]`
+- **Output:** `1`
 
 Every other node has its sole connection to node `1`.
 
-**Example 3**
+#### Example 3
 
-- Input: `edges = [[1, 3], [2, 3]]`
-- Output: `3`
+- **Input:** `edges = [[1, 3], [2, 3]]`
+- **Output:** `3`
 
 The minimum valid star has two edges, and their shared endpoint is the center.

@@ -12,8 +12,13 @@ Return `true`* if it is possible to print the matrix *`targetGrid`*,** otherwise
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `targetGrid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -23,12 +28,14 @@ Return `true`* if it is possible to print the matrix *`targetGrid`*,** otherwise
 
 - **Input:** $targetGrid = [[1,1,1,1],[1,2,2,1],[1,2,2,1],[1,1,1,1]]$
 - **Output:** `true`
+
 #### Example 2
 
 ![](images/print2.jpg)
 
 - **Input:** $targetGrid = [[1,1,1,1],[1,1,3,3],[1,1,3,4],[5,5,1,4]]$
 - **Output:** `true`
+
 #### Example 3
 
 - **Input:** $targetGrid = [[1,2,1],[2,1,2],[1,2,1]]$

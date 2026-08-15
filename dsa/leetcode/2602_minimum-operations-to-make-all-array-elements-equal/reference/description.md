@@ -10,8 +10,14 @@ Return *an array *`answer`* of size *`m`* where *$\text{answer}[i]$* is the **mi
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `queries`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -34,6 +40,7 @@ For the second query we can do the following operations:
 - Decrease nums[2] 1 time, so that nums = [5,5,5,8].
 - Decrease nums[3] 3 times, so that nums = [5,5,5,5].
 So the total number of operations for the second query is 2 + 4 + 1 + 3 = 10.
+
 #### Example 2
 
 - **Input:** `nums = [2,9,6,3], queries = [10]`

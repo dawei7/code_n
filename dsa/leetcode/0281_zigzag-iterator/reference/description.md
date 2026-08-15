@@ -28,10 +28,12 @@ The app adapter repeatedly calls the native iterator's `next()` method while `ha
 - **Input:** $v1 = [1,2], v2 = [3,4,5,6]$
 - **Output:** `[1,3,2,4,5,6]`
 - **Explanation:** By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,3,2,4,5,6].
+
 #### Example 2
 
 - **Input:** $v1 = [1], v2 = []$
 - **Output:** `[1]`
+
 #### Example 3
 
 - **Input:** $v1 = [], v2 = [1]$

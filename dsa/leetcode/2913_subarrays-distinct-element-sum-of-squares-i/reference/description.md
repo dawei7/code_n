@@ -12,8 +12,13 @@ A subarray is a contiguous **non-empty** sequence of elements within an array.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -29,6 +34,7 @@ A subarray is a contiguous **non-empty** sequence of elements within an array.
 [2,1]: 2 distinct values
 [1,2,1]: 2 distinct values
 The sum of the squares of the distinct counts in all subarrays is equal to $1^{2}$ + $1^{2}$ + $1^{2}$ + $2^{2}$ + $2^{2}$ + $2^{2}$ = 15.
+
 #### Example 2
 
 - **Input:** `nums = [1,1]`

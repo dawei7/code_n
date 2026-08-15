@@ -33,20 +33,20 @@ Let $n=\lvert\texttt{nums}\rvert$. The constraints are $1\leq k\leq n\leq 2\cdot
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,2], k = 1`
-- Output: `3`
-- Explanation: Every positive length is divisible by one, and the whole array has the greatest sum.
+- **Input:** `nums = [1,2], k = 1`
+- **Output:** `3`
+- **Explanation:** Every positive length is divisible by one, and the whole array has the greatest sum.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [-1,-2,-3,-4,-5], k = 4`
-- Output: `-10`
-- Explanation: The only eligible length is four; the first four elements give the larger of the two possible sums.
+- **Input:** `nums = [-1,-2,-3,-4,-5], k = 4`
+- **Output:** `-10`
+- **Explanation:** The only eligible length is four; the first four elements give the larger of the two possible sums.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [-5,1,2,-3,4], k = 2`
-- Output: `4`
-- Explanation: The subarray `[1,2,-3,4]` has length four and sum four.
+- **Input:** `nums = [-5,1,2,-3,4], k = 2`
+- **Output:** `4`
+- **Explanation:** The subarray `[1,2,-3,4]` has length four and sum four.

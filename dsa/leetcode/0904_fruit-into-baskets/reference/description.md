@@ -14,8 +14,13 @@ Given the integer array `fruits`, return *the **maximum** number of fruits you c
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `fruits`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,12 +29,14 @@ Given the integer array `fruits`, return *the **maximum** number of fruits you c
 - **Input:** $fruits = [<u>1,2,1</u>]$
 - **Output:** `3`
 - **Explanation:** We can pick from all 3 trees.
+
 #### Example 2
 
 - **Input:** $fruits = [0,<u>1,2,2</u>]$
 - **Output:** `3`
 - **Explanation:** We can pick from trees [1,2,2].
 If we had started at the first tree, we would only pick from trees [0,1].
+
 #### Example 3
 
 - **Input:** $fruits = [1,<u>2,3,2,2</u>]$

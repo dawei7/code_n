@@ -43,22 +43,22 @@ $1\le\texttt{profits[i]}\le10^6$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `prices = [10, 2, 3, 4], profits = [100, 2, 7, 10]`
-- Output: `19`
-- Explanation: The profitable item at index 0 cannot begin a valid triplet.
+- **Input:** `prices = [10, 2, 3, 4], profits = [100, 2, 7, 10]`
+- **Output:** `19`
+- **Explanation:** The profitable item at index 0 cannot begin a valid triplet.
   Indices 1, 2, and 3 have prices `2 < 3 < 4` and earn `2 + 7 + 10`.
 
-**Example 2**
+#### Example 2
 
-- Input: `prices = [1, 2, 3, 4, 5], profits = [1, 5, 3, 4, 6]`
-- Output: `15`
-- Explanation: Prices already increase with indices, so selecting the items
+- **Input:** `prices = [1, 2, 3, 4, 5], profits = [1, 5, 3, 4, 6]`
+- **Output:** `15`
+- **Explanation:** Prices already increase with indices, so selecting the items
   at indices 1, 3, and 4 earns the three compatible profits `5 + 4 + 6`.
 
-**Example 3**
+#### Example 3
 
-- Input: `prices = [4, 3, 2, 1], profits = [33, 20, 19, 87]`
-- Output: `-1`
-- Explanation: No three indices have strictly increasing prices.
+- **Input:** `prices = [4, 3, 2, 1], profits = [33, 20, 19, 87]`
+- **Output:** `-1`
+- **Explanation:** No three indices have strictly increasing prices.

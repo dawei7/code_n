@@ -31,20 +31,20 @@ Return the head of the linked list after removing every node whose value belongs
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3], head = [1, 2, 3, 4, 5]`
-- Output: `[4, 5]`
-- Explanation: The first three nodes have listed values and are removed.
+- **Input:** `nums = [1, 2, 3], head = [1, 2, 3, 4, 5]`
+- **Output:** `[4, 5]`
+- **Explanation:** The first three nodes have listed values and are removed.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1], head = [1, 2, 1, 2, 1, 2]`
-- Output: `[2, 2, 2]`
-- Explanation: Every node with value `1` is removed, including the original head.
+- **Input:** `nums = [1], head = [1, 2, 1, 2, 1, 2]`
+- **Output:** `[2, 2, 2]`
+- **Explanation:** Every node with value `1` is removed, including the original head.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [5], head = [1, 2, 3, 4]`
-- Output: `[1, 2, 3, 4]`
-- Explanation: No node value occurs in `nums`, so the list is unchanged.
+- **Input:** `nums = [5], head = [1, 2, 3, 4]`
+- **Output:** `[1, 2, 3, 4]`
+- **Explanation:** No node value occurs in `nums`, so the list is unchanged.

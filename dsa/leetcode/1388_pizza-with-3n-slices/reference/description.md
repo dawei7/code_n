@@ -14,8 +14,13 @@ Given an integer array `slices` that represent the sizes of the pizza slices in 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `slices`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,6 +31,7 @@ Given an integer array `slices` that represent the sizes of the pizza slices in 
 - **Input:** $slices = [1,2,3,4,5,6]$
 - **Output:** `10`
 - **Explanation:** Pick pizza slice of size 4, Alice and Bob will pick slices with size 3 and 5 respectively. Then Pick slices with size 6, finally Alice and Bob will pick slice of size 2 and 1 respectively. Total = 4 + 6.
+
 #### Example 2
 
 ![](images/sample_4_1723.png)

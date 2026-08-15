@@ -37,22 +37,22 @@ $$
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `poly1 = [3,2,5], poly2 = [1,4]`
-- Output: `[3,14,13,20]`
-- Explanation: Equal-exponent contributions combine, giving $3+(3\cdot4+2)x+(2\cdot4+5)x^2+20x^3$.
+- **Input:** `poly1 = [3,2,5], poly2 = [1,4]`
+- **Output:** `[3,14,13,20]`
+- **Explanation:** Equal-exponent contributions combine, giving $3+(3\cdot4+2)x+(2\cdot4+5)x^2+20x^3$.
 
-**Example 2**
+#### Example 2
 
-- Input: `poly1 = [1,0,-2], poly2 = [-1]`
-- Output: `[-1,0,2]`
-- Explanation: Multiplication by the constant $-1$ negates every supplied coefficient while preserving the zero term.
+- **Input:** `poly1 = [1,0,-2], poly2 = [-1]`
+- **Output:** `[-1,0,2]`
+- **Explanation:** Multiplication by the constant $-1$ negates every supplied coefficient while preserving the zero term.
 
-**Example 3**
+#### Example 3
 
-- Input: `poly1 = [1,5,-3], poly2 = [-4,2,0]`
-- Output: `[-4,-18,22,-6,0]`
-- Explanation: The result retains length $3+3-1=5$, including the final zero coefficient.
+- **Input:** `poly1 = [1,5,-3], poly2 = [-4,2,0]`
+- **Output:** `[-4,-18,22,-6,0]`
+- **Explanation:** The result retains length $3+3-1=5$, including the final zero coefficient.
 
 ---

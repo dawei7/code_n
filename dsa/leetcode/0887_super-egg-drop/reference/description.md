@@ -10,8 +10,14 @@ Return *the **minimum number of moves** that you need to determine **with certai
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `k`: Input parameter (`int`).
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,15 +25,16 @@ Return *the **minimum number of moves** that you need to determine **with certai
 
 - **Input:** $k = 1, n = 2$
 - **Output:** `2`
-- **Explanation:**
-Drop the egg from floor 1. If it breaks, we know that f = 0.
+- **Explanation:** Drop the egg from floor 1. If it breaks, we know that f = 0.
 Otherwise, drop the egg from floor 2. If it breaks, we know that f = 1.
 If it does not break, then we know f = 2.
 Hence, we need at minimum 2 moves to determine with certainty what the value of f is.
+
 #### Example 2
 
 - **Input:** $k = 2, n = 6$
 - **Output:** `3`
+
 #### Example 3
 
 - **Input:** $k = 3, n = 14$

@@ -35,12 +35,11 @@ Two ways differ if **at least** one sheet is painted with a different color.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 4, limit = [3,1,2]
+- **Input:** n = 4, limit = [3,1,2]
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**​​​​​​​
+- **Explanation:** ​​​​​​​
 
 For each ordered pair `(i, j)`, where color `i` is used for the first segment and color `j` for the second segment ($i \neq j$), a split of `x` and $4 - x$ is valid if $1 \le x \le \text{limit}[i]$ and $1 \le 4 - x \le \text{limit}[j]$.
 
@@ -56,17 +55,13 @@ Valid pairs and counts are:
 
 Therefore, there are 6 valid ways in total.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 3, limit = [1,2]
+- **Input:** n = 3, limit = [1,2]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-For each ordered pair `(i, j)`, where color `i` is used for the first segment and color `j` for the second segment ($i \neq j$), a split of `x` and $3 - x$ is valid if $1 \le x \le \text{limit}[i]$ and $1 \le 3 - x \le \text{limit}[j]$.
+- **Explanation:** For each ordered pair `(i, j)`, where color `i` is used for the first segment and color `j` for the second segment ($i \neq j$), a split of `x` and $3 - x$ is valid if $1 \le x \le \text{limit}[i]$ and $1 \le 3 - x \le \text{limit}[j]$.
 
 Valid pairs and counts are:
 
@@ -76,17 +71,13 @@ Valid pairs and counts are:
 
 Hence, there are 2 valid ways in total.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 3, limit = [2,2]
+- **Input:** n = 3, limit = [2,2]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-For each ordered pair `(i, j)`, where color `i` is used for the first segment and color `j` for the second segment ($i \neq j$), a split of `x` and $3 - x$ is valid if $1 \le x \le \text{limit}[i]$ and $1 \le 3 - x \le \text{limit}[j]$.
+- **Explanation:** For each ordered pair `(i, j)`, where color `i` is used for the first segment and color `j` for the second segment ($i \neq j$), a split of `x` and $3 - x$ is valid if $1 \le x \le \text{limit}[i]$ and $1 \le 3 - x \le \text{limit}[j]$.
 
 Valid pairs and counts are:
 
@@ -95,8 +86,6 @@ Valid pairs and counts are:
 - $(1, 0): x = 1, 2$
 
 Therefore, there are 4 valid ways in total.
-
-</div>
 
 ### 5. Constraints
 

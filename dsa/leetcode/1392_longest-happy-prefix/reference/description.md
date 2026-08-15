@@ -6,8 +6,13 @@ Given a string `s`, return *the **longest happy prefix** of* `s`. Return an empt
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -16,6 +21,7 @@ Given a string `s`, return *the **longest happy prefix** of* `s`. Return an empt
 - **Input:** `s = "level"`
 - **Output:** `"l"`
 - **Explanation:** s contains 4 prefix excluding itself ("l", "le", "lev", "leve"), and suffix ("l", "el", "vel", "evel"). The largest prefix which is also suffix is given by "l".
+
 #### Example 2
 
 - **Input:** `s = "ababab"`

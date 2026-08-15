@@ -35,20 +35,20 @@ Let $B = \lvert\texttt{buildings}\rvert$, where $1 \le B \le 10^5$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 3, buildings = [[1,2],[2,2],[3,2],[2,1],[2,3]]`
-- Output: `1`
-- Explanation: `[2,2]` has a building in every cardinal direction; each arm of the cross is missing at least one direction.
+- **Input:** `n = 3, buildings = [[1,2],[2,2],[3,2],[2,1],[2,3]]`
+- **Output:** `1`
+- **Explanation:** `[2,2]` has a building in every cardinal direction; each arm of the cross is missing at least one direction.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3, buildings = [[1,1],[1,2],[2,1],[2,2]]`
-- Output: `0`
-- Explanation: Every building lies on the boundary of the occupied square and lacks at least one required direction.
+- **Input:** `n = 3, buildings = [[1,1],[1,2],[2,1],[2,2]]`
+- **Output:** `0`
+- **Explanation:** Every building lies on the boundary of the occupied square and lacks at least one required direction.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 5, buildings = [[1,3],[3,2],[3,3],[3,5],[5,3]]`
-- Output: `1`
-- Explanation: `[3,3]` is covered even though the buildings above, below, and to the right are not adjacent to it.
+- **Input:** `n = 5, buildings = [[1,3],[3,2],[3,3],[3,5],[5,3]]`
+- **Output:** `1`
+- **Explanation:** `[3,3]` is covered even though the buildings above, below, and to the right are not adjacent to it.

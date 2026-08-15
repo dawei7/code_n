@@ -30,17 +30,17 @@ After using at most one swap, consider every substring whose characters are all 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `text = "ababa"`
-- Output: `3`
+- **Input:** `text = "ababa"`
+- **Output:** `3`
 
-**Example 2**
+#### Example 2
 
-- Input: `text = "aaabaaa"`
-- Output: `6`
+- **Input:** `text = "aaabaaa"`
+- **Output:** `6`
 
-**Example 3**
+#### Example 3
 
-- Input: `text = "aaaaa"`
-- Output: `5`
+- **Input:** `text = "aaaaa"`
+- **Output:** `5`

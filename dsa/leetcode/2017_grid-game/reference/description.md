@@ -10,8 +10,13 @@ The **first** robot wants to **minimize** the number of points collected by the 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +29,7 @@ The **first** robot wants to **minimize** the number of points collected by the 
 - **Explanation:** The optimal path taken by the first robot is shown in red, and the optimal path taken by the second robot is shown in blue.
 The cells visited by the first robot are set to 0.
 The second robot will collect 0 + 0 + 4 + 0 = 4 points.
+
 #### Example 2
 
 ![](images/a2.png)
@@ -33,6 +39,7 @@ The second robot will collect 0 + 0 + 4 + 0 = 4 points.
 - **Explanation:** The optimal path taken by the first robot is shown in red, and the optimal path taken by the second robot is shown in blue.
 The cells visited by the first robot are set to 0.
 The second robot will collect 0 + 3 + 1 + 0 = 4 points.
+
 #### Example 3
 
 ![](images/a3.png)

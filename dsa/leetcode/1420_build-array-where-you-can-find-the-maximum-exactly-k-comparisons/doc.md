@@ -32,17 +32,17 @@ Count how many possible arrays have search cost exactly `k`. Arrays are distingu
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 2, m = 3, k = 1`
-- Output: `6`
+- **Input:** `n = 2, m = 3, k = 1`
+- **Output:** `6`
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 5, m = 2, k = 3`
-- Output: `0`
+- **Input:** `n = 5, m = 2, k = 3`
+- **Output:** `0`
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 9, m = 1, k = 1`
-- Output: `1`
+- **Input:** `n = 9, m = 1, k = 1`
+- **Output:** `1`

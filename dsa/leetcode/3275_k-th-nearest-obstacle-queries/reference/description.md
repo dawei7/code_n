@@ -12,8 +12,14 @@ Return an integer array `results` where $\text{results}[i]$ denotes the $$k^{\te
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `queries`: Input parameter (`List[List[int]]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -25,12 +31,11 @@ The **distance** of an obstacle at coordinate `(x, y)` from the origin is given 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** queries = [[1,2],[3,4],[2,3],[-3,0]], k = 2
+- **Input:** queries = [[1,2],[3,4],[2,3],[-3,0]], k = 2
 
-**Output:** [-1,7,5,3]
+- **Output:** [-1,7,5,3]
 
-**Explanation:**
+- **Explanation:** 
 
 - Initially, there are 0 obstacles.
 
@@ -42,23 +47,19 @@ The **distance** of an obstacle at coordinate `(x, y)` from the origin is given 
 
 - After $\text{queries}[3]$, there are obstacles at distances 3, 3, 5, and 7.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** queries = [[5,5],[4,4],[3,3]], k = 1
+- **Input:** queries = [[5,5],[4,4],[3,3]], k = 1
 
-**Output:** [10,8,6]
+- **Output:** [10,8,6]
 
-**Explanation:**
+- **Explanation:** 
 
 - After $\text{queries}[0]$, there is an obstacle at distance 10.
 
 - After $\text{queries}[1]$, there are obstacles at distances 8 and 10.
 
 - After $\text{queries}[2]$, there are obstacles at distances 6, 8, and 10.
-
-</div>
 
 ### 5. Constraints
 

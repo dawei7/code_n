@@ -59,7 +59,6 @@ Return *the result table ordered by* $\text{student}_{id}$ *in **ascending** ord
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 students table:
@@ -141,5 +140,3 @@ enrollments table:
 ### 3. Note
 
 Output table is ordered by student_id in ascending order.
-
-</div>

@@ -33,20 +33,20 @@ Return the least integer $x \ge n$ whose digit product is divisible by `t`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 10, t = 2`
-- Output: `10`
-- Explanation: The digit product is $1 \cdot 0 = 0$, which is divisible by $2$.
+- **Input:** `n = 10, t = 2`
+- **Output:** `10`
+- **Explanation:** The digit product is $1 \cdot 0 = 0$, which is divisible by $2$.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 15, t = 3`
-- Output: `16`
-- Explanation: The product for `15` is $5$, while the product for `16` is $6$, so `16` is the first valid candidate.
+- **Input:** `n = 15, t = 3`
+- **Output:** `16`
+- **Explanation:** The product for `15` is $5$, while the product for `16` is $6$, so `16` is the first valid candidate.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 1, t = 10`
-- Output: `10`
-- Explanation: None of `1` through `9` has a digit product divisible by $10$; the zero digit in `10` makes its product zero.
+- **Input:** `n = 1, t = 10`
+- **Output:** `10`
+- **Explanation:** None of `1` through `9` has a digit product divisible by $10$; the zero digit in `10` makes its product zero.

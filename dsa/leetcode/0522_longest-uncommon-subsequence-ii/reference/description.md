@@ -10,8 +10,13 @@ A **subsequence** of a string `s` is a string that can be obtained after deletin
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `strs`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,6 +24,7 @@ A **subsequence** of a string `s` is a string that can be obtained after deletin
 
 - **Input:** $strs = ["aba","cdc","eae"]$
 - **Output:** `3`
+
 #### Example 2
 
 - **Input:** $strs = ["aaa","aaa","aa"]$

@@ -35,17 +35,17 @@ Return the number of days in the intersection of the two inclusive stays.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arriveAlice = "08-15"`, `leaveAlice = "08-18"`, `arriveBob = "08-16"`, `leaveBob = "08-19"`
-- Output: `3`
+- **Input:** `arriveAlice = "08-15"`, `leaveAlice = "08-18"`, `arriveBob = "08-16"`, `leaveBob = "08-19"`
+- **Output:** `3`
 
-**Example 2**
+#### Example 2
 
-- Input: `arriveAlice = "10-01"`, `leaveAlice = "10-31"`, `arriveBob = "11-01"`, `leaveBob = "12-31"`
-- Output: `0`
+- **Input:** `arriveAlice = "10-01"`, `leaveAlice = "10-31"`, `arriveBob = "11-01"`, `leaveBob = "12-31"`
+- **Output:** `0`
 
-**Example 3**
+#### Example 3
 
-- Input: `arriveAlice = "02-28"`, `leaveAlice = "03-01"`, `arriveBob = "03-01"`, `leaveBob = "03-01"`
-- Output: `1`
+- **Input:** `arriveAlice = "02-28"`, `leaveAlice = "03-01"`, `arriveBob = "03-01"`, `leaveBob = "03-01"`
+- **Output:** `1`

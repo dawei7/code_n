@@ -32,19 +32,19 @@ Return the key as an integer. Converting the four generated digits to an integer
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `num1 = 1, num2 = 10, num3 = 1000`
-- Output: `0`
+- **Input:** `num1 = 1, num2 = 10, num3 = 1000`
+- **Output:** `0`
 
 The padded strings `0001`, `0010`, and `1000` have minimum digit zero in every position.
 
-**Example 2**
+#### Example 2
 
-- Input: `num1 = 987, num2 = 879, num3 = 798`
-- Output: `777`
+- **Input:** `num1 = 987, num2 = 879, num3 = 798`
+- **Output:** `777`
 
-**Example 3**
+#### Example 3
 
-- Input: `num1 = 1, num2 = 2, num3 = 3`
-- Output: `1`
+- **Input:** `num1 = 1, num2 = 2, num3 = 3`
+- **Output:** `1`

@@ -41,14 +41,14 @@ Choose a set of edges whose total weight is as large as possible, subject to no 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `edges = [[-1,-1],[0,5],[0,10],[2,6],[2,4]]`
-- Output: `11`
-- Explanation: Choosing the weight-`5` edge from node `0` to node `1` and the weight-`6` edge from node `2` to node `3` gives the optimal score.
+- **Input:** `edges = [[-1,-1],[0,5],[0,10],[2,6],[2,4]]`
+- **Output:** `11`
+- **Explanation:** Choosing the weight-`5` edge from node `0` to node `1` and the weight-`6` edge from node `2` to node `3` gives the optimal score.
 
-**Example 2**
+#### Example 2
 
-- Input: `edges = [[-1,-1],[0,5],[0,-6],[0,7]]`
-- Output: `7`
-- Explanation: All three edges share the root, so at most one can be chosen; the weight-`7` edge is best.
+- **Input:** `edges = [[-1,-1],[0,5],[0,-6],[0,7]]`
+- **Output:** `7`
+- **Explanation:** All three edges share the root, so at most one can be chosen; the weight-`7` edge is best.

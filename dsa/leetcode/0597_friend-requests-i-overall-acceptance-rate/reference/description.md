@@ -57,7 +57,7 @@ Return a one-row table with $\text{accept}_{rate}$ equal to the distinct accepta
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 FriendRequest table:
 +-----------+------------+--------------+
 | sender_id | send_to_id | request_date |
@@ -78,14 +78,13 @@ RequestAccepted table:
 | 3            | 4           | 2016/06/09  |
 | 3            | 4           | 2016/06/10  |
 +--------------+-------------+-------------+
-**Output:**
+- **Output:** 
 +-------------+
 | accept_rate |
 +-------------+
 | 0.8         |
 +-------------+
-**Explanation:**
-There are 4 unique accepted requests, and there are 5 requests in total. So the rate is 0.80.
+- **Explanation:** There are 4 unique accepted requests, and there are 5 requests in total. So the rate is 0.80.
 ```
 
 **Follow up:**

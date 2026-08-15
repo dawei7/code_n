@@ -12,8 +12,15 @@ Note that `mean` is an integer, so the sum of the $n + m$ rolls should be divisi
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `rolls`: Input parameter (`List[int]`).
+- `mean`: Input parameter (`int`).
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -22,11 +29,13 @@ Note that `mean` is an integer, so the sum of the $n + m$ rolls should be divisi
 - **Input:** $rolls = [3,2,4,3], mean = 4, n = 2$
 - **Output:** `[6,6]`
 - **Explanation:** The mean of all n + m rolls is (3 + 2 + 4 + 3 + 6 + 6) / 6 = 4.
+
 #### Example 2
 
 - **Input:** $rolls = [1,5,6], mean = 3, n = 4$
 - **Output:** `[2,3,2,2]`
 - **Explanation:** The mean of all n + m rolls is (1 + 5 + 6 + 2 + 3 + 2 + 2) / 7 = 3.
+
 #### Example 3
 
 - **Input:** $rolls = [1,2,3,4], mean = 6, n = 4$

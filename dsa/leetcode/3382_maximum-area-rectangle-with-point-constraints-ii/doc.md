@@ -35,20 +35,20 @@ Let $n=\lvert\texttt{xCoord}\rvert=\lvert\texttt{yCoord}\rvert$. The constraints
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `xCoord = [1,1,3,3], yCoord = [1,3,1,3]`
-- Output: `4`
-- Explanation: The four points are the corners of a clear square of width and height two.
+- **Input:** `xCoord = [1,1,3,3], yCoord = [1,3,1,3]`
+- **Output:** `4`
+- **Explanation:** The four points are the corners of a clear square of width and height two.
 
-**Example 2**
+#### Example 2
 
-- Input: `xCoord = [1,1,3,3,2], yCoord = [1,3,1,3,2]`
-- Output: `-1`
-- Explanation: The point `(2,2)` lies inside the only possible rectangle.
+- **Input:** `xCoord = [1,1,3,3,2], yCoord = [1,3,1,3,2]`
+- **Output:** `-1`
+- **Explanation:** The point `(2,2)` lies inside the only possible rectangle.
 
-**Example 3**
+#### Example 3
 
-- Input: `xCoord = [1,1,3,3,1,3], yCoord = [1,3,1,3,2,2]`
-- Output: `2`
-- Explanation: The extra points on the two vertical sides split the height-two square into valid height-one rectangles.
+- **Input:** `xCoord = [1,1,3,3,1,3], yCoord = [1,3,1,3,2,2]`
+- **Output:** `2`
+- **Explanation:** The extra points on the two vertical sides split the height-two square into valid height-one rectangles.

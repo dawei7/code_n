@@ -32,20 +32,20 @@ The list length and every element value are each from 1 through $10^5$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,2]`
-- Output: `6`
-- Explanation: The qualifying subsequences are `[1]`, `[2]`, and `[1,2]`, with values 1, 2, and 3.
+- **Input:** `nums = [1,2]`
+- **Output:** `6`
+- **Explanation:** The qualifying subsequences are `[1]`, `[2]`, and `[1,2]`, with values 1, 2, and 3.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,4,2,3]`
-- Output: `31`
-- Explanation: Besides the four singletons, the qualifying choices are `[1,2]`, `[2,3]`, `[4,3]`, and `[1,2,3]`.
+- **Input:** `nums = [1,4,2,3]`
+- **Output:** `31`
+- **Explanation:** Besides the four singletons, the qualifying choices are `[1,2]`, `[2,3]`, `[4,3]`, and `[1,2,3]`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [3,2,1]`
-- Output: `20`
-- Explanation: All three singletons, both adjacent-value pairs, and `[3,2,1]` are decreasing consecutive subsequences.
+- **Input:** `nums = [3,2,1]`
+- **Output:** `20`
+- **Explanation:** All three singletons, both adjacent-value pairs, and `[3,2,1]` are decreasing consecutive subsequences.

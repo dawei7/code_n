@@ -31,20 +31,20 @@ Return the number of subsets of `nums` in which no pair of selected values has a
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [5,4,6]`, `k = 1`
-- Output: `5`
-- Explanation: The valid subsets are `[]`, `[4]`, `[5]`, `[6]`, and `[4,6]`.
+- **Input:** `nums = [5,4,6]`, `k = 1`
+- **Output:** `5`
+- **Explanation:** The valid subsets are `[]`, `[4]`, `[5]`, `[6]`, and `[4,6]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2,3,5,8]`, `k = 5`
-- Output: `12`
-- Explanation: The only conflicting pair is `3` and `8`. Of the sixteen total subsets, four contain both values, leaving twelve valid subsets.
+- **Input:** `nums = [2,3,5,8]`, `k = 5`
+- **Output:** `12`
+- **Explanation:** The only conflicting pair is `3` and `8`. Of the sixteen total subsets, four contain both values, leaving twelve valid subsets.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [10,5,9,11]`, `k = 20`
-- Output: `16`
-- Explanation: No two values differ by twenty, so all $2^4$ subsets are k-Free.
+- **Input:** `nums = [10,5,9,11]`, `k = 20`
+- **Output:** `16`
+- **Explanation:** No two values differ by twenty, so all $2^4$ subsets are k-Free.

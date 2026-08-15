@@ -21,11 +21,13 @@ Return *the number of unique categories.*
 - **Input:** $n = 6, categoryHandler = [1,1,2,2,3,3]$
 - **Output:** `3`
 - **Explanation:** There are 6 elements in this example. The first two elements belong to category 1, the second two belong to category 2, and the last two elements belong to category 3. So there are 3 unique categories.
+
 #### Example 2
 
 - **Input:** $n = 5, categoryHandler = [1,2,3,4,5]$
 - **Output:** `5`
 - **Explanation:** There are 5 elements in this example. Each element belongs to a unique category. So there are 5 unique categories.
+
 #### Example 3
 
 - **Input:** $n = 3, categoryHandler = [1,1,1]$

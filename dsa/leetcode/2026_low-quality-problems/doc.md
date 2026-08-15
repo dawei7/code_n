@@ -36,21 +36,21 @@ Let $P$ be the number of rows in `Problems`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: problems `1`, `6`, `7`, `10`, `11`, and `13` with their supplied
+- **Input:** problems `1`, `6`, `7`, `10`, `11`, and `13` with their supplied
   like and dislike counts
-- Output: problem IDs `7`, `10`, `11`, and `13`
-- Explanation: Each returned problem has a like percentage below 60%; problems
+- **Output:** problem IDs `7`, `10`, `11`, and `13`
+- **Explanation:** Each returned problem has a like percentage below 60%; problems
   `1` and `6` are above the threshold.
 
-**Example 2**
+#### Example 2
 
-- Input: one problem with `likes = 3` and `dislikes = 2`
-- Output: no rows
-- Explanation: Its like percentage is exactly 60%, not strictly below it.
+- **Input:** one problem with `likes = 3` and `dislikes = 2`
+- **Output:** no rows
+- **Explanation:** Its like percentage is exactly 60%, not strictly below it.
 
-**Example 3**
+#### Example 3
 
-- Input: problem `9` with one like and nine dislikes
-- Output: problem ID `9`
+- **Input:** problem `9` with one like and nine dislikes
+- **Output:** problem ID `9`

@@ -37,14 +37,14 @@ A segment is a contiguous sequence of positive entries that have not been remove
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,2,5,6,1], removeQueries = [0,3,2,4,1]`
-- Output: `[14,7,2,2,0]`
-- Explanation: After removing index `0`, the remaining segment sums to 14. Removing index `3` splits it, leaving `[2,5]` as the largest segment with sum 7.
+- **Input:** `nums = [1,2,5,6,1], removeQueries = [0,3,2,4,1]`
+- **Output:** `[14,7,2,2,0]`
+- **Explanation:** After removing index `0`, the remaining segment sums to 14. Removing index `3` splits it, leaving `[2,5]` as the largest segment with sum 7.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3,2,11,1], removeQueries = [3,2,1,0]`
-- Output: `[16,5,3,0]`
-- Explanation: The surviving prefix has sums 16, 5, and 3 after the first three removals; the last removal leaves no segment.
+- **Input:** `nums = [3,2,11,1], removeQueries = [3,2,1,0]`
+- **Output:** `[16,5,3,0]`
+- **Explanation:** The surviving prefix has sums 16, 5, and 3 after the first three removals; the last removal leaves no segment.

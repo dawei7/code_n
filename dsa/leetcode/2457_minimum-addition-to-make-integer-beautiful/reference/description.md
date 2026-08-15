@@ -8,8 +8,14 @@ Return the *minimum **non-negative** integer *`x`* such that *$n + x$* is beauti
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `target`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,11 +24,13 @@ Return the *minimum **non-negative** integer *`x`* such that *$n + x$* is beauti
 - **Input:** $n = 16, target = 6$
 - **Output:** `4`
 - **Explanation:** Initially n is 16 and its digit sum is 1 + 6 = 7. After adding 4, n becomes 20 and digit sum becomes 2 + 0 = 2. It can be shown that we can not make n beautiful with adding non-negative integer less than 4.
+
 #### Example 2
 
 - **Input:** $n = 467, target = 6$
 - **Output:** `33`
 - **Explanation:** Initially n is 467 and its digit sum is 4 + 6 + 7 = 17. After adding 33, n becomes 500 and digit sum becomes 5 + 0 + 0 = 5. It can be shown that we can not make n beautiful with adding non-negative integer less than 33.
+
 #### Example 3
 
 - **Input:** $n = 1, target = 1$

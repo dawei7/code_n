@@ -28,7 +28,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Friends table:
 +----------+----------+
 | user_id1 | user_id2 |
@@ -42,14 +42,14 @@ Friends table:
 | 2        | 5        |
 | 8        | 9        |
 +----------+----------+
-**Output:**
+- **Output:** 
 +----------+----------+
 | user_id1 | user_id2 |
 +----------+----------+
 | 6        | 7        |
 | 8        | 9        |
 +----------+----------+
-**Explanation:**
+- **Explanation:** 
 - Users 1 and 2 are friends with each other, but they share a mutual friend with user ID 5, so this pair is not included.
 - Users 2 and 3 are friends, they both share a mutual friend with user ID 4, resulting in exclusion, similarly for users 2 and 4 who share a mutual friend with user ID 3, hence not included.
 - Users 1 and 5 are friends with each other, but they share a mutual friend with user ID 2, so this pair is not included.

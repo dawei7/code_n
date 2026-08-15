@@ -6,8 +6,13 @@ Return *the number of integer points on the line that are covered with **any par
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,6 +21,7 @@ Return *the number of integer points on the line that are covered with **any par
 - **Input:** `nums = [[3,6],[1,5],[4,7]]`
 - **Output:** `7`
 - **Explanation:** All the points from 1 to 7 intersect at least one car, therefore the answer would be 7.
+
 #### Example 2
 
 - **Input:** `nums = [[1,3],[5,8]]`

@@ -34,17 +34,17 @@ Let $m$ be the number of rows and $n$ the number of columns. The constraints gua
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[1,0,0],[0,1,0],[0,0,1]]`
-- Output: `3`
+- **Input:** `grid = [[1,0,0],[0,1,0],[0,0,1]]`
+- **Output:** `3`
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[0,1],[0,1],[0,0]]`
-- Output: `2`
+- **Input:** `grid = [[0,1],[0,1],[0,0]]`
+- **Output:** `2`
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[1],[1]]`
-- Output: `2`
+- **Input:** `grid = [[1],[1]]`
+- **Output:** `2`

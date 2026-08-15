@@ -14,21 +14,25 @@ Return* *a **2D array** of **strings** `answer` where $\text{answer}[i] = [\text
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `creators`: Input parameter (`List[str]`).
+- `ids`: Input parameter (`List[str]`).
+- `views`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[List[str]]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** creators = ["alice","bob","alice","chris"], ids = ["one","two","three","four"], views = [5,10,5,4]
+- **Input:** creators = ["alice","bob","alice","chris"], ids = ["one","two","three","four"], views = [5,10,5,4]
 
-**Output:** [["alice","one"],["bob","two"]]
+- **Output:** [["alice","one"],["bob","two"]]
 
-**Explanation:**
-
-The popularity of alice is 5 + 5 = 10.
+- **Explanation:** The popularity of alice is 5 + 5 = 10.
 
 The popularity of bob is 10.
 
@@ -40,21 +44,15 @@ For bob, the video with the highest view count is "two".
 
 For alice, the videos with the highest view count are "one" and "three". Since "one" is lexicographically smaller than "three", it is included in the answer.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** creators = ["alice","alice","alice"], ids = ["a","b","c"], views = [1,2,2]
+- **Input:** creators = ["alice","alice","alice"], ids = ["a","b","c"], views = [1,2,2]
 
-**Output:** [["alice","b"]]
+- **Output:** [["alice","b"]]
 
-**Explanation:**
-
-The videos with id "b" and "c" have the highest view count.
+- **Explanation:** The videos with id "b" and "c" have the highest view count.
 
 Since "b" is lexicographically smaller than "c", it is included in the answer.
-
-</div>
 
 ### 4. Constraints
 

@@ -30,19 +30,19 @@ The rook can move horizontally or vertically through any number of empty squares
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: a board with the rook at row $2$, column $3$ and unobstructed pawns above, right, and below it.
-- Output: `3`
-- Explanation: All three pawns are reachable in one rook move.
+- **Input:** a board with the rook at row $2$, column $3$ and unobstructed pawns above, right, and below it.
+- **Output:** `3`
+- **Explanation:** All three pawns are reachable in one rook move.
 
-**Example 2**
+#### Example 2
 
-- Input: a board with a bishop immediately adjacent to the rook in every direction.
-- Output: `0`
-- Explanation: Each bishop blocks the pawns beyond it.
+- **Input:** a board with a bishop immediately adjacent to the rook in every direction.
+- **Output:** `0`
+- **Explanation:** Each bishop blocks the pawns beyond it.
 
-**Example 3**
+#### Example 3
 
-- Input: a board where the first visible pieces are pawns above, left, and right, while a bishop blocks the downward pawn.
-- Output: `3`
+- **Input:** a board where the first visible pieces are pawns above, left, and right, while a bishop blocks the downward pawn.
+- **Output:** `3`

@@ -8,8 +8,14 @@ Return *the **maximum** number of white tiles that can be covered by the carpet*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `tiles`: Input parameter (`List[List[int]]`).
+- `carpetLen`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,6 +29,7 @@ Return *the **maximum** number of white tiles that can be covered by the carpet*
 It covers 9 white tiles, so we return 9.
 Note that there may be other places where the carpet covers 9 white tiles.
 It can be shown that the carpet cannot cover more than 9 white tiles.
+
 #### Example 2
 
 ![](images/example2drawio.png)

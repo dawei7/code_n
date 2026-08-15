@@ -20,6 +20,7 @@ Return all structurally unique BST roots using each value from `1` through `n` e
 
 - **Input:** $n = 3$
 - **Output:** `[[1,null,2,null,3],[1,null,3,2],[2,1,3],[3,1,null,null,2],[3,2,null,1]]`
+
 #### Example 2
 
 - **Input:** $n = 1$

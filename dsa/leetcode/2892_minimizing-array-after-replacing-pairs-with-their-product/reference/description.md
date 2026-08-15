@@ -21,6 +21,7 @@ Return *the **minimum** possible length of *`nums`* after any number of operatio
 2. [<u>6,3</u>,7,3,5] -> [<u>18</u>,7,3,5]
 3. [18,7,<u>3,5</u>] -> [18,7,<u>15</u>]
 It can be shown that 3 is the minimum length possible to achieve with the given operation.
+
 #### Example 2
 
 - **Input:** `nums = [3,3,3,3], k = 6`

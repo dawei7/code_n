@@ -16,8 +16,13 @@ Note:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -32,6 +37,7 @@ It has a product of 15 * 20 * 6 * 1 * 10 = 18000 which has 3 trailing zeros.
 It can be shown that this is the maximum trailing zeros in the product of a cornered path.
 The grid in the middle is not a cornered path as it has more than one turn.
 The grid on the right is not a cornered path as it requires a return to a previously visited cell.
+
 #### Example 2
 
 ![](images/ex2.jpg)

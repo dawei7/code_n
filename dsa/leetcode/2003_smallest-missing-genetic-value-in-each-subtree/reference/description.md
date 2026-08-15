@@ -10,8 +10,14 @@ The **subtree** rooted at a node `x` contains node `x` and all of its **descenda
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `parents`: Input parameter (`List[int]`).
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -26,6 +32,7 @@ The **subtree** rooted at a node `x` contains node `x` and all of its **descenda
 - 1: The subtree contains only node 1 with value 2. 1 is the smallest missing value.
 - 2: The subtree contains nodes [2,3] with values [3,4]. 1 is the smallest missing value.
 - 3: The subtree contains only node 3 with value 4. 1 is the smallest missing value.
+
 #### Example 2
 
 ![](images/case-2.png)
@@ -39,6 +46,7 @@ The **subtree** rooted at a node `x` contains node `x` and all of its **descenda
 - 3: The subtree contains nodes [3,4,5] with values [2,1,3]. 4 is the smallest missing value.
 - 4: The subtree contains only node 4 with value 1. 2 is the smallest missing value.
 - 5: The subtree contains only node 5 with value 3. 1 is the smallest missing value.
+
 #### Example 3
 
 - **Input:** $parents = [-1,2,3,0,2,4,1], nums = [2,3,4,5,6,7,8]$

@@ -33,18 +33,18 @@ Let $D$ be the number of decimal digits in `k`, and define $L=\max(N,D)$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `num = [1, 2, 0, 0], k = 34`
-- Output: `[1, 2, 3, 4]`
-- Explanation: $1200+34=1234$.
+- **Input:** `num = [1, 2, 0, 0], k = 34`
+- **Output:** `[1, 2, 3, 4]`
+- **Explanation:** $1200+34=1234$.
 
-**Example 2**
+#### Example 2
 
-- Input: `num = [2, 7, 4], k = 181`
-- Output: `[4, 5, 5]`
+- **Input:** `num = [2, 7, 4], k = 181`
+- **Output:** `[4, 5, 5]`
 
-**Example 3**
+#### Example 3
 
-- Input: `num = [2, 1, 5], k = 806`
-- Output: `[1, 0, 2, 1]`
+- **Input:** `num = [2, 1, 5], k = 806`
+- **Output:** `[1, 0, 2, 1]`

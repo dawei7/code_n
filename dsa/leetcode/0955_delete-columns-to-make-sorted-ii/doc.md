@@ -32,20 +32,20 @@ Return the minimum number of common column deletions needed to make `strs` lexic
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `strs = ["ca","bb","ac"]`
-- Output: `1`
-- Explanation: Deleting the first column leaves `["a","b","c"]`.
+- **Input:** `strs = ["ca","bb","ac"]`
+- **Output:** `1`
+- **Explanation:** Deleting the first column leaves `["a","b","c"]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `strs = ["xc","yb","za"]`
-- Output: `0`
-- Explanation: The rows are already in lexicographic order.
+- **Input:** `strs = ["xc","yb","za"]`
+- **Output:** `0`
+- **Explanation:** The rows are already in lexicographic order.
 
-**Example 3**
+#### Example 3
 
-- Input: `strs = ["zyx","wvu","tsr"]`
-- Output: `3`
-- Explanation: Every column must be deleted.
+- **Input:** `strs = ["zyx","wvu","tsr"]`
+- **Output:** `3`
+- **Explanation:** Every column must be deleted.

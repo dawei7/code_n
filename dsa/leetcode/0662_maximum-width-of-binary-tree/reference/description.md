@@ -10,8 +10,10 @@ It is **guaranteed** that the answer will in the range of a **32-bit** signed in
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `widthOfBinaryTree(root: Optional[TreeNode]) -> `int``: Executes operation.
 
 ### 3. Examples
 
@@ -22,6 +24,7 @@ It is **guaranteed** that the answer will in the range of a **32-bit** signed in
 - **Input:** `root = [1,3,2,5,3,null,9]`
 - **Output:** `4`
 - **Explanation:** The maximum width exists in the third level with length 4 (5,3,null,9).
+
 #### Example 2
 
 ![](images/maximum-width-of-binary-tree-v3.jpg)
@@ -29,6 +32,7 @@ It is **guaranteed** that the answer will in the range of a **32-bit** signed in
 - **Input:** `root = [1,3,2,5,null,null,9,6,null,7]`
 - **Output:** `7`
 - **Explanation:** The maximum width exists in the fourth level with length 7 (6,null,null,null,null,null,7).
+
 #### Example 3
 
 ![](images/width3-tree.jpg)

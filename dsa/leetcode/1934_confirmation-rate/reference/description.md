@@ -47,7 +47,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Signups table:
 +---------+---------------------+
 | user_id | time_stamp          |
@@ -69,7 +69,7 @@ Confirmations table:
 | 2       | 2021-01-22 00:00:00 | confirmed |
 | 2       | 2021-02-28 23:59:59 | timeout   |
 +---------+---------------------+-----------+
-**Output:**
+- **Output:** 
 +---------+-------------------+
 | user_id | confirmation_rate |
 +---------+-------------------+
@@ -78,8 +78,7 @@ Confirmations table:
 | 7       | 1.00              |
 | 2       | 0.50              |
 +---------+-------------------+
-**Explanation:**
-User 6 did not request any confirmation messages. The confirmation rate is 0.
+- **Explanation:** User 6 did not request any confirmation messages. The confirmation rate is 0.
 User 3 made 2 requests and both timed out. The confirmation rate is 0.
 User 7 made 3 requests and all were confirmed. The confirmation rate is 1.
 User 2 made 2 requests where one was confirmed and the other timed out. The confirmation rate is 1 / 2 = 0.5.

@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/maximize-area-of-square-hole-in-grid/) |
 
 ## Problem Description
+
 ### Goal
+
 A grid contains $n+2$ horizontal bars and $m+2$ vertical bars, all indexed
 starting from $1$. Adjacent bars initially bound unit cells. The arrays
 `hBars` and `vBars` list the horizontal and vertical bars, respectively,
@@ -23,6 +25,7 @@ consecutive interior bars joins the unit strips on both sides, while gaps
 between removable indices leave fixed separators in place.
 
 ### Function Contract
+
 **Inputs**
 
 - `n`: two fewer than the number of horizontal grid bars
@@ -41,22 +44,23 @@ The maximum area of a square-shaped hole obtainable by removing only listed
 bars.
 
 ### Examples
-**Example 1**
 
-- Input: `n = 2, m = 1, hBars = [2,3], vBars = [2]`
-- Output: `4`
-- Explanation: Removing one suitable bar in each direction creates a square
+#### Example 1
+
+- **Input:** `n = 2, m = 1, hBars = [2,3], vBars = [2]`
+- **Output:** `4`
+- **Explanation:** Removing one suitable bar in each direction creates a square
   with side length `2`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 1, m = 1, hBars = [2], vBars = [2]`
-- Output: `4`
-- Explanation: Removing both listed bars joins a two-by-two block of cells.
+- **Input:** `n = 1, m = 1, hBars = [2], vBars = [2]`
+- **Output:** `4`
+- **Explanation:** Removing both listed bars joins a two-by-two block of cells.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 2, m = 3, hBars = [2,3], vBars = [2,4]`
-- Output: `4`
-- Explanation: The separated vertical indices cannot create a three-unit
+- **Input:** `n = 2, m = 3, hBars = [2,3], vBars = [2,4]`
+- **Output:** `4`
+- **Explanation:** The separated vertical indices cannot create a three-unit
   opening, so the largest square has side length `2`.

@@ -8,8 +8,14 @@ Return the number of **covered** buildings.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `buildings`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -17,16 +23,15 @@ Return the number of **covered** buildings.
 
 ![](images/telegram-cloud-photo-size-5-6212982906394101085-m.jpg)
 
-<div class="example-block">
-**Input:** n = 3, buildings = [[1,2],[2,2],[3,2],[2,1],[2,3]]
+- **Input:** n = 3, buildings = [[1,2],[2,2],[3,2],[2,1],[2,3]]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - Only building `[2,2]` is covered as it has at least one building:
 
-		<li>above (`[1,2]`)
+		- above (`[1,2]`)
 
 - below (`[3,2]`)
 
@@ -34,38 +39,33 @@ Return the number of **covered** buildings.
 
 - right (`[2,3]`)
 
-	</li>
 - Thus, the count of covered buildings is 1.
 
-</div>
 #### Example 2
 
 ![](images/telegram-cloud-photo-size-5-6212982906394101086-m.jpg)
 
-<div class="example-block">
-**Input:** n = 3, buildings = [[1,1],[1,2],[2,1],[2,2]]
+- **Input:** n = 3, buildings = [[1,1],[1,2],[2,1],[2,2]]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** 
 
 - No building has at least one building in all four directions.
 
-</div>
 #### Example 3
 
 ![](images/telegram-cloud-photo-size-5-6248862251436067566-x.jpg)
 
-<div class="example-block">
-**Input:** n = 5, buildings = [[1,3],[3,2],[3,3],[3,5],[5,3]]
+- **Input:** n = 5, buildings = [[1,3],[3,2],[3,3],[3,5],[5,3]]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - Only building `[3,3]` is covered as it has at least one building:
 
-		<li>above (`[1,3]`)
+		- above (`[1,3]`)
 
 - below (`[5,3]`)
 
@@ -73,10 +73,7 @@ Return the number of **covered** buildings.
 
 - right (`[3,5]`)
 
-	</li>
 - Thus, the count of covered buildings is 1.
-
-</div>
 
 ### 4. Constraints
 

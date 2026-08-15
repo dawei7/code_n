@@ -12,14 +12,11 @@ The **Hamming distance** between two binary integers is defined as the number of
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [9,12,9,11], m = 4
+- **Input:** nums = [9,12,9,11], m = 4
 
-**Output:** [2,3,2,3]
+- **Output:** [2,3,2,3]
 
-**Explanation:**
-
-The binary representation of `nums = [1001,1100,1001,1011]`.
+- **Explanation:** The binary representation of `nums = [1001,1100,1001,1011]`.
 
 The maximum hamming distances for each index are:
 
@@ -31,17 +28,13 @@ The maximum hamming distances for each index are:
 
 - $\text{nums}[3]$: 1011 and 1100 have a distance of 3.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [3,4,6,10], m = 4
+- **Input:** nums = [3,4,6,10], m = 4
 
-**Output:** [3,3,2,3]
+- **Output:** [3,3,2,3]
 
-**Explanation:**
-
-The binary representation of `nums = [0011,0100,0110,1010]`.
+- **Explanation:** The binary representation of `nums = [0011,0100,0110,1010]`.
 
 The maximum hamming distances for each index are:
 
@@ -52,8 +45,6 @@ The maximum hamming distances for each index are:
 - $\text{nums}[2]$: 0110 and 1010 have a distance of 2.
 
 - $\text{nums}[3]$: 1010 and 0100 have a distance of 3.
-
-</div>
 
 ### 4. Constraints
 

@@ -35,20 +35,20 @@ Return the number of prime-gap balanced subarrays as an integer.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3], k = 1`
-- Output: `2`
-- Explanation: `[2, 3]` and `[1, 2, 3]` contain both primes, whose difference is $1$.
+- **Input:** `nums = [1, 2, 3], k = 1`
+- **Output:** `2`
+- **Explanation:** `[2, 3]` and `[1, 2, 3]` contain both primes, whose difference is $1$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, 3, 5, 7], k = 3`
-- Output: `4`
-- Explanation: The valid prime intervals are `[2, 3]`, `[2, 3, 5]`, `[3, 5]`, and `[5, 7]`.
+- **Input:** `nums = [2, 3, 5, 7], k = 3`
+- **Output:** `4`
+- **Explanation:** The valid prime intervals are `[2, 3]`, `[2, 3, 5]`, `[3, 5]`, and `[5, 7]`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [2, 4, 2, 6, 2], k = 0`
-- Output: `5`
-- Explanation: Every subarray containing at least two occurrences of `2` is valid; the composite values may lie between or beside them.
+- **Input:** `nums = [2, 4, 2, 6, 2], k = 0`
+- **Output:** `5`
+- **Explanation:** Every subarray containing at least two occurrences of `2` is valid; the composite values may lie between or beside them.

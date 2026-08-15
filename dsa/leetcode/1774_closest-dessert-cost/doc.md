@@ -39,20 +39,20 @@ The second component expresses the smaller-cost tie-break.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `baseCosts = [1,7], toppingCosts = [3,4], target = 10`
-- Output: `10`
-- Explanation: Base cost `7` plus one portion of the `3`-cost topping reaches the target exactly.
+- **Input:** `baseCosts = [1,7], toppingCosts = [3,4], target = 10`
+- **Output:** `10`
+- **Explanation:** Base cost `7` plus one portion of the `3`-cost topping reaches the target exactly.
 
-**Example 2**
+#### Example 2
 
-- Input: `baseCosts = [2,3], toppingCosts = [4,5,100], target = 18`
-- Output: `17`
-- Explanation: Base cost `3`, one `4`-cost topping, and two `5`-cost toppings total `17`; no valid combination totals `18`.
+- **Input:** `baseCosts = [2,3], toppingCosts = [4,5,100], target = 18`
+- **Output:** `17`
+- **Explanation:** Base cost `3`, one `4`-cost topping, and two `5`-cost toppings total `17`; no valid combination totals `18`.
 
-**Example 3**
+#### Example 3
 
-- Input: `baseCosts = [3,10], toppingCosts = [2,5], target = 9`
-- Output: `8`
-- Explanation: Costs `8` and `10` are both one unit from the target, so the lower cost `8` wins.
+- **Input:** `baseCosts = [3,10], toppingCosts = [2,5], target = 9`
+- **Output:** `8`
+- **Explanation:** Costs `8` and `10` are both one unit from the target, so the lower cost `8` wins.

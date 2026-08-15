@@ -31,6 +31,7 @@ Return an integer representing the number of ways to distribute `n` candies into
 (1), (2,3)
 (1,2), (3)
 (1,3), (2)
+
 #### Example 2
 
 - **Input:** $n = 4, k = 2$
@@ -43,6 +44,7 @@ Return an integer representing the number of ways to distribute `n` candies into
 (1,2,3), (4)
 (1,2,4), (3)
 (1,3,4), (2)
+
 #### Example 3
 
 - **Input:** $n = 20, k = 5$

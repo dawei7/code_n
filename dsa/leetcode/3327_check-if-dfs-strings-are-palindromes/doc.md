@@ -35,14 +35,14 @@ Return a length-$n$ boolean list whose entry for node `i` is true exactly when t
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `parent = [-1, 0, 0, 1, 1, 2], s = "aababa"`
-- Output: `[true, true, false, true, true, true]`
-- Explanation: The root produces `"abaaba"`, node $1$ produces `"aba"`, and node $2$ produces `"ab"`. Only the last of those three strings is not a palindrome; every leaf produces one character.
+- **Input:** `parent = [-1, 0, 0, 1, 1, 2], s = "aababa"`
+- **Output:** `[true, true, false, true, true, true]`
+- **Explanation:** The root produces `"abaaba"`, node $1$ produces `"aba"`, and node $2$ produces `"ab"`. Only the last of those three strings is not a palindrome; every leaf produces one character.
 
-**Example 2**
+#### Example 2
 
-- Input: `parent = [-1, 0, 0, 0, 0], s = "aabcb"`
-- Output: `[true, true, true, true, true]`
-- Explanation: The root produces `"abcba"`, and every other node is a leaf, so all five strings are palindromes.
+- **Input:** `parent = [-1, 0, 0, 0, 0], s = "aabcb"`
+- **Output:** `[true, true, true, true, true]`
+- **Explanation:** The root produces `"abcba"`, and every other node is a leaf, so all five strings are palindromes.

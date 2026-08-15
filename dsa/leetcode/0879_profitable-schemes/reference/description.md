@@ -8,8 +8,16 @@ Return the number of schemes that can be chosen. Since the answer may be very la
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `minProfit`: Input parameter (`int`).
+- `group`: Input parameter (`List[int]`).
+- `profit`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,6 +27,7 @@ Return the number of schemes that can be chosen. Since the answer may be very la
 - **Output:** `2`
 - **Explanation:** To make a profit of at least 3, the group could either commit crimes 0 and 1, or just crime 1.
 In total, there are 2 schemes.
+
 #### Example 2
 
 - **Input:** $n = 10, minProfit = 5, group = [2,3,5], profit = [6,7,8]$

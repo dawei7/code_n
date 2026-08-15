@@ -12,8 +12,13 @@ A **subarray** is a **contiguous** part of an array.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,12 +28,14 @@ A **subarray** is a **contiguous** part of an array.
 - **Output:** `14`
 - **Explanation:** The maximum min-product is achieved with the subarray [2,3,2] (minimum value is 2).
 2 * (2+3+2) = 2 * 7 = 14.
+
 #### Example 2
 
 - **Input:** `nums = [2,<u>3,3</u>,1,2]`
 - **Output:** `18`
 - **Explanation:** The maximum min-product is achieved with the subarray [3,3] (minimum value is 3).
 3 * (3+3) = 3 * 6 = 18.
+
 #### Example 3
 
 - **Input:** `nums = [3,1,<u>5,6,4</u>,2]`

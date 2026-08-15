@@ -39,7 +39,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Candidates table:
 +-------------+------------+--------+
 | employee_id | experience | salary |
@@ -51,7 +51,7 @@ Candidates table:
 | 13          | Senior     | 50000  |
 | 4           | Junior     | 40000  |
 +-------------+------------+--------+
-**Output:**
+- **Output:** 
 +-------------+
 | employee_id |
 +-------------+
@@ -60,14 +60,14 @@ Candidates table:
 | 1           |
 | 9           |
 +-------------+
-**Explanation:**
-We can hire 2 seniors with IDs (11, 2). Since the budget is $70000 and the sum of their salaries is $36000, we still have $34000 but they are not enough to hire the senior candidate with ID 13.
+- **Explanation:** We can hire 2 seniors with IDs (11, 2). Since the budget is $70000 and the sum of their salaries is $36000, we still have $34000 but they are not enough to hire the senior candidate with ID 13.
 We can hire 2 juniors with IDs (1, 9). Since the remaining budget is $34000 and the sum of their salaries is $25000, we still have $9000 but they are not enough to hire the junior candidate with ID 4.
 ```
+
 #### Example 2
 
 ```
-**Input:**
+- **Input:** 
 Candidates table:
 +-------------+------------+--------+
 | employee_id | experience | salary |
@@ -79,7 +79,7 @@ Candidates table:
 | 13          | Senior     | 90000  |
 | 4           | Junior     | 30000  |
 +-------------+------------+--------+
-**Output:**
+- **Output:** 
 +-------------+
 | employee_id |
 +-------------+
@@ -87,7 +87,6 @@ Candidates table:
 | 1           |
 | 4           |
 +-------------+
-**Explanation:**
-We cannot hire any seniors with the current budget as we need at least $80000 to hire one senior.
+- **Explanation:** We cannot hire any seniors with the current budget as we need at least $80000 to hire one senior.
 We can hire all three juniors with the remaining budget.
 ```

@@ -31,14 +31,14 @@ Return a shortest string that is guaranteed to try every one of the $k^{n}$ poss
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 1`, `k = 2`
-- Output: `"10"`
-- Explanation: Both one-digit passwords occur once; `"01"` would be equally valid.
+- **Input:** `n = 1`, `k = 2`
+- **Output:** `"10"`
+- **Explanation:** Both one-digit passwords occur once; `"01"` would be equally valid.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 2`, `k = 2`
-- Output: `"01100"`
-- Explanation: Its length-two windows are `01`, `11`, `10`, and `00`, covering all four passwords.
+- **Input:** `n = 2`, `k = 2`
+- **Output:** `"01100"`
+- **Explanation:** Its length-two windows are `01`, `11`, `10`, and `00`, covering all four passwords.

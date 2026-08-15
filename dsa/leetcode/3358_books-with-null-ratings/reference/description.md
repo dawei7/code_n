@@ -25,7 +25,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 books table:
@@ -63,7 +62,7 @@ books table:
 
 - The other books (book_id 1, 3, and 5) have ratings and are not included.
 
-The result is ordered by book_id in ascending order</div>
+The result is ordered by book_id in ascending order
 
 ### 2. Function Contract
 

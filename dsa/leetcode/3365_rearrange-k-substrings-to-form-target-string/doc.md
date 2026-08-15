@@ -34,20 +34,20 @@ Let $n=\lvert\texttt{s}\rvert=\lvert\texttt{t}\rvert$. The constraints are $1\le
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abcd"`, `t = "cdab"`, `k = 2`
-- Output: `true`
-- Explanation: The blocks `["ab", "cd"]` can be ordered as `["cd", "ab"]`.
+- **Input:** `s = "abcd"`, `t = "cdab"`, `k = 2`
+- **Output:** `true`
+- **Explanation:** The blocks `["ab", "cd"]` can be ordered as `["cd", "ab"]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "aabbcc"`, `t = "bbaacc"`, `k = 3`
-- Output: `true`
-- Explanation: Reordering `["aa", "bb", "cc"]` produces the target blocks `["bb", "aa", "cc"]`.
+- **Input:** `s = "aabbcc"`, `t = "bbaacc"`, `k = 3`
+- **Output:** `true`
+- **Explanation:** Reordering `["aa", "bb", "cc"]` produces the target blocks `["bb", "aa", "cc"]`.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "aabbcc"`, `t = "bbaacc"`, `k = 2`
-- Output: `false`
-- Explanation: The source blocks are `["aab", "bcc"]`, which do not match the target blocks `["bba", "acc"]`.
+- **Input:** `s = "aabbcc"`, `t = "bbaacc"`, `k = 2`
+- **Output:** `false`
+- **Explanation:** The source blocks are `["aab", "bcc"]`, which do not match the target blocks `["bba", "acc"]`.

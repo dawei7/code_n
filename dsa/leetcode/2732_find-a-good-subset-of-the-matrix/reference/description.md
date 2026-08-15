@@ -14,8 +14,13 @@ A **subset** of rows of the matrix `grid` is any matrix that can be obtained by 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -29,6 +34,7 @@ The length of the chosen subset is 2.
 - The sum of the 1^st column is 1 + 0 = 1, which is at most half of the length of the subset.
 - The sum of the 2^nd column is 1 + 0 = 1, which is at most half of the length of the subset.
 - The sum of the 3^rd column is 0 + 1 = 1, which is at most half of the length of the subset.
+
 #### Example 2
 
 - **Input:** `grid = [[0]]`
@@ -36,6 +42,7 @@ The length of the chosen subset is 2.
 - **Explanation:** We can choose the 0^th row to create a good subset of rows.
 The length of the chosen subset is 1.
 - The sum of the 0^th column is 0, which is at most half of the length of the subset.
+
 #### Example 3
 
 - **Input:** `grid = [[1,1,1],[1,1,1]]`

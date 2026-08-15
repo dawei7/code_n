@@ -6,8 +6,13 @@ Return the **minimum** number of substrings that you can partition `s` into.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -17,28 +22,19 @@ A **balanced** string is a string where each character in the string occurs the 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "fabccddg"
+- **Input:** s = "fabccddg"
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** We can partition the string `s` into 3 substrings in one of the following ways: `("fab, "ccdd", "g")`, or `("fabc", "cd", "dg")`.
 
-We can partition the string `s` into 3 substrings in one of the following ways: `("fab, "ccdd", "g")`, or `("fabc", "cd", "dg")`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "abababaccddb"
+- **Input:** s = "abababaccddb"
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-We can partition the string `s` into 2 substrings like so: `("abab", "abaccddb")`.
-
-</div>
+- **Explanation:** We can partition the string `s` into 2 substrings like so: `("abab", "abaccddb")`.
 
 ### 5. Constraints
 

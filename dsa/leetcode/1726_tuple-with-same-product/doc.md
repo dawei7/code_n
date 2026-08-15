@@ -34,20 +34,20 @@ Return the total number of valid ordered tuples. Order matters: exchanging the v
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,3,4,6]`
-- Output: `8`
-- Explanation: The unordered pairs `{2,6}` and `{3,4}` share product $12$. Swapping within each pair and exchanging the pair positions creates eight ordered tuples.
+- **Input:** `nums = [2,3,4,6]`
+- **Output:** `8`
+- **Explanation:** The unordered pairs `{2,6}` and `{3,4}` share product $12$. Swapping within each pair and exchanging the pair positions creates eight ordered tuples.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,2,4,5,10]`
-- Output: `16`
-- Explanation: Products $10$ and $20$ each arise from two different unordered pairs, and each collision contributes eight tuples.
+- **Input:** `nums = [1,2,4,5,10]`
+- **Output:** `16`
+- **Explanation:** Products $10$ and $20$ each arise from two different unordered pairs, and each collision contributes eight tuples.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [2,3,5,7]`
-- Output: `0`
-- Explanation: No two unordered pairs have the same product.
+- **Input:** `nums = [2,3,5,7]`
+- **Output:** `0`
+- **Explanation:** No two unordered pairs have the same product.

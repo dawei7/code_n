@@ -30,20 +30,20 @@ Prune every eligible subtree and return the root of what remains. Removing a sub
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [1,null,0,0,1]`
-- Output: `[1,null,0,null,1]`
-- Explanation: The zero leaf below the right child is removed, while the zero node with a `1` descendant remains.
+- **Input:** `root = [1,null,0,0,1]`
+- **Output:** `[1,null,0,null,1]`
+- **Explanation:** The zero leaf below the right child is removed, while the zero node with a `1` descendant remains.
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [1,0,1,0,0,0,1]`
-- Output: `[1,null,1,null,1]`
-- Explanation: The entire left subtree and the zero leaf under the right subtree contain no `1` and are pruned.
+- **Input:** `root = [1,0,1,0,0,0,1]`
+- **Output:** `[1,null,1,null,1]`
+- **Explanation:** The entire left subtree and the zero leaf under the right subtree contain no `1` and are pruned.
 
-**Example 3**
+#### Example 3
 
-- Input: `root = [0,0,0]`
-- Output: `[]`
-- Explanation: No node in the tree has value `1`, so the root is also removed.
+- **Input:** `root = [0,0,0]`
+- **Output:** `[]`
+- **Explanation:** No node in the tree has value `1`, so the root is also removed.

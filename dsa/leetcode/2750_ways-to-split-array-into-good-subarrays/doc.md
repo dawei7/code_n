@@ -32,14 +32,14 @@ Return the number of ways to partition the entire array into good subarrays, mod
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [0,1,0,0,1]`
-- Output: `3`
-- Explanation: The single boundary between the two `1` values can follow any of the three positions from the first `1` through the last intervening `0`.
+- **Input:** `nums = [0,1,0,0,1]`
+- **Output:** `3`
+- **Explanation:** The single boundary between the two `1` values can follow any of the three positions from the first `1` through the last intervening `0`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [0,1,0]`
-- Output: `1`
-- Explanation: The whole array is already one good subarray.
+- **Input:** `nums = [0,1,0]`
+- **Output:** `1`
+- **Explanation:** The whole array is already one good subarray.

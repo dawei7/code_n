@@ -10,8 +10,15 @@ Given `maxTime`, `edges`, and `passingFees`, return *the **minimum cost** to com
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `maxTime`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+- `passingFees`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +29,7 @@ Given `maxTime`, `edges`, and `passingFees`, return *the **minimum cost** to com
 - **Input:** $maxTime = 30, edges = [[0,1,10],[1,2,10],[2,5,10],[0,3,1],[3,4,10],[4,5,15]], passingFees = [5,1,2,20,20,3]$
 - **Output:** `11`
 - **Explanation:** The path to take is 0 -> 1 -> 2 -> 5, which takes 30 minutes and has $11 worth of passing fees.
+
 #### Example 2
 
 **
@@ -34,6 +42,7 @@ Given `maxTime`, `edges`, and `passingFees`, return *the **minimum cost** to com
 - **Output:** `48`
 - **Explanation:** The path to take is 0 -> 3 -> 4 -> 5, which takes 26 minutes and has $48 worth of passing fees.
 You cannot take path 0 -> 1 -> 2 -> 5 since it would take too long.
+
 #### Example 3
 
 - **Input:** $maxTime = 25, edges = [[0,1,10],[1,2,10],[2,5,10],[0,3,1],[3,4,10],[4,5,15]], passingFees = [5,1,2,20,20,3]$

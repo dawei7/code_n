@@ -21,46 +21,39 @@ Return the lexicographically smallest qualifying permutation of `s`, or `""` whe
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "abc", target = "bba"
+- **Input:** s = "abc", target = "bba"
 
-**Output:** "bca"
+- **Output:** "bca"
 
-**Explanation:**
+- **Explanation:** 
 
 - The permutations of `s` (in lexicographical order) are `"abc"`, `"acb"`, `"bac"`, `"bca"`, `"cab"`, and `"cba"`.
 
 - The lexicographically smallest permutation that is strictly greater than `target` is `"bca"`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "leet", target = "code"
+- **Input:** s = "leet", target = "code"
 
-**Output:** "eelt"
+- **Output:** "eelt"
 
-**Explanation:**
+- **Explanation:** 
 
 - The permutations of `s` (in lexicographical order) are `"eelt"`, `"eetl"`, `"elet"`, `"elte"`, `"etel"`, `"etle"`, `"leet"`, `"lete"`, `"ltee"`, `"teel"`, `"tele"`, and `"tlee"`.
 
 - The lexicographically smallest permutation that is strictly greater than `target` is `"eelt"`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "baba", target = "bbaa"
+- **Input:** s = "baba", target = "bbaa"
 
-**Output:** ""
+- **Output:** ""
 
-**Explanation:**
+- **Explanation:** 
 
 - The permutations of `s` (in lexicographical order) are `"aabb"`, `"abab"`, `"abba"`, `"baab"`, `"baba"`, and `"bbaa"`.
 
 - None of them is lexicographically strictly greater than `target`. Therefore, the answer is `""`.
-
-</div>
 
 ### 4. Constraints
 

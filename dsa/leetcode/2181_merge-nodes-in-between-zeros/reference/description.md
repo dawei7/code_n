@@ -8,8 +8,10 @@ Return *the* `head` *of the modified linked list*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `ListNode(val=0, next=None)`: Initializes the data structure.
+- `mergeNodes(head: Optional[ListNode]) -> `Optional[ListNode]``: Executes operation.
 
 ### 3. Examples
 
@@ -19,18 +21,17 @@ Return *the* `head` *of the modified linked list*.
 
 - **Input:** $head = [0,3,1,0,4,5,2,0]$
 - **Output:** `[4,11]`
-- **Explanation:**
-The above figure represents the given linked list. The modified list contains
+- **Explanation:** The above figure represents the given linked list. The modified list contains
 - The sum of the nodes marked in green: 3 + 1 = 4.
 - The sum of the nodes marked in red: 4 + 5 + 2 = 11.
+
 #### Example 2
 
 ![](images/ex2-1.png)
 
 - **Input:** $head = [0,1,0,3,0,2,2,0]$
 - **Output:** `[1,3,4]`
-- **Explanation:**
-The above figure represents the given linked list. The modified list contains
+- **Explanation:** The above figure represents the given linked list. The modified list contains
 - The sum of the nodes marked in green: 1 = 1.
 - The sum of the nodes marked in red: 3 = 3.
 - The sum of the nodes marked in yellow: 2 + 2 = 4.

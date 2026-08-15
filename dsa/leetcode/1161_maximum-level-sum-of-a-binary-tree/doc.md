@@ -31,19 +31,19 @@ For every level, sum the values of all nodes on that level. Return the smallest 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [1,7,0,7,-8,null,null]`
-- Output: `2`
+- **Input:** `root = [1,7,0,7,-8,null,null]`
+- **Output:** `2`
 
 The first three level sums are $1$, $7$, and $-1$.
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [989,null,10250,98693,-89388,null,null,null,-32127]`
-- Output: `2`
+- **Input:** `root = [989,null,10250,98693,-89388,null,null,null,-32127]`
+- **Output:** `2`
 
-**Example 3**
+#### Example 3
 
-- Input: `root = [1]`
-- Output: `1`
+- **Input:** `root = [1]`
+- **Output:** `1`

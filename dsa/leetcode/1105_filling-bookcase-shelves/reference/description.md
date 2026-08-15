@@ -14,8 +14,14 @@ Return *the minimum possible height that the total bookshelf can be after placin
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `books`: Input parameter (`List[List[int]]`).
+- `shelfWidth`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,9 +31,9 @@ Return *the minimum possible height that the total bookshelf can be after placin
 
 - **Input:** $books = [[1,1],[2,3],[2,3],[1,1],[1,1],[1,1],[1,2]], shelfWidth = 4$
 - **Output:** `6`
-- **Explanation:**
-The sum of the heights of the 3 shelves is 1 + 3 + 2 = 6.
+- **Explanation:** The sum of the heights of the 3 shelves is 1 + 3 + 2 = 6.
 Notice that book number 2 does not have to be on the first shelf.
+
 #### Example 2
 
 - **Input:** $books = [[1,3],[2,4],[3,2]], shelfWidth = 6$

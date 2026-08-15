@@ -32,21 +32,21 @@ Return the number of distinct stage assignments and band-score assignments modul
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 1, x = 2, y = 3`
-- Output: `6`
+- **Input:** `n = 1, x = 2, y = 3`
+- **Output:** `6`
 
 The performer has two stage choices, and the resulting band has three score choices.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 5, x = 2, y = 1`
-- Output: `32`
+- **Input:** `n = 5, x = 2, y = 1`
+- **Output:** `32`
 
 Every performer independently chooses one of two stages, and the only available score adds no extra choice.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 3, x = 3, y = 4`
-- Output: `684`
+- **Input:** `n = 3, x = 3, y = 4`
+- **Output:** `684`

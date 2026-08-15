@@ -36,20 +36,20 @@ Return the `rowsCount` by `colsCount` snail matrix when $n = \texttt{rowsCount} 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [19,10,3,7,9,8,5,2,1,17,16,14,12,18,6,15,4,20,11,13]`, `rowsCount = 5`, `colsCount = 4`
-- Output: `[[19,17,16,13],[10,1,14,11],[3,2,12,20],[7,5,18,4],[9,8,6,15]]`
-- Explanation: Consecutive groups of five values form columns. Their directions alternate downward, upward, downward, and upward.
+- **Input:** `nums = [19,10,3,7,9,8,5,2,1,17,16,14,12,18,6,15,4,20,11,13]`, `rowsCount = 5`, `colsCount = 4`
+- **Output:** `[[19,17,16,13],[10,1,14,11],[3,2,12,20],[7,5,18,4],[9,8,6,15]]`
+- **Explanation:** Consecutive groups of five values form columns. Their directions alternate downward, upward, downward, and upward.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,2,3,4]`, `rowsCount = 1`, `colsCount = 4`
-- Output: `[[1,2,3,4]]`
-- Explanation: With only one row, both traversal directions place every value in that same row.
+- **Input:** `nums = [1,2,3,4]`, `rowsCount = 1`, `colsCount = 4`
+- **Output:** `[[1,2,3,4]]`
+- **Explanation:** With only one row, both traversal directions place every value in that same row.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,3]`, `rowsCount = 2`, `colsCount = 2`
-- Output: `[]`
-- Explanation: A $2 \times 2$ matrix needs four values, so the requested dimensions are invalid for this array.
+- **Input:** `nums = [1,3]`, `rowsCount = 2`, `colsCount = 2`
+- **Output:** `[]`
+- **Explanation:** A $2 \times 2$ matrix needs four values, so the requested dimensions are invalid for this array.

@@ -41,23 +41,23 @@ $0\le\texttt{k}\le 10^9$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 3, 0, 0, 2], k = 4`
-- Output: `3`
-- Explanation: Raise the value at index 1 once and the value at index 4 twice.
+- **Input:** `nums = [2, 3, 0, 0, 2], k = 4`
+- **Output:** `3`
+- **Explanation:** Raise the value at index 1 once and the value at index 4 twice.
   The resulting `[2, 4, 0, 0, 4]` has a value at least four in every
   subarray of size three or more.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [0, 1, 3, 3], k = 5`
-- Output: `2`
-- Explanation: Raising index 2 from 3 to 5 covers both length-three windows,
+- **Input:** `nums = [0, 1, 3, 3], k = 5`
+- **Output:** `2`
+- **Explanation:** Raising index 2 from 3 to 5 covers both length-three windows,
   and therefore every longer subarray as well.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 1, 2], k = 1`
-- Output: `0`
-- Explanation: The only subarray of size at least three already has maximum 2.
+- **Input:** `nums = [1, 1, 2], k = 1`
+- **Output:** `0`
+- **Explanation:** The only subarray of size at least three already has maximum 2.

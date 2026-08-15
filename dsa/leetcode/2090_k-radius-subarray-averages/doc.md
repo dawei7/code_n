@@ -47,18 +47,18 @@ and every other entry is `-1`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [7, 4, 3, 9, 1, 8, 5, 2, 6]`, `k = 3`
-- Output: `[-1, -1, -1, 5, 4, 4, -1, -1, -1]`
-- Explanation: Only centers `3`, `4`, and `5` have complete windows of length `7`.
+- **Input:** `nums = [7, 4, 3, 9, 1, 8, 5, 2, 6]`, `k = 3`
+- **Output:** `[-1, -1, -1, 5, 4, 4, -1, -1, -1]`
+- **Explanation:** Only centers `3`, `4`, and `5` have complete windows of length `7`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [100000]`, `k = 0`
-- Output: `[100000]`
+- **Input:** `nums = [100000]`, `k = 0`
+- **Output:** `[100000]`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [8]`, `k = 100000`
-- Output: `[-1]`
+- **Input:** `nums = [8]`, `k = 100000`
+- **Output:** `[-1]`

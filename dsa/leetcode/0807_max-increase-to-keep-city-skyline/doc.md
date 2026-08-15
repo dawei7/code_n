@@ -30,20 +30,20 @@ Increase any building heights by non-negative amounts without changing any of th
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[3,0,8,4],[2,4,5,7],[9,2,6,3],[0,3,1,0]]`
-- Output: `35`
-- Explanation: Each building can rise to the smaller of its row maximum and column maximum; the resulting increases sum to 35.
+- **Input:** `grid = [[3,0,8,4],[2,4,5,7],[9,2,6,3],[0,3,1,0]]`
+- **Output:** `35`
+- **Explanation:** Each building can rise to the smaller of its row maximum and column maximum; the resulting increases sum to 35.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[1,2],[3,4]]`
-- Output: `1`
-- Explanation: Only the upper-left building can rise, from 1 to 2.
+- **Input:** `grid = [[1,2],[3,4]]`
+- **Output:** `1`
+- **Explanation:** Only the upper-left building can rise, from 1 to 2.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[5]]`
-- Output: `0`
-- Explanation: Increasing the only building would change both skylines.
+- **Input:** `grid = [[5]]`
+- **Output:** `0`
+- **Explanation:** Increasing the only building would change both skylines.

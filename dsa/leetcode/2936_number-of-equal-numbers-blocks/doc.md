@@ -40,20 +40,20 @@ $1\le\texttt{nums.at(i)}\le10^9$. All occurrences of each value are adjacent.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3, 3, 3, 3, 3]`
-- Output: `1`
-- Explanation: The whole array is one maximal equal-value block.
+- **Input:** `nums = [3, 3, 3, 3, 3]`
+- **Output:** `1`
+- **Explanation:** The whole array is one maximal equal-value block.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 1, 1, 3, 9, 9, 9, 2, 10, 10]`
-- Output: `5`
-- Explanation: The block values in order are 1, 3, 9, 2, and 10.
+- **Input:** `nums = [1, 1, 1, 3, 9, 9, 9, 2, 10, 10]`
+- **Output:** `5`
+- **Explanation:** The block values in order are 1, 3, 9, 2, and 10.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 2, 3, 4, 5, 6, 7]`
-- Output: `7`
-- Explanation: Every element has a different value, so each is its own block.
+- **Input:** `nums = [1, 2, 3, 4, 5, 6, 7]`
+- **Output:** `7`
+- **Explanation:** Every element has a different value, so each is its own block.

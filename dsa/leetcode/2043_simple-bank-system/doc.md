@@ -46,20 +46,20 @@ made to each transaction method.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `operations = ["Bank", "withdraw", "transfer", "deposit", "transfer", "withdraw"]`, `arguments = [[[10, 100, 20, 50, 30]], [3, 10], [5, 1, 20], [5, 20], [3, 4, 15], [10, 50]]`
-- Output: `[null, true, true, true, false, false]`
+- **Input:** `operations = ["Bank", "withdraw", "transfer", "deposit", "transfer", "withdraw"]`, `arguments = [[[10, 100, 20, 50, 30]], [3, 10], [5, 1, 20], [5, 20], [3, 4, 15], [10, 50]]`
+- **Output:** `[null, true, true, true, false, false]`
 
-**Example 2**
+#### Example 2
 
-- Input: initialize `[5]`, then call `deposit(1, 4)` and `withdraw(1, 10)`
-- Output: `[true, false]`
-- Explanation: The deposit raises the balance to `9`, which is still
+- **Input:** initialize `[5]`, then call `deposit(1, 4)` and `withdraw(1, 10)`
+- **Output:** `[true, false]`
+- **Explanation:** The deposit raises the balance to `9`, which is still
   insufficient for the withdrawal.
 
-**Example 3**
+#### Example 3
 
-- Input: initialize `[8, 2]`, then call `transfer(1, 2, 3)` and
+- **Input:** initialize `[8, 2]`, then call `transfer(1, 2, 3)` and
   `withdraw(2, 4)`
-- Output: `[true, true]`
+- **Output:** `[true, true]`

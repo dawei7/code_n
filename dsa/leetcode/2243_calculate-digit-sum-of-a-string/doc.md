@@ -38,17 +38,17 @@ group by its digit sum until the string's length is at most `k`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "11111222223", k = 3`
-- Output: `"135"`
+- **Input:** `s = "11111222223", k = 3`
+- **Output:** `"135"`
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "00000000", k = 3`
-- Output: `"000"`
+- **Input:** `s = "00000000", k = 3`
+- **Output:** `"000"`
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "123", k = 3`
-- Output: `"123"`
+- **Input:** `s = "123", k = 3`
+- **Output:** `"123"`

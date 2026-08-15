@@ -28,14 +28,11 @@ Return the largest number of activated points achievable after adding and initia
 
 #### Example 1
 
-<div class="example-block">
-**Input:** points = [[1,1],[1,2],[2,2]]
+- **Input:** points = [[1,1],[1,2],[2,2]]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-Adding and activating a point such as `(1, 3)` causes activations:
+- **Explanation:** Adding and activating a point such as `(1, 3)` causes activations:
 
 - `(1, 3)` shares $x = 1$ with `(1, 1)` and `(1, 2)` -> `(1, 1)` and `(1, 2)` become activated.
 
@@ -43,17 +40,13 @@ Adding and activating a point such as `(1, 3)` causes activations:
 
 Thus, the activated points are `(1, 3)`, `(1, 1)`, `(1, 2)`, `(2, 2)`, so 4 points in total. We can show this is the maximum activated.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** points = [[2,2],[1,1],[3,3]]
+- **Input:** points = [[2,2],[1,1],[3,3]]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-Adding and activating a point such as `(1, 2)` causes activations:
+- **Explanation:** Adding and activating a point such as `(1, 2)` causes activations:
 
 - `(1, 2)` shares $x = 1$ with `(1, 1)` -> `(1, 1)` becomes activated.
 
@@ -61,25 +54,19 @@ Adding and activating a point such as `(1, 2)` causes activations:
 
 Thus, the activated points are `(1, 2)`, `(1, 1)`, `(2, 2)`, so 3 points in total. We can show this is the maximum activated.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** points = [[2,3],[2,2],[1,1],[4,5]]
+- **Input:** points = [[2,3],[2,2],[1,1],[4,5]]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-Adding and activating a point such as `(2, 1)` causes activations:
+- **Explanation:** Adding and activating a point such as `(2, 1)` causes activations:
 
 - `(2, 1)` shares $x = 2$ with `(2, 3)` and `(2, 2)` -> `(2, 3)` and `(2, 2)` become activated.
 
 - `(2, 1)` shares $y = 1$ with `(1, 1)` -> `(1, 1)` becomes activated.
 
 Thus, the activated points are `(2, 1)`, `(2, 3)`, `(2, 2)`, `(1, 1)`, so 4 points in total.
-
-</div>
 
 ### 4. Constraints
 

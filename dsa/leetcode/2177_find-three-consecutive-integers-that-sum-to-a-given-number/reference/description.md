@@ -4,8 +4,13 @@ Given an integer `num`, return *three consecutive integers (as a sorted array)**
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `num`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -15,6 +20,7 @@ Given an integer `num`, return *three consecutive integers (as a sorted array)**
 - **Output:** `[10,11,12]`
 - **Explanation:** 33 can be expressed as 10 + 11 + 12 = 33.
 10, 11, 12 are 3 consecutive integers, so we return [10, 11, 12].
+
 #### Example 2
 
 - **Input:** $num = 4$

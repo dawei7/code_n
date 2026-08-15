@@ -6,8 +6,10 @@ If there exist multiple answers, you can **return any** of them.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `constructFromPrePost(preorder: List[int], postorder: List[int]) -> `Optional[TreeNode]``: Executes operation.
 
 ### 3. Examples
 
@@ -17,6 +19,7 @@ If there exist multiple answers, you can **return any** of them.
 
 - **Input:** $preorder = [1,2,4,5,3,6,7], postorder = [4,5,2,6,7,3,1]$
 - **Output:** `[1,2,3,4,5,6,7]`
+
 #### Example 2
 
 - **Input:** $preorder = [1], postorder = [1]$

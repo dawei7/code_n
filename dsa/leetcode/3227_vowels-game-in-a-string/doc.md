@@ -30,20 +30,20 @@ Return whether Alice wins under optimal play.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "leetcoder"`
-- Output: `true`
-- Explanation: The string contains vowels, so Alice can force the winning parity invariant.
+- **Input:** `s = "leetcoder"`
+- **Output:** `true`
+- **Explanation:** The string contains vowels, so Alice can force the winning parity invariant.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "bbcd"`
-- Output: `false`
-- Explanation: No substring contains an odd number of vowels, so Alice cannot move.
+- **Input:** `s = "bbcd"`
+- **Output:** `false`
+- **Explanation:** No substring contains an odd number of vowels, so Alice cannot move.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "a"`
-- Output: `true`
-- Explanation: Alice removes the entire one-vowel string and Bob receives the empty string.
+- **Input:** `s = "a"`
+- **Output:** `true`
+- **Explanation:** Alice removes the entire one-vowel string and Bob receives the empty string.

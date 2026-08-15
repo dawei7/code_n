@@ -44,7 +44,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Buses table:
 +--------+--------------+
 | bus_id | arrival_time |
@@ -62,7 +62,7 @@ Passengers table:
 | 13           | 6            |
 | 14           | 7            |
 +--------------+--------------+
-**Output:**
+- **Output:** 
 +--------+----------------+
 | bus_id | passengers_cnt |
 +--------+----------------+
@@ -70,7 +70,7 @@ Passengers table:
 | 2      | 0              |
 | 3      | 3              |
 +--------+----------------+
-**Explanation:**
+- **Explanation:** 
 - Passenger 11 arrives at time 1.
 - Bus 1 arrives at time 2 and collects passenger 11.
 

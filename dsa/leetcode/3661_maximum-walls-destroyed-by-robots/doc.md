@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/maximum-walls-destroyed-by-robots/) |
 
 ## Problem Description
+
 ### Goal
 
 An endless straight line contains robots and walls at integer positions. Robot `i` stands at `robots[i]` and owns one bullet whose maximum travel distance is `distance[i]`. That bullet must be fired either left or right and destroys every wall encountered within its traveled range.
@@ -35,20 +36,20 @@ Return the greatest number of unique wall coordinates that can be destroyed afte
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `robots = [4]`, `distance = [3]`, `walls = [1, 10]`
-- Output: `1`
+- **Input:** `robots = [4]`, `distance = [3]`, `walls = [1, 10]`
+- **Output:** `1`
 - Firing left reaches the wall at `1`; firing right reaches neither wall.
 
-**Example 2**
+#### Example 2
 
-- Input: `robots = [10, 2]`, `distance = [5, 1]`, `walls = [5, 2, 7]`
-- Output: `3`
+- **Input:** `robots = [10, 2]`, `distance = [5, 1]`, `walls = [5, 2, 7]`
+- **Output:** `3`
 - The robot at `10` fires left through `7` and `5`, while the robot at `2` destroys its co-located wall.
 
-**Example 3**
+#### Example 3
 
-- Input: `robots = [1, 2]`, `distance = [100, 1]`, `walls = [10]`
-- Output: `0`
+- **Input:** `robots = [1, 2]`, `distance = [100, 1]`, `walls = [10]`
+- **Output:** `0`
 - The robot at `2` blocks the first robot's rightward bullet before it can reach `10`.

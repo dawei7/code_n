@@ -33,20 +33,20 @@ Let $R=\texttt{highLimit}-\texttt{lowLimit}+1$ and let $D$ be the number of deci
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `lowLimit = 1, highLimit = 10`
-- Output: `2`
-- Explanation: Labels `1` and `10` both have digit sum $1$, while every other box receives at most one ball.
+- **Input:** `lowLimit = 1, highLimit = 10`
+- **Output:** `2`
+- **Explanation:** Labels `1` and `10` both have digit sum $1$, while every other box receives at most one ball.
 
-**Example 2**
+#### Example 2
 
-- Input: `lowLimit = 5, highLimit = 15`
-- Output: `2`
-- Explanation: Boxes $5$ and $6$ each receive two balls, which is the maximum occupancy.
+- **Input:** `lowLimit = 5, highLimit = 15`
+- **Output:** `2`
+- **Explanation:** Boxes $5$ and $6$ each receive two balls, which is the maximum occupancy.
 
-**Example 3**
+#### Example 3
 
-- Input: `lowLimit = 19, highLimit = 28`
-- Output: `2`
-- Explanation: Labels `19` and `28` both have digit sum $10$.
+- **Input:** `lowLimit = 19, highLimit = 28`
+- **Output:** `2`
+- **Explanation:** Labels `19` and `28` both have digit sum $10$.
