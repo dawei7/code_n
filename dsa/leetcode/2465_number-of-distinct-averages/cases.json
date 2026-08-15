@@ -1,13 +1,192 @@
 {
   "challenge_id": "lc_2465",
   "cases": [
-    {"id":"sample-1","name":"sample: three pairs produce two averages","kind":"sample","visible":true,"input":{"nums":[4,1,4,0,3,5]},"expected":2,"tags":["sample","sorting"]},
-    {"id":"sample-2","name":"sample: the only pair produces one average","kind":"sample","visible":true,"input":{"nums":[1,100]},"expected":1,"tags":["sample","minimum-size"]},
-    {"id":"trial-duplicate-values","name":"trial: duplicate extremes repeatedly produce one average","kind":"trial","visible":true,"input":{"nums":[1,1,0,0]},"expected":1,"tags":["trial","duplicates"]},
-    {"id":"trial-symmetric-range","name":"trial: every symmetric pair has the same sum","kind":"trial","visible":true,"input":{"nums":[1,2,3,4]},"expected":1,"tags":["trial","repeated-average"]},
-    {"id":"real-all-equal","name":"hidden: all equal values produce one average","kind":"real","visible":false,"input":{"nums":[5,5,5,5,5,5]},"expected":1,"tags":["hidden","all-equal"]},
-    {"id":"real-distinct-pair-sums","name":"hidden: every extreme pair has a different sum","kind":"real","visible":false,"input":{"nums":[0,1,2,3,9,20]},"expected":3,"tags":["hidden","distinct-averages"]},
-    {"id":"real-half-integers","name":"hidden: odd pair sums represent fractional averages exactly","kind":"real","visible":false,"input":{"nums":[0,2,3,7]},"expected":2,"tags":["hidden","fractional-average"]},
-    {"id":"real-boundary-values","name":"hidden: values use both ends of the allowed range","kind":"real","visible":false,"input":{"nums":[0,0,50,75,100,100]},"expected":2,"tags":["hidden","boundaries"]}
+    {
+      "id": "sample-1",
+      "name": "sample: three pairs produce two averages",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          1,
+          4,
+          0,
+          3,
+          5
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "sorting"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: the only pair produces one average",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          100
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "minimum-size"
+      ]
+    },
+    {
+      "id": "trial-duplicate-values",
+      "name": "trial: duplicate extremes repeatedly produce one average",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-symmetric-range",
+      "name": "trial: every symmetric pair has the same sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "repeated-average"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "all equal values produce one average",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "all-equal"
+      ]
+    },
+    {
+      "id": "trial-distinct-pair-sums",
+      "name": "every extreme pair has a different sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          2,
+          3,
+          9,
+          20
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "distinct-averages"
+      ]
+    },
+    {
+      "id": "trial-half-integers",
+      "name": "odd pair sums represent fractional averages exactly",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          2,
+          3,
+          7
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "fractional-average"
+      ]
+    },
+    {
+      "id": "trial-boundary-values",
+      "name": "values use both ends of the allowed range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          50,
+          75,
+          100,
+          100
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundaries"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    }
   ]
 }

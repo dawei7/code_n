@@ -1,15 +1,165 @@
 {
   "challenge_id": "lc_3297",
   "cases": [
-    {"id":"sample-single-valid","name":"sample: only the whole source is valid","kind":"sample","visible":true,"input":{"word1":"bcca","word2":"abc"},"expected":1,"tags":["sample","rearrangement"]},
-    {"id":"sample-ten-valid","name":"sample: ten ranges contain one of each letter","kind":"sample","visible":true,"input":{"word1":"abcabc","word2":"abc"},"expected":10,"tags":["sample","overlap"]},
-    {"id":"sample-insufficient-a","name":"sample: source lacks enough repeated letters","kind":"sample","visible":true,"input":{"word1":"abcabc","word2":"aaabc"},"expected":0,"tags":["sample","impossible"]},
-    {"id":"trial-single-character","name":"trial: one matching character","kind":"trial","visible":true,"input":{"word1":"a","word2":"a"},"expected":1,"tags":["minimum"]},
-    {"id":"trial-pattern-longer","name":"trial: required string is longer than source","kind":"trial","visible":true,"input":{"word1":"a","word2":"aa"},"expected":0,"tags":["length"]},
-    {"id":"trial-repeated-requirement","name":"trial: repeated requirement admits five ranges","kind":"trial","visible":true,"input":{"word1":"aaab","word2":"aa"},"expected":5,"tags":["duplicates"]},
-    {"id":"real-extra-letters","name":"real: irrelevant letters may surround requirements","kind":"real","visible":false,"input":{"word1":"zzabzz","word2":"ab"},"expected":9,"tags":["surplus"]},
-    {"id":"real-all-identical","name":"real: every range of length at least two qualifies","kind":"real","visible":false,"input":{"word1":"aaaa","word2":"aa"},"expected":6,"tags":["duplicates","overlap"]},
-    {"id":"real-shrink-trap","name":"real: surplus and required copies alternate","kind":"real","visible":false,"input":{"word1":"dccdceee","word2":"cec"},"expected":9,"tags":["sliding-window"]},
-    {"id":"real-multiple-deficits","name":"real: shrinking crosses two required deficits","kind":"real","visible":false,"input":{"word1":"dcbdcdccb","word2":"cdd"},"expected":18,"tags":["sliding-window","duplicates"]}
+    {
+      "id": "sample-single-valid",
+      "name": "sample: only the whole source is valid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word1": "bcca",
+        "word2": "abc"
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "rearrangement"
+      ]
+    },
+    {
+      "id": "sample-ten-valid",
+      "name": "sample: ten ranges contain one of each letter",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word1": "abcabc",
+        "word2": "abc"
+      },
+      "expected": 10,
+      "tags": [
+        "sample",
+        "overlap"
+      ]
+    },
+    {
+      "id": "sample-insufficient-a",
+      "name": "sample: source lacks enough repeated letters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word1": "abcabc",
+        "word2": "aaabc"
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "trial: one matching character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "a",
+        "word2": "a"
+      },
+      "expected": 1,
+      "tags": [
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-pattern-longer",
+      "name": "trial: required string is longer than source",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "a",
+        "word2": "aa"
+      },
+      "expected": 0,
+      "tags": [
+        "length"
+      ]
+    },
+    {
+      "id": "trial-repeated-requirement",
+      "name": "trial: repeated requirement admits five ranges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "aaab",
+        "word2": "aa"
+      },
+      "expected": 5,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-extra-letters",
+      "name": "irrelevant letters may surround requirements",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "zzabzz",
+        "word2": "ab"
+      },
+      "expected": 9,
+      "tags": [
+        "surplus"
+      ]
+    },
+    {
+      "id": "trial-all-identical",
+      "name": "every range of length at least two qualifies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "aaaa",
+        "word2": "aa"
+      },
+      "expected": 6,
+      "tags": [
+        "duplicates",
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-shrink-trap",
+      "name": "surplus and required copies alternate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "dccdceee",
+        "word2": "cec"
+      },
+      "expected": 9,
+      "tags": [
+        "sliding-window"
+      ]
+    },
+    {
+      "id": "trial-multiple-deficits",
+      "name": "shrinking crosses two required deficits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "dcbdcdccb",
+        "word2": "cdd"
+      },
+      "expected": 18,
+      "tags": [
+        "sliding-window",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in word1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "b",
+        "word2": "abc"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    }
   ]
 }

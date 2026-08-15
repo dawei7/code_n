@@ -93,10 +93,10 @@
       ]
     },
     {
-      "id": "real-classic",
-      "name": "hidden: tenth classic ugly number",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-classic",
+      "name": "tenth classic ugly number",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 10,
         "primes": [
@@ -107,7 +107,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "classic"
       ]
     }

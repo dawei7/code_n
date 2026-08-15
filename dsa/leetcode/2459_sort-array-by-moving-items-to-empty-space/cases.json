@@ -6,72 +6,149 @@
       "name": "sample: both target layouts cost three",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [4,2,0,3,1]},
+      "input": {
+        "nums": [
+          4,
+          2,
+          0,
+          3,
+          1
+        ]
+      },
       "expected": 3,
-      "tags": ["sample", "cycles"]
+      "tags": [
+        "sample",
+        "cycles"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: already sorted with empty space last",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1,2,3,4,0]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          0
+        ]
+      },
       "expected": 0,
-      "tags": ["sample", "empty-last"]
+      "tags": [
+        "sample",
+        "empty-last"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: two moves reach the empty-last layout",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1,0,2,4,3]},
+      "input": {
+        "nums": [
+          1,
+          0,
+          2,
+          4,
+          3
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "empty-last"]
+      "tags": [
+        "sample",
+        "empty-last"
+      ]
     },
     {
       "id": "trial-empty-first",
       "name": "trial: smallest empty-first layout",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0,1]},
+      "input": {
+        "nums": [
+          0,
+          1
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "already-sorted"]
+      "tags": [
+        "trial",
+        "already-sorted"
+      ]
     },
     {
       "id": "trial-other-target-is-closer",
       "name": "trial: one move reaches the empty-last layout",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0,2,1]},
+      "input": {
+        "nums": [
+          0,
+          2,
+          1
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "choose-target"]
+      "tags": [
+        "trial",
+        "choose-target"
+      ]
     },
     {
-      "id": "real-empty-cycle",
-      "name": "hidden: empty space participates in a longer cycle",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2,3,1,0]},
+      "id": "trial-empty-cycle",
+      "name": "empty space participates in a longer cycle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          1,
+          0
+        ]
+      },
       "expected": 3,
-      "tags": ["hidden", "empty-cycle"]
+      "tags": [
+        "empty-cycle"
+      ]
     },
     {
-      "id": "real-cycle-outside-empty",
-      "name": "hidden: misplaced cycle excludes the empty space",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0,3,2,1]},
+      "id": "trial-cycle-outside-empty",
+      "name": "misplaced cycle excludes the empty space",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          3,
+          2,
+          1
+        ]
+      },
       "expected": 3,
-      "tags": ["hidden", "external-cycle"]
+      "tags": [
+        "external-cycle"
+      ]
     },
     {
-      "id": "real-middle-empty",
-      "name": "hidden: minimum uses the empty-last target",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2,0,3,1]},
+      "id": "trial-middle-empty",
+      "name": "minimum uses the empty-last target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          0,
+          3,
+          1
+        ]
+      },
       "expected": 2,
-      "tags": ["hidden", "choose-target"]
+      "tags": [
+        "choose-target"
+      ]
     }
   ]
 }

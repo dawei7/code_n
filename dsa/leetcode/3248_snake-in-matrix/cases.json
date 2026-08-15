@@ -1,17 +1,392 @@
 {
   "challenge_id": "lc_3248",
   "cases": [
-    {"id": "sample-right-down", "name": "sample: right then down", "kind": "sample", "visible": true, "input": {"n": 2, "commands": ["RIGHT","DOWN"]}, "expected": 3, "tags": ["sample"]},
-    {"id": "sample-down-right-up", "name": "sample: vertical moves surround right", "kind": "sample", "visible": true, "input": {"n": 3, "commands": ["DOWN","RIGHT","UP"]}, "expected": 1, "tags": ["sample", "cancel"]},
-    {"id": "sample-mixed-four", "name": "sample: mixed path in four by four grid", "kind": "sample", "visible": true, "input": {"n": 4, "commands": ["DOWN","DOWN","RIGHT","UP"]}, "expected": 5, "tags": ["sample", "mixed"]},
-    {"id": "trial-single-right", "name": "trial: one horizontal move", "kind": "trial", "visible": true, "input": {"n": 2, "commands": ["RIGHT"]}, "expected": 1, "tags": ["single-command"]},
-    {"id": "trial-single-down", "name": "trial: one vertical move", "kind": "trial", "visible": true, "input": {"n": 5, "commands": ["DOWN"]}, "expected": 5, "tags": ["single-command", "vertical"]},
-    {"id": "trial-return-origin-horizontal", "name": "trial: horizontal moves return to origin", "kind": "trial", "visible": true, "input": {"n": 3, "commands": ["RIGHT","LEFT"]}, "expected": 0, "tags": ["cancel", "origin"]},
-    {"id": "trial-return-origin-vertical", "name": "trial: vertical moves return to origin", "kind": "trial", "visible": true, "input": {"n": 3, "commands": ["DOWN","UP"]}, "expected": 0, "tags": ["cancel", "origin"]},
-    {"id": "real-bottom-right", "name": "real: reach maximum flattened position", "kind": "real", "visible": false, "input": {"n": 10, "commands": ["DOWN","DOWN","DOWN","DOWN","DOWN","DOWN","DOWN","DOWN","DOWN","RIGHT","RIGHT","RIGHT","RIGHT","RIGHT","RIGHT","RIGHT","RIGHT","RIGHT"]}, "expected": 99, "tags": ["maximum", "bottom-right"]},
-    {"id": "real-perimeter-return", "name": "real: perimeter traversal returns to origin", "kind": "real", "visible": false, "input": {"n": 4, "commands": ["RIGHT","RIGHT","RIGHT","DOWN","DOWN","DOWN","LEFT","LEFT","LEFT","UP","UP","UP"]}, "expected": 0, "tags": ["perimeter", "origin"]},
-    {"id": "real-zigzag", "name": "real: zigzag path", "kind": "real", "visible": false, "input": {"n": 5, "commands": ["RIGHT","RIGHT","DOWN","LEFT","DOWN","RIGHT"]}, "expected": 12, "tags": ["zigzag"]},
-    {"id": "real-maximum-command-count", "name": "real: one hundred valid canceling commands", "kind": "real", "visible": false, "input": {"n": 2, "commands": ["RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT","RIGHT","LEFT"]}, "expected": 0, "tags": ["maximum-commands", "cancel"]},
-    {"id": "real-large-grid-mixed", "name": "real: mixed path in maximum grid", "kind": "real", "visible": false, "input": {"n": 10, "commands": ["DOWN","DOWN","DOWN","RIGHT","RIGHT","UP","RIGHT","DOWN","DOWN","LEFT","DOWN"]}, "expected": 52, "tags": ["maximum-grid", "mixed"]}
+    {
+      "id": "sample-right-down",
+      "name": "sample: right then down",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "commands": [
+          "RIGHT",
+          "DOWN"
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-down-right-up",
+      "name": "sample: vertical moves surround right",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "commands": [
+          "DOWN",
+          "RIGHT",
+          "UP"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "cancel"
+      ]
+    },
+    {
+      "id": "sample-mixed-four",
+      "name": "sample: mixed path in four by four grid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "commands": [
+          "DOWN",
+          "DOWN",
+          "RIGHT",
+          "UP"
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "trial-single-right",
+      "name": "trial: one horizontal move",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "commands": [
+          "RIGHT"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "single-command"
+      ]
+    },
+    {
+      "id": "trial-single-down",
+      "name": "trial: one vertical move",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "commands": [
+          "DOWN"
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "single-command",
+        "vertical"
+      ]
+    },
+    {
+      "id": "trial-return-origin-horizontal",
+      "name": "trial: horizontal moves return to origin",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "commands": [
+          "RIGHT",
+          "LEFT"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "cancel",
+        "origin"
+      ]
+    },
+    {
+      "id": "trial-return-origin-vertical",
+      "name": "trial: vertical moves return to origin",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "commands": [
+          "DOWN",
+          "UP"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "cancel",
+        "origin"
+      ]
+    },
+    {
+      "id": "trial-bottom-right",
+      "name": "reach maximum flattened position",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 10,
+        "commands": [
+          "DOWN",
+          "DOWN",
+          "DOWN",
+          "DOWN",
+          "DOWN",
+          "DOWN",
+          "DOWN",
+          "DOWN",
+          "DOWN",
+          "RIGHT",
+          "RIGHT",
+          "RIGHT",
+          "RIGHT",
+          "RIGHT",
+          "RIGHT",
+          "RIGHT",
+          "RIGHT",
+          "RIGHT"
+        ]
+      },
+      "expected": 99,
+      "tags": [
+        "maximum",
+        "bottom-right"
+      ]
+    },
+    {
+      "id": "trial-perimeter-return",
+      "name": "perimeter traversal returns to origin",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "commands": [
+          "RIGHT",
+          "RIGHT",
+          "RIGHT",
+          "DOWN",
+          "DOWN",
+          "DOWN",
+          "LEFT",
+          "LEFT",
+          "LEFT",
+          "UP",
+          "UP",
+          "UP"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "perimeter",
+        "origin"
+      ]
+    },
+    {
+      "id": "trial-zigzag",
+      "name": "zigzag path",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "commands": [
+          "RIGHT",
+          "RIGHT",
+          "DOWN",
+          "LEFT",
+          "DOWN",
+          "RIGHT"
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "zigzag"
+      ]
+    },
+    {
+      "id": "trial-maximum-command-count",
+      "name": "one hundred valid canceling commands",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "commands": [
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT",
+          "RIGHT",
+          "LEFT"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "maximum-commands",
+        "cancel"
+      ]
+    },
+    {
+      "id": "trial-large-grid-mixed",
+      "name": "mixed path in maximum grid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 10,
+        "commands": [
+          "DOWN",
+          "DOWN",
+          "DOWN",
+          "RIGHT",
+          "RIGHT",
+          "UP",
+          "RIGHT",
+          "DOWN",
+          "DOWN",
+          "LEFT",
+          "DOWN"
+        ]
+      },
+      "expected": 52,
+      "tags": [
+        "maximum-grid",
+        "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "commands": [
+          "RIGHT",
+          "DOWN"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in commands",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "commands": [
+          "RIGHT",
+          "RIGHT"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    }
   ]
 }

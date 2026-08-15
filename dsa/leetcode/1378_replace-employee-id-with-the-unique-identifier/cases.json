@@ -285,10 +285,10 @@
       ]
     },
     {
-      "id": "hidden-mixed",
-      "name": "hidden: alternating mapped employees",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed",
+      "name": "alternating mapped employees",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Employees": [
@@ -346,7 +346,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "partial"
       ]
     }

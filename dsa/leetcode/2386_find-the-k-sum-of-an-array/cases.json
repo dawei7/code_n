@@ -80,10 +80,10 @@
       ]
     },
     {
-      "id": "real-all-negative",
-      "name": "hidden: empty subsequence leads all negative choices",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-negative",
+      "name": "empty subsequence leads all negative choices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -1,
@@ -94,15 +94,14 @@
       },
       "expected": -3,
       "tags": [
-        "hidden",
         "all-negative"
       ]
     },
     {
-      "id": "real-equal-positive-values",
-      "name": "hidden: equal positive values retain multiplicity",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-equal-positive-values",
+      "name": "equal positive values retain multiplicity",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -112,15 +111,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "real-last-rank",
-      "name": "hidden: request the smallest of all subsequence sums",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-last-rank",
+      "name": "request the smallest of all subsequence sums",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -131,15 +129,14 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "last-rank"
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "hidden: sums cross 32-bit signed range",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-values",
+      "name": "sums cross 32-bit signed range",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -150,8 +147,26 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "large-values"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          -2
+        ],
+        "k": 1
+      },
+      "expected": 6,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

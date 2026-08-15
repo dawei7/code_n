@@ -123,10 +123,10 @@
       ]
     },
     {
-      "id": "real-cashback-bottleneck",
-      "name": "hidden: large cashback can be the final bottleneck",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-cashback-bottleneck",
+      "name": "large cashback can be the final bottleneck",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "transactions": [
           [
@@ -141,15 +141,14 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "cashback"
       ]
     },
     {
-      "id": "real-one-loss-one-gain",
-      "name": "hidden: one loss and one gain",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-loss-one-gain",
+      "name": "one loss and one gain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "transactions": [
           [
@@ -164,15 +163,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
     {
-      "id": "real-large-total",
-      "name": "hidden: total requirement can exceed one billion",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-total",
+      "name": "total requirement can exceed one billion",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "transactions": [
           [
@@ -187,7 +185,6 @@
       },
       "expected": 2000000000,
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

@@ -2,13 +2,216 @@
   "schema_version": 1,
   "challenge_id": "lc_2218",
   "cases": [
-    {"id":"sample-buried-hundred","name":"sample: take two coins from one pile","kind":"sample","visible":true,"input":{"piles":[[1,100,3],[7,8,9]],"k":2},"expected":101,"tags":["sample","buried-value"]},
-    {"id":"sample-deep-seven-coins","name":"sample: deep seven-coin prefix beats singleton piles","kind":"sample","visible":true,"input":{"piles":[[100],[100],[100],[100],[100],[100],[1,1,1,1,1,1,700]],"k":7},"expected":706,"tags":["sample","deep-prefix"]},
-    {"id":"trial-single-coin","name":"choose the best accessible top coin","kind":"trial","visible":true,"input":{"piles":[[5,4],[3]],"k":1},"expected":5,"tags":["single-choice"]},
-    {"id":"trial-distribute-three","name":"three coins are best split across piles","kind":"trial","visible":true,"input":{"piles":[[1,2],[3,4]],"k":3},"expected":8,"tags":["distribution"]},
-    {"id":"real-buried-unreachable","name":"hidden: one move cannot reach a buried large coin","kind":"real","visible":false,"input":{"piles":[[1,1000],[500]],"k":1},"expected":500,"tags":["hidden","top-only"]},
-    {"id":"real-take-all","name":"hidden: taking all coins sums every pile","kind":"real","visible":false,"input":{"piles":[[2,9],[4],[7,1]],"k":5},"expected":23,"tags":["hidden","take-all"]},
-    {"id":"real-choice-tradeoff","name":"hidden: prefix cost changes the best allocation","kind":"real","visible":false,"input":{"piles":[[10,1,100],[9,9,9],[20]],"k":4},"expected":131,"tags":["hidden","allocation-tradeoff"]},
-    {"id":"real-single-pile","name":"hidden: one pile forces its exact prefix","kind":"real","visible":false,"input":{"piles":[[8,1,6,4]],"k":3},"expected":15,"tags":["hidden","single-pile"]}
+    {
+      "id": "sample-buried-hundred",
+      "name": "sample: take two coins from one pile",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "piles": [
+          [
+            1,
+            100,
+            3
+          ],
+          [
+            7,
+            8,
+            9
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 101,
+      "tags": [
+        "sample",
+        "buried-value"
+      ]
+    },
+    {
+      "id": "sample-deep-seven-coins",
+      "name": "sample: deep seven-coin prefix beats singleton piles",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "piles": [
+          [
+            100
+          ],
+          [
+            100
+          ],
+          [
+            100
+          ],
+          [
+            100
+          ],
+          [
+            100
+          ],
+          [
+            100
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            700
+          ]
+        ],
+        "k": 7
+      },
+      "expected": 706,
+      "tags": [
+        "sample",
+        "deep-prefix"
+      ]
+    },
+    {
+      "id": "trial-single-coin",
+      "name": "choose the best accessible top coin",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "piles": [
+          [
+            5,
+            4
+          ],
+          [
+            3
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 5,
+      "tags": [
+        "single-choice"
+      ]
+    },
+    {
+      "id": "trial-distribute-three",
+      "name": "three coins are best split across piles",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "piles": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "k": 3
+      },
+      "expected": 8,
+      "tags": [
+        "distribution"
+      ]
+    },
+    {
+      "id": "trial-buried-unreachable",
+      "name": "one move cannot reach a buried large coin",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "piles": [
+          [
+            1,
+            1000
+          ],
+          [
+            500
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 500,
+      "tags": [
+        "top-only"
+      ]
+    },
+    {
+      "id": "trial-take-all",
+      "name": "taking all coins sums every pile",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "piles": [
+          [
+            2,
+            9
+          ],
+          [
+            4
+          ],
+          [
+            7,
+            1
+          ]
+        ],
+        "k": 5
+      },
+      "expected": 23,
+      "tags": [
+        "take-all"
+      ]
+    },
+    {
+      "id": "trial-choice-tradeoff",
+      "name": "prefix cost changes the best allocation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "piles": [
+          [
+            10,
+            1,
+            100
+          ],
+          [
+            9,
+            9,
+            9
+          ],
+          [
+            20
+          ]
+        ],
+        "k": 4
+      },
+      "expected": 131,
+      "tags": [
+        "allocation-tradeoff"
+      ]
+    },
+    {
+      "id": "trial-single-pile",
+      "name": "one pile forces its exact prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "piles": [
+          [
+            8,
+            1,
+            6,
+            4
+          ]
+        ],
+        "k": 3
+      },
+      "expected": 15,
+      "tags": [
+        "single-pile"
+      ]
+    }
   ]
 }

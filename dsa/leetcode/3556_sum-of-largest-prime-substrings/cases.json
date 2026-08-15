@@ -7,90 +7,148 @@
       "name": "sample: sum the three largest of five primes",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "12234"},
+      "input": {
+        "s": "12234"
+      },
       "expected": 1469,
-      "tags": ["sample", "top-three", "distinct"]
+      "tags": [
+        "sample",
+        "top-three",
+        "distinct"
+      ]
     },
     {
       "id": "sample-one-prime",
       "name": "sample: only one distinct prime",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "111"},
+      "input": {
+        "s": "111"
+      },
       "expected": 11,
-      "tags": ["sample", "fewer-than-three"]
+      "tags": [
+        "sample",
+        "fewer-than-three"
+      ]
     },
     {
       "id": "trial-leading-zeros",
       "name": "trial: leading zeros preserve the numeric value",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "0002"},
+      "input": {
+        "s": "0002"
+      },
       "expected": 2,
-      "tags": ["trial", "leading-zeros", "deduplication"]
+      "tags": [
+        "trial",
+        "leading-zeros",
+        "deduplication"
+      ]
     },
     {
       "id": "trial-no-prime",
       "name": "trial: no substring is prime",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "4680"},
+      "input": {
+        "s": "4680"
+      },
       "expected": 0,
-      "tags": ["trial", "empty-result"]
+      "tags": [
+        "trial",
+        "empty-result"
+      ]
     },
     {
       "id": "trial-multiple-lengths",
       "name": "trial: primes arise from several substring lengths",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "2357"},
+      "input": {
+        "s": "2357"
+      },
       "expected": 2387,
-      "tags": ["trial", "top-three", "substring-lengths"]
+      "tags": [
+        "trial",
+        "top-three",
+        "substring-lengths"
+      ]
     },
     {
-      "id": "real-single-composite-digit",
-      "name": "real: one non-prime digit",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "1"},
+      "id": "trial-single-composite-digit",
+      "name": "one non-prime digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1"
+      },
       "expected": 0,
-      "tags": ["real", "minimum-length", "empty-result"]
+      "tags": [
+        "real",
+        "minimum-length",
+        "empty-result"
+      ]
     },
     {
-      "id": "real-repeated-prime-value",
-      "name": "real: repeated substrings count one prime once",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "10101"},
+      "id": "trial-repeated-prime-value",
+      "name": "repeated substrings count one prime once",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "10101"
+      },
       "expected": 101,
-      "tags": ["real", "deduplication", "repetition"]
+      "tags": [
+        "real",
+        "deduplication",
+        "repetition"
+      ]
     },
     {
-      "id": "real-two-primes",
-      "name": "real: fewer than three values are all included",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "8999"},
+      "id": "trial-two-primes",
+      "name": "fewer than three values are all included",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "8999"
+      },
       "expected": 9088,
-      "tags": ["real", "fewer-than-three", "large-prime"]
+      "tags": [
+        "real",
+        "fewer-than-three",
+        "large-prime"
+      ]
     },
     {
-      "id": "real-ten-digit-input",
-      "name": "real: ten-digit candidates require wide integer storage",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "4000000000"},
+      "id": "trial-ten-digit-input",
+      "name": "ten-digit candidates require wide integer storage",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "4000000000"
+      },
       "expected": 0,
-      "tags": ["real", "ten-digits", "integer-width"]
+      "tags": [
+        "real",
+        "ten-digits",
+        "integer-width"
+      ]
     },
     {
-      "id": "real-zero-prefixed-duplicates",
-      "name": "real: zero-prefixed copies remain duplicate values",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "020203"},
+      "id": "trial-zero-prefixed-duplicates",
+      "name": "zero-prefixed copies remain duplicate values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "020203"
+      },
       "expected": 5,
-      "tags": ["real", "leading-zeros", "deduplication"]
+      "tags": [
+        "real",
+        "leading-zeros",
+        "deduplication"
+      ]
     }
   ]
 }

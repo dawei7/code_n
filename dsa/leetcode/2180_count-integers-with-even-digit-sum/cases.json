@@ -2,13 +2,114 @@
   "schema_version": 1,
   "challenge_id": "lc_2180",
   "cases": [
-    {"id":"sample-four","name":"sample: two qualifying integers through four","kind":"sample","visible":true,"input":{"num":4},"expected":2,"tags":["sample","single-digit"]},
-    {"id":"sample-thirty","name":"sample: fourteen qualifying integers through thirty","kind":"sample","visible":true,"input":{"num":30},"expected":14,"tags":["sample","multi-digit"]},
-    {"id":"trial-minimum","name":"minimum endpoint has no even digit sum","kind":"trial","visible":true,"input":{"num":1},"expected":0,"tags":["minimum"]},
-    {"id":"trial-first-valid","name":"two is the first qualifying integer","kind":"trial","visible":true,"input":{"num":2},"expected":1,"tags":["single-digit","included-endpoint"]},
-    {"id":"trial-decade-boundary","name":"ten does not add to the previous count","kind":"trial","visible":true,"input":{"num":10},"expected":4,"tags":["power-of-ten","odd-digit-sum"]},
-    {"id":"real-even-endpoint","name":"hidden: eleven adds an even-sum endpoint","kind":"real","visible":false,"input":{"num":11},"expected":5,"tags":["hidden","included-endpoint"]},
-    {"id":"real-before-three-digits","name":"hidden: complete two-digit range is balanced","kind":"real","visible":false,"input":{"num":99},"expected":49,"tags":["hidden","decade-blocks"]},
-    {"id":"real-maximum","name":"hidden: legal maximum has odd digit sum","kind":"real","visible":false,"input":{"num":1000},"expected":499,"tags":["hidden","maximum","power-of-ten"]}
+    {
+      "id": "sample-four",
+      "name": "sample: two qualifying integers through four",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 4
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "single-digit"
+      ]
+    },
+    {
+      "id": "sample-thirty",
+      "name": "sample: fourteen qualifying integers through thirty",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 30
+      },
+      "expected": 14,
+      "tags": [
+        "sample",
+        "multi-digit"
+      ]
+    },
+    {
+      "id": "trial-minimum",
+      "name": "minimum endpoint has no even digit sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 1
+      },
+      "expected": 0,
+      "tags": [
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-first-valid",
+      "name": "two is the first qualifying integer",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 2
+      },
+      "expected": 1,
+      "tags": [
+        "single-digit",
+        "included-endpoint"
+      ]
+    },
+    {
+      "id": "trial-decade-boundary",
+      "name": "ten does not add to the previous count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 10
+      },
+      "expected": 4,
+      "tags": [
+        "power-of-ten",
+        "odd-digit-sum"
+      ]
+    },
+    {
+      "id": "trial-even-endpoint",
+      "name": "eleven adds an even-sum endpoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 11
+      },
+      "expected": 5,
+      "tags": [
+        "included-endpoint"
+      ]
+    },
+    {
+      "id": "trial-before-three-digits",
+      "name": "complete two-digit range is balanced",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 99
+      },
+      "expected": 49,
+      "tags": [
+        "decade-blocks"
+      ]
+    },
+    {
+      "id": "trial-maximum",
+      "name": "legal maximum has odd digit sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 1000
+      },
+      "expected": 499,
+      "tags": [
+        "maximum",
+        "power-of-ten"
+      ]
+    }
   ]
 }

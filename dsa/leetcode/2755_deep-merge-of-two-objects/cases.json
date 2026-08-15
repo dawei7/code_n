@@ -186,10 +186,10 @@
       ]
     },
     {
-      "id": "real-object-array-mismatch",
-      "name": "hidden: object and array containers do not merge",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-object-array-mismatch",
+      "name": "object and array containers do not merge",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "obj1": {
           "value": {
@@ -210,15 +210,14 @@
         ]
       },
       "tags": [
-        "hidden",
         "container-type"
       ]
     },
     {
-      "id": "real-null-versus-object",
-      "name": "hidden: null is a leaf rather than an object container",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-null-versus-object",
+      "name": "null is a leaf rather than an object container",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "obj1": {
           "value": null,
@@ -237,15 +236,14 @@
         "keep": 1
       },
       "tags": [
-        "hidden",
         "null"
       ]
     },
     {
-      "id": "real-empty-and-nested",
-      "name": "hidden: empty containers and nested unique keys are preserved",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-empty-and-nested",
+      "name": "empty containers and nested unique keys are preserved",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "obj1": {
           "empty": {},
@@ -280,7 +278,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "empty",
         "nested-union"
       ]

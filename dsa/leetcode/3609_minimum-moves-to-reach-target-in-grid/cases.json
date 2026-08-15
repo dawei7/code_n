@@ -180,10 +180,10 @@
       ]
     },
     {
-      "id": "hidden-mixed-route",
-      "name": "hidden: alternate larger coordinates",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-route",
+      "name": "alternate larger coordinates",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "sx": 2,
         "sy": 1,
@@ -192,15 +192,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "mixed-transitions"
       ]
     },
     {
-      "id": "hidden-odd-doubling-region",
-      "name": "hidden: odd larger coordinate has no predecessor",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-odd-doubling-region",
+      "name": "odd larger coordinate has no predecessor",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "sx": 2,
         "sy": 1,
@@ -209,16 +208,15 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "parity",
         "impossible"
       ]
     },
     {
-      "id": "hidden-incompatible-equality",
-      "name": "hidden: non-axis start cannot enter equality",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-incompatible-equality",
+      "name": "non-axis start cannot enter equality",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "sx": 2,
         "sy": 1,
@@ -227,16 +225,15 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "equality",
         "impossible"
       ]
     },
     {
-      "id": "hidden-reverse-overshoot",
-      "name": "hidden: forced predecessor falls below the start",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-reverse-overshoot",
+      "name": "forced predecessor falls below the start",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "sx": 5,
         "sy": 4,
@@ -245,16 +242,15 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "overshoot",
         "impossible"
       ]
     },
     {
-      "id": "hidden-large-power",
-      "name": "hidden: repeated doubling near the coordinate limit",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-power",
+      "name": "repeated doubling near the coordinate limit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "sx": 1,
         "sy": 0,
@@ -263,16 +259,15 @@
       },
       "expected": 29,
       "tags": [
-        "hidden",
         "large",
         "doubling"
       ]
     },
     {
-      "id": "hidden-billion-unreachable",
-      "name": "hidden: one billion is not a power-of-two axis target",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-billion-unreachable",
+      "name": "one billion is not a power-of-two axis target",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "sx": 1,
         "sy": 0,
@@ -281,10 +276,43 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "large",
         "parity",
         "impossible"
+      ]
+    },
+    {
+      "id": "trial-boundary-17",
+      "name": "minimal value sy=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sx": 1,
+        "sy": 1,
+        "tx": 5,
+        "ty": 4
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-18",
+      "name": "minimal value tx=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sx": 1,
+        "sy": 2,
+        "tx": 1,
+        "ty": 4
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

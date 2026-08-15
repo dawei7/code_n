@@ -2,13 +2,242 @@
   "schema_version": 1,
   "challenge_id": "lc_2477",
   "cases": [
-    {"id":"sample-1","name":"sample: star centered at the capital","kind":"sample","visible":true,"input":{"roads":[[0,1],[0,2],[0,3]],"seats":5},"expected":3,"tags":["sample","star"]},
-    {"id":"sample-2","name":"sample: representatives merge across several branches","kind":"sample","visible":true,"input":{"roads":[[3,1],[3,2],[1,0],[0,4],[0,5],[4,6]],"seats":2},"expected":7,"tags":["sample","car-sharing"]},
-    {"id":"sample-3","name":"sample: capital is the only city","kind":"sample","visible":true,"input":{"roads":[],"seats":1},"expected":0,"tags":["sample","single-city"]},
-    {"id":"trial-chain-one-seat","name":"trial: every representative uses a separate car","kind":"trial","visible":true,"input":{"roads":[[0,1],[1,2],[2,3]],"seats":1},"expected":6,"tags":["trial","chain"]},
-    {"id":"trial-chain-sharing","name":"trial: car sharing reduces crossings on a chain","kind":"trial","visible":true,"input":{"roads":[[0,1],[1,2],[2,3],[3,4]],"seats":2},"expected":6,"tags":["trial","chain","round-up"]},
-    {"id":"real-uneven-branches","name":"hidden: aggregate differently sized subtrees","kind":"real","visible":false,"input":{"roads":[[0,1],[1,2],[1,3],[3,4]],"seats":3},"expected":5,"tags":["hidden","subtrees"]},
-    {"id":"real-capacity-exceeds-population","name":"hidden: one car can carry each entire branch","kind":"real","visible":false,"input":{"roads":[[0,1],[1,2],[2,3],[1,4]],"seats":10},"expected":4,"tags":["hidden","large-capacity"]},
-    {"id":"real-edge-order-arbitrary","name":"hidden: roads need not be listed from the capital outward","kind":"real","visible":false,"input":{"roads":[[4,3],[2,1],[1,0],[3,2]],"seats":3},"expected":5,"tags":["hidden","edge-order"]}
+    {
+      "id": "sample-1",
+      "name": "sample: star centered at the capital",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "roads": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ]
+        ],
+        "seats": 5
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "star"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: representatives merge across several branches",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "roads": [
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            4,
+            6
+          ]
+        ],
+        "seats": 2
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "car-sharing"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: capital is the only city",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "roads": [],
+        "seats": 1
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "single-city"
+      ]
+    },
+    {
+      "id": "trial-chain-one-seat",
+      "name": "trial: every representative uses a separate car",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "roads": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "seats": 1
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "chain"
+      ]
+    },
+    {
+      "id": "trial-chain-sharing",
+      "name": "trial: car sharing reduces crossings on a chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "roads": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "seats": 2
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "chain",
+        "round-up"
+      ]
+    },
+    {
+      "id": "trial-uneven-branches",
+      "name": "aggregate differently sized subtrees",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "roads": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "seats": 3
+      },
+      "expected": 5,
+      "tags": [
+        "subtrees"
+      ]
+    },
+    {
+      "id": "trial-capacity-exceeds-population",
+      "name": "one car can carry each entire branch",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "roads": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            1,
+            4
+          ]
+        ],
+        "seats": 10
+      },
+      "expected": 4,
+      "tags": [
+        "large-capacity"
+      ]
+    },
+    {
+      "id": "trial-edge-order-arbitrary",
+      "name": "roads need not be listed from the capital outward",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "roads": [
+          [
+            4,
+            3
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            3,
+            2
+          ]
+        ],
+        "seats": 3
+      },
+      "expected": 5,
+      "tags": [
+        "edge-order"
+      ]
+    }
   ]
 }

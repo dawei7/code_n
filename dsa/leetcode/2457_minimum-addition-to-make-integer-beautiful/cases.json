@@ -6,72 +6,147 @@
       "name": "sample: round sixteen to twenty",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 16, "target": 6},
+      "input": {
+        "n": 16,
+        "target": 6
+      },
       "expected": 4,
-      "tags": ["sample", "rounding"]
+      "tags": [
+        "sample",
+        "rounding"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: two decimal positions change",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 467, "target": 6},
+      "input": {
+        "n": 467,
+        "target": 6
+      },
       "expected": 33,
-      "tags": ["sample", "carry"]
+      "tags": [
+        "sample",
+        "carry"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: already beautiful",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 1, "target": 1},
+      "input": {
+        "n": 1,
+        "target": 1
+      },
       "expected": 0,
-      "tags": ["sample", "zero-addition"]
+      "tags": [
+        "sample",
+        "zero-addition"
+      ]
     },
     {
       "id": "trial-carry-through-nines",
       "name": "trial: carry crosses consecutive nines",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 999, "target": 1},
+      "input": {
+        "n": 999,
+        "target": 1
+      },
       "expected": 1,
-      "tags": ["trial", "carry-chain"]
+      "tags": [
+        "trial",
+        "carry-chain"
+      ]
     },
     {
       "id": "trial-skip-zero-position",
       "name": "trial: zero units position needs no rounding",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1090, "target": 2},
+      "input": {
+        "n": 1090,
+        "target": 2
+      },
       "expected": 10,
-      "tags": ["trial", "zero-digit"]
+      "tags": [
+        "trial",
+        "zero-digit"
+      ]
     },
     {
-      "id": "real-small-target",
-      "name": "hidden: next power of ten is required",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 19, "target": 1},
+      "id": "trial-small-target",
+      "name": "next power of ten is required",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 19,
+        "target": 1
+      },
       "expected": 81,
-      "tags": ["hidden", "small-target"]
+      "tags": [
+        "small-target"
+      ]
     },
     {
-      "id": "real-round-to-nine-hundred",
-      "name": "hidden: nearest valid boundary is not a power of ten",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 888, "target": 10},
+      "id": "trial-round-to-nine-hundred",
+      "name": "nearest valid boundary is not a power of ten",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 888,
+        "target": 10
+      },
       "expected": 12,
-      "tags": ["hidden", "minimum"]
+      "tags": [
+        "minimum"
+      ]
     },
     {
-      "id": "real-upper-bound",
-      "name": "hidden: maximum input is already beautiful",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 1000000000000, "target": 1},
+      "id": "trial-upper-bound",
+      "name": "maximum input is already beautiful",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000000000000,
+        "target": 1
+      },
       "expected": 0,
-      "tags": ["hidden", "upper-bound"]
+      "tags": [
+        "upper-bound"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "target": 6
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value target=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 16,
+        "target": 1
+      },
+      "expected": 84,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
     }
   ]
 }

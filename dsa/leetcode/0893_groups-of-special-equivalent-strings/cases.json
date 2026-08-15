@@ -96,10 +96,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: example transformation and one separate word",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "example transformation and one separate word",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "zzxy",
@@ -109,15 +109,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "mixed-groups"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: same overall multiset but different parity multisets",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "same overall multiset but different parity multisets",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "abcd",
@@ -126,15 +125,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "parity"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: both parity classes can be reordered",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "both parity classes can be reordered",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "aabb",
@@ -143,15 +141,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "equivalent"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: odd-length reversal preserves parity multisets",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "odd-length reversal preserves parity multisets",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "abc",
@@ -160,15 +157,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "odd-length"
       ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: duplicates across two groups",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-5",
+      "name": "duplicates across two groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "abcd",
@@ -180,9 +176,41 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "duplicates",
         "mixed-groups"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abcd"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abcd",
+          "abcd"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -210,10 +210,10 @@
       ]
     },
     {
-      "id": "real-subrange-mode",
-      "name": "hidden: global mode differs from subrange mode",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-subrange-mode",
+      "name": "global mode differs from subrange mode",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -244,15 +244,14 @@
         1
       ],
       "tags": [
-        "hidden",
         "subrange"
       ]
     },
     {
-      "id": "real-tied-modes",
-      "name": "hidden: smallest value wins a maximum-frequency tie",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-tied-modes",
+      "name": "smallest value wins a maximum-frequency tie",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10,
@@ -279,15 +278,14 @@
         20
       ],
       "tags": [
-        "hidden",
         "tie-break"
       ]
     },
     {
-      "id": "real-duplicate-queries",
-      "name": "hidden: identical ranges with different thresholds",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicate-queries",
+      "name": "identical ranges with different thresholds",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -320,15 +318,14 @@
         -1
       ],
       "tags": [
-        "hidden",
         "thresholds"
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "hidden: ordering ties among large values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-values",
+      "name": "ordering ties among large values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -354,16 +351,15 @@
         999999999
       ],
       "tags": [
-        "hidden",
         "large-values",
         "tie-break"
       ]
     },
     {
-      "id": "real-boundary-candidate",
-      "name": "hidden: boundary additions overturn the middle mode",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-boundary-candidate",
+      "name": "boundary additions overturn the middle mode",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -393,15 +389,14 @@
         1
       ],
       "tags": [
-        "hidden",
         "boundary-candidate"
       ]
     },
     {
-      "id": "real-many-queries",
-      "name": "hidden: mixed short and long query intervals",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-queries",
+      "name": "mixed short and long query intervals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -450,7 +445,6 @@
         -1
       ],
       "tags": [
-        "hidden",
         "mixed-ranges"
       ]
     }

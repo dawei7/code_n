@@ -116,10 +116,10 @@
       ]
     },
     {
-      "id": "hidden-sixteen",
-      "name": "hidden: sequence continues after combined label",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-sixteen",
+      "name": "sequence continues after combined label",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 16
       },
@@ -142,15 +142,14 @@
         "16"
       ],
       "tags": [
-        "hidden",
         "after-fifteen"
       ]
     },
     {
-      "id": "hidden-thirty",
-      "name": "hidden: several combined values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-thirty",
+      "name": "several combined values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 30
       },
@@ -187,15 +186,14 @@
         "FizzBuzz"
       ],
       "tags": [
-        "hidden",
         "multiple-combined"
       ]
     },
     {
-      "id": "hidden-prime-bound",
-      "name": "hidden: prime final value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-prime-bound",
+      "name": "prime final value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 47
       },
@@ -249,7 +247,6 @@
         "47"
       ],
       "tags": [
-        "hidden",
         "prime"
       ]
     }

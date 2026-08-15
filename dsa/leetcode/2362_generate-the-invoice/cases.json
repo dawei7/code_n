@@ -1,12 +1,314 @@
 {
-  "schema_version":1,
-  "challenge_id":"lc_2362",
-  "cases":[
-    {"id":"sample-total-tie","name":"sample: smallest invoice ID breaks a total tie","kind":"sample","visible":true,"input":{"tables":{"Products":[{"product_id":1,"price":100},{"product_id":2,"price":200}],"Purchases":[{"invoice_id":1,"product_id":1,"quantity":2},{"invoice_id":3,"product_id":2,"quantity":1},{"invoice_id":2,"product_id":2,"quantity":3},{"invoice_id":2,"product_id":1,"quantity":4},{"invoice_id":4,"product_id":1,"quantity":10}]}},"expected":{"columns":["product_id","quantity","price"],"rows":[[1,4,400],[2,3,600]]},"tags":["sample","tie"]},
-    {"id":"trial-single-line","name":"one invoice with one line","kind":"trial","visible":true,"input":{"tables":{"Products":[{"product_id":7,"price":9}],"Purchases":[{"invoice_id":5,"product_id":7,"quantity":3}]}},"expected":{"columns":["product_id","quantity","price"],"rows":[[7,3,27]]},"tags":["single"]},
-    {"id":"trial-largest-total","name":"larger quantity wins","kind":"trial","visible":true,"input":{"tables":{"Products":[{"product_id":1,"price":5}],"Purchases":[{"invoice_id":1,"product_id":1,"quantity":2},{"invoice_id":2,"product_id":1,"quantity":3}]}},"expected":{"columns":["product_id","quantity","price"],"rows":[[1,3,15]]},"tags":["total"]},
-    {"id":"trial-multiple-lines","name":"invoice total combines several products","kind":"trial","visible":true,"input":{"tables":{"Products":[{"product_id":1,"price":2},{"product_id":2,"price":7}],"Purchases":[{"invoice_id":4,"product_id":1,"quantity":5},{"invoice_id":4,"product_id":2,"quantity":2},{"invoice_id":3,"product_id":2,"quantity":3}]}},"expected":{"columns":["product_id","quantity","price"],"rows":[[1,5,10],[2,2,14]]},"tags":["aggregation"]},
-    {"id":"real-id-tie","name":"hidden: nonconsecutive IDs tie","kind":"real","visible":false,"input":{"tables":{"Products":[{"product_id":1,"price":10}],"Purchases":[{"invoice_id":20,"product_id":1,"quantity":5},{"invoice_id":7,"product_id":1,"quantity":5}]}},"expected":{"columns":["product_id","quantity","price"],"rows":[[1,5,50]]},"tags":["hidden","tie"]},
-    {"id":"real-unit-prices","name":"hidden: compare extended rather than unit prices","kind":"real","visible":false,"input":{"tables":{"Products":[{"product_id":1,"price":100},{"product_id":2,"price":3}],"Purchases":[{"invoice_id":1,"product_id":1,"quantity":1},{"invoice_id":2,"product_id":2,"quantity":40}]}},"expected":{"columns":["product_id","quantity","price"],"rows":[[2,40,120]]},"tags":["hidden","line-price"]}
+  "schema_version": 1,
+  "challenge_id": "lc_2362",
+  "cases": [
+    {
+      "id": "sample-total-tie",
+      "name": "sample: smallest invoice ID breaks a total tie",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Products": [
+            {
+              "product_id": 1,
+              "price": 100
+            },
+            {
+              "product_id": 2,
+              "price": 200
+            }
+          ],
+          "Purchases": [
+            {
+              "invoice_id": 1,
+              "product_id": 1,
+              "quantity": 2
+            },
+            {
+              "invoice_id": 3,
+              "product_id": 2,
+              "quantity": 1
+            },
+            {
+              "invoice_id": 2,
+              "product_id": 2,
+              "quantity": 3
+            },
+            {
+              "invoice_id": 2,
+              "product_id": 1,
+              "quantity": 4
+            },
+            {
+              "invoice_id": 4,
+              "product_id": 1,
+              "quantity": 10
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "quantity",
+          "price"
+        ],
+        "rows": [
+          [
+            1,
+            4,
+            400
+          ],
+          [
+            2,
+            3,
+            600
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "tie"
+      ]
+    },
+    {
+      "id": "trial-single-line",
+      "name": "one invoice with one line",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Products": [
+            {
+              "product_id": 7,
+              "price": 9
+            }
+          ],
+          "Purchases": [
+            {
+              "invoice_id": 5,
+              "product_id": 7,
+              "quantity": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "quantity",
+          "price"
+        ],
+        "rows": [
+          [
+            7,
+            3,
+            27
+          ]
+        ]
+      },
+      "tags": [
+        "single"
+      ]
+    },
+    {
+      "id": "trial-largest-total",
+      "name": "larger quantity wins",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Products": [
+            {
+              "product_id": 1,
+              "price": 5
+            }
+          ],
+          "Purchases": [
+            {
+              "invoice_id": 1,
+              "product_id": 1,
+              "quantity": 2
+            },
+            {
+              "invoice_id": 2,
+              "product_id": 1,
+              "quantity": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "quantity",
+          "price"
+        ],
+        "rows": [
+          [
+            1,
+            3,
+            15
+          ]
+        ]
+      },
+      "tags": [
+        "total"
+      ]
+    },
+    {
+      "id": "trial-multiple-lines",
+      "name": "invoice total combines several products",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Products": [
+            {
+              "product_id": 1,
+              "price": 2
+            },
+            {
+              "product_id": 2,
+              "price": 7
+            }
+          ],
+          "Purchases": [
+            {
+              "invoice_id": 4,
+              "product_id": 1,
+              "quantity": 5
+            },
+            {
+              "invoice_id": 4,
+              "product_id": 2,
+              "quantity": 2
+            },
+            {
+              "invoice_id": 3,
+              "product_id": 2,
+              "quantity": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "quantity",
+          "price"
+        ],
+        "rows": [
+          [
+            1,
+            5,
+            10
+          ],
+          [
+            2,
+            2,
+            14
+          ]
+        ]
+      },
+      "tags": [
+        "aggregation"
+      ]
+    },
+    {
+      "id": "trial-id-tie",
+      "name": "nonconsecutive IDs tie",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Products": [
+            {
+              "product_id": 1,
+              "price": 10
+            }
+          ],
+          "Purchases": [
+            {
+              "invoice_id": 20,
+              "product_id": 1,
+              "quantity": 5
+            },
+            {
+              "invoice_id": 7,
+              "product_id": 1,
+              "quantity": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "quantity",
+          "price"
+        ],
+        "rows": [
+          [
+            1,
+            5,
+            50
+          ]
+        ]
+      },
+      "tags": [
+        "tie"
+      ]
+    },
+    {
+      "id": "trial-unit-prices",
+      "name": "compare extended rather than unit prices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Products": [
+            {
+              "product_id": 1,
+              "price": 100
+            },
+            {
+              "product_id": 2,
+              "price": 3
+            }
+          ],
+          "Purchases": [
+            {
+              "invoice_id": 1,
+              "product_id": 1,
+              "quantity": 1
+            },
+            {
+              "invoice_id": 2,
+              "product_id": 2,
+              "quantity": 40
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "quantity",
+          "price"
+        ],
+        "rows": [
+          [
+            2,
+            40,
+            120
+          ]
+        ]
+      },
+      "tags": [
+        "line-price"
+      ]
+    }
   ]
 }

@@ -6,108 +6,186 @@
       "name": "sample: seven entries without departures",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "EEEEEEE"},
+      "input": {
+        "s": "EEEEEEE"
+      },
       "expected": 7,
-      "tags": ["sample", "all-entries"]
+      "tags": [
+        "sample",
+        "all-entries"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: chairs are reused before a double entry",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "ELELEEL"},
+      "input": {
+        "s": "ELELEEL"
+      },
       "expected": 2,
-      "tags": ["sample", "reuse"]
+      "tags": [
+        "sample",
+        "reuse"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: occupancy reaches three",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "ELEELEELLL"},
+      "input": {
+        "s": "ELEELEELLL"
+      },
       "expected": 3,
-      "tags": ["sample", "peak"]
+      "tags": [
+        "sample",
+        "peak"
+      ]
     },
     {
       "id": "trial-single-entry",
       "name": "trial: one person enters",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "E"},
+      "input": {
+        "s": "E"
+      },
       "expected": 1,
-      "tags": ["singleton", "nonempty-ending"]
+      "tags": [
+        "singleton",
+        "nonempty-ending"
+      ]
     },
     {
       "id": "trial-one-chair-reused",
       "name": "trial: one chair is immediately reused",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "EL"},
+      "input": {
+        "s": "EL"
+      },
       "expected": 1,
-      "tags": ["reuse", "returns-empty"]
+      "tags": [
+        "reuse",
+        "returns-empty"
+      ]
     },
     {
       "id": "trial-nested-three",
       "name": "trial: three people enter and then leave",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "EEELLL"},
+      "input": {
+        "s": "EEELLL"
+      },
       "expected": 3,
-      "tags": ["peak", "returns-empty"]
+      "tags": [
+        "peak",
+        "returns-empty"
+      ]
     },
     {
-      "id": "real-later-peak",
-      "name": "real: the greatest occupancy occurs after reuse",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "EELEELLL"},
+      "id": "trial-later-peak",
+      "name": "the greatest occupancy occurs after reuse",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "EELEELLL"
+      },
       "expected": 3,
-      "tags": ["real", "later-peak"]
+      "tags": [
+        "real",
+        "later-peak"
+      ]
     },
     {
-      "id": "real-nonempty-ending",
-      "name": "real: valid sequence ends with occupied chairs",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "ELEEE"},
+      "id": "trial-nonempty-ending",
+      "name": "valid sequence ends with occupied chairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ELEEE"
+      },
       "expected": 3,
-      "tags": ["real", "nonempty-ending"]
+      "tags": [
+        "real",
+        "nonempty-ending"
+      ]
     },
     {
-      "id": "real-maximum-length-entries",
-      "name": "real: maximum length consists entirely of entries",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"},
+      "id": "trial-maximum-length-entries",
+      "name": "maximum length consists entirely of entries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"
+      },
       "expected": 50,
-      "tags": ["real", "maximum-length", "all-entries"]
+      "tags": [
+        "real",
+        "maximum-length",
+        "all-entries"
+      ]
     },
     {
-      "id": "real-maximum-length-alternating",
-      "name": "real: one chair serves fifty alternating events",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "ELELELELELELELELELELELELELELELELELELELELELELELELEL"},
+      "id": "trial-maximum-length-alternating",
+      "name": "one chair serves fifty alternating events",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ELELELELELELELELELELELELELELELELELELELELELELELELEL"
+      },
       "expected": 1,
-      "tags": ["real", "maximum-length", "reuse"]
+      "tags": [
+        "real",
+        "maximum-length",
+        "reuse"
+      ]
     },
     {
-      "id": "real-maximum-nested",
-      "name": "real: twenty-five entries precede all departures",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "EEEEEEEEEEEEEEEEEEEEEEEEELLLLLLLLLLLLLLLLLLLLLLLLL"},
+      "id": "trial-maximum-nested",
+      "name": "twenty-five entries precede all departures",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "EEEEEEEEEEEEEEEEEEEEEEEEELLLLLLLLLLLLLLLLLLLLLLLLL"
+      },
       "expected": 25,
-      "tags": ["real", "maximum-length", "returns-empty"]
+      "tags": [
+        "real",
+        "maximum-length",
+        "returns-empty"
+      ]
     },
     {
-      "id": "real-peak-after-empty",
-      "name": "real: occupancy resets before the largest run",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "EELLEEEE"},
+      "id": "trial-peak-after-empty",
+      "name": "occupancy resets before the largest run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "EELLEEEE"
+      },
       "expected": 4,
-      "tags": ["real", "reset", "later-peak"]
+      "tags": [
+        "real",
+        "reset",
+        "later-peak"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "EEE"
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
     }
   ]
 }

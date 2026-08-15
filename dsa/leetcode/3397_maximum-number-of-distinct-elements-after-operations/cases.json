@@ -125,10 +125,10 @@
       ]
     },
     {
-      "id": "real-overlapping-ranges",
-      "name": "real: overlapping intervals still fit every element",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-overlapping-ranges",
+      "name": "overlapping intervals still fit every element",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -148,10 +148,10 @@
       ]
     },
     {
-      "id": "real-separated-values",
-      "name": "real: separated input values remain fully distinct",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-separated-values",
+      "name": "separated input values remain fully distinct",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

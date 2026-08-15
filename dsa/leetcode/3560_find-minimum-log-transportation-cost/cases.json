@@ -7,99 +7,218 @@
       "name": "sample: one log exceeds capacity",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 6, "m": 5, "k": 5},
+      "input": {
+        "n": 6,
+        "m": 5,
+        "k": 5
+      },
       "expected": 5,
-      "tags": ["sample", "one-cut"]
+      "tags": [
+        "sample",
+        "one-cut"
+      ]
     },
     {
       "id": "sample-no-cut",
       "name": "sample: both logs already fit",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 4, "m": 4, "k": 6},
+      "input": {
+        "n": 4,
+        "m": 4,
+        "k": 6
+      },
       "expected": 0,
-      "tags": ["sample", "no-cut"]
+      "tags": [
+        "sample",
+        "no-cut"
+      ]
     },
     {
       "id": "trial-both-at-capacity",
       "name": "trial: both logs equal the truck limit",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 8, "m": 8, "k": 8},
+      "input": {
+        "n": 8,
+        "m": 8,
+        "k": 8
+      },
       "expected": 0,
-      "tags": ["trial", "capacity-boundary", "no-cut"]
+      "tags": [
+        "trial",
+        "capacity-boundary",
+        "no-cut"
+      ]
     },
     {
       "id": "trial-first-over-by-one",
       "name": "trial: first log exceeds capacity by one",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 9, "m": 2, "k": 8},
+      "input": {
+        "n": 9,
+        "m": 2,
+        "k": 8
+      },
       "expected": 8,
-      "tags": ["trial", "first-log", "unit-excess"]
+      "tags": [
+        "trial",
+        "first-log",
+        "unit-excess"
+      ]
     },
     {
       "id": "trial-second-over-by-one",
       "name": "trial: second log exceeds capacity by one",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 2, "m": 9, "k": 8},
+      "input": {
+        "n": 2,
+        "m": 9,
+        "k": 8
+      },
       "expected": 8,
-      "tags": ["trial", "second-log", "symmetry"]
+      "tags": [
+        "trial",
+        "second-log",
+        "symmetry"
+      ]
     },
     {
-      "id": "real-both-below-capacity",
-      "name": "real: unequal logs both remain below capacity",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 1, "m": 7, "k": 9},
+      "id": "trial-both-below-capacity",
+      "name": "unequal logs both remain below capacity",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "m": 7,
+        "k": 9
+      },
       "expected": 0,
-      "tags": ["real", "no-cut", "unequal"]
+      "tags": [
+        "real",
+        "no-cut",
+        "unequal"
+      ]
     },
     {
-      "id": "real-maximum-first-log",
-      "name": "real: first log is twice the truck limit",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 20, "m": 10, "k": 10},
+      "id": "trial-maximum-first-log",
+      "name": "first log is twice the truck limit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 20,
+        "m": 10,
+        "k": 10
+      },
       "expected": 100,
-      "tags": ["real", "maximum-length", "equal-halves"]
+      "tags": [
+        "real",
+        "maximum-length",
+        "equal-halves"
+      ]
     },
     {
-      "id": "real-maximum-second-log-and-values",
-      "name": "real: second log and arithmetic reach maximum scale",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 1, "m": 200000, "k": 100000},
+      "id": "trial-maximum-second-log-and-values",
+      "name": "second log and arithmetic reach maximum scale",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "m": 200000,
+        "k": 100000
+      },
       "expected": 10000000000,
-      "tags": ["real", "maximum-values", "wide-integer", "symmetry"]
+      "tags": [
+        "real",
+        "maximum-values",
+        "wide-integer",
+        "symmetry"
+      ]
     },
     {
-      "id": "real-minimum-capacity",
-      "name": "real: minimum capacity with a maximum-length log",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 4, "m": 1, "k": 2},
+      "id": "trial-minimum-capacity",
+      "name": "minimum capacity with a maximum-length log",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "m": 1,
+        "k": 2
+      },
       "expected": 4,
-      "tags": ["real", "minimum-capacity", "maximum-length"]
+      "tags": [
+        "real",
+        "minimum-capacity",
+        "maximum-length"
+      ]
     },
     {
-      "id": "real-nontrivial-excess",
-      "name": "real: feasible split has unequal boundary pieces",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 17, "m": 12, "k": 12},
+      "id": "trial-nontrivial-excess",
+      "name": "feasible split has unequal boundary pieces",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 17,
+        "m": 12,
+        "k": 12
+      },
       "expected": 60,
-      "tags": ["real", "unequal-split", "capacity-boundary"]
+      "tags": [
+        "real",
+        "unequal-split",
+        "capacity-boundary"
+      ]
     },
     {
-      "id": "real-other-log-at-capacity",
-      "name": "real: uncut log exactly fills its truck",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 14, "m": 9, "k": 9},
+      "id": "trial-other-log-at-capacity",
+      "name": "uncut log exactly fills its truck",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 14,
+        "m": 9,
+        "k": 9
+      },
       "expected": 45,
-      "tags": ["real", "other-at-capacity", "one-cut"]
+      "tags": [
+        "real",
+        "other-at-capacity",
+        "one-cut"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "m": 5,
+        "k": 5
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value m=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "m": 1,
+        "k": 5
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
     }
   ]
 }

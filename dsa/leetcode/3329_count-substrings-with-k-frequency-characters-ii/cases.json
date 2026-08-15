@@ -77,10 +77,10 @@
       ]
     },
     {
-      "id": "real-full-string-only",
-      "name": "real: only the complete string qualifies",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-full-string-only",
+      "name": "only the complete string qualifies",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "ababa",
         "k": 3
@@ -92,10 +92,10 @@
       ]
     },
     {
-      "id": "real-two-qualifying-runs",
-      "name": "real: two qualifying runs with one overlapping substring",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-qualifying-runs",
+      "name": "two qualifying runs with one overlapping substring",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaabbb",
         "k": 3

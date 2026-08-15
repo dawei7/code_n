@@ -114,8 +114,8 @@
     {
       "id": "deletion-improves-score",
       "name": "removing a coprime outlier improves the factor score",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -134,8 +134,8 @@
     {
       "id": "mixed-prime-factors",
       "name": "mixed prime factors with several deletion candidates",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,

@@ -7,72 +7,165 @@
       "name": "sample: good values at mixed positions",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 3, 2, 1, 5, 4], "k": 2},
+      "input": {
+        "nums": [
+          1,
+          3,
+          2,
+          1,
+          5,
+          4
+        ],
+        "k": 2
+      },
       "expected": 12,
-      "tags": ["sample", "two-sided"]
+      "tags": [
+        "sample",
+        "two-sided"
+      ]
     },
     {
       "id": "sample-two-values",
       "name": "sample: each value has one comparison",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 1], "k": 1},
+      "input": {
+        "nums": [
+          2,
+          1
+        ],
+        "k": 1
+      },
       "expected": 2,
-      "tags": ["sample", "one-sided"]
+      "tags": [
+        "sample",
+        "one-sided"
+      ]
     },
     {
       "id": "trial-equality-is-not-good",
       "name": "trial: strict comparison rejects equal values",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [4, 4], "k": 1},
+      "input": {
+        "nums": [
+          4,
+          4
+        ],
+        "k": 1
+      },
       "expected": 0,
-      "tags": ["trial", "strict"]
+      "tags": [
+        "trial",
+        "strict"
+      ]
     },
     {
       "id": "trial-maximum-distance",
       "name": "trial: k equals half the array length",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [9, 1, 8, 2, 7, 3], "k": 3},
+      "input": {
+        "nums": [
+          9,
+          1,
+          8,
+          2,
+          7,
+          3
+        ],
+        "k": 3
+      },
       "expected": 24,
-      "tags": ["trial", "maximum-k"]
+      "tags": [
+        "trial",
+        "maximum-k"
+      ]
     },
     {
-      "id": "real-all-equal",
-      "name": "real: no value wins an equal comparison",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [7, 7, 7, 7], "k": 2},
+      "id": "trial-all-equal",
+      "name": "no value wins an equal comparison",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7,
+          7
+        ],
+        "k": 2
+      },
       "expected": 0,
-      "tags": ["real", "equality"]
+      "tags": [
+        "real",
+        "equality"
+      ]
     },
     {
-      "id": "real-mixed-local-maxima",
-      "name": "real: only late values satisfy both sides",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [6, 2, 9, 3, 10, 4, 7, 5], "k": 2},
+      "id": "trial-mixed-local-maxima",
+      "name": "only late values satisfy both sides",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          2,
+          9,
+          3,
+          10,
+          4,
+          7,
+          5
+        ],
+        "k": 2
+      },
       "expected": 15,
-      "tags": ["real", "mixed"]
+      "tags": [
+        "real",
+        "mixed"
+      ]
     },
     {
-      "id": "real-asymmetric-boundaries",
-      "name": "real: good values can have only one neighbor",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 100, 2, 3], "k": 2},
+      "id": "trial-asymmetric-boundaries",
+      "name": "good values can have only one neighbor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          100,
+          2,
+          3
+        ],
+        "k": 2
+      },
       "expected": 102,
-      "tags": ["real", "boundary"]
+      "tags": [
+        "real",
+        "boundary"
+      ]
     },
     {
-      "id": "real-decreasing",
-      "name": "real: first value is the only good value",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [9, 8, 7, 6, 5], "k": 1},
+      "id": "trial-decreasing",
+      "name": "first value is the only good value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          8,
+          7,
+          6,
+          5
+        ],
+        "k": 1
+      },
       "expected": 9,
-      "tags": ["real", "decreasing"]
+      "tags": [
+        "real",
+        "decreasing"
+      ]
     }
   ]
 }

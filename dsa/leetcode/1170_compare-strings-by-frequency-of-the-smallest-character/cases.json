@@ -2,12 +2,175 @@
   "schema_version": 1,
   "challenge_id": "lc_1170",
   "cases": [
-    {"id":"sample-1","name":"sample: one query","kind":"sample","visible":true,"input":{"queries":["cbd"],"words":["zaaaz"]},"expected":[1],"tags":["sample","frequency"]},
-    {"id":"sample-2","name":"sample: two queries","kind":"sample","visible":true,"input":{"queries":["bbb","cc"],"words":["a","aa","aaa","aaaa"]},"expected":[1,2],"tags":["sample","strict-comparison"]},
-    {"id":"trial-mixed","name":"mixed frequencies and ties","kind":"trial","visible":true,"input":{"queries":["abcd","aabb"],"words":["zzzz","abc","aa"]},"expected":[2,1],"tags":["trial","ties"]},
-    {"id":"trial-smallest-late","name":"smallest character appears after larger letters","kind":"trial","visible":true,"input":{"queries":["zzzaa"],"words":["bbb","cccc","dada"]},"expected":[2],"tags":["trial","reset"]},
-    {"id":"real-maximum-frequency","name":"hidden: frequency ten has no greater word","kind":"real","visible":false,"input":{"queries":["aaaaaaaaaa"],"words":["bbbbbbbbbb","ccccccccc"]},"expected":[0],"tags":["real","maximum"]},
-    {"id":"real-all-greater","name":"hidden: every word exceeds frequency one","kind":"real","visible":false,"input":{"queries":["az"],"words":["aa","bbb","cccc"]},"expected":[3],"tags":["real","all-greater"]},
-    {"id":"real-query-order","name":"hidden: preserve query order","kind":"real","visible":false,"input":{"queries":["aaaa","a","aa","aaa"],"words":["x","yy","zzz","wwww"]},"expected":[0,3,2,1],"tags":["real","order"]}
+    {
+      "id": "sample-1",
+      "name": "sample: one query",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "queries": [
+          "cbd"
+        ],
+        "words": [
+          "zaaaz"
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "sample",
+        "frequency"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two queries",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "queries": [
+          "bbb",
+          "cc"
+        ],
+        "words": [
+          "a",
+          "aa",
+          "aaa",
+          "aaaa"
+        ]
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "tags": [
+        "sample",
+        "strict-comparison"
+      ]
+    },
+    {
+      "id": "trial-mixed",
+      "name": "mixed frequencies and ties",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "queries": [
+          "abcd",
+          "aabb"
+        ],
+        "words": [
+          "zzzz",
+          "abc",
+          "aa"
+        ]
+      },
+      "expected": [
+        2,
+        1
+      ],
+      "tags": [
+        "trial",
+        "ties"
+      ]
+    },
+    {
+      "id": "trial-smallest-late",
+      "name": "smallest character appears after larger letters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "queries": [
+          "zzzaa"
+        ],
+        "words": [
+          "bbb",
+          "cccc",
+          "dada"
+        ]
+      },
+      "expected": [
+        2
+      ],
+      "tags": [
+        "trial",
+        "reset"
+      ]
+    },
+    {
+      "id": "trial-maximum-frequency",
+      "name": "frequency ten has no greater word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "queries": [
+          "aaaaaaaaaa"
+        ],
+        "words": [
+          "bbbbbbbbbb",
+          "ccccccccc"
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "real",
+        "maximum"
+      ]
+    },
+    {
+      "id": "trial-all-greater",
+      "name": "every word exceeds frequency one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "queries": [
+          "az"
+        ],
+        "words": [
+          "aa",
+          "bbb",
+          "cccc"
+        ]
+      },
+      "expected": [
+        3
+      ],
+      "tags": [
+        "real",
+        "all-greater"
+      ]
+    },
+    {
+      "id": "trial-query-order",
+      "name": "preserve query order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "queries": [
+          "aaaa",
+          "a",
+          "aa",
+          "aaa"
+        ],
+        "words": [
+          "x",
+          "yy",
+          "zzz",
+          "wwww"
+        ]
+      },
+      "expected": [
+        0,
+        3,
+        2,
+        1
+      ],
+      "tags": [
+        "real",
+        "order"
+      ]
+    }
   ]
 }

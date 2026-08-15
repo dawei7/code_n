@@ -125,10 +125,10 @@
       ]
     },
     {
-      "id": "hidden-repeats",
-      "name": "hidden: repeated occurrences count separately",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeats",
+      "name": "repeated occurrences count separately",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr1": [
           10,
@@ -142,15 +142,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "hidden-all-far",
-      "name": "hidden: every value qualifies",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-far",
+      "name": "every value qualifies",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr1": [
           -10,
@@ -164,7 +163,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "all-qualify"
       ]
     }

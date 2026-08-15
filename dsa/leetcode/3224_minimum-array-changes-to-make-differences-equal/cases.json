@@ -121,10 +121,10 @@
       ]
     },
     {
-      "id": "real-target-zero",
-      "name": "real: equalize all mirrored pairs at zero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-target-zero",
+      "name": "equalize all mirrored pairs at zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -142,10 +142,10 @@
       ]
     },
     {
-      "id": "real-two-change-pressure",
-      "name": "real: some targets require two changes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-change-pressure",
+      "name": "some targets require two changes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -163,10 +163,10 @@
       ]
     },
     {
-      "id": "real-all-boundaries",
-      "name": "real: values include both zero and k",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-boundaries",
+      "name": "values include both zero and k",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -186,10 +186,10 @@
       ]
     },
     {
-      "id": "real-repeated-differences",
-      "name": "real: repeated current differences dominate",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-differences",
+      "name": "repeated current differences dominate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -209,10 +209,10 @@
       ]
     },
     {
-      "id": "real-mixed-limits",
-      "name": "real: pairs have different one-change limits",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-limits",
+      "name": "pairs have different one-change limits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -232,10 +232,10 @@
       ]
     },
     {
-      "id": "real-larger-k",
-      "name": "real: sparse values in a larger target domain",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-larger-k",
+      "name": "sparse values in a larger target domain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,

@@ -132,10 +132,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: four-node mixed values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "four-node mixed values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "head": [
           100,
@@ -149,16 +149,15 @@
         3
       ],
       "tags": [
-        "hidden",
         "even",
         "bounds"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: seven-node list",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "seven-node list",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "head": [
           2,
@@ -177,15 +176,14 @@
         14
       ],
       "tags": [
-        "hidden",
         "odd"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: eight-node list",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "eight-node list",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "head": [
           11,
@@ -205,15 +203,14 @@
         88
       ],
       "tags": [
-        "hidden",
         "even"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: maximum-length list",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "maximum-length list",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "head": [
           1,
@@ -371,15 +368,14 @@
         100
       ],
       "tags": [
-        "hidden",
         "maximum-length"
       ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: equal boundary values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-5",
+      "name": "equal boundary values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "head": [
           1,
@@ -395,7 +391,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "value-bounds"
       ]
     }

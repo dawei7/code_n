@@ -91,10 +91,10 @@
       ]
     },
     {
-      "id": "real-all-ones",
-      "name": "hidden: repeated unit values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-ones",
+      "name": "repeated unit values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -106,15 +106,14 @@
       },
       "expected": 19,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "real-symmetric",
-      "name": "hidden: symmetric three-element array",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-symmetric",
+      "name": "symmetric three-element array",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           5,
@@ -124,15 +123,14 @@
       },
       "expected": 22,
       "tags": [
-        "hidden",
         "overlap"
       ]
     },
     {
-      "id": "real-two-value-boundaries",
-      "name": "hidden: minimum and maximum values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-value-boundaries",
+      "name": "minimum and maximum values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -141,15 +139,14 @@
       },
       "expected": 1001,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
     {
-      "id": "real-six-increasing",
-      "name": "hidden: several odd lengths in an even array",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-six-increasing",
+      "name": "several odd lengths in an even array",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -162,15 +159,14 @@
       },
       "expected": 98,
       "tags": [
-        "hidden",
         "even-length-array"
       ]
     },
     {
-      "id": "real-maximum-domain",
-      "name": "hidden: maximum length and values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-domain",
+      "name": "maximum length and values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1000,
@@ -277,7 +273,6 @@
       },
       "expected": 85850000,
       "tags": [
-        "hidden",
         "maximum-domain"
       ]
     }

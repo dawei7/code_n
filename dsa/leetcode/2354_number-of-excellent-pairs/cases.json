@@ -7,72 +7,145 @@
       "name": "sample: ordered pairs and one duplicate",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1,2,3,1], "k": 3},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          1
+        ],
+        "k": 3
+      },
       "expected": 5,
-      "tags": ["sample","ordered","duplicates"]
+      "tags": [
+        "sample",
+        "ordered",
+        "duplicates"
+      ]
     },
     {
       "id": "sample-no-pairs",
       "name": "sample: threshold exceeds every pair",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [5,1,1], "k": 10},
+      "input": {
+        "nums": [
+          5,
+          1,
+          1
+        ],
+        "k": 10
+      },
       "expected": 0,
-      "tags": ["sample","zero"]
+      "tags": [
+        "sample",
+        "zero"
+      ]
     },
     {
       "id": "trial-single-self-pair",
       "name": "one occurrence is enough for a self-pair",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1], "k": 2},
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 2
+      },
       "expected": 1,
-      "tags": ["boundary","self-pair"]
+      "tags": [
+        "boundary",
+        "self-pair"
+      ]
     },
     {
       "id": "trial-duplicates-do-not-multiply",
       "name": "duplicate positions do not create new value pairs",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1,1,1], "k": 2},
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "k": 2
+      },
       "expected": 1,
-      "tags": ["duplicates"]
+      "tags": [
+        "duplicates"
+      ]
     },
     {
       "id": "trial-all-four-pairs",
       "name": "two distinct values produce four ordered pairs",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [3,5], "k": 4},
+      "input": {
+        "nums": [
+          3,
+          5
+        ],
+        "k": 4
+      },
       "expected": 4,
-      "tags": ["ordered","self-pair"]
+      "tags": [
+        "ordered",
+        "self-pair"
+      ]
     },
     {
-      "id": "real-mixed-popcounts",
-      "name": "hidden: one low and one higher popcount",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1,3], "k": 3},
+      "id": "trial-mixed-popcounts",
+      "name": "one low and one higher popcount",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3
+        ],
+        "k": 3
+      },
       "expected": 3,
-      "tags": ["hidden","mixed"]
+      "tags": [
+        "mixed"
+      ]
     },
     {
-      "id": "real-distinct-low-popcounts",
-      "name": "hidden: several unique powers of two still fail",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2,4,8], "k": 3},
+      "id": "trial-distinct-low-popcounts",
+      "name": "several unique powers of two still fail",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          8
+        ],
+        "k": 3
+      },
       "expected": 0,
-      "tags": ["hidden","zero"]
+      "tags": [
+        "zero"
+      ]
     },
     {
-      "id": "real-maximum-relevant-popcount",
-      "name": "hidden: a legal high-popcount value qualifies with itself",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [536870911], "k": 58},
+      "id": "trial-maximum-relevant-popcount",
+      "name": "a legal high-popcount value qualifies with itself",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          536870911
+        ],
+        "k": 58
+      },
       "expected": 1,
-      "tags": ["hidden","boundary","self-pair"]
+      "tags": [
+        "boundary",
+        "self-pair"
+      ]
     }
   ]
 }

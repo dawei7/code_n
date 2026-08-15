@@ -191,10 +191,10 @@
       ]
     },
     {
-      "id": "real-chain-all-tie",
-      "name": "hidden: equal route weights tie every chain endpoint",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-chain-all-tie",
+      "name": "equal route weights tie every chain endpoint",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Flights": [
@@ -234,16 +234,15 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "ties",
         "disconnected-routes"
       ]
     },
     {
-      "id": "real-weight-not-route-count",
-      "name": "hidden: flight weights dominate route degree",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-weight-not-route-count",
+      "name": "flight weights dominate route degree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Flights": [
@@ -279,7 +278,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "weighted-counts",
         "route-degree-trap"
       ]

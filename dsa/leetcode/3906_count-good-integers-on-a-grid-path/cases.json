@@ -156,10 +156,10 @@
       ]
     },
     {
-      "id": "hidden-digit-width-transition",
-      "name": "hidden: the interval crosses from three to four written digits",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-digit-width-transition",
+      "name": "the interval crosses from three to four written digits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "l": 999,
         "r": 1001,
@@ -167,16 +167,15 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "digit-width",
         "leading-zeros"
       ]
     },
     {
-      "id": "hidden-maximum-upper-bound",
-      "name": "hidden: the largest legal value decreases immediately from nine",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-upper-bound",
+      "name": "the largest legal value decreases immediately from nine",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "l": 9000000000000000,
         "r": 9000000000000000,
@@ -184,16 +183,15 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "maximum-bound",
         "sixteen-digits"
       ]
     },
     {
-      "id": "hidden-high-good-singleton",
-      "name": "hidden: a high value has non-decreasing first-column and bottom-row digits",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-high-good-singleton",
+      "name": "a high value has non-decreasing first-column and bottom-row digits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "l": 1234567899999999,
         "r": 1234567899999999,
@@ -201,16 +199,15 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "high-value",
         "singleton"
       ]
     },
     {
-      "id": "hidden-high-invalid-singleton",
-      "name": "hidden: a high value decreases across the top row",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-high-invalid-singleton",
+      "name": "a high value decreases across the top row",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "l": 8765432100000000,
         "r": 8765432100000000,
@@ -218,16 +215,15 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "high-value",
         "early-decrease"
       ]
     },
     {
-      "id": "hidden-cross-trillion-boundary",
-      "name": "hidden: prefix subtraction spans a thirteen-digit boundary",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-cross-trillion-boundary",
+      "name": "prefix subtraction spans a thirteen-digit boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "l": 999999999999,
         "r": 1000000000199,
@@ -235,7 +231,6 @@
       },
       "expected": 201,
       "tags": [
-        "hidden",
         "range-boundary",
         "prefix-subtraction"
       ]

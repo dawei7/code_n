@@ -604,10 +604,10 @@
       ]
     },
     {
-      "id": "real-middle-boundary-tie",
-      "name": "real: tie inside the Tier 2 boundary",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-middle-boundary-tie",
+      "name": "tie inside the Tier 2 boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "TeamStats": [
@@ -714,10 +714,10 @@
       ]
     },
     {
-      "id": "real-rank-gap-crossing",
-      "name": "real: a three-way top tie creates a rank gap",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-rank-gap-crossing",
+      "name": "a three-way top tie creates a rank gap",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "TeamStats": [
@@ -838,10 +838,10 @@
       ]
     },
     {
-      "id": "real-alphabetical-ties",
-      "name": "real: names order tied rows independently of ids",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alphabetical-ties",
+      "name": "names order tied rows independently of ids",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "TeamStats": [
@@ -920,10 +920,10 @@
       ]
     },
     {
-      "id": "real-losses-ignored",
-      "name": "real: losses and match counts do not change equal scores",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-losses-ignored",
+      "name": "losses and match counts do not change equal scores",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "TeamStats": [
@@ -988,10 +988,10 @@
       ]
     },
     {
-      "id": "real-five-team-rounding",
-      "name": "real: five distinct teams exercise both ceilings",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-five-team-rounding",
+      "name": "five distinct teams exercise both ceilings",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "TeamStats": [

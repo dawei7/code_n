@@ -108,10 +108,10 @@
       ]
     },
     {
-      "id": "real-branching-tails",
-      "name": "hidden: multiple tails merge before a shared cycle",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-branching-tails",
+      "name": "multiple tails merge before a shared cycle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           1,
@@ -123,7 +123,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "merging-paths"
       ],
       "expected": [
@@ -136,10 +135,10 @@
       ]
     },
     {
-      "id": "real-two-cycles-with-depths",
-      "name": "hidden: unequal cycles and tail depths coexist",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-cycles-with-depths",
+      "name": "unequal cycles and tail depths coexist",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           1,
@@ -154,7 +153,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "multiple-components"
       ],
       "expected": [
@@ -167,6 +165,26 @@
         5,
         3,
         4
+      ]
+    },
+    {
+      "id": "trial-boundary-7",
+      "name": "identical elements in edges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          1,
+          1
+        ]
+      },
+      "expected": [
+        2,
+        1
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

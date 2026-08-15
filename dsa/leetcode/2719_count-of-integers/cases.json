@@ -1,1 +1,169 @@
-{"challenge_id":"lc_2719","cases":[{"id":"sample-1","name":"sample: all but one value qualify","kind":"sample","visible":true,"input":{"num1":"1","num2":"12","min_sum":1,"max_sum":8},"expected":11,"tags":["sample","inclusive-range"]},{"id":"sample-2","name":"sample: every one-digit value qualifies","kind":"sample","visible":true,"input":{"num1":"1","num2":"5","min_sum":1,"max_sum":5},"expected":5,"tags":["sample","single-digit"]},{"id":"trial-exact-lower","name":"trial: exact lower endpoint qualifies","kind":"trial","visible":true,"input":{"num1":"10","num2":"10","min_sum":1,"max_sum":1},"expected":1,"tags":["trial","inclusive-lower"]},{"id":"trial-exact-invalid","name":"trial: single value misses the sum range","kind":"trial","visible":true,"input":{"num1":"10","num2":"10","min_sum":2,"max_sum":5},"expected":0,"tags":["trial","empty-result"]},{"id":"real-exact-sum","name":"hidden: several representations share one digit sum","kind":"real","visible":false,"input":{"num1":"1","num2":"20","min_sum":2,"max_sum":2},"expected":3,"tags":["hidden","exact-sum"]},{"id":"real-cross-length","name":"hidden: interval crosses a decimal length boundary","kind":"real","visible":false,"input":{"num1":"99","num2":"100","min_sum":1,"max_sum":18},"expected":2,"tags":["hidden","length-boundary"]},{"id":"real-powers-of-ten","name":"hidden: digit sum one through one hundred","kind":"real","visible":false,"input":{"num1":"1","num2":"100","min_sum":1,"max_sum":1},"expected":3,"tags":["hidden","leading-zero-states"]},{"id":"real-maximum-endpoint","name":"hidden: powers of ten through the maximum endpoint","kind":"real","visible":false,"input":{"num1":"1","num2":"10000000000000000000000","min_sum":1,"max_sum":1},"expected":23,"tags":["hidden","maximum-bound"]},{"id":"real-impossible-sum","name":"hidden: requested sum exceeds every candidate","kind":"real","visible":false,"input":{"num1":"1","num2":"999","min_sum":400,"max_sum":400},"expected":0,"tags":["hidden","impossible-sum"]},{"id":"real-both-endpoints","name":"hidden: both endpoints are included","kind":"real","visible":false,"input":{"num1":"98","num2":"102","min_sum":1,"max_sum":18},"expected":5,"tags":["hidden","inclusive-endpoints"]}]}
+{
+  "challenge_id": "lc_2719",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: all but one value qualify",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num1": "1",
+        "num2": "12",
+        "min_sum": 1,
+        "max_sum": 8
+      },
+      "expected": 11,
+      "tags": [
+        "sample",
+        "inclusive-range"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: every one-digit value qualifies",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num1": "1",
+        "num2": "5",
+        "min_sum": 1,
+        "max_sum": 5
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "single-digit"
+      ]
+    },
+    {
+      "id": "trial-exact-lower",
+      "name": "trial: exact lower endpoint qualifies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": "10",
+        "num2": "10",
+        "min_sum": 1,
+        "max_sum": 1
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "inclusive-lower"
+      ]
+    },
+    {
+      "id": "trial-exact-invalid",
+      "name": "trial: single value misses the sum range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": "10",
+        "num2": "10",
+        "min_sum": 2,
+        "max_sum": 5
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "trial-exact-sum",
+      "name": "several representations share one digit sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": "1",
+        "num2": "20",
+        "min_sum": 2,
+        "max_sum": 2
+      },
+      "expected": 3,
+      "tags": [
+        "exact-sum"
+      ]
+    },
+    {
+      "id": "trial-cross-length",
+      "name": "interval crosses a decimal length boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": "99",
+        "num2": "100",
+        "min_sum": 1,
+        "max_sum": 18
+      },
+      "expected": 2,
+      "tags": [
+        "length-boundary"
+      ]
+    },
+    {
+      "id": "trial-powers-of-ten",
+      "name": "digit sum one through one hundred",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": "1",
+        "num2": "100",
+        "min_sum": 1,
+        "max_sum": 1
+      },
+      "expected": 3,
+      "tags": [
+        "leading-zero-states"
+      ]
+    },
+    {
+      "id": "trial-maximum-endpoint",
+      "name": "powers of ten through the maximum endpoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": "1",
+        "num2": "10000000000000000000000",
+        "min_sum": 1,
+        "max_sum": 1
+      },
+      "expected": 23,
+      "tags": [
+        "maximum-bound"
+      ]
+    },
+    {
+      "id": "trial-impossible-sum",
+      "name": "requested sum exceeds every candidate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": "1",
+        "num2": "999",
+        "min_sum": 400,
+        "max_sum": 400
+      },
+      "expected": 0,
+      "tags": [
+        "impossible-sum"
+      ]
+    },
+    {
+      "id": "trial-both-endpoints",
+      "name": "both endpoints are included",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": "98",
+        "num2": "102",
+        "min_sum": 1,
+        "max_sum": 18
+      },
+      "expected": 5,
+      "tags": [
+        "inclusive-endpoints"
+      ]
+    }
+  ]
+}

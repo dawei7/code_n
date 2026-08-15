@@ -137,10 +137,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: reversed parity groups",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "reversed parity groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -163,15 +163,14 @@
         "kind": "parity_partition"
       },
       "tags": [
-        "hidden",
         "reversed"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: duplicate values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "duplicate values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -194,15 +193,14 @@
         "kind": "parity_partition"
       },
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: repeated zeros",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "repeated zeros",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -223,15 +221,14 @@
         "kind": "parity_partition"
       },
       "tags": [
-        "hidden",
         "zero"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: value boundaries",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "value boundaries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5000,
@@ -250,15 +247,14 @@
         "kind": "parity_partition"
       },
       "tags": [
-        "hidden",
         "bounds"
       ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: alternating duplicates",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-5",
+      "name": "alternating duplicates",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -285,7 +281,6 @@
         "kind": "parity_partition"
       },
       "tags": [
-        "hidden",
         "alternating"
       ]
     }

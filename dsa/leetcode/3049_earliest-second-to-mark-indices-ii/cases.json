@@ -137,10 +137,10 @@
       ]
     },
     {
-      "id": "real-mark-unrestricted",
-      "name": "real: zero indices may be marked when another index is designated",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mark-unrestricted",
+      "name": "zero indices may be marked when another index is designated",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -162,10 +162,10 @@
       ]
     },
     {
-      "id": "real-repeated-first-occurrences",
-      "name": "real: repeated occurrences provide free marking capacity",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-first-occurrences",
+      "name": "repeated occurrences provide free marking capacity",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -186,10 +186,10 @@
       ]
     },
     {
-      "id": "real-unavailable-reset",
-      "name": "real: an absent positive index must use ordinary decrements",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unavailable-reset",
+      "name": "an absent positive index must use ordinary decrements",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -207,6 +207,49 @@
       "tags": [
         "real",
         "missing-reset-opportunity"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in changeIndices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          2,
+          3
+        ],
+        "changeIndices": [
+          1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in changeIndices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          2,
+          3
+        ],
+        "changeIndices": [
+          1,
+          1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

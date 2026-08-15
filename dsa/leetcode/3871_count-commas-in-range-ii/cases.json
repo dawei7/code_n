@@ -7,120 +7,210 @@
       "name": "sample: the first three comma-bearing values",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 1002},
+      "input": {
+        "n": 1002
+      },
       "expected": 3,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "explained", "first-threshold"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "explained",
+        "first-threshold"
+      ]
     },
     {
       "id": "sample-no-commas",
       "name": "sample: no four-digit value is reached",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 998},
+      "input": {
+        "n": 998
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "explained", "below-threshold"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "explained",
+        "below-threshold"
+      ]
     },
     {
       "id": "trial-minimum",
       "name": "trial: minimum legal endpoint",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1},
+      "input": {
+        "n": 1
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "minimum", "zero"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum",
+        "zero"
+      ]
     },
     {
       "id": "trial-before-first-threshold",
       "name": "trial: immediately before the first comma threshold",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 999},
+      "input": {
+        "n": 999
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "threshold-minus-one", "zero"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "threshold-minus-one",
+        "zero"
+      ]
     },
     {
       "id": "trial-first-threshold",
       "name": "trial: the first comma threshold is inclusive",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1000},
+      "input": {
+        "n": 1000
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "threshold", "inclusive"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "threshold",
+        "inclusive"
+      ]
     },
     {
       "id": "trial-before-second-threshold",
       "name": "trial: the last value with at most one comma",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 999999},
+      "input": {
+        "n": 999999
+      },
       "expected": 999000,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "second-threshold-minus-one", "one-comma"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "second-threshold-minus-one",
+        "one-comma"
+      ]
     },
     {
-      "id": "real-second-threshold",
-      "name": "hidden: the first two-comma value adds both contributions",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 1000000},
+      "id": "trial-second-threshold",
+      "name": "the first two-comma value adds both contributions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000000
+      },
       "expected": 999002,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "second-threshold", "two-commas"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "second-threshold",
+        "two-commas"
+      ]
     },
     {
-      "id": "real-after-second-threshold",
-      "name": "hidden: two values contribute at the second threshold",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 1000001},
+      "id": "trial-after-second-threshold",
+      "name": "two values contribute at the second threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000001
+      },
       "expected": 999004,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "second-threshold-plus-one", "overlap"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "second-threshold-plus-one",
+        "overlap"
+      ]
     },
     {
-      "id": "real-before-third-threshold",
-      "name": "hidden: immediately before the third threshold",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 999999999},
+      "id": "trial-before-third-threshold",
+      "name": "immediately before the third threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 999999999
+      },
       "expected": 1998999000,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "third-threshold-minus-one", "two-commas"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "third-threshold-minus-one",
+        "two-commas"
+      ]
     },
     {
-      "id": "real-third-threshold",
-      "name": "hidden: the first three-comma value",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 1000000000},
+      "id": "trial-third-threshold",
+      "name": "the first three-comma value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000000000
+      },
       "expected": 1998999003,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "third-threshold", "three-commas"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "third-threshold",
+        "three-commas"
+      ]
     },
     {
-      "id": "real-fourth-threshold",
-      "name": "hidden: the first four-comma value",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 1000000000000},
+      "id": "trial-fourth-threshold",
+      "name": "the first four-comma value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000000000000
+      },
       "expected": 2998998999004,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "fourth-threshold", "four-commas"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "fourth-threshold",
+        "four-commas"
+      ]
     },
     {
-      "id": "real-maximum",
-      "name": "hidden: maximum endpoint reaches the fifth threshold",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 1000000000000000},
+      "id": "trial-maximum",
+      "name": "maximum endpoint reaches the fifth threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000000000000000
+      },
       "expected": 3998998998999005,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "maximum", "fifth-threshold"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "maximum",
+        "fifth-threshold"
+      ]
     }
   ]
 }

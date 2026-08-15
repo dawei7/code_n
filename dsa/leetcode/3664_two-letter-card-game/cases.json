@@ -125,10 +125,10 @@
       ]
     },
     {
-      "id": "real-two-independent-families",
-      "name": "hidden: both noncentral families score independently",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-independent-families",
+      "name": "both noncentral families score independently",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "cards": [
           "ab",
@@ -140,15 +140,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "two-families"
       ]
     },
     {
-      "id": "real-center-split",
-      "name": "hidden: centers must be allocated across family demands",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-center-split",
+      "name": "centers must be allocated across family demands",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "cards": [
           "ab",
@@ -162,16 +161,15 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "center-allocation",
         "dominant-category"
       ]
     },
     {
-      "id": "real-ignore-unusable",
-      "name": "hidden: cards without x do not participate",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ignore-unusable",
+      "name": "cards without x do not participate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "cards": [
           "bc",
@@ -184,15 +182,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "ignored-cards"
       ]
     },
     {
-      "id": "real-upper-alphabet-letter",
-      "name": "hidden: x at the upper character bound",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-upper-alphabet-letter",
+      "name": "x at the upper character bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "cards": [
           "ja",
@@ -205,9 +202,43 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "alphabet-bound",
         "center"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in cards",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cards": [
+          "aa"
+        ],
+        "x": "a"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in cards",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cards": [
+          "aa",
+          "aa"
+        ],
+        "x": "a"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -1,14 +1,187 @@
 {
   "challenge_id": "lc_2859",
   "cases": [
-    {"id":"sample-1","name":"sample: three power-of-two indices qualify","kind":"sample","visible":true,"input":{"nums":[5,10,1,5,2],"k":1},"expected":13,"tags":["sample","one-set-bit"]},
-    {"id":"sample-2","name":"sample: only index three has two set bits","kind":"sample","visible":true,"input":{"nums":[4,3,2,1],"k":2},"expected":1,"tags":["sample","two-set-bits"]},
-    {"id":"trial-zero-set-bits","name":"trial: index zero is the sole zero-bit index","kind":"trial","visible":true,"input":{"nums":[10,20,30],"k":0},"expected":10,"tags":["trial","zero-index","zero-bits"]},
-    {"id":"trial-single-element-zero","name":"trial: a one-element array qualifies for k zero","kind":"trial","visible":true,"input":{"nums":[7],"k":0},"expected":7,"tags":["trial","single"]},
-    {"id":"trial-single-element-positive-k","name":"trial: index zero does not qualify for positive k","kind":"trial","visible":true,"input":{"nums":[7],"k":1},"expected":0,"tags":["trial","single","no-match"]},
-    {"id":"real-all-power-of-two-indices","name":"hidden: every in-range power-of-two index contributes","kind":"real","visible":false,"input":{"nums":[1,2,3,4,5,6,7,8,9],"k":1},"expected":19,"tags":["hidden","powers-of-two"]},
-    {"id":"real-several-two-bit-indices","name":"hidden: multiple nonadjacent indices share the target count","kind":"real","visible":false,"input":{"nums":[10,20,30,40,50,60,70,80],"k":2},"expected":170,"tags":["hidden","nonadjacent-indices"]},
-    {"id":"real-unattainable-bit-count","name":"hidden: no index reaches the maximum allowed k","kind":"real","visible":false,"input":{"nums":[9,8,7,6,5],"k":10},"expected":0,"tags":["hidden","unattainable-k"]},
-    {"id":"real-large-values","name":"hidden: selected values may reach the value limit","kind":"real","visible":false,"input":{"nums":[100000,100000,100000,100000],"k":2},"expected":100000,"tags":["hidden","large-values"]}
+    {
+      "id": "sample-1",
+      "name": "sample: three power-of-two indices qualify",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          10,
+          1,
+          5,
+          2
+        ],
+        "k": 1
+      },
+      "expected": 13,
+      "tags": [
+        "sample",
+        "one-set-bit"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: only index three has two set bits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          3,
+          2,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "two-set-bits"
+      ]
+    },
+    {
+      "id": "trial-zero-set-bits",
+      "name": "trial: index zero is the sole zero-bit index",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          20,
+          30
+        ],
+        "k": 0
+      },
+      "expected": 10,
+      "tags": [
+        "trial",
+        "zero-index",
+        "zero-bits"
+      ]
+    },
+    {
+      "id": "trial-single-element-zero",
+      "name": "trial: a one-element array qualifies for k zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ],
+        "k": 0
+      },
+      "expected": 7,
+      "tags": [
+        "trial",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-single-element-positive-k",
+      "name": "trial: index zero does not qualify for positive k",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "single",
+        "no-match"
+      ]
+    },
+    {
+      "id": "trial-all-power-of-two-indices",
+      "name": "every in-range power-of-two index contributes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "k": 1
+      },
+      "expected": 19,
+      "tags": [
+        "powers-of-two"
+      ]
+    },
+    {
+      "id": "trial-several-two-bit-indices",
+      "name": "multiple nonadjacent indices share the target count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          20,
+          30,
+          40,
+          50,
+          60,
+          70,
+          80
+        ],
+        "k": 2
+      },
+      "expected": 170,
+      "tags": [
+        "nonadjacent-indices"
+      ]
+    },
+    {
+      "id": "trial-unattainable-bit-count",
+      "name": "no index reaches the maximum allowed k",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          8,
+          7,
+          6,
+          5
+        ],
+        "k": 10
+      },
+      "expected": 0,
+      "tags": [
+        "unattainable-k"
+      ]
+    },
+    {
+      "id": "trial-large-values",
+      "name": "selected values may reach the value limit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100000,
+          100000,
+          100000,
+          100000
+        ],
+        "k": 2
+      },
+      "expected": 100000,
+      "tags": [
+        "large-values"
+      ]
+    }
   ]
 }

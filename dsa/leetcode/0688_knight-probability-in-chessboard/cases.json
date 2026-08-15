@@ -88,10 +88,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: two moves on four-cell board",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "two moves on four-cell board",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "k": 2,
@@ -100,15 +100,14 @@
       },
       "expected": 0.125,
       "tags": [
-        "hidden",
         "two-moves"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: all moves remain from central square",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "all moves remain from central square",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 8,
         "k": 1,
@@ -117,15 +116,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "central-square"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: edge start on standard board",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-3",
+      "name": "edge start on standard board",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 8,
         "k": 2,
@@ -134,7 +132,6 @@
       },
       "expected": 0.40625,
       "tags": [
-        "hidden",
         "edge"
       ]
     }

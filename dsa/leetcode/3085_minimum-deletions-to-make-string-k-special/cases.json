@@ -6,72 +6,117 @@
       "name": "sample: remove a rare character and trim the largest count",
       "kind": "sample",
       "visible": true,
-      "input": {"word": "aabcaba", "k": 0},
+      "input": {
+        "word": "aabcaba",
+        "k": 0
+      },
       "expected": 3,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-range-two",
       "name": "sample: retain frequencies spanning two",
       "kind": "sample",
       "visible": true,
-      "input": {"word": "dabdcbdcdcd", "k": 2},
+      "input": {
+        "word": "dabdcbdcdcd",
+        "k": 2
+      },
       "expected": 2,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-delete-rare",
       "name": "sample: remove the lone low-frequency letter",
       "kind": "sample",
       "visible": true,
-      "input": {"word": "aaabaaa", "k": 2},
+      "input": {
+        "word": "aaabaaa",
+        "k": 2
+      },
       "expected": 1,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "trial-single-character",
       "name": "trial: one present frequency is always special",
       "kind": "trial",
       "visible": true,
-      "input": {"word": "a", "k": 0},
+      "input": {
+        "word": "a",
+        "k": 0
+      },
       "expected": 0,
-      "tags": ["trial", "minimum-length"]
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-already-equal",
       "name": "trial: equal frequencies need no deletion",
       "kind": "trial",
       "visible": true,
-      "input": {"word": "aabbcc", "k": 0},
+      "input": {
+        "word": "aabbcc",
+        "k": 0
+      },
       "expected": 0,
-      "tags": ["trial", "already-special"]
+      "tags": [
+        "trial",
+        "already-special"
+      ]
     },
     {
       "id": "trial-large-k",
       "name": "trial: a large allowance covers the full range",
       "kind": "trial",
       "visible": true,
-      "input": {"word": "aaaabcc", "k": 100000},
+      "input": {
+        "word": "aaaabcc",
+        "k": 100000
+      },
       "expected": 0,
-      "tags": ["trial", "maximum-k"]
+      "tags": [
+        "trial",
+        "maximum-k"
+      ]
     },
     {
-      "id": "real-delete-small-group",
-      "name": "real: deleting a rare group beats trimming the large group",
-      "kind": "real",
-      "visible": false,
-      "input": {"word": "abbbbbbbbbb", "k": 2},
+      "id": "trial-delete-small-group",
+      "name": "deleting a rare group beats trimming the large group",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "abbbbbbbbbb",
+        "k": 2
+      },
       "expected": 1,
-      "tags": ["real", "delete-group"]
+      "tags": [
+        "real",
+        "delete-group"
+      ]
     },
     {
-      "id": "real-tied-optima",
-      "name": "real: removing low counts ties trimming high counts",
-      "kind": "real",
-      "visible": false,
-      "input": {"word": "aaaabbbbcc", "k": 1},
+      "id": "trial-tied-optima",
+      "name": "removing low counts ties trimming high counts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aaaabbbbcc",
+        "k": 1
+      },
       "expected": 2,
-      "tags": ["real", "tradeoff"]
+      "tags": [
+        "real",
+        "tradeoff"
+      ]
     }
   ]
 }

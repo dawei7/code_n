@@ -6,99 +6,206 @@
       "name": "sample: nested denominations",
       "kind": "sample",
       "visible": true,
-      "input": { "coins": [3, 6, 9], "k": 3 },
+      "input": {
+        "coins": [
+          3,
+          6,
+          9
+        ],
+        "k": 3
+      },
       "expected": 9,
-      "tags": ["sample", "nested-denominations"]
+      "tags": [
+        "sample",
+        "nested-denominations"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: two denominations",
       "kind": "sample",
       "visible": true,
-      "input": { "coins": [5, 2], "k": 7 },
+      "input": {
+        "coins": [
+          5,
+          2
+        ],
+        "k": 7
+      },
       "expected": 12,
-      "tags": ["sample", "overlap"]
+      "tags": [
+        "sample",
+        "overlap"
+      ]
     },
     {
       "id": "trial-single-denomination",
       "name": "trial: first amount from one denomination",
       "kind": "trial",
       "visible": true,
-      "input": { "coins": [1], "k": 1 },
+      "input": {
+        "coins": [
+          1
+        ],
+        "k": 1
+      },
       "expected": 1,
-      "tags": ["boundary", "single-denomination"]
+      "tags": [
+        "boundary",
+        "single-denomination"
+      ]
     },
     {
       "id": "trial-unit-dominates",
       "name": "trial: denomination one makes every amount",
       "kind": "trial",
       "visible": true,
-      "input": { "coins": [25, 1], "k": 100 },
+      "input": {
+        "coins": [
+          25,
+          1
+        ],
+        "k": 100
+      },
       "expected": 100,
-      "tags": ["unit", "redundancy"]
+      "tags": [
+        "unit",
+        "redundancy"
+      ]
     },
     {
       "id": "trial-overlapping-powers",
       "name": "trial: powers of two overlap completely",
       "kind": "trial",
       "visible": true,
-      "input": { "coins": [2, 4, 8], "k": 10 },
+      "input": {
+        "coins": [
+          2,
+          4,
+          8
+        ],
+        "k": 10
+      },
       "expected": 20,
-      "tags": ["overlap", "redundancy"]
+      "tags": [
+        "overlap",
+        "redundancy"
+      ]
     },
     {
       "id": "trial-two-stream-duplicates",
       "name": "trial: duplicate multiples count once",
       "kind": "trial",
       "visible": true,
-      "input": { "coins": [2, 3], "k": 10 },
+      "input": {
+        "coins": [
+          2,
+          3
+        ],
+        "k": 10
+      },
       "expected": 15,
-      "tags": ["deduplication", "lcm"]
+      "tags": [
+        "deduplication",
+        "lcm"
+      ]
     },
     {
-      "id": "real-coprime-small",
-      "name": "real: several nearly coprime streams",
-      "kind": "real",
-      "visible": false,
-      "input": { "coins": [4, 7, 9], "k": 25 },
+      "id": "trial-coprime-small",
+      "name": "several nearly coprime streams",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coins": [
+          4,
+          7,
+          9
+        ],
+        "k": 25
+      },
       "expected": 56,
-      "tags": ["real", "inclusion-exclusion"]
+      "tags": [
+        "real",
+        "inclusion-exclusion"
+      ]
     },
     {
-      "id": "real-shared-lcms",
-      "name": "real: subsets share least common multiples",
-      "kind": "real",
-      "visible": false,
-      "input": { "coins": [6, 10, 15], "k": 40 },
+      "id": "trial-shared-lcms",
+      "name": "subsets share least common multiples",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coins": [
+          6,
+          10,
+          15
+        ],
+        "k": 40
+      },
       "expected": 150,
-      "tags": ["real", "lcm", "coefficient-aggregation"]
+      "tags": [
+        "real",
+        "lcm",
+        "coefficient-aggregation"
+      ]
     },
     {
-      "id": "real-unsorted-denominations",
-      "name": "real: unsorted denominations and larger rank",
-      "kind": "real",
-      "visible": false,
-      "input": { "coins": [17, 3, 11, 5], "k": 150 },
+      "id": "trial-unsorted-denominations",
+      "name": "unsorted denominations and larger rank",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coins": [
+          17,
+          3,
+          11,
+          5
+        ],
+        "k": 150
+      },
       "expected": 276,
-      "tags": ["real", "binary-search"]
+      "tags": [
+        "real",
+        "binary-search"
+      ]
     },
     {
-      "id": "real-many-redundant-denominations",
-      "name": "real: one stream subsumes many others",
-      "kind": "real",
-      "visible": false,
-      "input": { "coins": [12, 9, 6, 3], "k": 100 },
+      "id": "trial-many-redundant-denominations",
+      "name": "one stream subsumes many others",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coins": [
+          12,
+          9,
+          6,
+          3
+        ],
+        "k": 100
+      },
       "expected": 300,
-      "tags": ["real", "redundancy"]
+      "tags": [
+        "real",
+        "redundancy"
+      ]
     },
     {
-      "id": "real-maximum-answer",
-      "name": "real: answer exceeds 32-bit signed range",
-      "kind": "real",
-      "visible": false,
-      "input": { "coins": [25], "k": 2000000000 },
+      "id": "trial-maximum-answer",
+      "name": "answer exceeds 32-bit signed range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coins": [
+          25
+        ],
+        "k": 2000000000
+      },
       "expected": 50000000000,
-      "tags": ["real", "maximum-k", "wide-integer"]
+      "tags": [
+        "real",
+        "maximum-k",
+        "wide-integer"
+      ]
     }
   ]
 }

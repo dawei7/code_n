@@ -174,10 +174,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: reach only a prefix of one chain",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "reach only a prefix of one chain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -191,15 +191,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "partial-chain"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: chain approached from both endpoints",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "chain approached from both endpoints",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -223,15 +222,14 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "both-ends"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: disconnected subdivided component",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "disconnected subdivided component",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -245,15 +243,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "disconnected"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: zero subdivisions around a cycle",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "zero subdivisions around a cycle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -277,15 +274,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "cycle"
       ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: shorter indirect route beats long direct chain",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-5",
+      "name": "shorter indirect route beats long direct chain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -309,7 +305,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "shortest-path"
       ]
     }

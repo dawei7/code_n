@@ -93,26 +93,25 @@
       "expected": 28
     },
     {
-      "id": "real-singleton",
-      "name": "hidden: singleton at maximum value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-singleton",
+      "name": "singleton at maximum value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000
         ]
       },
       "tags": [
-        "hidden",
         "boundary"
       ],
       "expected": 1
     },
     {
-      "id": "real-maximum-value-repeat",
-      "name": "hidden: maximum value reappears around another value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-value-repeat",
+      "name": "maximum value reappears around another value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000,
@@ -121,17 +120,16 @@
         ]
       },
       "tags": [
-        "hidden",
         "boundary",
         "last-occurrence"
       ],
       "expected": 15
     },
     {
-      "id": "real-multiple-reappearances",
-      "name": "hidden: several values reappear at different distances",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-reappearances",
+      "name": "several values reappear at different distances",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -143,17 +141,16 @@
         ]
       },
       "tags": [
-        "hidden",
         "segment-tree",
         "last-occurrence"
       ],
       "expected": 132
     },
     {
-      "id": "real-all-equal",
-      "name": "hidden: every subarray has one distinct value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-equal",
+      "name": "every subarray has one distinct value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -169,7 +166,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "all-equal"
       ],
       "expected": 55

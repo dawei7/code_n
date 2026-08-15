@@ -140,10 +140,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: every node included",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "every node included",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           8,
@@ -167,15 +167,14 @@
       },
       "expected": 120,
       "tags": [
-        "hidden",
         "full-range"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: narrow left-subtree interval",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "narrow left-subtree interval",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           20,
@@ -195,15 +194,14 @@
       },
       "expected": 29,
       "tags": [
-        "hidden",
         "narrow"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: range above every value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "range above every value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           4,
@@ -219,7 +217,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "empty-range"
       ]
     }

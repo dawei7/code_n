@@ -82,10 +82,10 @@
       ]
     },
     {
-      "id": "real-competing-chains",
-      "name": "hidden: choose the longer of two square chains",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-competing-chains",
+      "name": "choose the longer of two square chains",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -98,15 +98,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "multiple-chains"
       ]
     },
     {
-      "id": "real-interior-chain",
-      "name": "hidden: a valid chain can begin at a perfect square",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-interior-chain",
+      "name": "a valid chain can begin at a perfect square",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           16,
@@ -117,15 +116,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "perfect-square-start"
       ]
     },
     {
-      "id": "real-large-unrelated",
-      "name": "hidden: large values without a square relation",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-unrelated",
+      "name": "large values without a square relation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           18532,
@@ -136,8 +134,40 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "upper-bound"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

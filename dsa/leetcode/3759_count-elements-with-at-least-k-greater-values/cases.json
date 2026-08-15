@@ -1,10 +1,218 @@
-{"schema_version":1,"challenge_id":"lc_3759","cases":[
-{"id":"sample-one-greater","name":"sample: two values have a greater neighbor","kind":"sample","visible":true,"input":{"nums":[3,1,2],"k":1},"expected":2,"validator":{"kind":"exact"},"tags":["sample","distinct"]},
-{"id":"sample-all-equal","name":"sample: equality never satisfies strict comparison","kind":"sample","visible":true,"input":{"nums":[5,5,5],"k":2},"expected":0,"validator":{"kind":"exact"},"tags":["sample","duplicates"]},
-{"id":"trial-k-zero","name":"trial: every occurrence qualifies when k is zero","kind":"trial","visible":true,"input":{"nums":[5,1,5],"k":0},"expected":3,"validator":{"kind":"exact"},"tags":["trial","k-zero"]},
-{"id":"trial-duplicate-threshold","name":"trial: duplicate largest values both exceed the minimum","kind":"trial","visible":true,"input":{"nums":[5,5,4],"k":2},"expected":1,"validator":{"kind":"exact"},"tags":["trial","threshold"]},
-{"id":"trial-unique-minimum","name":"trial: only a unique minimum has n minus one greater values","kind":"trial","visible":true,"input":{"nums":[1,2,3,4],"k":3},"expected":1,"validator":{"kind":"exact"},"tags":["trial","maximum-k"]},
-{"id":"real-repeated-minimum","name":"hidden: repeated minima fail the maximum-k requirement","kind":"real","visible":false,"input":{"nums":[1,1,2,3],"k":3},"expected":0,"validator":{"kind":"exact"},"tags":["hidden","minimum-duplicates"]},
-{"id":"real-mixed-duplicates","name":"hidden: values below a duplicated threshold qualify","kind":"real","visible":false,"input":{"nums":[10,9,9,8,7],"k":2},"expected":2,"validator":{"kind":"exact"},"tags":["hidden","mixed"]},
-{"id":"real-upper-bound","name":"hidden: upper-bound values preserve strict ordering","kind":"real","visible":false,"input":{"nums":[1000000000,1,999999999],"k":1},"expected":2,"validator":{"kind":"exact"},"tags":["hidden","value-boundary"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3759",
+  "cases": [
+    {
+      "id": "sample-one-greater",
+      "name": "sample: two values have a greater neighbor",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          2
+        ],
+        "k": 1
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "distinct"
+      ]
+    },
+    {
+      "id": "sample-all-equal",
+      "name": "sample: equality never satisfies strict comparison",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-k-zero",
+      "name": "trial: every occurrence qualifies when k is zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          5
+        ],
+        "k": 0
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "k-zero"
+      ]
+    },
+    {
+      "id": "trial-duplicate-threshold",
+      "name": "trial: duplicate largest values both exceed the minimum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          4
+        ],
+        "k": 2
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "threshold"
+      ]
+    },
+    {
+      "id": "trial-unique-minimum",
+      "name": "trial: only a unique minimum has n minus one greater values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "k": 3
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "maximum-k"
+      ]
+    },
+    {
+      "id": "trial-repeated-minimum",
+      "name": "repeated minima fail the maximum-k requirement",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          3
+        ],
+        "k": 3
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "minimum-duplicates"
+      ]
+    },
+    {
+      "id": "trial-mixed-duplicates",
+      "name": "values below a duplicated threshold qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          9,
+          9,
+          8,
+          7
+        ],
+        "k": 2
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "mixed"
+      ]
+    },
+    {
+      "id": "trial-upper-bound",
+      "name": "upper-bound values preserve strict ordering",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          1,
+          999999999
+        ],
+        "k": 1
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "value-boundary"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    }
+  ]
+}

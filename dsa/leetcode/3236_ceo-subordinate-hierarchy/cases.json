@@ -328,10 +328,10 @@
       ]
     },
     {
-      "id": "real-positive-difference",
-      "name": "real: subordinate earns more than CEO",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-positive-difference",
+      "name": "subordinate earns more than CEO",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [
@@ -375,10 +375,10 @@
       ]
     },
     {
-      "id": "real-zero-difference",
-      "name": "real: equal salaries",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zero-difference",
+      "name": "equal salaries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [
@@ -422,10 +422,10 @@
       ]
     },
     {
-      "id": "real-two-branches",
-      "name": "real: two branches at several levels",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-branches",
+      "name": "two branches at several levels",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [
@@ -504,10 +504,10 @@
       ]
     },
     {
-      "id": "real-unordered-input",
-      "name": "real: input rows are not hierarchical order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unordered-input",
+      "name": "input rows are not hierarchical order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [
@@ -574,10 +574,10 @@
       ]
     },
     {
-      "id": "real-nonconsecutive-identifiers",
-      "name": "real: nonconsecutive identifiers",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-nonconsecutive-identifiers",
+      "name": "nonconsecutive identifiers",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [
@@ -632,10 +632,10 @@
       ]
     },
     {
-      "id": "real-wide-second-level",
-      "name": "real: several reports under one manager",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-wide-second-level",
+      "name": "several reports under one manager",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [
@@ -715,10 +715,10 @@
       ]
     },
     {
-      "id": "real-four-level-hierarchy",
-      "name": "real: four subordinate levels",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-four-level-hierarchy",
+      "name": "four subordinate levels",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [

@@ -135,10 +135,10 @@
       }
     },
     {
-      "id": "real-two-values",
-      "name": "hidden: two distinct qualifying runs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-values",
+      "name": "two distinct qualifying runs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Logs": [
@@ -187,7 +187,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "multiple"
       ],
       "validator": {

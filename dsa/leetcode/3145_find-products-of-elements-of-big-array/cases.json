@@ -6,108 +6,378 @@
       "name": "sample: product across three sequence elements",
       "kind": "sample",
       "visible": true,
-      "input": {"queries": [[1, 3, 7]]},
-      "expected": [4],
-      "tags": ["sample", "range"]
+      "input": {
+        "queries": [
+          [
+            1,
+            3,
+            7
+          ]
+        ]
+      },
+      "expected": [
+        4
+      ],
+      "tags": [
+        "sample",
+        "range"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: two ranges with different moduli",
       "kind": "sample",
       "visible": true,
-      "input": {"queries": [[2, 5, 3], [7, 7, 4]]},
-      "expected": [2, 2],
-      "tags": ["sample", "multiple-queries"]
+      "input": {
+        "queries": [
+          [
+            2,
+            5,
+            3
+          ],
+          [
+            7,
+            7,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        2
+      ],
+      "tags": [
+        "sample",
+        "multiple-queries"
+      ]
     },
     {
       "id": "trial-first-element",
       "name": "trial: the first sequence element",
       "kind": "trial",
       "visible": true,
-      "input": {"queries": [[0, 0, 7]]},
-      "expected": [1],
-      "tags": ["prefix", "singleton"]
+      "input": {
+        "queries": [
+          [
+            0,
+            0,
+            7
+          ]
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "prefix",
+        "singleton"
+      ]
     },
     {
       "id": "trial-first-thirteen",
       "name": "trial: complete early powerful arrays",
       "kind": "trial",
       "visible": true,
-      "input": {"queries": [[0, 12, 1000]]},
-      "expected": [768],
-      "tags": ["prefix", "complete-integers"]
+      "input": {
+        "queries": [
+          [
+            0,
+            12,
+            1000
+          ]
+        ]
+      },
+      "expected": [
+        768
+      ],
+      "tags": [
+        "prefix",
+        "complete-integers"
+      ]
     },
     {
       "id": "trial-single-positions",
       "name": "trial: each initial power individually",
       "kind": "trial",
       "visible": true,
-      "input": {"queries": [[0, 0, 97], [1, 1, 97], [2, 2, 97], [3, 3, 97], [4, 4, 97], [5, 5, 97], [6, 6, 97], [7, 7, 97], [8, 8, 97], [9, 9, 97], [10, 10, 97], [11, 11, 97], [12, 12, 97]]},
-      "expected": [1, 2, 1, 2, 4, 1, 4, 2, 4, 1, 2, 4, 8],
-      "tags": ["singleton", "ordering"]
+      "input": {
+        "queries": [
+          [
+            0,
+            0,
+            97
+          ],
+          [
+            1,
+            1,
+            97
+          ],
+          [
+            2,
+            2,
+            97
+          ],
+          [
+            3,
+            3,
+            97
+          ],
+          [
+            4,
+            4,
+            97
+          ],
+          [
+            5,
+            5,
+            97
+          ],
+          [
+            6,
+            6,
+            97
+          ],
+          [
+            7,
+            7,
+            97
+          ],
+          [
+            8,
+            8,
+            97
+          ],
+          [
+            9,
+            9,
+            97
+          ],
+          [
+            10,
+            10,
+            97
+          ],
+          [
+            11,
+            11,
+            97
+          ],
+          [
+            12,
+            12,
+            97
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        1,
+        2,
+        4,
+        1,
+        4,
+        2,
+        4,
+        1,
+        2,
+        4,
+        8
+      ],
+      "tags": [
+        "singleton",
+        "ordering"
+      ]
     },
     {
       "id": "trial-cross-integer-boundaries",
       "name": "trial: ranges split powerful arrays",
       "kind": "trial",
       "visible": true,
-      "input": {"queries": [[3, 4, 100], [4, 6, 100]]},
-      "expected": [8, 16],
-      "tags": ["partial-integer", "boundary"]
+      "input": {
+        "queries": [
+          [
+            3,
+            4,
+            100
+          ],
+          [
+            4,
+            6,
+            100
+          ]
+        ]
+      },
+      "expected": [
+        8,
+        16
+      ],
+      "tags": [
+        "partial-integer",
+        "boundary"
+      ]
     },
     {
       "id": "trial-modulus-one",
       "name": "trial: modulus one at the maximum endpoint",
       "kind": "trial",
       "visible": true,
-      "input": {"queries": [[0, 1000000000000000, 1]]},
-      "expected": [0],
-      "tags": ["maximum-index", "mod-one"]
+      "input": {
+        "queries": [
+          [
+            0,
+            1000000000000000,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "maximum-index",
+        "mod-one"
+      ]
     },
     {
-      "id": "real-overlapping-small-ranges",
-      "name": "real: overlapping ranges and moduli",
-      "kind": "real",
-      "visible": false,
-      "input": {"queries": [[2, 7, 101], [5, 12, 97], [10, 25, 100000]]},
-      "expected": [64, 11, 35456],
-      "tags": ["overlap", "modulo"]
+      "id": "trial-overlapping-small-ranges",
+      "name": "overlapping ranges and moduli",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "queries": [
+          [
+            2,
+            7,
+            101
+          ],
+          [
+            5,
+            12,
+            97
+          ],
+          [
+            10,
+            25,
+            100000
+          ]
+        ]
+      },
+      "expected": [
+        64,
+        11,
+        35456
+      ],
+      "tags": [
+        "overlap",
+        "modulo"
+      ]
     },
     {
-      "id": "real-midrange-overlap",
-      "name": "real: several midrange prefixes",
-      "kind": "real",
-      "visible": false,
-      "input": {"queries": [[30, 80, 99991], [70, 130, 12345], [0, 150, 65537]]},
-      "expected": [28937, 10142, 256],
-      "tags": ["midrange", "overlap"]
+      "id": "trial-midrange-overlap",
+      "name": "several midrange prefixes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "queries": [
+          [
+            30,
+            80,
+            99991
+          ],
+          [
+            70,
+            130,
+            12345
+          ],
+          [
+            0,
+            150,
+            65537
+          ]
+        ]
+      },
+      "expected": [
+        28937,
+        10142,
+        256
+      ],
+      "tags": [
+        "midrange",
+        "overlap"
+      ]
     },
     {
-      "id": "real-large-indices",
-      "name": "real: large indices exercise binary search",
-      "kind": "real",
-      "visible": false,
-      "input": {"queries": [[1000000, 1000120, 100000], [100000000, 100000300, 99824]]},
-      "expected": [36608, 33328],
-      "tags": ["large-index", "binary-search"]
+      "id": "trial-large-indices",
+      "name": "large indices exercise binary search",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "queries": [
+          [
+            1000000,
+            1000120,
+            100000
+          ],
+          [
+            100000000,
+            100000300,
+            99824
+          ]
+        ]
+      },
+      "expected": [
+        36608,
+        33328
+      ],
+      "tags": [
+        "large-index",
+        "binary-search"
+      ]
     },
     {
-      "id": "real-maximum-singleton",
-      "name": "real: one element at the maximum index",
-      "kind": "real",
-      "visible": false,
-      "input": {"queries": [[1000000000000000, 1000000000000000, 99991]]},
-      "expected": [16384],
-      "tags": ["maximum-index", "singleton"]
+      "id": "trial-maximum-singleton",
+      "name": "one element at the maximum index",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "queries": [
+          [
+            1000000000000000,
+            1000000000000000,
+            99991
+          ]
+        ]
+      },
+      "expected": [
+        16384
+      ],
+      "tags": [
+        "maximum-index",
+        "singleton"
+      ]
     },
     {
-      "id": "real-maximum-tail",
-      "name": "real: a range ending at the maximum index",
-      "kind": "real",
-      "visible": false,
-      "input": {"queries": [[999999999999000, 1000000000000000, 100000]]},
-      "expected": [44512],
-      "tags": ["maximum-index", "range"]
+      "id": "trial-maximum-tail",
+      "name": "a range ending at the maximum index",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "queries": [
+          [
+            999999999999000,
+            1000000000000000,
+            100000
+          ]
+        ]
+      },
+      "expected": [
+        44512
+      ],
+      "tags": [
+        "maximum-index",
+        "range"
+      ]
     }
   ]
 }

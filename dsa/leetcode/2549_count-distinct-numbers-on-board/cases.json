@@ -71,29 +71,28 @@
       ]
     },
     {
-      "id": "real-mid-domain",
-      "name": "hidden: mid-domain formula value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mid-domain",
+      "name": "mid-domain formula value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 57
       },
       "expected": 56,
       "tags": [
-        "hidden"
+        "trial"
       ]
     },
     {
-      "id": "real-maximum",
-      "name": "hidden: maximum legal input",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum",
+      "name": "maximum legal input",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 100
       },
       "expected": 99,
       "tags": [
-        "hidden",
         "maximum"
       ]
     }

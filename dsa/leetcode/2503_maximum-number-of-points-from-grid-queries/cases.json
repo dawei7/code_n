@@ -144,10 +144,10 @@
       ]
     },
     {
-      "id": "real-low-cells-behind-barrier",
-      "name": "hidden: low cells remain unreachable behind an ineligible barrier",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-low-cells-behind-barrier",
+      "name": "low cells remain unreachable behind an ineligible barrier",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -178,15 +178,14 @@
         9
       ],
       "tags": [
-        "hidden",
         "barrier"
       ]
     },
     {
-      "id": "real-all-equal",
-      "name": "hidden: one threshold step reveals the entire grid",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-equal",
+      "name": "one threshold step reveals the entire grid",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -210,15 +209,14 @@
         6
       ],
       "tags": [
-        "hidden",
         "equality"
       ]
     },
     {
-      "id": "real-rectangular-path",
-      "name": "hidden: a narrow path grows one threshold at a time",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-rectangular-path",
+      "name": "a narrow path grows one threshold at a time",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -248,7 +246,6 @@
         8
       ],
       "tags": [
-        "hidden",
         "rectangular"
       ]
     }

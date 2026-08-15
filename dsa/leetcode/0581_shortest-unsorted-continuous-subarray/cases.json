@@ -97,10 +97,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: disorder reaches final index",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "disorder reaches final index",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -112,15 +112,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "right-boundary"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: negative values and duplicates",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "negative values and duplicates",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -3,
@@ -133,8 +132,40 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "negative"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -1,15 +1,193 @@
 {
   "challenge_id": "lc_2856",
   "cases": [
-    {"id":"sample-1","name":"sample: four distinct values pair completely","kind":"sample","visible":true,"input":{"nums":[1,2,3,4]},"expected":0,"tags":["sample","all-removed"]},
-    {"id":"sample-2","name":"sample: three balanced duplicate groups","kind":"sample","visible":true,"input":{"nums":[1,1,2,2,3,3]},"expected":0,"tags":["sample","balanced-frequencies"]},
-    {"id":"sample-3","name":"sample: equal maximum values cannot pair","kind":"sample","visible":true,"input":{"nums":[1000000000,1000000000]},"expected":2,"tags":["sample","all-equal","upper-value"]},
-    {"id":"sample-4","name":"sample: dominant final block leaves one","kind":"sample","visible":true,"input":{"nums":[2,3,4,4,4]},"expected":1,"tags":["sample","dominant-frequency"]},
-    {"id":"trial-single-value","name":"trial: one element must remain","kind":"trial","visible":true,"input":{"nums":[7]},"expected":1,"tags":["trial","single"]},
-    {"id":"trial-balanced-odd-length","name":"trial: odd cardinality leaves one despite distinct values","kind":"trial","visible":true,"input":{"nums":[1,2,3]},"expected":1,"tags":["trial","parity"]},
-    {"id":"real-dominant-first-block","name":"hidden: a dominant smallest value leaves excess copies","kind":"real","visible":false,"input":{"nums":[1,1,1,1,2,3]},"expected":2,"tags":["hidden","dominant-first-run"]},
-    {"id":"real-dominant-middle-block","name":"hidden: the longest run can occur in the middle","kind":"real","visible":false,"input":{"nums":[1,2,2,2,3]},"expected":1,"tags":["hidden","middle-run"]},
-    {"id":"real-tied-largest-runs","name":"hidden: tied runs below half leave only parity","kind":"real","visible":false,"input":{"nums":[1,1,2,2,3]},"expected":1,"tags":["hidden","tied-frequency","parity"]},
-    {"id":"real-all-equal-odd","name":"hidden: no operation is possible on an all-equal odd array","kind":"real","visible":false,"input":{"nums":[9,9,9]},"expected":3,"tags":["hidden","all-equal"]}
+    {
+      "id": "sample-1",
+      "name": "sample: four distinct values pair completely",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "all-removed"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: three balanced duplicate groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "balanced-frequencies"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: equal maximum values cannot pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          1000000000
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "all-equal",
+        "upper-value"
+      ]
+    },
+    {
+      "id": "sample-4",
+      "name": "sample: dominant final block leaves one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          4,
+          4,
+          4
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "dominant-frequency"
+      ]
+    },
+    {
+      "id": "trial-single-value",
+      "name": "trial: one element must remain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-balanced-odd-length",
+      "name": "trial: odd cardinality leaves one despite distinct values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "parity"
+      ]
+    },
+    {
+      "id": "trial-dominant-first-block",
+      "name": "a dominant smallest value leaves excess copies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "dominant-first-run"
+      ]
+    },
+    {
+      "id": "trial-dominant-middle-block",
+      "name": "the longest run can occur in the middle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2,
+          2,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "middle-run"
+      ]
+    },
+    {
+      "id": "trial-tied-largest-runs",
+      "name": "tied runs below half leave only parity",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "tied-frequency",
+        "parity"
+      ]
+    },
+    {
+      "id": "trial-all-equal-odd",
+      "name": "no operation is possible on an all-equal odd array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          9,
+          9
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "all-equal"
+      ]
+    }
   ]
 }

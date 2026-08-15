@@ -135,10 +135,10 @@
       ]
     },
     {
-      "id": "real-two-value-blocks",
-      "name": "hidden: low fillers and repeated high values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-value-blocks",
+      "name": "low fillers and repeated high values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -157,16 +157,15 @@
       },
       "expected": 32,
       "tags": [
-        "hidden",
         "duplicates",
         "fillers"
       ]
     },
     {
-      "id": "real-max-values",
-      "name": "hidden: medians can reach the maximum value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-max-values",
+      "name": "medians can reach the maximum value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -179,15 +178,14 @@
       },
       "expected": 2000000000,
       "tags": [
-        "hidden",
         "maximum-value"
       ]
     },
     {
-      "id": "real-many-duplicates",
-      "name": "hidden: duplicate boundaries between fillers and pairs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-duplicates",
+      "name": "duplicate boundaries between fillers and pairs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -206,16 +204,15 @@
       },
       "expected": 16,
       "tags": [
-        "hidden",
         "duplicates",
         "boundary"
       ]
     },
     {
-      "id": "real-interleaved",
-      "name": "hidden: input order does not affect grouping",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-interleaved",
+      "name": "input order does not affect grouping",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100,
@@ -234,15 +231,14 @@
       },
       "expected": 215,
       "tags": [
-        "hidden",
         "unsorted"
       ]
     },
     {
-      "id": "real-three-groups",
-      "name": "hidden: choose three medians greedily",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-groups",
+      "name": "choose three medians greedily",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           11,
@@ -258,15 +254,14 @@
       },
       "expected": 20,
       "tags": [
-        "hidden",
         "greedy"
       ]
     },
     {
-      "id": "real-small-positive",
-      "name": "hidden: all values at the minimum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-small-positive",
+      "name": "all values at the minimum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -276,7 +271,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "minimum-value"
       ]
     }

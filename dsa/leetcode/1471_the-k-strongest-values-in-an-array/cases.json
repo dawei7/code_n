@@ -135,10 +135,10 @@
       ]
     },
     {
-      "id": "real-official-median-walkthrough",
-      "name": "hidden: negative extreme outranks positive extreme",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-official-median-walkthrough",
+      "name": "negative extreme outranks positive extreme",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           6,
@@ -158,16 +158,15 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "negative",
         "tie-break"
       ]
     },
     {
-      "id": "real-duplicates-across-median",
-      "name": "hidden: multiplicities survive endpoint selection",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicates-across-median",
+      "name": "multiplicities survive endpoint selection",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           0,
@@ -192,15 +191,14 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "real-all-values",
-      "name": "hidden: requesting the complete multiset",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-values",
+      "name": "requesting the complete multiset",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           4,
@@ -224,15 +222,14 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "k-equals-n"
       ]
     },
     {
-      "id": "real-value-bounds",
-      "name": "hidden: inclusive value bounds and tie-break",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-value-bounds",
+      "name": "inclusive value bounds and tie-break",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           -100000,
@@ -250,9 +247,48 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "bounds",
         "tie-break"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in arr",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1
+        ],
+        "k": 2
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in arr",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          1
+        ],
+        "k": 2
+      },
+      "expected": [
+        1,
+        1
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

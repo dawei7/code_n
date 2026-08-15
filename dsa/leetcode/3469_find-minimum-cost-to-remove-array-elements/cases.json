@@ -7,72 +7,187 @@
       "name": "sample: retain the smallest first-three value",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [6, 2, 8, 4]},
+      "input": {
+        "nums": [
+          6,
+          2,
+          8,
+          4
+        ]
+      },
       "expected": 12,
-      "tags": ["sample", "dynamic-programming"]
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
     },
     {
       "id": "sample-duplicate-tail",
       "name": "sample: remove the two cheaper prefix values",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 1, 3, 3]},
+      "input": {
+        "nums": [
+          2,
+          1,
+          3,
+          3
+        ]
+      },
       "expected": 5,
-      "tags": ["sample", "duplicates"]
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
     },
     {
       "id": "trial-single-value",
       "name": "trial: one value is the final operation",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [7]},
+      "input": {
+        "nums": [
+          7
+        ]
+      },
       "expected": 7,
-      "tags": ["trial", "minimum-length"]
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-two-values",
       "name": "trial: two values are removed together",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [4, 9]},
+      "input": {
+        "nums": [
+          4,
+          9
+        ]
+      },
       "expected": 9,
-      "tags": ["trial", "final-operation"]
+      "tags": [
+        "trial",
+        "final-operation"
+      ]
     },
     {
       "id": "trial-exactly-three",
       "name": "trial: first choice leaves one final value",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5, 10, 1]},
+      "input": {
+        "nums": [
+          5,
+          10,
+          1
+        ]
+      },
       "expected": 11,
-      "tags": ["trial", "first-three"]
+      "tags": [
+        "trial",
+        "first-three"
+      ]
     },
     {
-      "id": "real-seven-values",
-      "name": "real: several survivor identities remain possible",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [9, 1, 8, 2, 7, 3, 6]},
+      "id": "trial-seven-values",
+      "name": "several survivor identities remain possible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          1,
+          8,
+          2,
+          7,
+          3,
+          6
+        ]
+      },
       "expected": 21,
-      "tags": ["real", "multiple-stages"]
+      "tags": [
+        "real",
+        "multiple-stages"
+      ]
     },
     {
-      "id": "real-all-equal",
-      "name": "real: every decision has the same operation cost",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [11, 11, 11, 11, 11, 11]},
+      "id": "trial-all-equal",
+      "name": "every decision has the same operation cost",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          11,
+          11,
+          11,
+          11,
+          11,
+          11
+        ]
+      },
       "expected": 33,
-      "tags": ["real", "all-equal", "even-length"]
+      "tags": [
+        "real",
+        "all-equal",
+        "even-length"
+      ]
     },
     {
-      "id": "real-value-boundaries",
-      "name": "real: minimum and maximum values alternate",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000000, 1, 1000000, 1, 1000000]},
+      "id": "trial-value-boundaries",
+      "name": "minimum and maximum values alternate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000,
+          1,
+          1000000,
+          1,
+          1000000
+        ]
+      },
       "expected": 2000001,
-      "tags": ["real", "value-boundaries", "odd-length"]
+      "tags": [
+        "real",
+        "value-boundaries",
+        "odd-length"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          6
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

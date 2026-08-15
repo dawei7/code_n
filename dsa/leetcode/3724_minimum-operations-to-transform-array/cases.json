@@ -173,10 +173,10 @@
       ]
     },
     {
-      "id": "real-best-of-several-intervals",
-      "name": "hidden: choose the closest among several transformation intervals",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-best-of-several-intervals",
+      "name": "choose the closest among several transformation intervals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           2,
@@ -195,15 +195,14 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "source-choice"
       ]
     },
     {
-      "id": "real-point-interval",
-      "name": "hidden: an unchanged original contributes a one-point copy interval",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-point-interval",
+      "name": "an unchanged original contributes a one-point copy interval",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           4,
@@ -220,15 +219,14 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "unchanged-position"
       ]
     },
     {
-      "id": "real-copy-before-moving-down",
-      "name": "hidden: copying before a downward transformation can be optimal",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-copy-before-moving-down",
+      "name": "copying before a downward transformation can be optimal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           10
@@ -243,15 +241,14 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "detour-distance"
       ]
     },
     {
-      "id": "real-value-boundaries",
-      "name": "hidden: source-boundary values use a 64-bit-safe total",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-value-boundaries",
+      "name": "source-boundary values use a 64-bit-safe total",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           1,
@@ -268,16 +265,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundaries",
         "large-cost"
       ]
     },
     {
-      "id": "real-mixed-directions",
-      "name": "hidden: upward and downward original paths share one base sum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-directions",
+      "name": "upward and downward original paths share one base sum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           10,
@@ -298,10 +294,51 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "mixed-directions"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2
+        ],
+        "nums2": [
+          1,
+          7,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2,
+          2
+        ],
+        "nums2": [
+          1,
+          7,
+          3
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]
 }
-

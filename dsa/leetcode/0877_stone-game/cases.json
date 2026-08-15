@@ -113,10 +113,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: heavier odd-index total",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "heavier odd-index total",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "piles": [
           1,
@@ -127,15 +127,14 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "odd-parity"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: six descending piles",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "six descending piles",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "piles": [
           7,
@@ -148,15 +147,14 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "six-piles"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: eight increasing piles with odd sum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "eight increasing piles with odd sum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "piles": [
           1,
@@ -171,15 +169,14 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "eight-piles"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: near-maximum equal piles",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "near-maximum equal piles",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "piles": [
           500,
@@ -190,15 +187,14 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "value-bounds"
       ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: alternating large and small piles",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-5",
+      "name": "alternating large and small piles",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "piles": [
           50,
@@ -211,7 +207,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "parity-strategy"
       ]
     }

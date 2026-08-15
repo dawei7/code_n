@@ -6,72 +6,110 @@
       "name": "sample: equal adjacent letters survive reversal",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "leetcode"},
+      "input": {
+        "s": "leetcode"
+      },
       "expected": true,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-palindrome",
       "name": "sample: every pair occurs in the reversed palindrome",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "abcba"},
+      "input": {
+        "s": "abcba"
+      },
       "expected": true,
-      "tags": ["sample", "palindrome"]
+      "tags": [
+        "sample",
+        "palindrome"
+      ]
     },
     {
       "id": "sample-no-reversed-pair",
       "name": "sample: all adjacent pairs are one-directional",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "abcd"},
+      "input": {
+        "s": "abcd"
+      },
       "expected": false,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "trial-single-character",
       "name": "trial: no length-two substring exists",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "a"},
+      "input": {
+        "s": "a"
+      },
       "expected": false,
-      "tags": ["trial", "minimum-length"]
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-single-self-reversing-pair",
       "name": "trial: one equal-character pair reverses to itself",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "aa"},
+      "input": {
+        "s": "aa"
+      },
       "expected": true,
-      "tags": ["trial", "self-reversing"]
+      "tags": [
+        "trial",
+        "self-reversing"
+      ]
     },
     {
       "id": "trial-separated-reverse-pair",
       "name": "trial: reversed pair occurs far from the original",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "abxyzba"},
+      "input": {
+        "s": "abxyzba"
+      },
       "expected": true,
-      "tags": ["trial", "nonlocal-match"]
+      "tags": [
+        "trial",
+        "nonlocal-match"
+      ]
     },
     {
-      "id": "real-repeated-directed-cycle",
-      "name": "real: repeated directed pairs have no reverse",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcabcabcabc"},
+      "id": "trial-repeated-directed-cycle",
+      "name": "repeated directed pairs have no reverse",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcabcabcabc"
+      },
       "expected": false,
-      "tags": ["real", "duplicates"]
+      "tags": [
+        "real",
+        "duplicates"
+      ]
     },
     {
-      "id": "real-reverse-pair-at-boundaries",
-      "name": "real: a pair and its reverse occur at opposite ends",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "azbcdefghijklmnza"},
+      "id": "trial-reverse-pair-at-boundaries",
+      "name": "a pair and its reverse occur at opposite ends",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "azbcdefghijklmnza"
+      },
       "expected": true,
-      "tags": ["real", "boundary"]
+      "tags": [
+        "real",
+        "boundary"
+      ]
     }
   ]
 }

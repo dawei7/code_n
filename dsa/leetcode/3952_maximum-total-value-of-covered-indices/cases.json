@@ -7,150 +7,344 @@
       "name": "sample: both isolated tokens move to larger values",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [9, 2, 6, 1], "s": "0101"},
+      "input": {
+        "nums": [
+          9,
+          2,
+          6,
+          1
+        ],
+        "s": "0101"
+      },
       "expected": 15,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "isolated-tokens", "moves"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "isolated-tokens",
+        "moves"
+      ]
     },
     {
       "id": "sample-single-token-stays",
       "name": "sample: a single token remains on the better value",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [5, 1, 4], "s": "001"},
+      "input": {
+        "nums": [
+          5,
+          1,
+          4
+        ],
+        "s": "001"
+      },
       "expected": 4,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "single-token", "stay"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "single-token",
+        "stay"
+      ]
     },
     {
       "id": "sample-consecutive-pair",
       "name": "sample: a two-token run omits its minimum candidate",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [9, 3, 5], "s": "011"},
+      "input": {
+        "nums": [
+          9,
+          3,
+          5
+        ],
+        "s": "011"
+      },
       "expected": 14,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "token-run", "greedy"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "token-run",
+        "greedy"
+      ]
     },
     {
       "id": "trial-no-tokens",
       "name": "trial: no token covers any index",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [7], "s": "0"},
+      "input": {
+        "nums": [
+          7
+        ],
+        "s": "0"
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "no-tokens", "boundary"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "no-tokens",
+        "boundary"
+      ]
     },
     {
       "id": "trial-token-at-zero",
       "name": "trial: a token at index zero cannot move",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [7], "s": "1"},
+      "input": {
+        "nums": [
+          7
+        ],
+        "s": "1"
+      },
       "expected": 7,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "index-zero", "boundary"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "index-zero",
+        "boundary"
+      ]
     },
     {
       "id": "trial-single-token-stays-right",
       "name": "trial: one token keeps the larger right value",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5, 10], "s": "01"},
+      "input": {
+        "nums": [
+          5,
+          10
+        ],
+        "s": "01"
+      },
       "expected": 10,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "single-token", "stay"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-token",
+        "stay"
+      ]
     },
     {
       "id": "trial-single-token-moves-left",
       "name": "trial: one token moves to the larger left value",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [10, 5], "s": "01"},
+      "input": {
+        "nums": [
+          10,
+          5
+        ],
+        "s": "01"
+      },
       "expected": 10,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "single-token", "move"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-token",
+        "move"
+      ]
     },
     {
       "id": "trial-run-starting-at-zero",
       "name": "trial: an initial run covers every existing token position",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 3, 4], "s": "1111"},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "s": "1111"
+      },
       "expected": 10,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "initial-run", "all-tokens"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "initial-run",
+        "all-tokens"
+      ]
     },
     {
       "id": "trial-long-run-low-interior",
       "name": "trial: a longer run omits an interior minimum",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [8, 1, 9, 2, 10], "s": "01110"},
+      "input": {
+        "nums": [
+          8,
+          1,
+          9,
+          2,
+          10
+        ],
+        "s": "01110"
+      },
       "expected": 19,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "token-run", "interior-minimum"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "token-run",
+        "interior-minimum"
+      ]
     },
     {
-      "id": "real-two-isolated-blocks",
-      "name": "hidden: isolated token blocks optimize independently",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 100, 1, 100, 1], "s": "01010"},
+      "id": "trial-two-isolated-blocks",
+      "name": "isolated token blocks optimize independently",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          100,
+          1,
+          100,
+          1
+        ],
+        "s": "01010"
+      },
       "expected": 200,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "multiple-blocks", "independence"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "multiple-blocks",
+        "independence"
+      ]
     },
     {
-      "id": "real-initial-pair",
-      "name": "hidden: a leading token pair cannot use a negative index",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [10, 1, 1], "s": "110"},
+      "id": "trial-initial-pair",
+      "name": "a leading token pair cannot use a negative index",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          1,
+          1
+        ],
+        "s": "110"
+      },
       "expected": 11,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "initial-run", "line-boundary"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "initial-run",
+        "line-boundary"
+      ]
     },
     {
-      "id": "real-trailing-pair",
-      "name": "hidden: a trailing run compares its preceding position",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [4, 9, 2, 8], "s": "0011"},
+      "id": "trial-trailing-pair",
+      "name": "a trailing run compares its preceding position",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          9,
+          2,
+          8
+        ],
+        "s": "0011"
+      },
       "expected": 17,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "trailing-run", "preceding-index"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trailing-run",
+        "preceding-index"
+      ]
     },
     {
-      "id": "real-equal-values",
-      "name": "hidden: equal values make every move choice equivalent",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, 5, 5], "s": "111"},
+      "id": "trial-equal-values",
+      "name": "equal values make every move choice equivalent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5
+        ],
+        "s": "111"
+      },
       "expected": 15,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "equal-values", "initial-run"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "equal-values",
+        "initial-run"
+      ]
     },
     {
-      "id": "real-maximum-values",
-      "name": "hidden: large values require a wide integer result",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100000, 100000, 100000, 100000], "s": "0111"},
+      "id": "trial-maximum-values",
+      "name": "large values require a wide integer result",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100000,
+          100000,
+          100000,
+          100000
+        ],
+        "s": "0111"
+      },
       "expected": 300000,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "maximum-values", "token-run"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "maximum-values",
+        "token-run"
+      ]
     },
     {
-      "id": "real-two-mixed-runs",
-      "name": "hidden: two runs omit different local minima",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [3, 50, 4, 40, 5, 30], "s": "011011"},
+      "id": "trial-two-mixed-runs",
+      "name": "two runs omit different local minima",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          50,
+          4,
+          40,
+          5,
+          30
+        ],
+        "s": "011011"
+      },
       "expected": 124,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "multiple-runs", "local-minima"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "multiple-runs",
+        "local-minima"
+      ]
     }
   ]
 }

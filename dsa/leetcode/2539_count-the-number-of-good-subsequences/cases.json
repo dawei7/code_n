@@ -72,30 +72,28 @@
       ]
     },
     {
-      "id": "real-three-frequencies",
-      "name": "hidden: three distinct positive frequencies",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-frequencies",
+      "name": "three distinct positive frequencies",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaabbc"
       },
       "expected": 31,
       "tags": [
-        "hidden",
         "combinatorics"
       ]
     },
     {
-      "id": "real-one-symbol",
-      "name": "hidden: every nonempty subset is good",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-symbol",
+      "name": "every nonempty subset is good",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "zzzzzzzzzz"
       },
       "expected": 1023,
       "tags": [
-        "hidden",
         "single-symbol"
       ]
     }

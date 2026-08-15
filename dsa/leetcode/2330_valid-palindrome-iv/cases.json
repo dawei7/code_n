@@ -2,14 +2,139 @@
   "schema_version": 1,
   "challenge_id": "lc_2330",
   "cases": [
-    {"id":"sample-one-mismatch","name":"sample: one mirrored pair needs a change","kind":"sample","visible":true,"input":{"s":"abcdba"},"expected":true,"tags":["sample","one-operation"]},
-    {"id":"sample-palindrome","name":"sample: an even palindrome permits two preserving changes","kind":"sample","visible":true,"input":{"s":"aa"},"expected":true,"tags":["sample","already-palindrome"]},
-    {"id":"sample-three-mismatches","name":"sample: three mismatched pairs need too many changes","kind":"sample","visible":true,"input":{"s":"abcdef"},"expected":false,"tags":["sample","three-mismatches"]},
-    {"id":"trial-single","name":"a one-character string remains a palindrome after one change","kind":"trial","visible":true,"input":{"s":"a"},"expected":true,"tags":["single-character"]},
-    {"id":"trial-two-mismatches","name":"exactly two mismatched pairs are repairable","kind":"trial","visible":true,"input":{"s":"abccaf"},"expected":true,"tags":["two-operations"]},
-    {"id":"trial-one-pair","name":"a two-character mismatch needs one change","kind":"trial","visible":true,"input":{"s":"az"},"expected":true,"tags":["one-operation"]},
-    {"id":"real-long-palindrome","name":"hidden: an odd palindrome has no mismatched pairs","kind":"real","visible":false,"input":{"s":"racecar"},"expected":true,"tags":["hidden","odd-length"]},
-    {"id":"real-third-late","name":"hidden: the third mismatch appears near the center","kind":"real","visible":false,"input":{"s":"abcxydef"},"expected":false,"tags":["hidden","late-rejection"]},
-    {"id":"real-two-separated","name":"hidden: two separated mismatches remain independent","kind":"real","visible":false,"input":{"s":"abcXecbY"},"expected":true,"tags":["hidden","separated-mismatches"]}
+    {
+      "id": "sample-one-mismatch",
+      "name": "sample: one mirrored pair needs a change",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcdba"
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "one-operation"
+      ]
+    },
+    {
+      "id": "sample-palindrome",
+      "name": "sample: an even palindrome permits two preserving changes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aa"
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "already-palindrome"
+      ]
+    },
+    {
+      "id": "sample-three-mismatches",
+      "name": "sample: three mismatched pairs need too many changes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcdef"
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "three-mismatches"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "a one-character string remains a palindrome after one change",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": true,
+      "tags": [
+        "single-character"
+      ]
+    },
+    {
+      "id": "trial-two-mismatches",
+      "name": "exactly two mismatched pairs are repairable",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abccaf"
+      },
+      "expected": true,
+      "tags": [
+        "two-operations"
+      ]
+    },
+    {
+      "id": "trial-one-pair",
+      "name": "a two-character mismatch needs one change",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "az"
+      },
+      "expected": true,
+      "tags": [
+        "one-operation"
+      ]
+    },
+    {
+      "id": "trial-long-palindrome",
+      "name": "an odd palindrome has no mismatched pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "racecar"
+      },
+      "expected": true,
+      "tags": [
+        "odd-length"
+      ]
+    },
+    {
+      "id": "trial-third-late",
+      "name": "the third mismatch appears near the center",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcxydef"
+      },
+      "expected": false,
+      "tags": [
+        "late-rejection"
+      ]
+    },
+    {
+      "id": "trial-two-separated",
+      "name": "two separated mismatches remain independent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcXecbY"
+      },
+      "expected": true,
+      "tags": [
+        "separated-mismatches"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
+    }
   ]
 }

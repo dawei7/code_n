@@ -7,99 +7,248 @@
       "name": "sample: four towers of increasing height",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[1, 2], [3, 4]]},
+      "input": {
+        "grid": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
       "expected": 17,
-      "tags": ["sample", "dense"]
+      "tags": [
+        "sample",
+        "dense"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: one tower of height two",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[2]]},
+      "input": {
+        "grid": [
+          [
+            2
+          ]
+        ]
+      },
       "expected": 5,
-      "tags": ["sample", "single"]
+      "tags": [
+        "sample",
+        "single"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: two diagonal towers",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[1, 0], [0, 2]]},
+      "input": {
+        "grid": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      },
       "expected": 8,
-      "tags": ["sample", "sparse"]
+      "tags": [
+        "sample",
+        "sparse"
+      ]
     },
     {
       "id": "trial-1",
       "name": "trial: one empty position",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[0]]},
+      "input": {
+        "grid": [
+          [
+            0
+          ]
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "zero"]
+      "tags": [
+        "trial",
+        "zero"
+      ]
     },
     {
       "id": "trial-2",
       "name": "trial: one maximum-height tower",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[50]]},
+      "input": {
+        "grid": [
+          [
+            50
+          ]
+        ]
+      },
       "expected": 101,
-      "tags": ["trial", "maximum-height"]
+      "tags": [
+        "trial",
+        "maximum-height"
+      ]
     },
     {
       "id": "trial-3",
       "name": "trial: uniform unit towers",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[1, 1], [1, 1]]},
+      "input": {
+        "grid": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
       "expected": 8,
-      "tags": ["trial", "uniform"]
+      "tags": [
+        "trial",
+        "uniform"
+      ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: all positions are empty",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[0, 0], [0, 0]]},
+      "id": "trial-ext-1",
+      "name": "all positions are empty",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
       "expected": 0,
-      "tags": ["hidden", "all-zero"]
+      "tags": [
+        "all-zero"
+      ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: equal diagonal peaks",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[5, 0], [0, 5]]},
+      "id": "trial-ext-2",
+      "name": "equal diagonal peaks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            5,
+            0
+          ],
+          [
+            0,
+            5
+          ]
+        ]
+      },
       "expected": 22,
-      "tags": ["hidden", "diagonal"]
+      "tags": [
+        "diagonal"
+      ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: asymmetric row and column maxima",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[1, 2, 0], [0, 3, 4], [5, 0, 0]]},
+      "id": "trial-ext-3",
+      "name": "asymmetric row and column maxima",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            4
+          ],
+          [
+            5,
+            0,
+            0
+          ]
+        ]
+      },
       "expected": 28,
-      "tags": ["hidden", "asymmetric"]
+      "tags": [
+        "asymmetric"
+      ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: cross-shaped sparse towers",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[0, 2, 0], [3, 0, 4], [0, 5, 0]]},
+      "id": "trial-4",
+      "name": "cross-shaped sparse towers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            3,
+            0,
+            4
+          ],
+          [
+            0,
+            5,
+            0
+          ]
+        ]
+      },
       "expected": 27,
-      "tags": ["hidden", "sparse"]
+      "tags": [
+        "sparse"
+      ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: dense maximum-height square",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[50, 50], [50, 50]]},
+      "id": "trial-5",
+      "name": "dense maximum-height square",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            50,
+            50
+          ],
+          [
+            50,
+            50
+          ]
+        ]
+      },
       "expected": 204,
-      "tags": ["hidden", "maximum-height", "dense"]
+      "tags": [
+        "maximum-height",
+        "dense"
+      ]
     }
   ]
 }

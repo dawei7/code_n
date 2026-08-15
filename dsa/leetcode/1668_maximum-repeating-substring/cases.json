@@ -2,15 +2,183 @@
   "schema_version": 1,
   "challenge_id": "lc_1668",
   "cases": [
-    {"id":"sample-two-copies","name":"sample: two adjacent copies occur","kind":"sample","visible":true,"input":{"sequence":"ababc","word":"ab"},"expected":2,"tags":["sample","adjacent"]},
-    {"id":"sample-one-copy","name":"sample: a second copy does not occur","kind":"sample","visible":true,"input":{"sequence":"ababc","word":"ba"},"expected":1,"tags":["sample","single-copy"]},
-    {"id":"sample-absent","name":"sample: word is absent","kind":"sample","visible":true,"input":{"sequence":"ababc","word":"ac"},"expected":0,"tags":["sample","absent"]},
-    {"id":"trial-entire-string","name":"trial: repeated block consumes sequence","kind":"trial","visible":true,"input":{"sequence":"xyzxyzxyz","word":"xyz"},"expected":3,"tags":["whole-string","three-copies"]},
-    {"id":"trial-embedded-block","name":"trial: repeated block has surrounding characters","kind":"trial","visible":true,"input":{"sequence":"qcatcatcatz","word":"cat"},"expected":3,"tags":["embedded","boundaries"]},
-    {"id":"real-word-longer","name":"hidden: word longer than sequence","kind":"real","visible":false,"input":{"sequence":"abc","word":"abcd"},"expected":0,"tags":["length-boundary"]},
-    {"id":"real-overlapping-word","name":"hidden: overlapping occurrences are not adjacent copies","kind":"real","visible":false,"input":{"sequence":"abababa","word":"aba"},"expected":1,"tags":["overlap","adjacency"]},
-    {"id":"real-partial-tail","name":"hidden: partial final copy is ignored","kind":"real","visible":false,"input":{"sequence":"abcabcab","word":"abc"},"expected":2,"tags":["partial-copy"]},
-    {"id":"real-separated-runs","name":"hidden: separated runs do not combine","kind":"real","visible":false,"input":{"sequence":"aaaaabaaaa","word":"aa"},"expected":2,"tags":["separate-runs","maximum"]},
-    {"id":"real-single-character","name":"hidden: one-character word follows longest run","kind":"real","visible":false,"input":{"sequence":"baaacaaaaac","word":"a"},"expected":5,"tags":["single-character","longest-run"]}
+    {
+      "id": "sample-two-copies",
+      "name": "sample: two adjacent copies occur",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "sequence": "ababc",
+        "word": "ab"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "adjacent"
+      ]
+    },
+    {
+      "id": "sample-one-copy",
+      "name": "sample: a second copy does not occur",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "sequence": "ababc",
+        "word": "ba"
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "single-copy"
+      ]
+    },
+    {
+      "id": "sample-absent",
+      "name": "sample: word is absent",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "sequence": "ababc",
+        "word": "ac"
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "absent"
+      ]
+    },
+    {
+      "id": "trial-entire-string",
+      "name": "trial: repeated block consumes sequence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sequence": "xyzxyzxyz",
+        "word": "xyz"
+      },
+      "expected": 3,
+      "tags": [
+        "whole-string",
+        "three-copies"
+      ]
+    },
+    {
+      "id": "trial-embedded-block",
+      "name": "trial: repeated block has surrounding characters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sequence": "qcatcatcatz",
+        "word": "cat"
+      },
+      "expected": 3,
+      "tags": [
+        "embedded",
+        "boundaries"
+      ]
+    },
+    {
+      "id": "trial-word-longer",
+      "name": "word longer than sequence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sequence": "abc",
+        "word": "abcd"
+      },
+      "expected": 0,
+      "tags": [
+        "length-boundary"
+      ]
+    },
+    {
+      "id": "trial-overlapping-word",
+      "name": "overlapping occurrences are not adjacent copies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sequence": "abababa",
+        "word": "aba"
+      },
+      "expected": 1,
+      "tags": [
+        "overlap",
+        "adjacency"
+      ]
+    },
+    {
+      "id": "trial-partial-tail",
+      "name": "partial final copy is ignored",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sequence": "abcabcab",
+        "word": "abc"
+      },
+      "expected": 2,
+      "tags": [
+        "partial-copy"
+      ]
+    },
+    {
+      "id": "trial-separated-runs",
+      "name": "separated runs do not combine",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sequence": "aaaaabaaaa",
+        "word": "aa"
+      },
+      "expected": 2,
+      "tags": [
+        "separate-runs",
+        "maximum"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "one-character word follows longest run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sequence": "baaacaaaaac",
+        "word": "a"
+      },
+      "expected": 5,
+      "tags": [
+        "single-character",
+        "longest-run"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in sequence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sequence": "a",
+        "word": "ab"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in sequence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sequence": "aaa",
+        "word": "ab"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
+    }
   ]
 }

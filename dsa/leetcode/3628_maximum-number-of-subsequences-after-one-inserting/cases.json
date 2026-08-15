@@ -102,89 +102,97 @@
       ]
     },
     {
-      "id": "real-best-insert-t",
-      "name": "hidden: adding T uses all existing LC pairs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-best-insert-t",
+      "name": "adding T uses all existing LC pairs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "LLCC"
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "insert-t"
       ]
     },
     {
-      "id": "real-best-insert-l",
-      "name": "hidden: adding L uses all existing CT pairs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-best-insert-l",
+      "name": "adding L uses all existing CT pairs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "CCTT"
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "insert-l"
       ]
     },
     {
-      "id": "real-best-interior-c",
-      "name": "hidden: optimal C position lies inside the string",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-best-interior-c",
+      "name": "optimal C position lies inside the string",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "LLXXTT"
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "insert-c",
         "irrelevant-letters"
       ]
     },
     {
-      "id": "real-existing-many",
-      "name": "hidden: preserve existing subsequences and add the best gain",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-existing-many",
+      "name": "preserve existing subsequences and add the best gain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "LCLCTT"
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "existing-subsequences"
       ]
     },
     {
-      "id": "real-reversed-order",
-      "name": "hidden: reversed relevant letters need more than one insertion",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-reversed-order",
+      "name": "reversed relevant letters need more than one insertion",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "TCL"
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "zero-or-small"
       ]
     },
     {
-      "id": "real-mixed-noise",
-      "name": "hidden: unrelated uppercase letters are ignored",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-noise",
+      "name": "unrelated uppercase letters are ignored",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "ALBCTZLXCQT"
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "irrelevant-letters",
         "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "LLL"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

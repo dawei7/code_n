@@ -1,9 +1,202 @@
-{"challenge_id":"lc_2977","cases":[
-{"id":"sample-character-rules","name":"sample: single-character intervals","kind":"sample","visible":true,"input":{"source":"abcd","target":"acbe","original":["a","b","c","c","e","d"],"changed":["b","c","b","e","b","e"],"cost":[2,5,5,1,2,20]},"expected":28,"tags":["sample"]},
-{"id":"sample-identical-interval-chain","name":"sample: two disjoint blocks and one repeated interval","kind":"sample","visible":true,"input":{"source":"abcdefgh","target":"acdeeghh","original":["bcd","fgh","thh"],"changed":["cde","thh","ghh"],"cost":[1,3,5]},"expected":9,"tags":["sample"]},
-{"id":"sample-overlap-impossible","name":"sample: necessary intervals partially overlap","kind":"sample","visible":true,"input":{"source":"abcdefgh","target":"addddddd","original":["bcd","defgh"],"changed":["ddd","ddddd"],"cost":[100,1578]},"expected":-1,"tags":["sample"]},
-{"id":"trial-cheaper-indirect","name":"trial: each block uses an indirect conversion","kind":"trial","visible":true,"input":{"source":"aaaa","target":"bbbb","original":["aa","aa","cc"],"changed":["cc","bb","bb"],"cost":[1,10,1]},"expected":4,"tags":["shortest-path"]},
-{"id":"trial-equal-gap","name":"trial: unchanged characters separate converted blocks","kind":"trial","visible":true,"input":{"source":"xabcxabc","target":"xdefxdef","original":["abc"],"changed":["def"],"cost":[7]},"expected":14,"tags":["disjoint-blocks"]},
-{"id":"real-duplicate-rule","name":"real: cheaper duplicate substring rule wins","kind":"real","visible":false,"input":{"source":"abab","target":"cdcd","original":["ab","ab"],"changed":["cd","cd"],"cost":[9,2]},"expected":4,"tags":["hidden","duplicate-rules"]},
-{"id":"real-whole-string","name":"real: whole-string conversion beats smaller blocks","kind":"real","visible":false,"input":{"source":"aaaa","target":"bbbb","original":["a","aaaa"],"changed":["b","bbbb"],"cost":[3,5]},"expected":5,"tags":["hidden","whole-string"]}
-]}
+{
+  "challenge_id": "lc_2977",
+  "cases": [
+    {
+      "id": "sample-character-rules",
+      "name": "sample: single-character intervals",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "source": "abcd",
+        "target": "acbe",
+        "original": [
+          "a",
+          "b",
+          "c",
+          "c",
+          "e",
+          "d"
+        ],
+        "changed": [
+          "b",
+          "c",
+          "b",
+          "e",
+          "b",
+          "e"
+        ],
+        "cost": [
+          2,
+          5,
+          5,
+          1,
+          2,
+          20
+        ]
+      },
+      "expected": 28,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-identical-interval-chain",
+      "name": "sample: two disjoint blocks and one repeated interval",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "source": "abcdefgh",
+        "target": "acdeeghh",
+        "original": [
+          "bcd",
+          "fgh",
+          "thh"
+        ],
+        "changed": [
+          "cde",
+          "thh",
+          "ghh"
+        ],
+        "cost": [
+          1,
+          3,
+          5
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-overlap-impossible",
+      "name": "sample: necessary intervals partially overlap",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "source": "abcdefgh",
+        "target": "addddddd",
+        "original": [
+          "bcd",
+          "defgh"
+        ],
+        "changed": [
+          "ddd",
+          "ddddd"
+        ],
+        "cost": [
+          100,
+          1578
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-cheaper-indirect",
+      "name": "trial: each block uses an indirect conversion",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "source": "aaaa",
+        "target": "bbbb",
+        "original": [
+          "aa",
+          "aa",
+          "cc"
+        ],
+        "changed": [
+          "cc",
+          "bb",
+          "bb"
+        ],
+        "cost": [
+          1,
+          10,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "shortest-path"
+      ]
+    },
+    {
+      "id": "trial-equal-gap",
+      "name": "trial: unchanged characters separate converted blocks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "source": "xabcxabc",
+        "target": "xdefxdef",
+        "original": [
+          "abc"
+        ],
+        "changed": [
+          "def"
+        ],
+        "cost": [
+          7
+        ]
+      },
+      "expected": 14,
+      "tags": [
+        "disjoint-blocks"
+      ]
+    },
+    {
+      "id": "trial-duplicate-rule",
+      "name": "cheaper duplicate substring rule wins",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "source": "abab",
+        "target": "cdcd",
+        "original": [
+          "ab",
+          "ab"
+        ],
+        "changed": [
+          "cd",
+          "cd"
+        ],
+        "cost": [
+          9,
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "duplicate-rules"
+      ]
+    },
+    {
+      "id": "trial-whole-string",
+      "name": "whole-string conversion beats smaller blocks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "source": "aaaa",
+        "target": "bbbb",
+        "original": [
+          "a",
+          "aaaa"
+        ],
+        "changed": [
+          "b",
+          "bbbb"
+        ],
+        "cost": [
+          3,
+          5
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "whole-string"
+      ]
+    }
+  ]
+}

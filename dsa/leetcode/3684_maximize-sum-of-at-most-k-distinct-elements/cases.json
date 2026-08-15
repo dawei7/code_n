@@ -7,72 +7,234 @@
       "name": "sample: select the three largest distinct values",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [84, 93, 100, 77, 90], "k": 3},
-      "expected": [100, 93, 90],
-      "tags": ["sample", "top-k"]
+      "input": {
+        "nums": [
+          84,
+          93,
+          100,
+          77,
+          90
+        ],
+        "k": 3
+      },
+      "expected": [
+        100,
+        93,
+        90
+      ],
+      "tags": [
+        "sample",
+        "top-k"
+      ]
     },
     {
       "id": "sample-ignore-duplicate",
       "name": "sample: repeated ninety-three is selected once",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [84, 93, 100, 77, 93], "k": 3},
-      "expected": [100, 93, 84],
-      "tags": ["sample", "duplicates"]
+      "input": {
+        "nums": [
+          84,
+          93,
+          100,
+          77,
+          93
+        ],
+        "k": 3
+      },
+      "expected": [
+        100,
+        93,
+        84
+      ],
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
     },
     {
       "id": "sample-fewer-distinct-than-k",
       "name": "sample: return all distinct values when fewer than k exist",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 1, 1, 2, 2, 2], "k": 6},
-      "expected": [2, 1],
-      "tags": ["sample", "duplicates", "short-result"]
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          2
+        ],
+        "k": 6
+      },
+      "expected": [
+        2,
+        1
+      ],
+      "tags": [
+        "sample",
+        "duplicates",
+        "short-result"
+      ]
     },
     {
       "id": "trial-k-one",
       "name": "trial: a unit limit returns only the maximum",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [4, 9, 2, 9], "k": 1},
-      "expected": [9],
-      "tags": ["trial", "unit-k", "duplicates"]
+      "input": {
+        "nums": [
+          4,
+          9,
+          2,
+          9
+        ],
+        "k": 1
+      },
+      "expected": [
+        9
+      ],
+      "tags": [
+        "trial",
+        "unit-k",
+        "duplicates"
+      ]
     },
     {
       "id": "trial-all-unique",
       "name": "trial: selecting every unique value sorts descending",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [3, 1, 4, 2], "k": 4},
-      "expected": [4, 3, 2, 1],
-      "tags": ["trial", "all-selected", "ordering"]
+      "input": {
+        "nums": [
+          3,
+          1,
+          4,
+          2
+        ],
+        "k": 4
+      },
+      "expected": [
+        4,
+        3,
+        2,
+        1
+      ],
+      "tags": [
+        "trial",
+        "all-selected",
+        "ordering"
+      ]
     },
     {
-      "id": "real-all-equal",
-      "name": "hidden: an all-equal array yields one value",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [7, 7, 7, 7], "k": 3},
-      "expected": [7],
-      "tags": ["hidden", "all-duplicates"]
+      "id": "trial-all-equal",
+      "name": "an all-equal array yields one value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7,
+          7
+        ],
+        "k": 3
+      },
+      "expected": [
+        7
+      ],
+      "tags": [
+        "all-duplicates"
+      ]
     },
     {
-      "id": "real-maximum-values",
-      "name": "hidden: handle large values and close ordering",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000000000, 999999999, 1000000000, 1], "k": 2},
-      "expected": [1000000000, 999999999],
-      "tags": ["hidden", "maximum-value", "duplicates"]
+      "id": "trial-maximum-values",
+      "name": "handle large values and close ordering",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          999999999,
+          1000000000,
+          1
+        ],
+        "k": 2
+      },
+      "expected": [
+        1000000000,
+        999999999
+      ],
+      "tags": [
+        "maximum-value",
+        "duplicates"
+      ]
     },
     {
-      "id": "real-input-order-irrelevant",
-      "name": "hidden: output order follows value rather than input position",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, 1, 8, 3, 6], "k": 4},
-      "expected": [8, 6, 5, 3],
-      "tags": ["hidden", "ordering", "top-k"]
+      "id": "trial-input-order-irrelevant",
+      "name": "output order follows value rather than input position",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          8,
+          3,
+          6
+        ],
+        "k": 4
+      },
+      "expected": [
+        8,
+        6,
+        5,
+        3
+      ],
+      "tags": [
+        "ordering",
+        "top-k"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          84
+        ],
+        "k": 3
+      },
+      "expected": [
+        84
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          84,
+          84
+        ],
+        "k": 3
+      },
+      "expected": [
+        84
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

@@ -2,11 +2,358 @@
   "schema_version": 1,
   "challenge_id": "lc_2329",
   "cases": [
-    {"id":"sample-users","name":"sample: two users tie below the highest spender","kind":"sample","visible":true,"input":{"tables":{"Sales":[{"sale_id":1,"product_id":1,"user_id":101,"quantity":10},{"sale_id":2,"product_id":2,"user_id":101,"quantity":1},{"sale_id":3,"product_id":3,"user_id":102,"quantity":3},{"sale_id":4,"product_id":3,"user_id":102,"quantity":2},{"sale_id":5,"product_id":2,"user_id":103,"quantity":3}],"Product":[{"product_id":1,"price":10},{"product_id":2,"price":25},{"product_id":3,"price":15}]}},"expected":{"columns":["user_id","spending"],"rows":[[101,125],[102,75],[103,75]]},"validator":{"kind":"ordered_table"},"tags":["sample","tie-order"]},
-    {"id":"trial-single-sale","name":"one sale produces one user total","kind":"trial","visible":true,"input":{"tables":{"Sales":[{"sale_id":1,"product_id":5,"user_id":8,"quantity":4}],"Product":[{"product_id":5,"price":7}]}},"expected":{"columns":["user_id","spending"],"rows":[[8,28]]},"validator":{"kind":"ordered_table"},"tags":["single-row"]},
-    {"id":"trial-multiple-products","name":"one user's different products contribute to one total","kind":"trial","visible":true,"input":{"tables":{"Sales":[{"sale_id":1,"product_id":1,"user_id":4,"quantity":2},{"sale_id":2,"product_id":2,"user_id":4,"quantity":3}],"Product":[{"product_id":1,"price":10},{"product_id":2,"price":5}]}},"expected":{"columns":["user_id","spending"],"rows":[[4,35]]},"validator":{"kind":"ordered_table"},"tags":["aggregation"]},
-    {"id":"real-user-tie-order","name":"hidden: equal spenders are ordered by ascending user ID","kind":"real","visible":false,"input":{"tables":{"Sales":[{"sale_id":1,"product_id":1,"user_id":30,"quantity":2},{"sale_id":2,"product_id":2,"user_id":10,"quantity":1},{"sale_id":3,"product_id":1,"user_id":20,"quantity":2}],"Product":[{"product_id":1,"price":5},{"product_id":2,"price":10}]}},"expected":{"columns":["user_id","spending"],"rows":[[10,10],[20,10],[30,10]]},"validator":{"kind":"ordered_table"},"tags":["hidden","tie-break"]},
-    {"id":"real-price-weighted","name":"hidden: price can outweigh a larger quantity","kind":"real","visible":false,"input":{"tables":{"Sales":[{"sale_id":1,"product_id":1,"user_id":1,"quantity":10},{"sale_id":2,"product_id":2,"user_id":2,"quantity":2}],"Product":[{"product_id":1,"price":2},{"product_id":2,"price":20}]}},"expected":{"columns":["user_id","spending"],"rows":[[2,40],[1,20]]},"validator":{"kind":"ordered_table"},"tags":["hidden","price"]},
-    {"id":"real-repeated-product","name":"hidden: repeated purchases of one product all count","kind":"real","visible":false,"input":{"tables":{"Sales":[{"sale_id":1,"product_id":3,"user_id":9,"quantity":1},{"sale_id":2,"product_id":3,"user_id":9,"quantity":2},{"sale_id":3,"product_id":3,"user_id":9,"quantity":3}],"Product":[{"product_id":3,"price":4}]}},"expected":{"columns":["user_id","spending"],"rows":[[9,24]]},"validator":{"kind":"ordered_table"},"tags":["hidden","repeated-sales"]}
+    {
+      "id": "sample-users",
+      "name": "sample: two users tie below the highest spender",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Sales": [
+            {
+              "sale_id": 1,
+              "product_id": 1,
+              "user_id": 101,
+              "quantity": 10
+            },
+            {
+              "sale_id": 2,
+              "product_id": 2,
+              "user_id": 101,
+              "quantity": 1
+            },
+            {
+              "sale_id": 3,
+              "product_id": 3,
+              "user_id": 102,
+              "quantity": 3
+            },
+            {
+              "sale_id": 4,
+              "product_id": 3,
+              "user_id": 102,
+              "quantity": 2
+            },
+            {
+              "sale_id": 5,
+              "product_id": 2,
+              "user_id": 103,
+              "quantity": 3
+            }
+          ],
+          "Product": [
+            {
+              "product_id": 1,
+              "price": 10
+            },
+            {
+              "product_id": 2,
+              "price": 25
+            },
+            {
+              "product_id": 3,
+              "price": 15
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "spending"
+        ],
+        "rows": [
+          [
+            101,
+            125
+          ],
+          [
+            102,
+            75
+          ],
+          [
+            103,
+            75
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "tie-order"
+      ]
+    },
+    {
+      "id": "trial-single-sale",
+      "name": "one sale produces one user total",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Sales": [
+            {
+              "sale_id": 1,
+              "product_id": 5,
+              "user_id": 8,
+              "quantity": 4
+            }
+          ],
+          "Product": [
+            {
+              "product_id": 5,
+              "price": 7
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "spending"
+        ],
+        "rows": [
+          [
+            8,
+            28
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "single-row"
+      ]
+    },
+    {
+      "id": "trial-multiple-products",
+      "name": "one user's different products contribute to one total",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Sales": [
+            {
+              "sale_id": 1,
+              "product_id": 1,
+              "user_id": 4,
+              "quantity": 2
+            },
+            {
+              "sale_id": 2,
+              "product_id": 2,
+              "user_id": 4,
+              "quantity": 3
+            }
+          ],
+          "Product": [
+            {
+              "product_id": 1,
+              "price": 10
+            },
+            {
+              "product_id": 2,
+              "price": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "spending"
+        ],
+        "rows": [
+          [
+            4,
+            35
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "aggregation"
+      ]
+    },
+    {
+      "id": "trial-user-tie-order",
+      "name": "equal spenders are ordered by ascending user ID",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Sales": [
+            {
+              "sale_id": 1,
+              "product_id": 1,
+              "user_id": 30,
+              "quantity": 2
+            },
+            {
+              "sale_id": 2,
+              "product_id": 2,
+              "user_id": 10,
+              "quantity": 1
+            },
+            {
+              "sale_id": 3,
+              "product_id": 1,
+              "user_id": 20,
+              "quantity": 2
+            }
+          ],
+          "Product": [
+            {
+              "product_id": 1,
+              "price": 5
+            },
+            {
+              "product_id": 2,
+              "price": 10
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "spending"
+        ],
+        "rows": [
+          [
+            10,
+            10
+          ],
+          [
+            20,
+            10
+          ],
+          [
+            30,
+            10
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "tie-break"
+      ]
+    },
+    {
+      "id": "trial-price-weighted",
+      "name": "price can outweigh a larger quantity",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Sales": [
+            {
+              "sale_id": 1,
+              "product_id": 1,
+              "user_id": 1,
+              "quantity": 10
+            },
+            {
+              "sale_id": 2,
+              "product_id": 2,
+              "user_id": 2,
+              "quantity": 2
+            }
+          ],
+          "Product": [
+            {
+              "product_id": 1,
+              "price": 2
+            },
+            {
+              "product_id": 2,
+              "price": 20
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "spending"
+        ],
+        "rows": [
+          [
+            2,
+            40
+          ],
+          [
+            1,
+            20
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "price"
+      ]
+    },
+    {
+      "id": "trial-repeated-product",
+      "name": "repeated purchases of one product all count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Sales": [
+            {
+              "sale_id": 1,
+              "product_id": 3,
+              "user_id": 9,
+              "quantity": 1
+            },
+            {
+              "sale_id": 2,
+              "product_id": 3,
+              "user_id": 9,
+              "quantity": 2
+            },
+            {
+              "sale_id": 3,
+              "product_id": 3,
+              "user_id": 9,
+              "quantity": 3
+            }
+          ],
+          "Product": [
+            {
+              "product_id": 3,
+              "price": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "spending"
+        ],
+        "rows": [
+          [
+            9,
+            24
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "repeated-sales"
+      ]
+    }
   ]
 }

@@ -2,13 +2,119 @@
   "schema_version": 1,
   "challenge_id": "lc_2224",
   "cases": [
-    {"id":"sample-hours-and-five","name":"sample: two hours and five minutes use three operations","kind":"sample","visible":true,"input":{"current":"02:30","correct":"04:35"},"expected":3,"tags":["sample","mixed-increments"]},
-    {"id":"sample-one-minute","name":"sample: adjacent minute needs one operation","kind":"sample","visible":true,"input":{"current":"11:00","correct":"11:01"},"expected":1,"tags":["sample","one-minute"]},
-    {"id":"trial-three-denominations","name":"eighty minutes uses sixty, fifteen, and five","kind":"trial","visible":true,"input":{"current":"00:00","correct":"01:20"},"expected":3,"tags":["mixed-increments"]},
-    {"id":"trial-equal","name":"equal times require no operation","kind":"trial","visible":true,"input":{"current":"08:45","correct":"08:45"},"expected":0,"tags":["equal-times"]},
-    {"id":"real-quarter-hour","name":"hidden: exact quarter hour uses one operation","kind":"real","visible":false,"input":{"current":"12:34","correct":"12:49"},"expected":1,"tags":["hidden","fifteen-minute"]},
-    {"id":"real-cross-hour","name":"hidden: five minutes may cross an hour boundary","kind":"real","visible":false,"input":{"current":"09:58","correct":"10:03"},"expected":1,"tags":["hidden","cross-hour"]},
-    {"id":"real-fourteen","name":"hidden: remainder combines fives and ones","kind":"real","visible":false,"input":{"current":"10:00","correct":"10:14"},"expected":6,"tags":["hidden","remainder"]},
-    {"id":"real-full-day-range","name":"hidden: largest legal difference","kind":"real","visible":false,"input":{"current":"00:00","correct":"23:59"},"expected":32,"tags":["hidden","upper-bound"]}
+    {
+      "id": "sample-hours-and-five",
+      "name": "sample: two hours and five minutes use three operations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "current": "02:30",
+        "correct": "04:35"
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "mixed-increments"
+      ]
+    },
+    {
+      "id": "sample-one-minute",
+      "name": "sample: adjacent minute needs one operation",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "current": "11:00",
+        "correct": "11:01"
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "one-minute"
+      ]
+    },
+    {
+      "id": "trial-three-denominations",
+      "name": "eighty minutes uses sixty, fifteen, and five",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "current": "00:00",
+        "correct": "01:20"
+      },
+      "expected": 3,
+      "tags": [
+        "mixed-increments"
+      ]
+    },
+    {
+      "id": "trial-equal",
+      "name": "equal times require no operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "current": "08:45",
+        "correct": "08:45"
+      },
+      "expected": 0,
+      "tags": [
+        "equal-times"
+      ]
+    },
+    {
+      "id": "trial-quarter-hour",
+      "name": "exact quarter hour uses one operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "current": "12:34",
+        "correct": "12:49"
+      },
+      "expected": 1,
+      "tags": [
+        "fifteen-minute"
+      ]
+    },
+    {
+      "id": "trial-cross-hour",
+      "name": "five minutes may cross an hour boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "current": "09:58",
+        "correct": "10:03"
+      },
+      "expected": 1,
+      "tags": [
+        "cross-hour"
+      ]
+    },
+    {
+      "id": "trial-fourteen",
+      "name": "remainder combines fives and ones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "current": "10:00",
+        "correct": "10:14"
+      },
+      "expected": 6,
+      "tags": [
+        "remainder"
+      ]
+    },
+    {
+      "id": "trial-full-day-range",
+      "name": "largest legal difference",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "current": "00:00",
+        "correct": "23:59"
+      },
+      "expected": 32,
+      "tags": [
+        "upper-bound"
+      ]
+    }
   ]
 }

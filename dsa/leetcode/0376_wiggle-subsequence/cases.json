@@ -107,10 +107,10 @@
       ]
     },
     {
-      "id": "hidden-plateau",
-      "name": "hidden: equal values between sign changes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-plateau",
+      "name": "equal values between sign changes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -124,15 +124,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "equal"
       ]
     },
     {
-      "id": "hidden-negative",
-      "name": "hidden: alternating negative values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-negative",
+      "name": "alternating negative values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -1,
@@ -144,15 +143,14 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "negative"
       ]
     },
     {
-      "id": "hidden-late-turn",
-      "name": "hidden: long rise followed by one fall",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-late-turn",
+      "name": "long rise followed by one fall",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -164,10 +162,8 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "turn"
       ]
     }
   ]
 }
-

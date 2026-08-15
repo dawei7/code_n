@@ -447,10 +447,10 @@
       ]
     },
     {
-      "id": "hidden-mixed-odd-sums",
-      "name": "hidden: different odd coordinate sums floor independently",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-odd-sums",
+      "name": "different odd coordinate sums floor independently",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -472,16 +472,15 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "floor",
         "mixed-coordinates"
       ]
     },
     {
-      "id": "hidden-cube-generation-two",
-      "name": "hidden: a cube interior point needs a previous generation",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-cube-generation-two",
+      "name": "a cube interior point needs a previous generation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -533,16 +532,15 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "cube-corners",
         "generation-two"
       ]
     },
     {
-      "id": "hidden-cube-face-generation-two",
-      "name": "hidden: a cube face point appears in generation two",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-cube-face-generation-two",
+      "name": "a cube face point appears in generation two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -594,16 +592,15 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "cube-corners",
         "face-point"
       ]
     },
     {
-      "id": "hidden-maximum-initial-count",
-      "name": "hidden: twenty points close inside a small cube and cannot reach six",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-initial-count",
+      "name": "twenty points close inside a small cube and cannot reach six",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -715,9 +712,65 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "maximum-input-count",
         "stable-closure"
+      ]
+    },
+    {
+      "id": "trial-boundary-19",
+      "name": "single element in target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            6,
+            6,
+            6
+          ]
+        ],
+        "target": [
+          3
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-20",
+      "name": "identical elements in target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            6,
+            6,
+            6
+          ]
+        ],
+        "target": [
+          3,
+          3
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

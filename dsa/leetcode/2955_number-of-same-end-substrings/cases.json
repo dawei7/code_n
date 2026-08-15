@@ -127,10 +127,10 @@
       ]
     },
     {
-      "id": "real-all-equal",
-      "name": "hidden: every substring of the range is same-end",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-equal",
+      "name": "every substring of the range is same-end",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaa",
         "queries": [
@@ -149,15 +149,14 @@
         3
       ],
       "tags": [
-        "hidden",
         "all-equal"
       ]
     },
     {
-      "id": "real-overlapping",
-      "name": "hidden: overlapping ranges reuse prefix counts",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-overlapping",
+      "name": "overlapping ranges reuse prefix counts",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abacaba",
         "queries": [
@@ -181,15 +180,14 @@
         4
       ],
       "tags": [
-        "hidden",
         "overlapping"
       ]
     },
     {
-      "id": "real-suffix",
-      "name": "hidden: inclusive right endpoint contains repeated letters",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-suffix",
+      "name": "inclusive right endpoint contains repeated letters",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "xyzxyz",
         "queries": [
@@ -208,15 +206,14 @@
         5
       ],
       "tags": [
-        "hidden",
         "inclusive"
       ]
     },
     {
-      "id": "real-many-letters",
-      "name": "hidden: several frequencies contribute independently",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-letters",
+      "name": "several frequencies contribute independently",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "mississippi",
         "queries": [
@@ -235,15 +232,14 @@
         19
       ],
       "tags": [
-        "hidden",
         "frequencies"
       ]
     },
     {
-      "id": "real-repeated-query",
-      "name": "hidden: identical queries produce identical answers",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-query",
+      "name": "identical queries produce identical answers",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "banana",
         "queries": [
@@ -267,10 +263,8 @@
         6
       ],
       "tags": [
-        "hidden",
         "repeated-query"
       ]
     }
   ]
 }
-

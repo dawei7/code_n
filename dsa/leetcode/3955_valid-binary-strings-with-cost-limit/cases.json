@@ -2,20 +2,385 @@
   "schema_version": 1,
   "challenge_id": "lc_3955",
   "cases": [
-    {"id": "sample-three-cost-one", "name": "sample: three length-three strings fit cost one", "kind": "sample", "visible": true, "input": {"n": 3, "k": 1}, "expected": ["000", "010", "100"], "validator": {"kind": "unordered_list"}, "tags": ["sample", "cost-pruning", "unordered-output"]},
-    {"id": "sample-single-position-zero-cost", "name": "sample: either bit is valid at index zero", "kind": "sample", "visible": true, "input": {"n": 1, "k": 0}, "expected": ["0", "1"], "validator": {"kind": "unordered_list"}, "tags": ["sample", "minimum-n", "zero-index"]},
-    {"id": "trial-two-zero-budget", "name": "trial: only index zero may contain one", "kind": "trial", "visible": true, "input": {"n": 2, "k": 0}, "expected": ["00", "10"], "validator": {"kind": "unordered_list"}, "tags": ["trial", "zero-budget", "zero-index"]},
-    {"id": "trial-two-full-budget", "name": "trial: every nonconsecutive length-two string is valid", "kind": "trial", "visible": true, "input": {"n": 2, "k": 1}, "expected": ["00", "01", "10"], "validator": {"kind": "unordered_list"}, "tags": ["trial", "full-budget", "adjacent-ones"]},
-    {"id": "trial-three-zero-budget", "name": "trial: a zero budget still allows a leading one", "kind": "trial", "visible": true, "input": {"n": 3, "k": 0}, "expected": ["000", "100"], "validator": {"kind": "unordered_list"}, "tags": ["trial", "zero-budget", "leading-one"]},
-    {"id": "trial-three-maximum-budget", "name": "trial: the maximum budget leaves only adjacency restrictions", "kind": "trial", "visible": true, "input": {"n": 3, "k": 3}, "expected": ["000", "001", "010", "100", "101"], "validator": {"kind": "unordered_list"}, "tags": ["trial", "maximum-budget", "adjacent-ones"]},
-    {"id": "trial-four-zero-budget", "name": "trial: longer strings preserve the index-zero exception", "kind": "trial", "visible": true, "input": {"n": 4, "k": 0}, "expected": ["0000", "1000"], "validator": {"kind": "unordered_list"}, "tags": ["trial", "zero-budget", "leading-one"]},
-    {"id": "trial-four-budget-one", "name": "trial: index one may be selected alone", "kind": "trial", "visible": true, "input": {"n": 4, "k": 1}, "expected": ["0000", "0100", "1000"], "validator": {"kind": "unordered_list"}, "tags": ["trial", "cost-boundary", "single-one"]},
-    {"id": "real-four-budget-two", "name": "hidden: index two can coexist with the leading one", "kind": "real", "visible": false, "input": {"n": 4, "k": 2}, "expected": ["0000", "0010", "0100", "1000", "1010"], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "multiple-ones", "cost-boundary"]},
-    {"id": "real-five-budget-three", "name": "hidden: several isolated one placements share the budget", "kind": "real", "visible": false, "input": {"n": 5, "k": 3}, "expected": ["00000", "00010", "00100", "01000", "10000", "10010", "10100"], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "multiple-ones", "backtracking"]},
-    {"id": "real-six-budget-four", "name": "hidden: cost and adjacency prune different branches", "kind": "real", "visible": false, "input": {"n": 6, "k": 4}, "expected": ["000000", "000010", "000100", "001000", "010000", "010100", "100000", "100010", "100100", "101000"], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "cost-pruning", "adjacency-pruning"]},
-    {"id": "real-eight-small-budget", "name": "hidden: a small budget prunes most of a longer string", "kind": "real", "visible": false, "input": {"n": 8, "k": 3}, "expected": ["00000000", "00010000", "00100000", "01000000", "10000000", "10010000", "10100000"], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "longer-string", "small-budget"]},
-    {"id": "real-maximum-length-zero-budget", "name": "hidden: maximum length with zero budget", "kind": "real", "visible": false, "input": {"n": 12, "k": 0}, "expected": ["000000000000", "100000000000"], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "maximum-n", "zero-budget"]},
-    {"id": "real-maximum-length-budget-one", "name": "hidden: maximum length with budget one", "kind": "real", "visible": false, "input": {"n": 12, "k": 1}, "expected": ["000000000000", "010000000000", "100000000000"], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "maximum-n", "small-budget"]},
-    {"id": "real-maximum-length-budget-five", "name": "hidden: maximum length with several affordable positions", "kind": "real", "visible": false, "input": {"n": 12, "k": 5}, "expected": ["000000000000", "000001000000", "000010000000", "000100000000", "001000000000", "010000000000", "010010000000", "010100000000", "100000000000", "100001000000", "100010000000", "100100000000", "101000000000"], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "maximum-n", "multiple-ones"]}
+    {
+      "id": "sample-three-cost-one",
+      "name": "sample: three length-three strings fit cost one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "k": 1
+      },
+      "expected": [
+        "000",
+        "010",
+        "100"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "cost-pruning",
+        "unordered-output"
+      ]
+    },
+    {
+      "id": "sample-single-position-zero-cost",
+      "name": "sample: either bit is valid at index zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "k": 0
+      },
+      "expected": [
+        "0",
+        "1"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "minimum-n",
+        "zero-index"
+      ]
+    },
+    {
+      "id": "trial-two-zero-budget",
+      "name": "trial: only index zero may contain one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "k": 0
+      },
+      "expected": [
+        "00",
+        "10"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "trial",
+        "zero-budget",
+        "zero-index"
+      ]
+    },
+    {
+      "id": "trial-two-full-budget",
+      "name": "trial: every nonconsecutive length-two string is valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "k": 1
+      },
+      "expected": [
+        "00",
+        "01",
+        "10"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "trial",
+        "full-budget",
+        "adjacent-ones"
+      ]
+    },
+    {
+      "id": "trial-three-zero-budget",
+      "name": "trial: a zero budget still allows a leading one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "k": 0
+      },
+      "expected": [
+        "000",
+        "100"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "trial",
+        "zero-budget",
+        "leading-one"
+      ]
+    },
+    {
+      "id": "trial-three-maximum-budget",
+      "name": "trial: the maximum budget leaves only adjacency restrictions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "k": 3
+      },
+      "expected": [
+        "000",
+        "001",
+        "010",
+        "100",
+        "101"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "trial",
+        "maximum-budget",
+        "adjacent-ones"
+      ]
+    },
+    {
+      "id": "trial-four-zero-budget",
+      "name": "trial: longer strings preserve the index-zero exception",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "k": 0
+      },
+      "expected": [
+        "0000",
+        "1000"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "trial",
+        "zero-budget",
+        "leading-one"
+      ]
+    },
+    {
+      "id": "trial-four-budget-one",
+      "name": "trial: index one may be selected alone",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "k": 1
+      },
+      "expected": [
+        "0000",
+        "0100",
+        "1000"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "trial",
+        "cost-boundary",
+        "single-one"
+      ]
+    },
+    {
+      "id": "trial-four-budget-two",
+      "name": "index two can coexist with the leading one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "k": 2
+      },
+      "expected": [
+        "0000",
+        "0010",
+        "0100",
+        "1000",
+        "1010"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "multiple-ones",
+        "cost-boundary"
+      ]
+    },
+    {
+      "id": "trial-five-budget-three",
+      "name": "several isolated one placements share the budget",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "k": 3
+      },
+      "expected": [
+        "00000",
+        "00010",
+        "00100",
+        "01000",
+        "10000",
+        "10010",
+        "10100"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "multiple-ones",
+        "backtracking"
+      ]
+    },
+    {
+      "id": "trial-six-budget-four",
+      "name": "cost and adjacency prune different branches",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "k": 4
+      },
+      "expected": [
+        "000000",
+        "000010",
+        "000100",
+        "001000",
+        "010000",
+        "010100",
+        "100000",
+        "100010",
+        "100100",
+        "101000"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "cost-pruning",
+        "adjacency-pruning"
+      ]
+    },
+    {
+      "id": "trial-eight-small-budget",
+      "name": "a small budget prunes most of a longer string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 8,
+        "k": 3
+      },
+      "expected": [
+        "00000000",
+        "00010000",
+        "00100000",
+        "01000000",
+        "10000000",
+        "10010000",
+        "10100000"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "longer-string",
+        "small-budget"
+      ]
+    },
+    {
+      "id": "trial-maximum-length-zero-budget",
+      "name": "maximum length with zero budget",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 12,
+        "k": 0
+      },
+      "expected": [
+        "000000000000",
+        "100000000000"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "maximum-n",
+        "zero-budget"
+      ]
+    },
+    {
+      "id": "trial-maximum-length-budget-one",
+      "name": "maximum length with budget one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 12,
+        "k": 1
+      },
+      "expected": [
+        "000000000000",
+        "010000000000",
+        "100000000000"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "maximum-n",
+        "small-budget"
+      ]
+    },
+    {
+      "id": "trial-maximum-length-budget-five",
+      "name": "maximum length with several affordable positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 12,
+        "k": 5
+      },
+      "expected": [
+        "000000000000",
+        "000001000000",
+        "000010000000",
+        "000100000000",
+        "001000000000",
+        "010000000000",
+        "010010000000",
+        "010100000000",
+        "100000000000",
+        "100001000000",
+        "100010000000",
+        "100100000000",
+        "101000000000"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "maximum-n",
+        "multiple-ones"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "k": 1
+      },
+      "expected": [
+        "0",
+        "1"
+      ],
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    }
   ]
 }

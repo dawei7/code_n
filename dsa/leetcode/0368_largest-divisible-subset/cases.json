@@ -134,10 +134,10 @@
       ]
     },
     {
-      "id": "hidden-unsorted",
-      "name": "hidden: reconstruction after sorting",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unsorted",
+      "name": "reconstruction after sorting",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           72,
@@ -157,15 +157,14 @@
         "values_param": "nums"
       },
       "tags": [
-        "hidden",
         "unsorted"
       ]
     },
     {
-      "id": "hidden-no-pairs",
-      "name": "hidden: every value is incompatible",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-no-pairs",
+      "name": "every value is incompatible",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -182,15 +181,14 @@
         "values_param": "nums"
       },
       "tags": [
-        "hidden",
         "tie"
       ]
     },
     {
-      "id": "hidden-one-bridge",
-      "name": "hidden: transitive chain through bridge",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-bridge",
+      "name": "transitive chain through bridge",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -211,10 +209,8 @@
         "values_param": "nums"
       },
       "tags": [
-        "hidden",
         "transitive"
       ]
     }
   ]
 }
-

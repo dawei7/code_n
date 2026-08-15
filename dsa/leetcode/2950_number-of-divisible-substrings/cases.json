@@ -80,61 +80,84 @@
       ]
     },
     {
-      "id": "real-highest-group",
-      "name": "hidden: every substring has mapped average nine",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-highest-group",
+      "name": "every substring has mapped average nine",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "xyzxyz"
       },
       "expected": 21,
       "tags": [
-        "hidden",
         "highest-group"
       ]
     },
     {
-      "id": "real-group-boundaries",
-      "name": "hidden: letters straddle several mapping boundaries",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-group-boundaries",
+      "name": "letters straddle several mapping boundaries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "bcefhiklnoqruvx"
       },
       "expected": 38,
       "tags": [
-        "hidden",
         "mapping-boundaries"
       ]
     },
     {
-      "id": "real-mixed-averages",
-      "name": "hidden: different substrings realize different integer averages",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-averages",
+      "name": "different substrings realize different integer averages",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "azbycxdwev"
       },
       "expected": 23,
       "tags": [
-        "hidden",
         "mixed-averages"
       ]
     },
     {
-      "id": "real-repeated-pattern",
-      "name": "hidden: repeated alphabet pattern creates overlapping matches",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-pattern",
+      "name": "repeated alphabet pattern creates overlapping matches",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "leetcodealgorithm"
       },
       "expected": 52,
       "tags": [
-        "hidden",
         "overlapping"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "a"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aaa"
+      },
+      "expected": 6,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]
 }
-

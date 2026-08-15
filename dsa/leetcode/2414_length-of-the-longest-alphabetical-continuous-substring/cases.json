@@ -69,44 +69,41 @@
       ]
     },
     {
-      "id": "real-tied-runs",
-      "name": "hidden: separate xyz and abc runs tie",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-tied-runs",
+      "name": "separate xyz and abc runs tie",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abxyzabc"
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "multiple-runs"
       ]
     },
     {
-      "id": "real-repeated",
-      "name": "hidden: repeated letters reset every run",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated",
+      "name": "repeated letters reset every run",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaaa"
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "real-embedded-long-run",
-      "name": "hidden: longest run appears in the middle",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-embedded-long-run",
+      "name": "longest run appears in the middle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "qbcdefm"
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "middle"
       ]
     }

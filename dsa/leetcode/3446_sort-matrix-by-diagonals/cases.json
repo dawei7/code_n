@@ -1,12 +1,306 @@
 {
   "challenge_id": "lc_3446",
   "cases": [
-    {"id":"sample-three-by-three","name":"sample: mixed diagonal directions","kind":"sample","visible":true,"input":{"grid":[[1,7,3],[9,8,2],[4,5,6]]},"expected":[[8,2,3],[9,6,7],[4,5,1]],"tags":["sample","matrix"]},
-    {"id":"sample-two-by-two","name":"sample: main diagonal descending","kind":"sample","visible":true,"input":{"grid":[[0,1],[1,2]]},"expected":[[2,1],[1,0]],"tags":["sample"]},
-    {"id":"sample-single","name":"sample: single cell","kind":"sample","visible":true,"input":{"grid":[[1]]},"expected":[[1]],"tags":["sample","minimum-n"]},
-    {"id":"trial-lower-diagonal","name":"trial: lower diagonal needs reordering","kind":"trial","visible":true,"input":{"grid":[[3,1,2],[4,2,3],[5,6,1]]},"expected":[[3,1,2],[6,2,3],[5,4,1]],"tags":["trial","bottom-left"]},
-    {"id":"trial-duplicates","name":"trial: duplicate values remain stable in value","kind":"trial","visible":true,"input":{"grid":[[7,7,7],[7,7,7],[7,7,7]]},"expected":[[7,7,7],[7,7,7],[7,7,7]],"tags":["trial","duplicates"]},
-    {"id":"real-negative-values","name":"real: negative and duplicate values","kind":"real","visible":false,"input":{"grid":[[5,-1,4,3],[2,9,0,8],[7,6,-3,1],[4,2,5,-2]]},"expected":[[9,-1,4,3],[6,5,0,8],[7,5,-2,1],[4,2,2,-3]],"tags":["real","negative"]},
-    {"id":"real-extreme-values","name":"real: boundary-sized signed values","kind":"real","visible":false,"input":{"grid":[[100000,-100000,4],[5,-7,6],[8,9,0]]},"expected":[[100000,-100000,4],[9,0,6],[8,5,-7]],"tags":["real","bounds"]}
+    {
+      "id": "sample-three-by-three",
+      "name": "sample: mixed diagonal directions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            7,
+            3
+          ],
+          [
+            9,
+            8,
+            2
+          ],
+          [
+            4,
+            5,
+            6
+          ]
+        ]
+      },
+      "expected": [
+        [
+          8,
+          2,
+          3
+        ],
+        [
+          9,
+          6,
+          7
+        ],
+        [
+          4,
+          5,
+          1
+        ]
+      ],
+      "tags": [
+        "sample",
+        "matrix"
+      ]
+    },
+    {
+      "id": "sample-two-by-two",
+      "name": "sample: main diagonal descending",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-single",
+      "name": "sample: single cell",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1
+        ]
+      ],
+      "tags": [
+        "sample",
+        "minimum-n"
+      ]
+    },
+    {
+      "id": "trial-lower-diagonal",
+      "name": "trial: lower diagonal needs reordering",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            3,
+            1,
+            2
+          ],
+          [
+            4,
+            2,
+            3
+          ],
+          [
+            5,
+            6,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        [
+          3,
+          1,
+          2
+        ],
+        [
+          6,
+          2,
+          3
+        ],
+        [
+          5,
+          4,
+          1
+        ]
+      ],
+      "tags": [
+        "trial",
+        "bottom-left"
+      ]
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "trial: duplicate values remain stable in value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            7,
+            7,
+            7
+          ],
+          [
+            7,
+            7,
+            7
+          ],
+          [
+            7,
+            7,
+            7
+          ]
+        ]
+      },
+      "expected": [
+        [
+          7,
+          7,
+          7
+        ],
+        [
+          7,
+          7,
+          7
+        ],
+        [
+          7,
+          7,
+          7
+        ]
+      ],
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-negative-values",
+      "name": "negative and duplicate values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            5,
+            -1,
+            4,
+            3
+          ],
+          [
+            2,
+            9,
+            0,
+            8
+          ],
+          [
+            7,
+            6,
+            -3,
+            1
+          ],
+          [
+            4,
+            2,
+            5,
+            -2
+          ]
+        ]
+      },
+      "expected": [
+        [
+          9,
+          -1,
+          4,
+          3
+        ],
+        [
+          6,
+          5,
+          0,
+          8
+        ],
+        [
+          7,
+          5,
+          -2,
+          1
+        ],
+        [
+          4,
+          2,
+          2,
+          -3
+        ]
+      ],
+      "tags": [
+        "real",
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-extreme-values",
+      "name": "boundary-sized signed values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            100000,
+            -100000,
+            4
+          ],
+          [
+            5,
+            -7,
+            6
+          ],
+          [
+            8,
+            9,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        [
+          100000,
+          -100000,
+          4
+        ],
+        [
+          9,
+          0,
+          6
+        ],
+        [
+          8,
+          5,
+          -7
+        ]
+      ],
+      "tags": [
+        "real",
+        "bounds"
+      ]
+    }
   ]
 }

@@ -255,10 +255,10 @@
       ]
     },
     {
-      "id": "real-withdrawal-removes-qualification",
-      "name": "hidden: withdrawal lowers a large deposit to threshold",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-withdrawal-removes-qualification",
+      "name": "withdrawal lowers a large deposit to threshold",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Users": [
@@ -312,16 +312,15 @@
         ]
       },
       "tags": [
-        "hidden",
         "negative-amount",
         "boundary"
       ]
     },
     {
-      "id": "real-user-without-transactions",
-      "name": "hidden: user without transactions remains at zero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-user-without-transactions",
+      "name": "user without transactions remains at zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Users": [
@@ -357,15 +356,14 @@
         ]
       },
       "tags": [
-        "hidden",
         "no-transactions"
       ]
     },
     {
-      "id": "real-no-qualifying-users",
-      "name": "hidden: all balances stay below threshold",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-no-qualifying-users",
+      "name": "all balances stay below threshold",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Users": [
@@ -402,15 +400,14 @@
         "rows": []
       },
       "tags": [
-        "hidden",
         "empty-result"
       ]
     },
     {
-      "id": "real-date-order-irrelevant",
-      "name": "hidden: transaction date order does not change the sum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-date-order-irrelevant",
+      "name": "transaction date order does not change the sum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Users": [
@@ -448,15 +445,14 @@
         ]
       },
       "tags": [
-        "hidden",
         "date-irrelevant"
       ]
     },
     {
-      "id": "real-large-signed-balance",
-      "name": "hidden: large positive and negative changes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-signed-balance",
+      "name": "large positive and negative changes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Users": [
@@ -494,7 +490,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "large-values"
       ]
     }

@@ -380,10 +380,10 @@
       ]
     },
     {
-      "id": "real-count-and-name-order",
-      "name": "hidden: count descending then name ascending",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-count-and-name-order",
+      "name": "count descending then name ascending",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [
@@ -488,16 +488,15 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "output-order",
         "tie-break"
       ]
     },
     {
-      "id": "real-nonqualifying-employees",
-      "name": "hidden: one heavy week and no meetings are excluded",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-nonqualifying-employees",
+      "name": "one heavy week and no meetings are excluded",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [
@@ -543,16 +542,15 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "minimum-weeks",
         "no-meetings"
       ]
     },
     {
-      "id": "real-same-day-types",
-      "name": "hidden: all meeting types and same-day rows contribute",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-same-day-types",
+      "name": "all meeting types and same-day rows contribute",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [
@@ -621,7 +619,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "meeting-types",
         "same-day"
       ]

@@ -6,90 +6,152 @@
       "name": "sample: one character from each input",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "a", "t": "a"},
+      "input": {
+        "s": "a",
+        "t": "a"
+      },
       "expected": 2,
-      "tags": ["sample", "cross-string"]
+      "tags": [
+        "sample",
+        "cross-string"
+      ]
     },
     {
       "id": "sample-no-common-character",
       "name": "sample: best palindrome has length one",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "abc", "t": "def"},
+      "input": {
+        "s": "abc",
+        "t": "def"
+      },
       "expected": 1,
-      "tags": ["sample", "single-character"]
+      "tags": [
+        "sample",
+        "single-character"
+      ]
     },
     {
       "id": "sample-palindrome-only-in-t",
       "name": "sample: select nothing from s",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "b", "t": "aaaa"},
+      "input": {
+        "s": "b",
+        "t": "aaaa"
+      },
       "expected": 4,
-      "tags": ["sample", "empty-selection"]
+      "tags": [
+        "sample",
+        "empty-selection"
+      ]
     },
     {
       "id": "sample-center-in-s",
       "name": "sample: unequal mirrored halves",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "abcde", "t": "ecdba"},
+      "input": {
+        "s": "abcde",
+        "t": "ecdba"
+      },
       "expected": 5,
-      "tags": ["sample", "center-in-s"]
+      "tags": [
+        "sample",
+        "center-in-s"
+      ]
     },
     {
       "id": "trial-even-cross-palindrome",
       "name": "trial: empty center between equal halves",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "ab", "t": "ba"},
+      "input": {
+        "s": "ab",
+        "t": "ba"
+      },
       "expected": 4,
-      "tags": ["trial", "even-length"]
+      "tags": [
+        "trial",
+        "even-length"
+      ]
     },
     {
       "id": "trial-center-in-t",
       "name": "trial: unmatched center belongs to t",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "ab", "t": "cba"},
+      "input": {
+        "s": "ab",
+        "t": "cba"
+      },
       "expected": 5,
-      "tags": ["trial", "center-in-t"]
+      "tags": [
+        "trial",
+        "center-in-t"
+      ]
     },
     {
-      "id": "real-palindrome-only-in-s",
-      "name": "real: select nothing from t",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "racecar", "t": "xyz"},
+      "id": "trial-palindrome-only-in-s",
+      "name": "select nothing from t",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "racecar",
+        "t": "xyz"
+      },
       "expected": 7,
-      "tags": ["real", "empty-selection"]
+      "tags": [
+        "real",
+        "empty-selection"
+      ]
     },
     {
-      "id": "real-discard-endpoints",
-      "name": "real: best choices are proper substrings",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "xxab", "t": "bayy"},
+      "id": "trial-discard-endpoints",
+      "name": "best choices are proper substrings",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "xxab",
+        "t": "bayy"
+      },
       "expected": 4,
-      "tags": ["real", "interior-substrings"]
+      "tags": [
+        "real",
+        "interior-substrings"
+      ]
     },
     {
-      "id": "real-uniform-whole-inputs",
-      "name": "real: the complete concatenation is palindromic",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aaaaaa", "t": "aaaa"},
+      "id": "trial-uniform-whole-inputs",
+      "name": "the complete concatenation is palindromic",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaaaa",
+        "t": "aaaa"
+      },
       "expected": 10,
-      "tags": ["real", "whole-strings", "even-length"]
+      "tags": [
+        "real",
+        "whole-strings",
+        "even-length"
+      ]
     },
     {
-      "id": "real-overlapping-centers",
-      "name": "real: repeated characters create competing centers",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "cabacx", "t": "zabac"},
+      "id": "trial-overlapping-centers",
+      "name": "repeated characters create competing centers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "cabacx",
+        "t": "zabac"
+      },
       "expected": 9,
-      "tags": ["real", "repeated-characters", "cross-string"]
+      "tags": [
+        "real",
+        "repeated-characters",
+        "cross-string"
+      ]
     }
   ]
 }

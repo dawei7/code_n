@@ -2,12 +2,129 @@
   "schema_version": 1,
   "challenge_id": "lc_516",
   "cases": [
-    {"id": "sample-many-b", "name": "sample: skip one character to keep four b values", "kind": "sample", "visible": true, "input": {"s": "bbbab"}, "expected": 4, "tags": ["sample", "subsequence"]},
-    {"id": "sample-pair", "name": "sample: middle pair is the optimum", "kind": "sample", "visible": true, "input": {"s": "cbbd"}, "expected": 2, "tags": ["sample", "pair"]},
-    {"id": "sample-single", "name": "sample: one character", "kind": "sample", "visible": true, "input": {"s": "a"}, "expected": 1, "tags": ["sample", "singleton"]},
-    {"id": "trial-distinct", "name": "trial: all characters are distinct", "kind": "trial", "visible": true, "input": {"s": "abcde"}, "expected": 1, "tags": ["trial", "distinct"]},
-    {"id": "trial-interior", "name": "trial: palindrome skips an interior character", "kind": "trial", "visible": true, "input": {"s": "agbdba"}, "expected": 5, "tags": ["trial", "subsequence"]},
-    {"id": "hidden-equal", "name": "hidden: complete string is palindromic", "kind": "real", "visible": false, "input": {"s": "aaaa"}, "expected": 4, "tags": ["hidden", "equal"]},
-    {"id": "hidden-character", "name": "hidden: noncontiguous palindrome", "kind": "real", "visible": false, "input": {"s": "character"}, "expected": 5, "tags": ["hidden", "noncontiguous"]}
+    {
+      "id": "sample-many-b",
+      "name": "sample: skip one character to keep four b values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "bbbab"
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "subsequence"
+      ]
+    },
+    {
+      "id": "sample-pair",
+      "name": "sample: middle pair is the optimum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "cbbd"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "pair"
+      ]
+    },
+    {
+      "id": "sample-single",
+      "name": "sample: one character",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-distinct",
+      "name": "trial: all characters are distinct",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcde"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "distinct"
+      ]
+    },
+    {
+      "id": "trial-interior",
+      "name": "trial: palindrome skips an interior character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "agbdba"
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "subsequence"
+      ]
+    },
+    {
+      "id": "trial-equal",
+      "name": "complete string is palindromic",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaa"
+      },
+      "expected": 4,
+      "tags": [
+        "equal"
+      ]
+    },
+    {
+      "id": "trial-character",
+      "name": "noncontiguous palindrome",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "character"
+      },
+      "expected": 5,
+      "tags": [
+        "noncontiguous"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "b"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "bbb"
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
+    }
   ]
 }

@@ -7,72 +7,117 @@
       "name": "sample: optimal prefix and suffix total eight",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "aabaaaacaabc", "k": 2},
+      "input": {
+        "s": "aabaaaacaabc",
+        "k": 2
+      },
       "expected": 8,
-      "tags": ["sample", "both-ends"]
+      "tags": [
+        "sample",
+        "both-ends"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: missing required characters",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "a", "k": 1},
+      "input": {
+        "s": "a",
+        "k": 1
+      },
       "expected": -1,
-      "tags": ["sample", "impossible"]
+      "tags": [
+        "sample",
+        "impossible"
+      ]
     },
     {
       "id": "trial-zero-k",
       "name": "trial: no characters are required",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "abc", "k": 0},
+      "input": {
+        "s": "abc",
+        "k": 0
+      },
       "expected": 0,
-      "tags": ["trial", "zero-k"]
+      "tags": [
+        "trial",
+        "zero-k"
+      ]
     },
     {
       "id": "trial-entire-string",
       "name": "trial: every character must be taken",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "abcabc", "k": 2},
+      "input": {
+        "s": "abcabc",
+        "k": 2
+      },
       "expected": 6,
-      "tags": ["trial", "whole-string"]
+      "tags": [
+        "trial",
+        "whole-string"
+      ]
     },
     {
       "id": "trial-one-complete-block",
       "name": "trial: one end already supplies every character",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "abccba", "k": 1},
+      "input": {
+        "s": "abccba",
+        "k": 1
+      },
       "expected": 3,
-      "tags": ["trial", "single-end"]
+      "tags": [
+        "trial",
+        "single-end"
+      ]
     },
     {
-      "id": "real-only-one-character",
-      "name": "hidden: a repeated single character remains impossible",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aaaa", "k": 1},
+      "id": "trial-only-one-character",
+      "name": "a repeated single character remains impossible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaa",
+        "k": 1
+      },
       "expected": -1,
-      "tags": ["hidden", "impossible"]
+      "tags": [
+        "impossible"
+      ]
     },
     {
-      "id": "real-middle-character-block",
-      "name": "hidden: reaching the middle block needs five removals",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aaabbbccc", "k": 1},
+      "id": "trial-middle-character-block",
+      "name": "reaching the middle block needs five removals",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaabbbccc",
+        "k": 1
+      },
       "expected": 5,
-      "tags": ["hidden", "both-ends"]
+      "tags": [
+        "both-ends"
+      ]
     },
     {
-      "id": "real-one-of-each",
-      "name": "hidden: minimum-length feasible string",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abc", "k": 1},
+      "id": "trial-one-of-each",
+      "name": "minimum-length feasible string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "k": 1
+      },
       "expected": 3,
-      "tags": ["hidden", "minimum-feasible"]
+      "tags": [
+        "minimum-feasible"
+      ]
     }
   ]
 }

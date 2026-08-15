@@ -2,13 +2,222 @@
   "schema_version": 1,
   "challenge_id": "lc_2149",
   "cases": [
-    {"id": "sample-mixed-six", "name": "sample: preserve two sign-specific orders", "kind": "sample", "visible": true, "input": {"nums": [3, 1, -2, -5, 2, -4]}, "expected": [3, -2, 1, -5, 2, -4], "tags": ["sample", "stability"]},
-    {"id": "sample-two-elements", "name": "sample: negative arrives before positive", "kind": "sample", "visible": true, "input": {"nums": [-1, 1]}, "expected": [1, -1], "tags": ["sample", "minimum-length"]},
-    {"id": "trial-already-arranged", "name": "an already valid arrangement is unchanged", "kind": "trial", "visible": true, "input": {"nums": [4, -3, 2, -1]}, "expected": [4, -3, 2, -1], "tags": ["already-arranged"]},
-    {"id": "trial-sign-blocks", "name": "separate sign blocks are interleaved stably", "kind": "trial", "visible": true, "input": {"nums": [-8, -6, -2, 5, 7, 9]}, "expected": [5, -8, 7, -6, 9, -2], "tags": ["sign-blocks", "stability"]},
-    {"id": "trial-bound-values", "name": "value bounds do not affect sign placement", "kind": "trial", "visible": true, "input": {"nums": [100000, -100000]}, "expected": [100000, -100000], "tags": ["bounds"]},
-    {"id": "real-positive-order", "name": "hidden: positives scattered among negatives stay ordered", "kind": "real", "visible": false, "input": {"nums": [-1, 10, -2, -3, 20, 30]}, "expected": [10, -1, 20, -2, 30, -3], "tags": ["hidden", "positive-order"]},
-    {"id": "real-negative-order", "name": "hidden: negatives scattered among positives stay ordered", "kind": "real", "visible": false, "input": {"nums": [5, -9, 6, 7, -8, -7]}, "expected": [5, -9, 6, -8, 7, -7], "tags": ["hidden", "negative-order"]},
-    {"id": "real-duplicates", "name": "hidden: duplicate values remain separate occurrences", "kind": "real", "visible": false, "input": {"nums": [-4, 2, 2, -4, -4, 2]}, "expected": [2, -4, 2, -4, 2, -4], "tags": ["hidden", "duplicates"]}
+    {
+      "id": "sample-mixed-six",
+      "name": "sample: preserve two sign-specific orders",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          -2,
+          -5,
+          2,
+          -4
+        ]
+      },
+      "expected": [
+        3,
+        -2,
+        1,
+        -5,
+        2,
+        -4
+      ],
+      "tags": [
+        "sample",
+        "stability"
+      ]
+    },
+    {
+      "id": "sample-two-elements",
+      "name": "sample: negative arrives before positive",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        -1
+      ],
+      "tags": [
+        "sample",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-already-arranged",
+      "name": "an already valid arrangement is unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          -3,
+          2,
+          -1
+        ]
+      },
+      "expected": [
+        4,
+        -3,
+        2,
+        -1
+      ],
+      "tags": [
+        "already-arranged"
+      ]
+    },
+    {
+      "id": "trial-sign-blocks",
+      "name": "separate sign blocks are interleaved stably",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -8,
+          -6,
+          -2,
+          5,
+          7,
+          9
+        ]
+      },
+      "expected": [
+        5,
+        -8,
+        7,
+        -6,
+        9,
+        -2
+      ],
+      "tags": [
+        "sign-blocks",
+        "stability"
+      ]
+    },
+    {
+      "id": "trial-bound-values",
+      "name": "value bounds do not affect sign placement",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100000,
+          -100000
+        ]
+      },
+      "expected": [
+        100000,
+        -100000
+      ],
+      "tags": [
+        "bounds"
+      ]
+    },
+    {
+      "id": "trial-positive-order",
+      "name": "positives scattered among negatives stay ordered",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          10,
+          -2,
+          -3,
+          20,
+          30
+        ]
+      },
+      "expected": [
+        10,
+        -1,
+        20,
+        -2,
+        30,
+        -3
+      ],
+      "tags": [
+        "positive-order"
+      ]
+    },
+    {
+      "id": "trial-negative-order",
+      "name": "negatives scattered among positives stay ordered",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          -9,
+          6,
+          7,
+          -8,
+          -7
+        ]
+      },
+      "expected": [
+        5,
+        -9,
+        6,
+        -8,
+        7,
+        -7
+      ],
+      "tags": [
+        "negative-order"
+      ]
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "duplicate values remain separate occurrences",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -4,
+          2,
+          2,
+          -4,
+          -4,
+          2
+        ]
+      },
+      "expected": [
+        2,
+        -4,
+        2,
+        -4,
+        2,
+        -4
+      ],
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ]
+      },
+      "expected": [
+        3
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    }
   ]
 }

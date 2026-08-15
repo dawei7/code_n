@@ -64,7 +64,7 @@
       "id": "trial-empty",
       "name": "trial: empty tree",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "root": []
       },
@@ -78,7 +78,7 @@
       "id": "trial-one-child",
       "name": "trial: child outweighs parent",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "root": [
           5,
@@ -92,10 +92,10 @@
       ]
     },
     {
-      "id": "hidden-grandchildren",
-      "name": "hidden: root plus four grandchildren wins",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-grandchildren",
+      "name": "root plus four grandchildren wins",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           4,
@@ -109,15 +109,14 @@
       },
       "expected": 44,
       "tags": [
-        "hidden",
         "grandchildren"
       ]
     },
     {
-      "id": "hidden-children",
-      "name": "hidden: both children beat root",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-children",
+      "name": "both children beat root",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           10,
@@ -127,15 +126,14 @@
       },
       "expected": 13,
       "tags": [
-        "hidden",
         "children"
       ]
     },
     {
-      "id": "hidden-mixed-depth",
-      "name": "hidden: choices differ across branches",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-depth",
+      "name": "choices differ across branches",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           4,
@@ -149,7 +147,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

@@ -2,13 +2,171 @@
   "schema_version": 1,
   "challenge_id": "lc_2206",
   "cases": [
-    {"id":"sample-three-pairs","name":"sample: repeated values form three pairs","kind":"sample","visible":true,"input":{"nums":[3,2,3,2,2,2]},"expected":true,"tags":["sample","multiple-pairs"]},
-    {"id":"sample-all-singletons","name":"sample: four distinct values cannot pair","kind":"sample","visible":true,"input":{"nums":[1,2,3,4]},"expected":false,"tags":["sample","odd-frequencies"]},
-    {"id":"trial-single-pair","name":"one equal pair succeeds","kind":"trial","visible":true,"input":{"nums":[7,7]},"expected":true,"tags":["minimum-length"]},
-    {"id":"trial-single-mismatch","name":"two unequal values fail","kind":"trial","visible":true,"input":{"nums":[1,2]},"expected":false,"tags":["minimum-length","mismatch"]},
-    {"id":"real-one-odd-frequency","name":"hidden: one odd count prevents a complete pairing","kind":"real","visible":false,"input":{"nums":[1,1,1,2,2,2,2,3,3,3]},"expected":false,"tags":["hidden","odd-frequency"]},
-    {"id":"real-many-value-groups","name":"hidden: every independent value group has even size","kind":"real","visible":false,"input":{"nums":[1,500,2,2,3,3,3,3,500,1,9,9]},"expected":true,"tags":["hidden","value-boundary","groups"]},
-    {"id":"real-even-length-not-sufficient","name":"hidden: total parity does not repair odd group frequencies","kind":"real","visible":false,"input":{"nums":[4,4,4,5,5,5]},"expected":false,"tags":["hidden","global-vs-local-parity"]},
-    {"id":"real-all-same","name":"hidden: one value with an even frequency pairs completely","kind":"real","visible":false,"input":{"nums":[8,8,8,8,8,8,8,8]},"expected":true,"tags":["hidden","single-value"]}
+    {
+      "id": "sample-three-pairs",
+      "name": "sample: repeated values form three pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          2,
+          3,
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "multiple-pairs"
+      ]
+    },
+    {
+      "id": "sample-all-singletons",
+      "name": "sample: four distinct values cannot pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "odd-frequencies"
+      ]
+    },
+    {
+      "id": "trial-single-pair",
+      "name": "one equal pair succeeds",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-single-mismatch",
+      "name": "two unequal values fail",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "minimum-length",
+        "mismatch"
+      ]
+    },
+    {
+      "id": "trial-one-odd-frequency",
+      "name": "one odd count prevents a complete pairing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "odd-frequency"
+      ]
+    },
+    {
+      "id": "trial-many-value-groups",
+      "name": "every independent value group has even size",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          500,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          500,
+          1,
+          9,
+          9
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "value-boundary",
+        "groups"
+      ]
+    },
+    {
+      "id": "trial-even-length-not-sufficient",
+      "name": "total parity does not repair odd group frequencies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4,
+          4,
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "global-vs-local-parity"
+      ]
+    },
+    {
+      "id": "trial-all-same",
+      "name": "one value with an even frequency pairs completely",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "single-value"
+      ]
+    }
   ]
 }

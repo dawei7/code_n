@@ -72,58 +72,54 @@
       ]
     },
     {
-      "id": "real-run-at-start",
-      "name": "hidden: longest run occurs at the beginning",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-run-at-start",
+      "name": "longest run occurs at the beginning",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "mmmmnopqqq"
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "leading-run"
       ]
     },
     {
-      "id": "real-run-at-end",
-      "name": "hidden: longest run ends with the string",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-run-at-end",
+      "name": "longest run ends with the string",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aabbcdddddd"
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "trailing-run"
       ]
     },
     {
-      "id": "real-tied-runs",
-      "name": "hidden: multiple runs tie for maximum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-tied-runs",
+      "name": "multiple runs tie for maximum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaabbbcccaaa"
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "ties"
       ]
     },
     {
-      "id": "real-separated-equals",
-      "name": "hidden: equal letters in separate runs do not combine",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-separated-equals",
+      "name": "equal letters in separate runs do not combine",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abacada"
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "contiguity"
       ]
     }

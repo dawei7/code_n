@@ -54,7 +54,7 @@
       ],
       "validator": {
         "kind": "float_list_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       },
       "tags": [
         "sample",
@@ -114,7 +114,7 @@
       ],
       "validator": {
         "kind": "float_list_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       },
       "tags": [
         "sample",
@@ -158,7 +158,7 @@
       ],
       "validator": {
         "kind": "float_list_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       },
       "tags": [
         "sample",
@@ -207,7 +207,7 @@
       ],
       "validator": {
         "kind": "float_list_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       },
       "tags": [
         "trial",
@@ -261,7 +261,7 @@
       ],
       "validator": {
         "kind": "float_list_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       },
       "tags": [
         "trial",
@@ -269,10 +269,10 @@
       ]
     },
     {
-      "id": "hidden-known-self",
-      "name": "hidden: self query for known endpoint",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-known-self",
+      "name": "self query for known endpoint",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "equations": [
           [
@@ -305,18 +305,17 @@
       ],
       "validator": {
         "kind": "float_list_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       },
       "tags": [
-        "hidden",
         "self"
       ]
     },
     {
-      "id": "hidden-fraction-chain",
-      "name": "hidden: fractional chain products",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-fraction-chain",
+      "name": "fractional chain products",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "equations": [
           [
@@ -354,18 +353,17 @@
       ],
       "validator": {
         "kind": "float_list_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       },
       "tags": [
-        "hidden",
         "fraction"
       ]
     },
     {
-      "id": "hidden-merge-components",
-      "name": "hidden: equation joins prior components",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-merge-components",
+      "name": "equation joins prior components",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "equations": [
           [
@@ -408,10 +406,9 @@
       ],
       "validator": {
         "kind": "float_list_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       },
       "tags": [
-        "hidden",
         "merge"
       ]
     }

@@ -7,120 +7,519 @@
       "name": "sample: one edge fixes both mismatched endpoints",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 3, "edges": [[0, 1], [1, 2]], "start": "010", "target": "100"},
-      "expected": [0],
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "one-edge", "path"]
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "start": "010",
+        "target": "100"
+      },
+      "expected": [
+        0
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "one-edge",
+        "path"
+      ]
     },
     {
       "id": "sample-three-edges",
       "name": "sample: three indexed tree edges produce the target",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 7, "edges": [[0, 1], [1, 2], [2, 3], [3, 4], [3, 5], [1, 6]], "start": "0011000", "target": "0010001"},
-      "expected": [1, 2, 5],
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "branching-tree", "sorted-indices"]
+      "input": {
+        "n": 7,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            1,
+            6
+          ]
+        ],
+        "start": "0011000",
+        "target": "0010001"
+      },
+      "expected": [
+        1,
+        2,
+        5
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "branching-tree",
+        "sorted-indices"
+      ]
     },
     {
       "id": "sample-impossible",
       "name": "sample: one endpoint cannot be toggled alone",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 2, "edges": [[0, 1]], "start": "00", "target": "01"},
-      "expected": [-1],
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "impossible", "odd-mismatch-parity"]
+      "input": {
+        "n": 2,
+        "edges": [
+          [
+            0,
+            1
+          ]
+        ],
+        "start": "00",
+        "target": "01"
+      },
+      "expected": [
+        -1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "impossible",
+        "odd-mismatch-parity"
+      ]
     },
     {
       "id": "trial-already-matching",
       "name": "trial: matching strings require no edge operations",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 4, "edges": [[0, 1], [1, 2], [2, 3]], "start": "1010", "target": "1010"},
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "start": "1010",
+        "target": "1010"
+      },
       "expected": [],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "zero-operations", "already-equal"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "zero-operations",
+        "already-equal"
+      ]
     },
     {
       "id": "trial-both-endpoints",
       "name": "trial: the only edge toggles both nodes",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 2, "edges": [[0, 1]], "start": "00", "target": "11"},
-      "expected": [0],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "single-edge", "feasible"]
+      "input": {
+        "n": 2,
+        "edges": [
+          [
+            0,
+            1
+          ]
+        ],
+        "start": "00",
+        "target": "11"
+      },
+      "expected": [
+        0
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-edge",
+        "feasible"
+      ]
     },
     {
       "id": "trial-shuffled-path-edges",
       "name": "trial: selected edges are returned by original index",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 5, "edges": [[2, 3], [0, 1], [3, 4], [1, 2]], "start": "00000", "target": "01010"},
-      "expected": [0, 3],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "shuffled-edges", "increasing-order"]
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            2,
+            3
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "start": "00000",
+        "target": "01010"
+      },
+      "expected": [
+        0,
+        3
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "shuffled-edges",
+        "increasing-order"
+      ]
     },
     {
       "id": "trial-star-cancellation",
       "name": "trial: two selected star edges toggle the center twice",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 5, "edges": [[0, 1], [0, 2], [0, 3], [0, 4]], "start": "00000", "target": "01010"},
-      "expected": [0, 2],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "star", "center-cancellation"]
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "start": "00000",
+        "target": "01010"
+      },
+      "expected": [
+        0,
+        2
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "star",
+        "center-cancellation"
+      ]
     },
     {
       "id": "trial-odd-mismatch-count",
       "name": "trial: an odd number of mismatches is impossible",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 3, "edges": [[0, 1], [1, 2]], "start": "000", "target": "001"},
-      "expected": [-1],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "impossible", "parity"]
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "start": "000",
+        "target": "001"
+      },
+      "expected": [
+        -1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "impossible",
+        "parity"
+      ]
     },
     {
-      "id": "real-all-path-edges",
-      "name": "hidden: every edge in a path is forced",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 6, "edges": [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5]], "start": "000000", "target": "100001"},
-      "expected": [0, 1, 2, 3, 4],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "path", "all-edges"]
+      "id": "trial-all-path-edges",
+      "name": "every edge in a path is forced",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "start": "000000",
+        "target": "100001"
+      },
+      "expected": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "path",
+        "all-edges"
+      ]
     },
     {
-      "id": "real-shuffled-branching-tree",
-      "name": "hidden: a branching tree preserves shuffled edge indices",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 6, "edges": [[2, 5], [0, 2], [3, 4], [2, 3], [1, 2]], "start": "000000", "target": "010111"},
-      "expected": [0, 2, 4],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "branching-tree", "shuffled-edges"]
+      "id": "trial-shuffled-branching-tree",
+      "name": "a branching tree preserves shuffled edge indices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            2,
+            5
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "start": "000000",
+        "target": "010111"
+      },
+      "expected": [
+        0,
+        2,
+        4
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "branching-tree",
+        "shuffled-edges"
+      ]
     },
     {
-      "id": "real-nonzero-start",
-      "name": "hidden: operations apply to a nonzero initial coloring",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 4, "edges": [[0, 1], [1, 2], [1, 3]], "start": "1010", "target": "0011"},
-      "expected": [0, 2],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "nonzero-start", "branching-tree"]
+      "id": "trial-nonzero-start",
+      "name": "operations apply to a nonzero initial coloring",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        "start": "1010",
+        "target": "0011"
+      },
+      "expected": [
+        0,
+        2
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "nonzero-start",
+        "branching-tree"
+      ]
     },
     {
-      "id": "real-all-star-edges",
-      "name": "hidden: all star edges are required when every node differs",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 6, "edges": [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5]], "start": "000000", "target": "111111"},
-      "expected": [0, 1, 2, 3, 4],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "star", "all-edges", "even-parity"]
+      "id": "trial-all-star-edges",
+      "name": "all star edges are required when every node differs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ]
+        ],
+        "start": "000000",
+        "target": "111111"
+      },
+      "expected": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "star",
+        "all-edges",
+        "even-parity"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "repeated character in start",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "start": "000",
+        "target": "100"
+      },
+      "expected": [
+        -1
+      ],
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "start": "010",
+        "target": "111"
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
     }
   ]
 }

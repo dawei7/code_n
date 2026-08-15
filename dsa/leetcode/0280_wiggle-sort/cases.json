@@ -6,120 +6,394 @@
       "name": "sample: mixed unsorted values",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [3, 5, 2, 1, 6, 4]},
-      "expected": [3, 5, 1, 6, 2, 4],
-      "validator": {"kind": "wiggle_sort", "strict": false},
-      "tags": ["sample", "source-example", "in-place"]
+      "input": {
+        "nums": [
+          3,
+          5,
+          2,
+          1,
+          6,
+          4
+        ]
+      },
+      "expected": [
+        3,
+        5,
+        1,
+        6,
+        2,
+        4
+      ],
+      "validator": {
+        "kind": "wiggle_sort",
+        "strict": false
+      },
+      "tags": [
+        "sample",
+        "source-example",
+        "in-place"
+      ]
     },
     {
       "id": "sample-duplicates",
       "name": "sample: existing wiggle with duplicate values",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [6, 6, 5, 6, 3, 8]},
-      "expected": [6, 6, 5, 6, 3, 8],
-      "validator": {"kind": "wiggle_sort", "strict": false},
-      "tags": ["sample", "source-example", "duplicates", "already-valid"]
+      "input": {
+        "nums": [
+          6,
+          6,
+          5,
+          6,
+          3,
+          8
+        ]
+      },
+      "expected": [
+        6,
+        6,
+        5,
+        6,
+        3,
+        8
+      ],
+      "validator": {
+        "kind": "wiggle_sort",
+        "strict": false
+      },
+      "tags": [
+        "sample",
+        "source-example",
+        "duplicates",
+        "already-valid"
+      ]
     },
     {
       "id": "trial-single-minimum",
       "name": "single minimum value",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0]},
-      "expected": [0],
-      "validator": {"kind": "wiggle_sort", "strict": false},
-      "tags": ["minimum-length", "minimum-value", "no-op"]
+      "input": {
+        "nums": [
+          0
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "validator": {
+        "kind": "wiggle_sort",
+        "strict": false
+      },
+      "tags": [
+        "minimum-length",
+        "minimum-value",
+        "no-op"
+      ]
     },
     {
       "id": "trial-single-maximum",
       "name": "single maximum value",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [10000]},
-      "expected": [10000],
-      "validator": {"kind": "wiggle_sort", "strict": false},
-      "tags": ["maximum-value", "singleton", "no-op"]
+      "input": {
+        "nums": [
+          10000
+        ]
+      },
+      "expected": [
+        10000
+      ],
+      "validator": {
+        "kind": "wiggle_sort",
+        "strict": false
+      },
+      "tags": [
+        "maximum-value",
+        "singleton",
+        "no-op"
+      ]
     },
     {
       "id": "trial-two-descending-extremes",
       "name": "two descending boundary values require a swap",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [10000, 0]},
-      "expected": [0, 10000],
-      "validator": {"kind": "wiggle_sort", "strict": false},
-      "tags": ["two-elements", "boundary-values", "swap"]
+      "input": {
+        "nums": [
+          10000,
+          0
+        ]
+      },
+      "expected": [
+        0,
+        10000
+      ],
+      "validator": {
+        "kind": "wiggle_sort",
+        "strict": false
+      },
+      "tags": [
+        "two-elements",
+        "boundary-values",
+        "swap"
+      ]
     },
     {
       "id": "trial-two-ascending-extremes",
       "name": "two ascending boundary values are already valid",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0, 10000]},
-      "expected": [0, 10000],
-      "validator": {"kind": "wiggle_sort", "strict": false},
-      "tags": ["two-elements", "boundary-values", "already-valid"]
+      "input": {
+        "nums": [
+          0,
+          10000
+        ]
+      },
+      "expected": [
+        0,
+        10000
+      ],
+      "validator": {
+        "kind": "wiggle_sort",
+        "strict": false
+      },
+      "tags": [
+        "two-elements",
+        "boundary-values",
+        "already-valid"
+      ]
     },
     {
       "id": "trial-all-equal",
       "name": "equal neighbors satisfy every non-strict inequality",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [7, 7, 7, 7, 7]},
-      "expected": [7, 7, 7, 7, 7],
-      "validator": {"kind": "wiggle_sort", "strict": false},
-      "tags": ["duplicates", "equality", "non-strict"]
+      "input": {
+        "nums": [
+          7,
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": [
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      "validator": {
+        "kind": "wiggle_sort",
+        "strict": false
+      },
+      "tags": [
+        "duplicates",
+        "equality",
+        "non-strict"
+      ]
     },
     {
       "id": "trial-descending",
       "name": "descending values require repeated local repairs",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [6, 5, 4, 3, 2, 1]},
-      "expected": [5, 6, 3, 4, 1, 2],
-      "validator": {"kind": "wiggle_sort", "strict": false},
-      "tags": ["descending", "repeated-swaps"]
+      "input": {
+        "nums": [
+          6,
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": [
+        5,
+        6,
+        3,
+        4,
+        1,
+        2
+      ],
+      "validator": {
+        "kind": "wiggle_sort",
+        "strict": false
+      },
+      "tags": [
+        "descending",
+        "repeated-swaps"
+      ]
     },
     {
       "id": "trial-increasing",
       "name": "increasing values violate every even-position relation",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 3, 4, 5, 6]},
-      "expected": [1, 3, 2, 5, 4, 6],
-      "validator": {"kind": "wiggle_sort", "strict": false},
-      "tags": ["increasing", "even-position-repairs"]
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "expected": [
+        1,
+        3,
+        2,
+        5,
+        4,
+        6
+      ],
+      "validator": {
+        "kind": "wiggle_sort",
+        "strict": false
+      },
+      "tags": [
+        "increasing",
+        "even-position-repairs"
+      ]
     },
     {
       "id": "trial-duplicate-repairs",
       "name": "duplicates participate in both repair directions",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 1, 1, 2, 2, 1]},
-      "expected": [1, 2, 1, 2, 1, 2],
-      "validator": {"kind": "wiggle_sort", "strict": false},
-      "tags": ["duplicates", "odd-position-repair", "even-position-repair"]
+      "input": {
+        "nums": [
+          2,
+          1,
+          1,
+          2,
+          2,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        1,
+        2,
+        1,
+        2
+      ],
+      "validator": {
+        "kind": "wiggle_sort",
+        "strict": false
+      },
+      "tags": [
+        "duplicates",
+        "odd-position-repair",
+        "even-position-repair"
+      ]
     },
     {
       "id": "trial-alternating-extremes",
       "name": "alternating boundary values preserve their multiset",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [10000, 0, 10000, 0, 10000, 0, 10000]},
-      "expected": [0, 10000, 0, 10000, 0, 10000, 10000],
-      "validator": {"kind": "wiggle_sort", "strict": false},
-      "tags": ["boundary-values", "odd-length", "multiset"]
+      "input": {
+        "nums": [
+          10000,
+          0,
+          10000,
+          0,
+          10000,
+          0,
+          10000
+        ]
+      },
+      "expected": [
+        0,
+        10000,
+        0,
+        10000,
+        0,
+        10000,
+        10000
+      ],
+      "validator": {
+        "kind": "wiggle_sort",
+        "strict": false
+      },
+      "tags": [
+        "boundary-values",
+        "odd-length",
+        "multiset"
+      ]
     },
     {
       "id": "trial-mixed-equalities",
       "name": "mixed equalities remain legal around repaired pairs",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [4, 4, 3, 5, 5, 2, 2]},
-      "expected": [4, 4, 3, 5, 2, 5, 2],
-      "validator": {"kind": "wiggle_sort", "strict": false},
-      "tags": ["duplicates", "equality", "odd-length"]
+      "input": {
+        "nums": [
+          4,
+          4,
+          3,
+          5,
+          5,
+          2,
+          2
+        ]
+      },
+      "expected": [
+        4,
+        4,
+        3,
+        5,
+        2,
+        5,
+        2
+      ],
+      "validator": {
+        "kind": "wiggle_sort",
+        "strict": false
+      },
+      "tags": [
+        "duplicates",
+        "equality",
+        "odd-length"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ]
+      },
+      "expected": null,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ]
+      },
+      "expected": null,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

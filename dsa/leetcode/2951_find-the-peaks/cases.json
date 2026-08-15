@@ -97,10 +97,10 @@
       ]
     },
     {
-      "id": "real-left-endpoint-high",
-      "name": "hidden: first element is never eligible",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-left-endpoint-high",
+      "name": "first element is never eligible",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mountain": [
           100,
@@ -111,15 +111,14 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "endpoint"
       ]
     },
     {
-      "id": "real-right-endpoint-high",
-      "name": "hidden: last element is never eligible",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-right-endpoint-high",
+      "name": "last element is never eligible",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mountain": [
           1,
@@ -132,15 +131,14 @@
         1
       ],
       "tags": [
-        "hidden",
         "endpoint"
       ]
     },
     {
-      "id": "real-many-peaks",
-      "name": "hidden: alternating values create several peaks",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-peaks",
+      "name": "alternating values create several peaks",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mountain": [
           1,
@@ -158,15 +156,14 @@
         5
       ],
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
     {
-      "id": "real-equal-left",
-      "name": "hidden: equality with the left neighbor disqualifies",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-equal-left",
+      "name": "equality with the left neighbor disqualifies",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mountain": [
           4,
@@ -180,15 +177,14 @@
         3
       ],
       "tags": [
-        "hidden",
         "strict"
       ]
     },
     {
-      "id": "real-decreasing",
-      "name": "hidden: decreasing array has no interior peak",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-decreasing",
+      "name": "decreasing array has no interior peak",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mountain": [
           5,
@@ -200,8 +196,40 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "monotone"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in mountain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mountain": [
+          2
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in mountain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mountain": [
+          2,
+          2
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

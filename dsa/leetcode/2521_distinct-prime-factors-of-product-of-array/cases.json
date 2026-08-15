@@ -6,63 +6,127 @@
       "name": "sample: four distinct prime factors",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 4, 3, 7, 10, 6]},
+      "input": {
+        "nums": [
+          2,
+          4,
+          3,
+          7,
+          10,
+          6
+        ]
+      },
       "expected": 4,
-      "tags": ["sample", "mixed-factors"]
+      "tags": [
+        "sample",
+        "mixed-factors"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: all values are powers of two",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 4, 8, 16]},
+      "input": {
+        "nums": [
+          2,
+          4,
+          8,
+          16
+        ]
+      },
       "expected": 1,
-      "tags": ["sample", "repeated-factor"]
+      "tags": [
+        "sample",
+        "repeated-factor"
+      ]
     },
     {
       "id": "trial-shared-prime-factors",
       "name": "trial: composites share both prime factors",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [12, 18]},
+      "input": {
+        "nums": [
+          12,
+          18
+        ]
+      },
       "expected": 2,
-      "tags": ["trial", "shared-factors"]
+      "tags": [
+        "trial",
+        "shared-factors"
+      ]
     },
     {
       "id": "trial-distinct-primes",
       "name": "trial: every value contributes a new prime",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [3, 7, 11]},
+      "input": {
+        "nums": [
+          3,
+          7,
+          11
+        ]
+      },
       "expected": 3,
-      "tags": ["trial", "prime-values"]
+      "tags": [
+        "trial",
+        "prime-values"
+      ]
     },
     {
-      "id": "real-repeated-large-prime",
-      "name": "hidden: repeated maximum-range prime",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [997, 997]},
+      "id": "trial-repeated-large-prime",
+      "name": "repeated maximum-range prime",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          997,
+          997
+        ]
+      },
       "expected": 1,
-      "tags": ["hidden", "large-prime"]
+      "tags": [
+        "large-prime"
+      ]
     },
     {
-      "id": "real-large-composites",
-      "name": "hidden: large composites leave prime remainders",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000, 999, 998]},
+      "id": "trial-large-composites",
+      "name": "large composites leave prime remainders",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000,
+          999,
+          998
+        ]
+      },
       "expected": 5,
-      "tags": ["hidden", "boundary", "leftover-prime"]
+      "tags": [
+        "boundary",
+        "leftover-prime"
+      ]
     },
     {
-      "id": "real-shared-square-factors",
-      "name": "hidden: squares and products collapse to two primes",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [49, 77, 121]},
+      "id": "trial-shared-square-factors",
+      "name": "squares and products collapse to two primes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          49,
+          77,
+          121
+        ]
+      },
       "expected": 2,
-      "tags": ["hidden", "prime-powers", "shared-factors"]
+      "tags": [
+        "prime-powers",
+        "shared-factors"
+      ]
     }
   ]
 }

@@ -1,10 +1,117 @@
-{"challenge_id":"lc_3003","cases":[
-{"id":"sample-middle-replacement","name":"sample: replacement creates three partitions","kind":"sample","visible":true,"input":{"s":"accca","k":2},"expected":3,"tags":["sample"]},
-{"id":"sample-capacity-covers-string","name":"sample: distinct capacity covers whole string","kind":"sample","visible":true,"input":{"s":"aabaab","k":3},"expected":1,"tags":["sample"]},
-{"id":"sample-all-singletons","name":"sample: replacement makes singleton partitions","kind":"sample","visible":true,"input":{"s":"xxyz","k":1},"expected":4,"tags":["sample"]},
-{"id":"trial-single-character","name":"trial: one character","kind":"trial","visible":true,"input":{"s":"a","k":1},"expected":1,"tags":["single"]},
-{"id":"trial-split-run","name":"trial: split a repeated run","kind":"trial","visible":true,"input":{"s":"aaaa","k":1},"expected":3,"tags":["replacement"]},
-{"id":"trial-repeating-three","name":"trial: repeating three letters","kind":"trial","visible":true,"input":{"s":"abcabc","k":2},"expected":3,"tags":["greedy-boundaries"]},
-{"id":"real-full-alphabet-capacity","name":"real: all letters fit when k is twenty-six","kind":"real","visible":false,"input":{"s":"abcdefghijklmnopqrstuvwxyz","k":26},"expected":1,"tags":["hidden","alphabet-boundary"]},
-{"id":"real-nested-pattern","name":"real: replacement inside nested pattern","kind":"real","visible":false,"input":{"s":"abacabadabacaba","k":3},"expected":4,"tags":["hidden","pattern"]}
-]}
+{
+  "challenge_id": "lc_3003",
+  "cases": [
+    {
+      "id": "sample-middle-replacement",
+      "name": "sample: replacement creates three partitions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "accca",
+        "k": 2
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-capacity-covers-string",
+      "name": "sample: distinct capacity covers whole string",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aabaab",
+        "k": 3
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-all-singletons",
+      "name": "sample: replacement makes singleton partitions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "xxyz",
+        "k": 1
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "trial: one character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "single"
+      ]
+    },
+    {
+      "id": "trial-split-run",
+      "name": "trial: split a repeated run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaa",
+        "k": 1
+      },
+      "expected": 3,
+      "tags": [
+        "replacement"
+      ]
+    },
+    {
+      "id": "trial-repeating-three",
+      "name": "trial: repeating three letters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcabc",
+        "k": 2
+      },
+      "expected": 3,
+      "tags": [
+        "greedy-boundaries"
+      ]
+    },
+    {
+      "id": "trial-full-alphabet-capacity",
+      "name": "all letters fit when k is twenty-six",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyz",
+        "k": 26
+      },
+      "expected": 1,
+      "tags": [
+        "alphabet-boundary"
+      ]
+    },
+    {
+      "id": "trial-nested-pattern",
+      "name": "replacement inside nested pattern",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abacabadabacaba",
+        "k": 3
+      },
+      "expected": 4,
+      "tags": [
+        "pattern"
+      ]
+    }
+  ]
+}

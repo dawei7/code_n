@@ -7,120 +7,238 @@
       "name": "sample: hello follows five keyboard moves",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "hello"},
+      "input": {
+        "s": "hello"
+      },
       "expected": 17,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "repeated-character", "multiple-rows"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "repeated-character",
+        "multiple-rows"
+      ]
     },
     {
       "id": "sample-starting-key",
       "name": "sample: typing a at the initial position costs zero",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "a"},
+      "input": {
+        "s": "a"
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "minimum-length", "zero-distance"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "minimum-length",
+        "zero-distance"
+      ]
     },
     {
       "id": "trial-repeated-starting-key",
       "name": "trial: repeated a keys never move the finger",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "aa"},
+      "input": {
+        "s": "aa"
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "repeated-character", "zero-distance"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "repeated-character",
+        "zero-distance"
+      ]
     },
     {
       "id": "trial-top-right-corner",
       "name": "trial: p is ten steps from a",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "p"},
+      "input": {
+        "s": "p"
+      },
       "expected": 10,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "single-character", "top-row"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-character",
+        "top-row"
+      ]
     },
     {
       "id": "trial-bottom-left-corner",
       "name": "trial: z is directly below a",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "z"},
+      "input": {
+        "s": "z"
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "single-character", "bottom-row"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-character",
+        "bottom-row"
+      ]
     },
     {
       "id": "trial-vertical-zigzag",
       "name": "trial: q a z moves vertically through one column",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "qaz"},
+      "input": {
+        "s": "qaz"
+      },
       "expected": 3,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "column-aligned", "all-rows"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "column-aligned",
+        "all-rows"
+      ]
     },
     {
-      "id": "real-start-then-bottom",
-      "name": "hidden: an initial a is followed by one downward move",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "az"},
+      "id": "trial-start-then-bottom",
+      "name": "an initial a is followed by one downward move",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "az"
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "initial-position", "two-characters"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "initial-position",
+        "two-characters"
+      ]
     },
     {
-      "id": "real-return-to-start",
-      "name": "hidden: z then a pays for both directions",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "za"},
+      "id": "trial-return-to-start",
+      "name": "z then a pays for both directions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "za"
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "return-move", "two-characters"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "return-move",
+        "two-characters"
+      ]
     },
     {
-      "id": "real-ragged-row-boundaries",
-      "name": "hidden: p l m crosses the uneven row endings",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "plm"},
+      "id": "trial-ragged-row-boundaries",
+      "name": "p l m crosses the uneven row endings",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "plm"
+      },
       "expected": 15,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "uneven-rows", "right-edge"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "uneven-rows",
+        "right-edge"
+      ]
     },
     {
-      "id": "real-repeated-bottom-key",
-      "name": "hidden: only the first of four m keys requires movement",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "mmmm"},
+      "id": "trial-repeated-bottom-key",
+      "name": "only the first of four m keys requires movement",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "mmmm"
+      },
       "expected": 7,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "repeated-character", "bottom-row"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "repeated-character",
+        "bottom-row"
+      ]
     },
     {
-      "id": "real-adjacent-top-row",
-      "name": "hidden: qwerty walks through adjacent top-row keys",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "qwerty"},
+      "id": "trial-adjacent-top-row",
+      "name": "qwerty walks through adjacent top-row keys",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "qwerty"
+      },
       "expected": 6,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "adjacent-keys", "top-row"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "adjacent-keys",
+        "top-row"
+      ]
     },
     {
-      "id": "real-full-alphabet",
-      "name": "hidden: the complete alphabet exercises every keyboard key",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcdefghijklmnopqrstuvwxyz"},
+      "id": "trial-full-alphabet",
+      "name": "the complete alphabet exercises every keyboard key",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyz"
+      },
       "expected": 75,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "all-letters", "all-rows"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "all-letters",
+        "all-rows"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "h"
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "hhh"
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
     }
   ]
 }

@@ -77,10 +77,10 @@
       ]
     },
     {
-      "id": "real-full-string-only",
-      "name": "real: only the full string reaches the threshold",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-full-string-only",
+      "name": "only the full string reaches the threshold",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "ababa",
         "k": 3
@@ -92,18 +92,17 @@
       ]
     },
     {
-      "id": "real-multiple-starts",
-      "name": "real: valid suffixes begin at multiple starts",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-starts",
+      "name": "valid suffixes begin at multiple starts",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaab",
         "k": 2
       },
       "expected": 5,
       "tags": [
-        "overlapping",
-        "hidden"
+        "overlapping"
       ]
     }
   ]

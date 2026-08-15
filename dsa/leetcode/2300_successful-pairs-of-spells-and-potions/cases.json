@@ -2,14 +2,241 @@
   "schema_version": 1,
   "challenge_id": "lc_2300",
   "cases": [
-    {"id":"sample-varied-counts","name":"sample: three spells produce four zero and three pairs","kind":"sample","visible":true,"input":{"spells":[5,1,3],"potions":[1,2,3,4,5],"success":7},"expected":[4,0,3],"tags":["sample","varied-thresholds"]},
-    {"id":"sample-duplicates","name":"sample: duplicate potions count as separate pairs","kind":"sample","visible":true,"input":{"spells":[3,1,2],"potions":[8,5,8],"success":16},"expected":[2,0,2],"tags":["sample","duplicates","boundary"]},
-    {"id":"trial-exact-product","name":"products equal to success are included","kind":"trial","visible":true,"input":{"spells":[2,4],"potions":[2,3,4],"success":8},"expected":[1,3],"tags":["equality-boundary"]},
-    {"id":"trial-none","name":"no potion reaches a large threshold","kind":"trial","visible":true,"input":{"spells":[1,2],"potions":[1,2],"success":10},"expected":[0,0],"tags":["zero-count"]},
-    {"id":"trial-all","name":"every positive pair reaches success one","kind":"trial","visible":true,"input":{"spells":[1,100000],"potions":[1,7,100000],"success":1},"expected":[3,3],"tags":["all-pairs"]},
-    {"id":"real-ceiling","name":"hidden: integer ceiling separates neighboring potions","kind":"real","visible":false,"input":{"spells":[3],"potions":[3,4,5],"success":13},"expected":[1],"tags":["hidden","ceiling"]},
-    {"id":"real-large-bound","name":"hidden: maximum legal threshold is represented exactly","kind":"real","visible":false,"input":{"spells":[100000,99999],"potions":[99999,100000],"success":10000000000},"expected":[1,0],"tags":["hidden","large-product"]},
-    {"id":"real-spell-order","name":"hidden: output retains unsorted spell order","kind":"real","visible":false,"input":{"spells":[10,1,5,2],"potions":[2,6,3],"success":12},"expected":[3,0,2,1],"tags":["hidden","order"]},
-    {"id":"real-duplicate-spells","name":"hidden: equal spells receive equal independent counts","kind":"real","visible":false,"input":{"spells":[4,4,1],"potions":[3,3,5],"success":12},"expected":[3,3,0],"tags":["hidden","duplicates"]}
+    {
+      "id": "sample-varied-counts",
+      "name": "sample: three spells produce four zero and three pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "spells": [
+          5,
+          1,
+          3
+        ],
+        "potions": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "success": 7
+      },
+      "expected": [
+        4,
+        0,
+        3
+      ],
+      "tags": [
+        "sample",
+        "varied-thresholds"
+      ]
+    },
+    {
+      "id": "sample-duplicates",
+      "name": "sample: duplicate potions count as separate pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "spells": [
+          3,
+          1,
+          2
+        ],
+        "potions": [
+          8,
+          5,
+          8
+        ],
+        "success": 16
+      },
+      "expected": [
+        2,
+        0,
+        2
+      ],
+      "tags": [
+        "sample",
+        "duplicates",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-exact-product",
+      "name": "products equal to success are included",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "spells": [
+          2,
+          4
+        ],
+        "potions": [
+          2,
+          3,
+          4
+        ],
+        "success": 8
+      },
+      "expected": [
+        1,
+        3
+      ],
+      "tags": [
+        "equality-boundary"
+      ]
+    },
+    {
+      "id": "trial-none",
+      "name": "no potion reaches a large threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "spells": [
+          1,
+          2
+        ],
+        "potions": [
+          1,
+          2
+        ],
+        "success": 10
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "tags": [
+        "zero-count"
+      ]
+    },
+    {
+      "id": "trial-all",
+      "name": "every positive pair reaches success one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "spells": [
+          1,
+          100000
+        ],
+        "potions": [
+          1,
+          7,
+          100000
+        ],
+        "success": 1
+      },
+      "expected": [
+        3,
+        3
+      ],
+      "tags": [
+        "all-pairs"
+      ]
+    },
+    {
+      "id": "trial-ceiling",
+      "name": "integer ceiling separates neighboring potions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "spells": [
+          3
+        ],
+        "potions": [
+          3,
+          4,
+          5
+        ],
+        "success": 13
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "ceiling"
+      ]
+    },
+    {
+      "id": "trial-large-bound",
+      "name": "maximum legal threshold is represented exactly",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "spells": [
+          100000,
+          99999
+        ],
+        "potions": [
+          99999,
+          100000
+        ],
+        "success": 10000000000
+      },
+      "expected": [
+        1,
+        0
+      ],
+      "tags": [
+        "large-product"
+      ]
+    },
+    {
+      "id": "trial-spell-order",
+      "name": "output retains unsorted spell order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "spells": [
+          10,
+          1,
+          5,
+          2
+        ],
+        "potions": [
+          2,
+          6,
+          3
+        ],
+        "success": 12
+      },
+      "expected": [
+        3,
+        0,
+        2,
+        1
+      ],
+      "tags": [
+        "order"
+      ]
+    },
+    {
+      "id": "trial-duplicate-spells",
+      "name": "equal spells receive equal independent counts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "spells": [
+          4,
+          4,
+          1
+        ],
+        "potions": [
+          3,
+          3,
+          5
+        ],
+        "success": 12
+      },
+      "expected": [
+        3,
+        3,
+        0
+      ],
+      "tags": [
+        "duplicates"
+      ]
+    }
   ]
 }

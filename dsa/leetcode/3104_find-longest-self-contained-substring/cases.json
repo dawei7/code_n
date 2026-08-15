@@ -6,108 +6,165 @@
       "name": "sample: repeated middle character is isolated",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "abba"},
+      "input": {
+        "s": "abba"
+      },
       "expected": 2,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-interleaved",
       "name": "sample: interleaved occurrences forbid every proper substring",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "abab"},
+      "input": {
+        "s": "abab"
+      },
       "expected": -1,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-long-prefix",
       "name": "sample: longest self-contained interval is a prefix",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "abacd"},
+      "input": {
+        "s": "abacd"
+      },
       "expected": 4,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "trial-whole-string-only",
       "name": "trial: one repeated character permits only the whole string",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "aa"},
+      "input": {
+        "s": "aa"
+      },
       "expected": -1,
-      "tags": ["trial", "boundary"]
+      "tags": [
+        "trial",
+        "boundary"
+      ]
     },
     {
       "id": "trial-two-distinct",
       "name": "trial: either single character is self-contained",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "ab"},
+      "input": {
+        "s": "ab"
+      },
       "expected": 1,
-      "tags": ["trial", "boundary"]
+      "tags": [
+        "trial",
+        "boundary"
+      ]
     },
     {
       "id": "trial-repeated-prefix",
       "name": "trial: repeated prefix excludes one final character",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "aaaaab"},
+      "input": {
+        "s": "aaaaab"
+      },
       "expected": 5,
-      "tags": ["trial", "prefix"]
+      "tags": [
+        "trial",
+        "prefix"
+      ]
     },
     {
       "id": "trial-repeated-suffix",
       "name": "trial: repeated suffix excludes one initial character",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "baaaaa"},
+      "input": {
+        "s": "baaaaa"
+      },
       "expected": 5,
-      "tags": ["trial", "suffix"]
+      "tags": [
+        "trial",
+        "suffix"
+      ]
     },
     {
-      "id": "real-closed-prefix",
-      "name": "real: repeated three-character component forms a closed prefix",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcabcx"},
+      "id": "trial-closed-prefix",
+      "name": "repeated three-character component forms a closed prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcabcx"
+      },
       "expected": 6,
-      "tags": ["real", "closure"]
+      "tags": [
+        "real",
+        "closure"
+      ]
     },
     {
-      "id": "real-extend-across-components",
-      "name": "real: a valid interval extends across adjacent closed components",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "xabcabcy"},
+      "id": "trial-extend-across-components",
+      "name": "a valid interval extends across adjacent closed components",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "xabcabcy"
+      },
       "expected": 7,
-      "tags": ["real", "multiple-components"]
+      "tags": [
+        "real",
+        "multiple-components"
+      ]
     },
     {
-      "id": "real-later-component",
-      "name": "real: a shared early character invalidates a start before a later block",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abacdc"},
+      "id": "trial-later-component",
+      "name": "a shared early character invalidates a start before a later block",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abacdc"
+      },
       "expected": 3,
-      "tags": ["real", "invalid-start"]
+      "tags": [
+        "real",
+        "invalid-start"
+      ]
     },
     {
-      "id": "real-many-distinct",
-      "name": "real: all distinct characters allow every proper prefix",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcdefghijklmnopqrstuvwxyz"},
+      "id": "trial-many-distinct",
+      "name": "all distinct characters allow every proper prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyz"
+      },
       "expected": 25,
-      "tags": ["real", "distinct"]
+      "tags": [
+        "real",
+        "distinct"
+      ]
     },
     {
-      "id": "real-competing-closures",
-      "name": "real: nested occurrence spans leave a long proper prefix",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcddcbaef"},
+      "id": "trial-competing-closures",
+      "name": "nested occurrence spans leave a long proper prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcddcbaef"
+      },
       "expected": 9,
-      "tags": ["real", "nested"]
+      "tags": [
+        "real",
+        "nested"
+      ]
     }
   ]
 }

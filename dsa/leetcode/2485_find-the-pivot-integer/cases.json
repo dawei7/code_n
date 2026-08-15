@@ -7,72 +7,111 @@
       "name": "sample: interior pivot",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 8},
+      "input": {
+        "n": 8
+      },
       "expected": 6,
-      "tags": ["sample", "pivot-exists"]
+      "tags": [
+        "sample",
+        "pivot-exists"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: smallest input",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 1},
+      "input": {
+        "n": 1
+      },
       "expected": 1,
-      "tags": ["sample", "lower-bound"]
+      "tags": [
+        "sample",
+        "lower-bound"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: no pivot",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 4},
+      "input": {
+        "n": 4
+      },
       "expected": -1,
-      "tags": ["sample", "no-pivot"]
+      "tags": [
+        "sample",
+        "no-pivot"
+      ]
     },
     {
       "id": "trial-next-pivot",
       "name": "trial: second nontrivial pivot",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 49},
+      "input": {
+        "n": 49
+      },
       "expected": 35,
-      "tags": ["trial", "perfect-square"]
+      "tags": [
+        "trial",
+        "perfect-square"
+      ]
     },
     {
       "id": "trial-small-no-pivot",
       "name": "trial: smallest missing pivot",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 2},
+      "input": {
+        "n": 2
+      },
       "expected": -1,
-      "tags": ["trial", "no-pivot"]
+      "tags": [
+        "trial",
+        "no-pivot"
+      ]
     },
     {
-      "id": "real-neighbor-before",
-      "name": "hidden: value immediately before a pivot input",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 287},
+      "id": "trial-neighbor-before",
+      "name": "value immediately before a pivot input",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 287
+      },
       "expected": -1,
-      "tags": ["hidden", "near-pivot", "no-pivot"]
+      "tags": [
+        "near-pivot",
+        "no-pivot"
+      ]
     },
     {
-      "id": "real-large-pivot",
-      "name": "hidden: larger exact pivot",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 288},
+      "id": "trial-large-pivot",
+      "name": "larger exact pivot",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 288
+      },
       "expected": 204,
-      "tags": ["hidden", "perfect-square"]
+      "tags": [
+        "perfect-square"
+      ]
     },
     {
-      "id": "real-upper-bound",
-      "name": "hidden: maximum input without a pivot",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 1000},
+      "id": "trial-upper-bound",
+      "name": "maximum input without a pivot",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000
+      },
       "expected": -1,
-      "tags": ["hidden", "upper-bound", "no-pivot"]
+      "tags": [
+        "upper-bound",
+        "no-pivot"
+      ]
     }
   ]
 }

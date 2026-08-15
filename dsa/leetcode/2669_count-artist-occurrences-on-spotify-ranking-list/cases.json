@@ -1,7 +1,260 @@
-{"challenge_id":"lc_2669","cases":[
-{"id":"sample-tied-leaders","name":"sample: tied leaders use artist-name order","kind":"sample","visible":true,"input":{"tables":{"Spotify":[{"id":303651,"track_name":"Heart Won't Forget","artist":"Sia"},{"id":1046089,"track_name":"Shape of You","artist":"Ed Sheeran"},{"id":33445,"track_name":"I'm the One","artist":"DJ Khalid"},{"id":811266,"track_name":"Young Dumb & Broke","artist":"DJ Khalid"},{"id":505727,"track_name":"Happier","artist":"Ed Sheeran"}]}},"expected":{"columns":["artist","occurrences"],"rows":[["DJ Khalid",2],["Ed Sheeran",2],["Sia",1]]},"tags":["sample","tie"]},
-{"id":"trial-single-row","name":"trial: one artist occurrence","kind":"trial","visible":true,"input":{"tables":{"Spotify":[{"id":1,"track_name":"Solo","artist":"Ada"}]}},"expected":{"columns":["artist","occurrences"],"rows":[["Ada",1]]},"tags":["single"]},
-{"id":"trial-all-tied","name":"trial: all counts tied alphabetically","kind":"trial","visible":true,"input":{"tables":{"Spotify":[{"id":1,"track_name":"T1","artist":"Zed"},{"id":2,"track_name":"T2","artist":"Amy"},{"id":3,"track_name":"T3","artist":"Moe"}]}},"expected":{"columns":["artist","occurrences"],"rows":[["Amy",1],["Moe",1],["Zed",1]]},"tags":["tie","ordering"]},
-{"id":"real-distinct-counts","name":"hidden: descending counts dominate names","kind":"real","visible":false,"input":{"tables":{"Spotify":[{"id":1,"track_name":"A1","artist":"Z"},{"id":2,"track_name":"A2","artist":"Z"},{"id":3,"track_name":"A3","artist":"Z"},{"id":4,"track_name":"B1","artist":"A"},{"id":5,"track_name":"B2","artist":"A"},{"id":6,"track_name":"C1","artist":"M"}]}},"expected":{"columns":["artist","occurrences"],"rows":[["Z",3],["A",2],["M",1]]},"tags":["hidden","counts"]},
-{"id":"real-repeated-track-name","name":"hidden: rows count even when track names repeat","kind":"real","visible":false,"input":{"tables":{"Spotify":[{"id":10,"track_name":"Same","artist":"One"},{"id":11,"track_name":"Same","artist":"One"},{"id":12,"track_name":"Same","artist":"Two"}]}},"expected":{"columns":["artist","occurrences"],"rows":[["One",2],["Two",1]]},"tags":["hidden","row-count"]}
-]}
+{
+  "challenge_id": "lc_2669",
+  "cases": [
+    {
+      "id": "sample-tied-leaders",
+      "name": "sample: tied leaders use artist-name order",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Spotify": [
+            {
+              "id": 303651,
+              "track_name": "Heart Won't Forget",
+              "artist": "Sia"
+            },
+            {
+              "id": 1046089,
+              "track_name": "Shape of You",
+              "artist": "Ed Sheeran"
+            },
+            {
+              "id": 33445,
+              "track_name": "I'm the One",
+              "artist": "DJ Khalid"
+            },
+            {
+              "id": 811266,
+              "track_name": "Young Dumb & Broke",
+              "artist": "DJ Khalid"
+            },
+            {
+              "id": 505727,
+              "track_name": "Happier",
+              "artist": "Ed Sheeran"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "artist",
+          "occurrences"
+        ],
+        "rows": [
+          [
+            "DJ Khalid",
+            2
+          ],
+          [
+            "Ed Sheeran",
+            2
+          ],
+          [
+            "Sia",
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "tie"
+      ]
+    },
+    {
+      "id": "trial-single-row",
+      "name": "trial: one artist occurrence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Spotify": [
+            {
+              "id": 1,
+              "track_name": "Solo",
+              "artist": "Ada"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "artist",
+          "occurrences"
+        ],
+        "rows": [
+          [
+            "Ada",
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "single"
+      ]
+    },
+    {
+      "id": "trial-all-tied",
+      "name": "trial: all counts tied alphabetically",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Spotify": [
+            {
+              "id": 1,
+              "track_name": "T1",
+              "artist": "Zed"
+            },
+            {
+              "id": 2,
+              "track_name": "T2",
+              "artist": "Amy"
+            },
+            {
+              "id": 3,
+              "track_name": "T3",
+              "artist": "Moe"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "artist",
+          "occurrences"
+        ],
+        "rows": [
+          [
+            "Amy",
+            1
+          ],
+          [
+            "Moe",
+            1
+          ],
+          [
+            "Zed",
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "tie",
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-distinct-counts",
+      "name": "descending counts dominate names",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Spotify": [
+            {
+              "id": 1,
+              "track_name": "A1",
+              "artist": "Z"
+            },
+            {
+              "id": 2,
+              "track_name": "A2",
+              "artist": "Z"
+            },
+            {
+              "id": 3,
+              "track_name": "A3",
+              "artist": "Z"
+            },
+            {
+              "id": 4,
+              "track_name": "B1",
+              "artist": "A"
+            },
+            {
+              "id": 5,
+              "track_name": "B2",
+              "artist": "A"
+            },
+            {
+              "id": 6,
+              "track_name": "C1",
+              "artist": "M"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "artist",
+          "occurrences"
+        ],
+        "rows": [
+          [
+            "Z",
+            3
+          ],
+          [
+            "A",
+            2
+          ],
+          [
+            "M",
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "counts"
+      ]
+    },
+    {
+      "id": "trial-repeated-track-name",
+      "name": "rows count even when track names repeat",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Spotify": [
+            {
+              "id": 10,
+              "track_name": "Same",
+              "artist": "One"
+            },
+            {
+              "id": 11,
+              "track_name": "Same",
+              "artist": "One"
+            },
+            {
+              "id": 12,
+              "track_name": "Same",
+              "artist": "Two"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "artist",
+          "occurrences"
+        ],
+        "rows": [
+          [
+            "One",
+            2
+          ],
+          [
+            "Two",
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "row-count"
+      ]
+    }
+  ]
+}

@@ -1,13 +1,150 @@
 {
   "challenge_id": "lc_2654",
   "cases": [
-    {"id":"sample-create-one","name":"sample: create and spread one","kind":"sample","visible":true,"input":{"nums":[2,6,3,4]},"expected":4,"tags":["sample","gcd-one"]},
-    {"id":"sample-impossible","name":"sample: common divisor prevents one","kind":"sample","visible":true,"input":{"nums":[2,10,6,14]},"expected":-1,"tags":["sample","impossible"]},
-    {"id":"trial-existing-one","name":"trial: one already exists","kind":"trial","visible":true,"input":{"nums":[2,1,4]},"expected":2,"tags":["existing-one","propagation"]},
-    {"id":"trial-all-ones","name":"trial: no operation is needed","kind":"trial","visible":true,"input":{"nums":[1,1,1]},"expected":0,"tags":["all-ones","zero-operations"]},
-    {"id":"trial-two-coprime","name":"trial: shortest possible gcd-one segment","kind":"trial","visible":true,"input":{"nums":[2,3]},"expected":2,"tags":["minimum-length","coprime"]},
-    {"id":"real-full-segment","name":"hidden: only the full array has gcd one","kind":"real","visible":false,"input":{"nums":[6,10,15]},"expected":4,"tags":["hidden","full-segment"]},
-    {"id":"real-duplicate-ones","name":"hidden: several existing ones","kind":"real","visible":false,"input":{"nums":[1,7,1,9,1]},"expected":2,"tags":["hidden","multiple-ones"]},
-    {"id":"real-shortest-three","name":"hidden: shortest qualifying segment has length three","kind":"real","visible":false,"input":{"nums":[6,10,15,35]},"expected":5,"tags":["hidden","shortest-segment"]}
+    {
+      "id": "sample-create-one",
+      "name": "sample: create and spread one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          6,
+          3,
+          4
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "gcd-one"
+      ]
+    },
+    {
+      "id": "sample-impossible",
+      "name": "sample: common divisor prevents one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          10,
+          6,
+          14
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-existing-one",
+      "name": "trial: one already exists",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          4
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "existing-one",
+        "propagation"
+      ]
+    },
+    {
+      "id": "trial-all-ones",
+      "name": "trial: no operation is needed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "all-ones",
+        "zero-operations"
+      ]
+    },
+    {
+      "id": "trial-two-coprime",
+      "name": "trial: shortest possible gcd-one segment",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "minimum-length",
+        "coprime"
+      ]
+    },
+    {
+      "id": "trial-full-segment",
+      "name": "only the full array has gcd one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          10,
+          15
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "full-segment"
+      ]
+    },
+    {
+      "id": "trial-duplicate-ones",
+      "name": "several existing ones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          7,
+          1,
+          9,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "multiple-ones"
+      ]
+    },
+    {
+      "id": "trial-shortest-three",
+      "name": "shortest qualifying segment has length three",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          10,
+          15,
+          35
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "shortest-segment"
+      ]
+    }
   ]
 }

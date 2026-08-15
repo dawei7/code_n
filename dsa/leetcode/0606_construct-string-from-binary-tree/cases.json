@@ -93,10 +93,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: negative values and both child positions",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "negative values and both child positions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           -1,
@@ -110,15 +110,14 @@
       },
       "expected": "-1(-2)(3(4)(-5))",
       "tags": [
-        "hidden",
         "negative"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: nested right-only links",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "nested right-only links",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -130,7 +129,6 @@
       },
       "expected": "1()(2()(3))",
       "tags": [
-        "hidden",
         "skewed"
       ]
     }

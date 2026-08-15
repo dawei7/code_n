@@ -233,10 +233,10 @@
       ]
     },
     {
-      "id": "real-fixed-date-boundaries",
-      "name": "hidden: exclude January 31 and leap day",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-fixed-date-boundaries",
+      "name": "exclude January 31 and leap day",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Posts": [
@@ -287,10 +287,10 @@
       ]
     },
     {
-      "id": "real-multiple-users-sorted",
-      "name": "hidden: independently aggregate users and sort ascending",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-users-sorted",
+      "name": "independently aggregate users and sort ascending",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Posts": [
@@ -376,10 +376,10 @@
       ]
     },
     {
-      "id": "real-six-day-inclusive",
-      "name": "hidden: posts six days apart share a window",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-six-day-inclusive",
+      "name": "posts six days apart share a window",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Posts": [

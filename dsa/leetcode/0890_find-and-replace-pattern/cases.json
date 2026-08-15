@@ -136,10 +136,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: mirrored equality structure",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "mirrored equality structure",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "noon",
@@ -159,15 +159,14 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "mirror"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: first and last positions agree",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "first and last positions agree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "zbxz",
@@ -185,15 +184,14 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "repeated-letter"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: repeated three-letter block",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "repeated three-letter block",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "abcabc",
@@ -213,15 +211,14 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "repeated-block"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: duplicate matching words are preserved",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "duplicate matching words are preserved",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "mee",
@@ -240,15 +237,14 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: one-character duplicates",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-5",
+      "name": "one-character duplicates",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "z",
@@ -266,8 +262,42 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "single-letter",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc"
+        ],
+        "pattern": "abb"
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "abc"
+        ],
+        "pattern": "abb"
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
         "duplicates"
       ]
     }

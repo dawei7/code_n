@@ -7,200 +7,672 @@
       "name": "sample: two paths through a three by three grid",
       "kind": "sample",
       "visible": true,
-      "input": {"k": 2},
-      "expected": ["..#", "#..", "#.."],
-      "validator": {"kind": "bounded_exact_monotone_path_grid", "max_rows": 25, "max_columns": 25, "paths_param": "k"},
-      "tags": ["sample", "non-unique-output", "two-paths"]
+      "input": {
+        "k": 2
+      },
+      "expected": [
+        "..#",
+        "#..",
+        "#.."
+      ],
+      "validator": {
+        "kind": "bounded_exact_monotone_path_grid",
+        "max_rows": 25,
+        "max_columns": 25,
+        "paths_param": "k"
+      },
+      "tags": [
+        "sample",
+        "non-unique-output",
+        "two-paths"
+      ]
     },
     {
       "id": "sample-three-paths",
       "name": "sample: three paths through a three by three grid",
       "kind": "sample",
       "visible": true,
-      "input": {"k": 3},
-      "expected": ["...", "#..", "#.."],
-      "validator": {"kind": "bounded_exact_monotone_path_grid", "max_rows": 25, "max_columns": 25, "paths_param": "k"},
-      "tags": ["sample", "non-unique-output", "three-paths"]
+      "input": {
+        "k": 3
+      },
+      "expected": [
+        "...",
+        "#..",
+        "#.."
+      ],
+      "validator": {
+        "kind": "bounded_exact_monotone_path_grid",
+        "max_rows": 25,
+        "max_columns": 25,
+        "paths_param": "k"
+      },
+      "tags": [
+        "sample",
+        "non-unique-output",
+        "three-paths"
+      ]
     },
     {
       "id": "trial-minimum-one",
       "name": "trial: minimum path count",
       "kind": "trial",
       "visible": true,
-      "input": {"k": 1},
-      "expected": ["."],
-      "validator": {"kind": "bounded_exact_monotone_path_grid", "max_rows": 25, "max_columns": 25, "paths_param": "k"},
-      "tags": ["trial", "minimum", "single-bit"]
+      "input": {
+        "k": 1
+      },
+      "expected": [
+        "."
+      ],
+      "validator": {
+        "kind": "bounded_exact_monotone_path_grid",
+        "max_rows": 25,
+        "max_columns": 25,
+        "paths_param": "k"
+      },
+      "tags": [
+        "trial",
+        "minimum",
+        "single-bit"
+      ]
     },
     {
       "id": "trial-four-power",
       "name": "trial: a single higher power of two",
       "kind": "trial",
       "visible": true,
-      "input": {"k": 4},
-      "expected": ["....", "...."],
-      "validator": {"kind": "bounded_exact_monotone_path_grid", "max_rows": 25, "max_columns": 25, "paths_param": "k"},
-      "tags": ["trial", "power-of-two"]
+      "input": {
+        "k": 4
+      },
+      "expected": [
+        "....",
+        "...."
+      ],
+      "validator": {
+        "kind": "bounded_exact_monotone_path_grid",
+        "max_rows": 25,
+        "max_columns": 25,
+        "paths_param": "k"
+      },
+      "tags": [
+        "trial",
+        "power-of-two"
+      ]
     },
     {
       "id": "trial-five-two-bits",
       "name": "trial: low and high bits combine",
       "kind": "trial",
       "visible": true,
-      "input": {"k": 5},
-      "expected": [".....", "....."],
-      "validator": {"kind": "bounded_exact_monotone_path_grid", "max_rows": 25, "max_columns": 25, "paths_param": "k"},
-      "tags": ["trial", "multiple-bits"]
+      "input": {
+        "k": 5
+      },
+      "expected": [
+        ".....",
+        "....."
+      ],
+      "validator": {
+        "kind": "bounded_exact_monotone_path_grid",
+        "max_rows": 25,
+        "max_columns": 25,
+        "paths_param": "k"
+      },
+      "tags": [
+        "trial",
+        "multiple-bits"
+      ]
     },
     {
       "id": "trial-eight-power",
       "name": "trial: eight paths from one selected bit",
       "kind": "trial",
       "visible": true,
-      "input": {"k": 8},
-      "expected": ["........", "........"],
-      "validator": {"kind": "bounded_exact_monotone_path_grid", "max_rows": 25, "max_columns": 25, "paths_param": "k"},
-      "tags": ["trial", "power-of-two"]
+      "input": {
+        "k": 8
+      },
+      "expected": [
+        "........",
+        "........"
+      ],
+      "validator": {
+        "kind": "bounded_exact_monotone_path_grid",
+        "max_rows": 25,
+        "max_columns": 25,
+        "paths_param": "k"
+      },
+      "tags": [
+        "trial",
+        "power-of-two"
+      ]
     },
     {
       "id": "trial-sixteen-power",
       "name": "trial: sixteen paths from one selected bit",
       "kind": "trial",
       "visible": true,
-      "input": {"k": 16},
-      "expected": ["................", "................"],
-      "validator": {"kind": "bounded_exact_monotone_path_grid", "max_rows": 25, "max_columns": 25, "paths_param": "k"},
-      "tags": ["trial", "power-of-two"]
+      "input": {
+        "k": 16
+      },
+      "expected": [
+        "................",
+        "................"
+      ],
+      "validator": {
+        "kind": "bounded_exact_monotone_path_grid",
+        "max_rows": 25,
+        "max_columns": 25,
+        "paths_param": "k"
+      },
+      "tags": [
+        "trial",
+        "power-of-two"
+      ]
     },
     {
       "id": "trial-width-bound-twenty-five",
       "name": "trial: compact construction reaches the maximum column bound",
       "kind": "trial",
       "visible": true,
-      "input": {"k": 25},
-      "expected": [".........................", "........................."],
-      "validator": {"kind": "bounded_exact_monotone_path_grid", "max_rows": 25, "max_columns": 25, "paths_param": "k"},
-      "tags": ["trial", "maximum-columns", "multiple-bits"]
+      "input": {
+        "k": 25
+      },
+      "expected": [
+        ".........................",
+        "........................."
+      ],
+      "validator": {
+        "kind": "bounded_exact_monotone_path_grid",
+        "max_rows": 25,
+        "max_columns": 25,
+        "paths_param": "k"
+      },
+      "tags": [
+        "trial",
+        "maximum-columns",
+        "multiple-bits"
+      ]
     },
     {
-      "id": "real-five-low-bits",
-      "name": "hidden: all five low bits are selected",
-      "kind": "real",
-      "visible": false,
-      "input": {"k": 31},
-      "expected": [".............", "..##########.", "#............", "#..#########.", "##...........", "##..########.", "###..........", "###..#######.", "####.........", "####..######.", "#####..#####.", "#####..#####.", "######..####.", "######..####.", "#######..###.", "#######..###.", "########..##.", "########..##.", "#########..#.", "############."],
-      "validator": {"kind": "bounded_exact_monotone_path_grid", "max_rows": 25, "max_columns": 25, "paths_param": "k"},
-      "tags": ["hidden", "dense-bits"]
+      "id": "trial-five-low-bits",
+      "name": "all five low bits are selected",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 31
+      },
+      "expected": [
+        ".............",
+        "..##########.",
+        "#............",
+        "#..#########.",
+        "##...........",
+        "##..########.",
+        "###..........",
+        "###..#######.",
+        "####.........",
+        "####..######.",
+        "#####..#####.",
+        "#####..#####.",
+        "######..####.",
+        "######..####.",
+        "#######..###.",
+        "#######..###.",
+        "########..##.",
+        "########..##.",
+        "#########..#.",
+        "############."
+      ],
+      "validator": {
+        "kind": "bounded_exact_monotone_path_grid",
+        "max_rows": 25,
+        "max_columns": 25,
+        "paths_param": "k"
+      },
+      "tags": [
+        "dense-bits"
+      ]
     },
     {
-      "id": "real-thirty-two-power",
-      "name": "hidden: bit five alone",
-      "kind": "real",
-      "visible": false,
-      "input": {"k": 32},
-      "expected": ["..##########.", "..##########.", "#..#########.", "#..#########.", "##..########.", "##..########.", "###..#######.", "###..#######.", "####..######.", "####..######.", "#####........", "#####..#####.", "######..####.", "######..####.", "#######..###.", "#######..###.", "########..##.", "########..##.", "#########..#.", "############."],
-      "validator": {"kind": "bounded_exact_monotone_path_grid", "max_rows": 25, "max_columns": 25, "paths_param": "k"},
-      "tags": ["hidden", "power-of-two"]
+      "id": "trial-thirty-two-power",
+      "name": "bit five alone",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 32
+      },
+      "expected": [
+        "..##########.",
+        "..##########.",
+        "#..#########.",
+        "#..#########.",
+        "##..########.",
+        "##..########.",
+        "###..#######.",
+        "###..#######.",
+        "####..######.",
+        "####..######.",
+        "#####........",
+        "#####..#####.",
+        "######..####.",
+        "######..####.",
+        "#######..###.",
+        "#######..###.",
+        "########..##.",
+        "########..##.",
+        "#########..#.",
+        "############."
+      ],
+      "validator": {
+        "kind": "bounded_exact_monotone_path_grid",
+        "max_rows": 25,
+        "max_columns": 25,
+        "paths_param": "k"
+      },
+      "tags": [
+        "power-of-two"
+      ]
     },
     {
-      "id": "real-six-low-bits",
-      "name": "hidden: all six low bits are selected",
-      "kind": "real",
-      "visible": false,
-      "input": {"k": 63},
-      "expected": [".............", "..##########.", "#............", "#..#########.", "##...........", "##..########.", "###..........", "###..#######.", "####.........", "####..######.", "#####........", "#####..#####.", "######..####.", "######..####.", "#######..###.", "#######..###.", "########..##.", "########..##.", "#########..#.", "############."],
-      "validator": {"kind": "bounded_exact_monotone_path_grid", "max_rows": 25, "max_columns": 25, "paths_param": "k"},
-      "tags": ["hidden", "dense-bits"]
+      "id": "trial-six-low-bits",
+      "name": "all six low bits are selected",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 63
+      },
+      "expected": [
+        ".............",
+        "..##########.",
+        "#............",
+        "#..#########.",
+        "##...........",
+        "##..########.",
+        "###..........",
+        "###..#######.",
+        "####.........",
+        "####..######.",
+        "#####........",
+        "#####..#####.",
+        "######..####.",
+        "######..####.",
+        "#######..###.",
+        "#######..###.",
+        "########..##.",
+        "########..##.",
+        "#########..#.",
+        "############."
+      ],
+      "validator": {
+        "kind": "bounded_exact_monotone_path_grid",
+        "max_rows": 25,
+        "max_columns": 25,
+        "paths_param": "k"
+      },
+      "tags": [
+        "dense-bits"
+      ]
     },
     {
-      "id": "real-sixty-four-power",
-      "name": "hidden: bit six alone",
-      "kind": "real",
-      "visible": false,
-      "input": {"k": 64},
-      "expected": ["..##########.", "..##########.", "#..#########.", "#..#########.", "##..########.", "##..########.", "###..#######.", "###..#######.", "####..######.", "####..######.", "#####..#####.", "#####..#####.", "######.......", "######..####.", "#######..###.", "#######..###.", "########..##.", "########..##.", "#########..#.", "############."],
-      "validator": {"kind": "bounded_exact_monotone_path_grid", "max_rows": 25, "max_columns": 25, "paths_param": "k"},
-      "tags": ["hidden", "power-of-two"]
+      "id": "trial-sixty-four-power",
+      "name": "bit six alone",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 64
+      },
+      "expected": [
+        "..##########.",
+        "..##########.",
+        "#..#########.",
+        "#..#########.",
+        "##..########.",
+        "##..########.",
+        "###..#######.",
+        "###..#######.",
+        "####..######.",
+        "####..######.",
+        "#####..#####.",
+        "#####..#####.",
+        "######.......",
+        "######..####.",
+        "#######..###.",
+        "#######..###.",
+        "########..##.",
+        "########..##.",
+        "#########..#.",
+        "############."
+      ],
+      "validator": {
+        "kind": "bounded_exact_monotone_path_grid",
+        "max_rows": 25,
+        "max_columns": 25,
+        "paths_param": "k"
+      },
+      "tags": [
+        "power-of-two"
+      ]
     },
     {
-      "id": "real-seven-low-bits",
-      "name": "hidden: all seven low bits are selected",
-      "kind": "real",
-      "visible": false,
-      "input": {"k": 127},
-      "expected": [".............", "..##########.", "#............", "#..#########.", "##...........", "##..########.", "###..........", "###..#######.", "####.........", "####..######.", "#####........", "#####..#####.", "######.......", "######..####.", "#######..###.", "#######..###.", "########..##.", "########..##.", "#########..#.", "############."],
-      "validator": {"kind": "bounded_exact_monotone_path_grid", "max_rows": 25, "max_columns": 25, "paths_param": "k"},
-      "tags": ["hidden", "dense-bits"]
+      "id": "trial-seven-low-bits",
+      "name": "all seven low bits are selected",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 127
+      },
+      "expected": [
+        ".............",
+        "..##########.",
+        "#............",
+        "#..#########.",
+        "##...........",
+        "##..########.",
+        "###..........",
+        "###..#######.",
+        "####.........",
+        "####..######.",
+        "#####........",
+        "#####..#####.",
+        "######.......",
+        "######..####.",
+        "#######..###.",
+        "#######..###.",
+        "########..##.",
+        "########..##.",
+        "#########..#.",
+        "############."
+      ],
+      "validator": {
+        "kind": "bounded_exact_monotone_path_grid",
+        "max_rows": 25,
+        "max_columns": 25,
+        "paths_param": "k"
+      },
+      "tags": [
+        "dense-bits"
+      ]
     },
     {
-      "id": "real-one-hundred-twenty-eight-power",
-      "name": "hidden: bit seven alone",
-      "kind": "real",
-      "visible": false,
-      "input": {"k": 128},
-      "expected": ["..##########.", "..##########.", "#..#########.", "#..#########.", "##..########.", "##..########.", "###..#######.", "###..#######.", "####..######.", "####..######.", "#####..#####.", "#####..#####.", "######..####.", "######..####.", "#######......", "#######..###.", "########..##.", "########..##.", "#########..#.", "############."],
-      "validator": {"kind": "bounded_exact_monotone_path_grid", "max_rows": 25, "max_columns": 25, "paths_param": "k"},
-      "tags": ["hidden", "power-of-two"]
+      "id": "trial-one-hundred-twenty-eight-power",
+      "name": "bit seven alone",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 128
+      },
+      "expected": [
+        "..##########.",
+        "..##########.",
+        "#..#########.",
+        "#..#########.",
+        "##..########.",
+        "##..########.",
+        "###..#######.",
+        "###..#######.",
+        "####..######.",
+        "####..######.",
+        "#####..#####.",
+        "#####..#####.",
+        "######..####.",
+        "######..####.",
+        "#######......",
+        "#######..###.",
+        "########..##.",
+        "########..##.",
+        "#########..#.",
+        "############."
+      ],
+      "validator": {
+        "kind": "bounded_exact_monotone_path_grid",
+        "max_rows": 25,
+        "max_columns": 25,
+        "paths_param": "k"
+      },
+      "tags": [
+        "power-of-two"
+      ]
     },
     {
-      "id": "real-eight-low-bits",
-      "name": "hidden: all eight low bits are selected",
-      "kind": "real",
-      "visible": false,
-      "input": {"k": 255},
-      "expected": [".............", "..##########.", "#............", "#..#########.", "##...........", "##..########.", "###..........", "###..#######.", "####.........", "####..######.", "#####........", "#####..#####.", "######.......", "######..####.", "#######......", "#######..###.", "########..##.", "########..##.", "#########..#.", "############."],
-      "validator": {"kind": "bounded_exact_monotone_path_grid", "max_rows": 25, "max_columns": 25, "paths_param": "k"},
-      "tags": ["hidden", "dense-bits"]
+      "id": "trial-eight-low-bits",
+      "name": "all eight low bits are selected",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 255
+      },
+      "expected": [
+        ".............",
+        "..##########.",
+        "#............",
+        "#..#########.",
+        "##...........",
+        "##..########.",
+        "###..........",
+        "###..#######.",
+        "####.........",
+        "####..######.",
+        "#####........",
+        "#####..#####.",
+        "######.......",
+        "######..####.",
+        "#######......",
+        "#######..###.",
+        "########..##.",
+        "########..##.",
+        "#########..#.",
+        "############."
+      ],
+      "validator": {
+        "kind": "bounded_exact_monotone_path_grid",
+        "max_rows": 25,
+        "max_columns": 25,
+        "paths_param": "k"
+      },
+      "tags": [
+        "dense-bits"
+      ]
     },
     {
-      "id": "real-two-hundred-fifty-six-power",
-      "name": "hidden: bit eight alone",
-      "kind": "real",
-      "visible": false,
-      "input": {"k": 256},
-      "expected": ["..##########.", "..##########.", "#..#########.", "#..#########.", "##..########.", "##..########.", "###..#######.", "###..#######.", "####..######.", "####..######.", "#####..#####.", "#####..#####.", "######..####.", "######..####.", "#######..###.", "#######..###.", "########.....", "########..##.", "#########..#.", "############."],
-      "validator": {"kind": "bounded_exact_monotone_path_grid", "max_rows": 25, "max_columns": 25, "paths_param": "k"},
-      "tags": ["hidden", "power-of-two"]
+      "id": "trial-two-hundred-fifty-six-power",
+      "name": "bit eight alone",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 256
+      },
+      "expected": [
+        "..##########.",
+        "..##########.",
+        "#..#########.",
+        "#..#########.",
+        "##..########.",
+        "##..########.",
+        "###..#######.",
+        "###..#######.",
+        "####..######.",
+        "####..######.",
+        "#####..#####.",
+        "#####..#####.",
+        "######..####.",
+        "######..####.",
+        "#######..###.",
+        "#######..###.",
+        "########.....",
+        "########..##.",
+        "#########..#.",
+        "############."
+      ],
+      "validator": {
+        "kind": "bounded_exact_monotone_path_grid",
+        "max_rows": 25,
+        "max_columns": 25,
+        "paths_param": "k"
+      },
+      "tags": [
+        "power-of-two"
+      ]
     },
     {
-      "id": "real-nine-low-bits",
-      "name": "hidden: all nine low bits are selected",
-      "kind": "real",
-      "visible": false,
-      "input": {"k": 511},
-      "expected": [".............", "..##########.", "#............", "#..#########.", "##...........", "##..########.", "###..........", "###..#######.", "####.........", "####..######.", "#####........", "#####..#####.", "######.......", "######..####.", "#######......", "#######..###.", "########.....", "########..##.", "#########..#.", "############."],
-      "validator": {"kind": "bounded_exact_monotone_path_grid", "max_rows": 25, "max_columns": 25, "paths_param": "k"},
-      "tags": ["hidden", "dense-bits"]
+      "id": "trial-nine-low-bits",
+      "name": "all nine low bits are selected",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 511
+      },
+      "expected": [
+        ".............",
+        "..##########.",
+        "#............",
+        "#..#########.",
+        "##...........",
+        "##..########.",
+        "###..........",
+        "###..#######.",
+        "####.........",
+        "####..######.",
+        "#####........",
+        "#####..#####.",
+        "######.......",
+        "######..####.",
+        "#######......",
+        "#######..###.",
+        "########.....",
+        "########..##.",
+        "#########..#.",
+        "############."
+      ],
+      "validator": {
+        "kind": "bounded_exact_monotone_path_grid",
+        "max_rows": 25,
+        "max_columns": 25,
+        "paths_param": "k"
+      },
+      "tags": [
+        "dense-bits"
+      ]
     },
     {
-      "id": "real-five-hundred-twelve-power",
-      "name": "hidden: highest bit alone",
-      "kind": "real",
-      "visible": false,
-      "input": {"k": 512},
-      "expected": ["..##########.", "..##########.", "#..#########.", "#..#########.", "##..########.", "##..########.", "###..#######.", "###..#######.", "####..######.", "####..######.", "#####..#####.", "#####..#####.", "######..####.", "######..####.", "#######..###.", "#######..###.", "########..##.", "########..##.", "#########....", "############."],
-      "validator": {"kind": "bounded_exact_monotone_path_grid", "max_rows": 25, "max_columns": 25, "paths_param": "k"},
-      "tags": ["hidden", "highest-bit", "power-of-two"]
+      "id": "trial-five-hundred-twelve-power",
+      "name": "highest bit alone",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 512
+      },
+      "expected": [
+        "..##########.",
+        "..##########.",
+        "#..#########.",
+        "#..#########.",
+        "##..########.",
+        "##..########.",
+        "###..#######.",
+        "###..#######.",
+        "####..######.",
+        "####..######.",
+        "#####..#####.",
+        "#####..#####.",
+        "######..####.",
+        "######..####.",
+        "#######..###.",
+        "#######..###.",
+        "########..##.",
+        "########..##.",
+        "#########....",
+        "############."
+      ],
+      "validator": {
+        "kind": "bounded_exact_monotone_path_grid",
+        "max_rows": 25,
+        "max_columns": 25,
+        "paths_param": "k"
+      },
+      "tags": [
+        "highest-bit",
+        "power-of-two"
+      ]
     },
     {
-      "id": "real-near-maximum",
-      "name": "hidden: near-maximum sparse and dense bit mixture",
-      "kind": "real",
-      "visible": false,
-      "input": {"k": 999},
-      "expected": [".............", "..##########.", "#............", "#..#########.", "##...........", "##..########.", "###..#######.", "###..#######.", "####..######.", "####..######.", "#####........", "#####..#####.", "######.......", "######..####.", "#######......", "#######..###.", "########.....", "########..##.", "#########....", "############."],
-      "validator": {"kind": "bounded_exact_monotone_path_grid", "max_rows": 25, "max_columns": 25, "paths_param": "k"},
-      "tags": ["hidden", "near-maximum", "multiple-bits"]
+      "id": "trial-near-maximum",
+      "name": "near-maximum sparse and dense bit mixture",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 999
+      },
+      "expected": [
+        ".............",
+        "..##########.",
+        "#............",
+        "#..#########.",
+        "##...........",
+        "##..########.",
+        "###..#######.",
+        "###..#######.",
+        "####..######.",
+        "####..######.",
+        "#####........",
+        "#####..#####.",
+        "######.......",
+        "######..####.",
+        "#######......",
+        "#######..###.",
+        "########.....",
+        "########..##.",
+        "#########....",
+        "############."
+      ],
+      "validator": {
+        "kind": "bounded_exact_monotone_path_grid",
+        "max_rows": 25,
+        "max_columns": 25,
+        "paths_param": "k"
+      },
+      "tags": [
+        "near-maximum",
+        "multiple-bits"
+      ]
     },
     {
-      "id": "real-maximum",
-      "name": "hidden: maximum legal path count",
-      "kind": "real",
-      "visible": false,
-      "input": {"k": 1000},
-      "expected": ["..##########.", "..##########.", "#..#########.", "#..#########.", "##..########.", "##..########.", "###..........", "###..#######.", "####..######.", "####..######.", "#####........", "#####..#####.", "######.......", "######..####.", "#######......", "#######..###.", "########.....", "########..##.", "#########....", "############."],
-      "validator": {"kind": "bounded_exact_monotone_path_grid", "max_rows": 25, "max_columns": 25, "paths_param": "k"},
-      "tags": ["hidden", "maximum", "multiple-bits"]
+      "id": "trial-maximum",
+      "name": "maximum legal path count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 1000
+      },
+      "expected": [
+        "..##########.",
+        "..##########.",
+        "#..#########.",
+        "#..#########.",
+        "##..########.",
+        "##..########.",
+        "###..........",
+        "###..#######.",
+        "####..######.",
+        "####..######.",
+        "#####........",
+        "#####..#####.",
+        "######.......",
+        "######..####.",
+        "#######......",
+        "#######..###.",
+        "########.....",
+        "########..##.",
+        "#########....",
+        "############."
+      ],
+      "validator": {
+        "kind": "bounded_exact_monotone_path_grid",
+        "max_rows": 25,
+        "max_columns": 25,
+        "paths_param": "k"
+      },
+      "tags": [
+        "maximum",
+        "multiple-bits"
+      ]
     }
   ]
 }

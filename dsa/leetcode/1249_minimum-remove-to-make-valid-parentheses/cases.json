@@ -68,10 +68,10 @@
       ]
     },
     {
-      "id": "real-surplus-open",
-      "name": "hidden: surplus openings",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-surplus-open",
+      "name": "surplus openings",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "((a)(b"
       },
@@ -81,16 +81,44 @@
       ]
     },
     {
-      "id": "real-interleaved",
-      "name": "hidden: both mismatch directions",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-interleaved",
+      "name": "both mismatch directions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": ")a((b)c)("
       },
       "expected": "a((b)c)",
       "tags": [
         "real"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "l"
+      },
+      "expected": "l",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "lll"
+      },
+      "expected": "lll",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

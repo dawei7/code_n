@@ -7,81 +7,156 @@
       "name": "repeated digits leave three distinct numerical values",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "dfa12321afd"},
+      "input": {
+        "s": "dfa12321afd"
+      },
       "expected": 2,
-      "tags": ["example", "duplicates", "letters"]
+      "tags": [
+        "example",
+        "duplicates",
+        "letters"
+      ]
     },
     {
       "id": "example-one-distinct-digit",
       "name": "repetition does not create a second distinct digit",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "abc1111"},
+      "input": {
+        "s": "abc1111"
+      },
       "expected": -1,
-      "tags": ["example", "one-distinct-digit"]
+      "tags": [
+        "example",
+        "one-distinct-digit"
+      ]
     },
     {
       "id": "trial-zero-is-second-largest",
       "name": "zero can be the second largest distinct digit",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "ck077"},
+      "input": {
+        "s": "ck077"
+      },
       "expected": 0,
-      "tags": ["zero", "duplicates"]
+      "tags": [
+        "zero",
+        "duplicates"
+      ]
     },
     {
-      "id": "real-all-ten-digits",
-      "name": "hidden: descending digits return eight below nine",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "9876543210"},
+      "id": "trial-all-ten-digits",
+      "name": "descending digits return eight below nine",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "9876543210"
+      },
       "expected": 8,
-      "tags": ["all-digits", "descending"]
+      "tags": [
+        "all-digits",
+        "descending"
+      ]
     },
     {
-      "id": "real-no-digits",
-      "name": "hidden: a letters-only string has no numerical rank",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "algorithm"},
+      "id": "trial-no-digits",
+      "name": "a letters-only string has no numerical rank",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "algorithm"
+      },
       "expected": -1,
-      "tags": ["letters-only", "missing"]
+      "tags": [
+        "letters-only",
+        "missing"
+      ]
     },
     {
-      "id": "real-single-character-digit",
-      "name": "hidden: minimum-length digit input lacks a second value",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "5"},
+      "id": "trial-single-character-digit",
+      "name": "minimum-length digit input lacks a second value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "5"
+      },
       "expected": -1,
-      "tags": ["minimum-length", "one-distinct-digit"]
+      "tags": [
+        "minimum-length",
+        "one-distinct-digit"
+      ]
     },
     {
-      "id": "real-nine-and-zero-only",
-      "name": "hidden: distant digit values preserve zero as runner-up",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "9abc000xyz9"},
+      "id": "trial-nine-and-zero-only",
+      "name": "distant digit values preserve zero as runner-up",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "9abc000xyz9"
+      },
       "expected": 0,
-      "tags": ["zero", "nine", "duplicates"]
+      "tags": [
+        "zero",
+        "nine",
+        "duplicates"
+      ]
     },
     {
-      "id": "real-largest-arrives-last",
-      "name": "hidden: a new largest demotes the previous largest",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "a2b5c9"},
+      "id": "trial-largest-arrives-last",
+      "name": "a new largest demotes the previous largest",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a2b5c9"
+      },
       "expected": 5,
-      "tags": ["update-order", "largest-last"]
+      "tags": [
+        "update-order",
+        "largest-last"
+      ]
     },
     {
-      "id": "real-middle-value-arrives-last",
-      "name": "hidden: a late value replaces only the second rank",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "x9y1z7"},
+      "id": "trial-middle-value-arrives-last",
+      "name": "a late value replaces only the second rank",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "x9y1z7"
+      },
       "expected": 7,
-      "tags": ["update-order", "second-last"]
+      "tags": [
+        "update-order",
+        "second-last"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "d"
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ddd"
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
     }
   ]
 }

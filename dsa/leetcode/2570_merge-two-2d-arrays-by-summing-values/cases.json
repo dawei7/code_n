@@ -182,10 +182,10 @@
       ]
     },
     {
-      "id": "real-first-array-before-second",
-      "name": "hidden: the first array is exhausted before the second",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-first-array-before-second",
+      "name": "the first array is exhausted before the second",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           [
@@ -235,15 +235,14 @@
         ]
       ],
       "tags": [
-        "hidden",
         "remainder"
       ]
     },
     {
-      "id": "real-second-array-before-first",
-      "name": "hidden: the second array is exhausted before the first",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-second-array-before-first",
+      "name": "the second array is exhausted before the first",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           [
@@ -293,15 +292,14 @@
         ]
       ],
       "tags": [
-        "hidden",
         "remainder"
       ]
     },
     {
-      "id": "real-complete-overlap",
-      "name": "hidden: every ID receives two contributions",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-complete-overlap",
+      "name": "every ID receives two contributions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           [
@@ -347,15 +345,14 @@
         ]
       ],
       "tags": [
-        "hidden",
         "complete-overlap"
       ]
     },
     {
-      "id": "real-unequal-mixed",
-      "name": "hidden: overlap and unequal tails merge together",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unequal-mixed",
+      "name": "overlap and unequal tails merge together",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           [
@@ -409,15 +406,14 @@
         ]
       ],
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
     {
-      "id": "real-maximum-id-and-values",
-      "name": "hidden: summed value may exceed an individual value bound",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-id-and-values",
+      "name": "summed value may exceed an individual value bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           [
@@ -439,7 +435,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "maximum-values"
       ]
     }

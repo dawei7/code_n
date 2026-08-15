@@ -173,10 +173,10 @@
       ]
     },
     {
-      "id": "real-exact-digit-counts",
-      "name": "hidden: both digit groups contain exactly four digits",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-exact-digit-counts",
+      "name": "both digit groups contain exactly four digits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "products": [
@@ -223,15 +223,14 @@
         ]
       },
       "tags": [
-        "hidden",
         "digit-count"
       ]
     },
     {
-      "id": "real-word-boundaries",
-      "name": "hidden: token cannot be embedded in a larger word",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-word-boundaries",
+      "name": "token cannot be embedded in a larger word",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "products": [
@@ -278,15 +277,14 @@
         ]
       },
       "tags": [
-        "hidden",
         "word-boundary"
       ]
     },
     {
-      "id": "real-multiple-candidates",
-      "name": "hidden: any valid occurrence qualifies a product once",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-candidates",
+      "name": "any valid occurrence qualifies a product once",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "products": [
@@ -328,15 +326,14 @@
         ]
       },
       "tags": [
-        "hidden",
         "multiple-occurrences"
       ]
     },
     {
-      "id": "real-separator-and-prefix-traps",
-      "name": "hidden: exact hyphen and adjacent digit rules",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-separator-and-prefix-traps",
+      "name": "exact hyphen and adjacent digit rules",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "products": [
@@ -378,15 +375,14 @@
         ]
       },
       "tags": [
-        "hidden",
         "separator"
       ]
     },
     {
-      "id": "real-empty-result",
-      "name": "hidden: no description contains a valid token",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-empty-result",
+      "name": "no description contains a valid token",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "products": [
@@ -412,7 +408,6 @@
         "rows": []
       },
       "tags": [
-        "hidden",
         "empty"
       ]
     }

@@ -6,64 +6,104 @@
       "name": "sample: choose the lexicographically smallest shortest substring",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "100011001", "k": 3},
+      "input": {
+        "s": "100011001",
+        "k": 3
+      },
       "expected": "11001",
-      "tags": ["sample", "lexicographic-tie"]
+      "tags": [
+        "sample",
+        "lexicographic-tie"
+      ]
     },
     {
       "id": "sample-adjacent-ones",
       "name": "sample: adjacent ones give the shortest result",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "1011", "k": 2},
+      "input": {
+        "s": "1011",
+        "k": 2
+      },
       "expected": "11",
-      "tags": ["sample", "shortest"]
+      "tags": [
+        "sample",
+        "shortest"
+      ]
     },
     {
       "id": "sample-no-solution",
       "name": "sample: too few ones",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "000", "k": 1},
+      "input": {
+        "s": "000",
+        "k": 1
+      },
       "expected": "",
-      "tags": ["sample", "not-found"]
+      "tags": [
+        "sample",
+        "not-found"
+      ]
     },
     {
       "id": "trial-lexicographic-tie",
       "name": "equal-length candidates require lexicographic ordering",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "1101011", "k": 3},
+      "input": {
+        "s": "1101011",
+        "k": 3
+      },
       "expected": "1011",
-      "tags": ["tie", "lexicographic"]
+      "tags": [
+        "tie",
+        "lexicographic"
+      ]
     },
     {
       "id": "trial-single-one",
       "name": "one required occurrence always reduces to one character",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "0001000", "k": 1},
+      "input": {
+        "s": "0001000",
+        "k": 1
+      },
       "expected": "1",
-      "tags": ["leading-zeros", "trailing-zeros"]
+      "tags": [
+        "leading-zeros",
+        "trailing-zeros"
+      ]
     },
     {
-      "id": "real-strip-boundary-zeros",
-      "name": "hidden: leading and trailing zeros cannot improve a candidate",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "00010010", "k": 2},
+      "id": "trial-strip-boundary-zeros",
+      "name": "leading and trailing zeros cannot improve a candidate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "00010010",
+        "k": 2
+      },
       "expected": "1001",
-      "tags": ["hidden", "window-boundaries"]
+      "tags": [
+        "window-boundaries"
+      ]
     },
     {
-      "id": "real-maximum-length",
-      "name": "hidden: the entire maximum-length string is required",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111", "k": 100},
+      "id": "trial-maximum-length",
+      "name": "the entire maximum-length string is required",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111",
+        "k": 100
+      },
       "expected": "1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111",
-      "tags": ["hidden", "maximum-length", "boundary"]
+      "tags": [
+        "maximum-length",
+        "boundary"
+      ]
     }
   ]
 }
-

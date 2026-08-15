@@ -1,6 +1,86 @@
-{"challenge_id":"lc_224","cases":[
-{"id":"sample-simple","name":"sample: addition and subtraction","kind":"sample","visible":true,"input":{"s":"1 + 1"},"expected":2,"tags":["sample","parser"]},
-{"id":"sample-parentheses","name":"sample: nested context signs","kind":"sample","visible":true,"input":{"s":"(1+(4+5+2)-3)+(6+8)"},"expected":23,"tags":["parentheses"]},
-{"id":"trial-unary","name":"leading unary minus","kind":"trial","visible":true,"input":{"s":"-2 + 1"},"expected":-1,"tags":["unary"]},
-{"id":"real-negated-group","name":"hidden: subtract negative group","kind":"real","visible":false,"input":{"s":"1-(-2+3)"},"expected":0,"tags":["hidden","nested-sign"]}
-]}
+{
+  "challenge_id": "lc_224",
+  "cases": [
+    {
+      "id": "sample-simple",
+      "name": "sample: addition and subtraction",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "1 + 1"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "parser"
+      ]
+    },
+    {
+      "id": "sample-parentheses",
+      "name": "sample: nested context signs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "(1+(4+5+2)-3)+(6+8)"
+      },
+      "expected": 23,
+      "tags": [
+        "parentheses"
+      ]
+    },
+    {
+      "id": "trial-unary",
+      "name": "leading unary minus",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "-2 + 1"
+      },
+      "expected": -1,
+      "tags": [
+        "unary"
+      ]
+    },
+    {
+      "id": "trial-negated-group",
+      "name": "subtract negative group",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1-(-2+3)"
+      },
+      "expected": 0,
+      "tags": [
+        "nested-sign"
+      ]
+    },
+    {
+      "id": "trial-boundary-5",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-6",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "111"
+      },
+      "expected": 111,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
+    }
+  ]
+}

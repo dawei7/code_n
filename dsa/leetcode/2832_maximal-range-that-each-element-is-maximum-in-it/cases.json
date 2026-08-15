@@ -124,10 +124,10 @@
       ]
     },
     {
-      "id": "real-nested-right-ranges",
-      "name": "hidden: decreasing peaks create nested right ranges",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-nested-right-ranges",
+      "name": "decreasing peaks create nested right ranges",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -147,15 +147,14 @@
         1
       ],
       "tags": [
-        "hidden",
         "nested-ranges"
       ]
     },
     {
-      "id": "real-alternating-peaks",
-      "name": "hidden: alternating peaks have blockers on both sides",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alternating-peaks",
+      "name": "alternating peaks have blockers on both sides",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -173,15 +172,14 @@
         5
       ],
       "tags": [
-        "hidden",
         "both-boundaries"
       ]
     },
     {
-      "id": "real-interior-global-maximum",
-      "name": "hidden: the central maximum spans both sides",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-interior-global-maximum",
+      "name": "the central maximum spans both sides",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -203,15 +201,14 @@
         2
       ],
       "tags": [
-        "hidden",
         "interior-maximum"
       ]
     },
     {
-      "id": "real-maximum-value-boundary",
-      "name": "hidden: values may reach the maximum allowed value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-value-boundary",
+      "name": "values may reach the maximum allowed value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000,
@@ -227,15 +224,14 @@
         1
       ],
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
     {
-      "id": "real-deep-stack-pops",
-      "name": "hidden: later peaks remove several smaller blockers",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-deep-stack-pops",
+      "name": "later peaks remove several smaller blockers",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -261,8 +257,45 @@
         9
       ],
       "tags": [
-        "hidden",
         "stack-pops"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": [
+        2,
+        2
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

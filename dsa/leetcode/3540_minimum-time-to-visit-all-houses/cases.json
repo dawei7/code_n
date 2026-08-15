@@ -115,10 +115,10 @@
       ]
     },
     {
-      "id": "real-forward-wrap",
-      "name": "real: forward edge wraps from the last house to zero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-forward-wrap",
+      "name": "forward edge wraps from the last house to zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "forward": [
           10,
@@ -144,10 +144,10 @@
       ]
     },
     {
-      "id": "real-backward-wrap",
-      "name": "real: backward edge wraps from zero to the last house",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-backward-wrap",
+      "name": "backward edge wraps from zero to the last house",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "forward": [
           100,
@@ -173,10 +173,10 @@
       ]
     },
     {
-      "id": "real-alternating",
-      "name": "real: alternating targets repeatedly cross the circle",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alternating",
+      "name": "alternating targets repeatedly cross the circle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "forward": [
           2,
@@ -209,10 +209,10 @@
       ]
     },
     {
-      "id": "real-large-weights",
-      "name": "real: large road weights require a wide total",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-weights",
+      "name": "large road weights require a wide total",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "forward": [
           100000,
@@ -235,6 +235,60 @@
       "tags": [
         "real",
         "large-weights"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in forward",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "forward": [
+          1,
+          1
+        ],
+        "backward": [
+          4,
+          1,
+          2
+        ],
+        "queries": [
+          1,
+          2,
+          0,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in queries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "forward": [
+          1,
+          4,
+          4
+        ],
+        "backward": [
+          4,
+          1,
+          2
+        ],
+        "queries": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

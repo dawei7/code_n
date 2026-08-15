@@ -103,6 +103,20 @@
         "power-of-two",
         "deep-nesting"
       ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": "1",
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
     }
   ]
 }

@@ -2,13 +2,323 @@
   "schema_version": 1,
   "challenge_id": "lc_2196",
   "cases": [
-    {"id":"sample-branching","name":"sample: root connects two branching subtrees","kind":"sample","visible":true,"input":{"descriptions":[[20,15,1],[20,17,0],[50,20,1],[50,80,0],[80,19,1]]},"expected":[50,20,80,15,17,19],"tags":["sample","branching"]},
-    {"id":"sample-zigzag","name":"sample: alternating directions form a deep path","kind":"sample","visible":true,"input":{"descriptions":[[1,2,1],[2,3,0],[3,4,1]]},"expected":[1,2,null,null,3,4],"tags":["sample","deep-path"]},
-    {"id":"trial-two-nodes","name":"one right edge forms the smallest tree","kind":"trial","visible":true,"input":{"descriptions":[[7,9,0]]},"expected":[7,null,9],"tags":["minimum","right-child"]},
-    {"id":"trial-root-listed-last","name":"root relationship appears after descendants","kind":"trial","visible":true,"input":{"descriptions":[[2,4,1],[2,5,0],[1,2,1],[1,3,0]]},"expected":[1,2,3,4,5],"tags":["unordered","root-last"]},
-    {"id":"trial-left-chain","name":"all edges point to left children","kind":"trial","visible":true,"input":{"descriptions":[[3,4,1],[1,2,1],[2,3,1]]},"expected":[1,2,null,3,null,4],"tags":["left-chain","unordered"]},
-    {"id":"real-large-values","name":"hidden: sparse maximum-scale labels share node objects","kind":"real","visible":false,"input":{"descriptions":[[100000,1,1],[100000,99999,0],[99999,50000,1]]},"expected":[100000,1,99999,null,null,50000],"tags":["hidden","large-values"]},
-    {"id":"real-child-first","name":"hidden: node is introduced as child before becoming parent","kind":"real","visible":false,"input":{"descriptions":[[8,6,0],[10,8,1],[6,4,1],[10,12,0]]},"expected":[10,8,12,null,6,null,null,4],"tags":["hidden","child-first"]},
-    {"id":"real-full-small","name":"hidden: complete three-level tree","kind":"real","visible":false,"input":{"descriptions":[[2,4,1],[3,7,0],[1,3,0],[2,5,0],[1,2,1],[3,6,1]]},"expected":[1,2,3,4,5,6,7],"tags":["hidden","complete-tree","unordered"]}
+    {
+      "id": "sample-branching",
+      "name": "sample: root connects two branching subtrees",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "descriptions": [
+          [
+            20,
+            15,
+            1
+          ],
+          [
+            20,
+            17,
+            0
+          ],
+          [
+            50,
+            20,
+            1
+          ],
+          [
+            50,
+            80,
+            0
+          ],
+          [
+            80,
+            19,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        50,
+        20,
+        80,
+        15,
+        17,
+        19
+      ],
+      "tags": [
+        "sample",
+        "branching"
+      ]
+    },
+    {
+      "id": "sample-zigzag",
+      "name": "sample: alternating directions form a deep path",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "descriptions": [
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            2,
+            3,
+            0
+          ],
+          [
+            3,
+            4,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        null,
+        null,
+        3,
+        4
+      ],
+      "tags": [
+        "sample",
+        "deep-path"
+      ]
+    },
+    {
+      "id": "trial-two-nodes",
+      "name": "one right edge forms the smallest tree",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "descriptions": [
+          [
+            7,
+            9,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        7,
+        null,
+        9
+      ],
+      "tags": [
+        "minimum",
+        "right-child"
+      ]
+    },
+    {
+      "id": "trial-root-listed-last",
+      "name": "root relationship appears after descendants",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "descriptions": [
+          [
+            2,
+            4,
+            1
+          ],
+          [
+            2,
+            5,
+            0
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            1,
+            3,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "tags": [
+        "unordered",
+        "root-last"
+      ]
+    },
+    {
+      "id": "trial-left-chain",
+      "name": "all edges point to left children",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "descriptions": [
+          [
+            3,
+            4,
+            1
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            2,
+            3,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        null,
+        3,
+        null,
+        4
+      ],
+      "tags": [
+        "left-chain",
+        "unordered"
+      ]
+    },
+    {
+      "id": "trial-large-values",
+      "name": "sparse maximum-scale labels share node objects",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "descriptions": [
+          [
+            100000,
+            1,
+            1
+          ],
+          [
+            100000,
+            99999,
+            0
+          ],
+          [
+            99999,
+            50000,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        100000,
+        1,
+        99999,
+        null,
+        null,
+        50000
+      ],
+      "tags": [
+        "large-values"
+      ]
+    },
+    {
+      "id": "trial-child-first",
+      "name": "node is introduced as child before becoming parent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "descriptions": [
+          [
+            8,
+            6,
+            0
+          ],
+          [
+            10,
+            8,
+            1
+          ],
+          [
+            6,
+            4,
+            1
+          ],
+          [
+            10,
+            12,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        10,
+        8,
+        12,
+        null,
+        6,
+        null,
+        null,
+        4
+      ],
+      "tags": [
+        "child-first"
+      ]
+    },
+    {
+      "id": "trial-full-small",
+      "name": "complete three-level tree",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "descriptions": [
+          [
+            2,
+            4,
+            1
+          ],
+          [
+            3,
+            7,
+            0
+          ],
+          [
+            1,
+            3,
+            0
+          ],
+          [
+            2,
+            5,
+            0
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            3,
+            6,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "tags": [
+        "complete-tree",
+        "unordered"
+      ]
+    }
   ]
 }

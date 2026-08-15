@@ -98,10 +98,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: latest possible time",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "latest possible time",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           2,
@@ -112,15 +112,14 @@
       },
       "expected": "23:59",
       "tags": [
-        "hidden",
         "latest"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: repeated nines",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "repeated nines",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -131,15 +130,14 @@
       },
       "expected": "19:59",
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: one nonzero digit",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "one nonzero digit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           0,
@@ -150,15 +148,14 @@
       },
       "expected": "10:00",
       "tags": [
-        "hidden",
         "zeros"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: no valid minute",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "no valid minute",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           9,
@@ -169,8 +166,40 @@
       },
       "expected": "",
       "tags": [
-        "hidden",
         "invalid"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in arr",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1
+        ]
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in arr",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          1
+        ]
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

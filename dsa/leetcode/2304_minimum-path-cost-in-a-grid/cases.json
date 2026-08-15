@@ -2,11 +2,311 @@
   "schema_version": 1,
   "challenge_id": "lc_2304",
   "cases": [
-    {"id":"sample-three-rows","name":"sample: cheapest path crosses three rows","kind":"sample","visible":true,"input":{"grid":[[5,3],[4,0],[2,1]],"moveCost":[[9,8],[1,5],[10,12],[18,6],[2,4],[14,3]]},"expected":17,"tags":["sample","dynamic-programming"]},
-    {"id":"sample-two-rows","name":"sample: cheapest path begins in the third column","kind":"sample","visible":true,"input":{"grid":[[5,1,2],[4,0,3]],"moveCost":[[12,10,15],[20,23,8],[21,7,1],[8,1,13],[9,10,25],[5,3,2]]},"expected":6,"tags":["sample","arbitrary-start"]},
-    {"id":"trial-uniform-moves","name":"uniform move costs favor the smallest cell in each row","kind":"trial","visible":true,"input":{"grid":[[0,1],[2,3]],"moveCost":[[1,1],[1,1],[1,1],[1,1]]},"expected":3,"tags":["two-rows"]},
-    {"id":"trial-move-overrides-cell","name":"transition cost can outweigh a smaller destination value","kind":"trial","visible":true,"input":{"grid":[[0,1],[2,3]],"moveCost":[[100,1],[1,100],[1,1],[1,1]]},"expected":4,"tags":["transition-cost"]},
-    {"id":"real-later-start","name":"hidden: the optimal path need not start at the smallest top value","kind":"real","visible":false,"input":{"grid":[[0,3],[2,1]],"moveCost":[[50,50],[1,1],[1,1],[1,1]]},"expected":5,"tags":["hidden","arbitrary-start"]},
-    {"id":"real-three-columns","name":"hidden: each layer compares every predecessor and destination","kind":"real","visible":false,"input":{"grid":[[8,0,7],[5,2,4],[1,3,6]],"moveCost":[[9,9,1],[1,9,9],[9,1,9],[9,9,1],[1,9,9],[9,1,9],[9,9,1],[1,9,9],[9,1,9]]},"expected":7,"tags":["hidden","all-transitions"]}
+    {
+      "id": "sample-three-rows",
+      "name": "sample: cheapest path crosses three rows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            5,
+            3
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "moveCost": [
+          [
+            9,
+            8
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            10,
+            12
+          ],
+          [
+            18,
+            6
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            14,
+            3
+          ]
+        ]
+      },
+      "expected": 17,
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-two-rows",
+      "name": "sample: cheapest path begins in the third column",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            5,
+            1,
+            2
+          ],
+          [
+            4,
+            0,
+            3
+          ]
+        ],
+        "moveCost": [
+          [
+            12,
+            10,
+            15
+          ],
+          [
+            20,
+            23,
+            8
+          ],
+          [
+            21,
+            7,
+            1
+          ],
+          [
+            8,
+            1,
+            13
+          ],
+          [
+            9,
+            10,
+            25
+          ],
+          [
+            5,
+            3,
+            2
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "arbitrary-start"
+      ]
+    },
+    {
+      "id": "trial-uniform-moves",
+      "name": "uniform move costs favor the smallest cell in each row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "moveCost": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "two-rows"
+      ]
+    },
+    {
+      "id": "trial-move-overrides-cell",
+      "name": "transition cost can outweigh a smaller destination value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "moveCost": [
+          [
+            100,
+            1
+          ],
+          [
+            1,
+            100
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "transition-cost"
+      ]
+    },
+    {
+      "id": "trial-later-start",
+      "name": "the optimal path need not start at the smallest top value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            3
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "moveCost": [
+          [
+            50,
+            50
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "arbitrary-start"
+      ]
+    },
+    {
+      "id": "trial-three-columns",
+      "name": "each layer compares every predecessor and destination",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            8,
+            0,
+            7
+          ],
+          [
+            5,
+            2,
+            4
+          ],
+          [
+            1,
+            3,
+            6
+          ]
+        ],
+        "moveCost": [
+          [
+            9,
+            9,
+            1
+          ],
+          [
+            1,
+            9,
+            9
+          ],
+          [
+            9,
+            1,
+            9
+          ],
+          [
+            9,
+            9,
+            1
+          ],
+          [
+            1,
+            9,
+            9
+          ],
+          [
+            9,
+            1,
+            9
+          ],
+          [
+            9,
+            9,
+            1
+          ],
+          [
+            1,
+            9,
+            9
+          ],
+          [
+            9,
+            1,
+            9
+          ]
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "all-transitions"
+      ]
+    }
   ]
 }

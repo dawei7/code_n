@@ -96,10 +96,10 @@
       ]
     },
     {
-      "id": "hidden-zero-after-repair",
-      "name": "hidden: repair leaves only zeroes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zero-after-repair",
+      "name": "repair leaves only zeroes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "digits": [
           0,
@@ -109,15 +109,14 @@
       },
       "expected": "0",
       "tags": [
-        "hidden",
         "zero-normalization"
       ]
     },
     {
-      "id": "hidden-duplicates",
-      "name": "hidden: duplicate counts remain ordered",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicates",
+      "name": "duplicate counts remain ordered",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "digits": [
           5,
@@ -132,7 +131,39 @@
       },
       "expected": "55544430",
       "tags": [
-        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in digits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "digits": [
+          8
+        ]
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in digits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "digits": [
+          8,
+          8
+        ]
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
         "duplicates"
       ]
     }

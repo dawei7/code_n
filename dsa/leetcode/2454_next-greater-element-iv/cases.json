@@ -6,72 +6,188 @@
       "name": "sample: mixed first and second greater values",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 4, 0, 9, 6]},
-      "expected": [9, 6, 6, -1, -1],
-      "tags": ["sample", "monotonic-stack"]
+      "input": {
+        "nums": [
+          2,
+          4,
+          0,
+          9,
+          6
+        ]
+      },
+      "expected": [
+        9,
+        6,
+        6,
+        -1,
+        -1
+      ],
+      "tags": [
+        "sample",
+        "monotonic-stack"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: equal values do not qualify",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [3, 3]},
-      "expected": [-1, -1],
-      "tags": ["sample", "strict-comparison"]
+      "input": {
+        "nums": [
+          3,
+          3
+        ]
+      },
+      "expected": [
+        -1,
+        -1
+      ],
+      "tags": [
+        "sample",
+        "strict-comparison"
+      ]
     },
     {
       "id": "trial-definition-example",
       "name": "trial: second greater need not be larger than first",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 4, 3]},
-      "expected": [4, 3, -1, -1],
-      "tags": ["trial", "index-order"]
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          3
+        ]
+      },
+      "expected": [
+        4,
+        3,
+        -1,
+        -1
+      ],
+      "tags": [
+        "trial",
+        "index-order"
+      ]
     },
     {
       "id": "trial-duplicates",
       "name": "trial: repeated greater values count at distinct indices",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 2, 3, 3, 4]},
-      "expected": [3, 3, -1, -1, -1],
-      "tags": ["trial", "duplicates"]
+      "input": {
+        "nums": [
+          2,
+          2,
+          3,
+          3,
+          4
+        ]
+      },
+      "expected": [
+        3,
+        3,
+        -1,
+        -1,
+        -1
+      ],
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
     },
     {
-      "id": "real-zero-and-rise",
-      "name": "hidden: zeros with later increases",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 1, 0, 2, 3]},
-      "expected": [2, 3, 3, -1, -1],
-      "tags": ["hidden", "zero"]
+      "id": "trial-zero-and-rise",
+      "name": "zeros with later increases",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          0,
+          2,
+          3
+        ]
+      },
+      "expected": [
+        2,
+        3,
+        3,
+        -1,
+        -1
+      ],
+      "tags": [
+        "zero"
+      ]
     },
     {
-      "id": "real-decreasing",
-      "name": "hidden: strictly decreasing array",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [9, 7, 5, 3, 1]},
-      "expected": [-1, -1, -1, -1, -1],
-      "tags": ["hidden", "decreasing"]
+      "id": "trial-decreasing",
+      "name": "strictly decreasing array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          7,
+          5,
+          3,
+          1
+        ]
+      },
+      "expected": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "tags": [
+        "decreasing"
+      ]
     },
     {
-      "id": "real-singleton",
-      "name": "hidden: singleton",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0]},
-      "expected": [-1],
-      "tags": ["hidden", "singleton"]
+      "id": "trial-singleton",
+      "name": "singleton",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0
+        ]
+      },
+      "expected": [
+        -1
+      ],
+      "tags": [
+        "singleton"
+      ]
     },
     {
-      "id": "real-large-values",
-      "name": "hidden: maximum values and strict equality",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [999999999, 1000000000, 1000000000, 999999998, 1000000000]},
-      "expected": [1000000000, -1, -1, -1, -1],
-      "tags": ["hidden", "large-values"]
+      "id": "trial-large-values",
+      "name": "maximum values and strict equality",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          999999999,
+          1000000000,
+          1000000000,
+          999999998,
+          1000000000
+        ]
+      },
+      "expected": [
+        1000000000,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "tags": [
+        "large-values"
+      ]
     }
   ]
 }

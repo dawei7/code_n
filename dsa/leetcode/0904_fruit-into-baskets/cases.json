@@ -115,10 +115,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: frequent third types",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "frequent third types",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           0,
@@ -131,15 +131,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "three-types"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: long trailing run",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "long trailing run",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           1,
@@ -153,15 +152,14 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "trailing-run"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: type zero and boundary type",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "type zero and boundary type",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           5,
@@ -173,15 +171,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "zero"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: overlapping optimal windows",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "overlapping optimal windows",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           3,
@@ -196,7 +193,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "overlap"
       ]
     }

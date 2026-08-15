@@ -143,10 +143,10 @@
       ]
     },
     {
-      "id": "real-several-capacities",
-      "name": "real: independent quotas across groups",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-several-capacities",
+      "name": "independent quotas across groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "value": [
           9,
@@ -176,10 +176,10 @@
       ]
     },
     {
-      "id": "real-unsorted-input-order",
-      "name": "real: pair order does not affect selection",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unsorted-input-order",
+      "name": "pair order does not affect selection",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "value": [
           5,
@@ -205,10 +205,10 @@
       ]
     },
     {
-      "id": "real-equal-values",
-      "name": "real: equal values fill quota",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-equal-values",
+      "name": "equal values fill quota",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "value": [
           5,
@@ -232,10 +232,10 @@
       ]
     },
     {
-      "id": "real-maximum-values",
-      "name": "real: maximum element values accumulate correctly",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-values",
+      "name": "maximum element values accumulate correctly",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "value": [
           100000,

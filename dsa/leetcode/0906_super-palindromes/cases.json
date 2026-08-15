@@ -78,93 +78,117 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: gap before 121",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "gap before 121",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "left": "10",
         "right": "120"
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "gap"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: adjacent known super-palindromes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "adjacent known super-palindromes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "left": "121",
         "right": "484"
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "range"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: excludes both surrounding values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "excludes both surrounding values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "left": "122",
         "right": "483"
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "exclusive-gap"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: exact five-digit value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "exact five-digit value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "left": "10201",
         "right": "10201"
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "exact"
       ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: multiple five-digit values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-5",
+      "name": "multiple five-digit values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "left": "1000",
         "right": "50000"
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "five-digit"
       ]
     },
     {
-      "id": "hidden-6",
-      "name": "hidden: maximum allowed upper bound",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-6",
+      "name": "maximum allowed upper bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
-      "left": "999999999999999999",
-      "right": "999999999999999999"
-    },
-    "expected": 0,
+        "left": "999999999999999999",
+        "right": "999999999999999999"
+      },
+      "expected": 0,
       "tags": [
-        "hidden",
         "upper-bound"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single character in right",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "left": "4",
+        "right": "1"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "repeated character in right",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "left": "4",
+        "right": "111"
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

@@ -94,10 +94,10 @@
       ]
     },
     {
-      "id": "hidden-large-base",
-      "name": "hidden: reduce a large base before powering",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-base",
+      "name": "reduce a large base before powering",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": 2147483647,
         "b": [
@@ -108,15 +108,14 @@
       },
       "expected": 1198,
       "tags": [
-        "hidden",
         "large-base"
       ]
     },
     {
-      "id": "hidden-internal-zero",
-      "name": "hidden: zero inside decimal exponent",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-internal-zero",
+      "name": "zero inside decimal exponent",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": 7,
         "b": [
@@ -127,15 +126,14 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "zero-digit"
       ]
     },
     {
-      "id": "hidden-negative-base",
-      "name": "hidden: negative base normalization",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-negative-base",
+      "name": "negative base normalization",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": -2,
         "b": [
@@ -145,10 +143,25 @@
       },
       "expected": 626,
       "tags": [
-        "hidden",
         "negative"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value a=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 1,
+        "b": [
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]
 }
-

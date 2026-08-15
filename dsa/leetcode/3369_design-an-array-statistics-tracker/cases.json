@@ -296,10 +296,10 @@
       ]
     },
     {
-      "id": "real-stale-mode-candidates",
-      "name": "hidden: old high-frequency mode candidates become invalid",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-stale-mode-candidates",
+      "name": "old high-frequency mode candidates become invalid",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "StatisticsTracker",
@@ -357,16 +357,15 @@
         1
       ],
       "tags": [
-        "hidden",
         "stale-mode",
         "frequency-decrease"
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "hidden: large values exercise the running total and upper median",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-values",
+      "name": "large values exercise the running total and upper median",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "StatisticsTracker",
@@ -409,16 +408,15 @@
         500000000
       ],
       "tags": [
-        "hidden",
         "maximum-value",
         "sum"
       ]
     },
     {
-      "id": "real-drain-and-refill",
-      "name": "hidden: remove down to one value and refill around it",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-drain-and-refill",
+      "name": "remove down to one value and refill around it",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "StatisticsTracker",
@@ -477,16 +475,15 @@
         1
       ],
       "tags": [
-        "hidden",
         "near-empty",
         "refill"
       ]
     },
     {
-      "id": "real-alternating-extremes",
-      "name": "hidden: alternating extremes trigger repeated heap rebalancing",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alternating-extremes",
+      "name": "alternating extremes trigger repeated heap rebalancing",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "StatisticsTracker",
@@ -555,11 +552,9 @@
         40
       ],
       "tags": [
-        "hidden",
         "rebalance",
         "alternating"
       ]
     }
   ]
 }
-

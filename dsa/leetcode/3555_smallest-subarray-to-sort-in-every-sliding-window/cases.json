@@ -7,90 +7,292 @@
       "name": "sample: local inversion moves through two windows",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 3, 2, 4, 5], "k": 3},
-      "expected": [2, 2, 0],
-      "tags": ["sample", "sliding-window", "already-sorted"]
+      "input": {
+        "nums": [
+          1,
+          3,
+          2,
+          4,
+          5
+        ],
+        "k": 3
+      },
+      "expected": [
+        2,
+        2,
+        0
+      ],
+      "tags": [
+        "sample",
+        "sliding-window",
+        "already-sorted"
+      ]
     },
     {
       "id": "sample-decreasing",
       "name": "sample: every window is decreasing",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [5, 4, 3, 2, 1], "k": 4},
-      "expected": [4, 4],
-      "tags": ["sample", "whole-window", "decreasing"]
+      "input": {
+        "nums": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ],
+        "k": 4
+      },
+      "expected": [
+        4,
+        4
+      ],
+      "tags": [
+        "sample",
+        "whole-window",
+        "decreasing"
+      ]
     },
     {
       "id": "trial-singletons",
       "name": "trial: every singleton is sorted",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [3, 1, 4, 1], "k": 1},
-      "expected": [0, 0, 0, 0],
-      "tags": ["trial", "minimum-window"]
+      "input": {
+        "nums": [
+          3,
+          1,
+          4,
+          1
+        ],
+        "k": 1
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "trial",
+        "minimum-window"
+      ]
     },
     {
       "id": "trial-equal-values",
       "name": "trial: equal values preserve non-decreasing order",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [7, 7, 7, 7], "k": 2},
-      "expected": [0, 0, 0],
-      "tags": ["trial", "duplicates", "already-sorted"]
+      "input": {
+        "nums": [
+          7,
+          7,
+          7,
+          7
+        ],
+        "k": 2
+      },
+      "expected": [
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "trial",
+        "duplicates",
+        "already-sorted"
+      ]
     },
     {
       "id": "trial-boundary-expansion",
       "name": "trial: inversion minimum expands the left boundary",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 3, 5, 4, 2, 6], "k": 6},
-      "expected": [4],
-      "tags": ["trial", "boundary-expansion", "whole-array"]
+      "input": {
+        "nums": [
+          1,
+          3,
+          5,
+          4,
+          2,
+          6
+        ],
+        "k": 6
+      },
+      "expected": [
+        4
+      ],
+      "tags": [
+        "trial",
+        "boundary-expansion",
+        "whole-array"
+      ]
     },
     {
-      "id": "real-duplicates-expand",
-      "name": "real: strict expansion handles duplicate boundary values",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 2, 1, 3], "k": 5},
-      "expected": [3],
-      "tags": ["real", "duplicates", "strict-comparison"]
+      "id": "trial-duplicates-expand",
+      "name": "strict expansion handles duplicate boundary values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2,
+          1,
+          3
+        ],
+        "k": 5
+      },
+      "expected": [
+        3
+      ],
+      "tags": [
+        "real",
+        "duplicates",
+        "strict-comparison"
+      ]
     },
     {
-      "id": "real-mixed-window-widths",
-      "name": "real: answer widths vary across overlapping windows",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2, 1, 3, 5, 4, 6, 0], "k": 4},
-      "expected": [2, 2, 2, 4],
-      "tags": ["real", "sliding-window", "right-boundary"]
+      "id": "trial-mixed-window-widths",
+      "name": "answer widths vary across overlapping windows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          3,
+          5,
+          4,
+          6,
+          0
+        ],
+        "k": 4
+      },
+      "expected": [
+        2,
+        2,
+        2,
+        4
+      ],
+      "tags": [
+        "real",
+        "sliding-window",
+        "right-boundary"
+      ]
     },
     {
-      "id": "real-equal-inversion-core",
-      "name": "real: equal values surround an inversion core",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 5, 3, 3, 7, 6, 8], "k": 5},
-      "expected": [3, 5, 2],
-      "tags": ["real", "duplicates", "overlap"]
+      "id": "trial-equal-inversion-core",
+      "name": "equal values surround an inversion core",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          5,
+          3,
+          3,
+          7,
+          6,
+          8
+        ],
+        "k": 5
+      },
+      "expected": [
+        3,
+        5,
+        2
+      ],
+      "tags": [
+        "real",
+        "duplicates",
+        "overlap"
+      ]
     },
     {
-      "id": "real-descending-three",
-      "name": "real: a decreasing triple needs all three positions",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [3, 2, 1], "k": 3},
-      "expected": [3],
-      "tags": ["real", "whole-window", "minimum-counterexample"]
+      "id": "trial-descending-three",
+      "name": "a decreasing triple needs all three positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          2,
+          1
+        ],
+        "k": 3
+      },
+      "expected": [
+        3
+      ],
+      "tags": [
+        "real",
+        "whole-window",
+        "minimum-counterexample"
+      ]
     },
     {
-      "id": "real-sorted-and-unsorted-neighbors",
-      "name": "real: sorted window lies between unsorted neighbors",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [4, 1, 2, 3, 0, 5], "k": 3},
-      "expected": [3, 0, 3, 2],
-      "tags": ["real", "already-sorted", "overlap"]
+      "id": "trial-sorted-and-unsorted-neighbors",
+      "name": "sorted window lies between unsorted neighbors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          1,
+          2,
+          3,
+          0,
+          5
+        ],
+        "k": 3
+      },
+      "expected": [
+        3,
+        0,
+        3,
+        2
+      ],
+      "tags": [
+        "real",
+        "already-sorted",
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 3
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 3
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

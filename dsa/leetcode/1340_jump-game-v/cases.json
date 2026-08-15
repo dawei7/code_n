@@ -110,10 +110,10 @@
       ]
     },
     {
-      "id": "hidden-higher-barrier",
-      "name": "hidden: higher intermediate blocks destination",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-higher-barrier",
+      "name": "higher intermediate blocks destination",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           5,
@@ -124,15 +124,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "barrier"
       ]
     },
     {
-      "id": "hidden-both-directions",
-      "name": "hidden: best path changes direction",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-both-directions",
+      "name": "best path changes direction",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           5,
@@ -145,7 +144,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "both-directions"
       ]
     }

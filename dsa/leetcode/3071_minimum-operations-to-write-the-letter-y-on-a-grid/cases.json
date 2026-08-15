@@ -6,63 +6,290 @@
       "name": "sample: three changes form the Y",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[1, 2, 2], [1, 1, 0], [0, 1, 0]]},
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            2
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ]
+      },
       "expected": 3,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-second",
       "name": "sample: five by five grid",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[0, 1, 0, 1, 0], [2, 1, 0, 1, 2], [2, 2, 2, 0, 1], [2, 2, 2, 2, 2], [2, 1, 2, 2, 2]]},
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          [
+            2,
+            1,
+            0,
+            1,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            0,
+            1
+          ],
+          [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            1,
+            2,
+            2,
+            2
+          ]
+        ]
+      },
       "expected": 12,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "trial-already-valid",
       "name": "trial: valid Y needs no changes",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[2, 1, 2], [1, 2, 1], [1, 2, 1]]},
+      "input": {
+        "grid": [
+          [
+            2,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            1,
+            2,
+            1
+          ]
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "already-valid"]
+      "tags": [
+        "trial",
+        "already-valid"
+      ]
     },
     {
       "id": "trial-single-value",
       "name": "trial: every cell starts at zero",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[0, 0, 0], [0, 0, 0], [0, 0, 0]]},
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
       "expected": 4,
-      "tags": ["trial", "single-value"]
+      "tags": [
+        "trial",
+        "single-value"
+      ]
     },
     {
       "id": "trial-mixed-five",
       "name": "trial: mixed five by five values",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[0, 1, 2, 1, 0], [2, 0, 2, 0, 2], [1, 1, 0, 1, 1], [2, 2, 0, 2, 2], [1, 2, 0, 2, 1]]},
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            2,
+            1,
+            0
+          ],
+          [
+            2,
+            0,
+            2,
+            0,
+            2
+          ],
+          [
+            1,
+            1,
+            0,
+            1,
+            1
+          ],
+          [
+            2,
+            2,
+            0,
+            2,
+            2
+          ],
+          [
+            1,
+            2,
+            0,
+            2,
+            1
+          ]
+        ]
+      },
       "expected": 8,
-      "tags": ["trial", "counting"]
+      "tags": [
+        "trial",
+        "counting"
+      ]
     },
     {
-      "id": "real-valid-five",
-      "name": "real: larger Y uses zero against twos",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[0, 2, 2, 2, 0], [2, 0, 2, 0, 2], [2, 2, 0, 2, 2], [2, 2, 0, 2, 2], [2, 2, 0, 2, 2]]},
+      "id": "trial-valid-five",
+      "name": "larger Y uses zero against twos",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            2,
+            2,
+            2,
+            0
+          ],
+          [
+            2,
+            0,
+            2,
+            0,
+            2
+          ],
+          [
+            2,
+            2,
+            0,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            0,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            0,
+            2,
+            2
+          ]
+        ]
+      },
       "expected": 0,
-      "tags": ["real", "already-valid", "center"]
+      "tags": [
+        "real",
+        "already-valid",
+        "center"
+      ]
     },
     {
-      "id": "real-one-corruption",
-      "name": "real: one incorrect center value",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[0, 2, 2, 2, 0], [2, 0, 2, 0, 2], [2, 2, 1, 2, 2], [2, 2, 0, 2, 2], [2, 2, 0, 2, 2]]},
+      "id": "trial-one-corruption",
+      "name": "one incorrect center value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            2,
+            2,
+            2,
+            0
+          ],
+          [
+            2,
+            0,
+            2,
+            0,
+            2
+          ],
+          [
+            2,
+            2,
+            1,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            0,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            0,
+            2,
+            2
+          ]
+        ]
+      },
       "expected": 1,
-      "tags": ["real", "center", "single-change"]
+      "tags": [
+        "real",
+        "center",
+        "single-change"
+      ]
     }
   ]
 }

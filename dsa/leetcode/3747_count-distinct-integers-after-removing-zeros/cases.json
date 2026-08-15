@@ -1,14 +1,204 @@
-{"schema_version":1,"challenge_id":"lc_3747","cases":[
-{"id":"sample-first-zero","name":"sample: ten duplicates one","kind":"sample","visible":true,"input":{"n":10},"expected":9,"validator":{"kind":"exact"},"tags":["sample","duplicate-output"]},
-{"id":"sample-single-digits","name":"sample: all source values remain distinct","kind":"sample","visible":true,"input":{"n":3},"expected":3,"validator":{"kind":"exact"},"tags":["sample","single-digit"]},
-{"id":"trial-minimum","name":"trial: minimum legal bound","kind":"trial","visible":true,"input":{"n":1},"expected":1,"validator":{"kind":"exact"},"tags":["trial","minimum-bound"]},
-{"id":"trial-nine","name":"trial: all positive one-digit integers","kind":"trial","visible":true,"input":{"n":9},"expected":9,"validator":{"kind":"exact"},"tags":["trial","decimal-boundary"]},
-{"id":"trial-eleven","name":"trial: first two-digit zero-free value","kind":"trial","visible":true,"input":{"n":11},"expected":10,"validator":{"kind":"exact"},"tags":["trial","zero-free-bound"]},
-{"id":"trial-twenty","name":"trial: trailing zero ends the equal prefix","kind":"trial","visible":true,"input":{"n":20},"expected":18,"validator":{"kind":"exact"},"tags":["trial","trailing-zero"]},
-{"id":"real-two-digit-maximum","name":"hidden: every zero-free value through two digits","kind":"real","visible":false,"input":{"n":99},"expected":90,"validator":{"kind":"exact"},"tags":["hidden","all-nonzero"]},
-{"id":"real-power-of-ten","name":"hidden: a new decimal length adds no value yet","kind":"real","visible":false,"input":{"n":100},"expected":90,"validator":{"kind":"exact"},"tags":["hidden","power-of-ten"]},
-{"id":"real-internal-zero","name":"hidden: internal zero terminates prefix counting","kind":"real","visible":false,"input":{"n":909},"expected":738,"validator":{"kind":"exact"},"tags":["hidden","internal-zero"]},
-{"id":"real-mixed-prefix","name":"hidden: count several complete and partial prefix groups","kind":"real","visible":false,"input":{"n":54321},"expected":35983,"validator":{"kind":"exact"},"tags":["hidden","mixed-digits"]},
-{"id":"real-largest-zero-free","name":"hidden: largest fifteen-digit zero-free bound","kind":"real","visible":false,"input":{"n":999999999999999},"expected":231627523606479,"validator":{"kind":"exact"},"tags":["hidden","large-bound"]},
-{"id":"real-maximum","name":"hidden: maximum legal bound begins a blocked length","kind":"real","visible":false,"input":{"n":1000000000000000},"expected":231627523606479,"validator":{"kind":"exact"},"tags":["hidden","maximum-bound"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3747",
+  "cases": [
+    {
+      "id": "sample-first-zero",
+      "name": "sample: ten duplicates one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 10
+      },
+      "expected": 9,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "duplicate-output"
+      ]
+    },
+    {
+      "id": "sample-single-digits",
+      "name": "sample: all source values remain distinct",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "single-digit"
+      ]
+    },
+    {
+      "id": "trial-minimum",
+      "name": "trial: minimum legal bound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-bound"
+      ]
+    },
+    {
+      "id": "trial-nine",
+      "name": "trial: all positive one-digit integers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 9
+      },
+      "expected": 9,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "decimal-boundary"
+      ]
+    },
+    {
+      "id": "trial-eleven",
+      "name": "trial: first two-digit zero-free value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 11
+      },
+      "expected": 10,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "zero-free-bound"
+      ]
+    },
+    {
+      "id": "trial-twenty",
+      "name": "trial: trailing zero ends the equal prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 20
+      },
+      "expected": 18,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "trailing-zero"
+      ]
+    },
+    {
+      "id": "trial-two-digit-maximum",
+      "name": "every zero-free value through two digits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 99
+      },
+      "expected": 90,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "all-nonzero"
+      ]
+    },
+    {
+      "id": "trial-power-of-ten",
+      "name": "a new decimal length adds no value yet",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 100
+      },
+      "expected": 90,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "power-of-ten"
+      ]
+    },
+    {
+      "id": "trial-internal-zero",
+      "name": "internal zero terminates prefix counting",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 909
+      },
+      "expected": 738,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "internal-zero"
+      ]
+    },
+    {
+      "id": "trial-mixed-prefix",
+      "name": "count several complete and partial prefix groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 54321
+      },
+      "expected": 35983,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "mixed-digits"
+      ]
+    },
+    {
+      "id": "trial-largest-zero-free",
+      "name": "largest fifteen-digit zero-free bound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 999999999999999
+      },
+      "expected": 231627523606479,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "large-bound"
+      ]
+    },
+    {
+      "id": "trial-maximum",
+      "name": "maximum legal bound begins a blocked length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000000000000000
+      },
+      "expected": 231627523606479,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "maximum-bound"
+      ]
+    }
+  ]
+}

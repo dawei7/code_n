@@ -95,10 +95,10 @@
       ]
     },
     {
-      "id": "real-mixed-twelve",
-      "name": "real: three days with increasing weights",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-twelve",
+      "name": "three days with increasing weights",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "pizzas": [
           1,
@@ -122,10 +122,10 @@
       ]
     },
     {
-      "id": "real-four-days",
-      "name": "real: even number of days",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-four-days",
+      "name": "even number of days",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "pizzas": [
           1,
@@ -153,10 +153,10 @@
       ]
     },
     {
-      "id": "real-separated-heavy-tier",
-      "name": "real: upper weights compete for two roles",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-separated-heavy-tier",
+      "name": "upper weights compete for two roles",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "pizzas": [
           1,
@@ -176,10 +176,10 @@
       ]
     },
     {
-      "id": "real-large-result",
-      "name": "real: large weights require wide integer result",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-result",
+      "name": "large weights require wide integer result",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "pizzas": [
           100000,
@@ -196,6 +196,39 @@
       "tags": [
         "real",
         "large-values"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in pizzas",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "pizzas": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in pizzas",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "pizzas": [
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

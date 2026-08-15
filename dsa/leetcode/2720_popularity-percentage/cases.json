@@ -1,1 +1,442 @@
-{"schema_version":1,"challenge_id":"lc_2720","cases":[{"id":"sample-1","name":"sample: nine-user friendship graph","kind":"sample","visible":true,"input":{"tables":{"Friends":[{"user1":2,"user2":1},{"user1":1,"user2":3},{"user1":4,"user2":1},{"user1":1,"user2":5},{"user1":1,"user2":6},{"user1":2,"user2":6},{"user1":7,"user2":2},{"user1":8,"user2":3},{"user1":3,"user2":9}]}},"expected":{"columns":["user1","percentage_popularity"],"rows":[[1,55.56],[2,33.33],[3,33.33],[4,11.11],[5,11.11],[6,22.22],[7,11.11],[8,11.11],[9,11.11]]},"validator":{"kind":"ordered_table"},"tags":["sample","rounding","ordering"]},{"id":"trial-single-friendship","name":"trial: one friendship connects both users","kind":"trial","visible":true,"input":{"tables":{"Friends":[{"user1":10,"user2":20}]}},"expected":{"columns":["user1","percentage_popularity"],"rows":[[10,50],[20,50]]},"validator":{"kind":"ordered_table"},"tags":["trial","minimum"]},{"id":"trial-three-user-chain","name":"trial: middle user has two friends","kind":"trial","visible":true,"input":{"tables":{"Friends":[{"user1":1,"user2":2},{"user1":2,"user2":3}]}},"expected":{"columns":["user1","percentage_popularity"],"rows":[[1,33.33],[2,66.67],[3,33.33]]},"validator":{"kind":"ordered_table"},"tags":["trial","degree"]},{"id":"real-reciprocal-rows","name":"hidden: reciprocal rows describe one friendship","kind":"real","visible":false,"input":{"tables":{"Friends":[{"user1":1,"user2":2},{"user1":2,"user2":1}]}},"expected":{"columns":["user1","percentage_popularity"],"rows":[[1,50],[2,50]]},"validator":{"kind":"ordered_table"},"tags":["hidden","deduplication"]},{"id":"real-disconnected-pairs","name":"hidden: disconnected pairs share the global denominator","kind":"real","visible":false,"input":{"tables":{"Friends":[{"user1":1,"user2":2},{"user1":3,"user2":4}]}},"expected":{"columns":["user1","percentage_popularity"],"rows":[[1,25],[2,25],[3,25],[4,25]]},"validator":{"kind":"ordered_table"},"tags":["hidden","global-user-count"]},{"id":"real-triangle","name":"hidden: every user has two friends","kind":"real","visible":false,"input":{"tables":{"Friends":[{"user1":1,"user2":2},{"user1":2,"user2":3},{"user1":1,"user2":3}]}},"expected":{"columns":["user1","percentage_popularity"],"rows":[[1,66.67],[2,66.67],[3,66.67]]},"validator":{"kind":"ordered_table"},"tags":["hidden","complete-component"]},{"id":"real-hub","name":"hidden: one hub connects three leaves","kind":"real","visible":false,"input":{"tables":{"Friends":[{"user1":1,"user2":2},{"user1":1,"user2":3},{"user1":1,"user2":4}]}},"expected":{"columns":["user1","percentage_popularity"],"rows":[[1,75],[2,25],[3,25],[4,25]]},"validator":{"kind":"ordered_table"},"tags":["hidden","hub"]},{"id":"real-output-order","name":"hidden: output order is independent of input order","kind":"real","visible":false,"input":{"tables":{"Friends":[{"user1":8,"user2":9},{"user1":2,"user2":8},{"user1":5,"user2":2}]}},"expected":{"columns":["user1","percentage_popularity"],"rows":[[2,50],[5,25],[8,50],[9,25]]},"validator":{"kind":"ordered_table"},"tags":["hidden","ordering"]}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2720",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: nine-user friendship graph",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Friends": [
+            {
+              "user1": 2,
+              "user2": 1
+            },
+            {
+              "user1": 1,
+              "user2": 3
+            },
+            {
+              "user1": 4,
+              "user2": 1
+            },
+            {
+              "user1": 1,
+              "user2": 5
+            },
+            {
+              "user1": 1,
+              "user2": 6
+            },
+            {
+              "user1": 2,
+              "user2": 6
+            },
+            {
+              "user1": 7,
+              "user2": 2
+            },
+            {
+              "user1": 8,
+              "user2": 3
+            },
+            {
+              "user1": 3,
+              "user2": 9
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user1",
+          "percentage_popularity"
+        ],
+        "rows": [
+          [
+            1,
+            55.56
+          ],
+          [
+            2,
+            33.33
+          ],
+          [
+            3,
+            33.33
+          ],
+          [
+            4,
+            11.11
+          ],
+          [
+            5,
+            11.11
+          ],
+          [
+            6,
+            22.22
+          ],
+          [
+            7,
+            11.11
+          ],
+          [
+            8,
+            11.11
+          ],
+          [
+            9,
+            11.11
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "rounding",
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-single-friendship",
+      "name": "trial: one friendship connects both users",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Friends": [
+            {
+              "user1": 10,
+              "user2": 20
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user1",
+          "percentage_popularity"
+        ],
+        "rows": [
+          [
+            10,
+            50
+          ],
+          [
+            20,
+            50
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-three-user-chain",
+      "name": "trial: middle user has two friends",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Friends": [
+            {
+              "user1": 1,
+              "user2": 2
+            },
+            {
+              "user1": 2,
+              "user2": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user1",
+          "percentage_popularity"
+        ],
+        "rows": [
+          [
+            1,
+            33.33
+          ],
+          [
+            2,
+            66.67
+          ],
+          [
+            3,
+            33.33
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "degree"
+      ]
+    },
+    {
+      "id": "trial-reciprocal-rows",
+      "name": "reciprocal rows describe one friendship",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Friends": [
+            {
+              "user1": 1,
+              "user2": 2
+            },
+            {
+              "user1": 2,
+              "user2": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user1",
+          "percentage_popularity"
+        ],
+        "rows": [
+          [
+            1,
+            50
+          ],
+          [
+            2,
+            50
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "deduplication"
+      ]
+    },
+    {
+      "id": "trial-disconnected-pairs",
+      "name": "disconnected pairs share the global denominator",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Friends": [
+            {
+              "user1": 1,
+              "user2": 2
+            },
+            {
+              "user1": 3,
+              "user2": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user1",
+          "percentage_popularity"
+        ],
+        "rows": [
+          [
+            1,
+            25
+          ],
+          [
+            2,
+            25
+          ],
+          [
+            3,
+            25
+          ],
+          [
+            4,
+            25
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "global-user-count"
+      ]
+    },
+    {
+      "id": "trial-triangle",
+      "name": "every user has two friends",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Friends": [
+            {
+              "user1": 1,
+              "user2": 2
+            },
+            {
+              "user1": 2,
+              "user2": 3
+            },
+            {
+              "user1": 1,
+              "user2": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user1",
+          "percentage_popularity"
+        ],
+        "rows": [
+          [
+            1,
+            66.67
+          ],
+          [
+            2,
+            66.67
+          ],
+          [
+            3,
+            66.67
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "complete-component"
+      ]
+    },
+    {
+      "id": "trial-hub",
+      "name": "one hub connects three leaves",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Friends": [
+            {
+              "user1": 1,
+              "user2": 2
+            },
+            {
+              "user1": 1,
+              "user2": 3
+            },
+            {
+              "user1": 1,
+              "user2": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user1",
+          "percentage_popularity"
+        ],
+        "rows": [
+          [
+            1,
+            75
+          ],
+          [
+            2,
+            25
+          ],
+          [
+            3,
+            25
+          ],
+          [
+            4,
+            25
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hub"
+      ]
+    },
+    {
+      "id": "trial-output-order",
+      "name": "output order is independent of input order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Friends": [
+            {
+              "user1": 8,
+              "user2": 9
+            },
+            {
+              "user1": 2,
+              "user2": 8
+            },
+            {
+              "user1": 5,
+              "user2": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user1",
+          "percentage_popularity"
+        ],
+        "rows": [
+          [
+            2,
+            50
+          ],
+          [
+            5,
+            25
+          ],
+          [
+            8,
+            50
+          ],
+          [
+            9,
+            25
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "ordering"
+      ]
+    }
+  ]
+}

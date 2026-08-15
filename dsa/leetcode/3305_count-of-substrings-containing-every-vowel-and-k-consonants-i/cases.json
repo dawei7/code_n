@@ -1,12 +1,147 @@
-{"challenge_id":"lc_3305","cases":[
-{"id":"sample-missing-u","name":"sample: required vowel is absent","kind":"sample","visible":true,"input":{"word":"aeioqq","k":1},"expected":0,"tags":["sample","impossible"]},
-{"id":"sample-all-vowels","name":"sample: one vowel-only range","kind":"sample","visible":true,"input":{"word":"aeiou","k":0},"expected":1,"tags":["sample","zero-consonants"]},
-{"id":"sample-three-ranges","name":"sample: three one-consonant ranges","kind":"sample","visible":true,"input":{"word":"ieaouqqieaouqq","k":1},"expected":3,"tags":["sample"]},
-{"id":"trial-consonant-prefix","name":"trial: consonant before all vowels","kind":"trial","visible":true,"input":{"word":"baeiou","k":1},"expected":1,"tags":["prefix"]},
-{"id":"trial-consonant-suffix","name":"trial: consonant after all vowels","kind":"trial","visible":true,"input":{"word":"aeioub","k":1},"expected":1,"tags":["suffix"]},
-{"id":"trial-two-consonants","name":"trial: exact consonants surround vowels","kind":"trial","visible":true,"input":{"word":"baeiouc","k":2},"expected":1,"tags":["exact-k"]},
-{"id":"real-overlapping-vowels","name":"real: repeated vowel cycles create overlapping ranges","kind":"real","visible":false,"input":{"word":"aeiouaeiou","k":0},"expected":21,"tags":["overlap"]},
-{"id":"real-repeated-leading-a","name":"real: four starts share the remaining vowels","kind":"real","visible":false,"input":{"word":"aaaaeiou","k":0},"expected":4,"tags":["duplicates"]},
-{"id":"real-sliding-trap","name":"real: both boundary consonants and whole range qualify","kind":"real","visible":false,"input":{"word":"iqeaouqi","k":2},"expected":3,"tags":["boundary"]},
-{"id":"real-zero-before-consonants","name":"real: zero-consonant range ends before suffix","kind":"real","visible":false,"input":{"word":"aeioubc","k":0},"expected":1,"tags":["early-break"]}
-]}
+{
+  "challenge_id": "lc_3305",
+  "cases": [
+    {
+      "id": "sample-missing-u",
+      "name": "sample: required vowel is absent",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "aeioqq",
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "sample-all-vowels",
+      "name": "sample: one vowel-only range",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "aeiou",
+        "k": 0
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "zero-consonants"
+      ]
+    },
+    {
+      "id": "sample-three-ranges",
+      "name": "sample: three one-consonant ranges",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "ieaouqqieaouqq",
+        "k": 1
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-consonant-prefix",
+      "name": "trial: consonant before all vowels",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "baeiou",
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "prefix"
+      ]
+    },
+    {
+      "id": "trial-consonant-suffix",
+      "name": "trial: consonant after all vowels",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aeioub",
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "suffix"
+      ]
+    },
+    {
+      "id": "trial-two-consonants",
+      "name": "trial: exact consonants surround vowels",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "baeiouc",
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "exact-k"
+      ]
+    },
+    {
+      "id": "trial-overlapping-vowels",
+      "name": "repeated vowel cycles create overlapping ranges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aeiouaeiou",
+        "k": 0
+      },
+      "expected": 21,
+      "tags": [
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-repeated-leading-a",
+      "name": "four starts share the remaining vowels",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aaaaeiou",
+        "k": 0
+      },
+      "expected": 4,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-sliding-trap",
+      "name": "both boundary consonants and whole range qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "iqeaouqi",
+        "k": 2
+      },
+      "expected": 3,
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-zero-before-consonants",
+      "name": "zero-consonant range ends before suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aeioubc",
+        "k": 0
+      },
+      "expected": 1,
+      "tags": [
+        "early-break"
+      ]
+    }
+  ]
+}

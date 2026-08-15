@@ -188,10 +188,10 @@
       ]
     },
     {
-      "id": "real-star",
-      "name": "hidden: wide star with repeated root label",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-star",
+      "name": "wide star with repeated root label",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 7,
         "edges": [
@@ -238,10 +238,10 @@
       ]
     },
     {
-      "id": "real-distinct",
-      "name": "hidden: all labels distinct",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-distinct",
+      "name": "all labels distinct",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 8,
         "edges": [
@@ -293,10 +293,10 @@
       ]
     },
     {
-      "id": "real-siblings",
-      "name": "hidden: sibling matches do not enter each other's subtrees",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-siblings",
+      "name": "sibling matches do not enter each other's subtrees",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 7,
         "edges": [
@@ -343,10 +343,10 @@
       ]
     },
     {
-      "id": "real-unbalanced",
-      "name": "hidden: repeated labels in an unbalanced tree",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unbalanced",
+      "name": "repeated labels in an unbalanced tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 9,
         "edges": [
@@ -403,10 +403,10 @@
       ]
     },
     {
-      "id": "real-reversed-edges",
-      "name": "hidden: endpoint direction does not define parenthood",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-reversed-edges",
+      "name": "endpoint direction does not define parenthood",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 6,
         "edges": [
@@ -449,4 +449,3 @@
     }
   ]
 }
-

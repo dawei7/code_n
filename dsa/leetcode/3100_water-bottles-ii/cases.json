@@ -6,81 +6,134 @@
       "name": "sample: two exchanges are possible",
       "kind": "sample",
       "visible": true,
-      "input": {"numBottles": 13, "numExchange": 6},
+      "input": {
+        "numBottles": 13,
+        "numExchange": 6
+      },
       "expected": 15,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-ten-bottles",
       "name": "sample: three increasing-price exchanges",
       "kind": "sample",
       "visible": true,
-      "input": {"numBottles": 10, "numExchange": 3},
+      "input": {
+        "numBottles": 10,
+        "numExchange": 3
+      },
       "expected": 13,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "trial-no-exchange",
       "name": "trial: the initial price exceeds the empty count",
       "kind": "trial",
       "visible": true,
-      "input": {"numBottles": 3, "numExchange": 4},
+      "input": {
+        "numBottles": 3,
+        "numExchange": 4
+      },
       "expected": 3,
-      "tags": ["trial", "no-exchange"]
+      "tags": [
+        "trial",
+        "no-exchange"
+      ]
     },
     {
       "id": "trial-exact-price",
       "name": "trial: exactly one exchange is affordable",
       "kind": "trial",
       "visible": true,
-      "input": {"numBottles": 4, "numExchange": 4},
+      "input": {
+        "numBottles": 4,
+        "numExchange": 4
+      },
       "expected": 5,
-      "tags": ["trial", "boundary"]
+      "tags": [
+        "trial",
+        "boundary"
+      ]
     },
     {
       "id": "trial-price-one",
       "name": "trial: the first exchange has no net empty-bottle cost",
       "kind": "trial",
       "visible": true,
-      "input": {"numBottles": 3, "numExchange": 1},
+      "input": {
+        "numBottles": 3,
+        "numExchange": 1
+      },
       "expected": 5,
-      "tags": ["trial", "price-one"]
+      "tags": [
+        "trial",
+        "price-one"
+      ]
     },
     {
-      "id": "real-single-bottle",
-      "name": "real: one bottle cannot meet a larger price",
-      "kind": "real",
-      "visible": false,
-      "input": {"numBottles": 1, "numExchange": 2},
+      "id": "trial-single-bottle",
+      "name": "one bottle cannot meet a larger price",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "numBottles": 1,
+        "numExchange": 2
+      },
       "expected": 1,
-      "tags": ["real", "boundary"]
+      "tags": [
+        "real",
+        "boundary"
+      ]
     },
     {
-      "id": "real-interior-chain",
-      "name": "real: several exchanges leave a small remainder",
-      "kind": "real",
-      "visible": false,
-      "input": {"numBottles": 15, "numExchange": 4},
+      "id": "trial-interior-chain",
+      "name": "several exchanges leave a small remainder",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "numBottles": 15,
+        "numExchange": 4
+      },
       "expected": 18,
-      "tags": ["real", "simulation"]
+      "tags": [
+        "real",
+        "simulation"
+      ]
     },
     {
-      "id": "real-maximum-iterations",
-      "name": "real: maximum bottles and minimum price",
-      "kind": "real",
-      "visible": false,
-      "input": {"numBottles": 100, "numExchange": 1},
+      "id": "trial-maximum-iterations",
+      "name": "maximum bottles and minimum price",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "numBottles": 100,
+        "numExchange": 1
+      },
       "expected": 114,
-      "tags": ["real", "boundary", "maximum-work"]
+      "tags": [
+        "real",
+        "boundary",
+        "maximum-work"
+      ]
     },
     {
-      "id": "real-maximum-price",
-      "name": "real: maximum bottles exactly meet the maximum price",
-      "kind": "real",
-      "visible": false,
-      "input": {"numBottles": 100, "numExchange": 100},
+      "id": "trial-maximum-price",
+      "name": "maximum bottles exactly meet the maximum price",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "numBottles": 100,
+        "numExchange": 100
+      },
       "expected": 101,
-      "tags": ["real", "boundary"]
+      "tags": [
+        "real",
+        "boundary"
+      ]
     }
   ]
 }

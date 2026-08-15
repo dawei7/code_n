@@ -2,13 +2,158 @@
   "schema_version": 1,
   "challenge_id": "lc_2130",
   "cases": [
-    {"id": "sample-equal-sums", "name": "sample: both twin sums are equal", "kind": "sample", "visible": true, "input": {"head": [5, 4, 2, 1]}, "expected": 6, "tags": ["sample", "equal-sums"]},
-    {"id": "sample-outer-maximum", "name": "sample: the outer pair is largest", "kind": "sample", "visible": true, "input": {"head": [4, 2, 2, 3]}, "expected": 7, "tags": ["sample", "outer-pair"]},
-    {"id": "sample-two-nodes", "name": "sample: one twin pair", "kind": "sample", "visible": true, "input": {"head": [1, 100000]}, "expected": 100001, "tags": ["sample", "minimum-length"]},
-    {"id": "trial-inner-maximum", "name": "the middle pair can be largest", "kind": "trial", "visible": true, "input": {"head": [1, 9, 8, 2]}, "expected": 17, "tags": ["inner-pair"]},
-    {"id": "trial-all-equal", "name": "repeated values give equal twin sums", "kind": "trial", "visible": true, "input": {"head": [7, 7, 7, 7, 7, 7]}, "expected": 14, "tags": ["duplicates"]},
-    {"id": "real-late-maximum", "name": "hidden: maximum occurs away from the outer pair", "kind": "real", "visible": false, "input": {"head": [2, 30, 4, 5, 40, 3]}, "expected": 70, "tags": ["hidden", "middle-pair"]},
-    {"id": "real-increasing", "name": "hidden: increasing values produce equal pair sums", "kind": "real", "visible": false, "input": {"head": [1, 2, 3, 4, 5, 6, 7, 8]}, "expected": 9, "tags": ["hidden", "increasing"]},
-    {"id": "real-maximum-values", "name": "hidden: values reach the upper bound", "kind": "real", "visible": false, "input": {"head": [100000, 1, 1, 100000]}, "expected": 200000, "tags": ["hidden", "value-bound"]}
+    {
+      "id": "sample-equal-sums",
+      "name": "sample: both twin sums are equal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "head": [
+          5,
+          4,
+          2,
+          1
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "equal-sums"
+      ]
+    },
+    {
+      "id": "sample-outer-maximum",
+      "name": "sample: the outer pair is largest",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "head": [
+          4,
+          2,
+          2,
+          3
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "outer-pair"
+      ]
+    },
+    {
+      "id": "sample-two-nodes",
+      "name": "sample: one twin pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "head": [
+          1,
+          100000
+        ]
+      },
+      "expected": 100001,
+      "tags": [
+        "sample",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-inner-maximum",
+      "name": "the middle pair can be largest",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "head": [
+          1,
+          9,
+          8,
+          2
+        ]
+      },
+      "expected": 17,
+      "tags": [
+        "inner-pair"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "repeated values give equal twin sums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "head": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": 14,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-late-maximum",
+      "name": "maximum occurs away from the outer pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "head": [
+          2,
+          30,
+          4,
+          5,
+          40,
+          3
+        ]
+      },
+      "expected": 70,
+      "tags": [
+        "middle-pair"
+      ]
+    },
+    {
+      "id": "trial-increasing",
+      "name": "increasing values produce equal pair sums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "head": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "increasing"
+      ]
+    },
+    {
+      "id": "trial-maximum-values",
+      "name": "values reach the upper bound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "head": [
+          100000,
+          1,
+          1,
+          100000
+        ]
+      },
+      "expected": 200000,
+      "tags": [
+        "value-bound"
+      ]
+    }
   ]
 }

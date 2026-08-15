@@ -87,61 +87,56 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: nested valid string",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "nested valid string",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "(((())))"
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "nested"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: alternating unmatched prefixes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "alternating unmatched prefixes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": ")())(("
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "mixed-unmatched"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: all closings",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "all closings",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "))))))"
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "all-close"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: deep imbalance around valid core",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "deep imbalance around valid core",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "((()())))))"
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "deep-prefix"
       ]
     }
   ]
 }
-

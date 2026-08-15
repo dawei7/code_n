@@ -6,135 +6,832 @@
       "name": "sample: three child-to-root query products",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 3, "parent": [-1, 0, 0], "gates": [[1, 0, 1], [0, 1, 1], [1, 1, 0]], "queries": [[1, 0, 2, 0], [1, 1, 2, 0], [1, 0, 2, 1]]},
+      "input": {
+        "n": 3,
+        "parent": [
+          -1,
+          0,
+          0
+        ],
+        "gates": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ],
+        "queries": [
+          [
+            1,
+            0,
+            2,
+            0
+          ],
+          [
+            1,
+            1,
+            2,
+            0
+          ],
+          [
+            1,
+            0,
+            2,
+            1
+          ]
+        ]
+      },
       "expected": 1,
-      "tags": ["sample", "xor", "root-lca"]
+      "tags": [
+        "sample",
+        "xor",
+        "root-lca"
+      ]
     },
     {
       "id": "sample-white-chain",
       "name": "sample: white-gate multiplicities on a chain",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 3, "parent": [-1, 0, 1], "gates": [[0, 1, 2], [1, 0, 1], [0, 0, 3]], "queries": [[2, 0, 1, 0], [2, 1, 0, 0], [1, 1, 2, 1]]},
+      "input": {
+        "n": 3,
+        "parent": [
+          -1,
+          0,
+          1
+        ],
+        "gates": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            3
+          ]
+        ],
+        "queries": [
+          [
+            2,
+            0,
+            1,
+            0
+          ],
+          [
+            2,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            2,
+            1
+          ]
+        ]
+      },
       "expected": 3,
-      "tags": ["sample", "white-gates", "internal-lca"]
+      "tags": [
+        "sample",
+        "white-gates",
+        "internal-lca"
+      ]
     },
     {
       "id": "trial-both-already-at-lca",
       "name": "trial: two zero-length routes each contribute one",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 2, "parent": [-1, 0], "gates": [[0, 0, 0], [0, 0, 0]], "queries": [[0, 0, 0, 1]]},
+      "input": {
+        "n": 2,
+        "parent": [
+          -1,
+          0
+        ],
+        "gates": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "queries": [
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "empty-route", "root-gates-unused"]
+      "tags": [
+        "trial",
+        "empty-route",
+        "root-gates-unused"
+      ]
     },
     {
       "id": "trial-blue-preserving-multiplicity",
       "name": "trial: three blue gates are three distinct routes",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 2, "parent": [-1, 0], "gates": [[0, 0, 0], [0, 3, 0]], "queries": [[1, 0, 0, 1]]},
+      "input": {
+        "n": 2,
+        "parent": [
+          -1,
+          0
+        ],
+        "gates": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ]
+        ],
+        "queries": [
+          [
+            1,
+            0,
+            0,
+            1
+          ]
+        ]
+      },
       "expected": 3,
-      "tags": ["trial", "blue-card", "multiplicity"]
+      "tags": [
+        "trial",
+        "blue-card",
+        "multiplicity"
+      ]
     },
     {
       "id": "trial-red-preserving-multiplicity",
       "name": "trial: four red gates preserve a red card",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 2, "parent": [-1, 0], "gates": [[0, 0, 0], [4, 0, 0]], "queries": [[1, 1, 0, 0]]},
+      "input": {
+        "n": 2,
+        "parent": [
+          -1,
+          0
+        ],
+        "gates": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            4,
+            0,
+            0
+          ]
+        ],
+        "queries": [
+          [
+            1,
+            1,
+            0,
+            0
+          ]
+        ]
+      },
       "expected": 4,
-      "tags": ["trial", "red-card", "multiplicity"]
+      "tags": [
+        "trial",
+        "red-card",
+        "multiplicity"
+      ]
     },
     {
       "id": "trial-white-flip-multiplicity",
       "name": "trial: five white gates flip blue to red",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 2, "parent": [-1, 0], "gates": [[0, 0, 0], [0, 0, 5]], "queries": [[1, 0, 0, 0]]},
+      "input": {
+        "n": 2,
+        "parent": [
+          -1,
+          0
+        ],
+        "gates": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            5
+          ]
+        ],
+        "queries": [
+          [
+            1,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
       "expected": 5,
-      "tags": ["trial", "white-gates", "color-flip"]
+      "tags": [
+        "trial",
+        "white-gates",
+        "color-flip"
+      ]
     },
     {
       "id": "trial-unusable-card-blocks-route",
       "name": "trial: red-only gates block a blue card",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 2, "parent": [-1, 0], "gates": [[0, 0, 0], [3, 0, 0]], "queries": [[1, 0, 0, 0]]},
+      "input": {
+        "n": 2,
+        "parent": [
+          -1,
+          0
+        ],
+        "gates": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            0
+          ]
+        ],
+        "queries": [
+          [
+            1,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "blocked-route", "zero"]
+      "tags": [
+        "trial",
+        "blocked-route",
+        "zero"
+      ]
     },
     {
       "id": "trial-independent-branch-product",
       "name": "trial: independent branch counts multiply",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 3, "parent": [-1, 0, 0], "gates": [[0, 0, 0], [2, 3, 1], [4, 1, 2]], "queries": [[1, 1, 2, 0]]},
+      "input": {
+        "n": 3,
+        "parent": [
+          -1,
+          0,
+          0
+        ],
+        "gates": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            3,
+            1
+          ],
+          [
+            4,
+            1,
+            2
+          ]
+        ],
+        "queries": [
+          [
+            1,
+            1,
+            2,
+            0
+          ]
+        ]
+      },
       "expected": 9,
-      "tags": ["trial", "branching", "product"]
+      "tags": [
+        "trial",
+        "branching",
+        "product"
+      ]
     },
     {
-      "id": "real-noncommuting-chain-product",
-      "name": "hidden: asymmetric gates expose matrix order",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 4, "parent": [-1, 0, 1, 2], "gates": [[1, 1, 1], [7, 8, 9], [4, 5, 6], [1, 2, 3]], "queries": [[3, 0, 0, 1]]},
+      "id": "trial-noncommuting-chain-product",
+      "name": "asymmetric gates expose matrix order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "parent": [
+          -1,
+          0,
+          1,
+          2
+        ],
+        "gates": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            7,
+            8,
+            9
+          ],
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        "queries": [
+          [
+            3,
+            0,
+            0,
+            1
+          ]
+        ]
+      },
       "expected": 860,
-      "tags": ["hidden", "matrix-order", "deep-chain"]
+      "tags": [
+        "matrix-order",
+        "deep-chain"
+      ]
     },
     {
-      "id": "real-several-internal-lcas",
-      "name": "hidden: three queries use two different internal LCAs",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 7, "parent": [-1, 0, 0, 1, 1, 2, 2], "gates": [[1, 1, 1], [2, 1, 2], [1, 3, 1], [2, 2, 0], [0, 1, 3], [4, 0, 2], [3, 2, 1]], "queries": [[3, 1, 4, 0], [3, 0, 6, 1], [5, 1, 6, 0]]},
+      "id": "trial-several-internal-lcas",
+      "name": "three queries use two different internal LCAs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 7,
+        "parent": [
+          -1,
+          0,
+          0,
+          1,
+          1,
+          2,
+          2
+        ],
+        "gates": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            2,
+            1,
+            2
+          ],
+          [
+            1,
+            3,
+            1
+          ],
+          [
+            2,
+            2,
+            0
+          ],
+          [
+            0,
+            1,
+            3
+          ],
+          [
+            4,
+            0,
+            2
+          ],
+          [
+            3,
+            2,
+            1
+          ]
+        ],
+        "queries": [
+          [
+            3,
+            1,
+            4,
+            0
+          ],
+          [
+            3,
+            0,
+            6,
+            1
+          ],
+          [
+            5,
+            1,
+            6,
+            0
+          ]
+        ]
+      },
       "expected": 38,
-      "tags": ["hidden", "internal-lca", "balanced-tree"]
+      "tags": [
+        "internal-lca",
+        "balanced-tree"
+      ]
     },
     {
-      "id": "real-xor-cancels-duplicates",
-      "name": "hidden: duplicate query values cancel under XOR",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 3, "parent": [-1, 0, 0], "gates": [[0, 0, 0], [2, 3, 1], [4, 1, 2]], "queries": [[1, 1, 2, 0], [1, 1, 2, 0]]},
+      "id": "trial-xor-cancels-duplicates",
+      "name": "duplicate query values cancel under XOR",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "parent": [
+          -1,
+          0,
+          0
+        ],
+        "gates": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            3,
+            1
+          ],
+          [
+            4,
+            1,
+            2
+          ]
+        ],
+        "queries": [
+          [
+            1,
+            1,
+            2,
+            0
+          ],
+          [
+            1,
+            1,
+            2,
+            0
+          ]
+        ]
+      },
       "expected": 0,
-      "tags": ["hidden", "xor", "duplicate-queries"]
+      "tags": [
+        "xor",
+        "duplicate-queries"
+      ]
     },
     {
-      "id": "real-xor-mixed-query-values",
-      "name": "hidden: XOR combines three different modular products",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 4, "parent": [-1, 0, 0, 1], "gates": [[0, 0, 0], [1, 2, 1], [3, 1, 0], [2, 0, 2]], "queries": [[3, 0, 2, 1], [1, 1, 2, 0], [3, 1, 1, 0]]},
+      "id": "trial-xor-mixed-query-values",
+      "name": "XOR combines three different modular products",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "parent": [
+          -1,
+          0,
+          0,
+          1
+        ],
+        "gates": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            3,
+            1,
+            0
+          ],
+          [
+            2,
+            0,
+            2
+          ]
+        ],
+        "queries": [
+          [
+            3,
+            0,
+            2,
+            1
+          ],
+          [
+            1,
+            1,
+            2,
+            0
+          ],
+          [
+            3,
+            1,
+            1,
+            0
+          ]
+        ]
+      },
       "expected": 10,
-      "tags": ["hidden", "xor", "mixed-colors"]
+      "tags": [
+        "xor",
+        "mixed-colors"
+      ]
     },
     {
-      "id": "real-parent-index-after-child",
-      "name": "hidden: valid tree is not numerically topological",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 5, "parent": [-1, 4, 0, 2, 2], "gates": [[2, 1, 3], [0, 2, 1], [3, 1, 2], [1, 0, 2], [2, 3, 0]], "queries": [[1, 0, 3, 1], [4, 1, 3, 0], [1, 1, 0, 1], [2, 0, 4, 0]]},
+      "id": "trial-parent-index-after-child",
+      "name": "valid tree is not numerically topological",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "parent": [
+          -1,
+          4,
+          0,
+          2,
+          2
+        ],
+        "gates": [
+          [
+            2,
+            1,
+            3
+          ],
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            3,
+            1,
+            2
+          ],
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            2,
+            3,
+            0
+          ]
+        ],
+        "queries": [
+          [
+            1,
+            0,
+            3,
+            1
+          ],
+          [
+            4,
+            1,
+            3,
+            0
+          ],
+          [
+            1,
+            1,
+            0,
+            1
+          ],
+          [
+            2,
+            0,
+            4,
+            0
+          ]
+        ]
+      },
       "expected": 22,
-      "tags": ["hidden", "parent-order", "depth"]
+      "tags": [
+        "parent-order",
+        "depth"
+      ]
     },
     {
-      "id": "real-modular-long-chain",
-      "name": "hidden: large path counts are reduced before XOR",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 10, "parent": [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8], "gates": [[10, 10, 10], [10, 10, 10], [10, 10, 10], [10, 10, 10], [10, 10, 10], [10, 10, 10], [10, 10, 10], [10, 10, 10], [10, 10, 10], [10, 10, 10]], "queries": [[9, 0, 0, 1], [9, 1, 5, 0], [8, 0, 3, 1]]},
+      "id": "trial-modular-long-chain",
+      "name": "large path counts are reduced before XOR",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 10,
+        "parent": [
+          -1,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "gates": [
+          [
+            10,
+            10,
+            10
+          ],
+          [
+            10,
+            10,
+            10
+          ],
+          [
+            10,
+            10,
+            10
+          ],
+          [
+            10,
+            10,
+            10
+          ],
+          [
+            10,
+            10,
+            10
+          ],
+          [
+            10,
+            10,
+            10
+          ],
+          [
+            10,
+            10,
+            10
+          ],
+          [
+            10,
+            10,
+            10
+          ],
+          [
+            10,
+            10,
+            10
+          ],
+          [
+            10,
+            10,
+            10
+          ]
+        ],
+        "queries": [
+          [
+            9,
+            0,
+            0,
+            1
+          ],
+          [
+            9,
+            1,
+            5,
+            0
+          ],
+          [
+            8,
+            0,
+            3,
+            1
+          ]
+        ]
+      },
       "expected": 1000872199,
-      "tags": ["hidden", "modulo", "deep-chain", "xor"]
+      "tags": [
+        "modulo",
+        "deep-chain",
+        "xor"
+      ]
     },
     {
-      "id": "real-zero-and-empty-routes",
-      "name": "hidden: blocked, moving, and empty routes share one XOR",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 4, "parent": [-1, 0, 0, 2], "gates": [[0, 0, 0], [0, 0, 0], [1, 0, 0], [0, 2, 0]], "queries": [[1, 0, 0, 0], [3, 0, 2, 1], [2, 1, 2, 0]]},
+      "id": "trial-zero-and-empty-routes",
+      "name": "blocked, moving, and empty routes share one XOR",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "parent": [
+          -1,
+          0,
+          0,
+          2
+        ],
+        "gates": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ]
+        ],
+        "queries": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            2,
+            1
+          ],
+          [
+            2,
+            1,
+            2,
+            0
+          ]
+        ]
+      },
       "expected": 3,
-      "tags": ["hidden", "blocked-route", "empty-route", "xor"]
+      "tags": [
+        "blocked-route",
+        "empty-route",
+        "xor"
+      ]
     }
   ]
 }

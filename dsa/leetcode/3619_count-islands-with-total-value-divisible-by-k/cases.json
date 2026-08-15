@@ -234,10 +234,10 @@
       ]
     },
     {
-      "id": "real-vertical-and-horizontal",
-      "name": "hidden: bent four-directional components",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-vertical-and-horizontal",
+      "name": "bent four-directional components",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -269,16 +269,15 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "four-directional",
         "multiple-islands"
       ]
     },
     {
-      "id": "real-mixed-component-residues",
-      "name": "hidden: components have distinct modulo residues",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-component-residues",
+      "name": "components have distinct modulo residues",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -314,16 +313,15 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "modulo",
         "multiple-islands"
       ]
     },
     {
-      "id": "real-maximum-cell-values",
-      "name": "hidden: large values are accumulated modulo k",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-cell-values",
+      "name": "large values are accumulated modulo k",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -346,16 +344,15 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "maximum-value",
         "large-sum"
       ]
     },
     {
-      "id": "real-one-row",
-      "name": "hidden: horizontal islands in a single row",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-row",
+      "name": "horizontal islands in a single row",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -372,16 +369,15 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "one-row",
         "horizontal"
       ]
     },
     {
-      "id": "real-one-column",
-      "name": "hidden: vertical islands in a single column",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-column",
+      "name": "vertical islands in a single column",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -410,16 +406,15 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "one-column",
         "vertical"
       ]
     },
     {
-      "id": "real-maximum-cells-water",
-      "name": "hidden: maximum cell count with no land",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-cells-water",
+      "name": "maximum cell count with no land",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -100429,7 +100424,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "maximum-input",
         "all-water"
       ]

@@ -2,14 +2,216 @@
   "schema_version": 1,
   "challenge_id": "lc_3287",
   "cases": [
-    {"id":"sample-singletons","name":"sample: one selected value per half","kind":"sample","visible":true,"input":{"nums":[2,6,7],"k":1},"expected":5,"tags":["sample","k-one"]},
-    {"id":"sample-two-per-half","name":"sample: two OR masks produce value two","kind":"sample","visible":true,"input":{"nums":[4,2,5,6,7],"k":2},"expected":2,"tags":["sample","dynamic-programming"]},
-    {"id":"trial-minimum-length","name":"equal values in the only pair XOR to zero","kind":"trial","visible":true,"input":{"nums":[1,1],"k":1},"expected":0,"tags":["minimum-length"]},
-    {"id":"trial-best-late-pair","name":"the best singleton pair uses the final two values","kind":"trial","visible":true,"input":{"nums":[1,2,4],"k":1},"expected":6,"tags":["k-one","subsequence"]},
-    {"id":"trial-forced-halves","name":"selecting every element fixes both OR halves","kind":"trial","visible":true,"input":{"nums":[1,2,4,8],"k":2},"expected":15,"tags":["full-selection"]},
-    {"id":"real-repeated-values","name":"hidden: duplicate OR states collapse safely","kind":"real","visible":false,"input":{"nums":[3,3,3,3],"k":2},"expected":0,"tags":["hidden","duplicates"]},
-    {"id":"real-order-restriction","name":"hidden: pair order follows original indices","kind":"real","visible":false,"input":{"nums":[7,1,2,4],"k":1},"expected":6,"tags":["hidden","order"]},
-    {"id":"real-overlapping-bits","name":"hidden: multiple selections produce overlapping OR masks","kind":"real","visible":false,"input":{"nums":[1,2,3,4,5,6],"k":2},"expected":6,"tags":["hidden","or-states"]},
-    {"id":"real-seven-bit-range","name":"hidden: states span all seven available bits","kind":"real","visible":false,"input":{"nums":[64,1,2,4,8,16,32],"k":3},"expected":126,"tags":["hidden","bit-boundary"]}
+    {
+      "id": "sample-singletons",
+      "name": "sample: one selected value per half",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          6,
+          7
+        ],
+        "k": 1
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "k-one"
+      ]
+    },
+    {
+      "id": "sample-two-per-half",
+      "name": "sample: two OR masks produce value two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          2,
+          5,
+          6,
+          7
+        ],
+        "k": 2
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "trial-minimum-length",
+      "name": "equal values in the only pair XOR to zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-best-late-pair",
+      "name": "the best singleton pair uses the final two values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4
+        ],
+        "k": 1
+      },
+      "expected": 6,
+      "tags": [
+        "k-one",
+        "subsequence"
+      ]
+    },
+    {
+      "id": "trial-forced-halves",
+      "name": "selecting every element fixes both OR halves",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          8
+        ],
+        "k": 2
+      },
+      "expected": 15,
+      "tags": [
+        "full-selection"
+      ]
+    },
+    {
+      "id": "trial-repeated-values",
+      "name": "duplicate OR states collapse safely",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-order-restriction",
+      "name": "pair order follows original indices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          1,
+          2,
+          4
+        ],
+        "k": 1
+      },
+      "expected": 6,
+      "tags": [
+        "order"
+      ]
+    },
+    {
+      "id": "trial-overlapping-bits",
+      "name": "multiple selections produce overlapping OR masks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "k": 2
+      },
+      "expected": 6,
+      "tags": [
+        "or-states"
+      ]
+    },
+    {
+      "id": "trial-seven-bit-range",
+      "name": "states span all seven available bits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          64,
+          1,
+          2,
+          4,
+          8,
+          16,
+          32
+        ],
+        "k": 3
+      },
+      "expected": 126,
+      "tags": [
+        "bit-boundary"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    }
   ]
 }

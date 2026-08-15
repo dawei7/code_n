@@ -159,10 +159,10 @@
       ]
     },
     {
-      "id": "real-repeated-values",
-      "name": "hidden: repeated cell values do not affect dimensions",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-values",
+      "name": "repeated cell values do not affect dimensions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "players": [
@@ -202,7 +202,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }

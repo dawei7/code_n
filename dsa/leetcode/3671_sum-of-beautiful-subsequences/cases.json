@@ -91,10 +91,10 @@
       ]
     },
     {
-      "id": "real-common-factor",
-      "name": "hidden: every value shares factor two",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-common-factor",
+      "name": "every value shares factor two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -104,15 +104,14 @@
       },
       "expected": 20,
       "tags": [
-        "hidden",
         "common-divisor"
       ]
     },
     {
-      "id": "real-mixed-order",
-      "name": "hidden: only a suffix pair increases",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-order",
+      "name": "only a suffix pair increases",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -122,15 +121,14 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "index-order"
       ]
     },
     {
-      "id": "real-value-boundary",
-      "name": "hidden: high values and one valid increase",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-value-boundary",
+      "name": "high values and one valid increase",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           70000,
@@ -140,16 +138,15 @@
       },
       "expected": 210000,
       "tags": [
-        "hidden",
         "maximum-value",
         "duplicates"
       ]
     },
     {
-      "id": "real-modulo",
-      "name": "hidden: increasing length thirty requires modulo",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-modulo",
+      "name": "increasing length thirty requires modulo",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -186,9 +183,41 @@
       },
       "expected": 73777711,
       "tags": [
-        "hidden",
         "modulo",
         "many-subsequences"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

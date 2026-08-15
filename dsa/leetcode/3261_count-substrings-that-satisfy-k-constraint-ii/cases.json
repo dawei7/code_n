@@ -1,17 +1,429 @@
 {
   "challenge_id": "lc_3261",
   "cases": [
-    {"id":"sample-single-full-range","name":"sample: two invalid substrings in the full range","kind":"sample","visible":true,"input":{"s":"0001111","k":2,"queries":[[0,6]]},"expected":[26],"tags":["sample","full-range"]},
-    {"id":"sample-nested-alternating","name":"sample: three nested alternating ranges","kind":"sample","visible":true,"input":{"s":"010101","k":1,"queries":[[0,5],[1,4],[2,3]]},"expected":[15,9,3],"tags":["sample","nested"]},
-    {"id":"sample-homogeneous-ranges","name":"sample: all nested one-runs are valid","kind":"sample","visible":true,"input":{"s":"11111","k":1,"queries":[[0,4],[1,3],[2,2]]},"expected":[15,6,1],"tags":["sample","homogeneous"]},
-    {"id":"trial-single-character","name":"trial: minimum string and query","kind":"trial","visible":true,"input":{"s":"0","k":1,"queries":[[0,0]]},"expected":[1],"tags":["minimum","singleton"]},
-    {"id":"trial-two-blocks","name":"trial: full, block, and crossing queries","kind":"trial","visible":true,"input":{"s":"0011","k":1,"queries":[[0,3],[0,1],[2,3],[1,2]]},"expected":[9,3,3,3],"tags":["blocks","boundaries"]},
-    {"id":"trial-long-alternation","name":"trial: full, inner, and singleton ranges","kind":"trial","visible":true,"input":{"s":"0101010101","k":1,"queries":[[0,9],[2,7],[4,4]]},"expected":[27,15,1],"tags":["alternating","nested"]},
-    {"id":"trial-zero-bordered","name":"trial: zero borders around an alternating center","kind":"trial","visible":true,"input":{"s":"0010100","k":1,"queries":[[0,6],[1,5],[2,4]]},"expected":[20,12,6],"tags":["mixed","nested"]},
-    {"id":"real-dense-mixed","name":"real: overlapping ranges in a dense profile","kind":"real","visible":false,"input":{"s":"101100101","k":2,"queries":[[0,8],[1,7],[3,8],[4,6]]},"expected":[35,25,20,6],"tags":["mixed","overlap"]},
-    {"id":"real-all-zeroes","name":"real: every queried zero-run substring is valid","kind":"real","visible":false,"input":{"s":"000000","k":2,"queries":[[0,5],[1,4],[2,3]]},"expected":[21,10,3],"tags":["homogeneous","all-valid"]},
-    {"id":"real-k-full-length","name":"real: global k makes all query substrings valid","kind":"real","visible":false,"input":{"s":"011010","k":6,"queries":[[0,5],[0,2],[3,5]]},"expected":[21,6,6],"tags":["large-k","all-valid"]},
-    {"id":"real-block-overlaps","name":"real: overlapping ranges across a central block","kind":"real","visible":false,"input":{"s":"1100011","k":2,"queries":[[0,6],[0,4],[2,6],[1,5]]},"expected":[25,15,15,15],"tags":["blocks","overlap"]},
-    {"id":"real-many-nested","name":"real: five nested mixed ranges","kind":"real","visible":false,"input":{"s":"0100110101","k":2,"queries":[[0,9],[1,8],[2,7],[3,6],[4,5]]},"expected":[41,30,20,10,3],"tags":["nested","mixed"]}
+    {
+      "id": "sample-single-full-range",
+      "name": "sample: two invalid substrings in the full range",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "0001111",
+        "k": 2,
+        "queries": [
+          [
+            0,
+            6
+          ]
+        ]
+      },
+      "expected": [
+        26
+      ],
+      "tags": [
+        "sample",
+        "full-range"
+      ]
+    },
+    {
+      "id": "sample-nested-alternating",
+      "name": "sample: three nested alternating ranges",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "010101",
+        "k": 1,
+        "queries": [
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        15,
+        9,
+        3
+      ],
+      "tags": [
+        "sample",
+        "nested"
+      ]
+    },
+    {
+      "id": "sample-homogeneous-ranges",
+      "name": "sample: all nested one-runs are valid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "11111",
+        "k": 1,
+        "queries": [
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        15,
+        6,
+        1
+      ],
+      "tags": [
+        "sample",
+        "homogeneous"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "trial: minimum string and query",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0",
+        "k": 1,
+        "queries": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "minimum",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-two-blocks",
+      "name": "trial: full, block, and crossing queries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0011",
+        "k": 1,
+        "queries": [
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        9,
+        3,
+        3,
+        3
+      ],
+      "tags": [
+        "blocks",
+        "boundaries"
+      ]
+    },
+    {
+      "id": "trial-long-alternation",
+      "name": "trial: full, inner, and singleton ranges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0101010101",
+        "k": 1,
+        "queries": [
+          [
+            0,
+            9
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            4,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        27,
+        15,
+        1
+      ],
+      "tags": [
+        "alternating",
+        "nested"
+      ]
+    },
+    {
+      "id": "trial-zero-bordered",
+      "name": "trial: zero borders around an alternating center",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0010100",
+        "k": 1,
+        "queries": [
+          [
+            0,
+            6
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        20,
+        12,
+        6
+      ],
+      "tags": [
+        "mixed",
+        "nested"
+      ]
+    },
+    {
+      "id": "trial-dense-mixed",
+      "name": "overlapping ranges in a dense profile",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "101100101",
+        "k": 2,
+        "queries": [
+          [
+            0,
+            8
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            3,
+            8
+          ],
+          [
+            4,
+            6
+          ]
+        ]
+      },
+      "expected": [
+        35,
+        25,
+        20,
+        6
+      ],
+      "tags": [
+        "mixed",
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-all-zeroes",
+      "name": "every queried zero-run substring is valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "000000",
+        "k": 2,
+        "queries": [
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        21,
+        10,
+        3
+      ],
+      "tags": [
+        "homogeneous",
+        "all-valid"
+      ]
+    },
+    {
+      "id": "trial-k-full-length",
+      "name": "global k makes all query substrings valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "011010",
+        "k": 6,
+        "queries": [
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            3,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        21,
+        6,
+        6
+      ],
+      "tags": [
+        "large-k",
+        "all-valid"
+      ]
+    },
+    {
+      "id": "trial-block-overlaps",
+      "name": "overlapping ranges across a central block",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1100011",
+        "k": 2,
+        "queries": [
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            1,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        25,
+        15,
+        15,
+        15
+      ],
+      "tags": [
+        "blocks",
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-many-nested",
+      "name": "five nested mixed ranges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0100110101",
+        "k": 2,
+        "queries": [
+          [
+            0,
+            9
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            4,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        41,
+        30,
+        20,
+        10,
+        3
+      ],
+      "tags": [
+        "nested",
+        "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0001111",
+        "k": 1,
+        "queries": [
+          [
+            0,
+            6
+          ]
+        ]
+      },
+      "expected": [
+        22
+      ],
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    }
   ]
 }

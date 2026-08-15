@@ -1,9 +1,131 @@
-{"challenge_id":"lc_2980","cases":[
-{"id":"sample-mixed","name":"sample: mixed values contain two evens","kind":"sample","visible":true,"input":{"nums":[1,2,3,4,5]},"expected":true,"tags":["sample"]},
-{"id":"sample-all-even","name":"sample: every value is even","kind":"sample","visible":true,"input":{"nums":[2,4,8,16]},"expected":true,"tags":["sample"]},
-{"id":"sample-all-odd","name":"sample: every value is odd","kind":"sample","visible":true,"input":{"nums":[1,3,5,7,9]},"expected":false,"tags":["sample"]},
-{"id":"trial-single-even","name":"trial: one even value is insufficient","kind":"trial","visible":true,"input":{"nums":[2,3,5]},"expected":false,"tags":["single-even"]},
-{"id":"trial-two-elements-even","name":"trial: minimum-length qualifying array","kind":"trial","visible":true,"input":{"nums":[100,2]},"expected":true,"tags":["boundary"]},
-{"id":"real-late-evens","name":"real: qualifying values occur at the end","kind":"real","visible":false,"input":{"nums":[1,9,11,13,20,22]},"expected":true,"tags":["hidden","late-match"]},
-{"id":"real-duplicate-even","name":"real: duplicate array elements count separately","kind":"real","visible":false,"input":{"nums":[7,6,6]},"expected":true,"tags":["hidden","duplicates"]}
-]}
+{
+  "challenge_id": "lc_2980",
+  "cases": [
+    {
+      "id": "sample-mixed",
+      "name": "sample: mixed values contain two evens",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-all-even",
+      "name": "sample: every value is even",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          8,
+          16
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-all-odd",
+      "name": "sample: every value is odd",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          5,
+          7,
+          9
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-even",
+      "name": "trial: one even value is insufficient",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          5
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "single-even"
+      ]
+    },
+    {
+      "id": "trial-two-elements-even",
+      "name": "trial: minimum-length qualifying array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100,
+          2
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-late-evens",
+      "name": "qualifying values occur at the end",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          9,
+          11,
+          13,
+          20,
+          22
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "late-match"
+      ]
+    },
+    {
+      "id": "trial-duplicate-even",
+      "name": "duplicate array elements count separately",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          6,
+          6
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "duplicates"
+      ]
+    }
+  ]
+}

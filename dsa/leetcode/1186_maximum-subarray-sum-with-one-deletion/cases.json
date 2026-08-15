@@ -2,13 +2,150 @@
   "schema_version": 1,
   "challenge_id": "lc_1186",
   "cases": [
-    {"id":"sample-delete-middle","name":"sample: delete one negative middle value","kind":"sample","visible":true,"input":{"arr":[1,-2,0,3]},"expected":4,"tags":["sample","deletion"]},
-    {"id":"sample-separate-positive","name":"sample: one positive element is optimal","kind":"sample","visible":true,"input":{"arr":[1,-2,-2,3]},"expected":3,"tags":["sample","no-deletion"]},
-    {"id":"sample-all-negative","name":"sample: result must remain non-empty","kind":"sample","visible":true,"input":{"arr":[-1,-1,-1,-1]},"expected":-1,"tags":["sample","all-negative"]},
-    {"id":"trial-single-negative","name":"single negative element cannot be deleted","kind":"trial","visible":true,"input":{"arr":[-5]},"expected":-5,"tags":["boundary","single-element"]},
-    {"id":"trial-bridge-positive-runs","name":"deletion bridges two positive runs","kind":"trial","visible":true,"input":{"arr":[1,-2,3,4]},"expected":8,"tags":["deletion","bridge"]},
-    {"id":"real-two-negatives","name":"hidden: delete only one of adjacent negatives","kind":"real","visible":false,"input":{"arr":[5,-1,-1,5]},"expected":9,"tags":["hidden","one-deletion"]},
-    {"id":"real-large-gap","name":"hidden: delete a large separating loss","kind":"real","visible":false,"input":{"arr":[2,-100,3,-1,4]},"expected":8,"tags":["hidden","bridge"]},
-    {"id":"real-zero-values","name":"hidden: zeros preserve a non-empty answer","kind":"real","visible":false,"input":{"arr":[0,0]},"expected":0,"tags":["hidden","zero"]}
+    {
+      "id": "sample-delete-middle",
+      "name": "sample: delete one negative middle value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          -2,
+          0,
+          3
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "deletion"
+      ]
+    },
+    {
+      "id": "sample-separate-positive",
+      "name": "sample: one positive element is optimal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          -2,
+          -2,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "no-deletion"
+      ]
+    },
+    {
+      "id": "sample-all-negative",
+      "name": "sample: result must remain non-empty",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "all-negative"
+      ]
+    },
+    {
+      "id": "trial-single-negative",
+      "name": "single negative element cannot be deleted",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          -5
+        ]
+      },
+      "expected": -5,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-bridge-positive-runs",
+      "name": "deletion bridges two positive runs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          -2,
+          3,
+          4
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "deletion",
+        "bridge"
+      ]
+    },
+    {
+      "id": "trial-two-negatives",
+      "name": "delete only one of adjacent negatives",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          5,
+          -1,
+          -1,
+          5
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "one-deletion"
+      ]
+    },
+    {
+      "id": "trial-large-gap",
+      "name": "delete a large separating loss",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          2,
+          -100,
+          3,
+          -1,
+          4
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "bridge"
+      ]
+    },
+    {
+      "id": "trial-zero-values",
+      "name": "zeros preserve a non-empty answer",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          0,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "zero"
+      ]
+    }
   ]
 }

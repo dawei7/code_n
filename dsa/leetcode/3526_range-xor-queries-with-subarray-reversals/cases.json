@@ -2,13 +2,342 @@
   "schema_version": 1,
   "challenge_id": "lc_3526",
   "cases": [
-    {"id":"sample-all-operations","name":"sample: query, update, reversal, and query","kind":"sample","visible":true,"input":{"nums":[1,2,3,4,5],"queries":[[2,1,3],[1,2,10],[3,0,4],[2,0,4]]},"expected":[5,8],"tags":["sample","all-operations"]},
-    {"id":"sample-update-query-reverse","name":"sample: reversal occurs after the only query","kind":"sample","visible":true,"input":{"nums":[7,8,9],"queries":[[1,0,3],[2,0,2],[3,1,2]]},"expected":[2],"tags":["sample","persistent-update"]},
-    {"id":"trial-single","name":"trial: all operations on one element","kind":"trial","visible":true,"input":{"nums":[0],"queries":[[2,0,0],[3,0,0],[1,0,7],[2,0,0]]},"expected":[0,7],"tags":["trial","single-element"]},
-    {"id":"trial-partial-reversal","name":"trial: queries observe a partial reversal","kind":"trial","visible":true,"input":{"nums":[1,2,4,8],"queries":[[3,1,3],[2,0,1],[2,1,3]]},"expected":[9,14],"tags":["trial","partial-reversal"]},
-    {"id":"trial-update-after-reversal","name":"trial: point index follows the reversed order","kind":"trial","visible":true,"input":{"nums":[1,2,3,4],"queries":[[3,0,3],[1,1,7],[2,0,2],[2,1,3]]},"expected":[1,4],"tags":["trial","update-after-reversal"]},
-    {"id":"real-double-reversal","name":"real: two reversals restore the sequence","kind":"real","visible":false,"input":{"nums":[5,6,7],"queries":[[3,0,2],[3,0,2],[2,0,2]]},"expected":[4],"tags":["real","lazy-toggle"]},
-    {"id":"real-zero-values","name":"real: zero update changes the full XOR","kind":"real","visible":false,"input":{"nums":[0,0,5],"queries":[[2,0,2],[3,0,1],[1,2,0],[2,0,2]]},"expected":[5,0],"tags":["real","zero-values"]},
-    {"id":"real-nested-reversals","name":"real: overlapping reversals preserve logical positions","kind":"real","visible":false,"input":{"nums":[1,2,3,4,5,6],"queries":[[3,1,4],[3,2,5],[2,0,2],[1,3,9],[2,2,5]]},"expected":[2,8],"tags":["real","overlapping-reversals"]}
+    {
+      "id": "sample-all-operations",
+      "name": "sample: query, update, reversal, and query",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "queries": [
+          [
+            2,
+            1,
+            3
+          ],
+          [
+            1,
+            2,
+            10
+          ],
+          [
+            3,
+            0,
+            4
+          ],
+          [
+            2,
+            0,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        5,
+        8
+      ],
+      "tags": [
+        "sample",
+        "all-operations"
+      ]
+    },
+    {
+      "id": "sample-update-query-reverse",
+      "name": "sample: reversal occurs after the only query",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          8,
+          9
+        ],
+        "queries": [
+          [
+            1,
+            0,
+            3
+          ],
+          [
+            2,
+            0,
+            2
+          ],
+          [
+            3,
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        2
+      ],
+      "tags": [
+        "sample",
+        "persistent-update"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: all operations on one element",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0
+        ],
+        "queries": [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            7
+          ],
+          [
+            2,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        7
+      ],
+      "tags": [
+        "trial",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-partial-reversal",
+      "name": "trial: queries observe a partial reversal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          8
+        ],
+        "queries": [
+          [
+            3,
+            1,
+            3
+          ],
+          [
+            2,
+            0,
+            1
+          ],
+          [
+            2,
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        9,
+        14
+      ],
+      "tags": [
+        "trial",
+        "partial-reversal"
+      ]
+    },
+    {
+      "id": "trial-update-after-reversal",
+      "name": "trial: point index follows the reversed order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "queries": [
+          [
+            3,
+            0,
+            3
+          ],
+          [
+            1,
+            1,
+            7
+          ],
+          [
+            2,
+            0,
+            2
+          ],
+          [
+            2,
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        4
+      ],
+      "tags": [
+        "trial",
+        "update-after-reversal"
+      ]
+    },
+    {
+      "id": "trial-double-reversal",
+      "name": "two reversals restore the sequence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          6,
+          7
+        ],
+        "queries": [
+          [
+            3,
+            0,
+            2
+          ],
+          [
+            3,
+            0,
+            2
+          ],
+          [
+            2,
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        4
+      ],
+      "tags": [
+        "real",
+        "lazy-toggle"
+      ]
+    },
+    {
+      "id": "trial-zero-values",
+      "name": "zero update changes the full XOR",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          5
+        ],
+        "queries": [
+          [
+            2,
+            0,
+            2
+          ],
+          [
+            3,
+            0,
+            1
+          ],
+          [
+            1,
+            2,
+            0
+          ],
+          [
+            2,
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        5,
+        0
+      ],
+      "tags": [
+        "real",
+        "zero-values"
+      ]
+    },
+    {
+      "id": "trial-nested-reversals",
+      "name": "overlapping reversals preserve logical positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "queries": [
+          [
+            3,
+            1,
+            4
+          ],
+          [
+            3,
+            2,
+            5
+          ],
+          [
+            2,
+            0,
+            2
+          ],
+          [
+            1,
+            3,
+            9
+          ],
+          [
+            2,
+            2,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        8
+      ],
+      "tags": [
+        "real",
+        "overlapping-reversals"
+      ]
+    }
   ]
 }

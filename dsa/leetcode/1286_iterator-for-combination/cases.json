@@ -188,10 +188,10 @@
       ]
     },
     {
-      "id": "hidden-middle-successor",
-      "name": "hidden: carry advances an earlier index",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-middle-successor",
+      "name": "carry advances an earlier index",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "characters": "abcde",
         "combinationLength": 3,
@@ -226,15 +226,14 @@
         "ace"
       ],
       "tags": [
-        "hidden",
         "carry"
       ]
     },
     {
-      "id": "hidden-exhaustion",
-      "name": "hidden: consume every pair",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-exhaustion",
+      "name": "consume every pair",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "characters": "abcd",
         "combinationLength": 2,
@@ -279,7 +278,6 @@
         false
       ],
       "tags": [
-        "hidden",
         "exhaustion"
       ]
     }

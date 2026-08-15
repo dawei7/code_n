@@ -147,10 +147,10 @@
       ]
     },
     {
-      "id": "real-count-transition",
-      "name": "hidden: removing one copy stops a value repeating",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-count-transition",
+      "name": "removing one copy stops a value repeating",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -164,15 +164,14 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "frequency-transition"
       ]
     },
     {
-      "id": "real-many-copies",
-      "name": "hidden: extra copies do not increase repeat-value count",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-copies",
+      "name": "extra copies do not increase repeat-value count",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -186,15 +185,14 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "duplicate-occurrences"
       ]
     },
     {
-      "id": "real-separated-duplicates",
-      "name": "hidden: distant copies constrain the window",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-separated-duplicates",
+      "name": "distant copies constrain the window",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -210,15 +208,14 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "separated-duplicates"
       ]
     },
     {
-      "id": "real-k-covers-all",
-      "name": "hidden: k covers every repeated distinct value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-k-covers-all",
+      "name": "k covers every repeated distinct value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -232,15 +229,14 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "full-window"
       ]
     },
     {
-      "id": "real-high-values",
-      "name": "hidden: values at the upper bound",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-high-values",
+      "name": "values at the upper bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000,
@@ -253,15 +249,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "large-values"
       ]
     },
     {
-      "id": "real-alternating",
-      "name": "hidden: alternating groups create several feasible maxima",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alternating",
+      "name": "alternating groups create several feasible maxima",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -276,7 +271,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "alternating"
       ]
     }

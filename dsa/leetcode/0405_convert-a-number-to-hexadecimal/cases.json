@@ -73,45 +73,56 @@
       ]
     },
     {
-      "id": "hidden-negative-two",
-      "name": "hidden: negative value with low e digit",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-negative-two",
+      "name": "negative value with low e digit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": -2
       },
       "expected": "fffffffe",
       "tags": [
-        "hidden",
         "negative"
       ]
     },
     {
-      "id": "hidden-int-min",
-      "name": "hidden: minimum signed integer",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-int-min",
+      "name": "minimum signed integer",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": -2147483648
       },
       "expected": "80000000",
       "tags": [
-        "hidden",
         "minimum"
       ]
     },
     {
-      "id": "hidden-int-max",
-      "name": "hidden: maximum signed integer",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-int-max",
+      "name": "maximum signed integer",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 2147483647
       },
       "expected": "7fffffff",
       "tags": [
-        "hidden",
         "maximum"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value num=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 1
+      },
+      "expected": "1",
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

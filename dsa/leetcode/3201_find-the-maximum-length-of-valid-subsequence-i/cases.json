@@ -135,10 +135,10 @@
       ]
     },
     {
-      "id": "real-parity-blocks",
-      "name": "real: parity blocks require ordered greedy choices",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-parity-blocks",
+      "name": "parity blocks require ordered greedy choices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -158,10 +158,10 @@
       ]
     },
     {
-      "id": "real-dominant-odd",
-      "name": "real: the all-odd candidate beats alternation",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-dominant-odd",
+      "name": "the all-odd candidate beats alternation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -180,10 +180,10 @@
       ]
     },
     {
-      "id": "real-late-switches",
-      "name": "real: late parity switches extend alternating endpoints",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-late-switches",
+      "name": "late parity switches extend alternating endpoints",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -203,10 +203,10 @@
       ]
     },
     {
-      "id": "real-repeated-values",
-      "name": "real: repeated positions count independently",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-values",
+      "name": "repeated positions count independently",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -225,10 +225,10 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
-      "name": "real: minimum and maximum values reduce to parity",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-value-boundaries",
+      "name": "minimum and maximum values reduce to parity",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -242,6 +242,39 @@
       "expected": 5,
       "tags": [
         "value-boundaries"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

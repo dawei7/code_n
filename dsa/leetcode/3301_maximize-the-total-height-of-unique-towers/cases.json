@@ -1,15 +1,176 @@
 {
   "challenge_id": "lc_3301",
   "cases": [
-    {"id":"sample-four-towers","name":"sample: duplicate limits remain feasible","kind":"sample","visible":true,"input":{"maximumHeight":[2,3,4,3]},"expected":10,"tags":["sample","duplicates"]},
-    {"id":"sample-two-independent","name":"sample: two distinct limits are both used fully","kind":"sample","visible":true,"input":{"maximumHeight":[15,10]},"expected":25,"tags":["sample"]},
-    {"id":"sample-impossible","name":"sample: positive distinct assignment is impossible","kind":"sample","visible":true,"input":{"maximumHeight":[2,2,1]},"expected":-1,"tags":["sample","impossible"]},
-    {"id":"trial-single-minimum","name":"trial: one tower with limit one","kind":"trial","visible":true,"input":{"maximumHeight":[1]},"expected":1,"tags":["minimum"]},
-    {"id":"trial-equal-limits","name":"trial: equal limits receive descending heights","kind":"trial","visible":true,"input":{"maximumHeight":[5,5,5]},"expected":12,"tags":["duplicates"]},
-    {"id":"trial-unsorted-limits","name":"trial: input order does not constrain assignment order","kind":"trial","visible":true,"input":{"maximumHeight":[3,1,4]},"expected":8,"tags":["sorting"]},
-    {"id":"real-all-ones","name":"real: a second limit one makes assignment impossible","kind":"real","visible":false,"input":{"maximumHeight":[1,1]},"expected":-1,"tags":["impossible","boundary"]},
-    {"id":"real-tight-feasible","name":"real: consecutive limits use every full height","kind":"real","visible":false,"input":{"maximumHeight":[1,2,3,4]},"expected":10,"tags":["tight"]},
-    {"id":"real-mixed-duplicates","name":"real: duplicate restricted limits force a lower choice","kind":"real","visible":false,"input":{"maximumHeight":[4,2,2]},"expected":7,"tags":["duplicates"]},
-    {"id":"real-large-total","name":"real: maximum duplicate limits require a 64-bit sum","kind":"real","visible":false,"input":{"maximumHeight":[1000000000,1000000000]},"expected":1999999999,"tags":["boundary","64-bit"]}
+    {
+      "id": "sample-four-towers",
+      "name": "sample: duplicate limits remain feasible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "maximumHeight": [
+          2,
+          3,
+          4,
+          3
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "sample-two-independent",
+      "name": "sample: two distinct limits are both used fully",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "maximumHeight": [
+          15,
+          10
+        ]
+      },
+      "expected": 25,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-impossible",
+      "name": "sample: positive distinct assignment is impossible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "maximumHeight": [
+          2,
+          2,
+          1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-single-minimum",
+      "name": "trial: one tower with limit one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "maximumHeight": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-equal-limits",
+      "name": "trial: equal limits receive descending heights",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "maximumHeight": [
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-unsorted-limits",
+      "name": "trial: input order does not constrain assignment order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "maximumHeight": [
+          3,
+          1,
+          4
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "sorting"
+      ]
+    },
+    {
+      "id": "trial-all-ones",
+      "name": "a second limit one makes assignment impossible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "maximumHeight": [
+          1,
+          1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "impossible",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-tight-feasible",
+      "name": "consecutive limits use every full height",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "maximumHeight": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "tight"
+      ]
+    },
+    {
+      "id": "trial-mixed-duplicates",
+      "name": "duplicate restricted limits force a lower choice",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "maximumHeight": [
+          4,
+          2,
+          2
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-large-total",
+      "name": "maximum duplicate limits require a 64-bit sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "maximumHeight": [
+          1000000000,
+          1000000000
+        ]
+      },
+      "expected": 1999999999,
+      "tags": [
+        "boundary",
+        "64-bit"
+      ]
+    }
   ]
 }

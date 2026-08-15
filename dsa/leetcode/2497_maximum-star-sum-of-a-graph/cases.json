@@ -147,10 +147,10 @@
       ]
     },
     {
-      "id": "real-zero-k",
-      "name": "hidden: edges are irrelevant when k is zero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zero-k",
+      "name": "edges are irrelevant when k is zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "vals": [
           -3,
@@ -171,15 +171,14 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "k-zero"
       ]
     },
     {
-      "id": "real-all-negative",
-      "name": "hidden: every neighbor is harmful",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-negative",
+      "name": "every neighbor is harmful",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "vals": [
           -1,
@@ -200,15 +199,14 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "all-negative"
       ]
     },
     {
-      "id": "real-negative-center-wins",
-      "name": "hidden: positive neighbors can outweigh a negative center",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-negative-center-wins",
+      "name": "positive neighbors can outweigh a negative center",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "vals": [
           -5,
@@ -229,15 +227,14 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "negative-center"
       ]
     },
     {
-      "id": "real-disconnected",
-      "name": "hidden: disconnected components and an isolated optimum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-disconnected",
+      "name": "disconnected components and an isolated optimum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "vals": [
           1,
@@ -260,16 +257,15 @@
       },
       "expected": 100,
       "tags": [
-        "hidden",
         "disconnected",
         "isolated"
       ]
     },
     {
-      "id": "real-zero-neighbors",
-      "name": "hidden: zero-valued neighbors do not improve a star",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zero-neighbors",
+      "name": "zero-valued neighbors do not improve a star",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "vals": [
           4,
@@ -295,7 +291,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "zero-values"
       ]
     }

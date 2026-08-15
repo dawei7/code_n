@@ -165,10 +165,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: rectangle nested inside another",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "rectangle nested inside another",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rectangles": [
           [
@@ -187,15 +187,14 @@
       },
       "expected": 25,
       "tags": [
-        "hidden",
         "nested"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: partial overlap",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "partial overlap",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rectangles": [
           [
@@ -214,15 +213,14 @@
       },
       "expected": 17,
       "tags": [
-        "hidden",
         "partial"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: perpendicular strips",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "perpendicular strips",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rectangles": [
           [
@@ -241,15 +239,14 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "cross"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: corner contact only",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "corner contact only",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rectangles": [
           [
@@ -268,15 +265,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "corner"
       ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: chain of overlapping squares",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-5",
+      "name": "chain of overlapping squares",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rectangles": [
           [
@@ -307,15 +303,14 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "chain"
       ]
     },
     {
-      "id": "hidden-6",
-      "name": "hidden: same vertical span with gaps",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-6",
+      "name": "same vertical span with gaps",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rectangles": [
           [
@@ -340,7 +335,6 @@
       },
       "expected": 28,
       "tags": [
-        "hidden",
         "gaps"
       ]
     }

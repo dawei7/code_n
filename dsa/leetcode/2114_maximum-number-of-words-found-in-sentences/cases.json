@@ -15,7 +15,10 @@
         ]
       },
       "expected": 6,
-      "tags": ["sample", "distinct-counts"]
+      "tags": [
+        "sample",
+        "distinct-counts"
+      ]
     },
     {
       "id": "sample-tied-maximum",
@@ -23,19 +26,33 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "sentences": ["please wait", "continue to fight", "continue to win"]
+        "sentences": [
+          "please wait",
+          "continue to fight",
+          "continue to win"
+        ]
       },
       "expected": 3,
-      "tags": ["sample", "tie"]
+      "tags": [
+        "sample",
+        "tie"
+      ]
     },
     {
       "id": "trial-single-word",
       "name": "one sentence with no spaces still has one word",
       "kind": "trial",
       "visible": true,
-      "input": {"sentences": ["solitary"]},
+      "input": {
+        "sentences": [
+          "solitary"
+        ]
+      },
       "expected": 1,
-      "tags": ["minimum", "no-spaces"]
+      "tags": [
+        "minimum",
+        "no-spaces"
+      ]
     },
     {
       "id": "trial-three-way-tie",
@@ -43,36 +60,60 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "sentences": ["one two three", "four five six", "red blue green", "last"]
+        "sentences": [
+          "one two three",
+          "four five six",
+          "red blue green",
+          "last"
+        ]
       },
       "expected": 3,
-      "tags": ["tie", "multiple-sentences"]
+      "tags": [
+        "tie",
+        "multiple-sentences"
+      ]
     },
     {
-      "id": "real-first-is-longest",
-      "name": "hidden: the first sentence establishes the maximum",
-      "kind": "real",
-      "visible": false,
-      "input": {"sentences": ["a b c d e", "f", "g h"]},
-      "expected": 5,
-      "tags": ["hidden", "first-maximum"]
-    },
-    {
-      "id": "real-last-overtakes",
-      "name": "hidden: later sentences repeatedly raise the maximum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-first-is-longest",
+      "name": "the first sentence establishes the maximum",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "sentences": ["a", "b c", "d e f", "g h i j", "k l m n o"]
+        "sentences": [
+          "a b c d e",
+          "f",
+          "g h"
+        ]
       },
       "expected": 5,
-      "tags": ["hidden", "increasing-counts"]
+      "tags": [
+        "first-maximum"
+      ]
     },
     {
-      "id": "real-maximum-length",
-      "name": "hidden: a 99-character sentence contains fifty words",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-last-overtakes",
+      "name": "later sentences repeatedly raise the maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentences": [
+          "a",
+          "b c",
+          "d e f",
+          "g h i j",
+          "k l m n o"
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "increasing-counts"
+      ]
+    },
+    {
+      "id": "trial-maximum-length",
+      "name": "a 99-character sentence contains fifty words",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "sentences": [
           "a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a",
@@ -80,7 +121,43 @@
         ]
       },
       "expected": 50,
-      "tags": ["hidden", "maximum-length", "many-words"]
+      "tags": [
+        "maximum-length",
+        "many-words"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in sentences",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentences": [
+          "alice and bob love leetcode"
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in sentences",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentences": [
+          "alice and bob love leetcode",
+          "alice and bob love leetcode"
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

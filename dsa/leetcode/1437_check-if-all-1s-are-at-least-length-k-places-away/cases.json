@@ -109,10 +109,10 @@
       ]
     },
     {
-      "id": "real-exact",
-      "name": "hidden: exactly k positions between ones",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-exact",
+      "name": "exactly k positions between ones",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -124,15 +124,14 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
     {
-      "id": "real-off-by-one",
-      "name": "hidden: one fewer than k positions",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-off-by-one",
+      "name": "one fewer than k positions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -143,7 +142,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "off-by-one"
       ]
     }

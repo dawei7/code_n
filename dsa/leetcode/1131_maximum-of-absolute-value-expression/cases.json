@@ -124,10 +124,10 @@
       ]
     },
     {
-      "id": "real-four-points",
-      "name": "hidden: four mixed points",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-four-points",
+      "name": "four mixed points",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr1": [
           3,
@@ -149,10 +149,10 @@
       ]
     },
     {
-      "id": "real-value-bounds",
-      "name": "hidden: coordinate bounds",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-value-bounds",
+      "name": "coordinate bounds",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr1": [
           -1000000,
@@ -170,10 +170,10 @@
       ]
     },
     {
-      "id": "real-repeated-extrema",
-      "name": "hidden: repeated transformed extrema",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-extrema",
+      "name": "repeated transformed extrema",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr1": [
           2,
@@ -197,10 +197,10 @@
       ]
     },
     {
-      "id": "real-zigzag",
-      "name": "hidden: zigzag coordinates",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zigzag",
+      "name": "zigzag coordinates",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr1": [
           8,

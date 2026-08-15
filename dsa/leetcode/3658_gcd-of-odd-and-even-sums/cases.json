@@ -73,30 +73,28 @@
       ]
     },
     {
-      "id": "real-prime",
-      "name": "hidden: prime input",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-prime",
+      "name": "prime input",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 997
       },
       "expected": 997,
       "tags": [
-        "hidden",
         "prime"
       ]
     },
     {
-      "id": "real-maximum",
-      "name": "hidden: maximum input",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum",
+      "name": "maximum input",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000
       },
       "expected": 1000,
       "tags": [
-        "hidden",
         "maximum"
       ]
     }

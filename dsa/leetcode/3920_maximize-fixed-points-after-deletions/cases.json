@@ -7,162 +7,372 @@
       "name": "sample: deleting the middle element creates two fixed points",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [0, 2, 1]},
+      "input": {
+        "nums": [
+          0,
+          2,
+          1
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "single-deletion", "shift-left"]
+      "tags": [
+        "sample",
+        "single-deletion",
+        "shift-left"
+      ]
     },
     {
       "id": "sample-no-deletion",
       "name": "sample: two existing fixed points require no deletion",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [3, 1, 2]},
+      "input": {
+        "nums": [
+          3,
+          1,
+          2
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "zero-deletions", "equal-deletion-count"]
+      "tags": [
+        "sample",
+        "zero-deletions",
+        "equal-deletion-count"
+      ]
     },
     {
       "id": "sample-delete-first",
       "name": "sample: deleting the first element creates three fixed points",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 0, 1, 2]},
+      "input": {
+        "nums": [
+          1,
+          0,
+          1,
+          2
+        ]
+      },
       "expected": 3,
-      "tags": ["sample", "delete-prefix", "three-fixed-points"]
+      "tags": [
+        "sample",
+        "delete-prefix",
+        "three-fixed-points"
+      ]
     },
     {
       "id": "trial-single-fixed",
       "name": "trial: a singleton zero is already fixed",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0]},
+      "input": {
+        "nums": [
+          0
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "minimum-length", "fixed"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "fixed"
+      ]
     },
     {
       "id": "trial-single-ineligible",
       "name": "trial: a singleton one cannot move right",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1]},
+      "input": {
+        "nums": [
+          1
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "minimum-length", "ineligible"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "ineligible"
+      ]
     },
     {
       "id": "trial-all-fixed",
       "name": "trial: every existing fixed point is retained",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0, 1, 2, 3, 4]},
+      "input": {
+        "nums": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
       "expected": 5,
-      "tags": ["trial", "all-fixed", "equal-deletion-count"]
+      "tags": [
+        "trial",
+        "all-fixed",
+        "equal-deletion-count"
+      ]
     },
     {
       "id": "trial-none-eligible",
       "name": "trial: every value exceeds its possible final index",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5, 5, 5]},
+      "input": {
+        "nums": [
+          5,
+          5,
+          5
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "no-eligible-point", "zero-answer"]
+      "tags": [
+        "trial",
+        "no-eligible-point",
+        "zero-answer"
+      ]
     },
     {
       "id": "trial-duplicate-zero-trap",
       "name": "trial: duplicate target index zero can be used only once",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 0, 0]},
+      "input": {
+        "nums": [
+          2,
+          0,
+          0
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "duplicate-values", "strict-lis"]
+      "tags": [
+        "trial",
+        "duplicate-values",
+        "strict-lis"
+      ]
     },
     {
       "id": "trial-crossed-points",
       "name": "trial: individually eligible points need not form a chain",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [4, 4, 0, 3]},
+      "input": {
+        "nums": [
+          4,
+          4,
+          0,
+          3
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "incompatible-points", "ordering"]
+      "tags": [
+        "trial",
+        "incompatible-points",
+        "ordering"
+      ]
     },
     {
       "id": "trial-delete-two-prefix-elements",
       "name": "trial: deleting two early elements aligns a length-three suffix",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [3, 3, 0, 1, 2]},
+      "input": {
+        "nums": [
+          3,
+          3,
+          0,
+          1,
+          2
+        ]
+      },
       "expected": 3,
-      "tags": ["trial", "prefix-deletions", "compatible-chain"]
+      "tags": [
+        "trial",
+        "prefix-deletions",
+        "compatible-chain"
+      ]
     },
     {
       "id": "trial-existing-points-with-gap",
       "name": "trial: fixed points need not occupy consecutive original indices",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0, 2, 2]},
+      "input": {
+        "nums": [
+          0,
+          2,
+          2
+        ]
+      },
       "expected": 2,
-      "tags": ["trial", "existing-fixed-points", "retained-filler"]
+      "tags": [
+        "trial",
+        "existing-fixed-points",
+        "retained-filler"
+      ]
     },
     {
       "id": "trial-delete-leading-element",
       "name": "trial: one leading deletion aligns two suffix elements",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 0, 1]},
+      "input": {
+        "nums": [
+          2,
+          0,
+          1
+        ]
+      },
       "expected": 2,
-      "tags": ["trial", "leading-deletion", "suffix-chain"]
+      "tags": [
+        "trial",
+        "leading-deletion",
+        "suffix-chain"
+      ]
     },
     {
       "id": "trial-only-middle-fixed",
       "name": "trial: incompatible outer values leave one fixed point",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 1, 0]},
+      "input": {
+        "nums": [
+          2,
+          1,
+          0
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "single-chain", "ordering"]
+      "tags": [
+        "trial",
+        "single-chain",
+        "ordering"
+      ]
     },
     {
       "id": "trial-two-discarded-blockers",
       "name": "trial: separated blockers can be deleted around a four-point chain",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5, 0, 5, 1, 2, 3]},
+      "input": {
+        "nums": [
+          5,
+          0,
+          5,
+          1,
+          2,
+          3
+        ]
+      },
       "expected": 4,
-      "tags": ["trial", "multiple-deletions", "long-chain"]
+      "tags": [
+        "trial",
+        "multiple-deletions",
+        "long-chain"
+      ]
     },
     {
-      "id": "hidden-maximum-value",
-      "name": "hidden: the maximum value is ineligible at the first index",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100000, 0, 1, 2, 3]},
+      "id": "trial-maximum-value",
+      "name": "the maximum value is ineligible at the first index",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100000,
+          0,
+          1,
+          2,
+          3
+        ]
+      },
       "expected": 4,
-      "tags": ["hidden", "maximum-value", "delete-prefix"]
+      "tags": [
+        "maximum-value",
+        "delete-prefix"
+      ]
     },
     {
-      "id": "hidden-interleaved-blockers",
-      "name": "hidden: interleaved large values leave a shifted four-point chain",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 5, 1, 4, 2, 3]},
+      "id": "trial-interleaved-blockers",
+      "name": "interleaved large values leave a shifted four-point chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          5,
+          1,
+          4,
+          2,
+          3
+        ]
+      },
       "expected": 4,
-      "tags": ["hidden", "interleaved", "compatible-chain"]
+      "tags": [
+        "interleaved",
+        "compatible-chain"
+      ]
     },
     {
-      "id": "hidden-deep-interleaving",
-      "name": "hidden: several incompatible points surround the best chain",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [6, 0, 5, 1, 4, 2, 3]},
+      "id": "trial-deep-interleaving",
+      "name": "several incompatible points surround the best chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          0,
+          5,
+          1,
+          4,
+          2,
+          3
+        ]
+      },
       "expected": 4,
-      "tags": ["hidden", "deep-interleaving", "sorting"]
+      "tags": [
+        "deep-interleaving",
+        "sorting"
+      ]
     },
     {
-      "id": "hidden-duplicate-and-crossed",
-      "name": "hidden: duplicates and crossed coordinates restrict the chain",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2, 2, 0, 3, 1, 4]},
+      "id": "trial-duplicate-and-crossed",
+      "name": "duplicates and crossed coordinates restrict the chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          0,
+          3,
+          1,
+          4
+        ]
+      },
       "expected": 2,
-      "tags": ["hidden", "duplicates", "crossed-points"]
+      "tags": [
+        "duplicates",
+        "crossed-points"
+      ]
+    },
+    {
+      "id": "trial-boundary-19",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

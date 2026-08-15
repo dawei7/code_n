@@ -102,10 +102,10 @@
       ]
     },
     {
-      "id": "real-smallest-banned",
-      "name": "hidden: skip the smallest candidate before budget stop",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-smallest-banned",
+      "name": "skip the smallest candidate before budget stop",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "banned": [
           1
@@ -115,15 +115,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "smallest-banned"
       ]
     },
     {
-      "id": "real-all-banned",
-      "name": "hidden: all in-range values are forbidden",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-banned",
+      "name": "all in-range values are forbidden",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "banned": [
           1,
@@ -135,15 +134,14 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "all-banned"
       ]
     },
     {
-      "id": "real-budget-stop",
-      "name": "hidden: later values cannot fit after first failure",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-budget-stop",
+      "name": "later values cannot fit after first failure",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "banned": [
           10
@@ -153,8 +151,44 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "budget-stop"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in banned",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "banned": [
+          1
+        ],
+        "n": 5,
+        "maxSum": 6
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in banned",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "banned": [
+          1,
+          1
+        ],
+        "n": 5,
+        "maxSum": 6
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

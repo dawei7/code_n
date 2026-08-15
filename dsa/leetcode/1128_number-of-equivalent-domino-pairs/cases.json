@@ -146,10 +146,10 @@
       ]
     },
     {
-      "id": "real-two-groups",
-      "name": "hidden: two equivalence groups",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-groups",
+      "name": "two equivalence groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "dominoes": [
           [
@@ -181,10 +181,10 @@
       ]
     },
     {
-      "id": "real-mixed-orientation",
-      "name": "hidden: alternating orientations in one group",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-orientation",
+      "name": "alternating orientations in one group",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "dominoes": [
           [
@@ -212,10 +212,10 @@
       ]
     },
     {
-      "id": "real-value-bounds",
-      "name": "hidden: lower and upper value bounds",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-value-bounds",
+      "name": "lower and upper value bounds",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "dominoes": [
           [
@@ -247,10 +247,10 @@
       ]
     },
     {
-      "id": "real-repeated-groups",
-      "name": "hidden: differently sized groups",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-groups",
+      "name": "differently sized groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "dominoes": [
           [

@@ -7,90 +7,204 @@
       "name": "sample: three values can meet",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [4, 6, 1, 2], "k": 2},
+      "input": {
+        "nums": [
+          4,
+          6,
+          1,
+          2
+        ],
+        "k": 2
+      },
       "expected": 3,
-      "tags": ["sample", "window"]
+      "tags": [
+        "sample",
+        "window"
+      ]
     },
     {
       "id": "sample-all-equal",
       "name": "sample: all values are already equal",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 1, 1, 1], "k": 10},
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 10
+      },
       "expected": 4,
-      "tags": ["sample", "equal-values"]
+      "tags": [
+        "sample",
+        "equal-values"
+      ]
     },
     {
       "id": "trial-zero-k",
       "name": "trial: zero k counts existing duplicates",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5, 1, 5, 2, 5], "k": 0},
+      "input": {
+        "nums": [
+          5,
+          1,
+          5,
+          2,
+          5
+        ],
+        "k": 0
+      },
       "expected": 3,
-      "tags": ["trial", "zero-k", "duplicates"]
+      "tags": [
+        "trial",
+        "zero-k",
+        "duplicates"
+      ]
     },
     {
       "id": "trial-spread-values",
       "name": "trial: choose densest sorted window",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 3, 5, 7, 9], "k": 1},
+      "input": {
+        "nums": [
+          1,
+          3,
+          5,
+          7,
+          9
+        ],
+        "k": 1
+      },
       "expected": 2,
-      "tags": ["trial", "spread-values"]
+      "tags": [
+        "trial",
+        "spread-values"
+      ]
     },
     {
       "id": "trial-exact-width",
       "name": "trial: endpoint difference exactly twice k",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 5], "k": 2},
+      "input": {
+        "nums": [
+          1,
+          5
+        ],
+        "k": 2
+      },
       "expected": 2,
-      "tags": ["trial", "inclusive-boundary"]
+      "tags": [
+        "trial",
+        "inclusive-boundary"
+      ]
     },
     {
-      "id": "real-clustered-values",
-      "name": "real: cluster beats isolated extremes",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [10, 12, 13, 14, 30, 31, 32, 100], "k": 2},
+      "id": "trial-clustered-values",
+      "name": "cluster beats isolated extremes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          12,
+          13,
+          14,
+          30,
+          31,
+          32,
+          100
+        ],
+        "k": 2
+      },
       "expected": 4,
-      "tags": ["real", "cluster"]
+      "tags": [
+        "real",
+        "cluster"
+      ]
     },
     {
-      "id": "real-single-element",
-      "name": "real: one value always has beauty one",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100000], "k": 0},
+      "id": "trial-single-element",
+      "name": "one value always has beauty one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100000
+        ],
+        "k": 0
+      },
       "expected": 1,
-      "tags": ["real", "single-element", "boundary"]
+      "tags": [
+        "real",
+        "single-element",
+        "boundary"
+      ]
     },
     {
-      "id": "real-just-outside-width",
-      "name": "real: endpoints beyond twice k cannot meet",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 6], "k": 2},
+      "id": "trial-just-outside-width",
+      "name": "endpoints beyond twice k cannot meet",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          6
+        ],
+        "k": 2
+      },
       "expected": 1,
-      "tags": ["real", "exclusive-failure-boundary"]
+      "tags": [
+        "real",
+        "exclusive-failure-boundary"
+      ]
     },
     {
-      "id": "real-maximum-k",
-      "name": "real: maximum k makes every value compatible",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 100000, 50000], "k": 100000},
+      "id": "trial-maximum-k",
+      "name": "maximum k makes every value compatible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          100000,
+          50000
+        ],
+        "k": 100000
+      },
       "expected": 3,
-      "tags": ["real", "maximum-k", "value-boundaries"]
+      "tags": [
+        "real",
+        "maximum-k",
+        "value-boundaries"
+      ]
     },
     {
-      "id": "real-duplicate-neighbor-cluster",
-      "name": "real: duplicates combine with nearby values",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, 5, 5, 7, 7, 9], "k": 1},
+      "id": "trial-duplicate-neighbor-cluster",
+      "name": "duplicates combine with nearby values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          7,
+          7,
+          9
+        ],
+        "k": 1
+      },
       "expected": 5,
-      "tags": ["real", "duplicates", "window-shrink"]
+      "tags": [
+        "real",
+        "duplicates",
+        "window-shrink"
+      ]
     }
   ]
 }

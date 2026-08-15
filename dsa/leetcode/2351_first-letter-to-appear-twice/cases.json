@@ -7,63 +7,94 @@
       "name": "sample: compare the positions of second occurrences",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "abccbaacz"},
+      "input": {
+        "s": "abccbaacz"
+      },
       "expected": "c",
-      "tags": ["sample", "ordering"]
+      "tags": [
+        "sample",
+        "ordering"
+      ]
     },
     {
       "id": "sample-only-repeated-letter",
       "name": "sample: only one letter repeats",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "abcdd"},
+      "input": {
+        "s": "abcdd"
+      },
       "expected": "d",
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "trial-minimum-length",
       "name": "minimum-length string repeats immediately",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "aa"},
+      "input": {
+        "s": "aa"
+      },
       "expected": "a",
-      "tags": ["boundary", "adjacent"]
+      "tags": [
+        "boundary",
+        "adjacent"
+      ]
     },
     {
       "id": "trial-first-position-is-not-decisive",
       "name": "an earlier first occurrence can repeat later",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "bacab"},
+      "input": {
+        "s": "bacab"
+      },
       "expected": "a",
-      "tags": ["ordering"]
+      "tags": [
+        "ordering"
+      ]
     },
     {
       "id": "trial-latest-possible-first-repeat",
       "name": "all 26 letters appear before the first repeat",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "abcdefghijklmnopqrstuvwxyzz"},
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyzz"
+      },
       "expected": "z",
-      "tags": ["boundary", "alphabet"]
+      "tags": [
+        "boundary",
+        "alphabet"
+      ]
     },
     {
-      "id": "real-leading-duplicate",
-      "name": "hidden: a leading duplicate decides immediately",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "zzxyx"},
+      "id": "trial-leading-duplicate",
+      "name": "a leading duplicate decides immediately",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "zzxyx"
+      },
       "expected": "z",
-      "tags": ["hidden", "early-return"]
+      "tags": [
+        "early-return"
+      ]
     },
     {
-      "id": "real-three-occurrences",
-      "name": "hidden: later occurrences do not change the answer",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "qwertytrewq"},
+      "id": "trial-three-occurrences",
+      "name": "later occurrences do not change the answer",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "qwertytrewq"
+      },
       "expected": "t",
-      "tags": ["hidden", "multiple-repeats"]
+      "tags": [
+        "multiple-repeats"
+      ]
     }
   ]
 }

@@ -221,10 +221,10 @@
       ]
     },
     {
-      "id": "hidden-locked-child",
-      "name": "hidden: contained box remains locked",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-locked-child",
+      "name": "contained box remains locked",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "status": [
           0,
@@ -250,15 +250,14 @@
       },
       "expected": 20,
       "tags": [
-        "hidden",
         "unreachable"
       ]
     },
     {
-      "id": "hidden-open-but-unowned",
-      "name": "hidden: open box is never obtained",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-open-but-unowned",
+      "name": "open box is never obtained",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "status": [
           1,
@@ -290,7 +289,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "possession"
       ]
     }

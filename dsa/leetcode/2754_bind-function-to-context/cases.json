@@ -84,10 +84,10 @@
       ]
     },
     {
-      "id": "real-argument-order",
-      "name": "hidden: forwarded argument order is preserved",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-argument-order",
+      "name": "forwarded argument order is preserved",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "behavior": "join",
         "obj": {
@@ -103,15 +103,14 @@
       },
       "expected": "<a|b|c>",
       "tags": [
-        "hidden",
         "argument-order"
       ]
     },
     {
-      "id": "real-nested-lookup",
-      "name": "hidden: nested context remains reachable",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-nested-lookup",
+      "name": "nested context remains reachable",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "behavior": "lookup",
         "obj": {
@@ -126,15 +125,14 @@
       },
       "expected": 42,
       "tags": [
-        "hidden",
         "nested-context"
       ]
     },
     {
-      "id": "real-maximum-arguments",
-      "name": "hidden: all 100 legal arguments are forwarded",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-arguments",
+      "name": "all 100 legal arguments are forwarded",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "behavior": "sum",
         "obj": {
@@ -245,7 +243,6 @@
       },
       "expected": 5060,
       "tags": [
-        "hidden",
         "maximum-arguments",
         "boundary"
       ]

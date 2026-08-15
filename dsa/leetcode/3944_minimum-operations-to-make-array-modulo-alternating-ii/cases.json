@@ -181,10 +181,10 @@
       ]
     },
     {
-      "id": "real-second-best-tie",
-      "name": "hidden: a tied second odd residue satisfies the distinctness rule",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-second-best-tie",
+      "name": "a tied second odd residue satisfies the distinctness rule",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -199,16 +199,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "second-best",
         "tie"
       ]
     },
     {
-      "id": "real-k-two-conflict",
-      "name": "hidden: k = 2 leaves only the opposite residue",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-k-two-conflict",
+      "name": "k = 2 leaves only the opposite residue",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -225,15 +224,14 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "minimum-modulus"
       ]
     },
     {
-      "id": "real-odd-length-mixed",
-      "name": "hidden: an odd-length array has one extra even-index element",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-odd-length-mixed",
+      "name": "an odd-length array has one extra even-index element",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -249,15 +247,14 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "odd-length"
       ]
     },
     {
-      "id": "real-even-antipodes",
-      "name": "hidden: even-modulus antipodal residues exercise the half-circle boundary",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-even-antipodes",
+      "name": "even-modulus antipodal residues exercise the half-circle boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -272,16 +269,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "even-modulus",
         "antipodes"
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "hidden: billion-scale values are reduced before optimization",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-values",
+      "name": "billion-scale values are reduced before optimization",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -297,16 +293,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "large-values",
         "large-modulus"
       ]
     },
     {
-      "id": "real-uniform-remainders",
-      "name": "hidden: both parity groups are spread around the entire residue cycle",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-uniform-remainders",
+      "name": "both parity groups are spread around the entire residue cycle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -337,15 +332,14 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "distributed-remainders"
       ]
     },
     {
-      "id": "real-sparse-large-modulus",
-      "name": "hidden: sparse residues with a large modulus retain the best distinct pair",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-sparse-large-modulus",
+      "name": "sparse residues with a large modulus retain the best distinct pair",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -360,9 +354,43 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "sparse",
         "large-modulus"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-17",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 3
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

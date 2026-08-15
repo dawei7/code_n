@@ -354,10 +354,10 @@
       ]
     },
     {
-      "id": "real-seller-without-orders",
-      "name": "hidden: seller with no orders cannot become a top seller",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-seller-without-orders",
+      "name": "seller with no orders cannot become a top seller",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Users": [
@@ -447,15 +447,14 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "no-orders"
       ]
     },
     {
-      "id": "real-all-orders-repeat-one-item",
-      "name": "hidden: many orders remain one unique item",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-orders-repeat-one-item",
+      "name": "many orders remain one unique item",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Users": [
@@ -563,7 +562,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "distinct-items"
       ]
     }

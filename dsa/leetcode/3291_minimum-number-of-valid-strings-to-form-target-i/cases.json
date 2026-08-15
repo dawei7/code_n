@@ -1,14 +1,164 @@
 {
   "challenge_id": "lc_3291",
   "cases": [
-    {"id":"sample-three-pieces","name":"sample: combine prefixes from several words","kind":"sample","visible":true,"input":{"words":["abc","aaaaa","bcdef"],"target":"aabcdabc"},"expected":3,"tags":["sample","trie"]},
-    {"id":"sample-reuse-prefix","name":"sample: reuse the same long prefix","kind":"sample","visible":true,"input":{"words":["abababab","ab"],"target":"ababaababa"},"expected":2,"tags":["sample","reuse"]},
-    {"id":"sample-impossible-start","name":"sample: no prefix matches the first character","kind":"sample","visible":true,"input":{"words":["abcdef"],"target":"xyz"},"expected":-1,"tags":["sample","impossible"]},
-    {"id":"trial-proper-prefix","name":"trial: pieces need not be complete words","kind":"trial","visible":true,"input":{"words":["abcdef"],"target":"abcab"},"expected":2,"tags":["proper-prefix"]},
-    {"id":"trial-single-character","name":"trial: only one-character pieces are available","kind":"trial","visible":true,"input":{"words":["a"],"target":"aaaa"},"expected":4,"tags":["single-character","reuse"]},
-    {"id":"trial-longest-is-best","name":"trial: two longest prefixes minimize pieces","kind":"trial","visible":true,"input":{"words":["aaaa","aaab"],"target":"aaaaaaa"},"expected":2,"tags":["minimum"]},
-    {"id":"real-dead-end","name":"real: construction reaches an unmatched suffix","kind":"real","visible":false,"input":{"words":["abc","bca","cab"],"target":"abcabx"},"expected":-1,"tags":["dead-end"]},
-    {"id":"real-branching-trie","name":"real: shared trie branches offer different cuts","kind":"real","visible":false,"input":{"words":["abacus","abandon","cadence","cabin"],"target":"abacada"},"expected":3,"tags":["shared-prefix","branching"]},
-    {"id":"real-entire-target","name":"real: target itself is one valid prefix","kind":"real","visible":false,"input":{"words":["prefixextension","other"],"target":"prefix"},"expected":1,"tags":["one-piece"]}
+    {
+      "id": "sample-three-pieces",
+      "name": "sample: combine prefixes from several words",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "aaaaa",
+          "bcdef"
+        ],
+        "target": "aabcdabc"
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "trie"
+      ]
+    },
+    {
+      "id": "sample-reuse-prefix",
+      "name": "sample: reuse the same long prefix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "abababab",
+          "ab"
+        ],
+        "target": "ababaababa"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "reuse"
+      ]
+    },
+    {
+      "id": "sample-impossible-start",
+      "name": "sample: no prefix matches the first character",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "abcdef"
+        ],
+        "target": "xyz"
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-proper-prefix",
+      "name": "trial: pieces need not be complete words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abcdef"
+        ],
+        "target": "abcab"
+      },
+      "expected": 2,
+      "tags": [
+        "proper-prefix"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "trial: only one-character pieces are available",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "a"
+        ],
+        "target": "aaaa"
+      },
+      "expected": 4,
+      "tags": [
+        "single-character",
+        "reuse"
+      ]
+    },
+    {
+      "id": "trial-longest-is-best",
+      "name": "trial: two longest prefixes minimize pieces",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "aaaa",
+          "aaab"
+        ],
+        "target": "aaaaaaa"
+      },
+      "expected": 2,
+      "tags": [
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-dead-end",
+      "name": "construction reaches an unmatched suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "bca",
+          "cab"
+        ],
+        "target": "abcabx"
+      },
+      "expected": -1,
+      "tags": [
+        "dead-end"
+      ]
+    },
+    {
+      "id": "trial-branching-trie",
+      "name": "shared trie branches offer different cuts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abacus",
+          "abandon",
+          "cadence",
+          "cabin"
+        ],
+        "target": "abacada"
+      },
+      "expected": 3,
+      "tags": [
+        "shared-prefix",
+        "branching"
+      ]
+    },
+    {
+      "id": "trial-entire-target",
+      "name": "target itself is one valid prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "prefixextension",
+          "other"
+        ],
+        "target": "prefix"
+      },
+      "expected": 1,
+      "tags": [
+        "one-piece"
+      ]
+    }
   ]
 }

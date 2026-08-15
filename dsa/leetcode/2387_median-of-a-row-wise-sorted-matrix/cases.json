@@ -102,10 +102,10 @@
       ]
     },
     {
-      "id": "real-disjoint-row-ranges",
-      "name": "hidden: rows have widely separated ranges",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-disjoint-row-ranges",
+      "name": "rows have widely separated ranges",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -127,15 +127,14 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "row-ranges"
       ]
     },
     {
-      "id": "real-maximum-bound",
-      "name": "hidden: values approach the upper constraint",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-bound",
+      "name": "values approach the upper constraint",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -147,7 +146,6 @@
       },
       "expected": 999999,
       "tags": [
-        "hidden",
         "maximum-values"
       ]
     }

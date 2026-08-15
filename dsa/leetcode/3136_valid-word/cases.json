@@ -1,17 +1,170 @@
 {
   "challenge_id": "lc_3136",
   "cases": [
-    {"id":"sample-1","name":"sample: mixed valid word","kind":"sample","visible":true,"input":{"word":"234Adas"},"expected":true,"tags":["sample"]},
-    {"id":"sample-2","name":"sample: too short without vowel","kind":"sample","visible":true,"input":{"word":"b3"},"expected":false,"tags":["sample","length"]},
-    {"id":"sample-3","name":"sample: forbidden symbol and no consonant","kind":"sample","visible":true,"input":{"word":"a3$e"},"expected":false,"tags":["sample","invalid-character"]},
-    {"id":"trial-minimum-valid","name":"trial: minimum valid length","kind":"trial","visible":true,"input":{"word":"aB3"},"expected":true,"tags":["boundary"]},
-    {"id":"trial-two-letters","name":"trial: both letter classes but too short","kind":"trial","visible":true,"input":{"word":"aB"},"expected":false,"tags":["length"]},
-    {"id":"trial-vowels-only","name":"trial: no consonant","kind":"trial","visible":true,"input":{"word":"aei"},"expected":false,"tags":["missing-consonant"]},
-    {"id":"real-consonants-only","name":"real: no vowel","kind":"real","visible":false,"input":{"word":"bcd"},"expected":false,"tags":["real","missing-vowel"]},
-    {"id":"real-uppercase-valid","name":"real: uppercase vowel and consonant","kind":"real","visible":false,"input":{"word":"A1Z"},"expected":true,"tags":["real","uppercase"]},
-    {"id":"real-digits-only","name":"real: digits satisfy neither letter class","kind":"real","visible":false,"input":{"word":"123"},"expected":false,"tags":["real","digits"]},
-    {"id":"real-invalid-at-end","name":"real: forbidden symbol at end","kind":"real","visible":false,"input":{"word":"aB@"},"expected":false,"tags":["real","invalid-character"]},
-    {"id":"real-maximum-valid","name":"real: maximum legal length","kind":"real","visible":false,"input":{"word":"aB000000000000000000"},"expected":true,"tags":["real","boundary"]},
-    {"id":"real-maximum-invalid","name":"real: forbidden symbol at maximum length","kind":"real","visible":false,"input":{"word":"aB00000000000000000$"},"expected":false,"tags":["real","boundary","invalid-character"]}
+    {
+      "id": "sample-1",
+      "name": "sample: mixed valid word",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "234Adas"
+      },
+      "expected": true,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: too short without vowel",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "b3"
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "length"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: forbidden symbol and no consonant",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "a3$e"
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "invalid-character"
+      ]
+    },
+    {
+      "id": "trial-minimum-valid",
+      "name": "trial: minimum valid length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aB3"
+      },
+      "expected": true,
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-two-letters",
+      "name": "trial: both letter classes but too short",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aB"
+      },
+      "expected": false,
+      "tags": [
+        "length"
+      ]
+    },
+    {
+      "id": "trial-vowels-only",
+      "name": "trial: no consonant",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aei"
+      },
+      "expected": false,
+      "tags": [
+        "missing-consonant"
+      ]
+    },
+    {
+      "id": "trial-consonants-only",
+      "name": "no vowel",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "bcd"
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "missing-vowel"
+      ]
+    },
+    {
+      "id": "trial-uppercase-valid",
+      "name": "uppercase vowel and consonant",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "A1Z"
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "uppercase"
+      ]
+    },
+    {
+      "id": "trial-digits-only",
+      "name": "digits satisfy neither letter class",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "123"
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "digits"
+      ]
+    },
+    {
+      "id": "trial-invalid-at-end",
+      "name": "forbidden symbol at end",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aB@"
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "invalid-character"
+      ]
+    },
+    {
+      "id": "trial-maximum-valid",
+      "name": "maximum legal length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aB000000000000000000"
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-maximum-invalid",
+      "name": "forbidden symbol at maximum length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aB00000000000000000$"
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "boundary",
+        "invalid-character"
+      ]
+    }
   ]
 }

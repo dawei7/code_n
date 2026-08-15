@@ -153,10 +153,10 @@
       ]
     },
     {
-      "id": "real-last-height-irrelevant",
-      "name": "real: final high mountain has no successor",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-last-height-irrelevant",
+      "name": "final high mountain has no successor",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "height": [
           1,
@@ -173,10 +173,10 @@
       ]
     },
     {
-      "id": "real-equality-mixed",
-      "name": "real: equal and greater predecessors alternate",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-equality-mixed",
+      "name": "equal and greater predecessors alternate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "height": [
           5,
@@ -197,10 +197,10 @@
       ]
     },
     {
-      "id": "real-first-predecessor",
-      "name": "real: index one depends on mountain zero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-first-predecessor",
+      "name": "index one depends on mountain zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "height": [
           100,
@@ -219,10 +219,10 @@
       ]
     },
     {
-      "id": "real-separated-stable",
-      "name": "real: separated high predecessors",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-separated-stable",
+      "name": "separated high predecessors",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "height": [
           8,
@@ -245,10 +245,10 @@
       ]
     },
     {
-      "id": "real-maximum-length",
-      "name": "real: maximum length alternating pattern",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-length",
+      "name": "maximum length alternating pattern",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "height": [
           100,

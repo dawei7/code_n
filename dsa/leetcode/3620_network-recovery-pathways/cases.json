@@ -278,10 +278,10 @@
       ]
     },
     {
-      "id": "real-nonnumeric-topological-order",
-      "name": "hidden: node numbers are not a topological order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-nonnumeric-topological-order",
+      "name": "node numbers are not a topological order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -321,16 +321,15 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "topological-order",
         "multiple-paths"
       ]
     },
     {
-      "id": "real-high-score-over-budget",
-      "name": "hidden: expensive high-bottleneck route loses to affordable route",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-high-score-over-budget",
+      "name": "expensive high-bottleneck route loses to affordable route",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -370,16 +369,15 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "budget",
         "bottleneck"
       ]
     },
     {
-      "id": "real-zero-among-positive",
-      "name": "hidden: a zero edge determines the valid path score",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zero-among-positive",
+      "name": "a zero edge determines the valid path score",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -413,16 +411,15 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "zero-cost",
         "multiple-paths"
       ]
     },
     {
-      "id": "real-repeated-costs",
-      "name": "hidden: repeated edge costs form several thresholds",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-costs",
+      "name": "repeated edge costs form several thresholds",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -462,16 +459,15 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "equal-costs",
         "dag"
       ]
     },
     {
-      "id": "real-large-costs",
-      "name": "hidden: large recovery costs require wide totals",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-costs",
+      "name": "large recovery costs require wide totals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -500,16 +496,15 @@
       },
       "expected": 1000000000,
       "tags": [
-        "hidden",
         "maximum-cost",
         "large-budget"
       ]
     },
     {
-      "id": "real-wrong-direction",
-      "name": "hidden: edges cannot be traversed backward",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-wrong-direction",
+      "name": "edges cannot be traversed backward",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -532,7 +527,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "directed-edges",
         "no-path"
       ]

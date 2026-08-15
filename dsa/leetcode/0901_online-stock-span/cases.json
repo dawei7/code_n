@@ -214,10 +214,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: alternating peaks",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "alternating peaks",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           [
@@ -260,15 +260,14 @@
         2
       ],
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: duplicate blocks",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "duplicate blocks",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           [
@@ -306,15 +305,14 @@
         6
       ],
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: upper price boundary",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "upper price boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           [
@@ -342,15 +340,14 @@
         4
       ],
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: long span stopped by first quote",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "long span stopped by first quote",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           [
@@ -393,7 +390,6 @@
         6
       ],
       "tags": [
-        "hidden",
         "long-span"
       ]
     }

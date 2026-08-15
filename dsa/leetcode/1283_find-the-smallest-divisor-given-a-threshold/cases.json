@@ -100,10 +100,10 @@
       ]
     },
     {
-      "id": "hidden-small-primes",
-      "name": "hidden: small prime values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-small-primes",
+      "name": "small prime values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -116,14 +116,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden"
+        "trial"
       ]
     },
     {
-      "id": "hidden-million-boundary",
-      "name": "hidden: maximum element value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-million-boundary",
+      "name": "maximum element value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000,
@@ -134,7 +134,6 @@
       },
       "expected": 1000000,
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

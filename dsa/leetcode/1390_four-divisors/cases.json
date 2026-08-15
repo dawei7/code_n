@@ -6,63 +6,143 @@
       "name": "sample: one value has four divisors",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [21, 4, 7]},
+      "input": {
+        "nums": [
+          21,
+          4,
+          7
+        ]
+      },
       "expected": 32,
-      "tags": ["sample", "mixed"]
+      "tags": [
+        "sample",
+        "mixed"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: duplicate qualifying values",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [21, 21]},
+      "input": {
+        "nums": [
+          21,
+          21
+        ]
+      },
       "expected": 64,
-      "tags": ["sample", "duplicates"]
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
     },
     {
       "id": "trial-prime-cube",
       "name": "prime cube has four divisors",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [8]},
+      "input": {
+        "nums": [
+          8
+        ]
+      },
       "expected": 15,
-      "tags": ["trial", "prime-cube"]
+      "tags": [
+        "trial",
+        "prime-cube"
+      ]
     },
     {
       "id": "trial-perfect-squares",
       "name": "perfect squares do not qualify",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [4, 9, 25, 49]},
+      "input": {
+        "nums": [
+          4,
+          9,
+          25,
+          49
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "perfect-square"]
+      "tags": [
+        "trial",
+        "perfect-square"
+      ]
     },
     {
-      "id": "real-extra-factor-pairs",
-      "name": "hidden: reject values with more than four divisors",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [12, 16, 24, 36]},
+      "id": "trial-extra-factor-pairs",
+      "name": "reject values with more than four divisors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          12,
+          16,
+          24,
+          36
+        ]
+      },
       "expected": 0,
-      "tags": ["hidden", "many-divisors"]
+      "tags": [
+        "many-divisors"
+      ]
     },
     {
-      "id": "real-primes-and-one",
-      "name": "hidden: primes and one contribute zero",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 3, 5, 97]},
+      "id": "trial-primes-and-one",
+      "name": "primes and one contribute zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          5,
+          97
+        ]
+      },
       "expected": 0,
-      "tags": ["hidden", "too-few-divisors"]
+      "tags": [
+        "too-few-divisors"
+      ]
     },
     {
-      "id": "real-mixed-forms",
-      "name": "hidden: semiprimes and prime cubes",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [6, 10, 27, 15, 64, 17]},
+      "id": "trial-mixed-forms",
+      "name": "semiprimes and prime cubes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          10,
+          27,
+          15,
+          64,
+          17
+        ]
+      },
       "expected": 94,
-      "tags": ["hidden", "mixed"]
+      "tags": [
+        "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          21
+        ]
+      },
+      "expected": 32,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
     }
   ]
 }

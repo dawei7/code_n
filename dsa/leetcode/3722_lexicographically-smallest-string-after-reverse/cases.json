@@ -107,10 +107,10 @@
       ]
     },
     {
-      "id": "real-suffix-two",
-      "name": "hidden: reversing the final pair can beat every prefix reversal",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-suffix-two",
+      "name": "reversing the final pair can beat every prefix reversal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abdc"
       },
@@ -119,15 +119,14 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "suffix"
       ]
     },
     {
-      "id": "real-repeated-characters",
-      "name": "hidden: duplicate-heavy candidates are compared normally",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-characters",
+      "name": "duplicate-heavy candidates are compared normally",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "baaa"
       },
@@ -136,15 +135,14 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "real-prefix-tie-depth",
-      "name": "hidden: candidates sharing an initial letter differ later",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-prefix-tie-depth",
+      "name": "candidates sharing an initial letter differ later",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "cabca"
       },
@@ -153,15 +151,14 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "lexicographic-comparison"
       ]
     },
     {
-      "id": "real-all-equal",
-      "name": "hidden: every legal operation yields the same string",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-equal",
+      "name": "every legal operation yields the same string",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaaaa"
       },
@@ -170,16 +167,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-equal",
         "unchanged"
       ]
     },
     {
-      "id": "real-two-characters",
-      "name": "hidden: both full and endpoint reversals are considered",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-characters",
+      "name": "both full and endpoint reversals are considered",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "ba"
       },
@@ -188,15 +184,14 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "minimum-length-plus-one"
       ]
     },
     {
-      "id": "real-maximum-length",
-      "name": "hidden: maximum-length repeated input remains unchanged",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-length",
+      "name": "maximum-length repeated input remains unchanged",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
       },
@@ -205,11 +200,37 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-length",
         "all-equal"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "d"
+      },
+      "expected": "d",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ddd"
+      },
+      "expected": "ddd",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]
 }
-

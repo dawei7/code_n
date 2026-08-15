@@ -127,10 +127,10 @@
       ]
     },
     {
-      "id": "real-single-column",
-      "name": "real: balanced vertical prefixes are counted",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-column",
+      "name": "balanced vertical prefixes are counted",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -160,10 +160,10 @@
       ]
     },
     {
-      "id": "real-top-left-dot",
-      "name": "real: a dot at the origin permits later balanced rectangles",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-top-left-dot",
+      "name": "a dot at the origin permits later balanced rectangles",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -182,10 +182,10 @@
       ]
     },
     {
-      "id": "real-dots-preserve-balance",
-      "name": "real: dots extend already balanced anchored rectangles",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-dots-preserve-balance",
+      "name": "dots extend already balanced anchored rectangles",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -206,10 +206,10 @@
       ]
     },
     {
-      "id": "real-multiple-balanced-prefixes",
-      "name": "real: different bottom-right corners share the same balance",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-balanced-prefixes",
+      "name": "different bottom-right corners share the same balance",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -235,10 +235,10 @@
       ]
     },
     {
-      "id": "real-only-y-and-dots",
-      "name": "real: no X means no rectangle qualifies",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-only-y-and-dots",
+      "name": "no X means no rectangle qualifies",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -261,10 +261,10 @@
       ]
     },
     {
-      "id": "real-mixed-three-by-four",
-      "name": "real: mixed letters and dots exercise both dimensions",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-three-by-four",
+      "name": "mixed letters and dots exercise both dimensions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [

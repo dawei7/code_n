@@ -127,10 +127,10 @@
       ]
     },
     {
-      "id": "real-one-full-distinct-group",
-      "name": "hidden: k equals n and all values differ",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-full-distinct-group",
+      "name": "k equals n and all values differ",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9,
@@ -143,15 +143,14 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "k-equals-n"
       ]
     },
     {
-      "id": "real-one-full-duplicate-group",
-      "name": "hidden: k equals n with a duplicate",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-full-duplicate-group",
+      "name": "k equals n with a duplicate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9,
@@ -164,16 +163,15 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "k-equals-n",
         "duplicate"
       ]
     },
     {
-      "id": "real-several-frequencies-fit",
-      "name": "hidden: several values fill all groups",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-several-frequencies-fit",
+      "name": "several values fill all groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -190,8 +188,24 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "balanced-capacities"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 2
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

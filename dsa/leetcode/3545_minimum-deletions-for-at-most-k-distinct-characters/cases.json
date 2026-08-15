@@ -7,81 +7,136 @@
       "name": "sample: delete one of three singleton classes",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "abc", "k": 2},
+      "input": {
+        "s": "abc",
+        "k": 2
+      },
       "expected": 1,
-      "tags": ["sample", "singletons"]
+      "tags": [
+        "sample",
+        "singletons"
+      ]
     },
     {
       "id": "sample-already-valid",
       "name": "sample: distinct count already equals k",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "aabb", "k": 2},
+      "input": {
+        "s": "aabb",
+        "k": 2
+      },
       "expected": 0,
-      "tags": ["sample", "no-deletion"]
+      "tags": [
+        "sample",
+        "no-deletion"
+      ]
     },
     {
       "id": "sample-unequal-frequencies",
       "name": "sample: remove the less frequent class",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "yyyzz", "k": 1},
+      "input": {
+        "s": "yyyzz",
+        "k": 1
+      },
       "expected": 2,
-      "tags": ["sample", "greedy"]
+      "tags": [
+        "sample",
+        "greedy"
+      ]
     },
     {
       "id": "trial-single-character",
       "name": "trial: one character is already valid",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "q", "k": 1},
+      "input": {
+        "s": "q",
+        "k": 1
+      },
       "expected": 0,
-      "tags": ["trial", "minimum-length"]
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-limit-exceeds-distinct",
       "name": "trial: unused distinct-character capacity",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "abac", "k": 8},
+      "input": {
+        "s": "abac",
+        "k": 8
+      },
       "expected": 0,
-      "tags": ["trial", "large-k"]
+      "tags": [
+        "trial",
+        "large-k"
+      ]
     },
     {
-      "id": "real-remove-several-classes",
-      "name": "real: discard multiple least frequent classes",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aaaabbbccd", "k": 2},
+      "id": "trial-remove-several-classes",
+      "name": "discard multiple least frequent classes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaabbbccd",
+        "k": 2
+      },
       "expected": 3,
-      "tags": ["real", "multiple-removals"]
+      "tags": [
+        "real",
+        "multiple-removals"
+      ]
     },
     {
-      "id": "real-frequency-ties",
-      "name": "real: tied classes give interchangeable choices",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aabbccdde", "k": 3},
+      "id": "trial-frequency-ties",
+      "name": "tied classes give interchangeable choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aabbccdde",
+        "k": 3
+      },
       "expected": 3,
-      "tags": ["real", "ties"]
+      "tags": [
+        "real",
+        "ties"
+      ]
     },
     {
-      "id": "real-keep-most-frequent",
-      "name": "real: k one retains the largest class",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "fgcww", "k": 2},
+      "id": "trial-keep-most-frequent",
+      "name": "k one retains the largest class",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "fgcww",
+        "k": 2
+      },
       "expected": 2,
-      "tags": ["real", "keep-largest"]
+      "tags": [
+        "real",
+        "keep-largest"
+      ]
     },
     {
-      "id": "real-maximum-distinct-length",
-      "name": "real: maximum length with every letter distinct",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcdefghijklmnop", "k": 1},
+      "id": "trial-maximum-distinct-length",
+      "name": "maximum length with every letter distinct",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdefghijklmnop",
+        "k": 1
+      },
       "expected": 15,
-      "tags": ["real", "maximum-length", "all-distinct"]
+      "tags": [
+        "real",
+        "maximum-length",
+        "all-distinct"
+      ]
     }
   ]
 }

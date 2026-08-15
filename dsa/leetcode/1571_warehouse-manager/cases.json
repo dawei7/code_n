@@ -336,10 +336,10 @@
       ]
     },
     {
-      "id": "real-unused-product",
-      "name": "hidden: unused catalog row contributes nothing",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unused-product",
+      "name": "unused catalog row contributes nothing",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Warehouse": [
@@ -386,10 +386,10 @@
       ]
     },
     {
-      "id": "real-three-products",
-      "name": "hidden: three row volumes aggregate together",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-products",
+      "name": "three row volumes aggregate together",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Warehouse": [
@@ -453,10 +453,10 @@
       ]
     },
     {
-      "id": "real-name-grouping",
-      "name": "hidden: product name does not split warehouse group",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-name-grouping",
+      "name": "product name does not split warehouse group",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Warehouse": [
@@ -508,10 +508,10 @@
       ]
     },
     {
-      "id": "real-independent-warehouses",
-      "name": "hidden: each name receives its own aggregate",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-independent-warehouses",
+      "name": "each name receives its own aggregate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Warehouse": [

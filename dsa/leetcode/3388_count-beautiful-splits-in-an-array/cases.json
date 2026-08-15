@@ -6,72 +6,195 @@
       "name": "sample: two beautiful splits",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 1, 2, 1]},
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          1
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "both-conditions"]
+      "tags": [
+        "sample",
+        "both-conditions"
+      ]
     },
     {
       "id": "sample-none",
       "name": "sample: distinct values have no prefix match",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 3, 4]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
       "expected": 0,
-      "tags": ["sample", "no-match"]
+      "tags": [
+        "sample",
+        "no-match"
+      ]
     },
     {
       "id": "trial-minimum-beautiful",
       "name": "trial: minimum length with equal values",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0, 0, 0]},
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ]
+      },
       "expected": 1,
-      "tags": ["minimum-length", "both-conditions"]
+      "tags": [
+        "minimum-length",
+        "both-conditions"
+      ]
     },
     {
       "id": "trial-minimum-not-beautiful",
       "name": "trial: minimum length without a prefix relation",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0, 1, 0]},
+      "input": {
+        "nums": [
+          0,
+          1,
+          0
+        ]
+      },
       "expected": 0,
-      "tags": ["minimum-length", "no-match"]
+      "tags": [
+        "minimum-length",
+        "no-match"
+      ]
     },
     {
-      "id": "real-repeated-four",
-      "name": "real: all cuts of four equal values are beautiful",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 1, 1, 1]},
+      "id": "trial-repeated-four",
+      "name": "all cuts of four equal values are beautiful",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
       "expected": 3,
-      "tags": ["repeated-values", "union"]
+      "tags": [
+        "repeated-values",
+        "union"
+      ]
     },
     {
-      "id": "real-second-prefix-only",
-      "name": "real: alternating values exercise second-prefix matches",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2, 3, 2, 3, 2, 3]},
+      "id": "trial-second-prefix-only",
+      "name": "alternating values exercise second-prefix matches",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          2,
+          3,
+          2,
+          3
+        ]
+      },
       "expected": 3,
-      "tags": ["second-prefix", "alternating"]
+      "tags": [
+        "second-prefix",
+        "alternating"
+      ]
     },
     {
-      "id": "real-overlap-regression",
-      "name": "real: overlapping repeated runs and isolated values",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 0, 0, 0, 2, 2, 0, 1, 2, 1, 2]},
+      "id": "trial-overlap-regression",
+      "name": "overlapping repeated runs and isolated values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0,
+          2,
+          2,
+          0,
+          1,
+          2,
+          1,
+          2
+        ]
+      },
       "expected": 19,
-      "tags": ["overlap", "union"]
+      "tags": [
+        "overlap",
+        "union"
+      ]
     },
     {
-      "id": "real-boundary-values",
-      "name": "real: alternating minimum and maximum values",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [50, 0, 50, 0, 50, 0, 50]},
+      "id": "trial-boundary-values",
+      "name": "alternating minimum and maximum values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          50,
+          0,
+          50,
+          0,
+          50,
+          0,
+          50
+        ]
+      },
       "expected": 5,
-      "tags": ["boundary-values", "alternating"]
+      "tags": [
+        "boundary-values",
+        "alternating"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

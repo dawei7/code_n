@@ -158,10 +158,10 @@
       ]
     },
     {
-      "id": "real-unsorted-window",
-      "name": "hidden: the optimal value interval is unordered in input",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unsorted-window",
+      "name": "the optimal value interval is unordered in input",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           20,
@@ -175,16 +175,15 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "sorting",
         "middle-window"
       ]
     },
     {
-      "id": "real-all-equal",
-      "name": "hidden: equal values need no removals",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-equal",
+      "name": "equal values need no removals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -196,16 +195,15 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "duplicates",
         "already-balanced"
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "hidden: multiplication near value limits",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-values",
+      "name": "multiplication near value limits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -217,15 +215,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "large-values"
       ]
     },
     {
-      "id": "real-multiple-optimal-windows",
-      "name": "hidden: several longest balanced windows tie",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-optimal-windows",
+      "name": "several longest balanced windows tie",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -237,15 +234,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "multiple-optima"
       ]
     },
     {
-      "id": "real-large-k",
-      "name": "hidden: a large multiplier keeps every value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-k",
+      "name": "a large multiplier keeps every value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000,
@@ -256,7 +252,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "large-k"
       ]
     }

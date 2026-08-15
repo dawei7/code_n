@@ -7,54 +7,302 @@
       "name": "sample: both columns require independent reordering",
       "kind": "sample",
       "visible": true,
-      "input": {"tables": {"Data": [{"first_col":4,"second_col":2},{"first_col":2,"second_col":3},{"first_col":3,"second_col":1},{"first_col":1,"second_col":4}]}},
-      "expected": {"columns": ["first_col", "second_col"], "rows": [[1,4],[2,3],[3,2],[4,1]]},
-      "tags": ["sample", "independent-sort"]
+      "input": {
+        "tables": {
+          "Data": [
+            {
+              "first_col": 4,
+              "second_col": 2
+            },
+            {
+              "first_col": 2,
+              "second_col": 3
+            },
+            {
+              "first_col": 3,
+              "second_col": 1
+            },
+            {
+              "first_col": 1,
+              "second_col": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "first_col",
+          "second_col"
+        ],
+        "rows": [
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            4,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "independent-sort"
+      ]
     },
     {
       "id": "trial-duplicate-values",
       "name": "duplicates in both columns preserve their multiplicities",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"Data": [{"first_col":2,"second_col":10},{"first_col":1,"second_col":10},{"first_col":2,"second_col":5},{"first_col":1,"second_col":5}]}},
-      "expected": {"columns": ["first_col", "second_col"], "rows": [[1,10],[1,10],[2,5],[2,5]]},
-      "tags": ["duplicates", "multiplicity"]
+      "input": {
+        "tables": {
+          "Data": [
+            {
+              "first_col": 2,
+              "second_col": 10
+            },
+            {
+              "first_col": 1,
+              "second_col": 10
+            },
+            {
+              "first_col": 2,
+              "second_col": 5
+            },
+            {
+              "first_col": 1,
+              "second_col": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "first_col",
+          "second_col"
+        ],
+        "rows": [
+          [
+            1,
+            10
+          ],
+          [
+            1,
+            10
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            5
+          ]
+        ]
+      },
+      "tags": [
+        "duplicates",
+        "multiplicity"
+      ]
     },
     {
       "id": "trial-single-row",
       "name": "one row is already independently ordered",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"Data": [{"first_col":7,"second_col":-2}]}},
-      "expected": {"columns": ["first_col", "second_col"], "rows": [[7,-2]]},
-      "tags": ["single-row"]
+      "input": {
+        "tables": {
+          "Data": [
+            {
+              "first_col": 7,
+              "second_col": -2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "first_col",
+          "second_col"
+        ],
+        "rows": [
+          [
+            7,
+            -2
+          ]
+        ]
+      },
+      "tags": [
+        "single-row"
+      ]
     },
     {
       "id": "trial-negative-values",
       "name": "signed integers follow numeric ordering",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"Data": [{"first_col":0,"second_col":-5},{"first_col":-3,"second_col":7},{"first_col":2,"second_col":1}]}},
-      "expected": {"columns": ["first_col", "second_col"], "rows": [[-3,7],[0,1],[2,-5]]},
-      "tags": ["negative", "numeric-order"]
+      "input": {
+        "tables": {
+          "Data": [
+            {
+              "first_col": 0,
+              "second_col": -5
+            },
+            {
+              "first_col": -3,
+              "second_col": 7
+            },
+            {
+              "first_col": 2,
+              "second_col": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "first_col",
+          "second_col"
+        ],
+        "rows": [
+          [
+            -3,
+            7
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            -5
+          ]
+        ]
+      },
+      "tags": [
+        "negative",
+        "numeric-order"
+      ]
     },
     {
-      "id": "real-mixed-multiplicities",
-      "name": "hidden: unequal duplicate patterns stay independent",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"Data": [{"first_col":3,"second_col":4},{"first_col":1,"second_col":4},{"first_col":1,"second_col":2},{"first_col":2,"second_col":9},{"first_col":3,"second_col":2}]}},
-      "expected": {"columns": ["first_col", "second_col"], "rows": [[1,9],[1,4],[2,4],[3,2],[3,2]]},
-      "tags": ["hidden", "duplicates", "independent-sort"]
+      "id": "trial-mixed-multiplicities",
+      "name": "unequal duplicate patterns stay independent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Data": [
+            {
+              "first_col": 3,
+              "second_col": 4
+            },
+            {
+              "first_col": 1,
+              "second_col": 4
+            },
+            {
+              "first_col": 1,
+              "second_col": 2
+            },
+            {
+              "first_col": 2,
+              "second_col": 9
+            },
+            {
+              "first_col": 3,
+              "second_col": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "first_col",
+          "second_col"
+        ],
+        "rows": [
+          [
+            1,
+            9
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "duplicates",
+        "independent-sort"
+      ]
     },
     {
-      "id": "real-constant-first-column",
-      "name": "hidden: one constant column does not constrain the other",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"Data": [{"first_col":5,"second_col":1},{"first_col":5,"second_col":8},{"first_col":5,"second_col":3}]}},
-      "expected": {"columns": ["first_col", "second_col"], "rows": [[5,8],[5,3],[5,1]]},
-      "tags": ["hidden", "constant-column"]
+      "id": "trial-constant-first-column",
+      "name": "one constant column does not constrain the other",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Data": [
+            {
+              "first_col": 5,
+              "second_col": 1
+            },
+            {
+              "first_col": 5,
+              "second_col": 8
+            },
+            {
+              "first_col": 5,
+              "second_col": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "first_col",
+          "second_col"
+        ],
+        "rows": [
+          [
+            5,
+            8
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            5,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "constant-column"
+      ]
     }
   ]
 }

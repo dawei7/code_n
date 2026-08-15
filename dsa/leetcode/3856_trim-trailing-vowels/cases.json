@@ -7,130 +7,255 @@
       "name": "sample: remove two different trailing vowels",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "idea"},
+      "input": {
+        "s": "idea"
+      },
       "expected": "id",
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "multiple-vowels", "retained-prefix"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "multiple-vowels",
+        "retained-prefix"
+      ]
     },
     {
       "id": "sample-no-trailing-vowel",
       "name": "sample: final y stops trimming",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "day"},
+      "input": {
+        "s": "day"
+      },
       "expected": "day",
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "unchanged", "y-is-consonant"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "unchanged",
+        "y-is-consonant"
+      ]
     },
     {
       "id": "sample-all-vowels",
       "name": "sample: all five vowels produce an empty string",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "aeiou"},
+      "input": {
+        "s": "aeiou"
+      },
       "expected": "",
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "all-vowels", "empty-result"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "all-vowels",
+        "empty-result"
+      ]
     },
     {
       "id": "trial-single-consonant",
       "name": "trial: one consonant remains",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "x"},
+      "input": {
+        "s": "x"
+      },
       "expected": "x",
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "minimum-length", "unchanged"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-length",
+        "unchanged"
+      ]
     },
     {
       "id": "trial-single-vowel",
       "name": "trial: one vowel is removed",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "u"},
+      "input": {
+        "s": "u"
+      },
       "expected": "",
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "minimum-length", "empty-result"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-length",
+        "empty-result"
+      ]
     },
     {
       "id": "trial-vowels-before-final-consonant",
       "name": "trial: internal vowels remain before a consonant",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "aeioub"},
+      "input": {
+        "s": "aeioub"
+      },
       "expected": "aeioub",
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "internal-vowels", "unchanged"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "internal-vowels",
+        "unchanged"
+      ]
     },
     {
-      "id": "real-every-vowel-after-consonant",
-      "name": "hidden: remove every vowel type after the last consonant",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "rhythmaeiou"},
+      "id": "trial-every-vowel-after-consonant",
+      "name": "remove every vowel type after the last consonant",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "rhythmaeiou"
+      },
       "expected": "rhythm",
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "all-vowel-types", "long-suffix"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "all-vowel-types",
+        "long-suffix"
+      ]
     },
     {
-      "id": "real-vowels-inside-word",
-      "name": "hidden: vowels inside a word are not trailing",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "audiox"},
+      "id": "trial-vowels-inside-word",
+      "name": "vowels inside a word are not trailing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "audiox"
+      },
       "expected": "audiox",
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "internal-vowels", "final-consonant"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "internal-vowels",
+        "final-consonant"
+      ]
     },
     {
-      "id": "real-queue-collapses-to-q",
-      "name": "hidden: a long vowel suffix leaves one consonant",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "queue"},
+      "id": "trial-queue-collapses-to-q",
+      "name": "a long vowel suffix leaves one consonant",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "queue"
+      },
       "expected": "q",
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "long-suffix", "single-character-result"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "long-suffix",
+        "single-character-result"
+      ]
     },
     {
-      "id": "real-word-ending-consonant",
-      "name": "hidden: a vowel-rich word ending in a consonant remains",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "beautiful"},
+      "id": "trial-word-ending-consonant",
+      "name": "a vowel-rich word ending in a consonant remains",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "beautiful"
+      },
       "expected": "beautiful",
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "final-consonant", "unchanged"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "final-consonant",
+        "unchanged"
+      ]
     },
     {
-      "id": "real-maximum-all-vowels",
-      "name": "hidden: maximum-length vowel string becomes empty",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+      "id": "trial-maximum-all-vowels",
+      "name": "maximum-length vowel string becomes empty",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
       "expected": "",
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "maximum-length", "all-vowels"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "maximum-length",
+        "all-vowels"
+      ]
     },
     {
-      "id": "real-maximum-all-consonants",
-      "name": "hidden: maximum-length consonant string remains unchanged",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"},
+      "id": "trial-maximum-all-consonants",
+      "name": "maximum-length consonant string remains unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
       "expected": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "maximum-length", "no-vowels"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "maximum-length",
+        "no-vowels"
+      ]
     },
     {
-      "id": "real-only-last-character-trimmed",
-      "name": "hidden: remove exactly one trailing vowel",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "coda"},
+      "id": "trial-only-last-character-trimmed",
+      "name": "remove exactly one trailing vowel",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "coda"
+      },
       "expected": "cod",
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "short-suffix", "internal-vowel"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "short-suffix",
+        "internal-vowel"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "i"
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "iii"
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
     }
   ]
 }

@@ -73,10 +73,10 @@
       ]
     },
     {
-      "id": "real-single-equal",
-      "name": "hidden: minimum length equal strings",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-equal",
+      "name": "minimum length equal strings",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s1": "x",
         "s2": "x"
@@ -87,10 +87,10 @@
       ]
     },
     {
-      "id": "real-many-pairs",
-      "name": "hidden: several same-orientation pairs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-pairs",
+      "name": "several same-orientation pairs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s1": "xxxxyyyy",
         "s2": "yyyyxxxx"
@@ -98,6 +98,36 @@
       "expected": 4,
       "tags": [
         "real"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in s1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "x",
+        "s2": "yy"
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in s1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "xxx",
+        "s2": "yy"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

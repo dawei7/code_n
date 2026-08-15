@@ -7,120 +7,287 @@
       "name": "sample: one two-block partition has the required XOR sequence",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 3, 1, 4], "target1": 1, "target2": 5},
+      "input": {
+        "nums": [
+          2,
+          3,
+          1,
+          4
+        ],
+        "target1": 1,
+        "target2": 5
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "two-blocks", "unique-partition"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "two-blocks",
+        "unique-partition"
+      ]
     },
     {
       "id": "sample-three-valid-partitions",
       "name": "sample: one-block and two-block partitions are both counted",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 0, 0], "target1": 1, "target2": 0},
+      "input": {
+        "nums": [
+          1,
+          0,
+          0
+        ],
+        "target1": 1,
+        "target2": 0
+      },
       "expected": 3,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "multiple-partitions", "zero-target"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "multiple-partitions",
+        "zero-target"
+      ]
     },
     {
       "id": "sample-single-block-invalid",
       "name": "sample: the only block does not match the first target",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [7], "target1": 1, "target2": 7},
+      "input": {
+        "nums": [
+          7
+        ],
+        "target1": 1,
+        "target2": 7
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "single-element", "no-partition"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "single-element",
+        "no-partition"
+      ]
     },
     {
       "id": "trial-single-block-valid",
       "name": "trial: one element can form a valid one-block partition",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5], "target1": 5, "target2": 0},
+      "input": {
+        "nums": [
+          5
+        ],
+        "target1": 5,
+        "target2": 0
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "single-element", "one-block"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-element",
+        "one-block"
+      ]
     },
     {
       "id": "trial-zero-first-target",
       "name": "trial: all zeros form only the valid one-block partition",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0, 0, 0], "target1": 0, "target2": 1},
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ],
+        "target1": 0,
+        "target2": 1
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "zero-values", "zero-target", "one-block"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "zero-values",
+        "zero-target",
+        "one-block"
+      ]
     },
     {
       "id": "trial-odd-and-even-final-counts",
       "name": "trial: valid answers end after either one or two blocks",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 1, 1], "target1": 1, "target2": 0},
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "target1": 1,
+        "target2": 0
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "block-parity", "one-or-two-blocks"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "block-parity",
+        "one-or-two-blocks"
+      ]
     },
     {
       "id": "trial-several-second-block-cuts",
       "name": "trial: several cut positions produce the same alternating XORs",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 0, 0, 0], "target1": 1, "target2": 0},
+      "input": {
+        "nums": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "target1": 1,
+        "target2": 0
+      },
       "expected": 4,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "multiple-cuts", "zero-block-xor"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "multiple-cuts",
+        "zero-block-xor"
+      ]
     },
     {
       "id": "trial-whole-array-only",
       "name": "trial: only the whole array has the required first XOR",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 3], "target1": 0, "target2": 7},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "target1": 0,
+        "target2": 7
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "whole-array", "zero-target"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "whole-array",
+        "zero-target"
+      ]
     },
     {
-      "id": "real-no-valid-cut",
-      "name": "hidden: neither the whole array nor its split follows the sequence",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [3, 3], "target1": 3, "target2": 0},
+      "id": "trial-no-valid-cut",
+      "name": "neither the whole array nor its split follows the sequence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ],
+        "target1": 3,
+        "target2": 0
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "no-partition", "two-elements"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "no-partition",
+        "two-elements"
+      ]
     },
     {
-      "id": "real-alternating-prefix-xors",
-      "name": "hidden: repeated prefix XORs contribute to both parity states",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 1, 0, 1], "target1": 0, "target2": 1},
+      "id": "trial-alternating-prefix-xors",
+      "name": "repeated prefix XORs contribute to both parity states",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          0,
+          1
+        ],
+        "target1": 0,
+        "target2": 1
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "repeated-prefix-xor", "both-parities"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "repeated-prefix-xor",
+        "both-parities"
+      ]
     },
     {
-      "id": "real-maximum-value",
-      "name": "hidden: the maximum legal value begins several valid partitions",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100000, 0, 0, 0], "target1": 100000, "target2": 0},
+      "id": "trial-maximum-value",
+      "name": "the maximum legal value begins several valid partitions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100000,
+          0,
+          0,
+          0
+        ],
+        "target1": 100000,
+        "target2": 0
+      },
       "expected": 4,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "maximum-value", "multiple-cuts"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "maximum-value",
+        "multiple-cuts"
+      ]
     },
     {
-      "id": "real-many-alternating-cuts",
-      "name": "hidden: several block counts and cut locations are valid",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 0, 0, 0, 1, 0], "target1": 1, "target2": 0},
+      "id": "trial-many-alternating-cuts",
+      "name": "several block counts and cut locations are valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        "target1": 1,
+        "target2": 0
+      },
       "expected": 12,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "many-partitions", "alternating-states"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "many-partitions",
+        "alternating-states"
+      ]
     }
   ]
 }

@@ -176,10 +176,10 @@
       ]
     },
     {
-      "id": "real-one-upgrade-after-sales",
-      "name": "real: sales finance exactly one upgrade",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-upgrade-after-sales",
+      "name": "sales finance exactly one upgrade",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "count": [
           5
@@ -202,10 +202,10 @@
       ]
     },
     {
-      "id": "real-high-sale-price",
-      "name": "real: high sale price funds half the servers",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-high-sale-price",
+      "name": "high sale price funds half the servers",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "count": [
           6
@@ -228,10 +228,10 @@
       ]
     },
     {
-      "id": "real-maximum-balanced-values",
-      "name": "real: maximum equal values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-balanced-values",
+      "name": "maximum equal values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "count": [
           100000
@@ -255,10 +255,10 @@
       ]
     },
     {
-      "id": "real-single-affordable",
-      "name": "real: one server affordable without sale",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-affordable",
+      "name": "one server affordable without sale",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "count": [
           1
@@ -281,10 +281,10 @@
       ]
     },
     {
-      "id": "real-single-unaffordable",
-      "name": "real: selling the only server leaves none to upgrade",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-unaffordable",
+      "name": "selling the only server leaves none to upgrade",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "count": [
           1
@@ -308,10 +308,10 @@
       ]
     },
     {
-      "id": "real-multiple-boundaries",
-      "name": "real: independent floor and cap boundaries",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-boundaries",
+      "name": "independent floor and cap boundaries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "count": [
           3,
@@ -348,7 +348,68 @@
         "independent-centers",
         "boundaries"
       ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "count": [
+          4
+        ],
+        "upgrade": [
+          3,
+          5
+        ],
+        "sell": [
+          4,
+          2
+        ],
+        "money": [
+          8,
+          9
+        ]
+      },
+      "expected": [
+        3
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "count": [
+          4,
+          4
+        ],
+        "upgrade": [
+          3,
+          5
+        ],
+        "sell": [
+          4,
+          2
+        ],
+        "money": [
+          8,
+          9
+        ]
+      },
+      "expected": [
+        3,
+        2
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }
-

@@ -428,10 +428,10 @@
       ]
     },
     {
-      "id": "real-ratio-rounding",
-      "name": "hidden: ratio rounds to two decimal places",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ratio-rounding",
+      "name": "ratio rounds to two decimal places",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "stores": [
@@ -490,15 +490,14 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "rounding"
       ]
     },
     {
-      "id": "real-ratio-then-name-order",
-      "name": "hidden: equal ratios use store-name ordering",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ratio-then-name-order",
+      "name": "equal ratios use store-name ordering",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "stores": [
@@ -625,16 +624,15 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "ordering",
         "tie-break"
       ]
     },
     {
-      "id": "real-store-without-inventory",
-      "name": "hidden: stores without inventory do not appear",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-store-without-inventory",
+      "name": "stores without inventory do not appear",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "stores": [
@@ -698,15 +696,14 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "missing-inventory"
       ]
     },
     {
-      "id": "real-middle-products-irrelevant",
-      "name": "hidden: middle-priced quantities do not affect extremes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-middle-products-irrelevant",
+      "name": "middle-priced quantities do not affect extremes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "stores": [
@@ -772,7 +769,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "extreme-prices"
       ]
     }

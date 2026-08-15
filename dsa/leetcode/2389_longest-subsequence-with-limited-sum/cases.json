@@ -101,10 +101,10 @@
       ]
     },
     {
-      "id": "real-mixed-budgets",
-      "name": "hidden: budgets cover zero through every value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-budgets",
+      "name": "budgets cover zero through every value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -123,15 +123,14 @@
         3
       ],
       "tags": [
-        "hidden",
         "boundaries"
       ]
     },
     {
-      "id": "real-duplicates",
-      "name": "hidden: repeated values and repeated queries",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicates",
+      "name": "repeated values and repeated queries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -151,15 +150,14 @@
         3
       ],
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "hidden: prefix sums exceed individual value bounds",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-values",
+      "name": "prefix sums exceed individual value bounds",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000,
@@ -178,7 +176,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "large-values"
       ]
     }

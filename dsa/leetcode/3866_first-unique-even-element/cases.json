@@ -159,10 +159,10 @@
       ]
     },
     {
-      "id": "real-repeated-odds",
-      "name": "hidden: repeated odd values do not affect even uniqueness",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-odds",
+      "name": "repeated odd values do not affect even uniqueness",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -177,16 +177,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "odd-duplicates",
         "unique-even"
       ]
     },
     {
-      "id": "real-maximum-repeated",
-      "name": "hidden: repeated maximum even is skipped",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-repeated",
+      "name": "repeated maximum even is skipped",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           99,
@@ -200,16 +199,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value",
         "repeated-even"
       ]
     },
     {
-      "id": "real-all-evens-repeated",
-      "name": "hidden: every even frequency exceeds one",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-evens-repeated",
+      "name": "every even frequency exceeds one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -225,16 +223,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-repeated",
         "fallback"
       ]
     },
     {
-      "id": "real-first-element",
-      "name": "hidden: a qualifying first element returns immediately in the second pass",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-first-element",
+      "name": "a qualifying first element returns immediately in the second pass",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -248,16 +245,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "first-index",
         "early-candidate"
       ]
     },
     {
-      "id": "real-only-repeated-even",
-      "name": "hidden: odds plus one repeated even still return the fallback",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-only-repeated-even",
+      "name": "odds plus one repeated even still return the fallback",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -272,16 +268,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "repeated-even",
         "fallback"
       ]
     },
     {
-      "id": "real-maximum-length",
-      "name": "hidden: a unique maximum value follows ninety-nine nonqualifying entries",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-length",
+      "name": "a unique maximum value follows ninety-nine nonqualifying entries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -391,7 +386,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-length",
         "late-candidate"
       ]

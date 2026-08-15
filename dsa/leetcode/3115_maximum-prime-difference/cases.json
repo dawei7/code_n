@@ -6,108 +6,244 @@
       "name": "sample: three prime positions span distance three",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [4, 2, 9, 5, 3]},
+      "input": {
+        "nums": [
+          4,
+          2,
+          9,
+          5,
+          3
+        ]
+      },
       "expected": 3,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-single-prime",
       "name": "sample: one prime pairs with itself",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [4, 8, 2, 8]},
+      "input": {
+        "nums": [
+          4,
+          8,
+          2,
+          8
+        ]
+      },
       "expected": 0,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "trial-single-element",
       "name": "trial: one-element prime array",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2]},
+      "input": {
+        "nums": [
+          2
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "boundary"]
+      "tags": [
+        "trial",
+        "boundary"
+      ]
     },
     {
       "id": "trial-primes-at-ends",
       "name": "trial: prime values occupy both array boundaries",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 4, 6, 8, 11]},
+      "input": {
+        "nums": [
+          2,
+          4,
+          6,
+          8,
+          11
+        ]
+      },
       "expected": 4,
-      "tags": ["trial", "boundary"]
+      "tags": [
+        "trial",
+        "boundary"
+      ]
     },
     {
       "id": "trial-one-is-not-prime",
       "name": "trial: ones surrounding the only prime do not qualify",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 1]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          1
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "primality"]
+      "tags": [
+        "trial",
+        "primality"
+      ]
     },
     {
       "id": "trial-repeated-prime",
       "name": "trial: repeated prime values span the entire array",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [3, 3, 3, 3]},
+      "input": {
+        "nums": [
+          3,
+          3,
+          3,
+          3
+        ]
+      },
       "expected": 3,
-      "tags": ["trial", "duplicates"]
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
     },
     {
-      "id": "real-composite-run",
-      "name": "real: composite values separate two prime positions",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [4, 6, 11, 8, 9, 2, 100]},
+      "id": "trial-composite-run",
+      "name": "composite values separate two prime positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          6,
+          11,
+          8,
+          9,
+          2,
+          100
+        ]
+      },
       "expected": 3,
-      "tags": ["real", "gap"]
+      "tags": [
+        "real",
+        "gap"
+      ]
     },
     {
-      "id": "real-largest-prime-only",
-      "name": "real: 97 is the only prime near the value limit",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100, 97, 100]},
+      "id": "trial-largest-prime-only",
+      "name": "97 is the only prime near the value limit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100,
+          97,
+          100
+        ]
+      },
       "expected": 0,
-      "tags": ["real", "value-boundary"]
+      "tags": [
+        "real",
+        "value-boundary"
+      ]
     },
     {
-      "id": "real-smallest-and-largest-primes",
-      "name": "real: smallest and largest legal prime values",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2, 1, 100, 97]},
+      "id": "trial-smallest-and-largest-primes",
+      "name": "smallest and largest legal prime values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          100,
+          97
+        ]
+      },
       "expected": 3,
-      "tags": ["real", "value-boundary"]
+      "tags": [
+        "real",
+        "value-boundary"
+      ]
     },
     {
-      "id": "real-many-primes",
-      "name": "real: interior prime choices cannot exceed the extremes",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [6, 5, 7, 9, 11, 13, 15]},
+      "id": "trial-many-primes",
+      "name": "interior prime choices cannot exceed the extremes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          5,
+          7,
+          9,
+          11,
+          13,
+          15
+        ]
+      },
       "expected": 4,
-      "tags": ["real", "multiple-primes"]
+      "tags": [
+        "real",
+        "multiple-primes"
+      ]
     },
     {
-      "id": "real-late-prime-cluster",
-      "name": "real: first and last primes occur in the latter half",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 4, 6, 8, 9, 25, 49, 97, 100, 89, 77, 2]},
+      "id": "trial-late-prime-cluster",
+      "name": "first and last primes occur in the latter half",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          6,
+          8,
+          9,
+          25,
+          49,
+          97,
+          100,
+          89,
+          77,
+          2
+        ]
+      },
       "expected": 4,
-      "tags": ["real", "gap"]
+      "tags": [
+        "real",
+        "gap"
+      ]
     },
     {
-      "id": "real-duplicate-primes",
-      "name": "real: duplicate prime values count at distinct indices",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [91, 2, 2, 4, 6, 7, 8, 9, 11, 12, 1]},
+      "id": "trial-duplicate-primes",
+      "name": "duplicate prime values count at distinct indices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          91,
+          2,
+          2,
+          4,
+          6,
+          7,
+          8,
+          9,
+          11,
+          12,
+          1
+        ]
+      },
       "expected": 7,
-      "tags": ["real", "duplicates"]
+      "tags": [
+        "real",
+        "duplicates"
+      ]
     }
   ]
 }

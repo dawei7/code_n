@@ -161,10 +161,10 @@
       ]
     },
     {
-      "id": "real-all-zero-three-by-three",
-      "name": "real: every path has xor zero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-zero-three-by-three",
+      "name": "every path has xor zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -193,10 +193,10 @@
       ]
     },
     {
-      "id": "real-varied-grid",
-      "name": "real: varied four by five grid",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-varied-grid",
+      "name": "varied four by five grid",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [

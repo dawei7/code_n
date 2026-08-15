@@ -2,13 +2,238 @@
   "schema_version": 1,
   "challenge_id": "lc_2152",
   "cases": [
-    {"id": "sample-two-lines", "name": "sample: three collinear points plus one point", "kind": "sample", "visible": true, "input": {"points": [[0, 1], [2, 3], [4, 5], [4, 3]]}, "expected": 2, "tags": ["sample", "two-lines"]},
-    {"id": "sample-one-line", "name": "sample: three collinear points", "kind": "sample", "visible": true, "input": {"points": [[0, 2], [-2, -2], [1, 4]]}, "expected": 1, "tags": ["sample", "collinear"]},
-    {"id": "trial-single-point", "name": "one point needs one line", "kind": "trial", "visible": true, "input": {"points": [[7, -3]]}, "expected": 1, "tags": ["minimum-length"]},
-    {"id": "trial-two-points", "name": "two points always share a line", "kind": "trial", "visible": true, "input": {"points": [[-100, 100], [100, -100]]}, "expected": 1, "tags": ["bounds", "pair"]},
-    {"id": "trial-vertical-line", "name": "vertical collinearity avoids slope division", "kind": "trial", "visible": true, "input": {"points": [[4, -2], [4, 0], [4, 9], [4, 100]]}, "expected": 1, "tags": ["vertical", "collinear"]},
-    {"id": "real-general-position-four", "name": "hidden: four parabola points need two lines", "kind": "real", "visible": false, "input": {"points": [[0, 0], [1, 1], [2, 4], [3, 9]]}, "expected": 2, "tags": ["hidden", "general-position"]},
-    {"id": "real-general-position-five", "name": "hidden: an odd general-position set leaves one singleton", "kind": "real", "visible": false, "input": {"points": [[-2, 4], [-1, 1], [0, 0], [1, 1], [2, 4]]}, "expected": 3, "tags": ["hidden", "general-position", "odd"]},
-    {"id": "real-two-parallel-lines", "name": "hidden: two horizontal lines cover six points", "kind": "real", "visible": false, "input": {"points": [[-2, 0], [0, 0], [3, 0], [-1, 2], [2, 2], [5, 2]]}, "expected": 2, "tags": ["hidden", "parallel-lines"]}
+    {
+      "id": "sample-two-lines",
+      "name": "sample: three collinear points plus one point",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            4,
+            3
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "two-lines"
+      ]
+    },
+    {
+      "id": "sample-one-line",
+      "name": "sample: three collinear points",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            2
+          ],
+          [
+            -2,
+            -2
+          ],
+          [
+            1,
+            4
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "collinear"
+      ]
+    },
+    {
+      "id": "trial-single-point",
+      "name": "one point needs one line",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            7,
+            -3
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-two-points",
+      "name": "two points always share a line",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            -100,
+            100
+          ],
+          [
+            100,
+            -100
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "bounds",
+        "pair"
+      ]
+    },
+    {
+      "id": "trial-vertical-line",
+      "name": "vertical collinearity avoids slope division",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            4,
+            -2
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            9
+          ],
+          [
+            4,
+            100
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "vertical",
+        "collinear"
+      ]
+    },
+    {
+      "id": "trial-general-position-four",
+      "name": "four parabola points need two lines",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            9
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "general-position"
+      ]
+    },
+    {
+      "id": "trial-general-position-five",
+      "name": "an odd general-position set leaves one singleton",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            -2,
+            4
+          ],
+          [
+            -1,
+            1
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            4
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "general-position",
+        "odd"
+      ]
+    },
+    {
+      "id": "trial-two-parallel-lines",
+      "name": "two horizontal lines cover six points",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            -2,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            -1,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            5,
+            2
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "parallel-lines"
+      ]
+    }
   ]
 }

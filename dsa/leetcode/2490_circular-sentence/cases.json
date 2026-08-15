@@ -2,13 +2,142 @@
   "schema_version": 1,
   "challenge_id": "lc_2490",
   "cases": [
-    {"id": "sample-1", "name": "sample: four-word circular sentence", "kind": "sample", "visible": true, "input": {"sentence": "leetcode exercises sound delightful"}, "expected": true, "tags": ["sample", "multiple-words"]},
-    {"id": "sample-2", "name": "sample: one circular word", "kind": "sample", "visible": true, "input": {"sentence": "eetcode"}, "expected": true, "tags": ["sample", "single-word"]},
-    {"id": "sample-3", "name": "sample: first internal boundary fails", "kind": "sample", "visible": true, "input": {"sentence": "Leetcode is cool"}, "expected": false, "tags": ["sample", "internal-mismatch"]},
-    {"id": "trial-one-character", "name": "trial: one-character word", "kind": "trial", "visible": true, "input": {"sentence": "a"}, "expected": true, "tags": ["trial", "minimum-length"]},
-    {"id": "trial-two-words", "name": "trial: two words close both boundaries", "kind": "trial", "visible": true, "input": {"sentence": "ab ba"}, "expected": true, "tags": ["trial", "two-words"]},
-    {"id": "real-wraparound-failure", "name": "hidden: internal boundary passes but cycle does not close", "kind": "real", "visible": false, "input": {"sentence": "ab ball"}, "expected": false, "tags": ["hidden", "wraparound"]},
-    {"id": "real-case-sensitive-pass", "name": "hidden: mixed case matches exactly", "kind": "real", "visible": false, "input": {"sentence": "Aa aA"}, "expected": true, "tags": ["hidden", "case-sensitive"]},
-    {"id": "real-late-failure", "name": "hidden: a later internal boundary fails", "kind": "real", "visible": false, "input": {"sentence": "ab bc ce da"}, "expected": false, "tags": ["hidden", "late-mismatch"]}
+    {
+      "id": "sample-1",
+      "name": "sample: four-word circular sentence",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "sentence": "leetcode exercises sound delightful"
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "multiple-words"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one circular word",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "sentence": "eetcode"
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "single-word"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: first internal boundary fails",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "sentence": "Leetcode is cool"
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "internal-mismatch"
+      ]
+    },
+    {
+      "id": "trial-one-character",
+      "name": "trial: one-character word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentence": "a"
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-two-words",
+      "name": "trial: two words close both boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentence": "ab ba"
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "two-words"
+      ]
+    },
+    {
+      "id": "trial-wraparound-failure",
+      "name": "internal boundary passes but cycle does not close",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentence": "ab ball"
+      },
+      "expected": false,
+      "tags": [
+        "wraparound"
+      ]
+    },
+    {
+      "id": "trial-case-sensitive-pass",
+      "name": "mixed case matches exactly",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentence": "Aa aA"
+      },
+      "expected": true,
+      "tags": [
+        "case-sensitive"
+      ]
+    },
+    {
+      "id": "trial-late-failure",
+      "name": "a later internal boundary fails",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentence": "ab bc ce da"
+      },
+      "expected": false,
+      "tags": [
+        "late-mismatch"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in sentence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentence": "l"
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in sentence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentence": "lll"
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
+    }
   ]
 }

@@ -119,10 +119,10 @@
       ]
     },
     {
-      "id": "real-mixed-regions",
-      "name": "hidden: mixed captured and safe regions",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-regions",
+      "name": "mixed captured and safe regions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "board": [
           [
@@ -200,7 +200,7 @@
         ]
       ],
       "tags": [
-        "hidden"
+        "trial"
       ]
     }
   ]

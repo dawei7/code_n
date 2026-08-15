@@ -137,10 +137,10 @@
       ]
     },
     {
-      "id": "real-coordinate-bounds",
-      "name": "real: two intervals span both numeric bounds",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-coordinate-bounds",
+      "name": "two intervals span both numeric bounds",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "start": [
           0,
@@ -155,10 +155,10 @@
       ]
     },
     {
-      "id": "real-many-duplicates",
-      "name": "real: five identical intervals share integer points",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-duplicates",
+      "name": "five identical intervals share integer points",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "start": [
           7,
@@ -176,10 +176,10 @@
       ]
     },
     {
-      "id": "real-tight-middle-interval",
-      "name": "real: a tight middle position limits both sides",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-tight-middle-interval",
+      "name": "a tight middle position limits both sides",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "start": [
           0,
@@ -195,10 +195,10 @@
       ]
     },
     {
-      "id": "real-separated-overlaps",
-      "name": "real: mixed separated and overlapping ranges",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-separated-overlaps",
+      "name": "mixed separated and overlapping ranges",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "start": [
           20,
@@ -216,10 +216,10 @@
       ]
     },
     {
-      "id": "real-large-offset",
-      "name": "real: translation does not change attainable gaps",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-offset",
+      "name": "translation does not change attainable gaps",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "start": [
           999999900,
@@ -233,6 +233,41 @@
       "tags": [
         "large-values",
         "translation"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in start",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": [
+          6
+        ],
+        "d": 2
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in start",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": [
+          6,
+          6
+        ],
+        "d": 2
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

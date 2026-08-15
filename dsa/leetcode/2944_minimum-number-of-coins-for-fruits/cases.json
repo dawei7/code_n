@@ -108,10 +108,10 @@
       ]
     },
     {
-      "id": "real-three-expensive",
-      "name": "hidden: choose how to acquire the first uncovered fruit",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-expensive",
+      "name": "choose how to acquire the first uncovered fruit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           1,
@@ -121,15 +121,14 @@
       },
       "expected": 101,
       "tags": [
-        "hidden",
         "coverage-boundary"
       ]
     },
     {
-      "id": "real-all-equal",
-      "name": "hidden: repeated prices leave reward reach decisive",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-equal",
+      "name": "repeated prices leave reward reach decisive",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           1,
@@ -144,15 +143,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "equal-prices"
       ]
     },
     {
-      "id": "real-decreasing",
-      "name": "hidden: later fruits become cheaper",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-decreasing",
+      "name": "later fruits become cheaper",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           9,
@@ -168,15 +166,14 @@
       },
       "expected": 19,
       "tags": [
-        "hidden",
         "decreasing"
       ]
     },
     {
-      "id": "real-increasing",
-      "name": "hidden: early purchases are cheaper",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-increasing",
+      "name": "early purchases are cheaper",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           1,
@@ -192,7 +189,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "increasing"
       ]
     }

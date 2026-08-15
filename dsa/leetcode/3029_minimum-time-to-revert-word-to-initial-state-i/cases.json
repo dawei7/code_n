@@ -1,15 +1,182 @@
 {
   "challenge_id": "lc_3029",
   "cases": [
-    {"id":"sample-two-seconds","name":"sample: a later one-character overlap restores the word","kind":"sample","visible":true,"input":{"word":"abacaba","k":3},"expected":2,"tags":["sample","later-overlap"]},
-    {"id":"sample-one-second","name":"sample: the first surviving suffix matches immediately","kind":"sample","visible":true,"input":{"word":"abacaba","k":4},"expected":1,"tags":["sample","immediate-overlap"]},
-    {"id":"sample-full-removal","name":"sample: no overlap works before all characters are removed","kind":"sample","visible":true,"input":{"word":"abcbabcd","k":2},"expected":4,"tags":["sample","no-overlap"]},
-    {"id":"trial-single-character","name":"a one-character word still requires one positive second","kind":"trial","visible":true,"input":{"word":"z","k":1},"expected":1,"tags":["minimum-length","positive-time"]},
-    {"id":"trial-repeated-characters","name":"a repeated word can return after the first operation","kind":"trial","visible":true,"input":{"word":"aaaaaa","k":2},"expected":1,"tags":["repeated-characters","immediate-overlap"]},
-    {"id":"trial-arbitrary-append","name":"the appended character need not be the removed character","kind":"trial","visible":true,"input":{"word":"ba","k":1},"expected":2,"tags":["arbitrary-append","semantic-trap"]},
-    {"id":"real-k-equals-length","name":"hidden: removing the complete word permits immediate reconstruction","kind":"real","visible":false,"input":{"word":"algorithm","k":9},"expected":1,"tags":["hidden","full-removal"]},
-    {"id":"real-nondivisible-length","name":"hidden: complete removal may require a final partial original block","kind":"real","visible":false,"input":{"word":"aaaaab","k":2},"expected":3,"tags":["hidden","ceiling-division"]},
-    {"id":"real-late-overlap","name":"hidden: only the second reachable suffix matches","kind":"real","visible":false,"input":{"word":"xyzabcxyz","k":3},"expected":2,"tags":["hidden","late-overlap"]},
-    {"id":"real-maximum-length","name":"hidden: a maximum-length word without a proper overlap needs fifty seconds","kind":"real","visible":false,"input":{"word":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab","k":1},"expected":50,"tags":["hidden","maximum-length","worst-case"]}
+    {
+      "id": "sample-two-seconds",
+      "name": "sample: a later one-character overlap restores the word",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "abacaba",
+        "k": 3
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "later-overlap"
+      ]
+    },
+    {
+      "id": "sample-one-second",
+      "name": "sample: the first surviving suffix matches immediately",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "abacaba",
+        "k": 4
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "immediate-overlap"
+      ]
+    },
+    {
+      "id": "sample-full-removal",
+      "name": "sample: no overlap works before all characters are removed",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "abcbabcd",
+        "k": 2
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "no-overlap"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "a one-character word still requires one positive second",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "z",
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "minimum-length",
+        "positive-time"
+      ]
+    },
+    {
+      "id": "trial-repeated-characters",
+      "name": "a repeated word can return after the first operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aaaaaa",
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "repeated-characters",
+        "immediate-overlap"
+      ]
+    },
+    {
+      "id": "trial-arbitrary-append",
+      "name": "the appended character need not be the removed character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "ba",
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "arbitrary-append",
+        "semantic-trap"
+      ]
+    },
+    {
+      "id": "trial-k-equals-length",
+      "name": "removing the complete word permits immediate reconstruction",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "algorithm",
+        "k": 9
+      },
+      "expected": 1,
+      "tags": [
+        "full-removal"
+      ]
+    },
+    {
+      "id": "trial-nondivisible-length",
+      "name": "complete removal may require a final partial original block",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aaaaab",
+        "k": 2
+      },
+      "expected": 3,
+      "tags": [
+        "ceiling-division"
+      ]
+    },
+    {
+      "id": "trial-late-overlap",
+      "name": "only the second reachable suffix matches",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "xyzabcxyz",
+        "k": 3
+      },
+      "expected": 2,
+      "tags": [
+        "late-overlap"
+      ]
+    },
+    {
+      "id": "trial-maximum-length",
+      "name": "a maximum-length word without a proper overlap needs fifty seconds",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+        "k": 1
+      },
+      "expected": 50,
+      "tags": [
+        "maximum-length",
+        "worst-case"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "a",
+        "k": 3
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aaa",
+        "k": 3
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
+    }
   ]
 }

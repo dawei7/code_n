@@ -167,10 +167,10 @@
       ]
     },
     {
-      "id": "real-longer-chain",
-      "name": "hidden: several adjacent mirrors redirect repeatedly",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-longer-chain",
+      "name": "several adjacent mirrors redirect repeatedly",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -195,15 +195,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "mirror-chain"
       ]
     },
     {
-      "id": "real-dense-pattern",
-      "name": "hidden: alternating dense mirror pattern",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-dense-pattern",
+      "name": "alternating dense mirror pattern",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -234,15 +233,14 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "dense-mirrors"
       ]
     },
     {
-      "id": "real-empty-rectangle",
-      "name": "hidden: empty rectangular grid",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-empty-rectangle",
+      "name": "empty rectangular grid",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -289,16 +287,15 @@
       },
       "expected": 126,
       "tags": [
-        "hidden",
         "empty-grid",
         "rectangle"
       ]
     },
     {
-      "id": "real-modulo",
-      "name": "hidden: empty grid requires modulo reduction",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-modulo",
+      "name": "empty grid requires modulo reduction",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -745,7 +742,6 @@
       },
       "expected": 345263555,
       "tags": [
-        "hidden",
         "modulo",
         "large-count"
       ]

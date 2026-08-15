@@ -132,10 +132,10 @@
       ]
     },
     {
-      "id": "real-duplicate-prime",
-      "name": "hidden: repeated prime values share the same destinations",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicate-prime",
+      "name": "repeated prime values share the same destinations",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -146,15 +146,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "duplicate-values"
       ]
     },
     {
-      "id": "real-backward-step",
-      "name": "hidden: a backward step after teleporting is optimal",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-backward-step",
+      "name": "a backward step after teleporting is optimal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -170,16 +169,15 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "backward-step",
         "multi-teleport"
       ]
     },
     {
-      "id": "real-nondivisible-end",
-      "name": "hidden: teleportation requires exact divisibility",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-nondivisible-end",
+      "name": "teleportation requires exact divisibility",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -190,15 +188,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "divisibility"
       ]
     },
     {
-      "id": "real-distant-prime",
-      "name": "hidden: walk to a distant prime then teleport",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-distant-prime",
+      "name": "walk to a distant prime then teleport",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -212,15 +209,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "prime-teleportation"
       ]
     },
     {
-      "id": "real-many-destinations",
-      "name": "hidden: a prime may reach several multiples",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-destinations",
+      "name": "a prime may reach several multiples",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -233,15 +229,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "multiple-destinations"
       ]
     },
     {
-      "id": "real-all-ones",
-      "name": "hidden: one values permit only adjacent steps",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-ones",
+      "name": "one values permit only adjacent steps",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -251,15 +246,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "adjacent-only"
       ]
     },
     {
-      "id": "real-large-prime",
-      "name": "hidden: handle the largest prime below one million",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-prime",
+      "name": "handle the largest prime below one million",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           999983,
@@ -269,16 +263,15 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "large-value",
         "direct-teleport"
       ]
     },
     {
-      "id": "real-prime-links-no-shortcut",
-      "name": "hidden: available teleports need not improve the path",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-prime-links-no-shortcut",
+      "name": "available teleports need not improve the path",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -291,7 +284,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "no-improvement"
       ]
     }

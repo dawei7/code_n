@@ -59,10 +59,10 @@
       ]
     },
     {
-      "id": "real-twenty-two-is-special",
-      "name": "real: strict successor after twenty-two",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-twenty-two-is-special",
+      "name": "strict successor after twenty-two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 22
       },
@@ -87,10 +87,10 @@
       ]
     },
     {
-      "id": "real-before-two-twelve",
-      "name": "real: value immediately below two-twelve",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-before-two-twelve",
+      "name": "value immediately below two-twelve",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 211
       },
@@ -101,10 +101,10 @@
       ]
     },
     {
-      "id": "real-two-twelve-is-special",
-      "name": "real: advance from mixed-digit special number",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-twelve-is-special",
+      "name": "advance from mixed-digit special number",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 212
       },
@@ -115,10 +115,10 @@
       ]
     },
     {
-      "id": "real-three-thirty-three-is-special",
-      "name": "real: advance to four repeated four times",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-thirty-three-is-special",
+      "name": "advance to four repeated four times",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 333
       },
@@ -129,10 +129,10 @@
       ]
     },
     {
-      "id": "real-large-input",
-      "name": "real: trillion-scale input",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-input",
+      "name": "trillion-scale input",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000000000000
       },
@@ -143,10 +143,10 @@
       ]
     },
     {
-      "id": "real-maximum-input",
-      "name": "real: maximum legal input has successor",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-input",
+      "name": "maximum legal input has successor",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000000000000000
       },

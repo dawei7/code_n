@@ -241,10 +241,10 @@
       ]
     },
     {
-      "id": "real-periodic",
-      "name": "hidden: periodic suffix relationships",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-periodic",
+      "name": "periodic suffix relationships",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "lcp": [
           [
@@ -303,15 +303,14 @@
         "lcp_param": "lcp"
       },
       "tags": [
-        "hidden",
         "periodic"
       ]
     },
     {
-      "id": "real-asymmetric",
-      "name": "hidden: asymmetric equality claims are impossible",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-asymmetric",
+      "name": "asymmetric equality claims are impossible",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "lcp": [
           [
@@ -337,15 +336,14 @@
         "lcp_param": "lcp"
       },
       "tags": [
-        "hidden",
         "asymmetry"
       ]
     },
     {
-      "id": "real-broken-recurrence",
-      "name": "hidden: positive entries must extend consistently",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-broken-recurrence",
+      "name": "positive entries must extend consistently",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "lcp": [
           [
@@ -371,15 +369,14 @@
         "lcp_param": "lcp"
       },
       "tags": [
-        "hidden",
         "recurrence"
       ]
     },
     {
-      "id": "real-too-many-groups",
-      "name": "hidden: 27 distinct groups exceed the alphabet",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-too-many-groups",
+      "name": "27 distinct groups exceed the alphabet",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "lcp": [
           [
@@ -1173,7 +1170,6 @@
         "lcp_param": "lcp"
       },
       "tags": [
-        "hidden",
         "alphabet-limit"
       ]
     }

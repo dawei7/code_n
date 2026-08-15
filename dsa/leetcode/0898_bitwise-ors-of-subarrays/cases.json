@@ -108,10 +108,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: zero between disjoint bits",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "zero between disjoint bits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -121,15 +121,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "zero"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: descending powers of two",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "descending powers of two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           8,
@@ -140,15 +139,14 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "powers-of-two"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: overlapping bit patterns",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "overlapping bit patterns",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           5,
@@ -159,15 +157,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "overlapping-bits"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: zeros around maximum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "zeros around maximum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           0,
@@ -177,7 +174,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "boundaries"
       ]
     }

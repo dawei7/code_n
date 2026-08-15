@@ -7,130 +7,292 @@
       "name": "sample: three different sequences have sums divisible by three",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 3], "k": 3},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 3
+      },
       "expected": 3,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "distinct-values"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "distinct-values"
+      ]
     },
     {
       "id": "sample-identical-values",
       "name": "sample: repeated occurrences of the same sequence count once",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 2, 2, 2, 2, 2], "k": 6},
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "k": 6
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "duplicates", "distinct-sequences"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "duplicates",
+        "distinct-sequences"
+      ]
     },
     {
       "id": "trial-single-divisible",
       "name": "trial: one divisible value forms one good sequence",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [3], "k": 3},
+      "input": {
+        "nums": [
+          3
+        ],
+        "k": 3
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "single-element"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-element"
+      ]
     },
     {
       "id": "trial-single-not-divisible",
       "name": "trial: one nondivisible value forms no good sequence",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [3], "k": 2},
+      "input": {
+        "nums": [
+          3
+        ],
+        "k": 2
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "single-element", "empty-result"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-element",
+        "empty-result"
+      ]
     },
     {
       "id": "trial-description-distinctness",
       "name": "trial: three ones have three distinct sequences when k is one",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 1, 1], "k": 1},
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "k": 1
+      },
       "expected": 3,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "description-example", "duplicates"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "description-example",
+        "duplicates"
+      ]
     },
     {
       "id": "trial-only-even-length",
       "name": "trial: only the length-two sequence of ones is divisible by two",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 1, 1], "k": 2},
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "k": 2
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "equal-value-run"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "equal-value-run"
+      ]
     },
     {
-      "id": "real-strictly-increasing",
-      "name": "hidden: different positions yield different sequences without duplicates",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 3, 4], "k": 5},
+      "id": "trial-strictly-increasing",
+      "name": "different positions yield different sequences without duplicates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "k": 5
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "strictly-increasing"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "strictly-increasing"
+      ]
     },
     {
-      "id": "real-cross-run-sequences",
-      "name": "hidden: two good sequences cross an equal-value run boundary",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 1, 2, 2], "k": 3},
+      "id": "trial-cross-run-sequences",
+      "name": "two good sequences cross an equal-value run boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2
+        ],
+        "k": 3
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "multiple-runs"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "multiple-runs"
+      ]
     },
     {
-      "id": "real-k-one-multiple-runs",
-      "name": "hidden: every distinct sequence qualifies when k is one",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 1, 2, 2], "k": 1},
+      "id": "trial-k-one-multiple-runs",
+      "name": "every distinct sequence qualifies when k is one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2
+        ],
+        "k": 1
+      },
       "expected": 8,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "k-one", "multiple-runs"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "k-one",
+        "multiple-runs"
+      ]
     },
     {
-      "id": "real-even-constant-lengths",
-      "name": "hidden: only two even lengths qualify in a run of five twos",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2, 2, 2, 2, 2], "k": 4},
+      "id": "trial-even-constant-lengths",
+      "name": "only two even lengths qualify in a run of five twos",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "k": 4
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "equal-value-run"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "equal-value-run"
+      ]
     },
     {
-      "id": "real-mixed-runs",
-      "name": "hidden: constant and cross-run good sequences coexist",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 2, 2, 5, 5], "k": 5},
+      "id": "trial-mixed-runs",
+      "name": "constant and cross-run good sequences coexist",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2,
+          2,
+          5,
+          5
+        ],
+        "k": 5
+      },
       "expected": 3,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "multiple-runs", "duplicates"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "multiple-runs",
+        "duplicates"
+      ]
     },
     {
-      "id": "real-value-and-k-boundary",
-      "name": "hidden: one or two maximum values are distinct divisible sequences",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000000000, 1000000000], "k": 1000000000},
+      "id": "trial-value-and-k-boundary",
+      "name": "one or two maximum values are distinct divisible sequences",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          1000000000
+        ],
+        "k": 1000000000
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "value-boundary", "k-boundary"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "value-boundary",
+        "k-boundary"
+      ]
     },
     {
-      "id": "real-k-exceeds-total",
-      "name": "hidden: no positive subarray sum reaches the large divisor",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 3], "k": 1000000000},
+      "id": "trial-k-exceeds-total",
+      "name": "no positive subarray sum reaches the large divisor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 1000000000
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "k-boundary", "empty-result"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "k-boundary",
+        "empty-result"
+      ]
     }
   ]
 }

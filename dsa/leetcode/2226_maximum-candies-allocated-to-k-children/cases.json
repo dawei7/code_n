@@ -2,13 +2,179 @@
   "schema_version": 1,
   "challenge_id": "lc_2226",
   "cases": [
-    {"id":"sample-three-children","name":"sample: three portions of five are feasible","kind":"sample","visible":true,"input":{"candies":[5,8,6],"k":3},"expected":5,"tags":["sample","split-piles"]},
-    {"id":"sample-too-many-children","name":"sample: total candies cannot supply every child","kind":"sample","visible":true,"input":{"candies":[2,5],"k":11},"expected":0,"tags":["sample","zero-answer"]},
-    {"id":"trial-single-pile","name":"one pile splits into three equal portions","kind":"trial","visible":true,"input":{"candies":[10],"k":3},"expected":3,"tags":["single-pile"]},
-    {"id":"trial-one-child","name":"one child takes the largest unsplit pile","kind":"trial","visible":true,"input":{"candies":[2,9],"k":1},"expected":9,"tags":["one-child","no-merge"]},
-    {"id":"real-even-splits","name":"hidden: both piles create two equal portions","kind":"real","visible":false,"input":{"candies":[4,4],"k":4},"expected":2,"tags":["hidden","even-splits"]},
-    {"id":"real-no-positive","name":"hidden: a single candy cannot serve two children","kind":"real","visible":false,"input":{"candies":[1],"k":2},"expected":0,"tags":["hidden","zero-answer"]},
-    {"id":"real-mixed-quotients","name":"hidden: feasibility combines quotient counts","kind":"real","visible":false,"input":{"candies":[9,10,11],"k":5},"expected":5,"tags":["hidden","mixed-piles"]},
-    {"id":"real-large-k","name":"hidden: large child count safely yields zero","kind":"real","visible":false,"input":{"candies":[10000000,10000000],"k":1000000000000},"expected":0,"tags":["hidden","large-k"]}
+    {
+      "id": "sample-three-children",
+      "name": "sample: three portions of five are feasible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "candies": [
+          5,
+          8,
+          6
+        ],
+        "k": 3
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "split-piles"
+      ]
+    },
+    {
+      "id": "sample-too-many-children",
+      "name": "sample: total candies cannot supply every child",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "candies": [
+          2,
+          5
+        ],
+        "k": 11
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "zero-answer"
+      ]
+    },
+    {
+      "id": "trial-single-pile",
+      "name": "one pile splits into three equal portions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "candies": [
+          10
+        ],
+        "k": 3
+      },
+      "expected": 3,
+      "tags": [
+        "single-pile"
+      ]
+    },
+    {
+      "id": "trial-one-child",
+      "name": "one child takes the largest unsplit pile",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "candies": [
+          2,
+          9
+        ],
+        "k": 1
+      },
+      "expected": 9,
+      "tags": [
+        "one-child",
+        "no-merge"
+      ]
+    },
+    {
+      "id": "trial-even-splits",
+      "name": "both piles create two equal portions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "candies": [
+          4,
+          4
+        ],
+        "k": 4
+      },
+      "expected": 2,
+      "tags": [
+        "even-splits"
+      ]
+    },
+    {
+      "id": "trial-no-positive",
+      "name": "a single candy cannot serve two children",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "candies": [
+          1
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "zero-answer"
+      ]
+    },
+    {
+      "id": "trial-mixed-quotients",
+      "name": "feasibility combines quotient counts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "candies": [
+          9,
+          10,
+          11
+        ],
+        "k": 5
+      },
+      "expected": 5,
+      "tags": [
+        "mixed-piles"
+      ]
+    },
+    {
+      "id": "trial-large-k",
+      "name": "large child count safely yields zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "candies": [
+          10000000,
+          10000000
+        ],
+        "k": 1000000000000
+      },
+      "expected": 0,
+      "tags": [
+        "large-k"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in candies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "candies": [
+          5
+        ],
+        "k": 3
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in candies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "candies": [
+          5,
+          5
+        ],
+        "k": 3
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    }
   ]
 }

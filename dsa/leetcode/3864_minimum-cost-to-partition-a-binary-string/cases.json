@@ -123,10 +123,10 @@
       ]
     },
     {
-      "id": "real-sensitive-pair",
-      "name": "hidden: splitting two sensitive characters is cheaper",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-sensitive-pair",
+      "name": "splitting two sensitive characters is cheaper",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "11",
         "encCost": 1,
@@ -137,16 +137,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "sensitive-pair",
         "split"
       ]
     },
     {
-      "id": "real-expensive-sensitive-pair",
-      "name": "hidden: mixed pair splits under high encryption cost",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-expensive-sensitive-pair",
+      "name": "mixed pair splits under high encryption cost",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "10",
         "encCost": 100,
@@ -157,16 +156,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "mixed-pair",
         "split"
       ]
     },
     {
-      "id": "real-cheap-encryption-pair",
-      "name": "hidden: mixed pair stays intact when flat cost is high",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-cheap-encryption-pair",
+      "name": "mixed pair stays intact when flat cost is high",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "10",
         "encCost": 1,
@@ -177,16 +175,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "mixed-pair",
         "unsplit"
       ]
     },
     {
-      "id": "real-odd-halves",
-      "name": "hidden: even root may split into unsplittable odd halves",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-odd-halves",
+      "name": "even root may split into unsplittable odd halves",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "111000",
         "encCost": 2,
@@ -197,16 +194,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "odd-halves",
         "one-split"
       ]
     },
     {
-      "id": "real-long-zero-segment",
-      "name": "hidden: zero-only power of two remains one segment",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-long-zero-segment",
+      "name": "zero-only power of two remains one segment",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "00000000",
         "encCost": 100,
@@ -217,16 +213,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zero-only",
         "power-of-two"
       ]
     },
     {
-      "id": "real-alternating-deep-split",
-      "name": "hidden: alternating power of two splits to characters",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alternating-deep-split",
+      "name": "alternating power of two splits to characters",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "10101010",
         "encCost": 3,
@@ -237,16 +232,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "alternating",
         "deep-split"
       ]
     },
     {
-      "id": "real-all-sensitive-deep-split",
-      "name": "hidden: sensitive power of two splits fully",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-sensitive-deep-split",
+      "name": "sensitive power of two splits fully",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "11111111",
         "encCost": 2,
@@ -257,9 +251,40 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-sensitive",
         "deep-split"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1",
+        "encCost": 2,
+        "flatCost": 1
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "111",
+        "encCost": 2,
+        "flatCost": 1
+      },
+      "expected": 18,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

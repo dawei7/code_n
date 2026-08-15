@@ -7,120 +7,504 @@
       "name": "sample: all towers are reachable and highest quality wins",
       "kind": "sample",
       "visible": true,
-      "input": {"towers": [[1, 2, 5], [2, 1, 7], [3, 1, 9]], "center": [1, 1], "radius": 2},
-      "expected": [3, 1],
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "quality", "inclusive-radius"]
+      "input": {
+        "towers": [
+          [
+            1,
+            2,
+            5
+          ],
+          [
+            2,
+            1,
+            7
+          ],
+          [
+            3,
+            1,
+            9
+          ]
+        ],
+        "center": [
+          1,
+          1
+        ],
+        "radius": 2
+      },
+      "expected": [
+        3,
+        1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "quality",
+        "inclusive-radius"
+      ]
     },
     {
       "id": "sample-lexicographic-tie",
       "name": "sample: equal reachable qualities use lexicographic order",
       "kind": "sample",
       "visible": true,
-      "input": {"towers": [[1, 3, 4], [2, 2, 4], [4, 4, 7]], "center": [0, 0], "radius": 5},
-      "expected": [1, 3],
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "lexicographic-tie", "unreachable-high-quality"]
+      "input": {
+        "towers": [
+          [
+            1,
+            3,
+            4
+          ],
+          [
+            2,
+            2,
+            4
+          ],
+          [
+            4,
+            4,
+            7
+          ]
+        ],
+        "center": [
+          0,
+          0
+        ],
+        "radius": 5
+      },
+      "expected": [
+        1,
+        3
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "lexicographic-tie",
+        "unreachable-high-quality"
+      ]
     },
     {
       "id": "sample-none-reachable",
       "name": "sample: no tower is within the radius",
       "kind": "sample",
       "visible": true,
-      "input": {"towers": [[5, 6, 8], [0, 3, 5]], "center": [1, 2], "radius": 1},
-      "expected": [-1, -1],
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "empty-reachable-set", "fallback"]
+      "input": {
+        "towers": [
+          [
+            5,
+            6,
+            8
+          ],
+          [
+            0,
+            3,
+            5
+          ]
+        ],
+        "center": [
+          1,
+          2
+        ],
+        "radius": 1
+      },
+      "expected": [
+        -1,
+        -1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "empty-reachable-set",
+        "fallback"
+      ]
     },
     {
       "id": "trial-exact-radius-boundary",
       "name": "trial: a tower exactly on the radius remains eligible",
       "kind": "trial",
       "visible": true,
-      "input": {"towers": [[3, 4, 9], [2, 4, 8]], "center": [0, 0], "radius": 7},
-      "expected": [3, 4],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "inclusive-radius", "quality"]
+      "input": {
+        "towers": [
+          [
+            3,
+            4,
+            9
+          ],
+          [
+            2,
+            4,
+            8
+          ]
+        ],
+        "center": [
+          0,
+          0
+        ],
+        "radius": 7
+      },
+      "expected": [
+        3,
+        4
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "inclusive-radius",
+        "quality"
+      ]
     },
     {
       "id": "trial-outside-by-one",
       "name": "trial: an otherwise superior tower is one step too far",
       "kind": "trial",
       "visible": true,
-      "input": {"towers": [[3, 4, 100], [0, 0, 1]], "center": [0, 0], "radius": 6},
-      "expected": [0, 0],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "outside-radius", "quality-filter"]
+      "input": {
+        "towers": [
+          [
+            3,
+            4,
+            100
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "center": [
+          0,
+          0
+        ],
+        "radius": 6
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "outside-radius",
+        "quality-filter"
+      ]
     },
     {
       "id": "trial-smaller-x-tie",
       "name": "trial: the smaller x coordinate wins an equal-quality tie",
       "kind": "trial",
       "visible": true,
-      "input": {"towers": [[2, 0, 5], [1, 9, 5]], "center": [0, 0], "radius": 20},
-      "expected": [1, 9],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "lexicographic-x", "equal-quality"]
+      "input": {
+        "towers": [
+          [
+            2,
+            0,
+            5
+          ],
+          [
+            1,
+            9,
+            5
+          ]
+        ],
+        "center": [
+          0,
+          0
+        ],
+        "radius": 20
+      },
+      "expected": [
+        1,
+        9
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "lexicographic-x",
+        "equal-quality"
+      ]
     },
     {
       "id": "trial-smaller-y-tie",
       "name": "trial: equal x coordinates compare y coordinates",
       "kind": "trial",
       "visible": true,
-      "input": {"towers": [[1, 9, 5], [1, 2, 5]], "center": [0, 0], "radius": 20},
-      "expected": [1, 2],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "lexicographic-y", "equal-quality"]
+      "input": {
+        "towers": [
+          [
+            1,
+            9,
+            5
+          ],
+          [
+            1,
+            2,
+            5
+          ]
+        ],
+        "center": [
+          0,
+          0
+        ],
+        "radius": 20
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "lexicographic-y",
+        "equal-quality"
+      ]
     },
     {
       "id": "trial-quality-precedes-coordinate",
       "name": "trial: higher quality overrides a smaller coordinate",
       "kind": "trial",
       "visible": true,
-      "input": {"towers": [[0, 0, 1], [5, 5, 2]], "center": [0, 0], "radius": 10},
-      "expected": [5, 5],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "ordering-priority", "quality"]
+      "input": {
+        "towers": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            5,
+            5,
+            2
+          ]
+        ],
+        "center": [
+          0,
+          0
+        ],
+        "radius": 10
+      },
+      "expected": [
+        5,
+        5
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "ordering-priority",
+        "quality"
+      ]
     },
     {
-      "id": "real-zero-radius",
-      "name": "hidden: radius zero accepts only the center coordinate",
-      "kind": "real",
-      "visible": false,
-      "input": {"towers": [[2, 2, 0], [2, 2, 7], [2, 3, 100]], "center": [2, 2], "radius": 0},
-      "expected": [2, 2],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "zero-radius", "repeated-coordinate"]
+      "id": "trial-zero-radius",
+      "name": "radius zero accepts only the center coordinate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "towers": [
+          [
+            2,
+            2,
+            0
+          ],
+          [
+            2,
+            2,
+            7
+          ],
+          [
+            2,
+            3,
+            100
+          ]
+        ],
+        "center": [
+          2,
+          2
+        ],
+        "radius": 0
+      },
+      "expected": [
+        2,
+        2
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "zero-radius",
+        "repeated-coordinate"
+      ]
     },
     {
-      "id": "real-zero-quality",
-      "name": "hidden: a reachable zero-quality tower beats the sentinel",
-      "kind": "real",
-      "visible": false,
-      "input": {"towers": [[4, 4, 0], [5, 5, 0]], "center": [4, 4], "radius": 4},
-      "expected": [4, 4],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "zero-quality", "lexicographic-tie"]
+      "id": "trial-zero-quality",
+      "name": "a reachable zero-quality tower beats the sentinel",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "towers": [
+          [
+            4,
+            4,
+            0
+          ],
+          [
+            5,
+            5,
+            0
+          ]
+        ],
+        "center": [
+          4,
+          4
+        ],
+        "radius": 4
+      },
+      "expected": [
+        4,
+        4
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "zero-quality",
+        "lexicographic-tie"
+      ]
     },
     {
-      "id": "real-all-filtered",
-      "name": "hidden: every high-quality candidate is unreachable",
-      "kind": "real",
-      "visible": false,
-      "input": {"towers": [[100, 100, 100], [50, 60, 90], [9, 9, 80]], "center": [0, 0], "radius": 10},
-      "expected": [-1, -1],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "all-unreachable", "fallback"]
+      "id": "trial-all-filtered",
+      "name": "every high-quality candidate is unreachable",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "towers": [
+          [
+            100,
+            100,
+            100
+          ],
+          [
+            50,
+            60,
+            90
+          ],
+          [
+            9,
+            9,
+            80
+          ]
+        ],
+        "center": [
+          0,
+          0
+        ],
+        "radius": 10
+      },
+      "expected": [
+        -1,
+        -1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "all-unreachable",
+        "fallback"
+      ]
     },
     {
-      "id": "real-maximum-values",
-      "name": "hidden: maximum legal values and a boundary tie",
-      "kind": "real",
-      "visible": false,
-      "input": {"towers": [[100000, 100000, 100000], [0, 0, 99999], [100000, 0, 100000]], "center": [100000, 100000], "radius": 100000},
-      "expected": [100000, 0],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "maximum-values", "inclusive-radius", "lexicographic-y"]
+      "id": "trial-maximum-values",
+      "name": "maximum legal values and a boundary tie",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "towers": [
+          [
+            100000,
+            100000,
+            100000
+          ],
+          [
+            0,
+            0,
+            99999
+          ],
+          [
+            100000,
+            0,
+            100000
+          ]
+        ],
+        "center": [
+          100000,
+          100000
+        ],
+        "radius": 100000
+      },
+      "expected": [
+        100000,
+        0
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "maximum-values",
+        "inclusive-radius",
+        "lexicographic-y"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value radius=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "towers": [
+          [
+            1,
+            2,
+            5
+          ],
+          [
+            2,
+            1,
+            7
+          ],
+          [
+            3,
+            1,
+            9
+          ]
+        ],
+        "center": [
+          1,
+          1
+        ],
+        "radius": 1
+      },
+      "expected": [
+        2,
+        1
+      ],
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
     }
   ]
 }

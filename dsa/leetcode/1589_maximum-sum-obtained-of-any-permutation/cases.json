@@ -146,10 +146,10 @@
       ]
     },
     {
-      "id": "real-zero-values",
-      "name": "hidden: zeros occupy low-coverage positions",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zero-values",
+      "name": "zeros occupy low-coverage positions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -170,15 +170,14 @@
       },
       "expected": 25,
       "tags": [
-        "hidden",
         "zero"
       ]
     },
     {
-      "id": "real-prefix-weights",
-      "name": "hidden: descending prefix coverage",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-prefix-weights",
+      "name": "descending prefix coverage",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -207,15 +206,14 @@
       },
       "expected": 30,
       "tags": [
-        "hidden",
         "prefix-ranges"
       ]
     },
     {
-      "id": "real-disjoint-equal-coverage",
-      "name": "hidden: disjoint requests cover every index once",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-disjoint-equal-coverage",
+      "name": "disjoint requests cover every index once",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9,
@@ -236,15 +234,14 @@
       },
       "expected": 20,
       "tags": [
-        "hidden",
         "disjoint"
       ]
     },
     {
-      "id": "real-duplicate-values",
-      "name": "hidden: equal values under unequal coverage",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicate-values",
+      "name": "equal values under unequal coverage",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -272,15 +269,14 @@
       },
       "expected": 42,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "real-whole-array-repeated",
-      "name": "hidden: repeated whole-array request",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-whole-array-repeated",
+      "name": "repeated whole-array request",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -304,16 +300,15 @@
       },
       "expected": 42,
       "tags": [
-        "hidden",
         "whole-array",
         "repeated-request"
       ]
     },
     {
-      "id": "real-modulo",
-      "name": "hidden: total requires modular reduction",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-modulo",
+      "name": "total requires modular reduction",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000,
@@ -826,7 +821,6 @@
       },
       "expected": 9999993,
       "tags": [
-        "hidden",
         "modulo",
         "value-boundary"
       ]

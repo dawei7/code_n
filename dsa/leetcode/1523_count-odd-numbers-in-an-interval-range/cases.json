@@ -95,10 +95,10 @@
       ]
     },
     {
-      "id": "real-odd-even",
-      "name": "hidden: odd lower and even upper endpoint",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-odd-even",
+      "name": "odd lower and even upper endpoint",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "low": 11,
         "high": 20
@@ -110,10 +110,10 @@
       ]
     },
     {
-      "id": "real-zero-only",
-      "name": "hidden: zero alone is not odd",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zero-only",
+      "name": "zero alone is not odd",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "low": 0,
         "high": 0
@@ -126,10 +126,10 @@
       ]
     },
     {
-      "id": "real-maximum-single",
-      "name": "hidden: maximum endpoint alone",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-single",
+      "name": "maximum endpoint alone",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "low": 1000000000,
         "high": 1000000000
@@ -142,10 +142,10 @@
       ]
     },
     {
-      "id": "real-near-maximum",
-      "name": "hidden: wide interval ending at maximum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-near-maximum",
+      "name": "wide interval ending at maximum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "low": 999999991,
         "high": 1000000000
@@ -155,6 +155,36 @@
         "real",
         "maximum",
         "odd-lower"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value low=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "low": 1,
+        "high": 7
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "minimal value high=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "low": 3,
+        "high": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

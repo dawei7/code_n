@@ -100,10 +100,10 @@
       ]
     },
     {
-      "id": "real-competing-peaks",
-      "name": "hidden: side minima differ between competing peaks",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-competing-peaks",
+      "name": "side minima differ between competing peaks",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -116,15 +116,14 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "competing-peaks"
       ]
     },
     {
-      "id": "real-late-smaller-right",
-      "name": "hidden: the best right endpoint need not be adjacent",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-late-smaller-right",
+      "name": "the best right endpoint need not be adjacent",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -136,15 +135,14 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "suffix-minimum"
       ]
     },
     {
-      "id": "real-all-equal",
-      "name": "hidden: equal values never satisfy strict mountain sides",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-equal",
+      "name": "equal values never satisfy strict mountain sides",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -156,8 +154,40 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "all-equal"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          8
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

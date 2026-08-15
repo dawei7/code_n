@@ -221,10 +221,10 @@
       ]
     },
     {
-      "id": "real-overlap",
-      "name": "hidden: overlapping interior and boundary rectangles",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-overlap",
+      "name": "overlapping interior and boundary rectangles",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [
@@ -277,7 +277,6 @@
         15
       ],
       "tags": [
-        "hidden",
         "overlap"
       ]
     }

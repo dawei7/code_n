@@ -276,10 +276,10 @@
       ]
     },
     {
-      "id": "real-missing-half",
-      "name": "real: drivers missing either half are excluded",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-missing-half",
+      "name": "drivers missing either half are excluded",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "drivers": [
@@ -330,10 +330,10 @@
       ]
     },
     {
-      "id": "real-equal-and-declining",
-      "name": "real: equality and decline are not improvements",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-equal-and-declining",
+      "name": "equality and decline are not improvements",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "drivers": [
@@ -398,10 +398,10 @@
       ]
     },
     {
-      "id": "real-round-only-at-end",
-      "name": "real: a sub-cent improvement survives the filter",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-round-only-at-end",
+      "name": "a sub-cent improvement survives the filter",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "drivers": [
@@ -456,10 +456,10 @@
       ]
     },
     {
-      "id": "real-name-tie-break",
-      "name": "real: names break equal improvement ties",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-name-tie-break",
+      "name": "names break equal improvement ties",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "drivers": [

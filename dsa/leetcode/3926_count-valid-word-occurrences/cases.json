@@ -405,10 +405,10 @@
       ]
     },
     {
-      "id": "hidden-complex-hyphen-mix",
-      "name": "hidden: mixed valid and invalid hyphens form exact maximal words",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-complex-hyphen-mix",
+      "name": "mixed valid and invalid hyphens form exact maximal words",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "chunks": [
           "x-y z--q r-s-t -u v-"
@@ -433,16 +433,15 @@
         0
       ],
       "tags": [
-        "hidden",
         "mixed-hyphens",
         "edge-hyphens"
       ]
     },
     {
-      "id": "hidden-triple-hyphen",
-      "name": "hidden: three consecutive hyphens separate both letters",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-triple-hyphen",
+      "name": "three consecutive hyphens separate both letters",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "chunks": [
           "a---b"
@@ -459,16 +458,15 @@
         0
       ],
       "tags": [
-        "hidden",
         "consecutive-hyphens",
         "separators"
       ]
     },
     {
-      "id": "hidden-boundaries-around-space",
-      "name": "hidden: single-character chunks preserve a space separator",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-boundaries-around-space",
+      "name": "single-character chunks preserve a space separator",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "chunks": [
           "a",
@@ -489,16 +487,15 @@
         0
       ],
       "tags": [
-        "hidden",
         "chunk-boundary",
         "space"
       ]
     },
     {
-      "id": "hidden-repeated-mixed-words",
-      "name": "hidden: plain and hyphenated words keep separate frequencies",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-mixed-words",
+      "name": "plain and hyphenated words keep separate frequencies",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "chunks": [
           "a a-b a b a-b"
@@ -517,16 +514,15 @@
         2
       ],
       "tags": [
-        "hidden",
         "repeated-words",
         "duplicate-queries"
       ]
     },
     {
-      "id": "hidden-twenty-letter-chunks",
-      "name": "hidden: twenty letter chunks become one long word",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-twenty-letter-chunks",
+      "name": "twenty letter chunks become one long word",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "chunks": [
           "a",
@@ -562,16 +558,15 @@
         0
       ],
       "tags": [
-        "hidden",
         "many-chunks",
         "long-word"
       ]
     },
     {
-      "id": "hidden-long-hyphen-chain",
-      "name": "hidden: a longer valid hyphen chain remains one word",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-long-hyphen-chain",
+      "name": "a longer valid hyphen chain remains one word",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "chunks": [
           "a-b-c-d-e-f"
@@ -590,7 +585,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "hyphen-chain",
         "exact-word"
       ]

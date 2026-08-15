@@ -122,10 +122,10 @@
       ]
     },
     {
-      "id": "hidden-same-start",
-      "name": "hidden: widest shared-start interval comes first logically",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-same-start",
+      "name": "widest shared-start interval comes first logically",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "intervals": [
           [
@@ -144,15 +144,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "tie-break"
       ]
     },
     {
-      "id": "hidden-same-end",
-      "name": "hidden: earliest start covers equal-end intervals",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-same-end",
+      "name": "earliest start covers equal-end intervals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "intervals": [
           [
@@ -175,7 +174,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "equal-end"
       ]
     }

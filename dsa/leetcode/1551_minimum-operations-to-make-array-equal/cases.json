@@ -101,10 +101,10 @@
       ]
     },
     {
-      "id": "real-n-10",
-      "name": "hidden: n = 10",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-n-10",
+      "name": "n = 10",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 10
       },
@@ -115,10 +115,10 @@
       ]
     },
     {
-      "id": "real-n-99",
-      "name": "hidden: n = 99",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-n-99",
+      "name": "n = 99",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 99
       },
@@ -129,10 +129,10 @@
       ]
     },
     {
-      "id": "real-n-100",
-      "name": "hidden: n = 100",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-n-100",
+      "name": "n = 100",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 100
       },
@@ -143,10 +143,10 @@
       ]
     },
     {
-      "id": "real-n-9999",
-      "name": "hidden: n = 9999",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-n-9999",
+      "name": "n = 9999",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 9999
       },
@@ -157,10 +157,10 @@
       ]
     },
     {
-      "id": "real-n-10000",
-      "name": "hidden: n = 10000",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-n-10000",
+      "name": "n = 10000",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 10000
       },

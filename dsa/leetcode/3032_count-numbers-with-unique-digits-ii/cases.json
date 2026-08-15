@@ -1,14 +1,137 @@
 {
   "challenge_id": "lc_3032",
   "cases": [
-    {"id":"sample-one-to-twenty","name":"sample: only eleven repeats a digit","kind":"sample","visible":true,"input":{"a":1,"b":20},"expected":19,"tags":["sample","inclusive-range"]},
-    {"id":"sample-nine-to-nineteen","name":"sample: both endpoints are included","kind":"sample","visible":true,"input":{"a":9,"b":19},"expected":10,"tags":["sample","inclusive-range"]},
-    {"id":"sample-crosses-hundred","name":"sample: range spans two- and three-digit values","kind":"sample","visible":true,"input":{"a":80,"b":120},"expected":27,"tags":["sample","digit-length-transition"]},
-    {"id":"trial-single-unique","name":"a singleton interval containing a unique digit","kind":"trial","visible":true,"input":{"a":7,"b":7},"expected":1,"tags":["singleton","unique"]},
-    {"id":"trial-single-repeated","name":"a singleton interval containing repeated digits","kind":"trial","visible":true,"input":{"a":11,"b":11},"expected":0,"tags":["singleton","repeated-digit"]},
-    {"id":"trial-around-hundred","name":"only ninety-eight and one hundred two qualify","kind":"trial","visible":true,"input":{"a":98,"b":102},"expected":2,"tags":["digit-length-transition","zero-digit"]},
-    {"id":"real-full-domain","name":"hidden: complete legal domain","kind":"real","visible":false,"input":{"a":1,"b":1000},"expected":738,"tags":["hidden","maximum-range"]},
-    {"id":"real-repeated-tail","name":"hidden: every value near one thousand repeats a digit","kind":"real","visible":false,"input":{"a":990,"b":1000},"expected":0,"tags":["hidden","repeated-digit"]},
-    {"id":"real-leading-zero-trap","name":"hidden: decimal representations do not contain leading zeros","kind":"real","visible":false,"input":{"a":8,"b":10},"expected":3,"tags":["hidden","representation"]}
+    {
+      "id": "sample-one-to-twenty",
+      "name": "sample: only eleven repeats a digit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "a": 1,
+        "b": 20
+      },
+      "expected": 19,
+      "tags": [
+        "sample",
+        "inclusive-range"
+      ]
+    },
+    {
+      "id": "sample-nine-to-nineteen",
+      "name": "sample: both endpoints are included",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "a": 9,
+        "b": 19
+      },
+      "expected": 10,
+      "tags": [
+        "sample",
+        "inclusive-range"
+      ]
+    },
+    {
+      "id": "sample-crosses-hundred",
+      "name": "sample: range spans two- and three-digit values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "a": 80,
+        "b": 120
+      },
+      "expected": 27,
+      "tags": [
+        "sample",
+        "digit-length-transition"
+      ]
+    },
+    {
+      "id": "trial-single-unique",
+      "name": "a singleton interval containing a unique digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 7,
+        "b": 7
+      },
+      "expected": 1,
+      "tags": [
+        "singleton",
+        "unique"
+      ]
+    },
+    {
+      "id": "trial-single-repeated",
+      "name": "a singleton interval containing repeated digits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 11,
+        "b": 11
+      },
+      "expected": 0,
+      "tags": [
+        "singleton",
+        "repeated-digit"
+      ]
+    },
+    {
+      "id": "trial-around-hundred",
+      "name": "only ninety-eight and one hundred two qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 98,
+        "b": 102
+      },
+      "expected": 2,
+      "tags": [
+        "digit-length-transition",
+        "zero-digit"
+      ]
+    },
+    {
+      "id": "trial-full-domain",
+      "name": "complete legal domain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 1,
+        "b": 1000
+      },
+      "expected": 738,
+      "tags": [
+        "maximum-range"
+      ]
+    },
+    {
+      "id": "trial-repeated-tail",
+      "name": "every value near one thousand repeats a digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 990,
+        "b": 1000
+      },
+      "expected": 0,
+      "tags": [
+        "repeated-digit"
+      ]
+    },
+    {
+      "id": "trial-leading-zero-trap",
+      "name": "decimal representations do not contain leading zeros",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 8,
+        "b": 10
+      },
+      "expected": 3,
+      "tags": [
+        "representation"
+      ]
+    }
   ]
 }

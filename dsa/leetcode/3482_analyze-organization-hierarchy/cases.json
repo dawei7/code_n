@@ -446,10 +446,10 @@
       ]
     },
     {
-      "id": "real-budget-order",
-      "name": "hidden: level peers sort by subtree budget",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-budget-order",
+      "name": "level peers sort by subtree budget",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [
@@ -527,15 +527,14 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "budget-order"
       ]
     },
     {
-      "id": "real-name-tiebreak",
-      "name": "hidden: names break equal level and budget",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-name-tiebreak",
+      "name": "names break equal level and budget",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [
@@ -599,15 +598,14 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "name-order"
       ]
     },
     {
-      "id": "real-shuffled-nonconsecutive",
-      "name": "hidden: row and identifier order are irrelevant",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-shuffled-nonconsecutive",
+      "name": "row and identifier order are irrelevant",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [
@@ -685,15 +683,14 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "unordered-input"
       ]
     },
     {
-      "id": "real-balanced-branches",
-      "name": "hidden: two multi-level branches",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-balanced-branches",
+      "name": "two multi-level branches",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [
@@ -813,15 +810,14 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "branches"
       ]
     },
     {
-      "id": "real-leaf-own-budget",
-      "name": "hidden: leaf budget equals own salary",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-leaf-own-budget",
+      "name": "leaf budget equals own salary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [
@@ -885,15 +881,14 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "leaf"
       ]
     },
     {
-      "id": "real-department-does-not-partition",
-      "name": "hidden: reports cross department boundaries",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-department-does-not-partition",
+      "name": "reports cross department boundaries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [
@@ -971,15 +966,14 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "department"
       ]
     },
     {
-      "id": "real-budget-includes-self",
-      "name": "hidden: own salary remains in every controlled budget",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-budget-includes-self",
+      "name": "own salary remains in every controlled budget",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [
@@ -1057,7 +1051,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "self-salary"
       ]
     }

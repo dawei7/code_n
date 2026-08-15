@@ -6,72 +6,127 @@
       "name": "official example: lower bound already contains zero",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 10, "t": 2},
+      "input": {
+        "n": 10,
+        "t": 2
+      },
       "expected": 10,
-      "tags": ["sample", "already-valid", "zero-digit"]
+      "tags": [
+        "sample",
+        "already-valid",
+        "zero-digit"
+      ]
     },
     {
       "id": "official-example-next-number",
       "name": "official example: next integer is the first valid answer",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 15, "t": 3},
+      "input": {
+        "n": 15,
+        "t": 3
+      },
       "expected": 16,
-      "tags": ["sample", "minimum-answer"]
+      "tags": [
+        "sample",
+        "minimum-answer"
+      ]
     },
     {
       "id": "trial-smallest-input-and-divisor",
       "name": "trial: smallest legal input and divisor",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1, "t": 1},
+      "input": {
+        "n": 1,
+        "t": 1
+      },
       "expected": 1,
-      "tags": ["trial", "minimum-input", "unit-divisor"]
+      "tags": [
+        "trial",
+        "minimum-input",
+        "unit-divisor"
+      ]
     },
     {
       "id": "trial-maximum-search-distance",
       "name": "trial: answer occurs nine candidates after the lower bound",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1, "t": 10},
+      "input": {
+        "n": 1,
+        "t": 10
+      },
       "expected": 10,
-      "tags": ["trial", "maximum-search-distance", "zero-digit"]
+      "tags": [
+        "trial",
+        "maximum-search-distance",
+        "zero-digit"
+      ]
     },
     {
       "id": "trial-nonzero-product-after-several-candidates",
       "name": "trial: later answer has a nonzero digit product",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 53, "t": 7},
+      "input": {
+        "n": 53,
+        "t": 7
+      },
       "expected": 57,
-      "tags": ["trial", "nonzero-product", "enumeration"]
+      "tags": [
+        "trial",
+        "nonzero-product",
+        "enumeration"
+      ]
     },
     {
-      "id": "real-carry-into-trailing-zero",
-      "name": "real: incrementing crosses into a trailing zero",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 39, "t": 8},
+      "id": "trial-carry-into-trailing-zero",
+      "name": "incrementing crosses into a trailing zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 39,
+        "t": 8
+      },
       "expected": 40,
-      "tags": ["real", "decimal-carry", "zero-digit"]
+      "tags": [
+        "real",
+        "decimal-carry",
+        "zero-digit"
+      ]
     },
     {
-      "id": "real-late-nonzero-answer",
-      "name": "real: several rejected products precede a nonzero answer",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 91, "t": 7},
+      "id": "trial-late-nonzero-answer",
+      "name": "several rejected products precede a nonzero answer",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 91,
+        "t": 7
+      },
       "expected": 97,
-      "tags": ["real", "nonzero-product", "minimum-answer"]
+      "tags": [
+        "real",
+        "nonzero-product",
+        "minimum-answer"
+      ]
     },
     {
-      "id": "real-maximum-lower-bound",
-      "name": "real: maximum legal lower bound is immediately valid",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 100, "t": 10},
+      "id": "trial-maximum-lower-bound",
+      "name": "maximum legal lower bound is immediately valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 100,
+        "t": 10
+      },
       "expected": 100,
-      "tags": ["real", "maximum-input", "multiple-zero-digits"]
+      "tags": [
+        "real",
+        "maximum-input",
+        "multiple-zero-digits"
+      ]
     }
   ]
 }

@@ -6,63 +6,164 @@
       "name": "sample: three calls from a positive start",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 10, "calls": ["call", "call", "call"]},
-      "expected": [10, 11, 12],
-      "tags": ["sample", "positive"]
+      "input": {
+        "n": 10,
+        "calls": [
+          "call",
+          "call",
+          "call"
+        ]
+      },
+      "expected": [
+        10,
+        11,
+        12
+      ],
+      "tags": [
+        "sample",
+        "positive"
+      ]
     },
     {
       "id": "sample-negative-start",
       "name": "sample: negative sequence crosses zero",
       "kind": "sample",
       "visible": true,
-      "input": {"n": -2, "calls": ["call", "call", "call", "call", "call"]},
-      "expected": [-2, -1, 0, 1, 2],
-      "tags": ["sample", "negative", "cross-zero"]
+      "input": {
+        "n": -2,
+        "calls": [
+          "call",
+          "call",
+          "call",
+          "call",
+          "call"
+        ]
+      },
+      "expected": [
+        -2,
+        -1,
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "sample",
+        "negative",
+        "cross-zero"
+      ]
     },
     {
       "id": "trial-no-calls",
       "name": "trial: unused counter emits no values",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 7, "calls": []},
+      "input": {
+        "n": 7,
+        "calls": []
+      },
       "expected": [],
-      "tags": ["trial", "zero-calls"]
+      "tags": [
+        "trial",
+        "zero-calls"
+      ]
     },
     {
       "id": "trial-single-call",
       "name": "trial: first call returns the exact start",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 0, "calls": ["call"]},
-      "expected": [0],
-      "tags": ["trial", "single-call"]
+      "input": {
+        "n": 0,
+        "calls": [
+          "call"
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "trial",
+        "single-call"
+      ]
     },
     {
       "id": "trial-lower-start-bound",
       "name": "trial: lower starting boundary increments normally",
       "kind": "trial",
       "visible": true,
-      "input": {"n": -1000, "calls": ["call", "call"]},
-      "expected": [-1000, -999],
-      "tags": ["trial", "lower-bound"]
+      "input": {
+        "n": -1000,
+        "calls": [
+          "call",
+          "call"
+        ]
+      },
+      "expected": [
+        -1000,
+        -999
+      ],
+      "tags": [
+        "trial",
+        "lower-bound"
+      ]
     },
     {
-      "id": "real-upper-start-bound",
-      "name": "hidden: values may advance beyond the starting bound",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 1000, "calls": ["call", "call", "call"]},
-      "expected": [1000, 1001, 1002],
-      "tags": ["hidden", "upper-bound"]
+      "id": "trial-upper-start-bound",
+      "name": "values may advance beyond the starting bound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000,
+        "calls": [
+          "call",
+          "call",
+          "call"
+        ]
+      },
+      "expected": [
+        1000,
+        1001,
+        1002
+      ],
+      "tags": [
+        "upper-bound"
+      ]
     },
     {
-      "id": "real-longer-sequence",
-      "name": "hidden: state persists across many calls",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 95, "calls": ["call", "call", "call", "call", "call", "call", "call", "call", "call", "call"]},
-      "expected": [95, 96, 97, 98, 99, 100, 101, 102, 103, 104],
-      "tags": ["hidden", "state-persistence"]
+      "id": "trial-longer-sequence",
+      "name": "state persists across many calls",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 95,
+        "calls": [
+          "call",
+          "call",
+          "call",
+          "call",
+          "call",
+          "call",
+          "call",
+          "call",
+          "call",
+          "call"
+        ]
+      },
+      "expected": [
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104
+      ],
+      "tags": [
+        "state-persistence"
+      ]
     }
   ]
 }

@@ -147,10 +147,10 @@
       ]
     },
     {
-      "id": "real-duplicates",
-      "name": "hidden: duplicate values share one component",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicates",
+      "name": "duplicate values share one component",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -169,15 +169,14 @@
         3
       ],
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "real-large-limit",
-      "name": "hidden: every value belongs to one component",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-limit",
+      "name": "every value belongs to one component",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -196,15 +195,14 @@
         8
       ],
       "tags": [
-        "hidden",
         "global-sort"
       ]
     },
     {
-      "id": "real-already-smallest",
-      "name": "hidden: reachable arrangement is already lexicographically minimal",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-already-smallest",
+      "name": "reachable arrangement is already lexicographically minimal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -221,15 +219,14 @@
         11
       ],
       "tags": [
-        "hidden",
         "already-minimal"
       ]
     },
     {
-      "id": "real-gap-boundary",
-      "name": "hidden: adjacent difference equal to limit connects values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-gap-boundary",
+      "name": "adjacent difference equal to limit connects values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -246,8 +243,47 @@
         6
       ],
       "tags": [
-        "hidden",
         "inclusive-limit"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "limit": 2
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "limit": 2
+      },
+      "expected": [
+        1,
+        1
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

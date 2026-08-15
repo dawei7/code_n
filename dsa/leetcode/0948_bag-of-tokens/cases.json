@@ -110,10 +110,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: trade unlocks two purchases",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "trade unlocks two purchases",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tokens": [
           25,
@@ -125,15 +125,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "trade"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: exact upper token purchase",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "exact upper token purchase",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tokens": [
           9999
@@ -142,15 +141,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "upper-value"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: no affordable value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "no affordable value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tokens": [
           55,
@@ -161,15 +159,14 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "blocked"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: input order is irrelevant",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "input order is irrelevant",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tokens": [
           400,
@@ -181,8 +178,24 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "unsorted"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value power=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tokens": [
+          100
+        ],
+        "power": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

@@ -1,10 +1,168 @@
-{"schema_version":1,"challenge_id":"lc_3758","cases":[
-{"id":"sample-adjacent-words","name":"sample: three adjacent number words","kind":"sample","visible":true,"input":{"s":"onefourthree"},"expected":"143","validator":{"kind":"exact"},"tags":["sample","adjacent"]},
-{"id":"sample-noise-between","name":"sample: one noise character separates valid words","kind":"sample","visible":true,"input":{"s":"ninexsix"},"expected":"96","validator":{"kind":"exact"},"tags":["sample","noise"]},
-{"id":"sample-malformed-zero","name":"sample: malformed zero word produces no digit","kind":"sample","visible":true,"input":{"s":"zeero"},"expected":"","validator":{"kind":"exact"},"tags":["sample","near-match"]},
-{"id":"sample-incomplete-two","name":"sample: incomplete final fragment is ignored","kind":"sample","visible":true,"input":{"s":"tw"},"expected":"","validator":{"kind":"exact"},"tags":["sample","incomplete"]},
-{"id":"trial-all-words","name":"trial: every number word appears once in order","kind":"trial","visible":true,"input":{"s":"zeroonetwothreefourfivesixseveneightnine"},"expected":"0123456789","validator":{"kind":"exact"},"tags":["trial","all-digits"]},
-{"id":"trial-overlap-like-fragments","name":"trial: greedy matches do not restart inside consumed words","kind":"trial","visible":true,"input":{"s":"xoneightwone"},"expected":"12","validator":{"kind":"exact"},"tags":["trial","greedy"]},
-{"id":"real-match-after-near-prefix","name":"hidden: one-character skips reveal a later valid word","kind":"real","visible":false,"input":{"s":"onone"},"expected":"1","validator":{"kind":"exact"},"tags":["hidden","fallback"]},
-{"id":"real-repeated-zero","name":"hidden: noise separates two identical valid words","kind":"real","visible":false,"input":{"s":"zeroxxzero"},"expected":"00","validator":{"kind":"exact"},"tags":["hidden","duplicates"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3758",
+  "cases": [
+    {
+      "id": "sample-adjacent-words",
+      "name": "sample: three adjacent number words",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "onefourthree"
+      },
+      "expected": "143",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "adjacent"
+      ]
+    },
+    {
+      "id": "sample-noise-between",
+      "name": "sample: one noise character separates valid words",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "ninexsix"
+      },
+      "expected": "96",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "noise"
+      ]
+    },
+    {
+      "id": "sample-malformed-zero",
+      "name": "sample: malformed zero word produces no digit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "zeero"
+      },
+      "expected": "",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "near-match"
+      ]
+    },
+    {
+      "id": "sample-incomplete-two",
+      "name": "sample: incomplete final fragment is ignored",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "tw"
+      },
+      "expected": "",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "incomplete"
+      ]
+    },
+    {
+      "id": "trial-all-words",
+      "name": "trial: every number word appears once in order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "zeroonetwothreefourfivesixseveneightnine"
+      },
+      "expected": "0123456789",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "all-digits"
+      ]
+    },
+    {
+      "id": "trial-overlap-like-fragments",
+      "name": "trial: greedy matches do not restart inside consumed words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "xoneightwone"
+      },
+      "expected": "12",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "greedy"
+      ]
+    },
+    {
+      "id": "trial-match-after-near-prefix",
+      "name": "one-character skips reveal a later valid word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "onone"
+      },
+      "expected": "1",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "fallback"
+      ]
+    },
+    {
+      "id": "trial-repeated-zero",
+      "name": "noise separates two identical valid words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "zeroxxzero"
+      },
+      "expected": "00",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "o"
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ooo"
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
+    }
+  ]
+}

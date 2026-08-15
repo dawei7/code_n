@@ -7,120 +7,382 @@
       "name": "sample: best houses avoid both same-color pairs",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 4, 3, 5], "colors": [1, 1, 2, 2]},
+      "input": {
+        "nums": [
+          1,
+          4,
+          3,
+          5
+        ],
+        "colors": [
+          1,
+          1,
+          2,
+          2
+        ]
+      },
       "expected": 9,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "same-color-adjacency", "non-adjacent"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "same-color-adjacency",
+        "non-adjacent"
+      ]
     },
     {
       "id": "sample-mixed-boundaries",
       "name": "sample: unequal colors permit adjacent choices",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [3, 1, 2, 4], "colors": [2, 3, 2, 2]},
+      "input": {
+        "nums": [
+          3,
+          1,
+          2,
+          4
+        ],
+        "colors": [
+          2,
+          3,
+          2,
+          2
+        ]
+      },
       "expected": 8,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "different-colors", "same-color-tail"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "different-colors",
+        "same-color-tail"
+      ]
     },
     {
       "id": "sample-nonadjacent-then-adjacent",
       "name": "sample: non-adjacent equal colors followed by a color change",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [10, 1, 3, 9], "colors": [1, 1, 1, 2]},
+      "input": {
+        "nums": [
+          10,
+          1,
+          3,
+          9
+        ],
+        "colors": [
+          1,
+          1,
+          1,
+          2
+        ]
+      },
       "expected": 22,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "repeated-color", "different-color-boundary"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "repeated-color",
+        "different-color-boundary"
+      ]
     },
     {
       "id": "trial-single-house",
       "name": "trial: the only house is always selectable",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [7], "colors": [1]},
+      "input": {
+        "nums": [
+          7
+        ],
+        "colors": [
+          1
+        ]
+      },
       "expected": 7,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "minimum-length", "single-house"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-length",
+        "single-house"
+      ]
     },
     {
       "id": "trial-all-different-colors",
       "name": "trial: every adjacent pair has different colors",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 5, 1, 4], "colors": [1, 2, 3, 4]},
+      "input": {
+        "nums": [
+          2,
+          5,
+          1,
+          4
+        ],
+        "colors": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
       "expected": 12,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "all-selected", "different-colors"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "all-selected",
+        "different-colors"
+      ]
     },
     {
       "id": "trial-all-same-color",
       "name": "trial: one color reduces every boundary to classic exclusion",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 7, 9, 3, 1], "colors": [5, 5, 5, 5, 5]},
+      "input": {
+        "nums": [
+          2,
+          7,
+          9,
+          3,
+          1
+        ],
+        "colors": [
+          5,
+          5,
+          5,
+          5,
+          5
+        ]
+      },
       "expected": 12,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "all-same-color", "classic-recurrence"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "all-same-color",
+        "classic-recurrence"
+      ]
     },
     {
       "id": "trial-two-same-colors",
       "name": "trial: choose the larger of two equal-color neighbors",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [8, 9], "colors": [4, 4]},
+      "input": {
+        "nums": [
+          8,
+          9
+        ],
+        "colors": [
+          4,
+          4
+        ]
+      },
       "expected": 9,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "two-houses", "same-color"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "two-houses",
+        "same-color"
+      ]
     },
     {
-      "id": "real-two-different-colors",
-      "name": "hidden: both houses survive a different-color boundary",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [8, 9], "colors": [4, 5]},
+      "id": "trial-two-different-colors",
+      "name": "both houses survive a different-color boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          9
+        ],
+        "colors": [
+          4,
+          5
+        ]
+      },
       "expected": 17,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "two-houses", "different-colors"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "two-houses",
+        "different-colors"
+      ]
     },
     {
-      "id": "real-color-change-unlocks-tail",
-      "name": "hidden: a color change permits the final adjacent pair",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [10, 1, 1, 10], "colors": [1, 1, 1, 2]},
+      "id": "trial-color-change-unlocks-tail",
+      "name": "a color change permits the final adjacent pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          1,
+          1,
+          10
+        ],
+        "colors": [
+          1,
+          1,
+          1,
+          2
+        ]
+      },
       "expected": 21,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "color-change", "non-adjacent-equal-colors"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "color-change",
+        "non-adjacent-equal-colors"
+      ]
     },
     {
-      "id": "real-two-restricted-pairs",
-      "name": "hidden: separate same-color boundaries make separate choices",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, 100, 6, 7], "colors": [1, 1, 2, 2]},
+      "id": "trial-two-restricted-pairs",
+      "name": "separate same-color boundaries make separate choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          100,
+          6,
+          7
+        ],
+        "colors": [
+          1,
+          1,
+          2,
+          2
+        ]
+      },
       "expected": 107,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "two-color-runs", "unequal-values"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "two-color-runs",
+        "unequal-values"
+      ]
     },
     {
-      "id": "real-alternating-boundary-types",
-      "name": "hidden: restrictive and permissive boundaries alternate",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [4, 1, 10, 1, 4], "colors": [1, 1, 2, 2, 3]},
+      "id": "trial-alternating-boundary-types",
+      "name": "restrictive and permissive boundaries alternate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          1,
+          10,
+          1,
+          4
+        ],
+        "colors": [
+          1,
+          1,
+          2,
+          2,
+          3
+        ]
+      },
       "expected": 18,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "mixed-boundaries", "multiple-runs"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "mixed-boundaries",
+        "multiple-runs"
+      ]
     },
     {
-      "id": "real-maximum-values",
-      "name": "hidden: maximum values require a wide accumulated total",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100000, 100000, 100000, 100000, 100000, 100000], "colors": [99999, 100000, 99999, 100000, 99999, 100000]},
+      "id": "trial-maximum-values",
+      "name": "maximum values require a wide accumulated total",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100000,
+          100000,
+          100000,
+          100000,
+          100000,
+          100000
+        ],
+        "colors": [
+          99999,
+          100000,
+          99999,
+          100000,
+          99999,
+          100000
+        ]
+      },
       "expected": 600000,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "maximum-values", "all-selected"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "maximum-values",
+        "all-selected"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "colors": [
+          1,
+          1,
+          2,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "colors": [
+          1,
+          1,
+          2,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

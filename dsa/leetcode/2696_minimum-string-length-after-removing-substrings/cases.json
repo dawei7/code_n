@@ -1,11 +1,157 @@
-{"schema_version":1,"challenge_id":"lc_2696","cases":[
-{"id":"sample-cascading","name":"sample: removals expose additional pairs","kind":"sample","visible":true,"input":{"s":"ABFCACDB"},"expected":2,"tags":["sample","cascade"]},
-{"id":"sample-no-removal","name":"sample: no removable pair","kind":"sample","visible":true,"input":{"s":"ACBBD"},"expected":5,"tags":["sample","unchanged"]},
-{"id":"trial-single-ab","name":"trial: one AB disappears","kind":"trial","visible":true,"input":{"s":"AB"},"expected":0,"tags":["ab","empty-result"]},
-{"id":"trial-single-cd","name":"trial: one CD disappears","kind":"trial","visible":true,"input":{"s":"CD"},"expected":0,"tags":["cd","empty-result"]},
-{"id":"trial-cross-cascade","name":"trial: removing CD creates AB","kind":"trial","visible":true,"input":{"s":"ACDB"},"expected":0,"tags":["cascade","both-pairs"]},
-{"id":"real-reversed-pairs","name":"hidden: reversed letters are not removable","kind":"real","visible":false,"input":{"s":"BADC"},"expected":4,"tags":["hidden","direction"]},
-{"id":"real-adjacent-pairs","name":"hidden: adjacent independent pairs all disappear","kind":"real","visible":false,"input":{"s":"ABCDABCD"},"expected":0,"tags":["hidden","multiple-pairs"]},
-{"id":"real-nested-chain","name":"hidden: a long center-out chain disappears","kind":"real","visible":false,"input":{"s":"AAAAABBBBB"},"expected":0,"tags":["hidden","cascade","chain"]},
-{"id":"real-unmatched-boundaries","name":"hidden: unmatched characters remain around reductions","kind":"real","visible":false,"input":{"s":"XACDBY"},"expected":2,"tags":["hidden","boundaries"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2696",
+  "cases": [
+    {
+      "id": "sample-cascading",
+      "name": "sample: removals expose additional pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "ABFCACDB"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "cascade"
+      ]
+    },
+    {
+      "id": "sample-no-removal",
+      "name": "sample: no removable pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "ACBBD"
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "unchanged"
+      ]
+    },
+    {
+      "id": "trial-single-ab",
+      "name": "trial: one AB disappears",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "AB"
+      },
+      "expected": 0,
+      "tags": [
+        "ab",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "trial-single-cd",
+      "name": "trial: one CD disappears",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "CD"
+      },
+      "expected": 0,
+      "tags": [
+        "cd",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "trial-cross-cascade",
+      "name": "trial: removing CD creates AB",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ACDB"
+      },
+      "expected": 0,
+      "tags": [
+        "cascade",
+        "both-pairs"
+      ]
+    },
+    {
+      "id": "trial-reversed-pairs",
+      "name": "reversed letters are not removable",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "BADC"
+      },
+      "expected": 4,
+      "tags": [
+        "direction"
+      ]
+    },
+    {
+      "id": "trial-adjacent-pairs",
+      "name": "adjacent independent pairs all disappear",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ABCDABCD"
+      },
+      "expected": 0,
+      "tags": [
+        "multiple-pairs"
+      ]
+    },
+    {
+      "id": "trial-nested-chain",
+      "name": "a long center-out chain disappears",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "AAAAABBBBB"
+      },
+      "expected": 0,
+      "tags": [
+        "cascade",
+        "chain"
+      ]
+    },
+    {
+      "id": "trial-unmatched-boundaries",
+      "name": "unmatched characters remain around reductions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "XACDBY"
+      },
+      "expected": 2,
+      "tags": [
+        "boundaries"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "A"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "AAA"
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
+    }
+  ]
+}

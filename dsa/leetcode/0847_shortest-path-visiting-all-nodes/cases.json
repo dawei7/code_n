@@ -168,10 +168,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: complete graph",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "complete graph",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "graph": [
           [
@@ -208,15 +208,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "complete"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: four-leaf star",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "four-leaf star",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "graph": [
           [
@@ -241,15 +240,14 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "revisit"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: triangle with a tail",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "triangle with a tail",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "graph": [
           [
@@ -276,15 +274,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "tail"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: balanced branching tree",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "balanced branching tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "graph": [
           [
@@ -317,15 +314,14 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "tree"
       ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: chorded cycle",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-5",
+      "name": "chorded cycle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "graph": [
           [
@@ -360,7 +356,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "chords"
       ]
     }

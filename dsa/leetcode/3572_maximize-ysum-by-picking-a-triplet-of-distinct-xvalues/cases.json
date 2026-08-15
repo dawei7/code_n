@@ -7,63 +7,241 @@
       "name": "sample: choose the best representative from each available group",
       "kind": "sample",
       "visible": true,
-      "input": {"x":[1,2,1,3,2],"y":[5,3,4,6,2]},
+      "input": {
+        "x": [
+          1,
+          2,
+          1,
+          3,
+          2
+        ],
+        "y": [
+          5,
+          3,
+          4,
+          6,
+          2
+        ]
+      },
       "expected": 14,
-      "tags": ["sample","group-maximum","exactly-three-groups"]
+      "tags": [
+        "sample",
+        "group-maximum",
+        "exactly-three-groups"
+      ]
     },
     {
       "id": "sample-too-few-groups",
       "name": "sample: two distinct x-values cannot form a triplet",
       "kind": "sample",
       "visible": true,
-      "input": {"x":[1,2,1,2],"y":[4,5,6,7]},
+      "input": {
+        "x": [
+          1,
+          2,
+          1,
+          2
+        ],
+        "y": [
+          4,
+          5,
+          6,
+          7
+        ]
+      },
       "expected": -1,
-      "tags": ["sample","impossible","duplicate-x"]
+      "tags": [
+        "sample",
+        "impossible",
+        "duplicate-x"
+      ]
     },
     {
       "id": "trial-later-group-maxima",
       "name": "trial: later entries replace smaller group representatives",
       "kind": "trial",
       "visible": true,
-      "input": {"x":[1,1,2,2,3,3],"y":[1,10,9,2,8,7]},
+      "input": {
+        "x": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ],
+        "y": [
+          1,
+          10,
+          9,
+          2,
+          8,
+          7
+        ]
+      },
       "expected": 27,
-      "tags": ["trial","group-maximum","duplicates"]
+      "tags": [
+        "trial",
+        "group-maximum",
+        "duplicates"
+      ]
     },
     {
       "id": "trial-select-top-three-groups",
       "name": "trial: discard the smallest of four distinct groups",
       "kind": "trial",
       "visible": true,
-      "input": {"x":[1,2,3,4],"y":[1,100,50,75]},
+      "input": {
+        "x": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "y": [
+          1,
+          100,
+          50,
+          75
+        ]
+      },
       "expected": 225,
-      "tags": ["trial","more-than-three-groups","top-three"]
+      "tags": [
+        "trial",
+        "more-than-three-groups",
+        "top-three"
+      ]
     },
     {
-      "id": "real-large-duplicate-group",
-      "name": "real: multiple large values with one x contribute only once",
-      "kind": "real",
-      "visible": false,
-      "input": {"x":[1,1,1,2,3,4],"y":[100,200,150,10,20,30]},
+      "id": "trial-large-duplicate-group",
+      "name": "multiple large values with one x contribute only once",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": [
+          1,
+          1,
+          1,
+          2,
+          3,
+          4
+        ],
+        "y": [
+          100,
+          200,
+          150,
+          10,
+          20,
+          30
+        ]
+      },
       "expected": 250,
-      "tags": ["real","duplicate-x","top-three"]
+      "tags": [
+        "real",
+        "duplicate-x",
+        "top-three"
+      ]
     },
     {
-      "id": "real-value-boundaries",
-      "name": "real: sum representatives at the y-value boundary",
-      "kind": "real",
-      "visible": false,
-      "input": {"x":[10,20,30],"y":[1,1000000,999999]},
+      "id": "trial-value-boundaries",
+      "name": "sum representatives at the y-value boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": [
+          10,
+          20,
+          30
+        ],
+        "y": [
+          1,
+          1000000,
+          999999
+        ]
+      },
       "expected": 2000000,
-      "tags": ["real","value-boundary","minimum-length"]
+      "tags": [
+        "real",
+        "value-boundary",
+        "minimum-length"
+      ]
     },
     {
-      "id": "real-many-indices-two-groups",
-      "name": "real: many indices do not compensate for missing a third x-value",
-      "kind": "real",
-      "visible": false,
-      "input": {"x":[5,5,5,7,7,7],"y":[1,2,100,3,4,200]},
+      "id": "trial-many-indices-two-groups",
+      "name": "many indices do not compensate for missing a third x-value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": [
+          5,
+          5,
+          5,
+          7,
+          7,
+          7
+        ],
+        "y": [
+          1,
+          2,
+          100,
+          3,
+          4,
+          200
+        ]
+      },
       "expected": -1,
-      "tags": ["real","impossible","group-count"]
+      "tags": [
+        "real",
+        "impossible",
+        "group-count"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in x",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": [
+          1
+        ],
+        "y": [
+          5,
+          3,
+          4,
+          6,
+          2
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in x",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": [
+          1,
+          1
+        ],
+        "y": [
+          5,
+          3,
+          4,
+          6,
+          2
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

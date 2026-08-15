@@ -6,72 +6,192 @@
       "name": "sample: combine full-price and discounted fruit",
       "kind": "sample",
       "visible": true,
-      "input": {"price": [10, 20, 20], "tastiness": [5, 8, 8], "maxAmount": 20, "maxCoupons": 1},
+      "input": {
+        "price": [
+          10,
+          20,
+          20
+        ],
+        "tastiness": [
+          5,
+          8,
+          8
+        ],
+        "maxAmount": 20,
+        "maxCoupons": 1
+      },
       "expected": 13,
-      "tags": ["sample", "mixed-purchase"]
+      "tags": [
+        "sample",
+        "mixed-purchase"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: use two coupons",
       "kind": "sample",
       "visible": true,
-      "input": {"price": [10, 15, 7], "tastiness": [5, 8, 20], "maxAmount": 10, "maxCoupons": 2},
+      "input": {
+        "price": [
+          10,
+          15,
+          7
+        ],
+        "tastiness": [
+          5,
+          8,
+          20
+        ],
+        "maxAmount": 10,
+        "maxCoupons": 2
+      },
       "expected": 28,
-      "tags": ["sample", "two-coupons"]
+      "tags": [
+        "sample",
+        "two-coupons"
+      ]
     },
     {
       "id": "trial-zero-budget",
       "name": "trial: zero-price fruits remain purchasable",
       "kind": "trial",
       "visible": true,
-      "input": {"price": [0, 5, 0], "tastiness": [4, 9, 6], "maxAmount": 0, "maxCoupons": 1},
+      "input": {
+        "price": [
+          0,
+          5,
+          0
+        ],
+        "tastiness": [
+          4,
+          9,
+          6
+        ],
+        "maxAmount": 0,
+        "maxCoupons": 1
+      },
       "expected": 10,
-      "tags": ["trial", "zero-price"]
+      "tags": [
+        "trial",
+        "zero-price"
+      ]
     },
     {
       "id": "trial-no-coupons",
       "name": "trial: ordinary knapsack without coupons",
       "kind": "trial",
       "visible": true,
-      "input": {"price": [4, 5, 7], "tastiness": [6, 8, 12], "maxAmount": 9, "maxCoupons": 0},
+      "input": {
+        "price": [
+          4,
+          5,
+          7
+        ],
+        "tastiness": [
+          6,
+          8,
+          12
+        ],
+        "maxAmount": 9,
+        "maxCoupons": 0
+      },
       "expected": 14,
-      "tags": ["trial", "no-coupons"]
+      "tags": [
+        "trial",
+        "no-coupons"
+      ]
     },
     {
-      "id": "real-odd-price-rounding",
-      "name": "hidden: discounted odd price rounds down",
-      "kind": "real",
-      "visible": false,
-      "input": {"price": [7, 8], "tastiness": [10, 11], "maxAmount": 3, "maxCoupons": 1},
+      "id": "trial-odd-price-rounding",
+      "name": "discounted odd price rounds down",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "price": [
+          7,
+          8
+        ],
+        "tastiness": [
+          10,
+          11
+        ],
+        "maxAmount": 3,
+        "maxCoupons": 1
+      },
       "expected": 10,
-      "tags": ["hidden", "floor"]
+      "tags": [
+        "floor"
+      ]
     },
     {
-      "id": "real-nothing-affordable",
-      "name": "hidden: no purchase is affordable",
-      "kind": "real",
-      "visible": false,
-      "input": {"price": [5, 9], "tastiness": [7, 13], "maxAmount": 1, "maxCoupons": 1},
+      "id": "trial-nothing-affordable",
+      "name": "no purchase is affordable",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "price": [
+          5,
+          9
+        ],
+        "tastiness": [
+          7,
+          13
+        ],
+        "maxAmount": 1,
+        "maxCoupons": 1
+      },
       "expected": 0,
-      "tags": ["hidden", "empty-subset"]
+      "tags": [
+        "empty-subset"
+      ]
     },
     {
-      "id": "real-extra-coupons",
-      "name": "hidden: coupon allowance need not be exhausted",
-      "kind": "real",
-      "visible": false,
-      "input": {"price": [2, 100, 100], "tastiness": [5, 1, 1], "maxAmount": 2, "maxCoupons": 5},
+      "id": "trial-extra-coupons",
+      "name": "coupon allowance need not be exhausted",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "price": [
+          2,
+          100,
+          100
+        ],
+        "tastiness": [
+          5,
+          1,
+          1
+        ],
+        "maxAmount": 2,
+        "maxCoupons": 5
+      },
       "expected": 5,
-      "tags": ["hidden", "unused-coupons"]
+      "tags": [
+        "unused-coupons"
+      ]
     },
     {
-      "id": "real-zero-tastiness",
-      "name": "hidden: free zero-value fruits do not change the result",
-      "kind": "real",
-      "visible": false,
-      "input": {"price": [0, 0, 3], "tastiness": [0, 0, 7], "maxAmount": 1, "maxCoupons": 1},
+      "id": "trial-zero-tastiness",
+      "name": "free zero-value fruits do not change the result",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "price": [
+          0,
+          0,
+          3
+        ],
+        "tastiness": [
+          0,
+          0,
+          7
+        ],
+        "maxAmount": 1,
+        "maxCoupons": 1
+      },
       "expected": 7,
-      "tags": ["hidden", "zero-value"]
+      "tags": [
+        "zero-value"
+      ]
     }
   ]
 }

@@ -2,12 +2,172 @@
   "schema_version": 1,
   "challenge_id": "lc_2141",
   "cases": [
-    {"id": "sample-three-batteries", "name": "sample: three batteries shared by two computers", "kind": "sample", "visible": true, "input": {"n": 2, "batteries": [3,3,3]}, "expected": 4, "tags": ["sample", "sharing"]},
-    {"id": "sample-four-unit-batteries", "name": "sample: four unit batteries power two computers", "kind": "sample", "visible": true, "input": {"n": 2, "batteries": [1,1,1,1]}, "expected": 2, "tags": ["sample", "unit-capacity"]},
-    {"id": "trial-one-computer", "name": "one computer can consume every battery sequentially", "kind": "trial", "visible": true, "input": {"n": 1, "batteries": [2,5,7]}, "expected": 14, "tags": ["single-computer"]},
-    {"id": "trial-no-spare-batteries", "name": "without spares the smallest capacity limits runtime", "kind": "trial", "visible": true, "input": {"n": 3, "batteries": [10,4,7]}, "expected": 4, "tags": ["no-spares"]},
-    {"id": "real-large-battery-capped", "name": "hidden: one oversized battery cannot serve two computers at once", "kind": "real", "visible": false, "input": {"n": 2, "batteries": [100,1,1]}, "expected": 2, "tags": ["hidden", "capacity-cap"]},
-    {"id": "real-balanced-capacities", "name": "hidden: balanced capacity reaches the average bound", "kind": "real", "visible": false, "input": {"n": 3, "batteries": [6,6,6,6,6]}, "expected": 10, "tags": ["hidden", "balanced"]},
-    {"id": "real-leftover-energy", "name": "hidden: unusable leftover energy is discarded", "kind": "real", "visible": false, "input": {"n": 2, "batteries": [5,5,2]}, "expected": 6, "tags": ["hidden", "leftover"]}
+    {
+      "id": "sample-three-batteries",
+      "name": "sample: three batteries shared by two computers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "batteries": [
+          3,
+          3,
+          3
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "sharing"
+      ]
+    },
+    {
+      "id": "sample-four-unit-batteries",
+      "name": "sample: four unit batteries power two computers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "batteries": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "unit-capacity"
+      ]
+    },
+    {
+      "id": "trial-one-computer",
+      "name": "one computer can consume every battery sequentially",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "batteries": [
+          2,
+          5,
+          7
+        ]
+      },
+      "expected": 14,
+      "tags": [
+        "single-computer"
+      ]
+    },
+    {
+      "id": "trial-no-spare-batteries",
+      "name": "without spares the smallest capacity limits runtime",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "batteries": [
+          10,
+          4,
+          7
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "no-spares"
+      ]
+    },
+    {
+      "id": "trial-large-battery-capped",
+      "name": "one oversized battery cannot serve two computers at once",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "batteries": [
+          100,
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "capacity-cap"
+      ]
+    },
+    {
+      "id": "trial-balanced-capacities",
+      "name": "balanced capacity reaches the average bound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "batteries": [
+          6,
+          6,
+          6,
+          6,
+          6
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "balanced"
+      ]
+    },
+    {
+      "id": "trial-leftover-energy",
+      "name": "unusable leftover energy is discarded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "batteries": [
+          5,
+          5,
+          2
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "leftover"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "batteries": [
+          3,
+          3,
+          3
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in batteries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "batteries": [
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    }
   ]
 }

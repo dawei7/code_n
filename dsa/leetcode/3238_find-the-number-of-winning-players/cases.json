@@ -210,10 +210,10 @@
       ]
     },
     {
-      "id": "real-every-player-wins",
-      "name": "real: every player reaches a threshold",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-every-player-wins",
+      "name": "every player reaches a threshold",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "pick": [
@@ -265,10 +265,10 @@
       ]
     },
     {
-      "id": "real-no-winners",
-      "name": "real: no same-color threshold is reached",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-no-winners",
+      "name": "no same-color threshold is reached",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "pick": [
@@ -304,10 +304,10 @@
       ]
     },
     {
-      "id": "real-color-boundaries",
-      "name": "real: both color boundaries",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-color-boundaries",
+      "name": "both color boundaries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 3,
         "pick": [
@@ -332,10 +332,10 @@
       ]
     },
     {
-      "id": "real-highest-player-threshold",
-      "name": "real: player nine needs ten same-color picks",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-highest-player-threshold",
+      "name": "player nine needs ten same-color picks",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 10,
         "pick": [
@@ -388,10 +388,10 @@
       ]
     },
     {
-      "id": "real-order-independent",
-      "name": "real: interleaved winners",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-order-independent",
+      "name": "interleaved winners",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "pick": [

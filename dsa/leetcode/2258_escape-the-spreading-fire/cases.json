@@ -2,13 +2,264 @@
   "schema_version": 1,
   "challenge_id": "lc_2258",
   "cases": [
-    {"id":"sample-finite-wait","name":"sample: walls permit exactly three waiting minutes","kind":"sample","visible":true,"input":{"grid":[[0,2,0,0,0,0,0],[0,0,0,2,2,1,0],[0,2,0,0,1,2,0],[0,0,2,2,2,0,2],[0,0,0,0,0,0,0]]},"expected":3,"tags":["sample","finite"]},
-    {"id":"sample-impossible","name":"sample: fire intercepts every immediate route","kind":"sample","visible":true,"input":{"grid":[[0,0,0,0],[0,1,2,0],[0,2,0,0]]},"expected":-1,"tags":["sample","impossible"]},
-    {"id":"sample-unbounded","name":"sample: walls permanently contain the fire","kind":"sample","visible":true,"input":{"grid":[[0,0,0],[2,2,0],[1,2,0]]},"expected":1000000000,"tags":["sample","unbounded"]},
-    {"id":"trial-no-fire","name":"absence of fire permits every waiting time","kind":"trial","visible":true,"input":{"grid":[[0,0],[0,0]]},"expected":1000000000,"tags":["no-fire","unbounded"]},
-    {"id":"trial-start-threat","name":"fire next to the start makes escape impossible","kind":"trial","visible":true,"input":{"grid":[[0,1],[0,0]]},"expected":-1,"tags":["start","impossible"]},
-    {"id":"real-safehouse-tie","name":"hidden: equality is allowed only at the safehouse","kind":"real","visible":false,"input":{"grid":[[0,0,0],[0,2,0],[1,2,0]]},"expected":1,"tags":["hidden","safehouse-tie"]},
-    {"id":"real-forced-corridor","name":"hidden: a forced route loses to fire","kind":"real","visible":false,"input":{"grid":[[0,0,0,0],[2,2,2,0],[1,0,0,0]]},"expected":-1,"tags":["hidden","corridor"]},
-    {"id":"real-intermediate-tie","name":"hidden: tying fire before the safehouse is unsafe","kind":"real","visible":false,"input":{"grid":[[0,0,0],[0,2,0],[0,1,0]]},"expected":-1,"tags":["hidden","intermediate-tie"]}
+    {
+      "id": "sample-finite-wait",
+      "name": "sample: walls permit exactly three waiting minutes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            2,
+            2,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0,
+            0,
+            1,
+            2,
+            0
+          ],
+          [
+            0,
+            0,
+            2,
+            2,
+            2,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "finite"
+      ]
+    },
+    {
+      "id": "sample-impossible",
+      "name": "sample: fire intercepts every immediate route",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            2,
+            0
+          ],
+          [
+            0,
+            2,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "sample-unbounded",
+      "name": "sample: walls permanently contain the fire",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            2,
+            0
+          ],
+          [
+            1,
+            2,
+            0
+          ]
+        ]
+      },
+      "expected": 1000000000,
+      "tags": [
+        "sample",
+        "unbounded"
+      ]
+    },
+    {
+      "id": "trial-no-fire",
+      "name": "absence of fire permits every waiting time",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 1000000000,
+      "tags": [
+        "no-fire",
+        "unbounded"
+      ]
+    },
+    {
+      "id": "trial-start-threat",
+      "name": "fire next to the start makes escape impossible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "start",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-safehouse-tie",
+      "name": "equality is allowed only at the safehouse",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            1,
+            2,
+            0
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "safehouse-tie"
+      ]
+    },
+    {
+      "id": "trial-forced-corridor",
+      "name": "a forced route loses to fire",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            2,
+            2,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "corridor"
+      ]
+    },
+    {
+      "id": "trial-intermediate-tie",
+      "name": "tying fire before the safehouse is unsafe",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "intermediate-tie"
+      ]
+    }
   ]
 }

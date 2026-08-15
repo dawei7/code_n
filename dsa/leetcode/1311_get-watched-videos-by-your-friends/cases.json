@@ -228,10 +228,10 @@
       ]
     },
     {
-      "id": "hidden-shortest-path",
-      "name": "hidden: a shorter path prevents later recounting",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-shortest-path",
+      "name": "a shorter path prevents later recounting",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "watchedVideos": [
           [
@@ -272,16 +272,15 @@
         "far"
       ],
       "tags": [
-        "hidden",
         "shortest-path",
         "cycle"
       ]
     },
     {
-      "id": "hidden-duplicate-occurrences",
-      "name": "hidden: repeated entries contribute repeatedly",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicate-occurrences",
+      "name": "repeated entries contribute repeatedly",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "watchedVideos": [
           [
@@ -318,7 +317,6 @@
         "x"
       ],
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }

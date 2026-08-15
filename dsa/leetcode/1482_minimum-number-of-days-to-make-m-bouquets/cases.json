@@ -97,10 +97,10 @@
       ]
     },
     {
-      "id": "real-single-flower",
-      "name": "hidden: one flower makes one bouquet",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-flower",
+      "name": "one flower makes one bouquet",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "bloomDay": [
           999999999
@@ -110,16 +110,15 @@
       },
       "expected": 999999999,
       "tags": [
-        "hidden",
         "boundary",
         "single"
       ]
     },
     {
-      "id": "real-all-same-day",
-      "name": "hidden: equal bloom days and exact capacity",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-same-day",
+      "name": "equal bloom days and exact capacity",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "bloomDay": [
           6,
@@ -132,16 +131,15 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "equal-days",
         "exact-capacity"
       ]
     },
     {
-      "id": "real-impossible-large-m",
-      "name": "hidden: bouquet count exceeds garden capacity",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-impossible-large-m",
+      "name": "bouquet count exceeds garden capacity",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "bloomDay": [
           1,
@@ -155,16 +153,15 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "impossible",
         "large-m"
       ]
     },
     {
-      "id": "real-adjacency-barriers",
-      "name": "hidden: early flowers are isolated",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-adjacency-barriers",
+      "name": "early flowers are isolated",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "bloomDay": [
           1,
@@ -179,16 +176,15 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "adjacency",
         "barriers"
       ]
     },
     {
-      "id": "real-k-one-order-statistic",
-      "name": "hidden: one-flower bouquets reach threshold",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-k-one-order-statistic",
+      "name": "one-flower bouquets reach threshold",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "bloomDay": [
           5,
@@ -202,16 +198,15 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "k-one",
         "ordering"
       ]
     },
     {
-      "id": "real-max-day-gap",
-      "name": "hidden: answer at maximum legal day",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-max-day-gap",
+      "name": "answer at maximum legal day",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "bloomDay": [
           1,
@@ -222,16 +217,15 @@
       },
       "expected": 1000000000,
       "tags": [
-        "hidden",
         "maximum-day",
         "wide-range"
       ]
     },
     {
-      "id": "real-nonoverlapping-groups",
-      "name": "hidden: long run yields floor length over k groups",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-nonoverlapping-groups",
+      "name": "long run yields floor length over k groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "bloomDay": [
           3,
@@ -245,7 +239,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "non-overlap",
         "long-run"
       ]

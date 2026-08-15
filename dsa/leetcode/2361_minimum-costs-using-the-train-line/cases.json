@@ -2,13 +2,213 @@
   "schema_version": 1,
   "challenge_id": "lc_2361",
   "cases": [
-    {"id":"sample-mixed-routes","name":"sample: optimal route changes by destination","kind":"sample","visible":true,"input":{"regular":[1,6,9,5],"express":[5,2,3,10],"expressCost":8},"expected":[1,7,14,19],"tags":["sample","mixed"]},
-    {"id":"sample-repeated-transfers","name":"sample: paying the express transfer again is useful","kind":"sample","visible":true,"input":{"regular":[11,5,13],"express":[7,10,6],"expressCost":3},"expected":[10,15,24],"tags":["sample","transfers"]},
-    {"id":"trial-single-regular","name":"one segment favors regular","kind":"trial","visible":true,"input":{"regular":[2],"express":[1],"expressCost":5},"expected":[2],"tags":["single","regular"]},
-    {"id":"trial-single-express","name":"one segment favors express after transfer","kind":"trial","visible":true,"input":{"regular":[10],"express":[2],"expressCost":3},"expected":[5],"tags":["single","express"]},
-    {"id":"trial-always-regular","name":"large transfer cost keeps every optimum regular","kind":"trial","visible":true,"input":{"regular":[1,1,1],"express":[1,1,1],"expressCost":100},"expected":[1,2,3],"tags":["regular"]},
-    {"id":"real-express-then-free-return","name":"hidden: express is useful before a cheap regular segment","kind":"real","visible":false,"input":{"regular":[20,1],"express":[2,20],"expressCost":3},"expected":[5,6],"tags":["hidden","free-return"]},
-    {"id":"real-stay-express","name":"hidden: one transfer serves several express segments","kind":"real","visible":false,"input":{"regular":[9,9,9],"express":[1,1,1],"expressCost":4},"expected":[5,6,7],"tags":["hidden","stay-express"]},
-    {"id":"real-reenter-express","name":"hidden: alternating advantages justify a second transfer","kind":"real","visible":false,"input":{"regular":[10,1,10],"express":[1,10,1],"expressCost":2},"expected":[3,4,7],"tags":["hidden","reentry"]}
+    {
+      "id": "sample-mixed-routes",
+      "name": "sample: optimal route changes by destination",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "regular": [
+          1,
+          6,
+          9,
+          5
+        ],
+        "express": [
+          5,
+          2,
+          3,
+          10
+        ],
+        "expressCost": 8
+      },
+      "expected": [
+        1,
+        7,
+        14,
+        19
+      ],
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-repeated-transfers",
+      "name": "sample: paying the express transfer again is useful",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "regular": [
+          11,
+          5,
+          13
+        ],
+        "express": [
+          7,
+          10,
+          6
+        ],
+        "expressCost": 3
+      },
+      "expected": [
+        10,
+        15,
+        24
+      ],
+      "tags": [
+        "sample",
+        "transfers"
+      ]
+    },
+    {
+      "id": "trial-single-regular",
+      "name": "one segment favors regular",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "regular": [
+          2
+        ],
+        "express": [
+          1
+        ],
+        "expressCost": 5
+      },
+      "expected": [
+        2
+      ],
+      "tags": [
+        "single",
+        "regular"
+      ]
+    },
+    {
+      "id": "trial-single-express",
+      "name": "one segment favors express after transfer",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "regular": [
+          10
+        ],
+        "express": [
+          2
+        ],
+        "expressCost": 3
+      },
+      "expected": [
+        5
+      ],
+      "tags": [
+        "single",
+        "express"
+      ]
+    },
+    {
+      "id": "trial-always-regular",
+      "name": "large transfer cost keeps every optimum regular",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "regular": [
+          1,
+          1,
+          1
+        ],
+        "express": [
+          1,
+          1,
+          1
+        ],
+        "expressCost": 100
+      },
+      "expected": [
+        1,
+        2,
+        3
+      ],
+      "tags": [
+        "regular"
+      ]
+    },
+    {
+      "id": "trial-express-then-free-return",
+      "name": "express is useful before a cheap regular segment",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "regular": [
+          20,
+          1
+        ],
+        "express": [
+          2,
+          20
+        ],
+        "expressCost": 3
+      },
+      "expected": [
+        5,
+        6
+      ],
+      "tags": [
+        "free-return"
+      ]
+    },
+    {
+      "id": "trial-stay-express",
+      "name": "one transfer serves several express segments",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "regular": [
+          9,
+          9,
+          9
+        ],
+        "express": [
+          1,
+          1,
+          1
+        ],
+        "expressCost": 4
+      },
+      "expected": [
+        5,
+        6,
+        7
+      ],
+      "tags": [
+        "stay-express"
+      ]
+    },
+    {
+      "id": "trial-reenter-express",
+      "name": "alternating advantages justify a second transfer",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "regular": [
+          10,
+          1,
+          10
+        ],
+        "express": [
+          1,
+          10,
+          1
+        ],
+        "expressCost": 2
+      },
+      "expected": [
+        3,
+        4,
+        7
+      ],
+      "tags": [
+        "reentry"
+      ]
+    }
   ]
 }

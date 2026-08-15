@@ -99,44 +99,41 @@
       ]
     },
     {
-      "id": "real-two-conflict-runs",
-      "name": "real: separate conflict runs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-conflict-runs",
+      "name": "separate conflict runs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "abcxxyz"
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "runs"
       ]
     },
     {
-      "id": "real-overlap-choice",
-      "name": "real: one change resolves two overlapping edges",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-overlap-choice",
+      "name": "one change resolves two overlapping edges",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "abc"
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "overlap"
       ]
     },
     {
-      "id": "real-alphabet-ends",
-      "name": "real: conflicts near both alphabet ends",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alphabet-ends",
+      "name": "conflicts near both alphabet ends",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "abmmyz"
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "alphabet-boundary"
       ]
     }

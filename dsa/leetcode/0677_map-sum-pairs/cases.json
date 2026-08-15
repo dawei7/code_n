@@ -224,10 +224,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: disjoint prefixes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "disjoint prefixes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "MapSum",
@@ -262,15 +262,14 @@
         7
       ],
       "tags": [
-        "hidden",
         "disjoint-prefixes"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: replacement preserves descendants",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "replacement preserves descendants",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "MapSum",
@@ -306,15 +305,14 @@
         14
       ],
       "tags": [
-        "hidden",
         "replacement-with-descendant"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: exact key prefix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-3",
+      "name": "exact key prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "MapSum",
@@ -344,10 +342,8 @@
         9
       ],
       "tags": [
-        "hidden",
         "exact-prefix"
       ]
     }
   ]
 }
-

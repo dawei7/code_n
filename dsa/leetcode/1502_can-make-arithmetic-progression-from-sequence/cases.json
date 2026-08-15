@@ -6,81 +6,170 @@
       "name": "sample: reorder into an increasing progression",
       "kind": "sample",
       "visible": true,
-      "input": {"arr": [3, 5, 1]},
+      "input": {
+        "arr": [
+          3,
+          5,
+          1
+        ]
+      },
       "expected": true,
-      "tags": ["sample", "reordering"]
+      "tags": [
+        "sample",
+        "reordering"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: unequal gaps cannot be repaired",
       "kind": "sample",
       "visible": true,
-      "input": {"arr": [1, 2, 4]},
+      "input": {
+        "arr": [
+          1,
+          2,
+          4
+        ]
+      },
       "expected": false,
-      "tags": ["sample", "gap"]
+      "tags": [
+        "sample",
+        "gap"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: equal values have zero difference",
       "kind": "sample",
       "visible": true,
-      "input": {"arr": [7, 7, 7]},
+      "input": {
+        "arr": [
+          7,
+          7,
+          7
+        ]
+      },
       "expected": true,
-      "tags": ["sample", "zero-difference"]
+      "tags": [
+        "sample",
+        "zero-difference"
+      ]
     },
     {
       "id": "trial-two-extremes",
       "name": "trial: any two values form a progression",
       "kind": "trial",
       "visible": true,
-      "input": {"arr": [-1000000, 1000000]},
+      "input": {
+        "arr": [
+          -1000000,
+          1000000
+        ]
+      },
       "expected": true,
-      "tags": ["trial", "minimum-length", "bounds"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "bounds"
+      ]
     },
     {
       "id": "trial-negative-shuffled",
       "name": "trial: shuffled progression crosses zero",
       "kind": "trial",
       "visible": true,
-      "input": {"arr": [3, -9, -1, -5, 7]},
+      "input": {
+        "arr": [
+          3,
+          -9,
+          -1,
+          -5,
+          7
+        ]
+      },
       "expected": true,
-      "tags": ["trial", "negative-values"]
+      "tags": [
+        "trial",
+        "negative-values"
+      ]
     },
     {
-      "id": "real-span-not-divisible",
-      "name": "hidden: endpoint span cannot supply an integer step",
-      "kind": "real",
-      "visible": false,
-      "input": {"arr": [0, 2, 3, 6]},
+      "id": "trial-span-not-divisible",
+      "name": "endpoint span cannot supply an integer step",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          0,
+          2,
+          3,
+          6
+        ]
+      },
       "expected": false,
-      "tags": ["hidden", "divisibility"]
+      "tags": [
+        "divisibility"
+      ]
     },
     {
-      "id": "real-duplicate-nonzero-span",
-      "name": "hidden: duplicate replaces a required interior term",
-      "kind": "real",
-      "visible": false,
-      "input": {"arr": [1, 1, 3]},
+      "id": "trial-duplicate-nonzero-span",
+      "name": "duplicate replaces a required interior term",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          1,
+          3
+        ]
+      },
       "expected": false,
-      "tags": ["hidden", "duplicate", "cardinality"]
+      "tags": [
+        "duplicate",
+        "cardinality"
+      ]
     },
     {
-      "id": "real-aligned-values-with-gap",
-      "name": "hidden: divisible span still needs every target value",
-      "kind": "real",
-      "visible": false,
-      "input": {"arr": [-8, -4, 0, 8, 8]},
+      "id": "trial-aligned-values-with-gap",
+      "name": "divisible span still needs every target value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          -8,
+          -4,
+          0,
+          8,
+          8
+        ]
+      },
       "expected": false,
-      "tags": ["hidden", "missing-term", "duplicate"]
+      "tags": [
+        "missing-term",
+        "duplicate"
+      ]
     },
     {
-      "id": "real-long-descending-progression",
-      "name": "hidden: descending order is irrelevant",
-      "kind": "real",
-      "visible": false,
-      "input": {"arr": [45, 35, 25, 15, 5, -5, -15]},
+      "id": "trial-long-descending-progression",
+      "name": "descending order is irrelevant",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          45,
+          35,
+          25,
+          15,
+          5,
+          -5,
+          -15
+        ]
+      },
       "expected": true,
-      "tags": ["hidden", "descending", "negative-values"]
+      "tags": [
+        "descending",
+        "negative-values"
+      ]
     }
   ]
 }

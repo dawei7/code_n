@@ -7,72 +7,163 @@
       "name": "sample: only the three-odd subsequence is unstable",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 3, 5]},
+      "input": {
+        "nums": [
+          1,
+          3,
+          5
+        ]
+      },
       "expected": 6,
-      "tags": ["sample", "same-parity"]
+      "tags": [
+        "sample",
+        "same-parity"
+      ]
     },
     {
       "id": "sample-one-unstable-even-choice",
       "name": "sample: one of fifteen subsequences is unstable",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 3, 4, 2]},
+      "input": {
+        "nums": [
+          2,
+          3,
+          4,
+          2
+        ]
+      },
       "expected": 14,
-      "tags": ["sample", "mixed-parity"]
+      "tags": [
+        "sample",
+        "mixed-parity"
+      ]
     },
     {
       "id": "trial-singleton",
       "name": "trial: a singleton is stable",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1]},
+      "input": {
+        "nums": [
+          1
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "singleton"]
+      "tags": [
+        "trial",
+        "singleton"
+      ]
     },
     {
       "id": "trial-two-evens",
       "name": "trial: all nonempty choices from two evens qualify",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 4]},
+      "input": {
+        "nums": [
+          2,
+          4
+        ]
+      },
       "expected": 3,
-      "tags": ["trial", "same-parity"]
+      "tags": [
+        "trial",
+        "same-parity"
+      ]
     },
     {
       "id": "trial-alternating-three",
       "name": "trial: all choices from an alternating triple qualify",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 1]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          1
+        ]
+      },
       "expected": 7,
-      "tags": ["trial", "alternating"]
+      "tags": [
+        "trial",
+        "alternating"
+      ]
     },
     {
-      "id": "real-four-odds",
-      "name": "hidden: one-parity input allows only lengths one and two",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 1, 1, 1]},
+      "id": "trial-four-odds",
+      "name": "one-parity input allows only lengths one and two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
       "expected": 10,
-      "tags": ["hidden", "same-parity", "duplicates"]
+      "tags": [
+        "same-parity",
+        "duplicates"
+      ]
     },
     {
-      "id": "real-alternating-five",
-      "name": "hidden: one nonconsecutive choice creates an unstable run",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 3, 4, 5]},
+      "id": "trial-alternating-five",
+      "name": "one nonconsecutive choice creates an unstable run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
       "expected": 30,
-      "tags": ["hidden", "alternating", "subsequence-adjacency"]
+      "tags": [
+        "alternating",
+        "subsequence-adjacency"
+      ]
     },
     {
-      "id": "real-two-parity-runs",
-      "name": "hidden: multiple trailing-run states contribute",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2, 2, 1, 1, 2]},
+      "id": "trial-two-parity-runs",
+      "name": "multiple trailing-run states contribute",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          1,
+          1,
+          2
+        ]
+      },
       "expected": 30,
-      "tags": ["hidden", "parity-runs"]
+      "tags": [
+        "parity-runs"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

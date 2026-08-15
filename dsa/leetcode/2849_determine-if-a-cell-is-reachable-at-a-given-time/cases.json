@@ -6,108 +6,252 @@
       "name": "sample: one extra second can be absorbed",
       "kind": "sample",
       "visible": true,
-      "input": {"sx": 2, "sy": 4, "fx": 7, "fy": 7, "t": 6},
+      "input": {
+        "sx": 2,
+        "sy": 4,
+        "fx": 7,
+        "fy": 7,
+        "t": 6
+      },
       "expected": true,
-      "tags": ["sample", "extra-time"]
+      "tags": [
+        "sample",
+        "extra-time"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: time is below the horizontal distance",
       "kind": "sample",
       "visible": true,
-      "input": {"sx": 3, "sy": 1, "fx": 7, "fy": 3, "t": 3},
+      "input": {
+        "sx": 3,
+        "sy": 1,
+        "fx": 7,
+        "fy": 3,
+        "t": 3
+      },
       "expected": false,
-      "tags": ["sample", "insufficient-time"]
+      "tags": [
+        "sample",
+        "insufficient-time"
+      ]
     },
     {
       "id": "trial-same-cell-zero",
       "name": "trial: already at destination after zero seconds",
       "kind": "trial",
       "visible": true,
-      "input": {"sx": 5, "sy": 5, "fx": 5, "fy": 5, "t": 0},
+      "input": {
+        "sx": 5,
+        "sy": 5,
+        "fx": 5,
+        "fy": 5,
+        "t": 0
+      },
       "expected": true,
-      "tags": ["trial", "same-cell", "zero-time"]
+      "tags": [
+        "trial",
+        "same-cell",
+        "zero-time"
+      ]
     },
     {
       "id": "trial-same-cell-one",
       "name": "trial: mandatory move prevents a one-second wait",
       "kind": "trial",
       "visible": true,
-      "input": {"sx": 5, "sy": 5, "fx": 5, "fy": 5, "t": 1},
+      "input": {
+        "sx": 5,
+        "sy": 5,
+        "fx": 5,
+        "fy": 5,
+        "t": 1
+      },
       "expected": false,
-      "tags": ["trial", "same-cell", "semantic-trap"]
+      "tags": [
+        "trial",
+        "same-cell",
+        "semantic-trap"
+      ]
     },
     {
       "id": "trial-same-cell-two",
       "name": "trial: leave and return in two seconds",
       "kind": "trial",
       "visible": true,
-      "input": {"sx": 5, "sy": 5, "fx": 5, "fy": 5, "t": 2},
+      "input": {
+        "sx": 5,
+        "sy": 5,
+        "fx": 5,
+        "fy": 5,
+        "t": 2
+      },
       "expected": true,
-      "tags": ["trial", "same-cell", "return-cycle"]
+      "tags": [
+        "trial",
+        "same-cell",
+        "return-cycle"
+      ]
     },
     {
-      "id": "real-exact-diagonal",
-      "name": "hidden: diagonal path reaches in exact minimum time",
-      "kind": "real",
-      "visible": false,
-      "input": {"sx": 1, "sy": 1, "fx": 4, "fy": 4, "t": 3},
+      "id": "trial-exact-diagonal",
+      "name": "diagonal path reaches in exact minimum time",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sx": 1,
+        "sy": 1,
+        "fx": 4,
+        "fy": 4,
+        "t": 3
+      },
       "expected": true,
-      "tags": ["hidden", "diagonal", "exact-time"]
+      "tags": [
+        "diagonal",
+        "exact-time"
+      ]
     },
     {
-      "id": "real-short-diagonal",
-      "name": "hidden: diagonal destination is one second too far",
-      "kind": "real",
-      "visible": false,
-      "input": {"sx": 1, "sy": 1, "fx": 4, "fy": 4, "t": 2},
+      "id": "trial-short-diagonal",
+      "name": "diagonal destination is one second too far",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sx": 1,
+        "sy": 1,
+        "fx": 4,
+        "fy": 4,
+        "t": 2
+      },
       "expected": false,
-      "tags": ["hidden", "diagonal", "insufficient-time"]
+      "tags": [
+        "diagonal",
+        "insufficient-time"
+      ]
     },
     {
-      "id": "real-axis-extra-time",
-      "name": "hidden: axial move with two extra seconds",
-      "kind": "real",
-      "visible": false,
-      "input": {"sx": 1, "sy": 1, "fx": 1, "fy": 5, "t": 6},
+      "id": "trial-axis-extra-time",
+      "name": "axial move with two extra seconds",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sx": 1,
+        "sy": 1,
+        "fx": 1,
+        "fy": 5,
+        "t": 6
+      },
       "expected": true,
-      "tags": ["hidden", "axis", "extra-time"]
+      "tags": [
+        "axis",
+        "extra-time"
+      ]
     },
     {
-      "id": "real-zero-time-different",
-      "name": "hidden: zero seconds cannot change cells",
-      "kind": "real",
-      "visible": false,
-      "input": {"sx": 8, "sy": 9, "fx": 8, "fy": 10, "t": 0},
+      "id": "trial-zero-time-different",
+      "name": "zero seconds cannot change cells",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sx": 8,
+        "sy": 9,
+        "fx": 8,
+        "fy": 10,
+        "t": 0
+      },
       "expected": false,
-      "tags": ["hidden", "zero-time"]
+      "tags": [
+        "zero-time"
+      ]
     },
     {
-      "id": "real-one-step-horizontal",
-      "name": "hidden: horizontally adjacent destination",
-      "kind": "real",
-      "visible": false,
-      "input": {"sx": 100, "sy": 100, "fx": 101, "fy": 100, "t": 1},
+      "id": "trial-one-step-horizontal",
+      "name": "horizontally adjacent destination",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sx": 100,
+        "sy": 100,
+        "fx": 101,
+        "fy": 100,
+        "t": 1
+      },
       "expected": true,
-      "tags": ["hidden", "adjacent"]
+      "tags": [
+        "adjacent"
+      ]
     },
     {
-      "id": "real-one-extra-diagonal",
-      "name": "hidden: a one-second detour remains possible",
-      "kind": "real",
-      "visible": false,
-      "input": {"sx": 1, "sy": 1, "fx": 2, "fy": 2, "t": 2},
+      "id": "trial-one-extra-diagonal",
+      "name": "a one-second detour remains possible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sx": 1,
+        "sy": 1,
+        "fx": 2,
+        "fy": 2,
+        "t": 2
+      },
       "expected": true,
-      "tags": ["hidden", "detour"]
+      "tags": [
+        "detour"
+      ]
     },
     {
-      "id": "real-maximum-coordinates",
-      "name": "hidden: adjacent move at the maximum coordinate boundary",
-      "kind": "real",
-      "visible": false,
-      "input": {"sx": 999999999, "sy": 999999999, "fx": 1000000000, "fy": 1000000000, "t": 1},
+      "id": "trial-maximum-coordinates",
+      "name": "adjacent move at the maximum coordinate boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sx": 999999999,
+        "sy": 999999999,
+        "fx": 1000000000,
+        "fy": 1000000000,
+        "t": 1
+      },
       "expected": true,
-      "tags": ["hidden", "maximum", "exact-time"]
+      "tags": [
+        "maximum",
+        "exact-time"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value sx=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sx": 1,
+        "sy": 4,
+        "fx": 7,
+        "fy": 7,
+        "t": 6
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "minimal value sy=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sx": 2,
+        "sy": 1,
+        "fx": 7,
+        "fy": 7,
+        "t": 6
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
     }
   ]
 }

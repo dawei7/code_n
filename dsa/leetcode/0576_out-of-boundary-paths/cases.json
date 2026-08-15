@@ -93,10 +93,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: center start",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "center start",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "m": 3,
         "n": 3,
@@ -111,10 +111,10 @@
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: edge start with four moves",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "edge start with four moves",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "m": 2,
         "n": 4,

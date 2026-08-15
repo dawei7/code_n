@@ -89,10 +89,10 @@
       ]
     },
     {
-      "id": "real-vertical-line",
-      "name": "hidden: vertical line",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-vertical-line",
+      "name": "vertical line",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -119,7 +119,7 @@
       },
       "expected": 3,
       "tags": [
-        "hidden"
+        "trial"
       ]
     }
   ]

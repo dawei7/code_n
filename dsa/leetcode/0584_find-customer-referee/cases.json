@@ -203,10 +203,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: nonconsecutive identifiers",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "nonconsecutive identifiers",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Customer": [
@@ -247,10 +247,10 @@
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: only direct referee value matters",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "only direct referee value matters",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Customer": [

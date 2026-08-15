@@ -66,10 +66,10 @@
       ]
     },
     {
-      "id": "real-zero-single",
-      "name": "hidden: zero appears once",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zero-single",
+      "name": "zero appears once",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -83,7 +83,40 @@
       },
       "expected": 0,
       "tags": [
-        "hidden"
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-boundary-5",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-6",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

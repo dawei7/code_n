@@ -189,10 +189,10 @@
       ]
     },
     {
-      "id": "real-diagonal",
-      "name": "hidden: diagonal cells are separate islands",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-diagonal",
+      "name": "diagonal cells are separate islands",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -238,10 +238,10 @@
       ]
     },
     {
-      "id": "real-open-and-closed",
-      "name": "hidden: open component beside closed component",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-open-and-closed",
+      "name": "open component beside closed component",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [

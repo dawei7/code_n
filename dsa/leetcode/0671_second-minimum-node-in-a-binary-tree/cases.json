@@ -99,10 +99,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: candidate repeated in both branches",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "candidate repeated in both branches",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -116,15 +116,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "repeated-candidate"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: large second value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "large second value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -134,10 +133,8 @@
       },
       "expected": 2147483647,
       "tags": [
-        "hidden",
         "large-value"
       ]
     }
   ]
 }
-

@@ -114,10 +114,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: repeated pairable light weights",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "repeated pairable light weights",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "people": [
           1,
@@ -130,15 +130,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: heaviest people force solo boats",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "heaviest people force solo boats",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "people": [
           1,
@@ -150,15 +149,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "greedy"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: one equal pair and two heavy solos",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "one equal pair and two heavy solos",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "people": [
           3,
@@ -170,15 +168,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: multiple complementary pairs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "multiple complementary pairs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "people": [
           1,
@@ -191,15 +188,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "complements"
       ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: maximum-weight person cannot pair",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-5",
+      "name": "maximum-weight person cannot pair",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "people": [
           30000,
@@ -209,7 +205,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "bounds"
       ]
     }

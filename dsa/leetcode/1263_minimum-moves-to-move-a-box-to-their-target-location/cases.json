@@ -313,10 +313,10 @@
       ]
     },
     {
-      "id": "real-horizontal",
-      "name": "hidden: straight horizontal pushes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-horizontal",
+      "name": "straight horizontal pushes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -381,10 +381,10 @@
       ]
     },
     {
-      "id": "real-route-around",
-      "name": "hidden: player routes around box",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-route-around",
+      "name": "player routes around box",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [

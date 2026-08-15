@@ -93,10 +93,10 @@
       ]
     },
     {
-      "id": "real-empty-middle",
-      "name": "real: empty middle literal block",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-empty-middle",
+      "name": "empty middle literal block",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abxxcd",
         "p": "ab**cd"
@@ -108,10 +108,10 @@
       ]
     },
     {
-      "id": "real-empty-last",
-      "name": "real: empty last literal block",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-empty-last",
+      "name": "empty last literal block",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "xxabc",
         "p": "ab*c*"
@@ -123,10 +123,10 @@
       ]
     },
     {
-      "id": "real-adjacent-blocks",
-      "name": "real: both stars match empty sequences",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-adjacent-blocks",
+      "name": "both stars match empty sequences",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "zzabczz",
         "p": "a*b*c"
@@ -138,10 +138,10 @@
       ]
     },
     {
-      "id": "real-repetitive-no-complete-chain",
-      "name": "real: many partial occurrences but no chain",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repetitive-no-complete-chain",
+      "name": "many partial occurrences but no chain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaaaaaaab",
         "p": "aaaa*b*aaaa"
@@ -150,6 +150,36 @@
       "tags": [
         "real",
         "repetitive"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "p": "ba*c*ce"
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa",
+        "p": "ba*c*ce"
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

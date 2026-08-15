@@ -302,10 +302,10 @@
       ]
     },
     {
-      "id": "real-many-odd",
-      "name": "real: an odd-only date returns zero even sum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-odd",
+      "name": "an odd-only date returns zero even sum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "transactions": [
@@ -349,10 +349,10 @@
       ]
     },
     {
-      "id": "real-same-date-mixed",
-      "name": "real: alternating parity on one date",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-same-date-mixed",
+      "name": "alternating parity on one date",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "transactions": [
@@ -401,10 +401,10 @@
       ]
     },
     {
-      "id": "real-year-boundary",
-      "name": "real: dates sort across a year boundary",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-year-boundary",
+      "name": "dates sort across a year boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "transactions": [
@@ -448,10 +448,10 @@
       ]
     },
     {
-      "id": "real-large-amounts",
-      "name": "real: large amounts aggregate by parity",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-amounts",
+      "name": "large amounts aggregate by parity",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "transactions": [
@@ -495,10 +495,10 @@
       ]
     },
     {
-      "id": "real-repeated-dates",
-      "name": "real: multiple groups receive independent sums",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-dates",
+      "name": "multiple groups receive independent sums",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "transactions": [
@@ -552,10 +552,10 @@
       ]
     },
     {
-      "id": "real-four-dates",
-      "name": "real: four dates with varied group sizes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-four-dates",
+      "name": "four dates with varied group sizes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "transactions": [

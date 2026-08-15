@@ -122,10 +122,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: different root values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "different root values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root1": [
           1
@@ -136,15 +136,14 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "value-mismatch"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: child cannot be aligned",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "child cannot be aligned",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root1": [
           1,
@@ -164,15 +163,14 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "structure-mismatch"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: one-child orientation",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-3",
+      "name": "one-child orientation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root1": [
           1,
@@ -186,7 +184,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "one-child"
       ]
     }

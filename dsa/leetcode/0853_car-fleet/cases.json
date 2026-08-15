@@ -141,10 +141,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: every car has same arrival time",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "every car has same arrival time",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": 20,
         "position": [
@@ -162,15 +162,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "simultaneous"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: every car remains separate",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "every car remains separate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": 20,
         "position": [
@@ -188,15 +187,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "separate"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: cascading mixed merges",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "cascading mixed merges",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": 20,
         "position": [
@@ -214,15 +212,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "cascade"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: input ordered from rear to front",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "input ordered from rear to front",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": 30,
         "position": [
@@ -240,15 +237,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "unsorted-order"
       ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: closest car is fastest",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-5",
+      "name": "closest car is fastest",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": 25,
         "position": [
@@ -264,15 +260,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "fast-front"
       ]
     },
     {
-      "id": "hidden-6",
-      "name": "hidden: two simultaneous groups",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-6",
+      "name": "two simultaneous groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": 12,
         "position": [
@@ -290,7 +285,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "groups"
       ]
     }

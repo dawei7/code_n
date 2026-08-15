@@ -1,1 +1,163 @@
-{"schema_version":1,"challenge_id":"lc_2748","cases":[{"id":"sample-five-pairs","name":"sample: five beautiful pairs","kind":"sample","visible":true,"input":{"nums":[2,5,1,4]},"expected":5,"tags":["sample","coprime"]},{"id":"sample-multidigit","name":"sample: first and last digits differ","kind":"sample","visible":true,"input":{"nums":[11,21,12]},"expected":2,"tags":["sample","digits"]},{"id":"trial-common-factor","name":"trial: only pair shares a common factor","kind":"trial","visible":true,"input":{"nums":[7,7]},"expected":0,"tags":["trial","none"]},{"id":"real-one-beautiful-pair","name":"hidden: one two-value pair is beautiful","kind":"real","visible":false,"input":{"nums":[12,21]},"expected":1,"tags":["hidden","minimum-length"]},{"id":"real-maximum-values","name":"hidden: maximum values are not coprime","kind":"real","visible":false,"input":{"nums":[9999,9999]},"expected":0,"tags":["hidden","value-boundary"]},{"id":"real-last-digit-one","name":"hidden: last digit one accepts every first digit","kind":"real","visible":false,"input":{"nums":[21,31,41,51]},"expected":6,"tags":["hidden","digit-one"]},{"id":"real-mixed-digits","name":"hidden: mixed first and last digits","kind":"real","visible":false,"input":{"nums":[17,29,83,41,61,72]},"expected":11,"tags":["hidden","mixed"]},{"id":"real-directional","name":"hidden: directional first and last digit roles","kind":"real","visible":false,"input":{"nums":[63,26,71]},"expected":2,"tags":["hidden","order"]}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2748",
+  "cases": [
+    {
+      "id": "sample-five-pairs",
+      "name": "sample: five beautiful pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          5,
+          1,
+          4
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "coprime"
+      ]
+    },
+    {
+      "id": "sample-multidigit",
+      "name": "sample: first and last digits differ",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          11,
+          21,
+          12
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "digits"
+      ]
+    },
+    {
+      "id": "trial-common-factor",
+      "name": "trial: only pair shares a common factor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "none"
+      ]
+    },
+    {
+      "id": "trial-one-beautiful-pair",
+      "name": "one two-value pair is beautiful",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          12,
+          21
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-maximum-values",
+      "name": "maximum values are not coprime",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9999,
+          9999
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "value-boundary"
+      ]
+    },
+    {
+      "id": "trial-last-digit-one",
+      "name": "last digit one accepts every first digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          21,
+          31,
+          41,
+          51
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "digit-one"
+      ]
+    },
+    {
+      "id": "trial-mixed-digits",
+      "name": "mixed first and last digits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          17,
+          29,
+          83,
+          41,
+          61,
+          72
+        ]
+      },
+      "expected": 11,
+      "tags": [
+        "mixed"
+      ]
+    },
+    {
+      "id": "trial-directional",
+      "name": "directional first and last digit roles",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          63,
+          26,
+          71
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "order"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    }
+  ]
+}

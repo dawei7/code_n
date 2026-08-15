@@ -53,10 +53,10 @@
       ]
     },
     {
-      "id": "real-long-slope",
-      "name": "hidden: long slope then drop",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-long-slope",
+      "name": "long slope then drop",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "ratings": [
           1,
@@ -68,7 +68,7 @@
       },
       "expected": 11,
       "tags": [
-        "hidden"
+        "trial"
       ]
     }
   ]

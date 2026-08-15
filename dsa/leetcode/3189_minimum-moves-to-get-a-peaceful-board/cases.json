@@ -142,10 +142,10 @@
       ]
     },
     {
-      "id": "real-shared-middle-column",
-      "name": "hidden: all rooks share an interior column",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-shared-middle-column",
+      "name": "all rooks share an interior column",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rooks": [
           [
@@ -172,15 +172,14 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "same-column"
       ]
     },
     {
-      "id": "real-four-corners",
-      "name": "hidden: duplicated endpoint rows and columns",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-four-corners",
+      "name": "duplicated endpoint rows and columns",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rooks": [
           [
@@ -203,16 +202,15 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "corners",
         "duplicates"
       ]
     },
     {
-      "id": "real-cyclic-peaceful",
-      "name": "hidden: cyclic columns are already peaceful",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-cyclic-peaceful",
+      "name": "cyclic columns are already peaceful",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rooks": [
           [
@@ -235,16 +233,15 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "permutation",
         "zero-moves"
       ]
     },
     {
-      "id": "real-compact-block",
-      "name": "hidden: a compact block must spread in both axes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-compact-block",
+      "name": "a compact block must spread in both axes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rooks": [
           [
@@ -267,15 +264,14 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "both-axes"
       ]
     },
     {
-      "id": "real-asymmetric-layout",
-      "name": "hidden: irregular gaps contribute independently",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-asymmetric-layout",
+      "name": "irregular gaps contribute independently",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rooks": [
           [
@@ -306,15 +302,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "asymmetric"
       ]
     },
     {
-      "id": "real-shuffled-duplicate-columns",
-      "name": "hidden: input order does not affect rank matching",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-shuffled-duplicate-columns",
+      "name": "input order does not affect rank matching",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rooks": [
           [
@@ -349,16 +344,15 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "duplicates",
         "permuted-input"
       ]
     },
     {
-      "id": "real-maximum-board",
-      "name": "hidden: maximum board with one shared column",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-board",
+      "name": "maximum board with one shared column",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rooks": [
           [
@@ -2365,7 +2359,6 @@
       },
       "expected": 124750,
       "tags": [
-        "hidden",
         "maximum-n",
         "same-column"
       ]

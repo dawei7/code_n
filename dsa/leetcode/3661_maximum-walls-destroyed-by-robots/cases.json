@@ -165,10 +165,10 @@
       ]
     },
     {
-      "id": "real-all-colocated",
-      "name": "hidden: every wall shares a robot coordinate",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-colocated",
+      "name": "every wall shares a robot coordinate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "robots": [
           8,
@@ -188,15 +188,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "co-located-walls"
       ]
     },
     {
-      "id": "real-range-stops-at-neighbor",
-      "name": "hidden: range beyond a neighbor cannot reach farther walls",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-range-stops-at-neighbor",
+      "name": "range beyond a neighbor cannot reach farther walls",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "robots": [
           10,
@@ -215,16 +214,15 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "blocking",
         "range-truncation"
       ]
     },
     {
-      "id": "real-gap-and-exterior-tradeoff",
-      "name": "hidden: endpoint choices combine gap and exterior coverage",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-gap-and-exterior-tradeoff",
+      "name": "endpoint choices combine gap and exterior coverage",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "robots": [
           10,
@@ -244,7 +242,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "exterior",
         "gap-union"
       ]

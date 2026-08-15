@@ -106,10 +106,10 @@
       ]
     },
     {
-      "id": "real-all-equal",
-      "name": "hidden: every node ties the path maximum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-equal",
+      "name": "every node ties the path maximum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           2,
@@ -123,15 +123,14 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "equality"
       ]
     },
     {
-      "id": "real-independent-branches",
-      "name": "hidden: path maxima remain branch-local",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-independent-branches",
+      "name": "path maxima remain branch-local",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           5,
@@ -145,15 +144,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "branch-independence"
       ]
     },
     {
-      "id": "real-increasing-chain",
-      "name": "hidden: every node in an increasing chain is good",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-increasing-chain",
+      "name": "every node in an increasing chain is good",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -167,16 +165,15 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "skewed",
         "increasing"
       ]
     },
     {
-      "id": "real-decreasing-chain",
-      "name": "hidden: only root in a decreasing chain is good",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-decreasing-chain",
+      "name": "only root in a decreasing chain is good",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           4,
@@ -189,7 +186,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "skewed",
         "decreasing"
       ]

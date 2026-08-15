@@ -110,10 +110,10 @@
       ]
     },
     {
-      "id": "real-several-compatible-frequencies",
-      "name": "hidden: frequencies two, three, and three need one box each",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-several-compatible-frequencies",
+      "name": "frequencies two, three, and three need one box each",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "balls": [
           1,
@@ -128,15 +128,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "global-balance"
       ]
     },
     {
-      "id": "real-singleton-with-larger-frequencies",
-      "name": "hidden: a singleton forces every box to size one or two",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-singleton-with-larger-frequencies",
+      "name": "a singleton forces every box to size one or two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "balls": [
           1,
@@ -150,15 +149,14 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "singleton-bound"
       ]
     },
     {
-      "id": "real-nonconsecutive-labels",
-      "name": "hidden: labels do not affect frequency-only grouping",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-nonconsecutive-labels",
+      "name": "labels do not affect frequency-only grouping",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "balls": [
           1000000000,
@@ -170,7 +168,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     }

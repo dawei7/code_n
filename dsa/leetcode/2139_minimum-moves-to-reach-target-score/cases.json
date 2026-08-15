@@ -2,13 +2,135 @@
   "schema_version": 1,
   "challenge_id": "lc_2139",
   "cases": [
-    {"id": "sample-no-doubles", "name": "sample: only increments are available", "kind": "sample", "visible": true, "input": {"target": 5, "maxDoubles": 0}, "expected": 4, "tags": ["sample", "no-doubles"]},
-    {"id": "sample-limited-doubles", "name": "sample: two doubles help reach nineteen", "kind": "sample", "visible": true, "input": {"target": 19, "maxDoubles": 2}, "expected": 7, "tags": ["sample", "limited-doubles"]},
-    {"id": "sample-unused-doubles", "name": "sample: the doubling allowance need not be exhausted", "kind": "sample", "visible": true, "input": {"target": 10, "maxDoubles": 4}, "expected": 4, "tags": ["sample", "unused-allowance"]},
-    {"id": "trial-already-at-target", "name": "starting score already equals the target", "kind": "trial", "visible": true, "input": {"target": 1, "maxDoubles": 100}, "expected": 0, "tags": ["minimum-target"]},
-    {"id": "trial-one-double", "name": "one double reaches two directly", "kind": "trial", "visible": true, "input": {"target": 2, "maxDoubles": 1}, "expected": 1, "tags": ["single-move"]},
-    {"id": "real-odd-power-boundary", "name": "hidden: odd values require increments around doubles", "kind": "real", "visible": false, "input": {"target": 31, "maxDoubles": 4}, "expected": 8, "tags": ["hidden", "odd-target"]},
-    {"id": "real-doubles-exhausted", "name": "hidden: remaining distance is paid after the final double", "kind": "real", "visible": false, "input": {"target": 15, "maxDoubles": 1}, "expected": 8, "tags": ["hidden", "limited-doubles"]},
-    {"id": "real-power-of-two-limited", "name": "hidden: a power of two has fewer available doubles than its exponent", "kind": "real", "visible": false, "input": {"target": 16, "maxDoubles": 3}, "expected": 4, "tags": ["hidden", "power-of-two"]}
+    {
+      "id": "sample-no-doubles",
+      "name": "sample: only increments are available",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "target": 5,
+        "maxDoubles": 0
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "no-doubles"
+      ]
+    },
+    {
+      "id": "sample-limited-doubles",
+      "name": "sample: two doubles help reach nineteen",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "target": 19,
+        "maxDoubles": 2
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "limited-doubles"
+      ]
+    },
+    {
+      "id": "sample-unused-doubles",
+      "name": "sample: the doubling allowance need not be exhausted",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "target": 10,
+        "maxDoubles": 4
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "unused-allowance"
+      ]
+    },
+    {
+      "id": "trial-already-at-target",
+      "name": "starting score already equals the target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": 1,
+        "maxDoubles": 100
+      },
+      "expected": 0,
+      "tags": [
+        "minimum-target"
+      ]
+    },
+    {
+      "id": "trial-one-double",
+      "name": "one double reaches two directly",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": 2,
+        "maxDoubles": 1
+      },
+      "expected": 1,
+      "tags": [
+        "single-move"
+      ]
+    },
+    {
+      "id": "trial-odd-power-boundary",
+      "name": "odd values require increments around doubles",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": 31,
+        "maxDoubles": 4
+      },
+      "expected": 8,
+      "tags": [
+        "odd-target"
+      ]
+    },
+    {
+      "id": "trial-doubles-exhausted",
+      "name": "remaining distance is paid after the final double",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": 15,
+        "maxDoubles": 1
+      },
+      "expected": 8,
+      "tags": [
+        "limited-doubles"
+      ]
+    },
+    {
+      "id": "trial-power-of-two-limited",
+      "name": "a power of two has fewer available doubles than its exponent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": 16,
+        "maxDoubles": 3
+      },
+      "expected": 4,
+      "tags": [
+        "power-of-two"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value target=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": 1,
+        "maxDoubles": 0
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    }
   ]
 }

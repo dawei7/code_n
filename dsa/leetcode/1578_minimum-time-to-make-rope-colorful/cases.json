@@ -121,10 +121,10 @@
       ]
     },
     {
-      "id": "real-run-at-end",
-      "name": "hidden: repeated run ends the rope",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-run-at-end",
+      "name": "repeated run ends the rope",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "colors": "abb",
         "neededTime": [
@@ -140,10 +140,10 @@
       ]
     },
     {
-      "id": "real-two-long-runs",
-      "name": "hidden: optimize two length-three runs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-long-runs",
+      "name": "optimize two length-three runs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "colors": "aaabbb",
         "neededTime": [
@@ -162,10 +162,10 @@
       ]
     },
     {
-      "id": "real-tied-times",
-      "name": "hidden: all removal times in a run are tied",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-tied-times",
+      "name": "all removal times in a run are tied",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "colors": "bbb",
         "neededTime": [
@@ -182,10 +182,10 @@
       ]
     },
     {
-      "id": "real-alternating",
-      "name": "hidden: alternating colors need no work",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alternating",
+      "name": "alternating colors need no work",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "colors": "abababab",
         "neededTime": [
@@ -207,10 +207,10 @@
       ]
     },
     {
-      "id": "real-middle-maximum",
-      "name": "hidden: retain a maximum inside a long run",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-middle-maximum",
+      "name": "retain a maximum inside a long run",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "colors": "ccccc",
         "neededTime": [
@@ -229,10 +229,10 @@
       ]
     },
     {
-      "id": "real-many-groups",
-      "name": "hidden: singleton colors separate repeated groups",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-groups",
+      "name": "singleton colors separate repeated groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "colors": "aabbccdde",
         "neededTime": [
@@ -254,10 +254,10 @@
       ]
     },
     {
-      "id": "real-large-times",
-      "name": "hidden: large removal times accumulate",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-times",
+      "name": "large removal times accumulate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "colors": "zzzyy",
         "neededTime": [
@@ -273,6 +273,48 @@
         "real",
         "upper-bound-times",
         "multiple-runs"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "single character in colors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "colors": "a",
+        "neededTime": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "repeated character in colors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "colors": "aaa",
+        "neededTime": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

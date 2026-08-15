@@ -278,10 +278,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: two points",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "two points",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "trees": [
           [
@@ -308,15 +308,14 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "two-points"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: vertical edge includes middle points",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "vertical edge includes middle points",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "trees": [
           [
@@ -383,7 +382,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "vertical-edge"
       ]
     }

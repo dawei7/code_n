@@ -89,10 +89,10 @@
       ]
     },
     {
-      "id": "real-multiple",
-      "name": "hidden: several competing transaction plans",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple",
+      "name": "several competing transaction plans",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           6,
@@ -106,7 +106,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "multiple-transactions"
       ]
     }

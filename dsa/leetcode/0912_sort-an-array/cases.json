@@ -123,10 +123,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: reverse sorted",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "reverse sorted",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9,
@@ -144,15 +144,14 @@
         9
       ],
       "tags": [
-        "hidden",
         "reverse"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: all equal",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "all equal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -168,15 +167,14 @@
         3
       ],
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: mixed duplicate negatives",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "mixed duplicate negatives",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -196,16 +194,15 @@
         5
       ],
       "tags": [
-        "hidden",
         "duplicates",
         "negative"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: value boundaries",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "value boundaries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           50000,
@@ -219,15 +216,14 @@
         50000
       ],
       "tags": [
-        "hidden",
         "bounds"
       ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: two descending values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-5",
+      "name": "two descending values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -239,7 +235,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "two-values"
       ]
     }

@@ -107,10 +107,10 @@
       ]
     },
     {
-      "id": "real-equality-does-not-test",
-      "name": "real: batteries equal to offset are skipped",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-equality-does-not-test",
+      "name": "batteries equal to offset are skipped",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "batteryPercentages": [
           1,
@@ -123,15 +123,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "strict-comparison"
       ]
     },
     {
-      "id": "real-late-high-batteries",
-      "name": "real: later high batteries remain testable",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-late-high-batteries",
+      "name": "later high batteries remain testable",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "batteryPercentages": [
           0,
@@ -145,15 +144,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "late-tests"
       ]
     },
     {
-      "id": "real-maximum-values",
-      "name": "real: maximum batteries all test",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-values",
+      "name": "maximum batteries all test",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "batteryPercentages": [
           100,
@@ -165,7 +163,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     }

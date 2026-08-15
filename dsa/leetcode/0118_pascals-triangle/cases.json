@@ -86,10 +86,10 @@
       ]
     },
     {
-      "id": "real-six-rows",
-      "name": "hidden: six rows",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-six-rows",
+      "name": "six rows",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "numRows": 6
       },
@@ -129,7 +129,7 @@
         ]
       ],
       "tags": [
-        "hidden"
+        "trial"
       ]
     }
   ]

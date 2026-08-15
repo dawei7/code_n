@@ -78,10 +78,10 @@
       ]
     },
     {
-      "id": "real-single-character",
-      "name": "real: one-character string and k one",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-character",
+      "name": "one-character string and k one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "q",
         "k": 1
@@ -93,10 +93,10 @@
       ]
     },
     {
-      "id": "real-no-singleton",
-      "name": "real: k one but every run is longer",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-no-singleton",
+      "name": "k one but every run is longer",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aabbcc",
         "k": 1
@@ -108,10 +108,10 @@
       ]
     },
     {
-      "id": "real-first-run",
-      "name": "real: qualifying run at the beginning",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-first-run",
+      "name": "qualifying run at the beginning",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "xxxyyzzzz",
         "k": 3
@@ -123,10 +123,10 @@
       ]
     },
     {
-      "id": "real-several-run-lengths",
-      "name": "real: several runs but none has exact length",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-several-run-lengths",
+      "name": "several runs but none has exact length",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aabbbbccccc",
         "k": 3
@@ -138,10 +138,10 @@
       ]
     },
     {
-      "id": "real-k-equals-length-nonuniform",
-      "name": "real: k equals length but string is not uniform",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-k-equals-length-nonuniform",
+      "name": "k equals length but string is not uniform",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "ab",
         "k": 2
@@ -150,6 +150,36 @@
       "tags": [
         "real",
         "full-length"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "k": 3
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa",
+        "k": 3
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

@@ -198,10 +198,10 @@
       ]
     },
     {
-      "id": "hidden-swap",
-      "name": "hidden: removing middle value updates moved index",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-swap",
+      "name": "removing middle value updates moved index",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           [
@@ -242,15 +242,14 @@
         "operations_param": "operations"
       },
       "tags": [
-        "hidden",
         "swap"
       ]
     },
     {
-      "id": "hidden-missing",
-      "name": "hidden: repeated missing removal",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-missing",
+      "name": "repeated missing removal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           [
@@ -281,15 +280,14 @@
         "operations_param": "operations"
       },
       "tags": [
-        "hidden",
         "missing"
       ]
     },
     {
-      "id": "hidden-two-random",
-      "name": "hidden: either current member is random-valid",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-random",
+      "name": "either current member is random-valid",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           [
@@ -319,10 +317,8 @@
         "operations_param": "operations"
       },
       "tags": [
-        "hidden",
         "random"
       ]
     }
   ]
 }
-

@@ -2,13 +2,155 @@
   "schema_version": 1,
   "challenge_id": "lc_2274",
   "cases": [
-    {"id":"sample-interior-and-boundary","name":"sample: upper boundary gap is longest","kind":"sample","visible":true,"input":{"bottom":2,"top":9,"special":[4,6]},"expected":3,"tags":["sample","upper-boundary"]},
-    {"id":"sample-every-floor-special","name":"sample: every rented floor is special","kind":"sample","visible":true,"input":{"bottom":6,"top":8,"special":[7,6,8]},"expected":0,"tags":["sample","all-special"]},
-    {"id":"trial-one-special","name":"one special floor splits the rented interval","kind":"trial","visible":true,"input":{"bottom":1,"top":10,"special":[5]},"expected":5,"tags":["single-special","upper-boundary"]},
-    {"id":"trial-lower-boundary","name":"longest interval lies below the first special floor","kind":"trial","visible":true,"input":{"bottom":10,"top":20,"special":[18,20]},"expected":8,"tags":["lower-boundary"]},
-    {"id":"trial-interior","name":"longest interval lies between special floors","kind":"trial","visible":true,"input":{"bottom":2,"top":10,"special":[2,3,9]},"expected":5,"tags":["interior-gap"]},
-    {"id":"real-unsorted","name":"hidden: special floors arrive out of order","kind":"real","visible":false,"input":{"bottom":3,"top":15,"special":[12,4,9]},"expected":4,"tags":["hidden","sorting"]},
-    {"id":"real-both-boundaries","name":"hidden: special floors occupy both rented boundaries","kind":"real","visible":false,"input":{"bottom":100,"top":110,"special":[110,100,105]},"expected":4,"tags":["hidden","boundary-specials"]},
-    {"id":"real-large-coordinates","name":"hidden: sparse floors near the numeric limit","kind":"real","visible":false,"input":{"bottom":1,"top":1000000000,"special":[999999999,2]},"expected":999999996,"tags":["hidden","large-coordinates"]}
+    {
+      "id": "sample-interior-and-boundary",
+      "name": "sample: upper boundary gap is longest",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "bottom": 2,
+        "top": 9,
+        "special": [
+          4,
+          6
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "upper-boundary"
+      ]
+    },
+    {
+      "id": "sample-every-floor-special",
+      "name": "sample: every rented floor is special",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "bottom": 6,
+        "top": 8,
+        "special": [
+          7,
+          6,
+          8
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "all-special"
+      ]
+    },
+    {
+      "id": "trial-one-special",
+      "name": "one special floor splits the rented interval",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "bottom": 1,
+        "top": 10,
+        "special": [
+          5
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "single-special",
+        "upper-boundary"
+      ]
+    },
+    {
+      "id": "trial-lower-boundary",
+      "name": "longest interval lies below the first special floor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "bottom": 10,
+        "top": 20,
+        "special": [
+          18,
+          20
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "lower-boundary"
+      ]
+    },
+    {
+      "id": "trial-interior",
+      "name": "longest interval lies between special floors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "bottom": 2,
+        "top": 10,
+        "special": [
+          2,
+          3,
+          9
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "interior-gap"
+      ]
+    },
+    {
+      "id": "trial-unsorted",
+      "name": "special floors arrive out of order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "bottom": 3,
+        "top": 15,
+        "special": [
+          12,
+          4,
+          9
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sorting"
+      ]
+    },
+    {
+      "id": "trial-both-boundaries",
+      "name": "special floors occupy both rented boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "bottom": 100,
+        "top": 110,
+        "special": [
+          110,
+          100,
+          105
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "boundary-specials"
+      ]
+    },
+    {
+      "id": "trial-large-coordinates",
+      "name": "sparse floors near the numeric limit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "bottom": 1,
+        "top": 1000000000,
+        "special": [
+          999999999,
+          2
+        ]
+      },
+      "expected": 999999996,
+      "tags": [
+        "large-coordinates"
+      ]
+    }
   ]
 }

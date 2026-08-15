@@ -6,108 +6,256 @@
       "name": "sample: repeated suffix flips",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [0, 1, 1, 0, 1]},
+      "input": {
+        "nums": [
+          0,
+          1,
+          1,
+          0,
+          1
+        ]
+      },
       "expected": 4,
-      "tags": ["sample", "suffix-flip"]
+      "tags": [
+        "sample",
+        "suffix-flip"
+      ]
     },
     {
       "id": "sample-single-flip",
       "name": "sample: one suffix fixes trailing zeros",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 0, 0, 0]},
+      "input": {
+        "nums": [
+          1,
+          0,
+          0,
+          0
+        ]
+      },
       "expected": 1,
-      "tags": ["sample", "suffix-flip"]
+      "tags": [
+        "sample",
+        "suffix-flip"
+      ]
     },
     {
       "id": "trial-single-one",
       "name": "trial: one already correct bit",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1]},
+      "input": {
+        "nums": [
+          1
+        ]
+      },
       "expected": 0,
-      "tags": ["minimum-length", "already-ones"]
+      "tags": [
+        "minimum-length",
+        "already-ones"
+      ]
     },
     {
       "id": "trial-single-zero",
       "name": "trial: one zero bit",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0]},
+      "input": {
+        "nums": [
+          0
+        ]
+      },
       "expected": 1,
-      "tags": ["minimum-length", "suffix-flip"]
+      "tags": [
+        "minimum-length",
+        "suffix-flip"
+      ]
     },
     {
       "id": "trial-all-ones",
       "name": "trial: already all ones",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 1, 1, 1, 1]},
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
       "expected": 0,
-      "tags": ["already-ones"]
+      "tags": [
+        "already-ones"
+      ]
     },
     {
       "id": "trial-all-zeros",
       "name": "trial: one flip covers every zero",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0, 0, 0, 0, 0]},
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
       "expected": 1,
-      "tags": ["all-zeros"]
+      "tags": [
+        "all-zeros"
+      ]
     },
     {
       "id": "trial-alternating-start-zero",
       "name": "trial: every index forces a flip",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0, 1, 0, 1, 0, 1]},
+      "input": {
+        "nums": [
+          0,
+          1,
+          0,
+          1,
+          0,
+          1
+        ]
+      },
       "expected": 6,
-      "tags": ["alternating", "maximum-transitions"]
+      "tags": [
+        "alternating",
+        "maximum-transitions"
+      ]
     },
     {
       "id": "trial-alternating-start-one",
       "name": "trial: alternating array begins correctly",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 0, 1, 0, 1]},
+      "input": {
+        "nums": [
+          1,
+          0,
+          1,
+          0,
+          1
+        ]
+      },
       "expected": 4,
-      "tags": ["alternating"]
+      "tags": [
+        "alternating"
+      ]
     },
     {
-      "id": "real-long-runs",
-      "name": "real: several constant runs",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 0, 1, 1, 1, 0, 0, 1]},
+      "id": "trial-long-runs",
+      "name": "several constant runs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          1,
+          1,
+          1,
+          0,
+          0,
+          1
+        ]
+      },
       "expected": 4,
-      "tags": ["real", "runs"]
+      "tags": [
+        "real",
+        "runs"
+      ]
     },
     {
-      "id": "real-isolated-zero",
-      "name": "real: isolated zero requires two boundaries",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 1, 0, 1, 1]},
+      "id": "trial-isolated-zero",
+      "name": "isolated zero requires two boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          0,
+          1,
+          1
+        ]
+      },
       "expected": 2,
-      "tags": ["real", "isolated-zero"]
+      "tags": [
+        "real",
+        "isolated-zero"
+      ]
     },
     {
-      "id": "real-isolated-one",
-      "name": "real: isolated one inside zeros",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 0, 1, 0, 0]},
+      "id": "trial-isolated-one",
+      "name": "isolated one inside zeros",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      },
       "expected": 3,
-      "tags": ["real", "isolated-one"]
+      "tags": [
+        "real",
+        "isolated-one"
+      ]
     },
     {
-      "id": "real-mixed-boundaries",
-      "name": "real: mixed boundary pattern",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 1]},
+      "id": "trial-mixed-boundaries",
+      "name": "mixed boundary pattern",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          0,
+          0,
+          1,
+          1,
+          0,
+          1,
+          1,
+          1,
+          0,
+          0,
+          1
+        ]
+      },
       "expected": 6,
-      "tags": ["real", "transitions"]
+      "tags": [
+        "real",
+        "transitions"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

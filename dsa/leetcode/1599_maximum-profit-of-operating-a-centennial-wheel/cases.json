@@ -100,10 +100,10 @@
       ]
     },
     {
-      "id": "real-zero-profit-not-valid",
-      "name": "hidden: best profit is exactly zero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zero-profit-not-valid",
+      "name": "best profit is exactly zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "customers": [
           4
@@ -118,10 +118,10 @@
       ]
     },
     {
-      "id": "real-earliest-tied-maximum",
-      "name": "hidden: equal maximum keeps earliest rotation",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-earliest-tied-maximum",
+      "name": "equal maximum keeps earliest rotation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "customers": [
           0,
@@ -137,10 +137,10 @@
       ]
     },
     {
-      "id": "real-profitable-first-then-drain-loss",
-      "name": "hidden: stopping before queue fully drains is optimal",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-profitable-first-then-drain-loss",
+      "name": "stopping before queue fully drains is optimal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "customers": [
           5
@@ -155,10 +155,10 @@
       ]
     },
     {
-      "id": "real-delayed-arrival",
-      "name": "hidden: empty rotations precede a profitable backlog",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-delayed-arrival",
+      "name": "empty rotations precede a profitable backlog",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "customers": [
           0,
@@ -175,10 +175,10 @@
       ]
     },
     {
-      "id": "real-small-steady-arrivals",
-      "name": "hidden: one customer arrives each rotation",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-small-steady-arrivals",
+      "name": "one customer arrives each rotation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "customers": [
           1,
@@ -195,10 +195,10 @@
       ]
     },
     {
-      "id": "real-empty-middle-rotation",
-      "name": "hidden: empty middle rotation still costs money",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-empty-middle-rotation",
+      "name": "empty middle rotation still costs money",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "customers": [
           4,
@@ -215,10 +215,10 @@
       ]
     },
     {
-      "id": "real-backlog-beats-later-empty-rotations",
-      "name": "hidden: queue drains before scheduled zeros end",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-backlog-beats-later-empty-rotations",
+      "name": "queue drains before scheduled zeros end",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "customers": [
           6,
@@ -233,7 +233,43 @@
         "backlog",
         "scheduled-zero"
       ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in customers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "customers": [
+          8
+        ],
+        "boardingCost": 5,
+        "runningCost": 6
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in customers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "customers": [
+          8,
+          8
+        ],
+        "boardingCost": 5,
+        "runningCost": 6
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }
-

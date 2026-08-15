@@ -101,10 +101,10 @@
       ]
     },
     {
-      "id": "hidden-three-candidates",
-      "name": "hidden: distractors occupy other quartiles",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-candidates",
+      "name": "distractors occupy other quartiles",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -123,15 +123,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "quartiles"
       ]
     },
     {
-      "id": "hidden-zero",
-      "name": "hidden: zero is the special value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zero",
+      "name": "zero is the special value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           0,
@@ -148,7 +147,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "zero"
       ]
     }

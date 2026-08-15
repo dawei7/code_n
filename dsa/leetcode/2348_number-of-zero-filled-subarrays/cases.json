@@ -1,9 +1,137 @@
-{"schema_version":1,"challenge_id":"lc_2348","cases":[
-{"id":"sample-two-runs","name":"sample: two runs of length two","kind":"sample","visible":true,"input":{"nums":[1,3,0,0,2,0,0,4]},"expected":6,"tags":["sample"]},
-{"id":"sample-three-and-two","name":"sample: runs contribute independently","kind":"sample","visible":true,"input":{"nums":[0,0,0,2,0,0]},"expected":9,"tags":["sample"]},
-{"id":"sample-no-zero","name":"sample: no qualifying subarray","kind":"sample","visible":true,"input":{"nums":[2,10,2019]},"expected":0,"tags":["sample"]},
-{"id":"trial-single-zero","name":"one zero contributes one subarray","kind":"trial","visible":true,"input":{"nums":[0]},"expected":1,"tags":["boundary"]},
-{"id":"trial-four-zeros","name":"one length-four run has ten intervals","kind":"trial","visible":true,"input":{"nums":[0,0,0,0]},"expected":10,"tags":["triangular"]},
-{"id":"real-separated","name":"hidden: nonzeros split singleton runs","kind":"real","visible":false,"input":{"nums":[0,1,0,-1,0]},"expected":3,"tags":["hidden","separated"]},
-{"id":"real-boundaries","name":"hidden: runs at both boundaries","kind":"real","visible":false,"input":{"nums":[0,0,5,0,0,0]},"expected":9,"tags":["hidden","boundaries"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2348",
+  "cases": [
+    {
+      "id": "sample-two-runs",
+      "name": "sample: two runs of length two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          0,
+          0,
+          2,
+          0,
+          0,
+          4
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-three-and-two",
+      "name": "sample: runs contribute independently",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          2,
+          0,
+          0
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-no-zero",
+      "name": "sample: no qualifying subarray",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          10,
+          2019
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-zero",
+      "name": "one zero contributes one subarray",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-four-zeros",
+      "name": "one length-four run has ten intervals",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "triangular"
+      ]
+    },
+    {
+      "id": "trial-separated",
+      "name": "nonzeros split singleton runs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          0,
+          -1,
+          0
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "separated"
+      ]
+    },
+    {
+      "id": "trial-boundaries",
+      "name": "runs at both boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          5,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "boundaries"
+      ]
+    }
+  ]
+}

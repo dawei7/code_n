@@ -1,8 +1,293 @@
-{"challenge_id":"lc_2990","cases":[
-{"id":"sample-loan-types","name":"sample: only one user has both target types","kind":"sample","visible":true,"input":{"tables":{"Loans":[{"loan_id":683,"user_id":101,"loan_type":"Mortgage"},{"loan_id":218,"user_id":101,"loan_type":"AutoLoan"},{"loan_id":802,"user_id":101,"loan_type":"Inschool"},{"loan_id":593,"user_id":102,"loan_type":"Mortgage"},{"loan_id":138,"user_id":102,"loan_type":"Refinance"},{"loan_id":294,"user_id":102,"loan_type":"Inschool"},{"loan_id":308,"user_id":103,"loan_type":"Refinance"},{"loan_id":389,"user_id":104,"loan_type":"Mortgage"}]}},"expected":{"columns":["user_id"],"rows":[[102]]},"validator":{"kind":"ordered_table"},"tags":["sample"]},
-{"id":"trial-duplicates","name":"trial: duplicate target rows return one user","kind":"trial","visible":true,"input":{"tables":{"Loans":[{"loan_id":1,"user_id":5,"loan_type":"Mortgage"},{"loan_id":2,"user_id":5,"loan_type":"Mortgage"},{"loan_id":3,"user_id":5,"loan_type":"Refinance"},{"loan_id":4,"user_id":5,"loan_type":"Refinance"}]}},"expected":{"columns":["user_id"],"rows":[[5]]},"validator":{"kind":"ordered_table"},"tags":["duplicates"]},
-{"id":"trial-one-type","name":"trial: repeated Mortgage alone is insufficient","kind":"trial","visible":true,"input":{"tables":{"Loans":[{"loan_id":1,"user_id":7,"loan_type":"Mortgage"},{"loan_id":2,"user_id":7,"loan_type":"Mortgage"}]}},"expected":{"columns":["user_id"],"rows":[]},"validator":{"kind":"ordered_table"},"tags":["missing-type"]},
-{"id":"trial-unrelated-types","name":"trial: unrelated loans do not help","kind":"trial","visible":true,"input":{"tables":{"Loans":[{"loan_id":1,"user_id":8,"loan_type":"AutoLoan"},{"loan_id":2,"user_id":8,"loan_type":"Inschool"},{"loan_id":3,"user_id":8,"loan_type":"Refinance"}]}},"expected":{"columns":["user_id"],"rows":[]},"validator":{"kind":"ordered_table"},"tags":["unrelated"]},
-{"id":"real-user-order","name":"real: qualifying users sort ascending","kind":"real","visible":false,"input":{"tables":{"Loans":[{"loan_id":1,"user_id":20,"loan_type":"Mortgage"},{"loan_id":2,"user_id":20,"loan_type":"Refinance"},{"loan_id":3,"user_id":3,"loan_type":"Refinance"},{"loan_id":4,"user_id":3,"loan_type":"Mortgage"}]}},"expected":{"columns":["user_id"],"rows":[[3],[20]]},"validator":{"kind":"ordered_table"},"tags":["hidden","ordering"]},
-{"id":"real-mixed-users","name":"real: independently qualify each user","kind":"real","visible":false,"input":{"tables":{"Loans":[{"loan_id":1,"user_id":1,"loan_type":"Mortgage"},{"loan_id":2,"user_id":2,"loan_type":"Refinance"},{"loan_id":3,"user_id":2,"loan_type":"Mortgage"},{"loan_id":4,"user_id":3,"loan_type":"Refinance"}]}},"expected":{"columns":["user_id"],"rows":[[2]]},"validator":{"kind":"ordered_table"},"tags":["hidden","separate-groups"]}
-]}
+{
+  "challenge_id": "lc_2990",
+  "cases": [
+    {
+      "id": "sample-loan-types",
+      "name": "sample: only one user has both target types",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Loans": [
+            {
+              "loan_id": 683,
+              "user_id": 101,
+              "loan_type": "Mortgage"
+            },
+            {
+              "loan_id": 218,
+              "user_id": 101,
+              "loan_type": "AutoLoan"
+            },
+            {
+              "loan_id": 802,
+              "user_id": 101,
+              "loan_type": "Inschool"
+            },
+            {
+              "loan_id": 593,
+              "user_id": 102,
+              "loan_type": "Mortgage"
+            },
+            {
+              "loan_id": 138,
+              "user_id": 102,
+              "loan_type": "Refinance"
+            },
+            {
+              "loan_id": 294,
+              "user_id": 102,
+              "loan_type": "Inschool"
+            },
+            {
+              "loan_id": 308,
+              "user_id": 103,
+              "loan_type": "Refinance"
+            },
+            {
+              "loan_id": 389,
+              "user_id": 104,
+              "loan_type": "Mortgage"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id"
+        ],
+        "rows": [
+          [
+            102
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "trial: duplicate target rows return one user",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Loans": [
+            {
+              "loan_id": 1,
+              "user_id": 5,
+              "loan_type": "Mortgage"
+            },
+            {
+              "loan_id": 2,
+              "user_id": 5,
+              "loan_type": "Mortgage"
+            },
+            {
+              "loan_id": 3,
+              "user_id": 5,
+              "loan_type": "Refinance"
+            },
+            {
+              "loan_id": 4,
+              "user_id": 5,
+              "loan_type": "Refinance"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id"
+        ],
+        "rows": [
+          [
+            5
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-one-type",
+      "name": "trial: repeated Mortgage alone is insufficient",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Loans": [
+            {
+              "loan_id": 1,
+              "user_id": 7,
+              "loan_type": "Mortgage"
+            },
+            {
+              "loan_id": 2,
+              "user_id": 7,
+              "loan_type": "Mortgage"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "missing-type"
+      ]
+    },
+    {
+      "id": "trial-unrelated-types",
+      "name": "trial: unrelated loans do not help",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Loans": [
+            {
+              "loan_id": 1,
+              "user_id": 8,
+              "loan_type": "AutoLoan"
+            },
+            {
+              "loan_id": 2,
+              "user_id": 8,
+              "loan_type": "Inschool"
+            },
+            {
+              "loan_id": 3,
+              "user_id": 8,
+              "loan_type": "Refinance"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "unrelated"
+      ]
+    },
+    {
+      "id": "trial-user-order",
+      "name": "qualifying users sort ascending",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Loans": [
+            {
+              "loan_id": 1,
+              "user_id": 20,
+              "loan_type": "Mortgage"
+            },
+            {
+              "loan_id": 2,
+              "user_id": 20,
+              "loan_type": "Refinance"
+            },
+            {
+              "loan_id": 3,
+              "user_id": 3,
+              "loan_type": "Refinance"
+            },
+            {
+              "loan_id": 4,
+              "user_id": 3,
+              "loan_type": "Mortgage"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id"
+        ],
+        "rows": [
+          [
+            3
+          ],
+          [
+            20
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-mixed-users",
+      "name": "independently qualify each user",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Loans": [
+            {
+              "loan_id": 1,
+              "user_id": 1,
+              "loan_type": "Mortgage"
+            },
+            {
+              "loan_id": 2,
+              "user_id": 2,
+              "loan_type": "Refinance"
+            },
+            {
+              "loan_id": 3,
+              "user_id": 2,
+              "loan_type": "Mortgage"
+            },
+            {
+              "loan_id": 4,
+              "user_id": 3,
+              "loan_type": "Refinance"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id"
+        ],
+        "rows": [
+          [
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "separate-groups"
+      ]
+    }
+  ]
+}

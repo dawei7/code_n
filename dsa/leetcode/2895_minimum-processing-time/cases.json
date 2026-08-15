@@ -7,11 +7,26 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "processorTime": [8, 10],
-        "tasks": [2, 2, 3, 1, 8, 7, 4, 5]
+        "processorTime": [
+          8,
+          10
+        ],
+        "tasks": [
+          2,
+          2,
+          3,
+          1,
+          8,
+          7,
+          4,
+          5
+        ]
       },
       "expected": 16,
-      "tags": ["sample", "greedy-pairing"]
+      "tags": [
+        "sample",
+        "greedy-pairing"
+      ]
     },
     {
       "id": "sample-late-second-processor",
@@ -19,11 +34,26 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "processorTime": [10, 20],
-        "tasks": [2, 3, 1, 2, 5, 8, 4, 3]
+        "processorTime": [
+          10,
+          20
+        ],
+        "tasks": [
+          2,
+          3,
+          1,
+          2,
+          5,
+          8,
+          4,
+          3
+        ]
       },
       "expected": 23,
-      "tags": ["sample", "unequal-start-times"]
+      "tags": [
+        "sample",
+        "unequal-start-times"
+      ]
     },
     {
       "id": "trial-single-processor",
@@ -31,11 +61,21 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "processorTime": [0],
-        "tasks": [1, 4, 2, 3]
+        "processorTime": [
+          0
+        ],
+        "tasks": [
+          1,
+          4,
+          2,
+          3
+        ]
       },
       "expected": 4,
-      "tags": ["boundary", "single-processor"]
+      "tags": [
+        "boundary",
+        "single-processor"
+      ]
     },
     {
       "id": "trial-equal-start-times",
@@ -43,11 +83,26 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "processorTime": [5, 5],
-        "tasks": [1, 2, 3, 4, 5, 6, 7, 8]
+        "processorTime": [
+          5,
+          5
+        ],
+        "tasks": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
       },
       "expected": 13,
-      "tags": ["ties", "group-maxima"]
+      "tags": [
+        "ties",
+        "group-maxima"
+      ]
     },
     {
       "id": "trial-opposite-extremes",
@@ -55,23 +110,53 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "processorTime": [100, 1],
-        "tasks": [1, 100, 1, 99, 1, 98, 1, 97]
+        "processorTime": [
+          100,
+          1
+        ],
+        "tasks": [
+          1,
+          100,
+          1,
+          99,
+          1,
+          98,
+          1,
+          97
+        ]
       },
       "expected": 101,
-      "tags": ["exchange-argument", "opposite-order"]
+      "tags": [
+        "exchange-argument",
+        "opposite-order"
+      ]
     },
     {
-      "id": "real-maximum-values",
-      "name": "hidden: maximum values can produce a result above one billion",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-values",
+      "name": "maximum values can produce a result above one billion",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "processorTime": [1000000000, 0],
-        "tasks": [1000000000, 1000000000, 1000000000, 1000000000, 1, 1, 1, 1]
+        "processorTime": [
+          1000000000,
+          0
+        ],
+        "tasks": [
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000,
+          1,
+          1,
+          1,
+          1
+        ]
       },
       "expected": 1000000001,
-      "tags": ["hidden", "maximum-values", "integer-range"]
+      "tags": [
+        "maximum-values",
+        "integer-range"
+      ]
     }
   ]
 }

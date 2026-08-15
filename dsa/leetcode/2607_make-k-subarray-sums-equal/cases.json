@@ -83,10 +83,10 @@
       ]
     },
     {
-      "id": "real-three-cycles",
-      "name": "hidden: three independent residue classes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-cycles",
+      "name": "three independent residue classes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -103,15 +103,14 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "gcd-cycles"
       ]
     },
     {
-      "id": "real-wide-values",
-      "name": "hidden: operation count uses wide arithmetic",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-wide-values",
+      "name": "operation count uses wide arithmetic",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -124,7 +123,6 @@
       },
       "expected": 1999999998,
       "tags": [
-        "hidden",
         "large-values"
       ]
     }

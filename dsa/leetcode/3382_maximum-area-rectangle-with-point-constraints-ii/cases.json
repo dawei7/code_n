@@ -6,81 +6,249 @@
       "name": "sample: clean four-corner rectangle",
       "kind": "sample",
       "visible": true,
-      "input": {"xCoord": [1, 1, 3, 3], "yCoord": [1, 3, 1, 3]},
+      "input": {
+        "xCoord": [
+          1,
+          1,
+          3,
+          3
+        ],
+        "yCoord": [
+          1,
+          3,
+          1,
+          3
+        ]
+      },
       "expected": 4,
-      "tags": ["sample", "geometry"]
+      "tags": [
+        "sample",
+        "geometry"
+      ]
     },
     {
       "id": "sample-interior-blocks",
       "name": "sample: interior point invalidates rectangle",
       "kind": "sample",
       "visible": true,
-      "input": {"xCoord": [1, 1, 3, 3, 2], "yCoord": [1, 3, 1, 3, 2]},
+      "input": {
+        "xCoord": [
+          1,
+          1,
+          3,
+          3,
+          2
+        ],
+        "yCoord": [
+          1,
+          3,
+          1,
+          3,
+          2
+        ]
+      },
       "expected": -1,
-      "tags": ["sample", "interior-point"]
+      "tags": [
+        "sample",
+        "interior-point"
+      ]
     },
     {
       "id": "sample-boundary-smaller",
       "name": "sample: side points force smaller rectangles",
       "kind": "sample",
       "visible": true,
-      "input": {"xCoord": [1, 1, 3, 3, 1, 3], "yCoord": [1, 3, 1, 3, 2, 2]},
+      "input": {
+        "xCoord": [
+          1,
+          1,
+          3,
+          3,
+          1,
+          3
+        ],
+        "yCoord": [
+          1,
+          3,
+          1,
+          3,
+          2,
+          2
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "boundary"]
+      "tags": [
+        "sample",
+        "boundary"
+      ]
     },
     {
       "id": "trial-too-few-corners",
       "name": "trial: only three points",
       "kind": "trial",
       "visible": true,
-      "input": {"xCoord": [0, 0, 2], "yCoord": [0, 2, 0]},
+      "input": {
+        "xCoord": [
+          0,
+          0,
+          2
+        ],
+        "yCoord": [
+          0,
+          2,
+          0
+        ]
+      },
       "expected": -1,
-      "tags": ["boundary", "no-rectangle"]
+      "tags": [
+        "boundary",
+        "no-rectangle"
+      ]
     },
     {
       "id": "trial-horizontal-border-point",
       "name": "trial: point on horizontal border invalidates rectangle",
       "kind": "trial",
       "visible": true,
-      "input": {"xCoord": [0, 0, 3, 3, 1], "yCoord": [0, 2, 0, 2, 0]},
+      "input": {
+        "xCoord": [
+          0,
+          0,
+          3,
+          3,
+          1
+        ],
+        "yCoord": [
+          0,
+          2,
+          0,
+          2,
+          0
+        ]
+      },
       "expected": -1,
-      "tags": ["border", "inclusive-range"]
+      "tags": [
+        "border",
+        "inclusive-range"
+      ]
     },
     {
-      "id": "real-point-outside-height",
-      "name": "real: intervening point above rectangle is harmless",
-      "kind": "real",
-      "visible": false,
-      "input": {"xCoord": [0, 0, 4, 4, 2], "yCoord": [0, 2, 0, 2, 3]},
+      "id": "trial-point-outside-height",
+      "name": "intervening point above rectangle is harmless",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "xCoord": [
+          0,
+          0,
+          4,
+          4,
+          2
+        ],
+        "yCoord": [
+          0,
+          2,
+          0,
+          2,
+          3
+        ]
+      },
       "expected": 8,
-      "tags": ["range-query", "outside"]
+      "tags": [
+        "range-query",
+        "outside"
+      ]
     },
     {
-      "id": "real-disjoint-rectangles",
-      "name": "real: choose larger of disjoint rectangles",
-      "kind": "real",
-      "visible": false,
-      "input": {"xCoord": [0, 0, 3, 3, 10, 10, 12, 12], "yCoord": [0, 1, 0, 1, 0, 4, 0, 4]},
+      "id": "trial-disjoint-rectangles",
+      "name": "choose larger of disjoint rectangles",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "xCoord": [
+          0,
+          0,
+          3,
+          3,
+          10,
+          10,
+          12,
+          12
+        ],
+        "yCoord": [
+          0,
+          1,
+          0,
+          1,
+          0,
+          4,
+          0,
+          4
+        ]
+      },
       "expected": 8,
-      "tags": ["maximum-area", "multiple-candidates"]
+      "tags": [
+        "maximum-area",
+        "multiple-candidates"
+      ]
     },
     {
-      "id": "real-adjacent-segments",
-      "name": "real: adjacent vertical segments split larger shapes",
-      "kind": "real",
-      "visible": false,
-      "input": {"xCoord": [0, 0, 0, 4, 4, 4, 8, 8], "yCoord": [0, 2, 5, 0, 2, 5, 0, 5]},
+      "id": "trial-adjacent-segments",
+      "name": "adjacent vertical segments split larger shapes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "xCoord": [
+          0,
+          0,
+          0,
+          4,
+          4,
+          4,
+          8,
+          8
+        ],
+        "yCoord": [
+          0,
+          2,
+          5,
+          0,
+          2,
+          5,
+          0,
+          5
+        ]
+      },
       "expected": 12,
-      "tags": ["adjacent-segments", "geometry"]
+      "tags": [
+        "adjacent-segments",
+        "geometry"
+      ]
     },
     {
-      "id": "real-maximum-coordinate-area",
-      "name": "real: area requires wide integer",
-      "kind": "real",
-      "visible": false,
-      "input": {"xCoord": [0, 0, 80000000, 80000000], "yCoord": [0, 80000000, 0, 80000000]},
+      "id": "trial-maximum-coordinate-area",
+      "name": "area requires wide integer",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "xCoord": [
+          0,
+          0,
+          80000000,
+          80000000
+        ],
+        "yCoord": [
+          0,
+          80000000,
+          0,
+          80000000
+        ]
+      },
       "expected": 6400000000000000,
-      "tags": ["integer-range", "maximum-coordinate"]
+      "tags": [
+        "integer-range",
+        "maximum-coordinate"
+      ]
     }
   ]
 }

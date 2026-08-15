@@ -6,36 +6,268 @@
       "name": "sample: stack four rows above two rows",
       "kind": "sample",
       "visible": true,
-      "input": {"tables": {"df1": [{"student_id": 1, "name": "Mason", "age": 8}, {"student_id": 2, "name": "Ava", "age": 6}, {"student_id": 3, "name": "Taylor", "age": 15}, {"student_id": 4, "name": "Georgia", "age": 17}], "df2": [{"student_id": 5, "name": "Leo", "age": 7}, {"student_id": 6, "name": "Alex", "age": 7}]}},
-      "expected": {"columns": ["student_id", "name", "age"], "rows": [[1, "Mason", 8], [2, "Ava", 6], [3, "Taylor", 15], [4, "Georgia", 17], [5, "Leo", 7], [6, "Alex", 7]]},
-      "tags": ["sample", "vertical-concatenation"]
+      "input": {
+        "tables": {
+          "df1": [
+            {
+              "student_id": 1,
+              "name": "Mason",
+              "age": 8
+            },
+            {
+              "student_id": 2,
+              "name": "Ava",
+              "age": 6
+            },
+            {
+              "student_id": 3,
+              "name": "Taylor",
+              "age": 15
+            },
+            {
+              "student_id": 4,
+              "name": "Georgia",
+              "age": 17
+            }
+          ],
+          "df2": [
+            {
+              "student_id": 5,
+              "name": "Leo",
+              "age": 7
+            },
+            {
+              "student_id": 6,
+              "name": "Alex",
+              "age": 7
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "name",
+          "age"
+        ],
+        "rows": [
+          [
+            1,
+            "Mason",
+            8
+          ],
+          [
+            2,
+            "Ava",
+            6
+          ],
+          [
+            3,
+            "Taylor",
+            15
+          ],
+          [
+            4,
+            "Georgia",
+            17
+          ],
+          [
+            5,
+            "Leo",
+            7
+          ],
+          [
+            6,
+            "Alex",
+            7
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "vertical-concatenation"
+      ]
     },
     {
       "id": "trial-single-row-tables",
       "name": "one row from each table",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"df1": [{"student_id": 10, "name": "Mina", "age": 12}], "df2": [{"student_id": 11, "name": "Bo", "age": 14}]}},
-      "expected": {"columns": ["student_id", "name", "age"], "rows": [[10, "Mina", 12], [11, "Bo", 14]]},
-      "tags": ["boundary", "single-row-inputs"]
+      "input": {
+        "tables": {
+          "df1": [
+            {
+              "student_id": 10,
+              "name": "Mina",
+              "age": 12
+            }
+          ],
+          "df2": [
+            {
+              "student_id": 11,
+              "name": "Bo",
+              "age": 14
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "name",
+          "age"
+        ],
+        "rows": [
+          [
+            10,
+            "Mina",
+            12
+          ],
+          [
+            11,
+            "Bo",
+            14
+          ]
+        ]
+      },
+      "tags": [
+        "boundary",
+        "single-row-inputs"
+      ]
     },
     {
       "id": "trial-duplicate-row-preserved",
       "name": "duplicate student rows are not deduplicated",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"df1": [{"student_id": 7, "name": "Lee", "age": 9}, {"student_id": 3, "name": "Iris", "age": 16}], "df2": [{"student_id": 7, "name": "Lee", "age": 9}]}},
-      "expected": {"columns": ["student_id", "name", "age"], "rows": [[7, "Lee", 9], [3, "Iris", 16], [7, "Lee", 9]]},
-      "tags": ["duplicate-row", "no-deduplication"]
+      "input": {
+        "tables": {
+          "df1": [
+            {
+              "student_id": 7,
+              "name": "Lee",
+              "age": 9
+            },
+            {
+              "student_id": 3,
+              "name": "Iris",
+              "age": 16
+            }
+          ],
+          "df2": [
+            {
+              "student_id": 7,
+              "name": "Lee",
+              "age": 9
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "name",
+          "age"
+        ],
+        "rows": [
+          [
+            7,
+            "Lee",
+            9
+          ],
+          [
+            3,
+            "Iris",
+            16
+          ],
+          [
+            7,
+            "Lee",
+            9
+          ]
+        ]
+      },
+      "tags": [
+        "duplicate-row",
+        "no-deduplication"
+      ]
     },
     {
-      "id": "real-input-order-boundary",
-      "name": "hidden: first table remains entirely above second table",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"df1": [{"student_id": 90, "name": "Zed", "age": 18}, {"student_id": 2, "name": "Ada", "age": 7}], "df2": [{"student_id": 50, "name": "Kai", "age": 11}, {"student_id": 1, "name": "Nia", "age": 6}, {"student_id": 33, "name": "Omar", "age": 15}]}},
-      "expected": {"columns": ["student_id", "name", "age"], "rows": [[90, "Zed", 18], [2, "Ada", 7], [50, "Kai", 11], [1, "Nia", 6], [33, "Omar", 15]]},
-      "tags": ["hidden", "table-boundary", "order"]
+      "id": "trial-input-order-boundary",
+      "name": "first table remains entirely above second table",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "df1": [
+            {
+              "student_id": 90,
+              "name": "Zed",
+              "age": 18
+            },
+            {
+              "student_id": 2,
+              "name": "Ada",
+              "age": 7
+            }
+          ],
+          "df2": [
+            {
+              "student_id": 50,
+              "name": "Kai",
+              "age": 11
+            },
+            {
+              "student_id": 1,
+              "name": "Nia",
+              "age": 6
+            },
+            {
+              "student_id": 33,
+              "name": "Omar",
+              "age": 15
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "name",
+          "age"
+        ],
+        "rows": [
+          [
+            90,
+            "Zed",
+            18
+          ],
+          [
+            2,
+            "Ada",
+            7
+          ],
+          [
+            50,
+            "Kai",
+            11
+          ],
+          [
+            1,
+            "Nia",
+            6
+          ],
+          [
+            33,
+            "Omar",
+            15
+          ]
+        ]
+      },
+      "tags": [
+        "table-boundary",
+        "order"
+      ]
     }
   ]
 }

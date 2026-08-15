@@ -158,10 +158,10 @@
       ]
     },
     {
-      "id": "real-interior-pair",
-      "name": "hidden: a two-element suffix is better than the unbalanced full array",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-interior-pair",
+      "name": "a two-element suffix is better than the unbalanced full array",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -174,15 +174,14 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "proper-subarray"
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "hidden: maximum-range values are classified only by parity",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-values",
+      "name": "maximum-range values are classified only by parity",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000,
@@ -194,15 +193,14 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
     {
-      "id": "real-long-duplicate-runs",
-      "name": "hidden: duplicate runs can make a long balanced subarray",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-long-duplicate-runs",
+      "name": "duplicate runs can make a long balanced subarray",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -232,16 +230,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicates",
         "long-subarray"
       ]
     },
     {
-      "id": "real-all-distinct-balanced",
-      "name": "hidden: three distinct values of each parity balance the whole array",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-distinct-balanced",
+      "name": "three distinct values of each parity balance the whole array",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -257,16 +254,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-distinct",
         "whole-array"
       ]
     },
     {
-      "id": "real-balanced-prefix",
-      "name": "hidden: the longest balance can be a prefix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-balanced-prefix",
+      "name": "the longest balance can be a prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -280,10 +276,25 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "prefix"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]
 }
-

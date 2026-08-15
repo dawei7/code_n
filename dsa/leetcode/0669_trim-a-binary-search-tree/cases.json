@@ -137,10 +137,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: retain interval boundaries",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "retain interval boundaries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           5,
@@ -163,15 +163,14 @@
         6
       ],
       "tags": [
-        "hidden",
         "inclusive-bounds"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: trim both outer branches",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "trim both outer branches",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           10,
@@ -203,10 +202,8 @@
         8
       ],
       "tags": [
-        "hidden",
         "both-sides"
       ]
     }
   ]
 }
-

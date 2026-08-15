@@ -150,10 +150,10 @@
       ]
     },
     {
-      "id": "hidden-repeated-index",
-      "name": "hidden: same middle position reused",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-index",
+      "name": "same middle position reused",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -175,15 +175,14 @@
         6
       ],
       "tags": [
-        "hidden",
         "repeated-position"
       ]
     },
     {
-      "id": "hidden-duplicates",
-      "name": "hidden: duplicate values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicates",
+      "name": "duplicate values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -202,7 +201,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }

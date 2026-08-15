@@ -94,10 +94,10 @@
       ]
     },
     {
-      "id": "hidden-many-ones",
-      "name": "hidden: repeated unit values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-ones",
+      "name": "repeated unit values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -112,15 +112,14 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "ones"
       ]
     },
     {
-      "id": "hidden-large-value",
-      "name": "hidden: dominant value prevents partition",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-value",
+      "name": "dominant value prevents partition",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -131,15 +130,14 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "dominant"
       ]
     },
     {
-      "id": "hidden-combination",
-      "name": "hidden: target requires several values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-combination",
+      "name": "target requires several values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -151,7 +149,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "combination"
       ]
     }

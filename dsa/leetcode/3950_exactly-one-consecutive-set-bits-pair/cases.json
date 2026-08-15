@@ -7,150 +7,256 @@
       "name": "sample: 110 contains one adjacent set-bit pair",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 6},
+      "input": {
+        "n": 6
+      },
       "expected": true,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "exactly-one-pair"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "exactly-one-pair"
+      ]
     },
     {
       "id": "sample-five",
       "name": "sample: 101 contains no adjacent set-bit pair",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 5},
+      "input": {
+        "n": 5
+      },
       "expected": false,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "no-pair"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "no-pair"
+      ]
     },
     {
       "id": "trial-zero",
       "name": "trial: zero has no set bits",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 0},
+      "input": {
+        "n": 0
+      },
       "expected": false,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "boundary", "zero"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "boundary",
+        "zero"
+      ]
     },
     {
       "id": "trial-one",
       "name": "trial: a single set bit has no neighbor",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1},
+      "input": {
+        "n": 1
+      },
       "expected": false,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "single-set-bit"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-set-bit"
+      ]
     },
     {
       "id": "trial-two",
       "name": "trial: 10 has no adjacent set bits",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 2},
+      "input": {
+        "n": 2
+      },
       "expected": false,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "no-pair"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "no-pair"
+      ]
     },
     {
       "id": "trial-three",
       "name": "trial: the smallest adjacent pair is accepted",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 3},
+      "input": {
+        "n": 3
+      },
       "expected": true,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "exactly-one-pair"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "exactly-one-pair"
+      ]
     },
     {
       "id": "trial-three-consecutive-ones",
       "name": "trial: 111 contains two overlapping pairs",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 7},
+      "input": {
+        "n": 7
+      },
       "expected": false,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "overlapping-pairs"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "overlapping-pairs"
+      ]
     },
     {
       "id": "trial-leading-isolated-bit",
       "name": "trial: an isolated higher bit does not add another pair",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 11},
+      "input": {
+        "n": 11
+      },
       "expected": true,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "exactly-one-pair", "isolated-bit"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "exactly-one-pair",
+        "isolated-bit"
+      ]
     },
     {
       "id": "trial-trailing-zeroes",
       "name": "trial: trailing zeroes preserve the single high pair",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 12},
+      "input": {
+        "n": 12
+      },
       "expected": true,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "exactly-one-pair", "trailing-zeroes"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "exactly-one-pair",
+        "trailing-zeroes"
+      ]
     },
     {
-      "id": "real-separated-zero",
-      "name": "hidden: one pair and one separated set bit",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 13},
+      "id": "trial-separated-zero",
+      "name": "one pair and one separated set bit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 13
+      },
       "expected": true,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "exactly-one-pair", "isolated-bit"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "exactly-one-pair",
+        "isolated-bit"
+      ]
     },
     {
-      "id": "real-overlap-with-trailing-zero",
-      "name": "hidden: 1110 still contains two overlapping pairs",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 14},
+      "id": "trial-overlap-with-trailing-zero",
+      "name": "1110 still contains two overlapping pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 14
+      },
       "expected": false,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "overlapping-pairs"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "overlapping-pairs"
+      ]
     },
     {
-      "id": "real-four-consecutive-ones",
-      "name": "hidden: four consecutive ones create three pairs",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 15},
+      "id": "trial-four-consecutive-ones",
+      "name": "four consecutive ones create three pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 15
+      },
       "expected": false,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "overlapping-pairs"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "overlapping-pairs"
+      ]
     },
     {
-      "id": "real-two-disjoint-pairs",
-      "name": "hidden: 11011 contains two separated pairs",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 27},
+      "id": "trial-two-disjoint-pairs",
+      "name": "11011 contains two separated pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 27
+      },
       "expected": false,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "disjoint-pairs"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "disjoint-pairs"
+      ]
     },
     {
-      "id": "real-one-low-pair",
-      "name": "hidden: several isolated bits accompany one low pair",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 43},
+      "id": "trial-one-low-pair",
+      "name": "several isolated bits accompany one low pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 43
+      },
       "expected": true,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "exactly-one-pair", "isolated-bits"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "exactly-one-pair",
+        "isolated-bits"
+      ]
     },
     {
-      "id": "real-upper-bound",
-      "name": "hidden: the maximum legal value contains two pairs",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 100000},
+      "id": "trial-upper-bound",
+      "name": "the maximum legal value contains two pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 100000
+      },
       "expected": false,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "boundary", "maximum-value", "multiple-pairs"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "boundary",
+        "maximum-value",
+        "multiple-pairs"
+      ]
     }
   ]
 }

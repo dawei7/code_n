@@ -6,135 +6,620 @@
       "name": "sample: the short two-edge route lacks enough power",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 5, "edges": [[0, 1, 1], [1, 4, 1], [0, 2, 1], [2, 3, 1], [3, 4, 1]], "power": 4, "cost": [2, 3, 1, 1, 1], "source": 0, "target": 4},
-      "expected": [3, 0],
-      "tags": ["sample", "power-feasibility", "directed-path"]
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            4,
+            1
+          ],
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            2,
+            3,
+            1
+          ],
+          [
+            3,
+            4,
+            1
+          ]
+        ],
+        "power": 4,
+        "cost": [
+          2,
+          3,
+          1,
+          1,
+          1
+        ],
+        "source": 0,
+        "target": 4
+      },
+      "expected": [
+        3,
+        0
+      ],
+      "tags": [
+        "sample",
+        "power-feasibility",
+        "directed-path"
+      ]
     },
     {
       "id": "sample-source-equals-target",
       "name": "sample: no traversal when source already equals target",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 3, "edges": [[0, 1, 2], [1, 2, 2], [2, 0, 2]], "power": 3, "cost": [1, 1, 1], "source": 1, "target": 1},
-      "expected": [0, 3],
-      "tags": ["sample", "source-target-equal", "zero-time"]
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            2
+          ],
+          [
+            2,
+            0,
+            2
+          ]
+        ],
+        "power": 3,
+        "cost": [
+          1,
+          1,
+          1
+        ],
+        "source": 1,
+        "target": 1
+      },
+      "expected": [
+        0,
+        3
+      ],
+      "tags": [
+        "sample",
+        "source-target-equal",
+        "zero-time"
+      ]
     },
     {
       "id": "sample-disconnected-components",
       "name": "sample: target lies in a disconnected component",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 4, "edges": [[0, 1, 3], [2, 3, 4]], "power": 3, "cost": [1, 1, 1, 1], "source": 0, "target": 3},
-      "expected": [-1, -1],
-      "tags": ["sample", "unreachable", "disconnected"]
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1,
+            3
+          ],
+          [
+            2,
+            3,
+            4
+          ]
+        ],
+        "power": 3,
+        "cost": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "source": 0,
+        "target": 3
+      },
+      "expected": [
+        -1,
+        -1
+      ],
+      "tags": [
+        "sample",
+        "unreachable",
+        "disconnected"
+      ]
     },
     {
       "id": "trial-single-node-no-edges",
       "name": "trial: source equals target even when its departure cost is unaffordable",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1, "edges": [], "power": 1000, "cost": [2000], "source": 0, "target": 0},
-      "expected": [0, 1000],
-      "tags": ["trial", "single-node", "arrival-does-not-consume"]
+      "input": {
+        "n": 1,
+        "edges": [],
+        "power": 1000,
+        "cost": [
+          2000
+        ],
+        "source": 0,
+        "target": 0
+      },
+      "expected": [
+        0,
+        1000
+      ],
+      "tags": [
+        "trial",
+        "single-node",
+        "arrival-does-not-consume"
+      ]
     },
     {
       "id": "trial-insufficient-source-power",
       "name": "trial: an edge exists but the source cannot forward the signal",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 2, "edges": [[0, 1, 4]], "power": 2, "cost": [3, 1], "source": 0, "target": 1},
-      "expected": [-1, -1],
-      "tags": ["trial", "insufficient-power", "unreachable"]
+      "input": {
+        "n": 2,
+        "edges": [
+          [
+            0,
+            1,
+            4
+          ]
+        ],
+        "power": 2,
+        "cost": [
+          3,
+          1
+        ],
+        "source": 0,
+        "target": 1
+      },
+      "expected": [
+        -1,
+        -1
+      ],
+      "tags": [
+        "trial",
+        "insufficient-power",
+        "unreachable"
+      ]
     },
     {
       "id": "trial-target-cost-not-paid",
       "name": "trial: reaching the target does not pay the target's departure cost",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 2, "edges": [[0, 1, 5]], "power": 2, "cost": [2, 2000], "source": 0, "target": 1},
-      "expected": [5, 0],
-      "tags": ["trial", "arrival-semantics", "exact-power"]
+      "input": {
+        "n": 2,
+        "edges": [
+          [
+            0,
+            1,
+            5
+          ]
+        ],
+        "power": 2,
+        "cost": [
+          2,
+          2000
+        ],
+        "source": 0,
+        "target": 1
+      },
+      "expected": [
+        5,
+        0
+      ],
+      "tags": [
+        "trial",
+        "arrival-semantics",
+        "exact-power"
+      ]
     },
     {
       "id": "trial-time-tie-prefers-power",
       "name": "trial: equal-time paths are resolved by maximum remaining power",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 4, "edges": [[0, 1, 1], [1, 3, 1], [0, 2, 1], [2, 3, 1]], "power": 5, "cost": [1, 3, 1, 2000], "source": 0, "target": 3},
-      "expected": [2, 3],
-      "tags": ["trial", "tie-break", "remaining-power"]
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            3,
+            1
+          ],
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            2,
+            3,
+            1
+          ]
+        ],
+        "power": 5,
+        "cost": [
+          1,
+          3,
+          1,
+          2000
+        ],
+        "source": 0,
+        "target": 3
+      },
+      "expected": [
+        2,
+        3
+      ],
+      "tags": [
+        "trial",
+        "tie-break",
+        "remaining-power"
+      ]
     },
     {
       "id": "trial-time-precedes-power",
       "name": "trial: a faster route wins even though it leaves less power",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 4, "edges": [[0, 1, 1], [1, 3, 1], [0, 2, 2], [2, 3, 2]], "power": 6, "cost": [1, 4, 1, 1], "source": 0, "target": 3},
-      "expected": [2, 1],
-      "tags": ["trial", "lexicographic-objective", "minimum-time"]
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            3,
+            1
+          ],
+          [
+            0,
+            2,
+            2
+          ],
+          [
+            2,
+            3,
+            2
+          ]
+        ],
+        "power": 6,
+        "cost": [
+          1,
+          4,
+          1,
+          1
+        ],
+        "source": 0,
+        "target": 3
+      },
+      "expected": [
+        2,
+        1
+      ],
+      "tags": [
+        "trial",
+        "lexicographic-objective",
+        "minimum-time"
+      ]
     },
     {
-      "id": "real-parallel-directed-edges",
-      "name": "hidden: the faster of two parallel edges controls the route",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 3, "edges": [[0, 1, 10], [0, 1, 2], [1, 2, 3]], "power": 5, "cost": [2, 1, 1], "source": 0, "target": 2},
-      "expected": [5, 2],
-      "tags": ["hidden", "parallel-edges", "weighted-graph"]
+      "id": "trial-parallel-directed-edges",
+      "name": "the faster of two parallel edges controls the route",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1,
+            10
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        "power": 5,
+        "cost": [
+          2,
+          1,
+          1
+        ],
+        "source": 0,
+        "target": 2
+      },
+      "expected": [
+        5,
+        2
+      ],
+      "tags": [
+        "parallel-edges",
+        "weighted-graph"
+      ]
     },
     {
-      "id": "real-exact-power-over-route",
-      "name": "hidden: the route consumes exactly all available power",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 3, "edges": [[0, 1, 1], [1, 2, 1]], "power": 5, "cost": [2, 3, 2000], "source": 0, "target": 2},
-      "expected": [2, 0],
-      "tags": ["hidden", "exact-power", "boundary"]
+      "id": "trial-exact-power-over-route",
+      "name": "the route consumes exactly all available power",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            1
+          ]
+        ],
+        "power": 5,
+        "cost": [
+          2,
+          3,
+          2000
+        ],
+        "source": 0,
+        "target": 2
+      },
+      "expected": [
+        2,
+        0
+      ],
+      "tags": [
+        "exact-power",
+        "boundary"
+      ]
     },
     {
-      "id": "real-cycle-does-not-improve",
-      "name": "hidden: a directed cycle cannot beat the simple positive-time route",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 4, "edges": [[0, 1, 1], [1, 0, 1], [1, 2, 1], [2, 3, 1], [0, 3, 10]], "power": 4, "cost": [1, 1, 1, 1], "source": 0, "target": 3},
-      "expected": [3, 1],
-      "tags": ["hidden", "cycle", "positive-times"]
+      "id": "trial-cycle-does-not-improve",
+      "name": "a directed cycle cannot beat the simple positive-time route",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            2,
+            3,
+            1
+          ],
+          [
+            0,
+            3,
+            10
+          ]
+        ],
+        "power": 4,
+        "cost": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "source": 0,
+        "target": 3
+      },
+      "expected": [
+        3,
+        1
+      ],
+      "tags": [
+        "cycle",
+        "positive-times"
+      ]
     },
     {
-      "id": "real-self-loop",
-      "name": "hidden: a self-loop only wastes time and power",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 2, "edges": [[0, 0, 1], [0, 1, 10]], "power": 3, "cost": [1, 1], "source": 0, "target": 1},
-      "expected": [10, 2],
-      "tags": ["hidden", "self-loop", "positive-cost"]
+      "id": "trial-self-loop",
+      "name": "a self-loop only wastes time and power",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "edges": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            10
+          ]
+        ],
+        "power": 3,
+        "cost": [
+          1,
+          1
+        ],
+        "source": 0,
+        "target": 1
+      },
+      "expected": [
+        10,
+        2
+      ],
+      "tags": [
+        "self-loop",
+        "positive-cost"
+      ]
     },
     {
-      "id": "real-wide-total-time",
-      "name": "hidden: several maximum edge times require a wide integer sum",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 4, "edges": [[0, 1, 1000000000], [1, 2, 1000000000], [2, 3, 1000000000]], "power": 3, "cost": [1, 1, 1, 2000], "source": 0, "target": 3},
-      "expected": [3000000000, 0],
-      "tags": ["hidden", "maximum-edge-time", "wide-integer"]
+      "id": "trial-wide-total-time",
+      "name": "several maximum edge times require a wide integer sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1,
+            1000000000
+          ],
+          [
+            1,
+            2,
+            1000000000
+          ],
+          [
+            2,
+            3,
+            1000000000
+          ]
+        ],
+        "power": 3,
+        "cost": [
+          1,
+          1,
+          1,
+          2000
+        ],
+        "source": 0,
+        "target": 3
+      },
+      "expected": [
+        3000000000,
+        0
+      ],
+      "tags": [
+        "maximum-edge-time",
+        "wide-integer"
+      ]
     },
     {
-      "id": "real-edge-direction-matters",
-      "name": "hidden: reverse-facing edges do not make an undirected path",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 3, "edges": [[1, 0, 1], [1, 2, 1]], "power": 5, "cost": [1, 1, 1], "source": 0, "target": 2},
-      "expected": [-1, -1],
-      "tags": ["hidden", "directed-edges", "unreachable"]
+      "id": "trial-edge-direction-matters",
+      "name": "reverse-facing edges do not make an undirected path",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            2,
+            1
+          ]
+        ],
+        "power": 5,
+        "cost": [
+          1,
+          1,
+          1
+        ],
+        "source": 0,
+        "target": 2
+      },
+      "expected": [
+        -1,
+        -1
+      ],
+      "tags": [
+        "directed-edges",
+        "unreachable"
+      ]
     },
     {
-      "id": "real-slower-state-enables-target",
-      "name": "hidden: a slower high-power state is needed after a faster state gets stuck",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 4, "edges": [[0, 1, 10], [0, 2, 1], [2, 1, 1], [1, 3, 1]], "power": 6, "cost": [1, 3, 4, 100], "source": 0, "target": 3},
-      "expected": [11, 2],
-      "tags": ["hidden", "state-dimension", "power-feasibility"]
+      "id": "trial-slower-state-enables-target",
+      "name": "a slower high-power state is needed after a faster state gets stuck",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1,
+            10
+          ],
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            2,
+            1,
+            1
+          ],
+          [
+            1,
+            3,
+            1
+          ]
+        ],
+        "power": 6,
+        "cost": [
+          1,
+          3,
+          4,
+          100
+        ],
+        "source": 0,
+        "target": 3
+      },
+      "expected": [
+        11,
+        2
+      ],
+      "tags": [
+        "state-dimension",
+        "power-feasibility"
+      ]
     }
   ]
 }

@@ -1200,6 +1200,23 @@
         "single-character-blocks",
         "rotation"
       ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in strs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "strs": [
+          "abc",
+          "abc"
+        ]
+      },
+      "expected": "ccbaab",
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

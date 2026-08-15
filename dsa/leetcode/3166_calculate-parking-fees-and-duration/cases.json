@@ -323,10 +323,10 @@
       ]
     },
     {
-      "id": "real-overnight",
-      "name": "real: one visit crosses midnight",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-overnight",
+      "name": "one visit crosses midnight",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "ParkingTransactions": [
@@ -365,10 +365,10 @@
       ]
     },
     {
-      "id": "real-aggregate-before-rank",
-      "name": "real: repeated shorter visits win in aggregate",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-aggregate-before-rank",
+      "name": "repeated shorter visits win in aggregate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "ParkingTransactions": [
@@ -422,10 +422,10 @@
       ]
     },
     {
-      "id": "real-decimal-fee",
-      "name": "real: decimal fee and half-hour duration",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-decimal-fee",
+      "name": "decimal fee and half-hour duration",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "ParkingTransactions": [
@@ -465,10 +465,10 @@
       ]
     },
     {
-      "id": "real-three-lots",
-      "name": "real: three lots contribute to one car total",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-lots",
+      "name": "three lots contribute to one car total",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "ParkingTransactions": [
@@ -521,10 +521,10 @@
       ]
     },
     {
-      "id": "real-back-to-back",
-      "name": "real: back-to-back visits do not overlap",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-back-to-back",
+      "name": "back-to-back visits do not overlap",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "ParkingTransactions": [
@@ -570,10 +570,10 @@
       ]
     },
     {
-      "id": "real-empty-table",
-      "name": "real: no parking transactions",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-empty-table",
+      "name": "no parking transactions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "ParkingTransactions": {

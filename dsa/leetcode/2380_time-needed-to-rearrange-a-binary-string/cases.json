@@ -7,72 +7,122 @@
       "name": "sample: several simultaneous rounds",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "0110101"},
+      "input": {
+        "s": "0110101"
+      },
       "expected": 4,
-      "tags": ["sample", "simulation"]
+      "tags": [
+        "sample",
+        "simulation"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: already stable",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "11100"},
+      "input": {
+        "s": "11100"
+      },
       "expected": 0,
-      "tags": ["sample", "zero"]
+      "tags": [
+        "sample",
+        "zero"
+      ]
     },
     {
       "id": "trial-single-zero",
       "name": "single zero is stable",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "0"},
+      "input": {
+        "s": "0"
+      },
       "expected": 0,
-      "tags": ["minimum", "zero"]
+      "tags": [
+        "minimum",
+        "zero"
+      ]
     },
     {
       "id": "trial-one-swap",
       "name": "one eligible pair",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "01"},
+      "input": {
+        "s": "01"
+      },
       "expected": 1,
-      "tags": ["minimum-swap"]
+      "tags": [
+        "minimum-swap"
+      ]
     },
     {
       "id": "trial-pipeline",
       "name": "three ones cross three zeros in a pipeline",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "000111"},
+      "input": {
+        "s": "000111"
+      },
       "expected": 5,
-      "tags": ["pipeline", "congestion"]
+      "tags": [
+        "pipeline",
+        "congestion"
+      ]
     },
     {
-      "id": "real-all-zero",
-      "name": "hidden: no one can move",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "000000"},
+      "id": "trial-all-zero",
+      "name": "no one can move",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "000000"
+      },
       "expected": 0,
-      "tags": ["hidden", "all-zero"]
+      "tags": [
+        "all-zero"
+      ]
     },
     {
-      "id": "real-all-one",
-      "name": "hidden: no zero precedes a one",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "111111"},
+      "id": "trial-all-one",
+      "name": "no zero precedes a one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "111111"
+      },
       "expected": 0,
-      "tags": ["hidden", "all-one"]
+      "tags": [
+        "all-one"
+      ]
     },
     {
-      "id": "real-alternating",
-      "name": "hidden: later ones queue behind earlier ones",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "01010101"},
+      "id": "trial-alternating",
+      "name": "later ones queue behind earlier ones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "01010101"
+      },
       "expected": 4,
-      "tags": ["hidden", "alternating"]
+      "tags": [
+        "alternating"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "000"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
     }
   ]
 }

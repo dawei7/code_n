@@ -87,10 +87,10 @@
       ]
     },
     {
-      "id": "real-middle-first",
-      "name": "hidden: optimal order bursts the middle first",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-middle-first",
+      "name": "optimal order bursts the middle first",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -100,7 +100,6 @@
       },
       "expected": 33,
       "tags": [
-        "hidden",
         "order"
       ]
     }

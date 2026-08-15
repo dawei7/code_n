@@ -64,16 +64,21 @@
       "visible": true,
       "input": {
         "s": "a",
-        "wordDict": ["b"]
+        "wordDict": [
+          "b"
+        ]
       },
       "expected": false,
-      "tags": ["boundary", "negative"]
+      "tags": [
+        "boundary",
+        "negative"
+      ]
     },
     {
-      "id": "real-reused-words",
-      "name": "hidden: reused dictionary words",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-reused-words",
+      "name": "reused dictionary words",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaaaaa",
         "wordDict": [
@@ -83,7 +88,7 @@
       },
       "expected": true,
       "tags": [
-        "hidden"
+        "trial"
       ]
     }
   ]

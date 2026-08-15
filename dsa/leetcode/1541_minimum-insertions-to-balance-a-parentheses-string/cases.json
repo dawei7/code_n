@@ -92,10 +92,10 @@
       ]
     },
     {
-      "id": "real-consecutive-openings",
-      "name": "hidden: two openings need four final closes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-consecutive-openings",
+      "name": "two openings need four final closes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "(("
       },
@@ -106,10 +106,10 @@
       ]
     },
     {
-      "id": "real-interrupted-closing-pair",
-      "name": "hidden: new opening interrupts a closing pair",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-interrupted-closing-pair",
+      "name": "new opening interrupts a closing pair",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "(()"
       },
@@ -121,10 +121,10 @@
       ]
     },
     {
-      "id": "real-extra-close-after-balanced-prefix",
-      "name": "hidden: balanced unit followed by an extra close",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-extra-close-after-balanced-prefix",
+      "name": "balanced unit followed by an extra close",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "()))"
       },
@@ -135,10 +135,10 @@
       ]
     },
     {
-      "id": "real-nested-looking-pattern",
-      "name": "hidden: ordinary nesting syntax differs from double-close balance",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-nested-looking-pattern",
+      "name": "ordinary nesting syntax differs from double-close balance",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "((()))"
       },
@@ -147,6 +147,20 @@
         "real",
         "semantic-trap",
         "nested"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "((("
+      },
+      "expected": 6,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

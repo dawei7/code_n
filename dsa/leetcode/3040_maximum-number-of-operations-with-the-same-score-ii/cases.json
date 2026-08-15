@@ -82,10 +82,10 @@
       ]
     },
     {
-      "id": "real-last-two-wins",
-      "name": "real: removing the last two values gives the unique best start",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-last-two-wins",
+      "name": "removing the last two values gives the unique best start",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -102,10 +102,10 @@
       ]
     },
     {
-      "id": "real-endpoints-win",
-      "name": "real: removing both endpoints gives the unique best start",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-endpoints-win",
+      "name": "removing both endpoints gives the unique best start",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -122,10 +122,10 @@
       ]
     },
     {
-      "id": "real-greedy-trap",
-      "name": "real: a locally valid pair can block the optimal continuation",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-greedy-trap",
+      "name": "a locally valid pair can block the optimal continuation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -146,10 +146,10 @@
       ]
     },
     {
-      "id": "real-minimum-length",
-      "name": "real: one operation consumes the minimum-length array",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-minimum-length",
+      "name": "one operation consumes the minimum-length array",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -163,10 +163,10 @@
       ]
     },
     {
-      "id": "real-no-continuation",
-      "name": "real: every first move stops immediately",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-no-continuation",
+      "name": "every first move stops immediately",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

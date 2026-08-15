@@ -225,10 +225,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: maximum query time",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "maximum query time",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "persons": [
           0,
@@ -248,15 +248,14 @@
         1
       ],
       "tags": [
-        "hidden",
         "time-bound"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: queries in reverse order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "queries in reverse order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "persons": [
           0,
@@ -292,15 +291,14 @@
         0
       ],
       "tags": [
-        "hidden",
         "query-order"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: leader survives minority votes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "leader survives minority votes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "persons": [
           2,
@@ -332,15 +330,14 @@
         2
       ],
       "tags": [
-        "hidden",
         "leader-streak"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: repeated tie changes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "repeated tie changes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "persons": [
           0,
@@ -376,7 +373,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "multiway-ties"
       ]
     }

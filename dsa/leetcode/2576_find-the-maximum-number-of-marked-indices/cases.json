@@ -96,10 +96,10 @@
       ]
     },
     {
-      "id": "real-single-index",
-      "name": "hidden: one index cannot form a pair",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-index",
+      "name": "one index cannot form a pair",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1
@@ -107,15 +107,14 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "minimum-length"
       ]
     },
     {
-      "id": "real-exact-two",
-      "name": "hidden: one exact doubling pair",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-exact-two",
+      "name": "one exact doubling pair",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -124,15 +123,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "equality"
       ]
     },
     {
-      "id": "real-two-too-close",
-      "name": "hidden: two values fail the condition",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-too-close",
+      "name": "two values fail the condition",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -141,15 +139,14 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "no-pair"
       ]
     },
     {
-      "id": "real-maximum-values",
-      "name": "hidden: maximum values pair with half-size values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-values",
+      "name": "maximum values pair with half-size values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -160,15 +157,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "maximum-value"
       ]
     },
     {
-      "id": "real-greedy-stress",
-      "name": "hidden: dense unsorted pairing choices",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-greedy-stress",
+      "name": "dense unsorted pairing choices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           42,
@@ -201,9 +197,41 @@
       },
       "expected": 26,
       "tags": [
-        "hidden",
         "greedy",
         "unsorted"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

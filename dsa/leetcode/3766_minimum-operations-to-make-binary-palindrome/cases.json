@@ -7,90 +7,270 @@
       "name": "sample: one is unchanged while two and four move to three",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 4]},
-      "expected": [0, 1, 1],
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "increase", "decrease", "already-palindrome"]
+      "input": {
+        "nums": [
+          1,
+          2,
+          4
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "increase",
+        "decrease",
+        "already-palindrome"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: six, seven, and twelve use the displayed optimal costs",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [6, 7, 12]},
-      "expected": [1, 0, 3],
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "increase", "decrease", "already-palindrome"]
+      "input": {
+        "nums": [
+          6,
+          7,
+          12
+        ]
+      },
+      "expected": [
+        1,
+        0,
+        3
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "increase",
+        "decrease",
+        "already-palindrome"
+      ]
     },
     {
       "id": "trial-all-palindromes",
       "name": "trial: existing binary palindromes all require zero operations",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 3, 5, 7, 9, 15, 17]},
-      "expected": [0, 0, 0, 0, 0, 0, 0],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "already-palindrome", "zero-operations"]
+      "input": {
+        "nums": [
+          1,
+          3,
+          5,
+          7,
+          9,
+          15,
+          17
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "already-palindrome",
+        "zero-operations"
+      ]
     },
     {
       "id": "trial-powers-of-two",
       "name": "trial: each tested power of two is one step from a palindrome",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 4, 8, 16, 32]},
-      "expected": [1, 1, 1, 1, 1],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "bit-length-boundary", "equal-distance"]
+      "input": {
+        "nums": [
+          2,
+          4,
+          8,
+          16,
+          32
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "bit-length-boundary",
+        "equal-distance"
+      ]
     },
     {
       "id": "trial-symmetric-gap-around-twelve",
       "name": "trial: costs rise toward the midpoint between nine and fifteen",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [10, 11, 12, 13, 14]},
-      "expected": [1, 2, 3, 2, 1],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "nearest-lower", "nearest-higher", "tie"]
+      "input": {
+        "nums": [
+          10,
+          11,
+          12,
+          13,
+          14
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        2,
+        1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "nearest-lower",
+        "nearest-higher",
+        "tie"
+      ]
     },
     {
       "id": "trial-duplicates",
       "name": "trial: duplicate values retain duplicate independent answers",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [6, 6, 6]},
-      "expected": [1, 1, 1],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "duplicates", "input-order"]
+      "input": {
+        "nums": [
+          6,
+          6,
+          6
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "duplicates",
+        "input-order"
+      ]
     },
     {
-      "id": "real-upper-bound-and-order",
-      "name": "hidden: mixed values preserve order and include the upper bound",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [12, 1, 5000, 6]},
-      "expected": [3, 0, 47, 1],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "upper-bound", "input-order"]
+      "id": "trial-upper-bound-and-order",
+      "name": "mixed values preserve order and include the upper bound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          12,
+          1,
+          5000,
+          6
+        ]
+      },
+      "expected": [
+        3,
+        0,
+        47,
+        1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "upper-bound",
+        "input-order"
+      ]
     },
     {
-      "id": "real-power-boundaries",
-      "name": "hidden: values around powers of two use shorter and longer candidates",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [127, 128, 129, 255, 256]},
-      "expected": [0, 1, 0, 0, 1],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "bit-length-boundary", "palindrome"]
+      "id": "trial-power-boundaries",
+      "name": "values around powers of two use shorter and longer candidates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          127,
+          128,
+          129,
+          255,
+          256
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        0,
+        0,
+        1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "bit-length-boundary",
+        "palindrome"
+      ]
     },
     {
-      "id": "real-full-legal-domain",
-      "name": "hidden: every legal value matches its direct nearest-palindrome distance",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 37, 113, 243, 483, 999, 1991, 4047, 4729, 5000]},
-      "expected": [0, 4, 6, 12, 12, 24, 24, 48, 48, 47],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "gap-boundaries", "legal-domain"]
+      "id": "trial-full-legal-domain",
+      "name": "every legal value matches its direct nearest-palindrome distance",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          37,
+          113,
+          243,
+          483,
+          999,
+          1991,
+          4047,
+          4729,
+          5000
+        ]
+      },
+      "expected": [
+        0,
+        4,
+        6,
+        12,
+        12,
+        24,
+        24,
+        48,
+        48,
+        47
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "gap-boundaries",
+        "legal-domain"
+      ]
     }
   ]
 }

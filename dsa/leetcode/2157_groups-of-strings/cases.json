@@ -2,13 +2,176 @@
   "schema_version": 1,
   "challenge_id": "lc_2157",
   "cases": [
-    {"id": "sample-one-cluster-and-isolate", "name": "sample: three connected words and one isolate", "kind": "sample", "visible": true, "input": {"words": ["a", "b", "ab", "cde"]}, "expected": [2, 3], "tags": ["sample", "mixed-operations"]},
-    {"id": "sample-addition-chain", "name": "sample: additions connect the entire chain", "kind": "sample", "visible": true, "input": {"words": ["a", "ab", "abc"]}, "expected": [1, 3], "tags": ["sample", "addition", "transitive"]},
-    {"id": "trial-single-word", "name": "one word forms one singleton group", "kind": "trial", "visible": true, "input": {"words": ["abc"]}, "expected": [1, 1], "tags": ["minimum-count", "singleton"]},
-    {"id": "trial-duplicate-letter-sets", "name": "different word orders represent duplicate set nodes", "kind": "trial", "visible": true, "input": {"words": ["ab", "ba", "abc", "cab"]}, "expected": [1, 4], "tags": ["duplicate-mask", "addition"]},
-    {"id": "trial-replacement-cluster", "name": "single replacements join equal-size words", "kind": "trial", "visible": true, "input": {"words": ["ab", "ac", "bc", "xyz"]}, "expected": [2, 3], "tags": ["replacement", "isolate"]},
-    {"id": "trial-separated-addition", "name": "a two-letter jump is not one operation", "kind": "trial", "visible": true, "input": {"words": ["a", "ab", "abcd"]}, "expected": [2, 2], "tags": ["addition", "operation-distance"]},
-    {"id": "real-transitive-mixed", "name": "hidden: addition and replacement connect transitively", "kind": "real", "visible": false, "input": {"words": ["a", "ab", "abc", "bcd"]}, "expected": [1, 4], "tags": ["hidden", "transitive", "mixed-operations"]},
-    {"id": "real-same-size-isolates", "name": "hidden: disjoint equal-size sets need two replacements", "kind": "real", "visible": false, "input": {"words": ["ab", "cd", "ef"]}, "expected": [3, 1], "tags": ["hidden", "isolated", "replacement-distance"]}
+    {
+      "id": "sample-one-cluster-and-isolate",
+      "name": "sample: three connected words and one isolate",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "b",
+          "ab",
+          "cde"
+        ]
+      },
+      "expected": [
+        2,
+        3
+      ],
+      "tags": [
+        "sample",
+        "mixed-operations"
+      ]
+    },
+    {
+      "id": "sample-addition-chain",
+      "name": "sample: additions connect the entire chain",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "ab",
+          "abc"
+        ]
+      },
+      "expected": [
+        1,
+        3
+      ],
+      "tags": [
+        "sample",
+        "addition",
+        "transitive"
+      ]
+    },
+    {
+      "id": "trial-single-word",
+      "name": "one word forms one singleton group",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc"
+        ]
+      },
+      "expected": [
+        1,
+        1
+      ],
+      "tags": [
+        "minimum-count",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-duplicate-letter-sets",
+      "name": "different word orders represent duplicate set nodes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "ab",
+          "ba",
+          "abc",
+          "cab"
+        ]
+      },
+      "expected": [
+        1,
+        4
+      ],
+      "tags": [
+        "duplicate-mask",
+        "addition"
+      ]
+    },
+    {
+      "id": "trial-replacement-cluster",
+      "name": "single replacements join equal-size words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "ab",
+          "ac",
+          "bc",
+          "xyz"
+        ]
+      },
+      "expected": [
+        2,
+        3
+      ],
+      "tags": [
+        "replacement",
+        "isolate"
+      ]
+    },
+    {
+      "id": "trial-separated-addition",
+      "name": "a two-letter jump is not one operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "ab",
+          "abcd"
+        ]
+      },
+      "expected": [
+        2,
+        2
+      ],
+      "tags": [
+        "addition",
+        "operation-distance"
+      ]
+    },
+    {
+      "id": "trial-transitive-mixed",
+      "name": "addition and replacement connect transitively",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "ab",
+          "abc",
+          "bcd"
+        ]
+      },
+      "expected": [
+        1,
+        4
+      ],
+      "tags": [
+        "transitive",
+        "mixed-operations"
+      ]
+    },
+    {
+      "id": "trial-same-size-isolates",
+      "name": "disjoint equal-size sets need two replacements",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "ab",
+          "cd",
+          "ef"
+        ]
+      },
+      "expected": [
+        3,
+        1
+      ],
+      "tags": [
+        "isolated",
+        "replacement-distance"
+      ]
+    }
   ]
 }

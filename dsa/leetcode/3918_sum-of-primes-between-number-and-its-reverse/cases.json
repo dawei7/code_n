@@ -7,135 +7,223 @@
       "name": "sample: both prime endpoints contribute when reversal is larger",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 13},
+      "input": {
+        "n": 13
+      },
       "expected": 132,
-      "tags": ["sample", "reversal-larger", "inclusive-endpoints"]
+      "tags": [
+        "sample",
+        "reversal-larger",
+        "inclusive-endpoints"
+      ]
     },
     {
       "id": "sample-trailing-zero",
       "name": "sample: reversing ten discards its leading zero",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 10},
+      "input": {
+        "n": 10
+      },
       "expected": 17,
-      "tags": ["sample", "trailing-zero", "reversal-smaller"]
+      "tags": [
+        "sample",
+        "trailing-zero",
+        "reversal-smaller"
+      ]
     },
     {
       "id": "sample-single-digit-composite",
       "name": "sample: a composite singleton interval has sum zero",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 8},
+      "input": {
+        "n": 8
+      },
       "expected": 0,
-      "tags": ["sample", "palindrome", "no-prime"]
+      "tags": [
+        "sample",
+        "palindrome",
+        "no-prime"
+      ]
     },
     {
       "id": "trial-minimum-one",
       "name": "trial: one is not prime",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1},
+      "input": {
+        "n": 1
+      },
       "expected": 0,
-      "tags": ["trial", "minimum", "not-prime"]
+      "tags": [
+        "trial",
+        "minimum",
+        "not-prime"
+      ]
     },
     {
       "id": "trial-single-digit-prime",
       "name": "trial: a prime singleton endpoint is included",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 2},
+      "input": {
+        "n": 2
+      },
       "expected": 2,
-      "tags": ["trial", "palindrome", "prime-endpoint"]
+      "tags": [
+        "trial",
+        "palindrome",
+        "prime-endpoint"
+      ]
     },
     {
       "id": "trial-palindromic-prime",
       "name": "trial: an eleven palindrome contributes itself",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 11},
+      "input": {
+        "n": 11
+      },
       "expected": 11,
-      "tags": ["trial", "palindrome", "prime"]
+      "tags": [
+        "trial",
+        "palindrome",
+        "prime"
+      ]
     },
     {
       "id": "trial-palindromic-composite",
       "name": "trial: a composite palindrome contributes nothing",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 121},
+      "input": {
+        "n": 121
+      },
       "expected": 0,
-      "tags": ["trial", "palindrome", "composite"]
+      "tags": [
+        "trial",
+        "palindrome",
+        "composite"
+      ]
     },
     {
       "id": "trial-short-reversal-larger",
       "name": "trial: primes are summed across twelve through twenty-one",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 12},
+      "input": {
+        "n": 12
+      },
       "expected": 49,
-      "tags": ["trial", "reversal-larger", "interval"]
+      "tags": [
+        "trial",
+        "reversal-larger",
+        "interval"
+      ]
     },
     {
       "id": "trial-reversal-smaller",
       "name": "trial: the smaller reversed endpoint is ordered first",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 20},
+      "input": {
+        "n": 20
+      },
       "expected": 77,
-      "tags": ["trial", "trailing-zero", "reversal-smaller"]
+      "tags": [
+        "trial",
+        "trailing-zero",
+        "reversal-smaller"
+      ]
     },
     {
       "id": "trial-two-trailing-zeroes",
       "name": "trial: reversing one hundred produces one",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 100},
+      "input": {
+        "n": 100
+      },
       "expected": 1060,
-      "tags": ["trial", "trailing-zeroes", "broad-range"]
+      "tags": [
+        "trial",
+        "trailing-zeroes",
+        "broad-range"
+      ]
     },
     {
       "id": "trial-three-digit-reversal-larger",
       "name": "trial: a wider interval with prime endpoints",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 113},
+      "input": {
+        "n": 113
+      },
       "expected": 7413,
-      "tags": ["trial", "reversal-larger", "prime-endpoints"]
+      "tags": [
+        "trial",
+        "reversal-larger",
+        "prime-endpoints"
+      ]
     },
     {
       "id": "trial-three-digit-reversal-smaller",
       "name": "trial: descending digits place the reversal first",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 907},
+      "input": {
+        "n": 907
+      },
       "expected": 23391,
-      "tags": ["trial", "reversal-smaller", "large-values"]
+      "tags": [
+        "trial",
+        "reversal-smaller",
+        "large-values"
+      ]
     },
     {
-      "id": "hidden-palindromic-upper-region",
-      "name": "hidden: a composite three-digit palindrome remains zero",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 999},
+      "id": "trial-palindromic-upper-region",
+      "name": "a composite three-digit palindrome remains zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 999
+      },
       "expected": 0,
-      "tags": ["hidden", "palindrome", "composite"]
+      "tags": [
+        "palindrome",
+        "composite"
+      ]
     },
     {
-      "id": "hidden-prime-large-reversal",
-      "name": "hidden: a prime endpoint and its smaller reversal are inclusive",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 997},
+      "id": "trial-prime-large-reversal",
+      "name": "a prime endpoint and its smaller reversal are inclusive",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 997
+      },
       "expected": 26049,
-      "tags": ["hidden", "reversal-smaller", "prime-endpoint"]
+      "tags": [
+        "reversal-smaller",
+        "prime-endpoint"
+      ]
     },
     {
-      "id": "hidden-maximum",
-      "name": "hidden: maximum n reverses to one",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 1000},
+      "id": "trial-maximum",
+      "name": "maximum n reverses to one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000
+      },
       "expected": 76127,
-      "tags": ["hidden", "maximum", "trailing-zeroes", "full-range"]
+      "tags": [
+        "maximum",
+        "trailing-zeroes",
+        "full-range"
+      ]
     }
   ]
 }

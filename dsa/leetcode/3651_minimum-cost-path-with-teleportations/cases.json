@@ -134,10 +134,10 @@
       ]
     },
     {
-      "id": "real-maximum-k-unused",
-      "name": "real: extra teleport allowance need not be used",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-k-unused",
+      "name": "extra teleport allowance need not be used",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -162,10 +162,10 @@
       ]
     },
     {
-      "id": "real-one-teleport-cost",
-      "name": "real: one teleport leaves cost twelve",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-teleport-cost",
+      "name": "one teleport leaves cost twelve",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -202,10 +202,10 @@
       ]
     },
     {
-      "id": "real-second-teleport-helps",
-      "name": "real: second teleport lowers optimum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-second-teleport-helps",
+      "name": "second teleport lowers optimum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -242,10 +242,10 @@
       ]
     },
     {
-      "id": "real-zero-valued-route",
-      "name": "real: zero-valued destinations allow zero cost",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zero-valued-route",
+      "name": "zero-valued destinations allow zero cost",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -273,10 +273,10 @@
       ]
     },
     {
-      "id": "real-rectangular-grid",
-      "name": "real: rectangular grid uses same layered recurrence",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-rectangular-grid",
+      "name": "rectangular grid uses same layered recurrence",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -299,10 +299,10 @@
       ]
     },
     {
-      "id": "real-maximum-values",
-      "name": "real: equal maximum target permits direct teleport",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-values",
+      "name": "equal maximum target permits direct teleport",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [

@@ -213,10 +213,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: winner appears late",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "winner appears late",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Orders": [
@@ -263,10 +263,10 @@
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: close unique maximum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "close unique maximum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Orders": [

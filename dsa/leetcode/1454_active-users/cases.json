@@ -234,10 +234,10 @@
       ]
     },
     {
-      "id": "real-order-and-mixed",
-      "name": "hidden: active and inactive accounts return in id order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-order-and-mixed",
+      "name": "active and inactive accounts return in id order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Accounts": [
@@ -339,16 +339,15 @@
         ]
       },
       "tags": [
-        "hidden",
         "ordering",
         "multiple-accounts"
       ]
     },
     {
-      "id": "real-year-boundary",
-      "name": "hidden: streak crosses a year boundary",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-year-boundary",
+      "name": "streak crosses a year boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Accounts": [
@@ -394,15 +393,14 @@
         ]
       },
       "tags": [
-        "hidden",
         "year-boundary"
       ]
     },
     {
-      "id": "real-two-streaks",
-      "name": "hidden: multiple qualifying streaks emit one account row",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-streaks",
+      "name": "multiple qualifying streaks emit one account row",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Accounts": [
@@ -472,7 +470,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "multiple-streaks",
         "dedup-output"
       ]

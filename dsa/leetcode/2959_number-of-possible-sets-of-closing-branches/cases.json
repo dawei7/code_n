@@ -144,10 +144,10 @@
       ]
     },
     {
-      "id": "real-star-distance-two",
-      "name": "real: center keeps every leaf pair within two",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-star-distance-two",
+      "name": "center keeps every leaf pair within two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "maxDistance": 2,
@@ -171,15 +171,14 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "star"
       ]
     },
     {
-      "id": "real-all-subsets-valid",
-      "name": "real: complete unit graph makes every subset valid",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-subsets-valid",
+      "name": "complete unit graph makes every subset valid",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "maxDistance": 1,
@@ -218,15 +217,14 @@
       },
       "expected": 16,
       "tags": [
-        "hidden",
         "all-valid"
       ]
     },
     {
-      "id": "real-indirect-route",
-      "name": "real: retained intermediate enables a short route",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-indirect-route",
+      "name": "retained intermediate enables a short route",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 3,
         "maxDistance": 6,
@@ -250,7 +248,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "shortest-path"
       ]
     }

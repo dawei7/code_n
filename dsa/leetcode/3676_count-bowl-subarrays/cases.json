@@ -7,72 +7,191 @@
       "name": "sample: nested bowls ending at four",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 5, 3, 1, 4]},
+      "input": {
+        "nums": [
+          2,
+          5,
+          3,
+          1,
+          4
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "nested-bowls"]
+      "tags": [
+        "sample",
+        "nested-bowls"
+      ]
     },
     {
       "id": "sample-one-high-left-wall",
       "name": "sample: one high left endpoint forms three bowls",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [5, 1, 2, 3, 4]},
+      "input": {
+        "nums": [
+          5,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
       "expected": 3,
-      "tags": ["sample", "greater-survivor"]
+      "tags": [
+        "sample",
+        "greater-survivor"
+      ]
     },
     {
       "id": "sample-decreasing-triple",
       "name": "sample: a decreasing triple has no bowl",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1000000000, 999999999, 999999998]},
+      "input": {
+        "nums": [
+          1000000000,
+          999999999,
+          999999998
+        ]
+      },
       "expected": 0,
-      "tags": ["sample", "maximum-value", "no-bowl"]
+      "tags": [
+        "sample",
+        "maximum-value",
+        "no-bowl"
+      ]
     },
     {
       "id": "trial-single-bowl",
       "name": "trial: both endpoints exceed one interior value",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [3, 1, 2]},
+      "input": {
+        "nums": [
+          3,
+          1,
+          2
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "minimum-length"]
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-increasing-triple",
       "name": "trial: an increasing triple is blocked",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 3]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "increasing", "no-bowl"]
+      "tags": [
+        "trial",
+        "increasing",
+        "no-bowl"
+      ]
     },
     {
-      "id": "real-pops-and-survivor",
-      "name": "hidden: current endpoints count popped and surviving candidates",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, 1, 4, 2, 3, 6]},
+      "id": "trial-pops-and-survivor",
+      "name": "current endpoints count popped and surviving candidates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          4,
+          2,
+          3,
+          6
+        ]
+      },
       "expected": 4,
-      "tags": ["hidden", "stack-pops", "greater-survivor"]
+      "tags": [
+        "stack-pops",
+        "greater-survivor"
+      ]
     },
     {
-      "id": "real-deeper-candidate-blocked",
-      "name": "hidden: the nearest greater survivor blocks deeper entries",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [6, 1, 5, 2, 4, 3]},
+      "id": "trial-deeper-candidate-blocked",
+      "name": "the nearest greater survivor blocks deeper entries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          1,
+          5,
+          2,
+          4,
+          3
+        ]
+      },
       "expected": 2,
-      "tags": ["hidden", "blocked-candidate"]
+      "tags": [
+        "blocked-candidate"
+      ]
     },
     {
-      "id": "real-alternating-walls",
-      "name": "hidden: alternating high walls create several local bowls",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [9, 1, 8, 2, 7, 3, 6]},
+      "id": "trial-alternating-walls",
+      "name": "alternating high walls create several local bowls",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          1,
+          8,
+          2,
+          7,
+          3,
+          6
+        ]
+      },
       "expected": 3,
-      "tags": ["hidden", "alternating"]
+      "tags": [
+        "alternating"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

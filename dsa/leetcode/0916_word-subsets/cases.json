@@ -156,10 +156,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: no universal word",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "no universal word",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words1": [
           "ab",
@@ -172,15 +172,14 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "empty-result"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: duplicate requirements",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "duplicate requirements",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words1": [
           "letter",
@@ -199,15 +198,14 @@
         "teller"
       ],
       "tags": [
-        "hidden",
         "duplicate-requirement"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: ten repeated letters",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "ten repeated letters",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words1": [
           "aaaaaaaaaa",
@@ -222,15 +220,14 @@
         "aaaaaaaaaa"
       ],
       "tags": [
-        "hidden",
         "maximum-length"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: independent maxima",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "independent maxima",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words1": [
           "aabbcc",
@@ -245,10 +242,8 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "independent-maxima"
       ]
     }
   ]
 }
-

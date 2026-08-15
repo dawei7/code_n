@@ -96,10 +96,10 @@
       ]
     },
     {
-      "id": "hidden-break",
-      "name": "hidden: difference change separates runs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-break",
+      "name": "difference change separates runs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -113,15 +113,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "break"
       ]
     },
     {
-      "id": "hidden-no-slices",
-      "name": "hidden: every adjacent difference changes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-no-slices",
+      "name": "every adjacent difference changes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -133,15 +132,14 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "none"
       ]
     },
     {
-      "id": "hidden-overlapping",
-      "name": "hidden: several overlapping slices",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-overlapping",
+      "name": "several overlapping slices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -154,7 +152,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "overlapping"
       ]
     }

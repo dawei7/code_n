@@ -146,10 +146,10 @@
       ]
     },
     {
-      "id": "hidden-one-row",
-      "name": "hidden: one-row matrix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-row",
+      "name": "one-row matrix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [
@@ -163,15 +163,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "rectangle"
       ]
     },
     {
-      "id": "hidden-mixed",
-      "name": "hidden: larger mixed matrix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed",
+      "name": "larger mixed matrix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [
@@ -197,7 +196,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

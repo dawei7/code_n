@@ -102,10 +102,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: repeated increasing layers",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "repeated increasing layers",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -118,15 +118,14 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "multiplicity"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: repeated ordered run",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "repeated ordered run",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -139,15 +138,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "index-distinct"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: negative predecessors",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-3",
+      "name": "negative predecessors",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -2,
@@ -158,10 +156,41 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "negative-values"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]
 }
-

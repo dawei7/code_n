@@ -113,10 +113,10 @@
       "expected": 12
     },
     {
-      "id": "real-flexible-minimum-above-fixed",
-      "name": "hidden: first minimum exceeds fixed second sum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-flexible-minimum-above-fixed",
+      "name": "first minimum exceeds fixed second sum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           1,
@@ -128,16 +128,15 @@
         ]
       },
       "tags": [
-        "hidden",
         "impossible"
       ],
       "expected": -1
     },
     {
-      "id": "real-opposite-impossible-direction",
-      "name": "hidden: fixed first sum is below second minimum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-opposite-impossible-direction",
+      "name": "fixed first sum is below second minimum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           1
@@ -148,17 +147,16 @@
         ]
       },
       "tags": [
-        "hidden",
         "impossible",
         "opposite-direction"
       ],
       "expected": -1
     },
     {
-      "id": "real-maximum-value-replacement",
-      "name": "hidden: one zero can absorb a large difference",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-value-replacement",
+      "name": "one zero can absorb a large difference",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           1000000
@@ -168,17 +166,16 @@
         ]
       },
       "tags": [
-        "hidden",
         "boundary",
         "one-flexible-side"
       ],
       "expected": 1000000
     },
     {
-      "id": "real-maximum-plus-zero-too-large",
-      "name": "hidden: flexible minimum exceeds a fixed million",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-plus-zero-too-large",
+      "name": "flexible minimum exceeds a fixed million",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           1000000,
@@ -190,7 +187,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "boundary",
         "impossible"
       ],

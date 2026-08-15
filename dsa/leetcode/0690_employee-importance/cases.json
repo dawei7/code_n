@@ -161,10 +161,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: branching hierarchy",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "branching hierarchy",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "employees": [
           {
@@ -197,15 +197,14 @@
       },
       "expected": 22,
       "tags": [
-        "hidden",
         "branching"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: negative subtree total",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "negative subtree total",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "employees": [
           {
@@ -231,15 +230,14 @@
       },
       "expected": -7,
       "tags": [
-        "hidden",
         "negative-total"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: nonconsecutive ids",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-3",
+      "name": "nonconsecutive ids",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "employees": [
           {
@@ -266,10 +264,8 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "nonconsecutive-ids"
       ]
     }
   ]
 }
-

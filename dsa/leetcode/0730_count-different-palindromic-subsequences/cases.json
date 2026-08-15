@@ -7,72 +7,137 @@
       "name": "sample: duplicate wrapped palindromes",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "bccb"},
+      "input": {
+        "s": "bccb"
+      },
       "expected": 6,
-      "tags": ["sample", "duplicates"]
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: four distinct characters",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "abcd"},
+      "input": {
+        "s": "abcd"
+      },
       "expected": 4,
-      "tags": ["sample", "distinct"]
+      "tags": [
+        "sample",
+        "distinct"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: repeated one character",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "aaa"},
+      "input": {
+        "s": "aaa"
+      },
       "expected": 3,
-      "tags": ["sample", "repeated"]
+      "tags": [
+        "sample",
+        "repeated"
+      ]
     },
     {
       "id": "trial-1",
       "name": "trial: one character",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "c"},
+      "input": {
+        "s": "c"
+      },
       "expected": 1,
-      "tags": ["trial", "singleton"]
+      "tags": [
+        "trial",
+        "singleton"
+      ]
     },
     {
       "id": "trial-2",
       "name": "trial: one repeated endpoint",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "aba"},
+      "input": {
+        "s": "aba"
+      },
       "expected": 4,
-      "tags": ["trial", "matching-endpoints"]
+      "tags": [
+        "trial",
+        "matching-endpoints"
+      ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: several nested palindrome forms",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcba"},
+      "id": "trial-ext-1",
+      "name": "several nested palindrome forms",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcba"
+      },
       "expected": 10,
-      "tags": ["hidden", "nested"]
+      "tags": [
+        "nested"
+      ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: repeated alphabet block",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcdabcd"},
+      "id": "trial-ext-2",
+      "name": "repeated alphabet block",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdabcd"
+      },
       "expected": 20,
-      "tags": ["hidden", "repeated-block"]
+      "tags": [
+        "repeated-block"
+      ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: modulo reduction",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcd"},
+      "id": "trial-3",
+      "name": "modulo reduction",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcd"
+      },
       "expected": 372554565,
-      "tags": ["hidden", "modulo"]
+      "tags": [
+        "modulo"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "b"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "bbb"
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
     }
   ]
 }

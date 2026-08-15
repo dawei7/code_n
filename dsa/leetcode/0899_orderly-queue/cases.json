@@ -93,64 +93,90 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: full selectable prefix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "full selectable prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "zyxwv",
         "k": 5
       },
       "expected": "vwxyz",
       "tags": [
-        "hidden",
         "full-prefix"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: repeated minimum rotation",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "repeated minimum rotation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "bbaaccaadd",
         "k": 1
       },
       "expected": "aaccaaddbb",
       "tags": [
-        "hidden",
         "rotation",
         "duplicates"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: alternating letters with two choices",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "alternating letters with two choices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "zazazaza",
         "k": 2
       },
       "expected": "aaaazzzz",
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: late smallest rotation",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "late smallest rotation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "bcdefga",
         "k": 1
       },
       "expected": "abcdefg",
       "tags": [
-        "hidden",
         "late-minimum"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "c",
+        "k": 1
+      },
+      "expected": "c",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ccc",
+        "k": 1
+      },
+      "expected": "ccc",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

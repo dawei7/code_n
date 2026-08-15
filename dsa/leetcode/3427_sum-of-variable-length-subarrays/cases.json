@@ -72,10 +72,10 @@
       ]
     },
     {
-      "id": "real-minimum-value",
-      "name": "real: minimum single value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-minimum-value",
+      "name": "minimum single value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1
@@ -87,10 +87,10 @@
       ]
     },
     {
-      "id": "real-maximum-value",
-      "name": "real: maximum single value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-value",
+      "name": "maximum single value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000
@@ -102,10 +102,10 @@
       ]
     },
     {
-      "id": "real-all-ones",
-      "name": "real: every window has at most two values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-ones",
+      "name": "every window has at most two values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -121,10 +121,10 @@
       ]
     },
     {
-      "id": "real-all-large",
-      "name": "real: every endpoint uses the full prefix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-large",
+      "name": "every endpoint uses the full prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000,
@@ -140,10 +140,10 @@
       ]
     },
     {
-      "id": "real-increasing",
-      "name": "real: increasing values use full prefixes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-increasing",
+      "name": "increasing values use full prefixes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -159,10 +159,10 @@
       ]
     },
     {
-      "id": "real-late-clamp",
-      "name": "real: final value reaches index zero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-late-clamp",
+      "name": "final value reaches index zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -176,10 +176,10 @@
       ]
     },
     {
-      "id": "real-alternating",
-      "name": "real: alternating window lengths",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alternating",
+      "name": "alternating window lengths",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -195,10 +195,10 @@
       ]
     },
     {
-      "id": "real-decreasing",
-      "name": "real: decreasing values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-decreasing",
+      "name": "decreasing values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -214,10 +214,10 @@
       ]
     },
     {
-      "id": "real-mixed-window",
-      "name": "real: varied back references",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-window",
+      "name": "varied back references",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,

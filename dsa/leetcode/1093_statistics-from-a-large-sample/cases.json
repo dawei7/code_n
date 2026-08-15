@@ -1128,10 +1128,10 @@
       ]
     },
     {
-      "id": "real-large-frequency",
-      "name": "hidden: maximum allowed represented population",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-frequency",
+      "name": "maximum allowed represented population",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "count": [
           0,
@@ -1404,15 +1404,14 @@
         "tolerance": 1e-05
       },
       "tags": [
-        "hidden",
         "large-frequency"
       ]
     },
     {
-      "id": "real-separated-odd",
-      "name": "hidden: separated bins and odd population",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-separated-odd",
+      "name": "separated bins and odd population",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "count": [
           0,
@@ -1685,7 +1684,6 @@
         "tolerance": 1e-05
       },
       "tags": [
-        "hidden",
         "odd-median",
         "separated"
       ]

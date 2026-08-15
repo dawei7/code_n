@@ -131,10 +131,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: larger pair is repeated",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "larger pair is repeated",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -147,15 +147,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "larger-pair"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: several overlapping patterns",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "several overlapping patterns",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           0,
@@ -171,15 +170,14 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "patterns"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: upper value boundary",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "upper value boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           100,
@@ -193,15 +191,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "value-bound"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: large combination count",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "large combination count",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           7,
@@ -329,10 +326,8 @@
       },
       "expected": 280840,
       "tags": [
-        "hidden",
         "combination"
       ]
     }
   ]
 }
-

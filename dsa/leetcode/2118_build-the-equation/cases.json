@@ -7,60 +7,234 @@
       "name": "sample: quadratic, linear, and constant terms",
       "kind": "sample",
       "visible": true,
-      "input": {"tables": {"Terms": [{"power": 2, "factor": 1}, {"power": 1, "factor": -4}, {"power": 0, "factor": 2}]}},
-      "expected": {"columns": ["equation"], "rows": [["+1X^2-4X+2=0"]]},
-      "validator": {"kind": "unordered_table"},
-      "tags": ["sample", "all-power-forms"]
+      "input": {
+        "tables": {
+          "Terms": [
+            {
+              "power": 2,
+              "factor": 1
+            },
+            {
+              "power": 1,
+              "factor": -4
+            },
+            {
+              "power": 0,
+              "factor": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "equation"
+        ],
+        "rows": [
+          [
+            "+1X^2-4X+2=0"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "sample",
+        "all-power-forms"
+      ]
     },
     {
       "id": "sample-sparse-powers",
       "name": "sample: missing powers create no terms",
       "kind": "sample",
       "visible": true,
-      "input": {"tables": {"Terms": [{"power": 4, "factor": -4}, {"power": 2, "factor": 1}, {"power": 1, "factor": -1}]}},
-      "expected": {"columns": ["equation"], "rows": [["-4X^4+1X^2-1X=0"]]},
-      "validator": {"kind": "unordered_table"},
-      "tags": ["sample", "sparse-powers"]
+      "input": {
+        "tables": {
+          "Terms": [
+            {
+              "power": 4,
+              "factor": -4
+            },
+            {
+              "power": 2,
+              "factor": 1
+            },
+            {
+              "power": 1,
+              "factor": -1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "equation"
+        ],
+        "rows": [
+          [
+            "-4X^4+1X^2-1X=0"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "sample",
+        "sparse-powers"
+      ]
     },
     {
       "id": "trial-constant-only",
       "name": "one constant has no variable marker",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"Terms": [{"power": 0, "factor": -100}]}},
-      "expected": {"columns": ["equation"], "rows": [["-100=0"]]},
-      "validator": {"kind": "unordered_table"},
-      "tags": ["constant", "single-row"]
+      "input": {
+        "tables": {
+          "Terms": [
+            {
+              "power": 0,
+              "factor": -100
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "equation"
+        ],
+        "rows": [
+          [
+            "-100=0"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "constant",
+        "single-row"
+      ]
     },
     {
       "id": "trial-linear-only",
       "name": "power one omits its exponent",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"Terms": [{"power": 1, "factor": 7}]}},
-      "expected": {"columns": ["equation"], "rows": [["+7X=0"]]},
-      "validator": {"kind": "unordered_table"},
-      "tags": ["linear", "single-row"]
+      "input": {
+        "tables": {
+          "Terms": [
+            {
+              "power": 1,
+              "factor": 7
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "equation"
+        ],
+        "rows": [
+          [
+            "+7X=0"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "linear",
+        "single-row"
+      ]
     },
     {
-      "id": "real-input-order-irrelevant",
-      "name": "hidden: rows arrive far from descending power order",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"Terms": [{"power": 0, "factor": -2}, {"power": 100, "factor": 3}, {"power": 1, "factor": 5}, {"power": 8, "factor": -9}]}},
-      "expected": {"columns": ["equation"], "rows": [["+3X^100-9X^8+5X-2=0"]]},
-      "validator": {"kind": "unordered_table"},
-      "tags": ["hidden", "ordering", "maximum-power"]
+      "id": "trial-input-order-irrelevant",
+      "name": "rows arrive far from descending power order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Terms": [
+            {
+              "power": 0,
+              "factor": -2
+            },
+            {
+              "power": 100,
+              "factor": 3
+            },
+            {
+              "power": 1,
+              "factor": 5
+            },
+            {
+              "power": 8,
+              "factor": -9
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "equation"
+        ],
+        "rows": [
+          [
+            "+3X^100-9X^8+5X-2=0"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "ordering",
+        "maximum-power"
+      ]
     },
     {
-      "id": "real-sign-and-magnitude",
-      "name": "hidden: every term carries an explicit sign",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"Terms": [{"power": 5, "factor": 100}, {"power": 3, "factor": -100}, {"power": 2, "factor": -1}]}},
-      "expected": {"columns": ["equation"], "rows": [["+100X^5-100X^3-1X^2=0"]]},
-      "validator": {"kind": "unordered_table"},
-      "tags": ["hidden", "signs", "factor-boundaries"]
+      "id": "trial-sign-and-magnitude",
+      "name": "every term carries an explicit sign",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Terms": [
+            {
+              "power": 5,
+              "factor": 100
+            },
+            {
+              "power": 3,
+              "factor": -100
+            },
+            {
+              "power": 2,
+              "factor": -1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "equation"
+        ],
+        "rows": [
+          [
+            "+100X^5-100X^3-1X^2=0"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "signs",
+        "factor-boundaries"
+      ]
     }
   ]
 }

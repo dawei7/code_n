@@ -1,15 +1,151 @@
 {
   "challenge_id": "lc_2663",
   "cases": [
-    {"id":"sample-carry-and-reset","name":"sample: carry left and rebuild suffix","kind":"sample","visible":true,"input":{"s":"abcz","k":26},"expected":"abda","tags":["sample","carry"]},
-    {"id":"sample-no-successor","name":"sample: alphabet maximum has no successor","kind":"sample","visible":true,"input":{"s":"dc","k":4},"expected":"","tags":["sample","impossible"]},
-    {"id":"trial-single-character","name":"trial: increment a one-character string","kind":"trial","visible":true,"input":{"s":"a","k":4},"expected":"b","tags":["single-character","boundary"]},
-    {"id":"trial-single-character-maximum","name":"trial: one-character maximum is impossible","kind":"trial","visible":true,"input":{"s":"d","k":4},"expected":"","tags":["single-character","impossible"]},
-    {"id":"real-skip-length-two-palindrome","name":"hidden: next letters conflict with preceding positions","kind":"real","visible":false,"input":{"s":"abca","k":4},"expected":"abcd","tags":["hidden","local-conflict"]},
-    {"id":"real-carry-two-positions","name":"hidden: exhausted suffix carries left","kind":"real","visible":false,"input":{"s":"abdc","k":4},"expected":"acba","tags":["hidden","carry","suffix"]},
-    {"id":"real-final-position-choice","name":"hidden: choose first locally valid larger letter","kind":"real","visible":false,"input":{"s":"cba","k":4},"expected":"cbd","tags":["hidden","greedy"]},
-    {"id":"real-prefix-change","name":"hidden: rebuild suffix after changing middle character","kind":"real","visible":false,"input":{"s":"abd","k":4},"expected":"acb","tags":["hidden","suffix"]},
-    {"id":"real-larger-alphabet","name":"hidden: fifth letter participates in carry","kind":"real","visible":false,"input":{"s":"abde","k":5},"expected":"abea","tags":["hidden","alphabet"]},
-    {"id":"real-global-maximum","name":"hidden: maximal repeating pattern has no successor","kind":"real","visible":false,"input":{"s":"dcbdcb","k":4},"expected":"","tags":["hidden","impossible","maximum"]}
+    {
+      "id": "sample-carry-and-reset",
+      "name": "sample: carry left and rebuild suffix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcz",
+        "k": 26
+      },
+      "expected": "abda",
+      "tags": [
+        "sample",
+        "carry"
+      ]
+    },
+    {
+      "id": "sample-no-successor",
+      "name": "sample: alphabet maximum has no successor",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "dc",
+        "k": 4
+      },
+      "expected": "",
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "trial: increment a one-character string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "k": 4
+      },
+      "expected": "b",
+      "tags": [
+        "single-character",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-single-character-maximum",
+      "name": "trial: one-character maximum is impossible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "d",
+        "k": 4
+      },
+      "expected": "",
+      "tags": [
+        "single-character",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-skip-length-two-palindrome",
+      "name": "next letters conflict with preceding positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abca",
+        "k": 4
+      },
+      "expected": "abcd",
+      "tags": [
+        "local-conflict"
+      ]
+    },
+    {
+      "id": "trial-carry-two-positions",
+      "name": "exhausted suffix carries left",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abdc",
+        "k": 4
+      },
+      "expected": "acba",
+      "tags": [
+        "carry",
+        "suffix"
+      ]
+    },
+    {
+      "id": "trial-final-position-choice",
+      "name": "choose first locally valid larger letter",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "cba",
+        "k": 4
+      },
+      "expected": "cbd",
+      "tags": [
+        "greedy"
+      ]
+    },
+    {
+      "id": "trial-prefix-change",
+      "name": "rebuild suffix after changing middle character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abd",
+        "k": 4
+      },
+      "expected": "acb",
+      "tags": [
+        "suffix"
+      ]
+    },
+    {
+      "id": "trial-larger-alphabet",
+      "name": "fifth letter participates in carry",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abde",
+        "k": 5
+      },
+      "expected": "abea",
+      "tags": [
+        "alphabet"
+      ]
+    },
+    {
+      "id": "trial-global-maximum",
+      "name": "maximal repeating pattern has no successor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "dcbdcb",
+        "k": 4
+      },
+      "expected": "",
+      "tags": [
+        "impossible",
+        "maximum"
+      ]
+    }
   ]
 }

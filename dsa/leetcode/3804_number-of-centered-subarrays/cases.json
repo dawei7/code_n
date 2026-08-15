@@ -2,16 +2,274 @@
   "schema_version": 1,
   "challenge_id": "lc_3804",
   "cases": [
-    {"id":"sample-1","name":"sample: five centered intervals with zero and opposites","kind":"sample","visible":true,"input":{"nums":[-1,1,0]},"expected":5,"validator":{"kind":"exact"},"tags":["sample","zero","negative"]},
-    {"id":"sample-2","name":"sample: only singleton intervals qualify","kind":"sample","visible":true,"input":{"nums":[2,-3]},"expected":2,"validator":{"kind":"exact"},"tags":["sample","singletons-only"]},
-    {"id":"trial-single-element","name":"trial: every singleton is centered","kind":"trial","visible":true,"input":{"nums":[5]},"expected":1,"validator":{"kind":"exact"},"tags":["trial","minimum"]},
-    {"id":"trial-two-zeros","name":"trial: every all-zero interval qualifies","kind":"trial","visible":true,"input":{"nums":[0,0]},"expected":3,"validator":{"kind":"exact"},"tags":["trial","zeros","all-centered"]},
-    {"id":"trial-two-ones","name":"trial: pair sum is absent","kind":"trial","visible":true,"input":{"nums":[1,1]},"expected":2,"validator":{"kind":"exact"},"tags":["trial","duplicates"]},
-    {"id":"trial-one-and-zero","name":"trial: pair sum equals the nonzero element","kind":"trial","visible":true,"input":{"nums":[1,0]},"expected":3,"validator":{"kind":"exact"},"tags":["trial","zero","pair-centered"]},
-    {"id":"real-canceling-prefix","name":"hidden: three values cancel before a distant value","kind":"real","visible":false,"input":{"nums":[3,-1,-2,5]},"expected":5,"validator":{"kind":"exact"},"tags":["hidden","cancellation","negative"]},
-    {"id":"real-alternating-opposites","name":"hidden: repeated positive and negative values","kind":"real","visible":false,"input":{"nums":[-2,2,-2,2]},"expected":6,"validator":{"kind":"exact"},"tags":["hidden","duplicates","opposites"]},
-    {"id":"real-zero-boundaries","name":"hidden: zero appears at both ends","kind":"real","visible":false,"input":{"nums":[0,1,0]},"expected":6,"validator":{"kind":"exact"},"tags":["hidden","zeros","all-centered"]},
-    {"id":"real-symmetric-range","name":"hidden: negative-to-positive symmetric range","kind":"real","visible":false,"input":{"nums":[-4,-3,-2,-1,0,1,2,3,4]},"expected":21,"validator":{"kind":"exact"},"tags":["hidden","symmetric-values","negative"]},
-    {"id":"real-large-values","name":"hidden: values at both numeric bounds","kind":"real","visible":false,"input":{"nums":[-100000,100000,0]},"expected":5,"validator":{"kind":"exact"},"tags":["hidden","value-boundaries","zero"]}
+    {
+      "id": "sample-1",
+      "name": "sample: five centered intervals with zero and opposites",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          1,
+          0
+        ]
+      },
+      "expected": 5,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "zero",
+        "negative"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: only singleton intervals qualify",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          -3
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "singletons-only"
+      ]
+    },
+    {
+      "id": "trial-single-element",
+      "name": "trial: every singleton is centered",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-two-zeros",
+      "name": "trial: every all-zero interval qualifies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0
+        ]
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "zeros",
+        "all-centered"
+      ]
+    },
+    {
+      "id": "trial-two-ones",
+      "name": "trial: pair sum is absent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-one-and-zero",
+      "name": "trial: pair sum equals the nonzero element",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          0
+        ]
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "zero",
+        "pair-centered"
+      ]
+    },
+    {
+      "id": "trial-canceling-prefix",
+      "name": "three values cancel before a distant value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          -1,
+          -2,
+          5
+        ]
+      },
+      "expected": 5,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "cancellation",
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-alternating-opposites",
+      "name": "repeated positive and negative values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -2,
+          2,
+          -2,
+          2
+        ]
+      },
+      "expected": 6,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "duplicates",
+        "opposites"
+      ]
+    },
+    {
+      "id": "trial-zero-boundaries",
+      "name": "zero appears at both ends",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          0
+        ]
+      },
+      "expected": 6,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "zeros",
+        "all-centered"
+      ]
+    },
+    {
+      "id": "trial-symmetric-range",
+      "name": "negative-to-positive symmetric range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -4,
+          -3,
+          -2,
+          -1,
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 21,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "symmetric-values",
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-large-values",
+      "name": "values at both numeric bounds",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -100000,
+          100000,
+          0
+        ]
+      },
+      "expected": 5,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "value-boundaries",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          -1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    }
   ]
 }

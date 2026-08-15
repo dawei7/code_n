@@ -1,12 +1,151 @@
 {
   "challenge_id": "lc_2524",
   "cases": [
-    {"id": "sample-1", "name": "sample: best mixed-frequency window", "kind": "sample", "visible": true, "input": {"nums": [1, 1, 1, 2, 1, 2], "k": 3}, "expected": 5, "tags": ["sample", "sliding-window"]},
-    {"id": "sample-2", "name": "sample: all windows score one", "kind": "sample", "visible": true, "input": {"nums": [1, 1, 1, 1, 1, 1], "k": 4}, "expected": 1, "tags": ["sample", "repeated-value"]},
-    {"id": "trial-singletons", "name": "trial: length-one windows", "kind": "trial", "visible": true, "input": {"nums": [7, 2, 9], "k": 1}, "expected": 9, "tags": ["trial", "minimum-window"]},
-    {"id": "trial-whole-array", "name": "trial: definition example as one window", "kind": "trial", "visible": true, "input": {"nums": [5, 4, 5, 7, 4, 4], "k": 6}, "expected": 96, "tags": ["trial", "whole-array"]},
-    {"id": "real-changing-frequencies", "name": "hidden: outgoing and incoming counts both change", "kind": "real", "visible": false, "input": {"nums": [2, 2, 3, 3, 3, 2], "k": 4}, "expected": 29, "tags": ["hidden", "frequency-update"]},
-    {"id": "real-modular-comparison", "name": "hidden: maximize the reduced score", "kind": "real", "visible": false, "input": {"nums": [1000000, 1000000, 1000000, 999999, 999999, 999999], "k": 3}, "expected": 998993008, "tags": ["hidden", "modulo-semantics"]},
-    {"id": "real-large-values", "name": "hidden: large bases and repeated pairs", "kind": "real", "visible": false, "input": {"nums": [999999, 999999, 1000000, 1000000], "k": 2}, "expected": 999993007, "tags": ["hidden", "large-values"]}
+    {
+      "id": "sample-1",
+      "name": "sample: best mixed-frequency window",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          2,
+          1,
+          2
+        ],
+        "k": 3
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "sliding-window"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all windows score one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 4
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "repeated-value"
+      ]
+    },
+    {
+      "id": "trial-singletons",
+      "name": "trial: length-one windows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          2,
+          9
+        ],
+        "k": 1
+      },
+      "expected": 9,
+      "tags": [
+        "trial",
+        "minimum-window"
+      ]
+    },
+    {
+      "id": "trial-whole-array",
+      "name": "trial: definition example as one window",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          4,
+          5,
+          7,
+          4,
+          4
+        ],
+        "k": 6
+      },
+      "expected": 96,
+      "tags": [
+        "trial",
+        "whole-array"
+      ]
+    },
+    {
+      "id": "trial-changing-frequencies",
+      "name": "outgoing and incoming counts both change",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          3,
+          3,
+          3,
+          2
+        ],
+        "k": 4
+      },
+      "expected": 29,
+      "tags": [
+        "frequency-update"
+      ]
+    },
+    {
+      "id": "trial-modular-comparison",
+      "name": "maximize the reduced score",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000,
+          1000000,
+          1000000,
+          999999,
+          999999,
+          999999
+        ],
+        "k": 3
+      },
+      "expected": 998993008,
+      "tags": [
+        "modulo-semantics"
+      ]
+    },
+    {
+      "id": "trial-large-values",
+      "name": "large bases and repeated pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          999999,
+          999999,
+          1000000,
+          1000000
+        ],
+        "k": 2
+      },
+      "expected": 999993007,
+      "tags": [
+        "large-values"
+      ]
+    }
   ]
 }

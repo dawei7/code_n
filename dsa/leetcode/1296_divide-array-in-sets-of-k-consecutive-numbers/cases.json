@@ -117,10 +117,10 @@
       ]
     },
     {
-      "id": "hidden-gap",
-      "name": "hidden: missing value inside a required run",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-gap",
+      "name": "missing value inside a required run",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -132,15 +132,14 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "gap"
       ]
     },
     {
-      "id": "hidden-insufficient-successor",
-      "name": "hidden: successor multiplicity is too small",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-insufficient-successor",
+      "name": "successor multiplicity is too small",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -154,8 +153,42 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "frequency"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 4
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 4
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

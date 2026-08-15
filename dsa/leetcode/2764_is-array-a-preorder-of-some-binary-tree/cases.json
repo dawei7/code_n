@@ -124,10 +124,10 @@
       ]
     },
     {
-      "id": "real-two-subtrees",
-      "name": "hidden: two complete sibling subtrees",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-subtrees",
+      "name": "two complete sibling subtrees",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nodes": [
           [
@@ -158,15 +158,14 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "sibling-subtrees"
       ]
     },
     {
-      "id": "real-return-too-late",
-      "name": "hidden: return to an already closed subtree",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-return-too-late",
+      "name": "return to an already closed subtree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nodes": [
           [
@@ -193,15 +192,14 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "closed-subtree"
       ]
     },
     {
-      "id": "real-deep-unwind",
-      "name": "hidden: unwind from a deep path to an uncle",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-deep-unwind",
+      "name": "unwind from a deep path to an uncle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nodes": [
           [
@@ -232,15 +230,14 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "deep-unwind"
       ]
     },
     {
-      "id": "real-parent-after-child",
-      "name": "hidden: a node appears before its parent",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-parent-after-child",
+      "name": "a node appears before its parent",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nodes": [
           [
@@ -267,15 +264,14 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "parent-order"
       ]
     },
     {
-      "id": "real-root-not-first",
-      "name": "hidden: the root is not first",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-root-not-first",
+      "name": "the root is not first",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nodes": [
           [
@@ -290,15 +286,14 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "root-order"
       ]
     },
     {
-      "id": "real-id-boundary",
-      "name": "hidden: identifiers at the allowed boundary",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-id-boundary",
+      "name": "identifiers at the allowed boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nodes": [
           [
@@ -313,7 +308,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "id-boundary"
       ]
     }

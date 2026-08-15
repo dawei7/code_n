@@ -102,10 +102,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: single element",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "single element",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9
@@ -113,15 +113,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "single-element"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: negative runs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "negative runs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -2,
@@ -133,15 +132,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "negative-values"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: longest run in the middle",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-3",
+      "name": "longest run in the middle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -154,10 +152,41 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "middle-run"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]
 }
-

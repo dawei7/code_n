@@ -58,7 +58,7 @@
       "id": "trial-greedy-trap",
       "name": "trial: largest-first is suboptimal",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "coins": [
           1,
@@ -77,7 +77,7 @@
       "id": "trial-gcd-impossible",
       "name": "trial: target outside denomination gcd",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "coins": [
           4,
@@ -92,10 +92,10 @@
       ]
     },
     {
-      "id": "hidden-mixed",
-      "name": "hidden: combine several denominations",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed",
+      "name": "combine several denominations",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "coins": [
           2,
@@ -107,14 +107,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden"
+        "trial"
       ]
     },
     {
-      "id": "hidden-many-small",
-      "name": "hidden: only repeated threes work",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-small",
+      "name": "only repeated threes work",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "coins": [
           3,
@@ -124,14 +124,14 @@
       },
       "expected": 9,
       "tags": [
-        "hidden"
+        "trial"
       ]
     },
     {
-      "id": "hidden-large-known",
-      "name": "hidden: large irregular denominations",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-known",
+      "name": "large irregular denominations",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "coins": [
           186,
@@ -143,7 +143,6 @@
       },
       "expected": 20,
       "tags": [
-        "hidden",
         "large"
       ]
     }

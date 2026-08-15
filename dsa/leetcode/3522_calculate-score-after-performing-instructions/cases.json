@@ -2,13 +2,261 @@
   "schema_version": 1,
   "challenge_id": "lc_3522",
   "cases": [
-    {"id":"sample-cycle","name":"sample: mixed path ends at a revisit","kind":"sample","visible":true,"input":{"instructions":["jump","add","add","jump","add","jump"],"values":[2,1,3,1,-2,-3]},"expected":1,"tags":["sample","cycle","negative-value"]},
-    {"id":"sample-out-of-bounds","name":"sample: first jump exits right","kind":"sample","visible":true,"input":{"instructions":["jump","add","add"],"values":[3,1,1]},"expected":0,"tags":["sample","right-boundary"]},
-    {"id":"sample-self-loop","name":"sample: zero jump revisits itself","kind":"sample","visible":true,"input":{"instructions":["jump"],"values":[0]},"expected":0,"tags":["sample","self-loop"]},
-    {"id":"trial-all-add","name":"trial: all add instructions execute once","kind":"trial","visible":true,"input":{"instructions":["add","add","add","add"],"values":[5,-2,0,7]},"expected":10,"tags":["trial","full-path","negative-add"]},
-    {"id":"trial-negative-exit","name":"trial: jump exits left after one addition","kind":"trial","visible":true,"input":{"instructions":["add","jump","add"],"values":[9,-2,100]},"expected":9,"tags":["trial","left-boundary"]},
-    {"id":"real-backward-unvisited","name":"real: backward jump reaches an unvisited index","kind":"real","visible":false,"input":{"instructions":["jump","add","jump","add","jump"],"values":[3,10,-1,5,-3]},"expected":15,"tags":["real","backward-jump","revisit"]},
-    {"id":"real-skip-adds","name":"real: jumps skip add instructions","kind":"real","visible":false,"input":{"instructions":["jump","add","jump","add","add","jump"],"values":[2,100,2,200,-6,1]},"expected":-6,"tags":["real","skipped-instructions","exit"]},
-    {"id":"real-cycle-with-negative-score","name":"real: cycle retains accumulated negative score","kind":"real","visible":false,"input":{"instructions":["add","jump","add","jump","add"],"values":[-4,2,99,-3,8]},"expected":-4,"tags":["real","cycle","negative-score"]}
+    {
+      "id": "sample-cycle",
+      "name": "sample: mixed path ends at a revisit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "instructions": [
+          "jump",
+          "add",
+          "add",
+          "jump",
+          "add",
+          "jump"
+        ],
+        "values": [
+          2,
+          1,
+          3,
+          1,
+          -2,
+          -3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "cycle",
+        "negative-value"
+      ]
+    },
+    {
+      "id": "sample-out-of-bounds",
+      "name": "sample: first jump exits right",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "instructions": [
+          "jump",
+          "add",
+          "add"
+        ],
+        "values": [
+          3,
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "right-boundary"
+      ]
+    },
+    {
+      "id": "sample-self-loop",
+      "name": "sample: zero jump revisits itself",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "instructions": [
+          "jump"
+        ],
+        "values": [
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "self-loop"
+      ]
+    },
+    {
+      "id": "trial-all-add",
+      "name": "trial: all add instructions execute once",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "instructions": [
+          "add",
+          "add",
+          "add",
+          "add"
+        ],
+        "values": [
+          5,
+          -2,
+          0,
+          7
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "trial",
+        "full-path",
+        "negative-add"
+      ]
+    },
+    {
+      "id": "trial-negative-exit",
+      "name": "trial: jump exits left after one addition",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "instructions": [
+          "add",
+          "jump",
+          "add"
+        ],
+        "values": [
+          9,
+          -2,
+          100
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "trial",
+        "left-boundary"
+      ]
+    },
+    {
+      "id": "trial-backward-unvisited",
+      "name": "backward jump reaches an unvisited index",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "instructions": [
+          "jump",
+          "add",
+          "jump",
+          "add",
+          "jump"
+        ],
+        "values": [
+          3,
+          10,
+          -1,
+          5,
+          -3
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "real",
+        "backward-jump",
+        "revisit"
+      ]
+    },
+    {
+      "id": "trial-skip-adds",
+      "name": "jumps skip add instructions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "instructions": [
+          "jump",
+          "add",
+          "jump",
+          "add",
+          "add",
+          "jump"
+        ],
+        "values": [
+          2,
+          100,
+          2,
+          200,
+          -6,
+          1
+        ]
+      },
+      "expected": -6,
+      "tags": [
+        "real",
+        "skipped-instructions",
+        "exit"
+      ]
+    },
+    {
+      "id": "trial-cycle-with-negative-score",
+      "name": "cycle retains accumulated negative score",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "instructions": [
+          "add",
+          "jump",
+          "add",
+          "jump",
+          "add"
+        ],
+        "values": [
+          -4,
+          2,
+          99,
+          -3,
+          8
+        ]
+      },
+      "expected": -4,
+      "tags": [
+        "real",
+        "cycle",
+        "negative-score"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "instructions": [
+          "jump",
+          "add",
+          "add",
+          "jump",
+          "add",
+          "jump"
+        ],
+        "values": [
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "instructions": [
+          "jump",
+          "add",
+          "add",
+          "jump",
+          "add",
+          "jump"
+        ],
+        "values": [
+          2,
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    }
   ]
 }

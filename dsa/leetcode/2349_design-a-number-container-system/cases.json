@@ -2,12 +2,315 @@
   "schema_version": 1,
   "challenge_id": "lc_2349",
   "cases": [
-    {"id":"sample-replace-minimum","name":"sample: replacement exposes the next index","kind":"sample","visible":true,"input":{"operations":["NumberContainers","find","change","change","change","change","find","change","find"],"arguments":[[],[10],[2,10],[1,10],[3,10],[5,10],[10],[1,20],[10]]},"expected":[null,-1,null,null,null,null,1,null,2],"tags":["sample","stateful"]},
-    {"id":"trial-single-index","name":"one assignment is found directly","kind":"trial","visible":true,"input":{"operations":["NumberContainers","change","find"],"arguments":[[],[1000000000,1000000000],[1000000000]]},"expected":[null,null,1000000000],"tags":["boundary"]},
-    {"id":"trial-same-assignment","name":"repeating an unchanged assignment preserves the index","kind":"trial","visible":true,"input":{"operations":["NumberContainers","change","change","find"],"arguments":[[],[4,7],[4,7],[7]]},"expected":[null,null,null,4],"tags":["idempotent"]},
-    {"id":"trial-replace-only","name":"replacing the only index removes the old number","kind":"trial","visible":true,"input":{"operations":["NumberContainers","change","change","find","find"],"arguments":[[],[3,8],[3,9],[8],[9]]},"expected":[null,null,null,-1,3],"tags":["replacement"]},
-    {"id":"trial-lower-late","name":"a later change can introduce a smaller index","kind":"trial","visible":true,"input":{"operations":["NumberContainers","change","change","find"],"arguments":[[],[9,5],[2,5],[5]]},"expected":[null,null,null,2],"tags":["minimum"]},
-    {"id":"real-stale-chain","name":"hidden: several stale heap entries are discarded","kind":"real","visible":false,"input":{"operations":["NumberContainers","change","change","change","change","find","find"],"arguments":[[],[1,4],[2,4],[1,5],[2,6],[4],[5]]},"expected":[null,null,null,null,null,-1,1],"tags":["hidden","lazy-deletion"]},
-    {"id":"real-return-number","name":"hidden: an index can return to an earlier number","kind":"real","visible":false,"input":{"operations":["NumberContainers","change","change","change","find"],"arguments":[[],[7,2],[7,3],[7,2],[2]]},"expected":[null,null,null,null,7],"tags":["hidden","reassignment"]}
+    {
+      "id": "sample-replace-minimum",
+      "name": "sample: replacement exposes the next index",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          "NumberContainers",
+          "find",
+          "change",
+          "change",
+          "change",
+          "change",
+          "find",
+          "change",
+          "find"
+        ],
+        "arguments": [
+          [],
+          [
+            10
+          ],
+          [
+            2,
+            10
+          ],
+          [
+            1,
+            10
+          ],
+          [
+            3,
+            10
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            10
+          ],
+          [
+            1,
+            20
+          ],
+          [
+            10
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        -1,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        2
+      ],
+      "tags": [
+        "sample",
+        "stateful"
+      ]
+    },
+    {
+      "id": "trial-single-index",
+      "name": "one assignment is found directly",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "NumberContainers",
+          "change",
+          "find"
+        ],
+        "arguments": [
+          [],
+          [
+            1000000000,
+            1000000000
+          ],
+          [
+            1000000000
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        1000000000
+      ],
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-same-assignment",
+      "name": "repeating an unchanged assignment preserves the index",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "NumberContainers",
+          "change",
+          "change",
+          "find"
+        ],
+        "arguments": [
+          [],
+          [
+            4,
+            7
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            7
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        4
+      ],
+      "tags": [
+        "idempotent"
+      ]
+    },
+    {
+      "id": "trial-replace-only",
+      "name": "replacing the only index removes the old number",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "NumberContainers",
+          "change",
+          "change",
+          "find",
+          "find"
+        ],
+        "arguments": [
+          [],
+          [
+            3,
+            8
+          ],
+          [
+            3,
+            9
+          ],
+          [
+            8
+          ],
+          [
+            9
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        -1,
+        3
+      ],
+      "tags": [
+        "replacement"
+      ]
+    },
+    {
+      "id": "trial-lower-late",
+      "name": "a later change can introduce a smaller index",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "NumberContainers",
+          "change",
+          "change",
+          "find"
+        ],
+        "arguments": [
+          [],
+          [
+            9,
+            5
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            5
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        2
+      ],
+      "tags": [
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-stale-chain",
+      "name": "several stale heap entries are discarded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "NumberContainers",
+          "change",
+          "change",
+          "change",
+          "change",
+          "find",
+          "find"
+        ],
+        "arguments": [
+          [],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            4
+          ],
+          [
+            5
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        -1,
+        1
+      ],
+      "tags": [
+        "lazy-deletion"
+      ]
+    },
+    {
+      "id": "trial-return-number",
+      "name": "an index can return to an earlier number",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "NumberContainers",
+          "change",
+          "change",
+          "change",
+          "find"
+        ],
+        "arguments": [
+          [],
+          [
+            7,
+            2
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            7,
+            2
+          ],
+          [
+            2
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        7
+      ],
+      "tags": [
+        "reassignment"
+      ]
+    }
   ]
 }

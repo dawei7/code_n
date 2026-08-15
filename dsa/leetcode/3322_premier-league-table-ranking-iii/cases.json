@@ -6,69 +6,567 @@
       "name": "sample: official 2021 and 2022 tables",
       "kind": "sample",
       "visible": true,
-      "input": {"tables": {"SeasonStats": [
-        {"season_id":2021,"team_id":1,"team_name":"Manchester City","matches_played":38,"wins":29,"draws":6,"losses":3,"goals_for":99,"goals_against":26},
-        {"season_id":2021,"team_id":2,"team_name":"Liverpool","matches_played":38,"wins":28,"draws":8,"losses":2,"goals_for":94,"goals_against":26},
-        {"season_id":2021,"team_id":3,"team_name":"Chelsea","matches_played":38,"wins":21,"draws":11,"losses":6,"goals_for":76,"goals_against":33},
-        {"season_id":2021,"team_id":4,"team_name":"Tottenham","matches_played":38,"wins":22,"draws":5,"losses":11,"goals_for":69,"goals_against":40},
-        {"season_id":2021,"team_id":5,"team_name":"Arsenal","matches_played":38,"wins":22,"draws":3,"losses":13,"goals_for":61,"goals_against":48},
-        {"season_id":2022,"team_id":1,"team_name":"Manchester City","matches_played":38,"wins":28,"draws":5,"losses":5,"goals_for":94,"goals_against":33},
-        {"season_id":2022,"team_id":2,"team_name":"Arsenal","matches_played":38,"wins":26,"draws":6,"losses":6,"goals_for":88,"goals_against":43},
-        {"season_id":2022,"team_id":3,"team_name":"Manchester United","matches_played":38,"wins":23,"draws":6,"losses":9,"goals_for":58,"goals_against":43},
-        {"season_id":2022,"team_id":4,"team_name":"Newcastle","matches_played":38,"wins":19,"draws":14,"losses":5,"goals_for":68,"goals_against":33},
-        {"season_id":2022,"team_id":5,"team_name":"Liverpool","matches_played":38,"wins":19,"draws":10,"losses":9,"goals_for":75,"goals_against":47}
-      ]}},
-      "expected": {"columns":["season_id","team_id","team_name","points","goal_difference","position"],"rows":[
-        [2021,1,"Manchester City",93,73,1],[2021,2,"Liverpool",92,68,2],[2021,3,"Chelsea",74,43,3],[2021,4,"Tottenham",71,29,4],[2021,5,"Arsenal",69,13,5],
-        [2022,1,"Manchester City",89,61,1],[2022,2,"Arsenal",84,45,2],[2022,3,"Manchester United",75,15,3],[2022,4,"Newcastle",71,35,4],[2022,5,"Liverpool",67,28,5]
-      ]},
-      "tags": ["sample","multiple-seasons"]
+      "input": {
+        "tables": {
+          "SeasonStats": [
+            {
+              "season_id": 2021,
+              "team_id": 1,
+              "team_name": "Manchester City",
+              "matches_played": 38,
+              "wins": 29,
+              "draws": 6,
+              "losses": 3,
+              "goals_for": 99,
+              "goals_against": 26
+            },
+            {
+              "season_id": 2021,
+              "team_id": 2,
+              "team_name": "Liverpool",
+              "matches_played": 38,
+              "wins": 28,
+              "draws": 8,
+              "losses": 2,
+              "goals_for": 94,
+              "goals_against": 26
+            },
+            {
+              "season_id": 2021,
+              "team_id": 3,
+              "team_name": "Chelsea",
+              "matches_played": 38,
+              "wins": 21,
+              "draws": 11,
+              "losses": 6,
+              "goals_for": 76,
+              "goals_against": 33
+            },
+            {
+              "season_id": 2021,
+              "team_id": 4,
+              "team_name": "Tottenham",
+              "matches_played": 38,
+              "wins": 22,
+              "draws": 5,
+              "losses": 11,
+              "goals_for": 69,
+              "goals_against": 40
+            },
+            {
+              "season_id": 2021,
+              "team_id": 5,
+              "team_name": "Arsenal",
+              "matches_played": 38,
+              "wins": 22,
+              "draws": 3,
+              "losses": 13,
+              "goals_for": 61,
+              "goals_against": 48
+            },
+            {
+              "season_id": 2022,
+              "team_id": 1,
+              "team_name": "Manchester City",
+              "matches_played": 38,
+              "wins": 28,
+              "draws": 5,
+              "losses": 5,
+              "goals_for": 94,
+              "goals_against": 33
+            },
+            {
+              "season_id": 2022,
+              "team_id": 2,
+              "team_name": "Arsenal",
+              "matches_played": 38,
+              "wins": 26,
+              "draws": 6,
+              "losses": 6,
+              "goals_for": 88,
+              "goals_against": 43
+            },
+            {
+              "season_id": 2022,
+              "team_id": 3,
+              "team_name": "Manchester United",
+              "matches_played": 38,
+              "wins": 23,
+              "draws": 6,
+              "losses": 9,
+              "goals_for": 58,
+              "goals_against": 43
+            },
+            {
+              "season_id": 2022,
+              "team_id": 4,
+              "team_name": "Newcastle",
+              "matches_played": 38,
+              "wins": 19,
+              "draws": 14,
+              "losses": 5,
+              "goals_for": 68,
+              "goals_against": 33
+            },
+            {
+              "season_id": 2022,
+              "team_id": 5,
+              "team_name": "Liverpool",
+              "matches_played": 38,
+              "wins": 19,
+              "draws": 10,
+              "losses": 9,
+              "goals_for": 75,
+              "goals_against": 47
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "season_id",
+          "team_id",
+          "team_name",
+          "points",
+          "goal_difference",
+          "position"
+        ],
+        "rows": [
+          [
+            2021,
+            1,
+            "Manchester City",
+            93,
+            73,
+            1
+          ],
+          [
+            2021,
+            2,
+            "Liverpool",
+            92,
+            68,
+            2
+          ],
+          [
+            2021,
+            3,
+            "Chelsea",
+            74,
+            43,
+            3
+          ],
+          [
+            2021,
+            4,
+            "Tottenham",
+            71,
+            29,
+            4
+          ],
+          [
+            2021,
+            5,
+            "Arsenal",
+            69,
+            13,
+            5
+          ],
+          [
+            2022,
+            1,
+            "Manchester City",
+            89,
+            61,
+            1
+          ],
+          [
+            2022,
+            2,
+            "Arsenal",
+            84,
+            45,
+            2
+          ],
+          [
+            2022,
+            3,
+            "Manchester United",
+            75,
+            15,
+            3
+          ],
+          [
+            2022,
+            4,
+            "Newcastle",
+            71,
+            35,
+            4
+          ],
+          [
+            2022,
+            5,
+            "Liverpool",
+            67,
+            28,
+            5
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "multiple-seasons"
+      ]
     },
     {
-      "id":"trial-points-first","name":"trial: points outrank goal difference","kind":"trial","visible":true,
-      "input":{"tables":{"SeasonStats":[
-        {"season_id":1,"team_id":1,"team_name":"Nine Points","matches_played":3,"wins":3,"draws":0,"losses":0,"goals_for":1,"goals_against":20},
-        {"season_id":1,"team_id":2,"team_name":"Eight Points","matches_played":4,"wins":2,"draws":2,"losses":0,"goals_for":50,"goals_against":0}
-      ]}},
-      "expected":{"columns":["season_id","team_id","team_name","points","goal_difference","position"],"rows":[[1,1,"Nine Points",9,-19,1],[1,2,"Eight Points",8,50,2]]},
-      "tags":["points-priority","negative-difference"]
+      "id": "trial-points-first",
+      "name": "trial: points outrank goal difference",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "SeasonStats": [
+            {
+              "season_id": 1,
+              "team_id": 1,
+              "team_name": "Nine Points",
+              "matches_played": 3,
+              "wins": 3,
+              "draws": 0,
+              "losses": 0,
+              "goals_for": 1,
+              "goals_against": 20
+            },
+            {
+              "season_id": 1,
+              "team_id": 2,
+              "team_name": "Eight Points",
+              "matches_played": 4,
+              "wins": 2,
+              "draws": 2,
+              "losses": 0,
+              "goals_for": 50,
+              "goals_against": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "season_id",
+          "team_id",
+          "team_name",
+          "points",
+          "goal_difference",
+          "position"
+        ],
+        "rows": [
+          [
+            1,
+            1,
+            "Nine Points",
+            9,
+            -19,
+            1
+          ],
+          [
+            1,
+            2,
+            "Eight Points",
+            8,
+            50,
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "points-priority",
+        "negative-difference"
+      ]
     },
     {
-      "id":"trial-goal-difference","name":"trial: goal difference breaks a points tie","kind":"trial","visible":true,
-      "input":{"tables":{"SeasonStats":[
-        {"season_id":4,"team_id":8,"team_name":"Low GD","matches_played":3,"wins":2,"draws":1,"losses":0,"goals_for":8,"goals_against":7},
-        {"season_id":4,"team_id":9,"team_name":"High GD","matches_played":3,"wins":2,"draws":1,"losses":0,"goals_for":10,"goals_against":2}
-      ]}},
-      "expected":{"columns":["season_id","team_id","team_name","points","goal_difference","position"],"rows":[[4,9,"High GD",7,8,1],[4,8,"Low GD",7,1,2]]},
-      "tags":["goal-difference","tie"]
+      "id": "trial-goal-difference",
+      "name": "trial: goal difference breaks a points tie",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "SeasonStats": [
+            {
+              "season_id": 4,
+              "team_id": 8,
+              "team_name": "Low GD",
+              "matches_played": 3,
+              "wins": 2,
+              "draws": 1,
+              "losses": 0,
+              "goals_for": 8,
+              "goals_against": 7
+            },
+            {
+              "season_id": 4,
+              "team_id": 9,
+              "team_name": "High GD",
+              "matches_played": 3,
+              "wins": 2,
+              "draws": 1,
+              "losses": 0,
+              "goals_for": 10,
+              "goals_against": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "season_id",
+          "team_id",
+          "team_name",
+          "points",
+          "goal_difference",
+          "position"
+        ],
+        "rows": [
+          [
+            4,
+            9,
+            "High GD",
+            7,
+            8,
+            1
+          ],
+          [
+            4,
+            8,
+            "Low GD",
+            7,
+            1,
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "goal-difference",
+        "tie"
+      ]
     },
     {
-      "id":"trial-alphabetical-tie","name":"trial: team name breaks a complete metric tie","kind":"trial","visible":true,
-      "input":{"tables":{"SeasonStats":[
-        {"season_id":7,"team_id":11,"team_name":"Zulu","matches_played":3,"wins":2,"draws":1,"losses":0,"goals_for":5,"goals_against":2},
-        {"season_id":7,"team_id":12,"team_name":"Alpha","matches_played":3,"wins":2,"draws":1,"losses":0,"goals_for":5,"goals_against":2}
-      ]}},
-      "expected":{"columns":["season_id","team_id","team_name","points","goal_difference","position"],"rows":[[7,12,"Alpha",7,3,1],[7,11,"Zulu",7,3,2]]},
-      "tags":["alphabetical","tie"]
+      "id": "trial-alphabetical-tie",
+      "name": "trial: team name breaks a complete metric tie",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "SeasonStats": [
+            {
+              "season_id": 7,
+              "team_id": 11,
+              "team_name": "Zulu",
+              "matches_played": 3,
+              "wins": 2,
+              "draws": 1,
+              "losses": 0,
+              "goals_for": 5,
+              "goals_against": 2
+            },
+            {
+              "season_id": 7,
+              "team_id": 12,
+              "team_name": "Alpha",
+              "matches_played": 3,
+              "wins": 2,
+              "draws": 1,
+              "losses": 0,
+              "goals_for": 5,
+              "goals_against": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "season_id",
+          "team_id",
+          "team_name",
+          "points",
+          "goal_difference",
+          "position"
+        ],
+        "rows": [
+          [
+            7,
+            12,
+            "Alpha",
+            7,
+            3,
+            1
+          ],
+          [
+            7,
+            11,
+            "Zulu",
+            7,
+            3,
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "alphabetical",
+        "tie"
+      ]
     },
     {
-      "id":"real-independent-seasons","name":"real: positions restart and seasons sort","kind":"real","visible":false,
-      "input":{"tables":{"SeasonStats":[
-        {"season_id":20,"team_id":2,"team_name":"Beta","matches_played":1,"wins":0,"draws":0,"losses":1,"goals_for":0,"goals_against":1},
-        {"season_id":10,"team_id":2,"team_name":"Beta","matches_played":1,"wins":1,"draws":0,"losses":0,"goals_for":2,"goals_against":0},
-        {"season_id":20,"team_id":1,"team_name":"Alpha","matches_played":1,"wins":1,"draws":0,"losses":0,"goals_for":1,"goals_against":0},
-        {"season_id":10,"team_id":1,"team_name":"Alpha","matches_played":1,"wins":0,"draws":1,"losses":0,"goals_for":0,"goals_against":0}
-      ]}},
-      "expected":{"columns":["season_id","team_id","team_name","points","goal_difference","position"],"rows":[[10,2,"Beta",3,2,1],[10,1,"Alpha",1,0,2],[20,1,"Alpha",3,1,1],[20,2,"Beta",0,-1,2]]},
-      "tags":["partition","ordering"]
+      "id": "trial-independent-seasons",
+      "name": "positions restart and seasons sort",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "SeasonStats": [
+            {
+              "season_id": 20,
+              "team_id": 2,
+              "team_name": "Beta",
+              "matches_played": 1,
+              "wins": 0,
+              "draws": 0,
+              "losses": 1,
+              "goals_for": 0,
+              "goals_against": 1
+            },
+            {
+              "season_id": 10,
+              "team_id": 2,
+              "team_name": "Beta",
+              "matches_played": 1,
+              "wins": 1,
+              "draws": 0,
+              "losses": 0,
+              "goals_for": 2,
+              "goals_against": 0
+            },
+            {
+              "season_id": 20,
+              "team_id": 1,
+              "team_name": "Alpha",
+              "matches_played": 1,
+              "wins": 1,
+              "draws": 0,
+              "losses": 0,
+              "goals_for": 1,
+              "goals_against": 0
+            },
+            {
+              "season_id": 10,
+              "team_id": 1,
+              "team_name": "Alpha",
+              "matches_played": 1,
+              "wins": 0,
+              "draws": 1,
+              "losses": 0,
+              "goals_for": 0,
+              "goals_against": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "season_id",
+          "team_id",
+          "team_name",
+          "points",
+          "goal_difference",
+          "position"
+        ],
+        "rows": [
+          [
+            10,
+            2,
+            "Beta",
+            3,
+            2,
+            1
+          ],
+          [
+            10,
+            1,
+            "Alpha",
+            1,
+            0,
+            2
+          ],
+          [
+            20,
+            1,
+            "Alpha",
+            3,
+            1,
+            1
+          ],
+          [
+            20,
+            2,
+            "Beta",
+            0,
+            -1,
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "partition",
+        "ordering"
+      ]
     },
     {
-      "id":"real-zero-record","name":"real: zero match statistics remain valid","kind":"real","visible":false,
-      "input":{"tables":{"SeasonStats":[
-        {"season_id":99,"team_id":1,"team_name":"Idle","matches_played":0,"wins":0,"draws":0,"losses":0,"goals_for":0,"goals_against":0}
-      ]}},
-      "expected":{"columns":["season_id","team_id","team_name","points","goal_difference","position"],"rows":[[99,1,"Idle",0,0,1]]},
-      "tags":["zero","single-team"]
+      "id": "trial-zero-record",
+      "name": "zero match statistics remain valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "SeasonStats": [
+            {
+              "season_id": 99,
+              "team_id": 1,
+              "team_name": "Idle",
+              "matches_played": 0,
+              "wins": 0,
+              "draws": 0,
+              "losses": 0,
+              "goals_for": 0,
+              "goals_against": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "season_id",
+          "team_id",
+          "team_name",
+          "points",
+          "goal_difference",
+          "position"
+        ],
+        "rows": [
+          [
+            99,
+            1,
+            "Idle",
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "zero",
+        "single-team"
+      ]
     }
   ]
 }

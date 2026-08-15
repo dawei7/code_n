@@ -141,10 +141,10 @@
       "expected": 0
     },
     {
-      "id": "real-no-split-blocks",
-      "name": "hidden: dominant prefix followed by another-value block",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-no-split-blocks",
+      "name": "dominant prefix followed by another-value block",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -157,16 +157,15 @@
         ]
       },
       "tags": [
-        "hidden",
         "strict-majority"
       ],
       "expected": -1
     },
     {
-      "id": "real-large-values",
-      "name": "hidden: values near the upper bound",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-values",
+      "name": "values near the upper bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -178,7 +177,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "large-values"
       ],
       "expected": 0

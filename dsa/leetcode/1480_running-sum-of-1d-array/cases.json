@@ -118,10 +118,10 @@
       ]
     },
     {
-      "id": "real-negative-values",
-      "name": "hidden: totals rise and fall",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-negative-values",
+      "name": "totals rise and fall",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -1,
@@ -137,15 +137,14 @@
         2
       ],
       "tags": [
-        "hidden",
         "negative"
       ]
     },
     {
-      "id": "real-cancellation",
-      "name": "hidden: prefixes repeatedly cancel",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-cancellation",
+      "name": "prefixes repeatedly cancel",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10,
@@ -163,15 +162,14 @@
         10
       ],
       "tags": [
-        "hidden",
         "cancellation"
       ]
     },
     {
-      "id": "real-value-bounds",
-      "name": "hidden: inclusive magnitude bounds",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-value-bounds",
+      "name": "inclusive magnitude bounds",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000,
@@ -187,7 +185,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "bounds"
       ]
     }

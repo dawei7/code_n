@@ -2,14 +2,183 @@
   "schema_version": 1,
   "challenge_id": "lc_3775",
   "cases": [
-    {"id":"sample-1","name":"sample: only and matches cat's vowel count","kind":"sample","visible":true,"input":{"s":"cat and mice"},"expected":"cat dna mice","validator":{"kind":"exact"},"tags":["sample","mixed-matches"]},
-    {"id":"sample-2","name":"sample: nice matches book's vowel count","kind":"sample","visible":true,"input":{"s":"book is nice"},"expected":"book is ecin","validator":{"kind":"exact"},"tags":["sample","mixed-matches"]},
-    {"id":"sample-3","name":"sample: healthy has fewer vowels than banana","kind":"sample","visible":true,"input":{"s":"banana healthy"},"expected":"banana healthy","validator":{"kind":"exact"},"tags":["sample","no-match"]},
-    {"id":"trial-one-word","name":"trial: a single word remains unchanged","kind":"trial","visible":true,"input":{"s":"hello"},"expected":"hello","validator":{"kind":"exact"},"tags":["trial","single-word"]},
-    {"id":"trial-zero-vowel-target","name":"trial: a consonant-only later word is reversed","kind":"trial","visible":true,"input":{"s":"sly dry apple"},"expected":"sly yrd apple","validator":{"kind":"exact"},"tags":["trial","zero-vowels"]},
-    {"id":"trial-all-following-match","name":"trial: every later word has one vowel","kind":"trial","visible":true,"input":{"s":"cat dog sun"},"expected":"cat god nus","validator":{"kind":"exact"},"tags":["trial","all-match"]},
-    {"id":"real-first-word-never-reversed","name":"hidden: the target word remains fixed while a later match reverses","kind":"real","visible":false,"input":{"s":"ae bc io"},"expected":"ae bc oi","validator":{"kind":"exact"},"tags":["hidden","first-word"]},
-    {"id":"real-palindromic-match","name":"hidden: a matching palindrome looks unchanged","kind":"real","visible":false,"input":{"s":"aba eve sky"},"expected":"aba eve sky","validator":{"kind":"exact"},"tags":["hidden","palindrome"]},
-    {"id":"real-repeated-words","name":"hidden: repeated matching words reverse independently","kind":"real","visible":false,"input":{"s":"code nice nice"},"expected":"code ecin ecin","validator":{"kind":"exact"},"tags":["hidden","repeated-words"]}
+    {
+      "id": "sample-1",
+      "name": "sample: only and matches cat's vowel count",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "cat and mice"
+      },
+      "expected": "cat dna mice",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "mixed-matches"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: nice matches book's vowel count",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "book is nice"
+      },
+      "expected": "book is ecin",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "mixed-matches"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: healthy has fewer vowels than banana",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "banana healthy"
+      },
+      "expected": "banana healthy",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "no-match"
+      ]
+    },
+    {
+      "id": "trial-one-word",
+      "name": "trial: a single word remains unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "hello"
+      },
+      "expected": "hello",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-word"
+      ]
+    },
+    {
+      "id": "trial-zero-vowel-target",
+      "name": "trial: a consonant-only later word is reversed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "sly dry apple"
+      },
+      "expected": "sly yrd apple",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "zero-vowels"
+      ]
+    },
+    {
+      "id": "trial-all-following-match",
+      "name": "trial: every later word has one vowel",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "cat dog sun"
+      },
+      "expected": "cat god nus",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "all-match"
+      ]
+    },
+    {
+      "id": "trial-first-word-never-reversed",
+      "name": "the target word remains fixed while a later match reverses",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ae bc io"
+      },
+      "expected": "ae bc oi",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "first-word"
+      ]
+    },
+    {
+      "id": "trial-palindromic-match",
+      "name": "a matching palindrome looks unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aba eve sky"
+      },
+      "expected": "aba eve sky",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "palindrome"
+      ]
+    },
+    {
+      "id": "trial-repeated-words",
+      "name": "repeated matching words reverse independently",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "code nice nice"
+      },
+      "expected": "code ecin ecin",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "repeated-words"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "c"
+      },
+      "expected": "c",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ccc"
+      },
+      "expected": "ccc",
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
+    }
   ]
 }

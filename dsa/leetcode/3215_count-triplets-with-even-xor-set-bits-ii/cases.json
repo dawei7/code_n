@@ -144,10 +144,10 @@
       ]
     },
     {
-      "id": "real-mixed-parities",
-      "name": "real: all four qualifying patterns contribute",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-parities",
+      "name": "all four qualifying patterns contribute",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": [
           0,
@@ -170,10 +170,10 @@
       ]
     },
     {
-      "id": "real-duplicates",
-      "name": "real: duplicate values remain separate index choices",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicates",
+      "name": "duplicate values remain separate index choices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": [
           3,
@@ -196,10 +196,10 @@
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "real: high legal values use full popcount parity",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-values",
+      "name": "high legal values use full popcount parity",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": [
           1000000000,
@@ -219,10 +219,10 @@
       ]
     },
     {
-      "id": "real-one-element-each-no",
-      "name": "real: one odd parity XOR result is rejected",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-element-each-no",
+      "name": "one odd parity XOR result is rejected",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": [
           7
@@ -240,10 +240,10 @@
       ]
     },
     {
-      "id": "real-unbalanced-lengths",
-      "name": "real: array lengths independently scale parity products",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unbalanced-lengths",
+      "name": "array lengths independently scale parity products",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": [
           0,
@@ -266,10 +266,10 @@
       ]
     },
     {
-      "id": "real-zero-mixed",
-      "name": "real: zeros contribute to even parity counts",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zero-mixed",
+      "name": "zeros contribute to even parity counts",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": [
           0,

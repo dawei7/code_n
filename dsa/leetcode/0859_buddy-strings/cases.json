@@ -7,108 +7,204 @@
       "name": "sample: reverse two letters",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "ab", "goal": "ba"},
+      "input": {
+        "s": "ab",
+        "goal": "ba"
+      },
       "expected": true,
-      "tags": ["sample", "two-mismatches"]
+      "tags": [
+        "sample",
+        "two-mismatches"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: equal without duplicate",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "ab", "goal": "ab"},
+      "input": {
+        "s": "ab",
+        "goal": "ab"
+      },
       "expected": false,
-      "tags": ["sample", "equal"]
+      "tags": [
+        "sample",
+        "equal"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: equal duplicate letters",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "aa", "goal": "aa"},
+      "input": {
+        "s": "aa",
+        "goal": "aa"
+      },
       "expected": true,
-      "tags": ["sample", "duplicate"]
+      "tags": [
+        "sample",
+        "duplicate"
+      ]
     },
     {
       "id": "trial-1",
       "name": "trial: one-character strings",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "a", "goal": "a"},
+      "input": {
+        "s": "a",
+        "goal": "a"
+      },
       "expected": false,
-      "tags": ["trial", "minimum"]
+      "tags": [
+        "trial",
+        "minimum"
+      ]
     },
     {
       "id": "trial-2",
       "name": "trial: four mismatches",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "abcd", "goal": "badc"},
+      "input": {
+        "s": "abcd",
+        "goal": "badc"
+      },
       "expected": false,
-      "tags": ["trial", "many-mismatches"]
+      "tags": [
+        "trial",
+        "many-mismatches"
+      ]
     },
     {
       "id": "trial-3",
       "name": "trial: adjacent suffix swap",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "abc", "goal": "acb"},
+      "input": {
+        "s": "abc",
+        "goal": "acb"
+      },
       "expected": true,
-      "tags": ["trial", "adjacent"]
+      "tags": [
+        "trial",
+        "adjacent"
+      ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: different lengths",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "ab", "goal": "abc"},
+      "id": "trial-ext-1",
+      "name": "different lengths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ab",
+        "goal": "abc"
+      },
       "expected": false,
-      "tags": ["hidden", "length"]
+      "tags": [
+        "length"
+      ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: one mismatch",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abac", "goal": "abad"},
+      "id": "trial-ext-2",
+      "name": "one mismatch",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abac",
+        "goal": "abad"
+      },
       "expected": false,
-      "tags": ["hidden", "one-mismatch"]
+      "tags": [
+        "one-mismatch"
+      ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: equal long duplicate string",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcdefgha", "goal": "abcdefgha"},
+      "id": "trial-ext-3",
+      "name": "equal long duplicate string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdefgha",
+        "goal": "abcdefgha"
+      },
       "expected": true,
-      "tags": ["hidden", "duplicate"]
+      "tags": [
+        "duplicate"
+      ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: equal unique string",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcdefghijklmnopqrstuvwxyz", "goal": "abcdefghijklmnopqrstuvwxyz"},
+      "id": "trial-4",
+      "name": "equal unique string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyz",
+        "goal": "abcdefghijklmnopqrstuvwxyz"
+      },
       "expected": false,
-      "tags": ["hidden", "unique"]
+      "tags": [
+        "unique"
+      ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: mismatches do not cross",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcaa", "goal": "abcbb"},
+      "id": "trial-5",
+      "name": "mismatches do not cross",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcaa",
+        "goal": "abcbb"
+      },
       "expected": false,
-      "tags": ["hidden", "crossing"]
+      "tags": [
+        "crossing"
+      ]
     },
     {
-      "id": "hidden-6",
-      "name": "hidden: non-adjacent swap with duplicates elsewhere",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aabbcc", "goal": "acbbca"},
+      "id": "trial-6",
+      "name": "non-adjacent swap with duplicates elsewhere",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aabbcc",
+        "goal": "acbbca"
+      },
       "expected": true,
-      "tags": ["hidden", "non-adjacent"]
+      "tags": [
+        "non-adjacent"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "goal": "ba"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa",
+        "goal": "ba"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
     }
   ]
 }

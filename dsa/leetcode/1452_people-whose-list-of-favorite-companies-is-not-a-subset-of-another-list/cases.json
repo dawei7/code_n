@@ -155,10 +155,10 @@
       ]
     },
     {
-      "id": "real-transitive",
-      "name": "hidden: nested chain excludes every nonmaximal list",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-transitive",
+      "name": "nested chain excludes every nonmaximal list",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "favoriteCompanies": [
           [
@@ -184,15 +184,14 @@
         3
       ],
       "tags": [
-        "hidden",
         "transitive"
       ]
     },
     {
-      "id": "real-input-order",
-      "name": "hidden: company order does not affect containment",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-input-order",
+      "name": "company order does not affect containment",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "favoriteCompanies": [
           [
@@ -214,15 +213,14 @@
         2
       ],
       "tags": [
-        "hidden",
         "unordered-membership"
       ]
     },
     {
-      "id": "real-multiple-witnesses",
-      "name": "hidden: one list can be contained by several others",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-witnesses",
+      "name": "one list can be contained by several others",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "favoriteCompanies": [
           [
@@ -248,7 +246,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "multiple-supersets"
       ]
     }

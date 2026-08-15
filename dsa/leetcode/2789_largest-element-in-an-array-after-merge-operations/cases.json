@@ -112,10 +112,10 @@
       ]
     },
     {
-      "id": "real-large-left-barrier",
-      "name": "hidden: a large first value blocks a smaller suffix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-left-barrier",
+      "name": "a large first value blocks a smaller suffix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           20,
@@ -126,15 +126,14 @@
       },
       "expected": 20,
       "tags": [
-        "hidden",
         "barrier"
       ]
     },
     {
-      "id": "real-suffix-below-prefix",
-      "name": "hidden: mergeable suffix remains below the prefix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-suffix-below-prefix",
+      "name": "mergeable suffix remains below the prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -145,15 +144,14 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "separate-blocks"
       ]
     },
     {
-      "id": "real-reset-inside-array",
-      "name": "hidden: reset block later absorbs the left prefix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-reset-inside-array",
+      "name": "reset block later absorbs the left prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -166,15 +164,14 @@
       },
       "expected": 17,
       "tags": [
-        "hidden",
         "reset"
       ]
     },
     {
-      "id": "real-maximum-values",
-      "name": "hidden: equal maximum values require a wide sum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-values",
+      "name": "equal maximum values require a wide sum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000,
@@ -184,7 +181,6 @@
       },
       "expected": 3000000,
       "tags": [
-        "hidden",
         "large-sum"
       ]
     }

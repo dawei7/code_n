@@ -2,13 +2,195 @@
   "schema_version": 1,
   "challenge_id": "lc_2249",
   "cases": [
-    {"id":"sample-radius-one","name":"sample: radius one covers five lattice points","kind":"sample","visible":true,"input":{"circles":[[2,2,1]]},"expected":5,"tags":["sample","boundary"]},
-    {"id":"sample-overlap","name":"sample: overlapping circles contribute a union","kind":"sample","visible":true,"input":{"circles":[[2,2,2],[3,4,1]]},"expected":16,"tags":["sample","overlap"]},
-    {"id":"trial-identical","name":"identical circles do not double-count points","kind":"trial","visible":true,"input":{"circles":[[1,1,1],[1,1,1]]},"expected":5,"tags":["duplicate-circle"]},
-    {"id":"trial-tangent","name":"tangent unit circles share one lattice point","kind":"trial","visible":true,"input":{"circles":[[1,1,1],[3,1,1]]},"expected":9,"tags":["tangent","boundary"]},
-    {"id":"trial-nested","name":"a nested unit circle adds no points beyond a larger circle","kind":"trial","visible":true,"input":{"circles":[[3,3,3],[3,3,1]]},"expected":29,"tags":["nested"]},
-    {"id":"real-disjoint","name":"hidden: separated unit circles have disjoint point sets","kind":"real","visible":false,"input":{"circles":[[1,1,1],[5,5,1],[10,10,1]]},"expected":15,"tags":["hidden","disjoint"]},
-    {"id":"real-diagonal-boundary","name":"hidden: diagonal candidates can lie outside a circle","kind":"real","visible":false,"input":{"circles":[[2,2,1],[4,4,1]]},"expected":10,"tags":["hidden","squared-distance"]},
-    {"id":"real-large-radius","name":"hidden: radius four exercises a larger bounding square","kind":"real","visible":false,"input":{"circles":[[4,4,4]]},"expected":49,"tags":["hidden","large-radius"]}
+    {
+      "id": "sample-radius-one",
+      "name": "sample: radius one covers five lattice points",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "circles": [
+          [
+            2,
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "sample-overlap",
+      "name": "sample: overlapping circles contribute a union",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "circles": [
+          [
+            2,
+            2,
+            2
+          ],
+          [
+            3,
+            4,
+            1
+          ]
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "sample",
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-identical",
+      "name": "identical circles do not double-count points",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "circles": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "duplicate-circle"
+      ]
+    },
+    {
+      "id": "trial-tangent",
+      "name": "tangent unit circles share one lattice point",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "circles": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "tangent",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-nested",
+      "name": "a nested unit circle adds no points beyond a larger circle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "circles": [
+          [
+            3,
+            3,
+            3
+          ],
+          [
+            3,
+            3,
+            1
+          ]
+        ]
+      },
+      "expected": 29,
+      "tags": [
+        "nested"
+      ]
+    },
+    {
+      "id": "trial-disjoint",
+      "name": "separated unit circles have disjoint point sets",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "circles": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            5,
+            5,
+            1
+          ],
+          [
+            10,
+            10,
+            1
+          ]
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "disjoint"
+      ]
+    },
+    {
+      "id": "trial-diagonal-boundary",
+      "name": "diagonal candidates can lie outside a circle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "circles": [
+          [
+            2,
+            2,
+            1
+          ],
+          [
+            4,
+            4,
+            1
+          ]
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "squared-distance"
+      ]
+    },
+    {
+      "id": "trial-large-radius",
+      "name": "radius four exercises a larger bounding square",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "circles": [
+          [
+            4,
+            4,
+            4
+          ]
+        ]
+      },
+      "expected": 49,
+      "tags": [
+        "large-radius"
+      ]
+    }
   ]
 }

@@ -7,11 +7,19 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "nums": [-2, 0, 1, 3],
+        "nums": [
+          -2,
+          0,
+          1,
+          3
+        ],
         "target": 2
       },
       "expected": 2,
-      "tags": ["sample", "two-pointers"]
+      "tags": [
+        "sample",
+        "two-pointers"
+      ]
     },
     {
       "id": "sample-empty",
@@ -23,7 +31,10 @@
         "target": 0
       },
       "expected": 0,
-      "tags": ["sample", "empty-array"]
+      "tags": [
+        "sample",
+        "empty-array"
+      ]
     },
     {
       "id": "sample-single",
@@ -31,11 +42,16 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "nums": [0],
+        "nums": [
+          0
+        ],
         "target": 0
       },
       "expected": 0,
-      "tags": ["sample", "single-value"]
+      "tags": [
+        "sample",
+        "single-value"
+      ]
     },
     {
       "id": "trial-two-values",
@@ -43,11 +59,18 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "nums": [-100, 100],
+        "nums": [
+          -100,
+          100
+        ],
         "target": 0
       },
       "expected": 0,
-      "tags": ["short-array", "minimum-value", "maximum-value"]
+      "tags": [
+        "short-array",
+        "minimum-value",
+        "maximum-value"
+      ]
     },
     {
       "id": "trial-duplicate-multiplicity",
@@ -55,11 +78,20 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "nums": [0, 0, 0, 0, 0],
+        "nums": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
         "target": 1
       },
       "expected": 10,
-      "tags": ["duplicates", "index-multiplicity"]
+      "tags": [
+        "duplicates",
+        "index-multiplicity"
+      ]
     },
     {
       "id": "trial-strict-equality",
@@ -67,11 +99,19 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "nums": [-1, 1, 2, 2],
+        "nums": [
+          -1,
+          1,
+          2,
+          2
+        ],
         "target": 3
       },
       "expected": 2,
-      "tags": ["strict-inequality", "duplicates"]
+      "tags": [
+        "strict-inequality",
+        "duplicates"
+      ]
     },
     {
       "id": "trial-unsorted-mixed-signs",
@@ -79,11 +119,21 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "nums": [5, -4, 2, -1, 0],
+        "nums": [
+          5,
+          -4,
+          2,
+          -1,
+          0
+        ],
         "target": 2
       },
       "expected": 6,
-      "tags": ["unsorted", "mixed-signs", "pointer-movement"]
+      "tags": [
+        "unsorted",
+        "mixed-signs",
+        "pointer-movement"
+      ]
     },
     {
       "id": "trial-all-valid",
@@ -91,11 +141,19 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "nums": [-5, -4, -3, -2],
+        "nums": [
+          -5,
+          -4,
+          -3,
+          -2
+        ],
         "target": 100
       },
       "expected": 4,
-      "tags": ["all-valid", "maximum-target"]
+      "tags": [
+        "all-valid",
+        "maximum-target"
+      ]
     },
     {
       "id": "trial-minimum-target-boundary",
@@ -103,11 +161,21 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "nums": [-100, -100, -100, 100],
+        "nums": [
+          -100,
+          -100,
+          -100,
+          100
+        ],
         "target": -100
       },
       "expected": 1,
-      "tags": ["minimum-target", "minimum-value", "maximum-value", "strict-inequality"]
+      "tags": [
+        "minimum-target",
+        "minimum-value",
+        "maximum-value",
+        "strict-inequality"
+      ]
     },
     {
       "id": "trial-maximum-target-boundary",
@@ -115,11 +183,56 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "nums": [-100, 0, 100, 100],
+        "nums": [
+          -100,
+          0,
+          100,
+          100
+        ],
         "target": 100
       },
       "expected": 2,
-      "tags": ["maximum-target", "minimum-value", "maximum-value", "strict-inequality"]
+      "tags": [
+        "maximum-target",
+        "minimum-value",
+        "maximum-value",
+        "strict-inequality"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -2
+        ],
+        "target": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -2,
+          -2
+        ],
+        "target": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

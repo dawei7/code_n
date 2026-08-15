@@ -113,10 +113,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: alternating directions",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "alternating directions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -128,15 +128,14 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: increasing after equal prefix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "increasing after equal prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -3,
@@ -149,16 +148,15 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "increasing",
         "plateaus"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: late decrease after rising prefix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "late decrease after rising prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -171,15 +169,14 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "late-reversal"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: full value range",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "full value range",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -100000,
@@ -189,7 +186,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "boundaries"
       ]
     }

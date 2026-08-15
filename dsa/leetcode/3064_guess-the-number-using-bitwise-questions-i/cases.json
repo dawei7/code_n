@@ -6,72 +6,110 @@
       "name": "sample: five low bits are set",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 31},
+      "input": {
+        "n": 31
+      },
       "expected": 31,
-      "tags": ["sample", "consecutive-bits"]
+      "tags": [
+        "sample",
+        "consecutive-bits"
+      ]
     },
     {
       "id": "sample-separated-bits",
       "name": "sample: two separated bits",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 33},
+      "input": {
+        "n": 33
+      },
       "expected": 33,
-      "tags": ["sample", "sparse"]
+      "tags": [
+        "sample",
+        "sparse"
+      ]
     },
     {
       "id": "trial-minimum",
       "name": "minimum hidden number",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1},
+      "input": {
+        "n": 1
+      },
       "expected": 1,
-      "tags": ["minimum", "lowest-bit"]
+      "tags": [
+        "minimum",
+        "lowest-bit"
+      ]
     },
     {
       "id": "trial-highest-bit-only",
       "name": "only the highest legal bit is set",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 536870912},
+      "input": {
+        "n": 536870912
+      },
       "expected": 536870912,
-      "tags": ["highest-bit", "power-of-two"]
+      "tags": [
+        "highest-bit",
+        "power-of-two"
+      ]
     },
     {
       "id": "trial-alternating-low-first",
       "name": "alternating bits beginning with the low bit",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 357913941},
+      "input": {
+        "n": 357913941
+      },
       "expected": 357913941,
-      "tags": ["alternating-bits"]
+      "tags": [
+        "alternating-bits"
+      ]
     },
     {
-      "id": "real-maximum",
-      "name": "hidden: every legal bit is set",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 1073741823},
+      "id": "trial-maximum",
+      "name": "every legal bit is set",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1073741823
+      },
       "expected": 1073741823,
-      "tags": ["hidden", "maximum", "all-bits"]
+      "tags": [
+        "maximum",
+        "all-bits"
+      ]
     },
     {
-      "id": "real-alternating-high-first",
-      "name": "hidden: complementary alternating bit pattern",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 715827882},
+      "id": "trial-alternating-high-first",
+      "name": "complementary alternating bit pattern",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 715827882
+      },
       "expected": 715827882,
-      "tags": ["hidden", "alternating-bits"]
+      "tags": [
+        "alternating-bits"
+      ]
     },
     {
-      "id": "real-low-and-high-bits",
-      "name": "hidden: low bits and highest bit together",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 536870917},
+      "id": "trial-low-and-high-bits",
+      "name": "low bits and highest bit together",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 536870917
+      },
       "expected": 536870917,
-      "tags": ["hidden", "sparse", "boundaries"]
+      "tags": [
+        "sparse",
+        "boundaries"
+      ]
     }
   ]
 }

@@ -487,10 +487,10 @@
       ]
     },
     {
-      "id": "real-elective-grade-c",
-      "name": "real: C does not qualify an elective",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-elective-grade-c",
+      "name": "C does not qualify an elective",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "students": [
@@ -563,10 +563,10 @@
       ]
     },
     {
-      "id": "real-exact-gpa-boundary",
-      "name": "real: average GPA exactly 2.5 qualifies",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-exact-gpa-boundary",
+      "name": "average GPA exactly 2.5 qualifies",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "students": [
@@ -643,10 +643,10 @@
       ]
     },
     {
-      "id": "real-outside-major-lowers-gpa",
-      "name": "real: an outside-major course lowers the overall GPA",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-outside-major-lowers-gpa",
+      "name": "an outside-major course lowers the overall GPA",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "students": [
@@ -733,10 +733,10 @@
       ]
     },
     {
-      "id": "real-outside-major-grade-ignored",
-      "name": "real: outside-major letter grade does not affect course gates",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-outside-major-grade-ignored",
+      "name": "outside-major letter grade does not affect course gates",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "students": [
@@ -827,10 +827,10 @@
       ]
     },
     {
-      "id": "real-retakes-distinct-courses",
-      "name": "real: retakes count once while every GPA remains",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-retakes-distinct-courses",
+      "name": "retakes count once while every GPA remains",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "students": [
@@ -921,10 +921,10 @@
       ]
     },
     {
-      "id": "real-mixed-majors-ordered",
-      "name": "real: qualifying students from different majors are ordered",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-majors-ordered",
+      "name": "qualifying students from different majors are ordered",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "students": [
@@ -1043,10 +1043,10 @@
       ]
     },
     {
-      "id": "real-lower-retake-with-qualifying-attempt",
-      "name": "real: a qualifying attempt covers a course despite another lower attempt",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-lower-retake-with-qualifying-attempt",
+      "name": "a qualifying attempt covers a course despite another lower attempt",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "students": [

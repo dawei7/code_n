@@ -101,10 +101,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: choose heavier later pair",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "choose heavier later pair",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -120,15 +120,14 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "competing-pairs"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: gap of two does not qualify",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "gap of two does not qualify",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -140,7 +139,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "gap"
       ]
     }

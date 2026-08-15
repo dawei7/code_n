@@ -336,10 +336,10 @@
       ]
     },
     {
-      "id": "hidden-minimum-maximum-pair",
-      "name": "hidden: the legal value extremes swap order in the second half",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-minimum-maximum-pair",
+      "name": "the legal value extremes swap order in the second half",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -353,16 +353,15 @@
         1
       ],
       "tags": [
-        "hidden",
         "extreme-values",
         "two-elements"
       ]
     },
     {
-      "id": "hidden-symmetric-mixed-array",
-      "name": "hidden: a symmetric mixed array still contributes two halves",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-symmetric-mixed-array",
+      "name": "a symmetric mixed array still contributes two halves",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100,
@@ -388,16 +387,15 @@
         100
       ],
       "tags": [
-        "hidden",
         "palindrome",
         "duplicates"
       ]
     },
     {
-      "id": "hidden-seven-values",
-      "name": "hidden: a seven-value sequence uses every reverse index",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-seven-values",
+      "name": "a seven-value sequence uses every reverse index",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -426,16 +424,15 @@
         3
       ],
       "tags": [
-        "hidden",
         "odd-length",
         "mixed-values"
       ]
     },
     {
-      "id": "hidden-eight-values",
-      "name": "hidden: an eight-value sequence preserves its exact reversal",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-eight-values",
+      "name": "an eight-value sequence preserves its exact reversal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -467,16 +464,15 @@
         8
       ],
       "tags": [
-        "hidden",
         "even-length",
         "mixed-values"
       ]
     },
     {
-      "id": "hidden-maximum-length-distinct",
-      "name": "hidden: the maximum-length increasing array reverses completely",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-length-distinct",
+      "name": "the maximum-length increasing array reverses completely",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -784,16 +780,15 @@
         1
       ],
       "tags": [
-        "hidden",
         "maximum-length",
         "distinct-values"
       ]
     },
     {
-      "id": "hidden-maximum-length-duplicates",
-      "name": "hidden: one hundred equal values produce two hundred occurrences",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-length-duplicates",
+      "name": "one hundred equal values produce two hundred occurrences",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100,
@@ -1101,8 +1096,29 @@
         100
       ],
       "tags": [
-        "hidden",
         "maximum-length",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-19",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "boundary",
         "duplicates"
       ]
     }

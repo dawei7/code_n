@@ -186,10 +186,10 @@
       ]
     },
     {
-      "id": "hidden-zero-threshold-at-end",
-      "name": "hidden: only the maximum-valued final singleton closes the gap",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zero-threshold-at-end",
+      "name": "only the maximum-valued final singleton closes the gap",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -200,16 +200,15 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "value-boundaries",
         "final-index"
       ]
     },
     {
-      "id": "hidden-inclusive-ranges",
-      "name": "hidden: both extrema ranges include the candidate value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-inclusive-ranges",
+      "name": "both extrema ranges include the candidate value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -220,16 +219,15 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "inclusive-ranges",
         "off-by-one"
       ]
     },
     {
-      "id": "hidden-nonmonotone-scores",
-      "name": "hidden: instability can rise sharply after an initially stable index",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-nonmonotone-scores",
+      "name": "instability can rise sharply after an initially stable index",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -240,16 +238,15 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "nonmonotone",
         "binary-search-trap"
       ]
     },
     {
-      "id": "hidden-large-threshold",
-      "name": "hidden: the maximum threshold immediately accepts index zero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-threshold",
+      "name": "the maximum threshold immediately accepts index zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -260,16 +257,15 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "maximum-threshold",
         "boundary"
       ]
     },
     {
-      "id": "hidden-length-above-small-version",
-      "name": "hidden: a decreasing array beyond the version-I length bound has no stable index",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-length-above-small-version",
+      "name": "a decreasing array beyond the version-I length bound has no stable index",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           101,
@@ -378,7 +374,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "large-length",
         "no-solution",
         "version-ii-boundary"

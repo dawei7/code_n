@@ -6,72 +6,239 @@
       "name": "sample: append every call-time argument",
       "kind": "sample",
       "visible": true,
-      "input": {"behavior": "identity", "args": [2, 4, 6], "restArgs": [8, 10], "context": null},
-      "expected": [2, 4, 6, 8, 10],
-      "tags": ["sample", "no-placeholders"]
+      "input": {
+        "behavior": "identity",
+        "args": [
+          2,
+          4,
+          6
+        ],
+        "restArgs": [
+          8,
+          10
+        ],
+        "context": null
+      },
+      "expected": [
+        2,
+        4,
+        6,
+        8,
+        10
+      ],
+      "tags": [
+        "sample",
+        "no-placeholders"
+      ]
     },
     {
       "id": "sample-fill-placeholders",
       "name": "sample: fill two internal placeholders",
       "kind": "sample",
       "visible": true,
-      "input": {"behavior": "identity", "args": [1, 2, "_", 4, "_", 6], "restArgs": [3, 5], "context": null},
-      "expected": [1, 2, 3, 4, 5, 6],
-      "tags": ["sample", "placeholder-order"]
+      "input": {
+        "behavior": "identity",
+        "args": [
+          1,
+          2,
+          "_",
+          4,
+          "_",
+          6
+        ],
+        "restArgs": [
+          3,
+          5
+        ],
+        "context": null
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "tags": [
+        "sample",
+        "placeholder-order"
+      ]
     },
     {
       "id": "sample-formula",
       "name": "sample: fill one placeholder and append one value",
       "kind": "sample",
       "visible": true,
-      "input": {"behavior": "formula", "args": ["_", 5], "restArgs": [5, 20], "context": null},
+      "input": {
+        "behavior": "formula",
+        "args": [
+          "_",
+          5
+        ],
+        "restArgs": [
+          5,
+          20
+        ],
+        "context": null
+      },
       "expected": -10,
-      "tags": ["sample", "target-result"]
+      "tags": [
+        "sample",
+        "target-result"
+      ]
     },
     {
       "id": "trial-edge-placeholders",
       "name": "trial: placeholders at both ends",
       "kind": "trial",
       "visible": true,
-      "input": {"behavior": "identity", "args": ["_", "middle", "_"], "restArgs": ["left", "right", "tail"], "context": null},
-      "expected": ["left", "middle", "right", "tail"],
-      "tags": ["trial", "edge-placeholders", "surplus"]
+      "input": {
+        "behavior": "identity",
+        "args": [
+          "_",
+          "middle",
+          "_"
+        ],
+        "restArgs": [
+          "left",
+          "right",
+          "tail"
+        ],
+        "context": null
+      },
+      "expected": [
+        "left",
+        "middle",
+        "right",
+        "tail"
+      ],
+      "tags": [
+        "trial",
+        "edge-placeholders",
+        "surplus"
+      ]
     },
     {
       "id": "trial-all-placeholders",
       "name": "trial: every captured entry is a placeholder",
       "kind": "trial",
       "visible": true,
-      "input": {"behavior": "sum", "args": ["_", "_", "_"], "restArgs": [4, 5, 6], "context": null},
+      "input": {
+        "behavior": "sum",
+        "args": [
+          "_",
+          "_",
+          "_"
+        ],
+        "restArgs": [
+          4,
+          5,
+          6
+        ],
+        "context": null
+      },
       "expected": 15,
-      "tags": ["trial", "all-placeholders"]
+      "tags": [
+        "trial",
+        "all-placeholders"
+      ]
     },
     {
-      "id": "real-placeholder-string-as-value",
-      "name": "hidden: underscore supplied at call time remains a value",
-      "kind": "real",
-      "visible": false,
-      "input": {"behavior": "identity", "args": ["fixed", "_"], "restArgs": ["_", "tail"], "context": null},
-      "expected": ["fixed", "_", "tail"],
-      "tags": ["hidden", "literal-underscore", "single-pass"]
+      "id": "trial-placeholder-string-as-value",
+      "name": "underscore supplied at call time remains a value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "behavior": "identity",
+        "args": [
+          "fixed",
+          "_"
+        ],
+        "restArgs": [
+          "_",
+          "tail"
+        ],
+        "context": null
+      },
+      "expected": [
+        "fixed",
+        "_",
+        "tail"
+      ],
+      "tags": [
+        "literal-underscore",
+        "single-pass"
+      ]
     },
     {
-      "id": "real-structured-values",
-      "name": "hidden: structured JSON values are forwarded unchanged",
-      "kind": "real",
-      "visible": false,
-      "input": {"behavior": "identity", "args": [{"fixed": true}, "_", null], "restArgs": [[1, 2], {"tail": 3}], "context": null},
-      "expected": [{"fixed": true}, [1, 2], null, {"tail": 3}],
-      "tags": ["hidden", "structured-values"]
+      "id": "trial-structured-values",
+      "name": "structured JSON values are forwarded unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "behavior": "identity",
+        "args": [
+          {
+            "fixed": true
+          },
+          "_",
+          null
+        ],
+        "restArgs": [
+          [
+            1,
+            2
+          ],
+          {
+            "tail": 3
+          }
+        ],
+        "context": null
+      },
+      "expected": [
+        {
+          "fixed": true
+        },
+        [
+          1,
+          2
+        ],
+        null,
+        {
+          "tail": 3
+        }
+      ],
+      "tags": [
+        "structured-values"
+      ]
     },
     {
-      "id": "real-call-receiver",
-      "name": "hidden: wrapper forwards its dynamic receiver",
-      "kind": "real",
-      "visible": false,
-      "input": {"behavior": "contextJoin", "args": ["_", "b"], "restArgs": ["a", "c"], "context": {"prefix": "<", "separator": "|", "suffix": ">"}},
+      "id": "trial-call-receiver",
+      "name": "wrapper forwards its dynamic receiver",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "behavior": "contextJoin",
+        "args": [
+          "_",
+          "b"
+        ],
+        "restArgs": [
+          "a",
+          "c"
+        ],
+        "context": {
+          "prefix": "<",
+          "separator": "|",
+          "suffix": ">"
+        }
+      },
       "expected": "<a|b|c>",
-      "tags": ["hidden", "receiver", "argument-order"]
+      "tags": [
+        "receiver",
+        "argument-order"
+      ]
     }
   ]
 }

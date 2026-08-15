@@ -149,10 +149,10 @@
       }
     },
     {
-      "id": "real-duplicate-orders",
-      "name": "hidden: repeated orders do not duplicate output",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicate-orders",
+      "name": "repeated orders do not duplicate output",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Customers": [
@@ -195,7 +195,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "duplicates"
       ],
       "validator": {

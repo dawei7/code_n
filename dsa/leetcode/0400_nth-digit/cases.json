@@ -73,44 +73,41 @@
       ]
     },
     {
-      "id": "hidden-189",
-      "name": "hidden: end of two-digit block",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-189",
+      "name": "end of two-digit block",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 189
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "block-end"
       ]
     },
     {
-      "id": "hidden-middle",
-      "name": "hidden: middle digit of a larger number",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-middle",
+      "name": "middle digit of a larger number",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 10000
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "middle"
       ]
     },
     {
-      "id": "hidden-int-max",
-      "name": "hidden: maximum input position",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-int-max",
+      "name": "maximum input position",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 2147483647
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "large"
       ]
     }

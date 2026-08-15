@@ -94,10 +94,10 @@
       ]
     },
     {
-      "id": "real-density-over-price",
-      "name": "hidden: density outranks total price",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-density-over-price",
+      "name": "density outranks total price",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "items": [
           [
@@ -113,15 +113,14 @@
       },
       "expected": 11,
       "tags": [
-        "hidden",
         "density"
       ]
     },
     {
-      "id": "real-single-exact",
-      "name": "hidden: one item exactly fills the bag",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-exact",
+      "name": "one item exactly fills the bag",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "items": [
           [
@@ -133,15 +132,14 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "single"
       ]
     },
     {
-      "id": "real-equal-density",
-      "name": "hidden: tied densities allow either order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-equal-density",
+      "name": "tied densities allow either order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "items": [
           [
@@ -157,15 +155,14 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "tie"
       ]
     },
     {
-      "id": "real-small-shortfall",
-      "name": "hidden: shortfall by one unit is impossible",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-small-shortfall",
+      "name": "shortfall by one unit is impossible",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "items": [
           [
@@ -181,7 +178,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "impossible"
       ]
     }

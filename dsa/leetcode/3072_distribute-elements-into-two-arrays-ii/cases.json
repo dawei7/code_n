@@ -6,72 +6,215 @@
       "name": "sample: equal counts use both tie-breaks",
       "kind": "sample",
       "visible": true,
-      "input": { "nums": [2, 1, 3, 3] },
-      "expected": [2, 3, 1, 3],
-      "tags": ["sample", "duplicates", "tie-breaking"]
+      "input": {
+        "nums": [
+          2,
+          1,
+          3,
+          3
+        ]
+      },
+      "expected": [
+        2,
+        3,
+        1,
+        3
+      ],
+      "tags": [
+        "sample",
+        "duplicates",
+        "tie-breaking"
+      ]
     },
     {
       "id": "sample-greater-counts",
       "name": "sample: greater counts control later placements",
       "kind": "sample",
       "visible": true,
-      "input": { "nums": [5, 14, 3, 1, 2] },
-      "expected": [5, 3, 1, 2, 14],
-      "tags": ["sample", "greater-count"]
+      "input": {
+        "nums": [
+          5,
+          14,
+          3,
+          1,
+          2
+        ]
+      },
+      "expected": [
+        5,
+        3,
+        1,
+        2,
+        14
+      ],
+      "tags": [
+        "sample",
+        "greater-count"
+      ]
     },
     {
       "id": "sample-all-equal",
       "name": "sample: all values equal",
       "kind": "sample",
       "visible": true,
-      "input": { "nums": [3, 3, 3, 3] },
-      "expected": [3, 3, 3, 3],
-      "tags": ["sample", "duplicates"]
+      "input": {
+        "nums": [
+          3,
+          3,
+          3,
+          3
+        ]
+      },
+      "expected": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
     },
     {
       "id": "trial-minimum-length",
       "name": "trial: minimum length and complete tie",
       "kind": "trial",
       "visible": true,
-      "input": { "nums": [1, 2, 3] },
-      "expected": [1, 3, 2],
-      "tags": ["trial", "minimum", "tie-breaking"]
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": [
+        1,
+        3,
+        2
+      ],
+      "tags": [
+        "trial",
+        "minimum",
+        "tie-breaking"
+      ]
     },
     {
       "id": "trial-decreasing",
       "name": "trial: decreasing distinct values",
       "kind": "trial",
       "visible": true,
-      "input": { "nums": [9, 8, 7, 6, 5, 4] },
-      "expected": [9, 7, 6, 5, 4, 8],
-      "tags": ["trial", "decreasing"]
+      "input": {
+        "nums": [
+          9,
+          8,
+          7,
+          6,
+          5,
+          4
+        ]
+      },
+      "expected": [
+        9,
+        7,
+        6,
+        5,
+        4,
+        8
+      ],
+      "tags": [
+        "trial",
+        "decreasing"
+      ]
     },
     {
-      "id": "real-increasing",
-      "name": "real: zero greater counts balance lengths",
-      "kind": "real",
-      "visible": false,
-      "input": { "nums": [1, 2, 3, 4, 5, 6] },
-      "expected": [1, 3, 5, 2, 4, 6],
-      "tags": ["real", "increasing", "tie-breaking"]
+      "id": "trial-increasing",
+      "name": "zero greater counts balance lengths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "expected": [
+        1,
+        3,
+        5,
+        2,
+        4,
+        6
+      ],
+      "tags": [
+        "real",
+        "increasing",
+        "tie-breaking"
+      ]
     },
     {
-      "id": "real-mixed-duplicates",
-      "name": "real: mixed ranks with repeated values",
-      "kind": "real",
-      "visible": false,
-      "input": { "nums": [2, 2, 1, 1, 3, 3, 0] },
-      "expected": [2, 1, 3, 0, 2, 1, 3],
-      "tags": ["real", "duplicates", "strict-comparison"]
+      "id": "trial-mixed-duplicates",
+      "name": "mixed ranks with repeated values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          1,
+          1,
+          3,
+          3,
+          0
+        ]
+      },
+      "expected": [
+        2,
+        1,
+        3,
+        0,
+        2,
+        1,
+        3
+      ],
+      "tags": [
+        "real",
+        "duplicates",
+        "strict-comparison"
+      ]
     },
     {
-      "id": "real-value-bounds",
-      "name": "real: extreme values and duplicate bounds",
-      "kind": "real",
-      "visible": false,
-      "input": { "nums": [1000000000, 1, 999999999, 1, 1000000000, 2] },
-      "expected": [1000000000, 999999999, 1, 2, 1, 1000000000],
-      "tags": ["real", "bounds", "duplicates"]
+      "id": "trial-value-bounds",
+      "name": "extreme values and duplicate bounds",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          1,
+          999999999,
+          1,
+          1000000000,
+          2
+        ]
+      },
+      "expected": [
+        1000000000,
+        999999999,
+        1,
+        2,
+        1,
+        1000000000
+      ],
+      "tags": [
+        "real",
+        "bounds",
+        "duplicates"
+      ]
     }
   ]
 }

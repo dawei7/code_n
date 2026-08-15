@@ -7,70 +7,117 @@
       "name": "sample: one character has highest frequency",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "tree"},
+      "input": {
+        "s": "tree"
+      },
       "expected": "eetr",
-      "validator": {"kind": "frequency_sorted_string"},
-      "tags": ["sample", "tie"]
+      "validator": {
+        "kind": "frequency_sorted_string"
+      },
+      "tags": [
+        "sample",
+        "tie"
+      ]
     },
     {
       "id": "sample-tied-groups",
       "name": "sample: two groups have equal frequency",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "cccaaa"},
+      "input": {
+        "s": "cccaaa"
+      },
       "expected": "cccaaa",
-      "validator": {"kind": "frequency_sorted_string"},
-      "tags": ["sample", "tie"]
+      "validator": {
+        "kind": "frequency_sorted_string"
+      },
+      "tags": [
+        "sample",
+        "tie"
+      ]
     },
     {
       "id": "sample-case-sensitive",
       "name": "sample: uppercase and lowercase differ",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "Aabb"},
+      "input": {
+        "s": "Aabb"
+      },
       "expected": "bbAa",
-      "validator": {"kind": "frequency_sorted_string"},
-      "tags": ["sample", "case-sensitive"]
+      "validator": {
+        "kind": "frequency_sorted_string"
+      },
+      "tags": [
+        "sample",
+        "case-sensitive"
+      ]
     },
     {
       "id": "trial-single",
       "name": "trial: one character",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "z"},
+      "input": {
+        "s": "z"
+      },
       "expected": "z",
-      "validator": {"kind": "frequency_sorted_string"},
-      "tags": ["trial", "single"]
+      "validator": {
+        "kind": "frequency_sorted_string"
+      },
+      "tags": [
+        "trial",
+        "single"
+      ]
     },
     {
       "id": "trial-empty",
       "name": "trial: empty string",
       "kind": "trial",
       "visible": true,
-      "input": {"s": ""},
+      "input": {
+        "s": ""
+      },
       "expected": "",
-      "validator": {"kind": "frequency_sorted_string"},
-      "tags": ["trial", "empty"]
+      "validator": {
+        "kind": "frequency_sorted_string"
+      },
+      "tags": [
+        "trial",
+        "empty"
+      ]
     },
     {
-      "id": "hidden-many-groups",
-      "name": "hidden: several frequency groups",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "loveleetcode"},
+      "id": "trial-many-groups",
+      "name": "several frequency groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "loveleetcode"
+      },
       "expected": "eeeelloovtcd",
-      "validator": {"kind": "frequency_sorted_string"},
-      "tags": ["hidden", "groups"]
+      "validator": {
+        "kind": "frequency_sorted_string"
+      },
+      "tags": [
+        "groups"
+      ]
     },
     {
-      "id": "hidden-digits",
-      "name": "hidden: digit characters",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "112233333"},
+      "id": "trial-digits",
+      "name": "digit characters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "112233333"
+      },
       "expected": "333331122",
-      "validator": {"kind": "frequency_sorted_string"},
-      "tags": ["hidden", "digits"]
+      "validator": {
+        "kind": "frequency_sorted_string"
+      },
+      "tags": [
+        "digits"
+      ]
     }
   ]
 }

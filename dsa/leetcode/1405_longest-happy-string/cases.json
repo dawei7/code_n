@@ -98,10 +98,10 @@
       ]
     },
     {
-      "id": "real-dominant-uses-all",
+      "id": "trial-dominant-uses-all",
       "name": "real dominant uses all",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": 3,
         "b": 3,
@@ -112,15 +112,14 @@
         "kind": "longest_happy_string"
       },
       "tags": [
-        "hidden",
         "dominant"
       ]
     },
     {
-      "id": "real-unequal-balanced",
+      "id": "trial-unequal-balanced",
       "name": "real unequal balanced",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": 4,
         "b": 5,
@@ -131,7 +130,6 @@
         "kind": "longest_happy_string"
       },
       "tags": [
-        "hidden",
         "all-used"
       ]
     }

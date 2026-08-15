@@ -178,10 +178,10 @@
       ]
     },
     {
-      "id": "real-descending",
-      "name": "real: descending values remain ordered",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-descending",
+      "name": "descending values remain ordered",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           10,
@@ -214,10 +214,10 @@
       ]
     },
     {
-      "id": "real-bound-alternation",
-      "name": "real: alternating value bounds",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-bound-alternation",
+      "name": "alternating value bounds",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -246,10 +246,10 @@
       ]
     },
     {
-      "id": "real-mixed-duplicates",
-      "name": "real: mixed runs and repeated values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-duplicates",
+      "name": "mixed runs and repeated values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           8,
@@ -280,10 +280,10 @@
       ]
     },
     {
-      "id": "real-even-palindrome",
-      "name": "real: even-length palindrome",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-even-palindrome",
+      "name": "even-length palindrome",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           5,
@@ -308,10 +308,10 @@
       ]
     },
     {
-      "id": "real-maximum-length",
-      "name": "real: all fifty legal nodes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-length",
+      "name": "all fifty legal nodes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,

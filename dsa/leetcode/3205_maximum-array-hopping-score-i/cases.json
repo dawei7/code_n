@@ -114,10 +114,10 @@
       ]
     },
     {
-      "id": "real-large-middle-peak",
-      "name": "real: a middle peak dominates until the final hop",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-middle-peak",
+      "name": "a middle peak dominates until the final hop",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -132,10 +132,10 @@
       ]
     },
     {
-      "id": "real-multiple-records",
-      "name": "real: several right-to-left records determine the route",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-records",
+      "name": "several right-to-left records determine the route",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -151,10 +151,10 @@
       ]
     },
     {
-      "id": "real-starting-value-irrelevant",
-      "name": "real: changing the large starting value cannot earn points",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-starting-value-irrelevant",
+      "name": "changing the large starting value cannot earn points",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000,
@@ -169,10 +169,10 @@
       ]
     },
     {
-      "id": "real-maximum-values",
-      "name": "real: maximum values require a wide accumulated score",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-values",
+      "name": "maximum values require a wide accumulated score",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -189,10 +189,10 @@
       ]
     },
     {
-      "id": "real-late-spike",
-      "name": "real: a late spike dominates all earlier intervals",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-late-spike",
+      "name": "a late spike dominates all earlier intervals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -209,10 +209,10 @@
       ]
     },
     {
-      "id": "real-alternating-peaks",
-      "name": "real: alternating peaks retain only suffix records",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alternating-peaks",
+      "name": "alternating peaks retain only suffix records",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -232,4 +232,3 @@
     }
   ]
 }
-

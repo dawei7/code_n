@@ -7,90 +7,200 @@
       "name": "sample: one matching outer pair around the middle",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [6, 3, 6]},
+      "input": {
+        "nums": [
+          6,
+          3,
+          6
+        ]
+      },
       "expected": 1,
-      "tags": ["sample", "single-triplet", "doubling"]
+      "tags": [
+        "sample",
+        "single-triplet",
+        "doubling"
+      ]
     },
     {
       "id": "sample-zero-middle",
       "name": "sample: zero doubles to zero",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [0, 1, 0, 0]},
+      "input": {
+        "nums": [
+          0,
+          1,
+          0,
+          0
+        ]
+      },
       "expected": 1,
-      "tags": ["sample", "zero", "middle-index"]
+      "tags": [
+        "sample",
+        "zero",
+        "middle-index"
+      ]
     },
     {
       "id": "sample-two-value-levels",
       "name": "sample: triplets arise at two different middle values",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [8, 4, 2, 8, 4]},
+      "input": {
+        "nums": [
+          8,
+          4,
+          2,
+          8,
+          4
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "multiple-middle-values", "index-order"]
+      "tags": [
+        "sample",
+        "multiple-middle-values",
+        "index-order"
+      ]
     },
     {
       "id": "trial-minimum-all-zero",
       "name": "trial: minimum-length all-zero array",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0, 0, 0]},
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "minimum-length", "all-zero"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "all-zero"
+      ]
     },
     {
       "id": "trial-no-target-values",
       "name": "trial: no outer value equals twice its middle",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 1]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          1
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "no-match", "minimum-length"]
+      "tags": [
+        "trial",
+        "no-match",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-two-right-choices",
       "name": "trial: one middle combines with two right choices",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 1, 2, 2]},
+      "input": {
+        "nums": [
+          2,
+          1,
+          2,
+          2
+        ]
+      },
       "expected": 2,
-      "tags": ["trial", "multiplicity", "right-frequency"]
+      "tags": [
+        "trial",
+        "multiplicity",
+        "right-frequency"
+      ]
     },
     {
-      "id": "real-two-middle-choices",
-      "name": "real: separate middle indices contribute independently",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [4, 2, 4, 2, 4]},
+      "id": "trial-two-middle-choices",
+      "name": "separate middle indices contribute independently",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          2,
+          4,
+          2,
+          4
+        ]
+      },
       "expected": 4,
-      "tags": ["real", "multiple-middle-indices", "multiplicity"]
+      "tags": [
+        "real",
+        "multiple-middle-indices",
+        "multiplicity"
+      ]
     },
     {
-      "id": "real-five-zero-combinations",
-      "name": "real: every three of five zeros form a triplet",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 0, 0, 0, 0]},
+      "id": "trial-five-zero-combinations",
+      "name": "every three of five zeros form a triplet",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
       "expected": 10,
-      "tags": ["real", "all-zero", "combinations"]
+      "tags": [
+        "real",
+        "all-zero",
+        "combinations"
+      ]
     },
     {
-      "id": "real-maximum-value-target",
-      "name": "real: the maximum legal value can be an outer target",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100000, 50000, 100000]},
+      "id": "trial-maximum-value-target",
+      "name": "the maximum legal value can be an outer target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100000,
+          50000,
+          100000
+        ]
+      },
       "expected": 1,
-      "tags": ["real", "maximum-value", "boundary"]
+      "tags": [
+        "real",
+        "maximum-value",
+        "boundary"
+      ]
     },
     {
-      "id": "real-order-prevents-match",
-      "name": "real: matching values exist but not on both sides",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [10, 10, 5, 1, 1]},
+      "id": "trial-order-prevents-match",
+      "name": "matching values exist but not on both sides",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          10,
+          5,
+          1,
+          1
+        ]
+      },
       "expected": 0,
-      "tags": ["real", "index-order", "semantic-trap"]
+      "tags": [
+        "real",
+        "index-order",
+        "semantic-trap"
+      ]
     }
   ]
 }

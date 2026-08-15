@@ -263,10 +263,10 @@
       ]
     },
     {
-      "id": "hidden-descending-constraints",
-      "name": "hidden: progressively shorter people",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-descending-constraints",
+      "name": "progressively shorter people",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "people": [
           [
@@ -310,15 +310,14 @@
         "people_param": "people"
       },
       "tags": [
-        "hidden",
         "descending-constraints"
       ]
     },
     {
-      "id": "hidden-reverse",
-      "name": "hidden: reverse height order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-reverse",
+      "name": "reverse height order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "people": [
           [
@@ -362,15 +361,14 @@
         "people_param": "people"
       },
       "tags": [
-        "hidden",
         "reverse"
       ]
     },
     {
-      "id": "hidden-interleaved",
-      "name": "hidden: tall and short constraints interleave",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-interleaved",
+      "name": "tall and short constraints interleave",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "people": [
           [
@@ -422,7 +420,6 @@
         "people_param": "people"
       },
       "tags": [
-        "hidden",
         "interleaved"
       ]
     }

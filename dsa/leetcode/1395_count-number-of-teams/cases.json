@@ -1,12 +1,170 @@
 {
   "challenge_id": "lc_1395",
   "cases": [
-    {"id": "sample-mixed", "name": "sample: increasing and decreasing teams", "kind": "sample", "visible": true, "input": {"rating": [2, 5, 3, 4, 1]}, "expected": 3, "tags": ["sample", "mixed"]},
-    {"id": "sample-none", "name": "sample: no monotone triple", "kind": "sample", "visible": true, "input": {"rating": [2, 1, 3]}, "expected": 0, "tags": ["sample", "none"]},
-    {"id": "sample-increasing", "name": "sample: all increasing triples", "kind": "sample", "visible": true, "input": {"rating": [1, 2, 3, 4]}, "expected": 4, "tags": ["sample", "increasing"]},
-    {"id": "trial-decreasing", "name": "strictly decreasing array", "kind": "trial", "visible": true, "input": {"rating": [9, 7, 5, 3, 1]}, "expected": 10, "tags": ["trial", "decreasing"]},
-    {"id": "trial-three-valid", "name": "minimum length valid team", "kind": "trial", "visible": true, "input": {"rating": [8, 4, 2]}, "expected": 1, "tags": ["trial", "minimum"]},
-    {"id": "real-zigzag", "name": "hidden: reject mixed-direction triples", "kind": "real", "visible": false, "input": {"rating": [3, 1, 4, 2, 5]}, "expected": 3, "tags": ["hidden", "zigzag"]},
-    {"id": "real-extreme-values", "name": "hidden: rating magnitude does not affect counting", "kind": "real", "visible": false, "input": {"rating": [100000, 1, 99999, 2]}, "expected": 1, "tags": ["hidden", "bounds"]}
+    {
+      "id": "sample-mixed",
+      "name": "sample: increasing and decreasing teams",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "rating": [
+          2,
+          5,
+          3,
+          4,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-none",
+      "name": "sample: no monotone triple",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "rating": [
+          2,
+          1,
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "none"
+      ]
+    },
+    {
+      "id": "sample-increasing",
+      "name": "sample: all increasing triples",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "rating": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "increasing"
+      ]
+    },
+    {
+      "id": "trial-decreasing",
+      "name": "strictly decreasing array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "rating": [
+          9,
+          7,
+          5,
+          3,
+          1
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "trial",
+        "decreasing"
+      ]
+    },
+    {
+      "id": "trial-three-valid",
+      "name": "minimum length valid team",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "rating": [
+          8,
+          4,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-zigzag",
+      "name": "reject mixed-direction triples",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "rating": [
+          3,
+          1,
+          4,
+          2,
+          5
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "zigzag"
+      ]
+    },
+    {
+      "id": "trial-extreme-values",
+      "name": "rating magnitude does not affect counting",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "rating": [
+          100000,
+          1,
+          99999,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "bounds"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in rating",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "rating": [
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in rating",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "rating": [
+          2,
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    }
   ]
 }

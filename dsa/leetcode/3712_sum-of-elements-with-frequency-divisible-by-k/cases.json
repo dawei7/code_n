@@ -7,108 +7,258 @@
       "name": "sample: values occurring two and four times qualify",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 2, 3, 3, 3, 3, 4], "k": 2},
+      "input": {
+        "nums": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          4
+        ],
+        "k": 2
+      },
       "expected": 16,
-      "tags": ["sample", "multiple-qualifying-values"]
+      "tags": [
+        "sample",
+        "multiple-qualifying-values"
+      ]
     },
     {
       "id": "sample-no-even-frequency",
       "name": "sample: distinct values produce a zero sum for k two",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 3, 4, 5], "k": 2},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "k": 2
+      },
       "expected": 0,
-      "tags": ["sample", "no-qualifying-value"]
+      "tags": [
+        "sample",
+        "no-qualifying-value"
+      ]
     },
     {
       "id": "sample-three-copies",
       "name": "sample: all three copies of four contribute",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [4, 4, 4, 1, 2, 3], "k": 3},
+      "input": {
+        "nums": [
+          4,
+          4,
+          4,
+          1,
+          2,
+          3
+        ],
+        "k": 3
+      },
       "expected": 12,
-      "tags": ["sample", "multiplicity"]
+      "tags": [
+        "sample",
+        "multiplicity"
+      ]
     },
     {
       "id": "trial-k-one",
       "name": "trial: every present value qualifies when k is one",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5, 5, 2, 9], "k": 1},
+      "input": {
+        "nums": [
+          5,
+          5,
+          2,
+          9
+        ],
+        "k": 1
+      },
       "expected": 21,
-      "tags": ["trial", "k-boundary"]
+      "tags": [
+        "trial",
+        "k-boundary"
+      ]
     },
     {
       "id": "trial-single-qualifies",
       "name": "trial: one element qualifies only for k one",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [7], "k": 1},
+      "input": {
+        "nums": [
+          7
+        ],
+        "k": 1
+      },
       "expected": 7,
-      "tags": ["trial", "minimum-length"]
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-k-too-large",
       "name": "trial: a divisor larger than every frequency selects nothing",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 2, 2, 3, 3], "k": 6},
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          3,
+          3
+        ],
+        "k": 6
+      },
       "expected": 0,
-      "tags": ["trial", "large-k"]
+      "tags": [
+        "trial",
+        "large-k"
+      ]
     },
     {
-      "id": "real-several-divisible-counts",
-      "name": "hidden: frequencies six and three both divide by three",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 1, 1, 1, 1, 1, 2, 2, 2, 5, 5], "k": 3},
+      "id": "trial-several-divisible-counts",
+      "name": "frequencies six and three both divide by three",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          5,
+          5
+        ],
+        "k": 3
+      },
       "expected": 12,
-      "tags": ["hidden", "multiple-qualifying-values"]
+      "tags": [
+        "multiple-qualifying-values"
+      ]
     },
     {
-      "id": "real-value-upper-bound",
-      "name": "hidden: maximum values contribute with full multiplicity",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100, 100, 100, 100, 99, 99], "k": 2},
+      "id": "trial-value-upper-bound",
+      "name": "maximum values contribute with full multiplicity",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100,
+          100,
+          100,
+          100,
+          99,
+          99
+        ],
+        "k": 2
+      },
       "expected": 598,
-      "tags": ["hidden", "value-boundary", "multiplicity"]
+      "tags": [
+        "value-boundary",
+        "multiplicity"
+      ]
     },
     {
-      "id": "real-frequency-not-value",
-      "name": "hidden: divisibility applies to frequency rather than the value",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [6, 6, 5, 5, 5], "k": 2},
+      "id": "trial-frequency-not-value",
+      "name": "divisibility applies to frequency rather than the value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          6,
+          5,
+          5,
+          5
+        ],
+        "k": 2
+      },
       "expected": 12,
-      "tags": ["hidden", "semantic-trap"]
+      "tags": [
+        "semantic-trap"
+      ]
     },
     {
-      "id": "real-k-equals-frequency",
-      "name": "hidden: a frequency exactly equal to k qualifies",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [8, 8, 8, 8, 3, 3, 3], "k": 4},
+      "id": "trial-k-equals-frequency",
+      "name": "a frequency exactly equal to k qualifies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          8,
+          8,
+          8,
+          3,
+          3,
+          3
+        ],
+        "k": 4
+      },
       "expected": 32,
-      "tags": ["hidden", "exact-divisibility"]
+      "tags": [
+        "exact-divisibility"
+      ]
     },
     {
-      "id": "real-maximum-k-no-match",
-      "name": "hidden: maximum k cannot divide a smaller positive frequency",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 1, 100, 100], "k": 100},
+      "id": "trial-maximum-k-no-match",
+      "name": "maximum k cannot divide a smaller positive frequency",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          100,
+          100
+        ],
+        "k": 100
+      },
       "expected": 0,
-      "tags": ["hidden", "k-boundary"]
+      "tags": [
+        "k-boundary"
+      ]
     },
     {
-      "id": "real-all-one-value",
-      "name": "hidden: one frequency class supplies the complete sum",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [9, 9, 9, 9, 9, 9, 9, 9], "k": 4},
+      "id": "trial-all-one-value",
+      "name": "one frequency class supplies the complete sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9
+        ],
+        "k": 4
+      },
       "expected": 72,
-      "tags": ["hidden", "single-value", "multiplicity"]
+      "tags": [
+        "single-value",
+        "multiplicity"
+      ]
     }
   ]
 }

@@ -78,47 +78,44 @@
       ]
     },
     {
-      "id": "hidden-middle-alphabet",
-      "name": "hidden: added middle alphabet letter",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-middle-alphabet",
+      "name": "added middle alphabet letter",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "leetcode",
         "t": "teelcodqe"
       },
       "expected": "q",
       "tags": [
-        "hidden",
         "distinct"
       ]
     },
     {
-      "id": "hidden-many-duplicates",
-      "name": "hidden: multiplicities cancel",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-duplicates",
+      "name": "multiplicities cancel",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "mmnnoopp",
         "t": "pomnopmno"
       },
       "expected": "o",
       "tags": [
-        "hidden",
         "multiplicity"
       ]
     },
     {
-      "id": "hidden-extra-z",
-      "name": "hidden: extra letter after repeated groups",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-extra-z",
+      "name": "extra letter after repeated groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aabbccddeeff",
         "t": "fedcbazfedcba"
       },
       "expected": "z",
       "tags": [
-        "hidden",
         "groups"
       ]
     }

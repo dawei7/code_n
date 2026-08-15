@@ -1,1 +1,229 @@
-{"schema_version":1,"challenge_id":"lc_1090","cases":[{"id":"sample-1","name":"sample: one item per label","kind":"sample","visible":true,"input":{"values":[5,4,3,2,1],"labels":[1,1,2,2,3],"numWanted":3,"useLimit":1},"expected":9,"tags":["sample","label-limit"]},{"id":"sample-2","name":"sample: two items from one label","kind":"sample","visible":true,"input":{"values":[5,4,3,2,1],"labels":[1,3,3,3,2],"numWanted":3,"useLimit":2},"expected":12,"tags":["sample","greedy"]},{"id":"sample-3","name":"sample: total limit exceeds feasible label choices","kind":"sample","visible":true,"input":{"values":[9,8,8,7,6],"labels":[0,0,0,1,1],"numWanted":3,"useLimit":1},"expected":16,"tags":["sample","fewer-items"]},{"id":"trial-total-limit","name":"numWanted stops otherwise feasible choices","kind":"trial","visible":true,"input":{"values":[10,9,8,7],"labels":[1,2,3,4],"numWanted":2,"useLimit":1},"expected":19,"tags":["trial","total-limit"]},{"id":"trial-zero-values","name":"zero values do not change sum","kind":"trial","visible":true,"input":{"values":[0,0,5],"labels":[1,2,1],"numWanted":3,"useLimit":2},"expected":5,"tags":["trial","zero"]},{"id":"real-repeated-labels","name":"hidden: skip blocked high value for another label","kind":"real","visible":false,"input":{"values":[6,10,8,7,9],"labels":[1,1,2,2,2],"numWanted":3,"useLimit":2},"expected":27,"tags":["hidden","counts"]},{"id":"real-use-limit-two","name":"hidden: retain two best values per label","kind":"real","visible":false,"input":{"values":[12,11,10,9,8,7],"labels":[1,1,1,2,2,3],"numWanted":4,"useLimit":2},"expected":40,"tags":["hidden","use-limit"]},{"id":"real-equal-values","name":"hidden: equal values across labels","kind":"real","visible":false,"input":{"values":[5,5,5,5],"labels":[1,1,2,2],"numWanted":3,"useLimit":2},"expected":15,"tags":["hidden","ties"]}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1090",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one item per label",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "values": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ],
+        "labels": [
+          1,
+          1,
+          2,
+          2,
+          3
+        ],
+        "numWanted": 3,
+        "useLimit": 1
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "label-limit"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two items from one label",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "values": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ],
+        "labels": [
+          1,
+          3,
+          3,
+          3,
+          2
+        ],
+        "numWanted": 3,
+        "useLimit": 2
+      },
+      "expected": 12,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: total limit exceeds feasible label choices",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "values": [
+          9,
+          8,
+          8,
+          7,
+          6
+        ],
+        "labels": [
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        "numWanted": 3,
+        "useLimit": 1
+      },
+      "expected": 16,
+      "tags": [
+        "sample",
+        "fewer-items"
+      ]
+    },
+    {
+      "id": "trial-total-limit",
+      "name": "numWanted stops otherwise feasible choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "values": [
+          10,
+          9,
+          8,
+          7
+        ],
+        "labels": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "numWanted": 2,
+        "useLimit": 1
+      },
+      "expected": 19,
+      "tags": [
+        "trial",
+        "total-limit"
+      ]
+    },
+    {
+      "id": "trial-zero-values",
+      "name": "zero values do not change sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "values": [
+          0,
+          0,
+          5
+        ],
+        "labels": [
+          1,
+          2,
+          1
+        ],
+        "numWanted": 3,
+        "useLimit": 2
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-repeated-labels",
+      "name": "skip blocked high value for another label",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "values": [
+          6,
+          10,
+          8,
+          7,
+          9
+        ],
+        "labels": [
+          1,
+          1,
+          2,
+          2,
+          2
+        ],
+        "numWanted": 3,
+        "useLimit": 2
+      },
+      "expected": 27,
+      "tags": [
+        "counts"
+      ]
+    },
+    {
+      "id": "trial-use-limit-two",
+      "name": "retain two best values per label",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "values": [
+          12,
+          11,
+          10,
+          9,
+          8,
+          7
+        ],
+        "labels": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          3
+        ],
+        "numWanted": 4,
+        "useLimit": 2
+      },
+      "expected": 40,
+      "tags": [
+        "use-limit"
+      ]
+    },
+    {
+      "id": "trial-equal-values",
+      "name": "equal values across labels",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "values": [
+          5,
+          5,
+          5,
+          5
+        ],
+        "labels": [
+          1,
+          1,
+          2,
+          2
+        ],
+        "numWanted": 3,
+        "useLimit": 2
+      },
+      "expected": 15,
+      "tags": [
+        "ties"
+      ]
+    }
+  ]
+}

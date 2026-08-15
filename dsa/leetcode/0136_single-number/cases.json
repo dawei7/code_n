@@ -54,10 +54,10 @@
       ]
     },
     {
-      "id": "real-negative-single",
-      "name": "hidden: negative single",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-negative-single",
+      "name": "negative single",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -1,
@@ -67,7 +67,6 @@
       },
       "expected": -2,
       "tags": [
-        "hidden",
         "negative"
       ]
     }

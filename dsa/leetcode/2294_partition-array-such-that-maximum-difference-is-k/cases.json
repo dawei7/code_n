@@ -2,14 +2,189 @@
   "schema_version": 1,
   "challenge_id": "lc_2294",
   "cases": [
-    {"id":"sample-two-ranges","name":"sample: two value ranges cover an interleaved array","kind":"sample","visible":true,"input":{"nums":[3,6,1,2,5],"k":2},"expected":2,"tags":["sample","greedy-ranges"]},
-    {"id":"sample-boundary","name":"sample: adjacent values fit but the full range does not","kind":"sample","visible":true,"input":{"nums":[1,2,3],"k":1},"expected":2,"tags":["sample","boundary"]},
-    {"id":"sample-zero-k","name":"sample: zero range groups equal values only","kind":"sample","visible":true,"input":{"nums":[2,2,4,5],"k":0},"expected":3,"tags":["sample","zero-k","duplicates"]},
-    {"id":"trial-one-group","name":"a large threshold covers the global range","kind":"trial","visible":true,"input":{"nums":[9,1,5,3],"k":8},"expected":1,"tags":["one-group"]},
-    {"id":"trial-order-independent","name":"interleaved positions still form two subsequences","kind":"trial","visible":true,"input":{"nums":[10,1,6,2],"k":4},"expected":2,"tags":["subsequence","ordering"]},
-    {"id":"trial-all-equal","name":"duplicates need only one zero-range group","kind":"trial","visible":true,"input":{"nums":[7,7,7,7],"k":0},"expected":1,"tags":["duplicates"]},
-    {"id":"real-exact-boundaries","name":"hidden: values exactly at each range limit are included","kind":"real","visible":false,"input":{"nums":[0,3,6,9,12],"k":3},"expected":3,"tags":["hidden","boundary"]},
-    {"id":"real-wide-gaps","name":"hidden: every separated value starts a group","kind":"real","visible":false,"input":{"nums":[100000,0,75000,25000,50000],"k":10000},"expected":5,"tags":["hidden","bounds"]},
-    {"id":"real-mixed-duplicates","name":"hidden: duplicate clusters span three greedy ranges","kind":"real","visible":false,"input":{"nums":[1,1,4,4,7,7,2,5,8],"k":2},"expected":3,"tags":["hidden","duplicates","multiple-groups"]}
+    {
+      "id": "sample-two-ranges",
+      "name": "sample: two value ranges cover an interleaved array",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          6,
+          1,
+          2,
+          5
+        ],
+        "k": 2
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "greedy-ranges"
+      ]
+    },
+    {
+      "id": "sample-boundary",
+      "name": "sample: adjacent values fit but the full range does not",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "sample-zero-k",
+      "name": "sample: zero range groups equal values only",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          4,
+          5
+        ],
+        "k": 0
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "zero-k",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-one-group",
+      "name": "a large threshold covers the global range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          1,
+          5,
+          3
+        ],
+        "k": 8
+      },
+      "expected": 1,
+      "tags": [
+        "one-group"
+      ]
+    },
+    {
+      "id": "trial-order-independent",
+      "name": "interleaved positions still form two subsequences",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          1,
+          6,
+          2
+        ],
+        "k": 4
+      },
+      "expected": 2,
+      "tags": [
+        "subsequence",
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "duplicates need only one zero-range group",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7,
+          7
+        ],
+        "k": 0
+      },
+      "expected": 1,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-exact-boundaries",
+      "name": "values exactly at each range limit are included",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          3,
+          6,
+          9,
+          12
+        ],
+        "k": 3
+      },
+      "expected": 3,
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-wide-gaps",
+      "name": "every separated value starts a group",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100000,
+          0,
+          75000,
+          25000,
+          50000
+        ],
+        "k": 10000
+      },
+      "expected": 5,
+      "tags": [
+        "bounds"
+      ]
+    },
+    {
+      "id": "trial-mixed-duplicates",
+      "name": "duplicate clusters span three greedy ranges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          4,
+          4,
+          7,
+          7,
+          2,
+          5,
+          8
+        ],
+        "k": 2
+      },
+      "expected": 3,
+      "tags": [
+        "duplicates",
+        "multiple-groups"
+      ]
+    }
   ]
 }

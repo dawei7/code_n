@@ -205,10 +205,10 @@
       ]
     },
     {
-      "id": "real-cycle",
-      "name": "hidden: a cycle offers several simple path orders",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-cycle",
+      "name": "a cycle offers several simple path orders",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 5,
         "edges": [
@@ -237,16 +237,15 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "cycle",
         "maximum-path"
       ]
     },
     {
-      "id": "real-disconnected-dense-component",
-      "name": "hidden: the best path remains inside a triangle",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-disconnected-dense-component",
+      "name": "the best path remains inside a triangle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "edges": [
@@ -267,16 +266,15 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "disconnected",
         "cycle"
       ]
     },
     {
-      "id": "real-complete-two-odd-counts",
-      "name": "hidden: complete graph discards one odd-count label",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-complete-two-odd-counts",
+      "name": "complete graph discards one odd-count label",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 6,
         "edges": [
@@ -345,16 +343,15 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "complete-graph",
         "label-counts"
       ]
     },
     {
-      "id": "real-complete-all-distinct",
-      "name": "hidden: all distinct labels permit only one node",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-complete-all-distinct",
+      "name": "all distinct labels permit only one node",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 7,
         "edges": [
@@ -447,16 +444,15 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "complete-graph",
         "single-node"
       ]
     },
     {
-      "id": "real-multiple-centers",
-      "name": "hidden: both odd and even centers compete",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-centers",
+      "name": "both odd and even centers compete",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 7,
         "edges": [
@@ -493,16 +489,15 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "mixed-centers",
         "cycle"
       ]
     },
     {
-      "id": "real-maximum-complete",
-      "name": "hidden: maximum node count uses complete-graph multiplicities",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-complete",
+      "name": "maximum node count uses complete-graph multiplicities",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 14,
         "edges": [
@@ -875,9 +870,33 @@
       },
       "expected": 13,
       "tags": [
-        "hidden",
         "maximum-n",
         "complete-graph"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "repeated character in label",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "label": "aaa"
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

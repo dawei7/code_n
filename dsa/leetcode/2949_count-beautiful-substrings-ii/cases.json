@@ -87,65 +87,90 @@
       ]
     },
     {
-      "id": "real-cubed-prime-factor",
-      "name": "hidden: a cubed prime factor requires four vowels",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-cubed-prime-factor",
+      "name": "a cubed prime factor requires four vowels",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abababab",
         "k": 8
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "prime-exponent"
       ]
     },
     {
-      "id": "real-two-prime-factors",
-      "name": "hidden: the complete string first reaches the required period",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-prime-factors",
+      "name": "the complete string first reaches the required period",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abababababab",
         "k": 18
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "number-theory"
       ]
     },
     {
-      "id": "real-all-vowels",
-      "name": "hidden: all vowels never balance",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-vowels",
+      "name": "all vowels never balance",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aeiouaeiou",
         "k": 1000
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "no-consonants"
       ]
     },
     {
-      "id": "real-mixed-periods",
-      "name": "hidden: several balanced lengths meet the derived period",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-periods",
+      "name": "several balanced lengths meet the derived period",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "leetcodeisgreat",
         "k": 3
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "b",
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "bbb",
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]
 }
-

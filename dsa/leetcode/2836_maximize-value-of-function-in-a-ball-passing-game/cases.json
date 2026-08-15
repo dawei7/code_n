@@ -6,90 +6,217 @@
       "name": "sample: three-player cycle",
       "kind": "sample",
       "visible": true,
-      "input": {"receiver": [2, 0, 1], "k": 4},
+      "input": {
+        "receiver": [
+          2,
+          0,
+          1
+        ],
+        "k": 4
+      },
       "expected": 6,
-      "tags": ["sample", "cycle"]
+      "tags": [
+        "sample",
+        "cycle"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: tail reaches a self-loop",
       "kind": "sample",
       "visible": true,
-      "input": {"receiver": [1, 1, 1, 2, 3], "k": 3},
+      "input": {
+        "receiver": [
+          1,
+          1,
+          1,
+          2,
+          3
+        ],
+        "k": 3
+      },
       "expected": 10,
-      "tags": ["sample", "tail", "self-loop"]
+      "tags": [
+        "sample",
+        "tail",
+        "self-loop"
+      ]
     },
     {
       "id": "trial-single-player",
       "name": "trial: one player passes to themself",
       "kind": "trial",
       "visible": true,
-      "input": {"receiver": [0], "k": 1},
+      "input": {
+        "receiver": [
+          0
+        ],
+        "k": 1
+      },
       "expected": 0,
-      "tags": ["trial", "minimum-size", "self-loop"]
+      "tags": [
+        "trial",
+        "minimum-size",
+        "self-loop"
+      ]
     },
     {
       "id": "trial-common-receiver",
       "name": "trial: every player passes to zero",
       "kind": "trial",
       "visible": true,
-      "input": {"receiver": [0, 0, 0, 0, 0], "k": 1},
+      "input": {
+        "receiver": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "k": 1
+      },
       "expected": 4,
-      "tags": ["trial", "duplicate-receivers"]
+      "tags": [
+        "trial",
+        "duplicate-receivers"
+      ]
     },
     {
       "id": "trial-all-self-loops",
       "name": "trial: the largest self-loop repeats its score",
       "kind": "trial",
       "visible": true,
-      "input": {"receiver": [0, 1, 2, 3], "k": 5},
+      "input": {
+        "receiver": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "k": 5
+      },
       "expected": 18,
-      "tags": ["trial", "self-loop", "repeated-visits"]
+      "tags": [
+        "trial",
+        "self-loop",
+        "repeated-visits"
+      ]
     },
     {
-      "id": "real-one-pass-cycle",
-      "name": "hidden: one pass includes both start and receiver",
-      "kind": "real",
-      "visible": false,
-      "input": {"receiver": [1, 2, 0], "k": 1},
+      "id": "trial-one-pass-cycle",
+      "name": "one pass includes both start and receiver",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "receiver": [
+          1,
+          2,
+          0
+        ],
+        "k": 1
+      },
       "expected": 3,
-      "tags": ["hidden", "starting-contribution"]
+      "tags": [
+        "starting-contribution"
+      ]
     },
     {
-      "id": "real-maximum-k-single",
-      "name": "hidden: maximum passes on a zero-valued self-loop",
-      "kind": "real",
-      "visible": false,
-      "input": {"receiver": [0], "k": 10000000000},
+      "id": "trial-maximum-k-single",
+      "name": "maximum passes on a zero-valued self-loop",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "receiver": [
+          0
+        ],
+        "k": 10000000000
+      },
       "expected": 0,
-      "tags": ["hidden", "maximum-k", "self-loop"]
+      "tags": [
+        "maximum-k",
+        "self-loop"
+      ]
     },
     {
-      "id": "real-maximum-k-two-cycle",
-      "name": "hidden: maximum passes alternate around a two-cycle",
-      "kind": "real",
-      "visible": false,
-      "input": {"receiver": [1, 0], "k": 10000000000},
+      "id": "trial-maximum-k-two-cycle",
+      "name": "maximum passes alternate around a two-cycle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "receiver": [
+          1,
+          0
+        ],
+        "k": 10000000000
+      },
       "expected": 5000000001,
-      "tags": ["hidden", "maximum-k", "cycle"]
+      "tags": [
+        "maximum-k",
+        "cycle"
+      ]
     },
     {
-      "id": "real-chain-high-self-loop",
-      "name": "hidden: a chain reaches the highest-index self-loop",
-      "kind": "real",
-      "visible": false,
-      "input": {"receiver": [1, 2, 3, 3], "k": 10},
+      "id": "trial-chain-high-self-loop",
+      "name": "a chain reaches the highest-index self-loop",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "receiver": [
+          1,
+          2,
+          3,
+          3
+        ],
+        "k": 10
+      },
       "expected": 33,
-      "tags": ["hidden", "tail", "self-loop"]
+      "tags": [
+        "tail",
+        "self-loop"
+      ]
     },
     {
-      "id": "real-competing-components",
-      "name": "hidden: choose between two functional-graph components",
-      "kind": "real",
-      "visible": false,
-      "input": {"receiver": [1, 2, 3, 4, 2, 6, 7, 5], "k": 20},
+      "id": "trial-competing-components",
+      "name": "choose between two functional-graph components",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "receiver": [
+          1,
+          2,
+          3,
+          4,
+          2,
+          6,
+          7,
+          5
+        ],
+        "k": 20
+      },
       "expected": 126,
-      "tags": ["hidden", "components", "binary-lifting"]
+      "tags": [
+        "components",
+        "binary-lifting"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "receiver": [
+          2,
+          0,
+          1
+        ],
+        "k": 1
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
     }
   ]
 }

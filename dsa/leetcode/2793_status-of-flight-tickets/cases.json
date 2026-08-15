@@ -341,10 +341,10 @@
       ]
     },
     {
-      "id": "real-flight-without-passengers",
-      "name": "hidden: empty flights produce no passenger row",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-flight-without-passengers",
+      "name": "empty flights produce no passenger row",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Flights": [
@@ -382,15 +382,14 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "empty-flight"
       ]
     },
     {
-      "id": "real-overbooked-capacity-three",
-      "name": "hidden: fourth booking joins the waitlist",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-overbooked-capacity-three",
+      "name": "fourth booking joins the waitlist",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Flights": [
@@ -451,15 +450,14 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "overbooked"
       ]
     },
     {
-      "id": "real-under-capacity",
-      "name": "hidden: spare seats confirm every booking",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-under-capacity",
+      "name": "spare seats confirm every booking",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Flights": [
@@ -502,7 +500,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "under-capacity"
       ]
     }

@@ -73,44 +73,41 @@
       ]
     },
     {
-      "id": "hidden-power-related",
-      "name": "hidden: multiple complete halvings",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-power-related",
+      "name": "multiple complete halvings",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 24
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "halving"
       ]
     },
     {
-      "id": "hidden-hundred",
-      "name": "hidden: larger even count",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-hundred",
+      "name": "larger even count",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 100
       },
       "expected": 54,
       "tags": [
-        "hidden",
         "even"
       ]
     },
     {
-      "id": "hidden-odd-large",
-      "name": "hidden: large odd count",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-odd-large",
+      "name": "large odd count",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 999
       },
       "expected": 504,
       "tags": [
-        "hidden",
         "odd"
       ]
     }

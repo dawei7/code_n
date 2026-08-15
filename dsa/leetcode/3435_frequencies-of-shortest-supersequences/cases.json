@@ -214,10 +214,10 @@
       ]
     },
     {
-      "id": "real-four-cycle",
-      "name": "real: minimum feedback vertices in a cycle",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-four-cycle",
+      "name": "minimum feedback vertices in a cycle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "ab",
@@ -343,6 +343,97 @@
       "tags": [
         "real",
         "cycle"
+      ]
+    },
+    {
+      "id": "trial-boundary-6",
+      "name": "single element in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "ab"
+        ]
+      },
+      "expected": [
+        [
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-7",
+      "name": "identical elements in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "ab",
+          "ab"
+        ]
+      },
+      "expected": [
+        [
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

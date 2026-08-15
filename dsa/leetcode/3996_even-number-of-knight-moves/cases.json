@@ -1,25 +1,434 @@
 {
   "challenge_id": "lc_3996",
   "cases": [
-    {"id": "sample-four-moves", "name": "sample: equal colors admit an even route", "kind": "sample", "visible": true, "input": {"start": [1, 1], "target": [2, 2]}, "expected": true, "tags": ["sample", "same-color"]},
-    {"id": "sample-no-even-route", "name": "sample: opposite colors require odd parity", "kind": "sample", "visible": true, "input": {"start": [4, 5], "target": [6, 6]}, "expected": false, "tags": ["sample", "opposite-colors"]},
-    {"id": "trial-same-corner", "name": "trial: zero moves at the lower corner", "kind": "trial", "visible": true, "input": {"start": [0, 0], "target": [0, 0]}, "expected": true, "tags": ["trial", "zero-moves", "corner"]},
-    {"id": "trial-same-center", "name": "trial: zero moves at an interior cell", "kind": "trial", "visible": true, "input": {"start": [4, 4], "target": [4, 4]}, "expected": true, "tags": ["trial", "zero-moves", "interior"]},
-    {"id": "trial-one-knight-move", "name": "trial: one legal knight move is odd", "kind": "trial", "visible": true, "input": {"start": [0, 0], "target": [1, 2]}, "expected": false, "tags": ["trial", "one-move", "corner"]},
-    {"id": "trial-reverse-knight-move", "name": "trial: reverse legal knight move is odd", "kind": "trial", "visible": true, "input": {"start": [7, 7], "target": [5, 6]}, "expected": false, "tags": ["trial", "one-move", "corner"]},
-    {"id": "trial-adjacent-diagonal", "name": "trial: diagonally adjacent cells have the same color", "kind": "trial", "visible": true, "input": {"start": [0, 0], "target": [1, 1]}, "expected": true, "tags": ["trial", "same-color", "boundary"]},
-    {"id": "trial-adjacent-horizontal", "name": "trial: horizontally adjacent cells have opposite colors", "kind": "trial", "visible": true, "input": {"start": [0, 0], "target": [1, 0]}, "expected": false, "tags": ["trial", "opposite-colors", "boundary"]},
-    {"id": "trial-adjacent-vertical", "name": "trial: vertically adjacent cells have opposite colors", "kind": "trial", "visible": true, "input": {"start": [0, 0], "target": [0, 1]}, "expected": false, "tags": ["trial", "opposite-colors", "boundary"]},
-    {"id": "trial-opposite-corners", "name": "trial: opposite main-diagonal corners share a color", "kind": "trial", "visible": true, "input": {"start": [0, 0], "target": [7, 7]}, "expected": true, "tags": ["trial", "corners", "same-color"]},
-    {"id": "trial-other-corners", "name": "trial: opposite anti-diagonal corners share a color", "kind": "trial", "visible": true, "input": {"start": [0, 7], "target": [7, 0]}, "expected": true, "tags": ["trial", "corners", "same-color"]},
-    {"id": "trial-two-move-witness", "name": "trial: a direct two-move route", "kind": "trial", "visible": true, "input": {"start": [0, 0], "target": [2, 4]}, "expected": true, "tags": ["trial", "two-moves", "same-color"]},
-    {"id": "real-main-diagonal", "name": "hidden: separated diagonal cells share a color", "kind": "real", "visible": false, "input": {"start": [0, 0], "target": [3, 3]}, "expected": true, "tags": ["hidden", "same-color"]},
-    {"id": "real-near-upper-corner", "name": "hidden: near-corner target has opposite color", "kind": "real", "visible": false, "input": {"start": [0, 0], "target": [7, 6]}, "expected": false, "tags": ["hidden", "opposite-colors", "boundary"]},
-    {"id": "real-upper-to-lower-edge", "name": "hidden: distant edge cells have opposite colors", "kind": "real", "visible": false, "input": {"start": [7, 7], "target": [0, 1]}, "expected": false, "tags": ["hidden", "opposite-colors", "edges"]},
-    {"id": "real-interior-opposite", "name": "hidden: interior cells with different parity", "kind": "real", "visible": false, "input": {"start": [3, 4], "target": [6, 2]}, "expected": false, "tags": ["hidden", "opposite-colors", "interior"]},
-    {"id": "real-interior-same", "name": "hidden: interior cells with equal parity", "kind": "real", "visible": false, "input": {"start": [3, 4], "target": [5, 6]}, "expected": true, "tags": ["hidden", "same-color", "interior"]},
-    {"id": "real-reflected-cells", "name": "hidden: reflected cells share an odd coordinate sum", "kind": "real", "visible": false, "input": {"start": [1, 6], "target": [6, 1]}, "expected": true, "tags": ["hidden", "same-color", "reflection"]},
-    {"id": "real-mixed-interior", "name": "hidden: mixed interior cells have opposite colors", "kind": "real", "visible": false, "input": {"start": [2, 2], "target": [5, 4]}, "expected": false, "tags": ["hidden", "opposite-colors", "interior"]},
-    {"id": "real-edge-to-center", "name": "hidden: edge and center cells share an odd sum", "kind": "real", "visible": false, "input": {"start": [0, 7], "target": [4, 3]}, "expected": true, "tags": ["hidden", "same-color", "edge"]}
+    {
+      "id": "sample-four-moves",
+      "name": "sample: equal colors admit an even route",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "start": [
+          1,
+          1
+        ],
+        "target": [
+          2,
+          2
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "same-color"
+      ]
+    },
+    {
+      "id": "sample-no-even-route",
+      "name": "sample: opposite colors require odd parity",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "start": [
+          4,
+          5
+        ],
+        "target": [
+          6,
+          6
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "opposite-colors"
+      ]
+    },
+    {
+      "id": "trial-same-corner",
+      "name": "trial: zero moves at the lower corner",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": [
+          0,
+          0
+        ],
+        "target": [
+          0,
+          0
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "zero-moves",
+        "corner"
+      ]
+    },
+    {
+      "id": "trial-same-center",
+      "name": "trial: zero moves at an interior cell",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": [
+          4,
+          4
+        ],
+        "target": [
+          4,
+          4
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "zero-moves",
+        "interior"
+      ]
+    },
+    {
+      "id": "trial-one-knight-move",
+      "name": "trial: one legal knight move is odd",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": [
+          0,
+          0
+        ],
+        "target": [
+          1,
+          2
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "one-move",
+        "corner"
+      ]
+    },
+    {
+      "id": "trial-reverse-knight-move",
+      "name": "trial: reverse legal knight move is odd",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": [
+          7,
+          7
+        ],
+        "target": [
+          5,
+          6
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "one-move",
+        "corner"
+      ]
+    },
+    {
+      "id": "trial-adjacent-diagonal",
+      "name": "trial: diagonally adjacent cells have the same color",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": [
+          0,
+          0
+        ],
+        "target": [
+          1,
+          1
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "same-color",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-adjacent-horizontal",
+      "name": "trial: horizontally adjacent cells have opposite colors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": [
+          0,
+          0
+        ],
+        "target": [
+          1,
+          0
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "opposite-colors",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-adjacent-vertical",
+      "name": "trial: vertically adjacent cells have opposite colors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": [
+          0,
+          0
+        ],
+        "target": [
+          0,
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "opposite-colors",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-opposite-corners",
+      "name": "trial: opposite main-diagonal corners share a color",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": [
+          0,
+          0
+        ],
+        "target": [
+          7,
+          7
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "corners",
+        "same-color"
+      ]
+    },
+    {
+      "id": "trial-other-corners",
+      "name": "trial: opposite anti-diagonal corners share a color",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": [
+          0,
+          7
+        ],
+        "target": [
+          7,
+          0
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "corners",
+        "same-color"
+      ]
+    },
+    {
+      "id": "trial-two-move-witness",
+      "name": "trial: a direct two-move route",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": [
+          0,
+          0
+        ],
+        "target": [
+          2,
+          4
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "two-moves",
+        "same-color"
+      ]
+    },
+    {
+      "id": "trial-main-diagonal",
+      "name": "separated diagonal cells share a color",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": [
+          0,
+          0
+        ],
+        "target": [
+          3,
+          3
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "same-color"
+      ]
+    },
+    {
+      "id": "trial-near-upper-corner",
+      "name": "near-corner target has opposite color",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": [
+          0,
+          0
+        ],
+        "target": [
+          7,
+          6
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "opposite-colors",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-upper-to-lower-edge",
+      "name": "distant edge cells have opposite colors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": [
+          7,
+          7
+        ],
+        "target": [
+          0,
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "opposite-colors",
+        "edges"
+      ]
+    },
+    {
+      "id": "trial-interior-opposite",
+      "name": "interior cells with different parity",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": [
+          3,
+          4
+        ],
+        "target": [
+          6,
+          2
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "opposite-colors",
+        "interior"
+      ]
+    },
+    {
+      "id": "trial-interior-same",
+      "name": "interior cells with equal parity",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": [
+          3,
+          4
+        ],
+        "target": [
+          5,
+          6
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "same-color",
+        "interior"
+      ]
+    },
+    {
+      "id": "trial-reflected-cells",
+      "name": "reflected cells share an odd coordinate sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": [
+          1,
+          6
+        ],
+        "target": [
+          6,
+          1
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "same-color",
+        "reflection"
+      ]
+    },
+    {
+      "id": "trial-mixed-interior",
+      "name": "mixed interior cells have opposite colors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": [
+          2,
+          2
+        ],
+        "target": [
+          5,
+          4
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "opposite-colors",
+        "interior"
+      ]
+    },
+    {
+      "id": "trial-edge-to-center",
+      "name": "edge and center cells share an odd sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": [
+          0,
+          7
+        ],
+        "target": [
+          4,
+          3
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "same-color",
+        "edge"
+      ]
+    }
   ]
 }

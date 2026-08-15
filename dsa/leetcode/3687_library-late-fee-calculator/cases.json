@@ -7,63 +7,160 @@
       "name": "sample: fees from all three ranges",
       "kind": "sample",
       "visible": true,
-      "input": {"daysLate": [5, 1, 7]},
+      "input": {
+        "daysLate": [
+          5,
+          1,
+          7
+        ]
+      },
       "expected": 32,
-      "tags": ["sample", "all-ranges"]
+      "tags": [
+        "sample",
+        "all-ranges"
+      ]
     },
     {
       "id": "sample-two-one-day-fees",
       "name": "sample: two special one-day fees",
       "kind": "sample",
       "visible": true,
-      "input": {"daysLate": [1, 1]},
+      "input": {
+        "daysLate": [
+          1,
+          1
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "one-day"]
+      "tags": [
+        "sample",
+        "one-day"
+      ]
     },
     {
       "id": "trial-singleton-one",
       "name": "trial: minimum delay and array length",
       "kind": "trial",
       "visible": true,
-      "input": {"daysLate": [1]},
+      "input": {
+        "daysLate": [
+          1
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "singleton", "minimum"]
+      "tags": [
+        "trial",
+        "singleton",
+        "minimum"
+      ]
     },
     {
       "id": "trial-piecewise-boundaries",
       "name": "trial: delays two five and six cross both boundaries",
       "kind": "trial",
       "visible": true,
-      "input": {"daysLate": [2, 5, 6]},
+      "input": {
+        "daysLate": [
+          2,
+          5,
+          6
+        ]
+      },
       "expected": 32,
-      "tags": ["trial", "boundaries"]
+      "tags": [
+        "trial",
+        "boundaries"
+      ]
     },
     {
-      "id": "real-maximum-delay",
-      "name": "hidden: maximum delay receives triple fee",
-      "kind": "real",
-      "visible": false,
-      "input": {"daysLate": [100]},
+      "id": "trial-maximum-delay",
+      "name": "maximum delay receives triple fee",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "daysLate": [
+          100
+        ]
+      },
       "expected": 300,
-      "tags": ["hidden", "maximum", "singleton"]
+      "tags": [
+        "maximum",
+        "singleton"
+      ]
     },
     {
-      "id": "real-consecutive-delays",
-      "name": "hidden: every fee transition is exercised in order",
-      "kind": "real",
-      "visible": false,
-      "input": {"daysLate": [1, 2, 3, 4, 5, 6]},
+      "id": "trial-consecutive-delays",
+      "name": "every fee transition is exercised in order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "daysLate": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
       "expected": 47,
-      "tags": ["hidden", "boundaries", "all-ranges"]
+      "tags": [
+        "boundaries",
+        "all-ranges"
+      ]
     },
     {
-      "id": "real-mixed-order",
-      "name": "hidden: input order does not alter independent fees",
-      "kind": "real",
-      "visible": false,
-      "input": {"daysLate": [6, 5, 2, 1, 100]},
+      "id": "trial-mixed-order",
+      "name": "input order does not alter independent fees",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "daysLate": [
+          6,
+          5,
+          2,
+          1,
+          100
+        ]
+      },
       "expected": 333,
-      "tags": ["hidden", "mixed-order", "maximum"]
+      "tags": [
+        "mixed-order",
+        "maximum"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in daysLate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "daysLate": [
+          5
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in daysLate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "daysLate": [
+          5,
+          5
+        ]
+      },
+      "expected": 20,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

@@ -6,90 +6,280 @@
       "name": "sample: one query covers both required endpoints",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 0, 1], "queries": [[0, 2]]},
+      "input": {
+        "nums": [
+          1,
+          0,
+          1
+        ],
+        "queries": [
+          [
+            0,
+            2
+          ]
+        ]
+      },
       "expected": true,
-      "tags": ["sample", "subset-choice"]
+      "tags": [
+        "sample",
+        "subset-choice"
+      ]
     },
     {
       "id": "sample-insufficient-left",
       "name": "sample: left value exceeds its coverage",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [4, 3, 2, 1], "queries": [[1, 3], [0, 2]]},
+      "input": {
+        "nums": [
+          4,
+          3,
+          2,
+          1
+        ],
+        "queries": [
+          [
+            1,
+            3
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      },
       "expected": false,
-      "tags": ["sample", "insufficient-coverage"]
+      "tags": [
+        "sample",
+        "insufficient-coverage"
+      ]
     },
     {
       "id": "trial-already-zero",
       "name": "trial: zero array needs no selected indices",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0, 0, 0], "queries": [[0, 1]]},
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ],
+        "queries": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
       "expected": true,
-      "tags": ["zero-array", "empty-subsets"]
+      "tags": [
+        "zero-array",
+        "empty-subsets"
+      ]
     },
     {
       "id": "trial-single-index-enough",
       "name": "trial: repeated singleton queries meet demand",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2], "queries": [[0, 0], [0, 0]]},
+      "input": {
+        "nums": [
+          2
+        ],
+        "queries": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
       "expected": true,
-      "tags": ["single-index", "exact-coverage"]
+      "tags": [
+        "single-index",
+        "exact-coverage"
+      ]
     },
     {
-      "id": "real-single-index-short",
-      "name": "real: singleton demand exceeds query count",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [3], "queries": [[0, 0], [0, 0]]},
+      "id": "trial-single-index-short",
+      "name": "singleton demand exceeds query count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ],
+        "queries": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
       "expected": false,
-      "tags": ["single-index", "insufficient-coverage"]
+      "tags": [
+        "single-index",
+        "insufficient-coverage"
+      ]
     },
     {
-      "id": "real-overlapping-sufficient",
-      "name": "real: overlapping ranges provide varied coverage",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 3, 2, 1], "queries": [[0, 4], [1, 3], [2, 2]]},
+      "id": "trial-overlapping-sufficient",
+      "name": "overlapping ranges provide varied coverage",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          2,
+          1
+        ],
+        "queries": [
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
       "expected": true,
-      "tags": ["overlap", "exact-coverage"]
+      "tags": [
+        "overlap",
+        "exact-coverage"
+      ]
     },
     {
-      "id": "real-interior-deficit",
-      "name": "real: one interior index lacks coverage",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 2, 1], "queries": [[0, 1], [2, 3]]},
+      "id": "trial-interior-deficit",
+      "name": "one interior index lacks coverage",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
       "expected": false,
-      "tags": ["disjoint-ranges", "interior-deficit"]
+      "tags": [
+        "disjoint-ranges",
+        "interior-deficit"
+      ]
     },
     {
-      "id": "real-extra-coverage",
-      "name": "real: unused decrements are harmless",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 0, 1], "queries": [[0, 2], [0, 2], [1, 1]]},
+      "id": "trial-extra-coverage",
+      "name": "unused decrements are harmless",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          0,
+          1
+        ],
+        "queries": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
       "expected": true,
-      "tags": ["extra-coverage", "subset-choice"]
+      "tags": [
+        "extra-coverage",
+        "subset-choice"
+      ]
     },
     {
-      "id": "real-uncovered-zero",
-      "name": "real: an uncovered zero does not need a query",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 1, 0], "queries": [[1, 1]]},
+      "id": "trial-uncovered-zero",
+      "name": "an uncovered zero does not need a query",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          0
+        ],
+        "queries": [
+          [
+            1,
+            1
+          ]
+        ]
+      },
       "expected": true,
-      "tags": ["uncovered-zero", "singleton-range"]
+      "tags": [
+        "uncovered-zero",
+        "singleton-range"
+      ]
     },
     {
-      "id": "real-boundary-ranges",
-      "name": "real: endpoints covered independently",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2, 1, 2], "queries": [[0, 0], [0, 2], [2, 2]]},
+      "id": "trial-boundary-ranges",
+      "name": "endpoints covered independently",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          2
+        ],
+        "queries": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
       "expected": true,
-      "tags": ["boundary-indices", "overlap"]
+      "tags": [
+        "boundary-indices",
+        "overlap"
+      ]
     }
   ]
 }

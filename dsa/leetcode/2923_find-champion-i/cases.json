@@ -144,10 +144,10 @@
       ]
     },
     {
-      "id": "real-nonmonotonic-order",
-      "name": "hidden: labels do not follow strength order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-nonmonotonic-order",
+      "name": "labels do not follow strength order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -202,15 +202,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "permuted-order"
       ]
     },
     {
-      "id": "real-last-in-eight",
-      "name": "hidden: candidate changes at the final comparison",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-last-in-eight",
+      "name": "candidate changes at the final comparison",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -297,15 +296,14 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "candidate-replacement"
       ]
     },
     {
-      "id": "real-ten-teams",
-      "name": "hidden: larger transitive tournament with central champion label",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ten-teams",
+      "name": "larger transitive tournament with central champion label",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -432,7 +430,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "transitive"
       ]
     }

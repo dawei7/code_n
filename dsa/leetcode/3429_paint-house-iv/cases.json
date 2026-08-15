@@ -1,15 +1,383 @@
 {
   "challenge_id": "lc_3429",
   "cases": [
-    {"id":"sample-four-houses","name":"sample: four houses","kind":"sample","visible":true,"input":{"n":4,"cost":[[3,5,7],[6,2,9],[4,8,1],[7,3,5]]},"expected":9,"tags":["sample"]},
-    {"id":"sample-six-houses","name":"sample: six houses","kind":"sample","visible":true,"input":{"n":6,"cost":[[2,4,6],[5,3,8],[7,1,9],[4,6,2],[3,5,7],[8,2,4]]},"expected":18,"tags":["sample"]},
-    {"id":"trial-one-pair","name":"trial: only one mirrored pair","kind":"trial","visible":true,"input":{"n":2,"cost":[[1,100,100],[100,1,100]]},"expected":2,"tags":["trial","minimum-n"]},
-    {"id":"trial-shared-cheapest","name":"trial: mirrored houses share their cheapest color","kind":"trial","visible":true,"input":{"n":2,"cost":[[1,5,9],[1,2,3]]},"expected":3,"tags":["trial","mirror-conflict"]},
-    {"id":"edge-zero-costs","name":"edge: every painting cost is zero","kind":"real","visible":false,"input":{"n":4,"cost":[[0,0,0],[0,0,0],[0,0,0],[0,0,0]]},"expected":0,"tags":["edge","zero"]},
-    {"id":"edge-all-tied","name":"edge: all colors have equal costs","kind":"real","visible":false,"input":{"n":6,"cost":[[5,5,5],[5,5,5],[5,5,5],[5,5,5],[5,5,5],[5,5,5]]},"expected":30,"tags":["edge","ties"]},
-    {"id":"edge-maximum-cost","name":"edge: maximum costs for one pair","kind":"real","visible":false,"input":{"n":2,"cost":[[100000,100000,100000],[100000,100000,100000]]},"expected":200000,"tags":["edge","maximum-cost"]},
-    {"id":"real-mirrored-tradeoff","name":"real: locally cheapest colors conflict","kind":"real","visible":false,"input":{"n":4,"cost":[[1,50,50],[1,50,50],[50,1,50],[50,1,50]]},"expected":102,"tags":["real","tradeoff"]},
-    {"id":"real-asymmetric-six","name":"real: asymmetric costs","kind":"real","visible":false,"input":{"n":6,"cost":[[9,1,8],[2,7,4],[6,3,5],[1,9,2],[8,4,7],[3,6,1]]},"expected":12,"tags":["real","asymmetric"]},
-    {"id":"real-eight-houses","name":"real: eight houses with alternating cheap colors","kind":"real","visible":false,"input":{"n":8,"cost":[[5,1,9],[4,6,2],[7,3,8],[6,5,1],[2,8,4],[9,1,6],[3,7,5],[8,2,4]]},"expected":21,"tags":["real","longer"]}
+    {
+      "id": "sample-four-houses",
+      "name": "sample: four houses",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "cost": [
+          [
+            3,
+            5,
+            7
+          ],
+          [
+            6,
+            2,
+            9
+          ],
+          [
+            4,
+            8,
+            1
+          ],
+          [
+            7,
+            3,
+            5
+          ]
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-six-houses",
+      "name": "sample: six houses",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "cost": [
+          [
+            2,
+            4,
+            6
+          ],
+          [
+            5,
+            3,
+            8
+          ],
+          [
+            7,
+            1,
+            9
+          ],
+          [
+            4,
+            6,
+            2
+          ],
+          [
+            3,
+            5,
+            7
+          ],
+          [
+            8,
+            2,
+            4
+          ]
+        ]
+      },
+      "expected": 18,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-one-pair",
+      "name": "trial: only one mirrored pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "cost": [
+          [
+            1,
+            100,
+            100
+          ],
+          [
+            100,
+            1,
+            100
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "minimum-n"
+      ]
+    },
+    {
+      "id": "trial-shared-cheapest",
+      "name": "trial: mirrored houses share their cheapest color",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "cost": [
+          [
+            1,
+            5,
+            9
+          ],
+          [
+            1,
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "mirror-conflict"
+      ]
+    },
+    {
+      "id": "edge-zero-costs",
+      "name": "edge: every painting cost is zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "cost": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "edge",
+        "zero"
+      ]
+    },
+    {
+      "id": "edge-all-tied",
+      "name": "edge: all colors have equal costs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "cost": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            5,
+            5,
+            5
+          ]
+        ]
+      },
+      "expected": 30,
+      "tags": [
+        "edge",
+        "ties"
+      ]
+    },
+    {
+      "id": "edge-maximum-cost",
+      "name": "edge: maximum costs for one pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "cost": [
+          [
+            100000,
+            100000,
+            100000
+          ],
+          [
+            100000,
+            100000,
+            100000
+          ]
+        ]
+      },
+      "expected": 200000,
+      "tags": [
+        "edge",
+        "maximum-cost"
+      ]
+    },
+    {
+      "id": "trial-mirrored-tradeoff",
+      "name": "locally cheapest colors conflict",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "cost": [
+          [
+            1,
+            50,
+            50
+          ],
+          [
+            1,
+            50,
+            50
+          ],
+          [
+            50,
+            1,
+            50
+          ],
+          [
+            50,
+            1,
+            50
+          ]
+        ]
+      },
+      "expected": 102,
+      "tags": [
+        "real",
+        "tradeoff"
+      ]
+    },
+    {
+      "id": "trial-asymmetric-six",
+      "name": "asymmetric costs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "cost": [
+          [
+            9,
+            1,
+            8
+          ],
+          [
+            2,
+            7,
+            4
+          ],
+          [
+            6,
+            3,
+            5
+          ],
+          [
+            1,
+            9,
+            2
+          ],
+          [
+            8,
+            4,
+            7
+          ],
+          [
+            3,
+            6,
+            1
+          ]
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "real",
+        "asymmetric"
+      ]
+    },
+    {
+      "id": "trial-eight-houses",
+      "name": "eight houses with alternating cheap colors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 8,
+        "cost": [
+          [
+            5,
+            1,
+            9
+          ],
+          [
+            4,
+            6,
+            2
+          ],
+          [
+            7,
+            3,
+            8
+          ],
+          [
+            6,
+            5,
+            1
+          ],
+          [
+            2,
+            8,
+            4
+          ],
+          [
+            9,
+            1,
+            6
+          ],
+          [
+            3,
+            7,
+            5
+          ],
+          [
+            8,
+            2,
+            4
+          ]
+        ]
+      },
+      "expected": 21,
+      "tags": [
+        "real",
+        "longer"
+      ]
+    }
   ]
 }

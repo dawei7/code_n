@@ -2,15 +2,222 @@
   "schema_version": 1,
   "challenge_id": "lc_2202",
   "cases": [
-    {"id":"sample-restored-maximum","name":"sample: restore the original top on the last move","kind":"sample","visible":true,"input":{"nums":[5,2,2,4,0,6],"k":4},"expected":5,"tags":["sample","restore"]},
-    {"id":"sample-single-odd","name":"sample: one odd move empties a singleton pile","kind":"sample","visible":true,"input":{"nums":[2],"k":1},"expected":-1,"tags":["sample","singleton"]},
-    {"id":"trial-zero-moves","name":"zero moves preserve the original top","kind":"trial","visible":true,"input":{"nums":[7,1,9],"k":0},"expected":7,"tags":["zero-moves"]},
-    {"id":"trial-one-move","name":"one removal exposes the second value","kind":"trial","visible":true,"input":{"nums":[9,3,8],"k":1},"expected":3,"tags":["one-move","exposure"]},
-    {"id":"trial-exposed-candidate","name":"the newly exposed element beats every restorable value","kind":"trial","visible":true,"input":{"nums":[1,2,10,4],"k":2},"expected":10,"tags":["exposure"]},
-    {"id":"real-single-even","name":"hidden: an even number of moves restores a singleton","kind":"real","visible":false,"input":{"nums":[11],"k":1000000000},"expected":11,"tags":["hidden","singleton","large-k"]},
-    {"id":"real-single-odd","name":"hidden: a large odd count empties a singleton","kind":"real","visible":false,"input":{"nums":[11],"k":999999999},"expected":-1,"tags":["hidden","singleton","large-k"]},
-    {"id":"real-k-equals-length","name":"hidden: the last original value cannot remain when k equals n","kind":"real","visible":false,"input":{"nums":[2,8,100],"k":3},"expected":8,"tags":["hidden","exact-length"]},
-    {"id":"real-k-beyond-length","name":"hidden: extra moves still allow the best reachable restoration","kind":"real","visible":false,"input":{"nums":[4,9,1],"k":8},"expected":9,"tags":["hidden","beyond-length"]},
-    {"id":"real-zero-values","name":"hidden: zero is a valid maximum pile value","kind":"real","visible":false,"input":{"nums":[0,0],"k":5},"expected":0,"tags":["hidden","zero-value"]}
+    {
+      "id": "sample-restored-maximum",
+      "name": "sample: restore the original top on the last move",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          2,
+          2,
+          4,
+          0,
+          6
+        ],
+        "k": 4
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "restore"
+      ]
+    },
+    {
+      "id": "sample-single-odd",
+      "name": "sample: one odd move empties a singleton pile",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ],
+        "k": 1
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-zero-moves",
+      "name": "zero moves preserve the original top",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          1,
+          9
+        ],
+        "k": 0
+      },
+      "expected": 7,
+      "tags": [
+        "zero-moves"
+      ]
+    },
+    {
+      "id": "trial-one-move",
+      "name": "one removal exposes the second value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          3,
+          8
+        ],
+        "k": 1
+      },
+      "expected": 3,
+      "tags": [
+        "one-move",
+        "exposure"
+      ]
+    },
+    {
+      "id": "trial-exposed-candidate",
+      "name": "the newly exposed element beats every restorable value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          10,
+          4
+        ],
+        "k": 2
+      },
+      "expected": 10,
+      "tags": [
+        "exposure"
+      ]
+    },
+    {
+      "id": "trial-single-even",
+      "name": "an even number of moves restores a singleton",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          11
+        ],
+        "k": 1000000000
+      },
+      "expected": 11,
+      "tags": [
+        "singleton",
+        "large-k"
+      ]
+    },
+    {
+      "id": "trial-single-odd",
+      "name": "a large odd count empties a singleton",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          11
+        ],
+        "k": 999999999
+      },
+      "expected": -1,
+      "tags": [
+        "singleton",
+        "large-k"
+      ]
+    },
+    {
+      "id": "trial-k-equals-length",
+      "name": "the last original value cannot remain when k equals n",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          8,
+          100
+        ],
+        "k": 3
+      },
+      "expected": 8,
+      "tags": [
+        "exact-length"
+      ]
+    },
+    {
+      "id": "trial-k-beyond-length",
+      "name": "extra moves still allow the best reachable restoration",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          9,
+          1
+        ],
+        "k": 8
+      },
+      "expected": 9,
+      "tags": [
+        "beyond-length"
+      ]
+    },
+    {
+      "id": "trial-zero-values",
+      "name": "zero is a valid maximum pile value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0
+        ],
+        "k": 5
+      },
+      "expected": 0,
+      "tags": [
+        "zero-value"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ],
+        "k": 4
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5
+        ],
+        "k": 4
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    }
   ]
 }

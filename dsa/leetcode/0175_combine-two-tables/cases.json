@@ -180,10 +180,10 @@
       }
     },
     {
-      "id": "real-unrelated-address",
-      "name": "hidden: unrelated address does not add a row",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unrelated-address",
+      "name": "unrelated address does not add a row",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Person": [
@@ -220,7 +220,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "foreign-key"
       ],
       "validator": {

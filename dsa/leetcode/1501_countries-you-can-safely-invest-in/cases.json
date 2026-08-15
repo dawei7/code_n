@@ -389,10 +389,10 @@
       ]
     },
     {
-      "id": "real-two-high-countries",
-      "name": "hidden: both endpoints of a long international call qualify",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-high-countries",
+      "name": "both endpoints of a long international call qualify",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Person": [
@@ -463,16 +463,15 @@
         ]
       },
       "tags": [
-        "hidden",
         "multiple-results",
         "international"
       ]
     },
     {
-      "id": "real-caller-callee-symmetry",
-      "name": "hidden: caller direction does not change country membership",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-caller-callee-symmetry",
+      "name": "caller direction does not change country membership",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Person": [
@@ -532,16 +531,15 @@
         ]
       },
       "tags": [
-        "hidden",
         "caller-callee-symmetry",
         "domestic"
       ]
     },
     {
-      "id": "real-leading-zero-code",
-      "name": "hidden: country codes remain fixed-width strings",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-leading-zero-code",
+      "name": "country codes remain fixed-width strings",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Person": [
@@ -600,7 +598,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "leading-zero",
         "prefix"
       ]

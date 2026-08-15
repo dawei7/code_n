@@ -2,13 +2,236 @@
   "schema_version": 1,
   "challenge_id": "lc_2245",
   "cases": [
-    {"id":"sample-three-zeroes","name":"sample: best L combines factors across cells","kind":"sample","visible":true,"input":{"grid":[[23,17,15,3,20],[8,1,20,27,11],[9,4,6,2,21],[40,9,1,10,6],[22,7,4,5,3]]},"expected":3,"tags":["sample","cornered-path"]},
-    {"id":"sample-no-zero","name":"sample: no path supplies both prime factors","kind":"sample","visible":true,"input":{"grid":[[4,3,2],[7,6,1],[8,8,8]]},"expected":0,"tags":["sample","zero-answer"]},
-    {"id":"trial-single-cell","name":"one cell can itself contain trailing zeroes","kind":"trial","visible":true,"input":{"grid":[[100]]},"expected":2,"tags":["single-cell"]},
-    {"id":"trial-single-row","name":"a straight horizontal path is valid","kind":"trial","visible":true,"input":{"grid":[[10,25,4]]},"expected":3,"tags":["single-row","straight-path"]},
-    {"id":"trial-single-column","name":"a straight vertical path is valid","kind":"trial","visible":true,"input":{"grid":[[2],[5],[20],[3]]},"expected":2,"tags":["single-column","straight-path"]},
-    {"id":"real-corner-counted-once","name":"hidden: the turn cell must not be counted twice","kind":"real","visible":false,"input":{"grid":[[1,10,1],[1,100,1],[1,10,1]]},"expected":4,"tags":["hidden","corner-overlap"]},
-    {"id":"real-best-up-right","name":"hidden: best path uses the up-right orientation","kind":"real","visible":false,"input":{"grid":[[1,5,1],[1,2,10],[1,1,1]]},"expected":2,"tags":["hidden","orientation"]},
-    {"id":"real-separated-factors","name":"hidden: twos and fives can come from different arms","kind":"real","visible":false,"input":{"grid":[[16,1,1],[5,5,1],[1,1,1]]},"expected":2,"tags":["hidden","factor-pairing"]}
+    {
+      "id": "sample-three-zeroes",
+      "name": "sample: best L combines factors across cells",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            23,
+            17,
+            15,
+            3,
+            20
+          ],
+          [
+            8,
+            1,
+            20,
+            27,
+            11
+          ],
+          [
+            9,
+            4,
+            6,
+            2,
+            21
+          ],
+          [
+            40,
+            9,
+            1,
+            10,
+            6
+          ],
+          [
+            22,
+            7,
+            4,
+            5,
+            3
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "cornered-path"
+      ]
+    },
+    {
+      "id": "sample-no-zero",
+      "name": "sample: no path supplies both prime factors",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            4,
+            3,
+            2
+          ],
+          [
+            7,
+            6,
+            1
+          ],
+          [
+            8,
+            8,
+            8
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "zero-answer"
+      ]
+    },
+    {
+      "id": "trial-single-cell",
+      "name": "one cell can itself contain trailing zeroes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            100
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "single-cell"
+      ]
+    },
+    {
+      "id": "trial-single-row",
+      "name": "a straight horizontal path is valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            10,
+            25,
+            4
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "single-row",
+        "straight-path"
+      ]
+    },
+    {
+      "id": "trial-single-column",
+      "name": "a straight vertical path is valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            2
+          ],
+          [
+            5
+          ],
+          [
+            20
+          ],
+          [
+            3
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "single-column",
+        "straight-path"
+      ]
+    },
+    {
+      "id": "trial-corner-counted-once",
+      "name": "the turn cell must not be counted twice",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            10,
+            1
+          ],
+          [
+            1,
+            100,
+            1
+          ],
+          [
+            1,
+            10,
+            1
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "corner-overlap"
+      ]
+    },
+    {
+      "id": "trial-best-up-right",
+      "name": "best path uses the up-right orientation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            5,
+            1
+          ],
+          [
+            1,
+            2,
+            10
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "orientation"
+      ]
+    },
+    {
+      "id": "trial-separated-factors",
+      "name": "twos and fives can come from different arms",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            16,
+            1,
+            1
+          ],
+          [
+            5,
+            5,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "factor-pairing"
+      ]
+    }
   ]
 }

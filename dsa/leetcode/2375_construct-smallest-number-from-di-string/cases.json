@@ -7,72 +7,109 @@
       "name": "sample: mixed increasing and decreasing runs",
       "kind": "sample",
       "visible": true,
-      "input": {"pattern": "IIIDIDDD"},
+      "input": {
+        "pattern": "IIIDIDDD"
+      },
       "expected": "123549876",
-      "tags": ["sample", "mixed"]
+      "tags": [
+        "sample",
+        "mixed"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: one decreasing run",
       "kind": "sample",
       "visible": true,
-      "input": {"pattern": "DDD"},
+      "input": {
+        "pattern": "DDD"
+      },
       "expected": "4321",
-      "tags": ["sample", "decreasing"]
+      "tags": [
+        "sample",
+        "decreasing"
+      ]
     },
     {
       "id": "trial-one-increase",
       "name": "minimum increasing pattern",
       "kind": "trial",
       "visible": true,
-      "input": {"pattern": "I"},
+      "input": {
+        "pattern": "I"
+      },
       "expected": "12",
-      "tags": ["minimum", "increasing"]
+      "tags": [
+        "minimum",
+        "increasing"
+      ]
     },
     {
       "id": "trial-one-decrease",
       "name": "minimum decreasing pattern",
       "kind": "trial",
       "visible": true,
-      "input": {"pattern": "D"},
+      "input": {
+        "pattern": "D"
+      },
       "expected": "21",
-      "tags": ["minimum", "decreasing"]
+      "tags": [
+        "minimum",
+        "decreasing"
+      ]
     },
     {
       "id": "trial-alternating",
       "name": "separate short decreasing runs",
       "kind": "trial",
       "visible": true,
-      "input": {"pattern": "IDID"},
+      "input": {
+        "pattern": "IDID"
+      },
       "expected": "13254",
-      "tags": ["alternating", "stack"]
+      "tags": [
+        "alternating",
+        "stack"
+      ]
     },
     {
-      "id": "real-all-increasing",
-      "name": "hidden: maximum-length increasing pattern",
-      "kind": "real",
-      "visible": false,
-      "input": {"pattern": "IIIIIIII"},
+      "id": "trial-all-increasing",
+      "name": "maximum-length increasing pattern",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "pattern": "IIIIIIII"
+      },
       "expected": "123456789",
-      "tags": ["hidden", "boundary"]
+      "tags": [
+        "boundary"
+      ]
     },
     {
-      "id": "real-all-decreasing",
-      "name": "hidden: maximum-length decreasing pattern",
-      "kind": "real",
-      "visible": false,
-      "input": {"pattern": "DDDDDDDD"},
+      "id": "trial-all-decreasing",
+      "name": "maximum-length decreasing pattern",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "pattern": "DDDDDDDD"
+      },
       "expected": "987654321",
-      "tags": ["hidden", "boundary"]
+      "tags": [
+        "boundary"
+      ]
     },
     {
-      "id": "real-decrease-then-increase",
-      "name": "hidden: flush a leading decreasing run",
-      "kind": "real",
-      "visible": false,
-      "input": {"pattern": "DDIIDD"},
+      "id": "trial-decrease-then-increase",
+      "name": "flush a leading decreasing run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "pattern": "DDIIDD"
+      },
       "expected": "3214765",
-      "tags": ["hidden", "runs"]
+      "tags": [
+        "runs"
+      ]
     }
   ]
 }

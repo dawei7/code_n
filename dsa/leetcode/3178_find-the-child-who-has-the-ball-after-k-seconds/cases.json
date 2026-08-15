@@ -6,108 +6,196 @@
       "name": "sample: one round trip plus one step",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 3, "k": 5},
+      "input": {
+        "n": 3,
+        "k": 5
+      },
       "expected": 1,
-      "tags": ["sample", "multiple-reversals"]
+      "tags": [
+        "sample",
+        "multiple-reversals"
+      ]
     },
     {
       "id": "sample-return-leg",
       "name": "sample: ball is on the return leg",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 5, "k": 6},
+      "input": {
+        "n": 5,
+        "k": 6
+      },
       "expected": 2,
-      "tags": ["sample", "return-leg"]
+      "tags": [
+        "sample",
+        "return-leg"
+      ]
     },
     {
       "id": "sample-before-endpoint",
       "name": "sample: ball has not reached an endpoint",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 4, "k": 2},
+      "input": {
+        "n": 4,
+        "k": 2
+      },
       "expected": 2,
-      "tags": ["sample", "outbound-leg"]
+      "tags": [
+        "sample",
+        "outbound-leg"
+      ]
     },
     {
       "id": "trial-two-children-first-pass",
       "name": "trial: first pass with two children",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 2, "k": 1},
+      "input": {
+        "n": 2,
+        "k": 1
+      },
       "expected": 1,
-      "tags": ["minimum-children", "first-pass"]
+      "tags": [
+        "minimum-children",
+        "first-pass"
+      ]
     },
     {
       "id": "trial-two-children-full-period",
       "name": "trial: two passes return to child zero",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 2, "k": 2},
+      "input": {
+        "n": 2,
+        "k": 2
+      },
       "expected": 0,
-      "tags": ["minimum-children", "full-period"]
+      "tags": [
+        "minimum-children",
+        "full-period"
+      ]
     },
     {
       "id": "trial-maximum-children-first-pass",
       "name": "trial: first pass with maximum children",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 50, "k": 1},
+      "input": {
+        "n": 50,
+        "k": 1
+      },
       "expected": 1,
-      "tags": ["maximum-children", "first-pass"]
+      "tags": [
+        "maximum-children",
+        "first-pass"
+      ]
     },
     {
-      "id": "real-right-endpoint",
-      "name": "real: exact arrival at right endpoint",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 5, "k": 4},
+      "id": "trial-right-endpoint",
+      "name": "exact arrival at right endpoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "k": 4
+      },
       "expected": 4,
-      "tags": ["right-endpoint", "direction-change"]
+      "tags": [
+        "right-endpoint",
+        "direction-change"
+      ]
     },
     {
-      "id": "real-first-return-step",
-      "name": "real: first step after right endpoint",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 5, "k": 5},
+      "id": "trial-first-return-step",
+      "name": "first step after right endpoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "k": 5
+      },
       "expected": 3,
-      "tags": ["return-leg", "direction-change"]
+      "tags": [
+        "return-leg",
+        "direction-change"
+      ]
     },
     {
-      "id": "real-complete-round-trip",
-      "name": "real: complete round trip returns to zero",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 5, "k": 8},
+      "id": "trial-complete-round-trip",
+      "name": "complete round trip returns to zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "k": 8
+      },
       "expected": 0,
-      "tags": ["full-period", "left-endpoint"]
+      "tags": [
+        "full-period",
+        "left-endpoint"
+      ]
     },
     {
-      "id": "real-many-round-trips",
-      "name": "real: many round trips leave offset two",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 4, "k": 50},
+      "id": "trial-many-round-trips",
+      "name": "many round trips leave offset two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "k": 50
+      },
       "expected": 2,
-      "tags": ["maximum-seconds", "modulo-period"]
+      "tags": [
+        "maximum-seconds",
+        "modulo-period"
+      ]
     },
     {
-      "id": "real-maximum-right-endpoint",
-      "name": "real: maximum line reaches right endpoint",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 50, "k": 49},
+      "id": "trial-maximum-right-endpoint",
+      "name": "maximum line reaches right endpoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 50,
+        "k": 49
+      },
       "expected": 49,
-      "tags": ["maximum-children", "right-endpoint"]
+      "tags": [
+        "maximum-children",
+        "right-endpoint"
+      ]
     },
     {
-      "id": "real-maximum-first-return",
-      "name": "real: maximum seconds begin return leg",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 50, "k": 50},
+      "id": "trial-maximum-first-return",
+      "name": "maximum seconds begin return leg",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 50,
+        "k": 50
+      },
       "expected": 48,
-      "tags": ["maximum-children", "maximum-seconds", "return-leg"]
+      "tags": [
+        "maximum-children",
+        "maximum-seconds",
+        "return-leg"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
     }
   ]
 }

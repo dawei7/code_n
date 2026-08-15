@@ -165,10 +165,10 @@
       ]
     },
     {
-      "id": "real-other-punctuation",
-      "name": "hidden: non-boundary punctuation stays in place",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-other-punctuation",
+      "name": "non-boundary punctuation stays in place",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "user_content": [
@@ -194,15 +194,14 @@
         ]
       },
       "tags": [
-        "hidden",
         "punctuation"
       ]
     },
     {
-      "id": "real-empty-text",
-      "name": "hidden: empty text produces an empty conversion",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-empty-text",
+      "name": "empty text produces an empty conversion",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "user_content": [
@@ -228,15 +227,14 @@
         ]
       },
       "tags": [
-        "hidden",
         "empty-text"
       ]
     },
     {
-      "id": "real-unsorted-identifiers",
-      "name": "hidden: result order follows identifiers",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unsorted-identifiers",
+      "name": "result order follows identifiers",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "user_content": [
@@ -280,15 +278,14 @@
         ]
       },
       "tags": [
-        "hidden",
         "ordering"
       ]
     },
     {
-      "id": "real-single-letters-and-hyphen",
-      "name": "hidden: single-letter valid parts are capitalized",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-letters-and-hyphen",
+      "name": "single-letter valid parts are capitalized",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "user_content": [
@@ -314,7 +311,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "single-letter",
         "hyphenated"
       ]

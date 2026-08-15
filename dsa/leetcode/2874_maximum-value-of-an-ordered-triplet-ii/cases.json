@@ -78,10 +78,10 @@
       "expected": 16
     },
     {
-      "id": "real-maximum-values",
-      "name": "hidden: maximum values require a wide integer result",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-values",
+      "name": "maximum values require a wide integer result",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000,
@@ -90,16 +90,15 @@
         ]
       },
       "tags": [
-        "hidden",
         "large-product"
       ],
       "expected": 999999000000
     },
     {
-      "id": "real-repeated-values",
-      "name": "hidden: a later prefix maximum improves the difference",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-values",
+      "name": "a later prefix maximum improves the difference",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -112,16 +111,15 @@
         ]
       },
       "tags": [
-        "hidden",
         "duplicates"
       ],
       "expected": 63
     },
     {
-      "id": "real-best-indices-separated",
-      "name": "hidden: all three best indices are separated by distractions",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-best-indices-separated",
+      "name": "all three best indices are separated by distractions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -134,16 +132,15 @@
         ]
       },
       "tags": [
-        "hidden",
         "index-order"
       ],
       "expected": 270
     },
     {
-      "id": "real-flat-array",
-      "name": "hidden: equal values produce zero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-flat-array",
+      "name": "equal values produce zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -153,10 +150,42 @@
         ]
       },
       "tags": [
-        "hidden",
         "zero"
       ],
       "expected": 0
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          12
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          12,
+          12
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

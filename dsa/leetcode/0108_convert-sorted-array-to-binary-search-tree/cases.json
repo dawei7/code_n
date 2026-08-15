@@ -77,10 +77,10 @@
       ]
     },
     {
-      "id": "real-seven-values",
-      "name": "hidden: seven values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-seven-values",
+      "name": "seven values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -5,
@@ -106,7 +106,7 @@
         "values_param": "nums"
       },
       "tags": [
-        "hidden"
+        "trial"
       ]
     }
   ]

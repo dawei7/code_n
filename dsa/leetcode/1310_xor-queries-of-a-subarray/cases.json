@@ -196,10 +196,10 @@
       ]
     },
     {
-      "id": "hidden-large-values",
-      "name": "hidden: values near the upper bound",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-values",
+      "name": "values near the upper bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1000000000,
@@ -227,15 +227,14 @@
         463129087
       ],
       "tags": [
-        "hidden",
         "large-values"
       ]
     },
     {
-      "id": "hidden-nested-ranges",
-      "name": "hidden: nested and repeated ranges",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-nested-ranges",
+      "name": "nested and repeated ranges",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -271,7 +270,6 @@
         30
       ],
       "tags": [
-        "hidden",
         "nested",
         "repeated"
       ]

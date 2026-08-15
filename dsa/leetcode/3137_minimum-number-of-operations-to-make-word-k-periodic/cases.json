@@ -1,17 +1,181 @@
 {
   "challenge_id": "lc_3137",
   "cases": [
-    {"id":"sample-1","name":"sample: replace one middle block","kind":"sample","visible":true,"input":{"word":"leetcodeleet","k":4},"expected":1,"tags":["sample"]},
-    {"id":"sample-2","name":"sample: tied most frequent blocks","kind":"sample","visible":true,"input":{"word":"leetcoleet","k":2},"expected":3,"tags":["sample","tie"]},
-    {"id":"trial-already-periodic","name":"trial: repeated two-character block","kind":"trial","visible":true,"input":{"word":"ababab","k":2},"expected":0,"tags":["edge","periodic"]},
-    {"id":"trial-single-block","name":"trial: one aligned block","kind":"trial","visible":true,"input":{"word":"abc","k":3},"expected":0,"tags":["edge"]},
-    {"id":"trial-single-character-blocks","name":"trial: character frequency when k is one","kind":"trial","visible":true,"input":{"word":"aabbaa","k":1},"expected":2,"tags":["boundary"]},
-    {"id":"trial-two-unique-blocks","name":"trial: one of two blocks must change","kind":"trial","visible":true,"input":{"word":"abcd","k":2},"expected":1,"tags":["tie"]},
-    {"id":"real-dominant-first","name":"real: first block occurs twice","kind":"real","visible":false,"input":{"word":"aaaabbbbccccaaaa","k":4},"expected":2,"tags":["real","counting"]},
-    {"id":"real-dominant-boundaries","name":"real: dominant block at both ends","kind":"real","visible":false,"input":{"word":"xyzxyzabcxyz","k":3},"expected":1,"tags":["real","counting"]},
-    {"id":"real-all-unique","name":"real: every block is different","kind":"real","visible":false,"input":{"word":"abcdefghijkl","k":3},"expected":3,"tags":["real","unique"]},
-    {"id":"real-dominant-not-first","name":"real: most frequent block is not first","kind":"real","visible":false,"input":{"word":"aaaabbbbccccbbbbbbbb","k":4},"expected":2,"tags":["real","counting"]},
-    {"id":"real-long-block-copy","name":"real: repeated six-character block","kind":"real","visible":false,"input":{"word":"abcabcxyzxyzabcabc","k":6},"expected":1,"tags":["real","block-boundary"]},
-    {"id":"real-two-maximum-blocks","name":"real: two equal long blocks","kind":"real","visible":false,"input":{"word":"abcdefghijklmnopqrstuvwxabcdefghijklmnopqrstuvwx","k":24},"expected":0,"tags":["real","periodic"]}
+    {
+      "id": "sample-1",
+      "name": "sample: replace one middle block",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "leetcodeleet",
+        "k": 4
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: tied most frequent blocks",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "leetcoleet",
+        "k": 2
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "tie"
+      ]
+    },
+    {
+      "id": "trial-already-periodic",
+      "name": "trial: repeated two-character block",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "ababab",
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "edge",
+        "periodic"
+      ]
+    },
+    {
+      "id": "trial-single-block",
+      "name": "trial: one aligned block",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "abc",
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-single-character-blocks",
+      "name": "trial: character frequency when k is one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aabbaa",
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-two-unique-blocks",
+      "name": "trial: one of two blocks must change",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "abcd",
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "tie"
+      ]
+    },
+    {
+      "id": "trial-dominant-first",
+      "name": "first block occurs twice",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aaaabbbbccccaaaa",
+        "k": 4
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "counting"
+      ]
+    },
+    {
+      "id": "trial-dominant-boundaries",
+      "name": "dominant block at both ends",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "xyzxyzabcxyz",
+        "k": 3
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "counting"
+      ]
+    },
+    {
+      "id": "trial-all-unique",
+      "name": "every block is different",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "abcdefghijkl",
+        "k": 3
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "unique"
+      ]
+    },
+    {
+      "id": "trial-dominant-not-first",
+      "name": "most frequent block is not first",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aaaabbbbccccbbbbbbbb",
+        "k": 4
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "counting"
+      ]
+    },
+    {
+      "id": "trial-long-block-copy",
+      "name": "repeated six-character block",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "abcabcxyzxyzabcabc",
+        "k": 6
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "block-boundary"
+      ]
+    },
+    {
+      "id": "trial-two-maximum-blocks",
+      "name": "two equal long blocks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "abcdefghijklmnopqrstuvwxabcdefghijklmnopqrstuvwx",
+        "k": 24
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "periodic"
+      ]
+    }
   ]
 }

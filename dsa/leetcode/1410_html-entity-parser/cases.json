@@ -72,31 +72,57 @@
       ]
     },
     {
-      "id": "real-single-pass",
-      "name": "hidden: decoded ampersand is not parsed again",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-pass",
+      "name": "decoded ampersand is not parsed again",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "text": "&amp;gt;&amp;amp;"
       },
       "expected": "&gt;&amp;",
       "tags": [
-        "hidden",
         "single-pass"
       ]
     },
     {
-      "id": "real-incomplete",
-      "name": "hidden: unknown and incomplete spellings",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-incomplete",
+      "name": "unknown and incomplete spellings",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "text": "a &unknown; b &amp c &lt;"
       },
       "expected": "a &unknown; b &amp c <",
       "tags": [
-        "hidden",
         "incomplete"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in text",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "text": "&"
+      },
+      "expected": "&",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in text",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "text": "&&&"
+      },
+      "expected": "&&&",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

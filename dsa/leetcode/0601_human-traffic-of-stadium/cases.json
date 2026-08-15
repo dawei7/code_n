@@ -342,10 +342,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: return a full five-row run",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "return a full five-row run",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Stadium": [
@@ -417,10 +417,10 @@
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: unsorted input and two runs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "unsorted input and two runs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Stadium": [

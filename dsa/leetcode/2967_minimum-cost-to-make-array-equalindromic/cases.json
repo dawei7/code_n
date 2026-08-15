@@ -108,10 +108,10 @@
       ]
     },
     {
-      "id": "real-even-median-interval",
-      "name": "real: a palindrome inside the median interval is optimal",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-even-median-interval",
+      "name": "a palindrome inside the median interval is optimal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10,
@@ -120,15 +120,14 @@
       },
       "expected": 90,
       "tags": [
-        "hidden",
         "even-length"
       ]
     },
     {
-      "id": "real-palindromic-center",
-      "name": "real: center palindrome minimizes four values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-palindromic-center",
+      "name": "center palindrome minimizes four values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100,
@@ -139,15 +138,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "palindromic-center"
       ]
     },
     {
-      "id": "real-upper-bound",
-      "name": "real: target must remain below one billion",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-upper-bound",
+      "name": "target must remain below one billion",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           999999998,
@@ -157,7 +155,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     }

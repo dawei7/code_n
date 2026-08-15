@@ -2,13 +2,204 @@
   "schema_version": 1,
   "challenge_id": "lc_2261",
   "cases": [
-    {"id":"sample-repeated-values","name":"sample: repeated eligible sequences count once","kind":"sample","visible":true,"input":{"nums":[2,3,3,2,2],"k":2,"p":2},"expected":11,"tags":["sample","duplicates","limit"]},
-    {"id":"sample-all-valid-distinct","name":"sample: every subarray is valid and distinct","kind":"sample","visible":true,"input":{"nums":[1,2,3,4],"k":4,"p":1},"expected":10,"tags":["sample","all-valid"]},
-    {"id":"trial-identical-values","name":"identical values produce one distinct sequence per length","kind":"trial","visible":true,"input":{"nums":[1,1,1],"k":3,"p":2},"expected":3,"tags":["duplicates","length"]},
-    {"id":"trial-divisibility-cutoff","name":"a second divisible value stops an extension","kind":"trial","visible":true,"input":{"nums":[2,4,3],"k":1,"p":2},"expected":4,"tags":["cutoff","divisible"]},
-    {"id":"trial-repeated-sequence","name":"same singleton sequence at two indices is counted once","kind":"trial","visible":true,"input":{"nums":[1,2,1],"k":3,"p":5},"expected":5,"tags":["duplicate-subarray"]},
-    {"id":"real-all-divisible","name":"hidden: only singleton length remains under a one-element limit","kind":"real","visible":false,"input":{"nums":[2,2,2],"k":1,"p":2},"expected":1,"tags":["hidden","all-divisible"]},
-    {"id":"real-none-divisible","name":"hidden: distinct increasing values yield every subarray","kind":"real","visible":false,"input":{"nums":[1,2,3],"k":1,"p":10},"expected":6,"tags":["hidden","none-divisible"]},
-    {"id":"real-overlapping-pattern","name":"hidden: overlapping alternating sequences merge by value path","kind":"real","visible":false,"input":{"nums":[2,3,2,3],"k":1,"p":2},"expected":5,"tags":["hidden","overlap","pattern"]}
+    {
+      "id": "sample-repeated-values",
+      "name": "sample: repeated eligible sequences count once",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          3,
+          2,
+          2
+        ],
+        "k": 2,
+        "p": 2
+      },
+      "expected": 11,
+      "tags": [
+        "sample",
+        "duplicates",
+        "limit"
+      ]
+    },
+    {
+      "id": "sample-all-valid-distinct",
+      "name": "sample: every subarray is valid and distinct",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "k": 4,
+        "p": 1
+      },
+      "expected": 10,
+      "tags": [
+        "sample",
+        "all-valid"
+      ]
+    },
+    {
+      "id": "trial-identical-values",
+      "name": "identical values produce one distinct sequence per length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "k": 3,
+        "p": 2
+      },
+      "expected": 3,
+      "tags": [
+        "duplicates",
+        "length"
+      ]
+    },
+    {
+      "id": "trial-divisibility-cutoff",
+      "name": "a second divisible value stops an extension",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          3
+        ],
+        "k": 1,
+        "p": 2
+      },
+      "expected": 4,
+      "tags": [
+        "cutoff",
+        "divisible"
+      ]
+    },
+    {
+      "id": "trial-repeated-sequence",
+      "name": "same singleton sequence at two indices is counted once",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1
+        ],
+        "k": 3,
+        "p": 5
+      },
+      "expected": 5,
+      "tags": [
+        "duplicate-subarray"
+      ]
+    },
+    {
+      "id": "trial-all-divisible",
+      "name": "only singleton length remains under a one-element limit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2
+        ],
+        "k": 1,
+        "p": 2
+      },
+      "expected": 1,
+      "tags": [
+        "all-divisible"
+      ]
+    },
+    {
+      "id": "trial-none-divisible",
+      "name": "distinct increasing values yield every subarray",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 1,
+        "p": 10
+      },
+      "expected": 6,
+      "tags": [
+        "none-divisible"
+      ]
+    },
+    {
+      "id": "trial-overlapping-pattern",
+      "name": "overlapping alternating sequences merge by value path",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          2,
+          3
+        ],
+        "k": 1,
+        "p": 2
+      },
+      "expected": 5,
+      "tags": [
+        "overlap",
+        "pattern"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ],
+        "k": 2,
+        "p": 2
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ],
+        "k": 2,
+        "p": 2
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    }
   ]
 }

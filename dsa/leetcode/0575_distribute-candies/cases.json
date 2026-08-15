@@ -108,10 +108,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: exactly two candies",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "exactly two candies",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "candyType": [
           9,
@@ -120,15 +120,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "minimum"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: distinct count below capacity",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "distinct count below capacity",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "candyType": [
           2,
@@ -145,8 +144,40 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "type-limit"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in candyType",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "candyType": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in candyType",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "candyType": [
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -7,72 +7,158 @@
       "name": "sample: pairs and singletons can be balanced",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 1, 2, 2, 3, 4]},
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          4
+        ]
+      },
       "expected": true,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-impossible",
       "name": "sample: four equal values cannot be split",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 1, 1, 1]},
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
       "expected": false,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "trial-two-equal",
       "name": "trial: two equal values go to separate parts",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [7, 7]},
+      "input": {
+        "nums": [
+          7,
+          7
+        ]
+      },
       "expected": true,
-      "tags": ["trial", "minimum-length"]
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-all-unique",
       "name": "trial: all values are distinct",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5, 6, 7, 8]},
+      "input": {
+        "nums": [
+          5,
+          6,
+          7,
+          8
+        ]
+      },
       "expected": true,
-      "tags": ["trial", "unique"]
+      "tags": [
+        "trial",
+        "unique"
+      ]
     },
     {
       "id": "trial-pairs-only",
       "name": "trial: every value appears exactly twice",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 1, 100, 100]},
+      "input": {
+        "nums": [
+          1,
+          1,
+          100,
+          100
+        ]
+      },
       "expected": true,
-      "tags": ["trial", "boundary-values"]
+      "tags": [
+        "trial",
+        "boundary-values"
+      ]
     },
     {
-      "id": "real-exact-triple",
-      "name": "real: exactly three copies are impossible",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [9, 9, 9, 2]},
+      "id": "trial-exact-triple",
+      "name": "exactly three copies are impossible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          9,
+          9,
+          2
+        ]
+      },
       "expected": false,
-      "tags": ["real", "triple"]
+      "tags": [
+        "real",
+        "triple"
+      ]
     },
     {
-      "id": "real-late-triple",
-      "name": "real: a late third occurrence invalidates the split",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 3, 1, 2, 3, 3, 4]},
+      "id": "trial-late-triple",
+      "name": "a late third occurrence invalidates the split",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          1,
+          2,
+          3,
+          3,
+          4
+        ]
+      },
       "expected": false,
-      "tags": ["real", "late-failure"]
+      "tags": [
+        "real",
+        "late-failure"
+      ]
     },
     {
-      "id": "real-balanced-singletons",
-      "name": "real: duplicate pairs plus even singletons balance automatically",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 1, 2, 2, 3, 4, 5, 6]},
+      "id": "trial-balanced-singletons",
+      "name": "duplicate pairs plus even singletons balance automatically",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
       "expected": true,
-      "tags": ["real", "balance"]
+      "tags": [
+        "real",
+        "balance"
+      ]
     }
   ]
 }

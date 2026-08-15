@@ -6,72 +6,184 @@
       "name": "sample: the only interior value has beauty two",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 3]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "global"]
+      "tags": [
+        "sample",
+        "global"
+      ]
     },
     {
       "id": "sample-local-only",
       "name": "sample: one value receives only local beauty",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 4, 6, 4]},
+      "input": {
+        "nums": [
+          2,
+          4,
+          6,
+          4
+        ]
+      },
       "expected": 1,
-      "tags": ["sample", "local"]
+      "tags": [
+        "sample",
+        "local"
+      ]
     },
     {
       "id": "sample-decreasing",
       "name": "sample: decreasing values have no beauty",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [3, 2, 1]},
+      "input": {
+        "nums": [
+          3,
+          2,
+          1
+        ]
+      },
       "expected": 0,
-      "tags": ["sample", "zero"]
+      "tags": [
+        "sample",
+        "zero"
+      ]
     },
     {
       "id": "trial-all-global",
       "name": "every interior value of an increasing array earns two",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 3, 4, 5]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
       "expected": 6,
-      "tags": ["increasing", "multiple"]
+      "tags": [
+        "increasing",
+        "multiple"
+      ]
     },
     {
       "id": "trial-duplicates-break-strictness",
       "name": "equal adjacent values fail strict comparisons",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 2, 3]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          2,
+          3
+        ]
+      },
       "expected": 0,
-      "tags": ["duplicates", "strict"]
+      "tags": [
+        "duplicates",
+        "strict"
+      ]
     },
     {
-      "id": "real-distant-maximum-blocks-global",
-      "name": "hidden: a distant maximum leaves one local beauty",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 5, 3, 4, 6]},
+      "id": "trial-distant-maximum-blocks-global",
+      "name": "a distant maximum leaves one local beauty",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          5,
+          3,
+          4,
+          6
+        ]
+      },
       "expected": 1,
-      "tags": ["hidden", "local", "prefix-maximum"]
+      "tags": [
+        "local",
+        "prefix-maximum"
+      ]
     },
     {
-      "id": "real-only-final-interior-global",
-      "name": "hidden: only the final interior value satisfies both sides",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 3, 2, 4, 5]},
+      "id": "trial-only-final-interior-global",
+      "name": "only the final interior value satisfies both sides",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          2,
+          4,
+          5
+        ]
+      },
       "expected": 2,
-      "tags": ["hidden", "global", "mixed"]
+      "tags": [
+        "global",
+        "mixed"
+      ]
     },
     {
-      "id": "real-value-boundaries",
-      "name": "hidden: strict global order at the value limits",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 50000, 100000]},
+      "id": "trial-value-boundaries",
+      "name": "strict global order at the value limits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          50000,
+          100000
+        ]
+      },
       "expected": 2,
-      "tags": ["hidden", "value-boundary"]
+      "tags": [
+        "value-boundary"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

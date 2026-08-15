@@ -195,10 +195,10 @@
       ]
     },
     {
-      "id": "real-row-cycle",
-      "name": "hidden: short row cycle with acyclic columns",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-row-cycle",
+      "name": "short row cycle with acyclic columns",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "k": 4,
         "rowConditions": [
@@ -227,15 +227,14 @@
         "kind": "condition_matrix"
       },
       "tags": [
-        "hidden",
         "row-cycle"
       ]
     },
     {
-      "id": "real-column-cycle",
-      "name": "hidden: acyclic rows with a column cycle",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-column-cycle",
+      "name": "acyclic rows with a column cycle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "k": 4,
         "rowConditions": [
@@ -264,15 +263,14 @@
         "kind": "condition_matrix"
       },
       "tags": [
-        "hidden",
         "column-cycle"
       ]
     },
     {
-      "id": "real-two-chains",
-      "name": "hidden: separate chains merge only at placement",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-chains",
+      "name": "separate chains merge only at placement",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "k": 5,
         "rowConditions": [
@@ -345,7 +343,6 @@
         "kind": "condition_matrix"
       },
       "tags": [
-        "hidden",
         "chains"
       ]
     }

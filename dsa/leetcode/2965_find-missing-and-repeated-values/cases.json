@@ -143,10 +143,10 @@
       ]
     },
     {
-      "id": "real-four-by-four",
-      "name": "real: interior values differ",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-four-by-four",
+      "name": "interior values differ",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -180,15 +180,14 @@
         15
       ],
       "tags": [
-        "hidden",
         "larger-grid"
       ]
     },
     {
-      "id": "real-shuffled-grid",
-      "name": "real: positions do not follow numeric order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-shuffled-grid",
+      "name": "positions do not follow numeric order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -213,15 +212,14 @@
         1
       ],
       "tags": [
-        "hidden",
         "shuffled"
       ]
     },
     {
-      "id": "real-distant-values",
-      "name": "real: repeated and missing values are far apart",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-distant-values",
+      "name": "repeated and missing values are far apart",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -246,7 +244,6 @@
         6
       ],
       "tags": [
-        "hidden",
         "distant-values"
       ]
     }

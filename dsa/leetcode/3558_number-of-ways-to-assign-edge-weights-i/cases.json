@@ -147,10 +147,10 @@
       ]
     },
     {
-      "id": "real-unbalanced-tree",
-      "name": "real: deepest branch determines the count",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unbalanced-tree",
+      "name": "deepest branch determines the count",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -183,10 +183,10 @@
       ]
     },
     {
-      "id": "real-balanced-binary",
-      "name": "real: all leaves share depth two",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-balanced-binary",
+      "name": "all leaves share depth two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -223,10 +223,10 @@
       ]
     },
     {
-      "id": "real-broom-tree",
-      "name": "real: shallow branches do not affect a deep handle",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-broom-tree",
+      "name": "shallow branches do not affect a deep handle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -267,10 +267,10 @@
       ]
     },
     {
-      "id": "real-depth-ten",
-      "name": "real: ten-edge path",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-depth-ten",
+      "name": "ten-edge path",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -323,10 +323,10 @@
       ]
     },
     {
-      "id": "real-modular-path",
-      "name": "real: path count wraps modulo",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-modular-path",
+      "name": "path count wraps modulo",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [

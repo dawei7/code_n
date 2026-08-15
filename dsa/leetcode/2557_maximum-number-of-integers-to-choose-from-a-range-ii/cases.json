@@ -6,72 +6,151 @@
       "name": "sample: only one affordable allowed value",
       "kind": "sample",
       "visible": true,
-      "input": {"banned": [1, 4, 6], "n": 6, "maxSum": 4},
+      "input": {
+        "banned": [
+          1,
+          4,
+          6
+        ],
+        "n": 6,
+        "maxSum": 4
+      },
       "expected": 1,
-      "tags": ["sample", "budget-stop"]
+      "tags": [
+        "sample",
+        "budget-stop"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: choose every available value",
       "kind": "sample",
       "visible": true,
-      "input": {"banned": [4, 3, 5, 6], "n": 7, "maxSum": 18},
+      "input": {
+        "banned": [
+          4,
+          3,
+          5,
+          6
+        ],
+        "n": 7,
+        "maxSum": 18
+      },
       "expected": 3,
-      "tags": ["sample", "multiple-gaps"]
+      "tags": [
+        "sample",
+        "multiple-gaps"
+      ]
     },
     {
       "id": "trial-duplicate-bans",
       "name": "trial: duplicate bans forbid one value",
       "kind": "trial",
       "visible": true,
-      "input": {"banned": [1, 1], "n": 2, "maxSum": 2},
+      "input": {
+        "banned": [
+          1,
+          1
+        ],
+        "n": 2,
+        "maxSum": 2
+      },
       "expected": 1,
-      "tags": ["trial", "duplicates"]
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
     },
     {
       "id": "trial-partial-later-gap",
       "name": "trial: budget stops partway through a later gap",
       "kind": "trial",
       "visible": true,
-      "input": {"banned": [2, 4], "n": 6, "maxSum": 12},
+      "input": {
+        "banned": [
+          2,
+          4
+        ],
+        "n": 6,
+        "maxSum": 12
+      },
       "expected": 3,
-      "tags": ["trial", "partial-gap"]
+      "tags": [
+        "trial",
+        "partial-gap"
+      ]
     },
     {
       "id": "trial-exact-budget",
       "name": "trial: allowed prefix exactly consumes budget",
       "kind": "trial",
       "visible": true,
-      "input": {"banned": [10], "n": 10, "maxSum": 15},
+      "input": {
+        "banned": [
+          10
+        ],
+        "n": 10,
+        "maxSum": 15
+      },
       "expected": 5,
-      "tags": ["trial", "exact-budget"]
+      "tags": [
+        "trial",
+        "exact-budget"
+      ]
     },
     {
-      "id": "real-all-banned",
-      "name": "hidden: every candidate is forbidden",
-      "kind": "real",
-      "visible": false,
-      "input": {"banned": [1, 2, 3], "n": 3, "maxSum": 100},
+      "id": "trial-all-banned",
+      "name": "every candidate is forbidden",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "banned": [
+          1,
+          2,
+          3
+        ],
+        "n": 3,
+        "maxSum": 100
+      },
       "expected": 0,
-      "tags": ["hidden", "all-banned"]
+      "tags": [
+        "all-banned"
+      ]
     },
     {
-      "id": "real-smallest-affordable-is-banned",
-      "name": "hidden: no allowed value fits the budget",
-      "kind": "real",
-      "visible": false,
-      "input": {"banned": [1], "n": 3, "maxSum": 1},
+      "id": "trial-smallest-affordable-is-banned",
+      "name": "no allowed value fits the budget",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "banned": [
+          1
+        ],
+        "n": 3,
+        "maxSum": 1
+      },
       "expected": 0,
-      "tags": ["hidden", "zero-picks"]
+      "tags": [
+        "zero-picks"
+      ]
     },
     {
-      "id": "real-large-range",
-      "name": "hidden: arithmetic search over a billion-value range",
-      "kind": "real",
-      "visible": false,
-      "input": {"banned": [1000000000], "n": 1000000000, "maxSum": 100000000},
+      "id": "trial-large-range",
+      "name": "arithmetic search over a billion-value range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "banned": [
+          1000000000
+        ],
+        "n": 1000000000,
+        "maxSum": 100000000
+      },
       "expected": 14141,
-      "tags": ["hidden", "large-range", "large-arithmetic"]
+      "tags": [
+        "large-range",
+        "large-arithmetic"
+      ]
     }
   ]
 }

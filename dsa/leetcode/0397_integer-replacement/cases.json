@@ -73,44 +73,41 @@
       ]
     },
     {
-      "id": "hidden-long-ones",
-      "name": "hidden: several trailing one bits",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-long-ones",
+      "name": "several trailing one bits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 15
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "trailing-ones"
       ]
     },
     {
-      "id": "hidden-mixed",
-      "name": "hidden: alternating odd and even steps",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed",
+      "name": "alternating odd and even steps",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 100
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
     {
-      "id": "hidden-int-max",
-      "name": "hidden: maximum signed integer",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-int-max",
+      "name": "maximum signed integer",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 2147483647
       },
       "expected": 32,
       "tags": [
-        "hidden",
         "overflow-boundary"
       ]
     }

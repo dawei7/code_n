@@ -140,10 +140,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: all positions empty",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "all positions empty",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -158,15 +158,14 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "all-zero"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: equal adjacent towers",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "equal adjacent towers",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -181,15 +180,14 @@
       },
       "expected": 16,
       "tags": [
-        "hidden",
         "shared-face"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: unequal adjacent towers",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "unequal adjacent towers",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -204,15 +202,14 @@
       },
       "expected": 18,
       "tags": [
-        "hidden",
         "height-difference"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: separated diagonal towers",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "separated diagonal towers",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -227,15 +224,14 @@
       },
       "expected": 20,
       "tags": [
-        "hidden",
         "disconnected"
       ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: dense equal-height block",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-5",
+      "name": "dense equal-height block",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -250,7 +246,6 @@
       },
       "expected": 24,
       "tags": [
-        "hidden",
         "dense"
       ]
     }

@@ -6,63 +6,102 @@
       "name": "official example: two balanced permutations",
       "kind": "sample",
       "visible": true,
-      "input": {"num": "123"},
+      "input": {
+        "num": "123"
+      },
       "expected": 2,
-      "tags": ["sample", "distinct-digits"]
+      "tags": [
+        "sample",
+        "distinct-digits"
+      ]
     },
     {
       "id": "official-example-duplicate-digit",
       "name": "official example: repeated copies remain indistinguishable",
       "kind": "sample",
       "visible": true,
-      "input": {"num": "112"},
+      "input": {
+        "num": "112"
+      },
       "expected": 1,
-      "tags": ["sample", "duplicates"]
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
     },
     {
       "id": "official-example-impossible",
       "name": "official example: no balanced permutation",
       "kind": "sample",
       "visible": true,
-      "input": {"num": "12345"},
+      "input": {
+        "num": "12345"
+      },
       "expected": 0,
-      "tags": ["sample", "impossible"]
+      "tags": [
+        "sample",
+        "impossible"
+      ]
     },
     {
       "id": "trial-all-zeroes",
       "name": "trial: the only all-zero permutation is balanced",
       "kind": "trial",
       "visible": true,
-      "input": {"num": "00"},
+      "input": {
+        "num": "00"
+      },
       "expected": 1,
-      "tags": ["trial", "minimum-length", "zeroes"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "zeroes"
+      ]
     },
     {
       "id": "trial-four-distinct-digits",
       "name": "trial: several allocations share the target sum",
       "kind": "trial",
       "visible": true,
-      "input": {"num": "0123"},
+      "input": {
+        "num": "0123"
+      },
       "expected": 8,
-      "tags": ["trial", "leading-zero", "distinct-digits"]
+      "tags": [
+        "trial",
+        "leading-zero",
+        "distinct-digits"
+      ]
     },
     {
-      "id": "real-paired-multiplicities",
-      "name": "real: three digit values each appear twice",
-      "kind": "real",
-      "visible": false,
-      "input": {"num": "001122"},
+      "id": "trial-paired-multiplicities",
+      "name": "three digit values each appear twice",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "001122"
+      },
       "expected": 36,
-      "tags": ["real", "duplicates", "combinatorics"]
+      "tags": [
+        "real",
+        "duplicates",
+        "combinatorics"
+      ]
     },
     {
-      "id": "real-maximum-length",
-      "name": "real: maximum length with a single distinct permutation",
-      "kind": "real",
-      "visible": false,
-      "input": {"num": "00000000000000000000000000000000000000000000000000000000000000000000000000000000"},
+      "id": "trial-maximum-length",
+      "name": "maximum length with a single distinct permutation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "00000000000000000000000000000000000000000000000000000000000000000000000000000000"
+      },
       "expected": 1,
-      "tags": ["real", "maximum-length", "all-zeroes"]
+      "tags": [
+        "real",
+        "maximum-length",
+        "all-zeroes"
+      ]
     }
   ]
 }

@@ -1,9 +1,103 @@
-{"challenge_id":"lc_2979","cases":[
-{"id":"sample-two-five","name":"sample: denominations two and five","kind":"sample","visible":true,"input":{"primeOne":2,"primeTwo":5},"expected":3,"tags":["sample"]},
-{"id":"sample-five-seven","name":"sample: denominations five and seven","kind":"sample","visible":true,"input":{"primeOne":5,"primeTwo":7},"expected":23,"tags":["sample"]},
-{"id":"trial-smallest-primes","name":"trial: smallest distinct primes","kind":"trial","visible":true,"input":{"primeOne":2,"primeTwo":3},"expected":1,"tags":["boundary"]},
-{"id":"trial-reversed-order","name":"trial: denomination order is irrelevant","kind":"trial","visible":true,"input":{"primeOne":11,"primeTwo":3},"expected":19,"tags":["symmetry"]},
-{"id":"real-moderate-primes","name":"real: moderate adjacent primes","kind":"real","visible":false,"input":{"primeOne":97,"primeTwo":101},"expected":9599,"tags":["hidden"]},
-{"id":"real-larger-primes","name":"real: larger coprime denominations","kind":"real","visible":false,"input":{"primeOne":43,"primeTwo":47},"expected":1931,"tags":["hidden","larger-primes"]},
-{"id":"real-one-small-prime","name":"real: denomination two with a large prime","kind":"real","visible":false,"input":{"primeOne":2,"primeTwo":4999},"expected":4997,"tags":["hidden","value-boundary"]}
-]}
+{
+  "challenge_id": "lc_2979",
+  "cases": [
+    {
+      "id": "sample-two-five",
+      "name": "sample: denominations two and five",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "primeOne": 2,
+        "primeTwo": 5
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-five-seven",
+      "name": "sample: denominations five and seven",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "primeOne": 5,
+        "primeTwo": 7
+      },
+      "expected": 23,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-smallest-primes",
+      "name": "trial: smallest distinct primes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "primeOne": 2,
+        "primeTwo": 3
+      },
+      "expected": 1,
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-reversed-order",
+      "name": "trial: denomination order is irrelevant",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "primeOne": 11,
+        "primeTwo": 3
+      },
+      "expected": 19,
+      "tags": [
+        "symmetry"
+      ]
+    },
+    {
+      "id": "trial-moderate-primes",
+      "name": "moderate adjacent primes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "primeOne": 97,
+        "primeTwo": 101
+      },
+      "expected": 9599,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-larger-primes",
+      "name": "larger coprime denominations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "primeOne": 43,
+        "primeTwo": 47
+      },
+      "expected": 1931,
+      "tags": [
+        "larger-primes"
+      ]
+    },
+    {
+      "id": "trial-one-small-prime",
+      "name": "denomination two with a large prime",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "primeOne": 2,
+        "primeTwo": 4999
+      },
+      "expected": 4997,
+      "tags": [
+        "value-boundary"
+      ]
+    }
+  ]
+}

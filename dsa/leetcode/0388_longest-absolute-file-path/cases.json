@@ -73,45 +73,70 @@
       ]
     },
     {
-      "id": "hidden-shallower-reset",
-      "name": "hidden: return to shallower branch",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-shallower-reset",
+      "name": "return to shallower branch",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "input": "root\n\tlongdir\n\t\tdeep.txt\n\tx\n\t\twider-name.bin"
       },
       "expected": 21,
       "tags": [
-        "hidden",
         "branch-reset"
       ]
     },
     {
-      "id": "hidden-no-files",
-      "name": "hidden: several directories only",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-no-files",
+      "name": "several directories only",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "input": "root\n\ta\n\t\tb\n\tc"
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "no-file"
       ]
     },
     {
-      "id": "hidden-multiple-roots",
-      "name": "hidden: root-level file after directory",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-roots",
+      "name": "root-level file after directory",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "input": "folder\n\tchild.dat\n\ttiny.txt\noutside.extension"
       },
       "expected": 17,
       "tags": [
-        "hidden",
         "root-file"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in input",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "input": "d"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in input",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "input": "ddd"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

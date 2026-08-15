@@ -7,72 +7,146 @@
       "name": "sample: three whites in the best long window",
       "kind": "sample",
       "visible": true,
-      "input": {"blocks": "WBBWWBBWBW", "k": 7},
+      "input": {
+        "blocks": "WBBWWBBWBW",
+        "k": 7
+      },
       "expected": 3,
-      "tags": ["sample", "sliding-window"]
+      "tags": [
+        "sample",
+        "sliding-window"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: required run already exists",
       "kind": "sample",
       "visible": true,
-      "input": {"blocks": "WBWBBBW", "k": 2},
+      "input": {
+        "blocks": "WBWBBBW",
+        "k": 2
+      },
       "expected": 0,
-      "tags": ["sample", "zero"]
+      "tags": [
+        "sample",
+        "zero"
+      ]
     },
     {
       "id": "trial-single-white",
       "name": "one white block requires one recolor",
       "kind": "trial",
       "visible": true,
-      "input": {"blocks": "W", "k": 1},
+      "input": {
+        "blocks": "W",
+        "k": 1
+      },
       "expected": 1,
-      "tags": ["minimum", "white"]
+      "tags": [
+        "minimum",
+        "white"
+      ]
     },
     {
       "id": "trial-single-black",
       "name": "one black block needs no recolor",
       "kind": "trial",
       "visible": true,
-      "input": {"blocks": "B", "k": 1},
+      "input": {
+        "blocks": "B",
+        "k": 1
+      },
       "expected": 0,
-      "tags": ["minimum", "black"]
+      "tags": [
+        "minimum",
+        "black"
+      ]
     },
     {
       "id": "trial-whole-string",
       "name": "window covers the complete string",
       "kind": "trial",
       "visible": true,
-      "input": {"blocks": "BWWBWB", "k": 6},
+      "input": {
+        "blocks": "BWWBWB",
+        "k": 6
+      },
       "expected": 3,
-      "tags": ["full-window"]
+      "tags": [
+        "full-window"
+      ]
     },
     {
-      "id": "real-all-white",
-      "name": "hidden: every selected block needs recoloring",
-      "kind": "real",
-      "visible": false,
-      "input": {"blocks": "WWWWWW", "k": 4},
+      "id": "trial-all-white",
+      "name": "every selected block needs recoloring",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "blocks": "WWWWWW",
+        "k": 4
+      },
       "expected": 4,
-      "tags": ["hidden", "all-white"]
+      "tags": [
+        "all-white"
+      ]
     },
     {
-      "id": "real-best-at-end",
-      "name": "hidden: optimal window ends at the final block",
-      "kind": "real",
-      "visible": false,
-      "input": {"blocks": "WWWBWBBB", "k": 4},
+      "id": "trial-best-at-end",
+      "name": "optimal window ends at the final block",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "blocks": "WWWBWBBB",
+        "k": 4
+      },
       "expected": 1,
-      "tags": ["hidden", "boundary-window"]
+      "tags": [
+        "boundary-window"
+      ]
     },
     {
-      "id": "real-overlapping-windows",
-      "name": "hidden: rolling count removes and adds whites",
-      "kind": "real",
-      "visible": false,
-      "input": {"blocks": "WBWBWBWB", "k": 3},
+      "id": "trial-overlapping-windows",
+      "name": "rolling count removes and adds whites",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "blocks": "WBWBWBWB",
+        "k": 3
+      },
       "expected": 1,
-      "tags": ["hidden", "overlap"]
+      "tags": [
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in blocks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "blocks": "W",
+        "k": 7
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in blocks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "blocks": "WWW",
+        "k": 7
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
     }
   ]
 }

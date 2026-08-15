@@ -2,13 +2,170 @@
   "schema_version": 1,
   "challenge_id": "lc_2407",
   "cases": [
-    {"id":"sample-1","name":"sample: constrained sequence reaches length five","kind":"sample","visible":true,"input":{"nums":[4,2,1,4,3,4,5,8,15],"k":3},"expected":5,"tags":["sample","segment-tree"]},
-    {"id":"sample-2","name":"sample: mixed order yields length four","kind":"sample","visible":true,"input":{"nums":[7,4,5,1,8,12,4,7],"k":5},"expected":4,"tags":["sample","subsequence"]},
-    {"id":"sample-3","name":"sample: only jump exceeds k","kind":"sample","visible":true,"input":{"nums":[1,5],"k":1},"expected":1,"tags":["sample","gap"]},
-    {"id":"trial-single","name":"trial: one value forms a length-one subsequence","kind":"trial","visible":true,"input":{"nums":[100000],"k":100000},"expected":1,"tags":["single","maximum"]},
-    {"id":"trial-duplicates","name":"trial: equal values cannot extend one another","kind":"trial","visible":true,"input":{"nums":[5,5,5,5],"k":10},"expected":1,"tags":["duplicates","strict"]},
-    {"id":"real-gap-boundary","name":"hidden: jumps exactly equal to k are legal","kind":"real","visible":false,"input":{"nums":[1,4,7,10],"k":3},"expected":4,"tags":["hidden","inclusive-boundary"]},
-    {"id":"real-large-gap-then-chain","name":"hidden: later local chain excludes distant predecessor","kind":"real","visible":false,"input":{"nums":[1,10,11,12],"k":1},"expected":3,"tags":["hidden","gap"]},
-    {"id":"real-ordinary-lis-when-k-large","name":"hidden: large k recovers ordinary LIS behavior","kind":"real","visible":false,"input":{"nums":[10,9,2,5,3,7,101,18],"k":100},"expected":4,"tags":["hidden","ordinary-lis"]}
+    {
+      "id": "sample-1",
+      "name": "sample: constrained sequence reaches length five",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          2,
+          1,
+          4,
+          3,
+          4,
+          5,
+          8,
+          15
+        ],
+        "k": 3
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "segment-tree"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: mixed order yields length four",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          4,
+          5,
+          1,
+          8,
+          12,
+          4,
+          7
+        ],
+        "k": 5
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "subsequence"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: only jump exceeds k",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          5
+        ],
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "gap"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one value forms a length-one subsequence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100000
+        ],
+        "k": 100000
+      },
+      "expected": 1,
+      "tags": [
+        "single",
+        "maximum"
+      ]
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "trial: equal values cannot extend one another",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          5
+        ],
+        "k": 10
+      },
+      "expected": 1,
+      "tags": [
+        "duplicates",
+        "strict"
+      ]
+    },
+    {
+      "id": "trial-gap-boundary",
+      "name": "jumps exactly equal to k are legal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          7,
+          10
+        ],
+        "k": 3
+      },
+      "expected": 4,
+      "tags": [
+        "inclusive-boundary"
+      ]
+    },
+    {
+      "id": "trial-large-gap-then-chain",
+      "name": "later local chain excludes distant predecessor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          10,
+          11,
+          12
+        ],
+        "k": 1
+      },
+      "expected": 3,
+      "tags": [
+        "gap"
+      ]
+    },
+    {
+      "id": "trial-ordinary-lis-when-k-large",
+      "name": "large k recovers ordinary LIS behavior",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          9,
+          2,
+          5,
+          3,
+          7,
+          101,
+          18
+        ],
+        "k": 100
+      },
+      "expected": 4,
+      "tags": [
+        "ordinary-lis"
+      ]
+    }
   ]
 }

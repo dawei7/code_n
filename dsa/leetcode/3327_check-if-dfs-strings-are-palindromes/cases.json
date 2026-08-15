@@ -125,10 +125,10 @@
       ]
     },
     {
-      "id": "real-internal-palindrome",
-      "name": "real: internal palindrome inside non-palindromic root",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-internal-palindrome",
+      "name": "internal palindrome inside non-palindromic root",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "parent": [
           -1,
@@ -152,10 +152,10 @@
       ]
     },
     {
-      "id": "real-ordered-children",
-      "name": "real: child indices determine postorder text",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ordered-children",
+      "name": "child indices determine postorder text",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "parent": [
           -1,
@@ -176,8 +176,57 @@
         true
       ],
       "tags": [
-        "child-order",
-        "hidden"
+        "child-order"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          0,
+          1,
+          1,
+          2
+        ],
+        "s": "a"
+      },
+      "expected": [
+        true
+      ],
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          0,
+          1,
+          1,
+          2
+        ],
+        "s": "aaa"
+      },
+      "expected": [
+        true,
+        true,
+        true
+      ],
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

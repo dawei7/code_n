@@ -2,34 +2,348 @@
   "challenge_id": "lc_3293",
   "cases": [
     {
-      "id":"sample-official","name":"sample: matched and unmatched categories","kind":"sample","visible":true,
-      "input":{"tables":{"Products":[{"product_id":1,"category":"Electronics","price":1000},{"product_id":2,"category":"Clothing","price":50},{"product_id":3,"category":"Electronics","price":1200},{"product_id":4,"category":"Home","price":500}],"Discounts":[{"category":"Electronics","discount":10},{"category":"Clothing","discount":20}]}},
-      "expected":{"columns":["product_id","final_price","category"],"rows":[[1,900,"Electronics"],[2,40,"Clothing"],[3,1080,"Electronics"],[4,500,"Home"]]},"tags":["sample","left-join"]
+      "id": "sample-official",
+      "name": "sample: matched and unmatched categories",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Products": [
+            {
+              "product_id": 1,
+              "category": "Electronics",
+              "price": 1000
+            },
+            {
+              "product_id": 2,
+              "category": "Clothing",
+              "price": 50
+            },
+            {
+              "product_id": 3,
+              "category": "Electronics",
+              "price": 1200
+            },
+            {
+              "product_id": 4,
+              "category": "Home",
+              "price": 500
+            }
+          ],
+          "Discounts": [
+            {
+              "category": "Electronics",
+              "discount": 10
+            },
+            {
+              "category": "Clothing",
+              "discount": 20
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "final_price",
+          "category"
+        ],
+        "rows": [
+          [
+            1,
+            900,
+            "Electronics"
+          ],
+          [
+            2,
+            40,
+            "Clothing"
+          ],
+          [
+            3,
+            1080,
+            "Electronics"
+          ],
+          [
+            4,
+            500,
+            "Home"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "left-join"
+      ]
     },
     {
-      "id":"trial-no-category-match","name":"trial: unrelated discount leaves price unchanged","kind":"trial","visible":true,
-      "input":{"tables":{"Products":[{"product_id":7,"category":"Books","price":80}],"Discounts":[{"category":"Games","discount":25}]}},
-      "expected":{"columns":["product_id","final_price","category"],"rows":[[7,80,"Books"]]},"tags":["missing-discount"]
+      "id": "trial-no-category-match",
+      "name": "trial: unrelated discount leaves price unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Products": [
+            {
+              "product_id": 7,
+              "category": "Books",
+              "price": 80
+            }
+          ],
+          "Discounts": [
+            {
+              "category": "Games",
+              "discount": 25
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "final_price",
+          "category"
+        ],
+        "rows": [
+          [
+            7,
+            80,
+            "Books"
+          ]
+        ]
+      },
+      "tags": [
+        "missing-discount"
+      ]
     },
     {
-      "id":"trial-zero-and-full","name":"trial: zero and one hundred percent discounts","kind":"trial","visible":true,
-      "input":{"tables":{"Products":[{"product_id":1,"category":"FullPrice","price":240},{"product_id":2,"category":"Free","price":240}],"Discounts":[{"category":"FullPrice","discount":0},{"category":"Free","discount":100}]}},
-      "expected":{"columns":["product_id","final_price","category"],"rows":[[1,240,"FullPrice"],[2,0,"Free"]]},"tags":["percentage-boundary"]
+      "id": "trial-zero-and-full",
+      "name": "trial: zero and one hundred percent discounts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Products": [
+            {
+              "product_id": 1,
+              "category": "FullPrice",
+              "price": 240
+            },
+            {
+              "product_id": 2,
+              "category": "Free",
+              "price": 240
+            }
+          ],
+          "Discounts": [
+            {
+              "category": "FullPrice",
+              "discount": 0
+            },
+            {
+              "category": "Free",
+              "discount": 100
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "final_price",
+          "category"
+        ],
+        "rows": [
+          [
+            1,
+            240,
+            "FullPrice"
+          ],
+          [
+            2,
+            0,
+            "Free"
+          ]
+        ]
+      },
+      "tags": [
+        "percentage-boundary"
+      ]
     },
     {
-      "id":"trial-shared-category","name":"trial: one discount applies to several products","kind":"trial","visible":true,
-      "input":{"tables":{"Products":[{"product_id":4,"category":"A","price":400},{"product_id":2,"category":"A","price":200},{"product_id":3,"category":"B","price":300}],"Discounts":[{"category":"A","discount":25}]}},
-      "expected":{"columns":["product_id","final_price","category"],"rows":[[2,150,"A"],[3,300,"B"],[4,300,"A"]]},"tags":["shared-category","ordering"]
+      "id": "trial-shared-category",
+      "name": "trial: one discount applies to several products",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Products": [
+            {
+              "product_id": 4,
+              "category": "A",
+              "price": 400
+            },
+            {
+              "product_id": 2,
+              "category": "A",
+              "price": 200
+            },
+            {
+              "product_id": 3,
+              "category": "B",
+              "price": 300
+            }
+          ],
+          "Discounts": [
+            {
+              "category": "A",
+              "discount": 25
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "final_price",
+          "category"
+        ],
+        "rows": [
+          [
+            2,
+            150,
+            "A"
+          ],
+          [
+            3,
+            300,
+            "B"
+          ],
+          [
+            4,
+            300,
+            "A"
+          ]
+        ]
+      },
+      "tags": [
+        "shared-category",
+        "ordering"
+      ]
     },
     {
-      "id":"real-product-id-order","name":"real: output order ignores input row order","kind":"real","visible":false,
-      "input":{"tables":{"Products":[{"product_id":99,"category":"C","price":500},{"product_id":1,"category":"C","price":100},{"product_id":50,"category":"D","price":300}],"Discounts":[{"category":"C","discount":20},{"category":"D","discount":10}]}},
-      "expected":{"columns":["product_id","final_price","category"],"rows":[[1,80,"C"],[50,270,"D"],[99,400,"C"]]},"tags":["ordering"]
+      "id": "trial-product-id-order",
+      "name": "output order ignores input row order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Products": [
+            {
+              "product_id": 99,
+              "category": "C",
+              "price": 500
+            },
+            {
+              "product_id": 1,
+              "category": "C",
+              "price": 100
+            },
+            {
+              "product_id": 50,
+              "category": "D",
+              "price": 300
+            }
+          ],
+          "Discounts": [
+            {
+              "category": "C",
+              "discount": 20
+            },
+            {
+              "category": "D",
+              "discount": 10
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "final_price",
+          "category"
+        ],
+        "rows": [
+          [
+            1,
+            80,
+            "C"
+          ],
+          [
+            50,
+            270,
+            "D"
+          ],
+          [
+            99,
+            400,
+            "C"
+          ]
+        ]
+      },
+      "tags": [
+        "ordering"
+      ]
     },
     {
-      "id":"real-exact-join-key","name":"real: only the matching category receives a discount","kind":"real","visible":false,
-      "input":{"tables":{"Products":[{"product_id":1,"category":"Home","price":100},{"product_id":2,"category":"Garden","price":100}],"Discounts":[{"category":"Home","discount":30}]}},
-      "expected":{"columns":["product_id","final_price","category"],"rows":[[1,70,"Home"],[2,100,"Garden"]]},"tags":["join-key"]
+      "id": "trial-exact-join-key",
+      "name": "only the matching category receives a discount",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Products": [
+            {
+              "product_id": 1,
+              "category": "Home",
+              "price": 100
+            },
+            {
+              "product_id": 2,
+              "category": "Garden",
+              "price": 100
+            }
+          ],
+          "Discounts": [
+            {
+              "category": "Home",
+              "discount": 30
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "final_price",
+          "category"
+        ],
+        "rows": [
+          [
+            1,
+            70,
+            "Home"
+          ],
+          [
+            2,
+            100,
+            "Garden"
+          ]
+        ]
+      },
+      "tags": [
+        "join-key"
+      ]
     }
   ]
 }

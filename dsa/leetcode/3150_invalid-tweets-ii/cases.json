@@ -158,10 +158,10 @@
       ]
     },
     {
-      "id": "real-both-marker-boundaries",
-      "name": "real: three of each marker remains valid",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-both-marker-boundaries",
+      "name": "three of each marker remains valid",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Tweets": [
@@ -187,10 +187,10 @@
       ]
     },
     {
-      "id": "real-length-only",
-      "name": "real: excessive length alone is invalid",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-length-only",
+      "name": "excessive length alone is invalid",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Tweets": [
@@ -220,10 +220,10 @@
       ]
     },
     {
-      "id": "real-mentions-only",
-      "name": "real: four mentions alone are invalid",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mentions-only",
+      "name": "four mentions alone are invalid",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Tweets": [
@@ -253,10 +253,10 @@
       ]
     },
     {
-      "id": "real-hashtags-only",
-      "name": "real: four hashtags alone are invalid",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-hashtags-only",
+      "name": "four hashtags alone are invalid",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Tweets": [
@@ -286,10 +286,10 @@
       ]
     },
     {
-      "id": "real-multiple-rules-once",
-      "name": "real: one row violating every rule appears once",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-rules-once",
+      "name": "one row violating every rule appears once",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Tweets": [
@@ -319,10 +319,10 @@
       ]
     },
     {
-      "id": "real-unordered-input",
-      "name": "real: invalid identifiers are sorted ascending",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unordered-input",
+      "name": "invalid identifiers are sorted ascending",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Tweets": [
@@ -366,10 +366,10 @@
       ]
     },
     {
-      "id": "real-no-invalid-tweets",
-      "name": "real: all tweets stay within every limit",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-no-invalid-tweets",
+      "name": "all tweets stay within every limit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Tweets": [
@@ -403,19 +403,19 @@
       ]
     },
     {
-      "id": "real-empty-table",
-      "name": "real: empty Tweets table",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-empty-table",
+      "name": "empty Tweets table",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
-        "Tweets": {
-          "columns": [
-            "tweet_id",
-            "content"
-          ],
-          "rows": []
-        }
+          "Tweets": {
+            "columns": [
+              "tweet_id",
+              "content"
+            ],
+            "rows": []
+          }
         }
       },
       "expected": {

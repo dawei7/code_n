@@ -1,1 +1,175 @@
-{"challenge_id":"lc_2728","cases":[{"id":"sample-all-closed","name":"sample: four closed houses","kind":"sample","visible":true,"input":{"street":[0,0,0,0],"k":10},"expected":4,"tags":["sample","all-closed"]},{"id":"sample-mixed","name":"sample: mixed doors with tight bound","kind":"sample","visible":true,"input":{"street":[1,0,1,1,0],"k":5},"expected":5,"tags":["sample","mixed"]},{"id":"trial-single-closed","name":"trial: one closed house","kind":"trial","visible":true,"input":{"street":[0],"k":1},"expected":1,"tags":["trial","minimum"]},{"id":"trial-single-open","name":"trial: one open house and loose bound","kind":"trial","visible":true,"input":{"street":[1],"k":9},"expected":1,"tags":["trial","single-open"]},{"id":"real-all-open","name":"hidden: every door initially open","kind":"real","visible":false,"input":{"street":[1,1,1,1,1,1],"k":8},"expected":6,"tags":["hidden","all-open"]},{"id":"real-one-open","name":"hidden: one open door cannot be trusted as marker","kind":"real","visible":false,"input":{"street":[0,0,1,0,0,0,0],"k":20},"expected":7,"tags":["hidden","initial-marker-trap"]},{"id":"real-alternating","name":"hidden: alternating initial doors","kind":"real","visible":false,"input":{"street":[1,0,1,0,1,0,1,0],"k":8},"expected":8,"tags":["hidden","alternating","tight-bound"]},{"id":"real-long-loose","name":"hidden: loose bound on a longer cycle","kind":"real","visible":false,"input":{"street":[0,1,0,0,1,1,0,1,0,0,0,1,0],"k":1000},"expected":13,"tags":["hidden","loose-bound"]}]}
+{
+  "challenge_id": "lc_2728",
+  "cases": [
+    {
+      "id": "sample-all-closed",
+      "name": "sample: four closed houses",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "street": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "k": 10
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "all-closed"
+      ]
+    },
+    {
+      "id": "sample-mixed",
+      "name": "sample: mixed doors with tight bound",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "street": [
+          1,
+          0,
+          1,
+          1,
+          0
+        ],
+        "k": 5
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "trial-single-closed",
+      "name": "trial: one closed house",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "street": [
+          0
+        ],
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-single-open",
+      "name": "trial: one open house and loose bound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "street": [
+          1
+        ],
+        "k": 9
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "single-open"
+      ]
+    },
+    {
+      "id": "trial-all-open",
+      "name": "every door initially open",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "street": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 8
+      },
+      "expected": 6,
+      "tags": [
+        "all-open"
+      ]
+    },
+    {
+      "id": "trial-one-open",
+      "name": "one open door cannot be trusted as marker",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "street": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "k": 20
+      },
+      "expected": 7,
+      "tags": [
+        "initial-marker-trap"
+      ]
+    },
+    {
+      "id": "trial-alternating",
+      "name": "alternating initial doors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "street": [
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0
+        ],
+        "k": 8
+      },
+      "expected": 8,
+      "tags": [
+        "alternating",
+        "tight-bound"
+      ]
+    },
+    {
+      "id": "trial-long-loose",
+      "name": "loose bound on a longer cycle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "street": [
+          0,
+          1,
+          0,
+          0,
+          1,
+          1,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        "k": 1000
+      },
+      "expected": 13,
+      "tags": [
+        "loose-bound"
+      ]
+    }
+  ]
+}

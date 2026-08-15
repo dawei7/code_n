@@ -1,1 +1,202 @@
-{"challenge_id":"lc_3315","cases":[{"id":"sample-mixed-small-primes","name":"sample: two through seven","kind":"sample","visible":true,"input":{"nums":[2,3,5,7]},"expected":[-1,1,4,3],"tags":["sample"]},{"id":"sample-larger-primes","name":"sample: varied trailing one runs","kind":"sample","visible":true,"input":{"nums":[11,13,31]},"expected":[9,12,15],"tags":["sample","bits"]},{"id":"trial-only-two","name":"trial: impossible prime","kind":"trial","visible":true,"input":{"nums":[2]},"expected":[-1],"tags":["minimum","impossible"]},{"id":"trial-medium-values","name":"trial: distinct suffix lengths","kind":"trial","visible":true,"input":{"nums":[17,19,23,29,47,127]},"expected":[16,17,19,28,39,63],"tags":["bits"]},{"id":"trial-large-known-primes","name":"trial: large prime values","kind":"trial","visible":true,"input":{"nums":[99991,999983]},"expected":[99987,999975],"tags":["large"]},{"id":"trial-repeated-prime","name":"trial: repeated values","kind":"trial","visible":true,"input":{"nums":[31,31,2,31]},"expected":[15,15,-1,15],"tags":["duplicates"]},{"id":"real-billion-boundary","name":"real: prime near one billion","kind":"real","visible":false,"input":{"nums":[999999937]},"expected":[999999936],"tags":["boundary"]},{"id":"real-large-prime-order","name":"real: several large primes preserve order","kind":"real","visible":false,"input":{"nums":[982451653,15485863,961748941]},"expected":[982451652,15485859,961748940],"tags":["large","order"]},{"id":"real-mixed-range","name":"real: small and large values together","kind":"real","visible":false,"input":{"nums":[3,999983,2,127,999999937]},"expected":[1,999975,-1,63,999999936],"tags":["mixed","boundary"]}]}
+{
+  "challenge_id": "lc_3315",
+  "cases": [
+    {
+      "id": "sample-mixed-small-primes",
+      "name": "sample: two through seven",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          5,
+          7
+        ]
+      },
+      "expected": [
+        -1,
+        1,
+        4,
+        3
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-larger-primes",
+      "name": "sample: varied trailing one runs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          11,
+          13,
+          31
+        ]
+      },
+      "expected": [
+        9,
+        12,
+        15
+      ],
+      "tags": [
+        "sample",
+        "bits"
+      ]
+    },
+    {
+      "id": "trial-only-two",
+      "name": "trial: impossible prime",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ]
+      },
+      "expected": [
+        -1
+      ],
+      "tags": [
+        "minimum",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-medium-values",
+      "name": "trial: distinct suffix lengths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          17,
+          19,
+          23,
+          29,
+          47,
+          127
+        ]
+      },
+      "expected": [
+        16,
+        17,
+        19,
+        28,
+        39,
+        63
+      ],
+      "tags": [
+        "bits"
+      ]
+    },
+    {
+      "id": "trial-large-known-primes",
+      "name": "trial: large prime values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          99991,
+          999983
+        ]
+      },
+      "expected": [
+        99987,
+        999975
+      ],
+      "tags": [
+        "large"
+      ]
+    },
+    {
+      "id": "trial-repeated-prime",
+      "name": "trial: repeated values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          31,
+          31,
+          2,
+          31
+        ]
+      },
+      "expected": [
+        15,
+        15,
+        -1,
+        15
+      ],
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-billion-boundary",
+      "name": "prime near one billion",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          999999937
+        ]
+      },
+      "expected": [
+        999999936
+      ],
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-large-prime-order",
+      "name": "several large primes preserve order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          982451653,
+          15485863,
+          961748941
+        ]
+      },
+      "expected": [
+        982451652,
+        15485859,
+        961748940
+      ],
+      "tags": [
+        "large",
+        "order"
+      ]
+    },
+    {
+      "id": "trial-mixed-range",
+      "name": "small and large values together",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          999983,
+          2,
+          127,
+          999999937
+        ]
+      },
+      "expected": [
+        1,
+        999975,
+        -1,
+        63,
+        999999936
+      ],
+      "tags": [
+        "mixed",
+        "boundary"
+      ]
+    }
+  ]
+}

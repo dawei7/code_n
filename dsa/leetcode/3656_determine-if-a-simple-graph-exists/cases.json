@@ -93,10 +93,10 @@
       ]
     },
     {
-      "id": "real-complete-graph",
-      "name": "real: complete graph degree sequence",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-complete-graph",
+      "name": "complete graph degree sequence",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "degrees": [
           3,
@@ -112,10 +112,10 @@
       ]
     },
     {
-      "id": "real-star",
-      "name": "real: star graph sequence",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-star",
+      "name": "star graph sequence",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "degrees": [
           4,
@@ -132,10 +132,10 @@
       ]
     },
     {
-      "id": "real-odd-cycle",
-      "name": "real: five-cycle degree sequence",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-odd-cycle",
+      "name": "five-cycle degree sequence",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "degrees": [
           2,
@@ -152,10 +152,10 @@
       ]
     },
     {
-      "id": "real-prefix-inequality-fails",
-      "name": "real: even sum still violates prefix bound",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-prefix-inequality-fails",
+      "name": "even sum still violates prefix bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "degrees": [
           4,
@@ -172,10 +172,10 @@
       ]
     },
     {
-      "id": "real-mixed-graphical",
-      "name": "real: mixed repeated degrees are graphical",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-graphical",
+      "name": "mixed repeated degrees are graphical",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "degrees": [
           3,
@@ -193,10 +193,10 @@
       ]
     },
     {
-      "id": "real-three-universal-impossible",
-      "name": "real: universal vertices force excess degree",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-universal-impossible",
+      "name": "universal vertices force excess degree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "degrees": [
           5,
@@ -214,10 +214,10 @@
       ]
     },
     {
-      "id": "real-large-complete",
-      "name": "real: larger complete graph",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-complete",
+      "name": "larger complete graph",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "degrees": [
           99,
@@ -326,6 +326,39 @@
       "tags": [
         "real",
         "large-complete"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in degrees",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "degrees": [
+          3
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in degrees",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "degrees": [
+          3,
+          3
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

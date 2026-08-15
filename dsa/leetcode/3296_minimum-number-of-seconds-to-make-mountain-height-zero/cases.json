@@ -1,14 +1,171 @@
 {
   "challenge_id": "lc_3296",
   "cases": [
-    {"id":"sample-four-height","name":"sample: three workers remove four units","kind":"sample","visible":true,"input":{"mountainHeight":4,"workerTimes":[2,1,1]},"expected":3,"tags":["sample","parallel"]},
-    {"id":"sample-ten-height","name":"sample: four mixed workers","kind":"sample","visible":true,"input":{"mountainHeight":10,"workerTimes":[3,2,2,4]},"expected":12,"tags":["sample","mixed"]},
-    {"id":"sample-one-worker","name":"sample: one worker pays full triangular cost","kind":"sample","visible":true,"input":{"mountainHeight":5,"workerTimes":[1]},"expected":15,"tags":["sample","single-worker"]},
-    {"id":"trial-height-one","name":"trial: fastest worker removes one unit","kind":"trial","visible":true,"input":{"mountainHeight":1,"workerTimes":[9,2,7]},"expected":2,"tags":["minimum-height"]},
-    {"id":"trial-identical-workers","name":"trial: identical workers split work evenly","kind":"trial","visible":true,"input":{"mountainHeight":12,"workerTimes":[2,2,2]},"expected":20,"tags":["balanced"]},
-    {"id":"trial-fast-and-slow","name":"trial: slower worker still improves completion time","kind":"trial","visible":true,"input":{"mountainHeight":6,"workerTimes":[1,10]},"expected":15,"tags":["mixed-speed"]},
-    {"id":"real-many-fast-workers","name":"real: enough workers finish in one second","kind":"real","visible":false,"input":{"mountainHeight":5,"workerTimes":[1,1,1,1,1,100]},"expected":1,"tags":["parallel"]},
-    {"id":"real-large-single-worker","name":"real: maximum values require 64-bit result","kind":"real","visible":false,"input":{"mountainHeight":100000,"workerTimes":[1000000]},"expected":5000050000000000,"tags":["boundary","64-bit"]},
-    {"id":"real-nonuniform","name":"real: nonuniform worker capacities cross triangular boundaries","kind":"real","visible":false,"input":{"mountainHeight":20,"workerTimes":[1,3,7,11]},"expected":55,"tags":["triangular-boundary"]}
+    {
+      "id": "sample-four-height",
+      "name": "sample: three workers remove four units",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mountainHeight": 4,
+        "workerTimes": [
+          2,
+          1,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "parallel"
+      ]
+    },
+    {
+      "id": "sample-ten-height",
+      "name": "sample: four mixed workers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mountainHeight": 10,
+        "workerTimes": [
+          3,
+          2,
+          2,
+          4
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-one-worker",
+      "name": "sample: one worker pays full triangular cost",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mountainHeight": 5,
+        "workerTimes": [
+          1
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "sample",
+        "single-worker"
+      ]
+    },
+    {
+      "id": "trial-height-one",
+      "name": "trial: fastest worker removes one unit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mountainHeight": 1,
+        "workerTimes": [
+          9,
+          2,
+          7
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "minimum-height"
+      ]
+    },
+    {
+      "id": "trial-identical-workers",
+      "name": "trial: identical workers split work evenly",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mountainHeight": 12,
+        "workerTimes": [
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": 20,
+      "tags": [
+        "balanced"
+      ]
+    },
+    {
+      "id": "trial-fast-and-slow",
+      "name": "trial: slower worker still improves completion time",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mountainHeight": 6,
+        "workerTimes": [
+          1,
+          10
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "mixed-speed"
+      ]
+    },
+    {
+      "id": "trial-many-fast-workers",
+      "name": "enough workers finish in one second",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mountainHeight": 5,
+        "workerTimes": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          100
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "parallel"
+      ]
+    },
+    {
+      "id": "trial-large-single-worker",
+      "name": "maximum values require 64-bit result",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mountainHeight": 100000,
+        "workerTimes": [
+          1000000
+        ]
+      },
+      "expected": 5000050000000000,
+      "tags": [
+        "boundary",
+        "64-bit"
+      ]
+    },
+    {
+      "id": "trial-nonuniform",
+      "name": "nonuniform worker capacities cross triangular boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mountainHeight": 20,
+        "workerTimes": [
+          1,
+          3,
+          7,
+          11
+        ]
+      },
+      "expected": 55,
+      "tags": [
+        "triangular-boundary"
+      ]
+    }
   ]
 }

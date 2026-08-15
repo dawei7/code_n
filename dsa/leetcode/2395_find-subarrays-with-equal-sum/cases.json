@@ -7,72 +7,144 @@
       "name": "sample: overlapping pairs share sum six",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [4, 2, 4]},
+      "input": {
+        "nums": [
+          4,
+          2,
+          4
+        ]
+      },
       "expected": true,
-      "tags": ["sample", "overlap"]
+      "tags": [
+        "sample",
+        "overlap"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: all adjacent sums are distinct",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 3, 4, 5]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
       "expected": false,
-      "tags": ["sample", "distinct"]
+      "tags": [
+        "sample",
+        "distinct"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: identical overlapping subarrays",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [0, 0, 0]},
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ]
+      },
       "expected": true,
-      "tags": ["sample", "identical"]
+      "tags": [
+        "sample",
+        "identical"
+      ]
     },
     {
       "id": "trial-minimum-length",
       "name": "trial: one pair cannot have a duplicate",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [8, -3]},
+      "input": {
+        "nums": [
+          8,
+          -3
+        ]
+      },
       "expected": false,
-      "tags": ["minimum-length"]
+      "tags": [
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-repeated-sum-with-different-contents",
       "name": "trial: equal sums need not have equal elements",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 4, 2, 3]},
+      "input": {
+        "nums": [
+          1,
+          4,
+          2,
+          3
+        ]
+      },
       "expected": true,
-      "tags": ["different-contents"]
+      "tags": [
+        "different-contents"
+      ]
     },
     {
-      "id": "real-negative-values",
-      "name": "hidden: a negative sum repeats later",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-5, 2, 0, -3]},
+      "id": "trial-negative-values",
+      "name": "a negative sum repeats later",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -5,
+          2,
+          0,
+          -3
+        ]
+      },
       "expected": true,
-      "tags": ["hidden", "negative"]
+      "tags": [
+        "negative"
+      ]
     },
     {
-      "id": "real-extreme-values",
-      "name": "hidden: large positive and negative values",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000000000, -1000000000, 999999999, -999999999]},
+      "id": "trial-extreme-values",
+      "name": "large positive and negative values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          -1000000000,
+          999999999,
+          -999999999
+        ]
+      },
       "expected": true,
-      "tags": ["hidden", "bounds"]
+      "tags": [
+        "bounds"
+      ]
     },
     {
-      "id": "real-mixed-distinct",
-      "name": "hidden: mixed signs with no repeated pair sum",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-2, 0, 3, 7]},
+      "id": "trial-mixed-distinct",
+      "name": "mixed signs with no repeated pair sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -2,
+          0,
+          3,
+          7
+        ]
+      },
       "expected": false,
-      "tags": ["hidden", "distinct"]
+      "tags": [
+        "distinct"
+      ]
     }
   ]
 }

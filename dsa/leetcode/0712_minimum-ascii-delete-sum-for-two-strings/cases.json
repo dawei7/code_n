@@ -7,72 +7,147 @@
       "name": "sample: delete outer characters",
       "kind": "sample",
       "visible": true,
-      "input": {"s1": "sea", "s2": "eat"},
+      "input": {
+        "s1": "sea",
+        "s2": "eat"
+      },
       "expected": 231,
-      "tags": ["sample", "shared-subsequence"]
+      "tags": [
+        "sample",
+        "shared-subsequence"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: weighted alignment",
       "kind": "sample",
       "visible": true,
-      "input": {"s1": "delete", "s2": "leet"},
+      "input": {
+        "s1": "delete",
+        "s2": "leet"
+      },
       "expected": 403,
-      "tags": ["sample", "weighted"]
+      "tags": [
+        "sample",
+        "weighted"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: identical strings",
       "kind": "sample",
       "visible": true,
-      "input": {"s1": "abc", "s2": "abc"},
+      "input": {
+        "s1": "abc",
+        "s2": "abc"
+      },
       "expected": 0,
-      "tags": ["sample", "identical"]
+      "tags": [
+        "sample",
+        "identical"
+      ]
     },
     {
       "id": "trial-1",
       "name": "trial: remove one middle character",
       "kind": "trial",
       "visible": true,
-      "input": {"s1": "abc", "s2": "ac"},
+      "input": {
+        "s1": "abc",
+        "s2": "ac"
+      },
       "expected": 98,
-      "tags": ["trial", "single-deletion"]
+      "tags": [
+        "trial",
+        "single-deletion"
+      ]
     },
     {
       "id": "trial-2",
       "name": "trial: no common character",
       "kind": "trial",
       "visible": true,
-      "input": {"s1": "a", "s2": "b"},
+      "input": {
+        "s1": "a",
+        "s2": "b"
+      },
       "expected": 195,
-      "tags": ["trial", "disjoint"]
+      "tags": [
+        "trial",
+        "disjoint"
+      ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: delete one duplicate",
-      "kind": "real",
-      "visible": false,
-      "input": {"s1": "aaa", "s2": "aa"},
+      "id": "trial-ext-1",
+      "name": "delete one duplicate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "aaa",
+        "s2": "aa"
+      },
       "expected": 97,
-      "tags": ["hidden", "duplicates"]
+      "tags": [
+        "duplicates"
+      ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: heavier common subsequence wins",
-      "kind": "real",
-      "visible": false,
-      "input": {"s1": "zab", "s2": "azb"},
+      "id": "trial-ext-2",
+      "name": "heavier common subsequence wins",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "zab",
+        "s2": "azb"
+      },
       "expected": 194,
-      "tags": ["hidden", "weighted-choice"]
+      "tags": [
+        "weighted-choice"
+      ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: one trailing deletion",
-      "kind": "real",
-      "visible": false,
-      "input": {"s1": "code", "s2": "codec"},
+      "id": "trial-3",
+      "name": "one trailing deletion",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "code",
+        "s2": "codec"
+      },
       "expected": 99,
-      "tags": ["hidden", "trailing"]
+      "tags": [
+        "trailing"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "s",
+        "s2": "eat"
+      },
+      "expected": 429,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "sss",
+        "s2": "eat"
+      },
+      "expected": 659,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
     }
   ]
 }

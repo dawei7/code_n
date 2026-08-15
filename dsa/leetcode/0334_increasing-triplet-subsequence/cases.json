@@ -65,7 +65,7 @@
       "id": "trial-short",
       "name": "trial: fewer than three values",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -82,7 +82,7 @@
       "id": "trial-equal-thresholds",
       "name": "trial: equal values do not increase",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -98,10 +98,10 @@
       ]
     },
     {
-      "id": "hidden-delayed-pair",
-      "name": "hidden: preserve earlier pair after first resets",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-delayed-pair",
+      "name": "preserve earlier pair after first resets",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           20,
@@ -114,15 +114,14 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "reset"
       ]
     },
     {
-      "id": "hidden-negative",
-      "name": "hidden: negative triplet",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-negative",
+      "name": "negative triplet",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -2,
@@ -133,15 +132,14 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "negative"
       ]
     },
     {
-      "id": "hidden-all-equal",
-      "name": "hidden: all values equal",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-equal",
+      "name": "all values equal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -153,7 +151,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }

@@ -7,72 +7,108 @@
       "name": "sample: three bulbs",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 3},
+      "input": {
+        "n": 3
+      },
       "expected": 1,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: no bulbs",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 0},
+      "input": {
+        "n": 0
+      },
       "expected": 0,
-      "tags": ["sample", "boundary"]
+      "tags": [
+        "sample",
+        "boundary"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: one bulb",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 1},
+      "input": {
+        "n": 1
+      },
       "expected": 1,
-      "tags": ["sample", "perfect-square"]
+      "tags": [
+        "sample",
+        "perfect-square"
+      ]
     },
     {
       "id": "trial-exact-square",
       "name": "trial: second perfect square",
       "kind": "trial",
-      "visible": false,
-      "input": {"n": 4},
+      "visible": true,
+      "input": {
+        "n": 4
+      },
       "expected": 2,
-      "tags": ["trial", "perfect-square"]
+      "tags": [
+        "trial",
+        "perfect-square"
+      ]
     },
     {
       "id": "trial-below-square",
       "name": "trial: immediately below a square",
       "kind": "trial",
-      "visible": false,
-      "input": {"n": 15},
+      "visible": true,
+      "input": {
+        "n": 15
+      },
       "expected": 3,
-      "tags": ["trial", "rounding"]
+      "tags": [
+        "trial",
+        "rounding"
+      ]
     },
     {
-      "id": "hidden-square-boundary",
-      "name": "hidden: exact square changes the count",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 16},
+      "id": "trial-square-boundary",
+      "name": "exact square changes the count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 16
+      },
       "expected": 4,
-      "tags": ["hidden", "perfect-square"]
+      "tags": [
+        "perfect-square"
+      ]
     },
     {
-      "id": "hidden-above-square",
-      "name": "hidden: values after a square keep its count",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 24},
+      "id": "trial-above-square",
+      "name": "values after a square keep its count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 24
+      },
       "expected": 4,
-      "tags": ["hidden", "rounding"]
+      "tags": [
+        "rounding"
+      ]
     },
     {
-      "id": "hidden-maximum",
-      "name": "hidden: maximum-scale input",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 1000000000},
+      "id": "trial-maximum",
+      "name": "maximum-scale input",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000000000
+      },
       "expected": 31622,
-      "tags": ["hidden", "large"]
+      "tags": [
+        "large"
+      ]
     }
   ]
 }

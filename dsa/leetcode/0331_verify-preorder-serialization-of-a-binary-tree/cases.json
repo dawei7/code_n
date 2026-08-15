@@ -47,7 +47,7 @@
       "id": "trial-null-root",
       "name": "trial: null tree",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "preorder": "#"
       },
@@ -61,7 +61,7 @@
       "id": "trial-leaf",
       "name": "trial: one non-null node",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "preorder": "1,#,#"
       },
@@ -72,44 +72,41 @@
       ]
     },
     {
-      "id": "hidden-extra-null",
-      "name": "hidden: extra null after leaf",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-extra-null",
+      "name": "extra null after leaf",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "preorder": "1,#,#,#"
       },
       "expected": false,
       "tags": [
-        "hidden",
         "extra-token"
       ]
     },
     {
-      "id": "hidden-left-child",
-      "name": "hidden: root with left leaf",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-left-child",
+      "name": "root with left leaf",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "preorder": "1,2,#,#,#"
       },
       "expected": true,
       "tags": [
-        "hidden",
         "skewed"
       ]
     },
     {
-      "id": "hidden-negative",
-      "name": "hidden: negative node token",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-negative",
+      "name": "negative node token",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "preorder": "-1,#,#"
       },
       "expected": true,
       "tags": [
-        "hidden",
         "negative"
       ]
     }

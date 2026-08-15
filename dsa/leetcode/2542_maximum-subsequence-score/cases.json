@@ -104,10 +104,10 @@
       ]
     },
     {
-      "id": "real-zero-summands",
-      "name": "hidden: zero summands can preserve a high multiplier",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zero-summands",
+      "name": "zero summands can preserve a high multiplier",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           0,
@@ -123,15 +123,14 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "zero"
       ]
     },
     {
-      "id": "real-equal-multipliers",
-      "name": "hidden: equal multipliers choose largest summands",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-equal-multipliers",
+      "name": "equal multipliers choose largest summands",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           5,
@@ -147,15 +146,14 @@
       },
       "expected": 18,
       "tags": [
-        "hidden",
         "ties"
       ]
     },
     {
-      "id": "real-singleton",
-      "name": "hidden: one available index",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-singleton",
+      "name": "one available index",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           100000
@@ -167,7 +165,6 @@
       },
       "expected": 10000000000,
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     }

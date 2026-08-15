@@ -109,10 +109,10 @@
       ]
     },
     {
-      "id": "real-final-bit",
-      "name": "hidden: final value supplies a required bit",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-final-bit",
+      "name": "final value supplies a required bit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -128,15 +128,14 @@
         1
       ],
       "tags": [
-        "hidden",
         "furthest"
       ]
     },
     {
-      "id": "real-multiple-bits",
-      "name": "hidden: one final value supplies several suffix bits",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-bits",
+      "name": "one final value supplies several suffix bits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -152,15 +151,14 @@
         1
       ],
       "tags": [
-        "hidden",
         "combined-bits"
       ]
     },
     {
-      "id": "real-maximum-value",
-      "name": "hidden: maximum legal value as a singleton",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-value",
+      "name": "maximum legal value as a singleton",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000
@@ -170,7 +168,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

@@ -2,13 +2,190 @@
   "schema_version": 1,
   "challenge_id": "lc_2185",
   "cases": [
-    {"id":"sample-two","name":"sample: two words begin with at","kind":"sample","visible":true,"input":{"words":["pay","attention","practice","attend"],"pref":"at"},"expected":2,"tags":["sample","mixed"]},
-    {"id":"sample-none","name":"sample: occurrence away from the start does not match","kind":"sample","visible":true,"input":{"words":["leetcode","win","loops","success"],"pref":"code"},"expected":0,"tags":["sample","no-match"]},
-    {"id":"trial-single-match","name":"one word equals the prefix","kind":"trial","visible":true,"input":{"words":["abc"],"pref":"abc"},"expected":1,"tags":["whole-word-prefix"]},
-    {"id":"trial-prefix-longer","name":"prefix longer than every word matches none","kind":"trial","visible":true,"input":{"words":["a","ab","abc"],"pref":"abcd"},"expected":0,"tags":["long-prefix"]},
-    {"id":"trial-duplicates","name":"duplicate matching entries count separately","kind":"trial","visible":true,"input":{"words":["a","a","ab"],"pref":"a"},"expected":3,"tags":["duplicates"]},
-    {"id":"real-middle-occurrence","name":"hidden: only leading occurrence qualifies","kind":"real","visible":false,"input":{"words":["xpre","prefix","pre","spre"],"pref":"pre"},"expected":2,"tags":["hidden","position-zero"]},
-    {"id":"real-one-character","name":"hidden: one-character prefix partitions initial letters","kind":"real","visible":false,"input":{"words":["cat","car","dog","c","cow"],"pref":"c"},"expected":4,"tags":["hidden","single-character-prefix"]},
-    {"id":"real-near-match","name":"hidden: mismatch at the final prefix character rejects","kind":"real","visible":false,"input":{"words":["algorithm","algorithx","algo","algebra"],"pref":"algorithm"},"expected":1,"tags":["hidden","late-mismatch"]}
+    {
+      "id": "sample-two",
+      "name": "sample: two words begin with at",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "pay",
+          "attention",
+          "practice",
+          "attend"
+        ],
+        "pref": "at"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-none",
+      "name": "sample: occurrence away from the start does not match",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "leetcode",
+          "win",
+          "loops",
+          "success"
+        ],
+        "pref": "code"
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "no-match"
+      ]
+    },
+    {
+      "id": "trial-single-match",
+      "name": "one word equals the prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc"
+        ],
+        "pref": "abc"
+      },
+      "expected": 1,
+      "tags": [
+        "whole-word-prefix"
+      ]
+    },
+    {
+      "id": "trial-prefix-longer",
+      "name": "prefix longer than every word matches none",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "ab",
+          "abc"
+        ],
+        "pref": "abcd"
+      },
+      "expected": 0,
+      "tags": [
+        "long-prefix"
+      ]
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "duplicate matching entries count separately",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "a",
+          "ab"
+        ],
+        "pref": "a"
+      },
+      "expected": 3,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-middle-occurrence",
+      "name": "only leading occurrence qualifies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "xpre",
+          "prefix",
+          "pre",
+          "spre"
+        ],
+        "pref": "pre"
+      },
+      "expected": 2,
+      "tags": [
+        "position-zero"
+      ]
+    },
+    {
+      "id": "trial-one-character",
+      "name": "one-character prefix partitions initial letters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "cat",
+          "car",
+          "dog",
+          "c",
+          "cow"
+        ],
+        "pref": "c"
+      },
+      "expected": 4,
+      "tags": [
+        "single-character-prefix"
+      ]
+    },
+    {
+      "id": "trial-near-match",
+      "name": "mismatch at the final prefix character rejects",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "algorithm",
+          "algorithx",
+          "algo",
+          "algebra"
+        ],
+        "pref": "algorithm"
+      },
+      "expected": 1,
+      "tags": [
+        "late-mismatch"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "pay"
+        ],
+        "pref": "at"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "pay",
+          "pay"
+        ],
+        "pref": "at"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    }
   ]
 }

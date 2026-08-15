@@ -6,81 +6,247 @@
       "name": "sample: ants approach from both directions",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 4, "left": [4, 3], "right": [0, 1]},
+      "input": {
+        "n": 4,
+        "left": [
+          4,
+          3
+        ],
+        "right": [
+          0,
+          1
+        ]
+      },
       "expected": 4,
-      "tags": ["sample", "collisions", "full-length"]
+      "tags": [
+        "sample",
+        "collisions",
+        "full-length"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: every ant initially moves right",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 7, "left": [], "right": [0, 1, 2, 3, 4, 5, 6, 7]},
+      "input": {
+        "n": 7,
+        "left": [],
+        "right": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
       "expected": 7,
-      "tags": ["sample", "right-only"]
+      "tags": [
+        "sample",
+        "right-only"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: every ant initially moves left",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 7, "left": [0, 1, 2, 3, 4, 5, 6, 7], "right": []},
+      "input": {
+        "n": 7,
+        "left": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "right": []
+      },
       "expected": 7,
-      "tags": ["sample", "left-only"]
+      "tags": [
+        "sample",
+        "left-only"
+      ]
     },
     {
       "id": "trial-immediate-falls",
       "name": "trial: ants at outward endpoints fall at time zero",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1, "left": [0], "right": [1]},
+      "input": {
+        "n": 1,
+        "left": [
+          0
+        ],
+        "right": [
+          1
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "immediate", "minimum-plank"]
+      "tags": [
+        "trial",
+        "immediate",
+        "minimum-plank"
+      ]
     },
     {
       "id": "trial-left-dominates",
       "name": "trial: farthest left trajectory determines the answer",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 10, "left": [2, 6, 9], "right": [7, 8]},
+      "input": {
+        "n": 10,
+        "left": [
+          2,
+          6,
+          9
+        ],
+        "right": [
+          7,
+          8
+        ]
+      },
       "expected": 9,
-      "tags": ["trial", "left-dominates"]
+      "tags": [
+        "trial",
+        "left-dominates"
+      ]
     },
     {
-      "id": "real-right-dominates",
-      "name": "hidden: smallest right position gives the last fall",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 12, "left": [1, 5], "right": [2, 9, 11]},
+      "id": "trial-right-dominates",
+      "name": "smallest right position gives the last fall",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 12,
+        "left": [
+          1,
+          5
+        ],
+        "right": [
+          2,
+          9,
+          11
+        ]
+      },
       "expected": 10,
-      "tags": ["hidden", "right-dominates"]
+      "tags": [
+        "right-dominates"
+      ]
     },
     {
-      "id": "real-shared-last-time",
-      "name": "hidden: trajectories from both directions tie",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 20, "left": [3, 15], "right": [5, 12]},
+      "id": "trial-shared-last-time",
+      "name": "trajectories from both directions tie",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 20,
+        "left": [
+          3,
+          15
+        ],
+        "right": [
+          5,
+          12
+        ]
+      },
       "expected": 15,
-      "tags": ["hidden", "tie"]
+      "tags": [
+        "tie"
+      ]
     },
     {
-      "id": "real-collision-chain-irrelevant",
-      "name": "hidden: dense opposing ants need no simulation",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 8, "left": [4, 5, 6, 8], "right": [0, 1, 2, 3]},
+      "id": "trial-collision-chain-irrelevant",
+      "name": "dense opposing ants need no simulation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 8,
+        "left": [
+          4,
+          5,
+          6,
+          8
+        ],
+        "right": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
       "expected": 8,
-      "tags": ["hidden", "collision-chain", "pass-through"]
+      "tags": [
+        "collision-chain",
+        "pass-through"
+      ]
     },
     {
-      "id": "real-single-ant",
-      "name": "hidden: one trajectory has its direct endpoint distance",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 10000, "left": [], "right": [4321]},
+      "id": "trial-single-ant",
+      "name": "one trajectory has its direct endpoint distance",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 10000,
+        "left": [],
+        "right": [
+          4321
+        ]
+      },
       "expected": 5679,
-      "tags": ["hidden", "single-ant", "maximum-plank"]
+      "tags": [
+        "single-ant",
+        "maximum-plank"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "left": [
+          4,
+          3
+        ],
+        "right": [
+          0,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in left",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "left": [
+          4
+        ],
+        "right": [
+          0,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
     }
   ]
 }

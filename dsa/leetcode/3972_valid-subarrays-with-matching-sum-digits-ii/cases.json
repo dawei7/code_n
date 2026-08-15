@@ -6,135 +6,293 @@
       "name": "sample: four sums begin and end with one",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1,100,1], "x": 1},
+      "input": {
+        "nums": [
+          1,
+          100,
+          1
+        ],
+        "x": 1
+      },
       "expected": 4,
-      "tags": ["sample", "multiple-subarrays"]
+      "tags": [
+        "sample",
+        "multiple-subarrays"
+      ]
     },
     {
       "id": "sample-single-mismatch",
       "name": "sample: the only sum does not match the requested digit",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1], "x": 2},
+      "input": {
+        "nums": [
+          1
+        ],
+        "x": 2
+      },
       "expected": 0,
-      "tags": ["sample", "minimum-length", "no-match"]
+      "tags": [
+        "sample",
+        "minimum-length",
+        "no-match"
+      ]
     },
     {
       "id": "trial-single-match",
       "name": "trial: one-digit sum matches at both ends",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1], "x": 1},
+      "input": {
+        "nums": [
+          1
+        ],
+        "x": 1
+      },
       "expected": 1,
-      "tags": ["trial", "minimum-length", "single-digit"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "single-digit"
+      ]
     },
     {
       "id": "trial-two-digit-mismatch",
       "name": "trial: leading digit matches but trailing digit does not",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [10], "x": 1},
+      "input": {
+        "nums": [
+          10
+        ],
+        "x": 1
+      },
       "expected": 0,
-      "tags": ["trial", "two-digit", "one-sided-match"]
+      "tags": [
+        "trial",
+        "two-digit",
+        "one-sided-match"
+      ]
     },
     {
       "id": "trial-two-digit-match",
       "name": "trial: both digits of eleven match",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [11], "x": 1},
+      "input": {
+        "nums": [
+          11
+        ],
+        "x": 1
+      },
       "expected": 1,
-      "tags": ["trial", "two-digit"]
+      "tags": [
+        "trial",
+        "two-digit"
+      ]
     },
     {
       "id": "trial-largest-digit",
       "name": "trial: requested digit may be nine",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [9], "x": 9},
+      "input": {
+        "nums": [
+          9
+        ],
+        "x": 9
+      },
       "expected": 1,
-      "tags": ["trial", "digit-nine", "single-digit"]
+      "tags": [
+        "trial",
+        "digit-nine",
+        "single-digit"
+      ]
     },
     {
       "id": "trial-leading-only-after-extension",
       "name": "trial: extending a valid singleton can invalidate its sum",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1,9], "x": 1},
+      "input": {
+        "nums": [
+          1,
+          9
+        ],
+        "x": 1
+      },
       "expected": 1,
-      "tags": ["trial", "non-monotone-validity"]
+      "tags": [
+        "trial",
+        "non-monotone-validity"
+      ]
     },
     {
       "id": "trial-pair-creates-eleven",
       "name": "trial: neither singleton matches but their pair does",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5,6], "x": 1},
+      "input": {
+        "nums": [
+          5,
+          6
+        ],
+        "x": 1
+      },
       "expected": 1,
-      "tags": ["trial", "pair-sum", "carry"]
+      "tags": [
+        "trial",
+        "pair-sum",
+        "carry"
+      ]
     },
     {
-      "id": "real-valid-invalid-valid-prefixes",
-      "name": "hidden: validity changes twice as one start is extended",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [11,8,82], "x": 1},
+      "id": "trial-valid-invalid-valid-prefixes",
+      "name": "validity changes twice as one start is extended",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          11,
+          8,
+          82
+        ],
+        "x": 1
+      },
       "expected": 2,
-      "tags": ["hidden", "non-monotone-validity", "three-digits"]
+      "tags": [
+        "non-monotone-validity",
+        "three-digits"
+      ]
     },
     {
-      "id": "real-two-overlapping-matches",
-      "name": "hidden: a pair and its trailing singleton both match",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [10,1], "x": 1},
+      "id": "trial-two-overlapping-matches",
+      "name": "a pair and its trailing singleton both match",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          1
+        ],
+        "x": 1
+      },
       "expected": 2,
-      "tags": ["hidden", "overlap", "two-digit"]
+      "tags": [
+        "overlap",
+        "two-digit"
+      ]
     },
     {
-      "id": "real-carry-to-three-digits",
-      "name": "hidden: addition creates a matching three-digit sum",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [99,2], "x": 1},
+      "id": "trial-carry-to-three-digits",
+      "name": "addition creates a matching three-digit sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          99,
+          2
+        ],
+        "x": 1
+      },
       "expected": 1,
-      "tags": ["hidden", "carry", "three-digits"]
+      "tags": [
+        "carry",
+        "three-digits"
+      ]
     },
     {
-      "id": "real-billion-scale-carry",
-      "name": "hidden: maximum-scale values require wide prefix sums",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [999999999,2], "x": 1},
+      "id": "trial-billion-scale-carry",
+      "name": "maximum-scale values require wide prefix sums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          999999999,
+          2
+        ],
+        "x": 1
+      },
       "expected": 1,
-      "tags": ["hidden", "large-values", "carry"]
+      "tags": [
+        "large-values",
+        "carry"
+      ]
     },
     {
-      "id": "real-repeated-singletons",
-      "name": "hidden: only singleton sums match among repeated ones",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1,1,1], "x": 1},
+      "id": "trial-repeated-singletons",
+      "name": "only singleton sums match among repeated ones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "x": 1
+      },
       "expected": 3,
-      "tags": ["hidden", "duplicates", "single-digit"]
+      "tags": [
+        "duplicates",
+        "single-digit"
+      ]
     },
     {
-      "id": "real-several-nested-matches",
-      "name": "hidden: nested subarrays produce eleven and one hundred one",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [10,1,100], "x": 1},
+      "id": "trial-several-nested-matches",
+      "name": "nested subarrays produce eleven and one hundred one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          1,
+          100
+        ],
+        "x": 1
+      },
       "expected": 4,
-      "tags": ["hidden", "nested", "multiple-digit-lengths"]
+      "tags": [
+        "nested",
+        "multiple-digit-lengths"
+      ]
     },
     {
-      "id": "real-digit-nine-overlaps",
-      "name": "hidden: matching digit nine across singleton and pair sums",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [9,90,9], "x": 9},
+      "id": "trial-digit-nine-overlaps",
+      "name": "matching digit nine across singleton and pair sums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          90,
+          9
+        ],
+        "x": 9
+      },
       "expected": 4,
-      "tags": ["hidden", "digit-nine", "overlap"]
+      "tags": [
+        "digit-nine",
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "x": 1
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

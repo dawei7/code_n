@@ -110,10 +110,10 @@
       ]
     },
     {
-      "id": "real-one-prize",
-      "name": "hidden: one prize is collected only once",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-prize",
+      "name": "one prize is collected only once",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prizePositions": [
           1
@@ -122,15 +122,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "minimum"
       ]
     },
     {
-      "id": "real-overlap-no-double-count",
-      "name": "hidden: overlapping coverage never double counts",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-overlap-no-double-count",
+      "name": "overlapping coverage never double counts",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prizePositions": [
           1,
@@ -142,15 +141,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "overlap"
       ]
     },
     {
-      "id": "real-separated-singletons",
-      "name": "hidden: two segments cover two isolated prizes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-separated-singletons",
+      "name": "two segments cover two isolated prizes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prizePositions": [
           1,
@@ -161,7 +159,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "isolated"
       ]
     }

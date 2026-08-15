@@ -2,12 +2,204 @@
   "schema_version": 1,
   "challenge_id": "lc_2213",
   "cases": [
-    {"id":"sample-merge-runs","name":"sample: updates create runs of three and four","kind":"sample","visible":true,"input":{"s":"babacc","queryCharacters":"bcb","queryIndices":[1,3,3]},"expected":[3,3,4],"tags":["sample","merge"]},
-    {"id":"sample-prefix-growth","name":"sample: prefix grows while suffix remains","kind":"sample","visible":true,"input":{"s":"abyzz","queryCharacters":"aa","queryIndices":[2,1]},"expected":[2,3],"tags":["sample","prefix"]},
-    {"id":"trial-single-character","name":"one-character updates always answer one","kind":"trial","visible":true,"input":{"s":"a","queryCharacters":"bb","queryIndices":[0,0]},"expected":[1,1],"tags":["minimum-length","no-op"]},
-    {"id":"trial-split-long-run","name":"changing a run interior splits it","kind":"trial","visible":true,"input":{"s":"aaaaa","queryCharacters":"b","queryIndices":[2]},"expected":[2],"tags":["split"]},
-    {"id":"real-no-op-and-bridge","name":"hidden: a no-op precedes a bridge update","kind":"real","visible":false,"input":{"s":"aabaa","queryCharacters":"aa","queryIndices":[0,2]},"expected":[2,5],"tags":["hidden","no-op","bridge"]},
-    {"id":"real-alternating-updates","name":"hidden: separate updates grow the same run","kind":"real","visible":false,"input":{"s":"abababa","queryCharacters":"aaa","queryIndices":[1,3,5]},"expected":[3,5,7],"tags":["hidden","alternating"]},
-    {"id":"real-endpoint-updates","name":"hidden: both endpoints join neighboring runs","kind":"real","visible":false,"input":{"s":"baaab","queryCharacters":"aa","queryIndices":[0,4]},"expected":[4,5],"tags":["hidden","endpoints"]}
+    {
+      "id": "sample-merge-runs",
+      "name": "sample: updates create runs of three and four",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "babacc",
+        "queryCharacters": "bcb",
+        "queryIndices": [
+          1,
+          3,
+          3
+        ]
+      },
+      "expected": [
+        3,
+        3,
+        4
+      ],
+      "tags": [
+        "sample",
+        "merge"
+      ]
+    },
+    {
+      "id": "sample-prefix-growth",
+      "name": "sample: prefix grows while suffix remains",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abyzz",
+        "queryCharacters": "aa",
+        "queryIndices": [
+          2,
+          1
+        ]
+      },
+      "expected": [
+        2,
+        3
+      ],
+      "tags": [
+        "sample",
+        "prefix"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "one-character updates always answer one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "queryCharacters": "bb",
+        "queryIndices": [
+          0,
+          0
+        ]
+      },
+      "expected": [
+        1,
+        1
+      ],
+      "tags": [
+        "minimum-length",
+        "no-op"
+      ]
+    },
+    {
+      "id": "trial-split-long-run",
+      "name": "changing a run interior splits it",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaaa",
+        "queryCharacters": "b",
+        "queryIndices": [
+          2
+        ]
+      },
+      "expected": [
+        2
+      ],
+      "tags": [
+        "split"
+      ]
+    },
+    {
+      "id": "trial-no-op-and-bridge",
+      "name": "a no-op precedes a bridge update",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aabaa",
+        "queryCharacters": "aa",
+        "queryIndices": [
+          0,
+          2
+        ]
+      },
+      "expected": [
+        2,
+        5
+      ],
+      "tags": [
+        "no-op",
+        "bridge"
+      ]
+    },
+    {
+      "id": "trial-alternating-updates",
+      "name": "separate updates grow the same run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abababa",
+        "queryCharacters": "aaa",
+        "queryIndices": [
+          1,
+          3,
+          5
+        ]
+      },
+      "expected": [
+        3,
+        5,
+        7
+      ],
+      "tags": [
+        "alternating"
+      ]
+    },
+    {
+      "id": "trial-endpoint-updates",
+      "name": "both endpoints join neighboring runs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "baaab",
+        "queryCharacters": "aa",
+        "queryIndices": [
+          0,
+          4
+        ]
+      },
+      "expected": [
+        4,
+        5
+      ],
+      "tags": [
+        "endpoints"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in queryCharacters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "babacc",
+        "queryCharacters": "b",
+        "queryIndices": [
+          1,
+          3,
+          3
+        ]
+      },
+      "expected": [
+        3
+      ],
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in queryCharacters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "babacc",
+        "queryCharacters": "bbb",
+        "queryIndices": [
+          1,
+          3,
+          3
+        ]
+      },
+      "expected": [
+        3,
+        4,
+        4
+      ],
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
+    }
   ]
 }

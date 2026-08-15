@@ -94,10 +94,10 @@
       ]
     },
     {
-      "id": "real-wraparound-only",
-      "name": "hidden: wrap-around exceeds all internal changes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-wraparound-only",
+      "name": "wrap-around exceeds all internal changes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -100,
@@ -108,15 +108,14 @@
       },
       "expected": 200,
       "tags": [
-        "hidden",
         "wrap-around"
       ]
     },
     {
-      "id": "real-monotone",
-      "name": "hidden: increasing values make endpoint edge largest",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-monotone",
+      "name": "increasing values make endpoint edge largest",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -4,
@@ -128,15 +127,14 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "monotone"
       ]
     },
     {
-      "id": "real-alternating",
-      "name": "hidden: repeated extreme differences",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alternating",
+      "name": "repeated extreme differences",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -100,
@@ -147,15 +145,14 @@
       },
       "expected": 200,
       "tags": [
-        "hidden",
         "extremes"
       ]
     },
     {
-      "id": "real-mixed-signs",
-      "name": "hidden: mixed signs and duplicates",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-signs",
+      "name": "mixed signs and duplicates",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           12,
@@ -168,15 +165,14 @@
       },
       "expected": 50,
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
     {
-      "id": "real-value-boundary",
-      "name": "hidden: legal value extremes are adjacent",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-value-boundary",
+      "name": "legal value extremes are adjacent",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100,
@@ -185,7 +181,6 @@
       },
       "expected": 200,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     }

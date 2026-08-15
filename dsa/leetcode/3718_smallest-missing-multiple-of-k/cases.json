@@ -141,10 +141,10 @@
       ]
     },
     {
-      "id": "real-k-one",
-      "name": "hidden: k equal to one searches consecutive positive integers",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-k-one",
+      "name": "k equal to one searches consecutive positive integers",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -159,16 +159,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "unit-k",
         "unsorted"
       ]
     },
     {
-      "id": "real-maximum-k",
-      "name": "hidden: the answer can exceed the maximum allowed array value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-k",
+      "name": "the answer can exceed the maximum allowed array value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100
@@ -180,16 +179,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-k",
         "answer-above-bound"
       ]
     },
     {
-      "id": "real-gap-after-two",
-      "name": "hidden: a gap after two multiples wins over a later present value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-gap-after-two",
+      "name": "a gap after two multiples wins over a later present value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -205,15 +203,14 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "interior-gap"
       ]
     },
     {
-      "id": "real-unsorted-prefix",
-      "name": "hidden: input order does not change membership",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unsorted-prefix",
+      "name": "input order does not change membership",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           30,
@@ -229,16 +226,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "unsorted",
         "prefix"
       ]
     },
     {
-      "id": "real-maximum-length",
-      "name": "hidden: all values through one hundred make 101 the answer",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-length",
+      "name": "all values through one hundred make 101 the answer",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100,
@@ -349,11 +345,9 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-length",
         "pigeonhole-bound"
       ]
     }
   ]
 }
-

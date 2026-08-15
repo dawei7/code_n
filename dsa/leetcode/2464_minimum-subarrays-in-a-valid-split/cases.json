@@ -1,14 +1,199 @@
 {
   "challenge_id": "lc_2464",
   "cases": [
-    {"id":"sample-1","name":"sample: two valid endpoint pairs cover the array","kind":"sample","visible":true,"input":{"nums":[2,6,3,4,3]},"expected":2,"tags":["sample","dynamic-programming"]},
-    {"id":"sample-2","name":"sample: coprime values require separate singletons","kind":"sample","visible":true,"input":{"nums":[3,5]},"expected":2,"tags":["sample","singletons"]},
-    {"id":"sample-3","name":"sample: endpoint ones make a split impossible","kind":"sample","visible":true,"input":{"nums":[1,2,1]},"expected":-1,"tags":["sample","impossible"]},
-    {"id":"trial-interior-ones","name":"trial: interior ones do not affect endpoint validity","kind":"trial","visible":true,"input":{"nums":[6,1,1,10]},"expected":1,"tags":["trial","endpoint-only"]},
-    {"id":"trial-larger-prime","name":"trial: repeated prime joins one subarray across an interior one","kind":"trial","visible":true,"input":{"nums":[997,1,997]},"expected":1,"tags":["trial","prime-factor"]},
-    {"id":"real-all-singletons","name":"hidden: pairwise coprime values are valid separately","kind":"real","visible":false,"input":{"nums":[2,3,5,7]},"expected":4,"tags":["hidden","singletons"]},
-    {"id":"real-trailing-one","name":"hidden: a trailing one cannot end any valid part","kind":"real","visible":false,"input":{"nums":[2,6,1]},"expected":-1,"tags":["hidden","impossible"]},
-    {"id":"real-prime-chain","name":"hidden: different shared primes create successive parts","kind":"real","visible":false,"input":{"nums":[6,10,15,35]},"expected":2,"tags":["hidden","multiple-primes"]},
-    {"id":"real-unreachable-sentinel-growth","name":"hidden: long infeasible prefix must return minus one","kind":"real","visible":false,"input":{"nums":[89,233,881,641,911,509,431,743,853,863,661,709,401,241,89,137,853,449,317,701,23,211,401,1,829,797,839,601,199,877,13,503,271,811,389]},"expected":-1,"tags":["hidden","sentinel-regression"]}
+    {
+      "id": "sample-1",
+      "name": "sample: two valid endpoint pairs cover the array",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          6,
+          3,
+          4,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: coprime values require separate singletons",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          5
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "singletons"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: endpoint ones make a split impossible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-interior-ones",
+      "name": "trial: interior ones do not affect endpoint validity",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          1,
+          1,
+          10
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "endpoint-only"
+      ]
+    },
+    {
+      "id": "trial-larger-prime",
+      "name": "trial: repeated prime joins one subarray across an interior one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          997,
+          1,
+          997
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "prime-factor"
+      ]
+    },
+    {
+      "id": "trial-all-singletons",
+      "name": "pairwise coprime values are valid separately",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          5,
+          7
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "singletons"
+      ]
+    },
+    {
+      "id": "trial-trailing-one",
+      "name": "a trailing one cannot end any valid part",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          6,
+          1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-prime-chain",
+      "name": "different shared primes create successive parts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          10,
+          15,
+          35
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "multiple-primes"
+      ]
+    },
+    {
+      "id": "trial-unreachable-sentinel-growth",
+      "name": "long infeasible prefix must return minus one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          89,
+          233,
+          881,
+          641,
+          911,
+          509,
+          431,
+          743,
+          853,
+          863,
+          661,
+          709,
+          401,
+          241,
+          89,
+          137,
+          853,
+          449,
+          317,
+          701,
+          23,
+          211,
+          401,
+          1,
+          829,
+          797,
+          839,
+          601,
+          199,
+          877,
+          13,
+          503,
+          271,
+          811,
+          389
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sentinel-regression"
+      ]
+    }
   ]
 }

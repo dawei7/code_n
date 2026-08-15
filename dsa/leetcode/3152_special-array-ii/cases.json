@@ -197,10 +197,10 @@
       ]
     },
     {
-      "id": "real-left-edge-violation",
-      "name": "real: violation at query left edge",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-left-edge-violation",
+      "name": "violation at query left edge",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -228,10 +228,10 @@
       ]
     },
     {
-      "id": "real-right-edge-violation",
-      "name": "real: violation at query right edge",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-right-edge-violation",
+      "name": "violation at query right edge",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -259,10 +259,10 @@
       ]
     },
     {
-      "id": "real-separated-violations",
-      "name": "real: queries isolate separated violations",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-separated-violations",
+      "name": "queries isolate separated violations",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -307,10 +307,10 @@
       ]
     },
     {
-      "id": "real-duplicate-query-order",
-      "name": "real: duplicate queries preserve answer order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicate-query-order",
+      "name": "duplicate queries preserve answer order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -355,10 +355,10 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
-      "name": "real: values at the allowed maximum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-value-boundaries",
+      "name": "values at the allowed maximum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           99999,
@@ -398,10 +398,10 @@
       ]
     },
     {
-      "id": "real-many-singletons",
-      "name": "real: every singleton query is special",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-singletons",
+      "name": "every singleton query is special",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,

@@ -2,16 +2,173 @@
   "schema_version": 1,
   "challenge_id": "lc_3119",
   "cases": [
-    { "id": "sample-1", "name": "sample: no potholes", "kind": "sample", "visible": true, "input": { "road": "..", "budget": 5 }, "expected": 0, "tags": ["sample", "empty"] },
-    { "id": "sample-2", "name": "sample: partially repair one run", "kind": "sample", "visible": true, "input": { "road": "..xxxxx", "budget": 4 }, "expected": 3, "tags": ["sample", "partial-run"] },
-    { "id": "sample-3", "name": "sample: repair every run", "kind": "sample", "visible": true, "input": { "road": "x.x.xxx...x", "budget": 14 }, "expected": 6, "tags": ["sample", "all-runs"] },
-    { "id": "trial-one-pothole-insufficient", "name": "trial: budget cannot pay operation overhead", "kind": "trial", "visible": true, "input": { "road": "x", "budget": 1 }, "expected": 0, "tags": ["boundary", "overhead"] },
-    { "id": "trial-one-pothole-exact", "name": "trial: exactly enough for one pothole", "kind": "trial", "visible": true, "input": { "road": "x", "budget": 2 }, "expected": 1, "tags": ["boundary", "exact-budget"] },
-    { "id": "trial-prefer-longest-run", "name": "trial: spend the budget on the longest run", "kind": "trial", "visible": true, "input": { "road": "xx.xxxxx.xxx", "budget": 6 }, "expected": 5, "tags": ["greedy", "longest-run"] },
-    { "id": "trial-partial-final-run", "name": "trial: a final operation uses the remaining budget", "kind": "trial", "visible": true, "input": { "road": "xxxx.xx.x", "budget": 8 }, "expected": 6, "tags": ["partial-run", "multiple-runs"] },
-    { "id": "real-many-singletons", "name": "hidden: operation overhead dominates isolated potholes", "kind": "real", "visible": false, "input": { "road": "x.x.x.x.x.x.x.x.x.x", "budget": 9 }, "expected": 4, "tags": ["real", "many-runs", "overhead"] },
-    { "id": "real-budget-exceeds-cost", "name": "hidden: excess budget repairs every pothole", "kind": "real", "visible": false, "input": { "road": "xxx..xx....xxxx", "budget": 100 }, "expected": 9, "tags": ["real", "excess-budget"] },
-    { "id": "real-equal-run-tie", "name": "hidden: equal run lengths are interchangeable", "kind": "real", "visible": false, "input": { "road": "xxx.xxx.xxx", "budget": 9 }, "expected": 6, "tags": ["real", "equal-runs", "exact-budget"] },
-    { "id": "real-long-smooth-road", "name": "hidden: a long smooth road still returns zero", "kind": "real", "visible": false, "input": { "road": "....................................................................................................", "budget": 100001 }, "expected": 0, "tags": ["real", "no-runs", "large-budget"] }
+    {
+      "id": "sample-1",
+      "name": "sample: no potholes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "road": "..",
+        "budget": 5
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "empty"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: partially repair one run",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "road": "..xxxxx",
+        "budget": 4
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "partial-run"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: repair every run",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "road": "x.x.xxx...x",
+        "budget": 14
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "all-runs"
+      ]
+    },
+    {
+      "id": "trial-one-pothole-insufficient",
+      "name": "trial: budget cannot pay operation overhead",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "road": "x",
+        "budget": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "overhead"
+      ]
+    },
+    {
+      "id": "trial-one-pothole-exact",
+      "name": "trial: exactly enough for one pothole",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "road": "x",
+        "budget": 2
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "exact-budget"
+      ]
+    },
+    {
+      "id": "trial-prefer-longest-run",
+      "name": "trial: spend the budget on the longest run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "road": "xx.xxxxx.xxx",
+        "budget": 6
+      },
+      "expected": 5,
+      "tags": [
+        "greedy",
+        "longest-run"
+      ]
+    },
+    {
+      "id": "trial-partial-final-run",
+      "name": "trial: a final operation uses the remaining budget",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "road": "xxxx.xx.x",
+        "budget": 8
+      },
+      "expected": 6,
+      "tags": [
+        "partial-run",
+        "multiple-runs"
+      ]
+    },
+    {
+      "id": "trial-many-singletons",
+      "name": "operation overhead dominates isolated potholes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "road": "x.x.x.x.x.x.x.x.x.x",
+        "budget": 9
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "many-runs",
+        "overhead"
+      ]
+    },
+    {
+      "id": "trial-budget-exceeds-cost",
+      "name": "excess budget repairs every pothole",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "road": "xxx..xx....xxxx",
+        "budget": 100
+      },
+      "expected": 9,
+      "tags": [
+        "real",
+        "excess-budget"
+      ]
+    },
+    {
+      "id": "trial-equal-run-tie",
+      "name": "equal run lengths are interchangeable",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "road": "xxx.xxx.xxx",
+        "budget": 9
+      },
+      "expected": 6,
+      "tags": [
+        "real",
+        "equal-runs",
+        "exact-budget"
+      ]
+    },
+    {
+      "id": "trial-long-smooth-road",
+      "name": "a long smooth road still returns zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "road": "....................................................................................................",
+        "budget": 100001
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "no-runs",
+        "large-budget"
+      ]
+    }
   ]
 }

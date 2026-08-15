@@ -155,153 +155,143 @@
       ]
     },
     {
-      "id": "real-three-digits-one",
-      "name": "hidden: one followed by two zeros",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-digits-one",
+      "name": "one followed by two zeros",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 3,
         "s": 1
       },
       "expected": 100,
       "tags": [
-        "hidden",
         "trailing-zero"
       ]
     },
     {
-      "id": "real-three-digits-eight",
-      "name": "hidden: a sub-nine leading digit",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-digits-eight",
+      "name": "a sub-nine leading digit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 3,
         "s": 8
       },
       "expected": 800,
       "tags": [
-        "hidden",
         "trailing-zero"
       ]
     },
     {
-      "id": "real-three-digits-ten",
-      "name": "hidden: greedy nine then remainder",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-digits-ten",
+      "name": "greedy nine then remainder",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 3,
         "s": 10
       },
       "expected": 910,
       "tags": [
-        "hidden",
         "remainder"
       ]
     },
     {
-      "id": "real-three-digits-seventeen",
-      "name": "hidden: two nonzero digits and a zero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-digits-seventeen",
+      "name": "two nonzero digits and a zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 3,
         "s": 17
       },
       "expected": 980,
       "tags": [
-        "hidden",
         "greedy"
       ]
     },
     {
-      "id": "real-three-digits-nineteen",
-      "name": "hidden: remainder after two nines",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-digits-nineteen",
+      "name": "remainder after two nines",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 3,
         "s": 19
       },
       "expected": 991,
       "tags": [
-        "hidden",
         "remainder"
       ]
     },
     {
-      "id": "real-three-digits-full",
-      "name": "hidden: maximum feasible three-digit sum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-digits-full",
+      "name": "maximum feasible three-digit sum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 3,
         "s": 27
       },
       "expected": 999,
       "tags": [
-        "hidden",
         "maximum-feasible"
       ]
     },
     {
-      "id": "real-three-digits-impossible",
-      "name": "hidden: one above three-digit capacity",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-digits-impossible",
+      "name": "one above three-digit capacity",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 3,
         "s": 28
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "impossible",
         "boundary"
       ]
     },
     {
-      "id": "real-four-digits-twenty",
-      "name": "hidden: greedy prefix with trailing zero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-four-digits-twenty",
+      "name": "greedy prefix with trailing zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "s": 20
       },
       "expected": 9920,
       "tags": [
-        "hidden",
         "greedy"
       ]
     },
     {
-      "id": "real-five-digits-near-full",
-      "name": "hidden: one below maximum total",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-five-digits-near-full",
+      "name": "one below maximum total",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 5,
         "s": 44
       },
       "expected": 99998,
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     },
     {
-      "id": "real-five-digits-full",
-      "name": "hidden: maximum input digit capacity",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-five-digits-full",
+      "name": "maximum input digit capacity",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 5,
         "s": 45
       },
       "expected": 99999,
       "tags": [
-        "hidden",
         "maximum-feasible",
         "upper-bound"
       ]

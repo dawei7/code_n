@@ -94,10 +94,10 @@
       ]
     },
     {
-      "id": "real-negative-first",
-      "name": "hidden: lowest prefix occurs first",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-negative-first",
+      "name": "lowest prefix occurs first",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -5,
@@ -109,15 +109,14 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "first-prefix"
       ]
     },
     {
-      "id": "real-maximum-deficit",
-      "name": "hidden: maximum-length negative array",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-deficit",
+      "name": "maximum-length negative array",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -100,
@@ -224,8 +223,40 @@
       },
       "expected": 10001,
       "tags": [
-        "hidden",
         "maximum"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -3
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -3,
+          -3
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

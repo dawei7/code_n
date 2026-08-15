@@ -139,10 +139,10 @@
       ]
     },
     {
-      "id": "hidden-uneven",
-      "name": "hidden: deepest branch is not first",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-uneven",
+      "name": "deepest branch is not first",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           0,
@@ -178,15 +178,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "uneven"
       ]
     },
     {
-      "id": "hidden-negative",
-      "name": "hidden: values do not affect depth",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-negative",
+      "name": "values do not affect depth",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           -1,
@@ -209,10 +208,8 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "values-irrelevant"
       ]
     }
   ]
 }
-

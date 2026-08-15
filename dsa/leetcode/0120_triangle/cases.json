@@ -79,10 +79,10 @@
       ]
     },
     {
-      "id": "real-negative-path",
-      "name": "hidden: negative values improve path",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-negative-path",
+      "name": "negative values improve path",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "triangle": [
           [
@@ -107,7 +107,6 @@
       },
       "expected": -15,
       "tags": [
-        "hidden",
         "negative"
       ]
     }

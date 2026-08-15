@@ -94,10 +94,10 @@
       ]
     },
     {
-      "id": "real-later-experience-deficit",
-      "name": "hidden: experience repair is needed after an earlier victory",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-later-experience-deficit",
+      "name": "experience repair is needed after an earlier victory",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "initialEnergy": 100,
         "initialExperience": 2,
@@ -114,15 +114,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "experience"
       ]
     },
     {
-      "id": "real-repeated-small",
-      "name": "hidden: both deficits with repeated opponents",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-small",
+      "name": "both deficits with repeated opponents",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "initialEnergy": 1,
         "initialExperience": 1,
@@ -141,15 +140,14 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "repeated"
       ]
     },
     {
-      "id": "real-maximum-values",
-      "name": "hidden: maximum opponent values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-values",
+      "name": "maximum opponent values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "initialEnergy": 1,
         "initialExperience": 1,
@@ -166,7 +164,6 @@
       },
       "expected": 400,
       "tags": [
-        "hidden",
         "maximum-values"
       ]
     }

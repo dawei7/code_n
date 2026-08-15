@@ -129,10 +129,10 @@
       ]
     },
     {
-      "id": "real-all-single-digits",
-      "name": "real: only single-digit values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-single-digits",
+      "name": "only single-digit values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -148,10 +148,10 @@
       ]
     },
     {
-      "id": "real-all-double-digits",
-      "name": "real: only double-digit values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-double-digits",
+      "name": "only double-digit values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10,
@@ -166,10 +166,10 @@
       ]
     },
     {
-      "id": "real-many-values-tie",
-      "name": "real: repeated values produce an exact tie",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-values-tie",
+      "name": "repeated values produce an exact tie",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -192,10 +192,10 @@
       ]
     },
     {
-      "id": "real-boundary-heavy",
-      "name": "real: repeated minimum and maximum values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-boundary-heavy",
+      "name": "repeated minimum and maximum values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -210,10 +210,10 @@
       ]
     },
     {
-      "id": "real-single-group-barely-wins",
-      "name": "real: single-digit group wins by one",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-group-barely-wins",
+      "name": "single-digit group wins by one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9,

@@ -6,72 +6,146 @@
       "name": "sample: equal bit counts copy num1",
       "kind": "sample",
       "visible": true,
-      "input": {"num1": 3, "num2": 5},
+      "input": {
+        "num1": 3,
+        "num2": 5
+      },
       "expected": 3,
-      "tags": ["sample", "zero-xor"]
+      "tags": [
+        "sample",
+        "zero-xor"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: add one low set bit",
       "kind": "sample",
       "visible": true,
-      "input": {"num1": 1, "num2": 12},
+      "input": {
+        "num1": 1,
+        "num2": 12
+      },
       "expected": 3,
-      "tags": ["sample", "fill-zero"]
+      "tags": [
+        "sample",
+        "fill-zero"
+      ]
     },
     {
       "id": "trial-one-required-bit",
       "name": "trial: retain only the highest matching bit",
       "kind": "trial",
       "visible": true,
-      "input": {"num1": 15, "num2": 1},
+      "input": {
+        "num1": 15,
+        "num2": 1
+      },
       "expected": 8,
-      "tags": ["trial", "remove-bits"]
+      "tags": [
+        "trial",
+        "remove-bits"
+      ]
     },
     {
       "id": "trial-keep-two-high-bits",
       "name": "trial: preserve the two highest set positions",
       "kind": "trial",
       "visible": true,
-      "input": {"num1": 25, "num2": 72},
+      "input": {
+        "num1": 25,
+        "num2": 72
+      },
       "expected": 24,
-      "tags": ["trial", "high-bits"]
+      "tags": [
+        "trial",
+        "high-bits"
+      ]
     },
     {
-      "id": "real-fill-three-bits",
-      "name": "hidden: one source bit and three added bits",
-      "kind": "real",
-      "visible": false,
-      "input": {"num1": 1, "num2": 15},
+      "id": "trial-fill-three-bits",
+      "name": "one source bit and three added bits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": 1,
+        "num2": 15
+      },
       "expected": 15,
-      "tags": ["hidden", "fill-low"]
+      "tags": [
+        "fill-low"
+      ]
     },
     {
-      "id": "real-equal-maximum",
-      "name": "hidden: equal maximum inputs",
-      "kind": "real",
-      "visible": false,
-      "input": {"num1": 1000000000, "num2": 1000000000},
+      "id": "trial-equal-maximum",
+      "name": "equal maximum inputs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": 1000000000,
+        "num2": 1000000000
+      },
       "expected": 1000000000,
-      "tags": ["hidden", "maximum"]
+      "tags": [
+        "maximum"
+      ]
     },
     {
-      "id": "real-twenty-nine-required-bits",
-      "name": "hidden: fill nearly the complete legal width",
-      "kind": "real",
-      "visible": false,
-      "input": {"num1": 1, "num2": 536870911},
+      "id": "trial-twenty-nine-required-bits",
+      "name": "fill nearly the complete legal width",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": 1,
+        "num2": 536870911
+      },
       "expected": 536870911,
-      "tags": ["hidden", "wide"]
+      "tags": [
+        "wide"
+      ]
     },
     {
-      "id": "real-single-high-source-bit",
-      "name": "hidden: preserve a high bit and fill below it",
-      "kind": "real",
-      "visible": false,
-      "input": {"num1": 536870912, "num2": 7},
+      "id": "trial-single-high-source-bit",
+      "name": "preserve a high bit and fill below it",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": 536870912,
+        "num2": 7
+      },
       "expected": 536870915,
-      "tags": ["hidden", "high-source"]
+      "tags": [
+        "high-source"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value num1=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": 1,
+        "num2": 5
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value num2=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": 3,
+        "num2": 1
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
     }
   ]
 }

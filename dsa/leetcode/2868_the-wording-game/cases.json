@@ -6,81 +6,220 @@
       "name": "sample: Bob advances one initial letter",
       "kind": "sample",
       "visible": true,
-      "input": {"a": ["avokado", "dabar"], "b": ["brazil"]},
+      "input": {
+        "a": [
+          "avokado",
+          "dabar"
+        ],
+        "b": [
+          "brazil"
+        ]
+      },
       "expected": false,
-      "tags": ["sample", "next-letter"]
+      "tags": [
+        "sample",
+        "next-letter"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: Bob's same-letter word is too small",
       "kind": "sample",
       "visible": true,
-      "input": {"a": ["ananas", "atlas", "banana"], "b": ["albatros", "cikla", "nogomet"]},
+      "input": {
+        "a": [
+          "ananas",
+          "atlas",
+          "banana"
+        ],
+        "b": [
+          "albatros",
+          "cikla",
+          "nogomet"
+        ]
+      },
       "expected": true,
-      "tags": ["sample", "lexicographic-threshold"]
+      "tags": [
+        "sample",
+        "lexicographic-threshold"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: all of Bob's initials precede Alice's",
       "kind": "sample",
       "visible": true,
-      "input": {"a": ["hrvatska", "zastava"], "b": ["bijeli", "galeb"]},
+      "input": {
+        "a": [
+          "hrvatska",
+          "zastava"
+        ],
+        "b": [
+          "bijeli",
+          "galeb"
+        ]
+      },
       "expected": true,
-      "tags": ["sample", "no-response"]
+      "tags": [
+        "sample",
+        "no-response"
+      ]
     },
     {
       "id": "trial-single-advance",
       "name": "trial: Bob plays the next initial and wins",
       "kind": "trial",
       "visible": true,
-      "input": {"a": ["a"], "b": ["b"]},
+      "input": {
+        "a": [
+          "a"
+        ],
+        "b": [
+          "b"
+        ]
+      },
       "expected": false,
-      "tags": ["trial", "single-word-lists"]
+      "tags": [
+        "trial",
+        "single-word-lists"
+      ]
     },
     {
       "id": "trial-response-precedes-opening",
       "name": "trial: Bob's only word is already unusable",
       "kind": "trial",
       "visible": true,
-      "input": {"a": ["b"], "b": ["a"]},
+      "input": {
+        "a": [
+          "b"
+        ],
+        "b": [
+          "a"
+        ]
+      },
       "expected": true,
-      "tags": ["trial", "lexicographic-order"]
+      "tags": [
+        "trial",
+        "lexicographic-order"
+      ]
     },
     {
       "id": "trial-alice-owns-group-maximum",
       "name": "trial: Alice has the greatest same-initial word",
       "kind": "trial",
       "visible": true,
-      "input": {"a": ["aa", "ac"], "b": ["ab"]},
+      "input": {
+        "a": [
+          "aa",
+          "ac"
+        ],
+        "b": [
+          "ab"
+        ]
+      },
       "expected": true,
-      "tags": ["trial", "same-letter"]
+      "tags": [
+        "trial",
+        "same-letter"
+      ]
     },
     {
-      "id": "real-bob-owns-group-maximum",
-      "name": "hidden: Bob has the greatest same-initial word",
-      "kind": "real",
-      "visible": false,
-      "input": {"a": ["aa", "ab"], "b": ["ac"]},
+      "id": "trial-bob-owns-group-maximum",
+      "name": "Bob has the greatest same-initial word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": [
+          "aa",
+          "ab"
+        ],
+        "b": [
+          "ac"
+        ]
+      },
       "expected": false,
-      "tags": ["hidden", "same-letter"]
+      "tags": [
+        "same-letter"
+      ]
     },
     {
-      "id": "real-smaller-response-is-strategic",
-      "name": "hidden: advancing an initial too early changes the winner",
-      "kind": "real",
-      "visible": false,
-      "input": {"a": ["aa", "ca"], "b": ["ab", "ba"]},
+      "id": "trial-smaller-response-is-strategic",
+      "name": "advancing an initial too early changes the winner",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": [
+          "aa",
+          "ca"
+        ],
+        "b": [
+          "ab",
+          "ba"
+        ]
+      },
       "expected": false,
-      "tags": ["hidden", "optimal-choice", "game-theory"]
+      "tags": [
+        "optimal-choice",
+        "game-theory"
+      ]
     },
     {
-      "id": "real-final-letter",
-      "name": "hidden: there is no initial after z",
-      "kind": "real",
-      "visible": false,
-      "input": {"a": ["za", "zc"], "b": ["zb"]},
+      "id": "trial-final-letter",
+      "name": "there is no initial after z",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": [
+          "za",
+          "zc"
+        ],
+        "b": [
+          "zb"
+        ]
+      },
       "expected": true,
-      "tags": ["hidden", "alphabet-boundary"]
+      "tags": [
+        "alphabet-boundary"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in a",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": [
+          "avokado"
+        ],
+        "b": [
+          "brazil"
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in a",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": [
+          "avokado",
+          "avokado"
+        ],
+        "b": [
+          "brazil"
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

@@ -1,14 +1,289 @@
-{"schema_version":1,"challenge_id":"lc_3789","cases":[
-{"id":"sample-1","name":"sample: combined items cover both needs cheaply","kind":"sample","visible":true,"input":{"cost1":3,"cost2":2,"costBoth":1,"need1":3,"need2":2},"expected":3,"validator":{"kind":"exact"},"tags":["sample","combined"]},
-{"id":"sample-2","name":"sample: separate items are cheaper","kind":"sample","visible":true,"input":{"cost1":5,"cost2":4,"costBoth":15,"need1":2,"need2":3},"expected":22,"validator":{"kind":"exact"},"tags":["sample","separate"]},
-{"id":"sample-3","name":"sample: no requirements","kind":"sample","visible":true,"input":{"cost1":5,"cost2":4,"costBoth":15,"need1":0,"need2":0},"expected":0,"validator":{"kind":"exact"},"tags":["sample","zero-needs"]},
-{"id":"trial-only-first","name":"trial: only requirement one is positive","kind":"trial","visible":true,"input":{"cost1":7,"cost2":9,"costBoth":3,"need1":4,"need2":0},"expected":12,"validator":{"kind":"exact"},"tags":["trial","oversupply"]},
-{"id":"trial-only-second","name":"trial: only requirement two is positive","kind":"trial","visible":true,"input":{"cost1":9,"cost2":2,"costBoth":8,"need1":0,"need2":5},"expected":10,"validator":{"kind":"exact"},"tags":["trial","single-need"]},
-{"id":"trial-equal-choice","name":"trial: combined and separate prices tie","kind":"trial","visible":true,"input":{"cost1":3,"cost2":4,"costBoth":7,"need1":2,"need2":2},"expected":14,"validator":{"kind":"exact"},"tags":["trial","tie"]},
-{"id":"real-combined-for-surplus","name":"hidden: combined item is cheapest even after one need is met","kind":"real","visible":false,"input":{"cost1":10,"cost2":9,"costBoth":4,"need1":7,"need2":2},"expected":28,"validator":{"kind":"exact"},"tags":["hidden","oversupply"]},
-{"id":"real-mixed-strategy","name":"hidden: combined shared units plus first-only remainder","kind":"real","visible":false,"input":{"cost1":3,"cost2":8,"costBoth":6,"need1":7,"need2":2},"expected":27,"validator":{"kind":"exact"},"tags":["hidden","mixed"]},
-{"id":"real-mixed-second","name":"hidden: combined shared units plus second-only remainder","kind":"real","visible":false,"input":{"cost1":8,"cost2":3,"costBoth":6,"need1":2,"need2":7},"expected":27,"validator":{"kind":"exact"},"tags":["hidden","mixed"]},
-{"id":"real-one-zero-cheap-both","name":"hidden: oversupplying zero need saves cost","kind":"real","visible":false,"input":{"cost1":100,"cost2":100,"costBoth":1,"need1":0,"need2":3},"expected":3,"validator":{"kind":"exact"},"tags":["hidden","oversupply"]},
-{"id":"real-large-costs","name":"hidden: large costs require a wide integer result","kind":"real","visible":false,"input":{"cost1":1000000,"cost2":1000000,"costBoth":1000000,"need1":1000,"need2":1000},"expected":1000000000,"validator":{"kind":"exact"},"tags":["hidden","large-cost","large-result"]},
-{"id":"real-asymmetric-large","name":"hidden: substantially asymmetric requirements","kind":"real","visible":false,"input":{"cost1":5,"cost2":2,"costBoth":6,"need1":1000,"need2":1},"expected":5001,"validator":{"kind":"exact"},"tags":["hidden","asymmetric"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3789",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: combined items cover both needs cheaply",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "cost1": 3,
+        "cost2": 2,
+        "costBoth": 1,
+        "need1": 3,
+        "need2": 2
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "combined"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: separate items are cheaper",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "cost1": 5,
+        "cost2": 4,
+        "costBoth": 15,
+        "need1": 2,
+        "need2": 3
+      },
+      "expected": 22,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "separate"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no requirements",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "cost1": 5,
+        "cost2": 4,
+        "costBoth": 15,
+        "need1": 0,
+        "need2": 0
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "zero-needs"
+      ]
+    },
+    {
+      "id": "trial-only-first",
+      "name": "trial: only requirement one is positive",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost1": 7,
+        "cost2": 9,
+        "costBoth": 3,
+        "need1": 4,
+        "need2": 0
+      },
+      "expected": 12,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "oversupply"
+      ]
+    },
+    {
+      "id": "trial-only-second",
+      "name": "trial: only requirement two is positive",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost1": 9,
+        "cost2": 2,
+        "costBoth": 8,
+        "need1": 0,
+        "need2": 5
+      },
+      "expected": 10,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-need"
+      ]
+    },
+    {
+      "id": "trial-equal-choice",
+      "name": "trial: combined and separate prices tie",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost1": 3,
+        "cost2": 4,
+        "costBoth": 7,
+        "need1": 2,
+        "need2": 2
+      },
+      "expected": 14,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "tie"
+      ]
+    },
+    {
+      "id": "trial-combined-for-surplus",
+      "name": "combined item is cheapest even after one need is met",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost1": 10,
+        "cost2": 9,
+        "costBoth": 4,
+        "need1": 7,
+        "need2": 2
+      },
+      "expected": 28,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "oversupply"
+      ]
+    },
+    {
+      "id": "trial-mixed-strategy",
+      "name": "combined shared units plus first-only remainder",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost1": 3,
+        "cost2": 8,
+        "costBoth": 6,
+        "need1": 7,
+        "need2": 2
+      },
+      "expected": 27,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "mixed"
+      ]
+    },
+    {
+      "id": "trial-mixed-second",
+      "name": "combined shared units plus second-only remainder",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost1": 8,
+        "cost2": 3,
+        "costBoth": 6,
+        "need1": 2,
+        "need2": 7
+      },
+      "expected": 27,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "mixed"
+      ]
+    },
+    {
+      "id": "trial-one-zero-cheap-both",
+      "name": "oversupplying zero need saves cost",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost1": 100,
+        "cost2": 100,
+        "costBoth": 1,
+        "need1": 0,
+        "need2": 3
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "oversupply"
+      ]
+    },
+    {
+      "id": "trial-large-costs",
+      "name": "large costs require a wide integer result",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost1": 1000000,
+        "cost2": 1000000,
+        "costBoth": 1000000,
+        "need1": 1000,
+        "need2": 1000
+      },
+      "expected": 1000000000,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "large-cost",
+        "large-result"
+      ]
+    },
+    {
+      "id": "trial-asymmetric-large",
+      "name": "substantially asymmetric requirements",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost1": 5,
+        "cost2": 2,
+        "costBoth": 6,
+        "need1": 1000,
+        "need2": 1
+      },
+      "expected": 5001,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "asymmetric"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value cost1=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost1": 1,
+        "cost2": 2,
+        "costBoth": 1,
+        "need1": 3,
+        "need2": 2
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "minimal value cost2=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost1": 3,
+        "cost2": 1,
+        "costBoth": 1,
+        "need1": 3,
+        "need2": 2
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    }
+  ]
+}

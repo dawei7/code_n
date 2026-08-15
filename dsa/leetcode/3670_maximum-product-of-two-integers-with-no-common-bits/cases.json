@@ -96,10 +96,10 @@
       ]
     },
     {
-      "id": "real-product-choice",
-      "name": "hidden: large multi-bit and power values compete",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-product-choice",
+      "name": "large multi-bit and power values compete",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -110,15 +110,14 @@
       },
       "expected": 56,
       "tags": [
-        "hidden",
         "maximum-product"
       ]
     },
     {
-      "id": "real-duplicates-with-partner",
-      "name": "hidden: duplicates do not change best compatible value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicates-with-partner",
+      "name": "duplicates do not change best compatible value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           12,
@@ -129,15 +128,14 @@
       },
       "expected": 36,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "real-high-domain-complements",
-      "name": "hidden: complementary values near the upper bound",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-high-domain-complements",
+      "name": "complementary values near the upper bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           524288,
@@ -148,16 +146,15 @@
       },
       "expected": 249410093056,
       "tags": [
-        "hidden",
         "maximum-bit-width",
         "large-product"
       ]
     },
     {
-      "id": "real-only-one-compatible-small",
-      "name": "hidden: only a small disjoint pair exists",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-only-one-compatible-small",
+      "name": "only a small disjoint pair exists",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           15,
@@ -169,8 +166,23 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "sparse-compatibility"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

@@ -110,10 +110,10 @@
       ]
     },
     {
-      "id": "hidden-large-odd",
-      "name": "hidden: large odd length",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-odd",
+      "name": "large odd length",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 99
       },
@@ -222,15 +222,14 @@
         "kind": "unique_sum_zero"
       },
       "tags": [
-        "hidden",
         "odd"
       ]
     },
     {
-      "id": "hidden-maximum",
-      "name": "hidden: maximum legal length",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum",
+      "name": "maximum legal length",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000
       },
@@ -1240,7 +1239,6 @@
         "kind": "unique_sum_zero"
       },
       "tags": [
-        "hidden",
         "maximum"
       ]
     }

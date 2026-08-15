@@ -6,108 +6,221 @@
       "name": "sample: mixed signs with a final split",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, -2, 3, 4]},
+      "input": {
+        "nums": [
+          1,
+          -2,
+          3,
+          4
+        ]
+      },
       "expected": 10,
-      "tags": ["sample", "dynamic-programming"]
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
     },
     {
       "id": "sample-alternating-ones",
       "name": "sample: alternating signs",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, -1, 1, -1]},
+      "input": {
+        "nums": [
+          1,
+          -1,
+          1,
+          -1
+        ]
+      },
       "expected": 4,
-      "tags": ["sample", "alternating"]
+      "tags": [
+        "sample",
+        "alternating"
+      ]
     },
     {
       "id": "sample-single-zero",
       "name": "sample: one zero",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [0]},
+      "input": {
+        "nums": [
+          0
+        ]
+      },
       "expected": 0,
-      "tags": ["sample", "single-element"]
+      "tags": [
+        "sample",
+        "single-element"
+      ]
     },
     {
       "id": "sample-two-values",
       "name": "sample: one negative value can be subtracted",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, -1]},
+      "input": {
+        "nums": [
+          1,
+          -1
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "unsplit"]
+      "tags": [
+        "sample",
+        "unsplit"
+      ]
     },
     {
       "id": "trial-single-positive",
       "name": "trial: one positive value",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5]},
+      "input": {
+        "nums": [
+          5
+        ]
+      },
       "expected": 5,
-      "tags": ["single-element", "positive"]
+      "tags": [
+        "single-element",
+        "positive"
+      ]
     },
     {
       "id": "trial-single-negative",
       "name": "trial: one negative value cannot change sign",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [-5]},
+      "input": {
+        "nums": [
+          -5
+        ]
+      },
       "expected": -5,
-      "tags": ["single-element", "negative"]
+      "tags": [
+        "single-element",
+        "negative"
+      ]
     },
     {
       "id": "trial-positive-pair",
       "name": "trial: splitting two positive values",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2]},
+      "input": {
+        "nums": [
+          1,
+          2
+        ]
+      },
       "expected": 3,
-      "tags": ["positive", "split"]
+      "tags": [
+        "positive",
+        "split"
+      ]
     },
     {
       "id": "trial-negative-block",
       "name": "trial: choices across a negative block",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [-3, -2, -5, 4]},
+      "input": {
+        "nums": [
+          -3,
+          -2,
+          -5,
+          4
+        ]
+      },
       "expected": 4,
-      "tags": ["negative", "state-transition"]
+      "tags": [
+        "negative",
+        "state-transition"
+      ]
     },
     {
       "id": "trial-all-positive",
       "name": "trial: singleton parts preserve every positive value",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [4, 3, 2, 1]},
+      "input": {
+        "nums": [
+          4,
+          3,
+          2,
+          1
+        ]
+      },
       "expected": 10,
-      "tags": ["all-positive", "split"]
+      "tags": [
+        "all-positive",
+        "split"
+      ]
     },
     {
-      "id": "real-zeros-and-negatives",
-      "name": "real: zeros separate profitable sign flips",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, -5, 0, -2]},
+      "id": "trial-zeros-and-negatives",
+      "name": "zeros separate profitable sign flips",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          -5,
+          0,
+          -2
+        ]
+      },
       "expected": 7,
-      "tags": ["real", "zeros", "negative"]
+      "tags": [
+        "real",
+        "zeros",
+        "negative"
+      ]
     },
     {
-      "id": "real-value-bounds",
-      "name": "real: result exceeds 32-bit range",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000000000, -1000000000, 1000000000]},
+      "id": "trial-value-bounds",
+      "name": "result exceeds 32-bit range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          -1000000000,
+          1000000000
+        ]
+      },
       "expected": 3000000000,
-      "tags": ["real", "value-bounds", "large-result"]
+      "tags": [
+        "real",
+        "value-bounds",
+        "large-result"
+      ]
     },
     {
-      "id": "real-longer-zigzag",
-      "name": "real: longer mixed-sign sequence",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [8, -6, -2, 5, -9, 3, 7, -4]},
+      "id": "trial-longer-zigzag",
+      "name": "longer mixed-sign sequence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          -6,
+          -2,
+          5,
+          -9,
+          3,
+          7,
+          -4
+        ]
+      },
       "expected": 40,
-      "tags": ["real", "zigzag", "dynamic-programming"]
+      "tags": [
+        "real",
+        "zigzag",
+        "dynamic-programming"
+      ]
     }
   ]
 }

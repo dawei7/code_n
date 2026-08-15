@@ -167,10 +167,10 @@
       ]
     },
     {
-      "id": "real-inclusive-boundaries",
-      "name": "hidden: both queried boundary words qualify",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-inclusive-boundaries",
+      "name": "both queried boundary words qualify",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "a",
@@ -198,15 +198,14 @@
         1
       ],
       "tags": [
-        "hidden",
         "inclusive-range"
       ]
     },
     {
-      "id": "real-repeated-overlapping",
-      "name": "hidden: repeated and overlapping queries preserve order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-overlapping",
+      "name": "repeated and overlapping queries preserve order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "aa",
@@ -240,16 +239,15 @@
         1
       ],
       "tags": [
-        "hidden",
         "repeated-query",
         "overlap"
       ]
     },
     {
-      "id": "real-long-endpoint-only",
-      "name": "hidden: interior letters do not affect qualification",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-long-endpoint-only",
+      "name": "interior letters do not affect qualification",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbu",
@@ -276,7 +274,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "maximum-word-length"
       ]
     }

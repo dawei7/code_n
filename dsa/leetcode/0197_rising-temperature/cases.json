@@ -122,10 +122,10 @@
       }
     },
     {
-      "id": "real-unsorted-ids",
-      "name": "hidden: dates and ids use different orders",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unsorted-ids",
+      "name": "dates and ids use different orders",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Weather": [
@@ -158,7 +158,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "date-order"
       ],
       "validator": {

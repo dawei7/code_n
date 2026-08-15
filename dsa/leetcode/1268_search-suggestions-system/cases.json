@@ -179,10 +179,10 @@
       ]
     },
     {
-      "id": "real-branching-prefixes",
-      "name": "hidden: branches leave the active suggestion interval",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-branching-prefixes",
+      "name": "branches leave the active suggestion interval",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "products": [
           "bags",
@@ -213,15 +213,14 @@
         ]
       ],
       "tags": [
-        "hidden",
         "branching"
       ]
     },
     {
-      "id": "real-four-matching-products",
-      "name": "hidden: lexicographic cap changes at a deeper prefix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-four-matching-products",
+      "name": "lexicographic cap changes at a deeper prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "products": [
           "car",
@@ -255,15 +254,14 @@
         ]
       ],
       "tags": [
-        "hidden",
         "cap-transition"
       ]
     },
     {
-      "id": "real-first-character-miss",
-      "name": "hidden: no product shares the first character",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-first-character-miss",
+      "name": "no product shares the first character",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "products": [
           "alpha",
@@ -277,8 +275,64 @@
         []
       ],
       "tags": [
-        "hidden",
         "no-match"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in products",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "products": [
+          "mobile"
+        ],
+        "searchWord": "mouse"
+      },
+      "expected": [
+        [
+          "mobile"
+        ],
+        [
+          "mobile"
+        ],
+        [],
+        [],
+        []
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in products",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "products": [
+          "mobile",
+          "mobile"
+        ],
+        "searchWord": "mouse"
+      },
+      "expected": [
+        [
+          "mobile",
+          "mobile"
+        ],
+        [
+          "mobile",
+          "mobile"
+        ],
+        [],
+        [],
+        []
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

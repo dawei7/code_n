@@ -96,10 +96,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: cycles of lengths two and three",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "cycles of lengths two and three",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -111,15 +111,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "multiple-cycles"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: mixed cycle sizes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "mixed cycle sizes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -132,15 +131,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "multiple-cycles"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: two equal cycles",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-3",
+      "name": "two equal cycles",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -151,10 +149,8 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "multiple-cycles"
       ]
     }
   ]
 }
-

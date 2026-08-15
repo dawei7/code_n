@@ -96,10 +96,10 @@
       ]
     },
     {
-      "id": "real-one-column",
-      "name": "hidden: one operation across several rows",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-column",
+      "name": "one operation across several rows",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -115,15 +115,14 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "one-column"
       ]
     },
     {
-      "id": "real-rectangular",
-      "name": "hidden: rectangular matrix with interleaved row orders",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-rectangular",
+      "name": "rectangular matrix with interleaved row orders",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -148,15 +147,14 @@
       },
       "expected": 27,
       "tags": [
-        "hidden",
         "rectangular"
       ]
     },
     {
-      "id": "real-all-equal",
-      "name": "hidden: every deletion has the same value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-equal",
+      "name": "every deletion has the same value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -184,7 +182,6 @@
       },
       "expected": 500,
       "tags": [
-        "hidden",
         "ties",
         "maximum-value"
       ]

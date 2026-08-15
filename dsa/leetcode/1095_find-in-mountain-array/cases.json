@@ -6,54 +6,129 @@
       "name": "sample: minimum of two matching indices",
       "kind": "sample",
       "visible": true,
-      "input": {"target": 3, "mountainArr": [1, 2, 3, 4, 5, 3, 1]},
+      "input": {
+        "target": 3,
+        "mountainArr": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          3,
+          1
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "both-slopes"]
+      "tags": [
+        "sample",
+        "both-slopes"
+      ]
     },
     {
       "id": "sample-target-absent",
       "name": "sample: target absent",
       "kind": "sample",
       "visible": true,
-      "input": {"target": 3, "mountainArr": [0, 1, 2, 4, 2, 1]},
+      "input": {
+        "target": 3,
+        "mountainArr": [
+          0,
+          1,
+          2,
+          4,
+          2,
+          1
+        ]
+      },
       "expected": -1,
-      "tags": ["sample", "absent"]
+      "tags": [
+        "sample",
+        "absent"
+      ]
     },
     {
       "id": "trial-peak",
       "name": "trial: target is the peak",
       "kind": "trial",
       "visible": true,
-      "input": {"target": 9, "mountainArr": [1, 4, 7, 9, 6, 2]},
+      "input": {
+        "target": 9,
+        "mountainArr": [
+          1,
+          4,
+          7,
+          9,
+          6,
+          2
+        ]
+      },
       "expected": 3,
-      "tags": ["trial", "peak"]
+      "tags": [
+        "trial",
+        "peak"
+      ]
     },
     {
       "id": "trial-descending-only",
       "name": "trial: target appears only after peak",
       "kind": "trial",
       "visible": true,
-      "input": {"target": 6, "mountainArr": [1, 3, 8, 12, 10, 6, 2]},
+      "input": {
+        "target": 6,
+        "mountainArr": [
+          1,
+          3,
+          8,
+          12,
+          10,
+          6,
+          2
+        ]
+      },
       "expected": 5,
-      "tags": ["trial", "descending"]
+      "tags": [
+        "trial",
+        "descending"
+      ]
     },
     {
-      "id": "real-minimum-length",
-      "name": "hidden: three-element mountain",
-      "kind": "real",
-      "visible": false,
-      "input": {"target": 2, "mountainArr": [0, 5, 2]},
+      "id": "trial-minimum-length",
+      "name": "three-element mountain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": 2,
+        "mountainArr": [
+          0,
+          5,
+          2
+        ]
+      },
       "expected": 2,
-      "tags": ["hidden", "minimum-length"]
+      "tags": [
+        "minimum-length"
+      ]
     },
     {
-      "id": "real-large-values",
-      "name": "hidden: large values and absent target",
-      "kind": "real",
-      "visible": false,
-      "input": {"target": 999999999, "mountainArr": [100000000, 500000000, 1000000000, 700000000, 200000000]},
+      "id": "trial-large-values",
+      "name": "large values and absent target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": 999999999,
+        "mountainArr": [
+          100000000,
+          500000000,
+          1000000000,
+          700000000,
+          200000000
+        ]
+      },
       "expected": -1,
-      "tags": ["hidden", "large-values", "absent"]
+      "tags": [
+        "large-values",
+        "absent"
+      ]
     }
   ]
 }

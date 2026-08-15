@@ -99,10 +99,10 @@
       ]
     },
     {
-      "id": "real-disjoint-intervals",
-      "name": "real: two disjoint intervals are deleted",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-disjoint-intervals",
+      "name": "two disjoint intervals are deleted",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -121,10 +121,10 @@
       ]
     },
     {
-      "id": "real-merged-gap-deletion",
-      "name": "real: gap-closing sequence merges to original interval",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-merged-gap-deletion",
+      "name": "gap-closing sequence merges to original interval",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -143,10 +143,10 @@
       ]
     },
     {
-      "id": "real-repeated-remainders",
-      "name": "real: best cost among repeated remainders matters",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-remainders",
+      "name": "best cost among repeated remainders matters",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -166,10 +166,10 @@
       ]
     },
     {
-      "id": "real-singleton-deletions",
-      "name": "real: individually divisible values disappear",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-singleton-deletions",
+      "name": "individually divisible values disappear",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10,
@@ -187,10 +187,10 @@
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "real: large retained sums use wide integer",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-values",
+      "name": "large retained sums use wide integer",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000,
@@ -207,10 +207,10 @@
       ]
     },
     {
-      "id": "real-large-modulus-boundary",
-      "name": "real: modulus at maximum can delete exact sum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-modulus-boundary",
+      "name": "modulus at maximum can delete exact sum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           50000,
@@ -223,6 +223,41 @@
       "tags": [
         "real",
         "maximum-modulus"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

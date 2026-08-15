@@ -124,121 +124,113 @@
       ]
     },
     {
-      "id": "real-zero-middle-true",
-      "name": "hidden: middle zero with a valid digit-sum divisor",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zero-middle-true",
+      "name": "middle zero with a valid digit-sum divisor",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 102
       },
       "expected": true,
       "tags": [
-        "hidden",
         "true",
         "zero-digit"
       ]
     },
     {
-      "id": "real-multiple-zeroes",
-      "name": "hidden: several zero digits collapse the product",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-zeroes",
+      "name": "several zero digits collapse the product",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 100
       },
       "expected": true,
       "tags": [
-        "hidden",
         "true",
         "multiple-zeroes"
       ]
     },
     {
-      "id": "real-three-nonzero-digits",
-      "name": "hidden: product and sum form a proper divisor",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-nonzero-digits",
+      "name": "product and sum form a proper divisor",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 126
       },
       "expected": true,
       "tags": [
-        "hidden",
         "true",
         "proper-divisor"
       ]
     },
     {
-      "id": "real-three-nonzero-false",
-      "name": "hidden: close nonzero-digit comparison fails",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-nonzero-false",
+      "name": "close nonzero-digit comparison fails",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 127
       },
       "expected": false,
       "tags": [
-        "hidden",
         "false",
         "no-zero"
       ]
     },
     {
-      "id": "real-large-product",
-      "name": "hidden: six nines produce a large product",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-product",
+      "name": "six nines produce a large product",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 999999
       },
       "expected": false,
       "tags": [
-        "hidden",
         "false",
         "large-product"
       ]
     },
     {
-      "id": "real-leading-one-zeroes",
-      "name": "hidden: six-digit power of ten",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-leading-one-zeroes",
+      "name": "six-digit power of ten",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 100000
       },
       "expected": true,
       "tags": [
-        "hidden",
         "true",
         "multiple-zeroes"
       ]
     },
     {
-      "id": "real-near-maximum",
-      "name": "hidden: large value near the maximum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-near-maximum",
+      "name": "large value near the maximum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 999998
       },
       "expected": false,
       "tags": [
-        "hidden",
         "false",
         "upper-bound"
       ]
     },
     {
-      "id": "real-maximum",
-      "name": "hidden: maximum seven-digit input",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum",
+      "name": "maximum seven-digit input",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000000
       },
       "expected": true,
       "tags": [
-        "hidden",
         "true",
         "maximum",
         "seven-digits"

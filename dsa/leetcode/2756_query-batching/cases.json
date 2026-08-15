@@ -211,10 +211,10 @@
       ]
     },
     {
-      "id": "real-one-request",
-      "name": "hidden: one request with the maximum throttle",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-request",
+      "name": "one request with the maximum throttle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "queryDelay": "fixed-100",
         "t": 1000,
@@ -232,16 +232,15 @@
         }
       ],
       "tags": [
-        "hidden",
         "single",
         "maximum-throttle"
       ]
     },
     {
-      "id": "real-two-batches",
-      "name": "hidden: queued requests split across consecutive windows",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-batches",
+      "name": "queued requests split across consecutive windows",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "queryDelay": "none",
         "t": 40,
@@ -291,15 +290,14 @@
         }
       ],
       "tags": [
-        "hidden",
         "multiple-batches"
       ]
     },
     {
-      "id": "real-maximum-calls",
-      "name": "hidden: ten unique requests retain key-value correspondence",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-calls",
+      "name": "ten unique requests retain key-value correspondence",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "queryDelay": "none",
         "t": 25,
@@ -389,7 +387,6 @@
         }
       ],
       "tags": [
-        "hidden",
         "maximum-calls",
         "mapping"
       ]

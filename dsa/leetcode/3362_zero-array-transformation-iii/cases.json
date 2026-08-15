@@ -189,10 +189,10 @@
       ]
     },
     {
-      "id": "real-unsorted-overlaps",
-      "name": "real: unsorted intervals with mixed starts and ends",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unsorted-overlaps",
+      "name": "unsorted intervals with mixed starts and ends",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -236,10 +236,10 @@
       ]
     },
     {
-      "id": "real-uncovered-hole",
-      "name": "real: one positive index has no covering query",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-uncovered-hole",
+      "name": "one positive index has no covering query",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -266,10 +266,10 @@
       ]
     },
     {
-      "id": "real-duplicate-full-ranges",
-      "name": "real: duplicate full ranges meet high endpoint demands",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicate-full-ranges",
+      "name": "duplicate full ranges meet high endpoint demands",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -311,10 +311,10 @@
       ]
     },
     {
-      "id": "real-late-starts",
-      "name": "real: late-starting intervals enter the sweep on demand",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-late-starts",
+      "name": "late-starting intervals enter the sweep on demand",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,

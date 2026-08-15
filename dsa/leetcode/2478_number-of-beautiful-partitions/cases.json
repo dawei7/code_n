@@ -2,14 +2,145 @@
   "schema_version": 1,
   "challenge_id": "lc_2478",
   "cases": [
-    {"id":"sample-1","name":"sample: three beautiful partitions","kind":"sample","visible":true,"input":{"s":"23542185131","k":3,"minLength":2},"expected":3,"tags":["sample","multiple-partitions"]},
-    {"id":"sample-2","name":"sample: longer minimum leaves one partition","kind":"sample","visible":true,"input":{"s":"23542185131","k":3,"minLength":3},"expected":1,"tags":["sample","minimum-length"]},
-    {"id":"sample-3","name":"sample: minimum length one","kind":"sample","visible":true,"input":{"s":"3312958","k":3,"minLength":1},"expected":1,"tags":["sample","boundary"]},
-    {"id":"trial-single-part","name":"trial: entire string is one beautiful part","kind":"trial","visible":true,"input":{"s":"214","k":1,"minLength":3},"expected":1,"tags":["trial","single-part"]},
-    {"id":"trial-many-boundaries","name":"trial: choose either internal boundary","kind":"trial","visible":true,"input":{"s":"212121","k":2,"minLength":2},"expected":2,"tags":["trial","multiple-boundaries"]},
-    {"id":"real-invalid-first-digit","name":"hidden: string starts with a non-prime digit","kind":"real","visible":false,"input":{"s":"1234","k":1,"minLength":1},"expected":0,"tags":["hidden","invalid-start"]},
-    {"id":"real-invalid-last-digit","name":"hidden: string ends with a prime digit","kind":"real","visible":false,"input":{"s":"2357","k":1,"minLength":1},"expected":0,"tags":["hidden","invalid-end"]},
-    {"id":"real-insufficient-length","name":"hidden: required parts cannot fit","kind":"real","visible":false,"input":{"s":"212121","k":2,"minLength":4},"expected":0,"tags":["hidden","minimum-length"]},
-    {"id":"real-no-valid-internal-cut","name":"hidden: length fits but digit boundary does not","kind":"real","visible":false,"input":{"s":"2211","k":2,"minLength":2},"expected":0,"tags":["hidden","invalid-boundary"]}
+    {
+      "id": "sample-1",
+      "name": "sample: three beautiful partitions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "23542185131",
+        "k": 3,
+        "minLength": 2
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "multiple-partitions"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: longer minimum leaves one partition",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "23542185131",
+        "k": 3,
+        "minLength": 3
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: minimum length one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "3312958",
+        "k": 3,
+        "minLength": 1
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-single-part",
+      "name": "trial: entire string is one beautiful part",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "214",
+        "k": 1,
+        "minLength": 3
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "single-part"
+      ]
+    },
+    {
+      "id": "trial-many-boundaries",
+      "name": "trial: choose either internal boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "212121",
+        "k": 2,
+        "minLength": 2
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "multiple-boundaries"
+      ]
+    },
+    {
+      "id": "trial-invalid-first-digit",
+      "name": "string starts with a non-prime digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1234",
+        "k": 1,
+        "minLength": 1
+      },
+      "expected": 0,
+      "tags": [
+        "invalid-start"
+      ]
+    },
+    {
+      "id": "trial-invalid-last-digit",
+      "name": "string ends with a prime digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "2357",
+        "k": 1,
+        "minLength": 1
+      },
+      "expected": 0,
+      "tags": [
+        "invalid-end"
+      ]
+    },
+    {
+      "id": "trial-insufficient-length",
+      "name": "required parts cannot fit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "212121",
+        "k": 2,
+        "minLength": 4
+      },
+      "expected": 0,
+      "tags": [
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-no-valid-internal-cut",
+      "name": "length fits but digit boundary does not",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "2211",
+        "k": 2,
+        "minLength": 2
+      },
+      "expected": 0,
+      "tags": [
+        "invalid-boundary"
+      ]
+    }
   ]
 }

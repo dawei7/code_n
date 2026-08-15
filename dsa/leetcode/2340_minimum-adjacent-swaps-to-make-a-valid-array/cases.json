@@ -2,14 +2,207 @@
   "schema_version": 1,
   "challenge_id": "lc_2340",
   "cases": [
-    {"id":"sample-crossing","name":"sample: selected extremes cross once","kind":"sample","visible":true,"input":{"nums":[3,4,5,5,3,1]},"expected":6,"tags":["sample","crossing","duplicates"]},
-    {"id":"sample-single","name":"sample: one element is already valid","kind":"sample","visible":true,"input":{"nums":[9]},"expected":0,"tags":["sample","single-element"]},
-    {"id":"trial-already-valid","name":"minimum first and maximum last need no swaps","kind":"trial","visible":true,"input":{"nums":[1,4,2,9]},"expected":0,"tags":["already-valid"]},
-    {"id":"trial-no-crossing","name":"extremes move outward without crossing","kind":"trial","visible":true,"input":{"nums":[4,1,3,2,5]},"expected":1,"tags":["no-crossing"]},
-    {"id":"trial-crossing","name":"maximum before minimum needs the shared-swap correction","kind":"trial","visible":true,"input":{"nums":[5,2,3,1,4]},"expected":6,"tags":["crossing"]},
-    {"id":"real-duplicate-min","name":"hidden: the leftmost duplicate minimum is optimal","kind":"real","visible":false,"input":{"nums":[4,1,3,1,5]},"expected":1,"tags":["hidden","duplicate-minimum"]},
-    {"id":"real-duplicate-max","name":"hidden: the rightmost duplicate maximum is optimal","kind":"real","visible":false,"input":{"nums":[1,5,2,5,3]},"expected":1,"tags":["hidden","duplicate-maximum"]},
-    {"id":"real-all-equal","name":"hidden: equal values already occupy both required endpoints","kind":"real","visible":false,"input":{"nums":[7,7,7,7]},"expected":0,"tags":["hidden","all-equal"]},
-    {"id":"real-reversed","name":"hidden: maximum first and minimum last cross","kind":"real","visible":false,"input":{"nums":[10,8,6,4,2]},"expected":7,"tags":["hidden","reversed-extremes"]}
+    {
+      "id": "sample-crossing",
+      "name": "sample: selected extremes cross once",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          4,
+          5,
+          5,
+          3,
+          1
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "crossing",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "sample-single",
+      "name": "sample: one element is already valid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          9
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-already-valid",
+      "name": "minimum first and maximum last need no swaps",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          2,
+          9
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "already-valid"
+      ]
+    },
+    {
+      "id": "trial-no-crossing",
+      "name": "extremes move outward without crossing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          1,
+          3,
+          2,
+          5
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "no-crossing"
+      ]
+    },
+    {
+      "id": "trial-crossing",
+      "name": "maximum before minimum needs the shared-swap correction",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          2,
+          3,
+          1,
+          4
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "crossing"
+      ]
+    },
+    {
+      "id": "trial-duplicate-min",
+      "name": "the leftmost duplicate minimum is optimal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          1,
+          3,
+          1,
+          5
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "duplicate-minimum"
+      ]
+    },
+    {
+      "id": "trial-duplicate-max",
+      "name": "the rightmost duplicate maximum is optimal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          5,
+          2,
+          5,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "duplicate-maximum"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "equal values already occupy both required endpoints",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "all-equal"
+      ]
+    },
+    {
+      "id": "trial-reversed",
+      "name": "maximum first and minimum last cross",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          8,
+          6,
+          4,
+          2
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "reversed-extremes"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    }
   ]
 }

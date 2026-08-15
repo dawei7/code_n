@@ -177,10 +177,10 @@
       ]
     },
     {
-      "id": "real-negative-forced-target",
-      "name": "hidden: overlapping increments force a zero target from negative values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-negative-forced-target",
+      "name": "overlapping increments force a zero target from negative values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -198,16 +198,15 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "negative-values",
         "forced-target"
       ]
     },
     {
-      "id": "real-boundary-mismatch",
-      "name": "hidden: incompatible uncovered boundary cells make equality impossible",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-boundary-mismatch",
+      "name": "incompatible uncovered boundary cells make equality impossible",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -225,16 +224,15 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "boundary",
         "impossible"
       ]
     },
     {
-      "id": "real-dense-overlap",
-      "name": "hidden: four differently repeated squares overlap in the center",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-dense-overlap",
+      "name": "four differently repeated squares overlap in the center",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -257,16 +255,15 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "dense-overlap",
         "constructed"
       ]
     },
     {
-      "id": "real-perturbed-corner",
-      "name": "hidden: one perturbed finished corner invalidates an overlap construction",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-perturbed-corner",
+      "name": "one perturbed finished corner invalidates an overlap construction",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -289,16 +286,15 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "boundary",
         "impossible"
       ]
     },
     {
-      "id": "real-equal-rectangle",
-      "name": "hidden: an equal rectangular grid needs no square",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-equal-rectangle",
+      "name": "an equal rectangular grid needs no square",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -324,16 +320,15 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "rectangular-grid",
         "zero-operations"
       ]
     },
     {
-      "id": "real-single-row-unit-squares",
-      "name": "hidden: a single row is legal when k is one",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-row-unit-squares",
+      "name": "a single row is legal when k is one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -347,16 +342,15 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "single-row",
         "unit-square"
       ]
     },
     {
-      "id": "real-value-boundaries",
-      "name": "hidden: unit squares span both stated value limits",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-value-boundaries",
+      "name": "unit squares span both stated value limits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -368,16 +362,15 @@
       },
       "expected": 200000,
       "tags": [
-        "hidden",
         "value-boundary",
         "large-answer"
       ]
     },
     {
-      "id": "real-three-by-three-overlap",
-      "name": "hidden: six operations overlap across a four-by-five grid",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-by-three-overlap",
+      "name": "six operations overlap across a four-by-five grid",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -413,11 +406,9 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "dense-overlap",
         "rectangular-grid"
       ]
     }
   ]
 }
-

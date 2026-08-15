@@ -1,13 +1,215 @@
 {
   "challenge_id": "lc_3295",
   "cases": [
-    {"id":"sample-two-matches","name":"sample: two different banned words match","kind":"sample","visible":true,"input":{"message":["hello","world","leetcode"],"bannedWords":["world","hello"]},"expected":true,"tags":["sample","spam"]},
-    {"id":"sample-one-match","name":"sample: only one word matches","kind":"sample","visible":true,"input":{"message":["hello","programming","fun"],"bannedWords":["world","programming","leetcode"]},"expected":false,"tags":["sample","not-spam"]},
-    {"id":"trial-same-word-twice","name":"trial: repeated same banned word counts twice","kind":"trial","visible":true,"input":{"message":["sale","sale"],"bannedWords":["sale"]},"expected":true,"tags":["duplicate-message"]},
-    {"id":"trial-duplicate-ban-one-match","name":"trial: duplicate banned entries do not add message matches","kind":"trial","visible":true,"input":{"message":["sale","safe"],"bannedWords":["sale","sale","sale"]},"expected":false,"tags":["duplicate-ban"]},
-    {"id":"trial-no-matches","name":"trial: no exact banned values","kind":"trial","visible":true,"input":{"message":["alpha","beta"],"bannedWords":["gamma"]},"expected":false,"tags":["zero-matches"]},
-    {"id":"real-two-separated","name":"real: matches occur at opposite ends","kind":"real","visible":false,"input":{"message":["bad","one","two","three","blocked"],"bannedWords":["bad","blocked"]},"expected":true,"tags":["separated"]},
-    {"id":"real-exact-only","name":"real: prefixes and longer words do not match","kind":"real","visible":false,"input":{"message":["spam","spammer","spa"],"bannedWords":["spam"]},"expected":false,"tags":["exact-match"]},
-    {"id":"real-second-match-early","name":"real: second match fixes verdict before suffix","kind":"real","visible":false,"input":{"message":["x","x","safe","safe","safe"],"bannedWords":["x"]},"expected":true,"tags":["early-exit"]}
+    {
+      "id": "sample-two-matches",
+      "name": "sample: two different banned words match",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "message": [
+          "hello",
+          "world",
+          "leetcode"
+        ],
+        "bannedWords": [
+          "world",
+          "hello"
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "spam"
+      ]
+    },
+    {
+      "id": "sample-one-match",
+      "name": "sample: only one word matches",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "message": [
+          "hello",
+          "programming",
+          "fun"
+        ],
+        "bannedWords": [
+          "world",
+          "programming",
+          "leetcode"
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "not-spam"
+      ]
+    },
+    {
+      "id": "trial-same-word-twice",
+      "name": "trial: repeated same banned word counts twice",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "message": [
+          "sale",
+          "sale"
+        ],
+        "bannedWords": [
+          "sale"
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "duplicate-message"
+      ]
+    },
+    {
+      "id": "trial-duplicate-ban-one-match",
+      "name": "trial: duplicate banned entries do not add message matches",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "message": [
+          "sale",
+          "safe"
+        ],
+        "bannedWords": [
+          "sale",
+          "sale",
+          "sale"
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "duplicate-ban"
+      ]
+    },
+    {
+      "id": "trial-no-matches",
+      "name": "trial: no exact banned values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "message": [
+          "alpha",
+          "beta"
+        ],
+        "bannedWords": [
+          "gamma"
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "zero-matches"
+      ]
+    },
+    {
+      "id": "trial-two-separated",
+      "name": "matches occur at opposite ends",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "message": [
+          "bad",
+          "one",
+          "two",
+          "three",
+          "blocked"
+        ],
+        "bannedWords": [
+          "bad",
+          "blocked"
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "separated"
+      ]
+    },
+    {
+      "id": "trial-exact-only",
+      "name": "prefixes and longer words do not match",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "message": [
+          "spam",
+          "spammer",
+          "spa"
+        ],
+        "bannedWords": [
+          "spam"
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "exact-match"
+      ]
+    },
+    {
+      "id": "trial-second-match-early",
+      "name": "second match fixes verdict before suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "message": [
+          "x",
+          "x",
+          "safe",
+          "safe",
+          "safe"
+        ],
+        "bannedWords": [
+          "x"
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "early-exit"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in message",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "message": [
+          "hello"
+        ],
+        "bannedWords": [
+          "world",
+          "hello"
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in message",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "message": [
+          "hello",
+          "hello"
+        ],
+        "bannedWords": [
+          "world",
+          "hello"
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    }
   ]
 }

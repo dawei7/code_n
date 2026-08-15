@@ -214,10 +214,10 @@
       ]
     },
     {
-      "id": "real-max-height",
-      "name": "real: maximum height single column",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-max-height",
+      "name": "maximum height single column",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "m": 25,
         "n": 1
@@ -260,10 +260,10 @@
       ]
     },
     {
-      "id": "real-two-by-max-width",
-      "name": "real: two by maximum width",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-by-max-width",
+      "name": "two by maximum width",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "m": 2,
         "n": 25
@@ -283,10 +283,10 @@
       ]
     },
     {
-      "id": "real-max-height-by-two",
-      "name": "real: maximum height by two",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-max-height-by-two",
+      "name": "maximum height by two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "m": 25,
         "n": 2
@@ -329,10 +329,10 @@
       ]
     },
     {
-      "id": "real-four-square",
-      "name": "real: four by four",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-four-square",
+      "name": "four by four",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "m": 4,
         "n": 4
@@ -354,10 +354,10 @@
       ]
     },
     {
-      "id": "real-ten-by-seven",
-      "name": "real: ten by seven",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ten-by-seven",
+      "name": "ten by seven",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "m": 10,
         "n": 7
@@ -385,10 +385,10 @@
       ]
     },
     {
-      "id": "real-max-grid",
-      "name": "real: maximum grid",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-max-grid",
+      "name": "maximum grid",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "m": 25,
         "n": 25

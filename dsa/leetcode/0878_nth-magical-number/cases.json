@@ -99,10 +99,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: larger coprime divisors",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "larger coprime divisors",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 20,
         "a": 7,
@@ -110,15 +110,14 @@
       },
       "expected": 91,
       "tags": [
-        "hidden",
         "coprime"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: one divisor is twice the other",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "one divisor is twice the other",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 10,
         "a": 3,
@@ -126,15 +125,14 @@
       },
       "expected": 30,
       "tags": [
-        "hidden",
         "divides"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: overlapping composite divisors",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "overlapping composite divisors",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 50,
         "a": 14,
@@ -142,15 +140,14 @@
       },
       "expected": 525,
       "tags": [
-        "hidden",
         "lcm"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: upper-bound equal divisors and modulo",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "upper-bound equal divisors and modulo",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000000000,
         "a": 40000,
@@ -158,16 +155,15 @@
       },
       "expected": 999720007,
       "tags": [
-        "hidden",
         "bounds",
         "modulo"
       ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: neighboring maximum divisors",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-5",
+      "name": "neighboring maximum divisors",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 100,
         "a": 39999,
@@ -175,7 +171,6 @@
       },
       "expected": 2000000,
       "tags": [
-        "hidden",
         "bounds"
       ]
     }

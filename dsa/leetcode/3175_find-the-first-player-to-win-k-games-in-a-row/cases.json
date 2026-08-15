@@ -6,108 +6,279 @@
       "name": "sample: third player reaches two wins",
       "kind": "sample",
       "visible": true,
-      "input": {"skills": [4, 2, 6, 3, 9], "k": 2},
+      "input": {
+        "skills": [
+          4,
+          2,
+          6,
+          3,
+          9
+        ],
+        "k": 2
+      },
       "expected": 2,
-      "tags": ["sample", "champion-change"]
+      "tags": [
+        "sample",
+        "champion-change"
+      ]
     },
     {
       "id": "sample-middle-maximum-large-k",
       "name": "sample: middle maximum wins a long streak",
       "kind": "sample",
       "visible": true,
-      "input": {"skills": [2, 5, 4], "k": 3},
+      "input": {
+        "skills": [
+          2,
+          5,
+          4
+        ],
+        "k": 3
+      },
       "expected": 1,
-      "tags": ["sample", "queue-cycle"]
+      "tags": [
+        "sample",
+        "queue-cycle"
+      ]
     },
     {
       "id": "trial-k-one-front-wins",
       "name": "trial: front player wins the first game",
       "kind": "trial",
       "visible": true,
-      "input": {"skills": [7, 2], "k": 1},
+      "input": {
+        "skills": [
+          7,
+          2
+        ],
+        "k": 1
+      },
       "expected": 0,
-      "tags": ["minimum-length", "k-one"]
+      "tags": [
+        "minimum-length",
+        "k-one"
+      ]
     },
     {
       "id": "trial-k-one-challenger-wins",
       "name": "trial: second player wins the first game",
       "kind": "trial",
       "visible": true,
-      "input": {"skills": [2, 7], "k": 1},
+      "input": {
+        "skills": [
+          2,
+          7
+        ],
+        "k": 1
+      },
       "expected": 1,
-      "tags": ["minimum-length", "k-one", "champion-change"]
+      "tags": [
+        "minimum-length",
+        "k-one",
+        "champion-change"
+      ]
     },
     {
       "id": "trial-front-maximum-huge-k",
       "name": "trial: front maximum eventually reaches huge k",
       "kind": "trial",
       "visible": true,
-      "input": {"skills": [9, 1], "k": 1000000000},
+      "input": {
+        "skills": [
+          9,
+          1
+        ],
+        "k": 1000000000
+      },
       "expected": 0,
-      "tags": ["minimum-length", "maximum-k", "front-maximum"]
+      "tags": [
+        "minimum-length",
+        "maximum-k",
+        "front-maximum"
+      ]
     },
     {
       "id": "trial-second-maximum-huge-k",
       "name": "trial: second maximum eventually reaches huge k",
       "kind": "trial",
       "visible": true,
-      "input": {"skills": [1, 9], "k": 1000000000},
+      "input": {
+        "skills": [
+          1,
+          9
+        ],
+        "k": 1000000000
+      },
       "expected": 1,
-      "tags": ["minimum-length", "maximum-k", "champion-change"]
+      "tags": [
+        "minimum-length",
+        "maximum-k",
+        "champion-change"
+      ]
     },
     {
-      "id": "real-front-player-reaches-three",
-      "name": "real: front maximum reaches three wins",
-      "kind": "real",
-      "visible": false,
-      "input": {"skills": [10, 1, 2, 3], "k": 3},
+      "id": "trial-front-player-reaches-three",
+      "name": "front maximum reaches three wins",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "skills": [
+          10,
+          1,
+          2,
+          3
+        ],
+        "k": 3
+      },
       "expected": 0,
-      "tags": ["front-maximum", "exact-streak"]
+      "tags": [
+        "front-maximum",
+        "exact-streak"
+      ]
     },
     {
-      "id": "real-late-maximum",
-      "name": "real: late maximum takes over",
-      "kind": "real",
-      "visible": false,
-      "input": {"skills": [5, 1, 4, 3, 9, 2, 8], "k": 4},
+      "id": "trial-late-maximum",
+      "name": "late maximum takes over",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "skills": [
+          5,
+          1,
+          4,
+          3,
+          9,
+          2,
+          8
+        ],
+        "k": 4
+      },
       "expected": 4,
-      "tags": ["late-maximum", "large-k"]
+      "tags": [
+        "late-maximum",
+        "large-k"
+      ]
     },
     {
-      "id": "real-winner-before-global-maximum",
-      "name": "real: early champion wins before maximum competes",
-      "kind": "real",
-      "visible": false,
-      "input": {"skills": [8, 1, 2, 3, 10], "k": 3},
+      "id": "trial-winner-before-global-maximum",
+      "name": "early champion wins before maximum competes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "skills": [
+          8,
+          1,
+          2,
+          3,
+          10
+        ],
+        "k": 3
+      },
       "expected": 0,
-      "tags": ["early-return", "unseen-maximum"]
+      "tags": [
+        "early-return",
+        "unseen-maximum"
+      ]
     },
     {
-      "id": "real-multiple-champion-changes",
-      "name": "real: several champions reset the streak",
-      "kind": "real",
-      "visible": false,
-      "input": {"skills": [3, 5, 2, 8, 1, 7], "k": 3},
+      "id": "trial-multiple-champion-changes",
+      "name": "several champions reset the streak",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "skills": [
+          3,
+          5,
+          2,
+          8,
+          1,
+          7
+        ],
+        "k": 3
+      },
       "expected": 3,
-      "tags": ["champion-change", "streak-reset"]
+      "tags": [
+        "champion-change",
+        "streak-reset"
+      ]
     },
     {
-      "id": "real-middle-maximum-huge-k",
-      "name": "real: middle maximum owns an enormous streak",
-      "kind": "real",
-      "visible": false,
-      "input": {"skills": [4, 9, 1, 8, 2], "k": 1000000000},
+      "id": "trial-middle-maximum-huge-k",
+      "name": "middle maximum owns an enormous streak",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "skills": [
+          4,
+          9,
+          1,
+          8,
+          2
+        ],
+        "k": 1000000000
+      },
       "expected": 1,
-      "tags": ["middle-maximum", "maximum-k"]
+      "tags": [
+        "middle-maximum",
+        "maximum-k"
+      ]
     },
     {
-      "id": "real-skill-upper-bound",
-      "name": "real: maximum legal skill wins twice",
-      "kind": "real",
-      "visible": false,
-      "input": {"skills": [6, 2, 1000000, 1, 999999, 3], "k": 2},
+      "id": "trial-skill-upper-bound",
+      "name": "maximum legal skill wins twice",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "skills": [
+          6,
+          2,
+          1000000,
+          1,
+          999999,
+          3
+        ],
+        "k": 2
+      },
       "expected": 2,
-      "tags": ["maximum-skill", "champion-change"]
+      "tags": [
+        "maximum-skill",
+        "champion-change"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in skills",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "skills": [
+          4
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in skills",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "skills": [
+          4,
+          4
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

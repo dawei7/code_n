@@ -134,10 +134,10 @@
       ]
     },
     {
-      "id": "real-right-triangle",
-      "name": "hidden: axis-aligned right triangle",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-right-triangle",
+      "name": "axis-aligned right triangle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -161,10 +161,10 @@
       ]
     },
     {
-      "id": "real-unit-square",
-      "name": "hidden: three unit edges connect a square",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unit-square",
+      "name": "three unit edges connect a square",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -193,10 +193,10 @@
       ]
     },
     {
-      "id": "real-collinear",
-      "name": "hidden: gaps along a horizontal line",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-collinear",
+      "name": "gaps along a horizontal line",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -220,10 +220,10 @@
       ]
     },
     {
-      "id": "real-vertical-negative",
-      "name": "hidden: vertical points cross zero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-vertical-negative",
+      "name": "vertical points cross zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -248,10 +248,10 @@
       ]
     },
     {
-      "id": "real-large-coordinates",
-      "name": "hidden: opposite coordinate bounds",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-coordinates",
+      "name": "opposite coordinate bounds",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -271,10 +271,10 @@
       ]
     },
     {
-      "id": "real-cross",
-      "name": "hidden: center connects four arms",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-cross",
+      "name": "center connects four arms",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -307,10 +307,10 @@
       ]
     },
     {
-      "id": "real-irregular",
-      "name": "hidden: indirect cheap edges beat direct star",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-irregular",
+      "name": "indirect cheap edges beat direct star",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -338,10 +338,10 @@
       ]
     },
     {
-      "id": "real-diagonal-chain",
-      "name": "hidden: consecutive diagonal points",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-diagonal-chain",
+      "name": "consecutive diagonal points",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [

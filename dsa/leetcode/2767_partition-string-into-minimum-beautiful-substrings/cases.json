@@ -74,73 +74,68 @@
       ]
     },
     {
-      "id": "real-twenty-five",
-      "name": "hidden: binary twenty-five is one piece",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-twenty-five",
+      "name": "binary twenty-five is one piece",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "11001"
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "power-two"
       ]
     },
     {
-      "id": "real-repeated-five",
-      "name": "hidden: two binary fives",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-five",
+      "name": "two binary fives",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "101101"
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "repeated-power"
       ]
     },
     {
-      "id": "real-leading-zero",
-      "name": "hidden: the full string begins with zero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-leading-zero",
+      "name": "the full string begins with zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "0101"
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "leading-zero",
         "impossible"
       ]
     },
     {
-      "id": "real-unusable-suffix",
-      "name": "hidden: a valid prefix leaves only zeros",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unusable-suffix",
+      "name": "a valid prefix leaves only zeros",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "100"
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "impossible-suffix"
       ]
     },
     {
-      "id": "real-large-power-plus-one",
-      "name": "hidden: a large power followed by one",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-power-plus-one",
+      "name": "a large power followed by one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "111101000010011"
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "large-power",
         "two-pieces"
       ]

@@ -6,81 +6,185 @@
       "name": "sample: every length is eligible",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2], "k": 1},
+      "input": {
+        "nums": [
+          1,
+          2
+        ],
+        "k": 1
+      },
       "expected": 3,
-      "tags": ["sample", "k-one"]
+      "tags": [
+        "sample",
+        "k-one"
+      ]
     },
     {
       "id": "sample-all-negative",
       "name": "sample: best negative length-four subarray",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [-1, -2, -3, -4, -5], "k": 4},
+      "input": {
+        "nums": [
+          -1,
+          -2,
+          -3,
+          -4,
+          -5
+        ],
+        "k": 4
+      },
       "expected": -10,
-      "tags": ["sample", "negative"]
+      "tags": [
+        "sample",
+        "negative"
+      ]
     },
     {
       "id": "sample-length-four",
       "name": "sample: longer multiple beats length two",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [-5, 1, 2, -3, 4], "k": 2},
+      "input": {
+        "nums": [
+          -5,
+          1,
+          2,
+          -3,
+          4
+        ],
+        "k": 2
+      },
       "expected": 4,
-      "tags": ["sample", "multiple-lengths"]
+      "tags": [
+        "sample",
+        "multiple-lengths"
+      ]
     },
     {
       "id": "trial-single-element",
       "name": "trial: one element",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5], "k": 1},
+      "input": {
+        "nums": [
+          5
+        ],
+        "k": 1
+      },
       "expected": 5,
-      "tags": ["boundary", "single"]
+      "tags": [
+        "boundary",
+        "single"
+      ]
     },
     {
       "id": "trial-negative-k-one",
       "name": "trial: k one still chooses a nonempty subarray",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [-8, -3, -6], "k": 1},
+      "input": {
+        "nums": [
+          -8,
+          -3,
+          -6
+        ],
+        "k": 1
+      },
       "expected": -3,
-      "tags": ["negative", "nonempty"]
+      "tags": [
+        "negative",
+        "nonempty"
+      ]
     },
     {
-      "id": "real-interior-length-three",
-      "name": "real: interior eligible block",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [3, -100, 4, 5, -1, 2], "k": 3},
+      "id": "trial-interior-length-three",
+      "name": "interior eligible block",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          -100,
+          4,
+          5,
+          -1,
+          2
+        ],
+        "k": 3
+      },
       "expected": 8,
-      "tags": ["interior", "prefix-remainder"]
+      "tags": [
+        "interior",
+        "prefix-remainder"
+      ]
     },
     {
-      "id": "real-whole-array-only",
-      "name": "real: k equals array length",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [10, -20, 30, -40, 50, -60, 70], "k": 7},
+      "id": "trial-whole-array-only",
+      "name": "k equals array length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          -20,
+          30,
+          -40,
+          50,
+          -60,
+          70
+        ],
+        "k": 7
+      },
       "expected": 40,
-      "tags": ["boundary", "whole-array"]
+      "tags": [
+        "boundary",
+        "whole-array"
+      ]
     },
     {
-      "id": "real-competing-lengths",
-      "name": "real: compare two eligible lengths",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [9, -8, 7, -6, 5, -4, 3, -2], "k": 4},
+      "id": "trial-competing-lengths",
+      "name": "compare two eligible lengths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          -8,
+          7,
+          -6,
+          5,
+          -4,
+          3,
+          -2
+        ],
+        "k": 4
+      },
       "expected": 4,
-      "tags": ["multiple-lengths", "mixed-signs"]
+      "tags": [
+        "multiple-lengths",
+        "mixed-signs"
+      ]
     },
     {
-      "id": "real-wide-integer-sums",
-      "name": "real: billion-scale values",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000000000, -1000000000, 1000000000, -1000000000], "k": 2},
+      "id": "trial-wide-integer-sums",
+      "name": "billion-scale values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          -1000000000,
+          1000000000,
+          -1000000000
+        ],
+        "k": 2
+      },
       "expected": 0,
-      "tags": ["integer-range", "cancellation"]
+      "tags": [
+        "integer-range",
+        "cancellation"
+      ]
     }
   ]
 }

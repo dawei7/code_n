@@ -164,10 +164,10 @@
       ]
     },
     {
-      "id": "real-multiple-rejections",
-      "name": "hidden: every rejection keeps its own input position",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-rejections",
+      "name": "every rejection keeps its own input position",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tasks": [
           {
@@ -208,16 +208,15 @@
         ]
       },
       "tags": [
-        "hidden",
         "multiple-rejections",
         "ordering"
       ]
     },
     {
-      "id": "real-tied-settlements",
-      "name": "hidden: tied settlements retain input order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-tied-settlements",
+      "name": "tied settlements retain input order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tasks": [
           {
@@ -258,16 +257,15 @@
         ]
       },
       "tags": [
-        "hidden",
         "tie",
         "ordering"
       ]
     },
     {
-      "id": "real-maximum-functions",
-      "name": "hidden: ten functions all begin together",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-functions",
+      "name": "ten functions all begin together",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tasks": [
           {
@@ -371,16 +369,15 @@
         ]
       },
       "tags": [
-        "hidden",
         "maximum-functions",
         "parallel-start"
       ]
     },
     {
-      "id": "real-structured-payloads",
-      "name": "hidden: structured values and reasons are preserved",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-structured-payloads",
+      "name": "structured values and reasons are preserved",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tasks": [
           {
@@ -429,7 +426,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "structured-values"
       ]
     }

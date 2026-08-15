@@ -119,10 +119,10 @@
       ]
     },
     {
-      "id": "real-flat",
-      "name": "hidden: constant plateau",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-flat",
+      "name": "constant plateau",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": [
           7,
@@ -139,10 +139,10 @@
       ]
     },
     {
-      "id": "real-alternating",
-      "name": "hidden: separated high peaks",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alternating",
+      "name": "separated high peaks",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": [
           10,
@@ -161,10 +161,10 @@
       ]
     },
     {
-      "id": "real-late-mountain",
-      "name": "hidden: flat prefix followed by mountain",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-late-mountain",
+      "name": "flat prefix followed by mountain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": [
           2,
@@ -184,10 +184,10 @@
       ]
     },
     {
-      "id": "real-boundary-mix",
-      "name": "hidden: minimum and maximum target values alternate",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-boundary-mix",
+      "name": "minimum and maximum target values alternate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": [
           1,

@@ -6,117 +6,448 @@
       "name": "sample: complete and incomplete user streaks",
       "kind": "sample",
       "visible": true,
-      "input": {"tables": {"Steps": [
-        {"user_id":1,"steps_count":687,"steps_date":"2021-09-02"},
-        {"user_id":1,"steps_count":395,"steps_date":"2021-09-04"},
-        {"user_id":1,"steps_count":499,"steps_date":"2021-09-05"},
-        {"user_id":1,"steps_count":712,"steps_date":"2021-09-06"},
-        {"user_id":1,"steps_count":576,"steps_date":"2021-09-07"},
-        {"user_id":2,"steps_count":153,"steps_date":"2021-09-06"},
-        {"user_id":2,"steps_count":171,"steps_date":"2021-09-07"},
-        {"user_id":2,"steps_count":530,"steps_date":"2021-09-08"},
-        {"user_id":3,"steps_count":945,"steps_date":"2021-09-04"},
-        {"user_id":3,"steps_count":120,"steps_date":"2021-09-07"},
-        {"user_id":3,"steps_count":557,"steps_date":"2021-09-08"},
-        {"user_id":3,"steps_count":840,"steps_date":"2021-09-09"},
-        {"user_id":3,"steps_count":627,"steps_date":"2021-09-10"},
-        {"user_id":5,"steps_count":382,"steps_date":"2021-09-05"},
-        {"user_id":6,"steps_count":480,"steps_date":"2021-09-01"},
-        {"user_id":6,"steps_count":191,"steps_date":"2021-09-02"},
-        {"user_id":6,"steps_count":303,"steps_date":"2021-09-05"}
-      ]}},
-      "expected": {"columns":["user_id","steps_date","rolling_average"],"rows":[[1,"2021-09-06",535.33],[1,"2021-09-07",595.67],[2,"2021-09-08",284.67],[3,"2021-09-09",505.67],[3,"2021-09-10",674.67]]},
-      "validator": {"kind":"ordered_table"},
-      "tags": ["sample","rolling-window","missing-dates"]
+      "input": {
+        "tables": {
+          "Steps": [
+            {
+              "user_id": 1,
+              "steps_count": 687,
+              "steps_date": "2021-09-02"
+            },
+            {
+              "user_id": 1,
+              "steps_count": 395,
+              "steps_date": "2021-09-04"
+            },
+            {
+              "user_id": 1,
+              "steps_count": 499,
+              "steps_date": "2021-09-05"
+            },
+            {
+              "user_id": 1,
+              "steps_count": 712,
+              "steps_date": "2021-09-06"
+            },
+            {
+              "user_id": 1,
+              "steps_count": 576,
+              "steps_date": "2021-09-07"
+            },
+            {
+              "user_id": 2,
+              "steps_count": 153,
+              "steps_date": "2021-09-06"
+            },
+            {
+              "user_id": 2,
+              "steps_count": 171,
+              "steps_date": "2021-09-07"
+            },
+            {
+              "user_id": 2,
+              "steps_count": 530,
+              "steps_date": "2021-09-08"
+            },
+            {
+              "user_id": 3,
+              "steps_count": 945,
+              "steps_date": "2021-09-04"
+            },
+            {
+              "user_id": 3,
+              "steps_count": 120,
+              "steps_date": "2021-09-07"
+            },
+            {
+              "user_id": 3,
+              "steps_count": 557,
+              "steps_date": "2021-09-08"
+            },
+            {
+              "user_id": 3,
+              "steps_count": 840,
+              "steps_date": "2021-09-09"
+            },
+            {
+              "user_id": 3,
+              "steps_count": 627,
+              "steps_date": "2021-09-10"
+            },
+            {
+              "user_id": 5,
+              "steps_count": 382,
+              "steps_date": "2021-09-05"
+            },
+            {
+              "user_id": 6,
+              "steps_count": 480,
+              "steps_date": "2021-09-01"
+            },
+            {
+              "user_id": 6,
+              "steps_count": 191,
+              "steps_date": "2021-09-02"
+            },
+            {
+              "user_id": 6,
+              "steps_count": 303,
+              "steps_date": "2021-09-05"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "steps_date",
+          "rolling_average"
+        ],
+        "rows": [
+          [
+            1,
+            "2021-09-06",
+            535.33
+          ],
+          [
+            1,
+            "2021-09-07",
+            595.67
+          ],
+          [
+            2,
+            "2021-09-08",
+            284.67
+          ],
+          [
+            3,
+            "2021-09-09",
+            505.67
+          ],
+          [
+            3,
+            "2021-09-10",
+            674.67
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "rolling-window",
+        "missing-dates"
+      ]
     },
     {
       "id": "trial-exactly-three-days",
       "name": "trial: one complete three-day window",
       "kind": "trial",
       "visible": true,
-      "input": {"tables":{"Steps":[
-        {"user_id":7,"steps_count":1,"steps_date":"2024-01-01"},
-        {"user_id":7,"steps_count":2,"steps_date":"2024-01-02"},
-        {"user_id":7,"steps_count":2,"steps_date":"2024-01-03"}
-      ]}},
-      "expected": {"columns":["user_id","steps_date","rolling_average"],"rows":[[7,"2024-01-03",1.67]]},
-      "validator": {"kind":"ordered_table"},
-      "tags": ["trial","minimum-window","rounding"]
+      "input": {
+        "tables": {
+          "Steps": [
+            {
+              "user_id": 7,
+              "steps_count": 1,
+              "steps_date": "2024-01-01"
+            },
+            {
+              "user_id": 7,
+              "steps_count": 2,
+              "steps_date": "2024-01-02"
+            },
+            {
+              "user_id": 7,
+              "steps_count": 2,
+              "steps_date": "2024-01-03"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "steps_date",
+          "rolling_average"
+        ],
+        "rows": [
+          [
+            7,
+            "2024-01-03",
+            1.67
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "minimum-window",
+        "rounding"
+      ]
     },
     {
       "id": "trial-gap-does-not-qualify",
       "name": "trial: three rows separated by a missing date",
       "kind": "trial",
       "visible": true,
-      "input": {"tables":{"Steps":[
-        {"user_id":4,"steps_count":10,"steps_date":"2024-02-01"},
-        {"user_id":4,"steps_count":20,"steps_date":"2024-02-03"},
-        {"user_id":4,"steps_count":30,"steps_date":"2024-02-04"}
-      ]}},
-      "expected": {"columns":["user_id","steps_date","rolling_average"],"rows":[]},
-      "validator": {"kind":"ordered_table"},
-      "tags": ["trial","calendar-gap"]
+      "input": {
+        "tables": {
+          "Steps": [
+            {
+              "user_id": 4,
+              "steps_count": 10,
+              "steps_date": "2024-02-01"
+            },
+            {
+              "user_id": 4,
+              "steps_count": 20,
+              "steps_date": "2024-02-03"
+            },
+            {
+              "user_id": 4,
+              "steps_count": 30,
+              "steps_date": "2024-02-04"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "steps_date",
+          "rolling_average"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "calendar-gap"
+      ]
     },
     {
-      "id": "real-partitions-are-independent",
-      "name": "hidden: observations from different users never mix",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables":{"Steps":[
-        {"user_id":1,"steps_count":3,"steps_date":"2024-03-01"},
-        {"user_id":2,"steps_count":100,"steps_date":"2024-03-01"},
-        {"user_id":1,"steps_count":6,"steps_date":"2024-03-02"},
-        {"user_id":2,"steps_count":200,"steps_date":"2024-03-03"},
-        {"user_id":1,"steps_count":9,"steps_date":"2024-03-03"},
-        {"user_id":2,"steps_count":300,"steps_date":"2024-03-04"}
-      ]}},
-      "expected": {"columns":["user_id","steps_date","rolling_average"],"rows":[[1,"2024-03-03",6.0]]},
-      "validator": {"kind":"ordered_table"},
-      "tags": ["hidden","partition-boundary"]
+      "id": "trial-partitions-are-independent",
+      "name": "observations from different users never mix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Steps": [
+            {
+              "user_id": 1,
+              "steps_count": 3,
+              "steps_date": "2024-03-01"
+            },
+            {
+              "user_id": 2,
+              "steps_count": 100,
+              "steps_date": "2024-03-01"
+            },
+            {
+              "user_id": 1,
+              "steps_count": 6,
+              "steps_date": "2024-03-02"
+            },
+            {
+              "user_id": 2,
+              "steps_count": 200,
+              "steps_date": "2024-03-03"
+            },
+            {
+              "user_id": 1,
+              "steps_count": 9,
+              "steps_date": "2024-03-03"
+            },
+            {
+              "user_id": 2,
+              "steps_count": 300,
+              "steps_date": "2024-03-04"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "steps_date",
+          "rolling_average"
+        ],
+        "rows": [
+          [
+            1,
+            "2024-03-03",
+            6.0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "partition-boundary"
+      ]
     },
     {
-      "id": "real-overlapping-windows-and-input-order",
-      "name": "hidden: a long streak yields overlapping windows in sorted order",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables":{"Steps":[
-        {"user_id":9,"steps_count":50,"steps_date":"2024-04-05"},
-        {"user_id":9,"steps_count":10,"steps_date":"2024-04-01"},
-        {"user_id":9,"steps_count":40,"steps_date":"2024-04-04"},
-        {"user_id":9,"steps_count":20,"steps_date":"2024-04-02"},
-        {"user_id":9,"steps_count":30,"steps_date":"2024-04-03"}
-      ]}},
-      "expected": {"columns":["user_id","steps_date","rolling_average"],"rows":[[9,"2024-04-03",20.0],[9,"2024-04-04",30.0],[9,"2024-04-05",40.0]]},
-      "validator": {"kind":"ordered_table"},
-      "tags": ["hidden","overlapping-windows","input-order"]
+      "id": "trial-overlapping-windows-and-input-order",
+      "name": "a long streak yields overlapping windows in sorted order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Steps": [
+            {
+              "user_id": 9,
+              "steps_count": 50,
+              "steps_date": "2024-04-05"
+            },
+            {
+              "user_id": 9,
+              "steps_count": 10,
+              "steps_date": "2024-04-01"
+            },
+            {
+              "user_id": 9,
+              "steps_count": 40,
+              "steps_date": "2024-04-04"
+            },
+            {
+              "user_id": 9,
+              "steps_count": 20,
+              "steps_date": "2024-04-02"
+            },
+            {
+              "user_id": 9,
+              "steps_count": 30,
+              "steps_date": "2024-04-03"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "steps_date",
+          "rolling_average"
+        ],
+        "rows": [
+          [
+            9,
+            "2024-04-03",
+            20.0
+          ],
+          [
+            9,
+            "2024-04-04",
+            30.0
+          ],
+          [
+            9,
+            "2024-04-05",
+            40.0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "overlapping-windows",
+        "input-order"
+      ]
     },
     {
-      "id": "real-month-boundary",
-      "name": "hidden: consecutive dates may cross a month boundary",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables":{"Steps":[
-        {"user_id":3,"steps_count":90,"steps_date":"2024-01-30"},
-        {"user_id":3,"steps_count":120,"steps_date":"2024-01-31"},
-        {"user_id":3,"steps_count":150,"steps_date":"2024-02-01"}
-      ]}},
-      "expected": {"columns":["user_id","steps_date","rolling_average"],"rows":[[3,"2024-02-01",120.0]]},
-      "validator": {"kind":"ordered_table"},
-      "tags": ["hidden","month-boundary"]
+      "id": "trial-month-boundary",
+      "name": "consecutive dates may cross a month boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Steps": [
+            {
+              "user_id": 3,
+              "steps_count": 90,
+              "steps_date": "2024-01-30"
+            },
+            {
+              "user_id": 3,
+              "steps_count": 120,
+              "steps_date": "2024-01-31"
+            },
+            {
+              "user_id": 3,
+              "steps_count": 150,
+              "steps_date": "2024-02-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "steps_date",
+          "rolling_average"
+        ],
+        "rows": [
+          [
+            3,
+            "2024-02-01",
+            120.0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "month-boundary"
+      ]
     },
     {
-      "id": "real-one-and-two-row-partitions",
-      "name": "hidden: short user histories produce no rows",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables":{"Steps":[
-        {"user_id":1,"steps_count":8,"steps_date":"2024-05-01"},
-        {"user_id":2,"steps_count":10,"steps_date":"2024-05-01"},
-        {"user_id":2,"steps_count":20,"steps_date":"2024-05-02"}
-      ]}},
-      "expected": {"columns":["user_id","steps_date","rolling_average"],"rows":[]},
-      "validator": {"kind":"ordered_table"},
-      "tags": ["hidden","insufficient-history"]
+      "id": "trial-one-and-two-row-partitions",
+      "name": "short user histories produce no rows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Steps": [
+            {
+              "user_id": 1,
+              "steps_count": 8,
+              "steps_date": "2024-05-01"
+            },
+            {
+              "user_id": 2,
+              "steps_count": 10,
+              "steps_date": "2024-05-01"
+            },
+            {
+              "user_id": 2,
+              "steps_count": 20,
+              "steps_date": "2024-05-02"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "steps_date",
+          "rolling_average"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "insufficient-history"
+      ]
     }
   ]
 }

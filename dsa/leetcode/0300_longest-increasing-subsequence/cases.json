@@ -104,10 +104,10 @@
       ]
     },
     {
-      "id": "real-late-run",
-      "name": "hidden: best run forms after smaller replacement",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-late-run",
+      "name": "best run forms after smaller replacement",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -120,8 +120,40 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "replacement"
+      ]
+    },
+    {
+      "id": "trial-boundary-7",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          10
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

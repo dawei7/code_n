@@ -6,81 +6,145 @@
       "name": "sample: one of two boundaries matches",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 3, "m": 2, "k": 1},
+      "input": {
+        "n": 3,
+        "m": 2,
+        "k": 1
+      },
       "expected": 4,
-      "tags": ["sample", "combinations"]
+      "tags": [
+        "sample",
+        "combinations"
+      ]
     },
     {
       "id": "sample-two-matches",
       "name": "sample: two of three boundaries match",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 4, "m": 2, "k": 2},
+      "input": {
+        "n": 4,
+        "m": 2,
+        "k": 2
+      },
       "expected": 6,
-      "tags": ["sample", "combinations"]
+      "tags": [
+        "sample",
+        "combinations"
+      ]
     },
     {
       "id": "sample-no-matches",
       "name": "sample: binary arrays must alternate",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 5, "m": 2, "k": 0},
+      "input": {
+        "n": 5,
+        "m": 2,
+        "k": 0
+      },
       "expected": 2,
-      "tags": ["sample", "zero-matches"]
+      "tags": [
+        "sample",
+        "zero-matches"
+      ]
     },
     {
       "id": "trial-single-element",
       "name": "trial: every single-element array is good",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1, "m": 5, "k": 0},
+      "input": {
+        "n": 1,
+        "m": 5,
+        "k": 0
+      },
       "expected": 5,
-      "tags": ["edge", "single-element"]
+      "tags": [
+        "edge",
+        "single-element"
+      ]
     },
     {
       "id": "trial-all-match",
       "name": "trial: all boundaries force a constant array",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 6, "m": 4, "k": 5},
+      "input": {
+        "n": 6,
+        "m": 4,
+        "k": 5
+      },
       "expected": 4,
-      "tags": ["edge", "all-matches"]
+      "tags": [
+        "edge",
+        "all-matches"
+      ]
     },
     {
       "id": "trial-one-value-valid",
       "name": "trial: one available value permits the constant array",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 5, "m": 1, "k": 4},
+      "input": {
+        "n": 5,
+        "m": 1,
+        "k": 4
+      },
       "expected": 1,
-      "tags": ["edge", "one-value"]
+      "tags": [
+        "edge",
+        "one-value"
+      ]
     },
     {
       "id": "trial-one-value-impossible",
       "name": "trial: one available value cannot create a change",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 5, "m": 1, "k": 3},
+      "input": {
+        "n": 5,
+        "m": 1,
+        "k": 3
+      },
       "expected": 0,
-      "tags": ["edge", "one-value"]
+      "tags": [
+        "edge",
+        "one-value"
+      ]
     },
     {
-      "id": "real-multiple-values",
-      "name": "real: choose two matching slots among four",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 5, "m": 3, "k": 2},
+      "id": "trial-multiple-values",
+      "name": "choose two matching slots among four",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "m": 3,
+        "k": 2
+      },
       "expected": 72,
-      "tags": ["real", "closed-form"]
+      "tags": [
+        "real",
+        "closed-form"
+      ]
     },
     {
-      "id": "real-large-modulo",
-      "name": "real: a large exponent requires modular arithmetic",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 10000, "m": 100000, "k": 0},
+      "id": "trial-large-modulo",
+      "name": "a large exponent requires modular arithmetic",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 10000,
+        "m": 100000,
+        "k": 0
+      },
       "expected": 822189602,
-      "tags": ["real", "modulo", "large-exponent"]
+      "tags": [
+        "real",
+        "modulo",
+        "large-exponent"
+      ]
     }
   ]
 }

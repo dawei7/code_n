@@ -6,108 +6,168 @@
       "name": "sample: every character forms a unit chunk",
       "kind": "sample",
       "visible": true,
-      "input": {"word": "abcde"},
+      "input": {
+        "word": "abcde"
+      },
       "expected": "1a1b1c1d1e",
-      "tags": ["sample", "unit-runs"]
+      "tags": [
+        "sample",
+        "unit-runs"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: a long run splits at nine",
       "kind": "sample",
       "visible": true,
-      "input": {"word": "aaaaaaaaaaaaaabb"},
+      "input": {
+        "word": "aaaaaaaaaaaaaabb"
+      },
       "expected": "9a5a2b",
-      "tags": ["sample", "split-run"]
+      "tags": [
+        "sample",
+        "split-run"
+      ]
     },
     {
       "id": "trial-single-character",
       "name": "trial: one input character",
       "kind": "trial",
       "visible": true,
-      "input": {"word": "a"},
+      "input": {
+        "word": "a"
+      },
       "expected": "1a",
-      "tags": ["single", "minimum-length"]
+      "tags": [
+        "single",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-exactly-nine",
       "name": "trial: a run of exactly nine needs one chunk",
       "kind": "trial",
       "visible": true,
-      "input": {"word": "bbbbbbbbb"},
+      "input": {
+        "word": "bbbbbbbbb"
+      },
       "expected": "9b",
-      "tags": ["chunk-boundary", "exact-nine"]
+      "tags": [
+        "chunk-boundary",
+        "exact-nine"
+      ]
     },
     {
       "id": "trial-ten-copies",
       "name": "trial: the tenth copy begins another chunk",
       "kind": "trial",
       "visible": true,
-      "input": {"word": "bbbbbbbbbb"},
+      "input": {
+        "word": "bbbbbbbbbb"
+      },
       "expected": "9b1b",
-      "tags": ["chunk-boundary", "split-run"]
+      "tags": [
+        "chunk-boundary",
+        "split-run"
+      ]
     },
     {
       "id": "trial-mixed-runs",
       "name": "trial: changing characters and a ten-character run",
       "kind": "trial",
       "visible": true,
-      "input": {"word": "aaabbccccccccccdde"},
+      "input": {
+        "word": "aaabbccccccccccdde"
+      },
       "expected": "3a2b9c1c2d1e",
-      "tags": ["mixed-runs", "split-run"]
+      "tags": [
+        "mixed-runs",
+        "split-run"
+      ]
     },
     {
-      "id": "real-alternating-characters",
-      "name": "real: alternating characters expand to unit chunks",
-      "kind": "real",
-      "visible": false,
-      "input": {"word": "abababab"},
+      "id": "trial-alternating-characters",
+      "name": "alternating characters expand to unit chunks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "abababab"
+      },
       "expected": "1a1b1a1b1a1b1a1b",
-      "tags": ["real", "alternating"]
+      "tags": [
+        "real",
+        "alternating"
+      ]
     },
     {
-      "id": "real-eighteen-copies",
-      "name": "real: an exact multiple of nine has no remainder chunk",
-      "kind": "real",
-      "visible": false,
-      "input": {"word": "aaaaaaaaaaaaaaaaaa"},
+      "id": "trial-eighteen-copies",
+      "name": "an exact multiple of nine has no remainder chunk",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aaaaaaaaaaaaaaaaaa"
+      },
       "expected": "9a9a",
-      "tags": ["real", "multiple-of-nine"]
+      "tags": [
+        "real",
+        "multiple-of-nine"
+      ]
     },
     {
-      "id": "real-nineteen-copies",
-      "name": "real: two full chunks and one remainder",
-      "kind": "real",
-      "visible": false,
-      "input": {"word": "aaaaaaaaaaaaaaaaaaa"},
+      "id": "trial-nineteen-copies",
+      "name": "two full chunks and one remainder",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aaaaaaaaaaaaaaaaaaa"
+      },
       "expected": "9a9a1a",
-      "tags": ["real", "remainder"]
+      "tags": [
+        "real",
+        "remainder"
+      ]
     },
     {
-      "id": "real-separated-same-character",
-      "name": "real: equal characters separated by another run stay separate",
-      "kind": "real",
-      "visible": false,
-      "input": {"word": "aaaaabaaaaa"},
+      "id": "trial-separated-same-character",
+      "name": "equal characters separated by another run stay separate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aaaaabaaaaa"
+      },
       "expected": "5a1b5a",
-      "tags": ["real", "run-boundary"]
+      "tags": [
+        "real",
+        "run-boundary"
+      ]
     },
     {
-      "id": "real-distinct-lowercase-letters",
-      "name": "real: distinct lowercase letters remain ordered",
-      "kind": "real",
-      "visible": false,
-      "input": {"word": "abcxyz"},
+      "id": "trial-distinct-lowercase-letters",
+      "name": "distinct lowercase letters remain ordered",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "abcxyz"
+      },
       "expected": "1a1b1c1x1y1z",
-      "tags": ["real", "lowercase"]
+      "tags": [
+        "real",
+        "lowercase"
+      ]
     },
     {
-      "id": "real-five-full-chunks",
-      "name": "real: a long run emits repeated full chunks",
-      "kind": "real",
-      "visible": false,
-      "input": {"word": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"},
+      "id": "trial-five-full-chunks",
+      "name": "a long run emits repeated full chunks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+      },
       "expected": "9z9z9z9z9z",
-      "tags": ["real", "long-run"]
+      "tags": [
+        "real",
+        "long-run"
+      ]
     }
   ]
 }

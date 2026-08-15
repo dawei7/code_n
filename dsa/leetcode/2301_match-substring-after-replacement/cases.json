@@ -2,14 +2,212 @@
   "schema_version": 1,
   "challenge_id": "lc_2301",
   "cases": [
-    {"id":"sample-directed-match","name":"sample: selected directed replacements create a substring","kind":"sample","visible":true,"input":{"s":"fool3e7bar","sub":"leet","mappings":[["e","3"],["t","7"],["t","8"]]},"expected":true,"tags":["sample","replacement"]},
-    {"id":"sample-no-reverse","name":"sample: a mapping cannot be used in reverse","kind":"sample","visible":true,"input":{"s":"fooleetbar","sub":"f00l","mappings":[["o","0"]]},"expected":false,"tags":["sample","direction"]},
-    {"id":"sample-repeated-mapping","name":"sample: one mapping type applies at several positions","kind":"sample","visible":true,"input":{"s":"Fool33tbaR","sub":"leetd","mappings":[["e","3"],["t","7"],["t","8"],["d","b"],["p","b"]]},"expected":true,"tags":["sample","repeated-use"]},
-    {"id":"trial-exact-no-mappings","name":"an unchanged exact substring needs no mapping","kind":"trial","visible":true,"input":{"s":"abcdef","sub":"cde","mappings":[]},"expected":true,"tags":["exact-match"]},
-    {"id":"trial-no-chain","name":"two directed mappings cannot chain on one position","kind":"trial","visible":true,"input":{"s":"c","sub":"a","mappings":[["a","b"],["b","c"]]},"expected":false,"tags":["one-step","no-transitivity"]},
-    {"id":"trial-reuse","name":"the same directed pair may replace every occurrence","kind":"trial","visible":true,"input":{"s":"bbb","sub":"aaa","mappings":[["a","b"]]},"expected":true,"tags":["repeated-use"]},
-    {"id":"real-case-sensitive","name":"hidden: replacement endpoints preserve case","kind":"real","visible":false,"input":{"s":"xxA1yy","sub":"a1","mappings":[["a","A"]]},"expected":true,"tags":["hidden","case-sensitive"]},
-    {"id":"real-later-window","name":"hidden: only a later alignment satisfies all positions","kind":"real","visible":false,"input":{"s":"abxxcD9","sub":"cd9","mappings":[["d","D"]]},"expected":true,"tags":["hidden","later-alignment"]},
-    {"id":"real-optional-replacement","name":"hidden: mappings need not be used where characters already agree","kind":"real","visible":false,"input":{"s":"x1y2z","sub":"1a2","mappings":[["a","y"]]},"expected":true,"tags":["hidden","optional"]}
+    {
+      "id": "sample-directed-match",
+      "name": "sample: selected directed replacements create a substring",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "fool3e7bar",
+        "sub": "leet",
+        "mappings": [
+          [
+            "e",
+            "3"
+          ],
+          [
+            "t",
+            "7"
+          ],
+          [
+            "t",
+            "8"
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "replacement"
+      ]
+    },
+    {
+      "id": "sample-no-reverse",
+      "name": "sample: a mapping cannot be used in reverse",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "fooleetbar",
+        "sub": "f00l",
+        "mappings": [
+          [
+            "o",
+            "0"
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "direction"
+      ]
+    },
+    {
+      "id": "sample-repeated-mapping",
+      "name": "sample: one mapping type applies at several positions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "Fool33tbaR",
+        "sub": "leetd",
+        "mappings": [
+          [
+            "e",
+            "3"
+          ],
+          [
+            "t",
+            "7"
+          ],
+          [
+            "t",
+            "8"
+          ],
+          [
+            "d",
+            "b"
+          ],
+          [
+            "p",
+            "b"
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "repeated-use"
+      ]
+    },
+    {
+      "id": "trial-exact-no-mappings",
+      "name": "an unchanged exact substring needs no mapping",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdef",
+        "sub": "cde",
+        "mappings": []
+      },
+      "expected": true,
+      "tags": [
+        "exact-match"
+      ]
+    },
+    {
+      "id": "trial-no-chain",
+      "name": "two directed mappings cannot chain on one position",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "c",
+        "sub": "a",
+        "mappings": [
+          [
+            "a",
+            "b"
+          ],
+          [
+            "b",
+            "c"
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "one-step",
+        "no-transitivity"
+      ]
+    },
+    {
+      "id": "trial-reuse",
+      "name": "the same directed pair may replace every occurrence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "bbb",
+        "sub": "aaa",
+        "mappings": [
+          [
+            "a",
+            "b"
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "repeated-use"
+      ]
+    },
+    {
+      "id": "trial-case-sensitive",
+      "name": "replacement endpoints preserve case",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "xxA1yy",
+        "sub": "a1",
+        "mappings": [
+          [
+            "a",
+            "A"
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "case-sensitive"
+      ]
+    },
+    {
+      "id": "trial-later-window",
+      "name": "only a later alignment satisfies all positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abxxcD9",
+        "sub": "cd9",
+        "mappings": [
+          [
+            "d",
+            "D"
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "later-alignment"
+      ]
+    },
+    {
+      "id": "trial-optional-replacement",
+      "name": "mappings need not be used where characters already agree",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "x1y2z",
+        "sub": "1a2",
+        "mappings": [
+          [
+            "a",
+            "y"
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "optional"
+      ]
+    }
   ]
 }

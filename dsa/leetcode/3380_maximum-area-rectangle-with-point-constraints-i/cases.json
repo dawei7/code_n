@@ -6,81 +6,346 @@
       "name": "sample: clean four-corner square",
       "kind": "sample",
       "visible": true,
-      "input": {"points": [[1, 1], [1, 3], [3, 1], [3, 3]]},
+      "input": {
+        "points": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      },
       "expected": 4,
-      "tags": ["sample", "empty-rectangle"]
+      "tags": [
+        "sample",
+        "empty-rectangle"
+      ]
     },
     {
       "id": "sample-official-two",
       "name": "sample: interior point invalidates the rectangle",
       "kind": "sample",
       "visible": true,
-      "input": {"points": [[1, 1], [1, 3], [3, 1], [3, 3], [2, 2]]},
+      "input": {
+        "points": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
       "expected": -1,
-      "tags": ["sample", "interior-point"]
+      "tags": [
+        "sample",
+        "interior-point"
+      ]
     },
     {
       "id": "sample-official-three",
       "name": "sample: boundary points force smaller rectangles",
       "kind": "sample",
       "visible": true,
-      "input": {"points": [[1, 1], [1, 3], [3, 1], [3, 3], [1, 2], [3, 2]]},
+      "input": {
+        "points": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            2
+          ]
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "boundary-point"]
+      "tags": [
+        "sample",
+        "boundary-point"
+      ]
     },
     {
       "id": "trial-horizontal-edge-blocker",
       "name": "trial: horizontal edge points invalidate the large rectangle",
       "kind": "trial",
       "visible": true,
-      "input": {"points": [[0, 0], [0, 4], [5, 0], [5, 4], [3, 0], [3, 4]]},
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
       "expected": 12,
-      "tags": ["horizontal-edge", "smaller-alternative"]
+      "tags": [
+        "horizontal-edge",
+        "smaller-alternative"
+      ]
     },
     {
       "id": "trial-vertical-edge-blocker",
       "name": "trial: vertical edge points invalidate the tall rectangle",
       "kind": "trial",
       "visible": true,
-      "input": {"points": [[0, 0], [4, 0], [0, 5], [4, 5], [0, 2], [4, 2]]},
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            4,
+            2
+          ]
+        ]
+      },
       "expected": 12,
-      "tags": ["vertical-edge", "smaller-alternative"]
+      "tags": [
+        "vertical-edge",
+        "smaller-alternative"
+      ]
     },
     {
       "id": "trial-no-four-corners",
       "name": "trial: fewer than four matching corners",
       "kind": "trial",
       "visible": true,
-      "input": {"points": [[0, 0], [0, 2], [2, 0], [3, 3]]},
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      },
       "expected": -1,
-      "tags": ["missing-corner", "no-rectangle"]
+      "tags": [
+        "missing-corner",
+        "no-rectangle"
+      ]
     },
     {
-      "id": "real-maximum-coordinate-area",
-      "name": "hidden: maximum coordinate span",
-      "kind": "real",
-      "visible": false,
-      "input": {"points": [[0, 0], [0, 100], [100, 0], [100, 100]]},
+      "id": "trial-maximum-coordinate-area",
+      "name": "maximum coordinate span",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            100
+          ],
+          [
+            100,
+            0
+          ],
+          [
+            100,
+            100
+          ]
+        ]
+      },
       "expected": 10000,
-      "tags": ["hidden", "coordinate-boundary", "maximum-area"]
+      "tags": [
+        "coordinate-boundary",
+        "maximum-area"
+      ]
     },
     {
-      "id": "real-several-candidates",
-      "name": "hidden: choose the largest empty candidate",
-      "kind": "real",
-      "visible": false,
-      "input": {"points": [[0, 0], [0, 2], [2, 0], [2, 2], [5, 0], [5, 2], [5, 5], [2, 5]]},
+      "id": "trial-several-candidates",
+      "name": "choose the largest empty candidate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            2,
+            5
+          ]
+        ]
+      },
       "expected": 9,
-      "tags": ["hidden", "multiple-rectangles"]
+      "tags": [
+        "multiple-rectangles"
+      ]
     },
     {
-      "id": "real-grid-with-interior",
-      "name": "hidden: dense grid leaves only adjacent empty cells",
-      "kind": "real",
-      "visible": false,
-      "input": {"points": [[0, 0], [0, 2], [2, 0], [2, 2], [4, 0], [4, 2], [0, 4], [2, 4], [4, 4], [1, 1]]},
+      "id": "trial-grid-with-interior",
+      "name": "dense grid leaves only adjacent empty cells",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
       "expected": 4,
-      "tags": ["hidden", "maximum-length", "interior-point"]
+      "tags": [
+        "maximum-length",
+        "interior-point"
+      ]
     }
   ]
 }

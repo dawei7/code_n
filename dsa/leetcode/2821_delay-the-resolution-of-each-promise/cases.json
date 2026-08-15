@@ -191,10 +191,10 @@
       ]
     },
     {
-      "id": "real-reference-values",
-      "name": "hidden: structured values are forwarded unchanged",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-reference-values",
+      "name": "structured values are forwarded unchanged",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tasks": [
           {
@@ -237,16 +237,15 @@
         }
       ],
       "tags": [
-        "hidden",
         "values",
         "maximum-delay"
       ]
     },
     {
-      "id": "real-maximum-functions",
-      "name": "hidden: ten wrappers preserve all positions",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-functions",
+      "name": "ten wrappers preserve all positions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tasks": [
           {
@@ -345,16 +344,15 @@
         }
       ],
       "tags": [
-        "hidden",
         "maximum-functions",
         "mixed-outcomes"
       ]
     },
     {
-      "id": "real-reverse-completion-order",
-      "name": "hidden: settlement order does not reorder wrappers",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-reverse-completion-order",
+      "name": "settlement order does not reorder wrappers",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tasks": [
           {
@@ -399,7 +397,6 @@
         }
       ],
       "tags": [
-        "hidden",
         "ordering"
       ]
     }

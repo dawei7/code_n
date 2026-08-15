@@ -118,10 +118,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: largest pile controls one-hour-per-pile case",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "largest pile controls one-hour-per-pile case",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "piles": [
           2,
@@ -132,15 +132,14 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "maximum"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: total hours equal total bananas",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "total hours equal total bananas",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "piles": [
           2,
@@ -151,15 +150,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "speed-one"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: upper-bound single pile",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "upper-bound single pile",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "piles": [
           1000000000
@@ -168,15 +166,14 @@
       },
       "expected": 1000000000,
       "tags": [
-        "hidden",
         "bounds"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: ceiling division across equal piles",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "ceiling division across equal piles",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "piles": [
           9,
@@ -186,15 +183,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "ceilings"
       ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: mixed pile ceiling boundary",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-5",
+      "name": "mixed pile ceiling boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "piles": [
           4,
@@ -205,7 +201,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

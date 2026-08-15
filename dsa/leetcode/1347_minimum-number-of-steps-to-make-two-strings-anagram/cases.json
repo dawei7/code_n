@@ -2,12 +2,108 @@
   "schema_version": 1,
   "challenge_id": "lc_1347",
   "cases": [
-    {"id":"sample-one-replacement","name":"sample: one frequency deficit","kind":"sample","visible":true,"input":{"s":"bab","t":"aba"},"expected":1,"tags":["sample","counting"]},
-    {"id":"sample-five-replacements","name":"sample: several deficits","kind":"sample","visible":true,"input":{"s":"leetcode","t":"practice"},"expected":5,"tags":["sample","counting"]},
-    {"id":"sample-already-anagrams","name":"sample: different order, equal counts","kind":"sample","visible":true,"input":{"s":"anagram","t":"mangaar"},"expected":0,"tags":["sample","anagram"]},
-    {"id":"trial-single-character","name":"trial: one character differs","kind":"trial","visible":true,"input":{"s":"a","t":"b"},"expected":1,"tags":["trial","boundary"]},
-    {"id":"trial-all-different","name":"trial: every character must change","kind":"trial","visible":true,"input":{"s":"aaaa","t":"bbbb"},"expected":4,"tags":["trial","maximum"]},
-    {"id":"hidden-partial-overlap","name":"hidden: multiplicities partly overlap","kind":"real","visible":false,"input":{"s":"aabbcc","t":"abbbbb"},"expected":3,"tags":["hidden","multiplicity"]},
-    {"id":"hidden-identical","name":"hidden: identical strings","kind":"real","visible":false,"input":{"s":"algorithm","t":"algorithm"},"expected":0,"tags":["hidden","identical"]}
+    {
+      "id": "sample-one-replacement",
+      "name": "sample: one frequency deficit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "bab",
+        "t": "aba"
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "counting"
+      ]
+    },
+    {
+      "id": "sample-five-replacements",
+      "name": "sample: several deficits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "leetcode",
+        "t": "practice"
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "counting"
+      ]
+    },
+    {
+      "id": "sample-already-anagrams",
+      "name": "sample: different order, equal counts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "anagram",
+        "t": "mangaar"
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "anagram"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "trial: one character differs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "t": "b"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-all-different",
+      "name": "trial: every character must change",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaa",
+        "t": "bbbb"
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "maximum"
+      ]
+    },
+    {
+      "id": "trial-partial-overlap",
+      "name": "multiplicities partly overlap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aabbcc",
+        "t": "abbbbb"
+      },
+      "expected": 3,
+      "tags": [
+        "multiplicity"
+      ]
+    },
+    {
+      "id": "trial-identical",
+      "name": "identical strings",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "algorithm",
+        "t": "algorithm"
+      },
+      "expected": 0,
+      "tags": [
+        "identical"
+      ]
+    }
   ]
 }

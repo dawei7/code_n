@@ -7,63 +7,188 @@
       "name": "sample: one row-column pair",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[3,2,1],[1,7,6],[2,7,7]]},
+      "input": {
+        "grid": [
+          [
+            3,
+            2,
+            1
+          ],
+          [
+            1,
+            7,
+            6
+          ],
+          [
+            2,
+            7,
+            7
+          ]
+        ]
+      },
       "expected": 1,
-      "tags": ["sample", "matrix"]
+      "tags": [
+        "sample",
+        "matrix"
+      ]
     },
     {
       "id": "sample-duplicate-rows",
       "name": "sample: duplicate rows contribute separate pairs",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[3,1,2,2],[1,4,4,5],[2,4,2,2],[2,4,2,2]]},
+      "input": {
+        "grid": [
+          [
+            3,
+            1,
+            2,
+            2
+          ],
+          [
+            1,
+            4,
+            4,
+            5
+          ],
+          [
+            2,
+            4,
+            2,
+            2
+          ],
+          [
+            2,
+            4,
+            2,
+            2
+          ]
+        ]
+      },
       "expected": 3,
-      "tags": ["sample", "multiplicity"]
+      "tags": [
+        "sample",
+        "multiplicity"
+      ]
     },
     {
       "id": "trial-single-cell",
       "name": "a single row always matches the single column",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[5]]},
+      "input": {
+        "grid": [
+          [
+            5
+          ]
+        ]
+      },
       "expected": 1,
-      "tags": ["boundary"]
+      "tags": [
+        "boundary"
+      ]
     },
     {
       "id": "trial-no-matches",
       "name": "no row sequence equals a column sequence",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[1,2],[3,4]]},
+      "input": {
+        "grid": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
       "expected": 0,
-      "tags": ["zero"]
+      "tags": [
+        "zero"
+      ]
     },
     {
       "id": "trial-all-identical",
       "name": "every row matches every column",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[1,1,1],[1,1,1],[1,1,1]]},
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
       "expected": 9,
-      "tags": ["multiplicity"]
+      "tags": [
+        "multiplicity"
+      ]
     },
     {
-      "id": "real-symmetric-distinct",
-      "name": "hidden: a symmetric matrix has two distinct matches",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[11,1],[1,11]]},
+      "id": "trial-symmetric-distinct",
+      "name": "a symmetric matrix has two distinct matches",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            11,
+            1
+          ],
+          [
+            1,
+            11
+          ]
+        ]
+      },
       "expected": 2,
-      "tags": ["hidden", "symmetric"]
+      "tags": [
+        "symmetric"
+      ]
     },
     {
-      "id": "real-one-duplicated-column",
-      "name": "hidden: two identical rows match one column",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[2,2,1],[2,2,1],[1,3,4]]},
+      "id": "trial-one-duplicated-column",
+      "name": "two identical rows match one column",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            2,
+            2,
+            1
+          ],
+          [
+            2,
+            2,
+            1
+          ],
+          [
+            1,
+            3,
+            4
+          ]
+        ]
+      },
       "expected": 2,
-      "tags": ["hidden", "multiplicity"]
+      "tags": [
+        "multiplicity"
+      ]
     }
   ]
 }

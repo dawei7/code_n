@@ -95,10 +95,10 @@
       ]
     },
     {
-      "id": "real-duplicate-grains",
-      "name": "hidden: coincident grains are all eaten together",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicate-grains",
+      "name": "coincident grains are all eaten together",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "hens": [
           2,
@@ -112,15 +112,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "real-greedy-assignment",
-      "name": "hidden: an early hen should leave later grains",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-greedy-assignment",
+      "name": "an early hen should leave later grains",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "hens": [
           100,
@@ -135,15 +134,14 @@
       },
       "expected": 40,
       "tags": [
-        "hidden",
         "sorted-greedy"
       ]
     },
     {
-      "id": "real-coordinate-bound",
-      "name": "hidden: maximum coordinate distance",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-coordinate-bound",
+      "name": "maximum coordinate distance",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "hens": [
           0
@@ -154,7 +152,6 @@
       },
       "expected": 1000000000,
       "tags": [
-        "hidden",
         "large-coordinate"
       ]
     }

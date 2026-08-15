@@ -100,10 +100,10 @@
       ]
     },
     {
-      "id": "real-suffix",
-      "name": "hidden: shortest valid removal is a suffix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-suffix",
+      "name": "shortest valid removal is a suffix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -114,15 +114,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "suffix"
       ]
     },
     {
-      "id": "real-interior",
-      "name": "hidden: shortest valid removal is interior",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-interior",
+      "name": "shortest valid removal is interior",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -134,15 +133,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "interior"
       ]
     },
     {
-      "id": "real-single-divisible",
-      "name": "hidden: single element already divisible",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-divisible",
+      "name": "single element already divisible",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5
@@ -151,15 +149,14 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "single"
       ]
     },
     {
-      "id": "real-single-impossible",
-      "name": "hidden: single element cannot be removed",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-impossible",
+      "name": "single element cannot be removed",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5
@@ -168,16 +165,15 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "single",
         "impossible"
       ]
     },
     {
-      "id": "real-divisor-one",
-      "name": "hidden: every sum is divisible by one",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-divisor-one",
+      "name": "every sum is divisible by one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           999999999,
@@ -188,15 +184,14 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "divisor-boundary"
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "hidden: large values require a two-element suffix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-values",
+      "name": "large values require a two-element suffix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -207,7 +202,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     }

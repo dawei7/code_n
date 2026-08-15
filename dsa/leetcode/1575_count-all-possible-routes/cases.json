@@ -156,10 +156,10 @@
       ]
     },
     {
-      "id": "real-one-short",
-      "name": "hidden: direct route is one fuel short",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-short",
+      "name": "direct route is one fuel short",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "locations": [
           1,
@@ -177,10 +177,10 @@
       ]
     },
     {
-      "id": "real-return-once",
-      "name": "hidden: leave the destination and return once",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-return-once",
+      "name": "leave the destination and return once",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "locations": [
           1,
@@ -198,10 +198,10 @@
       ]
     },
     {
-      "id": "real-two-arrivals",
-      "name": "hidden: stop at the first or second arrival",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-arrivals",
+      "name": "stop at the first or second arrival",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "locations": [
           1,
@@ -219,10 +219,10 @@
       ]
     },
     {
-      "id": "real-unsorted-coordinates",
-      "name": "hidden: coordinate order differs from city indices",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unsorted-coordinates",
+      "name": "coordinate order differs from city indices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "locations": [
           10,
@@ -242,10 +242,10 @@
       ]
     },
     {
-      "id": "real-indirect-exact",
-      "name": "hidden: unsorted direct destination at exact distance",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-indirect-exact",
+      "name": "unsorted direct destination at exact distance",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "locations": [
           5,
@@ -264,10 +264,10 @@
       ]
     },
     {
-      "id": "real-three-city-revisits",
-      "name": "hidden: several revisiting routes with four fuel",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-city-revisits",
+      "name": "several revisiting routes with four fuel",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "locations": [
           1,

@@ -101,10 +101,10 @@
       ]
     },
     {
-      "id": "real-mixed",
-      "name": "hidden: nonregular permutation",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed",
+      "name": "nonregular permutation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -118,15 +118,14 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
     {
-      "id": "real-late-small",
-      "name": "hidden: small values appearing late cannot be first indices",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-late-small",
+      "name": "small values appearing late cannot be first indices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -140,7 +139,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "position-sensitive"
       ]
     }

@@ -6,72 +6,255 @@
       "name": "sample: a repeated endpoint does not increase the full subarray's count",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 1]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          1
+        ]
+      },
       "expected": 15,
-      "tags": ["sample", "repeated-value"]
+      "tags": [
+        "sample",
+        "repeated-value"
+      ]
     },
     {
       "id": "sample-two-equal-values",
       "name": "sample: every subarray has one distinct value",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 1]},
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
       "expected": 3,
-      "tags": ["sample", "duplicates"]
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
     },
     {
       "id": "trial-single-value",
       "name": "the only subarray contributes one",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [7]},
+      "input": {
+        "nums": [
+          7
+        ]
+      },
       "expected": 1,
-      "tags": ["minimum-length", "singleton"]
+      "tags": [
+        "minimum-length",
+        "singleton"
+      ]
     },
     {
       "id": "trial-all-distinct",
       "name": "every extension increases the distinct count",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 3]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
       "expected": 20,
-      "tags": ["all-distinct", "growing-count"]
+      "tags": [
+        "all-distinct",
+        "growing-count"
+      ]
     },
     {
       "id": "trial-paired-duplicates",
       "name": "adjacent duplicate pairs contribute according to each endpoint pair",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 1, 2, 2]},
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2
+        ]
+      },
       "expected": 22,
-      "tags": ["duplicates", "endpoint-pairs"]
+      "tags": [
+        "duplicates",
+        "endpoint-pairs"
+      ]
     },
     {
-      "id": "real-alternating-values",
-      "name": "hidden: alternating values keep long subarrays at two distinct values",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 1, 2]},
+      "id": "trial-alternating-values",
+      "name": "alternating values keep long subarrays at two distinct values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2
+        ]
+      },
       "expected": 28,
-      "tags": ["hidden", "alternating", "duplicates"]
+      "tags": [
+        "alternating",
+        "duplicates"
+      ]
     },
     {
-      "id": "real-value-boundaries",
-      "name": "hidden: minimum and maximum values can repeat",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100, 1, 100]},
+      "id": "trial-value-boundaries",
+      "name": "minimum and maximum values can repeat",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100,
+          1,
+          100
+        ]
+      },
       "expected": 15,
-      "tags": ["hidden", "value-boundary"]
+      "tags": [
+        "value-boundary"
+      ]
     },
     {
-      "id": "real-maximum-length-all-equal",
-      "name": "hidden: all 5050 subarrays have one distinct value",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7]},
+      "id": "trial-maximum-length-all-equal",
+      "name": "all 5050 subarrays have one distinct value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ]
+      },
       "expected": 5050,
-      "tags": ["hidden", "maximum-length", "all-equal"]
+      "tags": [
+        "maximum-length",
+        "all-equal"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
     }
   ]
 }

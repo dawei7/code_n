@@ -125,10 +125,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: frequencies two and three",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "frequencies two and three",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "deck": [
           0,
@@ -140,15 +140,14 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "coprime-frequencies"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: common divisor three",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "common divisor three",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "deck": [
           1,
@@ -167,15 +166,14 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "gcd-three"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: zero as an ordinary label",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "zero as an ordinary label",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "deck": [
           0,
@@ -186,15 +184,14 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "zero-value"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: boundary card labels",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "boundary card labels",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "deck": [
           0,
@@ -207,10 +204,8 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "value-bounds"
       ]
     }
   ]
 }
-

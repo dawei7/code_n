@@ -2,13 +2,223 @@
   "schema_version": 1,
   "challenge_id": "lc_2136",
   "cases": [
-    {"id": "sample-three-seeds", "name": "sample: longest growth begins before longest planting", "kind": "sample", "visible": true, "input": {"plantTime": [1,4,3], "growTime": [2,3,1]}, "expected": 9, "tags": ["sample", "greedy-order"]},
-    {"id": "sample-four-seeds", "name": "sample: tied growth durations allow either order", "kind": "sample", "visible": true, "input": {"plantTime": [1,2,3,2], "growTime": [2,1,2,1]}, "expected": 9, "tags": ["sample", "ties"]},
-    {"id": "sample-single-seed", "name": "sample: planting and growth both contribute", "kind": "sample", "visible": true, "input": {"plantTime": [1], "growTime": [1]}, "expected": 2, "tags": ["sample", "minimum-size"]},
-    {"id": "trial-equal-growth", "name": "equal growth times make planting order irrelevant", "kind": "trial", "visible": true, "input": {"plantTime": [3,1,2], "growTime": [4,4,4]}, "expected": 10, "tags": ["equal-growth"]},
-    {"id": "trial-growth-dominates", "name": "longest growth seed is planted first", "kind": "trial", "visible": true, "input": {"plantTime": [5,1], "growTime": [1,10]}, "expected": 11, "tags": ["exchange-order"]},
-    {"id": "real-increasing-growth", "name": "hidden: input order is opposite the optimum", "kind": "real", "visible": false, "input": {"plantTime": [1,1,1,1], "growTime": [1,2,3,4]}, "expected": 5, "tags": ["hidden", "reverse-order"]},
-    {"id": "real-large-planting", "name": "hidden: accumulated planting controls the last bloom", "kind": "real", "visible": false, "input": {"plantTime": [10000,10000], "growTime": [10000,1]}, "expected": 20001, "tags": ["hidden", "duration-bound"]},
-    {"id": "real-tie-planting", "name": "hidden: planting durations do not determine priority", "kind": "real", "visible": false, "input": {"plantTime": [8,1,2], "growTime": [2,9,5]}, "expected": 13, "tags": ["hidden", "priority"]}
+    {
+      "id": "sample-three-seeds",
+      "name": "sample: longest growth begins before longest planting",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "plantTime": [
+          1,
+          4,
+          3
+        ],
+        "growTime": [
+          2,
+          3,
+          1
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "greedy-order"
+      ]
+    },
+    {
+      "id": "sample-four-seeds",
+      "name": "sample: tied growth durations allow either order",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "plantTime": [
+          1,
+          2,
+          3,
+          2
+        ],
+        "growTime": [
+          2,
+          1,
+          2,
+          1
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "ties"
+      ]
+    },
+    {
+      "id": "sample-single-seed",
+      "name": "sample: planting and growth both contribute",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "plantTime": [
+          1
+        ],
+        "growTime": [
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "minimum-size"
+      ]
+    },
+    {
+      "id": "trial-equal-growth",
+      "name": "equal growth times make planting order irrelevant",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "plantTime": [
+          3,
+          1,
+          2
+        ],
+        "growTime": [
+          4,
+          4,
+          4
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "equal-growth"
+      ]
+    },
+    {
+      "id": "trial-growth-dominates",
+      "name": "longest growth seed is planted first",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "plantTime": [
+          5,
+          1
+        ],
+        "growTime": [
+          1,
+          10
+        ]
+      },
+      "expected": 11,
+      "tags": [
+        "exchange-order"
+      ]
+    },
+    {
+      "id": "trial-increasing-growth",
+      "name": "input order is opposite the optimum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "plantTime": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "growTime": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "reverse-order"
+      ]
+    },
+    {
+      "id": "trial-large-planting",
+      "name": "accumulated planting controls the last bloom",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "plantTime": [
+          10000,
+          10000
+        ],
+        "growTime": [
+          10000,
+          1
+        ]
+      },
+      "expected": 20001,
+      "tags": [
+        "duration-bound"
+      ]
+    },
+    {
+      "id": "trial-tie-planting",
+      "name": "planting durations do not determine priority",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "plantTime": [
+          8,
+          1,
+          2
+        ],
+        "growTime": [
+          2,
+          9,
+          5
+        ]
+      },
+      "expected": 13,
+      "tags": [
+        "priority"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in plantTime",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "plantTime": [
+          1
+        ],
+        "growTime": [
+          2,
+          3,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in plantTime",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "plantTime": [
+          1,
+          1
+        ],
+        "growTime": [
+          2,
+          3,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    }
   ]
 }

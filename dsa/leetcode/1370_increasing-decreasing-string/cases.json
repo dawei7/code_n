@@ -73,30 +73,28 @@
       ]
     },
     {
-      "id": "hidden-paired-alphabet",
-      "name": "hidden: paired ascending alphabet prefix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-paired-alphabet",
+      "name": "paired ascending alphabet prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aabbccddeeff"
       },
       "expected": "abcdeffedcba",
       "tags": [
-        "hidden",
         "balanced"
       ]
     },
     {
-      "id": "hidden-reverse-input",
-      "name": "hidden: physical input order does not matter",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-reverse-input",
+      "name": "physical input order does not matter",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "zyxwv"
       },
       "expected": "vwxyz",
       "tags": [
-        "hidden",
         "distinct"
       ]
     }

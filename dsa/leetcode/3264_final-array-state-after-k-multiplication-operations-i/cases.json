@@ -173,10 +173,10 @@
       ]
     },
     {
-      "id": "real-changing-order",
-      "name": "real: products repeatedly reorder minima",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-changing-order",
+      "name": "products repeatedly reorder minima",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -201,10 +201,10 @@
       ]
     },
     {
-      "id": "real-identity-many-steps",
-      "name": "real: identity multiplication repeats first minimum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-identity-many-steps",
+      "name": "identity multiplication repeats first minimum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -227,10 +227,10 @@
       ]
     },
     {
-      "id": "real-large-multiplier",
-      "name": "real: factor five quickly raises selected values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-multiplier",
+      "name": "factor five quickly raises selected values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -255,10 +255,10 @@
       ]
     },
     {
-      "id": "real-duplicate-groups",
-      "name": "real: several tied value groups",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicate-groups",
+      "name": "several tied value groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -285,10 +285,10 @@
       ]
     },
     {
-      "id": "real-maximum-length",
-      "name": "real: one hundred positions and ten updates",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-length",
+      "name": "one hundred positions and ten updates",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

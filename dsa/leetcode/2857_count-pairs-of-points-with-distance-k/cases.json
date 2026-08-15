@@ -1,15 +1,299 @@
 {
   "challenge_id": "lc_2857",
   "cases": [
-    {"id":"sample-1","name":"sample: two pairs use different XOR splits","kind":"sample","visible":true,"input":{"coordinates":[[1,2],[4,2],[1,3],[5,2]],"k":5},"expected":2,"tags":["sample","xor-distance"]},
-    {"id":"sample-2","name":"sample: five duplicate points choose any two","kind":"sample","visible":true,"input":{"coordinates":[[1,3],[1,3],[1,3],[1,3],[1,3]],"k":0},"expected":10,"tags":["sample","duplicates","zero-target"]},
-    {"id":"trial-no-pair","name":"trial: ordinary closeness does not imply XOR-distance one","kind":"trial","visible":true,"input":{"coordinates":[[0,0],[1,1]],"k":1},"expected":0,"tags":["trial","no-match"]},
-    {"id":"trial-x-only-distance","name":"trial: all target distance comes from x","kind":"trial","visible":true,"input":{"coordinates":[[0,7],[5,7]],"k":5},"expected":1,"tags":["trial","x-split"]},
-    {"id":"trial-y-only-distance","name":"trial: all target distance comes from y","kind":"trial","visible":true,"input":{"coordinates":[[9,3],[9,6]],"k":5},"expected":1,"tags":["trial","y-split"]},
-    {"id":"real-zero-target-duplicate-groups","name":"hidden: each duplicate group contributes its own combinations","kind":"real","visible":false,"input":{"coordinates":[[2,4],[2,4],[3,4],[2,4],[3,4]],"k":0},"expected":4,"tags":["hidden","duplicate-groups","combinations"]},
-    {"id":"real-all-distance-splits","name":"hidden: one anchor matches every split from zero through k","kind":"real","visible":false,"input":{"coordinates":[[0,0],[0,3],[1,2],[2,1],[3,0]],"k":3},"expected":4,"tags":["hidden","all-splits"]},
-    {"id":"real-repeated-partners","name":"hidden: frequencies count every cross-group index pair","kind":"real","visible":false,"input":{"coordinates":[[1,1],[1,1],[0,1],[0,1]],"k":1},"expected":4,"tags":["hidden","frequency-multiplicity"]},
-    {"id":"real-positive-target-identical-points","name":"hidden: identical points do not match a positive target","kind":"real","visible":false,"input":{"coordinates":[[8,8],[8,8],[8,8]],"k":2},"expected":0,"tags":["hidden","duplicates","positive-target"]},
-    {"id":"real-large-coordinate-values","name":"hidden: bit operations remain valid near the coordinate limit","kind":"real","visible":false,"input":{"coordinates":[[999990,123456],[999985,123456]],"k":7},"expected":1,"tags":["hidden","large-coordinates"]}
+    {
+      "id": "sample-1",
+      "name": "sample: two pairs use different XOR splits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "coordinates": [
+          [
+            1,
+            2
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            5,
+            2
+          ]
+        ],
+        "k": 5
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "xor-distance"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: five duplicate points choose any two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "coordinates": [
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        "k": 0
+      },
+      "expected": 10,
+      "tags": [
+        "sample",
+        "duplicates",
+        "zero-target"
+      ]
+    },
+    {
+      "id": "trial-no-pair",
+      "name": "trial: ordinary closeness does not imply XOR-distance one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coordinates": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "no-match"
+      ]
+    },
+    {
+      "id": "trial-x-only-distance",
+      "name": "trial: all target distance comes from x",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coordinates": [
+          [
+            0,
+            7
+          ],
+          [
+            5,
+            7
+          ]
+        ],
+        "k": 5
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "x-split"
+      ]
+    },
+    {
+      "id": "trial-y-only-distance",
+      "name": "trial: all target distance comes from y",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coordinates": [
+          [
+            9,
+            3
+          ],
+          [
+            9,
+            6
+          ]
+        ],
+        "k": 5
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "y-split"
+      ]
+    },
+    {
+      "id": "trial-zero-target-duplicate-groups",
+      "name": "each duplicate group contributes its own combinations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coordinates": [
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "k": 0
+      },
+      "expected": 4,
+      "tags": [
+        "duplicate-groups",
+        "combinations"
+      ]
+    },
+    {
+      "id": "trial-all-distance-splits",
+      "name": "one anchor matches every split from zero through k",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coordinates": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            0
+          ]
+        ],
+        "k": 3
+      },
+      "expected": 4,
+      "tags": [
+        "all-splits"
+      ]
+    },
+    {
+      "id": "trial-repeated-partners",
+      "name": "frequencies count every cross-group index pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coordinates": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 4,
+      "tags": [
+        "frequency-multiplicity"
+      ]
+    },
+    {
+      "id": "trial-positive-target-identical-points",
+      "name": "identical points do not match a positive target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coordinates": [
+          [
+            8,
+            8
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            8,
+            8
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "duplicates",
+        "positive-target"
+      ]
+    },
+    {
+      "id": "trial-large-coordinate-values",
+      "name": "bit operations remain valid near the coordinate limit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coordinates": [
+          [
+            999990,
+            123456
+          ],
+          [
+            999985,
+            123456
+          ]
+        ],
+        "k": 7
+      },
+      "expected": 1,
+      "tags": [
+        "large-coordinates"
+      ]
+    }
   ]
 }

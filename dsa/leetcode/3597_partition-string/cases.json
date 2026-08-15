@@ -98,10 +98,10 @@
       ]
     },
     {
-      "id": "real-two-equal",
-      "name": "real: the last singleton is already seen",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-equal",
+      "name": "the last singleton is already seen",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aa"
       },
@@ -114,10 +114,10 @@
       ]
     },
     {
-      "id": "real-repeat-after-distinct",
-      "name": "real: an ending segment can be omitted",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeat-after-distinct",
+      "name": "an ending segment can be omitted",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aba"
       },
@@ -131,10 +131,10 @@
       ]
     },
     {
-      "id": "real-complete-triangular-run",
-      "name": "real: repeated run exactly fills growing segments",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-complete-triangular-run",
+      "name": "repeated run exactly fills growing segments",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaaaaaaaaaaaaa"
       },
@@ -152,10 +152,10 @@
       ]
     },
     {
-      "id": "real-mixed-prefix-tree",
-      "name": "real: several branches share trie prefixes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-prefix-tree",
+      "name": "several branches share trie prefixes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abacabadabacaba"
       },
@@ -175,10 +175,10 @@
       ]
     },
     {
-      "id": "real-alphabet-boundary",
-      "name": "real: all lowercase letters remain distinct",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alphabet-boundary",
+      "name": "all lowercase letters remain distinct",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abcdefghijklmnopqrstuvwxyz"
       },
@@ -214,6 +214,39 @@
         "real",
         "alphabet",
         "all-distinct"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": [
+        "a"
+      ],
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": [
+        "a",
+        "aa"
+      ],
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

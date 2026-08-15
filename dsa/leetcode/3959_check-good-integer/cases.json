@@ -2,20 +2,267 @@
   "schema_version": 1,
   "challenge_id": "lc_3959",
   "cases": [
-    {"id": "sample-one-thousand", "name": "sample: zero digits add no score", "kind": "sample", "visible": true, "input": {"n": 1000}, "expected": false, "validator": {"kind": "exact"}, "tags": ["sample", "zero-digits", "not-good"]},
-    {"id": "sample-nineteen", "name": "sample: a nine makes the integer good", "kind": "sample", "visible": true, "input": {"n": 19}, "expected": true, "validator": {"kind": "exact"}, "tags": ["sample", "two-digits", "good"]},
-    {"id": "trial-one", "name": "trial: minimum input has zero score", "kind": "trial", "visible": true, "input": {"n": 1}, "expected": false, "validator": {"kind": "exact"}, "tags": ["trial", "minimum-boundary", "not-good"]},
-    {"id": "trial-nine", "name": "trial: one large digit clears the threshold", "kind": "trial", "visible": true, "input": {"n": 9}, "expected": true, "validator": {"kind": "exact"}, "tags": ["trial", "single-digit", "good"]},
-    {"id": "trial-below-threshold", "name": "trial: score forty-eight is not good", "kind": "trial", "visible": true, "input": {"n": 73}, "expected": false, "validator": {"kind": "exact"}, "tags": ["trial", "threshold-minus-two", "not-good"]},
-    {"id": "trial-exact-threshold", "name": "trial: score exactly fifty is good", "kind": "trial", "visible": true, "input": {"n": 732}, "expected": true, "validator": {"kind": "exact"}, "tags": ["trial", "inclusive-threshold", "good"]},
-    {"id": "trial-repeated-twos", "name": "trial: several small contributions remain below fifty", "kind": "trial", "visible": true, "input": {"n": 22222}, "expected": false, "validator": {"kind": "exact"}, "tags": ["trial", "repeated-digits", "not-good"]},
-    {"id": "real-double-nine", "name": "hidden: two high digits", "kind": "real", "visible": false, "input": {"n": 99}, "expected": true, "validator": {"kind": "exact"}, "tags": ["hidden", "repeated-digits", "good"]},
-    {"id": "real-double-four", "name": "hidden: two medium digits remain below the threshold", "kind": "real", "visible": false, "input": {"n": 44}, "expected": false, "validator": {"kind": "exact"}, "tags": ["hidden", "repeated-digits", "not-good"]},
-    {"id": "real-two-five-seven", "name": "hidden: distinct digits combine past fifty", "kind": "real", "visible": false, "input": {"n": 257}, "expected": true, "validator": {"kind": "exact"}, "tags": ["hidden", "mixed-digits", "good"]},
-    {"id": "real-zeros-between-nines", "name": "hidden: interior zeroes do not affect two nines", "kind": "real", "visible": false, "input": {"n": 90009}, "expected": true, "validator": {"kind": "exact"}, "tags": ["hidden", "zero-digits", "good"]},
-    {"id": "real-ascending-digits", "name": "hidden: many distinct nonzero digits", "kind": "real", "visible": false, "input": {"n": 123456789}, "expected": true, "validator": {"kind": "exact"}, "tags": ["hidden", "nine-digits", "good"]},
-    {"id": "real-one-followed-by-zeros", "name": "hidden: the maximum input has score zero", "kind": "real", "visible": false, "input": {"n": 1000000000}, "expected": false, "validator": {"kind": "exact"}, "tags": ["hidden", "maximum-boundary", "not-good"]},
-    {"id": "real-nine-digit-maximum", "name": "hidden: every digit has the maximum contribution", "kind": "real", "visible": false, "input": {"n": 999999999}, "expected": true, "validator": {"kind": "exact"}, "tags": ["hidden", "nine-digits", "good"]},
-    {"id": "real-alternating", "name": "hidden: alternating high and low digits", "kind": "real", "visible": false, "input": {"n": 808080808}, "expected": true, "validator": {"kind": "exact"}, "tags": ["hidden", "alternating-digits", "good"]}
+    {
+      "id": "sample-one-thousand",
+      "name": "sample: zero digits add no score",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 1000
+      },
+      "expected": false,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "zero-digits",
+        "not-good"
+      ]
+    },
+    {
+      "id": "sample-nineteen",
+      "name": "sample: a nine makes the integer good",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 19
+      },
+      "expected": true,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "two-digits",
+        "good"
+      ]
+    },
+    {
+      "id": "trial-one",
+      "name": "trial: minimum input has zero score",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": false,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-boundary",
+        "not-good"
+      ]
+    },
+    {
+      "id": "trial-nine",
+      "name": "trial: one large digit clears the threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 9
+      },
+      "expected": true,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-digit",
+        "good"
+      ]
+    },
+    {
+      "id": "trial-below-threshold",
+      "name": "trial: score forty-eight is not good",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 73
+      },
+      "expected": false,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "threshold-minus-two",
+        "not-good"
+      ]
+    },
+    {
+      "id": "trial-exact-threshold",
+      "name": "trial: score exactly fifty is good",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 732
+      },
+      "expected": true,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "inclusive-threshold",
+        "good"
+      ]
+    },
+    {
+      "id": "trial-repeated-twos",
+      "name": "trial: several small contributions remain below fifty",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 22222
+      },
+      "expected": false,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "repeated-digits",
+        "not-good"
+      ]
+    },
+    {
+      "id": "trial-double-nine",
+      "name": "two high digits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 99
+      },
+      "expected": true,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "repeated-digits",
+        "good"
+      ]
+    },
+    {
+      "id": "trial-double-four",
+      "name": "two medium digits remain below the threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 44
+      },
+      "expected": false,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "repeated-digits",
+        "not-good"
+      ]
+    },
+    {
+      "id": "trial-two-five-seven",
+      "name": "distinct digits combine past fifty",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 257
+      },
+      "expected": true,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "mixed-digits",
+        "good"
+      ]
+    },
+    {
+      "id": "trial-zeros-between-nines",
+      "name": "interior zeroes do not affect two nines",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 90009
+      },
+      "expected": true,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "zero-digits",
+        "good"
+      ]
+    },
+    {
+      "id": "trial-ascending-digits",
+      "name": "many distinct nonzero digits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 123456789
+      },
+      "expected": true,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "nine-digits",
+        "good"
+      ]
+    },
+    {
+      "id": "trial-one-followed-by-zeros",
+      "name": "the maximum input has score zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000000000
+      },
+      "expected": false,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "maximum-boundary",
+        "not-good"
+      ]
+    },
+    {
+      "id": "trial-nine-digit-maximum",
+      "name": "every digit has the maximum contribution",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 999999999
+      },
+      "expected": true,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "nine-digits",
+        "good"
+      ]
+    },
+    {
+      "id": "trial-alternating",
+      "name": "alternating high and low digits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 808080808
+      },
+      "expected": true,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "alternating-digits",
+        "good"
+      ]
+    }
   ]
 }

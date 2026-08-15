@@ -187,10 +187,10 @@
       ]
     },
     {
-      "id": "hidden-duplicate",
-      "name": "hidden: duplicate rectangle overlap",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicate",
+      "name": "duplicate rectangle overlap",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rectangles": [
           [
@@ -209,15 +209,14 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "duplicate"
       ]
     },
     {
-      "id": "hidden-gap-overlap",
-      "name": "hidden: equal area hides gap and overlap",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-gap-overlap",
+      "name": "equal area hides gap and overlap",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rectangles": [
           [
@@ -254,15 +253,14 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "area-insufficient"
       ]
     },
     {
-      "id": "hidden-shared-edges",
-      "name": "hidden: unequal strips share complete edges",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-shared-edges",
+      "name": "unequal strips share complete edges",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rectangles": [
           [
@@ -287,7 +285,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "shared-edge"
       ]
     }

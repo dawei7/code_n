@@ -2,12 +2,136 @@
   "schema_version": 1,
   "challenge_id": "lc_2337",
   "cases": [
-    {"id":"sample-transformable","name":"sample: pieces move legally around blanks","kind":"sample","visible":true,"input":{"start":"_L__R__R_","target":"L______RR"},"expected":true,"tags":["sample","mixed-pieces"]},
-    {"id":"sample-crossing-required","name":"sample: pieces would need to cross","kind":"sample","visible":true,"input":{"start":"R_L_","target":"__LR"},"expected":false,"tags":["sample","order"]},
-    {"id":"sample-r-cannot-left","name":"sample: R cannot move left","kind":"sample","visible":true,"input":{"start":"_R","target":"R_"},"expected":false,"tags":["sample","direction"]},
-    {"id":"trial-l-cannot-right","name":"L cannot move right","kind":"trial","visible":true,"input":{"start":"L_","target":"_L"},"expected":false,"tags":["direction"]},
-    {"id":"trial-identical","name":"an unchanged arrangement is reachable","kind":"trial","visible":true,"input":{"start":"_LR_","target":"_LR_"},"expected":true,"tags":["identity"]},
-    {"id":"real-piece-type-mismatch","name":"hidden: blanks cannot hide a changed piece type","kind":"real","visible":false,"input":{"start":"__L_R_","target":"L___R_"},"expected":true,"tags":["hidden","blanks"]},
-    {"id":"real-order-mismatch","name":"hidden: equal counts do not permit reordered pieces","kind":"real","visible":false,"input":{"start":"_LR_","target":"_RL_"},"expected":false,"tags":["hidden","order"]}
+    {
+      "id": "sample-transformable",
+      "name": "sample: pieces move legally around blanks",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "start": "_L__R__R_",
+        "target": "L______RR"
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "mixed-pieces"
+      ]
+    },
+    {
+      "id": "sample-crossing-required",
+      "name": "sample: pieces would need to cross",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "start": "R_L_",
+        "target": "__LR"
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "order"
+      ]
+    },
+    {
+      "id": "sample-r-cannot-left",
+      "name": "sample: R cannot move left",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "start": "_R",
+        "target": "R_"
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "direction"
+      ]
+    },
+    {
+      "id": "trial-l-cannot-right",
+      "name": "L cannot move right",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": "L_",
+        "target": "_L"
+      },
+      "expected": false,
+      "tags": [
+        "direction"
+      ]
+    },
+    {
+      "id": "trial-identical",
+      "name": "an unchanged arrangement is reachable",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": "_LR_",
+        "target": "_LR_"
+      },
+      "expected": true,
+      "tags": [
+        "identity"
+      ]
+    },
+    {
+      "id": "trial-piece-type-mismatch",
+      "name": "blanks cannot hide a changed piece type",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": "__L_R_",
+        "target": "L___R_"
+      },
+      "expected": true,
+      "tags": [
+        "blanks"
+      ]
+    },
+    {
+      "id": "trial-order-mismatch",
+      "name": "equal counts do not permit reordered pieces",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": "_LR_",
+        "target": "_RL_"
+      },
+      "expected": false,
+      "tags": [
+        "order"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in start",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": "_",
+        "target": "L______RR"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in start",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": "___",
+        "target": "L______RR"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
+    }
   ]
 }

@@ -352,10 +352,10 @@
       ]
     },
     {
-      "id": "hidden-adjacent-sources-stay-fixed",
-      "name": "hidden: a larger adjacent source does not recolor its neighbor",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-adjacent-sources-stay-fixed",
+      "name": "a larger adjacent source does not recolor its neighbor",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1,
         "m": 2,
@@ -379,16 +379,15 @@
         ]
       ],
       "tags": [
-        "hidden",
         "adjacent-sources",
         "permanent-colors"
       ]
     },
     {
-      "id": "hidden-four-corner-voronoi",
-      "name": "hidden: four corners compete across rows columns and center",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-four-corner-voronoi",
+      "name": "four corners compete across rows columns and center",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 3,
         "m": 3,
@@ -433,16 +432,15 @@
         ]
       ],
       "tags": [
-        "hidden",
         "four-sources",
         "center-tie"
       ]
     },
     {
-      "id": "hidden-maximum-color-bound",
-      "name": "hidden: the maximum legal color propagates normally",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-color-bound",
+      "name": "the maximum legal color propagates normally",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 2,
         "m": 3,
@@ -472,16 +470,15 @@
         ]
       ],
       "tags": [
-        "hidden",
         "maximum-color",
         "boundary"
       ]
     },
     {
-      "id": "hidden-three-sources-long-row",
-      "name": "hidden: three source regions meet along one long row",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-sources-long-row",
+      "name": "three source regions meet along one long row",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1,
         "m": 9,
@@ -517,16 +514,15 @@
         ]
       ],
       "tags": [
-        "hidden",
         "single-row",
         "multiple-ties"
       ]
     },
     {
-      "id": "hidden-asymmetric-rectangle",
-      "name": "hidden: asymmetric sources exercise every direction",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-asymmetric-rectangle",
+      "name": "asymmetric sources exercise every direction",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "m": 5,
@@ -579,7 +575,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "rectangular-grid",
         "four-directions"
       ]

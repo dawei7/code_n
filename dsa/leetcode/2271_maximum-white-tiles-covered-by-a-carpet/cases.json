@@ -2,13 +2,240 @@
   "schema_version": 1,
   "challenge_id": "lc_2271",
   "cases": [
-    {"id":"sample-several-intervals","name":"sample: carpet spans adjacent and partial intervals","kind":"sample","visible":true,"input":{"tiles":[[1,5],[10,11],[12,18],[20,25],[30,32]],"carpetLen":10},"expected":9,"tags":["sample","partial-overlap"]},
-    {"id":"sample-unsorted","name":"sample: unsorted intervals include one exact fit","kind":"sample","visible":true,"input":{"tiles":[[10,11],[1,1]],"carpetLen":2},"expected":2,"tags":["sample","unsorted","exact-fit"]},
-    {"id":"trial-long-interval","name":"carpet fits entirely inside one long white interval","kind":"trial","visible":true,"input":{"tiles":[[1,100]],"carpetLen":10},"expected":10,"tags":["single-interval","full-carpet"]},
-    {"id":"trial-cover-all","name":"a long carpet covers all white intervals and their gap","kind":"trial","visible":true,"input":{"tiles":[[1,2],[5,6]],"carpetLen":10},"expected":4,"tags":["long-carpet","gap"]},
-    {"id":"trial-partial-bridge","name":"best placement fully covers one interval and part of another","kind":"trial","visible":true,"input":{"tiles":[[1,3],[6,10]],"carpetLen":6},"expected":5,"tags":["partial-overlap","gap"]},
-    {"id":"real-separated-points","name":"hidden: one-position carpet covers one separated tile","kind":"real","visible":false,"input":{"tiles":[[1,1],[100,100]],"carpetLen":1},"expected":1,"tags":["hidden","minimum-carpet"]},
-    {"id":"real-unsorted-choice","name":"hidden: sorting exposes the best full interval","kind":"real","visible":false,"input":{"tiles":[[20,25],[1,5],[10,11]],"carpetLen":10},"expected":6,"tags":["hidden","unsorted"]},
-    {"id":"real-coordinate-bound","name":"hidden: upper-bound interval uses inclusive length","kind":"real","visible":false,"input":{"tiles":[[999999990,1000000000]],"carpetLen":1000000000},"expected":11,"tags":["hidden","coordinate-bound","inclusive"]}
+    {
+      "id": "sample-several-intervals",
+      "name": "sample: carpet spans adjacent and partial intervals",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tiles": [
+          [
+            1,
+            5
+          ],
+          [
+            10,
+            11
+          ],
+          [
+            12,
+            18
+          ],
+          [
+            20,
+            25
+          ],
+          [
+            30,
+            32
+          ]
+        ],
+        "carpetLen": 10
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "partial-overlap"
+      ]
+    },
+    {
+      "id": "sample-unsorted",
+      "name": "sample: unsorted intervals include one exact fit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tiles": [
+          [
+            10,
+            11
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "carpetLen": 2
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "unsorted",
+        "exact-fit"
+      ]
+    },
+    {
+      "id": "trial-long-interval",
+      "name": "carpet fits entirely inside one long white interval",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tiles": [
+          [
+            1,
+            100
+          ]
+        ],
+        "carpetLen": 10
+      },
+      "expected": 10,
+      "tags": [
+        "single-interval",
+        "full-carpet"
+      ]
+    },
+    {
+      "id": "trial-cover-all",
+      "name": "a long carpet covers all white intervals and their gap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tiles": [
+          [
+            1,
+            2
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        "carpetLen": 10
+      },
+      "expected": 4,
+      "tags": [
+        "long-carpet",
+        "gap"
+      ]
+    },
+    {
+      "id": "trial-partial-bridge",
+      "name": "best placement fully covers one interval and part of another",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tiles": [
+          [
+            1,
+            3
+          ],
+          [
+            6,
+            10
+          ]
+        ],
+        "carpetLen": 6
+      },
+      "expected": 5,
+      "tags": [
+        "partial-overlap",
+        "gap"
+      ]
+    },
+    {
+      "id": "trial-separated-points",
+      "name": "one-position carpet covers one separated tile",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tiles": [
+          [
+            1,
+            1
+          ],
+          [
+            100,
+            100
+          ]
+        ],
+        "carpetLen": 1
+      },
+      "expected": 1,
+      "tags": [
+        "minimum-carpet"
+      ]
+    },
+    {
+      "id": "trial-unsorted-choice",
+      "name": "sorting exposes the best full interval",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tiles": [
+          [
+            20,
+            25
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            10,
+            11
+          ]
+        ],
+        "carpetLen": 10
+      },
+      "expected": 6,
+      "tags": [
+        "unsorted"
+      ]
+    },
+    {
+      "id": "trial-coordinate-bound",
+      "name": "upper-bound interval uses inclusive length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tiles": [
+          [
+            999999990,
+            1000000000
+          ]
+        ],
+        "carpetLen": 1000000000
+      },
+      "expected": 11,
+      "tags": [
+        "coordinate-bound",
+        "inclusive"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value carpetLen=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tiles": [
+          [
+            1,
+            5
+          ],
+          [
+            10,
+            11
+          ],
+          [
+            12,
+            18
+          ],
+          [
+            20,
+            25
+          ],
+          [
+            30,
+            32
+          ]
+        ],
+        "carpetLen": 1
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    }
   ]
 }

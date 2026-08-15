@@ -107,10 +107,10 @@
       ]
     },
     {
-      "id": "hidden-all-ones-two",
-      "name": "hidden: all-one two by two",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-ones-two",
+      "name": "all-one two by two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [
@@ -125,14 +125,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden"
+        "trial"
       ]
     },
     {
-      "id": "hidden-three-by-three",
-      "name": "hidden: maximum dimensions",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-by-three",
+      "name": "maximum dimensions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [
@@ -154,7 +154,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

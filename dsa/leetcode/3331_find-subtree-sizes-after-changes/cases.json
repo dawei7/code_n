@@ -130,8 +130,8 @@
     {
       "id": "alternating-chain",
       "name": "alternating chain reconnects to matching grandparents",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "parent": [
           -1,
@@ -157,8 +157,8 @@
     {
       "id": "mixed-branching-tree",
       "name": "mixed branches and several ancestor matches",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "parent": [
           -1,

@@ -7,138 +7,322 @@
       "name": "sample: twos occur across three array elements",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [12, 54, 32, 22], "digit": 2},
+      "input": {
+        "nums": [
+          12,
+          54,
+          32,
+          22
+        ],
+        "digit": 2
+      },
       "expected": 4,
-      "tags": ["sample", "multiple-elements", "repeated-digit"]
+      "tags": [
+        "sample",
+        "multiple-elements",
+        "repeated-digit"
+      ]
     },
     {
       "id": "sample-digit-absent",
       "name": "sample: the requested digit is absent",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 34, 7], "digit": 9},
+      "input": {
+        "nums": [
+          1,
+          34,
+          7
+        ],
+        "digit": 9
+      },
       "expected": 0,
-      "tags": ["sample", "absent-digit", "zero-result"]
+      "tags": [
+        "sample",
+        "absent-digit",
+        "zero-result"
+      ]
     },
     {
       "id": "trial-single-value-single-match",
       "name": "trial: one one-digit value matches",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5], "digit": 5},
+      "input": {
+        "nums": [
+          5
+        ],
+        "digit": 5
+      },
       "expected": 1,
-      "tags": ["trial", "minimum-length", "single-digit"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "single-digit"
+      ]
     },
     {
       "id": "trial-one-number-many-matches",
       "name": "trial: every position of one number matches",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [222222], "digit": 2},
+      "input": {
+        "nums": [
+          222222
+        ],
+        "digit": 2
+      },
       "expected": 6,
-      "tags": ["trial", "repeated-digit", "single-number"]
+      "tags": [
+        "trial",
+        "repeated-digit",
+        "single-number"
+      ]
     },
     {
       "id": "trial-zero-inside-values",
       "name": "trial: zero appearances inside positive numbers",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [10, 101, 200], "digit": 0},
+      "input": {
+        "nums": [
+          10,
+          101,
+          200
+        ],
+        "digit": 0
+      },
       "expected": 4,
-      "tags": ["trial", "zero-digit", "internal-zero"]
+      "tags": [
+        "trial",
+        "zero-digit",
+        "internal-zero"
+      ]
     },
     {
       "id": "trial-upper-value-zeroes",
       "name": "trial: the maximum value contributes six zeroes",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1000000], "digit": 0},
+      "input": {
+        "nums": [
+          1000000
+        ],
+        "digit": 0
+      },
       "expected": 6,
-      "tags": ["trial", "upper-bound", "zero-digit"]
+      "tags": [
+        "trial",
+        "upper-bound",
+        "zero-digit"
+      ]
     },
     {
       "id": "trial-upper-value-leading-one",
       "name": "trial: the maximum value contains one leading one",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1000000], "digit": 1},
-      "expected": 1,
-      "tags": ["trial", "upper-bound", "seven-digits"]
-    },
-    {
-      "id": "real-growing-repetitions",
-      "name": "hidden: repeated sevens accumulate across values",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [7, 77, 777], "digit": 7},
-      "expected": 6,
-      "tags": ["hidden", "repeated-digit", "multiple-elements"]
-    },
-    {
-      "id": "real-zero-absent",
-      "name": "hidden: positive repeated nines contain no zero",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [9, 99, 999], "digit": 0},
-      "expected": 0,
-      "tags": ["hidden", "zero-digit", "absent-digit"]
-    },
-    {
-      "id": "real-mirrored-values",
-      "name": "hidden: a digit occurs once in each mirrored value",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [123456, 654321], "digit": 1},
-      "expected": 2,
-      "tags": ["hidden", "different-positions", "multiple-elements"]
-    },
-    {
-      "id": "real-all-nines",
-      "name": "hidden: every position in two values is nine",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [999999, 999999], "digit": 9},
-      "expected": 12,
-      "tags": ["hidden", "repeated-digit", "maximum-six-digit"]
-    },
-    {
-      "id": "real-trailing-zeroes",
-      "name": "hidden: each three-digit value contributes two zeroes",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100, 200, 300], "digit": 0},
-      "expected": 6,
-      "tags": ["hidden", "zero-digit", "trailing-zeroes"]
-    },
-    {
-      "id": "real-mixed-zero-patterns",
-      "name": "hidden: zeroes occur in boundary and alternating values",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000000, 999999, 101010], "digit": 0},
-      "expected": 9,
-      "tags": ["hidden", "zero-digit", "upper-bound"]
-    },
-    {
-      "id": "real-one-per-position",
-      "name": "hidden: the requested digit moves between positions",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [123, 231, 312], "digit": 2},
-      "expected": 3,
-      "tags": ["hidden", "different-positions", "one-per-value"]
-    },
-    {
-      "id": "real-powers-of-ten-with-six",
-      "name": "hidden: six appears once before increasing zero suffixes",
-      "kind": "real",
-      "visible": false,
       "input": {
-        "nums": [6, 60, 600, 6000, 60000, 600000, 1000000],
+        "nums": [
+          1000000
+        ],
+        "digit": 1
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "upper-bound",
+        "seven-digits"
+      ]
+    },
+    {
+      "id": "trial-growing-repetitions",
+      "name": "repeated sevens accumulate across values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          77,
+          777
+        ],
+        "digit": 7
+      },
+      "expected": 6,
+      "tags": [
+        "repeated-digit",
+        "multiple-elements"
+      ]
+    },
+    {
+      "id": "trial-zero-absent",
+      "name": "positive repeated nines contain no zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          99,
+          999
+        ],
+        "digit": 0
+      },
+      "expected": 0,
+      "tags": [
+        "zero-digit",
+        "absent-digit"
+      ]
+    },
+    {
+      "id": "trial-mirrored-values",
+      "name": "a digit occurs once in each mirrored value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          123456,
+          654321
+        ],
+        "digit": 1
+      },
+      "expected": 2,
+      "tags": [
+        "different-positions",
+        "multiple-elements"
+      ]
+    },
+    {
+      "id": "trial-all-nines",
+      "name": "every position in two values is nine",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          999999,
+          999999
+        ],
+        "digit": 9
+      },
+      "expected": 12,
+      "tags": [
+        "repeated-digit",
+        "maximum-six-digit"
+      ]
+    },
+    {
+      "id": "trial-trailing-zeroes",
+      "name": "each three-digit value contributes two zeroes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100,
+          200,
+          300
+        ],
+        "digit": 0
+      },
+      "expected": 6,
+      "tags": [
+        "zero-digit",
+        "trailing-zeroes"
+      ]
+    },
+    {
+      "id": "trial-mixed-zero-patterns",
+      "name": "zeroes occur in boundary and alternating values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000,
+          999999,
+          101010
+        ],
+        "digit": 0
+      },
+      "expected": 9,
+      "tags": [
+        "zero-digit",
+        "upper-bound"
+      ]
+    },
+    {
+      "id": "trial-one-per-position",
+      "name": "the requested digit moves between positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          123,
+          231,
+          312
+        ],
+        "digit": 2
+      },
+      "expected": 3,
+      "tags": [
+        "different-positions",
+        "one-per-value"
+      ]
+    },
+    {
+      "id": "trial-powers-of-ten-with-six",
+      "name": "six appears once before increasing zero suffixes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          60,
+          600,
+          6000,
+          60000,
+          600000,
+          1000000
+        ],
         "digit": 6
       },
       "expected": 6,
-      "tags": ["hidden", "mixed-lengths", "upper-bound"]
+      "tags": [
+        "mixed-lengths",
+        "upper-bound"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          12
+        ],
+        "digit": 2
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-17",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          12,
+          12
+        ],
+        "digit": 2
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

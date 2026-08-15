@@ -101,10 +101,10 @@
       ]
     },
     {
-      "id": "real-existing-suffix-reused",
-      "name": "hidden: duplicate literal suffix becomes nested",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-existing-suffix-reused",
+      "name": "duplicate literal suffix becomes nested",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "names": [
           "kaido",
@@ -120,15 +120,14 @@
         "kaido(1)(1)"
       ],
       "tags": [
-        "hidden",
         "nested-suffix"
       ]
     },
     {
-      "id": "real-gap-before-preoccupied",
-      "name": "hidden: choose free suffix before occupied larger suffix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-gap-before-preoccupied",
+      "name": "choose free suffix before occupied larger suffix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "names": [
           "x",
@@ -144,16 +143,15 @@
         "x(3)"
       ],
       "tags": [
-        "hidden",
         "suffix-gap",
         "preoccupied"
       ]
     },
     {
-      "id": "real-parenthesized-literal",
-      "name": "hidden: parenthesized request is independent base",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-parenthesized-literal",
+      "name": "parenthesized request is independent base",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "names": [
           "a(1)",
@@ -169,16 +167,15 @@
         "a(2)"
       ],
       "tags": [
-        "hidden",
         "literal-parentheses",
         "nested-suffix"
       ]
     },
     {
-      "id": "real-generated-then-requested",
-      "name": "hidden: later request collides with generated name",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-generated-then-requested",
+      "name": "later request collides with generated name",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "names": [
           "doc",
@@ -192,16 +189,15 @@
         "doc(1)(1)"
       ],
       "tags": [
-        "hidden",
         "generated-name",
         "nested-suffix"
       ]
     },
     {
-      "id": "real-maximum-length",
-      "name": "hidden: suffix a maximum-length requested name",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-length",
+      "name": "suffix a maximum-length requested name",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "names": [
           "abcdefghijklmnopqrst",
@@ -213,7 +209,6 @@
         "abcdefghijklmnopqrst(1)"
       ],
       "tags": [
-        "hidden",
         "maximum-length"
       ]
     }

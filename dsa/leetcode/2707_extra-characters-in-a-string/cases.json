@@ -1,12 +1,219 @@
-{"schema_version":1,"challenge_id":"lc_2707","cases":[
-{"id":"sample-one-extra","name":"sample: one character between two words","kind":"sample","visible":true,"input":{"s":"leetscode","dictionary":["leet","code","leetcode"]},"expected":1,"tags":["sample","gap"]},
-{"id":"sample-prefix-extra","name":"sample: uncovered prefix before two words","kind":"sample","visible":true,"input":{"s":"sayhelloworld","dictionary":["hello","world"]},"expected":3,"tags":["sample","prefix"]},
-{"id":"trial-full-cover","name":"trial: repeated words fully cover the string","kind":"trial","visible":true,"input":{"s":"aaaa","dictionary":["a","aa"]},"expected":0,"tags":["full-cover","multiple-segmentations"]},
-{"id":"trial-no-match","name":"trial: no dictionary word occurs","kind":"trial","visible":true,"input":{"s":"abc","dictionary":["d","ef"]},"expected":3,"tags":["no-match"]},
-{"id":"real-whole-string","name":"hidden: whole string is one dictionary word","kind":"real","visible":false,"input":{"s":"algorithm","dictionary":["algorithm","algo","rhythm"]},"expected":0,"tags":["hidden","whole-string"]},
-{"id":"real-overlap-choice","name":"hidden: optimal choice resolves overlapping words","kind":"real","visible":false,"input":{"s":"abcde","dictionary":["abc","bcd","de"]},"expected":0,"tags":["hidden","overlap"]},
-{"id":"real-interior-extras","name":"hidden: extras occur between matched words","kind":"real","visible":false,"input":{"s":"catxxdog","dictionary":["cat","dog"]},"expected":2,"tags":["hidden","interior-gap"]},
-{"id":"real-single-character","name":"hidden: one unmatched character","kind":"real","visible":false,"input":{"s":"z","dictionary":["a","zz"]},"expected":1,"tags":["hidden","single-character"]},
-{"id":"real-long-word-ignored","name":"hidden: longer dictionary word does not interfere","kind":"real","visible":false,"input":{"s":"abc","dictionary":["abcdef","bc"]},"expected":1,"tags":["hidden","long-word"]},
-{"id":"real-reuse-word","name":"hidden: one dictionary word may be used repeatedly","kind":"real","visible":false,"input":{"s":"dogdogx","dictionary":["dog"]},"expected":1,"tags":["hidden","repeated-occurrence"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2707",
+  "cases": [
+    {
+      "id": "sample-one-extra",
+      "name": "sample: one character between two words",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "leetscode",
+        "dictionary": [
+          "leet",
+          "code",
+          "leetcode"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "gap"
+      ]
+    },
+    {
+      "id": "sample-prefix-extra",
+      "name": "sample: uncovered prefix before two words",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "sayhelloworld",
+        "dictionary": [
+          "hello",
+          "world"
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "prefix"
+      ]
+    },
+    {
+      "id": "trial-full-cover",
+      "name": "trial: repeated words fully cover the string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaa",
+        "dictionary": [
+          "a",
+          "aa"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "full-cover",
+        "multiple-segmentations"
+      ]
+    },
+    {
+      "id": "trial-no-match",
+      "name": "trial: no dictionary word occurs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "dictionary": [
+          "d",
+          "ef"
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "no-match"
+      ]
+    },
+    {
+      "id": "trial-whole-string",
+      "name": "whole string is one dictionary word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "algorithm",
+        "dictionary": [
+          "algorithm",
+          "algo",
+          "rhythm"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "whole-string"
+      ]
+    },
+    {
+      "id": "trial-overlap-choice",
+      "name": "optimal choice resolves overlapping words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcde",
+        "dictionary": [
+          "abc",
+          "bcd",
+          "de"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-interior-extras",
+      "name": "extras occur between matched words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "catxxdog",
+        "dictionary": [
+          "cat",
+          "dog"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "interior-gap"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "one unmatched character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "z",
+        "dictionary": [
+          "a",
+          "zz"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "single-character"
+      ]
+    },
+    {
+      "id": "trial-long-word-ignored",
+      "name": "longer dictionary word does not interfere",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "dictionary": [
+          "abcdef",
+          "bc"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "long-word"
+      ]
+    },
+    {
+      "id": "trial-reuse-word",
+      "name": "one dictionary word may be used repeatedly",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "dogdogx",
+        "dictionary": [
+          "dog"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "repeated-occurrence"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "l",
+        "dictionary": [
+          "leet",
+          "code",
+          "leetcode"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "lll",
+        "dictionary": [
+          "leet",
+          "code",
+          "leetcode"
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
+    }
+  ]
+}

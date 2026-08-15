@@ -118,10 +118,10 @@
       ]
     },
     {
-      "id": "real-plateau-first",
-      "name": "hidden: equality invalidates the first phase",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-plateau-first",
+      "name": "equality invalidates the first phase",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -133,15 +133,14 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "plateau"
       ]
     },
     {
-      "id": "real-plateau-middle",
-      "name": "hidden: equality invalidates the decreasing phase",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-plateau-middle",
+      "name": "equality invalidates the decreasing phase",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -153,15 +152,14 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "plateau"
       ]
     },
     {
-      "id": "real-plateau-last",
-      "name": "hidden: equality invalidates the final phase",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-plateau-last",
+      "name": "equality invalidates the final phase",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -173,15 +171,14 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "plateau"
       ]
     },
     {
-      "id": "real-extra-turn",
-      "name": "hidden: a fourth direction change is not allowed",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-extra-turn",
+      "name": "a fourth direction change is not allowed",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -194,15 +191,14 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "extra-phase"
       ]
     },
     {
-      "id": "real-negative-values",
-      "name": "hidden: comparisons work across negative values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-negative-values",
+      "name": "comparisons work across negative values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -5,
@@ -215,15 +211,14 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "negative-values"
       ]
     },
     {
-      "id": "real-long-phases",
-      "name": "hidden: each phase may contain several edges",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-long-phases",
+      "name": "each phase may contain several edges",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -240,15 +235,14 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "long-phases"
       ]
     },
     {
-      "id": "real-late-breakpoints",
-      "name": "hidden: both breakpoints can be near the end",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-late-breakpoints",
+      "name": "both breakpoints can be near the end",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -262,8 +256,40 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "late-breakpoints"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

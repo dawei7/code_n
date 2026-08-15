@@ -6,162 +6,307 @@
       "name": "sample: an optional replacement produces cht",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "cat", "t": "chat"},
+      "input": {
+        "s": "cat",
+        "t": "chat"
+      },
       "expected": true,
-      "tags": ["sample", "optional-replacement", "subsequence"]
+      "tags": [
+        "sample",
+        "optional-replacement",
+        "subsequence"
+      ]
     },
     {
       "id": "sample-one-change-still-insufficient",
       "name": "sample: no single replacement resolves the order",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "plane", "t": "apple"},
+      "input": {
+        "s": "plane",
+        "t": "apple"
+      },
       "expected": false,
-      "tags": ["sample", "impossible", "order"]
+      "tags": [
+        "sample",
+        "impossible",
+        "order"
+      ]
     },
     {
       "id": "trial-already-equal",
       "name": "trial: no replacement is needed for equal strings",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "abc", "t": "abc"},
+      "input": {
+        "s": "abc",
+        "t": "abc"
+      },
       "expected": true,
-      "tags": ["trial", "no-replacement", "equal-length"]
+      "tags": [
+        "trial",
+        "no-replacement",
+        "equal-length"
+      ]
     },
     {
       "id": "trial-one-aligned-mismatch",
       "name": "trial: one aligned mismatch is replaceable",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "abc", "t": "axc"},
+      "input": {
+        "s": "abc",
+        "t": "axc"
+      },
       "expected": true,
-      "tags": ["trial", "one-replacement", "equal-length"]
+      "tags": [
+        "trial",
+        "one-replacement",
+        "equal-length"
+      ]
     },
     {
       "id": "trial-two-aligned-mismatches",
       "name": "trial: two aligned mismatches cannot both be replaced",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "abc", "t": "axy"},
+      "input": {
+        "s": "abc",
+        "t": "axy"
+      },
       "expected": false,
-      "tags": ["trial", "two-mismatches", "equal-length"]
+      "tags": [
+        "trial",
+        "two-mismatches",
+        "equal-length"
+      ]
     },
     {
       "id": "trial-source-longer",
       "name": "trial: a longer source cannot be a subsequence",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "abcd", "t": "abc"},
+      "input": {
+        "s": "abcd",
+        "t": "abc"
+      },
       "expected": false,
-      "tags": ["trial", "length-impossible", "early-return"]
+      "tags": [
+        "trial",
+        "length-impossible",
+        "early-return"
+      ]
     },
     {
       "id": "trial-single-character-replacement",
       "name": "trial: one character may always match a nonempty text",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "a", "t": "z"},
+      "input": {
+        "s": "a",
+        "t": "z"
+      },
       "expected": true,
-      "tags": ["trial", "minimum-length", "one-replacement"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "one-replacement"
+      ]
     },
     {
-      "id": "real-replace-first-source-character",
-      "name": "hidden: replace the first source character",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aa", "t": "ba"},
+      "id": "trial-replace-first-source-character",
+      "name": "replace the first source character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aa",
+        "t": "ba"
+      },
       "expected": true,
-      "tags": ["hidden", "replace-first", "equal-length"]
+      "tags": [
+        "replace-first",
+        "equal-length"
+      ]
     },
     {
-      "id": "real-skip-before-spending-change",
-      "name": "hidden: skip an early mismatch and replace a later source character",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abc", "t": "xaac"},
+      "id": "trial-skip-before-spending-change",
+      "name": "skip an early mismatch and replace a later source character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "t": "xaac"
+      },
       "expected": true,
-      "tags": ["hidden", "greedy-trap", "skip-text"]
+      "tags": [
+        "greedy-trap",
+        "skip-text"
+      ]
     },
     {
-      "id": "real-ignore-leading-extra-character",
-      "name": "hidden: exact subsequence ignores a leading text character",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abc", "t": "xabc"},
+      "id": "trial-ignore-leading-extra-character",
+      "name": "exact subsequence ignores a leading text character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "t": "xabc"
+      },
       "expected": true,
-      "tags": ["hidden", "no-replacement", "leading-extra"]
+      "tags": [
+        "no-replacement",
+        "leading-extra"
+      ]
     },
     {
-      "id": "real-swapped-suffix-needs-two-changes",
-      "name": "hidden: a swapped suffix has two aligned mismatches",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abc", "t": "acb"},
+      "id": "trial-swapped-suffix-needs-two-changes",
+      "name": "a swapped suffix has two aligned mismatches",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "t": "acb"
+      },
       "expected": false,
-      "tags": ["hidden", "order", "two-mismatches"]
+      "tags": [
+        "order",
+        "two-mismatches"
+      ]
     },
     {
-      "id": "real-leading-extra-before-repeats",
-      "name": "hidden: repeated letters form an exact subsequence",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "bbb", "t": "abbb"},
+      "id": "trial-leading-extra-before-repeats",
+      "name": "repeated letters form an exact subsequence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "bbb",
+        "t": "abbb"
+      },
       "expected": true,
-      "tags": ["hidden", "repeated-letters", "no-replacement"]
+      "tags": [
+        "repeated-letters",
+        "no-replacement"
+      ]
     },
     {
-      "id": "real-replacement-fills-leading-position",
-      "name": "hidden: replacement uses every equal-length text position",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "bbbb", "t": "abbb"},
+      "id": "trial-replacement-fills-leading-position",
+      "name": "replacement uses every equal-length text position",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "bbbb",
+        "t": "abbb"
+      },
       "expected": true,
-      "tags": ["hidden", "replace-first", "equal-length"]
+      "tags": [
+        "replace-first",
+        "equal-length"
+      ]
     },
     {
-      "id": "real-two-required-replacements",
-      "name": "hidden: first and last positions would both need replacement",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "bbbc", "t": "abbb"},
+      "id": "trial-two-required-replacements",
+      "name": "first and last positions would both need replacement",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "bbbc",
+        "t": "abbb"
+      },
       "expected": false,
-      "tags": ["hidden", "two-mismatches", "equal-length"]
+      "tags": [
+        "two-mismatches",
+        "equal-length"
+      ]
     },
     {
-      "id": "real-use-change-before-exact-suffix",
-      "name": "hidden: replace the first character then match the suffix",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "az", "t": "bza"},
+      "id": "trial-use-change-before-exact-suffix",
+      "name": "replace the first character then match the suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "az",
+        "t": "bza"
+      },
       "expected": true,
-      "tags": ["hidden", "one-replacement", "trailing-extra"]
+      "tags": [
+        "one-replacement",
+        "trailing-extra"
+      ]
     },
     {
-      "id": "real-exact-subsequence-after-prefix",
-      "name": "hidden: an exact subsequence follows an unrelated prefix",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abc", "t": "defabc"},
+      "id": "trial-exact-subsequence-after-prefix",
+      "name": "an exact subsequence follows an unrelated prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "t": "defabc"
+      },
       "expected": true,
-      "tags": ["hidden", "no-replacement", "leading-extra"]
+      "tags": [
+        "no-replacement",
+        "leading-extra"
+      ]
     },
     {
-      "id": "real-replacement-between-repeated-matches",
-      "name": "hidden: replacement joins two exact repeated-letter matches",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "zzz", "t": "azbz"},
+      "id": "trial-replacement-between-repeated-matches",
+      "name": "replacement joins two exact repeated-letter matches",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "zzz",
+        "t": "azbz"
+      },
       "expected": true,
-      "tags": ["hidden", "repeated-letters", "middle-replacement"]
+      "tags": [
+        "repeated-letters",
+        "middle-replacement"
+      ]
     },
     {
-      "id": "real-equal-length-two-end-mismatches",
-      "name": "hidden: both ends differ in an equal-length alignment",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aaaa", "t": "baab"},
+      "id": "trial-equal-length-two-end-mismatches",
+      "name": "both ends differ in an equal-length alignment",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaa",
+        "t": "baab"
+      },
       "expected": false,
-      "tags": ["hidden", "two-mismatches", "boundary-positions"]
+      "tags": [
+        "two-mismatches",
+        "boundary-positions"
+      ]
+    },
+    {
+      "id": "trial-boundary-19",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "c",
+        "t": "chat"
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-20",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ccc",
+        "t": "chat"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
     }
   ]
 }

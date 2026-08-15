@@ -155,10 +155,10 @@
       ]
     },
     {
-      "id": "real-first-hundred",
-      "name": "hidden: every value through one hundred is fancy",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-first-hundred",
+      "name": "every value through one hundred is fancy",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "l": 1,
         "r": 100
@@ -168,16 +168,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "prefix-range",
         "small-boundary"
       ]
     },
     {
-      "id": "real-digit-length-transition",
-      "name": "hidden: a range crosses from three to four digits",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-digit-length-transition",
+      "name": "a range crosses from three to four digits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "l": 999,
         "r": 1050
@@ -187,16 +186,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "digit-length",
         "mixed-range"
       ]
     },
     {
-      "id": "real-maximum-endpoint",
-      "name": "hidden: the maximum endpoint is fancy through digit sum one",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-endpoint",
+      "name": "the maximum endpoint is fancy through digit sum one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "l": 1000000000000000,
         "r": 1000000000000000
@@ -206,16 +204,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-endpoint",
         "digit-sum"
       ]
     },
     {
-      "id": "real-fifteen-nines",
-      "name": "hidden: fifteen repeated nines have good digit sum 135",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-fifteen-nines",
+      "name": "fifteen repeated nines have good digit sum 135",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "l": 999999999999999,
         "r": 999999999999999
@@ -225,16 +222,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-digit-sum",
         "repeated-digits"
       ]
     },
     {
-      "id": "real-short-mixed-block",
-      "name": "hidden: two hundred through two hundred twenty contains two misses",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-short-mixed-block",
+      "name": "two hundred through two hundred twenty contains two misses",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "l": 200,
         "r": 220
@@ -244,16 +240,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "mixed-block",
         "repeated-digits"
       ]
     },
     {
-      "id": "real-long-decreasing",
-      "name": "hidden: a ten-digit strictly decreasing number is directly good",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-long-decreasing",
+      "name": "a ten-digit strictly decreasing number is directly good",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "l": 9876543210,
         "r": 9876543210
@@ -263,16 +258,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "strictly-decreasing",
         "includes-zero"
       ]
     },
     {
-      "id": "real-large-narrow-range",
-      "name": "hidden: a narrow range near a fifteen-digit power is counted exactly",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-narrow-range",
+      "name": "a narrow range near a fifteen-digit power is counted exactly",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "l": 100000000000000,
         "r": 100000000000100
@@ -282,7 +276,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "large-values",
         "narrow-range"
       ]

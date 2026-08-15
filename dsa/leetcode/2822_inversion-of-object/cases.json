@@ -131,10 +131,10 @@
       ]
     },
     {
-      "id": "real-special-value-keys",
-      "name": "hidden: prototype-like strings remain data keys",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-special-value-keys",
+      "name": "prototype-like strings remain data keys",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "obj": {
           "a": "__proto__",
@@ -142,26 +142,25 @@
           "c": "toString",
           "d": "__proto__"
         }
-        },
-        "expected": {
-          "__proto__": [
-            "a",
-            "d"
-          ],
-          "constructor": "b",
-          "toString": "c"
-        },
+      },
+      "expected": {
+        "__proto__": [
+          "a",
+          "d"
+        ],
+        "constructor": "b",
+        "toString": "c"
+      },
       "tags": [
-        "hidden",
         "special-keys",
         "duplicates"
       ]
     },
     {
-      "id": "real-integer-key-order",
-      "name": "hidden: integer-like keys use JavaScript enumeration order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-integer-key-order",
+      "name": "integer-like keys use JavaScript enumeration order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "obj": {
           "2": "same",
@@ -179,15 +178,14 @@
         "other": "a"
       },
       "tags": [
-        "hidden",
         "enumeration-order"
       ]
     },
     {
-      "id": "real-empty-and-numeric-values",
-      "name": "hidden: empty and numeric-looking strings are ordinary values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-empty-and-numeric-values",
+      "name": "empty and numeric-looking strings are ordinary values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "obj": {
           "first": "",
@@ -205,7 +203,6 @@
         "01": "fourth"
       },
       "tags": [
-        "hidden",
         "string-values"
       ]
     }

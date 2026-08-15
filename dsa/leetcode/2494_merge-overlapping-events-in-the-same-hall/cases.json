@@ -164,10 +164,10 @@
       ]
     },
     {
-      "id": "real-touching-endpoints",
-      "name": "hidden: equality at an endpoint is overlap",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-touching-endpoints",
+      "name": "equality at an endpoint is overlap",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "HallEvents": [
@@ -199,15 +199,14 @@
         ]
       },
       "tags": [
-        "hidden",
         "inclusive-endpoints"
       ]
     },
     {
-      "id": "real-consecutive-days",
-      "name": "hidden: consecutive non-touching dates remain separate",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-consecutive-days",
+      "name": "consecutive non-touching dates remain separate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "HallEvents": [
@@ -244,15 +243,14 @@
         ]
       },
       "tags": [
-        "hidden",
         "strict-gap"
       ]
     },
     {
-      "id": "real-nested-mask",
-      "name": "hidden: a nested short event must not hide the running maximum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-nested-mask",
+      "name": "a nested short event must not hide the running maximum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "HallEvents": [
@@ -299,16 +297,15 @@
         ]
       },
       "tags": [
-        "hidden",
         "running-maximum",
         "nested"
       ]
     },
     {
-      "id": "real-same-start",
-      "name": "hidden: equal starts with different ends stay in one island",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-same-start",
+      "name": "equal starts with different ends stay in one island",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "HallEvents": [
@@ -345,15 +342,14 @@
         ]
       },
       "tags": [
-        "hidden",
         "same-start"
       ]
     },
     {
-      "id": "real-independent-halls",
-      "name": "hidden: identical dates in different halls are independent",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-independent-halls",
+      "name": "identical dates in different halls are independent",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "HallEvents": [
@@ -405,11 +401,9 @@
         ]
       },
       "tags": [
-        "hidden",
         "partitioning",
         "multiple-halls"
       ]
     }
   ]
 }
-

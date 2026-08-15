@@ -126,10 +126,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: full reverse order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "full reverse order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "pushed": [
           0,
@@ -150,15 +150,14 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "reverse"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: lower value blocked",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "lower value blocked",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "pushed": [
           1,
@@ -173,15 +172,14 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "blocked"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: late obstruction",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "late obstruction",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "pushed": [
           1,
@@ -198,15 +196,14 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "late-invalid"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: longer mixed valid sequence",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "longer mixed valid sequence",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "pushed": [
           10,
@@ -227,8 +224,54 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in pushed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "pushed": [
+          1
+        ],
+        "popped": [
+          4,
+          5,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in pushed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "pushed": [
+          1,
+          1
+        ],
+        "popped": [
+          4,
+          5,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

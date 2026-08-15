@@ -125,10 +125,10 @@
       ]
     },
     {
-      "id": "real-unordered",
-      "name": "hidden: endpoint edge occurs in the middle",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unordered",
+      "name": "endpoint edge occurs in the middle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "paths": [
           [
@@ -147,15 +147,14 @@
       },
       "expected": "D",
       "tags": [
-        "hidden",
         "unordered"
       ]
     },
     {
-      "id": "real-longer",
-      "name": "hidden: five-edge shuffled chain",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-longer",
+      "name": "five-edge shuffled chain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "paths": [
           [
@@ -182,7 +181,6 @@
       },
       "expected": "F",
       "tags": [
-        "hidden",
         "chain"
       ]
     }

@@ -7,63 +7,108 @@
       "name": "sample: one move converts three X characters",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "XXX"},
+      "input": {
+        "s": "XXX"
+      },
       "expected": 1,
-      "tags": ["sample", "one-block"]
+      "tags": [
+        "sample",
+        "one-block"
+      ]
     },
     {
       "id": "sample-separated-tail",
       "name": "sample: a trailing X needs a second move",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "XXOX"},
+      "input": {
+        "s": "XXOX"
+      },
       "expected": 2,
-      "tags": ["sample", "tail"]
+      "tags": [
+        "sample",
+        "tail"
+      ]
     },
     {
       "id": "sample-no-moves",
       "name": "sample: an all-O string is already complete",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "OOOO"},
+      "input": {
+        "s": "OOOO"
+      },
       "expected": 0,
-      "tags": ["sample", "all-converted"]
+      "tags": [
+        "sample",
+        "all-converted"
+      ]
     },
     {
       "id": "trial-alternating",
       "name": "two moves cover alternating X characters",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "XOXOXO"},
+      "input": {
+        "s": "XOXOXO"
+      },
       "expected": 2,
-      "tags": ["alternating"]
+      "tags": [
+        "alternating"
+      ]
     },
     {
       "id": "trial-middle-X",
       "name": "one move may include surrounding O characters",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "OOXOOO"},
+      "input": {
+        "s": "OOXOOO"
+      },
       "expected": 1,
-      "tags": ["existing-O"]
+      "tags": [
+        "existing-O"
+      ]
     },
     {
-      "id": "real-final-position",
-      "name": "hidden: a final X is covered by a boundary move",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "OOOOX"},
+      "id": "trial-final-position",
+      "name": "a final X is covered by a boundary move",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "OOOOX"
+      },
       "expected": 1,
-      "tags": ["hidden", "tail-boundary"]
+      "tags": [
+        "tail-boundary"
+      ]
     },
     {
-      "id": "real-two-dense-regions",
-      "name": "hidden: two greedy blocks cover a mixed dense string",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "XOXXOX"},
+      "id": "trial-two-dense-regions",
+      "name": "two greedy blocks cover a mixed dense string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "XOXXOX"
+      },
       "expected": 2,
-      "tags": ["hidden", "mixed"]
+      "tags": [
+        "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "X"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
     }
   ]
 }

@@ -77,32 +77,30 @@
       ]
     },
     {
-      "id": "real-sign-change",
-      "name": "hidden: neither prefix direction persists",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-sign-change",
+      "name": "neither prefix direction persists",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s1": "az",
         "s2": "by"
       },
       "expected": false,
       "tags": [
-        "hidden",
         "sign-change"
       ]
     },
     {
-      "id": "real-one-direction",
-      "name": "hidden: first string dominates with ties",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-direction",
+      "name": "first string dominates with ties",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s1": "zzzyyy",
         "s2": "zyxabc"
       },
       "expected": true,
       "tags": [
-        "hidden",
         "dominance"
       ]
     }

@@ -2,14 +2,172 @@
   "schema_version": 1,
   "challenge_id": "lc_2302",
   "cases": [
-    {"id":"sample-mixed","name":"sample: mixed values leave six qualifying ranges","kind":"sample","visible":true,"input":{"nums":[2,1,4,3,5],"k":10},"expected":6,"tags":["sample","sliding-window"]},
-    {"id":"sample-ones","name":"sample: all proper ranges qualify","kind":"sample","visible":true,"input":{"nums":[1,1,1],"k":5},"expected":5,"tags":["sample","strict-boundary"]},
-    {"id":"trial-strict-singleton","name":"a singleton equal to k is excluded","kind":"trial","visible":true,"input":{"nums":[5],"k":5},"expected":0,"tags":["equality"]},
-    {"id":"trial-all-valid","name":"every subarray remains below a large threshold","kind":"trial","visible":true,"input":{"nums":[1,2,3],"k":100},"expected":6,"tags":["all-valid"]},
-    {"id":"trial-smallest-k","name":"positive values cannot score below one","kind":"trial","visible":true,"input":{"nums":[1,1],"k":1},"expected":0,"tags":["minimum-k"]},
-    {"id":"trial-repeated-shrinking","name":"several endpoints require repeated left shifts","kind":"trial","visible":true,"input":{"nums":[3,1,2,1],"k":8},"expected":6,"tags":["shrinking"]},
-    {"id":"real-invalid-prefix","name":"hidden: an invalid large prefix does not block later ranges","kind":"real","visible":false,"input":{"nums":[10,1,1,1],"k":10},"expected":6,"tags":["hidden","empty-window"]},
-    {"id":"real-large-element","name":"hidden: a large middle value splits valid singleton ranges","kind":"real","visible":false,"input":{"nums":[1,100000,1],"k":100001},"expected":3,"tags":["hidden","large-value"]},
-    {"id":"real-equality-among-duplicates","name":"hidden: duplicate ranges exercise an equality cutoff","kind":"real","visible":false,"input":{"nums":[2,2,2,2],"k":17},"expected":7,"tags":["hidden","duplicates","boundary"]}
+    {
+      "id": "sample-mixed",
+      "name": "sample: mixed values leave six qualifying ranges",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          4,
+          3,
+          5
+        ],
+        "k": 10
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "sliding-window"
+      ]
+    },
+    {
+      "id": "sample-ones",
+      "name": "sample: all proper ranges qualify",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "k": 5
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "strict-boundary"
+      ]
+    },
+    {
+      "id": "trial-strict-singleton",
+      "name": "a singleton equal to k is excluded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ],
+        "k": 5
+      },
+      "expected": 0,
+      "tags": [
+        "equality"
+      ]
+    },
+    {
+      "id": "trial-all-valid",
+      "name": "every subarray remains below a large threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 100
+      },
+      "expected": 6,
+      "tags": [
+        "all-valid"
+      ]
+    },
+    {
+      "id": "trial-smallest-k",
+      "name": "positive values cannot score below one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "minimum-k"
+      ]
+    },
+    {
+      "id": "trial-repeated-shrinking",
+      "name": "several endpoints require repeated left shifts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          2,
+          1
+        ],
+        "k": 8
+      },
+      "expected": 6,
+      "tags": [
+        "shrinking"
+      ]
+    },
+    {
+      "id": "trial-invalid-prefix",
+      "name": "an invalid large prefix does not block later ranges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          1,
+          1,
+          1
+        ],
+        "k": 10
+      },
+      "expected": 6,
+      "tags": [
+        "empty-window"
+      ]
+    },
+    {
+      "id": "trial-large-element",
+      "name": "a large middle value splits valid singleton ranges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          100000,
+          1
+        ],
+        "k": 100001
+      },
+      "expected": 3,
+      "tags": [
+        "large-value"
+      ]
+    },
+    {
+      "id": "trial-equality-among-duplicates",
+      "name": "duplicate ranges exercise an equality cutoff",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          2
+        ],
+        "k": 17
+      },
+      "expected": 7,
+      "tags": [
+        "duplicates",
+        "boundary"
+      ]
+    }
   ]
 }

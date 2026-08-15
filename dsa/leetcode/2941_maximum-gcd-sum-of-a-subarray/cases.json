@@ -98,10 +98,10 @@
       ]
     },
     {
-      "id": "real-best-pair",
-      "name": "hidden: a later pair has the strongest gcd-sum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-best-pair",
+      "name": "a later pair has the strongest gcd-sum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -112,15 +112,14 @@
       },
       "expected": 125,
       "tags": [
-        "hidden",
         "pair"
       ]
     },
     {
-      "id": "real-gcd-transitions",
-      "name": "hidden: several suffix gcd values merge",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-gcd-transitions",
+      "name": "several suffix gcd values merge",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           30,
@@ -132,15 +131,14 @@
       },
       "expected": 6125,
       "tags": [
-        "hidden",
         "gcd-transitions"
       ]
     },
     {
-      "id": "real-longer-than-k",
-      "name": "hidden: the best range is longer than k",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-longer-than-k",
+      "name": "the best range is longer than k",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -152,15 +150,14 @@
       },
       "expected": 224,
       "tags": [
-        "hidden",
         "at-least-k"
       ]
     },
     {
-      "id": "real-single-element-array",
-      "name": "hidden: minimum array length",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-element-array",
+      "name": "minimum array length",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7
@@ -169,15 +166,14 @@
       },
       "expected": 49,
       "tags": [
-        "hidden",
         "minimum"
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "hidden: result requires a wide integer",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-values",
+      "name": "result requires a wide integer",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000,
@@ -187,7 +183,6 @@
       },
       "expected": 2000000000000,
       "tags": [
-        "hidden",
         "large-result"
       ]
     }

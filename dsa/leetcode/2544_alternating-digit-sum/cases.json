@@ -72,44 +72,41 @@
       ]
     },
     {
-      "id": "real-nine-digits",
-      "name": "hidden: descending nine-digit boundary pattern",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-nine-digits",
+      "name": "descending nine-digit boundary pattern",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 987654321
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
     {
-      "id": "real-alternating-zeroes",
-      "name": "hidden: zeroes preserve alternating positions",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alternating-zeroes",
+      "name": "zeroes preserve alternating positions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 909090909
       },
       "expected": 45,
       "tags": [
-        "hidden",
         "zero-digit"
       ]
     },
     {
-      "id": "real-upper-bound",
-      "name": "hidden: only legal ten-digit value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-upper-bound",
+      "name": "only legal ten-digit value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000000000
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     }

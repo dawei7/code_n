@@ -129,10 +129,10 @@
       ]
     },
     {
-      "id": "real-a-then-z",
-      "name": "real: zero increments followed by twenty-five",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-a-then-z",
+      "name": "zero increments followed by twenty-five",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": "az"
       },
@@ -166,15 +166,14 @@
         "az"
       ],
       "tags": [
-        "mixed-cost",
-        "hidden"
+        "mixed-cost"
       ]
     },
     {
-      "id": "real-z-then-a",
-      "name": "real: long first cycle then append only",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-z-then-a",
+      "name": "long first cycle then append only",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": "za"
       },
@@ -208,8 +207,7 @@
         "za"
       ],
       "tags": [
-        "prefix",
-        "hidden"
+        "prefix"
       ]
     }
   ]

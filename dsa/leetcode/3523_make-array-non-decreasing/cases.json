@@ -2,13 +2,190 @@
   "schema_version": 1,
   "challenge_id": "lc_3523",
   "cases": [
-    {"id":"sample-mixed","name":"sample: descending values are absorbed between records","kind":"sample","visible":true,"input":{"nums":[4,2,5,3,5]},"expected":3,"tags":["sample","mixed"]},
-    {"id":"sample-increasing","name":"sample: already increasing array","kind":"sample","visible":true,"input":{"nums":[1,2,3]},"expected":3,"tags":["sample","non-decreasing"]},
-    {"id":"trial-equal","name":"trial: equal values all remain","kind":"trial","visible":true,"input":{"nums":[7,7,7]},"expected":3,"tags":["trial","equality"]},
-    {"id":"trial-decreasing","name":"trial: strictly decreasing array","kind":"trial","visible":true,"input":{"nums":[5,4,3,2]},"expected":1,"tags":["trial","decreasing"]},
-    {"id":"trial-records","name":"trial: repeated maximum and later larger value","kind":"trial","visible":true,"input":{"nums":[2,1,2,1,3]},"expected":3,"tags":["trial","prefix-maximum"]},
-    {"id":"real-single","name":"real: single element","kind":"real","visible":false,"input":{"nums":[200000]},"expected":1,"tags":["real","minimum-length"]},
-    {"id":"real-two-records","name":"real: only first and second values are records","kind":"real","visible":false,"input":{"nums":[19,80,63,74]},"expected":2,"tags":["real","prefix-maximum"]},
-    {"id":"real-long-low-tail","name":"real: values below the initial maximum never form blocks","kind":"real","visible":false,"input":{"nums":[10,1,9,2,8,3,7]},"expected":1,"tags":["real","low-tail"]}
+    {
+      "id": "sample-mixed",
+      "name": "sample: descending values are absorbed between records",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          2,
+          5,
+          3,
+          5
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-increasing",
+      "name": "sample: already increasing array",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "non-decreasing"
+      ]
+    },
+    {
+      "id": "trial-equal",
+      "name": "trial: equal values all remain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "equality"
+      ]
+    },
+    {
+      "id": "trial-decreasing",
+      "name": "trial: strictly decreasing array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          4,
+          3,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "decreasing"
+      ]
+    },
+    {
+      "id": "trial-records",
+      "name": "trial: repeated maximum and later larger value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          2,
+          1,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "prefix-maximum"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "single element",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          200000
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-two-records",
+      "name": "only first and second values are records",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          19,
+          80,
+          63,
+          74
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "prefix-maximum"
+      ]
+    },
+    {
+      "id": "trial-long-low-tail",
+      "name": "values below the initial maximum never form blocks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          1,
+          9,
+          2,
+          8,
+          3,
+          7
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "low-tail"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    }
   ]
 }

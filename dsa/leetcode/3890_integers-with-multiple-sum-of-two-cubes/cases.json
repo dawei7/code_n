@@ -134,40 +134,38 @@
       ]
     },
     {
-      "id": "real-smallest-cube-sum",
-      "name": "hidden: one plus one cubed is only one canonical representation",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-smallest-cube-sum",
+      "name": "one plus one cubed is only one canonical representation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 2
       },
       "expected": [],
       "tags": [
-        "hidden",
         "single-representation",
         "equal-bases"
       ]
     },
     {
-      "id": "real-distinct-base-single-pair",
-      "name": "hidden: one cubed plus two cubed is still only one representation",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-distinct-base-single-pair",
+      "name": "one cubed plus two cubed is still only one representation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 9
       },
       "expected": [],
       "tags": [
-        "hidden",
         "single-representation",
         "distinct-bases"
       ]
     },
     {
-      "id": "real-after-second-good",
-      "name": "hidden: moving just beyond 4104 adds no duplicate result",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-after-second-good",
+      "name": "moving just beyond 4104 adds no duplicate result",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4105
       },
@@ -176,16 +174,15 @@
         4104
       ],
       "tags": [
-        "hidden",
         "post-threshold",
         "no-new-result"
       ]
     },
     {
-      "id": "real-gap-after-second-good",
-      "name": "hidden: a wider bound still contains only the first two values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-gap-after-second-good",
+      "name": "a wider bound still contains only the first two values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 10000
       },
@@ -194,16 +191,15 @@
         4104
       ],
       "tags": [
-        "hidden",
         "gap",
         "sorted-output"
       ]
     },
     {
-      "id": "real-before-third-good",
-      "name": "hidden: one less than 13832 excludes the third value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-before-third-good",
+      "name": "one less than 13832 excludes the third value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 13831
       },
@@ -212,16 +208,15 @@
         4104
       ],
       "tags": [
-        "hidden",
         "threshold",
         "exclusive-predecessor"
       ]
     },
     {
-      "id": "real-before-fourth-good",
-      "name": "hidden: one less than 20683 retains the first three values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-before-fourth-good",
+      "name": "one less than 20683 retains the first three values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 20682
       },
@@ -231,16 +226,15 @@
         13832
       ],
       "tags": [
-        "hidden",
         "threshold",
         "multiple-results"
       ]
     },
     {
-      "id": "real-fourth-good-inclusive",
-      "name": "hidden: 20683 adds the fourth distinct cube-sum collision",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-fourth-good-inclusive",
+      "name": "20683 adds the fourth distinct cube-sum collision",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 20683
       },
@@ -251,11 +245,9 @@
         20683
       ],
       "tags": [
-        "hidden",
         "inclusive-boundary",
         "multiple-results"
       ]
     }
   ]
 }
-

@@ -6,81 +6,194 @@
       "name": "sample: first level already gives Alice a lead",
       "kind": "sample",
       "visible": true,
-      "input": {"possible": [1, 0, 1, 0]},
+      "input": {
+        "possible": [
+          1,
+          0,
+          1,
+          0
+        ]
+      },
       "expected": 1,
-      "tags": ["sample", "minimum-prefix"]
+      "tags": [
+        "sample",
+        "minimum-prefix"
+      ]
     },
     {
       "id": "sample-all-clearable",
       "name": "sample: majority prefix of clearable levels",
       "kind": "sample",
       "visible": true,
-      "input": {"possible": [1, 1, 1, 1, 1]},
+      "input": {
+        "possible": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
       "expected": 3,
-      "tags": ["sample", "all-ones"]
+      "tags": [
+        "sample",
+        "all-ones"
+      ]
     },
     {
       "id": "sample-two-impossible",
       "name": "sample: equal losses cannot produce a strict lead",
       "kind": "sample",
       "visible": true,
-      "input": {"possible": [0, 0]},
+      "input": {
+        "possible": [
+          0,
+          0
+        ]
+      },
       "expected": -1,
-      "tags": ["sample", "strict-comparison", "minimum-length"]
+      "tags": [
+        "sample",
+        "strict-comparison",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-three-impossible",
       "name": "one loss beats the two remaining losses",
       "kind": "trial",
       "visible": true,
-      "input": {"possible": [0, 0, 0]},
+      "input": {
+        "possible": [
+          0,
+          0,
+          0
+        ]
+      },
       "expected": 1,
-      "tags": ["all-zeros", "negative-scores"]
+      "tags": [
+        "all-zeros",
+        "negative-scores"
+      ]
     },
     {
       "id": "trial-two-clearable",
       "name": "equal wins do not satisfy the strict comparison",
       "kind": "trial",
       "visible": true,
-      "input": {"possible": [1, 1]},
+      "input": {
+        "possible": [
+          1,
+          1
+        ]
+      },
       "expected": -1,
-      "tags": ["strict-comparison", "minimum-length"]
+      "tags": [
+        "strict-comparison",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-late-winning-prefix",
       "name": "first strict lead occurs after three levels",
       "kind": "trial",
       "visible": true,
-      "input": {"possible": [0, 1, 1, 0, 1]},
+      "input": {
+        "possible": [
+          0,
+          1,
+          1,
+          0,
+          1
+        ]
+      },
       "expected": 3,
-      "tags": ["late-answer", "mixed"]
+      "tags": [
+        "late-answer",
+        "mixed"
+      ]
     },
     {
-      "id": "real-alternating-no-lead",
-      "name": "hidden: alternating losses and wins never give Alice a lead",
-      "kind": "real",
-      "visible": false,
-      "input": {"possible": [0, 1, 0, 1, 0, 1, 0, 1]},
+      "id": "trial-alternating-no-lead",
+      "name": "alternating losses and wins never give Alice a lead",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "possible": [
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1
+        ]
+      },
       "expected": -1,
-      "tags": ["hidden", "alternating", "impossible"]
+      "tags": [
+        "alternating",
+        "impossible"
+      ]
     },
     {
-      "id": "real-first-win-against-balanced-rest",
-      "name": "hidden: a first win beats a balanced remainder",
-      "kind": "real",
-      "visible": false,
-      "input": {"possible": [1, 0, 1, 0, 1, 0, 1]},
+      "id": "trial-first-win-against-balanced-rest",
+      "name": "a first win beats a balanced remainder",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "possible": [
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1
+        ]
+      },
       "expected": 1,
-      "tags": ["hidden", "minimum-prefix", "mixed"]
+      "tags": [
+        "minimum-prefix",
+        "mixed"
+      ]
     },
     {
-      "id": "real-six-clearable-levels",
-      "name": "hidden: even all-one length requires a strict majority",
-      "kind": "real",
-      "visible": false,
-      "input": {"possible": [1, 1, 1, 1, 1, 1]},
+      "id": "trial-six-clearable-levels",
+      "name": "even all-one length requires a strict majority",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "possible": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
       "expected": 4,
-      "tags": ["hidden", "all-ones", "strict-majority"]
+      "tags": [
+        "all-ones",
+        "strict-majority"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in possible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "possible": [
+          1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
     }
   ]
 }

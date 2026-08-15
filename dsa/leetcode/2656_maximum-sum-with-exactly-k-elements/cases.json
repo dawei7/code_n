@@ -1,13 +1,191 @@
 {
   "challenge_id": "lc_2656",
   "cases": [
-    {"id":"sample-increasing","name":"sample: increasing input","kind":"sample","visible":true,"input":{"nums":[1,2,3,4,5],"k":3},"expected":18,"tags":["sample","greedy"]},
-    {"id":"sample-duplicates","name":"sample: duplicate maxima","kind":"sample","visible":true,"input":{"nums":[5,5,5],"k":2},"expected":11,"tags":["sample","duplicates"]},
-    {"id":"trial-one-operation","name":"trial: one operation returns the maximum","kind":"trial","visible":true,"input":{"nums":[4,9,2],"k":1},"expected":9,"tags":["single-operation"]},
-    {"id":"trial-single-element","name":"trial: repeatedly grow one element","kind":"trial","visible":true,"input":{"nums":[1],"k":5},"expected":15,"tags":["single-element","arithmetic-series"]},
-    {"id":"real-maximum-middle","name":"hidden: maximum is not at an endpoint","kind":"real","visible":false,"input":{"nums":[3,8,4,7],"k":4},"expected":38,"tags":["hidden","position-independent"]},
-    {"id":"real-equal-ones","name":"hidden: all original values are one","kind":"real","visible":false,"input":{"nums":[1,1,1,1],"k":4},"expected":10,"tags":["hidden","duplicates"]},
-    {"id":"real-maximum-bounds","name":"hidden: maximum value and operation count","kind":"real","visible":false,"input":{"nums":[100],"k":100},"expected":14950,"tags":["hidden","maximum-k","maximum-value"]},
-    {"id":"real-many-elements","name":"hidden: array length does not change the progression","kind":"real","visible":false,"input":{"nums":[2,3,2,3,2,3],"k":6},"expected":33,"tags":["hidden","repeated-maximum"]}
+    {
+      "id": "sample-increasing",
+      "name": "sample: increasing input",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "k": 3
+      },
+      "expected": 18,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-duplicates",
+      "name": "sample: duplicate maxima",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5
+        ],
+        "k": 2
+      },
+      "expected": 11,
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-one-operation",
+      "name": "trial: one operation returns the maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          9,
+          2
+        ],
+        "k": 1
+      },
+      "expected": 9,
+      "tags": [
+        "single-operation"
+      ]
+    },
+    {
+      "id": "trial-single-element",
+      "name": "trial: repeatedly grow one element",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 5
+      },
+      "expected": 15,
+      "tags": [
+        "single-element",
+        "arithmetic-series"
+      ]
+    },
+    {
+      "id": "trial-maximum-middle",
+      "name": "maximum is not at an endpoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          8,
+          4,
+          7
+        ],
+        "k": 4
+      },
+      "expected": 38,
+      "tags": [
+        "position-independent"
+      ]
+    },
+    {
+      "id": "trial-equal-ones",
+      "name": "all original values are one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 4
+      },
+      "expected": 10,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-maximum-bounds",
+      "name": "maximum value and operation count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100
+        ],
+        "k": 100
+      },
+      "expected": 14950,
+      "tags": [
+        "maximum-k",
+        "maximum-value"
+      ]
+    },
+    {
+      "id": "trial-many-elements",
+      "name": "array length does not change the progression",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          2,
+          3,
+          2,
+          3
+        ],
+        "k": 6
+      },
+      "expected": 33,
+      "tags": [
+        "repeated-maximum"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 3
+      },
+      "expected": 6,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 3
+      },
+      "expected": 6,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    }
   ]
 }

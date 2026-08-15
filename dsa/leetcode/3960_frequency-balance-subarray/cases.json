@@ -183,10 +183,10 @@
       ]
     },
     {
-      "id": "real-ratio-four-two",
-      "name": "hidden: frequency levels four and two",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ratio-four-two",
+      "name": "frequency levels four and two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -202,16 +202,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "frequency-ratio",
         "whole-array"
       ]
     },
     {
-      "id": "real-equal-whole-invalid",
-      "name": "hidden: a proper window wins when the full array has one level",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-equal-whole-invalid",
+      "name": "a proper window wins when the full array has one level",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -227,16 +226,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "proper-subarray",
         "equal-whole-frequencies"
       ]
     },
     {
-      "id": "real-three-values",
-      "name": "hidden: three values change frequency buckets repeatedly",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-values",
+      "name": "three values change frequency buckets repeatedly",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -253,16 +251,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "three-values",
         "bucket-updates"
       ]
     },
     {
-      "id": "real-blocked-groups",
-      "name": "hidden: grouped values still require a proper window",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-blocked-groups",
+      "name": "grouped values still require a proper window",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -278,16 +275,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "grouped-values",
         "proper-subarray"
       ]
     },
     {
-      "id": "real-higher-frequency",
-      "name": "hidden: counts four and two appear inside a longer sequence",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-higher-frequency",
+      "name": "counts four and two appear inside a longer sequence",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -304,16 +300,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "frequency-ratio",
         "proper-subarray"
       ]
     },
     {
-      "id": "real-value-boundary",
-      "name": "hidden: maximum values participate by equality only",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-value-boundary",
+      "name": "maximum values participate by equality only",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -326,16 +321,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundary",
         "frequency-ratio"
       ]
     },
     {
-      "id": "real-thirty-two-balanced",
-      "name": "hidden: a longer whole array has counts sixteen and eight",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-thirty-two-balanced",
+      "name": "a longer whole array has counts sixteen and eight",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -377,11 +371,9 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "longer-array",
         "frequency-ratio"
       ]
     }
   ]
 }
-

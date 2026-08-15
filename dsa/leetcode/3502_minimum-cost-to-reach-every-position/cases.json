@@ -6,72 +6,250 @@
       "name": "sample: later bargains reach following positions",
       "kind": "sample",
       "visible": true,
-      "input": {"cost": [5, 3, 4, 1, 3, 2]},
-      "expected": [5, 3, 3, 1, 1, 1],
-      "tags": ["sample", "prefix-minimum"]
+      "input": {
+        "cost": [
+          5,
+          3,
+          4,
+          1,
+          3,
+          2
+        ]
+      },
+      "expected": [
+        5,
+        3,
+        3,
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "sample",
+        "prefix-minimum"
+      ]
     },
     {
       "id": "sample-first-is-minimum",
       "name": "sample: first person reaches every position",
       "kind": "sample",
       "visible": true,
-      "input": {"cost": [1, 2, 4, 6, 7]},
-      "expected": [1, 1, 1, 1, 1],
-      "tags": ["sample", "prefix-minimum"]
+      "input": {
+        "cost": [
+          1,
+          2,
+          4,
+          6,
+          7
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "sample",
+        "prefix-minimum"
+      ]
     },
     {
       "id": "trial-single-position",
       "name": "trial: one target position",
       "kind": "trial",
       "visible": true,
-      "input": {"cost": [73]},
-      "expected": [73],
-      "tags": ["trial", "minimum-length"]
+      "input": {
+        "cost": [
+          73
+        ]
+      },
+      "expected": [
+        73
+      ],
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-strictly-decreasing",
       "name": "trial: every new person is cheaper",
       "kind": "trial",
       "visible": true,
-      "input": {"cost": [9, 7, 5, 3, 1]},
-      "expected": [9, 7, 5, 3, 1],
-      "tags": ["trial", "decreasing"]
+      "input": {
+        "cost": [
+          9,
+          7,
+          5,
+          3,
+          1
+        ]
+      },
+      "expected": [
+        9,
+        7,
+        5,
+        3,
+        1
+      ],
+      "tags": [
+        "trial",
+        "decreasing"
+      ]
     },
     {
-      "id": "real-repeated-minimum",
-      "name": "real: equal minima do not change later answers",
-      "kind": "real",
-      "visible": false,
-      "input": {"cost": [8, 4, 4, 9, 4, 6]},
-      "expected": [8, 4, 4, 4, 4, 4],
-      "tags": ["real", "duplicate-minimum"]
+      "id": "trial-repeated-minimum",
+      "name": "equal minima do not change later answers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost": [
+          8,
+          4,
+          4,
+          9,
+          4,
+          6
+        ]
+      },
+      "expected": [
+        8,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "tags": [
+        "real",
+        "duplicate-minimum"
+      ]
     },
     {
-      "id": "real-minimum-at-last-position",
-      "name": "real: last target introduces the cheapest swap",
-      "kind": "real",
-      "visible": false,
-      "input": {"cost": [100, 81, 90, 44, 62, 1]},
-      "expected": [100, 81, 81, 44, 44, 1],
-      "tags": ["real", "late-minimum"]
+      "id": "trial-minimum-at-last-position",
+      "name": "last target introduces the cheapest swap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost": [
+          100,
+          81,
+          90,
+          44,
+          62,
+          1
+        ]
+      },
+      "expected": [
+        100,
+        81,
+        81,
+        44,
+        44,
+        1
+      ],
+      "tags": [
+        "real",
+        "late-minimum"
+      ]
     },
     {
-      "id": "real-all-equal",
-      "name": "real: every direct price is equal",
-      "kind": "real",
-      "visible": false,
-      "input": {"cost": [37, 37, 37, 37, 37]},
-      "expected": [37, 37, 37, 37, 37],
-      "tags": ["real", "equal-values"]
+      "id": "trial-all-equal",
+      "name": "every direct price is equal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost": [
+          37,
+          37,
+          37,
+          37,
+          37
+        ]
+      },
+      "expected": [
+        37,
+        37,
+        37,
+        37,
+        37
+      ],
+      "tags": [
+        "real",
+        "equal-values"
+      ]
     },
     {
-      "id": "real-mixed-records",
-      "name": "real: alternating record and non-record costs",
-      "kind": "real",
-      "visible": false,
-      "input": {"cost": [62, 17, 80, 16, 16, 55, 3, 99]},
-      "expected": [62, 17, 17, 16, 16, 16, 3, 3],
-      "tags": ["real", "mixed"]
+      "id": "trial-mixed-records",
+      "name": "alternating record and non-record costs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost": [
+          62,
+          17,
+          80,
+          16,
+          16,
+          55,
+          3,
+          99
+        ]
+      },
+      "expected": [
+        62,
+        17,
+        17,
+        16,
+        16,
+        16,
+        3,
+        3
+      ],
+      "tags": [
+        "real",
+        "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in cost",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost": [
+          5
+        ]
+      },
+      "expected": [
+        5
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in cost",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost": [
+          5,
+          5
+        ]
+      },
+      "expected": [
+        5,
+        5
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

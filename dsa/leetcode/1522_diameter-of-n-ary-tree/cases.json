@@ -206,10 +206,10 @@
       ]
     },
     {
-      "id": "real-two-unequal",
-      "name": "hidden: unequal deepest branches",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-unequal",
+      "name": "unequal deepest branches",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           [
@@ -260,10 +260,10 @@
       ]
     },
     {
-      "id": "real-root-not-first",
-      "name": "hidden: records do not begin with the root",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-root-not-first",
+      "name": "records do not begin with the root",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           [
@@ -308,10 +308,10 @@
       ]
     },
     {
-      "id": "real-many-depths",
-      "name": "hidden: high degree with several branch depths",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-depths",
+      "name": "high degree with several branch depths",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           [
@@ -385,10 +385,10 @@
       ]
     },
     {
-      "id": "real-one-branch",
-      "name": "hidden: each internal node has one child",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-branch",
+      "name": "each internal node has one child",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           [
@@ -423,10 +423,10 @@
       ]
     },
     {
-      "id": "real-balanced",
-      "name": "hidden: balanced three-level tree",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-balanced",
+      "name": "balanced three-level tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           [

@@ -10,28 +10,103 @@
       "input": {
         "tables": {
           "Activities": [
-            {"activity_id": 7274, "user_id": 123, "activity_type": "open", "time_spent": 4.50},
-            {"activity_id": 2425, "user_id": 123, "activity_type": "send", "time_spent": 3.50},
-            {"activity_id": 1413, "user_id": 456, "activity_type": "send", "time_spent": 5.67},
-            {"activity_id": 2536, "user_id": 456, "activity_type": "open", "time_spent": 3.00},
-            {"activity_id": 8564, "user_id": 456, "activity_type": "send", "time_spent": 8.24},
-            {"activity_id": 5235, "user_id": 789, "activity_type": "send", "time_spent": 6.24},
-            {"activity_id": 4251, "user_id": 123, "activity_type": "open", "time_spent": 1.25},
-            {"activity_id": 1435, "user_id": 789, "activity_type": "open", "time_spent": 5.25}
+            {
+              "activity_id": 7274,
+              "user_id": 123,
+              "activity_type": "open",
+              "time_spent": 4.5
+            },
+            {
+              "activity_id": 2425,
+              "user_id": 123,
+              "activity_type": "send",
+              "time_spent": 3.5
+            },
+            {
+              "activity_id": 1413,
+              "user_id": 456,
+              "activity_type": "send",
+              "time_spent": 5.67
+            },
+            {
+              "activity_id": 2536,
+              "user_id": 456,
+              "activity_type": "open",
+              "time_spent": 3.0
+            },
+            {
+              "activity_id": 8564,
+              "user_id": 456,
+              "activity_type": "send",
+              "time_spent": 8.24
+            },
+            {
+              "activity_id": 5235,
+              "user_id": 789,
+              "activity_type": "send",
+              "time_spent": 6.24
+            },
+            {
+              "activity_id": 4251,
+              "user_id": 123,
+              "activity_type": "open",
+              "time_spent": 1.25
+            },
+            {
+              "activity_id": 1435,
+              "user_id": 789,
+              "activity_type": "open",
+              "time_spent": 5.25
+            }
           ],
           "Age": [
-            {"user_id": 123, "age_bucket": "31-35"},
-            {"user_id": 789, "age_bucket": "21-25"},
-            {"user_id": 456, "age_bucket": "26-30"}
+            {
+              "user_id": 123,
+              "age_bucket": "31-35"
+            },
+            {
+              "user_id": 789,
+              "age_bucket": "21-25"
+            },
+            {
+              "user_id": 456,
+              "age_bucket": "26-30"
+            }
           ]
         }
       },
       "expected": {
-        "columns": ["age_bucket", "send_perc", "open_perc"],
-        "rows": [["31-35", 37.84, 62.16], ["26-30", 82.26, 17.74], ["21-25", 54.31, 45.69]]
+        "columns": [
+          "age_bucket",
+          "send_perc",
+          "open_perc"
+        ],
+        "rows": [
+          [
+            "31-35",
+            37.84,
+            62.16
+          ],
+          [
+            "26-30",
+            82.26,
+            17.74
+          ],
+          [
+            "21-25",
+            54.31,
+            45.69
+          ]
+        ]
       },
-      "validator": {"kind": "unordered_table"},
-      "tags": ["sample", "grouping", "rounding"]
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "sample",
+        "grouping",
+        "rounding"
+      ]
     },
     {
       "id": "sample-multiple-users",
@@ -41,19 +116,58 @@
       "input": {
         "tables": {
           "Activities": [
-            {"activity_id": 1, "user_id": 1, "activity_type": "send", "time_spent": 2},
-            {"activity_id": 2, "user_id": 2, "activity_type": "send", "time_spent": 1},
-            {"activity_id": 3, "user_id": 2, "activity_type": "open", "time_spent": 3}
+            {
+              "activity_id": 1,
+              "user_id": 1,
+              "activity_type": "send",
+              "time_spent": 2
+            },
+            {
+              "activity_id": 2,
+              "user_id": 2,
+              "activity_type": "send",
+              "time_spent": 1
+            },
+            {
+              "activity_id": 3,
+              "user_id": 2,
+              "activity_type": "open",
+              "time_spent": 3
+            }
           ],
           "Age": [
-            {"user_id": 1, "age_bucket": "21-25"},
-            {"user_id": 2, "age_bucket": "21-25"}
+            {
+              "user_id": 1,
+              "age_bucket": "21-25"
+            },
+            {
+              "user_id": 2,
+              "age_bucket": "21-25"
+            }
           ]
         }
       },
-      "expected": {"columns": ["age_bucket", "send_perc", "open_perc"], "rows": [["21-25", 50.0, 50.0]]},
-      "validator": {"kind": "unordered_table"},
-      "tags": ["sample", "multiple-users"]
+      "expected": {
+        "columns": [
+          "age_bucket",
+          "send_perc",
+          "open_perc"
+        ],
+        "rows": [
+          [
+            "21-25",
+            50.0,
+            50.0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "sample",
+        "multiple-users"
+      ]
     },
     {
       "id": "trial-only-send",
@@ -62,57 +176,166 @@
       "visible": true,
       "input": {
         "tables": {
-          "Activities": [{"activity_id": 8, "user_id": 4, "activity_type": "send", "time_spent": 7.5}],
-          "Age": [{"user_id": 4, "age_bucket": "26-30"}]
-        }
-      },
-      "expected": {"columns": ["age_bucket", "send_perc", "open_perc"], "rows": [["26-30", 100.0, 0.0]]},
-      "validator": {"kind": "unordered_table"},
-      "tags": ["boundary", "missing-category"]
-    },
-    {
-      "id": "real-fractional-rounding",
-      "name": "hidden: round the completed fractional ratios",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "tables": {
           "Activities": [
-            {"activity_id": 10, "user_id": 9, "activity_type": "send", "time_spent": 0.1},
-            {"activity_id": 11, "user_id": 9, "activity_type": "open", "time_spent": 0.2}
-          ],
-          "Age": [{"user_id": 9, "age_bucket": "31-35"}]
-        }
-      },
-      "expected": {"columns": ["age_bucket", "send_perc", "open_perc"], "rows": [["31-35", 33.33, 66.67]]},
-      "validator": {"kind": "unordered_table"},
-      "tags": ["rounding", "decimal"]
-    },
-    {
-      "id": "real-bucket-isolation",
-      "name": "hidden: calculate age buckets independently",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "tables": {
-          "Activities": [
-            {"activity_id": 20, "user_id": 5, "activity_type": "send", "time_spent": 3},
-            {"activity_id": 21, "user_id": 5, "activity_type": "open", "time_spent": 1},
-            {"activity_id": 22, "user_id": 6, "activity_type": "send", "time_spent": 1},
-            {"activity_id": 23, "user_id": 6, "activity_type": "open", "time_spent": 3}
+            {
+              "activity_id": 8,
+              "user_id": 4,
+              "activity_type": "send",
+              "time_spent": 7.5
+            }
           ],
           "Age": [
-            {"user_id": 5, "age_bucket": "21-25"},
-            {"user_id": 6, "age_bucket": "31-35"}
+            {
+              "user_id": 4,
+              "age_bucket": "26-30"
+            }
           ]
         }
       },
       "expected": {
-        "columns": ["age_bucket", "send_perc", "open_perc"],
-        "rows": [["21-25", 75.0, 25.0], ["31-35", 25.0, 75.0]]
+        "columns": [
+          "age_bucket",
+          "send_perc",
+          "open_perc"
+        ],
+        "rows": [
+          [
+            "26-30",
+            100.0,
+            0.0
+          ]
+        ]
       },
-      "validator": {"kind": "unordered_table"},
-      "tags": ["grouping", "isolation"]
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "boundary",
+        "missing-category"
+      ]
+    },
+    {
+      "id": "trial-fractional-rounding",
+      "name": "round the completed fractional ratios",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Activities": [
+            {
+              "activity_id": 10,
+              "user_id": 9,
+              "activity_type": "send",
+              "time_spent": 0.1
+            },
+            {
+              "activity_id": 11,
+              "user_id": 9,
+              "activity_type": "open",
+              "time_spent": 0.2
+            }
+          ],
+          "Age": [
+            {
+              "user_id": 9,
+              "age_bucket": "31-35"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "age_bucket",
+          "send_perc",
+          "open_perc"
+        ],
+        "rows": [
+          [
+            "31-35",
+            33.33,
+            66.67
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "rounding",
+        "decimal"
+      ]
+    },
+    {
+      "id": "trial-bucket-isolation",
+      "name": "calculate age buckets independently",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Activities": [
+            {
+              "activity_id": 20,
+              "user_id": 5,
+              "activity_type": "send",
+              "time_spent": 3
+            },
+            {
+              "activity_id": 21,
+              "user_id": 5,
+              "activity_type": "open",
+              "time_spent": 1
+            },
+            {
+              "activity_id": 22,
+              "user_id": 6,
+              "activity_type": "send",
+              "time_spent": 1
+            },
+            {
+              "activity_id": 23,
+              "user_id": 6,
+              "activity_type": "open",
+              "time_spent": 3
+            }
+          ],
+          "Age": [
+            {
+              "user_id": 5,
+              "age_bucket": "21-25"
+            },
+            {
+              "user_id": 6,
+              "age_bucket": "31-35"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "age_bucket",
+          "send_perc",
+          "open_perc"
+        ],
+        "rows": [
+          [
+            "21-25",
+            75.0,
+            25.0
+          ],
+          [
+            "31-35",
+            25.0,
+            75.0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "grouping",
+        "isolation"
+      ]
     }
   ]
 }

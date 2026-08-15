@@ -148,10 +148,10 @@
       ]
     },
     {
-      "id": "real-target-above-moduli",
-      "name": "real: target cannot equal any residue",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-target-above-moduli",
+      "name": "target cannot equal any residue",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "variables": [
           [
@@ -171,15 +171,14 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "target-boundary"
       ]
     },
     {
-      "id": "real-mixed-residues",
-      "name": "real: separated matching rows",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-residues",
+      "name": "separated matching rows",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "variables": [
           [
@@ -208,15 +207,14 @@
         2
       ],
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
     {
-      "id": "real-order-preserved",
-      "name": "real: every row matches in index order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-order-preserved",
+      "name": "every row matches in index order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "variables": [
           [
@@ -246,7 +244,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "all-match"
       ]
     }

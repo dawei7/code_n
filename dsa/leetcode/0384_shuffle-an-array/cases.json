@@ -191,10 +191,10 @@
       ]
     },
     {
-      "id": "hidden-negative-values",
-      "name": "hidden: shuffle signed values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-negative-values",
+      "name": "shuffle signed values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -3,
@@ -234,15 +234,14 @@
         "operations_param": "operations"
       },
       "tags": [
-        "hidden",
         "negative"
       ]
     },
     {
-      "id": "hidden-return-original",
-      "name": "hidden: original order is a valid shuffle",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-return-original",
+      "name": "original order is a valid shuffle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -269,7 +268,6 @@
         "operations_param": "operations"
       },
       "tags": [
-        "hidden",
         "identity-permutation"
       ]
     }

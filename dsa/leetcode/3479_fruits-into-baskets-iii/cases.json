@@ -95,10 +95,10 @@
       ]
     },
     {
-      "id": "real-all-unplaced",
-      "name": "hidden: root maximum rejects every fruit",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-unplaced",
+      "name": "root maximum rejects every fruit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           9,
@@ -115,15 +115,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "root-rejection"
       ]
     },
     {
-      "id": "real-no-reuse",
-      "name": "hidden: a consumed leaf cannot be selected again",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-no-reuse",
+      "name": "a consumed leaf cannot be selected again",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           2,
@@ -136,15 +135,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "basket-uniqueness"
       ]
     },
     {
-      "id": "real-skip-left-subtree",
-      "name": "hidden: search skips an insufficient left range",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-skip-left-subtree",
+      "name": "search skips an insufficient left range",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           8,
@@ -161,15 +159,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "tree-descent"
       ]
     },
     {
-      "id": "real-fruit-order",
-      "name": "hidden: updates preserve fruit processing order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-fruit-order",
+      "name": "updates preserve fruit processing order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           2,
@@ -184,15 +181,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "fruit-order"
       ]
     },
     {
-      "id": "real-duplicate-capacities",
-      "name": "hidden: duplicate capacities remain distinct leaves",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicate-capacities",
+      "name": "duplicate capacities remain distinct leaves",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           3,
@@ -209,15 +205,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "real-single-fit",
-      "name": "hidden: one-leaf tree with an exact fit",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-fit",
+      "name": "one-leaf tree with an exact fit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           1
@@ -228,15 +223,14 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
     {
-      "id": "real-single-unfit",
-      "name": "hidden: one-leaf tree with no fit",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-unfit",
+      "name": "one-leaf tree with no fit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           2
@@ -247,15 +241,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
     {
-      "id": "real-maximum-values",
-      "name": "hidden: legal maximum quantities and capacities",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-values",
+      "name": "legal maximum quantities and capacities",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           1000000000,
@@ -270,7 +263,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "maximum-values"
       ]
     }

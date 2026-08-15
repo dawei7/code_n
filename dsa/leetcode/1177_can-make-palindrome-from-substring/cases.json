@@ -2,12 +2,251 @@
   "schema_version": 1,
   "challenge_id": "lc_1177",
   "cases": [
-    {"id":"sample-abcda","name":"sample: mixed palindrome budgets","kind":"sample","visible":true,"input":{"s":"abcda","queries":[[3,3,0],[1,2,0],[0,3,1],[0,3,2],[0,4,1]]},"expected":[true,false,false,true,true],"tags":["sample","prefix-parity"]},
-    {"id":"sample-lyb","name":"sample: pair and single character","kind":"sample","visible":true,"input":{"s":"lyb","queries":[[0,1,0],[2,2,1]]},"expected":[false,true],"tags":["sample"]},
-    {"id":"trial-already-palindromic","name":"rearrangement needs no replacement","kind":"trial","visible":true,"input":{"s":"aabbc","queries":[[0,4,0],[0,3,0],[1,4,0]]},"expected":[true,true,false],"tags":["parity","zero-budget"]},
-    {"id":"trial-exact-budget","name":"budget exactly matches odd pairs","kind":"trial","visible":true,"input":{"s":"abcdef","queries":[[0,5,2],[0,5,3],[1,4,2]]},"expected":[false,true,true],"tags":["budget-boundary"]},
-    {"id":"real-repeated-query","name":"hidden: queries do not modify the string","kind":"real","visible":false,"input":{"s":"abca","queries":[[0,3,1],[0,3,0],[0,3,1]]},"expected":[true,false,true],"tags":["hidden","independent"]},
-    {"id":"real-single-character","name":"hidden: every one-character range succeeds","kind":"real","visible":false,"input":{"s":"xyz","queries":[[0,0,0],[1,1,0],[2,2,0]]},"expected":[true,true,true],"tags":["hidden","single-character"]},
-    {"id":"real-even-and-odd","name":"hidden: center allowance changes parity need","kind":"real","visible":false,"input":{"s":"abcbaq","queries":[[0,4,0],[0,5,0],[0,5,1]]},"expected":[true,false,true],"tags":["hidden","length-parity"]}
+    {
+      "id": "sample-abcda",
+      "name": "sample: mixed palindrome budgets",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcda",
+        "queries": [
+          [
+            3,
+            3,
+            0
+          ],
+          [
+            1,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            1
+          ],
+          [
+            0,
+            3,
+            2
+          ],
+          [
+            0,
+            4,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        false,
+        false,
+        true,
+        true
+      ],
+      "tags": [
+        "sample",
+        "prefix-parity"
+      ]
+    },
+    {
+      "id": "sample-lyb",
+      "name": "sample: pair and single character",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "lyb",
+        "queries": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            2,
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        false,
+        true
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-already-palindromic",
+      "name": "rearrangement needs no replacement",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aabbc",
+        "queries": [
+          [
+            0,
+            4,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            1,
+            4,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        false
+      ],
+      "tags": [
+        "parity",
+        "zero-budget"
+      ]
+    },
+    {
+      "id": "trial-exact-budget",
+      "name": "budget exactly matches odd pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdef",
+        "queries": [
+          [
+            0,
+            5,
+            2
+          ],
+          [
+            0,
+            5,
+            3
+          ],
+          [
+            1,
+            4,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        false,
+        true,
+        true
+      ],
+      "tags": [
+        "budget-boundary"
+      ]
+    },
+    {
+      "id": "trial-repeated-query",
+      "name": "queries do not modify the string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abca",
+        "queries": [
+          [
+            0,
+            3,
+            1
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            3,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        false,
+        true
+      ],
+      "tags": [
+        "independent"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "every one-character range succeeds",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "xyz",
+        "queries": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            2,
+            2,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        true
+      ],
+      "tags": [
+        "single-character"
+      ]
+    },
+    {
+      "id": "trial-even-and-odd",
+      "name": "center allowance changes parity need",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcbaq",
+        "queries": [
+          [
+            0,
+            4,
+            0
+          ],
+          [
+            0,
+            5,
+            0
+          ],
+          [
+            0,
+            5,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        false,
+        true
+      ],
+      "tags": [
+        "length-parity"
+      ]
+    }
   ]
 }

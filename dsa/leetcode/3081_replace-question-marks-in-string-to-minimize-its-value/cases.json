@@ -6,72 +6,112 @@
       "name": "sample: distinct letters produce zero value",
       "kind": "sample",
       "visible": true,
-      "input": { "s": "???" },
+      "input": {
+        "s": "???"
+      },
       "expected": "abc",
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-existing-a",
       "name": "sample: balance around existing letters",
       "kind": "sample",
       "visible": true,
-      "input": { "s": "a?a?" },
+      "input": {
+        "s": "a?a?"
+      },
       "expected": "abac",
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "trial-single-question",
       "name": "trial: one placeholder chooses a",
       "kind": "trial",
       "visible": true,
-      "input": { "s": "?" },
+      "input": {
+        "s": "?"
+      },
       "expected": "a",
-      "tags": ["trial", "single-character"]
+      "tags": [
+        "trial",
+        "single-character"
+      ]
     },
     {
       "id": "trial-no-questions",
       "name": "trial: completed input remains unchanged",
       "kind": "trial",
       "visible": true,
-      "input": { "s": "leetcode" },
+      "input": {
+        "s": "leetcode"
+      },
       "expected": "leetcode",
-      "tags": ["trial", "no-replacement"]
+      "tags": [
+        "trial",
+        "no-replacement"
+      ]
     },
     {
       "id": "trial-avoid-frequent-letter",
       "name": "trial: replacements avoid an already frequent letter",
       "kind": "trial",
       "visible": true,
-      "input": { "s": "aaaa????" },
+      "input": {
+        "s": "aaaa????"
+      },
       "expected": "aaaabcde",
-      "tags": ["trial", "frequency-balance"]
+      "tags": [
+        "trial",
+        "frequency-balance"
+      ]
     },
     {
-      "id": "real-interleaved-positions",
-      "name": "real: selected letters are sorted across placeholder positions",
-      "kind": "real",
-      "visible": false,
-      "input": { "s": "z?z??" },
+      "id": "trial-interleaved-positions",
+      "name": "selected letters are sorted across placeholder positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "z?z??"
+      },
       "expected": "zazbc",
-      "tags": ["real", "lexicographic-order"]
+      "tags": [
+        "real",
+        "lexicographic-order"
+      ]
     },
     {
-      "id": "real-twenty-seven-questions",
-      "name": "real: selection wraps after all twenty-six letters",
-      "kind": "real",
-      "visible": false,
-      "input": { "s": "???????????????????????????" },
+      "id": "trial-twenty-seven-questions",
+      "name": "selection wraps after all twenty-six letters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "???????????????????????????"
+      },
       "expected": "aabcdefghijklmnopqrstuvwxyz",
-      "tags": ["real", "alphabet-cycle", "ties"]
+      "tags": [
+        "real",
+        "alphabet-cycle",
+        "ties"
+      ]
     },
     {
-      "id": "real-lexicographic-global-tie",
-      "name": "real: selected letters must be reordered globally",
-      "kind": "real",
-      "visible": false,
-      "input": { "s": "abcdefghijklmnopqrstuvwxy??" },
+      "id": "trial-lexicographic-global-tie",
+      "name": "selected letters must be reordered globally",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxy??"
+      },
       "expected": "abcdefghijklmnopqrstuvwxyaz",
-      "tags": ["real", "lexicographic-order", "existing-alphabet"]
+      "tags": [
+        "real",
+        "lexicographic-order",
+        "existing-alphabet"
+      ]
     }
   ]
 }

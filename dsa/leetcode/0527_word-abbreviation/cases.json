@@ -1021,6 +1021,44 @@
         "maximum-count",
         "minimum-length"
       ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "like"
+        ]
+      },
+      "expected": [
+        "l2e"
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "like",
+          "like"
+        ]
+      },
+      "expected": [
+        "like",
+        "like"
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

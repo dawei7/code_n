@@ -6,72 +6,109 @@
       "name": "sample: smallest character arrives last",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "zza"},
+      "input": {
+        "s": "zza"
+      },
       "expected": "azz",
-      "tags": ["sample", "deferred"]
+      "tags": [
+        "sample",
+        "deferred"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: pop before consuming the suffix",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "bac"},
+      "input": {
+        "s": "bac"
+      },
       "expected": "abc",
-      "tags": ["sample", "mixed-operations"]
+      "tags": [
+        "sample",
+        "mixed-operations"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: repeated middle letter",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "bdda"},
+      "input": {
+        "s": "bdda"
+      },
       "expected": "addb",
-      "tags": ["sample", "repeated"]
+      "tags": [
+        "sample",
+        "repeated"
+      ]
     },
     {
       "id": "trial-single-character",
       "name": "trial: one character",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "a"},
+      "input": {
+        "s": "a"
+      },
       "expected": "a",
-      "tags": ["trial", "single"]
+      "tags": [
+        "trial",
+        "single"
+      ]
     },
     {
       "id": "trial-increasing",
       "name": "trial: increasing input prints immediately",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "abcdef"},
+      "input": {
+        "s": "abcdef"
+      },
       "expected": "abcdef",
-      "tags": ["trial", "increasing"]
+      "tags": [
+        "trial",
+        "increasing"
+      ]
     },
     {
-      "id": "real-decreasing",
-      "name": "hidden: decreasing input reverses",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "dcba"},
+      "id": "trial-decreasing",
+      "name": "decreasing input reverses",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "dcba"
+      },
       "expected": "abcd",
-      "tags": ["hidden", "decreasing"]
+      "tags": [
+        "decreasing"
+      ]
     },
     {
-      "id": "real-repeated-minimum",
-      "name": "hidden: equal safe stack tops",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "cbaabc"},
+      "id": "trial-repeated-minimum",
+      "name": "equal safe stack tops",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "cbaabc"
+      },
       "expected": "aabbcc",
-      "tags": ["hidden", "equal"]
+      "tags": [
+        "equal"
+      ]
     },
     {
-      "id": "real-mixed-order",
-      "name": "hidden: several stack flushes",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "vzhofnpo"},
+      "id": "trial-mixed-order",
+      "name": "several stack flushes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "vzhofnpo"
+      },
       "expected": "fnohopzv",
-      "tags": ["hidden", "mixed"]
+      "tags": [
+        "mixed"
+      ]
     }
   ]
 }

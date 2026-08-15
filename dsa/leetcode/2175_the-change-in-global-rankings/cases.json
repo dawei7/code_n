@@ -3,40 +3,493 @@
   "challenge_id": "lc_2175",
   "cases": [
     {
-      "id":"sample-rank-changes","name":"sample: updated tie is broken by country name","kind":"sample","visible":true,
-      "input":{"tables":{"TeamPoints":[{"team_id":3,"name":"Algeria","points":1431},{"team_id":1,"name":"Senegal","points":2132},{"team_id":2,"name":"New Zealand","points":1402},{"team_id":4,"name":"Croatia","points":1817}],"PointsChange":[{"team_id":3,"points_change":399},{"team_id":2,"points_change":0},{"team_id":4,"points_change":13},{"team_id":1,"points_change":-22}]}},
-      "expected":{"columns":["team_id","name","rank_diff"],"rows":[[1,"Senegal",0],[4,"Croatia",-1],[3,"Algeria",1],[2,"New Zealand",0]]},
-      "validator":{"kind":"unordered_table"},"tags":["sample","tie-break","signed-difference"]
+      "id": "sample-rank-changes",
+      "name": "sample: updated tie is broken by country name",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "TeamPoints": [
+            {
+              "team_id": 3,
+              "name": "Algeria",
+              "points": 1431
+            },
+            {
+              "team_id": 1,
+              "name": "Senegal",
+              "points": 2132
+            },
+            {
+              "team_id": 2,
+              "name": "New Zealand",
+              "points": 1402
+            },
+            {
+              "team_id": 4,
+              "name": "Croatia",
+              "points": 1817
+            }
+          ],
+          "PointsChange": [
+            {
+              "team_id": 3,
+              "points_change": 399
+            },
+            {
+              "team_id": 2,
+              "points_change": 0
+            },
+            {
+              "team_id": 4,
+              "points_change": 13
+            },
+            {
+              "team_id": 1,
+              "points_change": -22
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "team_id",
+          "name",
+          "rank_diff"
+        ],
+        "rows": [
+          [
+            1,
+            "Senegal",
+            0
+          ],
+          [
+            4,
+            "Croatia",
+            -1
+          ],
+          [
+            3,
+            "Algeria",
+            1
+          ],
+          [
+            2,
+            "New Zealand",
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "sample",
+        "tie-break",
+        "signed-difference"
+      ]
     },
     {
-      "id":"trial-single-team","name":"one team cannot change rank","kind":"trial","visible":true,
-      "input":{"tables":{"TeamPoints":[{"team_id":8,"name":"Solo","points":10}],"PointsChange":[{"team_id":8,"points_change":-100}]}},
-      "expected":{"columns":["team_id","name","rank_diff"],"rows":[[8,"Solo",0]]},"validator":{"kind":"unordered_table"},"tags":["single-team"]
+      "id": "trial-single-team",
+      "name": "one team cannot change rank",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "TeamPoints": [
+            {
+              "team_id": 8,
+              "name": "Solo",
+              "points": 10
+            }
+          ],
+          "PointsChange": [
+            {
+              "team_id": 8,
+              "points_change": -100
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "team_id",
+          "name",
+          "rank_diff"
+        ],
+        "rows": [
+          [
+            8,
+            "Solo",
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "single-team"
+      ]
     },
     {
-      "id":"trial-no-changes","name":"zero adjustments preserve all positions","kind":"trial","visible":true,
-      "input":{"tables":{"TeamPoints":[{"team_id":1,"name":"A","points":30},{"team_id":2,"name":"B","points":20},{"team_id":3,"name":"C","points":10}],"PointsChange":[{"team_id":1,"points_change":0},{"team_id":2,"points_change":0},{"team_id":3,"points_change":0}]}},
-      "expected":{"columns":["team_id","name","rank_diff"],"rows":[[1,"A",0],[2,"B",0],[3,"C",0]]},"validator":{"kind":"unordered_table"},"tags":["zero-change"]
+      "id": "trial-no-changes",
+      "name": "zero adjustments preserve all positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "TeamPoints": [
+            {
+              "team_id": 1,
+              "name": "A",
+              "points": 30
+            },
+            {
+              "team_id": 2,
+              "name": "B",
+              "points": 20
+            },
+            {
+              "team_id": 3,
+              "name": "C",
+              "points": 10
+            }
+          ],
+          "PointsChange": [
+            {
+              "team_id": 1,
+              "points_change": 0
+            },
+            {
+              "team_id": 2,
+              "points_change": 0
+            },
+            {
+              "team_id": 3,
+              "points_change": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "team_id",
+          "name",
+          "rank_diff"
+        ],
+        "rows": [
+          [
+            1,
+            "A",
+            0
+          ],
+          [
+            2,
+            "B",
+            0
+          ],
+          [
+            3,
+            "C",
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "zero-change"
+      ]
     },
     {
-      "id":"trial-complete-reversal","name":"rank improvements and declines use signed differences","kind":"trial","visible":true,
-      "input":{"tables":{"TeamPoints":[{"team_id":1,"name":"A","points":30},{"team_id":2,"name":"B","points":20},{"team_id":3,"name":"C","points":10}],"PointsChange":[{"team_id":1,"points_change":-30},{"team_id":2,"points_change":0},{"team_id":3,"points_change":30}]}},
-      "expected":{"columns":["team_id","name","rank_diff"],"rows":[[1,"A",-2],[2,"B",0],[3,"C",2]]},"validator":{"kind":"unordered_table"},"tags":["signed-difference","reversal"]
+      "id": "trial-complete-reversal",
+      "name": "rank improvements and declines use signed differences",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "TeamPoints": [
+            {
+              "team_id": 1,
+              "name": "A",
+              "points": 30
+            },
+            {
+              "team_id": 2,
+              "name": "B",
+              "points": 20
+            },
+            {
+              "team_id": 3,
+              "name": "C",
+              "points": 10
+            }
+          ],
+          "PointsChange": [
+            {
+              "team_id": 1,
+              "points_change": -30
+            },
+            {
+              "team_id": 2,
+              "points_change": 0
+            },
+            {
+              "team_id": 3,
+              "points_change": 30
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "team_id",
+          "name",
+          "rank_diff"
+        ],
+        "rows": [
+          [
+            1,
+            "A",
+            -2
+          ],
+          [
+            2,
+            "B",
+            0
+          ],
+          [
+            3,
+            "C",
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "signed-difference",
+        "reversal"
+      ]
     },
     {
-      "id":"real-original-tie","name":"hidden: original ties also use lexicographical order","kind":"real","visible":false,
-      "input":{"tables":{"TeamPoints":[{"team_id":7,"name":"Zulu","points":50},{"team_id":9,"name":"Alpha","points":50},{"team_id":4,"name":"Mike","points":40}],"PointsChange":[{"team_id":4,"points_change":20},{"team_id":7,"points_change":0},{"team_id":9,"points_change":0}]}},
-      "expected":{"columns":["team_id","name","rank_diff"],"rows":[[4,"Mike",2],[9,"Alpha",-1],[7,"Zulu",-1]]},"validator":{"kind":"unordered_table"},"tags":["hidden","original-tie","lexicographical"]
+      "id": "trial-original-tie",
+      "name": "original ties also use lexicographical order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "TeamPoints": [
+            {
+              "team_id": 7,
+              "name": "Zulu",
+              "points": 50
+            },
+            {
+              "team_id": 9,
+              "name": "Alpha",
+              "points": 50
+            },
+            {
+              "team_id": 4,
+              "name": "Mike",
+              "points": 40
+            }
+          ],
+          "PointsChange": [
+            {
+              "team_id": 4,
+              "points_change": 20
+            },
+            {
+              "team_id": 7,
+              "points_change": 0
+            },
+            {
+              "team_id": 9,
+              "points_change": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "team_id",
+          "name",
+          "rank_diff"
+        ],
+        "rows": [
+          [
+            4,
+            "Mike",
+            2
+          ],
+          [
+            9,
+            "Alpha",
+            -1
+          ],
+          [
+            7,
+            "Zulu",
+            -1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "original-tie",
+        "lexicographical"
+      ]
     },
     {
-      "id":"real-updated-three-way-tie","name":"hidden: a three-way updated tie is name ordered","kind":"real","visible":false,
-      "input":{"tables":{"TeamPoints":[{"team_id":1,"name":"Gamma","points":90},{"team_id":2,"name":"Alpha","points":80},{"team_id":3,"name":"Beta","points":70}],"PointsChange":[{"team_id":1,"points_change":-20},{"team_id":2,"points_change":-10},{"team_id":3,"points_change":0}]}},
-      "expected":{"columns":["team_id","name","rank_diff"],"rows":[[1,"Gamma",-2],[2,"Alpha",1],[3,"Beta",1]]},"validator":{"kind":"unordered_table"},"tags":["hidden","updated-tie","lexicographical"]
+      "id": "trial-updated-three-way-tie",
+      "name": "a three-way updated tie is name ordered",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "TeamPoints": [
+            {
+              "team_id": 1,
+              "name": "Gamma",
+              "points": 90
+            },
+            {
+              "team_id": 2,
+              "name": "Alpha",
+              "points": 80
+            },
+            {
+              "team_id": 3,
+              "name": "Beta",
+              "points": 70
+            }
+          ],
+          "PointsChange": [
+            {
+              "team_id": 1,
+              "points_change": -20
+            },
+            {
+              "team_id": 2,
+              "points_change": -10
+            },
+            {
+              "team_id": 3,
+              "points_change": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "team_id",
+          "name",
+          "rank_diff"
+        ],
+        "rows": [
+          [
+            1,
+            "Gamma",
+            -2
+          ],
+          [
+            2,
+            "Alpha",
+            1
+          ],
+          [
+            3,
+            "Beta",
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "updated-tie",
+        "lexicographical"
+      ]
     },
     {
-      "id":"real-unordered-tables","name":"hidden: physical row order does not define rank","kind":"real","visible":false,
-      "input":{"tables":{"TeamPoints":[{"team_id":30,"name":"C","points":1},{"team_id":10,"name":"A","points":3},{"team_id":20,"name":"B","points":2}],"PointsChange":[{"team_id":20,"points_change":2},{"team_id":30,"points_change":4},{"team_id":10,"points_change":0}]}},
-      "expected":{"columns":["team_id","name","rank_diff"],"rows":[[10,"A",-2],[20,"B",0],[30,"C",2]]},"validator":{"kind":"unordered_table"},"tags":["hidden","input-order","join"]
+      "id": "trial-unordered-tables",
+      "name": "physical row order does not define rank",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "TeamPoints": [
+            {
+              "team_id": 30,
+              "name": "C",
+              "points": 1
+            },
+            {
+              "team_id": 10,
+              "name": "A",
+              "points": 3
+            },
+            {
+              "team_id": 20,
+              "name": "B",
+              "points": 2
+            }
+          ],
+          "PointsChange": [
+            {
+              "team_id": 20,
+              "points_change": 2
+            },
+            {
+              "team_id": 30,
+              "points_change": 4
+            },
+            {
+              "team_id": 10,
+              "points_change": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "team_id",
+          "name",
+          "rank_diff"
+        ],
+        "rows": [
+          [
+            10,
+            "A",
+            -2
+          ],
+          [
+            20,
+            "B",
+            0
+          ],
+          [
+            30,
+            "C",
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "input-order",
+        "join"
+      ]
     }
   ]
 }

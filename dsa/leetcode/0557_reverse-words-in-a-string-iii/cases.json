@@ -73,47 +73,71 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: apostrophe reverses with its word",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "apostrophe reverses with its word",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "can't stop"
       },
       "expected": "t'nac pots",
       "tags": [
-        "hidden",
         "characters"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: capitalization moves within words",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "capitalization moves within words",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "A bc DEF"
       },
       "expected": "A cb FED",
       "tags": [
-        "hidden",
         "characters"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: one lowercase character",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-3",
+      "name": "one lowercase character",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "z"
       },
       "expected": "z",
       "tags": [
-        "hidden",
         "characters"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "L"
+      },
+      "expected": "L",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "LLL"
+      },
+      "expected": "LLL",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]
 }
-

@@ -110,10 +110,10 @@
       ]
     },
     {
-      "id": "real-duplicates",
-      "name": "hidden: duplicate twos extend coverage after adding one",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicates",
+      "name": "duplicate twos extend coverage after adding one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "coins": [
           2,
@@ -124,15 +124,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "real-unsorted-gaps",
-      "name": "hidden: unsorted coins leave several separated gaps",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unsorted-gaps",
+      "name": "unsorted coins leave several separated gaps",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "coins": [
           9,
@@ -144,15 +143,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "unsorted"
       ]
     },
     {
-      "id": "real-large-coin-unused",
-      "name": "hidden: a coin above the target cannot close earlier gaps",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-coin-unused",
+      "name": "a coin above the target cannot close earlier gaps",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "coins": [
           100,
@@ -163,15 +161,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "large-coin"
       ]
     },
     {
-      "id": "real-power-chain",
-      "name": "hidden: sparse powers already cover every value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-power-chain",
+      "name": "sparse powers already cover every value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "coins": [
           16,
@@ -184,8 +181,42 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "powers"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in coins",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coins": [
+          1
+        ],
+        "target": 19
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in coins",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coins": [
+          1,
+          1
+        ],
+        "target": 19
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

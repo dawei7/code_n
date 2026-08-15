@@ -1,1 +1,164 @@
-{"schema_version":1,"challenge_id":"lc_2745","cases":[{"id":"sample-more-bb","name":"sample: more BB pieces","kind":"sample","visible":true,"input":{"x":2,"y":5,"z":1},"expected":12,"tags":["sample","bb-surplus"]},{"id":"sample-more-aa","name":"sample: more AA pieces","kind":"sample","visible":true,"input":{"x":3,"y":2,"z":2},"expected":14,"tags":["sample","aa-surplus"]},{"id":"trial-equal","name":"trial: equal outer-piece counts","kind":"trial","visible":true,"input":{"x":3,"y":3,"z":4},"expected":20,"tags":["trial","balanced"]},{"id":"real-minimum","name":"hidden: minimum counts","kind":"real","visible":false,"input":{"x":1,"y":1,"z":1},"expected":6,"tags":["hidden","minimum"]},{"id":"real-aa-heavy","name":"hidden: extreme AA surplus","kind":"real","visible":false,"input":{"x":50,"y":1,"z":1},"expected":8,"tags":["hidden","aa-surplus","maximum"]},{"id":"real-bb-heavy","name":"hidden: extreme BB surplus","kind":"real","visible":false,"input":{"x":1,"y":50,"z":1},"expected":8,"tags":["hidden","bb-surplus","maximum"]},{"id":"real-all-maximum","name":"hidden: all counts at maximum","kind":"real","visible":false,"input":{"x":50,"y":50,"z":50},"expected":300,"tags":["hidden","balanced","maximum"]},{"id":"real-ab-heavy","name":"hidden: many AB pieces","kind":"real","visible":false,"input":{"x":2,"y":2,"z":50},"expected":108,"tags":["hidden","ab-heavy"]}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2745",
+  "cases": [
+    {
+      "id": "sample-more-bb",
+      "name": "sample: more BB pieces",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "x": 2,
+        "y": 5,
+        "z": 1
+      },
+      "expected": 12,
+      "tags": [
+        "sample",
+        "bb-surplus"
+      ]
+    },
+    {
+      "id": "sample-more-aa",
+      "name": "sample: more AA pieces",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "x": 3,
+        "y": 2,
+        "z": 2
+      },
+      "expected": 14,
+      "tags": [
+        "sample",
+        "aa-surplus"
+      ]
+    },
+    {
+      "id": "trial-equal",
+      "name": "trial: equal outer-piece counts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": 3,
+        "y": 3,
+        "z": 4
+      },
+      "expected": 20,
+      "tags": [
+        "trial",
+        "balanced"
+      ]
+    },
+    {
+      "id": "trial-minimum",
+      "name": "minimum counts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "expected": 6,
+      "tags": [
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-aa-heavy",
+      "name": "extreme AA surplus",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": 50,
+        "y": 1,
+        "z": 1
+      },
+      "expected": 8,
+      "tags": [
+        "aa-surplus",
+        "maximum"
+      ]
+    },
+    {
+      "id": "trial-bb-heavy",
+      "name": "extreme BB surplus",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": 1,
+        "y": 50,
+        "z": 1
+      },
+      "expected": 8,
+      "tags": [
+        "bb-surplus",
+        "maximum"
+      ]
+    },
+    {
+      "id": "trial-all-maximum",
+      "name": "all counts at maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": 50,
+        "y": 50,
+        "z": 50
+      },
+      "expected": 300,
+      "tags": [
+        "balanced",
+        "maximum"
+      ]
+    },
+    {
+      "id": "trial-ab-heavy",
+      "name": "many AB pieces",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": 2,
+        "y": 2,
+        "z": 50
+      },
+      "expected": 108,
+      "tags": [
+        "ab-heavy"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value x=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": 1,
+        "y": 5,
+        "z": 1
+      },
+      "expected": 8,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value y=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": 2,
+        "y": 1,
+        "z": 1
+      },
+      "expected": 8,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    }
+  ]
+}

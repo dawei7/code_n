@@ -7,99 +7,207 @@
       "name": "sample: source overlapping candidates",
       "kind": "sample",
       "visible": true,
-      "input": {"s1": "abcdebdde", "s2": "bde"},
+      "input": {
+        "s1": "abcdebdde",
+        "s2": "bde"
+      },
       "expected": "bcde",
-      "tags": ["sample", "source-example", "minimum-window", "leftmost-tie"]
+      "tags": [
+        "sample",
+        "source-example",
+        "minimum-window",
+        "leftmost-tie"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: source target character absent",
       "kind": "sample",
       "visible": true,
-      "input": {"s1": "jmeqksfrsdcmsiwvaovztaqenprpvnbstl", "s2": "u"},
+      "input": {
+        "s1": "jmeqksfrsdcmsiwvaovztaqenprpvnbstl",
+        "s2": "u"
+      },
       "expected": "",
-      "tags": ["sample", "source-example", "missing-target"]
+      "tags": [
+        "sample",
+        "source-example",
+        "missing-target"
+      ]
     },
     {
       "id": "trial-exact-match",
       "name": "the entire source equals the target",
       "kind": "trial",
       "visible": true,
-      "input": {"s1": "abc", "s2": "abc"},
+      "input": {
+        "s1": "abc",
+        "s2": "abc"
+      },
       "expected": "abc",
-      "tags": ["trial", "exact-match", "whole-source"]
+      "tags": [
+        "trial",
+        "exact-match",
+        "whole-source"
+      ]
     },
     {
       "id": "trial-single-character-match",
       "name": "minimum source and target lengths match",
       "kind": "trial",
       "visible": true,
-      "input": {"s1": "a", "s2": "a"},
+      "input": {
+        "s1": "a",
+        "s2": "a"
+      },
       "expected": "a",
-      "tags": ["trial", "minimum-lengths", "exact-match"]
+      "tags": [
+        "trial",
+        "minimum-lengths",
+        "exact-match"
+      ]
     },
     {
       "id": "trial-small-missing-target",
       "name": "a one-character target is absent",
       "kind": "trial",
       "visible": true,
-      "input": {"s1": "abc", "s2": "d"},
+      "input": {
+        "s1": "abc",
+        "s2": "d"
+      },
       "expected": "",
-      "tags": ["trial", "missing-target"]
+      "tags": [
+        "trial",
+        "missing-target"
+      ]
     },
     {
       "id": "trial-repeated-target-characters",
       "name": "one source occurrence cannot satisfy two target positions",
       "kind": "trial",
       "visible": true,
-      "input": {"s1": "aaaaa", "s2": "aa"},
+      "input": {
+        "s1": "aaaaa",
+        "s2": "aa"
+      },
       "expected": "aa",
-      "tags": ["trial", "repeated-characters", "distinct-occurrences"]
+      "tags": [
+        "trial",
+        "repeated-characters",
+        "distinct-occurrences"
+      ]
     },
     {
       "id": "trial-noncontiguous-subsequence",
       "name": "the target matches only as a noncontiguous subsequence",
       "kind": "trial",
       "visible": true,
-      "input": {"s1": "axbxc", "s2": "abc"},
+      "input": {
+        "s1": "axbxc",
+        "s2": "abc"
+      },
       "expected": "axbxc",
-      "tags": ["trial", "subsequence", "whole-source"]
+      "tags": [
+        "trial",
+        "subsequence",
+        "whole-source"
+      ]
     },
     {
       "id": "trial-leftmost-equal-length-window",
       "name": "equal minimum lengths choose the leftmost window",
       "kind": "trial",
       "visible": true,
-      "input": {"s1": "abcxxadc", "s2": "ac"},
+      "input": {
+        "s1": "abcxxadc",
+        "s2": "ac"
+      },
       "expected": "abc",
-      "tags": ["trial", "leftmost-tie", "multiple-windows"]
+      "tags": [
+        "trial",
+        "leftmost-tie",
+        "multiple-windows"
+      ]
     },
     {
       "id": "trial-later-shorter-window",
       "name": "a later candidate replaces an earlier longer window",
       "kind": "trial",
       "visible": true,
-      "input": {"s1": "axbyab", "s2": "ab"},
+      "input": {
+        "s1": "axbyab",
+        "s2": "ab"
+      },
       "expected": "ab",
-      "tags": ["trial", "later-shorter", "multiple-windows"]
+      "tags": [
+        "trial",
+        "later-shorter",
+        "multiple-windows"
+      ]
     },
     {
       "id": "trial-target-longer-than-source",
       "name": "a longer target cannot be a source subsequence",
       "kind": "trial",
       "visible": true,
-      "input": {"s1": "abc", "s2": "abcd"},
+      "input": {
+        "s1": "abc",
+        "s2": "abcd"
+      },
       "expected": "",
-      "tags": ["trial", "target-longer", "no-window"]
+      "tags": [
+        "trial",
+        "target-longer",
+        "no-window"
+      ]
     },
     {
       "id": "trial-maximum-target-length",
       "name": "target reaches the one-hundred-character limit",
       "kind": "trial",
       "visible": true,
-      "input": {"s1": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "s2": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+      "input": {
+        "s1": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "s2": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
       "expected": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-      "tags": ["trial", "maximum-target-length", "repeated-characters", "exact-match"]
+      "tags": [
+        "trial",
+        "maximum-target-length",
+        "repeated-characters",
+        "exact-match"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single character in s1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "a",
+        "s2": "bde"
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "repeated character in s1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "aaa",
+        "s2": "bde"
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
     }
   ]
 }

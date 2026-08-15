@@ -179,10 +179,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: every first roll returns to start",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "every first roll returns to start",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "board": [
           [
@@ -204,16 +204,15 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "unreachable",
         "cycle"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: do not chain two ladders",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "do not chain two ladders",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "board": [
           [
@@ -244,15 +243,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "single-transition"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: avoid a snake near the end",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "avoid a snake near the end",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "board": [
           [
@@ -274,15 +272,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "snake"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: empty four by four board",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "empty four by four board",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "board": [
           [
@@ -313,15 +310,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "no-transitions"
       ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: maximum board dimension",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-5",
+      "name": "maximum board dimension",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "board": [
           [
@@ -768,7 +764,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "dimension-bound"
       ]
     }

@@ -1,1 +1,188 @@
-{"challenge_id":"lc_2717","cases":[{"id":"sample-1","name":"sample: both endpoints need one swap","kind":"sample","visible":true,"input":{"nums":[2,1,4,3]},"expected":2,"tags":["sample","endpoints"]},{"id":"sample-2","name":"sample: endpoint paths overlap","kind":"sample","visible":true,"input":{"nums":[2,4,1,3]},"expected":3,"tags":["sample","overlap"]},{"id":"sample-3","name":"sample: already semi-ordered","kind":"sample","visible":true,"input":{"nums":[1,3,4,2,5]},"expected":0,"tags":["sample","complete"]},{"id":"trial-length-two-complete","name":"trial: smallest complete permutation","kind":"trial","visible":true,"input":{"nums":[1,2]},"expected":0,"tags":["trial","minimum"]},{"id":"trial-length-two-reversed","name":"trial: smallest reversed permutation","kind":"trial","visible":true,"input":{"nums":[2,1]},"expected":1,"tags":["trial","overlap"]},{"id":"real-one-already-first","name":"hidden: only maximum must move","kind":"real","visible":false,"input":{"nums":[1,4,2,3]},"expected":2,"tags":["hidden","maximum"]},{"id":"real-maximum-already-last","name":"hidden: only one must move","kind":"real","visible":false,"input":{"nums":[2,3,1,4]},"expected":2,"tags":["hidden","minimum-value"]},{"id":"real-fully-crossed","name":"hidden: maximum first and one last","kind":"real","visible":false,"input":{"nums":[4,2,3,1]},"expected":5,"tags":["hidden","overlap"]},{"id":"real-near-front","name":"hidden: one adjacent to front","kind":"real","visible":false,"input":{"nums":[2,1,3,4]},"expected":1,"tags":["hidden","single-swap"]},{"id":"real-mixed","name":"hidden: separated reversed endpoints","kind":"real","visible":false,"input":{"nums":[3,5,2,1,4]},"expected":5,"tags":["hidden","mixed"]}]}
+{
+  "challenge_id": "lc_2717",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: both endpoints need one swap",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          4,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "endpoints"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: endpoint paths overlap",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          1,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "overlap"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: already semi-ordered",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          4,
+          2,
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "complete"
+      ]
+    },
+    {
+      "id": "trial-length-two-complete",
+      "name": "trial: smallest complete permutation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-length-two-reversed",
+      "name": "trial: smallest reversed permutation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-one-already-first",
+      "name": "only maximum must move",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          2,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "maximum"
+      ]
+    },
+    {
+      "id": "trial-maximum-already-last",
+      "name": "only one must move",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          1,
+          4
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "minimum-value"
+      ]
+    },
+    {
+      "id": "trial-fully-crossed",
+      "name": "maximum first and one last",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          2,
+          3,
+          1
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-near-front",
+      "name": "one adjacent to front",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          3,
+          4
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "single-swap"
+      ]
+    },
+    {
+      "id": "trial-mixed",
+      "name": "separated reversed endpoints",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          5,
+          2,
+          1,
+          4
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "mixed"
+      ]
+    }
+  ]
+}

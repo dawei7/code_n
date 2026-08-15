@@ -223,10 +223,10 @@
       ]
     },
     {
-      "id": "real-all-months",
-      "name": "hidden: every month is populated",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-months",
+      "name": "every month is populated",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Department": [
@@ -328,15 +328,14 @@
         ]
       },
       "tags": [
-        "hidden",
         "dense"
       ]
     },
     {
-      "id": "real-unsorted-input",
-      "name": "hidden: input row order does not affect pivot",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unsorted-input",
+      "name": "input row order does not affect pivot",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Department": [
@@ -408,7 +407,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "ordering"
       ]
     }

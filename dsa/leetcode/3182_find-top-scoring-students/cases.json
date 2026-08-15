@@ -404,10 +404,10 @@
       ]
     },
     {
-      "id": "real-outside-major-cannot-fill-gap",
-      "name": "real: an A outside the major cannot replace a missing course",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-outside-major-cannot-fill-gap",
+      "name": "an A outside the major cannot replace a missing course",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "students": [
@@ -456,10 +456,10 @@
       ]
     },
     {
-      "id": "real-extra-course-does-not-hurt",
-      "name": "real: an extra non-major grade does not affect complete major coverage",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-extra-course-does-not-hurt",
+      "name": "an extra non-major grade does not affect complete major coverage",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "students": [
@@ -518,10 +518,10 @@
       ]
     },
     {
-      "id": "real-two-majors-ordered",
-      "name": "real: qualifying students from different majors are sorted",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-majors-ordered",
+      "name": "qualifying students from different majors are sorted",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "students": [
@@ -588,10 +588,10 @@
       ]
     },
     {
-      "id": "real-major-with-no-courses",
-      "name": "real: a major with no offered courses is excluded",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-major-with-no-courses",
+      "name": "a major with no offered courses is excluded",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "students": [
@@ -635,10 +635,10 @@
       ]
     },
     {
-      "id": "real-wrong-course-id",
-      "name": "real: A grades in unrelated courses leave a required course missing",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-wrong-course-id",
+      "name": "A grades in unrelated courses leave a required course missing",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "students": [
@@ -699,10 +699,10 @@
       ]
     },
     {
-      "id": "real-mixed-students",
-      "name": "real: only fully covered A students survive a mixed cohort",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-students",
+      "name": "only fully covered A students survive a mixed cohort",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "students": [
@@ -790,4 +790,3 @@
     }
   ]
 }
-

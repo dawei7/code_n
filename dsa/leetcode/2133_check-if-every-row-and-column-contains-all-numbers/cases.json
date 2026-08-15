@@ -2,12 +2,193 @@
   "schema_version": 1,
   "challenge_id": "lc_2133",
   "cases": [
-    {"id": "sample-valid-three", "name": "sample: every row and column is a permutation", "kind": "sample", "visible": true, "input": {"matrix": [[1,2,3],[3,1,2],[2,3,1]]}, "expected": true, "tags": ["sample", "valid"]},
-    {"id": "sample-duplicates", "name": "sample: repeated ones invalidate rows and columns", "kind": "sample", "visible": true, "input": {"matrix": [[1,1,1],[1,2,3],[1,2,3]]}, "expected": false, "tags": ["sample", "duplicates"]},
-    {"id": "trial-single-cell", "name": "the one-by-one matrix is valid", "kind": "trial", "visible": true, "input": {"matrix": [[1]]}, "expected": true, "tags": ["minimum-size"]},
-    {"id": "trial-row-valid-column-invalid", "name": "valid rows can still produce duplicate columns", "kind": "trial", "visible": true, "input": {"matrix": [[1,2],[1,2]]}, "expected": false, "tags": ["column-failure"]},
-    {"id": "real-column-valid-row-invalid", "name": "hidden: columns can be valid while rows repeat", "kind": "real", "visible": false, "input": {"matrix": [[1,1],[2,2]]}, "expected": false, "tags": ["hidden", "row-failure"]},
-    {"id": "real-valid-four", "name": "hidden: cyclic four-by-four matrix is valid", "kind": "real", "visible": false, "input": {"matrix": [[1,2,3,4],[2,3,4,1],[3,4,1,2],[4,1,2,3]]}, "expected": true, "tags": ["hidden", "valid"]},
-    {"id": "real-late-column-duplicate", "name": "hidden: a late edit breaks two columns", "kind": "real", "visible": false, "input": {"matrix": [[1,2,3],[2,3,1],[3,2,1]]}, "expected": false, "tags": ["hidden", "late-failure"]}
+    {
+      "id": "sample-valid-three",
+      "name": "sample: every row and column is a permutation",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "matrix": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            3,
+            1,
+            2
+          ],
+          [
+            2,
+            3,
+            1
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "valid"
+      ]
+    },
+    {
+      "id": "sample-duplicates",
+      "name": "sample: repeated ones invalidate rows and columns",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "matrix": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            1,
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-single-cell",
+      "name": "the one-by-one matrix is valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "matrix": [
+          [
+            1
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "minimum-size"
+      ]
+    },
+    {
+      "id": "trial-row-valid-column-invalid",
+      "name": "valid rows can still produce duplicate columns",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "matrix": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "column-failure"
+      ]
+    },
+    {
+      "id": "trial-column-valid-row-invalid",
+      "name": "columns can be valid while rows repeat",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "matrix": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "row-failure"
+      ]
+    },
+    {
+      "id": "trial-valid-four",
+      "name": "cyclic four-by-four matrix is valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "matrix": [
+          [
+            1,
+            2,
+            3,
+            4
+          ],
+          [
+            2,
+            3,
+            4,
+            1
+          ],
+          [
+            3,
+            4,
+            1,
+            2
+          ],
+          [
+            4,
+            1,
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "valid"
+      ]
+    },
+    {
+      "id": "trial-late-column-duplicate",
+      "name": "a late edit breaks two columns",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "matrix": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            1
+          ],
+          [
+            3,
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "late-failure"
+      ]
+    }
   ]
 }

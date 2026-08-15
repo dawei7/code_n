@@ -131,10 +131,10 @@
       ]
     },
     {
-      "id": "real-even-spacing",
-      "name": "hidden: evenly spaced positions",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-even-spacing",
+      "name": "evenly spaced positions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "position": [
           2,
@@ -154,10 +154,10 @@
       ]
     },
     {
-      "id": "real-cluster-and-outlier",
-      "name": "hidden: cluster plus distant outlier",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-cluster-and-outlier",
+      "name": "cluster plus distant outlier",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "position": [
           1,
@@ -176,10 +176,10 @@
       ]
     },
     {
-      "id": "real-large-coordinates",
-      "name": "hidden: large coordinate endpoints",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-coordinates",
+      "name": "large coordinate endpoints",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "position": [
           1,
@@ -196,10 +196,10 @@
       ]
     },
     {
-      "id": "real-tight-bottleneck",
-      "name": "hidden: one tight gap when all baskets used",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-tight-bottleneck",
+      "name": "one tight gap when all baskets used",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "position": [
           1,
@@ -217,10 +217,10 @@
       ]
     },
     {
-      "id": "real-many-candidates",
-      "name": "hidden: multiple optimal placement choices",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-candidates",
+      "name": "multiple optimal placement choices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "position": [
           1,
@@ -239,10 +239,10 @@
       ]
     },
     {
-      "id": "real-nonuniform-six",
-      "name": "hidden: nonuniform six-position instance",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-nonuniform-six",
+      "name": "nonuniform six-position instance",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "position": [
           3,

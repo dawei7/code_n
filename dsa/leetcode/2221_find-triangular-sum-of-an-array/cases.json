@@ -2,13 +2,184 @@
   "schema_version": 1,
   "challenge_id": "lc_2221",
   "cases": [
-    {"id":"sample-five-digits","name":"sample: five shrinking rows produce eight","kind":"sample","visible":true,"input":{"nums":[1,2,3,4,5]},"expected":8,"tags":["sample","multiple-rounds"]},
-    {"id":"sample-singleton","name":"sample: one digit needs no transformation","kind":"sample","visible":true,"input":{"nums":[5]},"expected":5,"tags":["sample","singleton"]},
-    {"id":"trial-wrap-ten","name":"two nines wrap modulo ten","kind":"trial","visible":true,"input":{"nums":[9,9]},"expected":8,"tags":["modulo"]},
-    {"id":"trial-two-digits","name":"one adjacent addition produces the result","kind":"trial","visible":true,"input":{"nums":[1,2]},"expected":3,"tags":["single-round"]},
-    {"id":"real-all-zero","name":"hidden: zeros remain zero through every row","kind":"real","visible":false,"input":{"nums":[0,0,0,0,0]},"expected":0,"tags":["hidden","zeros"]},
-    {"id":"real-symmetric-ends","name":"hidden: separated ones combine across rounds","kind":"real","visible":false,"input":{"nums":[1,0,0,1]},"expected":2,"tags":["hidden","multiple-rounds"]},
-    {"id":"real-alternating","name":"hidden: repeated modular reductions alter alternating digits","kind":"real","visible":false,"input":{"nums":[9,0,9,0,9]},"expected":2,"tags":["hidden","alternating"]},
-    {"id":"real-longer-pattern","name":"hidden: eight digits exercise every active length","kind":"real","visible":false,"input":{"nums":[3,1,4,1,5,9,2,6]},"expected":3,"tags":["hidden","longer-row"]}
+    {
+      "id": "sample-five-digits",
+      "name": "sample: five shrinking rows produce eight",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "sample",
+        "multiple-rounds"
+      ]
+    },
+    {
+      "id": "sample-singleton",
+      "name": "sample: one digit needs no transformation",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-wrap-ten",
+      "name": "two nines wrap modulo ten",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          9
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "modulo"
+      ]
+    },
+    {
+      "id": "trial-two-digits",
+      "name": "one adjacent addition produces the result",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "single-round"
+      ]
+    },
+    {
+      "id": "trial-all-zero",
+      "name": "zeros remain zero through every row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "zeros"
+      ]
+    },
+    {
+      "id": "trial-symmetric-ends",
+      "name": "separated ones combine across rounds",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          0,
+          0,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "multiple-rounds"
+      ]
+    },
+    {
+      "id": "trial-alternating",
+      "name": "repeated modular reductions alter alternating digits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          0,
+          9,
+          0,
+          9
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "alternating"
+      ]
+    },
+    {
+      "id": "trial-longer-pattern",
+      "name": "eight digits exercise every active length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          4,
+          1,
+          5,
+          9,
+          2,
+          6
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "longer-row"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    }
   ]
 }

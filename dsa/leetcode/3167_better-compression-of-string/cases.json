@@ -6,108 +6,170 @@
       "name": "sample: repeated c groups are combined",
       "kind": "sample",
       "visible": true,
-      "input": {"compressed": "a3c9b2c1"},
+      "input": {
+        "compressed": "a3c9b2c1"
+      },
       "expected": "a3b2c10",
-      "tags": ["sample", "repeated-letter"]
+      "tags": [
+        "sample",
+        "repeated-letter"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: unique groups require sorting",
       "kind": "sample",
       "visible": true,
-      "input": {"compressed": "c2b3a1"},
+      "input": {
+        "compressed": "c2b3a1"
+      },
       "expected": "a1b3c2",
-      "tags": ["sample", "sorting"]
+      "tags": [
+        "sample",
+        "sorting"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: already normalized",
       "kind": "sample",
       "visible": true,
-      "input": {"compressed": "a2b4c1"},
+      "input": {
+        "compressed": "a2b4c1"
+      },
       "expected": "a2b4c1",
-      "tags": ["sample", "normalized"]
+      "tags": [
+        "sample",
+        "normalized"
+      ]
     },
     {
       "id": "trial-single-group",
       "name": "trial: one group with maximum frequency",
       "kind": "trial",
       "visible": true,
-      "input": {"compressed": "z10000"},
+      "input": {
+        "compressed": "z10000"
+      },
       "expected": "z10000",
-      "tags": ["single-group", "multi-digit"]
+      "tags": [
+        "single-group",
+        "multi-digit"
+      ]
     },
     {
       "id": "trial-same-letter",
       "name": "trial: one letter appears three times",
       "kind": "trial",
       "visible": true,
-      "input": {"compressed": "a1a9999a10000"},
+      "input": {
+        "compressed": "a1a9999a10000"
+      },
       "expected": "a20000",
-      "tags": ["repeated-letter", "large-total"]
+      "tags": [
+        "repeated-letter",
+        "large-total"
+      ]
     },
     {
       "id": "trial-digit-widths",
       "name": "trial: frequencies use every relevant digit width",
       "kind": "trial",
       "visible": true,
-      "input": {"compressed": "d10000c999b10a9"},
+      "input": {
+        "compressed": "d10000c999b10a9"
+      },
       "expected": "a9b10c999d10000",
-      "tags": ["multi-digit", "sorting"]
+      "tags": [
+        "multi-digit",
+        "sorting"
+      ]
     },
     {
-      "id": "real-interleaved-groups",
-      "name": "real: interleaved groups merge into four letters",
-      "kind": "real",
-      "visible": false,
-      "input": {"compressed": "m12a4m8a6z10b1"},
+      "id": "trial-interleaved-groups",
+      "name": "interleaved groups merge into four letters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "compressed": "m12a4m8a6z10b1"
+      },
       "expected": "a10b1m20z10",
-      "tags": ["real", "interleaved"]
+      "tags": [
+        "real",
+        "interleaved"
+      ]
     },
     {
-      "id": "real-two-repeated-letters",
-      "name": "real: alternating groups share totals",
-      "kind": "real",
-      "visible": false,
-      "input": {"compressed": "a1b1a1b1"},
+      "id": "trial-two-repeated-letters",
+      "name": "alternating groups share totals",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "compressed": "a1b1a1b1"
+      },
       "expected": "a2b2",
-      "tags": ["real", "repeated-letter"]
+      "tags": [
+        "real",
+        "repeated-letter"
+      ]
     },
     {
-      "id": "real-sparse-alphabet",
-      "name": "real: sparse alphabet groups arrive out of order",
-      "kind": "real",
-      "visible": false,
-      "input": {"compressed": "q3a2q7c1a8"},
+      "id": "trial-sparse-alphabet",
+      "name": "sparse alphabet groups arrive out of order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "compressed": "q3a2q7c1a8"
+      },
       "expected": "a10c1q10",
-      "tags": ["real", "sparse-alphabet"]
+      "tags": [
+        "real",
+        "sparse-alphabet"
+      ]
     },
     {
-      "id": "real-large-aggregate",
-      "name": "real: several maximum groups form a larger total",
-      "kind": "real",
-      "visible": false,
-      "input": {"compressed": "x10000x10000x10000x10000x10000"},
+      "id": "trial-large-aggregate",
+      "name": "several maximum groups form a larger total",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "compressed": "x10000x10000x10000x10000x10000"
+      },
       "expected": "x50000",
-      "tags": ["real", "large-total"]
+      "tags": [
+        "real",
+        "large-total"
+      ]
     },
     {
-      "id": "real-reverse-alphabet",
-      "name": "real: every letter must be reordered",
-      "kind": "real",
-      "visible": false,
-      "input": {"compressed": "z1y2x3w4v5u6t7s8r9q10p11o12n13m14l15k16j17i18h19g20f21e22d23c24b25a26"},
+      "id": "trial-reverse-alphabet",
+      "name": "every letter must be reordered",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "compressed": "z1y2x3w4v5u6t7s8r9q10p11o12n13m14l15k16j17i18h19g20f21e22d23c24b25a26"
+      },
       "expected": "a26b25c24d23e22f21g20h19i18j17k16l15m14n13o12p11q10r9s8t7u6v5w4x3y2z1",
-      "tags": ["real", "full-alphabet", "sorting"]
+      "tags": [
+        "real",
+        "full-alphabet",
+        "sorting"
+      ]
     },
     {
-      "id": "real-nonconsecutive-repeat",
-      "name": "real: distant occurrences accumulate independently",
-      "kind": "real",
-      "visible": false,
-      "input": {"compressed": "h250a1z40h750a99z60"},
+      "id": "trial-nonconsecutive-repeat",
+      "name": "distant occurrences accumulate independently",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "compressed": "h250a1z40h750a99z60"
+      },
       "expected": "a100h1000z100",
-      "tags": ["real", "nonconsecutive", "multi-digit"]
+      "tags": [
+        "real",
+        "nonconsecutive",
+        "multi-digit"
+      ]
     }
   ]
 }

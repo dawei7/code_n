@@ -114,10 +114,10 @@
       ]
     },
     {
-      "id": "real-save-capacity",
-      "name": "hidden: smallest sufficient trainers preserve stronger ones",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-save-capacity",
+      "name": "smallest sufficient trainers preserve stronger ones",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "players": [
           4,
@@ -135,15 +135,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "greedy"
       ]
     },
     {
-      "id": "real-more-trainers",
-      "name": "hidden: extra weak trainers are harmless",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-more-trainers",
+      "name": "extra weak trainers are harmless",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "players": [
           6,
@@ -159,15 +158,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "skips"
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "hidden: legal maximum values can match",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-values",
+      "name": "legal maximum values can match",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "players": [
           1000000000,
@@ -180,7 +178,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

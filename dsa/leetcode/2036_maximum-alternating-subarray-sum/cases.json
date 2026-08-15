@@ -7,81 +7,194 @@
       "name": "sample: a three-element prefix is optimal",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [3, -1, 1, 2]},
+      "input": {
+        "nums": [
+          3,
+          -1,
+          1,
+          2
+        ]
+      },
       "expected": 5,
-      "tags": ["sample", "odd-length"]
+      "tags": [
+        "sample",
+        "odd-length"
+      ]
     },
     {
       "id": "sample-equal-values",
       "name": "sample: equal values never exceed one element",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 2, 2, 2, 2]},
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          2,
+          2
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "duplicates"]
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
     },
     {
       "id": "sample-single-element",
       "name": "sample: the only nonempty subarray",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1]},
+      "input": {
+        "nums": [
+          1
+        ]
+      },
       "expected": 1,
-      "tags": ["sample", "minimum-length"]
+      "tags": [
+        "sample",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-subtract-negative",
       "name": "subtracting a negative value raises the sum",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5, -10]},
+      "input": {
+        "nums": [
+          5,
+          -10
+        ]
+      },
       "expected": 15,
-      "tags": ["even-length", "negative"]
+      "tags": [
+        "even-length",
+        "negative"
+      ]
     },
     {
       "id": "trial-restart-at-later-index",
       "name": "the optimal sign pattern restarts inside the array",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [-10, 100, -10]},
+      "input": {
+        "nums": [
+          -10,
+          100,
+          -10
+        ]
+      },
       "expected": 110,
-      "tags": ["restart", "contiguous"]
+      "tags": [
+        "restart",
+        "contiguous"
+      ]
     },
     {
-      "id": "real-all-negative",
-      "name": "hidden: an even all-negative segment can be positive",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-5, -2, -8]},
+      "id": "trial-all-negative",
+      "name": "an even all-negative segment can be positive",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -5,
+          -2,
+          -8
+        ]
+      },
       "expected": 6,
-      "tags": ["hidden", "all-negative"]
+      "tags": [
+        "all-negative"
+      ]
     },
     {
-      "id": "real-increasing-positive",
-      "name": "hidden: the final singleton beats alternating prefixes",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 3]},
+      "id": "trial-increasing-positive",
+      "name": "the final singleton beats alternating prefixes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
       "expected": 3,
-      "tags": ["hidden", "singleton-optimum"]
+      "tags": [
+        "singleton-optimum"
+      ]
     },
     {
-      "id": "real-value-boundary-growth",
-      "name": "hidden: alternating value limits accumulate",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100000, -100000, 100000, -100000]},
+      "id": "trial-value-boundary-growth",
+      "name": "alternating value limits accumulate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100000,
+          -100000,
+          100000,
+          -100000
+        ]
+      },
       "expected": 400000,
-      "tags": ["hidden", "value-boundary", "wide-result"]
+      "tags": [
+        "value-boundary",
+        "wide-result"
+      ]
     },
     {
-      "id": "real-all-zero",
-      "name": "hidden: every subarray sum is zero",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 0, 0, 0]},
+      "id": "trial-all-zero",
+      "name": "every subarray sum is zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
       "expected": 0,
-      "tags": ["hidden", "zeros"]
+      "tags": [
+        "zeros"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

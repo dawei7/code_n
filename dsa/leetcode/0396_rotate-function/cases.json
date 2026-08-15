@@ -93,10 +93,10 @@
       ]
     },
     {
-      "id": "hidden-mixed",
-      "name": "hidden: mixed signs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed",
+      "name": "mixed signs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -108,15 +108,14 @@
       },
       "expected": 29,
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
     {
-      "id": "hidden-duplicates",
-      "name": "hidden: repeated values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicates",
+      "name": "repeated values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -128,15 +127,14 @@
       },
       "expected": 34,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "hidden-two",
-      "name": "hidden: two-element boundary",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two",
+      "name": "two-element boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -10,
@@ -145,7 +143,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "two"
       ]
     }

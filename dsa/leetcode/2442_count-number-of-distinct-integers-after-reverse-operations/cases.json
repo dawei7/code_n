@@ -7,72 +7,136 @@
       "name": "sample: reversals add one new value",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 13, 10, 12, 31]},
+      "input": {
+        "nums": [
+          1,
+          13,
+          10,
+          12,
+          31
+        ]
+      },
       "expected": 6,
-      "tags": ["sample", "leading-zero"]
+      "tags": [
+        "sample",
+        "leading-zero"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: repeated single digit",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 2, 2]},
+      "input": {
+        "nums": [
+          2,
+          2,
+          2
+        ]
+      },
       "expected": 1,
-      "tags": ["sample", "duplicates"]
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
     },
     {
       "id": "trial-trailing-zero",
       "name": "trial: trailing zero disappears",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [10]},
+      "input": {
+        "nums": [
+          10
+        ]
+      },
       "expected": 2,
-      "tags": ["trial", "leading-zero"]
+      "tags": [
+        "trial",
+        "leading-zero"
+      ]
     },
     {
       "id": "trial-two-new-reversals",
       "name": "trial: both reversals are new",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [12, 34]},
+      "input": {
+        "nums": [
+          12,
+          34
+        ]
+      },
       "expected": 4,
-      "tags": ["trial", "distinct"]
+      "tags": [
+        "trial",
+        "distinct"
+      ]
     },
     {
-      "id": "real-reversal-present",
-      "name": "hidden: values reverse into each other",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [71, 17]},
+      "id": "trial-reversal-present",
+      "name": "values reverse into each other",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          71,
+          17
+        ]
+      },
       "expected": 2,
-      "tags": ["hidden", "overlap"]
+      "tags": [
+        "overlap"
+      ]
     },
     {
-      "id": "real-palindrome",
-      "name": "hidden: repeated palindrome stays one value",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [121, 121]},
+      "id": "trial-palindrome",
+      "name": "repeated palindrome stays one value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          121,
+          121
+        ]
+      },
       "expected": 1,
-      "tags": ["hidden", "palindrome"]
+      "tags": [
+        "palindrome"
+      ]
     },
     {
-      "id": "real-multiple-trailing-zeros",
-      "name": "hidden: several originals reverse to one",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000, 10, 1]},
+      "id": "trial-multiple-trailing-zeros",
+      "name": "several originals reverse to one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000,
+          10,
+          1
+        ]
+      },
       "expected": 3,
-      "tags": ["hidden", "leading-zero", "overlap"]
+      "tags": [
+        "leading-zero",
+        "overlap"
+      ]
     },
     {
-      "id": "real-upper-bound",
-      "name": "hidden: maximum input reverses to one",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000000]},
+      "id": "trial-upper-bound",
+      "name": "maximum input reverses to one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000
+        ]
+      },
       "expected": 2,
-      "tags": ["hidden", "boundary"]
+      "tags": [
+        "boundary"
+      ]
     }
   ]
 }

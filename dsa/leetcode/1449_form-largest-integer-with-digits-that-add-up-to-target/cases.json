@@ -153,10 +153,10 @@
       ]
     },
     {
-      "id": "real-greedy-remainder",
-      "name": "hidden: cheapest digit alone leaves an unusable remainder",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-greedy-remainder",
+      "name": "cheapest digit alone leaves an unusable remainder",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "cost": [
           5,
@@ -173,15 +173,14 @@
       },
       "expected": "443",
       "tags": [
-        "hidden",
         "remainder-feasibility"
       ]
     },
     {
-      "id": "real-single-digit",
-      "name": "hidden: exact target paints one highest digit",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-digit",
+      "name": "exact target paints one highest digit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "cost": [
           5,
@@ -198,15 +197,14 @@
       },
       "expected": "9",
       "tags": [
-        "hidden",
         "minimum-target"
       ]
     },
     {
-      "id": "real-repeated-mixed",
-      "name": "hidden: reconstruction reuses multiple digit costs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-mixed",
+      "name": "reconstruction reuses multiple digit costs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "cost": [
           6,
@@ -223,8 +221,42 @@
       },
       "expected": "32211",
       "tags": [
-        "hidden",
         "unbounded-knapsack"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in cost",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost": [
+          4
+        ],
+        "target": 9
+      },
+      "expected": "0",
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in cost",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost": [
+          4,
+          4
+        ],
+        "target": 9
+      },
+      "expected": "0",
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

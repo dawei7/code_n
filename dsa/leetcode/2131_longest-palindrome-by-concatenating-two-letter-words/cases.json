@@ -2,13 +2,158 @@
   "schema_version": 1,
   "challenge_id": "lc_2131",
   "cases": [
-    {"id": "sample-pair-and-center", "name": "sample: reverse pair surrounds a center", "kind": "sample", "visible": true, "input": {"words": ["lc", "cl", "gg"]}, "expected": 6, "tags": ["sample", "center"]},
-    {"id": "sample-two-reverse-pairs", "name": "sample: two reverse pairs are used", "kind": "sample", "visible": true, "input": {"words": ["ab", "ty", "yt", "lc", "cl", "ab"]}, "expected": 8, "tags": ["sample", "reverse-pairs"]},
-    {"id": "sample-center-choice", "name": "sample: only one symmetric word can be central", "kind": "sample", "visible": true, "input": {"words": ["cc", "ll", "xx"]}, "expected": 2, "tags": ["sample", "symmetric-words"]},
-    {"id": "trial-no-palindrome", "name": "no word has a usable reverse or symmetric form", "kind": "trial", "visible": true, "input": {"words": ["ab", "cd", "ef"]}, "expected": 0, "tags": ["zero-result"]},
-    {"id": "trial-symmetric-pairs", "name": "pairs of equal-letter words surround one center", "kind": "trial", "visible": true, "input": {"words": ["aa", "aa", "bb", "bb", "cc"]}, "expected": 10, "tags": ["symmetric-pairs", "center"]},
-    {"id": "real-duplicate-imbalance", "name": "hidden: unmatched duplicates cannot replace reverses", "kind": "real", "visible": false, "input": {"words": ["ab", "ab", "ab", "ba"]}, "expected": 4, "tags": ["hidden", "duplicates"]},
-    {"id": "real-all-paired", "name": "hidden: every occurrence belongs to a reverse pair", "kind": "real", "visible": false, "input": {"words": ["az", "za", "bc", "cb", "az", "za"]}, "expected": 12, "tags": ["hidden", "all-used"]},
-    {"id": "real-mixed-center", "name": "hidden: only one leftover symmetric type is central", "kind": "real", "visible": false, "input": {"words": ["aa", "aa", "aa", "bb", "cc", "xy", "yx"]}, "expected": 10, "tags": ["hidden", "mixed"]}
+    {
+      "id": "sample-pair-and-center",
+      "name": "sample: reverse pair surrounds a center",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "lc",
+          "cl",
+          "gg"
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "center"
+      ]
+    },
+    {
+      "id": "sample-two-reverse-pairs",
+      "name": "sample: two reverse pairs are used",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "ab",
+          "ty",
+          "yt",
+          "lc",
+          "cl",
+          "ab"
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "sample",
+        "reverse-pairs"
+      ]
+    },
+    {
+      "id": "sample-center-choice",
+      "name": "sample: only one symmetric word can be central",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "cc",
+          "ll",
+          "xx"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "symmetric-words"
+      ]
+    },
+    {
+      "id": "trial-no-palindrome",
+      "name": "no word has a usable reverse or symmetric form",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "ab",
+          "cd",
+          "ef"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "zero-result"
+      ]
+    },
+    {
+      "id": "trial-symmetric-pairs",
+      "name": "pairs of equal-letter words surround one center",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "aa",
+          "aa",
+          "bb",
+          "bb",
+          "cc"
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "symmetric-pairs",
+        "center"
+      ]
+    },
+    {
+      "id": "trial-duplicate-imbalance",
+      "name": "unmatched duplicates cannot replace reverses",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "ab",
+          "ab",
+          "ab",
+          "ba"
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-all-paired",
+      "name": "every occurrence belongs to a reverse pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "az",
+          "za",
+          "bc",
+          "cb",
+          "az",
+          "za"
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "all-used"
+      ]
+    },
+    {
+      "id": "trial-mixed-center",
+      "name": "only one leftover symmetric type is central",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "aa",
+          "aa",
+          "aa",
+          "bb",
+          "cc",
+          "xy",
+          "yx"
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "mixed"
+      ]
+    }
   ]
 }

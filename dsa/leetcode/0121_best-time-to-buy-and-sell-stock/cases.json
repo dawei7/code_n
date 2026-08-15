@@ -60,10 +60,10 @@
       ]
     },
     {
-      "id": "real-late-best-sell",
-      "name": "hidden: best sell at the end",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-late-best-sell",
+      "name": "best sell at the end",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           9,
@@ -76,7 +76,40 @@
       },
       "expected": 6,
       "tags": [
-        "hidden"
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-boundary-5",
+      "name": "single element in prices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          7
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-6",
+      "name": "identical elements in prices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          7,
+          7
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

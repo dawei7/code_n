@@ -1,13 +1,305 @@
-{"schema_version":1,"challenge_id":"lc_3742","cases":[
-{"id":"sample-value-two-path","name":"sample: choose the value-two path within cost one","kind":"sample","visible":true,"input":{"grid":[[0,1],[2,0]],"k":1},"expected":2,"validator":{"kind":"exact"},"tags":["sample","score-cost-difference"]},
-{"id":"sample-destination-over-budget","name":"sample: every path exceeds the budget at the destination","kind":"sample","visible":true,"input":{"grid":[[0,1],[1,2]],"k":1},"expected":-1,"validator":{"kind":"exact"},"tags":["sample","no-valid-path"]},
-{"id":"trial-single-zero","name":"trial: one guaranteed-zero cell","kind":"trial","visible":true,"input":{"grid":[[0]],"k":0},"expected":0,"validator":{"kind":"exact"},"tags":["trial","single-cell"]},
-{"id":"trial-one-row-exact-budget","name":"trial: one row uses its exact budget","kind":"trial","visible":true,"input":{"grid":[[0,2,1]],"k":2},"expected":3,"validator":{"kind":"exact"},"tags":["trial","one-row","exact-budget"]},
-{"id":"trial-one-row-too-expensive","name":"trial: the only row path is over budget","kind":"trial","visible":true,"input":{"grid":[[0,2,1]],"k":1},"expected":-1,"validator":{"kind":"exact"},"tags":["trial","one-row","no-valid-path"]},
-{"id":"real-score-two-wins","name":"hidden: equal cost favors a value-two cell","kind":"real","visible":false,"input":{"grid":[[0,1],[0,2]],"k":1},"expected":2,"validator":{"kind":"exact"},"tags":["hidden","score-cost-difference"]},
-{"id":"real-zero-budget-impossible","name":"hidden: a nonzero destination invalidates every zero-budget path","kind":"real","visible":false,"input":{"grid":[[0,0],[0,1]],"k":0},"expected":-1,"validator":{"kind":"exact"},"tags":["hidden","zero-budget"]},
-{"id":"real-all-zero-rectangle","name":"hidden: a zero-cost path across a rectangular grid","kind":"real","visible":false,"input":{"grid":[[0,0,0],[0,0,0]],"k":0},"expected":0,"validator":{"kind":"exact"},"tags":["hidden","all-zero"]},
-{"id":"real-inactive-budget","name":"hidden: a large budget selects the maximum-score route","kind":"real","visible":false,"input":{"grid":[[0,2],[1,2]],"k":10},"expected":4,"validator":{"kind":"exact"},"tags":["hidden","inactive-budget"]},
-{"id":"real-zero-detour","name":"hidden: a zero route remains when scored routes exceed budget","kind":"real","visible":false,"input":{"grid":[[0,2,0],[0,1,0],[0,0,0]],"k":0},"expected":0,"validator":{"kind":"exact"},"tags":["hidden","detour","zero-budget"]},
-{"id":"real-one-cost-choice","name":"hidden: one value-two route beats a value-one route","kind":"real","visible":false,"input":{"grid":[[0,2,0],[1,1,0],[0,0,0]],"k":1},"expected":2,"validator":{"kind":"exact"},"tags":["hidden","budget-choice"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3742",
+  "cases": [
+    {
+      "id": "sample-value-two-path",
+      "name": "sample: choose the value-two path within cost one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "score-cost-difference"
+      ]
+    },
+    {
+      "id": "sample-destination-over-budget",
+      "name": "sample: every path exceeds the budget at the destination",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "k": 1
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "no-valid-path"
+      ]
+    },
+    {
+      "id": "trial-single-zero",
+      "name": "trial: one guaranteed-zero cell",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0
+          ]
+        ],
+        "k": 0
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-cell"
+      ]
+    },
+    {
+      "id": "trial-one-row-exact-budget",
+      "name": "trial: one row uses its exact budget",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            2,
+            1
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "one-row",
+        "exact-budget"
+      ]
+    },
+    {
+      "id": "trial-one-row-too-expensive",
+      "name": "trial: the only row path is over budget",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            2,
+            1
+          ]
+        ],
+        "k": 1
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "one-row",
+        "no-valid-path"
+      ]
+    },
+    {
+      "id": "trial-score-two-wins",
+      "name": "equal cost favors a value-two cell",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "score-cost-difference"
+      ]
+    },
+    {
+      "id": "trial-zero-budget-impossible",
+      "name": "a nonzero destination invalidates every zero-budget path",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "k": 0
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "zero-budget"
+      ]
+    },
+    {
+      "id": "trial-all-zero-rectangle",
+      "name": "a zero-cost path across a rectangular grid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "k": 0
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "all-zero"
+      ]
+    },
+    {
+      "id": "trial-inactive-budget",
+      "name": "a large budget selects the maximum-score route",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "k": 10
+      },
+      "expected": 4,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "inactive-budget"
+      ]
+    },
+    {
+      "id": "trial-zero-detour",
+      "name": "a zero route remains when scored routes exceed budget",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "k": 0
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "detour",
+        "zero-budget"
+      ]
+    },
+    {
+      "id": "trial-one-cost-choice",
+      "name": "one value-two route beats a value-one route",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "budget-choice"
+      ]
+    }
+  ]
+}

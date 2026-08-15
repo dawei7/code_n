@@ -10,21 +10,64 @@
       "input": {
         "tables": {
           "Teacher": [
-            {"teacher_id": 1, "subject_id": 2, "dept_id": 3},
-            {"teacher_id": 1, "subject_id": 2, "dept_id": 4},
-            {"teacher_id": 1, "subject_id": 3, "dept_id": 3},
-            {"teacher_id": 2, "subject_id": 1, "dept_id": 1},
-            {"teacher_id": 2, "subject_id": 2, "dept_id": 1},
-            {"teacher_id": 2, "subject_id": 3, "dept_id": 1},
-            {"teacher_id": 2, "subject_id": 4, "dept_id": 1}
+            {
+              "teacher_id": 1,
+              "subject_id": 2,
+              "dept_id": 3
+            },
+            {
+              "teacher_id": 1,
+              "subject_id": 2,
+              "dept_id": 4
+            },
+            {
+              "teacher_id": 1,
+              "subject_id": 3,
+              "dept_id": 3
+            },
+            {
+              "teacher_id": 2,
+              "subject_id": 1,
+              "dept_id": 1
+            },
+            {
+              "teacher_id": 2,
+              "subject_id": 2,
+              "dept_id": 1
+            },
+            {
+              "teacher_id": 2,
+              "subject_id": 3,
+              "dept_id": 1
+            },
+            {
+              "teacher_id": 2,
+              "subject_id": 4,
+              "dept_id": 1
+            }
           ]
         }
       },
       "expected": {
-        "columns": ["teacher_id","cnt"],
-        "rows": [[1,2],[2,4]]
+        "columns": [
+          "teacher_id",
+          "cnt"
+        ],
+        "rows": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            4
+          ]
+        ]
       },
-      "tags": ["sample","distinct"]
+      "tags": [
+        "sample",
+        "distinct"
+      ]
     },
     {
       "id": "trial-single-assignment",
@@ -34,15 +77,29 @@
       "input": {
         "tables": {
           "Teacher": [
-            {"teacher_id": 7, "subject_id": 11, "dept_id": 3}
+            {
+              "teacher_id": 7,
+              "subject_id": 11,
+              "dept_id": 3
+            }
           ]
         }
       },
       "expected": {
-        "columns": ["teacher_id","cnt"],
-        "rows": [[7,1]]
+        "columns": [
+          "teacher_id",
+          "cnt"
+        ],
+        "rows": [
+          [
+            7,
+            1
+          ]
+        ]
       },
-      "tags": ["single"]
+      "tags": [
+        "single"
+      ]
     },
     {
       "id": "trial-one-subject-many-departments",
@@ -52,17 +109,40 @@
       "input": {
         "tables": {
           "Teacher": [
-            {"teacher_id": 4, "subject_id": 9, "dept_id": 1},
-            {"teacher_id": 4, "subject_id": 9, "dept_id": 2},
-            {"teacher_id": 4, "subject_id": 9, "dept_id": 3}
+            {
+              "teacher_id": 4,
+              "subject_id": 9,
+              "dept_id": 1
+            },
+            {
+              "teacher_id": 4,
+              "subject_id": 9,
+              "dept_id": 2
+            },
+            {
+              "teacher_id": 4,
+              "subject_id": 9,
+              "dept_id": 3
+            }
           ]
         }
       },
       "expected": {
-        "columns": ["teacher_id","cnt"],
-        "rows": [[4,1]]
+        "columns": [
+          "teacher_id",
+          "cnt"
+        ],
+        "rows": [
+          [
+            4,
+            1
+          ]
+        ]
       },
-      "tags": ["distinct","departments"]
+      "tags": [
+        "distinct",
+        "departments"
+      ]
     },
     {
       "id": "trial-several-teachers-one-subject-each",
@@ -72,61 +152,159 @@
       "input": {
         "tables": {
           "Teacher": [
-            {"teacher_id": 1, "subject_id": 10, "dept_id": 1},
-            {"teacher_id": 5, "subject_id": 20, "dept_id": 2},
-            {"teacher_id": 9, "subject_id": 30, "dept_id": 3}
+            {
+              "teacher_id": 1,
+              "subject_id": 10,
+              "dept_id": 1
+            },
+            {
+              "teacher_id": 5,
+              "subject_id": 20,
+              "dept_id": 2
+            },
+            {
+              "teacher_id": 9,
+              "subject_id": 30,
+              "dept_id": 3
+            }
           ]
         }
       },
       "expected": {
-        "columns": ["teacher_id","cnt"],
-        "rows": [[1,1],[5,1],[9,1]]
+        "columns": [
+          "teacher_id",
+          "cnt"
+        ],
+        "rows": [
+          [
+            1,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            9,
+            1
+          ]
+        ]
       },
-      "tags": ["multiple-teachers"]
+      "tags": [
+        "multiple-teachers"
+      ]
     },
     {
-      "id": "real-mixed-distinct-counts",
-      "name": "hidden: mixed counts and repeated subjects",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-distinct-counts",
+      "name": "mixed counts and repeated subjects",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Teacher": [
-            {"teacher_id": 3, "subject_id": 1, "dept_id": 10},
-            {"teacher_id": 3, "subject_id": 1, "dept_id": 11},
-            {"teacher_id": 3, "subject_id": 2, "dept_id": 10},
-            {"teacher_id": 8, "subject_id": 4, "dept_id": 20},
-            {"teacher_id": 8, "subject_id": 5, "dept_id": 20},
-            {"teacher_id": 8, "subject_id": 6, "dept_id": 20}
+            {
+              "teacher_id": 3,
+              "subject_id": 1,
+              "dept_id": 10
+            },
+            {
+              "teacher_id": 3,
+              "subject_id": 1,
+              "dept_id": 11
+            },
+            {
+              "teacher_id": 3,
+              "subject_id": 2,
+              "dept_id": 10
+            },
+            {
+              "teacher_id": 8,
+              "subject_id": 4,
+              "dept_id": 20
+            },
+            {
+              "teacher_id": 8,
+              "subject_id": 5,
+              "dept_id": 20
+            },
+            {
+              "teacher_id": 8,
+              "subject_id": 6,
+              "dept_id": 20
+            }
           ]
         }
       },
       "expected": {
-        "columns": ["teacher_id","cnt"],
-        "rows": [[3,2],[8,3]]
+        "columns": [
+          "teacher_id",
+          "cnt"
+        ],
+        "rows": [
+          [
+            3,
+            2
+          ],
+          [
+            8,
+            3
+          ]
+        ]
       },
-      "tags": ["hidden","mixed"]
+      "tags": [
+        "mixed"
+      ]
     },
     {
-      "id": "real-nonconsecutive-identifiers",
-      "name": "hidden: identifiers need not be consecutive",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-nonconsecutive-identifiers",
+      "name": "identifiers need not be consecutive",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Teacher": [
-            {"teacher_id": 100, "subject_id": 17, "dept_id": 91},
-            {"teacher_id": 100, "subject_id": 42, "dept_id": 92},
-            {"teacher_id": 100, "subject_id": 99, "dept_id": 93},
-            {"teacher_id": 2, "subject_id": 7, "dept_id": 94}
+            {
+              "teacher_id": 100,
+              "subject_id": 17,
+              "dept_id": 91
+            },
+            {
+              "teacher_id": 100,
+              "subject_id": 42,
+              "dept_id": 92
+            },
+            {
+              "teacher_id": 100,
+              "subject_id": 99,
+              "dept_id": 93
+            },
+            {
+              "teacher_id": 2,
+              "subject_id": 7,
+              "dept_id": 94
+            }
           ]
         }
       },
       "expected": {
-        "columns": ["teacher_id","cnt"],
-        "rows": [[2,1],[100,3]]
+        "columns": [
+          "teacher_id",
+          "cnt"
+        ],
+        "rows": [
+          [
+            2,
+            1
+          ],
+          [
+            100,
+            3
+          ]
+        ]
       },
-      "tags": ["hidden","identifiers"]
+      "tags": [
+        "identifiers"
+      ]
     }
   ]
 }

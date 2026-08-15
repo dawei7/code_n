@@ -6,90 +6,162 @@
       "name": "sample: two two-step paths reach one rotation",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "abcd", "t": "cdab", "k": 2},
+      "input": {
+        "s": "abcd",
+        "t": "cdab",
+        "k": 2
+      },
       "expected": 2,
-      "tags": ["sample", "rotation", "exact-operations"]
+      "tags": [
+        "sample",
+        "rotation",
+        "exact-operations"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: periodic string has two matching nonzero rotations",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "ababab", "t": "ababab", "k": 1},
+      "input": {
+        "s": "ababab",
+        "t": "ababab",
+        "k": 1
+      },
       "expected": 2,
-      "tags": ["sample", "periodic", "multiplicity"]
+      "tags": [
+        "sample",
+        "periodic",
+        "multiplicity"
+      ]
     },
     {
       "id": "trial-single-operation",
       "name": "trial: one suffix move reaches a unique rotation",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "abc", "t": "bca", "k": 1},
+      "input": {
+        "s": "abc",
+        "t": "bca",
+        "k": 1
+      },
       "expected": 1,
-      "tags": ["trial", "one-operation"]
+      "tags": [
+        "trial",
+        "one-operation"
+      ]
     },
     {
       "id": "trial-target-is-not-a-rotation",
       "name": "trial: target cannot be formed by any rotation",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "abc", "t": "acb", "k": 5},
+      "input": {
+        "s": "abc",
+        "t": "acb",
+        "k": 5
+      },
       "expected": 0,
-      "tags": ["trial", "impossible"]
+      "tags": [
+        "trial",
+        "impossible"
+      ]
     },
     {
-      "id": "real-equal-unique-one-operation",
-      "name": "hidden: a nontrivial rotation cannot keep a unique string fixed",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcd", "t": "abcd", "k": 1},
+      "id": "trial-equal-unique-one-operation",
+      "name": "a nontrivial rotation cannot keep a unique string fixed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcd",
+        "t": "abcd",
+        "k": 1
+      },
       "expected": 0,
-      "tags": ["hidden", "equal-target", "exact-operations"]
+      "tags": [
+        "equal-target",
+        "exact-operations"
+      ]
     },
     {
-      "id": "real-equal-unique-two-operations",
-      "name": "hidden: inverse shifts return a unique string after two moves",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abc", "t": "abc", "k": 2},
+      "id": "trial-equal-unique-two-operations",
+      "name": "inverse shifts return a unique string after two moves",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "t": "abc",
+        "k": 2
+      },
       "expected": 2,
-      "tags": ["hidden", "equal-target", "return-count"]
+      "tags": [
+        "equal-target",
+        "return-count"
+      ]
     },
     {
-      "id": "real-periodic-nonzero-offsets",
-      "name": "hidden: two nonzero offsets spell the periodic target",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abab", "t": "baba", "k": 2},
+      "id": "trial-periodic-nonzero-offsets",
+      "name": "two nonzero offsets spell the periodic target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abab",
+        "t": "baba",
+        "k": 2
+      },
       "expected": 4,
-      "tags": ["hidden", "periodic", "matching-offsets"]
+      "tags": [
+        "periodic",
+        "matching-offsets"
+      ]
     },
     {
-      "id": "real-all-rotations-equal",
-      "name": "hidden: every suffix choice preserves a uniform string",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aaaa", "t": "aaaa", "k": 3},
+      "id": "trial-all-rotations-equal",
+      "name": "every suffix choice preserves a uniform string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaa",
+        "t": "aaaa",
+        "k": 3
+      },
       "expected": 27,
-      "tags": ["hidden", "uniform", "all-offsets-match"]
+      "tags": [
+        "uniform",
+        "all-offsets-match"
+      ]
     },
     {
-      "id": "real-huge-k-parity",
-      "name": "hidden: length two alternates deterministically for huge k",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "ab", "t": "ba", "k": 1000000000000000},
+      "id": "trial-huge-k-parity",
+      "name": "length two alternates deterministically for huge k",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ab",
+        "t": "ba",
+        "k": 1000000000000000
+      },
       "expected": 0,
-      "tags": ["hidden", "huge-k", "parity"]
+      "tags": [
+        "huge-k",
+        "parity"
+      ]
     },
     {
-      "id": "real-huge-k-modulo",
-      "name": "hidden: uniform rotations require modular exponentiation",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aaaa", "t": "aaaa", "k": 1000000000000000},
+      "id": "trial-huge-k-modulo",
+      "name": "uniform rotations require modular exponentiation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaa",
+        "t": "aaaa",
+        "k": 1000000000000000
+      },
       "expected": 468606845,
-      "tags": ["hidden", "huge-k", "modulo"]
+      "tags": [
+        "huge-k",
+        "modulo"
+      ]
     }
   ]
 }

@@ -101,10 +101,10 @@
       "expected": 0
     },
     {
-      "id": "real-zero-threshold",
-      "name": "hidden: every value already meets threshold zero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zero-threshold",
+      "name": "every value already meets threshold zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -116,17 +116,16 @@
         "k": 0
       },
       "tags": [
-        "hidden",
         "boundary",
         "zero-threshold"
       ],
       "expected": 0
     },
     {
-      "id": "real-overlapping-windows",
-      "name": "hidden: optimal raised positions jointly cover several windows",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-overlapping-windows",
+      "name": "optimal raised positions jointly cover several windows",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -139,16 +138,15 @@
         "k": 6
       },
       "tags": [
-        "hidden",
         "overlap"
       ],
       "expected": 8
     },
     {
-      "id": "real-middle-window-gap",
-      "name": "hidden: endpoint values leave the middle window uncovered",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-middle-window-gap",
+      "name": "endpoint values leave the middle window uncovered",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -160,16 +158,15 @@
         "k": 3
       },
       "tags": [
-        "hidden",
         "gap"
       ],
       "expected": 3
     },
     {
-      "id": "real-billion-threshold-covered",
-      "name": "hidden: existing maximum value covers the only window",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-billion-threshold-covered",
+      "name": "existing maximum value covers the only window",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -179,7 +176,6 @@
         "k": 1000000000
       },
       "tags": [
-        "hidden",
         "boundary",
         "maximum"
       ],

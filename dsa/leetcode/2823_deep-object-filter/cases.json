@@ -244,10 +244,10 @@
       ]
     },
     {
-      "id": "real-special-object-keys",
-      "name": "hidden: special JSON keys remain own properties",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-special-object-keys",
+      "name": "special JSON keys remain own properties",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "obj": {
           "__proto__": {
@@ -267,13 +267,13 @@
         "predicate": "truthy"
       },
       "expected": {
-          "defined": true,
-          "value": {
-            "__proto__": {
-              "keep": 1,
-              "drop": -1
-            },
-            "constructor": {
+        "defined": true,
+        "value": {
+          "__proto__": {
+            "keep": 1,
+            "drop": -1
+          },
+          "constructor": {
             "nested": [
               "yes"
             ]
@@ -281,15 +281,14 @@
         }
       },
       "tags": [
-        "hidden",
         "special-keys"
       ]
     },
     {
-      "id": "real-even-numbers",
-      "name": "hidden: even numeric leaves survive across containers",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-even-numbers",
+      "name": "even numeric leaves survive across containers",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "obj": {
           "a": [
@@ -328,16 +327,15 @@
         }
       },
       "tags": [
-        "hidden",
         "type-sensitive",
         "nested"
       ]
     },
     {
-      "id": "real-order-and-compaction",
-      "name": "hidden: nested array order survives removed gaps",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-order-and-compaction",
+      "name": "nested array order survives removed gaps",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "obj": [
           {
@@ -373,7 +371,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "order",
         "compaction"
       ]

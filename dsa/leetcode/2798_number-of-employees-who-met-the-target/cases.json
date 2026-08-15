@@ -6,75 +6,242 @@
       "name": "sample: three employees meet the target",
       "kind": "sample",
       "visible": true,
-      "input": {"hours": [0, 1, 2, 3, 4], "target": 2},
+      "input": {
+        "hours": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "target": 2
+      },
       "expected": 3,
-      "tags": ["sample", "mixed"]
+      "tags": [
+        "sample",
+        "mixed"
+      ]
     },
     {
       "id": "sample-none-meet",
       "name": "sample: no employee meets a high target",
       "kind": "sample",
       "visible": true,
-      "input": {"hours": [5, 1, 4, 2, 2], "target": 6},
+      "input": {
+        "hours": [
+          5,
+          1,
+          4,
+          2,
+          2
+        ],
+        "target": 6
+      },
       "expected": 0,
-      "tags": ["sample", "none"]
+      "tags": [
+        "sample",
+        "none"
+      ]
     },
     {
       "id": "trial-all-meet",
       "name": "trial: every employee meets the target",
       "kind": "trial",
       "visible": true,
-      "input": {"hours": [8, 8, 9], "target": 8},
+      "input": {
+        "hours": [
+          8,
+          8,
+          9
+        ],
+        "target": 8
+      },
       "expected": 3,
-      "tags": ["trial", "all", "equality"]
+      "tags": [
+        "trial",
+        "all",
+        "equality"
+      ]
     },
     {
       "id": "trial-exact-boundary",
       "name": "trial: equality counts while smaller values do not",
       "kind": "trial",
       "visible": true,
-      "input": {"hours": [3, 2, 3, 1], "target": 3},
-      "expected": 2,
-      "tags": ["trial", "inclusive-threshold"]
-    },
-    {
-      "id": "real-zero-target",
-      "name": "hidden: zero target includes every non-negative value",
-      "kind": "real",
-      "visible": false,
-      "input": {"hours": [0, 0, 1, 100000], "target": 0},
-      "expected": 4,
-      "tags": ["hidden", "zero-target", "value-boundaries"]
-    },
-    {
-      "id": "real-single-employee",
-      "name": "hidden: minimum array length below target",
-      "kind": "real",
-      "visible": false,
-      "input": {"hours": [0], "target": 1},
-      "expected": 0,
-      "tags": ["hidden", "minimum-length"]
-    },
-    {
-      "id": "real-mixed-hours",
-      "name": "hidden: unordered values around the threshold",
-      "kind": "real",
-      "visible": false,
-      "input": {"hours": [10, 0, 7, 6, 8, 5, 7], "target": 7},
-      "expected": 4,
-      "tags": ["hidden", "mixed", "duplicates"]
-    },
-    {
-      "id": "real-maximum-length",
-      "name": "hidden: fifty employees with alternating qualification",
-      "kind": "real",
-      "visible": false,
       "input": {
-        "hours": [0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000],
+        "hours": [
+          3,
+          2,
+          3,
+          1
+        ],
+        "target": 3
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "inclusive-threshold"
+      ]
+    },
+    {
+      "id": "trial-zero-target",
+      "name": "zero target includes every non-negative value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "hours": [
+          0,
+          0,
+          1,
+          100000
+        ],
+        "target": 0
+      },
+      "expected": 4,
+      "tags": [
+        "zero-target",
+        "value-boundaries"
+      ]
+    },
+    {
+      "id": "trial-single-employee",
+      "name": "minimum array length below target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "hours": [
+          0
+        ],
+        "target": 1
+      },
+      "expected": 0,
+      "tags": [
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-mixed-hours",
+      "name": "unordered values around the threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "hours": [
+          10,
+          0,
+          7,
+          6,
+          8,
+          5,
+          7
+        ],
+        "target": 7
+      },
+      "expected": 4,
+      "tags": [
+        "mixed",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-maximum-length",
+      "name": "fifty employees with alternating qualification",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "hours": [
+          0,
+          100000,
+          0,
+          100000,
+          0,
+          100000,
+          0,
+          100000,
+          0,
+          100000,
+          0,
+          100000,
+          0,
+          100000,
+          0,
+          100000,
+          0,
+          100000,
+          0,
+          100000,
+          0,
+          100000,
+          0,
+          100000,
+          0,
+          100000,
+          0,
+          100000,
+          0,
+          100000,
+          0,
+          100000,
+          0,
+          100000,
+          0,
+          100000,
+          0,
+          100000,
+          0,
+          100000,
+          0,
+          100000,
+          0,
+          100000,
+          0,
+          100000,
+          0,
+          100000,
+          0,
+          100000
+        ],
         "target": 100000
       },
       "expected": 25,
-      "tags": ["hidden", "maximum-length", "maximum-value"]
+      "tags": [
+        "maximum-length",
+        "maximum-value"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in hours",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "hours": [
+          0
+        ],
+        "target": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in hours",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "hours": [
+          0,
+          0
+        ],
+        "target": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

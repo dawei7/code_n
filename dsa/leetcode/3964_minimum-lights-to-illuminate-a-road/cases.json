@@ -173,10 +173,10 @@
       ]
     },
     {
-      "id": "real-overlapping-existing",
-      "name": "real: overlapping existing intervals",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-overlapping-existing",
+      "name": "overlapping existing intervals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "lights": [
           0,
@@ -199,10 +199,10 @@
       ]
     },
     {
-      "id": "real-three-separated-gaps",
-      "name": "real: several separated invisible gaps",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-separated-gaps",
+      "name": "several separated invisible gaps",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "lights": [
           0,
@@ -226,10 +226,10 @@
       ]
     },
     {
-      "id": "real-large-middle-radius",
-      "name": "real: middle bulb leaves one suffix gap",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-middle-radius",
+      "name": "middle bulb leaves one suffix gap",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "lights": [
           0,
@@ -254,10 +254,10 @@
       ]
     },
     {
-      "id": "real-seven-invisible",
-      "name": "real: seven invisible positions",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-seven-invisible",
+      "name": "seven invisible positions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "lights": [
           0,
@@ -279,10 +279,10 @@
       ]
     },
     {
-      "id": "real-left-gap-after-radius",
-      "name": "real: existing radius leaves far-right gap",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-left-gap-after-radius",
+      "name": "existing radius leaves far-right gap",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "lights": [
           0,
@@ -307,10 +307,10 @@
       ]
     },
     {
-      "id": "real-right-radius-covers-all",
-      "name": "real: right-edge bulb covers whole road",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-right-radius-covers-all",
+      "name": "right-edge bulb covers whole road",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "lights": [
           0,
@@ -330,10 +330,10 @@
       ]
     },
     {
-      "id": "real-two-local-bulbs",
-      "name": "real: two local existing bulbs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-local-bulbs",
+      "name": "two local existing bulbs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "lights": [
           0,

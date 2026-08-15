@@ -132,10 +132,10 @@
       ]
     },
     {
-      "id": "real-domain-boundaries",
-      "name": "hidden: zero and both signed boundaries",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-domain-boundaries",
+      "name": "zero and both signed boundaries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -100,
@@ -156,15 +156,14 @@
         "kind": "absolute_value_sorted"
       },
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
     {
-      "id": "real-duplicate-buckets",
-      "name": "hidden: repeated values across several magnitudes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicate-buckets",
+      "name": "repeated values across several magnitudes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -189,16 +188,15 @@
         "kind": "absolute_value_sorted"
       },
       "tags": [
-        "hidden",
         "duplicates",
         "multiple-buckets"
       ]
     },
     {
-      "id": "real-already-absolute-sorted",
-      "name": "hidden: input already satisfies the property",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-already-absolute-sorted",
+      "name": "input already satisfies the property",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -221,15 +219,14 @@
         "kind": "absolute_value_sorted"
       },
       "tags": [
-        "hidden",
         "already-sorted"
       ]
     },
     {
-      "id": "real-reverse-magnitudes",
-      "name": "hidden: descending magnitudes require full rearrangement",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-reverse-magnitudes",
+      "name": "descending magnitudes require full rearrangement",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9,
@@ -250,8 +247,45 @@
         "kind": "absolute_value_sorted"
       },
       "tags": [
-        "hidden",
         "reverse"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ]
+      },
+      "expected": [
+        3
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ]
+      },
+      "expected": [
+        3,
+        3
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

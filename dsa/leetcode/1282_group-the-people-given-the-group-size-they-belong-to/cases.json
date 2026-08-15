@@ -168,10 +168,10 @@
       ]
     },
     {
-      "id": "hidden-interleaved-pairs",
-      "name": "hidden: interleaved pair requests",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-interleaved-pairs",
+      "name": "interleaved pair requests",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "groupSizes": [
           2,
@@ -202,15 +202,14 @@
         "kind": "group_people"
       },
       "tags": [
-        "hidden",
         "interleaved"
       ]
     },
     {
-      "id": "hidden-repeated-groups",
-      "name": "hidden: several groups share a size",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-groups",
+      "name": "several groups share a size",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "groupSizes": [
           2,
@@ -247,7 +246,6 @@
         "kind": "group_people"
       },
       "tags": [
-        "hidden",
         "multiple-groups"
       ]
     }

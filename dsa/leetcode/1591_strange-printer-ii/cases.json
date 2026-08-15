@@ -154,10 +154,10 @@
       ]
     },
     {
-      "id": "real-solid",
-      "name": "hidden: one solid color",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-solid",
+      "name": "one solid color",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "targetGrid": [
           [
@@ -174,16 +174,15 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "single-color",
         "label-boundary"
       ]
     },
     {
-      "id": "real-quadrants",
-      "name": "hidden: four disjoint rectangular colors",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-quadrants",
+      "name": "four disjoint rectangular colors",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "targetGrid": [
           [
@@ -214,15 +213,14 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "disjoint"
       ]
     },
     {
-      "id": "real-separated-printable",
-      "name": "hidden: one color surrounds a later rectangle",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-separated-printable",
+      "name": "one color surrounds a later rectangle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "targetGrid": [
           [
@@ -241,15 +239,14 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "overwrite"
       ]
     },
     {
-      "id": "real-three-nested",
-      "name": "hidden: three nested rectangles",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-nested",
+      "name": "three nested rectangles",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "targetGrid": [
           [
@@ -280,15 +277,14 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "nested"
       ]
     },
     {
-      "id": "real-two-cycle",
-      "name": "hidden: two colors mutually depend",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-cycle",
+      "name": "two colors mutually depend",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "targetGrid": [
           [
@@ -303,15 +299,14 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "cycle"
       ]
     },
     {
-      "id": "real-separated-cycle",
-      "name": "hidden: separated occurrences force a cycle",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-separated-cycle",
+      "name": "separated occurrences force a cycle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "targetGrid": [
           [
@@ -328,7 +323,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "cycle",
         "separated-cells"
       ]

@@ -328,10 +328,10 @@
       ]
     },
     {
-      "id": "real-repeated-revisions",
-      "name": "hidden: several obsolete leaders are skipped after the final revision",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-revisions",
+      "name": "several obsolete leaders are skipped after the final revision",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "EventManager",
@@ -379,16 +379,15 @@
         2
       ],
       "tags": [
-        "hidden",
         "repeated-updates",
         "stale-entry"
       ]
     },
     {
-      "id": "real-repeated-empty-polls",
-      "name": "hidden: every poll after exhaustion returns minus one",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-empty-polls",
+      "name": "every poll after exhaustion returns minus one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "EventManager",
@@ -417,16 +416,15 @@
         -1
       ],
       "tags": [
-        "hidden",
         "empty-manager",
         "repeated-poll"
       ]
     },
     {
-      "id": "real-maximum-identifiers-and-priorities",
-      "name": "hidden: maximum values preserve the smaller-ID tie-break",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-identifiers-and-priorities",
+      "name": "maximum values preserve the smaller-ID tie-break",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "EventManager",
@@ -463,16 +461,15 @@
         1
       ],
       "tags": [
-        "hidden",
         "maximum-values",
         "tie-break"
       ]
     },
     {
-      "id": "real-minimum-priority-tie",
-      "name": "hidden: an update to minimum priority creates a tie",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-minimum-priority-tie",
+      "name": "an update to minimum priority creates a tie",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "EventManager",
@@ -508,16 +505,15 @@
         2
       ],
       "tags": [
-        "hidden",
         "minimum-values",
         "tie-break"
       ]
     },
     {
-      "id": "real-all-events-tied",
-      "name": "hidden: tied events are removed in ascending ID order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-events-tied",
+      "name": "tied events are removed in ascending ID order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "EventManager",
@@ -561,16 +557,15 @@
         9
       ],
       "tags": [
-        "hidden",
         "all-tied",
         "input-order"
       ]
     },
     {
-      "id": "real-stale-top-chain",
-      "name": "hidden: stale high-priority entries precede every valid leader",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-stale-top-chain",
+      "name": "stale high-priority entries precede every valid leader",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "EventManager",
@@ -631,16 +626,15 @@
         2
       ],
       "tags": [
-        "hidden",
         "stale-entry",
         "priority-decrease"
       ]
     },
     {
-      "id": "real-poll-then-update-another",
-      "name": "hidden: removing one event does not affect later updates to another",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-poll-then-update-another",
+      "name": "removing one event does not affect later updates to another",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "EventManager",
@@ -683,16 +677,15 @@
         6
       ],
       "tags": [
-        "hidden",
         "interleaved-operations",
         "active-events"
       ]
     },
     {
-      "id": "real-boundary-mixed-trace",
-      "name": "hidden: boundary values remain valid across a tie, update, and exhaustion",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-boundary-mixed-trace",
+      "name": "boundary values remain valid across a tie, update, and exhaustion",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "EventManager",
@@ -737,7 +730,6 @@
         -1
       ],
       "tags": [
-        "hidden",
         "boundary-values",
         "mixed-trace"
       ]

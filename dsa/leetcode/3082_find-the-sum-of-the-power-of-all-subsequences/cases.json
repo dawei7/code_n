@@ -6,84 +6,231 @@
       "name": "sample: nested subsequences sum to three",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 3], "k": 3},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 3
+      },
       "expected": 6,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-duplicate-threes",
       "name": "sample: either duplicate three pairs with two",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 3, 3], "k": 5},
+      "input": {
+        "nums": [
+          2,
+          3,
+          3
+        ],
+        "k": 5
+      },
       "expected": 4,
-      "tags": ["sample", "duplicates"]
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
     },
     {
       "id": "sample-no-target",
       "name": "sample: no inner subsequence reaches target",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 3], "k": 7},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 7
+      },
       "expected": 0,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "trial-single-target",
       "name": "trial: the only element is the complete witness",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5], "k": 5},
+      "input": {
+        "nums": [
+          5
+        ],
+        "k": 5
+      },
       "expected": 1,
-      "tags": ["trial", "minimum-length"]
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-duplicate-sums",
       "name": "trial: duplicate values create multiple inner witnesses",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 1, 2, 2], "k": 3},
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2
+        ],
+        "k": 3
+      },
       "expected": 16,
-      "tags": ["trial", "duplicates"]
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
     },
     {
       "id": "trial-unused-index-choices",
       "name": "trial: every target pair has one optional outer index",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 1, 1], "k": 2},
-      "expected": 6,
-      "tags": ["trial", "outer-supersets"]
-    },
-    {
-      "id": "real-mixed-small",
-      "name": "real: several target-sum witnesses have different lengths",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2, 3, 1, 4, 2], "k": 5},
-      "expected": 28,
-      "tags": ["real", "dp"]
-    },
-    {
-      "id": "real-values-above-target",
-      "name": "real: oversized values only affect outer choices",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [10000, 10000], "k": 1},
-      "expected": 0,
-      "tags": ["real", "upper-value-bound"]
-    },
-    {
-      "id": "real-modulo-reduction",
-      "name": "real: many witnesses require modulo reduction",
-      "kind": "real",
-      "visible": false,
       "input": {
-        "nums": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "outer-supersets"
+      ]
+    },
+    {
+      "id": "trial-mixed-small",
+      "name": "several target-sum witnesses have different lengths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          1,
+          4,
+          2
+        ],
+        "k": 5
+      },
+      "expected": 28,
+      "tags": [
+        "real",
+        "dp"
+      ]
+    },
+    {
+      "id": "trial-values-above-target",
+      "name": "oversized values only affect outer choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10000,
+          10000
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "upper-value-bound"
+      ]
+    },
+    {
+      "id": "trial-modulo-reduction",
+      "name": "many witnesses require modulo reduction",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
         "k": 15
       },
       "expected": 890859786,
-      "tags": ["real", "modulo"]
+      "tags": [
+        "real",
+        "modulo"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

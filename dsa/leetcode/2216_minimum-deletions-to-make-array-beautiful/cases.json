@@ -2,13 +2,196 @@
   "schema_version": 1,
   "challenge_id": "lc_2216",
   "cases": [
-    {"id":"sample-one-duplicate","name":"sample: delete one leading duplicate","kind":"sample","visible":true,"input":{"nums":[1,1,2,3,5]},"expected":1,"tags":["sample","leading-duplicate"]},
-    {"id":"sample-two-deletions","name":"sample: duplicate runs shift pair parity","kind":"sample","visible":true,"input":{"nums":[1,1,2,2,3,3]},"expected":2,"tags":["sample","parity-shift"]},
-    {"id":"trial-already-beautiful","name":"an unequal pair needs no deletion","kind":"trial","visible":true,"input":{"nums":[1,2]},"expected":0,"tags":["already-beautiful"]},
-    {"id":"trial-singleton","name":"a singleton must become the empty array","kind":"trial","visible":true,"input":{"nums":[7]},"expected":1,"tags":["singleton","odd-length"]},
-    {"id":"real-all-equal","name":"hidden: no pair can be retained from equal values","kind":"real","visible":false,"input":{"nums":[4,4,4,4,4,4]},"expected":6,"tags":["hidden","all-equal"]},
-    {"id":"real-odd-valid-prefix","name":"hidden: valid pairs plus one tail need one deletion","kind":"real","visible":false,"input":{"nums":[1,2,3,4,5]},"expected":1,"tags":["hidden","odd-tail"]},
-    {"id":"real-shifting-boundaries","name":"hidden: deletions change which original indices form pairs","kind":"real","visible":false,"input":{"nums":[0,0,1,1,1,2,2,3]},"expected":2,"tags":["hidden","parity-shift"]},
-    {"id":"real-long-runs","name":"hidden: repeated runs may leave later equal adjacency legal","kind":"real","visible":false,"input":{"nums":[1,1,1,2,2,2,3,3,4,4]},"expected":4,"tags":["hidden","duplicate-runs"]}
+    {
+      "id": "sample-one-duplicate",
+      "name": "sample: delete one leading duplicate",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          3,
+          5
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "leading-duplicate"
+      ]
+    },
+    {
+      "id": "sample-two-deletions",
+      "name": "sample: duplicate runs shift pair parity",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "parity-shift"
+      ]
+    },
+    {
+      "id": "trial-already-beautiful",
+      "name": "an unequal pair needs no deletion",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "already-beautiful"
+      ]
+    },
+    {
+      "id": "trial-singleton",
+      "name": "a singleton must become the empty array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "singleton",
+        "odd-length"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "no pair can be retained from equal values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "all-equal"
+      ]
+    },
+    {
+      "id": "trial-odd-valid-prefix",
+      "name": "valid pairs plus one tail need one deletion",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "odd-tail"
+      ]
+    },
+    {
+      "id": "trial-shifting-boundaries",
+      "name": "deletions change which original indices form pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          1,
+          1,
+          1,
+          2,
+          2,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "parity-shift"
+      ]
+    },
+    {
+      "id": "trial-long-runs",
+      "name": "repeated runs may leave later equal adjacency legal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          3,
+          3,
+          4,
+          4
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "duplicate-runs"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    }
   ]
 }

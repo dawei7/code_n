@@ -155,10 +155,10 @@
       ]
     },
     {
-      "id": "real-overlapping-boundaries",
-      "name": "hidden: three rectangles meet different boundaries",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-overlapping-boundaries",
+      "name": "three rectangles meet different boundaries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "queries": [
@@ -209,16 +209,15 @@
         ]
       ],
       "tags": [
-        "hidden",
         "overlap",
         "boundary"
       ]
     },
     {
-      "id": "real-cross",
-      "name": "hidden: border columns crossed by a middle row",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-cross",
+      "name": "border columns crossed by a middle row",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 3,
         "queries": [
@@ -260,7 +259,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "cross",
         "inclusive"
       ]

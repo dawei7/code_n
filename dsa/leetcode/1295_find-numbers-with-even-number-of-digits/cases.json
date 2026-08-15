@@ -103,10 +103,10 @@
       ]
     },
     {
-      "id": "hidden-all-qualify",
-      "name": "hidden: two four and six digits",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-qualify",
+      "name": "two four and six digits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10,
@@ -118,15 +118,14 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "all"
       ]
     },
     {
-      "id": "hidden-mixed",
-      "name": "hidden: mixed digit counts",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed",
+      "name": "mixed digit counts",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -139,7 +138,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

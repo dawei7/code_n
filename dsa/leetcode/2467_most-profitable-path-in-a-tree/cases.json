@@ -1,13 +1,268 @@
 {
   "challenge_id": "lc_2467",
   "cases": [
-    {"id":"sample-1","name":"sample: Alice and Bob split a meeting node","kind":"sample","visible":true,"input":{"edges":[[0,1],[1,2],[1,3],[3,4]],"bob":3,"amount":[-2,4,2,-4,6]},"expected":6,"tags":["sample","simultaneous-arrival"]},
-    {"id":"sample-2","name":"sample: Bob opens the only leaf first","kind":"sample","visible":true,"input":{"edges":[[0,1]],"bob":1,"amount":[-7280,2350]},"expected":-7280,"tags":["sample","two-node-tree"]},
-    {"id":"trial-untouched-branch","name":"trial: Bob blocks one branch while Alice chooses another","kind":"trial","visible":true,"input":{"edges":[[0,1],[1,2],[1,3]],"bob":2,"amount":[0,4,2,6]},"expected":8,"tags":["trial","branch-choice"]},
-    {"id":"trial-root-branch-choice","name":"trial: Alice chooses the untouched root branch","kind":"trial","visible":true,"input":{"edges":[[0,1],[0,2]],"bob":1,"amount":[4,2,8]},"expected":12,"tags":["trial","early-split"]},
-    {"id":"real-middle-split","name":"hidden: Alice and Bob split the middle gate of a chain","kind":"real","visible":false,"input":{"edges":[[0,1],[1,2]],"bob":2,"amount":[2,4,6]},"expected":4,"tags":["hidden","simultaneous-arrival"]},
-    {"id":"real-avoid-negative-gate","name":"hidden: Bob opening a negative gate can help Alice","kind":"real","visible":false,"input":{"edges":[[0,1],[0,2]],"bob":1,"amount":[-4,-6,-2]},"expected":-4,"tags":["hidden","negative-values"]},
-    {"id":"real-deeper-choice","name":"hidden: a later positive branch outweighs an early reward","kind":"real","visible":false,"input":{"edges":[[0,1],[1,2],[1,3],[3,4],[3,5]],"bob":2,"amount":[-2,8,10,-6,4,14]},"expected":10,"tags":["hidden","deep-branch"]},
-    {"id":"real-bob-off-path","name":"hidden: Bob's route does not affect the best deep branch","kind":"real","visible":false,"input":{"edges":[[0,1],[0,2],[2,3],[2,4]],"bob":1,"amount":[6,20,-4,12,2]},"expected":14,"tags":["hidden","bob-off-path"]}
+    {
+      "id": "sample-1",
+      "name": "sample: Alice and Bob split a meeting node",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "bob": 3,
+        "amount": [
+          -2,
+          4,
+          2,
+          -4,
+          6
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "simultaneous-arrival"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: Bob opens the only leaf first",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ]
+        ],
+        "bob": 1,
+        "amount": [
+          -7280,
+          2350
+        ]
+      },
+      "expected": -7280,
+      "tags": [
+        "sample",
+        "two-node-tree"
+      ]
+    },
+    {
+      "id": "trial-untouched-branch",
+      "name": "trial: Bob blocks one branch while Alice chooses another",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        "bob": 2,
+        "amount": [
+          0,
+          4,
+          2,
+          6
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "trial",
+        "branch-choice"
+      ]
+    },
+    {
+      "id": "trial-root-branch-choice",
+      "name": "trial: Alice chooses the untouched root branch",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        "bob": 1,
+        "amount": [
+          4,
+          2,
+          8
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "trial",
+        "early-split"
+      ]
+    },
+    {
+      "id": "trial-middle-split",
+      "name": "Alice and Bob split the middle gate of a chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "bob": 2,
+        "amount": [
+          2,
+          4,
+          6
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "simultaneous-arrival"
+      ]
+    },
+    {
+      "id": "trial-avoid-negative-gate",
+      "name": "Bob opening a negative gate can help Alice",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        "bob": 1,
+        "amount": [
+          -4,
+          -6,
+          -2
+        ]
+      },
+      "expected": -4,
+      "tags": [
+        "negative-values"
+      ]
+    },
+    {
+      "id": "trial-deeper-choice",
+      "name": "a later positive branch outweighs an early reward",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ]
+        ],
+        "bob": 2,
+        "amount": [
+          -2,
+          8,
+          10,
+          -6,
+          4,
+          14
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "deep-branch"
+      ]
+    },
+    {
+      "id": "trial-bob-off-path",
+      "name": "Bob's route does not affect the best deep branch",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ]
+        ],
+        "bob": 1,
+        "amount": [
+          6,
+          20,
+          -4,
+          12,
+          2
+        ]
+      },
+      "expected": 14,
+      "tags": [
+        "bob-off-path"
+      ]
+    }
   ]
 }

@@ -92,10 +92,10 @@
       ]
     },
     {
-      "id": "real-all-low-bits-differ",
-      "name": "hidden: distribute every controllable bit",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-low-bits-differ",
+      "name": "distribute every controllable bit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": 0,
         "b": 15,
@@ -103,15 +103,14 @@
       },
       "expected": 56,
       "tags": [
-        "hidden",
         "balancing"
       ]
     },
     {
-      "id": "real-fixed-high-prefix",
-      "name": "hidden: fixed high bits make one factor larger",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-fixed-high-prefix",
+      "name": "fixed high bits make one factor larger",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": 32,
         "b": 0,
@@ -119,15 +118,14 @@
       },
       "expected": 705,
       "tags": [
-        "hidden",
         "high-bits"
       ]
     },
     {
-      "id": "real-fifty-equal-bits",
-      "name": "hidden: fifty controllable equal bits",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-fifty-equal-bits",
+      "name": "fifty controllable equal bits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": 0,
         "b": 0,
@@ -135,15 +133,14 @@
       },
       "expected": 178448631,
       "tags": [
-        "hidden",
         "maximum-n"
       ]
     },
     {
-      "id": "real-fifty-differing-bits",
-      "name": "hidden: fifty controllable differing bits",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-fifty-differing-bits",
+      "name": "fifty controllable differing bits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": 0,
         "b": 1125899906842623,
@@ -151,9 +148,40 @@
       },
       "expected": 544612161,
       "tags": [
-        "hidden",
         "maximum-n",
         "balancing"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value a=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 1,
+        "b": 5,
+        "n": 4
+      },
+      "expected": 165,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "minimal value b=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 12,
+        "b": 1,
+        "n": 4
+      },
+      "expected": 70,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

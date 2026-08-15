@@ -73,30 +73,28 @@
       ]
     },
     {
-      "id": "hidden-grouped-pairs",
-      "name": "hidden: grouped vowel pairs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-grouped-pairs",
+      "name": "grouped vowel pairs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaeeiioouu"
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "whole-string"
       ]
     },
     {
-      "id": "hidden-consonant-suffix",
-      "name": "hidden: consonants after one odd vowel",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-consonant-suffix",
+      "name": "consonants after one odd vowel",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abc"
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "zero-counts"
       ]
     }

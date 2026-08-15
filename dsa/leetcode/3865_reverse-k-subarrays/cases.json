@@ -227,10 +227,10 @@
       ]
     },
     {
-      "id": "real-maximum-values",
-      "name": "hidden: maximum and mixed values reverse within length-three blocks",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-values",
+      "name": "maximum and mixed values reverse within length-three blocks",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000,
@@ -254,16 +254,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value",
         "odd-block-length"
       ]
     },
     {
-      "id": "real-k-is-block-count",
-      "name": "hidden: k counts blocks rather than elements per block",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-k-is-block-count",
+      "name": "k counts blocks rather than elements per block",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -299,16 +298,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "semantic-trap",
         "block-count"
       ]
     },
     {
-      "id": "real-palindromic-blocks",
-      "name": "hidden: palindromic blocks remain identical",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-palindromic-blocks",
+      "name": "palindromic blocks remain identical",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -332,16 +330,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "palindrome",
         "unchanged"
       ]
     },
     {
-      "id": "real-alternating-pairs",
-      "name": "hidden: four alternating pairs reverse independently",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alternating-pairs",
+      "name": "four alternating pairs reverse independently",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -369,16 +366,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "alternating",
         "pair-blocks"
       ]
     },
     {
-      "id": "real-distinct-pairs",
-      "name": "hidden: three distinct pairs preserve block order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-distinct-pairs",
+      "name": "three distinct pairs preserve block order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10,
@@ -402,16 +398,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "pair-blocks",
         "block-order"
       ]
     },
     {
-      "id": "real-odd-whole-array",
-      "name": "hidden: one odd-length block reverses around its center",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-odd-whole-array",
+      "name": "one odd-length block reverses around its center",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -433,7 +428,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "one-block",
         "odd-block-length"
       ]

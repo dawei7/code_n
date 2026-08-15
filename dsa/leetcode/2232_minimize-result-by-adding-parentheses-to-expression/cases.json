@@ -2,13 +2,112 @@
   "schema_version": 1,
   "challenge_id": "lc_2232",
   "cases": [
-    {"id":"sample-prefix-multiplier","name":"sample: retain a prefix multiplier","kind":"sample","visible":true,"input":{"expression":"247+38"},"expected":"2(47+38)","tags":["sample","prefix"]},
-    {"id":"sample-two-multipliers","name":"sample: retain both outer multipliers","kind":"sample","visible":true,"input":{"expression":"12+34"},"expected":"1(2+3)4","tags":["sample","two-multipliers"]},
-    {"id":"sample-whole-expression","name":"sample: parenthesize the entire expression","kind":"sample","visible":true,"input":{"expression":"999+999"},"expected":"(999+999)","tags":["sample","whole-expression"]},
-    {"id":"trial-single-digits","name":"both one-digit operands force the boundaries","kind":"trial","visible":true,"input":{"expression":"1+1"},"expected":"(1+1)","tags":["single-digit-operands"]},
-    {"id":"trial-left-multiplier","name":"the best placement keeps a left multiplier","kind":"trial","visible":true,"input":{"expression":"99+1"},"expected":"9(9+1)","tags":["left-multiplier"]},
-    {"id":"real-right-multiplier","name":"hidden: the best placement keeps a right multiplier","kind":"real","visible":false,"input":{"expression":"1+99"},"expected":"(1+9)9","tags":["hidden","right-multiplier"]},
-    {"id":"real-both-sides-long","name":"hidden: both operands offer several cuts","kind":"real","visible":false,"input":{"expression":"123+456"},"expected":"1(23+45)6","tags":["hidden","enumeration"]},
-    {"id":"real-long-left","name":"hidden: a long left operand retains one outer digit","kind":"real","visible":false,"input":{"expression":"9999+1"},"expected":"9(999+1)","tags":["hidden","boundary"]}
+    {
+      "id": "sample-prefix-multiplier",
+      "name": "sample: retain a prefix multiplier",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "expression": "247+38"
+      },
+      "expected": "2(47+38)",
+      "tags": [
+        "sample",
+        "prefix"
+      ]
+    },
+    {
+      "id": "sample-two-multipliers",
+      "name": "sample: retain both outer multipliers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "expression": "12+34"
+      },
+      "expected": "1(2+3)4",
+      "tags": [
+        "sample",
+        "two-multipliers"
+      ]
+    },
+    {
+      "id": "sample-whole-expression",
+      "name": "sample: parenthesize the entire expression",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "expression": "999+999"
+      },
+      "expected": "(999+999)",
+      "tags": [
+        "sample",
+        "whole-expression"
+      ]
+    },
+    {
+      "id": "trial-single-digits",
+      "name": "both one-digit operands force the boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "expression": "1+1"
+      },
+      "expected": "(1+1)",
+      "tags": [
+        "single-digit-operands"
+      ]
+    },
+    {
+      "id": "trial-left-multiplier",
+      "name": "the best placement keeps a left multiplier",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "expression": "99+1"
+      },
+      "expected": "9(9+1)",
+      "tags": [
+        "left-multiplier"
+      ]
+    },
+    {
+      "id": "trial-right-multiplier",
+      "name": "the best placement keeps a right multiplier",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "expression": "1+99"
+      },
+      "expected": "(1+9)9",
+      "tags": [
+        "right-multiplier"
+      ]
+    },
+    {
+      "id": "trial-both-sides-long",
+      "name": "both operands offer several cuts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "expression": "123+456"
+      },
+      "expected": "1(23+45)6",
+      "tags": [
+        "enumeration"
+      ]
+    },
+    {
+      "id": "trial-long-left",
+      "name": "a long left operand retains one outer digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "expression": "9999+1"
+      },
+      "expected": "9(999+1)",
+      "tags": [
+        "boundary"
+      ]
+    }
   ]
 }

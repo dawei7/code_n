@@ -126,10 +126,10 @@
       ]
     },
     {
-      "id": "real-negative-optimum",
-      "name": "real: maximum profit may stay negative",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-negative-optimum",
+      "name": "maximum profit may stay negative",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           100,
@@ -148,10 +148,10 @@
       ]
     },
     {
-      "id": "real-middle-window",
-      "name": "real: best block begins inside array",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-middle-window",
+      "name": "best block begins inside array",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           9,
@@ -176,10 +176,10 @@
       ]
     },
     {
-      "id": "real-longer-window",
-      "name": "real: four-day gain combines both halves",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-longer-window",
+      "name": "four-day gain combines both halves",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           5,
@@ -206,10 +206,10 @@
       ]
     },
     {
-      "id": "real-all-sells",
-      "name": "real: existing sells make modification harmful",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-sells",
+      "name": "existing sells make modification harmful",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           1,
@@ -236,10 +236,10 @@
       ]
     },
     {
-      "id": "real-all-buys",
-      "name": "real: forced hold and sell replace buys",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-buys",
+      "name": "forced hold and sell replace buys",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           6,
@@ -266,10 +266,10 @@
       ]
     },
     {
-      "id": "real-large-prices",
-      "name": "real: large products use wide accumulator",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-prices",
+      "name": "large products use wide accumulator",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           100000,
@@ -289,6 +289,51 @@
       "tags": [
         "real",
         "maximum-price"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single element in prices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          4
+        ],
+        "strategy": [
+          -1,
+          0,
+          1
+        ],
+        "k": 2
+      },
+      "expected": -4,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in prices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          4,
+          4
+        ],
+        "strategy": [
+          -1,
+          0,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

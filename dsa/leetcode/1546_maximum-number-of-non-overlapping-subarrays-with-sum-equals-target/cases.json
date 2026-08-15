@@ -134,10 +134,10 @@
       ]
     },
     {
-      "id": "real-overlap-choice",
-      "name": "hidden: earliest finish beats overlapping longer choice",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-overlap-choice",
+      "name": "earliest finish beats overlapping longer choice",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -158,10 +158,10 @@
       ]
     },
     {
-      "id": "real-negative-target",
-      "name": "hidden: negative target and mixed signs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-negative-target",
+      "name": "negative target and mixed signs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -2,
@@ -181,10 +181,10 @@
       ]
     },
     {
-      "id": "real-prefix-repeat",
-      "name": "hidden: repeated prefix sums across cancellations",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-prefix-repeat",
+      "name": "repeated prefix sums across cancellations",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -204,10 +204,10 @@
       ]
     },
     {
-      "id": "real-all-positive-singletons",
-      "name": "hidden: every element is an interval",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-positive-singletons",
+      "name": "every element is an interval",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -226,10 +226,10 @@
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "hidden: large magnitudes cancel exactly",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-values",
+      "name": "large magnitudes cancel exactly",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10000,
@@ -248,10 +248,10 @@
       ]
     },
     {
-      "id": "real-disjoint-with-gaps",
-      "name": "hidden: unused gaps between selected intervals",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-disjoint-with-gaps",
+      "name": "unused gaps between selected intervals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -270,6 +270,41 @@
         "real",
         "non-overlap",
         "disjoint-with-gaps"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "target": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "target": 2
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

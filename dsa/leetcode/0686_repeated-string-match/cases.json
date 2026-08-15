@@ -78,50 +78,46 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: match ends in fourth copy",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "match ends in fourth copy",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": "abc",
         "b": "cabcabca"
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "multiple-boundaries"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: same alphabet but impossible order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "same alphabet but impossible order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": "abc",
         "b": "ac"
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "ordering"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: repeated source pattern",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-3",
+      "name": "repeated source pattern",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": "abab",
         "b": "baba"
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "periodic-source"
       ]
     }
   ]
 }
-

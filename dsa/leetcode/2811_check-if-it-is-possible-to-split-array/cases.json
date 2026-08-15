@@ -2,13 +2,158 @@
   "schema_version": 1,
   "challenge_id": "lc_2811",
   "cases": [
-    {"id":"sample-valid-pair","name":"sample: qualifying pair supports all splits","kind":"sample","visible":true,"input":{"nums":[2,2,1],"m":4},"expected":true,"tags":["sample","adjacent-pair"]},
-    {"id":"sample-no-pair","name":"sample: no adjacent pair reaches threshold","kind":"sample","visible":true,"input":{"nums":[2,1,3],"m":5},"expected":false,"tags":["sample","impossible"]},
-    {"id":"sample-interior-pair","name":"sample: interior qualifying pair is sufficient","kind":"sample","visible":true,"input":{"nums":[2,3,3,2,3],"m":6},"expected":true,"tags":["sample","interior-pair"]},
-    {"id":"trial-singleton","name":"trial: singleton needs no split","kind":"trial","visible":true,"input":{"nums":[1],"m":200},"expected":true,"tags":["trial","minimum"]},
-    {"id":"trial-two-elements","name":"trial: two elements split directly regardless of sum","kind":"trial","visible":true,"input":{"nums":[1,1],"m":200},"expected":true,"tags":["trial","direct-singletons"]},
-    {"id":"real-threshold-equality","name":"hidden: equality with threshold is sufficient","kind":"real","visible":false,"input":{"nums":[1,40,60,1],"m":100},"expected":true,"tags":["hidden","equality"]},
-    {"id":"real-large-total-insufficient","name":"hidden: large total cannot replace a qualifying adjacent pair","kind":"real","visible":false,"input":{"nums":[60,1,60,1,60],"m":100},"expected":false,"tags":["hidden","global-sum-trap"]},
-    {"id":"real-edge-pair","name":"hidden: qualifying pair at the array boundary","kind":"real","visible":false,"input":{"nums":[100,100,1,1,1],"m":200},"expected":true,"tags":["hidden","edge-pair"]}
+    {
+      "id": "sample-valid-pair",
+      "name": "sample: qualifying pair supports all splits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          1
+        ],
+        "m": 4
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "adjacent-pair"
+      ]
+    },
+    {
+      "id": "sample-no-pair",
+      "name": "sample: no adjacent pair reaches threshold",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          3
+        ],
+        "m": 5
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "sample-interior-pair",
+      "name": "sample: interior qualifying pair is sufficient",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          3,
+          2,
+          3
+        ],
+        "m": 6
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "interior-pair"
+      ]
+    },
+    {
+      "id": "trial-singleton",
+      "name": "trial: singleton needs no split",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "m": 200
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-two-elements",
+      "name": "trial: two elements split directly regardless of sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "m": 200
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "direct-singletons"
+      ]
+    },
+    {
+      "id": "trial-threshold-equality",
+      "name": "equality with threshold is sufficient",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          40,
+          60,
+          1
+        ],
+        "m": 100
+      },
+      "expected": true,
+      "tags": [
+        "equality"
+      ]
+    },
+    {
+      "id": "trial-large-total-insufficient",
+      "name": "large total cannot replace a qualifying adjacent pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          60,
+          1,
+          60,
+          1,
+          60
+        ],
+        "m": 100
+      },
+      "expected": false,
+      "tags": [
+        "global-sum-trap"
+      ]
+    },
+    {
+      "id": "trial-edge-pair",
+      "name": "qualifying pair at the array boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100,
+          100,
+          1,
+          1,
+          1
+        ],
+        "m": 200
+      },
+      "expected": true,
+      "tags": [
+        "edge-pair"
+      ]
+    }
   ]
 }

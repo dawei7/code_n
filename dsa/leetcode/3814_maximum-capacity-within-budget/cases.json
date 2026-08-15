@@ -7,120 +7,351 @@
       "name": "sample: two affordable machines maximize capacity",
       "kind": "sample",
       "visible": true,
-      "input": {"costs": [4, 8, 5, 3], "capacity": [1, 5, 2, 7], "budget": 8},
+      "input": {
+        "costs": [
+          4,
+          8,
+          5,
+          3
+        ],
+        "capacity": [
+          1,
+          5,
+          2,
+          7
+        ],
+        "budget": 8
+      },
       "expected": 8,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "two-machines", "strict-budget"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "two-machines",
+        "strict-budget"
+      ]
     },
     {
       "id": "sample-one-machine",
       "name": "sample: the best valid choice uses one machine",
       "kind": "sample",
       "visible": true,
-      "input": {"costs": [3, 5, 7, 4], "capacity": [2, 4, 3, 6], "budget": 7},
+      "input": {
+        "costs": [
+          3,
+          5,
+          7,
+          4
+        ],
+        "capacity": [
+          2,
+          4,
+          3,
+          6
+        ],
+        "budget": 7
+      },
       "expected": 6,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "one-machine"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "one-machine"
+      ]
     },
     {
       "id": "sample-equal-costs",
       "name": "sample: distinct machines may have equal costs",
       "kind": "sample",
       "visible": true,
-      "input": {"costs": [2, 2, 2], "capacity": [3, 5, 4], "budget": 5},
+      "input": {
+        "costs": [
+          2,
+          2,
+          2
+        ],
+        "capacity": [
+          3,
+          5,
+          4
+        ],
+        "budget": 5
+      },
       "expected": 9,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "duplicate-costs", "distinct-indices"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "duplicate-costs",
+        "distinct-indices"
+      ]
     },
     {
       "id": "trial-none-affordable",
       "name": "trial: cost equal to budget is not affordable",
       "kind": "trial",
       "visible": true,
-      "input": {"costs": [5], "capacity": [10], "budget": 5},
+      "input": {
+        "costs": [
+          5
+        ],
+        "capacity": [
+          10
+        ],
+        "budget": 5
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "zero-machines", "strict-boundary"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "zero-machines",
+        "strict-boundary"
+      ]
     },
     {
       "id": "trial-one-affordable",
       "name": "trial: an unaffordable high-capacity machine is ignored",
       "kind": "trial",
       "visible": true,
-      "input": {"costs": [2, 4], "capacity": [7, 100], "budget": 4},
+      "input": {
+        "costs": [
+          2,
+          4
+        ],
+        "capacity": [
+          7,
+          100
+        ],
+        "budget": 4
+      },
       "expected": 7,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "one-machine", "unaffordable-capacity"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "one-machine",
+        "unaffordable-capacity"
+      ]
     },
     {
       "id": "trial-pair-equals-budget",
       "name": "trial: a pair whose cost equals budget is excluded",
       "kind": "trial",
       "visible": true,
-      "input": {"costs": [2, 3], "capacity": [10, 20], "budget": 5},
+      "input": {
+        "costs": [
+          2,
+          3
+        ],
+        "capacity": [
+          10,
+          20
+        ],
+        "budget": 5
+      },
       "expected": 20,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "strict-boundary", "single-fallback"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "strict-boundary",
+        "single-fallback"
+      ]
     },
     {
       "id": "trial-two-equal-costs",
       "name": "trial: equal costs still represent two distinct entries",
       "kind": "trial",
       "visible": true,
-      "input": {"costs": [2, 2], "capacity": [6, 9], "budget": 5},
+      "input": {
+        "costs": [
+          2,
+          2
+        ],
+        "capacity": [
+          6,
+          9
+        ],
+        "budget": 5
+      },
       "expected": 15,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "duplicate-costs", "distinct-indices"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "duplicate-costs",
+        "distinct-indices"
+      ]
     },
     {
       "id": "trial-single-maximum-capacity",
       "name": "trial: one legal machine may have maximum capacity",
       "kind": "trial",
       "visible": true,
-      "input": {"costs": [1], "capacity": [100000], "budget": 2},
+      "input": {
+        "costs": [
+          1
+        ],
+        "capacity": [
+          100000
+        ],
+        "budget": 2
+      },
       "expected": 100000,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "single-machine", "capacity-upper-bound"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-machine",
+        "capacity-upper-bound"
+      ]
     },
     {
-      "id": "real-best-pair-middle-costs",
-      "name": "hidden: the best pair is not chosen by cost alone",
-      "kind": "real",
-      "visible": false,
-      "input": {"costs": [1, 4, 5, 2], "capacity": [3, 100, 90, 80], "budget": 7},
+      "id": "trial-best-pair-middle-costs",
+      "name": "the best pair is not chosen by cost alone",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "costs": [
+          1,
+          4,
+          5,
+          2
+        ],
+        "capacity": [
+          3,
+          100,
+          90,
+          80
+        ],
+        "budget": 7
+      },
       "expected": 180,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "capacity-priority", "two-machines"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "capacity-priority",
+        "two-machines"
+      ]
     },
     {
-      "id": "real-cheapest-high-capacity-partner",
-      "name": "hidden: the cheapest machine can be the strongest partner",
-      "kind": "real",
-      "visible": false,
-      "input": {"costs": [1, 2, 3], "capacity": [100, 1, 90], "budget": 5},
+      "id": "trial-cheapest-high-capacity-partner",
+      "name": "the cheapest machine can be the strongest partner",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "costs": [
+          1,
+          2,
+          3
+        ],
+        "capacity": [
+          100,
+          1,
+          90
+        ],
+        "budget": 5
+      },
       "expected": 190,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "prefix-maximum", "strict-budget"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "prefix-maximum",
+        "strict-budget"
+      ]
     },
     {
-      "id": "real-large-value-boundary",
-      "name": "hidden: large costs combine just below the maximum budget",
-      "kind": "real",
-      "visible": false,
-      "input": {"costs": [100000, 99999, 1], "capacity": [100000, 99999, 1], "budget": 200000},
+      "id": "trial-large-value-boundary",
+      "name": "large costs combine just below the maximum budget",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "costs": [
+          100000,
+          99999,
+          1
+        ],
+        "capacity": [
+          100000,
+          99999,
+          1
+        ],
+        "budget": 200000
+      },
       "expected": 199999,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "value-boundaries", "strict-budget"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "value-boundaries",
+        "strict-budget"
+      ]
     },
     {
-      "id": "real-four-duplicate-costs",
-      "name": "hidden: choose the two largest capacities among equal costs",
-      "kind": "real",
-      "visible": false,
-      "input": {"costs": [3, 3, 3, 3], "capacity": [8, 1, 6, 10], "budget": 7},
+      "id": "trial-four-duplicate-costs",
+      "name": "choose the two largest capacities among equal costs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "costs": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "capacity": [
+          8,
+          1,
+          6,
+          10
+        ],
+        "budget": 7
+      },
       "expected": 18,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "duplicate-costs", "top-two-capacities"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "duplicate-costs",
+        "top-two-capacities"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value budget=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "costs": [
+          4,
+          8,
+          5,
+          3
+        ],
+        "capacity": [
+          1,
+          5,
+          2,
+          7
+        ],
+        "budget": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
     }
   ]
 }

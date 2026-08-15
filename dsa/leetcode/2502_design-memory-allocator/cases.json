@@ -174,10 +174,10 @@
       ]
     },
     {
-      "id": "real-multiple-blocks-one-id",
-      "name": "hidden: one free releases several disjoint blocks",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-blocks-one-id",
+      "name": "one free releases several disjoint blocks",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "commands": [
           "Allocator",
@@ -215,15 +215,14 @@
         4
       ],
       "tags": [
-        "hidden",
         "repeated-id"
       ]
     },
     {
-      "id": "real-leftmost-reuse",
-      "name": "hidden: allocation chooses the earliest newly freed run",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-leftmost-reuse",
+      "name": "allocation chooses the earliest newly freed run",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "commands": [
           "Allocator",
@@ -267,15 +266,14 @@
         2
       ],
       "tags": [
-        "hidden",
         "leftmost"
       ]
     },
     {
-      "id": "real-free-missing",
-      "name": "hidden: freeing an absent id changes nothing",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-free-missing",
+      "name": "freeing an absent id changes nothing",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "commands": [
           "Allocator",
@@ -301,7 +299,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "missing-id"
       ]
     }

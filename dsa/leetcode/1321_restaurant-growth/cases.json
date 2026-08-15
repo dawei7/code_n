@@ -369,10 +369,10 @@
       ]
     },
     {
-      "id": "hidden-cross-month",
-      "name": "hidden: windows cross a month boundary",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-cross-month",
+      "name": "windows cross a month boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Customer": [
@@ -447,15 +447,14 @@
         ]
       },
       "tags": [
-        "hidden",
         "date-boundary"
       ]
     },
     {
-      "id": "hidden-two-per-day",
-      "name": "hidden: two customers visit every date",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-per-day",
+      "name": "two customers visit every date",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Customer": [
@@ -561,15 +560,14 @@
         ]
       },
       "tags": [
-        "hidden",
         "multiple-visits"
       ]
     },
     {
-      "id": "hidden-fourteen-days",
-      "name": "hidden: two complete weeks of varying revenue",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-fourteen-days",
+      "name": "two complete weeks of varying revenue",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Customer": [
@@ -710,7 +708,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "rolling-window"
       ]
     }

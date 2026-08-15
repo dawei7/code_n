@@ -6,90 +6,149 @@
       "name": "sample: one character",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "z"},
+      "input": {
+        "s": "z"
+      },
       "expected": "z",
-      "tags": ["sample", "single-character"]
+      "tags": [
+        "sample",
+        "single-character"
+      ]
     },
     {
       "id": "sample-odd-length",
       "name": "sample: odd-length rearrangement",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "babab"},
+      "input": {
+        "s": "babab"
+      },
       "expected": "abbba",
-      "tags": ["sample", "odd-length", "rearrangement"]
+      "tags": [
+        "sample",
+        "odd-length",
+        "rearrangement"
+      ]
     },
     {
       "id": "sample-even-length",
       "name": "sample: even-length rearrangement",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "daccad"},
+      "input": {
+        "s": "daccad"
+      },
       "expected": "acddca",
-      "tags": ["sample", "even-length", "rearrangement"]
+      "tags": [
+        "sample",
+        "even-length",
+        "rearrangement"
+      ]
     },
     {
       "id": "trial-one-repeated-letter",
       "name": "trial: one repeated letter",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "aaaa"},
+      "input": {
+        "s": "aaaa"
+      },
       "expected": "aaaa",
-      "tags": ["trial", "one-distinct-letter"]
+      "tags": [
+        "trial",
+        "one-distinct-letter"
+      ]
     },
     {
       "id": "trial-odd-center-moves",
       "name": "trial: odd-count letter moves to center",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "bacab"},
+      "input": {
+        "s": "bacab"
+      },
       "expected": "abcba",
-      "tags": ["trial", "odd-length", "center"]
+      "tags": [
+        "trial",
+        "odd-length",
+        "center"
+      ]
     },
     {
       "id": "trial-three-pairs",
       "name": "trial: three paired letters",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "bcaacb"},
+      "input": {
+        "s": "bcaacb"
+      },
       "expected": "abccba",
-      "tags": ["trial", "even-length", "three-letters"]
+      "tags": [
+        "trial",
+        "even-length",
+        "three-letters"
+      ]
     },
     {
-      "id": "real-seven-character-word",
-      "name": "real: several pairs and one center",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "racecar"},
+      "id": "trial-seven-character-word",
+      "name": "several pairs and one center",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "racecar"
+      },
       "expected": "acrerca",
-      "tags": ["real", "odd-length", "mixed-counts"]
+      "tags": [
+        "real",
+        "odd-length",
+        "mixed-counts"
+      ]
     },
     {
-      "id": "real-two-identical-characters",
-      "name": "real: two identical boundary letters",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "zz"},
+      "id": "trial-two-identical-characters",
+      "name": "two identical boundary letters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "zz"
+      },
       "expected": "zz",
-      "tags": ["real", "minimum-even-length", "letter-boundary"]
+      "tags": [
+        "real",
+        "minimum-even-length",
+        "letter-boundary"
+      ]
     },
     {
-      "id": "real-all-letters-paired",
-      "name": "real: every lowercase letter appears twice",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "zyxwvutsrqponmlkjihgfedcbaabcdefghijklmnopqrstuvwxyz"},
+      "id": "trial-all-letters-paired",
+      "name": "every lowercase letter appears twice",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "zyxwvutsrqponmlkjihgfedcbaabcdefghijklmnopqrstuvwxyz"
+      },
       "expected": "abcdefghijklmnopqrstuvwxyzzyxwvutsrqponmlkjihgfedcba",
-      "tags": ["real", "all-letters", "even-length"]
+      "tags": [
+        "real",
+        "all-letters",
+        "even-length"
+      ]
     },
     {
-      "id": "real-smallest-letter-is-center",
-      "name": "real: smallest letter is forced into the center",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "cbbaaabbc"},
+      "id": "trial-smallest-letter-is-center",
+      "name": "smallest letter is forced into the center",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "cbbaaabbc"
+      },
       "expected": "abbcacbba",
-      "tags": ["real", "odd-length", "center", "lexicographic"]
+      "tags": [
+        "real",
+        "odd-length",
+        "center",
+        "lexicographic"
+      ]
     }
   ]
 }

@@ -7,108 +7,335 @@
       "name": "sample: connected swaps place the smallest value at the odd index",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 3], "swaps": [[0, 2], [1, 2]]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "swaps": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
       "expected": 4,
-      "tags": ["sample", "connected-component"]
+      "tags": [
+        "sample",
+        "connected-component"
+      ]
     },
     {
       "id": "sample-single-edge-no-improvement",
       "name": "sample: the only available swap would reduce the sum",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 3], "swaps": [[1, 2]]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "swaps": [
+          [
+            1,
+            2
+          ]
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "no-swap-optimal"]
+      "tags": [
+        "sample",
+        "no-swap-optimal"
+      ]
     },
     {
       "id": "sample-large-values-no-edges",
       "name": "sample: no edges preserve a large negative alternating sum",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 1000000000, 1, 1000000000, 1, 1000000000], "swaps": []},
+      "input": {
+        "nums": [
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000
+        ],
+        "swaps": []
+      },
       "expected": -2999999997,
-      "tags": ["sample", "no-swaps", "large-values"]
+      "tags": [
+        "sample",
+        "no-swaps",
+        "large-values"
+      ]
     },
     {
       "id": "trial-two-values-no-swap",
       "name": "trial: two singleton components keep their signs",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5, 1], "swaps": []},
+      "input": {
+        "nums": [
+          5,
+          1
+        ],
+        "swaps": []
+      },
       "expected": 4,
-      "tags": ["trial", "minimum-length"]
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-same-parity-edge",
       "name": "trial: swapping two even positions cannot alter the contribution",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 100, 3], "swaps": [[0, 2]]},
+      "input": {
+        "nums": [
+          1,
+          100,
+          3
+        ],
+        "swaps": [
+          [
+            0,
+            2
+          ]
+        ]
+      },
       "expected": -96,
-      "tags": ["trial", "same-parity"]
+      "tags": [
+        "trial",
+        "same-parity"
+      ]
     },
     {
       "id": "trial-cross-parity-edge",
       "name": "trial: one cross-parity edge reverses the unfavorable order",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 10], "swaps": [[0, 1]]},
+      "input": {
+        "nums": [
+          1,
+          10
+        ],
+        "swaps": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
       "expected": 9,
-      "tags": ["trial", "cross-parity"]
+      "tags": [
+        "trial",
+        "cross-parity"
+      ]
     },
     {
       "id": "trial-fully-connected-four",
       "name": "trial: a chain permits every permutation of four values",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 3, 4], "swaps": [[0, 1], [1, 2], [2, 3]]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "swaps": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
       "expected": 4,
-      "tags": ["trial", "transitive-connectivity"]
+      "tags": [
+        "trial",
+        "transitive-connectivity"
+      ]
     },
     {
-      "id": "real-multiple-components",
-      "name": "hidden: separate components optimize their sign counts independently",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [8, 1, 7, 2, 6, 3], "swaps": [[0, 1], [1, 2], [3, 4]]},
+      "id": "trial-multiple-components",
+      "name": "separate components optimize their sign counts independently",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          1,
+          7,
+          2,
+          6,
+          3
+        ],
+        "swaps": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
       "expected": 15,
-      "tags": ["hidden", "multiple-components"]
+      "tags": [
+        "multiple-components"
+      ]
     },
     {
-      "id": "real-parity-separated-components",
-      "name": "hidden: components containing one parity do not improve the sum",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [9, 1, 8, 2, 7, 3], "swaps": [[0, 2], [2, 4], [1, 3], [3, 5]]},
+      "id": "trial-parity-separated-components",
+      "name": "components containing one parity do not improve the sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          1,
+          8,
+          2,
+          7,
+          3
+        ],
+        "swaps": [
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            5
+          ]
+        ]
+      },
       "expected": 18,
-      "tags": ["hidden", "same-parity", "transitive-connectivity"]
+      "tags": [
+        "same-parity",
+        "transitive-connectivity"
+      ]
     },
     {
-      "id": "real-duplicate-values",
-      "name": "hidden: duplicate values remain valid component members",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [4, 4, 4, 4, 4], "swaps": [[0, 1], [1, 2]]},
+      "id": "trial-duplicate-values",
+      "name": "duplicate values remain valid component members",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "swaps": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
       "expected": 4,
-      "tags": ["hidden", "duplicates"]
+      "tags": [
+        "duplicates"
+      ]
     },
     {
-      "id": "real-odd-only-edge",
-      "name": "hidden: an odd-only edge cannot move values to positive indices",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [10, 1, 9, 2, 8], "swaps": [[1, 3]]},
+      "id": "trial-odd-only-edge",
+      "name": "an odd-only edge cannot move values to positive indices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          1,
+          9,
+          2,
+          8
+        ],
+        "swaps": [
+          [
+            1,
+            3
+          ]
+        ]
+      },
       "expected": 24,
-      "tags": ["hidden", "same-parity"]
+      "tags": [
+        "same-parity"
+      ]
     },
     {
-      "id": "real-independent-pairs",
-      "name": "hidden: each cross-parity pair selects its larger positive value",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2, 100, 3, 99, 4, 98], "swaps": [[0, 1], [2, 3], [4, 5]]},
+      "id": "trial-independent-pairs",
+      "name": "each cross-parity pair selects its larger positive value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          100,
+          3,
+          99,
+          4,
+          98
+        ],
+        "swaps": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            5
+          ]
+        ]
+      },
       "expected": 288,
-      "tags": ["hidden", "multiple-components", "cross-parity"]
+      "tags": [
+        "multiple-components",
+        "cross-parity"
+      ]
     }
   ]
 }

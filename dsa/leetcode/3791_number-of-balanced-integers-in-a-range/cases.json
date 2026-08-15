@@ -1,14 +1,218 @@
-{"schema_version":1,"challenge_id":"lc_3791","cases":[
-{"id":"sample-1","name":"sample: all repeated two-digit numbers","kind":"sample","visible":true,"input":{"low":1,"high":100},"expected":9,"validator":{"kind":"exact"},"tags":["sample","two-digits"]},
-{"id":"sample-2","name":"sample: one balanced three-digit number","kind":"sample","visible":true,"input":{"low":120,"high":129},"expected":1,"validator":{"kind":"exact"},"tags":["sample","three-digits"]},
-{"id":"sample-3","name":"sample: unbalanced singleton range","kind":"sample","visible":true,"input":{"low":1234,"high":1234},"expected":0,"validator":{"kind":"exact"},"tags":["sample","singleton-range"]},
-{"id":"trial-one-digits","name":"trial: one-digit values are excluded","kind":"trial","visible":true,"input":{"low":1,"high":9},"expected":0,"validator":{"kind":"exact"},"tags":["trial","minimum-digits"]},
-{"id":"trial-two-digit-domain","name":"trial: every equal-digit pair","kind":"trial","visible":true,"input":{"low":10,"high":99},"expected":9,"validator":{"kind":"exact"},"tags":["trial","two-digits"]},
-{"id":"trial-balanced-singleton","name":"trial: one balanced number","kind":"trial","visible":true,"input":{"low":11,"high":11},"expected":1,"validator":{"kind":"exact"},"tags":["trial","singleton-range"]},
-{"id":"real-three-digits","name":"hidden: all balanced three-digit values","kind":"real","visible":false,"input":{"low":100,"high":999},"expected":45,"validator":{"kind":"exact"},"tags":["hidden","three-digits"]},
-{"id":"real-cross-length","name":"hidden: interval crossing a digit-length boundary","kind":"real","visible":false,"input":{"low":999,"high":1001},"expected":1,"validator":{"kind":"exact"},"tags":["hidden","length-boundary"]},
-{"id":"real-leading-zero-trap","name":"hidden: positions begin at the actual first digit","kind":"real","visible":false,"input":{"low":1001,"high":1001},"expected":1,"validator":{"kind":"exact"},"tags":["hidden","zeros","singleton-range"]},
-{"id":"real-first-thousand","name":"hidden: prefix count through one thousand","kind":"real","visible":false,"input":{"low":1,"high":1000},"expected":54,"validator":{"kind":"exact"},"tags":["hidden","prefix-range"]},
-{"id":"real-maximum-singleton","name":"hidden: maximum legal endpoint as a singleton","kind":"real","visible":false,"input":{"low":1000000000000000,"high":1000000000000000},"expected":0,"validator":{"kind":"exact"},"tags":["hidden","maximum","singleton-range"]},
-{"id":"real-zero-heavy-balanced","name":"hidden: internal zeros preserve their positions","kind":"real","visible":false,"input":{"low":2002,"high":2002},"expected":1,"validator":{"kind":"exact"},"tags":["hidden","zeros"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3791",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: all repeated two-digit numbers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "low": 1,
+        "high": 100
+      },
+      "expected": 9,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "two-digits"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one balanced three-digit number",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "low": 120,
+        "high": 129
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "three-digits"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: unbalanced singleton range",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "low": 1234,
+        "high": 1234
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "singleton-range"
+      ]
+    },
+    {
+      "id": "trial-one-digits",
+      "name": "trial: one-digit values are excluded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "low": 1,
+        "high": 9
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-digits"
+      ]
+    },
+    {
+      "id": "trial-two-digit-domain",
+      "name": "trial: every equal-digit pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "low": 10,
+        "high": 99
+      },
+      "expected": 9,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "two-digits"
+      ]
+    },
+    {
+      "id": "trial-balanced-singleton",
+      "name": "trial: one balanced number",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "low": 11,
+        "high": 11
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "singleton-range"
+      ]
+    },
+    {
+      "id": "trial-three-digits",
+      "name": "all balanced three-digit values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "low": 100,
+        "high": 999
+      },
+      "expected": 45,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "three-digits"
+      ]
+    },
+    {
+      "id": "trial-cross-length",
+      "name": "interval crossing a digit-length boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "low": 999,
+        "high": 1001
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "length-boundary"
+      ]
+    },
+    {
+      "id": "trial-leading-zero-trap",
+      "name": "positions begin at the actual first digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "low": 1001,
+        "high": 1001
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "zeros",
+        "singleton-range"
+      ]
+    },
+    {
+      "id": "trial-first-thousand",
+      "name": "prefix count through one thousand",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "low": 1,
+        "high": 1000
+      },
+      "expected": 54,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "prefix-range"
+      ]
+    },
+    {
+      "id": "trial-maximum-singleton",
+      "name": "maximum legal endpoint as a singleton",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "low": 1000000000000000,
+        "high": 1000000000000000
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "maximum",
+        "singleton-range"
+      ]
+    },
+    {
+      "id": "trial-zero-heavy-balanced",
+      "name": "internal zeros preserve their positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "low": 2002,
+        "high": 2002
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "zeros"
+      ]
+    }
+  ]
+}

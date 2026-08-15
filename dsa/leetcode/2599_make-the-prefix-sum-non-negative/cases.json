@@ -6,72 +6,186 @@
       "name": "sample: original order is already valid",
       "kind": "sample",
       "visible": true,
-      "input": { "nums": [2,3,-5,4] },
+      "input": {
+        "nums": [
+          2,
+          3,
+          -5,
+          4
+        ]
+      },
       "expected": 0,
-      "tags": ["sample", "no-operations"]
+      "tags": [
+        "sample",
+        "no-operations"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: defer one negative value",
       "kind": "sample",
       "visible": true,
-      "input": { "nums": [3,-5,-2,6] },
+      "input": {
+        "nums": [
+          3,
+          -5,
+          -2,
+          6
+        ]
+      },
       "expected": 1,
-      "tags": ["sample", "single-operation"]
+      "tags": [
+        "sample",
+        "single-operation"
+      ]
     },
     {
       "id": "trial-negative-first",
       "name": "trial: first element must move",
       "kind": "trial",
       "visible": true,
-      "input": { "nums": [-1,1] },
+      "input": {
+        "nums": [
+          -1,
+          1
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "negative-first"]
+      "tags": [
+        "trial",
+        "negative-first"
+      ]
     },
     {
       "id": "trial-two-deferrals",
       "name": "trial: two deficits require two moves",
       "kind": "trial",
       "visible": true,
-      "input": { "nums": [2,-3,-3,4] },
+      "input": {
+        "nums": [
+          2,
+          -3,
+          -3,
+          4
+        ]
+      },
       "expected": 2,
-      "tags": ["trial", "multiple-operations"]
+      "tags": [
+        "trial",
+        "multiple-operations"
+      ]
     },
     {
-      "id": "real-most-negative-choice",
-      "name": "hidden: most negative prior value is optimal",
-      "kind": "real",
-      "visible": false,
-      "input": { "nums": [5,-2,-3,-4,4] },
+      "id": "trial-most-negative-choice",
+      "name": "most negative prior value is optimal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          -2,
+          -3,
+          -4,
+          4
+        ]
+      },
       "expected": 1,
-      "tags": ["hidden", "greedy-choice"]
+      "tags": [
+        "greedy-choice"
+      ]
     },
     {
-      "id": "real-long-recovery",
-      "name": "hidden: one removal funds later prefixes",
-      "kind": "real",
-      "visible": false,
-      "input": { "nums": [4,-10,1,1,1,1,1,1] },
+      "id": "trial-long-recovery",
+      "name": "one removal funds later prefixes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          -10,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
       "expected": 1,
-      "tags": ["hidden", "recovery"]
+      "tags": [
+        "recovery"
+      ]
     },
     {
-      "id": "real-zeros-and-negatives",
-      "name": "hidden: zeros do not change feasibility",
-      "kind": "real",
-      "visible": false,
-      "input": { "nums": [0,0,3,-4,0,1] },
+      "id": "trial-zeros-and-negatives",
+      "name": "zeros do not change feasibility",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          3,
+          -4,
+          0,
+          1
+        ]
+      },
       "expected": 1,
-      "tags": ["hidden", "zeros"]
+      "tags": [
+        "zeros"
+      ]
     },
     {
-      "id": "real-integer-width",
-      "name": "hidden: prefix sum needs wide arithmetic",
-      "kind": "real",
-      "visible": false,
-      "input": { "nums": [1000000000,1000000000,-1000000000,-1000000000] },
+      "id": "trial-integer-width",
+      "name": "prefix sum needs wide arithmetic",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          1000000000,
+          -1000000000,
+          -1000000000
+        ]
+      },
       "expected": 0,
-      "tags": ["hidden", "integer-width"]
+      "tags": [
+        "integer-width"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

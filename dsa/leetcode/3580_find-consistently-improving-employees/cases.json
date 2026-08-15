@@ -7,156 +7,581 @@
       "name": "sample: rank the latest three reviews and order qualifying employees",
       "kind": "sample",
       "visible": true,
-      "input": {"tables": {
-        "employees": [
-          {"employee_id": 1, "name": "Alice Johnson"},
-          {"employee_id": 2, "name": "Bob Smith"},
-          {"employee_id": 3, "name": "Carol Davis"},
-          {"employee_id": 4, "name": "David Wilson"},
-          {"employee_id": 5, "name": "Emma Brown"}
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 1,
+              "name": "Alice Johnson"
+            },
+            {
+              "employee_id": 2,
+              "name": "Bob Smith"
+            },
+            {
+              "employee_id": 3,
+              "name": "Carol Davis"
+            },
+            {
+              "employee_id": 4,
+              "name": "David Wilson"
+            },
+            {
+              "employee_id": 5,
+              "name": "Emma Brown"
+            }
+          ],
+          "performance_reviews": [
+            {
+              "review_id": 1,
+              "employee_id": 1,
+              "review_date": "2023-01-15",
+              "rating": 2
+            },
+            {
+              "review_id": 2,
+              "employee_id": 1,
+              "review_date": "2023-04-15",
+              "rating": 3
+            },
+            {
+              "review_id": 3,
+              "employee_id": 1,
+              "review_date": "2023-07-15",
+              "rating": 4
+            },
+            {
+              "review_id": 4,
+              "employee_id": 1,
+              "review_date": "2023-10-15",
+              "rating": 5
+            },
+            {
+              "review_id": 5,
+              "employee_id": 2,
+              "review_date": "2023-02-01",
+              "rating": 3
+            },
+            {
+              "review_id": 6,
+              "employee_id": 2,
+              "review_date": "2023-05-01",
+              "rating": 2
+            },
+            {
+              "review_id": 7,
+              "employee_id": 2,
+              "review_date": "2023-08-01",
+              "rating": 4
+            },
+            {
+              "review_id": 8,
+              "employee_id": 2,
+              "review_date": "2023-11-01",
+              "rating": 5
+            },
+            {
+              "review_id": 9,
+              "employee_id": 3,
+              "review_date": "2023-03-10",
+              "rating": 1
+            },
+            {
+              "review_id": 10,
+              "employee_id": 3,
+              "review_date": "2023-06-10",
+              "rating": 2
+            },
+            {
+              "review_id": 11,
+              "employee_id": 3,
+              "review_date": "2023-09-10",
+              "rating": 3
+            },
+            {
+              "review_id": 12,
+              "employee_id": 3,
+              "review_date": "2023-12-10",
+              "rating": 4
+            },
+            {
+              "review_id": 13,
+              "employee_id": 4,
+              "review_date": "2023-01-20",
+              "rating": 4
+            },
+            {
+              "review_id": 14,
+              "employee_id": 4,
+              "review_date": "2023-04-20",
+              "rating": 4
+            },
+            {
+              "review_id": 15,
+              "employee_id": 4,
+              "review_date": "2023-07-20",
+              "rating": 4
+            },
+            {
+              "review_id": 16,
+              "employee_id": 5,
+              "review_date": "2023-02-15",
+              "rating": 3
+            },
+            {
+              "review_id": 17,
+              "employee_id": 5,
+              "review_date": "2023-05-15",
+              "rating": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "name",
+          "improvement_score"
         ],
-        "performance_reviews": [
-          {"review_id": 1, "employee_id": 1, "review_date": "2023-01-15", "rating": 2},
-          {"review_id": 2, "employee_id": 1, "review_date": "2023-04-15", "rating": 3},
-          {"review_id": 3, "employee_id": 1, "review_date": "2023-07-15", "rating": 4},
-          {"review_id": 4, "employee_id": 1, "review_date": "2023-10-15", "rating": 5},
-          {"review_id": 5, "employee_id": 2, "review_date": "2023-02-01", "rating": 3},
-          {"review_id": 6, "employee_id": 2, "review_date": "2023-05-01", "rating": 2},
-          {"review_id": 7, "employee_id": 2, "review_date": "2023-08-01", "rating": 4},
-          {"review_id": 8, "employee_id": 2, "review_date": "2023-11-01", "rating": 5},
-          {"review_id": 9, "employee_id": 3, "review_date": "2023-03-10", "rating": 1},
-          {"review_id": 10, "employee_id": 3, "review_date": "2023-06-10", "rating": 2},
-          {"review_id": 11, "employee_id": 3, "review_date": "2023-09-10", "rating": 3},
-          {"review_id": 12, "employee_id": 3, "review_date": "2023-12-10", "rating": 4},
-          {"review_id": 13, "employee_id": 4, "review_date": "2023-01-20", "rating": 4},
-          {"review_id": 14, "employee_id": 4, "review_date": "2023-04-20", "rating": 4},
-          {"review_id": 15, "employee_id": 4, "review_date": "2023-07-20", "rating": 4},
-          {"review_id": 16, "employee_id": 5, "review_date": "2023-02-15", "rating": 3},
-          {"review_id": 17, "employee_id": 5, "review_date": "2023-05-15", "rating": 2}
+        "rows": [
+          [
+            2,
+            "Bob Smith",
+            3
+          ],
+          [
+            1,
+            "Alice Johnson",
+            2
+          ],
+          [
+            3,
+            "Carol Davis",
+            2
+          ]
         ]
-      }},
-      "expected": {"columns": ["employee_id", "name", "improvement_score"], "rows": [[2, "Bob Smith", 3], [1, "Alice Johnson", 2], [3, "Carol Davis", 2]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["sample", "window-ranking", "output-order"]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "window-ranking",
+        "output-order"
+      ]
     },
     {
       "id": "trial-exactly-three-reviews",
       "name": "trial: exactly three strictly increasing reviews qualify",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {
-        "employees": [{"employee_id": 1, "name": "Iris"}],
-        "performance_reviews": [
-          {"review_id": 1, "employee_id": 1, "review_date": "2024-01-01", "rating": 1},
-          {"review_id": 2, "employee_id": 1, "review_date": "2024-02-01", "rating": 3},
-          {"review_id": 3, "employee_id": 1, "review_date": "2024-03-01", "rating": 5}
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 1,
+              "name": "Iris"
+            }
+          ],
+          "performance_reviews": [
+            {
+              "review_id": 1,
+              "employee_id": 1,
+              "review_date": "2024-01-01",
+              "rating": 1
+            },
+            {
+              "review_id": 2,
+              "employee_id": 1,
+              "review_date": "2024-02-01",
+              "rating": 3
+            },
+            {
+              "review_id": 3,
+              "employee_id": 1,
+              "review_date": "2024-03-01",
+              "rating": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "name",
+          "improvement_score"
+        ],
+        "rows": [
+          [
+            1,
+            "Iris",
+            4
+          ]
         ]
-      }},
-      "expected": {"columns": ["employee_id", "name", "improvement_score"], "rows": [[1, "Iris", 4]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["trial", "exactly-three", "strict-increase"]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "exactly-three",
+        "strict-increase"
+      ]
     },
     {
       "id": "trial-fewer-than-three-excluded",
       "name": "trial: two improving reviews are insufficient",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {
-        "employees": [{"employee_id": 1, "name": "Kai"}],
-        "performance_reviews": [
-          {"review_id": 1, "employee_id": 1, "review_date": "2024-01-01", "rating": 2},
-          {"review_id": 2, "employee_id": 1, "review_date": "2024-02-01", "rating": 5}
-        ]
-      }},
-      "expected": {"columns": ["employee_id", "name", "improvement_score"], "rows": []},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["trial", "insufficient-history", "empty-output"]
-    },
-    {
-      "id": "real-older-decline-ignored",
-      "name": "real: an older decline does not affect the latest three reviews",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {
-        "employees": [{"employee_id": 1, "name": "Lena"}],
-        "performance_reviews": [
-          {"review_id": 1, "employee_id": 1, "review_date": "2024-01-01", "rating": 5},
-          {"review_id": 2, "employee_id": 1, "review_date": "2024-02-01", "rating": 1},
-          {"review_id": 3, "employee_id": 1, "review_date": "2024-03-01", "rating": 2},
-          {"review_id": 4, "employee_id": 1, "review_date": "2024-04-01", "rating": 4}
-        ]
-      }},
-      "expected": {"columns": ["employee_id", "name", "improvement_score"], "rows": [[1, "Lena", 3]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["real", "latest-three", "older-review-ignored"]
-    },
-    {
-      "id": "real-plateau-and-decline-excluded",
-      "name": "real: both a plateau and a final decline violate strict improvement",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {
-        "employees": [
-          {"employee_id": 1, "name": "Plateau"},
-          {"employee_id": 2, "name": "Decline"}
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 1,
+              "name": "Kai"
+            }
+          ],
+          "performance_reviews": [
+            {
+              "review_id": 1,
+              "employee_id": 1,
+              "review_date": "2024-01-01",
+              "rating": 2
+            },
+            {
+              "review_id": 2,
+              "employee_id": 1,
+              "review_date": "2024-02-01",
+              "rating": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "name",
+          "improvement_score"
         ],
-        "performance_reviews": [
-          {"review_id": 1, "employee_id": 1, "review_date": "2024-01-01", "rating": 2},
-          {"review_id": 2, "employee_id": 1, "review_date": "2024-02-01", "rating": 3},
-          {"review_id": 3, "employee_id": 1, "review_date": "2024-03-01", "rating": 3},
-          {"review_id": 4, "employee_id": 2, "review_date": "2024-01-01", "rating": 2},
-          {"review_id": 5, "employee_id": 2, "review_date": "2024-02-01", "rating": 5},
-          {"review_id": 6, "employee_id": 2, "review_date": "2024-03-01", "rating": 4}
-        ]
-      }},
-      "expected": {"columns": ["employee_id", "name", "improvement_score"], "rows": []},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["real", "strictness", "plateau", "decline"]
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "insufficient-history",
+        "empty-output"
+      ]
     },
     {
-      "id": "real-score-and-name-order",
-      "name": "real: score sorts first and name breaks equal-score ties",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {
-        "employees": [
-          {"employee_id": 1, "name": "Zoe"},
-          {"employee_id": 2, "name": "Aaron"},
-          {"employee_id": 3, "name": "Mira"}
+      "id": "trial-older-decline-ignored",
+      "name": "an older decline does not affect the latest three reviews",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 1,
+              "name": "Lena"
+            }
+          ],
+          "performance_reviews": [
+            {
+              "review_id": 1,
+              "employee_id": 1,
+              "review_date": "2024-01-01",
+              "rating": 5
+            },
+            {
+              "review_id": 2,
+              "employee_id": 1,
+              "review_date": "2024-02-01",
+              "rating": 1
+            },
+            {
+              "review_id": 3,
+              "employee_id": 1,
+              "review_date": "2024-03-01",
+              "rating": 2
+            },
+            {
+              "review_id": 4,
+              "employee_id": 1,
+              "review_date": "2024-04-01",
+              "rating": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "name",
+          "improvement_score"
         ],
-        "performance_reviews": [
-          {"review_id": 1, "employee_id": 1, "review_date": "2024-01-01", "rating": 1},
-          {"review_id": 2, "employee_id": 1, "review_date": "2024-02-01", "rating": 2},
-          {"review_id": 3, "employee_id": 1, "review_date": "2024-03-01", "rating": 3},
-          {"review_id": 4, "employee_id": 2, "review_date": "2024-01-01", "rating": 2},
-          {"review_id": 5, "employee_id": 2, "review_date": "2024-02-01", "rating": 3},
-          {"review_id": 6, "employee_id": 2, "review_date": "2024-03-01", "rating": 4},
-          {"review_id": 7, "employee_id": 3, "review_date": "2024-01-01", "rating": 1},
-          {"review_id": 8, "employee_id": 3, "review_date": "2024-02-01", "rating": 3},
-          {"review_id": 9, "employee_id": 3, "review_date": "2024-03-01", "rating": 5}
+        "rows": [
+          [
+            1,
+            "Lena",
+            3
+          ]
         ]
-      }},
-      "expected": {"columns": ["employee_id", "name", "improvement_score"], "rows": [[3, "Mira", 4], [2, "Aaron", 2], [1, "Zoe", 2]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["real", "score-order", "name-order"]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "real",
+        "latest-three",
+        "older-review-ignored"
+      ]
     },
     {
-      "id": "real-latest-three-break-old-trend",
-      "name": "real: a declining newest rating breaks an earlier improving history",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {
-        "employees": [{"employee_id": 1, "name": "Nora"}],
-        "performance_reviews": [
-          {"review_id": 1, "employee_id": 1, "review_date": "2024-01-01", "rating": 1},
-          {"review_id": 2, "employee_id": 1, "review_date": "2024-02-01", "rating": 2},
-          {"review_id": 3, "employee_id": 1, "review_date": "2024-03-01", "rating": 5},
-          {"review_id": 4, "employee_id": 1, "review_date": "2024-04-01", "rating": 4}
+      "id": "trial-plateau-and-decline-excluded",
+      "name": "both a plateau and a final decline violate strict improvement",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 1,
+              "name": "Plateau"
+            },
+            {
+              "employee_id": 2,
+              "name": "Decline"
+            }
+          ],
+          "performance_reviews": [
+            {
+              "review_id": 1,
+              "employee_id": 1,
+              "review_date": "2024-01-01",
+              "rating": 2
+            },
+            {
+              "review_id": 2,
+              "employee_id": 1,
+              "review_date": "2024-02-01",
+              "rating": 3
+            },
+            {
+              "review_id": 3,
+              "employee_id": 1,
+              "review_date": "2024-03-01",
+              "rating": 3
+            },
+            {
+              "review_id": 4,
+              "employee_id": 2,
+              "review_date": "2024-01-01",
+              "rating": 2
+            },
+            {
+              "review_id": 5,
+              "employee_id": 2,
+              "review_date": "2024-02-01",
+              "rating": 5
+            },
+            {
+              "review_id": 6,
+              "employee_id": 2,
+              "review_date": "2024-03-01",
+              "rating": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "name",
+          "improvement_score"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "real",
+        "strictness",
+        "plateau",
+        "decline"
+      ]
+    },
+    {
+      "id": "trial-score-and-name-order",
+      "name": "score sorts first and name breaks equal-score ties",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 1,
+              "name": "Zoe"
+            },
+            {
+              "employee_id": 2,
+              "name": "Aaron"
+            },
+            {
+              "employee_id": 3,
+              "name": "Mira"
+            }
+          ],
+          "performance_reviews": [
+            {
+              "review_id": 1,
+              "employee_id": 1,
+              "review_date": "2024-01-01",
+              "rating": 1
+            },
+            {
+              "review_id": 2,
+              "employee_id": 1,
+              "review_date": "2024-02-01",
+              "rating": 2
+            },
+            {
+              "review_id": 3,
+              "employee_id": 1,
+              "review_date": "2024-03-01",
+              "rating": 3
+            },
+            {
+              "review_id": 4,
+              "employee_id": 2,
+              "review_date": "2024-01-01",
+              "rating": 2
+            },
+            {
+              "review_id": 5,
+              "employee_id": 2,
+              "review_date": "2024-02-01",
+              "rating": 3
+            },
+            {
+              "review_id": 6,
+              "employee_id": 2,
+              "review_date": "2024-03-01",
+              "rating": 4
+            },
+            {
+              "review_id": 7,
+              "employee_id": 3,
+              "review_date": "2024-01-01",
+              "rating": 1
+            },
+            {
+              "review_id": 8,
+              "employee_id": 3,
+              "review_date": "2024-02-01",
+              "rating": 3
+            },
+            {
+              "review_id": 9,
+              "employee_id": 3,
+              "review_date": "2024-03-01",
+              "rating": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "name",
+          "improvement_score"
+        ],
+        "rows": [
+          [
+            3,
+            "Mira",
+            4
+          ],
+          [
+            2,
+            "Aaron",
+            2
+          ],
+          [
+            1,
+            "Zoe",
+            2
+          ]
         ]
-      }},
-      "expected": {"columns": ["employee_id", "name", "improvement_score"], "rows": []},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["real", "latest-three", "newest-decline"]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "real",
+        "score-order",
+        "name-order"
+      ]
+    },
+    {
+      "id": "trial-latest-three-break-old-trend",
+      "name": "a declining newest rating breaks an earlier improving history",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 1,
+              "name": "Nora"
+            }
+          ],
+          "performance_reviews": [
+            {
+              "review_id": 1,
+              "employee_id": 1,
+              "review_date": "2024-01-01",
+              "rating": 1
+            },
+            {
+              "review_id": 2,
+              "employee_id": 1,
+              "review_date": "2024-02-01",
+              "rating": 2
+            },
+            {
+              "review_id": 3,
+              "employee_id": 1,
+              "review_date": "2024-03-01",
+              "rating": 5
+            },
+            {
+              "review_id": 4,
+              "employee_id": 1,
+              "review_date": "2024-04-01",
+              "rating": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "name",
+          "improvement_score"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "real",
+        "latest-three",
+        "newest-decline"
+      ]
     }
   ]
 }

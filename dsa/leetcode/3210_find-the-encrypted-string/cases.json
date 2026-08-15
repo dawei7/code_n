@@ -87,10 +87,10 @@
       ]
     },
     {
-      "id": "real-maximum-k",
-      "name": "real: the maximum offset reduces correctly",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-k",
+      "name": "the maximum offset reduces correctly",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "rotation",
         "k": 10000
@@ -101,10 +101,10 @@
       ]
     },
     {
-      "id": "real-two-characters",
-      "name": "real: odd movement swaps two positions",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-characters",
+      "name": "odd movement swaps two positions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "az",
         "k": 9999
@@ -115,10 +115,10 @@
       ]
     },
     {
-      "id": "real-repeated-pattern",
-      "name": "real: repeated patterns remain position based",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-pattern",
+      "name": "repeated patterns remain position based",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "ababab",
         "k": 4
@@ -129,10 +129,10 @@
       ]
     },
     {
-      "id": "real-alphabet",
-      "name": "real: a long string wraps its trailing suffix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alphabet",
+      "name": "a long string wraps its trailing suffix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abcdefghijklmnopqrstuvwxyz",
         "k": 25
@@ -143,10 +143,10 @@
       ]
     },
     {
-      "id": "real-offset-one-less",
-      "name": "real: length minus one rotates the final character first",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-offset-one-less",
+      "name": "length minus one rotates the final character first",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "circular",
         "k": 7
@@ -157,10 +157,10 @@
       ]
     },
     {
-      "id": "real-offset-multiple-plus-two",
-      "name": "real: multiple cycles plus two positions",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-offset-multiple-plus-two",
+      "name": "multiple cycles plus two positions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "simultaneous",
         "k": 38
@@ -169,6 +169,36 @@
       "tags": [
         "simultaneous",
         "large-offset"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "d",
+        "k": 3
+      },
+      "expected": "d",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ddd",
+        "k": 3
+      },
+      "expected": "ddd",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

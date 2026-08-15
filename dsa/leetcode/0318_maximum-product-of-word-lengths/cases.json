@@ -7,72 +7,185 @@
       "name": "sample: four-by-four optimum",
       "kind": "sample",
       "visible": true,
-      "input": {"words": ["abcw", "baz", "foo", "bar", "xtfn", "abcdef"]},
+      "input": {
+        "words": [
+          "abcw",
+          "baz",
+          "foo",
+          "bar",
+          "xtfn",
+          "abcdef"
+        ]
+      },
       "expected": 16,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: several nested alphabets",
       "kind": "sample",
       "visible": true,
-      "input": {"words": ["a", "ab", "abc", "d", "cd", "bcd", "abcd"]},
+      "input": {
+        "words": [
+          "a",
+          "ab",
+          "abc",
+          "d",
+          "cd",
+          "bcd",
+          "abcd"
+        ]
+      },
       "expected": 4,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: no disjoint pair",
       "kind": "sample",
       "visible": true,
-      "input": {"words": ["a", "aa", "aaa", "aaaa"]},
+      "input": {
+        "words": [
+          "a",
+          "aa",
+          "aaa",
+          "aaaa"
+        ]
+      },
       "expected": 0,
-      "tags": ["sample", "impossible"]
+      "tags": [
+        "sample",
+        "impossible"
+      ]
     },
     {
       "id": "trial-equal-masks",
       "name": "trial: keep the longest equal mask",
       "kind": "trial",
-      "visible": false,
-      "input": {"words": ["a", "aaaa", "b", "bbb"]},
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "aaaa",
+          "b",
+          "bbb"
+        ]
+      },
       "expected": 12,
-      "tags": ["trial", "duplicate-mask"]
+      "tags": [
+        "trial",
+        "duplicate-mask"
+      ]
     },
     {
       "id": "trial-order-chain",
       "name": "trial: nonadjacent words are disjoint",
       "kind": "trial",
-      "visible": false,
-      "input": {"words": ["ab", "bc", "cd"]},
+      "visible": true,
+      "input": {
+        "words": [
+          "ab",
+          "bc",
+          "cd"
+        ]
+      },
       "expected": 4,
-      "tags": ["trial", "pair-search"]
+      "tags": [
+        "trial",
+        "pair-search"
+      ]
     },
     {
-      "id": "hidden-long-disjoint",
-      "name": "hidden: choose two longest compatible words",
-      "kind": "real",
-      "visible": false,
-      "input": {"words": ["abc", "defg", "gh", "xyz", "mnop"]},
+      "id": "trial-long-disjoint",
+      "name": "choose two longest compatible words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "defg",
+          "gh",
+          "xyz",
+          "mnop"
+        ]
+      },
       "expected": 16,
-      "tags": ["hidden", "disjoint"]
+      "tags": [
+        "disjoint"
+      ]
     },
     {
-      "id": "hidden-obvious-largest",
-      "name": "hidden: largest lengths are compatible",
-      "kind": "real",
-      "visible": false,
-      "input": {"words": ["abcd", "ef", "ghij", "klm"]},
+      "id": "trial-obvious-largest",
+      "name": "largest lengths are compatible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abcd",
+          "ef",
+          "ghij",
+          "klm"
+        ]
+      },
       "expected": 16,
-      "tags": ["hidden", "length-product"]
+      "tags": [
+        "length-product"
+      ]
     },
     {
-      "id": "hidden-overlapping-distractors",
-      "name": "hidden: shorter distractors overlap both sides",
-      "kind": "real",
-      "visible": false,
-      "input": {"words": ["abc", "def", "ad", "be"]},
+      "id": "trial-overlapping-distractors",
+      "name": "shorter distractors overlap both sides",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "def",
+          "ad",
+          "be"
+        ]
+      },
       "expected": 9,
-      "tags": ["hidden", "overlap"]
+      "tags": [
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abcw"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abcw",
+          "abcw"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

@@ -197,10 +197,10 @@
       ]
     },
     {
-      "id": "real-deep-chain",
-      "name": "hidden: one apple at the end of a chain",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-deep-chain",
+      "name": "one apple at the end of a chain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 5,
         "edges": [
@@ -231,15 +231,14 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "deep-chain"
       ]
     },
     {
-      "id": "real-nested-apples",
-      "name": "hidden: ancestor and descendant apples share every upper edge",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-nested-apples",
+      "name": "ancestor and descendant apples share every upper edge",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 5,
         "edges": [
@@ -270,15 +269,14 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "nested-apples"
       ]
     },
     {
-      "id": "real-three-branches",
-      "name": "hidden: apples require five distinct edges",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-branches",
+      "name": "apples require five distinct edges",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 6,
         "edges": [
@@ -314,15 +312,14 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "separate-branches"
       ]
     },
     {
-      "id": "real-internal-apple",
-      "name": "hidden: an internal apple does not require child edges",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-internal-apple",
+      "name": "an internal apple does not require child edges",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 6,
         "edges": [
@@ -358,7 +355,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "internal-apple"
       ]
     }

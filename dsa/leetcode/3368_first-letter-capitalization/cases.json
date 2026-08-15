@@ -6,112 +6,283 @@
       "name": "sample: normalize mixed-case multiword content",
       "kind": "sample",
       "visible": true,
-      "input": {"tables": {"user_content": [
-        {"content_id": 1, "content_text": "hello world of SQL"},
-        {"content_id": 2, "content_text": "the QUICK brown fox"},
-        {"content_id": 3, "content_text": "data science AND machine learning"},
-        {"content_id": 4, "content_text": "TOP rated programming BOOKS"}
-      ]}},
+      "input": {
+        "tables": {
+          "user_content": [
+            {
+              "content_id": 1,
+              "content_text": "hello world of SQL"
+            },
+            {
+              "content_id": 2,
+              "content_text": "the QUICK brown fox"
+            },
+            {
+              "content_id": 3,
+              "content_text": "data science AND machine learning"
+            },
+            {
+              "content_id": 4,
+              "content_text": "TOP rated programming BOOKS"
+            }
+          ]
+        }
+      },
       "expected": {
-        "columns": ["content_id", "original_text", "converted_text"],
+        "columns": [
+          "content_id",
+          "original_text",
+          "converted_text"
+        ],
         "rows": [
-          [1, "hello world of SQL", "Hello World Of Sql"],
-          [2, "the QUICK brown fox", "The Quick Brown Fox"],
-          [3, "data science AND machine learning", "Data Science And Machine Learning"],
-          [4, "TOP rated programming BOOKS", "Top Rated Programming Books"]
+          [
+            1,
+            "hello world of SQL",
+            "Hello World Of Sql"
+          ],
+          [
+            2,
+            "the QUICK brown fox",
+            "The Quick Brown Fox"
+          ],
+          [
+            3,
+            "data science AND machine learning",
+            "Data Science And Machine Learning"
+          ],
+          [
+            4,
+            "TOP rated programming BOOKS",
+            "Top Rated Programming Books"
+          ]
         ]
       },
-      "tags": ["sample", "mixed-case"]
+      "tags": [
+        "sample",
+        "mixed-case"
+      ]
     },
     {
       "id": "trial-preserve-repeated-spaces",
       "name": "trial: preserve leading trailing and repeated spaces",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"user_content": [
-        {"content_id": 9, "content_text": "  mULTIPLE   SPACES  "}
-      ]}},
-      "expected": {
-        "columns": ["content_id", "original_text", "converted_text"],
-        "rows": [[9, "  mULTIPLE   SPACES  ", "  Multiple   Spaces  "]]
+      "input": {
+        "tables": {
+          "user_content": [
+            {
+              "content_id": 9,
+              "content_text": "  mULTIPLE   SPACES  "
+            }
+          ]
+        }
       },
-      "tags": ["edge", "spaces"]
+      "expected": {
+        "columns": [
+          "content_id",
+          "original_text",
+          "converted_text"
+        ],
+        "rows": [
+          [
+            9,
+            "  mULTIPLE   SPACES  ",
+            "  Multiple   Spaces  "
+          ]
+        ]
+      },
+      "tags": [
+        "edge",
+        "spaces"
+      ]
     },
     {
       "id": "trial-single-letter-words",
       "name": "trial: one-letter words are uppercase",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"user_content": [
-        {"content_id": 3, "content_text": "a B c"}
-      ]}},
-      "expected": {
-        "columns": ["content_id", "original_text", "converted_text"],
-        "rows": [[3, "a B c", "A B C"]]
+      "input": {
+        "tables": {
+          "user_content": [
+            {
+              "content_id": 3,
+              "content_text": "a B c"
+            }
+          ]
+        }
       },
-      "tags": ["edge", "single-letter"]
+      "expected": {
+        "columns": [
+          "content_id",
+          "original_text",
+          "converted_text"
+        ],
+        "rows": [
+          [
+            3,
+            "a B c",
+            "A B C"
+          ]
+        ]
+      },
+      "tags": [
+        "edge",
+        "single-letter"
+      ]
     },
     {
       "id": "trial-empty-text",
       "name": "trial: empty text remains empty",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"user_content": [
-        {"content_id": 1, "content_text": ""}
-      ]}},
-      "expected": {
-        "columns": ["content_id", "original_text", "converted_text"],
-        "rows": [[1, "", ""]]
+      "input": {
+        "tables": {
+          "user_content": [
+            {
+              "content_id": 1,
+              "content_text": ""
+            }
+          ]
+        }
       },
-      "tags": ["edge", "empty-text"]
-    },
-    {
-      "id": "real-unsorted-identifiers",
-      "name": "real: output order follows identifiers not insertion",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"user_content": [
-        {"content_id": 20, "content_text": "SECOND ROW"},
-        {"content_id": 4, "content_text": "fIRST row"},
-        {"content_id": 11, "content_text": "mIDDLE rOW"}
-      ]}},
       "expected": {
-        "columns": ["content_id", "original_text", "converted_text"],
+        "columns": [
+          "content_id",
+          "original_text",
+          "converted_text"
+        ],
         "rows": [
-          [4, "fIRST row", "First Row"],
-          [11, "mIDDLE rOW", "Middle Row"],
-          [20, "SECOND ROW", "Second Row"]
+          [
+            1,
+            "",
+            ""
+          ]
         ]
       },
-      "tags": ["real", "ordering"]
+      "tags": [
+        "edge",
+        "empty-text"
+      ]
     },
     {
-      "id": "real-already-normalized",
-      "name": "real: normalized words remain unchanged",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"user_content": [
-        {"content_id": 7, "content_text": "Already Correct Text"}
-      ]}},
-      "expected": {
-        "columns": ["content_id", "original_text", "converted_text"],
-        "rows": [[7, "Already Correct Text", "Already Correct Text"]]
+      "id": "trial-unsorted-identifiers",
+      "name": "output order follows identifiers not insertion",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "user_content": [
+            {
+              "content_id": 20,
+              "content_text": "SECOND ROW"
+            },
+            {
+              "content_id": 4,
+              "content_text": "fIRST row"
+            },
+            {
+              "content_id": 11,
+              "content_text": "mIDDLE rOW"
+            }
+          ]
+        }
       },
-      "tags": ["real", "idempotent"]
+      "expected": {
+        "columns": [
+          "content_id",
+          "original_text",
+          "converted_text"
+        ],
+        "rows": [
+          [
+            4,
+            "fIRST row",
+            "First Row"
+          ],
+          [
+            11,
+            "mIDDLE rOW",
+            "Middle Row"
+          ],
+          [
+            20,
+            "SECOND ROW",
+            "Second Row"
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "ordering"
+      ]
     },
     {
-      "id": "real-one-word",
-      "name": "real: normalize a single all-caps word",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"user_content": [
-        {"content_id": 5, "content_text": "DATABASE"}
-      ]}},
-      "expected": {
-        "columns": ["content_id", "original_text", "converted_text"],
-        "rows": [[5, "DATABASE", "Database"]]
+      "id": "trial-already-normalized",
+      "name": "normalized words remain unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "user_content": [
+            {
+              "content_id": 7,
+              "content_text": "Already Correct Text"
+            }
+          ]
+        }
       },
-      "tags": ["real", "single-word"]
+      "expected": {
+        "columns": [
+          "content_id",
+          "original_text",
+          "converted_text"
+        ],
+        "rows": [
+          [
+            7,
+            "Already Correct Text",
+            "Already Correct Text"
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "idempotent"
+      ]
+    },
+    {
+      "id": "trial-one-word",
+      "name": "normalize a single all-caps word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "user_content": [
+            {
+              "content_id": 5,
+              "content_text": "DATABASE"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "content_id",
+          "original_text",
+          "converted_text"
+        ],
+        "rows": [
+          [
+            5,
+            "DATABASE",
+            "Database"
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "single-word"
+      ]
     }
   ]
 }

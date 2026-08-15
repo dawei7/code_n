@@ -77,10 +77,10 @@
       ]
     },
     {
-      "id": "real-non-power-bound",
-      "name": "real: non-power-of-two upper bound",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-non-power-bound",
+      "name": "non-power-of-two upper bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "10101",
         "k": 2
@@ -92,10 +92,10 @@
       ]
     },
     {
-      "id": "real-powers-one-step",
-      "name": "real: count powers of two below thirty-two",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-powers-one-step",
+      "name": "count powers of two below thirty-two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "100000",
         "k": 1
@@ -107,10 +107,10 @@
       ]
     },
     {
-      "id": "real-two-step-power-bound",
-      "name": "real: popcount classes below sixteen",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-step-power-bound",
+      "name": "popcount classes below sixteen",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "10000",
         "k": 2
@@ -122,10 +122,10 @@
       ]
     },
     {
-      "id": "real-large-k-all-small",
-      "name": "real: every positive predecessor qualifies",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-k-all-small",
+      "name": "every positive predecessor qualifies",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "1111",
         "k": 5
@@ -137,10 +137,10 @@
       ]
     },
     {
-      "id": "real-depth-boundary",
-      "name": "real: maximum-popcount predecessor needs three steps",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-depth-boundary",
+      "name": "maximum-popcount predecessor needs three steps",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "100000",
         "k": 2
@@ -152,10 +152,10 @@
       ]
     },
     {
-      "id": "real-mixed-bound-large-k",
-      "name": "real: every positive predecessor below mixed bound",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-bound-large-k",
+      "name": "every positive predecessor below mixed bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "101010",
         "k": 5

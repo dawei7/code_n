@@ -133,10 +133,10 @@
       ]
     },
     {
-      "id": "real-late-large-value",
-      "name": "real: largest value appears only at destination",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-late-large-value",
+      "name": "largest value appears only at destination",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -152,10 +152,10 @@
       ]
     },
     {
-      "id": "real-repeated-records",
-      "name": "real: repeated prefix records",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-records",
+      "name": "repeated prefix records",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -174,10 +174,10 @@
       ]
     },
     {
-      "id": "real-alternating-records",
-      "name": "real: alternating lows and new highs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alternating-records",
+      "name": "alternating lows and new highs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -197,10 +197,10 @@
       ]
     },
     {
-      "id": "real-upper-bound-values",
-      "name": "real: maximum values require wide total",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-upper-bound-values",
+      "name": "maximum values require wide total",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000,
@@ -217,10 +217,10 @@
       ]
     },
     {
-      "id": "real-long-plateau",
-      "name": "real: early record persists across a plateau",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-long-plateau",
+      "name": "early record persists across a plateau",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -237,6 +237,39 @@
       "tags": [
         "plateau",
         "prefix-maximum"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

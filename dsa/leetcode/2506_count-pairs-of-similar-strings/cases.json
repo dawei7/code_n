@@ -7,72 +7,147 @@
       "name": "sample: two matching character-set groups",
       "kind": "sample",
       "visible": true,
-      "input": { "words": ["aba", "aabb", "abcd", "bac", "aabc"] },
+      "input": {
+        "words": [
+          "aba",
+          "aabb",
+          "abcd",
+          "bac",
+          "aabc"
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "multiple-groups"]
+      "tags": [
+        "sample",
+        "multiple-groups"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: all three words are similar",
       "kind": "sample",
       "visible": true,
-      "input": { "words": ["aabb", "ab", "ba"] },
+      "input": {
+        "words": [
+          "aabb",
+          "ab",
+          "ba"
+        ]
+      },
       "expected": 3,
-      "tags": ["sample", "all-pairs"]
+      "tags": [
+        "sample",
+        "all-pairs"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: each word has a distinct character set",
       "kind": "sample",
       "visible": true,
-      "input": { "words": ["nba", "cba", "dba"] },
+      "input": {
+        "words": [
+          "nba",
+          "cba",
+          "dba"
+        ]
+      },
       "expected": 0,
-      "tags": ["sample", "no-pairs"]
+      "tags": [
+        "sample",
+        "no-pairs"
+      ]
     },
     {
       "id": "trial-multiplicity-ignored",
       "name": "trial: repeated letters do not change a signature",
       "kind": "trial",
       "visible": true,
-      "input": { "words": ["a", "aa", "aaaa", "b"] },
+      "input": {
+        "words": [
+          "a",
+          "aa",
+          "aaaa",
+          "b"
+        ]
+      },
       "expected": 3,
-      "tags": ["trial", "multiplicity"]
+      "tags": [
+        "trial",
+        "multiplicity"
+      ]
     },
     {
       "id": "trial-order-ignored",
       "name": "trial: permutations share one signature",
       "kind": "trial",
       "visible": true,
-      "input": { "words": ["abc", "cba", "bac", "abd"] },
+      "input": {
+        "words": [
+          "abc",
+          "cba",
+          "bac",
+          "abd"
+        ]
+      },
       "expected": 3,
-      "tags": ["trial", "order"]
+      "tags": [
+        "trial",
+        "order"
+      ]
     },
     {
-      "id": "real-single-word",
-      "name": "hidden: one word cannot form a pair",
-      "kind": "real",
-      "visible": false,
-      "input": { "words": ["leetcode"] },
+      "id": "trial-single-word",
+      "name": "one word cannot form a pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "leetcode"
+        ]
+      },
       "expected": 0,
-      "tags": ["hidden", "minimum-length"]
+      "tags": [
+        "minimum-length"
+      ]
     },
     {
-      "id": "real-separate-groups",
-      "name": "hidden: pair totals add across independent signatures",
-      "kind": "real",
-      "visible": false,
-      "input": { "words": ["ab", "ba", "aab", "xy", "yx", "z"] },
+      "id": "trial-separate-groups",
+      "name": "pair totals add across independent signatures",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "ab",
+          "ba",
+          "aab",
+          "xy",
+          "yx",
+          "z"
+        ]
+      },
       "expected": 4,
-      "tags": ["hidden", "frequency-groups"]
+      "tags": [
+        "frequency-groups"
+      ]
     },
     {
-      "id": "real-full-alphabet",
-      "name": "hidden: complete alphabet signatures ignore order and repeats",
-      "kind": "real",
-      "visible": false,
-      "input": { "words": ["abcdefghijklmnopqrstuvwxyz", "zyxwvutsrqponmlkjihgfedcba", "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"] },
+      "id": "trial-full-alphabet",
+      "name": "complete alphabet signatures ignore order and repeats",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abcdefghijklmnopqrstuvwxyz",
+          "zyxwvutsrqponmlkjihgfedcba",
+          "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+        ]
+      },
       "expected": 3,
-      "tags": ["hidden", "all-letters", "maximum-mask"]
+      "tags": [
+        "all-letters",
+        "maximum-mask"
+      ]
     }
   ]
 }

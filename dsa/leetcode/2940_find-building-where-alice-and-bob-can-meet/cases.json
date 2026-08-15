@@ -185,10 +185,10 @@
       ]
     },
     {
-      "id": "real-descending",
-      "name": "hidden: no later building is tall enough",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-descending",
+      "name": "no later building is tall enough",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "heights": [
           9,
@@ -217,15 +217,14 @@
         -1
       ],
       "tags": [
-        "hidden",
         "impossible"
       ]
     },
     {
-      "id": "real-skip-insufficient-height",
-      "name": "hidden: skip buildings that satisfy only one person",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-skip-insufficient-height",
+      "name": "skip buildings that satisfy only one person",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "heights": [
           5,
@@ -254,15 +253,14 @@
         3
       ],
       "tags": [
-        "hidden",
         "threshold"
       ]
     },
     {
-      "id": "real-equal-intermediate",
-      "name": "hidden: equal height is not reachable",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-equal-intermediate",
+      "name": "equal height is not reachable",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "heights": [
           5,
@@ -291,15 +289,14 @@
         2
       ],
       "tags": [
-        "hidden",
         "strict-inequality"
       ]
     },
     {
-      "id": "real-increasing",
-      "name": "hidden: the later start is immediately reachable",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-increasing",
+      "name": "the later start is immediately reachable",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "heights": [
           1,
@@ -328,7 +325,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "direct"
       ]
     }

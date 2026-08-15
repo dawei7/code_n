@@ -268,10 +268,10 @@
       ]
     },
     {
-      "id": "real-year-boundary",
-      "name": "real: second day crosses a year boundary",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-year-boundary",
+      "name": "second day crosses a year boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "emails": [
@@ -309,10 +309,10 @@
       ]
     },
     {
-      "id": "real-leap-day",
-      "name": "real: second day is leap day",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-leap-day",
+      "name": "second day is leap day",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "emails": [
@@ -350,10 +350,10 @@
       ]
     },
     {
-      "id": "real-duplicate-texts",
-      "name": "real: duplicate qualifying texts produce one user",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicate-texts",
+      "name": "duplicate qualifying texts produce one user",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "emails": [
@@ -398,10 +398,10 @@
       ]
     },
     {
-      "id": "real-multiple-emails-one-user",
-      "name": "real: several qualifying emails produce one user",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-emails-one-user",
+      "name": "several qualifying emails produce one user",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "emails": [
@@ -451,10 +451,10 @@
       ]
     },
     {
-      "id": "real-midnight-calendar-rule",
-      "name": "real: a two-minute elapsed interval crosses the date",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-midnight-calendar-rule",
+      "name": "a two-minute elapsed interval crosses the date",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "emails": [
@@ -493,10 +493,10 @@
       ]
     },
     {
-      "id": "real-empty-texts",
-      "name": "real: no text actions yield no users",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-empty-texts",
+      "name": "no text actions yield no users",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "emails": [

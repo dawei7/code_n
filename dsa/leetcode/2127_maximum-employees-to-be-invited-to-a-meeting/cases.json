@@ -2,13 +2,162 @@
   "schema_version": 1,
   "challenge_id": "lc_2127",
   "cases": [
-    {"id": "sample-shared-favorite", "name": "sample: three employees fit around a shared favorite", "kind": "sample", "visible": true, "input": {"favorite": [2, 2, 1, 2]}, "expected": 3, "tags": ["sample", "two-cycle"]},
-    {"id": "sample-three-cycle", "name": "sample: every employee belongs to one cycle", "kind": "sample", "visible": true, "input": {"favorite": [1, 2, 0]}, "expected": 3, "tags": ["sample", "long-cycle"]},
-    {"id": "sample-chain-into-pair", "name": "sample: incoming chains extend a mutual pair", "kind": "sample", "visible": true, "input": {"favorite": [3, 0, 1, 4, 1]}, "expected": 4, "tags": ["sample", "incoming-chain"]},
-    {"id": "trial-minimum-pair", "name": "two mutual favorites can both attend", "kind": "trial", "visible": true, "input": {"favorite": [1, 0]}, "expected": 2, "tags": ["minimum-size", "two-cycle"]},
-    {"id": "trial-two-sided-chains", "name": "longest chain on each side extends a mutual pair", "kind": "trial", "visible": true, "input": {"favorite": [1, 0, 0, 2, 1, 4]}, "expected": 6, "tags": ["two-cycle", "two-sided-chains"]},
-    {"id": "real-long-cycle-rejects-tail", "name": "hidden: a long cycle cannot accept an incoming tail", "kind": "real", "visible": false, "input": {"favorite": [1, 2, 3, 0, 0, 4]}, "expected": 4, "tags": ["hidden", "long-cycle", "tail"]},
-    {"id": "real-disjoint-pairs", "name": "hidden: separate mutual pairs combine in one seating", "kind": "real", "visible": false, "input": {"favorite": [1, 0, 3, 2]}, "expected": 4, "tags": ["hidden", "multiple-two-cycles"]},
-    {"id": "real-mixed-pair-components", "name": "hidden: all chains across multiple pairs contribute", "kind": "real", "visible": false, "input": {"favorite": [1, 0, 0, 2, 3, 6, 5, 6]}, "expected": 8, "tags": ["hidden", "multiple-components", "chains"]}
+    {
+      "id": "sample-shared-favorite",
+      "name": "sample: three employees fit around a shared favorite",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "favorite": [
+          2,
+          2,
+          1,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "two-cycle"
+      ]
+    },
+    {
+      "id": "sample-three-cycle",
+      "name": "sample: every employee belongs to one cycle",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "favorite": [
+          1,
+          2,
+          0
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "long-cycle"
+      ]
+    },
+    {
+      "id": "sample-chain-into-pair",
+      "name": "sample: incoming chains extend a mutual pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "favorite": [
+          3,
+          0,
+          1,
+          4,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "incoming-chain"
+      ]
+    },
+    {
+      "id": "trial-minimum-pair",
+      "name": "two mutual favorites can both attend",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "favorite": [
+          1,
+          0
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "minimum-size",
+        "two-cycle"
+      ]
+    },
+    {
+      "id": "trial-two-sided-chains",
+      "name": "longest chain on each side extends a mutual pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "favorite": [
+          1,
+          0,
+          0,
+          2,
+          1,
+          4
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "two-cycle",
+        "two-sided-chains"
+      ]
+    },
+    {
+      "id": "trial-long-cycle-rejects-tail",
+      "name": "a long cycle cannot accept an incoming tail",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "favorite": [
+          1,
+          2,
+          3,
+          0,
+          0,
+          4
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "long-cycle",
+        "tail"
+      ]
+    },
+    {
+      "id": "trial-disjoint-pairs",
+      "name": "separate mutual pairs combine in one seating",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "favorite": [
+          1,
+          0,
+          3,
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "multiple-two-cycles"
+      ]
+    },
+    {
+      "id": "trial-mixed-pair-components",
+      "name": "all chains across multiple pairs contribute",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "favorite": [
+          1,
+          0,
+          0,
+          2,
+          3,
+          6,
+          5,
+          6
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "multiple-components",
+        "chains"
+      ]
+    }
   ]
 }

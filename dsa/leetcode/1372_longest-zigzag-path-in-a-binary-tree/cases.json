@@ -100,10 +100,10 @@
       ]
     },
     {
-      "id": "hidden-straight-right",
-      "name": "hidden: straight right chain",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-straight-right",
+      "name": "straight right chain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -117,15 +117,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "straight"
       ]
     },
     {
-      "id": "hidden-alternating-six",
-      "name": "hidden: six-node alternating chain",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alternating-six",
+      "name": "six-node alternating chain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -143,7 +142,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "alternating"
       ]
     }

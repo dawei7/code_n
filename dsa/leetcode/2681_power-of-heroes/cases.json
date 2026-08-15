@@ -1,12 +1,127 @@
 {
   "challenge_id": "lc_2681",
   "cases": [
-    {"id":"sample-distinct","name":"sample: three distinct strengths","kind":"sample","visible":true,"input":{"nums":[2,1,4]},"expected":141,"tags":["sample","subsets"]},
-    {"id":"sample-equal","name":"sample: equal strengths at distinct indices","kind":"sample","visible":true,"input":{"nums":[1,1,1]},"expected":7,"tags":["sample","duplicates"]},
-    {"id":"trial-single","name":"trial: one hero forms one group","kind":"trial","visible":true,"input":{"nums":[5]},"expected":125,"tags":["single","boundary"]},
-    {"id":"trial-two","name":"trial: two heroes form three groups","kind":"trial","visible":true,"input":{"nums":[2,3]},"expected":53,"tags":["pair","minimum-maximum"]},
-    {"id":"trial-duplicates","name":"trial: duplicate indices remain distinct choices","kind":"trial","visible":true,"input":{"nums":[2,2,2]},"expected":56,"tags":["duplicates","counting"]},
-    {"id":"real-unsorted","name":"hidden: sorting establishes extrema ranks","kind":"real","visible":false,"input":{"nums":[9,1,5,3]},"expected":2231,"tags":["hidden","unsorted"]},
-    {"id":"real-modulus","name":"hidden: large strengths require modular arithmetic","kind":"real","visible":false,"input":{"nums":[1000000000,999999999,123456789]},"expected":350573560,"tags":["hidden","modulo"]}
+    {
+      "id": "sample-distinct",
+      "name": "sample: three distinct strengths",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          4
+        ]
+      },
+      "expected": 141,
+      "tags": [
+        "sample",
+        "subsets"
+      ]
+    },
+    {
+      "id": "sample-equal",
+      "name": "sample: equal strengths at distinct indices",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one hero forms one group",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ]
+      },
+      "expected": 125,
+      "tags": [
+        "single",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-two",
+      "name": "trial: two heroes form three groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3
+        ]
+      },
+      "expected": 53,
+      "tags": [
+        "pair",
+        "minimum-maximum"
+      ]
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "trial: duplicate indices remain distinct choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": 56,
+      "tags": [
+        "duplicates",
+        "counting"
+      ]
+    },
+    {
+      "id": "trial-unsorted",
+      "name": "sorting establishes extrema ranks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          1,
+          5,
+          3
+        ]
+      },
+      "expected": 2231,
+      "tags": [
+        "unsorted"
+      ]
+    },
+    {
+      "id": "trial-modulus",
+      "name": "large strengths require modular arithmetic",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          999999999,
+          123456789
+        ]
+      },
+      "expected": 350573560,
+      "tags": [
+        "modulo"
+      ]
+    }
   ]
 }

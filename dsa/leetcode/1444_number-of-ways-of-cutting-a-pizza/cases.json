@@ -94,10 +94,10 @@
       ]
     },
     {
-      "id": "real-full-two-by-two",
-      "name": "hidden: all cells have apples",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-full-two-by-two",
+      "name": "all cells have apples",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "pizza": [
           "AA",
@@ -107,15 +107,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "mixed-cut-directions"
       ]
     },
     {
-      "id": "real-one-row",
-      "name": "hidden: choose two vertical boundaries in one row",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-row",
+      "name": "choose two vertical boundaries in one row",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "pizza": [
           "AAAA"
@@ -124,15 +123,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "single-row"
       ]
     },
     {
-      "id": "real-one-column",
-      "name": "hidden: every horizontal boundary is required",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-column",
+      "name": "every horizontal boundary is required",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "pizza": [
           "A",
@@ -144,15 +142,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "single-column"
       ]
     },
     {
-      "id": "real-separated-apples",
-      "name": "hidden: empty bands constrain valid cuts",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-separated-apples",
+      "name": "empty bands constrain valid cuts",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "pizza": [
           "A..A",
@@ -163,7 +160,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "sparse-apples"
       ]
     }

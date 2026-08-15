@@ -292,10 +292,10 @@
       ]
     },
     {
-      "id": "real-unsorted-input",
-      "name": "hidden: insertion order does not affect output",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unsorted-input",
+      "name": "insertion order does not affect output",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Sales": [
@@ -348,10 +348,10 @@
       ]
     },
     {
-      "id": "real-many-variants",
-      "name": "hidden: many case and whitespace variants coalesce",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-variants",
+      "name": "many case and whitespace variants coalesce",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Sales": [
@@ -399,10 +399,10 @@
       ]
     },
     {
-      "id": "real-zero-padded-month",
-      "name": "hidden: month formatting is zero padded",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zero-padded-month",
+      "name": "month formatting is zero padded",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Sales": [
@@ -445,10 +445,10 @@
       ]
     },
     {
-      "id": "real-multiple-products-months",
-      "name": "hidden: grouping uses both normalized fields",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-products-months",
+      "name": "grouping uses both normalized fields",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Sales": [
@@ -512,4 +512,3 @@
     }
   ]
 }
-

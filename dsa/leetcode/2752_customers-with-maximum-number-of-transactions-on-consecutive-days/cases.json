@@ -251,10 +251,10 @@
       ]
     },
     {
-      "id": "real-two-winning-islands-same-customer",
-      "name": "hidden: separate maximum streaks preserve repeated customer rows",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-winning-islands-same-customer",
+      "name": "separate maximum streaks preserve repeated customer rows",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Transactions": [
@@ -308,16 +308,15 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "duplicate-output",
         "judge-semantics"
       ]
     },
     {
-      "id": "real-ordering-and-tie",
-      "name": "hidden: tied winning streak rows sort by customer",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ordering-and-tie",
+      "name": "tied winning streak rows sort by customer",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Transactions": [
@@ -371,11 +370,9 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "ordering",
         "tie"
       ]
     }
   ]
 }
-

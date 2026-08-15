@@ -162,10 +162,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: mixed full and single-child subtrees",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "mixed full and single-child subtrees",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "preorder": [
           1,
@@ -196,15 +196,14 @@
         "kind": "pre_post_tree"
       },
       "tags": [
-        "hidden",
         "mixed-shape"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: complete four-level tree",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "complete four-level tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "preorder": [
           1,
@@ -262,15 +261,14 @@
         "kind": "pre_post_tree"
       },
       "tags": [
-        "hidden",
         "balanced"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: six-node ambiguous chain",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "six-node ambiguous chain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "preorder": [
           1,
@@ -305,16 +303,15 @@
         "kind": "pre_post_tree"
       },
       "tags": [
-        "hidden",
         "skewed",
         "ambiguous"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: unequal subtree sizes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "unequal subtree sizes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "preorder": [
           1,
@@ -342,15 +339,14 @@
         "kind": "pre_post_tree"
       },
       "tags": [
-        "hidden",
         "unequal-subtrees"
       ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: nested first child and right leaf",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-5",
+      "name": "nested first child and right leaf",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "preorder": [
           1,
@@ -375,8 +371,34 @@
         "kind": "pre_post_tree"
       },
       "tags": [
-        "hidden",
         "mixed-shape"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in preorder",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "preorder": [
+          1
+        ],
+        "postorder": [
+          4,
+          5,
+          2,
+          6,
+          7,
+          3,
+          1
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

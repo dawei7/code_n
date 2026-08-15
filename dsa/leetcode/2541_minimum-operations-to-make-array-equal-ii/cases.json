@@ -99,10 +99,10 @@
       ]
     },
     {
-      "id": "real-nondivisible",
-      "name": "hidden: balanced totals but non-divisible differences",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-nondivisible",
+      "name": "balanced totals but non-divisible differences",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           2,
@@ -116,15 +116,14 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "divisibility"
       ]
     },
     {
-      "id": "real-multiple-deficits",
-      "name": "hidden: one surplus fills two deficits",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-deficits",
+      "name": "one surplus fills two deficits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           9,
@@ -142,15 +141,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "multiple-transfers"
       ]
     },
     {
-      "id": "real-unit-sum-mismatch",
-      "name": "hidden: divisible differences with nonzero balance",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unit-sum-mismatch",
+      "name": "divisible differences with nonzero balance",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           1,
@@ -164,8 +162,54 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "balance"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          4
+        ],
+        "nums2": [
+          1,
+          3,
+          7,
+          1
+        ],
+        "k": 3
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          4,
+          4
+        ],
+        "nums2": [
+          1,
+          3,
+          7,
+          1
+        ],
+        "k": 3
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

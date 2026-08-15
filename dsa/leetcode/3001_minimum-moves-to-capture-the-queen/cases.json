@@ -1,10 +1,191 @@
-{"challenge_id":"lc_3001","cases":[
-{"id":"sample-two-moves","name":"sample: neither piece attacks immediately","kind":"sample","visible":true,"input":{"a":1,"b":1,"c":8,"d":8,"e":2,"f":3},"expected":2,"tags":["sample"]},
-{"id":"sample-one-move","name":"sample: direct capture is available","kind":"sample","visible":true,"input":{"a":5,"b":3,"c":3,"d":4,"e":5,"f":2},"expected":1,"tags":["sample","direct"]},
-{"id":"trial-rook-row","name":"trial: rook attacks along a clear row","kind":"trial","visible":true,"input":{"a":4,"b":1,"c":2,"d":2,"e":4,"f":8},"expected":1,"tags":["rook"]},
-{"id":"trial-rook-blocked","name":"trial: bishop blocks the rook","kind":"trial","visible":true,"input":{"a":1,"b":1,"c":1,"d":3,"e":1,"f":8},"expected":2,"tags":["rook","blocked"]},
-{"id":"trial-bishop-diagonal","name":"trial: bishop attacks along a clear diagonal","kind":"trial","visible":true,"input":{"a":1,"b":8,"c":2,"d":2,"e":6,"f":6},"expected":1,"tags":["bishop"]},
-{"id":"real-bishop-blocked","name":"real: rook blocks the bishop","kind":"real","visible":false,"input":{"a":3,"b":3,"c":1,"d":1,"e":6,"f":6},"expected":2,"tags":["hidden","bishop","blocked"]},
-{"id":"real-crossing-diagonal","name":"real: rook lies on crossing diagonal","kind":"real","visible":false,"input":{"a":2,"b":1,"c":1,"d":2,"e":3,"f":4},"expected":1,"tags":["hidden","diagonal"]},
-{"id":"real-rook-column-blocked","name":"real: bishop blocks a rook column","kind":"real","visible":false,"input":{"a":1,"b":5,"c":4,"d":5,"e":8,"f":5},"expected":2,"tags":["hidden","rook","blocked"]}
-]}
+{
+  "challenge_id": "lc_3001",
+  "cases": [
+    {
+      "id": "sample-two-moves",
+      "name": "sample: neither piece attacks immediately",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "a": 1,
+        "b": 1,
+        "c": 8,
+        "d": 8,
+        "e": 2,
+        "f": 3
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-one-move",
+      "name": "sample: direct capture is available",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "a": 5,
+        "b": 3,
+        "c": 3,
+        "d": 4,
+        "e": 5,
+        "f": 2
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "direct"
+      ]
+    },
+    {
+      "id": "trial-rook-row",
+      "name": "trial: rook attacks along a clear row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 4,
+        "b": 1,
+        "c": 2,
+        "d": 2,
+        "e": 4,
+        "f": 8
+      },
+      "expected": 1,
+      "tags": [
+        "rook"
+      ]
+    },
+    {
+      "id": "trial-rook-blocked",
+      "name": "trial: bishop blocks the rook",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 1,
+        "b": 1,
+        "c": 1,
+        "d": 3,
+        "e": 1,
+        "f": 8
+      },
+      "expected": 2,
+      "tags": [
+        "rook",
+        "blocked"
+      ]
+    },
+    {
+      "id": "trial-bishop-diagonal",
+      "name": "trial: bishop attacks along a clear diagonal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 1,
+        "b": 8,
+        "c": 2,
+        "d": 2,
+        "e": 6,
+        "f": 6
+      },
+      "expected": 1,
+      "tags": [
+        "bishop"
+      ]
+    },
+    {
+      "id": "trial-bishop-blocked",
+      "name": "rook blocks the bishop",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 3,
+        "b": 3,
+        "c": 1,
+        "d": 1,
+        "e": 6,
+        "f": 6
+      },
+      "expected": 2,
+      "tags": [
+        "bishop",
+        "blocked"
+      ]
+    },
+    {
+      "id": "trial-crossing-diagonal",
+      "name": "rook lies on crossing diagonal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 2,
+        "b": 1,
+        "c": 1,
+        "d": 2,
+        "e": 3,
+        "f": 4
+      },
+      "expected": 1,
+      "tags": [
+        "diagonal"
+      ]
+    },
+    {
+      "id": "trial-rook-column-blocked",
+      "name": "bishop blocks a rook column",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 1,
+        "b": 5,
+        "c": 4,
+        "d": 5,
+        "e": 8,
+        "f": 5
+      },
+      "expected": 2,
+      "tags": [
+        "rook",
+        "blocked"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value c=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 1,
+        "b": 1,
+        "c": 1,
+        "d": 8,
+        "e": 2,
+        "f": 3
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value d=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 1,
+        "b": 1,
+        "c": 8,
+        "d": 1,
+        "e": 2,
+        "f": 3
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    }
+  ]
+}

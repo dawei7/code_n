@@ -8,10 +8,17 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "nums": [1, 2, 3]
+        "nums": [
+          1,
+          2,
+          3
+        ]
       },
       "expected": 4,
-      "tags": ["sample", "increasing"]
+      "tags": [
+        "sample",
+        "increasing"
+      ]
     },
     {
       "id": "sample-duplicate-maximum",
@@ -19,10 +26,17 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "nums": [1, 3, 3]
+        "nums": [
+          1,
+          3,
+          3
+        ]
       },
       "expected": 4,
-      "tags": ["sample", "duplicates"]
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
     },
     {
       "id": "sample-mixed-signs",
@@ -30,10 +44,20 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "nums": [4, -2, -3, 4, 1]
+        "nums": [
+          4,
+          -2,
+          -3,
+          4,
+          1
+        ]
       },
       "expected": 59,
-      "tags": ["sample", "negative-values", "duplicates"]
+      "tags": [
+        "sample",
+        "negative-values",
+        "duplicates"
+      ]
     },
     {
       "id": "trial-singleton",
@@ -41,10 +65,15 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "nums": [7]
+        "nums": [
+          7
+        ]
       },
       "expected": 0,
-      "tags": ["minimum-length", "zero-range"]
+      "tags": [
+        "minimum-length",
+        "zero-range"
+      ]
     },
     {
       "id": "trial-descending-turn",
@@ -52,32 +81,85 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "nums": [5, 1, 4]
+        "nums": [
+          5,
+          1,
+          4
+        ]
       },
       "expected": 11,
-      "tags": ["direction-change"]
+      "tags": [
+        "direction-change"
+      ]
     },
     {
-      "id": "real-extreme-values",
-      "name": "hidden: full value-span arithmetic",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-extreme-values",
+      "name": "full value-span arithmetic",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "nums": [1000000000, -1000000000]
+        "nums": [
+          1000000000,
+          -1000000000
+        ]
       },
       "expected": 2000000000,
-      "tags": ["hidden", "integer-width", "negative-values"]
+      "tags": [
+        "integer-width",
+        "negative-values"
+      ]
     },
     {
-      "id": "real-all-equal",
-      "name": "hidden: every subarray has zero range",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-equal",
+      "name": "every subarray has zero range",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "nums": [2, 2, 2, 2]
+        "nums": [
+          2,
+          2,
+          2,
+          2
+        ]
       },
       "expected": 0,
-      "tags": ["hidden", "duplicates", "tie-handling"]
+      "tags": [
+        "duplicates",
+        "tie-handling"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

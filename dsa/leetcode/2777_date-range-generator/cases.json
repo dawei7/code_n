@@ -7,90 +7,215 @@
       "name": "sample: daily inclusive range",
       "kind": "sample",
       "visible": true,
-      "input": {"start": "2023-04-01", "end": "2023-04-04", "step": 1, "summary": false},
-      "expected": ["2023-04-01", "2023-04-02", "2023-04-03", "2023-04-04"],
-      "tags": ["sample", "daily", "inclusive-end"]
+      "input": {
+        "start": "2023-04-01",
+        "end": "2023-04-04",
+        "step": 1,
+        "summary": false
+      },
+      "expected": [
+        "2023-04-01",
+        "2023-04-02",
+        "2023-04-03",
+        "2023-04-04"
+      ],
+      "tags": [
+        "sample",
+        "daily",
+        "inclusive-end"
+      ]
     },
     {
       "id": "sample-three-day-step",
       "name": "sample: step stops before unaligned end",
       "kind": "sample",
       "visible": true,
-      "input": {"start": "2023-04-10", "end": "2023-04-20", "step": 3, "summary": false},
-      "expected": ["2023-04-10", "2023-04-13", "2023-04-16", "2023-04-19"],
-      "tags": ["sample", "unaligned-end"]
+      "input": {
+        "start": "2023-04-10",
+        "end": "2023-04-20",
+        "step": 3,
+        "summary": false
+      },
+      "expected": [
+        "2023-04-10",
+        "2023-04-13",
+        "2023-04-16",
+        "2023-04-19"
+      ],
+      "tags": [
+        "sample",
+        "unaligned-end"
+      ]
     },
     {
       "id": "sample-single-date",
       "name": "sample: equal endpoints",
       "kind": "sample",
       "visible": true,
-      "input": {"start": "2023-04-10", "end": "2023-04-10", "step": 1, "summary": false},
-      "expected": ["2023-04-10"],
-      "tags": ["sample", "single-date"]
+      "input": {
+        "start": "2023-04-10",
+        "end": "2023-04-10",
+        "step": 1,
+        "summary": false
+      },
+      "expected": [
+        "2023-04-10"
+      ],
+      "tags": [
+        "sample",
+        "single-date"
+      ]
     },
     {
       "id": "trial-step-exceeds-range",
       "name": "trial: first step exceeds end",
       "kind": "trial",
       "visible": true,
-      "input": {"start": "2024-01-01", "end": "2024-01-05", "step": 10, "summary": false},
-      "expected": ["2024-01-01"],
-      "tags": ["trial", "large-step"]
+      "input": {
+        "start": "2024-01-01",
+        "end": "2024-01-05",
+        "step": 10,
+        "summary": false
+      },
+      "expected": [
+        "2024-01-01"
+      ],
+      "tags": [
+        "trial",
+        "large-step"
+      ]
     },
     {
       "id": "trial-year-boundary",
       "name": "trial: range crosses year boundary",
       "kind": "trial",
       "visible": true,
-      "input": {"start": "2023-12-30", "end": "2024-01-03", "step": 2, "summary": false},
-      "expected": ["2023-12-30", "2024-01-01", "2024-01-03"],
-      "tags": ["trial", "year-boundary", "inclusive-end"]
+      "input": {
+        "start": "2023-12-30",
+        "end": "2024-01-03",
+        "step": 2,
+        "summary": false
+      },
+      "expected": [
+        "2023-12-30",
+        "2024-01-01",
+        "2024-01-03"
+      ],
+      "tags": [
+        "trial",
+        "year-boundary",
+        "inclusive-end"
+      ]
     },
     {
-      "id": "real-leap-day",
-      "name": "real: daily range includes leap day",
-      "kind": "real",
-      "visible": false,
-      "input": {"start": "2024-02-27", "end": "2024-03-02", "step": 1, "summary": false},
-      "expected": ["2024-02-27", "2024-02-28", "2024-02-29", "2024-03-01", "2024-03-02"],
-      "tags": ["real", "leap-day"]
+      "id": "trial-leap-day",
+      "name": "daily range includes leap day",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": "2024-02-27",
+        "end": "2024-03-02",
+        "step": 1,
+        "summary": false
+      },
+      "expected": [
+        "2024-02-27",
+        "2024-02-28",
+        "2024-02-29",
+        "2024-03-01",
+        "2024-03-02"
+      ],
+      "tags": [
+        "real",
+        "leap-day"
+      ]
     },
     {
-      "id": "real-month-boundary",
-      "name": "real: stepped range crosses month boundary",
-      "kind": "real",
-      "visible": false,
-      "input": {"start": "2023-01-29", "end": "2023-02-08", "step": 3, "summary": false},
-      "expected": ["2023-01-29", "2023-02-01", "2023-02-04", "2023-02-07"],
-      "tags": ["real", "month-boundary"]
+      "id": "trial-month-boundary",
+      "name": "stepped range crosses month boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": "2023-01-29",
+        "end": "2023-02-08",
+        "step": 3,
+        "summary": false
+      },
+      "expected": [
+        "2023-01-29",
+        "2023-02-01",
+        "2023-02-04",
+        "2023-02-07"
+      ],
+      "tags": [
+        "real",
+        "month-boundary"
+      ]
     },
     {
-      "id": "real-step-thousand",
-      "name": "real: maximum step remains within maximum span",
-      "kind": "real",
-      "visible": false,
-      "input": {"start": "2020-01-01", "end": "2024-02-09", "step": 1000, "summary": false},
-      "expected": ["2020-01-01", "2022-09-27"],
-      "tags": ["real", "maximum-step", "maximum-span"]
+      "id": "trial-step-thousand",
+      "name": "maximum step remains within maximum span",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": "2020-01-01",
+        "end": "2024-02-09",
+        "step": 1000,
+        "summary": false
+      },
+      "expected": [
+        "2020-01-01",
+        "2022-09-27"
+      ],
+      "tags": [
+        "real",
+        "maximum-step",
+        "maximum-span"
+      ]
     },
     {
-      "id": "real-equal-endpoints-large-step",
-      "name": "real: equal endpoints ignore large step",
-      "kind": "real",
-      "visible": false,
-      "input": {"start": "2000-02-29", "end": "2000-02-29", "step": 1000, "summary": false},
-      "expected": ["2000-02-29"],
-      "tags": ["real", "single-date", "maximum-step"]
+      "id": "trial-equal-endpoints-large-step",
+      "name": "equal endpoints ignore large step",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": "2000-02-29",
+        "end": "2000-02-29",
+        "step": 1000,
+        "summary": false
+      },
+      "expected": [
+        "2000-02-29"
+      ],
+      "tags": [
+        "real",
+        "single-date",
+        "maximum-step"
+      ]
     },
     {
-      "id": "real-aligned-weekly-end",
-      "name": "real: weekly progression includes aligned end",
-      "kind": "real",
-      "visible": false,
-      "input": {"start": "2023-05-01", "end": "2023-05-29", "step": 7, "summary": false},
-      "expected": ["2023-05-01", "2023-05-08", "2023-05-15", "2023-05-22", "2023-05-29"],
-      "tags": ["real", "weekly", "inclusive-end"]
+      "id": "trial-aligned-weekly-end",
+      "name": "weekly progression includes aligned end",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": "2023-05-01",
+        "end": "2023-05-29",
+        "step": 7,
+        "summary": false
+      },
+      "expected": [
+        "2023-05-01",
+        "2023-05-08",
+        "2023-05-15",
+        "2023-05-22",
+        "2023-05-29"
+      ],
+      "tags": [
+        "real",
+        "weekly",
+        "inclusive-end"
+      ]
     }
   ]
 }

@@ -131,10 +131,10 @@
       ]
     },
     {
-      "id": "real-all-invalid",
-      "name": "real: every coupon violates a different rule",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-invalid",
+      "name": "every coupon violates a different rule",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "code": [
           "",
@@ -163,10 +163,10 @@
       ]
     },
     {
-      "id": "real-inactive-valid-shape",
-      "name": "real: a syntactically valid inactive coupon is excluded",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-inactive-valid-shape",
+      "name": "a syntactically valid inactive coupon is excluded",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "code": [
           "ACTIVE_1",
@@ -191,10 +191,10 @@
       ]
     },
     {
-      "id": "real-ascii-lexicographic",
-      "name": "real: codes use ascending ASCII lexicographical order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ascii-lexicographic",
+      "name": "codes use ascending ASCII lexicographical order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "code": [
           "a",
@@ -236,10 +236,10 @@
       ]
     },
     {
-      "id": "real-category-before-code",
-      "name": "real: category rank is compared before coupon text",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-category-before-code",
+      "name": "category rank is compared before coupon text",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "code": [
           "ZZZ",
@@ -273,10 +273,10 @@
       ]
     },
     {
-      "id": "real-duplicates-preserved",
-      "name": "real: separate equal coupons remain separate entries",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicates-preserved",
+      "name": "separate equal coupons remain separate entries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "code": [
           "SAVE",
@@ -306,10 +306,10 @@
       ]
     },
     {
-      "id": "real-maximum-code-length",
-      "name": "real: a one-hundred-character alphanumeric code is valid",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-code-length",
+      "name": "a one-hundred-character alphanumeric code is valid",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "code": [
           "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",

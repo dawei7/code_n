@@ -2,13 +2,201 @@
   "schema_version": 1,
   "challenge_id": "lc_2134",
   "cases": [
-    {"id": "sample-one-swap", "name": "sample: best block needs one incoming one", "kind": "sample", "visible": true, "input": {"nums": [0,1,0,1,1,0,0]}, "expected": 1, "tags": ["sample", "one-swap"]},
-    {"id": "sample-two-swaps", "name": "sample: every best window contains two zeros", "kind": "sample", "visible": true, "input": {"nums": [0,1,1,1,0,0,1,1,0]}, "expected": 2, "tags": ["sample", "two-swaps"]},
-    {"id": "sample-wraparound", "name": "sample: circular boundary already joins the ones", "kind": "sample", "visible": true, "input": {"nums": [1,1,0,0,1]}, "expected": 0, "tags": ["sample", "wraparound"]},
-    {"id": "trial-all-zero", "name": "no ones require no swaps", "kind": "trial", "visible": true, "input": {"nums": [0,0,0,0]}, "expected": 0, "tags": ["no-ones"]},
-    {"id": "trial-all-one", "name": "all ones are already grouped", "kind": "trial", "visible": true, "input": {"nums": [1,1,1,1]}, "expected": 0, "tags": ["all-ones"]},
-    {"id": "real-single-one", "name": "hidden: one one is already a complete block", "kind": "real", "visible": false, "input": {"nums": [0,0,1,0,0]}, "expected": 0, "tags": ["hidden", "single-one"]},
-    {"id": "real-alternating", "name": "hidden: alternating values force two swaps", "kind": "real", "visible": false, "input": {"nums": [1,0,1,0,1,0,1,0]}, "expected": 2, "tags": ["hidden", "alternating"]},
-    {"id": "real-linear-best", "name": "hidden: best block does not cross the boundary", "kind": "real", "visible": false, "input": {"nums": [0,1,1,0,1,0]}, "expected": 1, "tags": ["hidden", "interior-window"]}
+    {
+      "id": "sample-one-swap",
+      "name": "sample: best block needs one incoming one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          0,
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "one-swap"
+      ]
+    },
+    {
+      "id": "sample-two-swaps",
+      "name": "sample: every best window contains two zeros",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          1,
+          1,
+          0,
+          0,
+          1,
+          1,
+          0
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "two-swaps"
+      ]
+    },
+    {
+      "id": "sample-wraparound",
+      "name": "sample: circular boundary already joins the ones",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          0,
+          0,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "wraparound"
+      ]
+    },
+    {
+      "id": "trial-all-zero",
+      "name": "no ones require no swaps",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "no-ones"
+      ]
+    },
+    {
+      "id": "trial-all-one",
+      "name": "all ones are already grouped",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "all-ones"
+      ]
+    },
+    {
+      "id": "trial-single-one",
+      "name": "one one is already a complete block",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "single-one"
+      ]
+    },
+    {
+      "id": "trial-alternating",
+      "name": "alternating values force two swaps",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "alternating"
+      ]
+    },
+    {
+      "id": "trial-linear-best",
+      "name": "best block does not cross the boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          1,
+          0,
+          1,
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "interior-window"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    }
   ]
 }

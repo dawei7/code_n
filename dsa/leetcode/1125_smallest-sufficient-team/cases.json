@@ -196,10 +196,10 @@
       ]
     },
     {
-      "id": "real-empty-skills",
-      "name": "hidden: people with no skills",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-empty-skills",
+      "name": "people with no skills",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "req_skills": [
           "a",
@@ -231,10 +231,10 @@
       ]
     },
     {
-      "id": "real-three-way",
-      "name": "hidden: three complementary pairs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-way",
+      "name": "three complementary pairs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "req_skills": [
           "a",
@@ -269,10 +269,10 @@
       ]
     },
     {
-      "id": "real-dominated",
-      "name": "hidden: dominated single-skill people",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-dominated",
+      "name": "dominated single-skill people",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "req_skills": [
           "a",
@@ -316,10 +316,10 @@
       ]
     },
     {
-      "id": "real-chain-overlap",
-      "name": "hidden: chained coverage choices",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-chain-overlap",
+      "name": "chained coverage choices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "req_skills": [
           "a",

@@ -99,10 +99,10 @@
       ]
     },
     {
-      "id": "real-deep",
-      "name": "hidden: one deeply nested component",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-deep",
+      "name": "one deeply nested component",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "seq": "(((((())))))"
       },
@@ -124,15 +124,14 @@
         "kind": "vps_split"
       },
       "tags": [
-        "hidden",
         "deep"
       ]
     },
     {
-      "id": "real-mixed-components",
-      "name": "hidden: components with different depths",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-components",
+      "name": "components with different depths",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "seq": "((()))()(()(()))"
       },
@@ -158,15 +157,14 @@
         "kind": "vps_split"
       },
       "tags": [
-        "hidden",
         "mixed-depth"
       ]
     },
     {
-      "id": "real-sibling-nesting",
-      "name": "hidden: nested siblings at several levels",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-sibling-nesting",
+      "name": "nested siblings at several levels",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "seq": "(()(()))((())())"
       },
@@ -192,8 +190,41 @@
         "kind": "vps_split"
       },
       "tags": [
-        "hidden",
         "siblings"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in seq",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "seq": "("
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in seq",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "seq": "((("
+      },
+      "expected": [
+        0,
+        1,
+        0
+      ],
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

@@ -6,63 +6,134 @@
       "name": "sample: exactly one quadruplet",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 3, 6]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          6
+        ]
+      },
       "expected": 1,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-no-match",
       "name": "sample: no value equation matches",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [3, 3, 6, 4, 5]},
+      "input": {
+        "nums": [
+          3,
+          3,
+          6,
+          4,
+          5
+        ]
+      },
       "expected": 0,
-      "tags": ["sample", "no-match"]
+      "tags": [
+        "sample",
+        "no-match"
+      ]
     },
     {
       "id": "sample-repeated-ones",
       "name": "sample: repeated values create distinct index choices",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 1, 1, 3, 5]},
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          3,
+          5
+        ]
+      },
       "expected": 4,
-      "tags": ["sample", "duplicates"]
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
     },
     {
       "id": "trial-minimum-no-match",
       "name": "minimum length with no valid equation",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 1, 1, 1]},
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
       "expected": 0,
-      "tags": ["boundary"]
+      "tags": [
+        "boundary"
+      ]
     },
     {
-      "id": "real-repeated-right-values",
-      "name": "hidden: equal fourth values count at distinct indices",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2, 2, 2, 6, 6]},
+      "id": "trial-repeated-right-values",
+      "name": "equal fourth values count at distinct indices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          6,
+          6
+        ]
+      },
       "expected": 2,
-      "tags": ["hidden", "duplicates"]
+      "tags": [
+        "duplicates"
+      ]
     },
     {
-      "id": "real-order-boundary",
-      "name": "hidden: an irrelevant prefix cannot serve as a late value",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, 1, 1, 1, 3]},
+      "id": "trial-order-boundary",
+      "name": "an irrelevant prefix cannot serve as a late value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
       "expected": 1,
-      "tags": ["hidden", "index-order"]
+      "tags": [
+        "index-order"
+      ]
     },
     {
-      "id": "real-multiple-boundaries",
-      "name": "hidden: matches arise at different middle boundaries",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 1, 4, 2, 8]},
+      "id": "trial-multiple-boundaries",
+      "name": "matches arise at different middle boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          4,
+          2,
+          8
+        ]
+      },
       "expected": 2,
-      "tags": ["hidden", "multiple-matches"]
+      "tags": [
+        "multiple-matches"
+      ]
     }
   ]
 }

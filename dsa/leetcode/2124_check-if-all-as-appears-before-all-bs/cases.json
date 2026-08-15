@@ -2,12 +2,113 @@
   "schema_version": 1,
   "challenge_id": "lc_2124",
   "cases": [
-    {"id": "sample-two-blocks", "name": "sample: one a-block precedes one b-block", "kind": "sample", "visible": true, "input": {"s": "aaabbb"}, "expected": true, "tags": ["sample", "two-blocks"]},
-    {"id": "sample-alternating", "name": "sample: an a appears after a b", "kind": "sample", "visible": true, "input": {"s": "abab"}, "expected": false, "tags": ["sample", "violation"]},
-    {"id": "sample-only-b", "name": "sample: no a makes the condition vacuously true", "kind": "sample", "visible": true, "input": {"s": "bbb"}, "expected": true, "tags": ["sample", "only-b"]},
-    {"id": "trial-only-a", "name": "a string with no b is also valid", "kind": "trial", "visible": true, "input": {"s": "aaaa"}, "expected": true, "tags": ["only-a"]},
-    {"id": "trial-immediate-reversal", "name": "the shortest reversed order is invalid", "kind": "trial", "visible": true, "input": {"s": "ba"}, "expected": false, "tags": ["minimum-violation"]},
-    {"id": "real-single-character", "name": "hidden: one character always satisfies the order", "kind": "real", "visible": false, "input": {"s": "a"}, "expected": true, "tags": ["hidden", "minimum-length"]},
-    {"id": "real-late-violation", "name": "hidden: one final a invalidates a long prefix", "kind": "real", "visible": false, "input": {"s": "aaaaabbbbba"}, "expected": false, "tags": ["hidden", "late-violation"]}
+    {
+      "id": "sample-two-blocks",
+      "name": "sample: one a-block precedes one b-block",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aaabbb"
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "two-blocks"
+      ]
+    },
+    {
+      "id": "sample-alternating",
+      "name": "sample: an a appears after a b",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abab"
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "violation"
+      ]
+    },
+    {
+      "id": "sample-only-b",
+      "name": "sample: no a makes the condition vacuously true",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "bbb"
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "only-b"
+      ]
+    },
+    {
+      "id": "trial-only-a",
+      "name": "a string with no b is also valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaa"
+      },
+      "expected": true,
+      "tags": [
+        "only-a"
+      ]
+    },
+    {
+      "id": "trial-immediate-reversal",
+      "name": "the shortest reversed order is invalid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ba"
+      },
+      "expected": false,
+      "tags": [
+        "minimum-violation"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "one character always satisfies the order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": true,
+      "tags": [
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-late-violation",
+      "name": "one final a invalidates a long prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaaabbbbba"
+      },
+      "expected": false,
+      "tags": [
+        "late-violation"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
+    }
   ]
 }

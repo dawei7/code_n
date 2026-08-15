@@ -136,10 +136,10 @@
       ]
     },
     {
-      "id": "real-target-at-varied-positions",
-      "name": "hidden: target occurs at the beginning and end",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-target-at-varied-positions",
+      "name": "target occurs at the beginning and end",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "cat",
@@ -156,15 +156,14 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "positions"
       ]
     },
     {
-      "id": "real-all-match",
-      "name": "hidden: every word contains the target",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-match",
+      "name": "every word contains the target",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "x",
@@ -182,15 +181,14 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "all-match"
       ]
     },
     {
-      "id": "real-long-word-late-match",
-      "name": "hidden: target appears at the last legal position",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-long-word-late-match",
+      "name": "target appears at the last legal position",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaz",
@@ -205,15 +203,14 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "maximum-word-length"
       ]
     },
     {
-      "id": "real-sparse-match",
-      "name": "hidden: only the final word matches",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-sparse-match",
+      "name": "only the final word matches",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "alpha",
@@ -231,8 +228,47 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "sparse"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "leet"
+        ],
+        "x": "e"
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "leet",
+          "leet"
+        ],
+        "x": "e"
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

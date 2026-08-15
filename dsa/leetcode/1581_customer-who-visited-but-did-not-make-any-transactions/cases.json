@@ -271,10 +271,10 @@
       ]
     },
     {
-      "id": "real-multiple-transactions",
-      "name": "hidden: several transactions exclude one visit once",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-transactions",
+      "name": "several transactions exclude one visit once",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Visits": [
@@ -320,10 +320,10 @@
       ]
     },
     {
-      "id": "real-two-customers",
-      "name": "hidden: independent customer aggregates",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-customers",
+      "name": "independent customer aggregates",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Visits": [
@@ -375,10 +375,10 @@
       ]
     },
     {
-      "id": "real-zero-amount",
-      "name": "hidden: zero amount is still a transaction",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zero-amount",
+      "name": "zero amount is still a transaction",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Visits": [
@@ -419,10 +419,10 @@
       ]
     },
     {
-      "id": "real-all-transactional",
-      "name": "hidden: multiple customers all transact",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-transactional",
+      "name": "multiple customers all transact",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Visits": [
@@ -462,10 +462,10 @@
       ]
     },
     {
-      "id": "real-nonconsecutive-ids",
-      "name": "hidden: visit identifiers need not be consecutive",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-nonconsecutive-ids",
+      "name": "visit identifiers need not be consecutive",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Visits": [

@@ -143,10 +143,10 @@
       ]
     },
     {
-      "id": "real-all-zero",
-      "name": "hidden: both partition sums are zero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-zero",
+      "name": "both partition sums are zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -159,15 +159,14 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "all-zero"
       ]
     },
     {
-      "id": "real-maximum-magnitudes",
-      "name": "hidden: large signed values require wide sums",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-magnitudes",
+      "name": "large signed values require wide sums",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -181,16 +180,15 @@
       },
       "expected": 3000000000,
       "tags": [
-        "hidden",
         "maximum-value",
         "negative-value"
       ]
     },
     {
-      "id": "real-index-not-value",
-      "name": "hidden: prime values at non-prime indices still belong to B",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-index-not-value",
+      "name": "prime values at non-prime indices still belong to B",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -205,15 +203,14 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "index-semantics"
       ]
     },
     {
-      "id": "real-only-prime-index-values",
-      "name": "hidden: nonzero values appear only at prime indices",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-only-prime-index-values",
+      "name": "nonzero values appear only at prime indices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -228,16 +225,15 @@
       },
       "expected": 17,
       "tags": [
-        "hidden",
         "empty-b-sum",
         "prime-indices"
       ]
     },
     {
-      "id": "real-mixed-longer",
-      "name": "hidden: mixed signs across several prime indices",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-longer",
+      "name": "mixed signs across several prime indices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           12,
@@ -259,16 +255,15 @@
       },
       "expected": 22,
       "tags": [
-        "hidden",
         "mixed-signs",
         "longer-array"
       ]
     },
     {
-      "id": "real-maximum-length-zero",
-      "name": "hidden: maximum input length of zeros",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-length-zero",
+      "name": "maximum input length of zeros",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -100275,9 +100270,41 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "maximum-input",
         "all-zero"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

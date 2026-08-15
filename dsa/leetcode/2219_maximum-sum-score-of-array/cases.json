@@ -2,13 +2,177 @@
   "schema_version": 1,
   "challenge_id": "lc_2219",
   "cases": [
-    {"id":"sample-mixed-values","name":"sample: total sum wins at both boundaries","kind":"sample","visible":true,"input":{"nums":[4,3,-2,5]},"expected":10,"tags":["sample","mixed-values"]},
-    {"id":"sample-all-negative","name":"sample: least-negative inclusive sum wins","kind":"sample","visible":true,"input":{"nums":[-3,-5]},"expected":-3,"tags":["sample","negative-values"]},
-    {"id":"trial-singleton","name":"one element is both prefix and suffix","kind":"trial","visible":true,"input":{"nums":[7]},"expected":7,"tags":["singleton"]},
-    {"id":"trial-interior-maximum","name":"a suffix beginning inside can be maximal","kind":"trial","visible":true,"input":{"nums":[1,-2,3]},"expected":3,"tags":["interior-index"]},
-    {"id":"real-negative-triple","name":"hidden: zero initialization would be incorrect","kind":"real","visible":false,"input":{"nums":[-1,-2,-3]},"expected":-1,"tags":["hidden","all-negative"]},
-    {"id":"real-deep-negative","name":"hidden: a later suffix can recover after a large loss","kind":"real","visible":false,"input":{"nums":[5,-100,4,3]},"expected":7,"tags":["hidden","suffix-maximum"]},
-    {"id":"real-all-zero","name":"hidden: every index has score zero","kind":"real","visible":false,"input":{"nums":[0,0,0,0]},"expected":0,"tags":["hidden","zeros"]},
-    {"id":"real-large-magnitudes","name":"hidden: wide integer sums remain exact","kind":"real","visible":false,"input":{"nums":[100000,100000,-100000,100000]},"expected":200000,"tags":["hidden","large-values"]}
+    {
+      "id": "sample-mixed-values",
+      "name": "sample: total sum wins at both boundaries",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          3,
+          -2,
+          5
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "sample",
+        "mixed-values"
+      ]
+    },
+    {
+      "id": "sample-all-negative",
+      "name": "sample: least-negative inclusive sum wins",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -3,
+          -5
+        ]
+      },
+      "expected": -3,
+      "tags": [
+        "sample",
+        "negative-values"
+      ]
+    },
+    {
+      "id": "trial-singleton",
+      "name": "one element is both prefix and suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-interior-maximum",
+      "name": "a suffix beginning inside can be maximal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          -2,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "interior-index"
+      ]
+    },
+    {
+      "id": "trial-negative-triple",
+      "name": "zero initialization would be incorrect",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          -2,
+          -3
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "all-negative"
+      ]
+    },
+    {
+      "id": "trial-deep-negative",
+      "name": "a later suffix can recover after a large loss",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          -100,
+          4,
+          3
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "suffix-maximum"
+      ]
+    },
+    {
+      "id": "trial-all-zero",
+      "name": "every index has score zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "zeros"
+      ]
+    },
+    {
+      "id": "trial-large-magnitudes",
+      "name": "wide integer sums remain exact",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100000,
+          100000,
+          -100000,
+          100000
+        ]
+      },
+      "expected": 200000,
+      "tags": [
+        "large-values"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    }
   ]
 }

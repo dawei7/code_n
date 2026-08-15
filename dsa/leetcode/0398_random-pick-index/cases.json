@@ -163,10 +163,10 @@
       ]
     },
     {
-      "id": "hidden-many-values",
-      "name": "hidden: interleaved occurrence lists",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-values",
+      "name": "interleaved occurrence lists",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -196,15 +196,14 @@
         "targets_param": "targets"
       },
       "tags": [
-        "hidden",
         "interleaved"
       ]
     },
     {
-      "id": "hidden-last-only",
-      "name": "hidden: target occurs only at final index",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-last-only",
+      "name": "target occurs only at final index",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -227,15 +226,14 @@
         "targets_param": "targets"
       },
       "tags": [
-        "hidden",
         "last"
       ]
     },
     {
-      "id": "hidden-all-equal",
-      "name": "hidden: every index is eligible",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-equal",
+      "name": "every index is eligible",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -260,7 +258,6 @@
         "targets_param": "targets"
       },
       "tags": [
-        "hidden",
         "all-equal"
       ]
     }

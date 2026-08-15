@@ -6,81 +6,215 @@
       "name": "sample: one edge and three isolated nodes",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 4, 8, 3, 9], "threshold": 5},
+      "input": {
+        "nums": [
+          2,
+          4,
+          8,
+          3,
+          9
+        ],
+        "threshold": 5
+      },
       "expected": 4,
-      "tags": ["sample", "lcm"]
+      "tags": [
+        "sample",
+        "lcm"
+      ]
     },
     {
       "id": "sample-official-two",
       "name": "sample: transitive component and one isolated node",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 4, 8, 3, 9, 12], "threshold": 10},
+      "input": {
+        "nums": [
+          2,
+          4,
+          8,
+          3,
+          9,
+          12
+        ],
+        "threshold": 10
+      },
       "expected": 2,
-      "tags": ["sample", "transitive-connectivity"]
+      "tags": [
+        "sample",
+        "transitive-connectivity"
+      ]
     },
     {
       "id": "trial-values-above-threshold",
       "name": "trial: every value above threshold is isolated",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 6, 30, 35], "threshold": 12},
+      "input": {
+        "nums": [
+          2,
+          6,
+          30,
+          35
+        ],
+        "threshold": 12
+      },
       "expected": 3,
-      "tags": ["above-threshold", "isolation"]
+      "tags": [
+        "above-threshold",
+        "isolation"
+      ]
     },
     {
       "id": "trial-common-multiple-not-present",
       "name": "trial: absent common multiple still creates edges",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [6, 10, 15, 77], "threshold": 30},
+      "input": {
+        "nums": [
+          6,
+          10,
+          15,
+          77
+        ],
+        "threshold": 30
+      },
       "expected": 2,
-      "tags": ["common-multiple", "dsu"]
+      "tags": [
+        "common-multiple",
+        "dsu"
+      ]
     },
     {
       "id": "trial-transitive-bridge",
       "name": "trial: endpoints connect only through a third value",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [4, 6, 9], "threshold": 18},
+      "input": {
+        "nums": [
+          4,
+          6,
+          9
+        ],
+        "threshold": 18
+      },
       "expected": 1,
-      "tags": ["transitive-connectivity", "bridge"]
+      "tags": [
+        "transitive-connectivity",
+        "bridge"
+      ]
     },
     {
       "id": "trial-strict-threshold",
       "name": "trial: lcm just above threshold creates no edge",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [6, 10], "threshold": 29},
+      "input": {
+        "nums": [
+          6,
+          10
+        ],
+        "threshold": 29
+      },
       "expected": 2,
-      "tags": ["strict-boundary", "lcm"]
+      "tags": [
+        "strict-boundary",
+        "lcm"
+      ]
     },
     {
-      "id": "real-one-connects-domain",
-      "name": "hidden: value one connects all values within threshold",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 199, 200], "threshold": 200},
+      "id": "trial-one-connects-domain",
+      "name": "value one connects all values within threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          199,
+          200
+        ],
+        "threshold": 200
+      },
       "expected": 1,
-      "tags": ["hidden", "value-one", "connected-domain"]
+      "tags": [
+        "value-one",
+        "connected-domain"
+      ]
     },
     {
-      "id": "real-single-large-value",
-      "name": "hidden: one large node remains one component",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000000000], "threshold": 200000},
+      "id": "trial-single-large-value",
+      "name": "one large node remains one component",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000
+        ],
+        "threshold": 200000
+      },
       "expected": 1,
-      "tags": ["hidden", "single-node", "maximum-value", "maximum-threshold"]
+      "tags": [
+        "single-node",
+        "maximum-value",
+        "maximum-threshold"
+      ]
     },
     {
-      "id": "real-mixed-components",
-      "name": "hidden: mixed connected and isolated lcm groups",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [4, 6, 9, 14, 21, 25, 49, 121], "threshold": 42},
+      "id": "trial-mixed-components",
+      "name": "mixed connected and isolated lcm groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          6,
+          9,
+          14,
+          21,
+          25,
+          49,
+          121
+        ],
+        "threshold": 42
+      },
       "expected": 4,
-      "tags": ["hidden", "mixed-components"]
+      "tags": [
+        "mixed-components"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ],
+        "threshold": 5
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ],
+        "threshold": 5
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

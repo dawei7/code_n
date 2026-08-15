@@ -103,10 +103,10 @@
       ]
     },
     {
-      "id": "real-later-pattern",
-      "name": "hidden: a later trionic pattern beats an earlier one",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-later-pattern",
+      "name": "a later trionic pattern beats an earlier one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -119,15 +119,14 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "multiple-patterns"
       ]
     },
     {
-      "id": "real-long-phases",
-      "name": "hidden: all three phases contain multiple comparisons",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-long-phases",
+      "name": "all three phases contain multiple comparisons",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -143,15 +142,14 @@
       },
       "expected": 48,
       "tags": [
-        "hidden",
         "long-phases"
       ]
     },
     {
-      "id": "real-plateau-separator",
-      "name": "hidden: equality resets every partial phase",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-plateau-separator",
+      "name": "equality resets every partial phase",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -166,16 +164,15 @@
       },
       "expected": 34,
       "tags": [
-        "hidden",
         "plateau",
         "reset"
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "hidden: sums require wider than 32-bit arithmetic",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-values",
+      "name": "sums require wider than 32-bit arithmetic",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -187,15 +184,14 @@
       },
       "expected": 3499999999,
       "tags": [
-        "hidden",
         "large-values"
       ]
     },
     {
-      "id": "real-negative-prefix-extension",
-      "name": "hidden: extending an increasing state can still be optimal",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-negative-prefix-extension",
+      "name": "extending an increasing state can still be optimal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -8,
@@ -208,15 +204,14 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "negative-values"
       ]
     },
     {
-      "id": "real-overlapping-candidates",
-      "name": "hidden: overlapping trionic ranges share turns",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-overlapping-candidates",
+      "name": "overlapping trionic ranges share turns",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -230,15 +225,14 @@
       },
       "expected": 29,
       "tags": [
-        "hidden",
         "overlapping"
       ]
     },
     {
-      "id": "real-final-extension",
-      "name": "hidden: the final increasing phase accumulates several values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-final-extension",
+      "name": "the final increasing phase accumulates several values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -251,7 +245,6 @@
       },
       "expected": 39,
       "tags": [
-        "hidden",
         "final-extension"
       ]
     }

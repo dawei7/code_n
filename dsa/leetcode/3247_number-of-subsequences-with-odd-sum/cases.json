@@ -1,17 +1,335 @@
 {
   "challenge_id": "lc_3247",
   "cases": [
-    {"id": "sample-three-odds", "name": "sample: three odd values", "kind": "sample", "visible": true, "input": {"nums": [1,1,1]}, "expected": 4, "tags": ["sample", "all-odd"]},
-    {"id": "sample-one-odd-two-evens", "name": "sample: one odd and two evens", "kind": "sample", "visible": true, "input": {"nums": [1,2,2]}, "expected": 4, "tags": ["sample", "mixed"]},
-    {"id": "sample-all-even", "name": "sample: all values are even", "kind": "sample", "visible": true, "input": {"nums": [2,4,6]}, "expected": 0, "tags": ["sample", "all-even"]},
-    {"id": "trial-single-odd", "name": "trial: single odd value", "kind": "trial", "visible": true, "input": {"nums": [999999999]}, "expected": 1, "tags": ["single", "odd"]},
-    {"id": "trial-single-even", "name": "trial: single even value", "kind": "trial", "visible": true, "input": {"nums": [1000000000]}, "expected": 0, "tags": ["single", "even"]},
-    {"id": "trial-odd-at-end", "name": "trial: sole odd value is last", "kind": "trial", "visible": true, "input": {"nums": [2,4,6,8,11]}, "expected": 16, "tags": ["late-odd", "full-scan"]},
-    {"id": "trial-even-at-end", "name": "trial: odd values precede final even", "kind": "trial", "visible": true, "input": {"nums": [3,5,7,10]}, "expected": 8, "tags": ["mixed"]},
-    {"id": "real-alternating-parity", "name": "real: alternating parity values", "kind": "real", "visible": false, "input": {"nums": [1,2,3,4,5,6,7,8,9,10]}, "expected": 512, "tags": ["alternating-parity"]},
-    {"id": "real-large-values", "name": "real: values near the upper bound", "kind": "real", "visible": false, "input": {"nums": [1000000000,999999999,999999998,999999997,999999996,999999995]}, "expected": 32, "tags": ["large-values", "parity"]},
-    {"id": "real-thirty-one-values", "name": "real: modulo applies beyond one billion subsets", "kind": "real", "visible": false, "input": {"nums": [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1]}, "expected": 73741817, "tags": ["modulo", "late-odd"]},
-    {"id": "real-sixty-values", "name": "real: sixty index choices", "kind": "real", "visible": false, "input": {"nums": [1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]}, "expected": 268198252, "tags": ["modulo", "long"]},
-    {"id": "real-many-evens", "name": "real: long all-even array remains zero", "kind": "real", "visible": false, "input": {"nums": [2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50]}, "expected": 0, "tags": ["all-even", "long"]}
+    {
+      "id": "sample-three-odds",
+      "name": "sample: three odd values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "all-odd"
+      ]
+    },
+    {
+      "id": "sample-one-odd-two-evens",
+      "name": "sample: one odd and two evens",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-all-even",
+      "name": "sample: all values are even",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          6
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "all-even"
+      ]
+    },
+    {
+      "id": "trial-single-odd",
+      "name": "trial: single odd value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          999999999
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "single",
+        "odd"
+      ]
+    },
+    {
+      "id": "trial-single-even",
+      "name": "trial: single even value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "single",
+        "even"
+      ]
+    },
+    {
+      "id": "trial-odd-at-end",
+      "name": "trial: sole odd value is last",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          6,
+          8,
+          11
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "late-odd",
+        "full-scan"
+      ]
+    },
+    {
+      "id": "trial-even-at-end",
+      "name": "trial: odd values precede final even",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          5,
+          7,
+          10
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "mixed"
+      ]
+    },
+    {
+      "id": "trial-alternating-parity",
+      "name": "alternating parity values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "expected": 512,
+      "tags": [
+        "alternating-parity"
+      ]
+    },
+    {
+      "id": "trial-large-values",
+      "name": "values near the upper bound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          999999999,
+          999999998,
+          999999997,
+          999999996,
+          999999995
+        ]
+      },
+      "expected": 32,
+      "tags": [
+        "large-values",
+        "parity"
+      ]
+    },
+    {
+      "id": "trial-thirty-one-values",
+      "name": "modulo applies beyond one billion subsets",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          1
+        ]
+      },
+      "expected": 73741817,
+      "tags": [
+        "modulo",
+        "late-odd"
+      ]
+    },
+    {
+      "id": "trial-sixty-values",
+      "name": "sixty index choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": 268198252,
+      "tags": [
+        "modulo",
+        "long"
+      ]
+    },
+    {
+      "id": "trial-many-evens",
+      "name": "long all-even array remains zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          16,
+          18,
+          20,
+          22,
+          24,
+          26,
+          28,
+          30,
+          32,
+          34,
+          36,
+          38,
+          40,
+          42,
+          44,
+          46,
+          48,
+          50
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "all-even",
+        "long"
+      ]
+    }
   ]
 }

@@ -86,10 +86,10 @@
       ]
     },
     {
-      "id": "real-single-value",
-      "name": "hidden: one value cannot form a pair",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-value",
+      "name": "one value cannot form a pair",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5
@@ -99,15 +99,14 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "minimum-length"
       ]
     },
     {
-      "id": "real-all-duplicates",
-      "name": "hidden: all duplicate-index combinations count",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-duplicates",
+      "name": "all duplicate-index combinations count",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -120,15 +119,14 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "real-negative-and-positive",
-      "name": "hidden: negative and positive endpoints mix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-negative-and-positive",
+      "name": "negative and positive endpoints mix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -3,
@@ -142,15 +140,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "negative-values"
       ]
     },
     {
-      "id": "real-extreme-values",
-      "name": "hidden: extreme values land on inclusive bounds",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-extreme-values",
+      "name": "extreme values land on inclusive bounds",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -1000000000,
@@ -162,16 +159,15 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "constraints",
         "boundary"
       ]
     },
     {
-      "id": "real-zero-sum",
-      "name": "hidden: only one mixed-sign pair sums to zero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zero-sum",
+      "name": "only one mixed-sign pair sums to zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -2,
@@ -183,7 +179,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "exact-sum"
       ]
     }

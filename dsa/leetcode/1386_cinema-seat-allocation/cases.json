@@ -142,10 +142,10 @@
       ]
     },
     {
-      "id": "hidden-irrelevant",
-      "name": "hidden: only seats one and ten reserved",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-irrelevant",
+      "name": "only seats one and ten reserved",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1,
         "reservedSeats": [
@@ -161,15 +161,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "irrelevant"
       ]
     },
     {
-      "id": "hidden-blocked",
-      "name": "hidden: every family block obstructed",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-blocked",
+      "name": "every family block obstructed",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1,
         "reservedSeats": [
@@ -185,7 +184,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "blocked"
       ]
     }

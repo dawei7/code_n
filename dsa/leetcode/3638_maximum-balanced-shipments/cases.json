@@ -116,10 +116,10 @@
       ]
     },
     {
-      "id": "real-reset-required",
-      "name": "hidden: a closing parcel cannot start the next shipment",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-reset-required",
+      "name": "a closing parcel cannot start the next shipment",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "weight": [
           5,
@@ -129,15 +129,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "non-overlap"
       ]
     },
     {
-      "id": "real-equal-then-drop",
-      "name": "hidden: equality does not close but a later drop does",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-equal-then-drop",
+      "name": "equality does not close but a later drop does",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "weight": [
           4,
@@ -147,15 +146,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "strictness"
       ]
     },
     {
-      "id": "real-multiple-peaks",
-      "name": "hidden: rising runs each end with a lower parcel",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-peaks",
+      "name": "rising runs each end with a lower parcel",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "weight": [
           1,
@@ -169,15 +167,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "many-shipments"
       ]
     },
     {
-      "id": "real-unused-prefix",
-      "name": "hidden: parcels before the useful maximum may be included",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unused-prefix",
+      "name": "parcels before the useful maximum may be included",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "weight": [
           1,
@@ -188,15 +185,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "unused-parcels"
       ]
     },
     {
-      "id": "real-no-final-drop",
-      "name": "hidden: an unfinished rising suffix creates no extra shipment",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-no-final-drop",
+      "name": "an unfinished rising suffix creates no extra shipment",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "weight": [
           3,
@@ -208,15 +204,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "unfinished-suffix"
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "hidden: compare values near the upper bound",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-values",
+      "name": "compare values near the upper bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "weight": [
           1000000000,
@@ -227,15 +222,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "large-values"
       ]
     },
     {
-      "id": "real-alternating-equals",
-      "name": "hidden: equal plateaus separated by strict drops",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alternating-equals",
+      "name": "equal plateaus separated by strict drops",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "weight": [
           8,
@@ -248,9 +242,41 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "plateau",
         "strictness"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "single element in weight",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "weight": [
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "identical elements in weight",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "weight": [
+          2,
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -7,72 +7,141 @@
       "name": "sample: different endpoint characters",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "ca"},
+      "input": {
+        "s": "ca"
+      },
       "expected": 2,
-      "tags": ["sample", "different-ends"]
+      "tags": [
+        "sample",
+        "different-ends"
+      ]
     },
     {
       "id": "sample-empty-result",
       "name": "sample: nested runs disappear completely",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "cabaabac"},
+      "input": {
+        "s": "cabaabac"
+      },
       "expected": 0,
-      "tags": ["sample", "empty-result", "multiple-rounds"]
+      "tags": [
+        "sample",
+        "empty-result",
+        "multiple-rounds"
+      ]
     },
     {
       "id": "sample-nonempty-center",
       "name": "sample: deletion stops at different inner endpoints",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "aabccabba"},
+      "input": {
+        "s": "aabccabba"
+      },
       "expected": 3,
-      "tags": ["sample", "unequal-runs"]
+      "tags": [
+        "sample",
+        "unequal-runs"
+      ]
     },
     {
       "id": "trial-single-character",
       "name": "trial: prefix and suffix cannot overlap",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "b"},
+      "input": {
+        "s": "b"
+      },
       "expected": 1,
-      "tags": ["minimum-length", "nonoverlap"]
+      "tags": [
+        "minimum-length",
+        "nonoverlap"
+      ]
     },
     {
       "id": "trial-uniform-string",
       "name": "trial: one uniform run",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "aaaaaa"},
+      "input": {
+        "s": "aaaaaa"
+      },
       "expected": 0,
-      "tags": ["uniform", "empty-result"]
+      "tags": [
+        "uniform",
+        "empty-result"
+      ]
     },
     {
-      "id": "real-unequal-boundary-runs",
-      "name": "hidden: boundary runs have different lengths",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aaabccca"},
+      "id": "trial-unequal-boundary-runs",
+      "name": "boundary runs have different lengths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaabccca"
+      },
       "expected": 4,
-      "tags": ["unequal-runs", "inner-stop"]
+      "tags": [
+        "unequal-runs",
+        "inner-stop"
+      ]
     },
     {
-      "id": "real-one-middle-character",
-      "name": "hidden: nested layers leave one middle character",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcba"},
+      "id": "trial-one-middle-character",
+      "name": "nested layers leave one middle character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcba"
+      },
       "expected": 1,
-      "tags": ["single-center", "multiple-rounds"]
+      "tags": [
+        "single-center",
+        "multiple-rounds"
+      ]
     },
     {
-      "id": "real-deep-nesting",
-      "name": "hidden: several single-character boundary layers",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcacba"},
+      "id": "trial-deep-nesting",
+      "name": "several single-character boundary layers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcacba"
+      },
       "expected": 1,
-      "tags": ["deep-nesting", "single-center"]
+      "tags": [
+        "deep-nesting",
+        "single-center"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "c"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ccc"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
     }
   ]
 }

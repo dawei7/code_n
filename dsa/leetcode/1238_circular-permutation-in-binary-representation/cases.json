@@ -94,10 +94,10 @@
       ]
     },
     {
-      "id": "real-start-zero",
-      "name": "hidden: ordinary reflected Gray cycle",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-start-zero",
+      "name": "ordinary reflected Gray cycle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 5,
         "start": 0
@@ -140,15 +140,14 @@
         "kind": "circular_gray_code"
       },
       "tags": [
-        "hidden",
         "zero-start"
       ]
     },
     {
-      "id": "real-high-start",
-      "name": "hidden: cycle begins at maximum domain value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-high-start",
+      "name": "cycle begins at maximum domain value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "start": 15
@@ -175,15 +174,14 @@
         "kind": "circular_gray_code"
       },
       "tags": [
-        "hidden",
         "maximum-start"
       ]
     },
     {
-      "id": "real-middle-start",
-      "name": "hidden: six-bit translated cycle",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-middle-start",
+      "name": "six-bit translated cycle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 6,
         "start": 37
@@ -258,8 +256,27 @@
         "kind": "circular_gray_code"
       },
       "tags": [
-        "hidden",
         "translated"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "minimal value start=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "start": 1
+      },
+      "expected": [
+        1,
+        3,
+        2,
+        0
+      ],
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

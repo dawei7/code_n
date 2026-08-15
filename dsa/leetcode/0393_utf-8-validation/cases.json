@@ -92,10 +92,10 @@
       ]
     },
     {
-      "id": "hidden-incomplete",
-      "name": "hidden: incomplete three-byte character",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-incomplete",
+      "name": "incomplete three-byte character",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "data": [
           226,
@@ -104,15 +104,14 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "incomplete"
       ]
     },
     {
-      "id": "hidden-five-byte-prefix",
-      "name": "hidden: unsupported five-byte prefix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-five-byte-prefix",
+      "name": "unsupported five-byte prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "data": [
           248,
@@ -124,15 +123,14 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "invalid-width"
       ]
     },
     {
-      "id": "hidden-several-characters",
-      "name": "hidden: adjacent widths",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-several-characters",
+      "name": "adjacent widths",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "data": [
           36,
@@ -146,8 +144,40 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "mixed-width"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in data",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "data": [
+          197
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in data",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "data": [
+          197,
+          197
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -6,90 +6,211 @@
       "name": "sample: matching objects",
       "kind": "sample",
       "visible": true,
-      "input": {"o1": {"x": 1, "y": 2}, "o2": {"x": 1, "y": 2}},
+      "input": {
+        "o1": {
+          "x": 1,
+          "y": 2
+        },
+        "o2": {
+          "x": 1,
+          "y": 2
+        }
+      },
       "expected": true,
-      "tags": ["sample", "objects"]
+      "tags": [
+        "sample",
+        "objects"
+      ]
     },
     {
       "id": "sample-key-order",
       "name": "sample: object key order is irrelevant",
       "kind": "sample",
       "visible": true,
-      "input": {"o1": {"y": 2, "x": 1}, "o2": {"x": 1, "y": 2}},
+      "input": {
+        "o1": {
+          "y": 2,
+          "x": 1
+        },
+        "o2": {
+          "x": 1,
+          "y": 2
+        }
+      },
       "expected": true,
-      "tags": ["sample", "key-order"]
+      "tags": [
+        "sample",
+        "key-order"
+      ]
     },
     {
       "id": "sample-number-string-mismatch",
       "name": "sample: nested primitive types differ",
       "kind": "sample",
       "visible": true,
-      "input": {"o1": {"x": null, "L": [1, 2, 3]}, "o2": {"x": null, "L": ["1", "2", "3"]}},
+      "input": {
+        "o1": {
+          "x": null,
+          "L": [
+            1,
+            2,
+            3
+          ]
+        },
+        "o2": {
+          "x": null,
+          "L": [
+            "1",
+            "2",
+            "3"
+          ]
+        }
+      },
       "expected": false,
-      "tags": ["sample", "primitive-type"]
+      "tags": [
+        "sample",
+        "primitive-type"
+      ]
     },
     {
       "id": "sample-booleans",
       "name": "sample: different booleans",
       "kind": "sample",
       "visible": true,
-      "input": {"o1": true, "o2": false},
+      "input": {
+        "o1": true,
+        "o2": false
+      },
       "expected": false,
-      "tags": ["sample", "booleans"]
+      "tags": [
+        "sample",
+        "booleans"
+      ]
     },
     {
       "id": "trial-array-object-distinction",
       "name": "trial: array differs from numeric-key object",
       "kind": "trial",
       "visible": true,
-      "input": {"o1": {"0": 1}, "o2": [1]},
+      "input": {
+        "o1": {
+          "0": 1
+        },
+        "o2": [
+          1
+        ]
+      },
       "expected": false,
-      "tags": ["trial", "array-versus-object"]
+      "tags": [
+        "trial",
+        "array-versus-object"
+      ]
     },
     {
       "id": "trial-null-equality",
       "name": "trial: null equals null",
       "kind": "trial",
       "visible": true,
-      "input": {"o1": null, "o2": null},
+      "input": {
+        "o1": null,
+        "o2": null
+      },
       "expected": true,
-      "tags": ["trial", "null"]
+      "tags": [
+        "trial",
+        "null"
+      ]
     },
     {
-      "id": "real-null-object-mismatch",
-      "name": "real: null differs from empty object",
-      "kind": "real",
-      "visible": false,
-      "input": {"o1": null, "o2": {}},
+      "id": "trial-null-object-mismatch",
+      "name": "null differs from empty object",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "o1": null,
+        "o2": {}
+      },
       "expected": false,
-      "tags": ["real", "null", "object"]
+      "tags": [
+        "real",
+        "null",
+        "object"
+      ]
     },
     {
-      "id": "real-different-key-sets",
-      "name": "real: equal key counts but different keys",
-      "kind": "real",
-      "visible": false,
-      "input": {"o1": {"a": 1, "b": 2}, "o2": {"a": 1, "c": 2}},
+      "id": "trial-different-key-sets",
+      "name": "equal key counts but different keys",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "o1": {
+          "a": 1,
+          "b": 2
+        },
+        "o2": {
+          "a": 1,
+          "c": 2
+        }
+      },
       "expected": false,
-      "tags": ["real", "key-membership"]
+      "tags": [
+        "real",
+        "key-membership"
+      ]
     },
     {
-      "id": "real-array-order",
-      "name": "real: array order is significant",
-      "kind": "real",
-      "visible": false,
-      "input": {"o1": {"items": [1, {"v": 2}, 3]}, "o2": {"items": [1, 3, {"v": 2}]}},
+      "id": "trial-array-order",
+      "name": "array order is significant",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "o1": {
+          "items": [
+            1,
+            {
+              "v": 2
+            },
+            3
+          ]
+        },
+        "o2": {
+          "items": [
+            1,
+            3,
+            {
+              "v": 2
+            }
+          ]
+        }
+      },
       "expected": false,
-      "tags": ["real", "array-order", "nested"]
+      "tags": [
+        "real",
+        "array-order",
+        "nested"
+      ]
     },
     {
-      "id": "real-empty-structures",
-      "name": "real: matching empty structures",
-      "kind": "real",
-      "visible": false,
-      "input": {"o1": {"array": [], "object": {}}, "o2": {"object": {}, "array": []}},
+      "id": "trial-empty-structures",
+      "name": "matching empty structures",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "o1": {
+          "array": [],
+          "object": {}
+        },
+        "o2": {
+          "object": {},
+          "array": []
+        }
+      },
       "expected": true,
-      "tags": ["real", "empty-structures", "key-order"]
+      "tags": [
+        "real",
+        "empty-structures",
+        "key-order"
+      ]
     }
   ]
 }

@@ -105,10 +105,10 @@
       ]
     },
     {
-      "id": "real-first-pair-fails",
-      "name": "real: violation occurs immediately",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-first-pair-fails",
+      "name": "violation occurs immediately",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -124,10 +124,10 @@
       ]
     },
     {
-      "id": "real-last-pair-fails",
-      "name": "real: violation occurs at final pair",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-last-pair-fails",
+      "name": "violation occurs at final pair",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -144,10 +144,10 @@
       ]
     },
     {
-      "id": "real-long-alternating",
-      "name": "real: long alternating sequence",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-long-alternating",
+      "name": "long alternating sequence",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -259,10 +259,10 @@
       ]
     },
     {
-      "id": "real-all-odd",
-      "name": "real: all values are odd",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-odd",
+      "name": "all values are odd",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -279,10 +279,10 @@
       ]
     },
     {
-      "id": "real-all-even",
-      "name": "real: all values are even",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-even",
+      "name": "all values are even",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -299,10 +299,10 @@
       ]
     },
     {
-      "id": "real-repeated-one",
-      "name": "real: equal adjacent values fail",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-one",
+      "name": "equal adjacent values fail",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

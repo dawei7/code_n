@@ -94,10 +94,10 @@
       ]
     },
     {
-      "id": "real-two-elements",
-      "name": "hidden: each element is the other side's sum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-elements",
+      "name": "each element is the other side's sum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -109,16 +109,15 @@
         1
       ],
       "tags": [
-        "hidden",
         "two-elements",
         "maximum-value"
       ]
     },
     {
-      "id": "real-symmetric",
-      "name": "hidden: symmetric outer values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-symmetric",
+      "name": "symmetric outer values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000,
@@ -132,15 +131,14 @@
         100001
       ],
       "tags": [
-        "hidden",
         "symmetric"
       ]
     },
     {
-      "id": "real-increasing",
-      "name": "hidden: increasing values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-increasing",
+      "name": "increasing values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -162,15 +160,14 @@
         21
       ],
       "tags": [
-        "hidden",
         "increasing"
       ]
     },
     {
-      "id": "real-decreasing",
-      "name": "hidden: decreasing values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-decreasing",
+      "name": "decreasing values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9,
@@ -196,15 +193,14 @@
         44
       ],
       "tags": [
-        "hidden",
         "decreasing"
       ]
     },
     {
-      "id": "real-alternating-magnitudes",
-      "name": "hidden: alternating small and large values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alternating-magnitudes",
+      "name": "alternating small and large values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -224,7 +220,6 @@
         200005
       ],
       "tags": [
-        "hidden",
         "magnitude"
       ]
     }

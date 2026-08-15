@@ -6,63 +6,144 @@
       "name": "sample: two increments follow one decrement",
       "kind": "sample",
       "visible": true,
-      "input": {"operations": ["--X", "X++", "X++"]},
+      "input": {
+        "operations": [
+          "--X",
+          "X++",
+          "X++"
+        ]
+      },
       "expected": 1,
-      "tags": ["sample", "mixed"]
+      "tags": [
+        "sample",
+        "mixed"
+      ]
     },
     {
       "id": "sample-all-increments",
       "name": "sample: all statements increment",
       "kind": "sample",
       "visible": true,
-      "input": {"operations": ["++X", "++X", "X++"]},
+      "input": {
+        "operations": [
+          "++X",
+          "++X",
+          "X++"
+        ]
+      },
       "expected": 3,
-      "tags": ["sample", "positive"]
+      "tags": [
+        "sample",
+        "positive"
+      ]
     },
     {
       "id": "sample-balanced",
       "name": "sample: prefix and postfix forms cancel",
       "kind": "sample",
       "visible": true,
-      "input": {"operations": ["X++", "++X", "--X", "X--"]},
+      "input": {
+        "operations": [
+          "X++",
+          "++X",
+          "--X",
+          "X--"
+        ]
+      },
       "expected": 0,
-      "tags": ["sample", "balanced"]
+      "tags": [
+        "sample",
+        "balanced"
+      ]
     },
     {
       "id": "trial-single-prefix-decrement",
       "name": "one prefix decrement returns negative one",
       "kind": "trial",
       "visible": true,
-      "input": {"operations": ["--X"]},
+      "input": {
+        "operations": [
+          "--X"
+        ]
+      },
       "expected": -1,
-      "tags": ["minimum-length", "negative"]
+      "tags": [
+        "minimum-length",
+        "negative"
+      ]
     },
     {
       "id": "trial-postfix-decrements",
       "name": "postfix decrements have the same signed effect",
       "kind": "trial",
       "visible": true,
-      "input": {"operations": ["X--", "X--", "X++"]},
+      "input": {
+        "operations": [
+          "X--",
+          "X--",
+          "X++"
+        ]
+      },
       "expected": -1,
-      "tags": ["postfix", "negative"]
+      "tags": [
+        "postfix",
+        "negative"
+      ]
     },
     {
-      "id": "real-all-four-forms",
-      "name": "hidden: every literal operation form is represented",
-      "kind": "real",
-      "visible": false,
-      "input": {"operations": ["++X", "X++", "--X", "X--", "++X"]},
+      "id": "trial-all-four-forms",
+      "name": "every literal operation form is represented",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "++X",
+          "X++",
+          "--X",
+          "X--",
+          "++X"
+        ]
+      },
       "expected": 1,
-      "tags": ["hidden", "all-forms"]
+      "tags": [
+        "all-forms"
+      ]
     },
     {
-      "id": "real-order-independent-total",
-      "name": "hidden: separated sign blocks still sum correctly",
-      "kind": "real",
-      "visible": false,
-      "input": {"operations": ["--X", "X--", "--X", "++X", "X++"]},
+      "id": "trial-order-independent-total",
+      "name": "separated sign blocks still sum correctly",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "--X",
+          "X--",
+          "--X",
+          "++X",
+          "X++"
+        ]
+      },
       "expected": -1,
-      "tags": ["hidden", "ordering"]
+      "tags": [
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "identical elements in operations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "--X",
+          "--X"
+        ]
+      },
+      "expected": -2,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

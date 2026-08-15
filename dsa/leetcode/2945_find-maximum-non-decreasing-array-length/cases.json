@@ -106,10 +106,10 @@
       ]
     },
     {
-      "id": "real-large-leading-value",
-      "name": "hidden: a dominant first value forces one block",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-leading-value",
+      "name": "a dominant first value forces one block",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10,
@@ -121,15 +121,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "leading-value"
       ]
     },
     {
-      "id": "real-alternating",
-      "name": "hidden: alternating low and high values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alternating",
+      "name": "alternating low and high values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -142,15 +141,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
     {
-      "id": "real-several-valid-partitions",
-      "name": "hidden: choose boundaries globally",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-several-valid-partitions",
+      "name": "choose boundaries globally",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -163,15 +161,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "partition-choice"
       ]
     },
     {
-      "id": "real-long-decreasing-tail",
-      "name": "hidden: increasing prefix followed by a decreasing tail",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-long-decreasing-tail",
+      "name": "increasing prefix followed by a decreasing tail",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -185,7 +182,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "mixed-order"
       ]
     }

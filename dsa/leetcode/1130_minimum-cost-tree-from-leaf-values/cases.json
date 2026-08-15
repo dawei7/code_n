@@ -96,10 +96,10 @@
       ]
     },
     {
-      "id": "real-all-equal",
-      "name": "hidden: all leaf values equal",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-equal",
+      "name": "all leaf values equal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           5,
@@ -115,10 +115,10 @@
       ]
     },
     {
-      "id": "real-small-between-large",
-      "name": "hidden: small leaves between equal maxima",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-small-between-large",
+      "name": "small leaves between equal maxima",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           15,
@@ -134,10 +134,10 @@
       ]
     },
     {
-      "id": "real-value-bounds",
-      "name": "hidden: minimum and maximum leaf values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-value-bounds",
+      "name": "minimum and maximum leaf values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -154,10 +154,10 @@
       ]
     },
     {
-      "id": "real-zigzag",
-      "name": "hidden: repeated rises and falls",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zigzag",
+      "name": "repeated rises and falls",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           9,

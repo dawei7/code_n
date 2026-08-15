@@ -173,10 +173,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: four nodes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "four nodes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4
       },
@@ -185,15 +185,14 @@
         "kind": "forest_roots"
       },
       "tags": [
-        "hidden",
         "impossible-even"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: nine nodes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "nine nodes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 9
       },
@@ -413,15 +412,14 @@
         "kind": "forest_roots"
       },
       "tags": [
-        "hidden",
         "fourteen-shapes"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: eight nodes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "eight nodes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 8
       },
@@ -430,15 +428,14 @@
         "kind": "forest_roots"
       },
       "tags": [
-        "hidden",
         "impossible-even"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: maximum even node count",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "maximum even node count",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 20
       },
@@ -447,16 +444,15 @@
         "kind": "forest_roots"
       },
       "tags": [
-        "hidden",
         "maximum",
         "impossible-even"
       ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: ten nodes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-5",
+      "name": "ten nodes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 10
       },
@@ -465,7 +461,6 @@
         "kind": "forest_roots"
       },
       "tags": [
-        "hidden",
         "impossible-even"
       ]
     }

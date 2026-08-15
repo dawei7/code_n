@@ -71,10 +71,10 @@
       ]
     },
     {
-      "id": "real-zero-removals",
-      "name": "hidden: preserve every distinct value when k is zero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zero-removals",
+      "name": "preserve every distinct value when k is zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           7,
@@ -88,16 +88,15 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "boundary",
         "k-zero"
       ]
     },
     {
-      "id": "real-remove-all",
-      "name": "hidden: remove the entire array",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-remove-all",
+      "name": "remove the entire array",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           4,
@@ -110,16 +109,15 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "boundary",
         "empty-result"
       ]
     },
     {
-      "id": "real-partial-next-frequency",
-      "name": "hidden: leftover budget cannot eliminate next value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-partial-next-frequency",
+      "name": "leftover budget cannot eliminate next value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -136,15 +134,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "partial-final-frequency"
       ]
     },
     {
-      "id": "real-equal-frequencies",
-      "name": "hidden: ties among elimination costs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-equal-frequencies",
+      "name": "ties among elimination costs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -160,15 +157,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "ties"
       ]
     },
     {
-      "id": "real-all-unique",
-      "name": "hidden: every removal eliminates one value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-unique",
+      "name": "every removal eliminates one value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           10,
@@ -181,15 +177,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "all-unique"
       ]
     },
     {
-      "id": "real-one-distinct-partial",
-      "name": "hidden: partial removal of the only value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-distinct-partial",
+      "name": "partial removal of the only value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           6,
@@ -201,16 +196,15 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "one-distinct",
         "partial-final-frequency"
       ]
     },
     {
-      "id": "real-one-element-remove",
-      "name": "hidden: one element removed",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-element-remove",
+      "name": "one element removed",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1000000000
@@ -219,7 +213,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "boundary",
         "maximum-value"
       ]

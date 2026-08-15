@@ -7,180 +7,321 @@
       "name": "sample: three of six compositions have even product",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 5, "k": 3},
+      "input": {
+        "n": 5,
+        "k": 3
+      },
       "expected": 3,
-      "tags": ["sample", "mixed-parity"]
+      "tags": [
+        "sample",
+        "mixed-parity"
+      ]
     },
     {
       "id": "sample-both-orders-valid",
       "name": "sample: both ordered pairs have even product",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 3, "k": 2},
+      "input": {
+        "n": 3,
+        "k": 2
+      },
       "expected": 2,
-      "tags": ["sample", "order"]
+      "tags": [
+        "sample",
+        "order"
+      ]
     },
     {
       "id": "sample-all-ones",
       "name": "sample: the forced all-ones sequence is invalid",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 5, "k": 5},
+      "input": {
+        "n": 5,
+        "k": 5
+      },
       "expected": 0,
-      "tags": ["sample", "all-odd"]
+      "tags": [
+        "sample",
+        "all-odd"
+      ]
     },
     {
       "id": "trial-minimum-contract",
       "name": "trial: one is an odd singleton",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1, "k": 1},
+      "input": {
+        "n": 1,
+        "k": 1
+      },
       "expected": 0,
-      "tags": ["trial", "minimum"]
+      "tags": [
+        "trial",
+        "minimum"
+      ]
     },
     {
       "id": "trial-even-singleton",
       "name": "trial: an even singleton is valid",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 2, "k": 1},
+      "input": {
+        "n": 2,
+        "k": 1
+      },
       "expected": 1,
-      "tags": ["trial", "singleton"]
+      "tags": [
+        "trial",
+        "singleton"
+      ]
     },
     {
       "id": "trial-two-ones",
       "name": "trial: two ones have odd product",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 2, "k": 2},
+      "input": {
+        "n": 2,
+        "k": 2
+      },
       "expected": 0,
-      "tags": ["trial", "all-ones"]
+      "tags": [
+        "trial",
+        "all-ones"
+      ]
     },
     {
       "id": "trial-odd-singleton",
       "name": "trial: an odd singleton is invalid",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 3, "k": 1},
+      "input": {
+        "n": 3,
+        "k": 1
+      },
       "expected": 0,
-      "tags": ["trial", "singleton"]
+      "tags": [
+        "trial",
+        "singleton"
+      ]
     },
     {
       "id": "trial-four-singleton",
       "name": "trial: a larger even singleton remains unique",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 4, "k": 1},
+      "input": {
+        "n": 4,
+        "k": 1
+      },
       "expected": 1,
-      "tags": ["trial", "singleton"]
+      "tags": [
+        "trial",
+        "singleton"
+      ]
     },
     {
       "id": "trial-one-even-pair",
       "name": "trial: only the middle ordered pair is valid",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 4, "k": 2},
+      "input": {
+        "n": 4,
+        "k": 2
+      },
       "expected": 1,
-      "tags": ["trial", "complement"]
+      "tags": [
+        "trial",
+        "complement"
+      ]
     },
     {
       "id": "trial-each-placement-of-two",
       "name": "trial: the even value can occupy any position",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 4, "k": 3},
+      "input": {
+        "n": 4,
+        "k": 3
+      },
       "expected": 3,
-      "tags": ["trial", "order"]
+      "tags": [
+        "trial",
+        "order"
+      ]
     },
     {
-      "id": "real-even-sum-pairs",
-      "name": "hidden: subtract three all-odd pairs",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 6, "k": 2},
+      "id": "trial-even-sum-pairs",
+      "name": "subtract three all-odd pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "k": 2
+      },
       "expected": 2,
-      "tags": ["hidden", "all-odd-complement"]
+      "tags": [
+        "all-odd-complement"
+      ]
     },
     {
-      "id": "real-parity-precludes-all-odd",
-      "name": "hidden: parity makes every composition valid",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 6, "k": 3},
+      "id": "trial-parity-precludes-all-odd",
+      "name": "parity makes every composition valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "k": 3
+      },
       "expected": 10,
-      "tags": ["hidden", "parity"]
+      "tags": [
+        "parity"
+      ]
     },
     {
-      "id": "real-nine-of-fifteen",
-      "name": "hidden: mixed complement with three positions",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 7, "k": 3},
+      "id": "trial-nine-of-fifteen",
+      "name": "mixed complement with three positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 7,
+        "k": 3
+      },
       "expected": 9,
-      "tags": ["hidden", "complement"]
+      "tags": [
+        "complement"
+      ]
     },
     {
-      "id": "real-four-positions",
-      "name": "hidden: four-position stars-and-bars subtraction",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 10, "k": 4},
+      "id": "trial-four-positions",
+      "name": "four-position stars-and-bars subtraction",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 10,
+        "k": 4
+      },
       "expected": 64,
-      "tags": ["hidden", "binomial"]
+      "tags": [
+        "binomial"
+      ]
     },
     {
-      "id": "real-every-composition-valid",
-      "name": "hidden: odd n-k removes the complement",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 10, "k": 5},
+      "id": "trial-every-composition-valid",
+      "name": "odd n-k removes the complement",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 10,
+        "k": 5
+      },
       "expected": 126,
-      "tags": ["hidden", "parity"]
+      "tags": [
+        "parity"
+      ]
     },
     {
-      "id": "real-medium-binomial",
-      "name": "hidden: subtract a nontrivial all-odd count",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 20, "k": 10},
+      "id": "trial-medium-binomial",
+      "name": "subtract a nontrivial all-odd count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 20,
+        "k": 10
+      },
       "expected": 90376,
-      "tags": ["hidden", "binomial"]
+      "tags": [
+        "binomial"
+      ]
     },
     {
-      "id": "real-large-even-singleton",
-      "name": "hidden: a large even singleton is valid",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 100, "k": 1},
+      "id": "trial-large-even-singleton",
+      "name": "a large even singleton is valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 100,
+        "k": 1
+      },
       "expected": 1,
-      "tags": ["hidden", "singleton"]
+      "tags": [
+        "singleton"
+      ]
     },
     {
-      "id": "real-large-all-ones",
-      "name": "hidden: a long forced all-ones sequence is invalid",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 100, "k": 100},
+      "id": "trial-large-all-ones",
+      "name": "a long forced all-ones sequence is invalid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 100,
+        "k": 100
+      },
       "expected": 0,
-      "tags": ["hidden", "all-ones"]
+      "tags": [
+        "all-ones"
+      ]
     },
     {
-      "id": "real-modulo-reduction",
-      "name": "hidden: a large count requires modular reduction",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 100, "k": 50},
+      "id": "trial-modulo-reduction",
+      "name": "a large count requires modular reduction",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 100,
+        "k": 50
+      },
       "expected": 750118547,
-      "tags": ["hidden", "modulo"]
+      "tags": [
+        "modulo"
+      ]
     },
     {
-      "id": "real-near-all-ones",
-      "name": "hidden: one extra unit can occupy any position",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 99, "k": 98},
+      "id": "trial-near-all-ones",
+      "name": "one extra unit can occupy any position",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 99,
+        "k": 98
+      },
       "expected": 98,
-      "tags": ["hidden", "near-all-ones", "order"]
+      "tags": [
+        "near-all-ones",
+        "order"
+      ]
+    },
+    {
+      "id": "trial-boundary-21",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "k": 3
+      },
+      "expected": 923277569,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-22",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
     }
   ]
 }

@@ -146,10 +146,10 @@
       "expected": 10
     },
     {
-      "id": "real-separated-hits",
-      "name": "hidden: valid region after an early forbidden hit",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-separated-hits",
+      "name": "valid region after an early forbidden hit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "xabcde",
         "forbidden": [
@@ -157,16 +157,15 @@
         ]
       },
       "tags": [
-        "hidden",
         "boundary-update"
       ],
       "expected": 4
     },
     {
-      "id": "real-mixed-patterns",
-      "name": "hidden: several forbidden lengths and positions",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-patterns",
+      "name": "several forbidden lengths and positions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "abcdeffedcba",
         "forbidden": [
@@ -176,10 +175,45 @@
         ]
       },
       "tags": [
-        "hidden",
         "mixed"
       ],
       "expected": 5
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "c",
+        "forbidden": [
+          "aaa",
+          "cb"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "ccc",
+        "forbidden": [
+          "aaa",
+          "cb"
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
     }
   ]
 }

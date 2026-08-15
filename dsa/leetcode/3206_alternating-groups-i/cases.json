@@ -112,10 +112,10 @@
       ]
     },
     {
-      "id": "real-boundary-center-zero",
-      "name": "real: index zero is counted through circular neighbors",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-boundary-center-zero",
+      "name": "index zero is counted through circular neighbors",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "colors": [
           1,
@@ -131,10 +131,10 @@
       ]
     },
     {
-      "id": "real-boundary-final-center",
-      "name": "real: the final index uses index zero as its right neighbor",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-boundary-final-center",
+      "name": "the final index uses index zero as its right neighbor",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "colors": [
           0,
@@ -150,10 +150,10 @@
       ]
     },
     {
-      "id": "real-odd-near-alternation",
-      "name": "real: an odd cycle has a single broken boundary",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-odd-near-alternation",
+      "name": "an odd cycle has a single broken boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "colors": [
           0,
@@ -169,10 +169,10 @@
       ]
     },
     {
-      "id": "real-two-color-runs",
-      "name": "real: run boundaries alone do not make the middle alternate",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-color-runs",
+      "name": "run boundaries alone do not make the middle alternate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "colors": [
           0,
@@ -191,10 +191,10 @@
       ]
     },
     {
-      "id": "real-multiple-isolated-tiles",
-      "name": "real: isolated tiles of both colors are counted",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-isolated-tiles",
+      "name": "isolated tiles of both colors are counted",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "colors": [
           0,
@@ -213,10 +213,10 @@
       ]
     },
     {
-      "id": "real-long-mixed-circle",
-      "name": "real: mixed internal and boundary groups are all checked",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-long-mixed-circle",
+      "name": "mixed internal and boundary groups are all checked",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "colors": [
           1,
@@ -235,6 +235,39 @@
       "tags": [
         "mixed",
         "wraparound"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in colors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "colors": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in colors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "colors": [
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

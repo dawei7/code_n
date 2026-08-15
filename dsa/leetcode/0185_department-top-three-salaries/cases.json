@@ -272,10 +272,10 @@
       }
     },
     {
-      "id": "real-short-department",
-      "name": "hidden: department with two salary levels",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-short-department",
+      "name": "department with two salary levels",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Employee": [
@@ -320,7 +320,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "short-partition"
       ],
       "validator": {

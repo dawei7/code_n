@@ -7,110 +7,194 @@
       "name": "sample: every prefix and suffix of 23 is prime",
       "kind": "sample",
       "visible": true,
-      "input": {"num": 23},
+      "input": {
+        "num": 23
+      },
       "expected": true,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "two-digits", "complete-prime"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "two-digits",
+        "complete-prime"
+      ]
     },
     {
       "id": "sample-39",
       "name": "sample: 39 has nonprime prefixes and suffixes",
       "kind": "sample",
       "visible": true,
-      "input": {"num": 39},
+      "input": {
+        "num": 39
+      },
       "expected": false,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "composite-whole", "nonprime-suffix"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "composite-whole",
+        "nonprime-suffix"
+      ]
     },
     {
       "id": "sample-7",
       "name": "sample: the single-digit prime 7 qualifies",
       "kind": "sample",
       "visible": true,
-      "input": {"num": 7},
+      "input": {
+        "num": 7
+      },
       "expected": true,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "single-digit", "prime"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "single-digit",
+        "prime"
+      ]
     },
     {
       "id": "trial-lower-bound-one",
       "name": "trial: one is not prime",
       "kind": "trial",
       "visible": true,
-      "input": {"num": 1},
+      "input": {
+        "num": 1
+      },
       "expected": false,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "lower-bound", "nonprime"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "lower-bound",
+        "nonprime"
+      ]
     },
     {
       "id": "trial-smallest-prime",
       "name": "trial: the single-digit prime 2 qualifies",
       "kind": "trial",
       "visible": true,
-      "input": {"num": 2},
+      "input": {
+        "num": 2
+      },
       "expected": true,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "single-digit", "smallest-prime"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-digit",
+        "smallest-prime"
+      ]
     },
     {
       "id": "trial-single-digit-composite",
       "name": "trial: a single-digit composite does not qualify",
       "kind": "trial",
       "visible": true,
-      "input": {"num": 4},
+      "input": {
+        "num": 4
+      },
       "expected": false,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "single-digit", "composite"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-digit",
+        "composite"
+      ]
     },
     {
       "id": "trial-complete-37",
       "name": "trial: 37 has prime prefixes and suffixes",
       "kind": "trial",
       "visible": true,
-      "input": {"num": 37},
+      "input": {
+        "num": 37
+      },
       "expected": true,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "two-digits", "complete-prime"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "two-digits",
+        "complete-prime"
+      ]
     },
     {
-      "id": "real-prime-prefixes-bad-suffix",
-      "name": "hidden: 233 has prime prefixes but suffix 33 is composite",
-      "kind": "real",
-      "visible": false,
-      "input": {"num": 233},
+      "id": "trial-prime-prefixes-bad-suffix",
+      "name": "233 has prime prefixes but suffix 33 is composite",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 233
+      },
       "expected": false,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "suffix-required", "prime-whole"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "suffix-required",
+        "prime-whole"
+      ]
     },
     {
-      "id": "real-four-digit-complete",
-      "name": "hidden: every truncation of 3797 is prime",
-      "kind": "real",
-      "visible": false,
-      "input": {"num": 3797},
+      "id": "trial-four-digit-complete",
+      "name": "every truncation of 3797 is prime",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 3797
+      },
       "expected": true,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "four-digits", "complete-prime"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "four-digits",
+        "complete-prime"
+      ]
     },
     {
-      "id": "real-prime-whole-leading-one",
-      "name": "hidden: a prime whole number still fails when prefix 1 appears",
-      "kind": "real",
-      "visible": false,
-      "input": {"num": 1000003},
+      "id": "trial-prime-whole-leading-one",
+      "name": "a prime whole number still fails when prefix 1 appears",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 1000003
+      },
       "expected": false,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "prefix-required", "prime-whole"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "prefix-required",
+        "prime-whole"
+      ]
     },
     {
-      "id": "real-upper-bound",
-      "name": "hidden: the upper bound is composite and ends in zero",
-      "kind": "real",
-      "visible": false,
-      "input": {"num": 1000000000},
+      "id": "trial-upper-bound",
+      "name": "the upper bound is composite and ends in zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 1000000000
+      },
       "expected": false,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "upper-bound", "trailing-zero"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "upper-bound",
+        "trailing-zero"
+      ]
     }
   ]
 }

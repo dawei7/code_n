@@ -8,11 +8,53 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "operations": ["Encrypter", "encrypt", "decrypt"],
-        "arguments": [[["a", "b", "c", "d"], ["ei", "zf", "ei", "am"], ["abcd", "acbd", "adbc", "badc", "dacb", "cadb", "cbda", "abad"]], ["abcd"], ["eizfeiam"]]
+        "operations": [
+          "Encrypter",
+          "encrypt",
+          "decrypt"
+        ],
+        "arguments": [
+          [
+            [
+              "a",
+              "b",
+              "c",
+              "d"
+            ],
+            [
+              "ei",
+              "zf",
+              "ei",
+              "am"
+            ],
+            [
+              "abcd",
+              "acbd",
+              "adbc",
+              "badc",
+              "dacb",
+              "cadb",
+              "cbda",
+              "abad"
+            ]
+          ],
+          [
+            "abcd"
+          ],
+          [
+            "eizfeiam"
+          ]
+        ]
       },
-      "expected": [null, "eizfeiam", 2],
-      "tags": ["sample", "collision"]
+      "expected": [
+        null,
+        "eizfeiam",
+        2
+      ],
+      "tags": [
+        "sample",
+        "collision"
+      ]
     },
     {
       "id": "trial-single-key",
@@ -20,11 +62,46 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "operations": ["Encrypter", "encrypt", "decrypt", "decrypt"],
-        "arguments": [[["a"], ["xy"], ["a", "aa"]], ["aa"], ["xy"], ["xyxy"]]
+        "operations": [
+          "Encrypter",
+          "encrypt",
+          "decrypt",
+          "decrypt"
+        ],
+        "arguments": [
+          [
+            [
+              "a"
+            ],
+            [
+              "xy"
+            ],
+            [
+              "a",
+              "aa"
+            ]
+          ],
+          [
+            "aa"
+          ],
+          [
+            "xy"
+          ],
+          [
+            "xyxy"
+          ]
+        ]
       },
-      "expected": [null, "xyxy", 1, 1],
-      "tags": ["single-key", "different-lengths"]
+      "expected": [
+        null,
+        "xyxy",
+        1,
+        1
+      ],
+      "tags": [
+        "single-key",
+        "different-lengths"
+      ]
     },
     {
       "id": "trial-total-collision",
@@ -32,11 +109,44 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "operations": ["Encrypter", "decrypt", "decrypt"],
-        "arguments": [[["a", "b"], ["zz", "zz"], ["a", "b", "ab"]], ["zz"], ["zzzz"]]
+        "operations": [
+          "Encrypter",
+          "decrypt",
+          "decrypt"
+        ],
+        "arguments": [
+          [
+            [
+              "a",
+              "b"
+            ],
+            [
+              "zz",
+              "zz"
+            ],
+            [
+              "a",
+              "b",
+              "ab"
+            ]
+          ],
+          [
+            "zz"
+          ],
+          [
+            "zzzz"
+          ]
+        ]
       },
-      "expected": [null, 2, 1],
-      "tags": ["collision", "frequency"]
+      "expected": [
+        null,
+        2,
+        1
+      ],
+      "tags": [
+        "collision",
+        "frequency"
+      ]
     },
     {
       "id": "trial-unknown-ciphertext",
@@ -44,59 +154,222 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "operations": ["Encrypter", "decrypt"],
-        "arguments": [[["a", "b"], ["aa", "bb"], ["a", "ab"]], ["aabb"]]
+        "operations": [
+          "Encrypter",
+          "decrypt"
+        ],
+        "arguments": [
+          [
+            [
+              "a",
+              "b"
+            ],
+            [
+              "aa",
+              "bb"
+            ],
+            [
+              "a",
+              "ab"
+            ]
+          ],
+          [
+            "aabb"
+          ]
+        ]
       },
-      "expected": [null, 1],
-      "tags": ["lookup"]
+      "expected": [
+        null,
+        1
+      ],
+      "tags": [
+        "lookup"
+      ]
     },
     {
-      "id": "real-unmapped-dictionary-word",
-      "name": "hidden: dictionary words with unmapped characters are excluded",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unmapped-dictionary-word",
+      "name": "dictionary words with unmapped characters are excluded",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["Encrypter", "decrypt", "encrypt"],
-        "arguments": [[["a"], ["pq"], ["a", "b", "aa"]], ["pq"], ["aa"]]
+        "operations": [
+          "Encrypter",
+          "decrypt",
+          "encrypt"
+        ],
+        "arguments": [
+          [
+            [
+              "a"
+            ],
+            [
+              "pq"
+            ],
+            [
+              "a",
+              "b",
+              "aa"
+            ]
+          ],
+          [
+            "pq"
+          ],
+          [
+            "aa"
+          ]
+        ]
       },
-      "expected": [null, 1, "pqpq"],
-      "tags": ["hidden", "unmapped-dictionary"]
+      "expected": [
+        null,
+        1,
+        "pqpq"
+      ],
+      "tags": [
+        "unmapped-dictionary"
+      ]
     },
     {
-      "id": "real-repeated-queries",
-      "name": "hidden: repeated decryptions preserve frequency counts",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-queries",
+      "name": "repeated decryptions preserve frequency counts",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["Encrypter", "decrypt", "decrypt", "decrypt"],
-        "arguments": [[["a", "b", "c"], ["hi", "jk", "hi"], ["a", "c", "ac", "ca"]], ["hi"], ["hi"], ["hihi"]]
+        "operations": [
+          "Encrypter",
+          "decrypt",
+          "decrypt",
+          "decrypt"
+        ],
+        "arguments": [
+          [
+            [
+              "a",
+              "b",
+              "c"
+            ],
+            [
+              "hi",
+              "jk",
+              "hi"
+            ],
+            [
+              "a",
+              "c",
+              "ac",
+              "ca"
+            ]
+          ],
+          [
+            "hi"
+          ],
+          [
+            "hi"
+          ],
+          [
+            "hihi"
+          ]
+        ]
       },
-      "expected": [null, 2, 2, 2],
-      "tags": ["hidden", "query-stability"]
+      "expected": [
+        null,
+        2,
+        2,
+        2
+      ],
+      "tags": [
+        "query-stability"
+      ]
     },
     {
-      "id": "real-order-sensitive",
-      "name": "hidden: concatenation preserves plaintext character order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-order-sensitive",
+      "name": "concatenation preserves plaintext character order",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["Encrypter", "encrypt", "encrypt", "decrypt", "decrypt"],
-        "arguments": [[["a", "b"], ["ab", "cd"], ["ab", "ba"]], ["ab"], ["ba"], ["abcd"], ["cdab"]]
+        "operations": [
+          "Encrypter",
+          "encrypt",
+          "encrypt",
+          "decrypt",
+          "decrypt"
+        ],
+        "arguments": [
+          [
+            [
+              "a",
+              "b"
+            ],
+            [
+              "ab",
+              "cd"
+            ],
+            [
+              "ab",
+              "ba"
+            ]
+          ],
+          [
+            "ab"
+          ],
+          [
+            "ba"
+          ],
+          [
+            "abcd"
+          ],
+          [
+            "cdab"
+          ]
+        ]
       },
-      "expected": [null, "abcd", "cdab", 1, 1],
-      "tags": ["hidden", "order"]
+      "expected": [
+        null,
+        "abcd",
+        "cdab",
+        1,
+        1
+      ],
+      "tags": [
+        "order"
+      ]
     },
     {
-      "id": "real-zero-match",
-      "name": "hidden: syntactically valid blocks can have no dictionary match",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zero-match",
+      "name": "syntactically valid blocks can have no dictionary match",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["Encrypter", "decrypt"],
-        "arguments": [[["x", "y"], ["mn", "op"], ["x", "xy"]], ["opop"]]
+        "operations": [
+          "Encrypter",
+          "decrypt"
+        ],
+        "arguments": [
+          [
+            [
+              "x",
+              "y"
+            ],
+            [
+              "mn",
+              "op"
+            ],
+            [
+              "x",
+              "xy"
+            ]
+          ],
+          [
+            "opop"
+          ]
+        ]
       },
-      "expected": [null, 0],
-      "tags": ["hidden", "zero-match"]
+      "expected": [
+        null,
+        0
+      ],
+      "tags": [
+        "zero-match"
+      ]
     }
   ]
 }

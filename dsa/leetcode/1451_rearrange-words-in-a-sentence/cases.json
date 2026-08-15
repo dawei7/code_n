@@ -87,32 +87,58 @@
       ]
     },
     {
-      "id": "real-shortest-ties",
-      "name": "hidden: shortest tied words follow original order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-shortest-ties",
+      "name": "shortest tied words follow original order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "text": "Three one two six"
       },
       "expected": "One two six three",
       "tags": [
-        "hidden",
         "stable-ties"
       ]
     },
     {
-      "id": "real-repeated-words",
-      "name": "hidden: repeated words remain separate entries",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-words",
+      "name": "repeated words remain separate entries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "text": "Longer a bb a ccc bb"
       },
       "expected": "A a bb bb ccc longer",
       "tags": [
-        "hidden",
         "duplicates",
         "capitalization"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in text",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "text": "L"
+      },
+      "expected": "L",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in text",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "text": "LLL"
+      },
+      "expected": "Lll",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

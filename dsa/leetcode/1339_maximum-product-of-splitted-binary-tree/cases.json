@@ -105,10 +105,10 @@
       ]
     },
     {
-      "id": "hidden-large-modulo",
-      "name": "hidden: maximize before applying modulo",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-modulo",
+      "name": "maximize before applying modulo",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           10000,
@@ -154,15 +154,14 @@
       },
       "expected": 999999937,
       "tags": [
-        "hidden",
         "modulo"
       ]
     },
     {
-      "id": "hidden-asymmetric",
-      "name": "hidden: best edge is not adjacent to root",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-asymmetric",
+      "name": "best edge is not adjacent to root",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           10,
@@ -176,7 +175,6 @@
       },
       "expected": 280,
       "tags": [
-        "hidden",
         "asymmetric"
       ]
     }

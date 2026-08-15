@@ -97,10 +97,10 @@
       ]
     },
     {
-      "id": "real-single-nontiring",
-      "name": "hidden: one non-tiring day",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-nontiring",
+      "name": "one non-tiring day",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "hours": [
           0
@@ -113,10 +113,10 @@
       ]
     },
     {
-      "id": "real-middle",
-      "name": "hidden: longest interval begins after index zero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-middle",
+      "name": "longest interval begins after index zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "hours": [
           6,
@@ -135,10 +135,10 @@
       ]
     },
     {
-      "id": "real-late-recovery",
-      "name": "hidden: late tiring run overcomes prefix deficit",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-late-recovery",
+      "name": "late tiring run overcomes prefix deficit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "hours": [
           6,
@@ -157,10 +157,10 @@
       ]
     },
     {
-      "id": "real-hour-bounds",
-      "name": "hidden: lower and upper hour bounds",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-hour-bounds",
+      "name": "lower and upper hour bounds",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "hours": [
           0,
@@ -175,6 +175,23 @@
       "tags": [
         "real",
         "bounds"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in hours",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "hours": [
+          9,
+          9
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

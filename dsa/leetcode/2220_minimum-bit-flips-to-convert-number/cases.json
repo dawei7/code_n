@@ -2,13 +2,149 @@
   "schema_version": 1,
   "challenge_id": "lc_2220",
   "cases": [
-    {"id":"sample-ten-to-seven","name":"sample: three positions differ","kind":"sample","visible":true,"input":{"start":10,"goal":7},"expected":3,"tags":["sample","multiple-bits"]},
-    {"id":"sample-three-to-four","name":"sample: all three displayed positions differ","kind":"sample","visible":true,"input":{"start":3,"goal":4},"expected":3,"tags":["sample","leading-position"]},
-    {"id":"trial-alternating","name":"opposite six-bit patterns differ everywhere","kind":"trial","visible":true,"input":{"start":42,"goal":21},"expected":6,"tags":["alternating-bits"]},
-    {"id":"trial-equal","name":"equal values need no flips","kind":"trial","visible":true,"input":{"start":123456,"goal":123456},"expected":0,"tags":["equal-values"]},
-    {"id":"real-zero-to-one","name":"hidden: one low bit differs from zero","kind":"real","visible":false,"input":{"start":0,"goal":1},"expected":1,"tags":["hidden","zero"]},
-    {"id":"real-leading-bit","name":"hidden: an implicit leading zero becomes one","kind":"real","visible":false,"input":{"start":0,"goal":8},"expected":1,"tags":["hidden","leading-zero"]},
-    {"id":"real-four-differences","name":"hidden: complementary low four bits","kind":"real","visible":false,"input":{"start":5,"goal":10},"expected":4,"tags":["hidden","complementary-bits"]},
-    {"id":"real-upper-bound","name":"hidden: upper legal magnitude uses thirty positions","kind":"real","visible":false,"input":{"start":0,"goal":1000000000},"expected":13,"tags":["hidden","upper-bound"]}
+    {
+      "id": "sample-ten-to-seven",
+      "name": "sample: three positions differ",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "start": 10,
+        "goal": 7
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "multiple-bits"
+      ]
+    },
+    {
+      "id": "sample-three-to-four",
+      "name": "sample: all three displayed positions differ",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "start": 3,
+        "goal": 4
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "leading-position"
+      ]
+    },
+    {
+      "id": "trial-alternating",
+      "name": "opposite six-bit patterns differ everywhere",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": 42,
+        "goal": 21
+      },
+      "expected": 6,
+      "tags": [
+        "alternating-bits"
+      ]
+    },
+    {
+      "id": "trial-equal",
+      "name": "equal values need no flips",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": 123456,
+        "goal": 123456
+      },
+      "expected": 0,
+      "tags": [
+        "equal-values"
+      ]
+    },
+    {
+      "id": "trial-zero-to-one",
+      "name": "one low bit differs from zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": 0,
+        "goal": 1
+      },
+      "expected": 1,
+      "tags": [
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-leading-bit",
+      "name": "an implicit leading zero becomes one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": 0,
+        "goal": 8
+      },
+      "expected": 1,
+      "tags": [
+        "leading-zero"
+      ]
+    },
+    {
+      "id": "trial-four-differences",
+      "name": "complementary low four bits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": 5,
+        "goal": 10
+      },
+      "expected": 4,
+      "tags": [
+        "complementary-bits"
+      ]
+    },
+    {
+      "id": "trial-upper-bound",
+      "name": "upper legal magnitude uses thirty positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": 0,
+        "goal": 1000000000
+      },
+      "expected": 13,
+      "tags": [
+        "upper-bound"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value start=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": 1,
+        "goal": 7
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value goal=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": 10,
+        "goal": 1
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    }
   ]
 }

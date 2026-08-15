@@ -98,10 +98,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: mixed signs and duplicates",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "mixed signs and duplicates",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -10,
@@ -114,15 +114,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "mixed-values"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: alternating high and low values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "alternating high and low values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100,
@@ -135,15 +134,14 @@
       },
       "expected": 103,
       "tags": [
-        "hidden",
         "mixed-values"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: consecutive values around zero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-3",
+      "name": "consecutive values around zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -1,
@@ -154,10 +152,41 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "mixed-values"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]
 }
-

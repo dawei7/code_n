@@ -1,17 +1,285 @@
 {
   "challenge_id": "lc_3424",
   "cases": [
-    {"id":"sample-rearrange-cheaper","name":"sample: rearrangement is cheaper","kind":"sample","visible":true,"input":{"arr":[-7,9,5],"brr":[7,-2,-5],"k":2},"expected":13,"tags":["sample","rearrangement"]},
-    {"id":"sample-already-equal","name":"sample: arrays already equal","kind":"sample","visible":true,"input":{"arr":[2,1],"brr":[2,1],"k":0},"expected":0,"tags":["sample","zero-cost"]},
-    {"id":"trial-direct-cheaper","name":"trial: fixed fee makes direct adjustment cheaper","kind":"trial","visible":true,"input":{"arr":[1,100,2],"brr":[1,2,100],"k":1000},"expected":196,"tags":["trial","direct"]},
-    {"id":"trial-free-rearrangement","name":"trial: free rearrangement of equal multisets","kind":"trial","visible":true,"input":{"arr":[4,1,3,2],"brr":[1,2,3,4],"k":0},"expected":0,"tags":["trial","permutation"]},
-    {"id":"real-single-element","name":"real: one element","kind":"real","visible":false,"input":{"arr":[-100000],"brr":[100000],"k":0},"expected":200000,"tags":["boundary"]},
-    {"id":"real-duplicates","name":"real: duplicates and negative values","kind":"real","visible":false,"input":{"arr":[5,-1,5,10,-3,2],"brr":[-3,5,2,5,10,-1],"k":4},"expected":4,"tags":["duplicates","negative"]},
-    {"id":"real-direct-zero","name":"real: identical arrays with positive fee","kind":"real","visible":false,"input":{"arr":[-5,0,8],"brr":[-5,0,8],"k":99},"expected":0,"tags":["zero-cost"]},
-    {"id":"real-tied-strategies","name":"real: direct and rearranged totals tie","kind":"real","visible":false,"input":{"arr":[1,4],"brr":[2,3],"k":0},"expected":2,"tags":["tie"]},
-    {"id":"real-order-matters","name":"real: sorting eliminates crossed distance","kind":"real","visible":false,"input":{"arr":[10,-10],"brr":[-9,9],"k":3},"expected":5,"tags":["sorting"]},
-    {"id":"real-large-k","name":"real: maximum fixed fee is ignored","kind":"real","visible":false,"input":{"arr":[0,5,-5],"brr":[1,4,-4],"k":20000000000},"expected":3,"tags":["large-k"]},
-    {"id":"real-wide-values","name":"real: values at both bounds","kind":"real","visible":false,"input":{"arr":[-100000,100000],"brr":[100000,-100000],"k":1},"expected":1,"tags":["bounds"]},
-    {"id":"real-rearrange-and-adjust","name":"real: rearrangement still needs adjustments","kind":"real","visible":false,"input":{"arr":[8,1,6,3],"brr":[2,4,7,9],"k":5},"expected":9,"tags":["rearrangement","adjustment"]}
+    {
+      "id": "sample-rearrange-cheaper",
+      "name": "sample: rearrangement is cheaper",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          -7,
+          9,
+          5
+        ],
+        "brr": [
+          7,
+          -2,
+          -5
+        ],
+        "k": 2
+      },
+      "expected": 13,
+      "tags": [
+        "sample",
+        "rearrangement"
+      ]
+    },
+    {
+      "id": "sample-already-equal",
+      "name": "sample: arrays already equal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          2,
+          1
+        ],
+        "brr": [
+          2,
+          1
+        ],
+        "k": 0
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "zero-cost"
+      ]
+    },
+    {
+      "id": "trial-direct-cheaper",
+      "name": "trial: fixed fee makes direct adjustment cheaper",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          100,
+          2
+        ],
+        "brr": [
+          1,
+          2,
+          100
+        ],
+        "k": 1000
+      },
+      "expected": 196,
+      "tags": [
+        "trial",
+        "direct"
+      ]
+    },
+    {
+      "id": "trial-free-rearrangement",
+      "name": "trial: free rearrangement of equal multisets",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          4,
+          1,
+          3,
+          2
+        ],
+        "brr": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "k": 0
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "permutation"
+      ]
+    },
+    {
+      "id": "trial-single-element",
+      "name": "one element",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          -100000
+        ],
+        "brr": [
+          100000
+        ],
+        "k": 0
+      },
+      "expected": 200000,
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "duplicates and negative values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          5,
+          -1,
+          5,
+          10,
+          -3,
+          2
+        ],
+        "brr": [
+          -3,
+          5,
+          2,
+          5,
+          10,
+          -1
+        ],
+        "k": 4
+      },
+      "expected": 4,
+      "tags": [
+        "duplicates",
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-direct-zero",
+      "name": "identical arrays with positive fee",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          -5,
+          0,
+          8
+        ],
+        "brr": [
+          -5,
+          0,
+          8
+        ],
+        "k": 99
+      },
+      "expected": 0,
+      "tags": [
+        "zero-cost"
+      ]
+    },
+    {
+      "id": "trial-tied-strategies",
+      "name": "direct and rearranged totals tie",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          4
+        ],
+        "brr": [
+          2,
+          3
+        ],
+        "k": 0
+      },
+      "expected": 2,
+      "tags": [
+        "tie"
+      ]
+    },
+    {
+      "id": "trial-order-matters",
+      "name": "sorting eliminates crossed distance",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          10,
+          -10
+        ],
+        "brr": [
+          -9,
+          9
+        ],
+        "k": 3
+      },
+      "expected": 5,
+      "tags": [
+        "sorting"
+      ]
+    },
+    {
+      "id": "trial-large-k",
+      "name": "maximum fixed fee is ignored",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          0,
+          5,
+          -5
+        ],
+        "brr": [
+          1,
+          4,
+          -4
+        ],
+        "k": 20000000000
+      },
+      "expected": 3,
+      "tags": [
+        "large-k"
+      ]
+    },
+    {
+      "id": "trial-wide-values",
+      "name": "values at both bounds",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          -100000,
+          100000
+        ],
+        "brr": [
+          100000,
+          -100000
+        ],
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "bounds"
+      ]
+    },
+    {
+      "id": "trial-rearrange-and-adjust",
+      "name": "rearrangement still needs adjustments",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          8,
+          1,
+          6,
+          3
+        ],
+        "brr": [
+          2,
+          4,
+          7,
+          9
+        ],
+        "k": 5
+      },
+      "expected": 9,
+      "tags": [
+        "rearrangement",
+        "adjustment"
+      ]
+    }
   ]
 }

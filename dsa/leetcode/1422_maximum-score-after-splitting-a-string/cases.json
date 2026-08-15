@@ -72,30 +72,28 @@
       ]
     },
     {
-      "id": "real-late-boundary",
-      "name": "hidden: best split is near the end",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-late-boundary",
+      "name": "best split is near the end",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "01000"
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "late"
       ]
     },
     {
-      "id": "real-maximum",
-      "name": "hidden: maximum-length all-zero string",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum",
+      "name": "maximum-length all-zero string",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
       },
       "expected": 499,
       "tags": [
-        "hidden",
         "maximum"
       ]
     }

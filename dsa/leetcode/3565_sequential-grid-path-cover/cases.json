@@ -7,60 +7,277 @@
       "name": "sample: cover six cells while visiting 1 then 2",
       "kind": "sample",
       "visible": true,
-      "input": {"grid":[[0,0,0],[0,1,2]],"k":2},
-      "expected": [[0,0],[1,0],[1,1],[1,2],[0,2],[0,1]],
-      "validator": {"kind":"sequential_grid_path_cover"},
-      "tags": ["sample","multiple-valid-answers","zero-start"]
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            2
+          ]
+        ],
+        "k": 2
+      },
+      "expected": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "validator": {
+        "kind": "sequential_grid_path_cover"
+      },
+      "tags": [
+        "sample",
+        "multiple-valid-answers",
+        "zero-start"
+      ]
     },
     {
       "id": "sample-impossible-order",
       "name": "sample: checkpoint order makes every cover impossible",
       "kind": "sample",
       "visible": true,
-      "input": {"grid":[[1,0,4],[3,0,2]],"k":4},
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            4
+          ],
+          [
+            3,
+            0,
+            2
+          ]
+        ],
+        "k": 4
+      },
       "expected": [],
-      "validator": {"kind":"sequential_grid_path_cover"},
-      "tags": ["sample","impossible","checkpoint-order"]
+      "validator": {
+        "kind": "sequential_grid_path_cover"
+      },
+      "tags": [
+        "sample",
+        "impossible",
+        "checkpoint-order"
+      ]
     },
     {
       "id": "trial-single-cell",
       "name": "trial: the only cell is checkpoint one",
       "kind": "trial",
       "visible": true,
-      "input": {"grid":[[1]],"k":1},
-      "expected": [[0,0]],
-      "validator": {"kind":"sequential_grid_path_cover"},
-      "tags": ["trial","single-cell"]
+      "input": {
+        "grid": [
+          [
+            1
+          ]
+        ],
+        "k": 1
+      },
+      "expected": [
+        [
+          0,
+          0
+        ]
+      ],
+      "validator": {
+        "kind": "sequential_grid_path_cover"
+      },
+      "tags": [
+        "trial",
+        "single-cell"
+      ]
     },
     {
       "id": "trial-one-row",
       "name": "trial: checkpoints occur along the unique row cover",
       "kind": "trial",
       "visible": true,
-      "input": {"grid":[[1,0,2,0,3]],"k":3},
-      "expected": [[0,0],[0,1],[0,2],[0,3],[0,4]],
-      "validator": {"kind":"sequential_grid_path_cover"},
-      "tags": ["trial","one-row","forced-path"]
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            2,
+            0,
+            3
+          ]
+        ],
+        "k": 3
+      },
+      "expected": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "validator": {
+        "kind": "sequential_grid_path_cover"
+      },
+      "tags": [
+        "trial",
+        "one-row",
+        "forced-path"
+      ]
     },
     {
-      "id": "real-zero-before-one",
-      "name": "real: a zero cell may precede checkpoint one",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid":[[0,2],[1,0]],"k":2},
-      "expected": [[0,0],[1,0],[1,1],[0,1]],
-      "validator": {"kind":"sequential_grid_path_cover"},
-      "tags": ["real","zero-start","ordered-checkpoints"]
+      "id": "trial-zero-before-one",
+      "name": "a zero cell may precede checkpoint one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "k": 2
+      },
+      "expected": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "validator": {
+        "kind": "sequential_grid_path_cover"
+      },
+      "tags": [
+        "real",
+        "zero-start",
+        "ordered-checkpoints"
+      ]
     },
     {
-      "id": "real-three-by-three-snake",
-      "name": "real: checkpoints constrain a full three-by-three snake",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid":[[0,2,0],[1,0,0],[0,0,3]],"k":3},
-      "expected": [[0,0],[1,0],[2,0],[2,1],[1,1],[0,1],[0,2],[1,2],[2,2]],
-      "validator": {"kind":"sequential_grid_path_cover"},
-      "tags": ["real","square-grid","snake-cover"]
+      "id": "trial-three-by-three-snake",
+      "name": "checkpoints constrain a full three-by-three snake",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            3
+          ]
+        ],
+        "k": 3
+      },
+      "expected": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "validator": {
+        "kind": "sequential_grid_path_cover"
+      },
+      "tags": [
+        "real",
+        "square-grid",
+        "snake-cover"
+      ]
     }
   ]
 }

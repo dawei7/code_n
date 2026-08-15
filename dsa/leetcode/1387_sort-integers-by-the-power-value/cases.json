@@ -83,10 +83,10 @@
       ]
     },
     {
-      "id": "hidden-upper",
-      "name": "hidden: interval reaches upper bound",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-upper",
+      "name": "interval reaches upper bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "lo": 900,
         "hi": 1000,
@@ -94,15 +94,14 @@
       },
       "expected": 954,
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     },
     {
-      "id": "hidden-last-rank",
-      "name": "hidden: request final sorted position",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-last-rank",
+      "name": "request final sorted position",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "lo": 20,
         "hi": 30,
@@ -110,7 +109,6 @@
       },
       "expected": 27,
       "tags": [
-        "hidden",
         "last-rank"
       ]
     }

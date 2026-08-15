@@ -143,10 +143,10 @@
       ]
     },
     {
-      "id": "hidden-none",
-      "name": "hidden: no lucky value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-none",
+      "name": "no lucky value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [
@@ -163,15 +163,14 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "empty"
       ]
     },
     {
-      "id": "hidden-middle",
-      "name": "hidden: lucky value in middle column",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-middle",
+      "name": "lucky value in middle column",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [
@@ -195,7 +194,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "middle"
       ]
     }

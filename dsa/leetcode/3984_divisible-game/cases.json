@@ -6,171 +6,336 @@
       "name": "sample: the best range contains three even values",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 4, 6, 8]},
+      "input": {
+        "nums": [
+          1,
+          4,
+          6,
+          8
+        ]
+      },
       "expected": 36,
-      "tags": ["sample", "all-divisible", "smallest-k"]
+      "tags": [
+        "sample",
+        "all-divisible",
+        "smallest-k"
+      ]
     },
     {
       "id": "sample-one-bob-value",
       "name": "sample: one middle value contributes to Bob",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 1, 2]},
+      "input": {
+        "nums": [
+          2,
+          1,
+          2
+        ]
+      },
       "expected": 6,
-      "tags": ["sample", "signed-range", "bridge"]
+      "tags": [
+        "sample",
+        "signed-range",
+        "bridge"
+      ]
     },
     {
       "id": "sample-negative-modulo",
       "name": "sample: a singleton one yields a negative product",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1]},
+      "input": {
+        "nums": [
+          1
+        ]
+      },
       "expected": 1000000005,
-      "tags": ["sample", "negative-difference", "modulo"]
+      "tags": [
+        "sample",
+        "negative-difference",
+        "modulo"
+      ]
     },
     {
       "id": "trial-single-even",
       "name": "trial: the smallest even value selects two",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2]},
+      "input": {
+        "nums": [
+          2
+        ]
+      },
       "expected": 4,
-      "tags": ["trial", "singleton", "minimum-value"]
+      "tags": [
+        "trial",
+        "singleton",
+        "minimum-value"
+      ]
     },
     {
       "id": "trial-single-prime",
       "name": "trial: an odd prime selects itself",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [3]},
+      "input": {
+        "nums": [
+          3
+        ]
+      },
       "expected": 9,
-      "tags": ["trial", "singleton", "prime"]
+      "tags": [
+        "trial",
+        "singleton",
+        "prime"
+      ]
     },
     {
       "id": "trial-two-ones",
       "name": "trial: a nonempty range chooses only one negative value",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 1]},
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
       "expected": 1000000005,
-      "tags": ["trial", "all-negative", "nonempty-range"]
+      "tags": [
+        "trial",
+        "all-negative",
+        "nonempty-range"
+      ]
     },
     {
       "id": "trial-factor-tie",
       "name": "trial: equal factor scores choose the smallest prime",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [6]},
+      "input": {
+        "nums": [
+          6
+        ]
+      },
       "expected": 12,
-      "tags": ["trial", "tie-break", "multiple-prime-factors"]
+      "tags": [
+        "trial",
+        "tie-break",
+        "multiple-prime-factors"
+      ]
     },
     {
       "id": "trial-larger-prime-score",
       "name": "trial: the larger value produces the larger difference",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 3]},
+      "input": {
+        "nums": [
+          2,
+          3
+        ]
+      },
       "expected": 9,
-      "tags": ["trial", "prime-candidates", "singleton-range"]
+      "tags": [
+        "trial",
+        "prime-candidates",
+        "singleton-range"
+      ]
     },
     {
       "id": "trial-shared-five",
       "name": "trial: a shared prime joins adjacent values",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5, 10]},
+      "input": {
+        "nums": [
+          5,
+          10
+        ]
+      },
       "expected": 75,
-      "tags": ["trial", "shared-factor", "full-range"]
+      "tags": [
+        "trial",
+        "shared-factor",
+        "full-range"
+      ]
     },
     {
-      "id": "real-kadane-restart",
-      "name": "hidden: the best factor discards an adverse prefix",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [6, 10, 15]},
+      "id": "trial-kadane-restart",
+      "name": "the best factor discards an adverse prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          10,
+          15
+        ]
+      },
       "expected": 125,
-      "tags": ["hidden", "kadane-restart", "prime-five"]
+      "tags": [
+        "kadane-restart",
+        "prime-five"
+      ]
     },
     {
-      "id": "real-bridge-small-penalty",
-      "name": "hidden: two divisible values absorb a small penalty",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [7, 1, 7]},
+      "id": "trial-bridge-small-penalty",
+      "name": "two divisible values absorb a small penalty",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          1,
+          7
+        ]
+      },
       "expected": 91,
-      "tags": ["hidden", "bridge", "prime-seven"]
+      "tags": [
+        "bridge",
+        "prime-seven"
+      ]
     },
     {
-      "id": "real-middle-singleton",
-      "name": "hidden: the middle singleton beats the even endpoints",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [8, 9, 8]},
+      "id": "trial-middle-singleton",
+      "name": "the middle singleton beats the even endpoints",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          9,
+          8
+        ]
+      },
       "expected": 27,
-      "tags": ["hidden", "singleton-range", "candidate-comparison"]
+      "tags": [
+        "singleton-range",
+        "candidate-comparison"
+      ]
     },
     {
-      "id": "real-disjoint-primes",
-      "name": "hidden: disjoint prime factors favor the larger value",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [4, 9]},
+      "id": "trial-disjoint-primes",
+      "name": "disjoint prime factors favor the larger value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          9
+        ]
+      },
       "expected": 27,
-      "tags": ["hidden", "disjoint-factors", "prime-three"]
+      "tags": [
+        "disjoint-factors",
+        "prime-three"
+      ]
     },
     {
-      "id": "real-reset-around-even",
-      "name": "hidden: the only even value forms the best range",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 1]},
+      "id": "trial-reset-around-even",
+      "name": "the only even value forms the best range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1
+        ]
+      },
       "expected": 4,
-      "tags": ["hidden", "kadane-restart", "even"]
+      "tags": [
+        "kadane-restart",
+        "even"
+      ]
     },
     {
-      "id": "real-three-factor-tie",
-      "name": "hidden: three prime factors tie on one full range",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [30, 7, 30]},
+      "id": "trial-three-factor-tie",
+      "name": "three prime factors tie on one full range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          30,
+          7,
+          30
+        ]
+      },
       "expected": 106,
-      "tags": ["hidden", "tie-break", "composite-values"]
+      "tags": [
+        "tie-break",
+        "composite-values"
+      ]
     },
     {
-      "id": "real-distinct-odd-factors",
-      "name": "hidden: a repeated square factor spans the full range",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [49, 25, 49]},
+      "id": "trial-distinct-odd-factors",
+      "name": "a repeated square factor spans the full range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          49,
+          25,
+          49
+        ]
+      },
       "expected": 511,
-      "tags": ["hidden", "prime-powers", "full-range"]
+      "tags": [
+        "prime-powers",
+        "full-range"
+      ]
     },
     {
-      "id": "real-large-composite-bridge",
-      "name": "hidden: a small penalty stays inside a large divisible run",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [999999, 1, 999999]},
+      "id": "trial-large-composite-bridge",
+      "name": "a small penalty stays inside a large divisible run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          999999,
+          1,
+          999999
+        ]
+      },
       "expected": 5999991,
-      "tags": ["hidden", "large-values", "bridge"]
+      "tags": [
+        "large-values",
+        "bridge"
+      ]
     },
     {
-      "id": "real-largest-prime-singleton",
-      "name": "hidden: a large prime exercises the product modulus",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [999983]},
+      "id": "trial-largest-prime-singleton",
+      "name": "a large prime exercises the product modulus",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          999983
+        ]
+      },
       "expected": 965993296,
-      "tags": ["hidden", "large-prime", "modulo"]
+      "tags": [
+        "large-prime",
+        "modulo"
+      ]
     },
     {
-      "id": "real-maximum-value-composite",
-      "name": "hidden: the maximum value ties on two and five",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000000]},
+      "id": "trial-maximum-value-composite",
+      "name": "the maximum value ties on two and five",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000
+        ]
+      },
       "expected": 2000000,
-      "tags": ["hidden", "maximum-value", "smallest-k"]
+      "tags": [
+        "maximum-value",
+        "smallest-k"
+      ]
     }
   ]
 }

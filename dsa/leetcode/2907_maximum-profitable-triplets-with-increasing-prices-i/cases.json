@@ -133,10 +133,10 @@
       ]
     },
     {
-      "id": "real-best-left-and-right-depend-on-middle",
-      "name": "hidden: each middle requires its own compatible side maxima",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-best-left-and-right-depend-on-middle",
+      "name": "each middle requires its own compatible side maxima",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           3,
@@ -155,15 +155,14 @@
       },
       "expected": 74,
       "tags": [
-        "hidden",
         "side-maxima"
       ]
     },
     {
-      "id": "real-three-items-with-duplicate-price",
-      "name": "hidden: a length-three array fails when one strict inequality is false",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-items-with-duplicate-price",
+      "name": "a length-three array fails when one strict inequality is false",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           1,
@@ -178,16 +177,15 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "minimum-length",
         "duplicate-prices"
       ]
     },
     {
-      "id": "real-profit-upper-bound",
-      "name": "hidden: the maximum legal profits sum without overflow concerns",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-profit-upper-bound",
+      "name": "the maximum legal profits sum without overflow concerns",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           1,
@@ -202,10 +200,30 @@
       },
       "expected": 3000000,
       "tags": [
-        "hidden",
         "profit-boundary"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in profits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          10,
+          2,
+          3,
+          4
+        ],
+        "profits": [
+          100
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]
 }
-

@@ -187,10 +187,10 @@
       ]
     },
     {
-      "id": "real-two-rotation-classes",
-      "name": "hidden: four anagrams form two signature classes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-rotation-classes",
+      "name": "four anagrams form two signature classes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "abcd",
@@ -201,15 +201,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "multiple-groups"
       ]
     },
     {
-      "id": "real-swapped-parities",
-      "name": "hidden: swapping even and odd classes is not allowed",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-swapped-parities",
+      "name": "swapping even and odd classes is not allowed",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "abab",
@@ -218,16 +217,15 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "parity-trap",
         "periodic"
       ]
     },
     {
-      "id": "real-all-rotation-combinations",
-      "name": "hidden: all independent rotations share one signature",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-rotation-combinations",
+      "name": "all independent rotations share one signature",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "abcdefgh",
@@ -250,16 +248,15 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "all-rotations",
         "transitivity"
       ]
     },
     {
-      "id": "real-two-character-fixed",
-      "name": "hidden: parity sequences of length one cannot rotate",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-character-fixed",
+      "name": "parity sequences of length one cannot rotate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "ab",
@@ -269,15 +266,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "short-words"
       ]
     },
     {
-      "id": "real-three-character-even-rotation",
-      "name": "hidden: the two-character even sequence may rotate",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-character-even-rotation",
+      "name": "the two-character even sequence may rotate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "abc",
@@ -287,16 +283,15 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "odd-length",
         "mixed-groups"
       ]
     },
     {
-      "id": "real-three-odd-length-classes",
-      "name": "hidden: one equivalent pair and two distinct signatures",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-odd-length-classes",
+      "name": "one equivalent pair and two distinct signatures",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "abcde",
@@ -307,16 +302,15 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "odd-length",
         "mixed-groups"
       ]
     },
     {
-      "id": "real-repeated-characters-different-lengths",
-      "name": "hidden: repeated characters still retain component lengths",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-characters-different-lengths",
+      "name": "repeated characters still retain component lengths",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "aaaa",
@@ -326,16 +320,15 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "periodic",
         "different-lengths"
       ]
     },
     {
-      "id": "real-longer-equivalent-pair",
-      "name": "hidden: longer words and one distinct parity signature",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-longer-equivalent-pair",
+      "name": "longer words and one distinct parity signature",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "leetcode",
@@ -345,16 +338,15 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "longer",
         "mixed-groups"
       ]
     },
     {
-      "id": "real-three-distinct-signatures",
-      "name": "hidden: equal character multisets do not imply equivalence",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-distinct-signatures",
+      "name": "equal character multisets do not imply equivalence",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "azbycx",
@@ -364,16 +356,15 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "parity-trap",
         "anagrams"
       ]
     },
     {
-      "id": "real-periodic-duplicates",
-      "name": "hidden: periodic duplicate words collapse to two groups",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-periodic-duplicates",
+      "name": "periodic duplicate words collapse to two groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "aaaaaaaaaa",
@@ -384,8 +375,40 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "periodic",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-21",
+      "name": "single element in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "ntgwz"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-22",
+      "name": "identical elements in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "ntgwz",
+          "ntgwz"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
         "duplicates"
       ]
     }

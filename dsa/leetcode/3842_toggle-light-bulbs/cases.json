@@ -150,10 +150,10 @@
       ]
     },
     {
-      "id": "real-boundaries-cancel",
-      "name": "hidden: both boundary bulb numbers cancel",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-boundaries-cancel",
+      "name": "both boundary bulb numbers cancel",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "bulbs": [
           1,
@@ -167,16 +167,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "both-boundaries",
         "empty-output"
       ]
     },
     {
-      "id": "real-pairs-and-one-odd",
-      "name": "hidden: several even pairs and one odd occurrence",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-pairs-and-one-odd",
+      "name": "several even pairs and one odd occurrence",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "bulbs": [
           2,
@@ -195,16 +194,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "even-pairs",
         "one-odd"
       ]
     },
     {
-      "id": "real-center-survives",
-      "name": "hidden: boundary values cancel around a surviving middle bulb",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-center-survives",
+      "name": "boundary values cancel around a surviving middle bulb",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "bulbs": [
           100,
@@ -221,16 +219,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "boundary-values",
         "middle-value"
       ]
     },
     {
-      "id": "real-complete-domain",
-      "name": "hidden: every bulb number occurs exactly once",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-complete-domain",
+      "name": "every bulb number occurs exactly once",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "bulbs": [
           1,
@@ -441,16 +438,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-length",
         "complete-domain"
       ]
     },
     {
-      "id": "real-fifty-canceling-pairs",
-      "name": "hidden: maximum length contains fifty canceling pairs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-fifty-canceling-pairs",
+      "name": "maximum length contains fifty canceling pairs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "bulbs": [
           1,
@@ -560,16 +556,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-length",
         "all-even"
       ]
     },
     {
-      "id": "real-mixed-multiplicities",
-      "name": "hidden: odd and even multiplicities interleave",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-multiplicities",
+      "name": "odd and even multiplicities interleave",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "bulbs": [
           7,
@@ -594,9 +589,43 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "mixed-frequencies",
         "ascending-output"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in bulbs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "bulbs": [
+          10
+        ]
+      },
+      "expected": [
+        10
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in bulbs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "bulbs": [
+          10,
+          10
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

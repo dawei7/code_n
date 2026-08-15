@@ -7,72 +7,183 @@
       "name": "sample: mixed products",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [10,5,2,6], "k": 100},
+      "input": {
+        "nums": [
+          10,
+          5,
+          2,
+          6
+        ],
+        "k": 100
+      },
       "expected": 8,
-      "tags": ["sample", "sliding-window"]
+      "tags": [
+        "sample",
+        "sliding-window"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: nonpositive threshold",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1,2,3], "k": 0},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 0
+      },
       "expected": 0,
-      "tags": ["sample", "impossible-threshold"]
+      "tags": [
+        "sample",
+        "impossible-threshold"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: all subarrays qualify",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1,1,1], "k": 2},
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "k": 2
+      },
       "expected": 6,
-      "tags": ["sample", "all-valid"]
+      "tags": [
+        "sample",
+        "all-valid"
+      ]
     },
     {
       "id": "trial-1",
       "name": "trial: some longer products fail",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1,2,3], "k": 4},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 4
+      },
       "expected": 4,
-      "tags": ["trial", "strict-bound"]
+      "tags": [
+        "trial",
+        "strict-bound"
+      ]
     },
     {
       "id": "trial-2",
       "name": "trial: single value qualifies",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5], "k": 6},
+      "input": {
+        "nums": [
+          5
+        ],
+        "k": 6
+      },
       "expected": 1,
-      "tags": ["trial", "single-element"]
+      "tags": [
+        "trial",
+        "single-element"
+      ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: equality is rejected",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5], "k": 5},
+      "id": "trial-ext-1",
+      "name": "equality is rejected",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ],
+        "k": 5
+      },
       "expected": 0,
-      "tags": ["hidden", "strict"]
+      "tags": [
+        "strict"
+      ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: repeated shrinking",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [4,2,1,3], "k": 8},
+      "id": "trial-ext-2",
+      "name": "repeated shrinking",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          2,
+          1,
+          3
+        ],
+        "k": 8
+      },
       "expected": 7,
-      "tags": ["hidden", "window-shrink"]
+      "tags": [
+        "window-shrink"
+      ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: threshold one",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1,1,1,1], "k": 1},
+      "id": "trial-3",
+      "name": "threshold one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 1
+      },
       "expected": 0,
-      "tags": ["hidden", "boundary-threshold"]
+      "tags": [
+        "boundary-threshold"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10
+        ],
+        "k": 100
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          10
+        ],
+        "k": 100
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

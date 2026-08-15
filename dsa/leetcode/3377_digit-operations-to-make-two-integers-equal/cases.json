@@ -6,99 +6,162 @@
       "name": "sample: weighted route through two-digit composites",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 10, "m": 12},
+      "input": {
+        "n": 10,
+        "m": 12
+      },
       "expected": 85,
-      "tags": ["sample", "weighted-shortest-path"]
+      "tags": [
+        "sample",
+        "weighted-shortest-path"
+      ]
     },
     {
       "id": "sample-official-two",
       "name": "sample: disconnected one-digit states",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 4, "m": 8},
+      "input": {
+        "n": 4,
+        "m": 8
+      },
       "expected": -1,
-      "tags": ["sample", "unreachable"]
+      "tags": [
+        "sample",
+        "unreachable"
+      ]
     },
     {
       "id": "sample-official-three",
       "name": "sample: prime destination is forbidden",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 6, "m": 2},
+      "input": {
+        "n": 6,
+        "m": 2
+      },
       "expected": -1,
-      "tags": ["sample", "prime-destination"]
+      "tags": [
+        "sample",
+        "prime-destination"
+      ]
     },
     {
       "id": "trial-identity-one",
       "name": "trial: identity path counts the initial value",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1, "m": 1},
+      "input": {
+        "n": 1,
+        "m": 1
+      },
       "expected": 1,
-      "tags": ["identity", "one-is-not-prime"]
+      "tags": [
+        "identity",
+        "one-is-not-prime"
+      ]
     },
     {
       "id": "trial-single-step",
       "name": "trial: one legal operation counts both endpoints",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 25, "m": 26},
+      "input": {
+        "n": 25,
+        "m": 26
+      },
       "expected": 51,
-      "tags": ["single-operation", "cost-accounting"]
+      "tags": [
+        "single-operation",
+        "cost-accounting"
+      ]
     },
     {
       "id": "trial-prime-start",
       "name": "trial: prime initial value invalidates the route",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 11, "m": 12},
+      "input": {
+        "n": 11,
+        "m": 12
+      },
       "expected": -1,
-      "tags": ["prime-start", "boundary"]
+      "tags": [
+        "prime-start",
+        "boundary"
+      ]
     },
     {
-      "id": "real-prime-target",
-      "name": "hidden: prime destination invalidates the route",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 12, "m": 13},
+      "id": "trial-prime-target",
+      "name": "prime destination invalidates the route",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 12,
+        "m": 13
+      },
       "expected": -1,
-      "tags": ["hidden", "prime-destination"]
+      "tags": [
+        "prime-destination"
+      ]
     },
     {
-      "id": "real-weighted-detour",
-      "name": "hidden: cheapest weighted route is not fewest operations",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 22, "m": 88},
+      "id": "trial-weighted-detour",
+      "name": "cheapest weighted route is not fewest operations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 22,
+        "m": 88
+      },
       "expected": 629,
-      "tags": ["hidden", "dijkstra"]
+      "tags": [
+        "dijkstra"
+      ]
     },
     {
-      "id": "real-one-digit-prime-barrier",
-      "name": "hidden: prime states split the one-digit graph",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 8, "m": 1},
+      "id": "trial-one-digit-prime-barrier",
+      "name": "prime states split the one-digit graph",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 8,
+        "m": 1
+      },
       "expected": -1,
-      "tags": ["hidden", "unreachable"]
+      "tags": [
+        "unreachable"
+      ]
     },
     {
-      "id": "real-four-digit-width",
-      "name": "hidden: four-digit boundary keeps its full width",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 1000, "m": 1001},
+      "id": "trial-four-digit-width",
+      "name": "four-digit boundary keeps its full width",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000,
+        "m": 1001
+      },
       "expected": 2001,
-      "tags": ["hidden", "fixed-width", "four-digits"]
+      "tags": [
+        "fixed-width",
+        "four-digits"
+      ]
     },
     {
-      "id": "real-four-digit-mixed",
-      "name": "hidden: maximum-width identity path",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 9999, "m": 9999},
+      "id": "trial-four-digit-mixed",
+      "name": "maximum-width identity path",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 9999,
+        "m": 9999
+      },
       "expected": 9999,
-      "tags": ["hidden", "four-digits", "identity"]
+      "tags": [
+        "four-digits",
+        "identity"
+      ]
     }
   ]
 }

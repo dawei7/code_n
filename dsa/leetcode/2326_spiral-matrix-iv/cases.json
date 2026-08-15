@@ -2,12 +2,262 @@
   "schema_version": 1,
   "challenge_id": "lc_2326",
   "cases": [
-    {"id":"sample-partial-inner-layer","name":"sample: list ends inside the inner layer","kind":"sample","visible":true,"input":{"m":3,"n":5,"head":[3,0,2,6,8,1,7,9,4,2,5,5,0]},"expected":[[3,0,2,6,8],[5,0,-1,-1,1],[5,2,4,9,7]],"tags":["sample","partial"]},
-    {"id":"sample-single-row","name":"sample: single row ends with one unused cell","kind":"sample","visible":true,"input":{"m":1,"n":4,"head":[0,1,2]},"expected":[[0,1,2,-1]],"tags":["sample","single-row"]},
-    {"id":"trial-single-cell","name":"one node fills the only matrix cell","kind":"trial","visible":true,"input":{"m":1,"n":1,"head":[7]},"expected":[[7]],"tags":["boundary","single-cell"]},
-    {"id":"trial-full-two-by-two","name":"full two-by-two matrix turns along every side","kind":"trial","visible":true,"input":{"m":2,"n":2,"head":[1000,0,500,250]},"expected":[[1000,0],[250,500]],"tags":["full","boundary-values"]},
-    {"id":"trial-partial-column","name":"single column preserves unused tail cells","kind":"trial","visible":true,"input":{"m":4,"n":1,"head":[1,2,3]},"expected":[[1],[2],[3],[-1]],"tags":["single-column","partial"]},
-    {"id":"real-full-rectangle","name":"hidden: full rectangular matrix reaches an inner row","kind":"real","visible":false,"input":{"m":3,"n":4,"head":[0,1,2,3,4,5,6,7,8,9,10,11]},"expected":[[0,1,2,3],[9,10,11,4],[8,7,6,5]],"tags":["hidden","full","rectangle"]},
-    {"id":"real-tall-partial","name":"hidden: tall matrix stops on the returning bottom edge","kind":"real","visible":false,"input":{"m":4,"n":3,"head":[1,2,3,4,5,6,7]},"expected":[[1,2,3],[-1,-1,4],[-1,-1,5],[-1,7,6]],"tags":["hidden","partial","tall"]}
+    {
+      "id": "sample-partial-inner-layer",
+      "name": "sample: list ends inside the inner layer",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 3,
+        "n": 5,
+        "head": [
+          3,
+          0,
+          2,
+          6,
+          8,
+          1,
+          7,
+          9,
+          4,
+          2,
+          5,
+          5,
+          0
+        ]
+      },
+      "expected": [
+        [
+          3,
+          0,
+          2,
+          6,
+          8
+        ],
+        [
+          5,
+          0,
+          -1,
+          -1,
+          1
+        ],
+        [
+          5,
+          2,
+          4,
+          9,
+          7
+        ]
+      ],
+      "tags": [
+        "sample",
+        "partial"
+      ]
+    },
+    {
+      "id": "sample-single-row",
+      "name": "sample: single row ends with one unused cell",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 1,
+        "n": 4,
+        "head": [
+          0,
+          1,
+          2
+        ]
+      },
+      "expected": [
+        [
+          0,
+          1,
+          2,
+          -1
+        ]
+      ],
+      "tags": [
+        "sample",
+        "single-row"
+      ]
+    },
+    {
+      "id": "trial-single-cell",
+      "name": "one node fills the only matrix cell",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 1,
+        "n": 1,
+        "head": [
+          7
+        ]
+      },
+      "expected": [
+        [
+          7
+        ]
+      ],
+      "tags": [
+        "boundary",
+        "single-cell"
+      ]
+    },
+    {
+      "id": "trial-full-two-by-two",
+      "name": "full two-by-two matrix turns along every side",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 2,
+        "n": 2,
+        "head": [
+          1000,
+          0,
+          500,
+          250
+        ]
+      },
+      "expected": [
+        [
+          1000,
+          0
+        ],
+        [
+          250,
+          500
+        ]
+      ],
+      "tags": [
+        "full",
+        "boundary-values"
+      ]
+    },
+    {
+      "id": "trial-partial-column",
+      "name": "single column preserves unused tail cells",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 4,
+        "n": 1,
+        "head": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ],
+        [
+          -1
+        ]
+      ],
+      "tags": [
+        "single-column",
+        "partial"
+      ]
+    },
+    {
+      "id": "trial-full-rectangle",
+      "name": "full rectangular matrix reaches an inner row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 3,
+        "n": 4,
+        "head": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      "expected": [
+        [
+          0,
+          1,
+          2,
+          3
+        ],
+        [
+          9,
+          10,
+          11,
+          4
+        ],
+        [
+          8,
+          7,
+          6,
+          5
+        ]
+      ],
+      "tags": [
+        "full",
+        "rectangle"
+      ]
+    },
+    {
+      "id": "trial-tall-partial",
+      "name": "tall matrix stops on the returning bottom edge",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 4,
+        "n": 3,
+        "head": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "expected": [
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          -1,
+          -1,
+          4
+        ],
+        [
+          -1,
+          -1,
+          5
+        ],
+        [
+          -1,
+          7,
+          6
+        ]
+      ],
+      "tags": [
+        "partial",
+        "tall"
+      ]
+    }
   ]
 }

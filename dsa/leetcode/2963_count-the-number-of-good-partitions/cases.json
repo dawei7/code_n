@@ -118,10 +118,10 @@
       ]
     },
     {
-      "id": "real-nested-intervals",
-      "name": "real: nested intervals form a long prefix component",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-nested-intervals",
+      "name": "nested intervals form a long prefix component",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -136,15 +136,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "nested-intervals"
       ]
     },
     {
-      "id": "real-two-independent-pairs",
-      "name": "real: two repeated components",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-independent-pairs",
+      "name": "two repeated components",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -157,15 +156,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
     {
-      "id": "real-fully-interlocked",
-      "name": "real: all values belong to one interlocked component",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-fully-interlocked",
+      "name": "all values belong to one interlocked component",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -178,7 +176,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "single-component"
       ]
     }

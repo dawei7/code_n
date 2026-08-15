@@ -173,10 +173,10 @@
       ]
     },
     {
-      "id": "hidden-flat",
-      "name": "hidden: flat terrain",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-flat",
+      "name": "flat terrain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "heightMap": [
           [
@@ -201,15 +201,14 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "flat"
       ]
     },
     {
-      "id": "hidden-rectangular-basin",
-      "name": "hidden: rectangular basin with varied floor",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-rectangular-basin",
+      "name": "rectangular basin with varied floor",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "heightMap": [
           [
@@ -244,15 +243,14 @@
       },
       "expected": 16,
       "tags": [
-        "hidden",
         "rectangular"
       ]
     },
     {
-      "id": "hidden-low-side",
-      "name": "hidden: lower side controls water level",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-low-side",
+      "name": "lower side controls water level",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "heightMap": [
           [
@@ -283,7 +281,6 @@
       },
       "expected": 16,
       "tags": [
-        "hidden",
         "boundary-level"
       ]
     }

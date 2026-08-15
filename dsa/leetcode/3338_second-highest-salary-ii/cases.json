@@ -9,24 +9,88 @@
       "input": {
         "tables": {
           "employees": [
-            {"emp_id": 1, "salary": 70000, "dept": "Sales"},
-            {"emp_id": 2, "salary": 80000, "dept": "Sales"},
-            {"emp_id": 3, "salary": 80000, "dept": "Sales"},
-            {"emp_id": 4, "salary": 90000, "dept": "Sales"},
-            {"emp_id": 5, "salary": 55000, "dept": "IT"},
-            {"emp_id": 6, "salary": 65000, "dept": "IT"},
-            {"emp_id": 7, "salary": 65000, "dept": "IT"},
-            {"emp_id": 8, "salary": 50000, "dept": "Marketing"},
-            {"emp_id": 9, "salary": 55000, "dept": "Marketing"},
-            {"emp_id": 10, "salary": 55000, "dept": "HR"}
+            {
+              "emp_id": 1,
+              "salary": 70000,
+              "dept": "Sales"
+            },
+            {
+              "emp_id": 2,
+              "salary": 80000,
+              "dept": "Sales"
+            },
+            {
+              "emp_id": 3,
+              "salary": 80000,
+              "dept": "Sales"
+            },
+            {
+              "emp_id": 4,
+              "salary": 90000,
+              "dept": "Sales"
+            },
+            {
+              "emp_id": 5,
+              "salary": 55000,
+              "dept": "IT"
+            },
+            {
+              "emp_id": 6,
+              "salary": 65000,
+              "dept": "IT"
+            },
+            {
+              "emp_id": 7,
+              "salary": 65000,
+              "dept": "IT"
+            },
+            {
+              "emp_id": 8,
+              "salary": 50000,
+              "dept": "Marketing"
+            },
+            {
+              "emp_id": 9,
+              "salary": 55000,
+              "dept": "Marketing"
+            },
+            {
+              "emp_id": 10,
+              "salary": 55000,
+              "dept": "HR"
+            }
           ]
         }
       },
       "expected": {
-        "columns": ["emp_id", "dept"],
-        "rows": [[2, "Sales"], [3, "Sales"], [5, "IT"], [8, "Marketing"]]
+        "columns": [
+          "emp_id",
+          "dept"
+        ],
+        "rows": [
+          [
+            2,
+            "Sales"
+          ],
+          [
+            3,
+            "Sales"
+          ],
+          [
+            5,
+            "IT"
+          ],
+          [
+            8,
+            "Marketing"
+          ]
+        ]
       },
-      "tags": ["sample", "dense-rank", "ties"]
+      "tags": [
+        "sample",
+        "dense-rank",
+        "ties"
+      ]
     },
     {
       "id": "trial-one-employee",
@@ -36,12 +100,25 @@
       "input": {
         "tables": {
           "employees": [
-            {"emp_id": 1, "salary": 50000, "dept": "Legal"}
+            {
+              "emp_id": 1,
+              "salary": 50000,
+              "dept": "Legal"
+            }
           ]
         }
       },
-      "expected": {"columns": ["emp_id", "dept"], "rows": []},
-      "tags": ["single-row", "excluded"]
+      "expected": {
+        "columns": [
+          "emp_id",
+          "dept"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "single-row",
+        "excluded"
+      ]
     },
     {
       "id": "trial-one-distinct-salary",
@@ -51,14 +128,35 @@
       "input": {
         "tables": {
           "employees": [
-            {"emp_id": 3, "salary": 60000, "dept": "Support"},
-            {"emp_id": 1, "salary": 60000, "dept": "Support"},
-            {"emp_id": 2, "salary": 60000, "dept": "Support"}
+            {
+              "emp_id": 3,
+              "salary": 60000,
+              "dept": "Support"
+            },
+            {
+              "emp_id": 1,
+              "salary": 60000,
+              "dept": "Support"
+            },
+            {
+              "emp_id": 2,
+              "salary": 60000,
+              "dept": "Support"
+            }
           ]
         }
       },
-      "expected": {"columns": ["emp_id", "dept"], "rows": []},
-      "tags": ["duplicate-salaries", "distinct-rank"]
+      "expected": {
+        "columns": [
+          "emp_id",
+          "dept"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "duplicate-salaries",
+        "distinct-rank"
+      ]
     },
     {
       "id": "trial-ties-at-both-levels",
@@ -68,63 +166,171 @@
       "input": {
         "tables": {
           "employees": [
-            {"emp_id": 5, "salary": 90000, "dept": "Engineering"},
-            {"emp_id": 2, "salary": 100000, "dept": "Engineering"},
-            {"emp_id": 4, "salary": 90000, "dept": "Engineering"},
-            {"emp_id": 1, "salary": 100000, "dept": "Engineering"}
+            {
+              "emp_id": 5,
+              "salary": 90000,
+              "dept": "Engineering"
+            },
+            {
+              "emp_id": 2,
+              "salary": 100000,
+              "dept": "Engineering"
+            },
+            {
+              "emp_id": 4,
+              "salary": 90000,
+              "dept": "Engineering"
+            },
+            {
+              "emp_id": 1,
+              "salary": 100000,
+              "dept": "Engineering"
+            }
           ]
         }
       },
       "expected": {
-        "columns": ["emp_id", "dept"],
-        "rows": [[4, "Engineering"], [5, "Engineering"]]
+        "columns": [
+          "emp_id",
+          "dept"
+        ],
+        "rows": [
+          [
+            4,
+            "Engineering"
+          ],
+          [
+            5,
+            "Engineering"
+          ]
+        ]
       },
-      "tags": ["ties", "distinct-rank", "ordering"]
+      "tags": [
+        "ties",
+        "distinct-rank",
+        "ordering"
+      ]
     },
     {
-      "id": "real-independent-departments",
-      "name": "real: salary ranks restart independently by department",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-independent-departments",
+      "name": "salary ranks restart independently by department",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [
-            {"emp_id": 8, "salary": 300, "dept": "A"},
-            {"emp_id": 2, "salary": 200, "dept": "A"},
-            {"emp_id": 9, "salary": 100, "dept": "A"},
-            {"emp_id": 3, "salary": 900, "dept": "B"},
-            {"emp_id": 7, "salary": 700, "dept": "B"},
-            {"emp_id": 1, "salary": 500, "dept": "B"}
+            {
+              "emp_id": 8,
+              "salary": 300,
+              "dept": "A"
+            },
+            {
+              "emp_id": 2,
+              "salary": 200,
+              "dept": "A"
+            },
+            {
+              "emp_id": 9,
+              "salary": 100,
+              "dept": "A"
+            },
+            {
+              "emp_id": 3,
+              "salary": 900,
+              "dept": "B"
+            },
+            {
+              "emp_id": 7,
+              "salary": 700,
+              "dept": "B"
+            },
+            {
+              "emp_id": 1,
+              "salary": 500,
+              "dept": "B"
+            }
           ]
         }
       },
       "expected": {
-        "columns": ["emp_id", "dept"],
-        "rows": [[2, "A"], [7, "B"]]
+        "columns": [
+          "emp_id",
+          "dept"
+        ],
+        "rows": [
+          [
+            2,
+            "A"
+          ],
+          [
+            7,
+            "B"
+          ]
+        ]
       },
-      "tags": ["real", "partitioning", "global-order"]
+      "tags": [
+        "real",
+        "partitioning",
+        "global-order"
+      ]
     },
     {
-      "id": "real-three-levels-with-second-tie",
-      "name": "real: lower salary levels do not affect a tied second rank",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-levels-with-second-tie",
+      "name": "lower salary levels do not affect a tied second rank",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [
-            {"emp_id": 11, "salary": 10, "dept": "Ops"},
-            {"emp_id": 6, "salary": 30, "dept": "Ops"},
-            {"emp_id": 4, "salary": 20, "dept": "Ops"},
-            {"emp_id": 10, "salary": 20, "dept": "Ops"},
-            {"emp_id": 12, "salary": 5, "dept": "Solo"}
+            {
+              "emp_id": 11,
+              "salary": 10,
+              "dept": "Ops"
+            },
+            {
+              "emp_id": 6,
+              "salary": 30,
+              "dept": "Ops"
+            },
+            {
+              "emp_id": 4,
+              "salary": 20,
+              "dept": "Ops"
+            },
+            {
+              "emp_id": 10,
+              "salary": 20,
+              "dept": "Ops"
+            },
+            {
+              "emp_id": 12,
+              "salary": 5,
+              "dept": "Solo"
+            }
           ]
         }
       },
       "expected": {
-        "columns": ["emp_id", "dept"],
-        "rows": [[4, "Ops"], [10, "Ops"]]
+        "columns": [
+          "emp_id",
+          "dept"
+        ],
+        "rows": [
+          [
+            4,
+            "Ops"
+          ],
+          [
+            10,
+            "Ops"
+          ]
+        ]
       },
-      "tags": ["real", "three-levels", "ties"]
+      "tags": [
+        "real",
+        "three-levels",
+        "ties"
+      ]
     }
   ]
 }

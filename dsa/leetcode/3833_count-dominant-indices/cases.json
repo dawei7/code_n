@@ -158,10 +158,10 @@
       ]
     },
     {
-      "id": "real-average-not-maximum",
-      "name": "hidden: dominance does not require exceeding every suffix value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-average-not-maximum",
+      "name": "dominance does not require exceeding every suffix value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -174,16 +174,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "average-semantics",
         "mixed-order"
       ]
     },
     {
-      "id": "real-only-late-index",
-      "name": "hidden: only an index near the end qualifies",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-only-late-index",
+      "name": "only an index near the end qualifies",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -197,16 +196,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "late-dominance",
         "duplicates"
       ]
     },
     {
-      "id": "real-only-first-index",
-      "name": "hidden: only the first value beats its complete suffix average",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-only-first-index",
+      "name": "only the first value beats its complete suffix average",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10,
@@ -220,16 +218,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "first-index",
         "mixed-order"
       ]
     },
     {
-      "id": "real-value-boundaries",
-      "name": "hidden: minimum and maximum values alternate",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-value-boundaries",
+      "name": "minimum and maximum values alternate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100,
@@ -244,16 +241,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "minimum-value",
         "maximum-value"
       ]
     },
     {
-      "id": "real-maximum-length",
-      "name": "hidden: one low endpoint makes every earlier maximum dominant",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-length",
+      "name": "one low endpoint makes every earlier maximum dominant",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100,
@@ -363,11 +359,42 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-length",
         "maximum-value"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]
 }
-

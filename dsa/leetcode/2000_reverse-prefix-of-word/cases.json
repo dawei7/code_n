@@ -77,47 +77,44 @@
       ]
     },
     {
-      "id": "real-single-character",
-      "name": "hidden: reverse the entire one-character word",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-character",
+      "name": "reverse the entire one-character word",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "z",
         "ch": "z"
       },
       "expected": "z",
       "tags": [
-        "hidden",
         "minimum-length"
       ]
     },
     {
-      "id": "real-whole-word",
-      "name": "hidden: the final character selects the whole word",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-whole-word",
+      "name": "the final character selects the whole word",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "stressed",
         "ch": "d"
       },
       "expected": "desserts",
       "tags": [
-        "hidden",
         "whole-word"
       ]
     },
     {
-      "id": "real-maximum-length",
-      "name": "hidden: reverse the maximum-length prefix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-length",
+      "name": "reverse the maximum-length prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaz",
         "ch": "z"
       },
       "expected": "zaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       "tags": [
-        "hidden",
         "maximum-length"
       ]
     }

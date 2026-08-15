@@ -78,63 +78,89 @@
       ]
     },
     {
-      "id": "real-middle-only",
-      "name": "hidden: middle occurrence does not qualify",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-middle-only",
+      "name": "middle occurrence does not qualify",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "sentence": "hamburger fries",
         "searchWord": "burger"
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "word-boundary"
       ]
     },
     {
-      "id": "real-longer-search",
-      "name": "hidden: search word cannot cross a separator",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-longer-search",
+      "name": "search word cannot cross a separator",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "sentence": "a ab abc",
         "searchWord": "abcd"
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "longer-search"
       ]
     },
     {
-      "id": "real-single",
-      "name": "hidden: single-word sentence matches",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single",
+      "name": "single-word sentence matches",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "sentence": "prefix",
         "searchWord": "pre"
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "single-word"
       ]
     },
     {
-      "id": "real-late-and-early",
-      "name": "hidden: earliest matching prefix wins",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-late-and-early",
+      "name": "earliest matching prefix wins",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "sentence": "zero preview other prefix",
         "searchWord": "pre"
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "minimum-index"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single character in sentence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentence": "i",
+        "searchWord": "burg"
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in sentence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentence": "iii",
+        "searchWord": "burg"
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

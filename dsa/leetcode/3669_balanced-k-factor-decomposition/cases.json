@@ -112,10 +112,10 @@
       ]
     },
     {
-      "id": "real-balanced-nonpower",
-      "name": "hidden: three distinct balanced factors",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-balanced-nonpower",
+      "name": "three distinct balanced factors",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 72,
         "k": 3
@@ -129,15 +129,14 @@
         "kind": "balanced_factor_decomposition"
       },
       "tags": [
-        "hidden",
         "distinct-factors"
       ]
     },
     {
-      "id": "real-four-mixed-factors",
-      "name": "hidden: four-factor decomposition with repetition",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-four-mixed-factors",
+      "name": "four-factor decomposition with repetition",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 96,
         "k": 4
@@ -152,15 +151,14 @@
         "kind": "balanced_factor_decomposition"
       },
       "tags": [
-        "hidden",
         "four-factors"
       ]
     },
     {
-      "id": "real-maximum-perfect-power",
-      "name": "hidden: maximum n has five equal factors",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-perfect-power",
+      "name": "maximum n has five equal factors",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 100000,
         "k": 5
@@ -176,9 +174,43 @@
         "kind": "balanced_factor_decomposition"
       },
       "tags": [
-        "hidden",
         "maximum-n",
         "perfect-power"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "k": 2
+      },
+      "expected": [
+        1,
+        1
+      ],
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 100,
+        "k": 1
+      },
+      "expected": [
+        100
+      ],
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

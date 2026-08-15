@@ -165,10 +165,10 @@
       ]
     },
     {
-      "id": "real-full-balanced",
-      "name": "hidden: traverse and partially rewind balanced tree",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-full-balanced",
+      "name": "traverse and partially rewind balanced tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           4,
@@ -213,16 +213,15 @@
         5
       ],
       "tags": [
-        "hidden",
         "balanced",
         "exhaustion"
       ]
     },
     {
-      "id": "real-right-skewed",
-      "name": "hidden: right-skewed tree with reversals",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-right-skewed",
+      "name": "right-skewed tree with reversals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -261,15 +260,14 @@
         true
       ],
       "tags": [
-        "hidden",
         "right-skewed"
       ]
     },
     {
-      "id": "real-left-skewed",
-      "name": "hidden: left-skewed tree in ascending iterator order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-left-skewed",
+      "name": "left-skewed tree in ascending iterator order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           5,
@@ -309,15 +307,14 @@
         true
       ],
       "tags": [
-        "hidden",
         "left-skewed"
       ]
     },
     {
-      "id": "real-root-with-one-left",
-      "name": "hidden: two-node left child tree",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-root-with-one-left",
+      "name": "two-node left child tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           2,
@@ -343,15 +340,14 @@
         false
       ],
       "tags": [
-        "hidden",
         "two-nodes"
       ]
     },
     {
-      "id": "real-root-with-one-right",
-      "name": "hidden: two-node right child tree",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-root-with-one-right",
+      "name": "two-node right child tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -378,15 +374,14 @@
         1
       ],
       "tags": [
-        "hidden",
         "two-nodes"
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "hidden: preserve large BST values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-values",
+      "name": "preserve large BST values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           500000,
@@ -413,7 +408,6 @@
         500000
       ],
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     }

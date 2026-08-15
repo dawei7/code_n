@@ -261,10 +261,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: one row starting at the east end",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "one row starting at the east end",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rows": 1,
         "cols": 4,
@@ -290,15 +290,14 @@
         ]
       ],
       "tags": [
-        "hidden",
         "single-row"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: two-by-three grid starting on the north edge",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "two-by-three grid starting on the north edge",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rows": 2,
         "cols": 3,
@@ -332,15 +331,14 @@
         ]
       ],
       "tags": [
-        "hidden",
         "edge-start"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: centered odd square",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "centered odd square",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rows": 3,
         "cols": 3,
@@ -386,15 +384,14 @@
         ]
       ],
       "tags": [
-        "hidden",
         "center-start"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: tall rectangle starting northwest",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "tall rectangle starting northwest",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rows": 4,
         "cols": 2,
@@ -436,16 +433,15 @@
         ]
       ],
       "tags": [
-        "hidden",
         "rectangular",
         "corner-start"
       ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: wide rectangle starting on the south edge",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-5",
+      "name": "wide rectangle starting on the south edge",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rows": 2,
         "cols": 4,
@@ -487,7 +483,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "rectangular",
         "edge-start"
       ]

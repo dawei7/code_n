@@ -7,130 +7,363 @@
       "name": "sample: two changes attain the smallest range",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [-2,-3,1,4]},
-      "expected": [2,6],
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "tied-patterns", "range"]
+      "input": {
+        "nums": [
+          -2,
+          -3,
+          1,
+          4
+        ]
+      },
+      "expected": [
+        2,
+        6
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "tied-patterns",
+        "range"
+      ]
     },
     {
       "id": "sample-one-change",
       "name": "sample: one middle change creates alternating parity",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [0,2,-2]},
-      "expected": [1,3],
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "one-operation", "negative-value"]
+      "input": {
+        "nums": [
+          0,
+          2,
+          -2
+        ]
+      },
+      "expected": [
+        1,
+        3
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "one-operation",
+        "negative-value"
+      ]
     },
     {
       "id": "sample-single-element",
       "name": "sample: one value is alternating with zero range",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [7]},
-      "expected": [0,0],
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "minimum-length", "zero-range"]
+      "input": {
+        "nums": [
+          7
+        ]
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "minimum-length",
+        "zero-range"
+      ]
     },
     {
       "id": "trial-already-alternating",
       "name": "trial: an already alternating array cannot be adjusted",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2,3,4,5]},
-      "expected": [0,3],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "zero-operations", "fixed-values"]
+      "input": {
+        "nums": [
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": [
+        0,
+        3
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "zero-operations",
+        "fixed-values"
+      ]
     },
     {
       "id": "trial-uniform-even-values",
       "name": "trial: equal even values attain the parity floor range",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0,0,0,0]},
-      "expected": [2,1],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "uniform-values", "minimum-range"]
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": [
+        2,
+        1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "uniform-values",
+        "minimum-range"
+      ]
     },
     {
       "id": "trial-tied-operations-different-ranges",
       "name": "trial: tied pattern costs require the smaller range",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [-3,-3,-3,-1]},
-      "expected": [2,1],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "tied-patterns", "range-tiebreak"]
+      "input": {
+        "nums": [
+          -3,
+          -3,
+          -3,
+          -1
+        ]
+      },
+      "expected": [
+        2,
+        1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "tied-patterns",
+        "range-tiebreak"
+      ]
     },
     {
-      "id": "real-one-pattern-fewer-operations",
-      "name": "hidden: operation count takes priority over range",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0,100,2]},
-      "expected": [1,99],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "operation-priority", "wide-range"]
+      "id": "trial-one-pattern-fewer-operations",
+      "name": "operation count takes priority over range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          100,
+          2
+        ]
+      },
+      "expected": [
+        1,
+        99
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "operation-priority",
+        "wide-range"
+      ]
     },
     {
-      "id": "real-negative-alternating",
-      "name": "hidden: negative values already alternate parity",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-5,-4,-3,-2]},
-      "expected": [0,3],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "negative-values", "zero-operations"]
+      "id": "trial-negative-alternating",
+      "name": "negative values already alternate parity",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -5,
+          -4,
+          -3,
+          -2
+        ]
+      },
+      "expected": [
+        0,
+        3
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "negative-values",
+        "zero-operations"
+      ]
     },
     {
-      "id": "real-two-equal-odds",
-      "name": "hidden: either one-step direction can attain range one",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1,1]},
-      "expected": [1,1],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "two-elements", "direction-choice"]
+      "id": "trial-two-equal-odds",
+      "name": "either one-step direction can attain range one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "two-elements",
+        "direction-choice"
+      ]
     },
     {
-      "id": "real-opposite-domain-endpoints",
-      "name": "hidden: original numeric endpoints require a wide result type",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-1000000000,1000000000]},
-      "expected": [1,1999999999],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "domain-boundaries", "large-range"]
+      "id": "trial-opposite-domain-endpoints",
+      "name": "original numeric endpoints require a wide result type",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1000000000,
+          1000000000
+        ]
+      },
+      "expected": [
+        1,
+        1999999999
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "domain-boundaries",
+        "large-range"
+      ]
     },
     {
-      "id": "real-repeated-domain-endpoints",
-      "name": "hidden: repeated endpoint values make both patterns tie",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-1000000000,-1000000000,1000000000,1000000000]},
-      "expected": [2,2000000000],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "domain-boundaries", "tied-patterns"]
+      "id": "trial-repeated-domain-endpoints",
+      "name": "repeated endpoint values make both patterns tie",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1000000000,
+          -1000000000,
+          1000000000,
+          1000000000
+        ]
+      },
+      "expected": [
+        2,
+        2000000000
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "domain-boundaries",
+        "tied-patterns"
+      ]
     },
     {
-      "id": "real-odd-first-already-valid",
-      "name": "hidden: the odd-first pattern may already be optimal",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5,2,9,4,7]},
-      "expected": [0,7],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "odd-first", "zero-operations"]
+      "id": "trial-odd-first-already-valid",
+      "name": "the odd-first pattern may already be optimal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          2,
+          9,
+          4,
+          7
+        ]
+      },
+      "expected": [
+        0,
+        7
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "odd-first",
+        "zero-operations"
+      ]
     },
     {
-      "id": "real-even-first-fixed-range",
-      "name": "hidden: fixed values determine the zero-operation range",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [4,-1,-2,7,8]},
-      "expected": [0,10],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "even-first", "mixed-sign"]
+      "id": "trial-even-first-fixed-range",
+      "name": "fixed values determine the zero-operation range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          -1,
+          -2,
+          7,
+          8
+        ]
+      },
+      "expected": [
+        0,
+        10
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "even-first",
+        "mixed-sign"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -2
+        ]
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -2,
+          -2
+        ]
+      },
+      "expected": [
+        1,
+        1
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

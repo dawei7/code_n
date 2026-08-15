@@ -101,10 +101,10 @@
       ]
     },
     {
-      "id": "real-expiry",
-      "name": "hidden: strong old state expires",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-expiry",
+      "name": "strong old state expires",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100,
@@ -117,15 +117,14 @@
       },
       "expected": 100,
       "tags": [
-        "hidden",
         "expiry"
       ]
     },
     {
-      "id": "real-long-negative",
-      "name": "hidden: long negative input",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-long-negative",
+      "name": "long negative input",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -1,
@@ -2133,7 +2132,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "long-input"
       ]
     }

@@ -73,44 +73,41 @@
       ]
     },
     {
-      "id": "hidden-late-duplicate",
-      "name": "hidden: later occurrence invalidates prefix candidate",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-late-duplicate",
+      "name": "later occurrence invalidates prefix candidate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abacbd"
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "late-duplicate"
       ]
     },
     {
-      "id": "hidden-many-groups",
-      "name": "hidden: unique among repeated groups",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-groups",
+      "name": "unique among repeated groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "zzxxyyqmmnn"
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "groups"
       ]
     },
     {
-      "id": "hidden-all-same",
-      "name": "hidden: one repeated character kind",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-same",
+      "name": "one repeated character kind",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaaaaaa"
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "all-same"
       ]
     }

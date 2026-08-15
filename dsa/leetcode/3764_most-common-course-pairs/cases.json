@@ -543,10 +543,10 @@
       ]
     },
     {
-      "id": "real-frequency-and-three-key-order",
-      "name": "hidden: frequencies and both alphabetical tie-breakers are applied exactly",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-frequency-and-three-key-order",
+      "name": "frequencies and both alphabetical tie-breakers are applied exactly",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "course_completions": [
@@ -706,17 +706,16 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "frequency",
         "ordering",
         "tie-break"
       ]
     },
     {
-      "id": "real-directed-repeated-pairs",
-      "name": "hidden: repeated adjacencies count and reverse directions remain distinct",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-directed-repeated-pairs",
+      "name": "repeated adjacencies count and reverse directions remain distinct",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "course_completions": [
@@ -781,16 +780,15 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "directed-pairs",
         "repeated-occurrence"
       ]
     },
     {
-      "id": "real-mixed-qualification",
-      "name": "hidden: only qualifying users contribute transitions",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-qualification",
+      "name": "only qualifying users contribute transitions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "course_completions": [
@@ -928,7 +926,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "mixed-qualification",
         "filter-before-pairing"
       ]

@@ -119,10 +119,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: whole-matrix operations",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "whole-matrix operations",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "m": 2,
         "n": 7,
@@ -139,15 +139,14 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "whole-matrix"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: minima come from separate operations",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "minima come from separate operations",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "m": 100,
         "n": 100,
@@ -168,7 +167,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "intersection"
       ]
     }

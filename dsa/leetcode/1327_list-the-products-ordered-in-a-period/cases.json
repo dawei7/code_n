@@ -242,10 +242,10 @@
       ]
     },
     {
-      "id": "hidden-duplicates",
-      "name": "hidden: duplicate rows both contribute",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicates",
+      "name": "duplicate rows both contribute",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Products": [
@@ -282,15 +282,14 @@
         ]
       },
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "hidden-below-threshold",
-      "name": "hidden: February total remains below threshold",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-below-threshold",
+      "name": "February total remains below threshold",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Products": [
@@ -317,15 +316,14 @@
         "rows": []
       },
       "tags": [
-        "hidden",
         "below-threshold"
       ]
     },
     {
-      "id": "hidden-multiple-products",
-      "name": "hidden: several groups with deterministic names",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-products",
+      "name": "several groups with deterministic names",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Products": [
@@ -381,7 +379,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "multiple-groups"
       ]
     }

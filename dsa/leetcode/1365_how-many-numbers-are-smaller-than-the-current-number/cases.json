@@ -125,10 +125,10 @@
       ]
     },
     {
-      "id": "hidden-domain-boundaries",
-      "name": "hidden: zero and one hundred duplicates",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-domain-boundaries",
+      "name": "zero and one hundred duplicates",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100,
@@ -146,15 +146,14 @@
         0
       ],
       "tags": [
-        "hidden",
         "boundaries"
       ]
     },
     {
-      "id": "hidden-two-values",
-      "name": "hidden: two repeated value groups",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-values",
+      "name": "two repeated value groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -174,7 +173,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }

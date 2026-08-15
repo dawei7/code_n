@@ -98,10 +98,10 @@
       ]
     },
     {
-      "id": "hidden-lower-bound",
-      "name": "hidden: smallest candidate near lower bound",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-lower-bound",
+      "name": "smallest candidate near lower bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "low": 10,
         "high": 12
@@ -110,15 +110,14 @@
         12
       ],
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
     {
-      "id": "hidden-full-domain",
-      "name": "hidden: every possible candidate",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-full-domain",
+      "name": "every possible candidate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "low": 10,
         "high": 1000000000
@@ -162,7 +161,6 @@
         123456789
       ],
       "tags": [
-        "hidden",
         "full-domain"
       ]
     }

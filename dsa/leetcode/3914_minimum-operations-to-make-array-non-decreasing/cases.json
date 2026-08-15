@@ -276,10 +276,10 @@
       ]
     },
     {
-      "id": "hidden-varying-drops",
-      "name": "hidden: three separated drops have different magnitudes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-varying-drops",
+      "name": "three separated drops have different magnitudes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100,
@@ -292,16 +292,15 @@
       },
       "expected": 184,
       "tags": [
-        "hidden",
         "multiple-drops",
         "varying-magnitudes"
       ]
     },
     {
-      "id": "hidden-long-decreasing",
-      "name": "hidden: one hundred descending values exercise every boundary",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-long-decreasing",
+      "name": "one hundred descending values exercise every boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100,
@@ -408,16 +407,15 @@
       },
       "expected": 99,
       "tags": [
-        "hidden",
         "long-array",
         "strictly-decreasing"
       ]
     },
     {
-      "id": "hidden-64-bit-alternating",
-      "name": "hidden: repeated maximum drops require a 64-bit total",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-64-bit-alternating",
+      "name": "repeated maximum drops require a 64-bit total",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -524,7 +522,6 @@
       },
       "expected": 49999999950,
       "tags": [
-        "hidden",
         "alternating",
         "maximum-value",
         "large-result"
@@ -532,4 +529,3 @@
     }
   ]
 }
-

@@ -161,10 +161,10 @@
       ]
     },
     {
-      "id": "real-recover-after-outlier",
-      "name": "hidden: valid short windows resume after an outlier",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-recover-after-outlier",
+      "name": "valid short windows resume after an outlier",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -179,16 +179,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "outlier",
         "window-recovery"
       ]
     },
     {
-      "id": "real-equal-tail",
-      "name": "hidden: a zero-cost equal tail contributes all of its subarrays",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-equal-tail",
+      "name": "a zero-cost equal tail contributes all of its subarrays",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -203,16 +202,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "equal-run",
         "zero-threshold"
       ]
     },
     {
-      "id": "real-alternating-extrema",
-      "name": "hidden: every adjacent pair lies exactly on the threshold",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alternating-extrema",
+      "name": "every adjacent pair lies exactly on the threshold",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -228,16 +226,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "alternating",
         "duplicate-extrema"
       ]
     },
     {
-      "id": "real-maximum-k",
-      "name": "hidden: the maximum threshold admits every boundary-valued subarray",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-k",
+      "name": "the maximum threshold admits every boundary-valued subarray",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -251,16 +248,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-k",
         "value-boundaries"
       ]
     },
     {
-      "id": "real-large-equal-count",
-      "name": "hidden: a longer equal run produces a triangular count",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-equal-count",
+      "name": "a longer equal run produces a triangular count",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -371,11 +367,9 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "equal-run",
         "triangular-count"
       ]
     }
   ]
 }
-

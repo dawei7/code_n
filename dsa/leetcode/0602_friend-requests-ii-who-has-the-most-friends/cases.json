@@ -233,10 +233,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: large identifier in both roles",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "large identifier in both roles",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "RequestAccepted": [
@@ -286,10 +286,10 @@
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: mixed network with unique hub",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "mixed network with unique hub",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "RequestAccepted": [

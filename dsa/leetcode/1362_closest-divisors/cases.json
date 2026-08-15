@@ -88,10 +88,10 @@
       ]
     },
     {
-      "id": "hidden-equal-factors",
-      "name": "hidden: later perfect square",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-equal-factors",
+      "name": "later perfect square",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 7
       },
@@ -100,15 +100,14 @@
         3
       ],
       "tags": [
-        "hidden",
         "zero-difference"
       ]
     },
     {
-      "id": "hidden-first-square",
-      "name": "hidden: first candidate is forty-nine",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-first-square",
+      "name": "first candidate is forty-nine",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 48
       },
@@ -117,7 +116,6 @@
         7
       ],
       "tags": [
-        "hidden",
         "first-product"
       ]
     }

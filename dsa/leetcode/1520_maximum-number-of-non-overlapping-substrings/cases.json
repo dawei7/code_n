@@ -109,10 +109,10 @@
       ]
     },
     {
-      "id": "real-crossing-closure",
-      "name": "hidden: interval expansion crosses several labels",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-crossing-closure",
+      "name": "interval expansion crosses several labels",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abacbcdefed"
       },
@@ -127,10 +127,10 @@
       ]
     },
     {
-      "id": "real-separated-groups",
-      "name": "hidden: several closed groups remain disjoint",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-separated-groups",
+      "name": "several closed groups remain disjoint",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abacddcxyyx"
       },
@@ -146,10 +146,10 @@
       ]
     },
     {
-      "id": "real-repeated-singletons",
-      "name": "hidden: singleton letters sit inside a repeated outer letter",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-singletons",
+      "name": "singleton letters sit inside a repeated outer letter",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aebfcgda"
       },
@@ -168,10 +168,10 @@
       ]
     },
     {
-      "id": "real-alphabet-mix",
-      "name": "hidden: dense repeated labels and terminal singleton",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alphabet-mix",
+      "name": "dense repeated labels and terminal singleton",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "eccbbbbdecf"
       },
@@ -185,7 +185,38 @@
         "dense",
         "terminal-singleton"
       ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": [
+        "a"
+      ],
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": [
+        "aaa"
+      ],
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
     }
   ]
 }
-

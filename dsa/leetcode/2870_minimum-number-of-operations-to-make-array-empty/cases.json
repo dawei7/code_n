@@ -82,10 +82,10 @@
       "expected": 1
     },
     {
-      "id": "real-frequency-four",
-      "name": "hidden: four copies must become two pairs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-frequency-four",
+      "name": "four copies must become two pairs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -95,16 +95,15 @@
         ]
       },
       "tags": [
-        "hidden",
         "remainder-one"
       ],
       "expected": 2
     },
     {
-      "id": "real-frequency-five",
-      "name": "hidden: five copies split into a triple and pair",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-frequency-five",
+      "name": "five copies split into a triple and pair",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -115,16 +114,15 @@
         ]
       },
       "tags": [
-        "hidden",
         "remainder-two"
       ],
       "expected": 2
     },
     {
-      "id": "real-many-remainders",
-      "name": "hidden: independent frequencies use their best decompositions",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-remainders",
+      "name": "independent frequencies use their best decompositions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -150,16 +148,15 @@
         ]
       },
       "tags": [
-        "hidden",
         "all-remainders"
       ],
       "expected": 8
     },
     {
-      "id": "real-singleton-among-valid-groups",
-      "name": "hidden: one singleton invalidates otherwise removable groups",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-singleton-among-valid-groups",
+      "name": "one singleton invalidates otherwise removable groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10,
@@ -171,7 +168,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "singleton"
       ],
       "expected": -1

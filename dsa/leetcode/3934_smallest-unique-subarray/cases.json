@@ -7,150 +7,370 @@
       "name": "sample: only the complete equal array is unique",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [3,3,3]},
+      "input": {
+        "nums": [
+          3,
+          3,
+          3
+        ]
+      },
       "expected": 3,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "all-equal", "full-array"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "all-equal",
+        "full-array"
+      ]
     },
     {
       "id": "sample-unique-singleton",
       "name": "sample: one value occurs only once",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2,1,2,3,3]},
+      "input": {
+        "nums": [
+          2,
+          1,
+          2,
+          3,
+          3
+        ]
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "singleton", "frequency"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "singleton",
+        "frequency"
+      ]
     },
     {
       "id": "sample-unique-pairs",
       "name": "sample: repeated values form unique adjacent pairs",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1,1,2,2,1]},
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2,
+          1
+        ]
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "pairs", "repeated-values"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "pairs",
+        "repeated-values"
+      ]
     },
     {
       "id": "trial-single-element",
       "name": "trial: a singleton array is unique",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [7]},
+      "input": {
+        "nums": [
+          7
+        ]
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "minimum-length", "singleton-array"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-length",
+        "singleton-array"
+      ]
     },
     {
       "id": "trial-all-distinct",
       "name": "trial: every singleton is unique",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1,2,3,4]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "all-distinct", "singleton"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "all-distinct",
+        "singleton"
+      ]
     },
     {
       "id": "trial-rare-middle-value",
       "name": "trial: a unique value appears in the middle",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5,5,6,5,5]},
+      "input": {
+        "nums": [
+          5,
+          5,
+          6,
+          5,
+          5
+        ]
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "unique-value", "middle"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "unique-value",
+        "middle"
+      ]
     },
     {
       "id": "trial-overlapping-repetitions",
       "name": "trial: overlapping repeated pairs leave one unique pair",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1,2,1,2]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2
+        ]
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "overlap", "pair"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "overlap",
+        "pair"
+      ]
     },
     {
       "id": "trial-all-equal-five",
       "name": "trial: every proper constant subarray repeats",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [4,4,4,4,4]},
+      "input": {
+        "nums": [
+          4,
+          4,
+          4,
+          4,
+          4
+        ]
+      },
       "expected": 5,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "all-equal", "full-array"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "all-equal",
+        "full-array"
+      ]
     },
     {
-      "id": "real-period-two",
-      "name": "hidden: a period-two array first becomes unique at length four",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1,2,1,2,1,2]},
+      "id": "trial-period-two",
+      "name": "a period-two array first becomes unique at length four",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          2
+        ]
+      },
       "expected": 4,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "periodic", "overlap"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "periodic",
+        "overlap"
+      ]
     },
     {
-      "id": "real-each-value-twice",
-      "name": "hidden: repeated singletons have unique ordered pairs",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1,2,1,3,2,3]},
+      "id": "trial-each-value-twice",
+      "name": "repeated singletons have unique ordered pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          3,
+          2,
+          3
+        ]
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "pairs", "multiplicity"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "pairs",
+        "multiplicity"
+      ]
     },
     {
-      "id": "real-three-cycle",
-      "name": "hidden: a repeated three-cycle needs a unique triple",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1,2,3,1,2,3,1]},
+      "id": "trial-three-cycle",
+      "name": "a repeated three-cycle needs a unique triple",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          1,
+          2,
+          3,
+          1
+        ]
+      },
       "expected": 3,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "periodic", "triple"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "periodic",
+        "triple"
+      ]
     },
     {
-      "id": "real-mirrored-pattern",
-      "name": "hidden: mirrored repetitions distinguish length-three sequences",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1,2,3,2,1,2,3,2,1]},
+      "id": "trial-mirrored-pattern",
+      "name": "mirrored repetitions distinguish length-three sequences",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          2,
+          1,
+          2,
+          3,
+          2,
+          1
+        ]
+      },
       "expected": 3,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "mirror", "overlap"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "mirror",
+        "overlap"
+      ]
     },
     {
-      "id": "real-maximum-values",
-      "name": "hidden: maximum legal values form a unique reversed pair",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100000,99999,100000,99999]},
+      "id": "trial-maximum-values",
+      "name": "maximum legal values form a unique reversed pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100000,
+          99999,
+          100000,
+          99999
+        ]
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "maximum-value", "boundary"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "maximum-value",
+        "boundary"
+      ]
     },
     {
-      "id": "real-repeated-blocks",
-      "name": "hidden: repeated blocks still contain a unique boundary pair",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1,1,2,2,1,1,2,2]},
+      "id": "trial-repeated-blocks",
+      "name": "repeated blocks still contain a unique boundary pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2,
+          1,
+          1,
+          2,
+          2
+        ]
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "blocks", "boundary-pair"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "blocks",
+        "boundary-pair"
+      ]
     },
     {
-      "id": "real-long-constant",
-      "name": "hidden: a longer constant array needs its complete length",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9]},
+      "id": "trial-long-constant",
+      "name": "a longer constant array needs its complete length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9
+        ]
+      },
       "expected": 20,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "all-equal", "full-array"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "all-equal",
+        "full-array"
+      ]
     }
   ]
 }

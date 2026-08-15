@@ -136,10 +136,10 @@
       ]
     },
     {
-      "id": "real-left-chain",
-      "name": "hidden: left-skewed tree",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-left-chain",
+      "name": "left-skewed tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           -1,
@@ -170,10 +170,10 @@
       ]
     },
     {
-      "id": "real-large-absent",
-      "name": "hidden: large absent targets",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-absent",
+      "name": "large absent targets",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           -1,

@@ -213,10 +213,10 @@
       ]
     },
     {
-      "id": "real-boundary-labels",
-      "name": "real: ball labels use both ends of a huge range",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-boundary-labels",
+      "name": "ball labels use both ends of a huge range",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "limit": 1000000000,
         "queries": [
@@ -245,10 +245,10 @@
       ]
     },
     {
-      "id": "real-maximum-color",
-      "name": "real: colors reach the upper bound",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-color",
+      "name": "colors reach the upper bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "limit": 5,
         "queries": [
@@ -276,10 +276,10 @@
       ]
     },
     {
-      "id": "real-color-splits",
-      "name": "real: recoloring one of two shared balls adds a color",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-color-splits",
+      "name": "recoloring one of two shared balls adds a color",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "limit": 4,
         "queries": [
@@ -318,10 +318,10 @@
       ]
     },
     {
-      "id": "real-many-overwrites",
-      "name": "real: overwrites remove and reintroduce colors",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-overwrites",
+      "name": "overwrites remove and reintroduce colors",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "limit": 5,
         "queries": [
@@ -365,10 +365,10 @@
       ]
     },
     {
-      "id": "real-swap-color-ownership",
-      "name": "real: colors move between balls without being unassigned explicitly",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-swap-color-ownership",
+      "name": "colors move between balls without being unassigned explicitly",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "limit": 2,
         "queries": [
@@ -402,10 +402,10 @@
       ]
     },
     {
-      "id": "real-three-way-sharing",
-      "name": "real: one shared color persists until its final owner changes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-way-sharing",
+      "name": "one shared color persists until its final owner changes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "limit": 4,
         "queries": [

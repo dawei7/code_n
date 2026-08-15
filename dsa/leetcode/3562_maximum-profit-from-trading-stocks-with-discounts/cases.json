@@ -7,108 +7,457 @@
       "name": "sample: boss purchase discounts a profitable child",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 2, "present": [1,2], "future": [4,3], "hierarchy": [[1,2]], "budget": 3},
+      "input": {
+        "n": 2,
+        "present": [
+          1,
+          2
+        ],
+        "future": [
+          4,
+          3
+        ],
+        "hierarchy": [
+          [
+            1,
+            2
+          ]
+        ],
+        "budget": 3
+      },
       "expected": 5,
-      "tags": ["sample", "discount", "buy-both"]
+      "tags": [
+        "sample",
+        "discount",
+        "buy-both"
+      ]
     },
     {
       "id": "sample-child-only",
       "name": "sample: budget favors buying only the child",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 2, "present": [3,4], "future": [5,8], "hierarchy": [[1,2]], "budget": 4},
+      "input": {
+        "n": 2,
+        "present": [
+          3,
+          4
+        ],
+        "future": [
+          5,
+          8
+        ],
+        "hierarchy": [
+          [
+            1,
+            2
+          ]
+        ],
+        "budget": 4
+      },
       "expected": 4,
-      "tags": ["sample", "budget", "skip-root"]
+      "tags": [
+        "sample",
+        "budget",
+        "skip-root"
+      ]
     },
     {
       "id": "sample-branch-choice",
       "name": "sample: root unlocks one discounted branch choice",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 3, "present": [4,6,8], "future": [7,9,11], "hierarchy": [[1,2],[1,3]], "budget": 10},
+      "input": {
+        "n": 3,
+        "present": [
+          4,
+          6,
+          8
+        ],
+        "future": [
+          7,
+          9,
+          11
+        ],
+        "hierarchy": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        "budget": 10
+      },
       "expected": 10,
-      "tags": ["sample", "branching", "knapsack"]
+      "tags": [
+        "sample",
+        "branching",
+        "knapsack"
+      ]
     },
     {
       "id": "sample-discount-chain",
       "name": "sample: direct-boss purchases propagate down a chain",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 3, "present": [5,2,3], "future": [8,5,6], "hierarchy": [[1,2],[2,3]], "budget": 7},
+      "input": {
+        "n": 3,
+        "present": [
+          5,
+          2,
+          3
+        ],
+        "future": [
+          8,
+          5,
+          6
+        ],
+        "hierarchy": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "budget": 7
+      },
       "expected": 12,
-      "tags": ["sample", "chain", "buy-all"]
+      "tags": [
+        "sample",
+        "chain",
+        "buy-all"
+      ]
     },
     {
       "id": "trial-single-profitable-stock",
       "name": "trial: one affordable profitable stock",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1, "present": [5], "future": [9], "hierarchy": [], "budget": 5},
+      "input": {
+        "n": 1,
+        "present": [
+          5
+        ],
+        "future": [
+          9
+        ],
+        "hierarchy": [],
+        "budget": 5
+      },
       "expected": 4,
-      "tags": ["trial", "single-node", "profitable"]
+      "tags": [
+        "trial",
+        "single-node",
+        "profitable"
+      ]
     },
     {
       "id": "trial-unaffordable-stock",
       "name": "trial: the only stock exceeds the budget",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1, "present": [5], "future": [50], "hierarchy": [], "budget": 4},
+      "input": {
+        "n": 1,
+        "present": [
+          5
+        ],
+        "future": [
+          50
+        ],
+        "hierarchy": [],
+        "budget": 4
+      },
       "expected": 0,
-      "tags": ["trial", "single-node", "unaffordable"]
+      "tags": [
+        "trial",
+        "single-node",
+        "unaffordable"
+      ]
     },
     {
-      "id": "real-negative-boss-unlocks-child",
-      "name": "real: a losing boss trade enables a larger child gain",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 2, "present": [5,10], "future": [4,20], "hierarchy": [[1,2]], "budget": 10},
+      "id": "trial-negative-boss-unlocks-child",
+      "name": "a losing boss trade enables a larger child gain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "present": [
+          5,
+          10
+        ],
+        "future": [
+          4,
+          20
+        ],
+        "hierarchy": [
+          [
+            1,
+            2
+          ]
+        ],
+        "budget": 10
+      },
       "expected": 14,
-      "tags": ["real", "negative-local-profit", "discount-enabler"]
+      "tags": [
+        "real",
+        "negative-local-profit",
+        "discount-enabler"
+      ]
     },
     {
-      "id": "real-odd-price-floor",
-      "name": "real: odd child price uses floor division",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 2, "present": [1,5], "future": [1,6], "hierarchy": [[1,2]], "budget": 3},
+      "id": "trial-odd-price-floor",
+      "name": "odd child price uses floor division",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "present": [
+          1,
+          5
+        ],
+        "future": [
+          1,
+          6
+        ],
+        "hierarchy": [
+          [
+            1,
+            2
+          ]
+        ],
+        "budget": 3
+      },
       "expected": 4,
-      "tags": ["real", "floor-discount", "zero-profit-boss"]
+      "tags": [
+        "real",
+        "floor-discount",
+        "zero-profit-boss"
+      ]
     },
     {
-      "id": "real-discount-is-not-transitive",
-      "name": "real: a grandparent purchase does not discount a skipped parent",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 3, "present": [1,100,10], "future": [1,1,20], "hierarchy": [[1,2],[2,3]], "budget": 10},
+      "id": "trial-discount-is-not-transitive",
+      "name": "a grandparent purchase does not discount a skipped parent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "present": [
+          1,
+          100,
+          10
+        ],
+        "future": [
+          1,
+          1,
+          20
+        ],
+        "hierarchy": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "budget": 10
+      },
       "expected": 10,
-      "tags": ["real", "direct-boss-only", "semantic-trap"]
+      "tags": [
+        "real",
+        "direct-boss-only",
+        "semantic-trap"
+      ]
     },
     {
-      "id": "real-unprofitable-stock-skipped",
-      "name": "real: buying nothing beats a losing trade",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 1, "present": [3], "future": [1], "hierarchy": [], "budget": 3},
+      "id": "trial-unprofitable-stock-skipped",
+      "name": "buying nothing beats a losing trade",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "present": [
+          3
+        ],
+        "future": [
+          1
+        ],
+        "hierarchy": [],
+        "budget": 3
+      },
       "expected": 0,
-      "tags": ["real", "negative-profit", "buy-nothing"]
+      "tags": [
+        "real",
+        "negative-profit",
+        "buy-nothing"
+      ]
     },
     {
-      "id": "real-wide-branch-budget",
-      "name": "real: several discounted children compete for budget",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 5, "present": [4,7,6,9,5], "future": [6,12,8,15,9], "hierarchy": [[1,2],[1,3],[1,4],[1,5]], "budget": 12},
+      "id": "trial-wide-branch-budget",
+      "name": "several discounted children compete for budget",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "present": [
+          4,
+          7,
+          6,
+          9,
+          5
+        ],
+        "future": [
+          6,
+          12,
+          8,
+          15,
+          9
+        ],
+        "hierarchy": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ]
+        ],
+        "budget": 12
+      },
       "expected": 23,
-      "tags": ["real", "wide-tree", "budget-allocation"]
+      "tags": [
+        "real",
+        "wide-tree",
+        "budget-allocation"
+      ]
     },
     {
-      "id": "real-mixed-depth-tree",
-      "name": "real: discounts interact across mixed subtree depths",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 6, "present": [6,4,8,5,3,7], "future": [9,8,13,6,7,12], "hierarchy": [[1,2],[1,3],[2,4],[2,5],[3,6]], "budget": 14},
+      "id": "trial-mixed-depth-tree",
+      "name": "discounts interact across mixed subtree depths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "present": [
+          6,
+          4,
+          8,
+          5,
+          3,
+          7
+        ],
+        "future": [
+          9,
+          8,
+          13,
+          6,
+          7,
+          12
+        ],
+        "hierarchy": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            6
+          ]
+        ],
+        "budget": 14
+      },
       "expected": 24,
-      "tags": ["real", "mixed-depth", "tree-knapsack"]
+      "tags": [
+        "real",
+        "mixed-depth",
+        "tree-knapsack"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in present",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "present": [
+          1,
+          1
+        ],
+        "future": [
+          4,
+          3
+        ],
+        "hierarchy": [
+          [
+            1,
+            2
+          ]
+        ],
+        "budget": 3
+      },
+      "expected": 6,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in future",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "present": [
+          1,
+          2
+        ],
+        "future": [
+          4,
+          4
+        ],
+        "hierarchy": [
+          [
+            1,
+            2
+          ]
+        ],
+        "budget": 3
+      },
+      "expected": 6,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

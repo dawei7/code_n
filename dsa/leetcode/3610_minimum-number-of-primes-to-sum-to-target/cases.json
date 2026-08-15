@@ -140,128 +140,150 @@
       ]
     },
     {
-      "id": "real-prime-not-yet-available",
-      "name": "hidden: prime target outside the available prefix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-prime-not-yet-available",
+      "name": "prime target outside the available prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 17,
         "m": 6
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "prime-prefix"
       ]
     },
     {
-      "id": "real-prime-becomes-available",
-      "name": "hidden: expanding the prefix makes the target direct",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-prime-becomes-available",
+      "name": "expanding the prefix makes the target direct",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 17,
         "m": 7
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "single-prime"
       ]
     },
     {
-      "id": "real-repeated-largest-prime",
-      "name": "hidden: repeated seven is optimal",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-largest-prime",
+      "name": "repeated seven is optimal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 49,
         "m": 4
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "repetition"
       ]
     },
     {
-      "id": "real-large-m-prime-target",
-      "name": "hidden: a large prefix includes a large prime target",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-m-prime-target",
+      "name": "a large prefix includes a large prime target",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 997,
         "m": 1000
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "large",
         "single-prime"
       ]
     },
     {
-      "id": "real-large-only-two-even",
-      "name": "hidden: maximum even target using only twos",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-only-two-even",
+      "name": "maximum even target using only twos",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000,
         "m": 1
       },
       "expected": 500,
       "tags": [
-        "hidden",
         "large",
         "one-denomination"
       ]
     },
     {
-      "id": "real-large-only-two-odd",
-      "name": "hidden: maximum odd target cannot use only twos",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-only-two-odd",
+      "name": "maximum odd target cannot use only twos",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 999,
         "m": 1
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "large",
         "impossible"
       ]
     },
     {
-      "id": "real-large-two-denominations",
-      "name": "hidden: combine twos and threes at the upper target",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-two-denominations",
+      "name": "combine twos and threes at the upper target",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000,
         "m": 2
       },
       "expected": 334,
       "tags": [
-        "hidden",
         "large",
         "two-denominations"
       ]
     },
     {
-      "id": "real-large-full-prefix",
-      "name": "hidden: three plus 997 forms the upper target",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-full-prefix",
+      "name": "three plus 997 forms the upper target",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000,
         "m": 1000
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "large",
         "large-prefix"
+      ]
+    },
+    {
+      "id": "trial-boundary-18",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "m": 2
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-19",
+      "name": "minimal value m=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 10,
+        "m": 1
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

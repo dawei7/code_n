@@ -1,15 +1,181 @@
 {
   "challenge_id": "lc_3303",
   "cases": [
-    {"id":"sample-one-middle-change","name":"sample: first window needs one middle change","kind":"sample","visible":true,"input":{"s":"abcdefg","pattern":"bcdffg"},"expected":1,"tags":["sample","mismatch"]},
-    {"id":"sample-later-window","name":"sample: first valid window starts at four","kind":"sample","visible":true,"input":{"s":"ababbababa","pattern":"bacaba"},"expected":4,"tags":["sample","overlap"]},
-    {"id":"sample-no-window","name":"sample: every window has multiple mismatches","kind":"sample","visible":true,"input":{"s":"abcd","pattern":"dba"},"expected":-1,"tags":["sample","impossible"]},
-    {"id":"sample-single-character","name":"sample: one-character exact match starts at zero","kind":"sample","visible":true,"input":{"s":"dde","pattern":"d"},"expected":0,"tags":["sample","minimum"]},
-    {"id":"trial-one-character-change","name":"trial: one-character pattern may change at zero","kind":"trial","visible":true,"input":{"s":"zzz","pattern":"a"},"expected":0,"tags":["minimum","mismatch"]},
-    {"id":"trial-exact-later","name":"trial: exact match appears after an invalid first window","kind":"trial","visible":true,"input":{"s":"zabcd","pattern":"abcd"},"expected":1,"tags":["exact"]},
-    {"id":"trial-middle-mismatch","name":"trial: source prefix differs once in the middle","kind":"trial","visible":true,"input":{"s":"abxdef","pattern":"abcde"},"expected":0,"tags":["mismatch"]},
-    {"id":"real-two-mismatches","name":"real: three-character windows remain too different","kind":"real","visible":false,"input":{"s":"aaaab","pattern":"bbb"},"expected":-1,"tags":["impossible"]},
-    {"id":"real-earlier-almost","name":"real: almost match precedes a later exact match","kind":"real","visible":false,"input":{"s":"aaaaab","pattern":"aaab"},"expected":0,"tags":["smallest-index"]},
-    {"id":"real-repeated-exact","name":"real: earliest of repeated exact windows is returned","kind":"real","visible":false,"input":{"s":"abcxabc","pattern":"abc"},"expected":0,"tags":["exact","repeated"]}
+    {
+      "id": "sample-one-middle-change",
+      "name": "sample: first window needs one middle change",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcdefg",
+        "pattern": "bcdffg"
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "mismatch"
+      ]
+    },
+    {
+      "id": "sample-later-window",
+      "name": "sample: first valid window starts at four",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "ababbababa",
+        "pattern": "bacaba"
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "overlap"
+      ]
+    },
+    {
+      "id": "sample-no-window",
+      "name": "sample: every window has multiple mismatches",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcd",
+        "pattern": "dba"
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "sample-single-character",
+      "name": "sample: one-character exact match starts at zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "dde",
+        "pattern": "d"
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-one-character-change",
+      "name": "trial: one-character pattern may change at zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "zzz",
+        "pattern": "a"
+      },
+      "expected": 0,
+      "tags": [
+        "minimum",
+        "mismatch"
+      ]
+    },
+    {
+      "id": "trial-exact-later",
+      "name": "trial: exact match appears after an invalid first window",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "zabcd",
+        "pattern": "abcd"
+      },
+      "expected": 1,
+      "tags": [
+        "exact"
+      ]
+    },
+    {
+      "id": "trial-middle-mismatch",
+      "name": "trial: source prefix differs once in the middle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abxdef",
+        "pattern": "abcde"
+      },
+      "expected": 0,
+      "tags": [
+        "mismatch"
+      ]
+    },
+    {
+      "id": "trial-two-mismatches",
+      "name": "three-character windows remain too different",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaab",
+        "pattern": "bbb"
+      },
+      "expected": -1,
+      "tags": [
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-earlier-almost",
+      "name": "almost match precedes a later exact match",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaaab",
+        "pattern": "aaab"
+      },
+      "expected": 0,
+      "tags": [
+        "smallest-index"
+      ]
+    },
+    {
+      "id": "trial-repeated-exact",
+      "name": "earliest of repeated exact windows is returned",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcxabc",
+        "pattern": "abc"
+      },
+      "expected": 0,
+      "tags": [
+        "exact",
+        "repeated"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "pattern": "bcdffg"
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa",
+        "pattern": "bcdffg"
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
+    }
   ]
 }

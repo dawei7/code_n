@@ -127,10 +127,10 @@
       ]
     },
     {
-      "id": "real-opposite-branches",
-      "name": "hidden: deepest leaves in opposite branches",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-opposite-branches",
+      "name": "deepest leaves in opposite branches",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -157,10 +157,10 @@
       ]
     },
     {
-      "id": "real-right-chain",
-      "name": "hidden: right-skewed chain",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-right-chain",
+      "name": "right-skewed chain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           0,
@@ -181,10 +181,10 @@
       ]
     },
     {
-      "id": "real-nested-right",
-      "name": "hidden: deepest siblings inside right subtree",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-nested-right",
+      "name": "deepest siblings inside right subtree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           10,
@@ -209,10 +209,10 @@
       ]
     },
     {
-      "id": "real-left-subtree",
-      "name": "hidden: all deepest leaves below left child",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-left-subtree",
+      "name": "all deepest leaves below left child",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           8,

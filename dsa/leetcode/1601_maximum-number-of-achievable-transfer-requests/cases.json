@@ -143,10 +143,10 @@
       ]
     },
     {
-      "id": "real-duplicate-direction",
-      "name": "hidden: duplicate direction has one reverse request",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicate-direction",
+      "name": "duplicate direction has one reverse request",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 2,
         "requests": [
@@ -171,10 +171,10 @@
       ]
     },
     {
-      "id": "real-cycle-plus-extra",
-      "name": "hidden: three-cycle with one unbalanced chord",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-cycle-plus-extra",
+      "name": "three-cycle with one unbalanced chord",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 3,
         "requests": [
@@ -203,10 +203,10 @@
       ]
     },
     {
-      "id": "real-all-self-transfers",
-      "name": "hidden: every request is independently balanced",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-self-transfers",
+      "name": "every request is independently balanced",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 3,
         "requests": [
@@ -231,10 +231,10 @@
       ]
     },
     {
-      "id": "real-separate-unbalanced-edge",
-      "name": "hidden: balanced pair beside an unusable edge",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-separate-unbalanced-edge",
+      "name": "balanced pair beside an unusable edge",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "requests": [
@@ -259,10 +259,10 @@
       ]
     },
     {
-      "id": "real-repeated-balanced-pairs",
-      "name": "hidden: two copies in each direction",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-balanced-pairs",
+      "name": "two copies in each direction",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 3,
         "requests": [
@@ -291,10 +291,10 @@
       ]
     },
     {
-      "id": "real-long-cycle-plus-chord",
-      "name": "hidden: five-cycle excludes one chord",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-long-cycle-plus-chord",
+      "name": "five-cycle excludes one chord",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 5,
         "requests": [
@@ -331,10 +331,10 @@
       ]
     },
     {
-      "id": "real-two-independent-cycles",
-      "name": "hidden: independent cycles are both selected",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-independent-cycles",
+      "name": "independent cycles are both selected",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 6,
         "requests": [
@@ -372,4 +372,3 @@
     }
   ]
 }
-

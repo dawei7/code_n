@@ -92,10 +92,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: tail contains one",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "tail contains one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9,
@@ -105,15 +105,14 @@
       },
       "expected": "9/(3/1)",
       "tags": [
-        "hidden",
         "positive-values"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: longer expression",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "longer expression",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -125,15 +124,14 @@
       },
       "expected": "6/(2/4/8/16)",
       "tags": [
-        "hidden",
         "positive-values"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: all values are one",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-3",
+      "name": "all values are one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -144,10 +142,8 @@
       },
       "expected": "1/(1/1/1)",
       "tags": [
-        "hidden",
         "positive-values"
       ]
     }
   ]
 }
-

@@ -1,1 +1,248 @@
-{"challenge_id":"lc_2732","cases":[{"id":"sample-disjoint","name":"sample: two compatible rows","kind":"sample","visible":true,"input":{"grid":[[0,1,1,0],[0,0,0,1],[1,1,1,1]]},"expected":[0,1],"tags":["sample","pair"]},{"id":"sample-zero-row","name":"sample: one zero row","kind":"sample","visible":true,"input":{"grid":[[0]]},"expected":[0],"tags":["sample","single-row"]},{"id":"sample-impossible","name":"sample: identical all-one rows","kind":"sample","visible":true,"input":{"grid":[[1,1,1],[1,1,1]]},"expected":[],"tags":["sample","impossible"]},{"id":"trial-late-zero","name":"trial: zero row appears later","kind":"trial","visible":true,"input":{"grid":[[1,0,1],[0,1,1],[0,0,0]]},"expected":[2],"tags":["trial","late-zero"]},{"id":"real-unique-pair","name":"hidden: only one disjoint mask pair","kind":"real","visible":false,"input":{"grid":[[1,1,0],[1,0,1],[0,1,0]]},"expected":[1,2],"tags":["hidden","unique-pair"]},{"id":"real-one-column-zero","name":"hidden: zero row in one-column matrix","kind":"real","visible":false,"input":{"grid":[[1],[0],[1]]},"expected":[1],"tags":["hidden","one-column"]},{"id":"real-duplicates","name":"hidden: duplicate nonzero masks do not help","kind":"real","visible":false,"input":{"grid":[[1,0,1,0,1],[1,0,1,0,1],[1,0,1,0,1]]},"expected":[],"tags":["hidden","duplicates"]},{"id":"real-complementary-five-columns","name":"hidden: disjoint masks across five columns","kind":"real","visible":false,"input":{"grid":[[1,0,1,0,0],[0,1,0,1,1],[1,1,1,1,1]]},"expected":[0,1],"tags":["hidden","five-columns"]}]}
+{
+  "challenge_id": "lc_2732",
+  "cases": [
+    {
+      "id": "sample-disjoint",
+      "name": "sample: two compatible rows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "tags": [
+        "sample",
+        "pair"
+      ]
+    },
+    {
+      "id": "sample-zero-row",
+      "name": "sample: one zero row",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0
+          ]
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "sample",
+        "single-row"
+      ]
+    },
+    {
+      "id": "sample-impossible",
+      "name": "sample: identical all-one rows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-late-zero",
+      "name": "trial: zero row appears later",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        2
+      ],
+      "tags": [
+        "trial",
+        "late-zero"
+      ]
+    },
+    {
+      "id": "trial-unique-pair",
+      "name": "only one disjoint mask pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "tags": [
+        "unique-pair"
+      ]
+    },
+    {
+      "id": "trial-one-column-zero",
+      "name": "zero row in one-column matrix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1
+          ],
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "one-column"
+      ]
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "duplicate nonzero masks do not help",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            1,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-complementary-five-columns",
+      "name": "disjoint masks across five columns",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "tags": [
+        "five-columns"
+      ]
+    }
+  ]
+}

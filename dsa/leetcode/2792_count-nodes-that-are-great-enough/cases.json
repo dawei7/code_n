@@ -121,10 +121,10 @@
       ]
     },
     {
-      "id": "real-smaller-grandchild",
-      "name": "hidden: a smaller grandchild qualifies two ancestors",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-smaller-grandchild",
+      "name": "a smaller grandchild qualifies two ancestors",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           5,
@@ -139,15 +139,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "grandchild"
       ]
     },
     {
-      "id": "real-balanced-k-three",
-      "name": "hidden: only the root has three smaller values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-balanced-k-three",
+      "name": "only the root has three smaller values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           10,
@@ -162,15 +161,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "bounded-summary"
       ]
     },
     {
-      "id": "real-maximum-k",
-      "name": "hidden: maximum k is met only by the large root",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-k",
+      "name": "maximum k is met only by the large root",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           100,
@@ -193,15 +191,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "maximum-k"
       ]
     },
     {
-      "id": "real-descending-complete",
-      "name": "hidden: several complete-tree ancestors qualify",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-descending-complete",
+      "name": "several complete-tree ancestors qualify",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           15,
@@ -224,7 +221,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "complete-tree"
       ]
     }

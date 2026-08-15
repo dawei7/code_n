@@ -7,180 +7,376 @@
       "name": "sample: center surplus covers both adjacent deficits",
       "kind": "sample",
       "visible": true,
-      "input": {"balance": [-1, 2, -1]},
+      "input": {
+        "balance": [
+          -1,
+          2,
+          -1
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "two-deficits"]
+      "tags": [
+        "sample",
+        "two-deficits"
+      ]
     },
     {
       "id": "sample-wraparound-neighbor",
       "name": "sample: circular wraparound supplies the last person",
       "kind": "sample",
       "visible": true,
-      "input": {"balance": [4, -1, -2]},
+      "input": {
+        "balance": [
+          4,
+          -1,
+          -2
+        ]
+      },
       "expected": 3,
-      "tags": ["sample", "wraparound"]
+      "tags": [
+        "sample",
+        "wraparound"
+      ]
     },
     {
       "id": "sample-negative-total",
       "name": "sample: negative total balance is impossible",
       "kind": "sample",
       "visible": true,
-      "input": {"balance": [-3, -3, 5]},
+      "input": {
+        "balance": [
+          -3,
+          -3,
+          5
+        ]
+      },
       "expected": -1,
-      "tags": ["sample", "impossible"]
+      "tags": [
+        "sample",
+        "impossible"
+      ]
     },
     {
       "id": "trial-single-zero",
       "name": "trial: a single zero balance needs no move",
       "kind": "trial",
       "visible": true,
-      "input": {"balance": [0]},
+      "input": {
+        "balance": [
+          0
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "singleton", "zero"]
+      "tags": [
+        "trial",
+        "singleton",
+        "zero"
+      ]
     },
     {
       "id": "trial-single-positive",
       "name": "trial: a single positive balance is already valid",
       "kind": "trial",
       "visible": true,
-      "input": {"balance": [5]},
+      "input": {
+        "balance": [
+          5
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "singleton", "surplus"]
+      "tags": [
+        "trial",
+        "singleton",
+        "surplus"
+      ]
     },
     {
       "id": "trial-single-negative",
       "name": "trial: a single negative balance is impossible",
       "kind": "trial",
       "visible": true,
-      "input": {"balance": [-1]},
+      "input": {
+        "balance": [
+          -1
+        ]
+      },
       "expected": -1,
-      "tags": ["trial", "singleton", "impossible"]
+      "tags": [
+        "trial",
+        "singleton",
+        "impossible"
+      ]
     },
     {
       "id": "trial-two-clockwise",
       "name": "trial: one unit crosses a two-person edge",
       "kind": "trial",
       "visible": true,
-      "input": {"balance": [1, -1]},
+      "input": {
+        "balance": [
+          1,
+          -1
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "two-people"]
+      "tags": [
+        "trial",
+        "two-people"
+      ]
     },
     {
       "id": "trial-two-counterclockwise",
       "name": "trial: reversing the two-person balances is symmetric",
       "kind": "trial",
       "visible": true,
-      "input": {"balance": [-1, 1]},
+      "input": {
+        "balance": [
+          -1,
+          1
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "two-people", "symmetry"]
+      "tags": [
+        "trial",
+        "two-people",
+        "symmetry"
+      ]
     },
     {
       "id": "trial-unused-surplus",
       "name": "trial: extra supply remains at its owner",
       "kind": "trial",
       "visible": true,
-      "input": {"balance": [2, -1]},
+      "input": {
+        "balance": [
+          2,
+          -1
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "unused-surplus"]
+      "tags": [
+        "trial",
+        "unused-surplus"
+      ]
     },
     {
       "id": "trial-two-sources-one-demand",
       "name": "trial: adjacent sources jointly cover one deficit",
       "kind": "trial",
       "visible": true,
-      "input": {"balance": [1, -2, 1]},
+      "input": {
+        "balance": [
+          1,
+          -2,
+          1
+        ]
+      },
       "expected": 2,
-      "tags": ["trial", "multiple-sources"]
+      "tags": [
+        "trial",
+        "multiple-sources"
+      ]
     },
     {
-      "id": "real-one-source-two-demands",
-      "name": "hidden: one source serves two unequal demands",
-      "kind": "real",
-      "visible": false,
-      "input": {"balance": [5, -4, -1]},
+      "id": "trial-one-source-two-demands",
+      "name": "one source serves two unequal demands",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "balance": [
+          5,
+          -4,
+          -1
+        ]
+      },
       "expected": 5,
-      "tags": ["hidden", "multiple-demands"]
+      "tags": [
+        "multiple-demands"
+      ]
     },
     {
-      "id": "real-demand-at-index-zero",
-      "name": "hidden: two supplies cover the first index",
-      "kind": "real",
-      "visible": false,
-      "input": {"balance": [-5, 2, 3]},
+      "id": "trial-demand-at-index-zero",
+      "name": "two supplies cover the first index",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "balance": [
+          -5,
+          2,
+          3
+        ]
+      },
       "expected": 5,
-      "tags": ["hidden", "wraparound", "multiple-sources"]
+      "tags": [
+        "wraparound",
+        "multiple-sources"
+      ]
     },
     {
-      "id": "real-distance-choice",
-      "name": "hidden: deficits choose different circular routes",
-      "kind": "real",
-      "visible": false,
-      "input": {"balance": [2, -1, -1, 0]},
+      "id": "trial-distance-choice",
+      "name": "deficits choose different circular routes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "balance": [
+          2,
+          -1,
+          -1,
+          0
+        ]
+      },
       "expected": 3,
-      "tags": ["hidden", "route-choice"]
+      "tags": [
+        "route-choice"
+      ]
     },
     {
-      "id": "real-wraparound-shorter",
-      "name": "hidden: the circle edge is shorter than the linear route",
-      "kind": "real",
-      "visible": false,
-      "input": {"balance": [0, -1, 0, 1]},
+      "id": "trial-wraparound-shorter",
+      "name": "the circle edge is shorter than the linear route",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "balance": [
+          0,
+          -1,
+          0,
+          1
+        ]
+      },
       "expected": 2,
-      "tags": ["hidden", "wraparound"]
+      "tags": [
+        "wraparound"
+      ]
     },
     {
-      "id": "real-three-equal-deficits",
-      "name": "hidden: one source balances three equal deficits",
-      "kind": "real",
-      "visible": false,
-      "input": {"balance": [3, -1, -1, -1]},
+      "id": "trial-three-equal-deficits",
+      "name": "one source balances three equal deficits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "balance": [
+          3,
+          -1,
+          -1,
+          -1
+        ]
+      },
       "expected": 4,
-      "tags": ["hidden", "multiple-demands"]
+      "tags": [
+        "multiple-demands"
+      ]
     },
     {
-      "id": "real-extra-source-balance",
-      "name": "hidden: one surplus unit remains after three deficits",
-      "kind": "real",
-      "visible": false,
-      "input": {"balance": [10, -3, -3, -3]},
+      "id": "trial-extra-source-balance",
+      "name": "one surplus unit remains after three deficits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "balance": [
+          10,
+          -3,
+          -3,
+          -3
+        ]
+      },
       "expected": 12,
-      "tags": ["hidden", "unused-surplus", "distance"]
+      "tags": [
+        "unused-surplus",
+        "distance"
+      ]
     },
     {
-      "id": "real-maximum-two-person-transfer",
-      "name": "hidden: maximum-magnitude neighboring transfer",
-      "kind": "real",
-      "visible": false,
-      "input": {"balance": [100000, -100000]},
+      "id": "trial-maximum-two-person-transfer",
+      "name": "maximum-magnitude neighboring transfer",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "balance": [
+          100000,
+          -100000
+        ]
+      },
       "expected": 100000,
-      "tags": ["hidden", "maximum-value", "two-people"]
+      "tags": [
+        "maximum-value",
+        "two-people"
+      ]
     },
     {
-      "id": "real-maximum-split-demand",
-      "name": "hidden: maximum supply splits across both neighbors",
-      "kind": "real",
-      "visible": false,
-      "input": {"balance": [100000, -50000, -50000]},
+      "id": "trial-maximum-split-demand",
+      "name": "maximum supply splits across both neighbors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "balance": [
+          100000,
+          -50000,
+          -50000
+        ]
+      },
       "expected": 100000,
-      "tags": ["hidden", "maximum-value", "multiple-demands"]
+      "tags": [
+        "maximum-value",
+        "multiple-demands"
+      ]
     },
     {
-      "id": "real-alternating-five-people",
-      "name": "hidden: alternating supplies and deficits around an odd cycle",
-      "kind": "real",
-      "visible": false,
-      "input": {"balance": [-2, 4, -3, 4, -3]},
+      "id": "trial-alternating-five-people",
+      "name": "alternating supplies and deficits around an odd cycle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "balance": [
+          -2,
+          4,
+          -3,
+          4,
+          -3
+        ]
+      },
       "expected": 8,
-      "tags": ["hidden", "alternating", "odd-cycle"]
+      "tags": [
+        "alternating",
+        "odd-cycle"
+      ]
     },
     {
-      "id": "real-distant-single-demand",
-      "name": "hidden: a single large demand has one distant source",
-      "kind": "real",
-      "visible": false,
-      "input": {"balance": [7, -6, 0, 0, 0, 0]},
+      "id": "trial-distant-single-demand",
+      "name": "a single large demand has one distant source",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "balance": [
+          7,
+          -6,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
       "expected": 6,
-      "tags": ["hidden", "single-demand", "unused-surplus"]
+      "tags": [
+        "single-demand",
+        "unused-surplus"
+      ]
+    },
+    {
+      "id": "trial-boundary-21",
+      "name": "identical elements in balance",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "balance": [
+          -1,
+          -1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

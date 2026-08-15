@@ -109,10 +109,10 @@
       ]
     },
     {
-      "id": "real-negative-values",
-      "name": "hidden: negative and positive values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-negative-values",
+      "name": "negative and positive values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -1,
@@ -126,15 +126,14 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "negative-values"
       ]
     },
     {
-      "id": "real-middle-frequency",
-      "name": "hidden: repeated middle value across positions",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-middle-frequency",
+      "name": "repeated middle value across positions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -148,15 +147,14 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "frequency"
       ]
     },
     {
-      "id": "real-several-competitors",
-      "name": "hidden: several values form competing pairs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-several-competitors",
+      "name": "several values form competing pairs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -171,8 +169,40 @@
       },
       "expected": 11,
       "tags": [
-        "hidden",
         "competing-modes"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

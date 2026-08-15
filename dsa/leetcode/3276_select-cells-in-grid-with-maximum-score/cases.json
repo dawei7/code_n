@@ -6,108 +6,342 @@
       "name": "sample: three compatible row values",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[1, 2, 3], [4, 3, 2], [1, 1, 1]]},
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            3,
+            2
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
       "expected": 8,
-      "tags": ["sample", "value-conflicts"]
+      "tags": [
+        "sample",
+        "value-conflicts"
+      ]
     },
     {
       "id": "sample-shared-maximum",
       "name": "sample: shared maximum requires alternative",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[8, 7, 6], [8, 3, 2]]},
+      "input": {
+        "grid": [
+          [
+            8,
+            7,
+            6
+          ],
+          [
+            8,
+            3,
+            2
+          ]
+        ]
+      },
       "expected": 15,
-      "tags": ["sample", "shared-maximum"]
+      "tags": [
+        "sample",
+        "shared-maximum"
+      ]
     },
     {
       "id": "trial-single-cell",
       "name": "trial: one cell",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[42]]},
+      "input": {
+        "grid": [
+          [
+            42
+          ]
+        ]
+      },
       "expected": 42,
-      "tags": ["single-row", "single-cell"]
+      "tags": [
+        "single-row",
+        "single-cell"
+      ]
     },
     {
       "id": "trial-duplicates-within-row",
       "name": "trial: duplicate values within one row",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[5, 5, 3]]},
+      "input": {
+        "grid": [
+          [
+            5,
+            5,
+            3
+          ]
+        ]
+      },
       "expected": 5,
-      "tags": ["single-row", "duplicates"]
+      "tags": [
+        "single-row",
+        "duplicates"
+      ]
     },
     {
       "id": "trial-all-values-equal",
       "name": "trial: all rows contain one shared value",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[7, 7], [7, 7], [7, 7]]},
+      "input": {
+        "grid": [
+          [
+            7,
+            7
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            7,
+            7
+          ]
+        ]
+      },
       "expected": 7,
-      "tags": ["duplicates", "global-uniqueness"]
+      "tags": [
+        "duplicates",
+        "global-uniqueness"
+      ]
     },
     {
       "id": "trial-disjoint-values",
       "name": "trial: row maxima are all distinct",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[1, 2], [3, 4], [5, 6]]},
+      "input": {
+        "grid": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            5,
+            6
+          ]
+        ]
+      },
       "expected": 12,
-      "tags": ["distinct-values", "all-rows"]
+      "tags": [
+        "distinct-values",
+        "all-rows"
+      ]
     },
     {
       "id": "trial-three-way-conflict",
       "name": "trial: values rotate across three rows",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[10, 9], [10, 8], [9, 8]]},
+      "input": {
+        "grid": [
+          [
+            10,
+            9
+          ],
+          [
+            10,
+            8
+          ],
+          [
+            9,
+            8
+          ]
+        ]
+      },
       "expected": 27,
-      "tags": ["conflicts", "assignment"]
+      "tags": [
+        "conflicts",
+        "assignment"
+      ]
     },
     {
-      "id": "real-descending-alternatives",
-      "name": "real: descending alternatives avoid collisions",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[100, 1], [100, 99], [99, 98]]},
+      "id": "trial-descending-alternatives",
+      "name": "descending alternatives avoid collisions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            100,
+            1
+          ],
+          [
+            100,
+            99
+          ],
+          [
+            99,
+            98
+          ]
+        ]
+      },
       "expected": 297,
-      "tags": ["upper-bound", "assignment"]
+      "tags": [
+        "upper-bound",
+        "assignment"
+      ]
     },
     {
-      "id": "real-more-rows-than-values",
-      "name": "real: some rows must remain unused",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[1, 2], [1, 2], [1, 2], [1, 2]]},
+      "id": "trial-more-rows-than-values",
+      "name": "some rows must remain unused",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
       "expected": 3,
-      "tags": ["unused-rows", "few-values"]
+      "tags": [
+        "unused-rows",
+        "few-values"
+      ]
     },
     {
-      "id": "real-greedy-row-maximum-fails",
-      "name": "real: reserve the best value for a constrained row",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[9, 8], [9], [8, 7]]},
+      "id": "trial-greedy-row-maximum-fails",
+      "name": "reserve the best value for a constrained row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            9,
+            8
+          ],
+          [
+            9
+          ],
+          [
+            8,
+            7
+          ]
+        ]
+      },
       "expected": 24,
-      "tags": ["greedy-trap", "constrained-row"]
+      "tags": [
+        "greedy-trap",
+        "constrained-row"
+      ]
     },
     {
-      "id": "real-rectangular-grid",
-      "name": "real: rectangular grid with overlapping bands",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[2, 4, 6, 8], [1, 4, 7, 8], [2, 5, 7, 9], [3, 5, 6, 9]]},
+      "id": "trial-rectangular-grid",
+      "name": "rectangular grid with overlapping bands",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            2,
+            4,
+            6,
+            8
+          ],
+          [
+            1,
+            4,
+            7,
+            8
+          ],
+          [
+            2,
+            5,
+            7,
+            9
+          ],
+          [
+            3,
+            5,
+            6,
+            9
+          ]
+        ]
+      },
       "expected": 30,
-      "tags": ["rectangular", "overlap"]
+      "tags": [
+        "rectangular",
+        "overlap"
+      ]
     },
     {
-      "id": "real-ten-rows-distinct-maxima",
-      "name": "real: maximum row count with distinct singleton values",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[91], [92], [93], [94], [95], [96], [97], [98], [99], [100]]},
+      "id": "trial-ten-rows-distinct-maxima",
+      "name": "maximum row count with distinct singleton values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            91
+          ],
+          [
+            92
+          ],
+          [
+            93
+          ],
+          [
+            94
+          ],
+          [
+            95
+          ],
+          [
+            96
+          ],
+          [
+            97
+          ],
+          [
+            98
+          ],
+          [
+            99
+          ],
+          [
+            100
+          ]
+        ]
+      },
       "expected": 955,
-      "tags": ["maximum-rows", "distinct-values"]
+      "tags": [
+        "maximum-rows",
+        "distinct-values"
+      ]
     }
   ]
 }

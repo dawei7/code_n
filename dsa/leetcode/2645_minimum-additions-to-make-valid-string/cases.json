@@ -72,44 +72,41 @@
       ]
     },
     {
-      "id": "real-valid-multiple",
-      "name": "hidden: multiple complete groups",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-valid-multiple",
+      "name": "multiple complete groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "abcabc"
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "valid"
       ]
     },
     {
-      "id": "real-cross-boundary",
-      "name": "hidden: one complete group followed by a start",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-cross-boundary",
+      "name": "one complete group followed by a start",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "abca"
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
     {
-      "id": "real-equal-middle-letters",
-      "name": "hidden: repeated middle letters split groups",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-equal-middle-letters",
+      "name": "repeated middle letters split groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "bbb"
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "repeated"
       ]
     }

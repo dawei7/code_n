@@ -2,14 +2,135 @@
   "schema_version": 1,
   "challenge_id": "lc_2310",
   "cases": [
-    {"id":"sample-two-numbers","name":"sample: two values ending in nine reach 58","kind":"sample","visible":true,"input":{"num":58,"k":9},"expected":2,"tags":["sample","residue"]},
-    {"id":"sample-impossible","name":"sample: no count ending in two reaches residue seven","kind":"sample","visible":true,"input":{"num":37,"k":2},"expected":-1,"tags":["sample","impossible"]},
-    {"id":"sample-zero-target","name":"sample: the empty collection sums to zero","kind":"sample","visible":true,"input":{"num":0,"k":7},"expected":0,"tags":["sample","zero"]},
-    {"id":"trial-single-value","name":"the target itself already ends in k","kind":"trial","visible":true,"input":{"num":45,"k":5},"expected":1,"tags":["single"]},
-    {"id":"trial-zero-digit","name":"one positive multiple of ten is sufficient","kind":"trial","visible":true,"input":{"num":20,"k":0},"expected":1,"tags":["zero-digit"]},
-    {"id":"trial-zero-digit-too-small","name":"a positive single digit cannot be formed from endings of zero","kind":"trial","visible":true,"input":{"num":5,"k":0},"expected":-1,"tags":["zero-digit","lower-bound"]},
-    {"id":"real-full-cycle","name":"hidden: the first matching residue occurs at count ten","kind":"real","visible":false,"input":{"num":10,"k":1},"expected":10,"tags":["hidden","full-cycle"]},
-    {"id":"real-residue-matches-but-too-large","name":"hidden: a matching count can exceed the target","kind":"real","visible":false,"input":{"num":3,"k":6},"expected":-1,"tags":["hidden","lower-bound"]},
-    {"id":"real-maximum-target","name":"hidden: the maximum target remains a constant-size check","kind":"real","visible":false,"input":{"num":3000,"k":7},"expected":10,"tags":["hidden","maximum"]}
+    {
+      "id": "sample-two-numbers",
+      "name": "sample: two values ending in nine reach 58",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 58,
+        "k": 9
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "residue"
+      ]
+    },
+    {
+      "id": "sample-impossible",
+      "name": "sample: no count ending in two reaches residue seven",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 37,
+        "k": 2
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "sample-zero-target",
+      "name": "sample: the empty collection sums to zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 0,
+        "k": 7
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-single-value",
+      "name": "the target itself already ends in k",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 45,
+        "k": 5
+      },
+      "expected": 1,
+      "tags": [
+        "single"
+      ]
+    },
+    {
+      "id": "trial-zero-digit",
+      "name": "one positive multiple of ten is sufficient",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 20,
+        "k": 0
+      },
+      "expected": 1,
+      "tags": [
+        "zero-digit"
+      ]
+    },
+    {
+      "id": "trial-zero-digit-too-small",
+      "name": "a positive single digit cannot be formed from endings of zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 5,
+        "k": 0
+      },
+      "expected": -1,
+      "tags": [
+        "zero-digit",
+        "lower-bound"
+      ]
+    },
+    {
+      "id": "trial-full-cycle",
+      "name": "the first matching residue occurs at count ten",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 10,
+        "k": 1
+      },
+      "expected": 10,
+      "tags": [
+        "full-cycle"
+      ]
+    },
+    {
+      "id": "trial-residue-matches-but-too-large",
+      "name": "a matching count can exceed the target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 3,
+        "k": 6
+      },
+      "expected": -1,
+      "tags": [
+        "lower-bound"
+      ]
+    },
+    {
+      "id": "trial-maximum-target",
+      "name": "the maximum target remains a constant-size check",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 3000,
+        "k": 7
+      },
+      "expected": 10,
+      "tags": [
+        "maximum"
+      ]
+    }
   ]
 }

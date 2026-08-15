@@ -73,30 +73,28 @@
       ]
     },
     {
-      "id": "hidden-long-prefix",
-      "name": "hidden: many starts share one ending",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-long-prefix",
+      "name": "many starts share one ending",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaaabc"
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "late-completion"
       ]
     },
     {
-      "id": "hidden-reverse-and-repeat",
-      "name": "hidden: changing latest occurrence",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-reverse-and-repeat",
+      "name": "changing latest occurrence",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "cbaabc"
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "latest-index"
       ]
     }

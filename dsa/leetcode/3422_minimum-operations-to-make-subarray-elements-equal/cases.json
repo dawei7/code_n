@@ -127,10 +127,10 @@
       ]
     },
     {
-      "id": "real-full-window",
-      "name": "hidden: k equals the array length",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-full-window",
+      "name": "k equals the array length",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -5,
@@ -143,15 +143,14 @@
       },
       "expected": 35,
       "tags": [
-        "hidden",
         "full-window"
       ]
     },
     {
-      "id": "real-negative-values",
-      "name": "hidden: all values are negative",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-negative-values",
+      "name": "all values are negative",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -10,
@@ -164,15 +163,14 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "negative"
       ]
     },
     {
-      "id": "real-outlier",
-      "name": "hidden: median ignores a one-sided outlier",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-outlier",
+      "name": "median ignores a one-sided outlier",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -187,15 +185,14 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "outlier"
       ]
     },
     {
-      "id": "real-alternating",
-      "name": "hidden: repeated add and discard rebalancing",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alternating",
+      "name": "repeated add and discard rebalancing",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -210,15 +207,14 @@
       },
       "expected": 32,
       "tags": [
-        "hidden",
         "rebalancing"
       ]
     },
     {
-      "id": "real-value-boundaries",
-      "name": "hidden: values span both legal extremes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-value-boundaries",
+      "name": "values span both legal extremes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -1000000,
@@ -230,15 +226,14 @@
       },
       "expected": 1999998,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
     {
-      "id": "real-many-equal-windows",
-      "name": "hidden: several windows share the optimum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-equal-windows",
+      "name": "several windows share the optimum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -252,7 +247,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "multiple-optima"
       ]
     }

@@ -352,10 +352,10 @@
       ]
     },
     {
-      "id": "real-complete-five",
-      "name": "hidden: every vertex in a five-vertex clique has degree four",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-complete-five",
+      "name": "every vertex in a five-vertex clique has degree four",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [
@@ -403,16 +403,15 @@
         4
       ],
       "tags": [
-        "hidden",
         "complete-graph",
         "uniform-degrees"
       ]
     },
     {
-      "id": "real-empty-six",
-      "name": "hidden: an empty six-vertex graph has all-zero degrees",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-empty-six",
+      "name": "an empty six-vertex graph has all-zero degrees",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [
@@ -474,16 +473,15 @@
         0
       ],
       "tags": [
-        "hidden",
         "empty-graph",
         "all-isolated"
       ]
     },
     {
-      "id": "real-two-triangles",
-      "name": "hidden: two disconnected triangles are both two-regular",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-triangles",
+      "name": "two disconnected triangles are both two-regular",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [
@@ -545,16 +543,15 @@
         2
       ],
       "tags": [
-        "hidden",
         "disconnected",
         "regular-components"
       ]
     },
     {
-      "id": "real-mixed-seven",
-      "name": "hidden: an irregular graph exercises distinct row totals",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-seven",
+      "name": "an irregular graph exercises distinct row totals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [
@@ -632,16 +629,15 @@
         2
       ],
       "tags": [
-        "hidden",
         "irregular-graph",
         "mixed-degrees"
       ]
     },
     {
-      "id": "real-complete-bipartite",
-      "name": "hidden: the two sides of K3,4 have complementary degrees",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-complete-bipartite",
+      "name": "the two sides of K3,4 have complementary degrees",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [
@@ -719,16 +715,15 @@
         3
       ],
       "tags": [
-        "hidden",
         "bipartite",
         "two-degree-values"
       ]
     },
     {
-      "id": "real-maximum-complete",
-      "name": "hidden: a maximum-size complete graph reaches degree ninety-nine",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-complete",
+      "name": "a maximum-size complete graph reaches degree ninety-nine",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [
@@ -11036,7 +11031,6 @@
         99
       ],
       "tags": [
-        "hidden",
         "upper-bound",
         "complete-graph",
         "maximum-degree"
@@ -11044,4 +11038,3 @@
     }
   ]
 }
-

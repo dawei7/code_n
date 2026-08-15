@@ -111,10 +111,10 @@
       ]
     },
     {
-      "id": "real-minimum-first",
-      "name": "hidden: leading minimum permits one suffix sort",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-minimum-first",
+      "name": "leading minimum permits one suffix sort",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "acb"
       },
@@ -123,16 +123,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "minimum-first",
         "one-operation"
       ]
     },
     {
-      "id": "real-maximum-last",
-      "name": "hidden: trailing maximum permits one prefix sort",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-last",
+      "name": "trailing maximum permits one prefix sort",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "bac"
       },
@@ -141,16 +140,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-last",
         "one-operation"
       ]
     },
     {
-      "id": "real-other-descending-pair",
-      "name": "hidden: every descending pair is impossible",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-other-descending-pair",
+      "name": "every descending pair is impossible",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "ba"
       },
@@ -159,16 +157,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "descending-pair",
         "negative-one"
       ]
     },
     {
-      "id": "real-three-operations",
-      "name": "hidden: unique extremes occupy opposite endpoints",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-operations",
+      "name": "unique extremes occupy opposite endpoints",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "edc"
       },
@@ -177,16 +174,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "three-operations",
         "unique-extremes"
       ]
     },
     {
-      "id": "real-repeated-minimum",
-      "name": "hidden: repeated trailing minimum reduces answer to two",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-minimum",
+      "name": "repeated trailing minimum reduces answer to two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "jgg"
       },
@@ -195,16 +191,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "repeated-minimum",
         "two-operations"
       ]
     },
     {
-      "id": "real-minimum-in-prefix",
-      "name": "hidden: a minimum in a proper prefix enables two moves",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-minimum-in-prefix",
+      "name": "a minimum in a proper prefix enables two moves",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "caba"
       },
@@ -213,16 +208,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "proper-prefix",
         "two-operations"
       ]
     },
     {
-      "id": "real-longer-three-operation",
-      "name": "hidden: longer reverse string retains unique endpoint extremes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-longer-three-operation",
+      "name": "longer reverse string retains unique endpoint extremes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "dcba"
       },
@@ -231,7 +225,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "unique-extremes",
         "three-operations"
       ]

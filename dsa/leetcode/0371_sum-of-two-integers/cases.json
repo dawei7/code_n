@@ -78,50 +78,46 @@
       ]
     },
     {
-      "id": "hidden-two-negative",
-      "name": "hidden: carry between negative operands",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-negative",
+      "name": "carry between negative operands",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": -400,
         "b": -500
       },
       "expected": -900,
       "tags": [
-        "hidden",
         "negative"
       ]
     },
     {
-      "id": "hidden-positive-bound",
-      "name": "hidden: large positive allowed sum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-positive-bound",
+      "name": "large positive allowed sum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": 999,
         "b": 1
       },
       "expected": 1000,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
     {
-      "id": "hidden-mixed-bound",
-      "name": "hidden: subtract magnitude through bit addition",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-bound",
+      "name": "subtract magnitude through bit addition",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": 1000,
         "b": -999
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "mixed-sign"
       ]
     }
   ]
 }
-

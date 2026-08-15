@@ -58,10 +58,10 @@
       ]
     },
     {
-      "id": "real-min-at-end",
-      "name": "hidden: minimum at end",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-min-at-end",
+      "name": "minimum at end",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -74,7 +74,7 @@
       },
       "expected": 1,
       "tags": [
-        "hidden"
+        "trial"
       ]
     }
   ]

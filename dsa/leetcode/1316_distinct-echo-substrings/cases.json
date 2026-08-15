@@ -73,30 +73,28 @@
       ]
     },
     {
-      "id": "hidden-alternating",
-      "name": "hidden: repeated alternating blocks",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alternating",
+      "name": "repeated alternating blocks",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "text": "ababab"
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "overlap"
       ]
     },
     {
-      "id": "hidden-one-character-run",
-      "name": "hidden: three nested echo lengths",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-character-run",
+      "name": "three nested echo lengths",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "text": "zzzzzz"
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }

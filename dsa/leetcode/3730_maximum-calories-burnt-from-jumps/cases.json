@@ -2,18 +2,294 @@
   "schema_version": 1,
   "challenge_id": "lc_3730",
   "cases": [
-    {"id":"sample-wide-gaps","name":"sample: alternate from nine through the remaining extremes","kind":"sample","visible":true,"input":{"heights":[1,7,9]},"expected":181,"validator":{"kind":"exact"},"tags":["sample","alternating-extremes"]},
-    {"id":"sample-unsorted-three","name":"sample: input order differs from the optimal visiting order","kind":"sample","visible":true,"input":{"heights":[5,2,4]},"expected":38,"validator":{"kind":"exact"},"tags":["sample","input-order"]},
-    {"id":"sample-equal-pair","name":"sample: the second jump between equal heights burns zero","kind":"sample","visible":true,"input":{"heights":[3,3]},"expected":9,"validator":{"kind":"exact"},"tags":["sample","duplicates"]},
-    {"id":"trial-single-minimum","name":"trial: one minimum-height block","kind":"trial","visible":true,"input":{"heights":[1]},"expected":1,"validator":{"kind":"exact"},"tags":["trial","single-block"]},
-    {"id":"trial-two-distinct","name":"trial: visit the taller of two blocks first","kind":"trial","visible":true,"input":{"heights":[1,2]},"expected":5,"validator":{"kind":"exact"},"tags":["trial","two-blocks"]},
-    {"id":"trial-four-increasing","name":"trial: alternate both ends of four sorted heights","kind":"trial","visible":true,"input":{"heights":[1,2,3,4]},"expected":30,"validator":{"kind":"exact"},"tags":["trial","even-length"]},
-    {"id":"real-single-maximum","name":"hidden: one maximum-height block requires a 64-bit square","kind":"real","visible":false,"input":{"heights":[100000]},"expected":10000000000,"validator":{"kind":"exact"},"tags":["hidden","value-boundary","single-block"]},
-    {"id":"real-all-equal","name":"hidden: only the ground jump contributes when all heights match","kind":"real","visible":false,"input":{"heights":[5,5,5,5]},"expected":25,"validator":{"kind":"exact"},"tags":["hidden","duplicates"]},
-    {"id":"real-duplicate-low","name":"hidden: a repeated low endpoint creates one zero jump","kind":"real","visible":false,"input":{"heights":[1,1,10]},"expected":181,"validator":{"kind":"exact"},"tags":["hidden","duplicates","wide-gap"]},
-    {"id":"real-two-duplicate-levels","name":"hidden: equal low and high pairs still alternate optimally","kind":"real","visible":false,"input":{"heights":[2,2,5,5]},"expected":52,"validator":{"kind":"exact"},"tags":["hidden","duplicates","even-length"]},
-    {"id":"real-two-value-boundaries","name":"hidden: minimum and maximum heights maximize both legal jumps","kind":"real","visible":false,"input":{"heights":[1,100000]},"expected":19999800001,"validator":{"kind":"exact"},"tags":["hidden","value-boundary","two-blocks"]},
-    {"id":"real-five-increasing","name":"hidden: odd length leaves the middle height last","kind":"real","visible":false,"input":{"heights":[1,2,3,4,5]},"expected":55,"validator":{"kind":"exact"},"tags":["hidden","odd-length"]},
-    {"id":"real-six-even-spaced","name":"hidden: six evenly spaced heights exercise every extreme pair","kind":"real","visible":false,"input":{"heights":[2,4,6,8,10,12]},"expected":364,"validator":{"kind":"exact"},"tags":["hidden","even-length","alternating-extremes"]}
+    {
+      "id": "sample-wide-gaps",
+      "name": "sample: alternate from nine through the remaining extremes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "heights": [
+          1,
+          7,
+          9
+        ]
+      },
+      "expected": 181,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "alternating-extremes"
+      ]
+    },
+    {
+      "id": "sample-unsorted-three",
+      "name": "sample: input order differs from the optimal visiting order",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "heights": [
+          5,
+          2,
+          4
+        ]
+      },
+      "expected": 38,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "input-order"
+      ]
+    },
+    {
+      "id": "sample-equal-pair",
+      "name": "sample: the second jump between equal heights burns zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "heights": [
+          3,
+          3
+        ]
+      },
+      "expected": 9,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-single-minimum",
+      "name": "trial: one minimum-height block",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "heights": [
+          1
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-block"
+      ]
+    },
+    {
+      "id": "trial-two-distinct",
+      "name": "trial: visit the taller of two blocks first",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "heights": [
+          1,
+          2
+        ]
+      },
+      "expected": 5,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "two-blocks"
+      ]
+    },
+    {
+      "id": "trial-four-increasing",
+      "name": "trial: alternate both ends of four sorted heights",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "heights": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 30,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "even-length"
+      ]
+    },
+    {
+      "id": "trial-single-maximum",
+      "name": "one maximum-height block requires a 64-bit square",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "heights": [
+          100000
+        ]
+      },
+      "expected": 10000000000,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "value-boundary",
+        "single-block"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "only the ground jump contributes when all heights match",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "heights": [
+          5,
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": 25,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-duplicate-low",
+      "name": "a repeated low endpoint creates one zero jump",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "heights": [
+          1,
+          1,
+          10
+        ]
+      },
+      "expected": 181,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "duplicates",
+        "wide-gap"
+      ]
+    },
+    {
+      "id": "trial-two-duplicate-levels",
+      "name": "equal low and high pairs still alternate optimally",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "heights": [
+          2,
+          2,
+          5,
+          5
+        ]
+      },
+      "expected": 52,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "duplicates",
+        "even-length"
+      ]
+    },
+    {
+      "id": "trial-two-value-boundaries",
+      "name": "minimum and maximum heights maximize both legal jumps",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "heights": [
+          1,
+          100000
+        ]
+      },
+      "expected": 19999800001,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "value-boundary",
+        "two-blocks"
+      ]
+    },
+    {
+      "id": "trial-five-increasing",
+      "name": "odd length leaves the middle height last",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "heights": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 55,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "odd-length"
+      ]
+    },
+    {
+      "id": "trial-six-even-spaced",
+      "name": "six evenly spaced heights exercise every extreme pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "heights": [
+          2,
+          4,
+          6,
+          8,
+          10,
+          12
+        ]
+      },
+      "expected": 364,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "even-length",
+        "alternating-extremes"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in heights",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "heights": [
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    }
   ]
 }

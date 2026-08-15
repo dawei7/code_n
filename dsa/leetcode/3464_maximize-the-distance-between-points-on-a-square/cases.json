@@ -184,10 +184,10 @@
       ]
     },
     {
-      "id": "real-dense-boundary",
-      "name": "real: irregular dense boundary choices",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-dense-boundary",
+      "name": "irregular dense boundary choices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "side": 6,
         "points": [
@@ -241,10 +241,10 @@
       ]
     },
     {
-      "id": "real-sparse-wraparound",
-      "name": "real: optimal selection crosses the perimeter seam",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-sparse-wraparound",
+      "name": "optimal selection crosses the perimeter seam",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "side": 5,
         "points": [
@@ -286,10 +286,10 @@
       ]
     },
     {
-      "id": "real-five-points",
-      "name": "real: choose five from mixed edges",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-five-points",
+      "name": "choose five from mixed edges",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "side": 7,
         "points": [
@@ -339,10 +339,10 @@
       ]
     },
     {
-      "id": "real-clustered-bottom",
-      "name": "real: clustered points constrain a sparse selection",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-clustered-bottom",
+      "name": "clustered points constrain a sparse selection",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "side": 10,
         "points": [
@@ -388,10 +388,10 @@
       ]
     },
     {
-      "id": "real-complete-side-four",
-      "name": "real: select half of a complete small boundary",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-complete-side-four",
+      "name": "select half of a complete small boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "side": 4,
         "points": [
@@ -466,6 +466,72 @@
       "tags": [
         "real",
         "complete-boundary"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value side=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "side": 1,
+        "points": [
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "k": 4
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "side": 2,
+        "points": [
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

@@ -78,48 +78,75 @@
       ]
     },
     {
-      "id": "hidden-descending",
-      "name": "hidden: every new digit triggers a pop",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-descending",
+      "name": "every new digit triggers a pop",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": "9876543210",
         "k": 5
       },
       "expected": "43210",
       "tags": [
-        "hidden",
         "descending"
       ]
     },
     {
-      "id": "hidden-equal",
-      "name": "hidden: all digits equal",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-equal",
+      "name": "all digits equal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": "777777",
         "k": 3
       },
       "expected": "777",
       "tags": [
-        "hidden",
         "equal"
       ]
     },
     {
-      "id": "hidden-mixed-zeroes",
-      "name": "hidden: internal zeroes dominate larger prefix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-zeroes",
+      "name": "internal zeroes dominate larger prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": "120304050",
         "k": 4
       },
       "expected": "50",
       "tags": [
-        "hidden",
         "zeroes"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in num",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "1",
+        "k": 3
+      },
+      "expected": "0",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in num",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "111",
+        "k": 3
+      },
+      "expected": "0",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

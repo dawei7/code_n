@@ -6,72 +6,331 @@
       "name": "sample: both days multiply through long chains",
       "kind": "sample",
       "visible": true,
-      "input": {"initialCurrency": "EUR", "pairs1": [["EUR", "USD"], ["USD", "JPY"]], "rates1": [2.0, 3.0], "pairs2": [["JPY", "USD"], ["USD", "CHF"], ["CHF", "EUR"]], "rates2": [4.0, 5.0, 6.0]},
+      "input": {
+        "initialCurrency": "EUR",
+        "pairs1": [
+          [
+            "EUR",
+            "USD"
+          ],
+          [
+            "USD",
+            "JPY"
+          ]
+        ],
+        "rates1": [
+          2.0,
+          3.0
+        ],
+        "pairs2": [
+          [
+            "JPY",
+            "USD"
+          ],
+          [
+            "USD",
+            "CHF"
+          ],
+          [
+            "CHF",
+            "EUR"
+          ]
+        ],
+        "rates2": [
+          4.0,
+          5.0,
+          6.0
+        ]
+      },
       "expected": 720.0,
-      "tags": ["sample", "chains"]
+      "tags": [
+        "sample",
+        "chains"
+      ]
     },
     {
       "id": "sample-ngn-inverse",
       "name": "sample: inverse day-two conversion is best",
       "kind": "sample",
       "visible": true,
-      "input": {"initialCurrency": "NGN", "pairs1": [["NGN", "EUR"]], "rates1": [9.0], "pairs2": [["NGN", "EUR"]], "rates2": [6.0]},
+      "input": {
+        "initialCurrency": "NGN",
+        "pairs1": [
+          [
+            "NGN",
+            "EUR"
+          ]
+        ],
+        "rates1": [
+          9.0
+        ],
+        "pairs2": [
+          [
+            "NGN",
+            "EUR"
+          ]
+        ],
+        "rates2": [
+          6.0
+        ]
+      },
       "expected": 1.5,
-      "tags": ["sample", "reciprocal"]
+      "tags": [
+        "sample",
+        "reciprocal"
+      ]
     },
     {
       "id": "sample-no-conversion",
       "name": "sample: disconnected second day makes no conversion best",
       "kind": "sample",
       "visible": true,
-      "input": {"initialCurrency": "USD", "pairs1": [["USD", "EUR"]], "rates1": [1.0], "pairs2": [["EUR", "JPY"]], "rates2": [10.0]},
+      "input": {
+        "initialCurrency": "USD",
+        "pairs1": [
+          [
+            "USD",
+            "EUR"
+          ]
+        ],
+        "rates1": [
+          1.0
+        ],
+        "pairs2": [
+          [
+            "EUR",
+            "JPY"
+          ]
+        ],
+        "rates2": [
+          10.0
+        ]
+      },
       "expected": 1.0,
-      "tags": ["sample", "no-conversion"]
+      "tags": [
+        "sample",
+        "no-conversion"
+      ]
     },
     {
       "id": "trial-branching-choice",
       "name": "trial: choose the better overnight branch",
       "kind": "trial",
       "visible": true,
-      "input": {"initialCurrency": "AAA", "pairs1": [["AAA", "BBB"], ["AAA", "CCC"]], "rates1": [2.0, 5.0], "pairs2": [["BBB", "AAA"], ["CCC", "AAA"]], "rates2": [3.0, 0.5]},
+      "input": {
+        "initialCurrency": "AAA",
+        "pairs1": [
+          [
+            "AAA",
+            "BBB"
+          ],
+          [
+            "AAA",
+            "CCC"
+          ]
+        ],
+        "rates1": [
+          2.0,
+          5.0
+        ],
+        "pairs2": [
+          [
+            "BBB",
+            "AAA"
+          ],
+          [
+            "CCC",
+            "AAA"
+          ]
+        ],
+        "rates2": [
+          3.0,
+          0.5
+        ]
+      },
       "expected": 6.0,
-      "tags": ["branching", "intermediate-choice"]
+      "tags": [
+        "branching",
+        "intermediate-choice"
+      ]
     },
     {
       "id": "trial-both-directions-reversed",
       "name": "trial: use an inverse edge on day one",
       "kind": "trial",
       "visible": true,
-      "input": {"initialCurrency": "USD", "pairs1": [["EUR", "USD"]], "rates1": [2.0], "pairs2": [["EUR", "USD"]], "rates2": [3.0]},
+      "input": {
+        "initialCurrency": "USD",
+        "pairs1": [
+          [
+            "EUR",
+            "USD"
+          ]
+        ],
+        "rates1": [
+          2.0
+        ],
+        "pairs2": [
+          [
+            "EUR",
+            "USD"
+          ]
+        ],
+        "rates2": [
+          3.0
+        ]
+      },
       "expected": 1.5,
-      "tags": ["reciprocal", "direction"]
+      "tags": [
+        "reciprocal",
+        "direction"
+      ]
     },
     {
-      "id": "real-two-day-network",
-      "name": "real: best bridge is inside two small networks",
-      "kind": "real",
-      "visible": false,
-      "input": {"initialCurrency": "USD", "pairs1": [["USD", "EUR"], ["EUR", "JPY"], ["USD", "CHF"]], "rates1": [0.9, 130.0, 0.8], "pairs2": [["JPY", "CHF"], ["CHF", "USD"], ["EUR", "USD"]], "rates2": [0.006, 1.4, 1.1]},
+      "id": "trial-two-day-network",
+      "name": "best bridge is inside two small networks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "initialCurrency": "USD",
+        "pairs1": [
+          [
+            "USD",
+            "EUR"
+          ],
+          [
+            "EUR",
+            "JPY"
+          ],
+          [
+            "USD",
+            "CHF"
+          ]
+        ],
+        "rates1": [
+          0.9,
+          130.0,
+          0.8
+        ],
+        "pairs2": [
+          [
+            "JPY",
+            "CHF"
+          ],
+          [
+            "CHF",
+            "USD"
+          ],
+          [
+            "EUR",
+            "USD"
+          ]
+        ],
+        "rates2": [
+          0.006,
+          1.4,
+          1.1
+        ]
+      },
       "expected": 1.12,
-      "tags": ["network", "intermediate-choice"]
+      "tags": [
+        "network",
+        "intermediate-choice"
+      ]
     },
     {
-      "id": "real-disconnected-components",
-      "name": "real: currencies reachable on only one day are unusable",
-      "kind": "real",
-      "visible": false,
-      "input": {"initialCurrency": "AAA", "pairs1": [["AAA", "BBB"], ["BBB", "CCC"]], "rates1": [10.0, 10.0], "pairs2": [["AAA", "DDD"], ["DDD", "EEE"]], "rates2": [2.0, 2.0]},
+      "id": "trial-disconnected-components",
+      "name": "currencies reachable on only one day are unusable",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "initialCurrency": "AAA",
+        "pairs1": [
+          [
+            "AAA",
+            "BBB"
+          ],
+          [
+            "BBB",
+            "CCC"
+          ]
+        ],
+        "rates1": [
+          10.0,
+          10.0
+        ],
+        "pairs2": [
+          [
+            "AAA",
+            "DDD"
+          ],
+          [
+            "DDD",
+            "EEE"
+          ]
+        ],
+        "rates2": [
+          2.0,
+          2.0
+        ]
+      },
       "expected": 1.0,
-      "tags": ["disconnected", "no-conversion"]
+      "tags": [
+        "disconnected",
+        "no-conversion"
+      ]
     },
     {
-      "id": "real-long-reciprocal-chain",
-      "name": "real: compare full chain with earlier bridge currencies",
-      "kind": "real",
-      "visible": false,
-      "input": {"initialCurrency": "A", "pairs1": [["A", "B"], ["B", "C"], ["C", "D"]], "rates1": [2.0, 3.0, 4.0], "pairs2": [["A", "B"], ["B", "C"], ["C", "D"]], "rates2": [1.0, 2.0, 2.0]},
+      "id": "trial-long-reciprocal-chain",
+      "name": "compare full chain with earlier bridge currencies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "initialCurrency": "A",
+        "pairs1": [
+          [
+            "A",
+            "B"
+          ],
+          [
+            "B",
+            "C"
+          ],
+          [
+            "C",
+            "D"
+          ]
+        ],
+        "rates1": [
+          2.0,
+          3.0,
+          4.0
+        ],
+        "pairs2": [
+          [
+            "A",
+            "B"
+          ],
+          [
+            "B",
+            "C"
+          ],
+          [
+            "C",
+            "D"
+          ]
+        ],
+        "rates2": [
+          1.0,
+          2.0,
+          2.0
+        ]
+      },
       "expected": 6.0,
-      "tags": ["chain", "reciprocal"]
+      "tags": [
+        "chain",
+        "reciprocal"
+      ]
     }
   ]
 }

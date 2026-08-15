@@ -97,10 +97,10 @@
       ]
     },
     {
-      "id": "real-no-change-full-array",
-      "name": "real: the entire array shares a common factor",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-no-change-full-array",
+      "name": "the entire array shares a common factor",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -118,10 +118,10 @@
       ]
     },
     {
-      "id": "real-change-every-element",
-      "name": "real: enough changes eliminate stable singletons",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-change-every-element",
+      "name": "enough changes eliminate stable singletons",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -137,10 +137,10 @@
       ]
     },
     {
-      "id": "real-one-index-hits-two",
-      "name": "real: one middle edit covers two overlapping stable pairs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-index-hits-two",
+      "name": "one middle edit covers two overlapping stable pairs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -157,10 +157,10 @@
       ]
     },
     {
-      "id": "real-ones-separate-regions",
-      "name": "real: existing ones split stable regions",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ones-separate-regions",
+      "name": "existing ones split stable regions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -179,10 +179,10 @@
       ]
     },
     {
-      "id": "real-long-power-chain",
-      "name": "real: one edit bisects a long stable region",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-long-power-chain",
+      "name": "one edit bisects a long stable region",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -201,10 +201,10 @@
       ]
     },
     {
-      "id": "real-large-coprime-values",
-      "name": "real: large coprime neighbors are not jointly stable",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-coprime-values",
+      "name": "large coprime neighbors are not jointly stable",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -217,6 +217,41 @@
         "real",
         "large-values",
         "coprime"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ],
+        "maxC": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ],
+        "maxC": 1
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

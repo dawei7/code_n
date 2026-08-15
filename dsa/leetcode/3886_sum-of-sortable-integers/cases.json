@@ -157,10 +157,10 @@
       ]
     },
     {
-      "id": "real-full-length-six",
-      "name": "hidden: one rotation of the full array is the only valid partition",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-full-length-six",
+      "name": "one rotation of the full array is the only valid partition",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -173,16 +173,15 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "full-block",
         "proper-divisors-fail"
       ]
     },
     {
-      "id": "real-block-ranges-reversed",
-      "name": "hidden: sortable individual pairs still fail global boundary order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-block-ranges-reversed",
+      "name": "sortable individual pairs still fail global boundary order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -193,16 +192,15 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "bad-cut",
         "global-order"
       ]
     },
     {
-      "id": "real-two-descents-per-block",
-      "name": "hidden: good value ranges do not repair circular order with two descents",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-descents-per-block",
+      "name": "good value ranges do not repair circular order with two descents",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -215,16 +213,15 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "circular-descents",
         "block-order"
       ]
     },
     {
-      "id": "real-equality-enables-two-lengths",
-      "name": "hidden: equality across boundaries allows two nontrivial divisors",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-equality-enables-two-lengths",
+      "name": "equality across boundaries allows two nontrivial divisors",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -235,16 +232,15 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "duplicates",
         "multiple-sortable-divisors"
       ]
     },
     {
-      "id": "real-all-equal-six",
-      "name": "hidden: every divisor contributes when all values are equal",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-equal-six",
+      "name": "every divisor contributes when all values are equal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9,
@@ -257,16 +253,15 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "all-equal",
         "all-divisors"
       ]
     },
     {
-      "id": "real-maximum-value-rotation",
-      "name": "hidden: maximum values and duplicates preserve circular sorting",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-value-rotation",
+      "name": "maximum values and duplicates preserve circular sorting",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000,
@@ -276,16 +271,15 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "value-boundary",
         "duplicates"
       ]
     },
     {
-      "id": "real-rotated-length-four-blocks",
-      "name": "hidden: two length-four blocks rotate independently into global order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-rotated-length-four-blocks",
+      "name": "two length-four blocks rotate independently into global order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -300,9 +294,41 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "multiple-blocks",
         "block-length-four"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-17",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

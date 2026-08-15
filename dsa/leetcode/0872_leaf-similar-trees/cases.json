@@ -153,10 +153,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: repeated leaf values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "repeated leaf values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root1": [
           0,
@@ -172,15 +172,14 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: internal values are ignored",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "internal values are ignored",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root1": [
           100,
@@ -199,15 +198,14 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "internal-values"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: final leaf differs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "final leaf differs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root1": [
           10,
@@ -228,15 +226,14 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "suffix"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: zero and maximum leaf values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "zero and maximum leaf values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root1": [
           20,
@@ -252,15 +249,14 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "bounds"
       ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: mirrored chains reverse the sequence",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-5",
+      "name": "mirrored chains reverse the sequence",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root1": [
           1,
@@ -283,7 +279,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "order",
         "skewed"
       ]

@@ -128,10 +128,10 @@
       ]
     },
     {
-      "id": "real-touching-anagrams",
-      "name": "real: anagrams are not automatically one swap apart",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-touching-anagrams",
+      "name": "anagrams are not automatically one swap apart",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1234,
@@ -147,10 +147,10 @@
       ]
     },
     {
-      "id": "real-zeros-and-duplicates",
-      "name": "real: duplicate powers of ten and reductions",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zeros-and-duplicates",
+      "name": "duplicate powers of ten and reductions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -168,10 +168,10 @@
       ]
     },
     {
-      "id": "real-mixed-lengths",
-      "name": "real: qualifying and nonqualifying mixed lengths",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-lengths",
+      "name": "qualifying and nonqualifying mixed lengths",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -189,10 +189,10 @@
       ]
     },
     {
-      "id": "real-seven-digits",
-      "name": "real: maximum digit count and value bound",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-seven-digits",
+      "name": "maximum digit count and value bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000,
@@ -209,10 +209,10 @@
       ]
     },
     {
-      "id": "real-large-mixed",
-      "name": "real: repeated swap families and unrelated values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-mixed",
+      "name": "repeated swap families and unrelated values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           123456,

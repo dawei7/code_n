@@ -6,81 +6,135 @@
       "name": "sample: the largest piece is a long prefix",
       "kind": "sample",
       "visible": true,
-      "input": {"word": "dbca", "numFriends": 2},
+      "input": {
+        "word": "dbca",
+        "numFriends": 2
+      },
       "expected": "dbc",
-      "tags": ["sample", "splits"]
+      "tags": [
+        "sample",
+        "splits"
+      ]
     },
     {
       "id": "sample-one-character-each",
       "name": "sample: every piece is one repeated character",
       "kind": "sample",
       "visible": true,
-      "input": {"word": "gggg", "numFriends": 4},
+      "input": {
+        "word": "gggg",
+        "numFriends": 4
+      },
       "expected": "g",
-      "tags": ["sample", "equal-characters"]
+      "tags": [
+        "sample",
+        "equal-characters"
+      ]
     },
     {
       "id": "trial-one-friend",
       "name": "trial: one friend receives the whole word",
       "kind": "trial",
       "visible": true,
-      "input": {"word": "gh", "numFriends": 1},
+      "input": {
+        "word": "gh",
+        "numFriends": 1
+      },
       "expected": "gh",
-      "tags": ["edge", "one-friend"]
+      "tags": [
+        "edge",
+        "one-friend"
+      ]
     },
     {
       "id": "trial-one-character-word",
       "name": "trial: the minimum input has one possible piece",
       "kind": "trial",
       "visible": true,
-      "input": {"word": "a", "numFriends": 1},
+      "input": {
+        "word": "a",
+        "numFriends": 1
+      },
       "expected": "a",
-      "tags": ["edge", "single-character"]
+      "tags": [
+        "edge",
+        "single-character"
+      ]
     },
     {
       "id": "trial-all-singletons",
       "name": "trial: the largest single character wins",
       "kind": "trial",
       "visible": true,
-      "input": {"word": "zabc", "numFriends": 4},
+      "input": {
+        "word": "zabc",
+        "numFriends": 4
+      },
       "expected": "z",
-      "tags": ["edge", "all-singletons"]
+      "tags": [
+        "edge",
+        "all-singletons"
+      ]
     },
     {
       "id": "trial-longest-permitted-prefix",
       "name": "trial: the winning piece reaches the length cap",
       "kind": "trial",
       "visible": true,
-      "input": {"word": "zzza", "numFriends": 2},
+      "input": {
+        "word": "zzza",
+        "numFriends": 2
+      },
       "expected": "zzz",
-      "tags": ["length-cap", "prefix"]
+      "tags": [
+        "length-cap",
+        "prefix"
+      ]
     },
     {
-      "id": "real-winning-short-suffix",
-      "name": "real: a short suffix beats every longer candidate",
-      "kind": "real",
-      "visible": false,
-      "input": {"word": "abcxyz", "numFriends": 3},
+      "id": "trial-winning-short-suffix",
+      "name": "a short suffix beats every longer candidate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "abcxyz",
+        "numFriends": 3
+      },
       "expected": "z",
-      "tags": ["real", "suffix"]
+      "tags": [
+        "real",
+        "suffix"
+      ]
     },
     {
-      "id": "real-prefix-tie-prefers-longer",
-      "name": "real: equal leading letters favor the longer suffix",
-      "kind": "real",
-      "visible": false,
-      "input": {"word": "aann", "numFriends": 2},
+      "id": "trial-prefix-tie-prefers-longer",
+      "name": "equal leading letters favor the longer suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aann",
+        "numFriends": 2
+      },
       "expected": "nn",
-      "tags": ["real", "prefix-tie"]
+      "tags": [
+        "real",
+        "prefix-tie"
+      ]
     },
     {
-      "id": "real-repeated-pattern",
-      "name": "real: repeated prefixes require deeper comparison",
-      "kind": "real",
-      "visible": false,
-      "input": {"word": "ababaa", "numFriends": 3},
+      "id": "trial-repeated-pattern",
+      "name": "repeated prefixes require deeper comparison",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "ababaa",
+        "numFriends": 3
+      },
       "expected": "baba",
-      "tags": ["real", "repeated-prefix"]
+      "tags": [
+        "real",
+        "repeated-prefix"
+      ]
     }
   ]
 }

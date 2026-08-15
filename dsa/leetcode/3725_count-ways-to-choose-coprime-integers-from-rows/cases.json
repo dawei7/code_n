@@ -152,10 +152,10 @@
       ]
     },
     {
-      "id": "real-one-forces-coprime",
-      "name": "hidden: any selection using a one has GCD one",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-forces-coprime",
+      "name": "any selection using a one has GCD one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [
@@ -177,15 +177,14 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "unit-value"
       ]
     },
     {
-      "id": "real-mixed-gcds",
-      "name": "hidden: several exact GCD classes are separated by inversion",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-gcds",
+      "name": "several exact GCD classes are separated by inversion",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [
@@ -210,15 +209,14 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "multiple-gcd-classes"
       ]
     },
     {
-      "id": "real-all-share-three",
-      "name": "hidden: a common factor across every cell produces zero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-share-three",
+      "name": "a common factor across every cell produces zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [
@@ -243,16 +241,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "common-factor",
         "empty-result"
       ]
     },
     {
-      "id": "real-prime-overlaps",
-      "name": "hidden: pairwise prime overlaps still allow overall GCD one",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-prime-overlaps",
+      "name": "pairwise prime overlaps still allow overall GCD one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [
@@ -274,15 +271,14 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "prime-overlaps"
       ]
     },
     {
-      "id": "real-modulo-many-duplicates",
-      "name": "hidden: many duplicate unit choices are reduced modulo the required prime",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-modulo-many-duplicates",
+      "name": "many duplicate unit choices are reduced modulo the required prime",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [
@@ -492,16 +488,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "modulo",
         "duplicates"
       ]
     },
     {
-      "id": "real-value-boundary",
-      "name": "hidden: values at the upper bound participate in divisor counts",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-value-boundary",
+      "name": "values at the upper bound participate in divisor counts",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [
@@ -526,10 +521,8 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     }
   ]
 }
-

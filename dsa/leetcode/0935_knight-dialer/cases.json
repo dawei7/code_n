@@ -87,44 +87,41 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: ten digits",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "ten digits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 10
       },
       "expected": 14912,
       "tags": [
-        "hidden",
         "medium"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: fifty digits",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "fifty digits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 50
       },
       "expected": 267287516,
       "tags": [
-        "hidden",
         "modulo"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: maximum length",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "maximum length",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 5000
       },
       "expected": 406880451,
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     }

@@ -8,13 +8,32 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "startPos": [1, 0],
-        "homePos": [2, 3],
-        "rowCosts": [5, 4, 3],
-        "colCosts": [8, 2, 6, 7]
+        "startPos": [
+          1,
+          0
+        ],
+        "homePos": [
+          2,
+          3
+        ],
+        "rowCosts": [
+          5,
+          4,
+          3
+        ],
+        "colCosts": [
+          8,
+          2,
+          6,
+          7
+        ]
       },
       "expected": 18,
-      "tags": ["sample", "down", "right"]
+      "tags": [
+        "sample",
+        "down",
+        "right"
+      ]
     },
     {
       "id": "sample-already-home",
@@ -22,13 +41,26 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "startPos": [0, 0],
-        "homePos": [0, 0],
-        "rowCosts": [5],
-        "colCosts": [26]
+        "startPos": [
+          0,
+          0
+        ],
+        "homePos": [
+          0,
+          0
+        ],
+        "rowCosts": [
+          5
+        ],
+        "colCosts": [
+          26
+        ]
       },
       "expected": 0,
-      "tags": ["sample", "same-position"]
+      "tags": [
+        "sample",
+        "same-position"
+      ]
     },
     {
       "id": "trial-up-and-left",
@@ -36,69 +68,220 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "startPos": [3, 3],
-        "homePos": [1, 0],
-        "rowCosts": [9, 2, 5, 8],
-        "colCosts": [7, 3, 4, 6]
+        "startPos": [
+          3,
+          3
+        ],
+        "homePos": [
+          1,
+          0
+        ],
+        "rowCosts": [
+          9,
+          2,
+          5,
+          8
+        ],
+        "colCosts": [
+          7,
+          3,
+          4,
+          6
+        ]
       },
       "expected": 21,
-      "tags": ["up", "left", "entry-direction"]
+      "tags": [
+        "up",
+        "left",
+        "entry-direction"
+      ]
     },
     {
-      "id": "real-horizontal-only",
-      "name": "hidden: unchanged row contributes no cost",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-horizontal-only",
+      "name": "unchanged row contributes no cost",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "startPos": [1, 3],
-        "homePos": [1, 1],
-        "rowCosts": [100, 100, 100],
-        "colCosts": [8, 5, 4, 9]
+        "startPos": [
+          1,
+          3
+        ],
+        "homePos": [
+          1,
+          1
+        ],
+        "rowCosts": [
+          100,
+          100,
+          100
+        ],
+        "colCosts": [
+          8,
+          5,
+          4,
+          9
+        ]
       },
       "expected": 9,
-      "tags": ["hidden", "horizontal-only"]
+      "tags": [
+        "horizontal-only"
+      ]
     },
     {
-      "id": "real-vertical-only",
-      "name": "hidden: unchanged column contributes no cost",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-vertical-only",
+      "name": "unchanged column contributes no cost",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "startPos": [0, 1],
-        "homePos": [3, 1],
-        "rowCosts": [50, 6, 0, 2],
-        "colCosts": [90, 90]
+        "startPos": [
+          0,
+          1
+        ],
+        "homePos": [
+          3,
+          1
+        ],
+        "rowCosts": [
+          50,
+          6,
+          0,
+          2
+        ],
+        "colCosts": [
+          90,
+          90
+        ]
       },
       "expected": 8,
-      "tags": ["hidden", "vertical-only", "zero-cost"]
+      "tags": [
+        "vertical-only",
+        "zero-cost"
+      ]
     },
     {
-      "id": "real-start-cost-excluded",
-      "name": "hidden: expensive starting coordinates are never charged",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-start-cost-excluded",
+      "name": "expensive starting coordinates are never charged",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "startPos": [2, 2],
-        "homePos": [0, 0],
-        "rowCosts": [1, 2, 1000],
-        "colCosts": [3, 4, 1000]
+        "startPos": [
+          2,
+          2
+        ],
+        "homePos": [
+          0,
+          0
+        ],
+        "rowCosts": [
+          1,
+          2,
+          1000
+        ],
+        "colCosts": [
+          3,
+          4,
+          1000
+        ]
       },
       "expected": 10,
-      "tags": ["hidden", "exclude-start", "include-home"]
+      "tags": [
+        "exclude-start",
+        "include-home"
+      ]
     },
     {
-      "id": "real-all-zero-route",
-      "name": "hidden: a nonempty route may cost zero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-zero-route",
+      "name": "a nonempty route may cost zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "startPos": [0, 0],
-        "homePos": [2, 2],
-        "rowCosts": [7, 0, 0],
-        "colCosts": [9, 0, 0]
+        "startPos": [
+          0,
+          0
+        ],
+        "homePos": [
+          2,
+          2
+        ],
+        "rowCosts": [
+          7,
+          0,
+          0
+        ],
+        "colCosts": [
+          9,
+          0,
+          0
+        ]
       },
       "expected": 0,
-      "tags": ["hidden", "zero-costs"]
+      "tags": [
+        "zero-costs"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "identical elements in startPos",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "startPos": [
+          1,
+          1
+        ],
+        "homePos": [
+          2,
+          3
+        ],
+        "rowCosts": [
+          5,
+          4,
+          3
+        ],
+        "colCosts": [
+          8,
+          2,
+          6,
+          7
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in homePos",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "startPos": [
+          1,
+          0
+        ],
+        "homePos": [
+          2,
+          2
+        ],
+        "rowCosts": [
+          5,
+          4,
+          3
+        ],
+        "colCosts": [
+          8,
+          2,
+          6,
+          7
+        ]
+      },
+      "expected": 11,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

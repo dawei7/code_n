@@ -102,10 +102,10 @@
       ]
     },
     {
-      "id": "real-adjacent-windows",
-      "name": "hidden: adjacent target windows are legal",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-adjacent-windows",
+      "name": "adjacent target windows are legal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -120,15 +120,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "adjacent"
       ]
     },
     {
-      "id": "real-singleton-versus-long",
-      "name": "hidden: global pair mixes singleton and longer window",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-singleton-versus-long",
+      "name": "global pair mixes singleton and longer window",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           5,
@@ -144,15 +143,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "singleton"
       ]
     },
     {
-      "id": "real-many-overlaps",
-      "name": "hidden: prefix minimum selects disjoint partners",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-overlaps",
+      "name": "prefix minimum selects disjoint partners",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -167,16 +165,15 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "overlap",
         "global-minimum"
       ]
     },
     {
-      "id": "real-value-bound",
-      "name": "hidden: maximum values and compound target window",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-value-bound",
+      "name": "maximum values and compound target window",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1000,
@@ -189,8 +186,42 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "bounds"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in arr",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          3
+        ],
+        "target": 3
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in arr",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          3,
+          3
+        ],
+        "target": 3
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

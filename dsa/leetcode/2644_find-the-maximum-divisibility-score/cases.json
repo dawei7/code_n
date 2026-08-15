@@ -119,10 +119,10 @@
       ]
     },
     {
-      "id": "real-duplicate-divisors",
-      "name": "hidden: repeated candidate values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicate-divisors",
+      "name": "repeated candidate values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -138,15 +138,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "real-equal-full-scores",
-      "name": "hidden: multiple divisors divide all values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-equal-full-scores",
+      "name": "multiple divisors divide all values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           60,
@@ -162,15 +161,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "tie"
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "hidden: upper-bound values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-values",
+      "name": "upper-bound values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -184,7 +182,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

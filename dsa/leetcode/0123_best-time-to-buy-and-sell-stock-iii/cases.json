@@ -84,10 +84,10 @@
       ]
     },
     {
-      "id": "real-two-separated-wins",
-      "name": "hidden: two separated wins",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-separated-wins",
+      "name": "two separated wins",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           2,
@@ -102,7 +102,40 @@
       },
       "expected": 9,
       "tags": [
-        "hidden"
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-boundary-6",
+      "name": "single element in prices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-7",
+      "name": "identical elements in prices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          3,
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

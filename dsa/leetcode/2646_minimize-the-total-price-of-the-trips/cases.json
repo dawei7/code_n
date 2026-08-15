@@ -168,10 +168,10 @@
       ]
     },
     {
-      "id": "real-single",
-      "name": "hidden: repeated one-node trips",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single",
+      "name": "repeated one-node trips",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1,
         "edges": [],
@@ -191,15 +191,14 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "minimum"
       ]
     },
     {
-      "id": "real-overlap",
-      "name": "hidden: overlapping chain trips",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-overlap",
+      "name": "overlapping chain trips",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "edges": [
@@ -239,15 +238,14 @@
       },
       "expected": 30,
       "tags": [
-        "hidden",
         "overlap"
       ]
     },
     {
-      "id": "real-unused",
-      "name": "hidden: unused expensive node",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unused",
+      "name": "unused expensive node",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "edges": [
@@ -279,7 +277,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "unused"
       ]
     }

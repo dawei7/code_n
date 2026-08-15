@@ -259,10 +259,10 @@
       ]
     },
     {
-      "id": "real-six-four",
-      "name": "hidden: four unhappy among six",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-six-four",
+      "name": "four unhappy among six",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 6,
         "preferences": [
@@ -331,10 +331,10 @@
       ]
     },
     {
-      "id": "real-six-stable",
-      "name": "hidden: stable six-person pairing",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-six-stable",
+      "name": "stable six-person pairing",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 6,
         "preferences": [
@@ -403,10 +403,10 @@
       ]
     },
     {
-      "id": "real-pair-order",
-      "name": "hidden: reversed endpoints",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-pair-order",
+      "name": "reversed endpoints",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "preferences": [
@@ -449,10 +449,10 @@
       ]
     },
     {
-      "id": "real-stable-eight",
-      "name": "hidden: late partners without reciprocity",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-stable-eight",
+      "name": "late partners without reciprocity",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 8,
         "preferences": [
@@ -555,10 +555,10 @@
       ]
     },
     {
-      "id": "real-reordered",
-      "name": "hidden: pair list reordered",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-reordered",
+      "name": "pair list reordered",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "preferences": [
@@ -601,10 +601,10 @@
       ]
     },
     {
-      "id": "real-asymmetric",
-      "name": "hidden: asymmetric witness cutoff",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-asymmetric",
+      "name": "asymmetric witness cutoff",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "preferences": [
@@ -647,10 +647,10 @@
       ]
     },
     {
-      "id": "real-minimum",
-      "name": "hidden: minimum pair reversed",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-minimum",
+      "name": "minimum pair reversed",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 2,
         "preferences": [
@@ -672,6 +672,52 @@
       "tags": [
         "real",
         "minimum-n"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "preferences": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            3,
+            2,
+            0
+          ],
+          [
+            3,
+            1,
+            0
+          ],
+          [
+            1,
+            2,
+            0
+          ]
+        ],
+        "pairs": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

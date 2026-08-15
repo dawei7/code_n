@@ -2,13 +2,336 @@
   "schema_version": 1,
   "challenge_id": "lc_2399",
   "cases": [
-    {"id":"sample-1","name":"sample: every present letter has required spacing","kind":"sample","visible":true,"input":{"s":"abaccb","distance":[1,3,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},"expected":true,"tags":["sample","well-spaced"]},
-    {"id":"sample-2","name":"sample: adjacent a conflicts with requested distance one","kind":"sample","visible":true,"input":{"s":"aa","distance":[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},"expected":false,"tags":["sample","mismatch"]},
-    {"id":"trial-adjacent","name":"trial: adjacent occurrences require zero","kind":"trial","visible":true,"input":{"s":"zz","distance":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},"expected":true,"tags":["adjacent","z"]},
-    {"id":"trial-absent-ignored","name":"trial: large requirements for absent letters are ignored","kind":"trial","visible":true,"input":{"s":"aa","distance":[0,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50]},"expected":true,"tags":["absent-letters"]},
-    {"id":"trial-nested-pairs","name":"trial: several nested and adjacent pairs","kind":"trial","visible":true,"input":{"s":"abacbc","distance":[1,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},"expected":true,"tags":["nested"]},
-    {"id":"real-first-letter-fails","name":"hidden: earliest completed letter fails","kind":"real","visible":false,"input":{"s":"abcacb","distance":[2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},"expected":false,"tags":["hidden","early-failure"]},
-    {"id":"real-crossing-pairs","name":"hidden: crossing pairs use their own endpoints","kind":"real","visible":false,"input":{"s":"abcdabcd","distance":[3,3,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},"expected":true,"tags":["hidden","crossing"]},
-    {"id":"real-late-failure","name":"hidden: mismatch can occur at final character","kind":"real","visible":false,"input":{"s":"abcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxy","distance":[24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,23,0]},"expected":false,"tags":["hidden","late-failure"]}
+    {
+      "id": "sample-1",
+      "name": "sample: every present letter has required spacing",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abaccb",
+        "distance": [
+          1,
+          3,
+          0,
+          5,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "well-spaced"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: adjacent a conflicts with requested distance one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aa",
+        "distance": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "mismatch"
+      ]
+    },
+    {
+      "id": "trial-adjacent",
+      "name": "trial: adjacent occurrences require zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "zz",
+        "distance": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "adjacent",
+        "z"
+      ]
+    },
+    {
+      "id": "trial-absent-ignored",
+      "name": "trial: large requirements for absent letters are ignored",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aa",
+        "distance": [
+          0,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "absent-letters"
+      ]
+    },
+    {
+      "id": "trial-nested-pairs",
+      "name": "trial: several nested and adjacent pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abacbc",
+        "distance": [
+          1,
+          2,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "nested"
+      ]
+    },
+    {
+      "id": "trial-first-letter-fails",
+      "name": "earliest completed letter fails",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcacb",
+        "distance": [
+          2,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "early-failure"
+      ]
+    },
+    {
+      "id": "trial-crossing-pairs",
+      "name": "crossing pairs use their own endpoints",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdabcd",
+        "distance": [
+          3,
+          3,
+          3,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "crossing"
+      ]
+    },
+    {
+      "id": "trial-late-failure",
+      "name": "mismatch can occur at final character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxy",
+        "distance": [
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          23,
+          0
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "late-failure"
+      ]
+    }
   ]
 }

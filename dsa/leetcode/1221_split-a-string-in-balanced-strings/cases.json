@@ -2,12 +2,126 @@
   "schema_version": 1,
   "challenge_id": "lc_1221",
   "cases": [
-    {"id":"sample-four-pieces","name":"sample: four greedy boundaries","kind":"sample","visible":true,"input":{"s":"RLRRLLRLRL"},"expected":4,"tags":["sample","multiple-pieces"]},
-    {"id":"sample-two-pieces","name":"sample: a short piece followed by a long one","kind":"sample","visible":true,"input":{"s":"RLRRRLLRLL"},"expected":2,"tags":["sample"]},
-    {"id":"sample-one-piece","name":"sample: only the full string balances","kind":"sample","visible":true,"input":{"s":"LLLLRRRR"},"expected":1,"tags":["sample","single-piece"]},
-    {"id":"trial-minimum-length","name":"minimum-length balanced input","kind":"trial","visible":true,"input":{"s":"LR"},"expected":1,"tags":["minimum-length"]},
-    {"id":"real-two-different-shapes","name":"hidden: a nested piece and an adjacent pair","kind":"real","visible":false,"input":{"s":"LLRRLR"},"expected":2,"tags":["hidden","mixed-shapes"]},
-    {"id":"real-all-pairs","name":"hidden: every pair closes immediately","kind":"real","visible":false,"input":{"s":"LRLRLRLR"},"expected":4,"tags":["hidden","alternating"]},
-    {"id":"real-reversed-nesting","name":"hidden: negative balance also waits for zero","kind":"real","visible":false,"input":{"s":"RRLL"},"expected":1,"tags":["hidden","negative-balance"]}
+    {
+      "id": "sample-four-pieces",
+      "name": "sample: four greedy boundaries",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "RLRRLLRLRL"
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "multiple-pieces"
+      ]
+    },
+    {
+      "id": "sample-two-pieces",
+      "name": "sample: a short piece followed by a long one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "RLRRRLLRLL"
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-one-piece",
+      "name": "sample: only the full string balances",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "LLLLRRRR"
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "single-piece"
+      ]
+    },
+    {
+      "id": "trial-minimum-length",
+      "name": "minimum-length balanced input",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "LR"
+      },
+      "expected": 1,
+      "tags": [
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-two-different-shapes",
+      "name": "a nested piece and an adjacent pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "LLRRLR"
+      },
+      "expected": 2,
+      "tags": [
+        "mixed-shapes"
+      ]
+    },
+    {
+      "id": "trial-all-pairs",
+      "name": "every pair closes immediately",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "LRLRLRLR"
+      },
+      "expected": 4,
+      "tags": [
+        "alternating"
+      ]
+    },
+    {
+      "id": "trial-reversed-nesting",
+      "name": "negative balance also waits for zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "RRLL"
+      },
+      "expected": 1,
+      "tags": [
+        "negative-balance"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "R"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "RRR"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
+    }
   ]
 }

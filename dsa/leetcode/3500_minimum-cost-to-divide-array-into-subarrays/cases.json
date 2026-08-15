@@ -1,14 +1,286 @@
 {
   "challenge_id": "lc_3500",
   "cases": [
-    {"id":"sample-two-subarrays","name":"sample: optimal division has two subarrays","kind":"sample","visible":true,"input":{"nums":[3,1,4],"cost":[4,6,6],"k":1},"expected":110,"tags":["sample","partition"]},
-    {"id":"sample-three-subarrays","name":"sample: optimal division has three subarrays","kind":"sample","visible":true,"input":{"nums":[4,8,5,1,14,2,2,12,1],"cost":[7,2,8,4,2,2,1,1,2],"k":7},"expected":985,"tags":["sample","partition"]},
-    {"id":"trial-single","name":"trial: one element permits only one subarray","kind":"trial","visible":true,"input":{"nums":[2],"cost":[3],"k":5},"expected":21,"tags":["trial","minimum-length"]},
-    {"id":"trial-two-elements","name":"trial: splitting two elements is beneficial","kind":"trial","visible":true,"input":{"nums":[1,2],"cost":[3,4],"k":1},"expected":26,"tags":["trial","two-subarrays"]},
-    {"id":"trial-one-subarray-best","name":"trial: one subarray is optimal","kind":"trial","visible":true,"input":{"nums":[2,2,2],"cost":[1,3,5],"k":5},"expected":99,"tags":["trial","one-subarray"]},
-    {"id":"real-mixed-costs","name":"real: mixed prefix values and weights","kind":"real","visible":false,"input":{"nums":[5,1,3,2,6,4],"cost":[2,7,1,5,3,4],"k":3},"expected":393,"tags":["real","multiple-candidates"]},
-    {"id":"real-large-k","name":"real: large order penalty","kind":"real","visible":false,"input":{"nums":[1,10,1,10],"cost":[10,1,10,1],"k":100},"expected":2574,"tags":["real","large-k"]},
-    {"id":"real-skewed-cost","name":"real: high weights at interior indices","kind":"real","visible":false,"input":{"nums":[9,1,8,2,7],"cost":[1,20,1,20,1],"k":2},"expected":789,"tags":["real","weighted-boundaries"]},
-    {"id":"real-uniform","name":"real: uniform arrays create tied-looking boundaries","kind":"real","visible":false,"input":{"nums":[1,1,1,1],"cost":[1,1,1,1],"k":1},"expected":18,"tags":["real","uniform-values"]}
+    {
+      "id": "sample-two-subarrays",
+      "name": "sample: optimal division has two subarrays",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          4
+        ],
+        "cost": [
+          4,
+          6,
+          6
+        ],
+        "k": 1
+      },
+      "expected": 110,
+      "tags": [
+        "sample",
+        "partition"
+      ]
+    },
+    {
+      "id": "sample-three-subarrays",
+      "name": "sample: optimal division has three subarrays",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          8,
+          5,
+          1,
+          14,
+          2,
+          2,
+          12,
+          1
+        ],
+        "cost": [
+          7,
+          2,
+          8,
+          4,
+          2,
+          2,
+          1,
+          1,
+          2
+        ],
+        "k": 7
+      },
+      "expected": 985,
+      "tags": [
+        "sample",
+        "partition"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one element permits only one subarray",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ],
+        "cost": [
+          3
+        ],
+        "k": 5
+      },
+      "expected": 21,
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-two-elements",
+      "name": "trial: splitting two elements is beneficial",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2
+        ],
+        "cost": [
+          3,
+          4
+        ],
+        "k": 1
+      },
+      "expected": 26,
+      "tags": [
+        "trial",
+        "two-subarrays"
+      ]
+    },
+    {
+      "id": "trial-one-subarray-best",
+      "name": "trial: one subarray is optimal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2
+        ],
+        "cost": [
+          1,
+          3,
+          5
+        ],
+        "k": 5
+      },
+      "expected": 99,
+      "tags": [
+        "trial",
+        "one-subarray"
+      ]
+    },
+    {
+      "id": "trial-mixed-costs",
+      "name": "mixed prefix values and weights",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          3,
+          2,
+          6,
+          4
+        ],
+        "cost": [
+          2,
+          7,
+          1,
+          5,
+          3,
+          4
+        ],
+        "k": 3
+      },
+      "expected": 393,
+      "tags": [
+        "real",
+        "multiple-candidates"
+      ]
+    },
+    {
+      "id": "trial-large-k",
+      "name": "large order penalty",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          10,
+          1,
+          10
+        ],
+        "cost": [
+          10,
+          1,
+          10,
+          1
+        ],
+        "k": 100
+      },
+      "expected": 2574,
+      "tags": [
+        "real",
+        "large-k"
+      ]
+    },
+    {
+      "id": "trial-skewed-cost",
+      "name": "high weights at interior indices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          1,
+          8,
+          2,
+          7
+        ],
+        "cost": [
+          1,
+          20,
+          1,
+          20,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 789,
+      "tags": [
+        "real",
+        "weighted-boundaries"
+      ]
+    },
+    {
+      "id": "trial-uniform",
+      "name": "uniform arrays create tied-looking boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "cost": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 1
+      },
+      "expected": 18,
+      "tags": [
+        "real",
+        "uniform-values"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ],
+        "cost": [
+          4,
+          6,
+          6
+        ],
+        "k": 1
+      },
+      "expected": 16,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ],
+        "cost": [
+          4,
+          6,
+          6
+        ],
+        "k": 1
+      },
+      "expected": 64,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    }
   ]
 }

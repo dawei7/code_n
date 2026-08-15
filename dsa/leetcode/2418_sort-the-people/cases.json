@@ -129,10 +129,10 @@
       ]
     },
     {
-      "id": "real-ascending",
-      "name": "hidden: ascending heights reverse all names",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ascending",
+      "name": "ascending heights reverse all names",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "names": [
           "A",
@@ -154,15 +154,14 @@
         "A"
       ],
       "tags": [
-        "hidden",
         "reverse"
       ]
     },
     {
-      "id": "real-case-sensitive",
-      "name": "hidden: names are data rather than sort keys",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-case-sensitive",
+      "name": "names are data rather than sort keys",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "names": [
           "z",
@@ -181,15 +180,14 @@
         "m"
       ],
       "tags": [
-        "hidden",
         "case"
       ]
     },
     {
-      "id": "real-large-heights",
-      "name": "hidden: boundary heights stay attached",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-heights",
+      "name": "boundary heights stay attached",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "names": [
           "Min",
@@ -205,7 +203,6 @@
         "Min"
       ],
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

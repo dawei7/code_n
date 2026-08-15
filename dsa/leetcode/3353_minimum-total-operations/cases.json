@@ -6,90 +6,187 @@
       "name": "sample: two unequal adjacent boundaries",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 4, 2]},
+      "input": {
+        "nums": [
+          1,
+          4,
+          2
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "mixed-direction"]
+      "tags": [
+        "sample",
+        "mixed-direction"
+      ]
     },
     {
       "id": "sample-already-equal",
       "name": "sample: already equal",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [10, 10, 10]},
+      "input": {
+        "nums": [
+          10,
+          10,
+          10
+        ]
+      },
       "expected": 0,
-      "tags": ["sample", "no-operation"]
+      "tags": [
+        "sample",
+        "no-operation"
+      ]
     },
     {
       "id": "trial-single-element",
       "name": "trial: one element",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5]},
+      "input": {
+        "nums": [
+          5
+        ]
+      },
       "expected": 0,
-      "tags": ["minimum-length", "no-boundary"]
+      "tags": [
+        "minimum-length",
+        "no-boundary"
+      ]
     },
     {
       "id": "trial-one-boundary",
       "name": "trial: one unequal pair",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2]},
+      "input": {
+        "nums": [
+          1,
+          2
+        ]
+      },
       "expected": 1,
-      "tags": ["minimum-operation", "two-elements"]
+      "tags": [
+        "minimum-operation",
+        "two-elements"
+      ]
     },
     {
-      "id": "real-every-boundary",
-      "name": "real: every adjacent pair differs",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2, 1, 2, 1]},
+      "id": "trial-every-boundary",
+      "name": "every adjacent pair differs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          2,
+          1
+        ]
+      },
       "expected": 3,
-      "tags": ["alternating", "all-boundaries"]
+      "tags": [
+        "alternating",
+        "all-boundaries"
+      ]
     },
     {
-      "id": "real-repeated-blocks",
-      "name": "real: repeated value blocks",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [7, 7, -3, -3, 7]},
+      "id": "trial-repeated-blocks",
+      "name": "repeated value blocks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7,
+          -3,
+          -3,
+          7
+        ]
+      },
       "expected": 2,
-      "tags": ["plateaus", "negative-value"]
+      "tags": [
+        "plateaus",
+        "negative-value"
+      ]
     },
     {
-      "id": "real-extreme-values",
-      "name": "real: alternating constraint extremes",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-1000000000, 1000000000, -1000000000]},
+      "id": "trial-extreme-values",
+      "name": "alternating constraint extremes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1000000000,
+          1000000000,
+          -1000000000
+        ]
+      },
       "expected": 2,
-      "tags": ["value-boundaries", "large-adjustment"]
+      "tags": [
+        "value-boundaries",
+        "large-adjustment"
+      ]
     },
     {
-      "id": "real-increasing-plateaus",
-      "name": "real: three constant runs",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [3, 3, 4, 4, 5, 5]},
+      "id": "trial-increasing-plateaus",
+      "name": "three constant runs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3,
+          4,
+          4,
+          5,
+          5
+        ]
+      },
       "expected": 2,
-      "tags": ["plateaus", "increasing"]
+      "tags": [
+        "plateaus",
+        "increasing"
+      ]
     },
     {
-      "id": "real-zero-crossings",
-      "name": "real: changes around zero",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 1, 1, 0, 0, -1]},
+      "id": "trial-zero-crossings",
+      "name": "changes around zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          1,
+          0,
+          0,
+          -1
+        ]
+      },
       "expected": 3,
-      "tags": ["zero", "mixed-sign"]
+      "tags": [
+        "zero",
+        "mixed-sign"
+      ]
     },
     {
-      "id": "real-equal-negative",
-      "name": "real: equal negative values",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-8, -8, -8, -8]},
+      "id": "trial-equal-negative",
+      "name": "equal negative values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -8,
+          -8,
+          -8,
+          -8
+        ]
+      },
       "expected": 0,
-      "tags": ["negative-value", "no-operation"]
+      "tags": [
+        "negative-value",
+        "no-operation"
+      ]
     }
   ]
 }

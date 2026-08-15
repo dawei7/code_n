@@ -147,10 +147,10 @@
       ]
     },
     {
-      "id": "real-palindrome-outer",
-      "name": "hidden: an outer palindrome match wins immediately",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-palindrome-outer",
+      "name": "an outer palindrome match wins immediately",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abccba"
       },
@@ -159,16 +159,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "palindrome",
         "outer-match"
       ]
     },
     {
-      "id": "real-match-at-one",
-      "name": "hidden: reject the endpoints before an index-one match",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-match-at-one",
+      "name": "reject the endpoints before an index-one match",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "xabbay"
       },
@@ -177,16 +176,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "interior-match",
         "minimum-index"
       ]
     },
     {
-      "id": "real-all-equal",
-      "name": "hidden: repeated characters return zero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-equal",
+      "name": "repeated characters return zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "mmmmmmmm"
       },
@@ -195,16 +193,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "repeated-character",
         "early-return"
       ]
     },
     {
-      "id": "real-maximum-no-match",
-      "name": "hidden: maximum even length has no mirrored equality",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-no-match",
+      "name": "maximum even length has no mirrored equality",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
       },
@@ -213,16 +210,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-length",
         "no-match"
       ]
     },
     {
-      "id": "real-maximum-middle-match",
-      "name": "hidden: maximum even length first matches at index 49",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-middle-match",
+      "name": "maximum even length first matches at index 49",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
       },
@@ -231,16 +227,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-length",
         "late-match"
       ]
     },
     {
-      "id": "real-maximum-odd-center",
-      "name": "hidden: a 99-character string first matches at its center",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-odd-center",
+      "name": "a 99-character string first matches at its center",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
       },
@@ -249,16 +244,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "odd-length",
         "center-only"
       ]
     },
     {
-      "id": "real-alphabet-no-match",
-      "name": "hidden: opposite alphabet positions all differ",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alphabet-no-match",
+      "name": "opposite alphabet positions all differ",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abcdefghijklmnopqrstuvwxyz"
       },
@@ -267,9 +261,22 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "distinct-characters",
         "no-match"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

@@ -103,24 +103,23 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: empty tree",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "empty tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": []
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "empty-tree"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: same-valued right chain",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "same-valued right chain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           2,
@@ -134,15 +133,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "skewed-tree"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: longest path avoids root",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-3",
+      "name": "longest path avoids root",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           9,
@@ -158,10 +156,8 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "below-root"
       ]
     }
   ]
 }
-

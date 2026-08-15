@@ -157,10 +157,10 @@
       ]
     },
     {
-      "id": "hidden-mixed",
-      "name": "hidden: uneven branches",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed",
+      "name": "uneven branches",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           8,
@@ -200,15 +200,14 @@
         "values_from_tree": true
       },
       "tags": [
-        "hidden",
         "uneven"
       ]
     },
     {
-      "id": "hidden-two",
-      "name": "hidden: two-node tree",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two",
+      "name": "two-node tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           2,
@@ -226,7 +225,6 @@
         "values_from_tree": true
       },
       "tags": [
-        "hidden",
         "small"
       ]
     }

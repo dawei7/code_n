@@ -72,30 +72,28 @@
       ]
     },
     {
-      "id": "real-incomplete",
-      "name": "hidden: ordered but incomplete ending",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-incomplete",
+      "name": "ordered but incomplete ending",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "croakOfFrogs": "croakcroa"
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "incomplete"
       ]
     },
     {
-      "id": "real-premature",
-      "name": "hidden: later stage has no predecessor",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-premature",
+      "name": "later stage has no predecessor",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "croakOfFrogs": "croakrcaok"
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "predecessor"
       ]
     }

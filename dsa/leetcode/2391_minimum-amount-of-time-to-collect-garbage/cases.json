@@ -89,10 +89,10 @@
       ]
     },
     {
-      "id": "real-all-at-final",
-      "name": "hidden: every truck reaches the final house",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-at-final",
+      "name": "every truck reaches the final house",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "garbage": [
           "M",
@@ -106,15 +106,14 @@
       },
       "expected": 20,
       "tags": [
-        "hidden",
         "final-house"
       ]
     },
     {
-      "id": "real-no-later-paper",
-      "name": "hidden: one truck never travels",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-no-later-paper",
+      "name": "one truck never travels",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "garbage": [
           "P",
@@ -128,15 +127,14 @@
       },
       "expected": 19,
       "tags": [
-        "hidden",
         "absent-later"
       ]
     },
     {
-      "id": "real-many-units",
-      "name": "hidden: pickup multiplicity is counted separately",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-units",
+      "name": "pickup multiplicity is counted separately",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "garbage": [
           "MMMM",
@@ -150,8 +148,50 @@
       },
       "expected": 52,
       "tags": [
-        "hidden",
         "pickup-count"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in garbage",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "garbage": [
+          "G"
+        ],
+        "travel": [
+          2,
+          4,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in garbage",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "garbage": [
+          "G",
+          "G"
+        ],
+        "travel": [
+          2,
+          4,
+          3
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

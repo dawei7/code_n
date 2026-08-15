@@ -7,81 +7,199 @@
       "name": "sample: reach the litter with exactly enough energy",
       "kind": "sample",
       "visible": true,
-      "input": {"classroom":["S.","XL"],"energy":2},
+      "input": {
+        "classroom": [
+          "S.",
+          "XL"
+        ],
+        "energy": 2
+      },
       "expected": 2,
-      "tags": ["sample","exact-depletion"]
+      "tags": [
+        "sample",
+        "exact-depletion"
+      ]
     },
     {
       "id": "sample-reset-between-litter",
       "name": "sample: use a reset between litter cells",
       "kind": "sample",
       "visible": true,
-      "input": {"classroom":["LS","RL"],"energy":4},
+      "input": {
+        "classroom": [
+          "LS",
+          "RL"
+        ],
+        "energy": 4
+      },
       "expected": 3,
-      "tags": ["sample","reset","multiple-litter"]
+      "tags": [
+        "sample",
+        "reset",
+        "multiple-litter"
+      ]
     },
     {
       "id": "sample-energy-impossible",
       "name": "sample: obstacles and energy make the route impossible",
       "kind": "sample",
       "visible": true,
-      "input": {"classroom":["L.S","RXL"],"energy":3},
+      "input": {
+        "classroom": [
+          "L.S",
+          "RXL"
+        ],
+        "energy": 3
+      },
       "expected": -1,
-      "tags": ["sample","impossible","obstacle"]
+      "tags": [
+        "sample",
+        "impossible",
+        "obstacle"
+      ]
     },
     {
       "id": "trial-no-litter",
       "name": "trial: an already clean classroom needs no moves",
       "kind": "trial",
       "visible": true,
-      "input": {"classroom":["S.."],"energy":1},
+      "input": {
+        "classroom": [
+          "S.."
+        ],
+        "energy": 1
+      },
       "expected": 0,
-      "tags": ["trial","empty-mask"]
+      "tags": [
+        "trial",
+        "empty-mask"
+      ]
     },
     {
       "id": "trial-reset-on-last-unit",
       "name": "trial: entering a reset with the last unit permits continuation",
       "kind": "trial",
       "visible": true,
-      "input": {"classroom":["S..R..L"],"energy":3},
+      "input": {
+        "classroom": [
+          "S..R..L"
+        ],
+        "energy": 3
+      },
       "expected": 6,
-      "tags": ["trial","reset","exact-depletion"]
+      "tags": [
+        "trial",
+        "reset",
+        "exact-depletion"
+      ]
     },
     {
-      "id": "real-final-litter-on-zero",
-      "name": "real: collecting the final litter may consume the last unit",
-      "kind": "real",
-      "visible": false,
-      "input": {"classroom":["S.L"],"energy":2},
+      "id": "trial-final-litter-on-zero",
+      "name": "collecting the final litter may consume the last unit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "classroom": [
+          "S.L"
+        ],
+        "energy": 2
+      },
       "expected": 2,
-      "tags": ["real","final-move","exact-depletion"]
+      "tags": [
+        "real",
+        "final-move",
+        "exact-depletion"
+      ]
     },
     {
-      "id": "real-energy-exhausted-too-soon",
-      "name": "real: one litter is reachable but all litter cannot be collected",
-      "kind": "real",
-      "visible": false,
-      "input": {"classroom":["S.L.L"],"energy":2},
+      "id": "trial-energy-exhausted-too-soon",
+      "name": "one litter is reachable but all litter cannot be collected",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "classroom": [
+          "S.L.L"
+        ],
+        "energy": 2
+      },
       "expected": -1,
-      "tags": ["real","multiple-litter","energy-limit"]
+      "tags": [
+        "real",
+        "multiple-litter",
+        "energy-limit"
+      ]
     },
     {
-      "id": "real-obstacle-disconnection",
-      "name": "real: obstacles disconnect the litter despite ample energy",
-      "kind": "real",
-      "visible": false,
-      "input": {"classroom":["SX","XL"],"energy":50},
+      "id": "trial-obstacle-disconnection",
+      "name": "obstacles disconnect the litter despite ample energy",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "classroom": [
+          "SX",
+          "XL"
+        ],
+        "energy": 50
+      },
       "expected": -1,
-      "tags": ["real","obstacle","disconnected"]
+      "tags": [
+        "real",
+        "obstacle",
+        "disconnected"
+      ]
     },
     {
-      "id": "real-reuse-resets",
-      "name": "real: reset cells support a long route collecting both endpoints",
-      "kind": "real",
-      "visible": false,
-      "input": {"classroom":["L.R.S.R.L"],"energy":4},
+      "id": "trial-reuse-resets",
+      "name": "reset cells support a long route collecting both endpoints",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "classroom": [
+          "L.R.S.R.L"
+        ],
+        "energy": 4
+      },
       "expected": 12,
-      "tags": ["real","multiple-litter","reusable-reset"]
+      "tags": [
+        "real",
+        "multiple-litter",
+        "reusable-reset"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in classroom",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "classroom": [
+          "S."
+        ],
+        "energy": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in classroom",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "classroom": [
+          "S.",
+          "S."
+        ],
+        "energy": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

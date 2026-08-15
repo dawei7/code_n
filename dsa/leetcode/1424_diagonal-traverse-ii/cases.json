@@ -192,10 +192,10 @@
       ]
     },
     {
-      "id": "real-late-wide-row",
-      "name": "hidden: a later row extends diagonal range",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-late-wide-row",
+      "name": "a later row extends diagonal range",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           [
@@ -221,15 +221,14 @@
         6
       ],
       "tags": [
-        "hidden",
         "late-wide"
       ]
     },
     {
-      "id": "real-uneven",
-      "name": "hidden: missing coordinates do not create gaps",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-uneven",
+      "name": "missing coordinates do not create gaps",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           [
@@ -265,7 +264,6 @@
         10
       ],
       "tags": [
-        "hidden",
         "uneven"
       ]
     }

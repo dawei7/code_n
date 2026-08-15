@@ -182,10 +182,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: different queries choose different indices",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "different queries choose different indices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "WordFilter",
@@ -223,15 +223,14 @@
         2
       ],
       "tags": [
-        "hidden",
         "query-variation"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: exact affixes exclude later word",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "exact affixes exclude later word",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "WordFilter",
@@ -262,15 +261,14 @@
         2
       ],
       "tags": [
-        "hidden",
         "exact"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: several misses",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-3",
+      "name": "several misses",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "WordFilter",
@@ -307,7 +305,6 @@
         -1
       ],
       "tags": [
-        "hidden",
         "missing"
       ]
     }

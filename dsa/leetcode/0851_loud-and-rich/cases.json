@@ -213,10 +213,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: incomparable quietest person",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "incomparable quietest person",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "richer": [
           [
@@ -236,15 +236,14 @@
         2
       ],
       "tags": [
-        "hidden",
         "incomparable"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: starting person beats richer people",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "starting person beats richer people",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "richer": [
           [
@@ -278,15 +277,14 @@
         3
       ],
       "tags": [
-        "hidden",
         "self-best"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: two disconnected components",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "two disconnected components",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "richer": [
           [
@@ -318,15 +316,14 @@
         4
       ],
       "tags": [
-        "hidden",
         "components"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: quietest person in middle of chain",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "quietest person in middle of chain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "richer": [
           [
@@ -356,15 +353,14 @@
         3
       ],
       "tags": [
-        "hidden",
         "middle"
       ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: shared richer ancestor",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-5",
+      "name": "shared richer ancestor",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "richer": [
           [
@@ -394,15 +390,14 @@
         3
       ],
       "tags": [
-        "hidden",
         "shared"
       ]
     },
     {
-      "id": "hidden-6",
-      "name": "hidden: direct relation dominates no assumption",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-6",
+      "name": "direct relation dominates no assumption",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "richer": [
           [
@@ -428,7 +423,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "partial-order"
       ]
     }

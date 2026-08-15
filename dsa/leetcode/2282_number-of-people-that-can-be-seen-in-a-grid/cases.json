@@ -2,13 +2,269 @@
   "schema_version": 1,
   "challenge_id": "lc_2282",
   "cases": [
-    {"id":"sample-one-row","name":"sample: bends in a single row","kind":"sample","visible":true,"input":{"heights":[[3,1,4,2,5]]},"expected":[[2,1,2,1,0]],"tags":["sample","row"]},
-    {"id":"sample-three-rows","name":"sample: rightward and downward visibility combine","kind":"sample","visible":true,"input":{"heights":[[5,1],[3,1],[4,1]]},"expected":[[3,1],[2,1],[1,0]],"tags":["sample","two-directions","duplicates"]},
-    {"id":"trial-single","name":"one person sees nobody","kind":"trial","visible":true,"input":{"heights":[[7]]},"expected":[[0]],"tags":["minimum-grid"]},
-    {"id":"trial-equal-square","name":"equal adjacent people block those behind","kind":"trial","visible":true,"input":{"heights":[[2,2],[2,2]]},"expected":[[2,1],[1,0]],"tags":["duplicates","blocking"]},
-    {"id":"trial-equal-row","name":"nearer equal height blocks a farther equal height","kind":"trial","visible":true,"input":{"heights":[[5,3,3]]},"expected":[[1,1,0]],"tags":["duplicates","row"]},
-    {"id":"real-equal-column","name":"hidden: equal-height blocking in one column","kind":"real","visible":false,"input":{"heights":[[5],[3],[3]]},"expected":[[1],[1],[0]],"tags":["hidden","duplicates","column"]},
-    {"id":"real-mixed-grid","name":"hidden: both directions contain rises and blockers","kind":"real","visible":false,"input":{"heights":[[4,1,3],[2,5,2],[6,1,4]]},"expected":[[4,2,2],[2,2,1],[2,1,0]],"tags":["hidden","two-directions"]},
-    {"id":"real-opposing-rows","name":"hidden: increasing and decreasing rows","kind":"real","visible":false,"input":{"heights":[[1,2,3],[3,2,1]]},"expected":[[2,2,1],[1,1,0]],"tags":["hidden","monotonic"]}
+    {
+      "id": "sample-one-row",
+      "name": "sample: bends in a single row",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "heights": [
+          [
+            3,
+            1,
+            4,
+            2,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        [
+          2,
+          1,
+          2,
+          1,
+          0
+        ]
+      ],
+      "tags": [
+        "sample",
+        "row"
+      ]
+    },
+    {
+      "id": "sample-three-rows",
+      "name": "sample: rightward and downward visibility combine",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "heights": [
+          [
+            5,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        [
+          3,
+          1
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "tags": [
+        "sample",
+        "two-directions",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "one person sees nobody",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "heights": [
+          [
+            7
+          ]
+        ]
+      },
+      "expected": [
+        [
+          0
+        ]
+      ],
+      "tags": [
+        "minimum-grid"
+      ]
+    },
+    {
+      "id": "trial-equal-square",
+      "name": "equal adjacent people block those behind",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "heights": [
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "tags": [
+        "duplicates",
+        "blocking"
+      ]
+    },
+    {
+      "id": "trial-equal-row",
+      "name": "nearer equal height blocks a farther equal height",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "heights": [
+          [
+            5,
+            3,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          1,
+          0
+        ]
+      ],
+      "tags": [
+        "duplicates",
+        "row"
+      ]
+    },
+    {
+      "id": "trial-equal-column",
+      "name": "equal-height blocking in one column",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "heights": [
+          [
+            5
+          ],
+          [
+            3
+          ],
+          [
+            3
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          0
+        ]
+      ],
+      "tags": [
+        "duplicates",
+        "column"
+      ]
+    },
+    {
+      "id": "trial-mixed-grid",
+      "name": "both directions contain rises and blockers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "heights": [
+          [
+            4,
+            1,
+            3
+          ],
+          [
+            2,
+            5,
+            2
+          ],
+          [
+            6,
+            1,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        [
+          4,
+          2,
+          2
+        ],
+        [
+          2,
+          2,
+          1
+        ],
+        [
+          2,
+          1,
+          0
+        ]
+      ],
+      "tags": [
+        "two-directions"
+      ]
+    },
+    {
+      "id": "trial-opposing-rows",
+      "name": "increasing and decreasing rows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "heights": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            3,
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        [
+          2,
+          2,
+          1
+        ],
+        [
+          1,
+          1,
+          0
+        ]
+      ],
+      "tags": [
+        "monotonic"
+      ]
+    }
   ]
 }

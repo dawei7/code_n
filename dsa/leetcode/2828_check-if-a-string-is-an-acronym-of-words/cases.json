@@ -6,93 +6,316 @@
       "name": "sample: ordered first letters match",
       "kind": "sample",
       "visible": true,
-      "input": {"words": ["alice", "bob", "charlie"], "s": "abc"},
+      "input": {
+        "words": [
+          "alice",
+          "bob",
+          "charlie"
+        ],
+        "s": "abc"
+      },
       "expected": true,
-      "tags": ["sample", "match"]
+      "tags": [
+        "sample",
+        "match"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: target is too short",
       "kind": "sample",
       "visible": true,
-      "input": {"words": ["an", "apple"], "s": "a"},
+      "input": {
+        "words": [
+          "an",
+          "apple"
+        ],
+        "s": "a"
+      },
       "expected": false,
-      "tags": ["sample", "length"]
+      "tags": [
+        "sample",
+        "length"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: six-word acronym matches",
       "kind": "sample",
       "visible": true,
-      "input": {"words": ["never", "gonna", "give", "up", "on", "you"], "s": "ngguoy"},
+      "input": {
+        "words": [
+          "never",
+          "gonna",
+          "give",
+          "up",
+          "on",
+          "you"
+        ],
+        "s": "ngguoy"
+      },
       "expected": true,
-      "tags": ["sample", "match"]
+      "tags": [
+        "sample",
+        "match"
+      ]
     },
     {
       "id": "trial-single-word",
       "name": "trial: one word contributes one character",
       "kind": "trial",
       "visible": true,
-      "input": {"words": ["codex"], "s": "c"},
+      "input": {
+        "words": [
+          "codex"
+        ],
+        "s": "c"
+      },
       "expected": true,
-      "tags": ["trial", "minimum-size"]
+      "tags": [
+        "trial",
+        "minimum-size"
+      ]
     },
     {
       "id": "trial-single-word-mismatch",
       "name": "trial: one first character differs",
       "kind": "trial",
       "visible": true,
-      "input": {"words": ["codex"], "s": "x"},
+      "input": {
+        "words": [
+          "codex"
+        ],
+        "s": "x"
+      },
       "expected": false,
-      "tags": ["trial", "mismatch"]
+      "tags": [
+        "trial",
+        "mismatch"
+      ]
     },
     {
       "id": "trial-middle-mismatch",
       "name": "trial: equal lengths with a middle mismatch",
       "kind": "trial",
       "visible": true,
-      "input": {"words": ["red", "green", "blue"], "s": "rxb"},
-      "expected": false,
-      "tags": ["trial", "middle-mismatch"]
-    },
-    {
-      "id": "real-target-longer",
-      "name": "hidden: target has an extra character",
-      "kind": "real",
-      "visible": false,
-      "input": {"words": ["alpha", "beta"], "s": "abc"},
-      "expected": false,
-      "tags": ["hidden", "length"]
-    },
-    {
-      "id": "real-last-mismatch",
-      "name": "hidden: mismatch occurs at the final word",
-      "kind": "real",
-      "visible": false,
-      "input": {"words": ["tiny", "ordered", "list"], "s": "tox"},
-      "expected": false,
-      "tags": ["hidden", "late-mismatch"]
-    },
-    {
-      "id": "real-long-words",
-      "name": "hidden: characters after each first letter are irrelevant",
-      "kind": "real",
-      "visible": false,
-      "input": {"words": ["abcdefghij", "bcdefghija", "cdefghijab", "defghijabc"], "s": "abcd"},
-      "expected": true,
-      "tags": ["hidden", "maximum-word-length"]
-    },
-    {
-      "id": "real-maximum-count",
-      "name": "hidden: one hundred words all match",
-      "kind": "real",
-      "visible": false,
       "input": {
-        "words": ["a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a"],
+        "words": [
+          "red",
+          "green",
+          "blue"
+        ],
+        "s": "rxb"
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "middle-mismatch"
+      ]
+    },
+    {
+      "id": "trial-target-longer",
+      "name": "target has an extra character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "alpha",
+          "beta"
+        ],
+        "s": "abc"
+      },
+      "expected": false,
+      "tags": [
+        "length"
+      ]
+    },
+    {
+      "id": "trial-last-mismatch",
+      "name": "mismatch occurs at the final word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "tiny",
+          "ordered",
+          "list"
+        ],
+        "s": "tox"
+      },
+      "expected": false,
+      "tags": [
+        "late-mismatch"
+      ]
+    },
+    {
+      "id": "trial-long-words",
+      "name": "characters after each first letter are irrelevant",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abcdefghij",
+          "bcdefghija",
+          "cdefghijab",
+          "defghijabc"
+        ],
+        "s": "abcd"
+      },
+      "expected": true,
+      "tags": [
+        "maximum-word-length"
+      ]
+    },
+    {
+      "id": "trial-maximum-count",
+      "name": "one hundred words all match",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a"
+        ],
         "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
       },
       "expected": true,
-      "tags": ["hidden", "maximum-size"]
+      "tags": [
+        "maximum-size"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "alice"
+        ],
+        "s": "abc"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "alice",
+          "alice"
+        ],
+        "s": "abc"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

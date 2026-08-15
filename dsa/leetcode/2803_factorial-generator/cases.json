@@ -6,72 +6,164 @@
       "name": "sample: factorials through five",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 5},
-      "expected": [1, 2, 6, 24, 120],
-      "tags": ["sample", "generator", "factorial"]
+      "input": {
+        "n": 5
+      },
+      "expected": [
+        1,
+        2,
+        6,
+        24,
+        120
+      ],
+      "tags": [
+        "sample",
+        "generator",
+        "factorial"
+      ]
     },
     {
       "id": "sample-two",
       "name": "sample: first two factorials",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 2},
-      "expected": [1, 2],
-      "tags": ["sample", "short-sequence"]
+      "input": {
+        "n": 2
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "tags": [
+        "sample",
+        "short-sequence"
+      ]
     },
     {
       "id": "sample-zero",
       "name": "sample: zero yields the defined zero factorial",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 0},
-      "expected": [1],
-      "tags": ["sample", "zero-factorial", "boundary"]
+      "input": {
+        "n": 0
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "sample",
+        "zero-factorial",
+        "boundary"
+      ]
     },
     {
       "id": "trial-one",
       "name": "trial: one has a single factorial value",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1},
-      "expected": [1],
-      "tags": ["trial", "one-factorial"]
+      "input": {
+        "n": 1
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "trial",
+        "one-factorial"
+      ]
     },
     {
       "id": "trial-three",
       "name": "trial: multiplication state reaches six",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 3},
-      "expected": [1, 2, 6],
-      "tags": ["trial", "state-update"]
+      "input": {
+        "n": 3
+      },
+      "expected": [
+        1,
+        2,
+        6
+      ],
+      "tags": [
+        "trial",
+        "state-update"
+      ]
     },
     {
-      "id": "real-four",
-      "name": "hidden: factorial sequence through four",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 4},
-      "expected": [1, 2, 6, 24],
-      "tags": ["hidden", "sequence"]
+      "id": "trial-four",
+      "name": "factorial sequence through four",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4
+      },
+      "expected": [
+        1,
+        2,
+        6,
+        24
+      ],
+      "tags": [
+        "sequence"
+      ]
     },
     {
-      "id": "real-ten",
-      "name": "hidden: longer persistent multiplication state",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 10},
-      "expected": [1, 2, 6, 24, 120, 720, 5040, 40320, 362880, 3628800],
-      "tags": ["hidden", "persistent-state"]
+      "id": "trial-ten",
+      "name": "longer persistent multiplication state",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 10
+      },
+      "expected": [
+        1,
+        2,
+        6,
+        24,
+        120,
+        720,
+        5040,
+        40320,
+        362880,
+        3628800
+      ],
+      "tags": [
+        "persistent-state"
+      ]
     },
     {
-      "id": "real-maximum",
-      "name": "hidden: maximum legal factorial index",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 18},
-      "expected": [1, 2, 6, 24, 120, 720, 5040, 40320, 362880, 3628800, 39916800, 479001600, 6227020800, 87178291200, 1307674368000, 20922789888000, 355687428096000, 6402373705728000],
-      "tags": ["hidden", "maximum", "numeric-boundary"]
+      "id": "trial-maximum",
+      "name": "maximum legal factorial index",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 18
+      },
+      "expected": [
+        1,
+        2,
+        6,
+        24,
+        120,
+        720,
+        5040,
+        40320,
+        362880,
+        3628800,
+        39916800,
+        479001600,
+        6227020800,
+        87178291200,
+        1307674368000,
+        20922789888000,
+        355687428096000,
+        6402373705728000
+      ],
+      "tags": [
+        "maximum",
+        "numeric-boundary"
+      ]
     }
   ]
 }

@@ -7,63 +7,101 @@
       "name": "sample: change both minority answers",
       "kind": "sample",
       "visible": true,
-      "input": {"answerKey": "TTFF", "k": 2},
+      "input": {
+        "answerKey": "TTFF",
+        "k": 2
+      },
       "expected": 4,
-      "tags": ["sample", "whole-string"]
+      "tags": [
+        "sample",
+        "whole-string"
+      ]
     },
     {
       "id": "sample-one-change",
       "name": "sample: either endpoint change creates three equals",
       "kind": "sample",
       "visible": true,
-      "input": {"answerKey": "TFFT", "k": 1},
+      "input": {
+        "answerKey": "TFFT",
+        "k": 1
+      },
       "expected": 3,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-separated-false",
       "name": "sample: choose the better of two long true regions",
       "kind": "sample",
       "visible": true,
-      "input": {"answerKey": "TTFTTFTT", "k": 1},
+      "input": {
+        "answerKey": "TTFTTFTT",
+        "k": 1
+      },
       "expected": 5,
-      "tags": ["sample", "sliding-window"]
+      "tags": [
+        "sample",
+        "sliding-window"
+      ]
     },
     {
       "id": "trial-alternating",
       "name": "one change extends an alternating key to length three",
       "kind": "trial",
       "visible": true,
-      "input": {"answerKey": "TFTFT", "k": 1},
+      "input": {
+        "answerKey": "TFTFT",
+        "k": 1
+      },
       "expected": 3,
-      "tags": ["alternating"]
+      "tags": [
+        "alternating"
+      ]
     },
     {
       "id": "trial-uniform",
       "name": "an already uniform key keeps its full length",
       "kind": "trial",
       "visible": true,
-      "input": {"answerKey": "FFFFF", "k": 1},
+      "input": {
+        "answerKey": "FFFFF",
+        "k": 1
+      },
       "expected": 5,
-      "tags": ["uniform", "unused-change"]
+      "tags": [
+        "uniform",
+        "unused-change"
+      ]
     },
     {
-      "id": "real-whole-key-budget",
-      "name": "hidden: the budget can cover the full key",
-      "kind": "real",
-      "visible": false,
-      "input": {"answerKey": "TFTF", "k": 4},
+      "id": "trial-whole-key-budget",
+      "name": "the budget can cover the full key",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "answerKey": "TFTF",
+        "k": 4
+      },
       "expected": 4,
-      "tags": ["hidden", "maximum-budget"]
+      "tags": [
+        "maximum-budget"
+      ]
     },
     {
-      "id": "real-minority-at-ends",
-      "name": "hidden: changing one endpoint joins four false answers",
-      "kind": "real",
-      "visible": false,
-      "input": {"answerKey": "TFFFFT", "k": 1},
+      "id": "trial-minority-at-ends",
+      "name": "changing one endpoint joins four false answers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "answerKey": "TFFFFT",
+        "k": 1
+      },
       "expected": 5,
-      "tags": ["hidden", "boundary"]
+      "tags": [
+        "boundary"
+      ]
     }
   ]
 }

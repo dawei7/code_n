@@ -80,10 +80,10 @@
       ]
     },
     {
-      "id": "real-mixed-grid",
-      "name": "real: mixed gains and robber cells",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-grid",
+      "name": "mixed gains and robber cells",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "coins": [
           [

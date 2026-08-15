@@ -73,61 +73,84 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: single character",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "single character",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "z"
       },
       "expected": true,
       "tags": [
-        "hidden",
         "single-character"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: delete an interior character",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "delete an interior character",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "raceacar"
       },
       "expected": true,
       "tags": [
-        "hidden",
         "interior-deletion"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: repeated characters still fail",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-3",
+      "name": "repeated characters still fail",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "cbbcc"
       },
       "expected": true,
       "tags": [
-        "hidden",
         "delete-center"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: separated mismatches",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "separated mismatches",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abecbea"
       },
       "expected": false,
       "tags": [
-        "hidden",
         "multiple-mismatches"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]
 }
-

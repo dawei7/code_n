@@ -2,14 +2,318 @@
   "schema_version": 1,
   "challenge_id": "lc_2295",
   "cases": [
-    {"id":"sample-three-positions","name":"sample: replacements update three separate positions","kind":"sample","visible":true,"input":{"nums":[1,2,4,6],"operations":[[1,3],[4,7],[6,1]]},"expected":[3,2,7,1],"tags":["sample","multiple-positions"]},
-    {"id":"sample-value-chain","name":"sample: introduced values participate in later operations","kind":"sample","visible":true,"input":{"nums":[1,2],"operations":[[1,3],[2,1],[3,2]]},"expected":[2,1],"tags":["sample","chain","reuse"]},
-    {"id":"trial-single-position","name":"one position follows a replacement chain","kind":"trial","visible":true,"input":{"nums":[5],"operations":[[5,8],[8,2],[2,9]]},"expected":[9],"tags":["single-element","chain"]},
-    {"id":"trial-reuse-freed","name":"a removed value is introduced at another position","kind":"trial","visible":true,"input":{"nums":[10,20,30],"operations":[[10,40],[30,10]]},"expected":[40,20,10],"tags":["reuse","positions"]},
-    {"id":"trial-one-operation","name":"one replacement preserves all other positions","kind":"trial","visible":true,"input":{"nums":[9,8,7],"operations":[[8,6]]},"expected":[9,6,7],"tags":["single-operation"]},
-    {"id":"real-cross-position-chain","name":"hidden: chains transfer freed values across positions","kind":"real","visible":false,"input":{"nums":[1,4,7,10],"operations":[[4,2],[10,4],[1,10],[7,1]]},"expected":[10,2,1,4],"tags":["hidden","chain","reuse"]},
-    {"id":"real-large-values","name":"hidden: replacements reach the numeric upper bound","kind":"real","visible":false,"input":{"nums":[999999,1],"operations":[[999999,1000000],[1,999999]]},"expected":[1000000,999999],"tags":["hidden","bounds"]},
-    {"id":"real-reverse-order","name":"hidden: operation order reverses the active values","kind":"real","visible":false,"input":{"nums":[1,2,3],"operations":[[1,4],[2,1],[3,2],[4,3]]},"expected":[3,1,2],"tags":["hidden","ordering"]},
-    {"id":"real-long-same-index","name":"hidden: every operation targets the last position","kind":"real","visible":false,"input":{"nums":[11,22,33],"operations":[[33,44],[44,55],[55,66],[66,77]]},"expected":[11,22,77],"tags":["hidden","same-position"]}
+    {
+      "id": "sample-three-positions",
+      "name": "sample: replacements update three separate positions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          6
+        ],
+        "operations": [
+          [
+            1,
+            3
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            6,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        3,
+        2,
+        7,
+        1
+      ],
+      "tags": [
+        "sample",
+        "multiple-positions"
+      ]
+    },
+    {
+      "id": "sample-value-chain",
+      "name": "sample: introduced values participate in later operations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2
+        ],
+        "operations": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        1
+      ],
+      "tags": [
+        "sample",
+        "chain",
+        "reuse"
+      ]
+    },
+    {
+      "id": "trial-single-position",
+      "name": "one position follows a replacement chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ],
+        "operations": [
+          [
+            5,
+            8
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            2,
+            9
+          ]
+        ]
+      },
+      "expected": [
+        9
+      ],
+      "tags": [
+        "single-element",
+        "chain"
+      ]
+    },
+    {
+      "id": "trial-reuse-freed",
+      "name": "a removed value is introduced at another position",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          20,
+          30
+        ],
+        "operations": [
+          [
+            10,
+            40
+          ],
+          [
+            30,
+            10
+          ]
+        ]
+      },
+      "expected": [
+        40,
+        20,
+        10
+      ],
+      "tags": [
+        "reuse",
+        "positions"
+      ]
+    },
+    {
+      "id": "trial-one-operation",
+      "name": "one replacement preserves all other positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          8,
+          7
+        ],
+        "operations": [
+          [
+            8,
+            6
+          ]
+        ]
+      },
+      "expected": [
+        9,
+        6,
+        7
+      ],
+      "tags": [
+        "single-operation"
+      ]
+    },
+    {
+      "id": "trial-cross-position-chain",
+      "name": "chains transfer freed values across positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          7,
+          10
+        ],
+        "operations": [
+          [
+            4,
+            2
+          ],
+          [
+            10,
+            4
+          ],
+          [
+            1,
+            10
+          ],
+          [
+            7,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        10,
+        2,
+        1,
+        4
+      ],
+      "tags": [
+        "chain",
+        "reuse"
+      ]
+    },
+    {
+      "id": "trial-large-values",
+      "name": "replacements reach the numeric upper bound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          999999,
+          1
+        ],
+        "operations": [
+          [
+            999999,
+            1000000
+          ],
+          [
+            1,
+            999999
+          ]
+        ]
+      },
+      "expected": [
+        1000000,
+        999999
+      ],
+      "tags": [
+        "bounds"
+      ]
+    },
+    {
+      "id": "trial-reverse-order",
+      "name": "operation order reverses the active values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "operations": [
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            4,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        3,
+        1,
+        2
+      ],
+      "tags": [
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-long-same-index",
+      "name": "every operation targets the last position",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          11,
+          22,
+          33
+        ],
+        "operations": [
+          [
+            33,
+            44
+          ],
+          [
+            44,
+            55
+          ],
+          [
+            55,
+            66
+          ],
+          [
+            66,
+            77
+          ]
+        ]
+      },
+      "expected": [
+        11,
+        22,
+        77
+      ],
+      "tags": [
+        "same-position"
+      ]
+    }
   ]
 }

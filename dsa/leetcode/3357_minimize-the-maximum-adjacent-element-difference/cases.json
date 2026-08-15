@@ -6,81 +6,218 @@
       "name": "sample: one missing value between fixed values",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, -1, 10, 8]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          -1,
+          10,
+          8
+        ]
+      },
       "expected": 4,
-      "tags": ["sample", "single-gap"]
+      "tags": [
+        "sample",
+        "single-gap"
+      ]
     },
     {
       "id": "sample-all-missing",
       "name": "sample: all missing values can be equal",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [-1, -1, -1]},
+      "input": {
+        "nums": [
+          -1,
+          -1,
+          -1
+        ]
+      },
       "expected": 0,
-      "tags": ["sample", "all-missing"]
+      "tags": [
+        "sample",
+        "all-missing"
+      ]
     },
     {
       "id": "sample-separated-single-gaps",
       "name": "sample: separated gaps use both global values",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [-1, 10, -1, 8]},
+      "input": {
+        "nums": [
+          -1,
+          10,
+          -1,
+          8
+        ]
+      },
       "expected": 1,
-      "tags": ["sample", "boundary-gap", "single-gap"]
+      "tags": [
+        "sample",
+        "boundary-gap",
+        "single-gap"
+      ]
     },
     {
       "id": "trial-long-gap-transition",
       "name": "trial: a long gap can transition between the two values",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [14, -1, -1, 46]},
+      "input": {
+        "nums": [
+          14,
+          -1,
+          -1,
+          46
+        ]
+      },
       "expected": 11,
-      "tags": ["long-gap", "transition"]
+      "tags": [
+        "long-gap",
+        "transition"
+      ]
     },
     {
       "id": "trial-no-missing-values",
       "name": "trial: fixed adjacent values determine the answer",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 5, 3, 9]},
+      "input": {
+        "nums": [
+          1,
+          5,
+          3,
+          9
+        ]
+      },
       "expected": 6,
-      "tags": ["no-missing", "fixed-gap"]
+      "tags": [
+        "no-missing",
+        "fixed-gap"
+      ]
     },
     {
       "id": "trial-equal-boundaries",
       "name": "trial: repeated equal boundaries allow zero",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5, -1, 5, -1, 5]},
+      "input": {
+        "nums": [
+          5,
+          -1,
+          5,
+          -1,
+          5
+        ]
+      },
       "expected": 0,
-      "tags": ["equal-boundaries", "zero"]
+      "tags": [
+        "equal-boundaries",
+        "zero"
+      ]
     },
     {
-      "id": "real-maximum-value-long-gap",
-      "name": "real: maximum values across one long missing run",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, -1, -1, 1000000000]},
+      "id": "trial-maximum-value-long-gap",
+      "name": "maximum values across one long missing run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          -1,
+          -1,
+          1000000000
+        ]
+      },
       "expected": 333333333,
-      "tags": ["real", "maximum-value", "long-gap"]
+      "tags": [
+        "real",
+        "maximum-value",
+        "long-gap"
+      ]
     },
     {
-      "id": "real-leading-trailing-and-internal",
-      "name": "real: leading, trailing, and internal missing runs",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-1, -1, 5, 9, -1, 14, -1, -1, 20, -1]},
+      "id": "trial-leading-trailing-and-internal",
+      "name": "leading, trailing, and internal missing runs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          -1,
+          5,
+          9,
+          -1,
+          14,
+          -1,
+          -1,
+          20,
+          -1
+        ]
+      },
       "expected": 5,
-      "tags": ["real", "mixed-runs"]
+      "tags": [
+        "real",
+        "mixed-runs"
+      ]
     },
     {
-      "id": "real-global-pair-across-many-gaps",
-      "name": "real: one pair must satisfy several distinct gaps",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [34, -1, 40, -1, -1, 46, -1, 52]},
+      "id": "trial-global-pair-across-many-gaps",
+      "name": "one pair must satisfy several distinct gaps",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          34,
+          -1,
+          40,
+          -1,
+          -1,
+          46,
+          -1,
+          52
+        ]
+      },
       "expected": 6,
-      "tags": ["real", "global-pair", "mixed-runs"]
+      "tags": [
+        "real",
+        "global-pair",
+        "mixed-runs"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

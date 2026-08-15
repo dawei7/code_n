@@ -127,10 +127,10 @@
       ]
     },
     {
-      "id": "real-cycle",
-      "name": "hidden: cycle of pairwise overlaps",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-cycle",
+      "name": "cycle of pairwise overlaps",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "hats": [
           [
@@ -149,15 +149,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "cycle"
       ]
     },
     {
-      "id": "real-factorial",
-      "name": "hidden: every person likes every available hat",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-factorial",
+      "name": "every person likes every available hat",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "hats": [
           [
@@ -179,15 +178,14 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "factorial"
       ]
     },
     {
-      "id": "real-unused-boundary",
-      "name": "hidden: boundary hat can remain unused",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unused-boundary",
+      "name": "boundary hat can remain unused",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "hats": [
           [
@@ -206,7 +204,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "hat-40"
       ]
     }

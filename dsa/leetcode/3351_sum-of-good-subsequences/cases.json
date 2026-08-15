@@ -89,10 +89,10 @@
       ]
     },
     {
-      "id": "real-gap-and-neighbor",
-      "name": "real: one gap value and one adjacent pair",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-gap-and-neighbor",
+      "name": "one gap value and one adjacent pair",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -107,10 +107,10 @@
       ]
     },
     {
-      "id": "real-decreasing-chain",
-      "name": "real: decreasing consecutive chain",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-decreasing-chain",
+      "name": "decreasing consecutive chain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -125,10 +125,10 @@
       ]
     },
     {
-      "id": "real-repeated-two",
-      "name": "real: two index-distinct extensions to repeated value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-two",
+      "name": "two index-distinct extensions to repeated value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -143,10 +143,10 @@
       ]
     },
     {
-      "id": "real-value-maximum",
-      "name": "real: maximum value singleton",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-value-maximum",
+      "name": "maximum value singleton",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000
@@ -159,10 +159,10 @@
       ]
     },
     {
-      "id": "real-distant-values",
-      "name": "real: distant values cannot connect",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-distant-values",
+      "name": "distant values cannot connect",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -176,10 +176,10 @@
       ]
     },
     {
-      "id": "real-noncontiguous-choice",
-      "name": "real: subsequence skips a distant middle value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-noncontiguous-choice",
+      "name": "subsequence skips a distant middle value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

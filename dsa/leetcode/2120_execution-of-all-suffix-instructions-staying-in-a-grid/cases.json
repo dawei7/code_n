@@ -7,63 +7,172 @@
       "name": "sample: suffixes stop at different boundaries",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 3, "startPos": [0, 1], "s": "RRDDLU"},
-      "expected": [1, 5, 4, 3, 1, 0],
-      "tags": ["sample", "mixed-directions"]
+      "input": {
+        "n": 3,
+        "startPos": [
+          0,
+          1
+        ],
+        "s": "RRDDLU"
+      },
+      "expected": [
+        1,
+        5,
+        4,
+        3,
+        1,
+        0
+      ],
+      "tags": [
+        "sample",
+        "mixed-directions"
+      ]
     },
     {
       "id": "sample-two-by-two",
       "name": "sample: the complete instruction string loops inside",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 2, "startPos": [1, 1], "s": "LURD"},
-      "expected": [4, 1, 0, 0],
-      "tags": ["sample", "full-suffix"]
+      "input": {
+        "n": 2,
+        "startPos": [
+          1,
+          1
+        ],
+        "s": "LURD"
+      },
+      "expected": [
+        4,
+        1,
+        0,
+        0
+      ],
+      "tags": [
+        "sample",
+        "full-suffix"
+      ]
     },
     {
       "id": "sample-one-cell",
       "name": "sample: no movement is possible in one cell",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 1, "startPos": [0, 0], "s": "LRUD"},
-      "expected": [0, 0, 0, 0],
-      "tags": ["sample", "minimum-grid"]
+      "input": {
+        "n": 1,
+        "startPos": [
+          0,
+          0
+        ],
+        "s": "LRUD"
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "sample",
+        "minimum-grid"
+      ]
     },
     {
       "id": "trial-immediate-right-boundary",
       "name": "every suffix begins with a move toward the right edge",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 3, "startPos": [1, 2], "s": "RRR"},
-      "expected": [0, 0, 0],
-      "tags": ["boundary", "repeated-direction"]
+      "input": {
+        "n": 3,
+        "startPos": [
+          1,
+          2
+        ],
+        "s": "RRR"
+      },
+      "expected": [
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "boundary",
+        "repeated-direction"
+      ]
     },
     {
       "id": "trial-all-instructions-fit",
       "name": "all suffixes fit inside a spacious grid",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 5, "startPos": [2, 2], "s": "RDLU"},
-      "expected": [4, 3, 2, 1],
-      "tags": ["all-fit", "loop"]
+      "input": {
+        "n": 5,
+        "startPos": [
+          2,
+          2
+        ],
+        "s": "RDLU"
+      },
+      "expected": [
+        4,
+        3,
+        2,
+        1
+      ],
+      "tags": [
+        "all-fit",
+        "loop"
+      ]
     },
     {
-      "id": "real-reset-between-suffixes",
-      "name": "hidden: each suffix starts from the original cell",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 4, "startPos": [1, 1], "s": "DDDRUU"},
-      "expected": [2, 5, 4, 2, 1, 1],
-      "tags": ["hidden", "independent-runs"]
+      "id": "trial-reset-between-suffixes",
+      "name": "each suffix starts from the original cell",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "startPos": [
+          1,
+          1
+        ],
+        "s": "DDDRUU"
+      },
+      "expected": [
+        2,
+        5,
+        4,
+        2,
+        1,
+        1
+      ],
+      "tags": [
+        "independent-runs"
+      ]
     },
     {
-      "id": "real-late-boundary",
-      "name": "hidden: alternating moves delay the first invalid step",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 3, "startPos": [1, 1], "s": "LRLRUU"},
-      "expected": [5, 4, 3, 2, 1, 1],
-      "tags": ["hidden", "alternating", "late-stop"]
+      "id": "trial-late-boundary",
+      "name": "alternating moves delay the first invalid step",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "startPos": [
+          1,
+          1
+        ],
+        "s": "LRLRUU"
+      },
+      "expected": [
+        5,
+        4,
+        3,
+        2,
+        1,
+        1
+      ],
+      "tags": [
+        "alternating",
+        "late-stop"
+      ]
     }
   ]
 }

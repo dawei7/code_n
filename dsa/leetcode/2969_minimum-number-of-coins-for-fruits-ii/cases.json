@@ -86,10 +86,10 @@
       ]
     },
     {
-      "id": "real-expensive-covered-choice",
-      "name": "real: later coverage still requires a costly purchase",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-expensive-covered-choice",
+      "name": "later coverage still requires a costly purchase",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           5,
@@ -99,15 +99,14 @@
       },
       "expected": 105,
       "tags": [
-        "hidden",
         "expensive"
       ]
     },
     {
-      "id": "real-uniform-prices",
-      "name": "real: uniform prices reward exponentially growing coverage",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-uniform-prices",
+      "name": "uniform prices reward exponentially growing coverage",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           4,
@@ -122,15 +121,14 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "uniform"
       ]
     },
     {
-      "id": "real-alternating-prices",
-      "name": "real: cheap purchases extend across expensive fruits",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alternating-prices",
+      "name": "cheap purchases extend across expensive fruits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           1,
@@ -144,15 +142,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
     {
-      "id": "real-maximum-prices",
-      "name": "real: maximum prices preserve integer totals",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-prices",
+      "name": "maximum prices preserve integer totals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           100000,
@@ -163,7 +160,6 @@
       },
       "expected": 200000,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     }

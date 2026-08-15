@@ -140,10 +140,10 @@
       ]
     },
     {
-      "id": "real-all-zero",
-      "name": "hidden: all rows contain no ones",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-zero",
+      "name": "all rows contain no ones",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [
@@ -168,15 +168,14 @@
         0
       ],
       "tags": [
-        "hidden",
         "all-zero"
       ]
     },
     {
-      "id": "real-all-one-tie",
-      "name": "hidden: fully populated rows tie",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-one-tie",
+      "name": "fully populated rows tie",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [
@@ -198,15 +197,14 @@
         4
       ],
       "tags": [
-        "hidden",
         "all-one"
       ]
     },
     {
-      "id": "real-late-winner",
-      "name": "hidden: final row uniquely wins",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-late-winner",
+      "name": "final row uniquely wins",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [
@@ -234,7 +232,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "late-winner"
       ]
     }

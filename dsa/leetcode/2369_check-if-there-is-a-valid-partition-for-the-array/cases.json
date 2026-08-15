@@ -6,90 +6,179 @@
       "name": "sample: equal pair followed by consecutive triple",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [4, 4, 4, 5, 6]},
+      "input": {
+        "nums": [
+          4,
+          4,
+          4,
+          5,
+          6
+        ]
+      },
       "expected": true,
-      "tags": ["sample", "dynamic-programming"]
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: unavoidable trailing singleton",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 1, 1, 2]},
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          2
+        ]
+      },
       "expected": false,
-      "tags": ["sample", "edge"]
+      "tags": [
+        "sample",
+        "edge"
+      ]
     },
     {
-      "id": "real-minimum-valid",
-      "name": "hidden: minimum equal pair",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [8, 8]},
+      "id": "trial-minimum-valid",
+      "name": "minimum equal pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          8
+        ]
+      },
       "expected": true,
-      "tags": ["hidden", "minimum"]
+      "tags": [
+        "minimum"
+      ]
     },
     {
-      "id": "real-minimum-invalid",
-      "name": "hidden: unequal pair",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [8, 9]},
+      "id": "trial-minimum-invalid",
+      "name": "unequal pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          9
+        ]
+      },
       "expected": false,
-      "tags": ["hidden", "minimum"]
+      "tags": [
+        "minimum"
+      ]
     },
     {
-      "id": "real-three-equal",
-      "name": "hidden: one equal triple",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [3, 3, 3]},
+      "id": "trial-three-equal",
+      "name": "one equal triple",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3,
+          3
+        ]
+      },
       "expected": true,
-      "tags": ["hidden", "triple"]
+      "tags": [
+        "triple"
+      ]
     },
     {
       "id": "trial-consecutive-triple",
       "name": "one consecutive increasing triple",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [999998, 999999, 1000000]},
+      "input": {
+        "nums": [
+          999998,
+          999999,
+          1000000
+        ]
+      },
       "expected": true,
-      "tags": ["hidden", "boundary"]
+      "tags": [
+        "boundary"
+      ]
     },
     {
-      "id": "real-increasing-not-consecutive",
-      "name": "hidden: increasing gaps are not consecutive",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 3, 5]},
+      "id": "trial-increasing-not-consecutive",
+      "name": "increasing gaps are not consecutive",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          5
+        ]
+      },
       "expected": false,
-      "tags": ["hidden", "semantic"]
+      "tags": [
+        "semantic"
+      ]
     },
     {
-      "id": "real-mixed-valid-blocks",
-      "name": "hidden: equal triple and equal pair",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2, 2, 2, 7, 7]},
+      "id": "trial-mixed-valid-blocks",
+      "name": "equal triple and equal pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          7,
+          7
+        ]
+      },
       "expected": true,
-      "tags": ["hidden", "mixed"]
+      "tags": [
+        "mixed"
+      ]
     },
     {
       "id": "trial-choice-needs-reachability",
       "name": "locally available triple must not force a greedy cut",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 1, 1, 1]},
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
       "expected": true,
-      "tags": ["hidden", "dynamic-programming"]
+      "tags": [
+        "dynamic-programming"
+      ]
     },
     {
-      "id": "real-late-failure",
-      "name": "hidden: valid prefix with invalid suffix",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 3, 4, 4, 6]},
+      "id": "trial-late-failure",
+      "name": "valid prefix with invalid suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          4,
+          6
+        ]
+      },
       "expected": false,
-      "tags": ["hidden", "suffix"]
+      "tags": [
+        "suffix"
+      ]
     }
   ]
 }

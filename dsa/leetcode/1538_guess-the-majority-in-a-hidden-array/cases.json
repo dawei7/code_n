@@ -177,10 +177,10 @@
       ]
     },
     {
-      "id": "real-reference-minority",
-      "name": "hidden: reference index belongs to the minority",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-reference-minority",
+      "name": "reference index belongs to the minority",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "reader": {
           "api": "majority",
@@ -209,10 +209,10 @@
       ]
     },
     {
-      "id": "real-first-three-opposite",
-      "name": "hidden: all first replacement classifications differ",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-first-three-opposite",
+      "name": "all first replacement classifications differ",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "reader": {
           "api": "majority",
@@ -243,10 +243,10 @@
       ]
     },
     {
-      "id": "real-late-majority",
-      "name": "hidden: late positions reverse the early balance",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-late-majority",
+      "name": "late positions reverse the early balance",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "reader": {
           "api": "majority",
@@ -279,10 +279,10 @@
       ]
     },
     {
-      "id": "real-long-tie",
-      "name": "hidden: balanced longer array still returns minus one",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-long-tie",
+      "name": "balanced longer array still returns minus one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "reader": {
           "api": "majority",

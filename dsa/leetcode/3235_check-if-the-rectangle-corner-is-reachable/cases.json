@@ -184,10 +184,10 @@
       ]
     },
     {
-      "id": "real-outside-top-intersects-side",
-      "name": "real: outside center reaches only top side",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-outside-top-intersects-side",
+      "name": "outside center reaches only top side",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "xCorner": 10,
         "yCorner": 10,
@@ -206,10 +206,10 @@
       ]
     },
     {
-      "id": "real-three-circle-diagonal-barrier",
-      "name": "real: three-circle diagonal barrier",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-circle-diagonal-barrier",
+      "name": "three-circle diagonal barrier",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "xCorner": 10,
         "yCorner": 10,
@@ -238,10 +238,10 @@
       ]
     },
     {
-      "id": "real-isolated-interior-circles",
-      "name": "real: isolated interior circles",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-isolated-interior-circles",
+      "name": "isolated interior circles",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "xCorner": 10,
         "yCorner": 10,
@@ -269,10 +269,10 @@
       ]
     },
     {
-      "id": "real-endpoint-covered",
-      "name": "real: destination lies inside a circle",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-endpoint-covered",
+      "name": "destination lies inside a circle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "xCorner": 10,
         "yCorner": 10,

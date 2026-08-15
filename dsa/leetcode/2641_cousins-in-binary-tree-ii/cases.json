@@ -132,10 +132,10 @@
       ]
     },
     {
-      "id": "real-left-skewed",
-      "name": "hidden: every depth has one node",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-left-skewed",
+      "name": "every depth has one node",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -155,15 +155,14 @@
         0
       ],
       "tags": [
-        "hidden",
         "skewed"
       ]
     },
     {
-      "id": "real-one-sided-siblings",
-      "name": "hidden: cousin sum excludes both siblings",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-sided-siblings",
+      "name": "cousin sum excludes both siblings",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           8,
@@ -184,15 +183,14 @@
         3
       ],
       "tags": [
-        "hidden",
         "siblings"
       ]
     },
     {
-      "id": "real-multiple-depths",
-      "name": "hidden: cousin sums are independent by depth",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-depths",
+      "name": "cousin sums are independent by depth",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -230,7 +228,6 @@
         27
       ],
       "tags": [
-        "hidden",
         "multiple-depths"
       ]
     }

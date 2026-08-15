@@ -7,63 +7,217 @@
       "name": "sample: equal parity counts",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [4, 3, 2, 1]},
-      "expected": [0, 0, 1, 1],
-      "tags": ["sample", "mixed"]
+      "input": {
+        "nums": [
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "tags": [
+        "sample",
+        "mixed"
+      ]
     },
     {
       "id": "sample-more-odds",
       "name": "sample: more odd values",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 5, 1, 4, 2]},
-      "expected": [0, 0, 1, 1, 1],
-      "tags": ["sample", "mixed"]
+      "input": {
+        "nums": [
+          1,
+          5,
+          1,
+          4,
+          2
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "sample",
+        "mixed"
+      ]
     },
     {
       "id": "trial-single-even",
       "name": "trial: one even value",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2]},
-      "expected": [0],
-      "tags": ["trial", "minimum-length", "all-even"]
+      "input": {
+        "nums": [
+          2
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "trial",
+        "minimum-length",
+        "all-even"
+      ]
     },
     {
       "id": "trial-all-odd",
       "name": "trial: every value becomes one",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 3, 5, 999]},
-      "expected": [1, 1, 1, 1],
-      "tags": ["trial", "all-odd"]
+      "input": {
+        "nums": [
+          1,
+          3,
+          5,
+          999
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "trial",
+        "all-odd"
+      ]
     },
     {
-      "id": "real-boundary-values",
-      "name": "real: value bounds in unsorted parity order",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [999, 1, 1000, 2, 997, 998]},
-      "expected": [0, 0, 0, 1, 1, 1],
-      "tags": ["real", "value-boundaries", "mixed"]
+      "id": "trial-boundary-values",
+      "name": "value bounds in unsorted parity order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          999,
+          1,
+          1000,
+          2,
+          997,
+          998
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "real",
+        "value-boundaries",
+        "mixed"
+      ]
     },
     {
-      "id": "real-all-even",
-      "name": "real: every value becomes zero",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000, 2, 18, 246, 998]},
-      "expected": [0, 0, 0, 0, 0],
-      "tags": ["real", "all-even"]
+      "id": "trial-all-even",
+      "name": "every value becomes zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000,
+          2,
+          18,
+          246,
+          998
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "real",
+        "all-even"
+      ]
     },
     {
-      "id": "real-repeated-values",
-      "name": "real: duplicates retain only their parity counts",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [7, 7, 8, 8, 7, 8, 7]},
-      "expected": [0, 0, 0, 1, 1, 1, 1],
-      "tags": ["real", "duplicates", "mixed"]
+      "id": "trial-repeated-values",
+      "name": "duplicates retain only their parity counts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7,
+          8,
+          8,
+          7,
+          8,
+          7
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "real",
+        "duplicates",
+        "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4
+        ]
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

@@ -1,13 +1,241 @@
 {
   "challenge_id": "lc_2657",
   "cases": [
-    {"id":"sample-four","name":"sample: two values meet at the second prefix","kind":"sample","visible":true,"input":{"A":[1,3,2,4],"B":[3,1,2,4]},"expected":[0,2,3,4],"tags":["sample","permutations"]},
-    {"id":"sample-three","name":"sample: one intermediate common value","kind":"sample","visible":true,"input":{"A":[2,3,1],"B":[3,1,2]},"expected":[0,1,3],"tags":["sample","permutations"]},
-    {"id":"trial-identical","name":"trial: identical permutations","kind":"trial","visible":true,"input":{"A":[1,2,3,4],"B":[1,2,3,4]},"expected":[1,2,3,4],"tags":["identical","immediate-common"]},
-    {"id":"trial-reversed","name":"trial: reversed permutations","kind":"trial","visible":true,"input":{"A":[1,2,3,4],"B":[4,3,2,1]},"expected":[0,0,2,4],"tags":["reversed","late-overlap"]},
-    {"id":"real-single","name":"hidden: one-element permutations","kind":"real","visible":false,"input":{"A":[1],"B":[1]},"expected":[1],"tags":["hidden","minimum-n"]},
-    {"id":"real-crossing","name":"hidden: common count increases by two","kind":"real","visible":false,"input":{"A":[1,2,3,4,5],"B":[2,1,5,3,4]},"expected":[0,2,2,3,5],"tags":["hidden","two-at-once"]},
-    {"id":"real-delayed","name":"hidden: no common value until the midpoint","kind":"real","visible":false,"input":{"A":[1,2,3,4,5,6],"B":[6,5,4,3,2,1]},"expected":[0,0,0,2,4,6],"tags":["hidden","delayed-overlap"]},
-    {"id":"real-mixed","name":"hidden: mixed prefix growth","kind":"real","visible":false,"input":{"A":[4,1,5,2,3],"B":[1,3,4,5,2]},"expected":[0,1,2,3,5],"tags":["hidden","mixed-growth"]}
+    {
+      "id": "sample-four",
+      "name": "sample: two values meet at the second prefix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "A": [
+          1,
+          3,
+          2,
+          4
+        ],
+        "B": [
+          3,
+          1,
+          2,
+          4
+        ]
+      },
+      "expected": [
+        0,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "sample",
+        "permutations"
+      ]
+    },
+    {
+      "id": "sample-three",
+      "name": "sample: one intermediate common value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "A": [
+          2,
+          3,
+          1
+        ],
+        "B": [
+          3,
+          1,
+          2
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        3
+      ],
+      "tags": [
+        "sample",
+        "permutations"
+      ]
+    },
+    {
+      "id": "trial-identical",
+      "name": "trial: identical permutations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "A": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "B": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "identical",
+        "immediate-common"
+      ]
+    },
+    {
+      "id": "trial-reversed",
+      "name": "trial: reversed permutations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "A": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "B": [
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        2,
+        4
+      ],
+      "tags": [
+        "reversed",
+        "late-overlap"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "one-element permutations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "A": [
+          1
+        ],
+        "B": [
+          1
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "minimum-n"
+      ]
+    },
+    {
+      "id": "trial-crossing",
+      "name": "common count increases by two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "A": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "B": [
+          2,
+          1,
+          5,
+          3,
+          4
+        ]
+      },
+      "expected": [
+        0,
+        2,
+        2,
+        3,
+        5
+      ],
+      "tags": [
+        "two-at-once"
+      ]
+    },
+    {
+      "id": "trial-delayed",
+      "name": "no common value until the midpoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "A": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "B": [
+          6,
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        2,
+        4,
+        6
+      ],
+      "tags": [
+        "delayed-overlap"
+      ]
+    },
+    {
+      "id": "trial-mixed",
+      "name": "mixed prefix growth",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "A": [
+          4,
+          1,
+          5,
+          2,
+          3
+        ],
+        "B": [
+          1,
+          3,
+          4,
+          5,
+          2
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        2,
+        3,
+        5
+      ],
+      "tags": [
+        "mixed-growth"
+      ]
+    }
   ]
 }

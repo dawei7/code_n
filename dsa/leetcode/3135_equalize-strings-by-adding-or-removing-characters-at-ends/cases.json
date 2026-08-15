@@ -1,17 +1,182 @@
 {
   "challenge_id": "lc_3135",
   "cases": [
-    {"id":"sample-1","name":"sample: trim front and append","kind":"sample","visible":true,"input":{"initial":"abcde","target":"cdef"},"expected":3,"tags":["sample"]},
-    {"id":"sample-2","name":"sample: preserve a short internal block","kind":"sample","visible":true,"input":{"initial":"axxy","target":"yabx"},"expected":6,"tags":["sample","internal-match"]},
-    {"id":"sample-3","name":"sample: already equal","kind":"sample","visible":true,"input":{"initial":"xyz","target":"xyz"},"expected":0,"tags":["sample","edge"]},
-    {"id":"trial-no-match","name":"trial: distinct single characters","kind":"trial","visible":true,"input":{"initial":"a","target":"b"},"expected":2,"tags":["edge","no-match"]},
-    {"id":"trial-initial-contained","name":"trial: retain all of initial","kind":"trial","visible":true,"input":{"initial":"abc","target":"zabcx"},"expected":2,"tags":["containment"]},
-    {"id":"trial-target-contained","name":"trial: retain all of target","kind":"trial","visible":true,"input":{"initial":"zzabcx","target":"abc"},"expected":3,"tags":["containment"]},
-    {"id":"real-disjoint-repeats","name":"real: no common character","kind":"real","visible":false,"input":{"initial":"aaaa","target":"bbbb"},"expected":8,"tags":["real","no-match"]},
-    {"id":"real-internal-common-block","name":"real: shared internal substring","kind":"real","visible":false,"input":{"initial":"xabcy","target":"zabcq"},"expected":4,"tags":["real","internal-match"]},
-    {"id":"real-overlapping-repeats","name":"real: overlapping repeated substring","kind":"real","visible":false,"input":{"initial":"banana","target":"ananas"},"expected":2,"tags":["real","duplicates"]},
-    {"id":"real-suffix-prefix","name":"real: suffix and prefix match","kind":"real","visible":false,"input":{"initial":"prefix","target":"fixing"},"expected":6,"tags":["real","boundary-match"]},
-    {"id":"real-ambiguous-repeats","name":"real: repeated block at opposite ends","kind":"real","visible":false,"input":{"initial":"aaaaab","target":"baaaaa"},"expected":2,"tags":["real","duplicates"]},
-    {"id":"real-reversed-alphabet","name":"real: only length-one matches","kind":"real","visible":false,"input":{"initial":"abcdefghijklmnopqrstuvwxyz","target":"zyxwvutsrqponmlkjihgfedcba"},"expected":50,"tags":["real","order"]}
+    {
+      "id": "sample-1",
+      "name": "sample: trim front and append",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "initial": "abcde",
+        "target": "cdef"
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: preserve a short internal block",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "initial": "axxy",
+        "target": "yabx"
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "internal-match"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: already equal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "initial": "xyz",
+        "target": "xyz"
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "edge"
+      ]
+    },
+    {
+      "id": "trial-no-match",
+      "name": "trial: distinct single characters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "initial": "a",
+        "target": "b"
+      },
+      "expected": 2,
+      "tags": [
+        "edge",
+        "no-match"
+      ]
+    },
+    {
+      "id": "trial-initial-contained",
+      "name": "trial: retain all of initial",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "initial": "abc",
+        "target": "zabcx"
+      },
+      "expected": 2,
+      "tags": [
+        "containment"
+      ]
+    },
+    {
+      "id": "trial-target-contained",
+      "name": "trial: retain all of target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "initial": "zzabcx",
+        "target": "abc"
+      },
+      "expected": 3,
+      "tags": [
+        "containment"
+      ]
+    },
+    {
+      "id": "trial-disjoint-repeats",
+      "name": "no common character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "initial": "aaaa",
+        "target": "bbbb"
+      },
+      "expected": 8,
+      "tags": [
+        "real",
+        "no-match"
+      ]
+    },
+    {
+      "id": "trial-internal-common-block",
+      "name": "shared internal substring",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "initial": "xabcy",
+        "target": "zabcq"
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "internal-match"
+      ]
+    },
+    {
+      "id": "trial-overlapping-repeats",
+      "name": "overlapping repeated substring",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "initial": "banana",
+        "target": "ananas"
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-suffix-prefix",
+      "name": "suffix and prefix match",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "initial": "prefix",
+        "target": "fixing"
+      },
+      "expected": 6,
+      "tags": [
+        "real",
+        "boundary-match"
+      ]
+    },
+    {
+      "id": "trial-ambiguous-repeats",
+      "name": "repeated block at opposite ends",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "initial": "aaaaab",
+        "target": "baaaaa"
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-reversed-alphabet",
+      "name": "only length-one matches",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "initial": "abcdefghijklmnopqrstuvwxyz",
+        "target": "zyxwvutsrqponmlkjihgfedcba"
+      },
+      "expected": 50,
+      "tags": [
+        "real",
+        "order"
+      ]
+    }
   ]
 }

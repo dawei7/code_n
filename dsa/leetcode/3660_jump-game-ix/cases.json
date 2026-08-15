@@ -117,10 +117,10 @@
       ]
     },
     {
-      "id": "real-equal-values",
-      "name": "hidden: equal values create no strict edge",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-equal-values",
+      "name": "equal values create no strict edge",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -134,16 +134,15 @@
         5
       ],
       "tags": [
-        "hidden",
         "equality",
         "strict-inequality"
       ]
     },
     {
-      "id": "real-duplicate-connected",
-      "name": "hidden: duplicates connect through a smaller value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicate-connected",
+      "name": "duplicates connect through a smaller value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -157,16 +156,15 @@
         2
       ],
       "tags": [
-        "hidden",
         "duplicates",
         "shared-component"
       ]
     },
     {
-      "id": "real-several-regions",
-      "name": "hidden: alternating inversion regions",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-several-regions",
+      "name": "alternating inversion regions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -188,15 +186,14 @@
         7
       ],
       "tags": [
-        "hidden",
         "several-components"
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "hidden: values near the upper bound",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-values",
+      "name": "values near the upper bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -210,9 +207,46 @@
         1000000000
       ],
       "tags": [
-        "hidden",
         "value-bound",
         "indirect-reachability"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ]
+      },
+      "expected": [
+        2
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ]
+      },
+      "expected": [
+        2,
+        2
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

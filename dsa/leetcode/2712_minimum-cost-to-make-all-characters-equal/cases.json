@@ -1,1 +1,139 @@
-{"challenge_id":"lc_2712","cases":[{"id":"sample-1","name":"sample: one central boundary","kind":"sample","visible":true,"input":{"s":"0011"},"expected":2,"tags":["sample","single-boundary"]},{"id":"sample-2","name":"sample: alternating characters","kind":"sample","visible":true,"input":{"s":"010101"},"expected":9,"tags":["sample","alternating"]},{"id":"trial-single-zero","name":"trial: one zero","kind":"trial","visible":true,"input":{"s":"0"},"expected":0,"tags":["trial","minimum"]},{"id":"trial-already-equal","name":"trial: already equal","kind":"trial","visible":true,"input":{"s":"11111"},"expected":0,"tags":["trial","uniform"]},{"id":"real-two-characters","name":"hidden: one boundary in length two","kind":"real","visible":false,"input":{"s":"01"},"expected":1,"tags":["hidden","boundary"]},{"id":"real-small-island","name":"hidden: one-character island","kind":"real","visible":false,"input":{"s":"00100"},"expected":4,"tags":["hidden","island"]},{"id":"real-equal-ends","name":"hidden: long middle run","kind":"real","visible":false,"input":{"s":"10001"},"expected":2,"tags":["hidden","runs"]},{"id":"real-opposite-ends","name":"hidden: interior run with opposite edges","kind":"real","visible":false,"input":{"s":"01110"},"expected":2,"tags":["hidden","runs"]},{"id":"real-three-alternating","name":"hidden: alternating length three","kind":"real","visible":false,"input":{"s":"010"},"expected":2,"tags":["hidden","alternating"]},{"id":"real-two-boundaries","name":"hidden: two wide transitions","kind":"real","visible":false,"input":{"s":"000111000"},"expected":6,"tags":["hidden","boundaries"]}]}
+{
+  "challenge_id": "lc_2712",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one central boundary",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "0011"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "single-boundary"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: alternating characters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "010101"
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "alternating"
+      ]
+    },
+    {
+      "id": "trial-single-zero",
+      "name": "trial: one zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-already-equal",
+      "name": "trial: already equal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "11111"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "uniform"
+      ]
+    },
+    {
+      "id": "trial-two-characters",
+      "name": "one boundary in length two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "01"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-small-island",
+      "name": "one-character island",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "00100"
+      },
+      "expected": 4,
+      "tags": [
+        "island"
+      ]
+    },
+    {
+      "id": "trial-equal-ends",
+      "name": "long middle run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "10001"
+      },
+      "expected": 2,
+      "tags": [
+        "runs"
+      ]
+    },
+    {
+      "id": "trial-opposite-ends",
+      "name": "interior run with opposite edges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "01110"
+      },
+      "expected": 2,
+      "tags": [
+        "runs"
+      ]
+    },
+    {
+      "id": "trial-three-alternating",
+      "name": "alternating length three",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "010"
+      },
+      "expected": 2,
+      "tags": [
+        "alternating"
+      ]
+    },
+    {
+      "id": "trial-two-boundaries",
+      "name": "two wide transitions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "000111000"
+      },
+      "expected": 6,
+      "tags": [
+        "boundaries"
+      ]
+    }
+  ]
+}

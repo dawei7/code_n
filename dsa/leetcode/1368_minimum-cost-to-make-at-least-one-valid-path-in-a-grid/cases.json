@@ -141,10 +141,10 @@
       ]
     },
     {
-      "id": "hidden-two-by-two",
-      "name": "hidden: two-by-two correction",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-by-two",
+      "name": "two-by-two correction",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -159,15 +159,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "small-grid"
       ]
     },
     {
-      "id": "hidden-one-column",
-      "name": "hidden: one column follows down arrows",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-column",
+      "name": "one column follows down arrows",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -183,7 +182,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "one-column"
       ]
     }

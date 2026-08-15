@@ -166,10 +166,10 @@
       ]
     },
     {
-      "id": "real-name-with-space",
-      "name": "hidden: preserve spaces already inside a name",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-name-with-space",
+      "name": "preserve spaces already inside a name",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Person": [
@@ -203,15 +203,14 @@
         ]
       },
       "tags": [
-        "hidden",
         "name-spacing"
       ]
     },
     {
-      "id": "real-nonconsecutive-ids",
-      "name": "hidden: widely separated ids still sort numerically",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-nonconsecutive-ids",
+      "name": "widely separated ids still sort numerically",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Person": [
@@ -254,15 +253,14 @@
         ]
       },
       "tags": [
-        "hidden",
         "primary-key-order"
       ]
     },
     {
-      "id": "real-no-added-whitespace",
-      "name": "hidden: parentheses immediately follow every name",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-no-added-whitespace",
+      "name": "parentheses immediately follow every name",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Person": [
@@ -305,7 +303,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "punctuation"
       ]
     }

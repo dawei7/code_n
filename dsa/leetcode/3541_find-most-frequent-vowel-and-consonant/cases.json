@@ -7,72 +7,112 @@
       "name": "sample: most frequent vowel and consonant",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "successes"},
+      "input": {
+        "s": "successes"
+      },
       "expected": 6,
-      "tags": ["sample", "mixed"]
+      "tags": [
+        "sample",
+        "mixed"
+      ]
     },
     {
       "id": "sample-only-vowels",
       "name": "sample: missing consonant category contributes zero",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "aeiaeia"},
+      "input": {
+        "s": "aeiaeia"
+      },
       "expected": 3,
-      "tags": ["sample", "vowels-only"]
+      "tags": [
+        "sample",
+        "vowels-only"
+      ]
     },
     {
       "id": "trial-single-vowel",
       "name": "trial: one vowel",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "a"},
+      "input": {
+        "s": "a"
+      },
       "expected": 1,
-      "tags": ["trial", "minimum-length"]
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-only-consonants",
       "name": "trial: missing vowel category contributes zero",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "rhythms"},
+      "input": {
+        "s": "rhythms"
+      },
       "expected": 2,
-      "tags": ["trial", "consonants-only"]
+      "tags": [
+        "trial",
+        "consonants-only"
+      ]
     },
     {
-      "id": "real-tied-categories",
-      "name": "real: ties within both categories",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aeeibbcc"},
+      "id": "trial-tied-categories",
+      "name": "ties within both categories",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aeeibbcc"
+      },
       "expected": 4,
-      "tags": ["real", "ties"]
+      "tags": [
+        "real",
+        "ties"
+      ]
     },
     {
-      "id": "real-dominant-different-letters",
-      "name": "real: category maxima come from different letters",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "uuuuuzzzzzaeiobcdfg"},
+      "id": "trial-dominant-different-letters",
+      "name": "category maxima come from different letters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "uuuuuzzzzzaeiobcdfg"
+      },
       "expected": 10,
-      "tags": ["real", "category-maxima"]
+      "tags": [
+        "real",
+        "category-maxima"
+      ]
     },
     {
-      "id": "real-all-letters",
-      "name": "real: every lowercase letter occurs once",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcdefghijklmnopqrstuvwxyz"},
+      "id": "trial-all-letters",
+      "name": "every lowercase letter occurs once",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyz"
+      },
       "expected": 2,
-      "tags": ["real", "full-alphabet"]
+      "tags": [
+        "real",
+        "full-alphabet"
+      ]
     },
     {
-      "id": "real-maximum-length",
-      "name": "real: maximum length with one category absent",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiai"},
+      "id": "trial-maximum-length",
+      "name": "maximum length with one category absent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiai"
+      },
       "expected": 50,
-      "tags": ["real", "maximum-length"]
+      "tags": [
+        "real",
+        "maximum-length"
+      ]
     }
   ]
 }

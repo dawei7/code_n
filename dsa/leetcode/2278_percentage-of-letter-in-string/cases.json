@@ -2,13 +2,149 @@
   "schema_version": 1,
   "challenge_id": "lc_2278",
   "cases": [
-    {"id":"sample-fraction","name":"sample: two of six characters match","kind":"sample","visible":true,"input":{"s":"foobar","letter":"o"},"expected":33,"tags":["sample","round-down"]},
-    {"id":"sample-absent","name":"sample: requested letter is absent","kind":"sample","visible":true,"input":{"s":"jjjj","letter":"k"},"expected":0,"tags":["sample","zero"]},
-    {"id":"trial-all-match","name":"every character matches","kind":"trial","visible":true,"input":{"s":"aaaa","letter":"a"},"expected":100,"tags":["all-match"]},
-    {"id":"trial-single-match","name":"one-character string matches","kind":"trial","visible":true,"input":{"s":"z","letter":"z"},"expected":100,"tags":["minimum-length"]},
-    {"id":"trial-one-third","name":"one third rounds down to thirty-three","kind":"trial","visible":true,"input":{"s":"abc","letter":"a"},"expected":33,"tags":["round-down"]},
-    {"id":"real-two-thirds","name":"hidden: two thirds rounds down to sixty-six","kind":"real","visible":false,"input":{"s":"aba","letter":"a"},"expected":66,"tags":["hidden","round-down"]},
-    {"id":"real-one-percent","name":"hidden: one match among one hundred positions","kind":"real","visible":false,"input":{"s":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab","letter":"b"},"expected":1,"tags":["hidden","maximum-length"]},
-    {"id":"real-half","name":"hidden: exact whole percentage needs no rounding","kind":"real","visible":false,"input":{"s":"xyxyxyxy","letter":"x"},"expected":50,"tags":["hidden","exact-percentage"]}
+    {
+      "id": "sample-fraction",
+      "name": "sample: two of six characters match",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "foobar",
+        "letter": "o"
+      },
+      "expected": 33,
+      "tags": [
+        "sample",
+        "round-down"
+      ]
+    },
+    {
+      "id": "sample-absent",
+      "name": "sample: requested letter is absent",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "jjjj",
+        "letter": "k"
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-all-match",
+      "name": "every character matches",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaa",
+        "letter": "a"
+      },
+      "expected": 100,
+      "tags": [
+        "all-match"
+      ]
+    },
+    {
+      "id": "trial-single-match",
+      "name": "one-character string matches",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "z",
+        "letter": "z"
+      },
+      "expected": 100,
+      "tags": [
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-one-third",
+      "name": "one third rounds down to thirty-three",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "letter": "a"
+      },
+      "expected": 33,
+      "tags": [
+        "round-down"
+      ]
+    },
+    {
+      "id": "trial-two-thirds",
+      "name": "two thirds rounds down to sixty-six",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aba",
+        "letter": "a"
+      },
+      "expected": 66,
+      "tags": [
+        "round-down"
+      ]
+    },
+    {
+      "id": "trial-one-percent",
+      "name": "one match among one hundred positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+        "letter": "b"
+      },
+      "expected": 1,
+      "tags": [
+        "maximum-length"
+      ]
+    },
+    {
+      "id": "trial-half",
+      "name": "exact whole percentage needs no rounding",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "xyxyxyxy",
+        "letter": "x"
+      },
+      "expected": 50,
+      "tags": [
+        "exact-percentage"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "f",
+        "letter": "o"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "fff",
+        "letter": "o"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
+    }
   ]
 }

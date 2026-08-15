@@ -99,10 +99,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: extra positions with separation one",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "extra positions with separation one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 3,
         "goal": 5,
@@ -110,15 +110,14 @@
       },
       "expected": 42,
       "tags": [
-        "hidden",
         "replays"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: separation two",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "separation two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "goal": 6,
@@ -126,15 +125,14 @@
       },
       "expected": 168,
       "tags": [
-        "hidden",
         "larger-separation"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: no restriction with four songs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "no restriction with four songs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "goal": 7,
@@ -142,15 +140,14 @@
       },
       "expected": 8400,
       "tags": [
-        "hidden",
         "unrestricted"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: modulo result",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "modulo result",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 20,
         "goal": 30,
@@ -158,10 +155,40 @@
       },
       "expected": 252498779,
       "tags": [
-        "hidden",
         "modulo"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "goal": 3,
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "minimal value goal=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "goal": 1,
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]
 }
-

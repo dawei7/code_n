@@ -120,10 +120,10 @@
       ]
     },
     {
-      "id": "real-reverse-chain",
-      "name": "hidden: decreasing chain has no alternative",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-reverse-chain",
+      "name": "decreasing chain has no alternative",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10,
@@ -146,10 +146,10 @@
       ]
     },
     {
-      "id": "real-balanced-six",
-      "name": "hidden: balanced subtrees with unequal sizes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-balanced-six",
+      "name": "balanced subtrees with unequal sizes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -168,10 +168,10 @@
       ]
     },
     {
-      "id": "real-asymmetric-seven",
-      "name": "hidden: shallow left chain and balanced right side",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-asymmetric-seven",
+      "name": "shallow left chain and balanced right side",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -191,10 +191,10 @@
       ]
     },
     {
-      "id": "real-mixed-nine",
-      "name": "hidden: multiple nested interleavings",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-nine",
+      "name": "multiple nested interleavings",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -216,10 +216,10 @@
       ]
     },
     {
-      "id": "real-mixed-ten",
-      "name": "hidden: unequal recursive subtree sizes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-ten",
+      "name": "unequal recursive subtree sizes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -242,10 +242,10 @@
       ]
     },
     {
-      "id": "real-modulo-balanced-thirty-one",
-      "name": "hidden: large balanced count requires modular arithmetic",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-modulo-balanced-thirty-one",
+      "name": "large balanced count requires modular arithmetic",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           16,
@@ -287,6 +287,39 @@
         "modulo",
         "balanced",
         "large-count"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

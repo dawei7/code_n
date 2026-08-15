@@ -102,7 +102,7 @@
       "id": "trial-two",
       "name": "trial: two values",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -126,7 +126,7 @@
       "id": "trial-odd",
       "name": "trial: odd length with duplicate highs",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -153,10 +153,10 @@
       ]
     },
     {
-      "id": "hidden-ascending",
-      "name": "hidden: already sorted unique input",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ascending",
+      "name": "already sorted unique input",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -178,15 +178,14 @@
         "values_param": "nums"
       },
       "tags": [
-        "hidden",
         "unique"
       ]
     },
     {
-      "id": "hidden-heavy-low",
-      "name": "hidden: maximum valid low duplication",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-heavy-low",
+      "name": "maximum valid low duplication",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -212,15 +211,14 @@
         "values_param": "nums"
       },
       "tags": [
-        "hidden",
         "heavy-duplicates"
       ]
     },
     {
-      "id": "hidden-three-levels",
-      "name": "hidden: three repeated values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-levels",
+      "name": "three repeated values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -244,7 +242,6 @@
         "values_param": "nums"
       },
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }

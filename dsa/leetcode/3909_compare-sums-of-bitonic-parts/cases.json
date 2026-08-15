@@ -207,10 +207,10 @@
       ]
     },
     {
-      "id": "hidden-billion-symmetric",
-      "name": "hidden: the maximum peak with equal endpoints ties",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-billion-symmetric",
+      "name": "the maximum peak with equal endpoints ties",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -220,16 +220,15 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "maximum-peak",
         "equal-sums"
       ]
     },
     {
-      "id": "hidden-large-descending-tail",
-      "name": "hidden: one near-billion tail value dominates a small prefix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-descending-tail",
+      "name": "one near-billion tail value dominates a small prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -241,16 +240,15 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "descending-greater",
         "large-values"
       ]
     },
     {
-      "id": "hidden-large-ascending-prefix",
-      "name": "hidden: several large prefix values dominate a short tail",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-ascending-prefix",
+      "name": "several large prefix values dominate a short tail",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           999999997,
@@ -262,16 +260,15 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "ascending-greater",
         "large-values"
       ]
     },
     {
-      "id": "hidden-mixed-descending",
-      "name": "hidden: descending tail wins after a three-value rise",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-descending",
+      "name": "descending tail wins after a three-value rise",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -284,16 +281,15 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "descending-greater",
         "mixed-lengths"
       ]
     },
     {
-      "id": "hidden-ascending-control",
-      "name": "hidden: a larger prepeak total wins despite several tail values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ascending-control",
+      "name": "a larger prepeak total wins despite several tail values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           20,
@@ -306,7 +302,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "ascending-greater",
         "several-tail-values"
       ]

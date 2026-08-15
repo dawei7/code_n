@@ -1,1 +1,318 @@
-{"challenge_id":"lc_2736","cases":[{"id":"sample-mixed","name":"sample: different best point per query","kind":"sample","visible":true,"input":{"nums1":[4,3,1,2],"nums2":[2,4,9,5],"queries":[[4,1],[1,3],[2,5]]},"expected":[6,10,7],"tags":["sample","mixed"]},{"id":"sample-one-dominates","name":"sample: one point answers every query","kind":"sample","visible":true,"input":{"nums1":[3,2,5],"nums2":[2,3,4],"queries":[[4,4],[3,2],[1,1]]},"expected":[9,9,9],"tags":["sample","dominant-point"]},{"id":"sample-none","name":"sample: no eligible point","kind":"sample","visible":true,"input":{"nums1":[2,1],"nums2":[2,3],"queries":[[3,3]]},"expected":[-1],"tags":["sample","none"]},{"id":"trial-single-point","name":"trial: thresholds around one point","kind":"trial","visible":true,"input":{"nums1":[5],"nums2":[7],"queries":[[5,7],[6,1],[1,8],[1,1]]},"expected":[12,-1,-1,12],"tags":["trial","single-point"]},{"id":"real-equal-first","name":"hidden: equal first coordinates","kind":"real","visible":false,"input":{"nums1":[5,5,3],"nums2":[1,8,10],"queries":[[5,1],[5,9],[3,9]]},"expected":[13,-1,13],"tags":["hidden","duplicate-coordinate"]},{"id":"real-equal-second","name":"hidden: equal second coordinates","kind":"real","visible":false,"input":{"nums1":[2,9,4],"nums2":[6,6,6],"queries":[[1,6],[5,6],[10,6]]},"expected":[15,15,-1],"tags":["hidden","equal-second"]},{"id":"real-query-order","name":"hidden: descending processing must restore order","kind":"real","visible":false,"input":{"nums1":[8,1,6],"nums2":[2,9,5],"queries":[[1,1],[8,2],[6,5],[9,1]]},"expected":[11,10,11,-1],"tags":["hidden","query-order"]},{"id":"real-value-boundary","name":"hidden: billion-scale sums","kind":"real","visible":false,"input":{"nums1":[1000000000,999999999],"nums2":[1000000000,1],"queries":[[1000000000,1000000000],[999999999,1]]},"expected":[2000000000,2000000000],"tags":["hidden","boundary"]}]}
+{
+  "challenge_id": "lc_2736",
+  "cases": [
+    {
+      "id": "sample-mixed",
+      "name": "sample: different best point per query",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          4,
+          3,
+          1,
+          2
+        ],
+        "nums2": [
+          2,
+          4,
+          9,
+          5
+        ],
+        "queries": [
+          [
+            4,
+            1
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        6,
+        10,
+        7
+      ],
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-one-dominates",
+      "name": "sample: one point answers every query",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          3,
+          2,
+          5
+        ],
+        "nums2": [
+          2,
+          3,
+          4
+        ],
+        "queries": [
+          [
+            4,
+            4
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        9,
+        9,
+        9
+      ],
+      "tags": [
+        "sample",
+        "dominant-point"
+      ]
+    },
+    {
+      "id": "sample-none",
+      "name": "sample: no eligible point",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          3
+        ],
+        "queries": [
+          [
+            3,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        -1
+      ],
+      "tags": [
+        "sample",
+        "none"
+      ]
+    },
+    {
+      "id": "trial-single-point",
+      "name": "trial: thresholds around one point",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          5
+        ],
+        "nums2": [
+          7
+        ],
+        "queries": [
+          [
+            5,
+            7
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        12,
+        -1,
+        -1,
+        12
+      ],
+      "tags": [
+        "trial",
+        "single-point"
+      ]
+    },
+    {
+      "id": "trial-equal-first",
+      "name": "equal first coordinates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          5,
+          5,
+          3
+        ],
+        "nums2": [
+          1,
+          8,
+          10
+        ],
+        "queries": [
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            9
+          ],
+          [
+            3,
+            9
+          ]
+        ]
+      },
+      "expected": [
+        13,
+        -1,
+        13
+      ],
+      "tags": [
+        "duplicate-coordinate"
+      ]
+    },
+    {
+      "id": "trial-equal-second",
+      "name": "equal second coordinates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2,
+          9,
+          4
+        ],
+        "nums2": [
+          6,
+          6,
+          6
+        ],
+        "queries": [
+          [
+            1,
+            6
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            10,
+            6
+          ]
+        ]
+      },
+      "expected": [
+        15,
+        15,
+        -1
+      ],
+      "tags": [
+        "equal-second"
+      ]
+    },
+    {
+      "id": "trial-query-order",
+      "name": "descending processing must restore order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          8,
+          1,
+          6
+        ],
+        "nums2": [
+          2,
+          9,
+          5
+        ],
+        "queries": [
+          [
+            1,
+            1
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            6,
+            5
+          ],
+          [
+            9,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        11,
+        10,
+        11,
+        -1
+      ],
+      "tags": [
+        "query-order"
+      ]
+    },
+    {
+      "id": "trial-value-boundary",
+      "name": "billion-scale sums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1000000000,
+          999999999
+        ],
+        "nums2": [
+          1000000000,
+          1
+        ],
+        "queries": [
+          [
+            1000000000,
+            1000000000
+          ],
+          [
+            999999999,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        2000000000,
+        2000000000
+      ],
+      "tags": [
+        "boundary"
+      ]
+    }
+  ]
+}

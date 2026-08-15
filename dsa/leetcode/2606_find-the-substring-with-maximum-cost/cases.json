@@ -77,10 +77,10 @@
       ]
     },
     {
-      "id": "real-repeated-reset",
-      "name": "hidden: negative separators split positive runs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-reset",
+      "name": "negative separators split positive runs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abxabyab",
         "chars": "xy",
@@ -91,15 +91,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "multiple-runs"
       ]
     },
     {
-      "id": "real-positive-override",
-      "name": "hidden: positive override dominates defaults",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-positive-override",
+      "name": "positive override dominates defaults",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "zaz",
         "chars": "a",
@@ -109,8 +108,43 @@
       },
       "expected": 1052,
       "tags": [
-        "hidden",
         "positive-override"
+      ]
+    },
+    {
+      "id": "trial-boundary-7",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "chars": "d",
+        "vals": [
+          -1000
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa",
+        "chars": "d",
+        "vals": [
+          -1000
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

@@ -6,108 +6,280 @@
       "name": "sample: final prefix has two inversions",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 3, "requirements": [[2, 2], [0, 0]]},
+      "input": {
+        "n": 3,
+        "requirements": [
+          [
+            2,
+            2
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "final-prefix"]
+      "tags": [
+        "sample",
+        "final-prefix"
+      ]
     },
     {
       "id": "sample-every-prefix-pinned",
       "name": "sample: every prefix is constrained",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 3, "requirements": [[2, 2], [1, 1], [0, 0]]},
+      "input": {
+        "n": 3,
+        "requirements": [
+          [
+            2,
+            2
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
       "expected": 1,
-      "tags": ["sample", "multiple-requirements"]
+      "tags": [
+        "sample",
+        "multiple-requirements"
+      ]
     },
     {
       "id": "sample-no-inversions",
       "name": "sample: both prefixes have zero inversions",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 2, "requirements": [[0, 0], [1, 0]]},
+      "input": {
+        "n": 2,
+        "requirements": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
       "expected": 1,
-      "tags": ["sample", "zero-inversions"]
+      "tags": [
+        "sample",
+        "zero-inversions"
+      ]
     },
     {
       "id": "trial-two-elements-reversed",
       "name": "trial: reversed length-two permutation",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 2, "requirements": [[1, 1]]},
+      "input": {
+        "n": 2,
+        "requirements": [
+          [
+            1,
+            1
+          ]
+        ]
+      },
       "expected": 1,
-      "tags": ["minimum-length", "one-inversion"]
+      "tags": [
+        "minimum-length",
+        "one-inversion"
+      ]
     },
     {
       "id": "trial-impossible-first-prefix",
       "name": "trial: length-one prefix cannot have an inversion",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 3, "requirements": [[0, 1], [2, 2]]},
+      "input": {
+        "n": 3,
+        "requirements": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
       "expected": 0,
-      "tags": ["impossible", "prefix-bound"]
+      "tags": [
+        "impossible",
+        "prefix-bound"
+      ]
     },
     {
       "id": "trial-decreasing-required-count",
       "name": "trial: inversion count cannot decrease",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 4, "requirements": [[1, 1], [3, 0]]},
+      "input": {
+        "n": 4,
+        "requirements": [
+          [
+            1,
+            1
+          ],
+          [
+            3,
+            0
+          ]
+        ]
+      },
       "expected": 0,
-      "tags": ["impossible", "monotonicity"]
+      "tags": [
+        "impossible",
+        "monotonicity"
+      ]
     },
     {
       "id": "trial-sorted-permutation",
       "name": "trial: only sorted permutation remains",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 5, "requirements": [[4, 0]]},
+      "input": {
+        "n": 5,
+        "requirements": [
+          [
+            4,
+            0
+          ]
+        ]
+      },
       "expected": 1,
-      "tags": ["zero-inversions", "final-only"]
+      "tags": [
+        "zero-inversions",
+        "final-only"
+      ]
     },
     {
       "id": "trial-reverse-permutation",
       "name": "trial: only reverse permutation remains",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 5, "requirements": [[4, 10]]},
+      "input": {
+        "n": 5,
+        "requirements": [
+          [
+            4,
+            10
+          ]
+        ]
+      },
       "expected": 1,
-      "tags": ["maximum-inversions", "final-only"]
+      "tags": [
+        "maximum-inversions",
+        "final-only"
+      ]
     },
     {
-      "id": "real-middle-prefix-pinned",
-      "name": "real: middle and final prefixes constrained",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 4, "requirements": [[1, 1], [3, 4]]},
+      "id": "trial-middle-prefix-pinned",
+      "name": "middle and final prefixes constrained",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "requirements": [
+          [
+            1,
+            1
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
       "expected": 3,
-      "tags": ["real", "multiple-requirements"]
+      "tags": [
+        "real",
+        "multiple-requirements"
+      ]
     },
     {
-      "id": "real-five-elements",
-      "name": "real: five-element constrained count",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 5, "requirements": [[2, 1], [4, 4]]},
+      "id": "trial-five-elements",
+      "name": "five-element constrained count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "requirements": [
+          [
+            2,
+            1
+          ],
+          [
+            4,
+            4
+          ]
+        ]
+      },
       "expected": 8,
-      "tags": ["real", "dynamic-programming"]
+      "tags": [
+        "real",
+        "dynamic-programming"
+      ]
     },
     {
-      "id": "real-final-only",
-      "name": "real: unconstrained prefixes",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 6, "requirements": [[5, 5]]},
+      "id": "trial-final-only",
+      "name": "unconstrained prefixes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "requirements": [
+          [
+            5,
+            5
+          ]
+        ]
+      },
       "expected": 71,
-      "tags": ["real", "final-only"]
+      "tags": [
+        "real",
+        "final-only"
+      ]
     },
     {
-      "id": "real-three-prefixes",
-      "name": "real: three compatible prefix counts",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 6, "requirements": [[0, 0], [2, 2], [5, 7]]},
+      "id": "trial-three-prefixes",
+      "name": "three compatible prefix counts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "requirements": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            5,
+            7
+          ]
+        ]
+      },
       "expected": 34,
-      "tags": ["real", "multiple-requirements"]
+      "tags": [
+        "real",
+        "multiple-requirements"
+      ]
     }
   ]
 }

@@ -272,10 +272,10 @@
       ]
     },
     {
-      "id": "real-start-anchor",
-      "name": "hidden: ATG must begin at the first character",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-start-anchor",
+      "name": "ATG must begin at the first character",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Samples": [
@@ -324,15 +324,14 @@
         ]
       },
       "tags": [
-        "hidden",
         "prefix"
       ]
     },
     {
-      "id": "real-overlapping-atat",
-      "name": "hidden: overlapping ATAT occurrences still produce one presence flag",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-overlapping-atat",
+      "name": "overlapping ATAT occurrences still produce one presence flag",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Samples": [
@@ -381,16 +380,15 @@
         ]
       },
       "tags": [
-        "hidden",
         "motif",
         "overlap"
       ]
     },
     {
-      "id": "real-consecutive-g",
-      "name": "hidden: only at least three consecutive G characters qualify",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-consecutive-g",
+      "name": "only at least three consecutive G characters qualify",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Samples": [
@@ -467,15 +465,14 @@
         ]
       },
       "tags": [
-        "hidden",
         "consecutive"
       ]
     },
     {
-      "id": "real-independent-boundaries",
-      "name": "hidden: internal codons do not imply start or stop flags",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-independent-boundaries",
+      "name": "internal codons do not imply start or stop flags",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Samples": [
@@ -538,7 +535,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "independence",
         "anchors"
       ]

@@ -6,99 +6,246 @@
       "name": "sample: overlapping operations clear the array",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 2, 3, 1, 1, 0], "k": 3},
+      "input": {
+        "nums": [
+          2,
+          2,
+          3,
+          1,
+          1,
+          0
+        ],
+        "k": 3
+      },
       "expected": true,
-      "tags": ["sample", "overlap"]
+      "tags": [
+        "sample",
+        "overlap"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: forced operations become inconsistent",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 3, 1, 1], "k": 2},
+      "input": {
+        "nums": [
+          1,
+          3,
+          1,
+          1
+        ],
+        "k": 2
+      },
       "expected": false,
-      "tags": ["sample", "impossible"]
+      "tags": [
+        "sample",
+        "impossible"
+      ]
     },
     {
       "id": "trial-k-one",
       "name": "trial: unit windows clear every value independently",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [3, 0, 2], "k": 1},
+      "input": {
+        "nums": [
+          3,
+          0,
+          2
+        ],
+        "k": 1
+      },
       "expected": true,
-      "tags": ["trial", "k-one"]
+      "tags": [
+        "trial",
+        "k-one"
+      ]
     },
     {
       "id": "trial-full-window-valid",
       "name": "trial: equal values allow a full-array window",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [4, 4, 4], "k": 3},
+      "input": {
+        "nums": [
+          4,
+          4,
+          4
+        ],
+        "k": 3
+      },
       "expected": true,
-      "tags": ["trial", "full-window"]
+      "tags": [
+        "trial",
+        "full-window"
+      ]
     },
     {
       "id": "trial-full-window-invalid",
       "name": "trial: unequal values cannot share the only window",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [4, 4, 3], "k": 3},
+      "input": {
+        "nums": [
+          4,
+          4,
+          3
+        ],
+        "k": 3
+      },
       "expected": false,
-      "tags": ["trial", "full-window", "impossible"]
+      "tags": [
+        "trial",
+        "full-window",
+        "impossible"
+      ]
     },
     {
-      "id": "real-all-zero",
-      "name": "hidden: no operation is needed",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 0, 0, 0, 0], "k": 3},
+      "id": "trial-all-zero",
+      "name": "no operation is needed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "k": 3
+      },
       "expected": true,
-      "tags": ["hidden", "zero"]
+      "tags": [
+        "zero"
+      ]
     },
     {
-      "id": "real-over-subtraction",
-      "name": "hidden: an earlier forced window over-decrements a value",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2, 1, 2], "k": 2},
+      "id": "trial-over-subtraction",
+      "name": "an earlier forced window over-decrements a value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          2
+        ],
+        "k": 2
+      },
       "expected": false,
-      "tags": ["hidden", "negative"]
+      "tags": [
+        "negative"
+      ]
     },
     {
-      "id": "real-uncovered-tail",
-      "name": "hidden: a positive tail has no legal starting window",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 0, 1], "k": 2},
+      "id": "trial-uncovered-tail",
+      "name": "a positive tail has no legal starting window",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          1
+        ],
+        "k": 2
+      },
       "expected": false,
-      "tags": ["hidden", "tail"]
+      "tags": [
+        "tail"
+      ]
     },
     {
-      "id": "real-late-window",
-      "name": "hidden: the only operation begins after a leading zero",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 1, 1], "k": 2},
+      "id": "trial-late-window",
+      "name": "the only operation begins after a leading zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          1
+        ],
+        "k": 2
+      },
       "expected": true,
-      "tags": ["hidden", "late-start"]
+      "tags": [
+        "late-start"
+      ]
     },
     {
-      "id": "real-leading-zero-conflict",
-      "name": "hidden: a needed decrement would also change a cleared prefix",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 1, 0], "k": 2},
+      "id": "trial-leading-zero-conflict",
+      "name": "a needed decrement would also change a cleared prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          0
+        ],
+        "k": 2
+      },
       "expected": false,
-      "tags": ["hidden", "forced-start"]
+      "tags": [
+        "forced-start"
+      ]
     },
     {
-      "id": "real-maximum-values",
-      "name": "hidden: maximum values with independent windows",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000000, 0, 1000000], "k": 1},
+      "id": "trial-maximum-values",
+      "name": "maximum values with independent windows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000,
+          0,
+          1000000
+        ],
+        "k": 1
+      },
       "expected": true,
-      "tags": ["hidden", "maximum", "k-one"]
+      "tags": [
+        "maximum",
+        "k-one"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ],
+        "k": 3
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ],
+        "k": 3
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

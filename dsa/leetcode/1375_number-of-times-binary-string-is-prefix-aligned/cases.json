@@ -95,10 +95,10 @@
       ]
     },
     {
-      "id": "hidden-reverse",
-      "name": "hidden: reverse order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-reverse",
+      "name": "reverse order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "flips": [
           5,
@@ -110,15 +110,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "reverse"
       ]
     },
     {
-      "id": "hidden-late-first",
-      "name": "hidden: first position arrives late",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-late-first",
+      "name": "first position arrives late",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "flips": [
           2,
@@ -130,7 +129,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "gaps"
       ]
     }

@@ -7,90 +7,287 @@
       "name": "sample: composite, unit, and large-length queries",
       "kind": "sample",
       "visible": true,
-      "input": {"queries": [[2,6],[5,1],[73,660]]},
-      "expected": [4,1,50734910],
-      "tags": ["sample", "mixed-queries", "modulo"]
+      "input": {
+        "queries": [
+          [
+            2,
+            6
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            73,
+            660
+          ]
+        ]
+      },
+      "expected": [
+        4,
+        1,
+        50734910
+      ],
+      "tags": [
+        "sample",
+        "mixed-queries",
+        "modulo"
+      ]
     },
     {
       "id": "sample-official-two",
       "name": "sample: short arrays and small products",
       "kind": "sample",
       "visible": true,
-      "input": {"queries": [[1,1],[2,2],[3,3],[4,4],[5,5]]},
-      "expected": [1,2,3,10,5],
-      "tags": ["sample", "prime-products", "prime-power"]
+      "input": {
+        "queries": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        10,
+        5
+      ],
+      "tags": [
+        "sample",
+        "prime-products",
+        "prime-power"
+      ]
     },
     {
       "id": "trial-prime-powers",
       "name": "trial: distribute repeated prime exponents",
       "kind": "trial",
       "visible": true,
-      "input": {"queries": [[4,8],[3,12],[2,36]]},
-      "expected": [20,18,9],
-      "tags": ["stars-and-bars", "several-primes"]
+      "input": {
+        "queries": [
+          [
+            4,
+            8
+          ],
+          [
+            3,
+            12
+          ],
+          [
+            2,
+            36
+          ]
+        ]
+      },
+      "expected": [
+        20,
+        18,
+        9
+      ],
+      "tags": [
+        "stars-and-bars",
+        "several-primes"
+      ]
     },
     {
       "id": "trial-length-one",
       "name": "trial: one position uniquely contains each product",
       "kind": "trial",
       "visible": true,
-      "input": {"queries": [[1,1],[1,2],[1,9999],[1,10000]]},
-      "expected": [1,1,1,1],
-      "tags": ["length-one", "product-boundary"]
+      "input": {
+        "queries": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            9999
+          ],
+          [
+            1,
+            10000
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "length-one",
+        "product-boundary"
+      ]
     },
     {
-      "id": "real-large-prime",
-      "name": "hidden: large prime has one exponent",
-      "kind": "real",
-      "visible": false,
-      "input": {"queries": [[7,9973]]},
-      "expected": [7],
-      "tags": ["prime-target", "trial-division"]
+      "id": "trial-large-prime",
+      "name": "large prime has one exponent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "queries": [
+          [
+            7,
+            9973
+          ]
+        ]
+      },
+      "expected": [
+        7
+      ],
+      "tags": [
+        "prime-target",
+        "trial-division"
+      ]
     },
     {
-      "id": "real-max-exponent",
-      "name": "hidden: largest power of two within the product bound",
-      "kind": "real",
-      "visible": false,
-      "input": {"queries": [[5,8192]]},
-      "expected": [2380],
-      "tags": ["exponent-thirteen", "stars-and-bars"]
+      "id": "trial-max-exponent",
+      "name": "largest power of two within the product bound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "queries": [
+          [
+            5,
+            8192
+          ]
+        ]
+      },
+      "expected": [
+        2380
+      ],
+      "tags": [
+        "exponent-thirteen",
+        "stars-and-bars"
+      ]
     },
     {
-      "id": "real-three-primes",
-      "name": "hidden: three independent prime exponents",
-      "kind": "real",
-      "visible": false,
-      "input": {"queries": [[4,360],[10,72]]},
-      "expected": [800,12100],
-      "tags": ["composite", "independent-exponents"]
+      "id": "trial-three-primes",
+      "name": "three independent prime exponents",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "queries": [
+          [
+            4,
+            360
+          ],
+          [
+            10,
+            72
+          ]
+        ]
+      },
+      "expected": [
+        800,
+        12100
+      ],
+      "tags": [
+        "composite",
+        "independent-exponents"
+      ]
     },
     {
-      "id": "real-semiprime",
-      "name": "hidden: product of two large primes",
-      "kind": "real",
-      "visible": false,
-      "input": {"queries": [[2,9991]]},
-      "expected": [4],
-      "tags": ["semiprime", "large-factors"]
+      "id": "trial-semiprime",
+      "name": "product of two large primes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "queries": [
+          [
+            2,
+            9991
+          ]
+        ]
+      },
+      "expected": [
+        4
+      ],
+      "tags": [
+        "semiprime",
+        "large-factors"
+      ]
     },
     {
-      "id": "real-modulo-boundary",
-      "name": "hidden: maximum length and product require modular reduction",
-      "kind": "real",
-      "visible": false,
-      "input": {"queries": [[10000,10000]]},
-      "expected": [418224726],
-      "tags": ["maximum-bounds", "modulo"]
+      "id": "trial-modulo-boundary",
+      "name": "maximum length and product require modular reduction",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "queries": [
+          [
+            10000,
+            10000
+          ]
+        ]
+      },
+      "expected": [
+        418224726
+      ],
+      "tags": [
+        "maximum-bounds",
+        "modulo"
+      ]
     },
     {
-      "id": "real-repeated-query",
-      "name": "hidden: repeated queries retain repeated answers",
-      "kind": "real",
-      "visible": false,
-      "input": {"queries": [[3,4],[3,4],[3,4],[6,1]]},
-      "expected": [6,6,6,1],
-      "tags": ["repeated-queries", "product-one"]
+      "id": "trial-repeated-query",
+      "name": "repeated queries retain repeated answers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "queries": [
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            6,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        6,
+        6,
+        6,
+        1
+      ],
+      "tags": [
+        "repeated-queries",
+        "product-one"
+      ]
     }
   ]
 }

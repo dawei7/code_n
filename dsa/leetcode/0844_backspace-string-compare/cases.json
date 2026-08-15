@@ -2,16 +2,195 @@
   "schema_version": 1,
   "challenge_id": "lc_844",
   "cases": [
-    {"id": "sample-1", "name": "sample: different erased letters", "kind": "sample", "visible": true, "input": {"s": "ab#c", "t": "ad#c"}, "expected": true, "tags": ["sample", "equal"]},
-    {"id": "sample-2", "name": "sample: both become empty", "kind": "sample", "visible": true, "input": {"s": "ab##", "t": "c#d#"}, "expected": true, "tags": ["sample", "empty"]},
-    {"id": "sample-3", "name": "sample: different surviving letters", "kind": "sample", "visible": true, "input": {"s": "a#c", "t": "b"}, "expected": false, "tags": ["sample", "not-equal"]},
-    {"id": "trial-1", "name": "trial: identical plain strings", "kind": "trial", "visible": true, "input": {"s": "coding", "t": "coding"}, "expected": true, "tags": ["trial", "no-backspace"]},
-    {"id": "trial-2", "name": "trial: leading backspaces", "kind": "trial", "visible": true, "input": {"s": "###a", "t": "a"}, "expected": true, "tags": ["trial", "leading-backspace"]},
-    {"id": "trial-3", "name": "trial: one side becomes empty", "kind": "trial", "visible": true, "input": {"s": "a#", "t": "a"}, "expected": false, "tags": ["trial", "length-mismatch"]},
-    {"id": "hidden-1", "name": "hidden: excess backspaces on both sides", "kind": "real", "visible": false, "input": {"s": "####", "t": "##"}, "expected": true, "tags": ["hidden", "excess-backspace"]},
-    {"id": "hidden-2", "name": "hidden: cascading erasures", "kind": "real", "visible": false, "input": {"s": "abc###x", "t": "x"}, "expected": true, "tags": ["hidden", "cascade"]},
-    {"id": "hidden-3", "name": "hidden: mismatch near beginning", "kind": "real", "visible": false, "input": {"s": "xabc##d", "t": "yad"}, "expected": false, "tags": ["hidden", "prefix-mismatch"]},
-    {"id": "hidden-4", "name": "hidden: erased suffix differs", "kind": "real", "visible": false, "input": {"s": "abc##de#", "t": "ad"}, "expected": true, "tags": ["hidden", "suffix"]},
-    {"id": "hidden-5", "name": "hidden: alternating insert and erase", "kind": "real", "visible": false, "input": {"s": "a#b#c#d", "t": "d"}, "expected": true, "tags": ["hidden", "alternating"]}
+    {
+      "id": "sample-1",
+      "name": "sample: different erased letters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "ab#c",
+        "t": "ad#c"
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "equal"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: both become empty",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "ab##",
+        "t": "c#d#"
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "empty"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: different surviving letters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "a#c",
+        "t": "b"
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "not-equal"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: identical plain strings",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "coding",
+        "t": "coding"
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "no-backspace"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: leading backspaces",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "###a",
+        "t": "a"
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "leading-backspace"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: one side becomes empty",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a#",
+        "t": "a"
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "length-mismatch"
+      ]
+    },
+    {
+      "id": "trial-ext-1",
+      "name": "excess backspaces on both sides",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "####",
+        "t": "##"
+      },
+      "expected": true,
+      "tags": [
+        "excess-backspace"
+      ]
+    },
+    {
+      "id": "trial-ext-2",
+      "name": "cascading erasures",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc###x",
+        "t": "x"
+      },
+      "expected": true,
+      "tags": [
+        "cascade"
+      ]
+    },
+    {
+      "id": "trial-ext-3",
+      "name": "mismatch near beginning",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "xabc##d",
+        "t": "yad"
+      },
+      "expected": false,
+      "tags": [
+        "prefix-mismatch"
+      ]
+    },
+    {
+      "id": "trial-4",
+      "name": "erased suffix differs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc##de#",
+        "t": "ad"
+      },
+      "expected": true,
+      "tags": [
+        "suffix"
+      ]
+    },
+    {
+      "id": "trial-5",
+      "name": "alternating insert and erase",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a#b#c#d",
+        "t": "d"
+      },
+      "expected": true,
+      "tags": [
+        "alternating"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "t": "ad#c"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa",
+        "t": "ad#c"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
+    }
   ]
 }

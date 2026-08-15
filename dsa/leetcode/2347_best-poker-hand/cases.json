@@ -2,12 +2,190 @@
   "schema_version": 1,
   "challenge_id": "lc_2347",
   "cases": [
-    {"id":"sample-flush","name":"sample: all suits form the strongest category","kind":"sample","visible":true,"input":{"ranks":[13,2,3,1,9],"suits":["a","a","a","a","a"]},"expected":"Flush","tags":["sample","flush"]},
-    {"id":"sample-four-kind","name":"sample: four equal ranks classify as three of a kind","kind":"sample","visible":true,"input":{"ranks":[4,4,2,4,4],"suits":["d","a","a","b","c"]},"expected":"Three of a Kind","tags":["sample","rank-frequency"]},
-    {"id":"sample-pair","name":"sample: exactly one pair","kind":"sample","visible":true,"input":{"ranks":[10,10,2,12,9],"suits":["a","b","c","a","d"]},"expected":"Pair","tags":["sample","pair"]},
-    {"id":"trial-high-card","name":"all ranks differ and suits are mixed","kind":"trial","visible":true,"input":{"ranks":[1,2,3,4,5],"suits":["a","b","c","d","a"]},"expected":"High Card","tags":["high-card"]},
-    {"id":"trial-triple-and-pair","name":"a triple outranks a simultaneous pair","kind":"trial","visible":true,"input":{"ranks":[7,7,7,9,9],"suits":["a","b","c","a","b"]},"expected":"Three of a Kind","tags":["priority"]},
-    {"id":"real-flush-over-triple","name":"hidden: a flush outranks repeated ranks","kind":"real","visible":false,"input":{"ranks":[6,6,6,8,9],"suits":["a","a","a","a","a"]},"expected":"Flush","tags":["hidden","priority"]},
-    {"id":"real-two-pairs","name":"hidden: two separate pairs still classify as pair","kind":"real","visible":false,"input":{"ranks":[2,2,5,5,8],"suits":["a","b","a","b","c"]},"expected":"Pair","tags":["hidden","two-pairs"]}
+    {
+      "id": "sample-flush",
+      "name": "sample: all suits form the strongest category",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "ranks": [
+          13,
+          2,
+          3,
+          1,
+          9
+        ],
+        "suits": [
+          "a",
+          "a",
+          "a",
+          "a",
+          "a"
+        ]
+      },
+      "expected": "Flush",
+      "tags": [
+        "sample",
+        "flush"
+      ]
+    },
+    {
+      "id": "sample-four-kind",
+      "name": "sample: four equal ranks classify as three of a kind",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "ranks": [
+          4,
+          4,
+          2,
+          4,
+          4
+        ],
+        "suits": [
+          "d",
+          "a",
+          "a",
+          "b",
+          "c"
+        ]
+      },
+      "expected": "Three of a Kind",
+      "tags": [
+        "sample",
+        "rank-frequency"
+      ]
+    },
+    {
+      "id": "sample-pair",
+      "name": "sample: exactly one pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "ranks": [
+          10,
+          10,
+          2,
+          12,
+          9
+        ],
+        "suits": [
+          "a",
+          "b",
+          "c",
+          "a",
+          "d"
+        ]
+      },
+      "expected": "Pair",
+      "tags": [
+        "sample",
+        "pair"
+      ]
+    },
+    {
+      "id": "trial-high-card",
+      "name": "all ranks differ and suits are mixed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "ranks": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "suits": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "a"
+        ]
+      },
+      "expected": "High Card",
+      "tags": [
+        "high-card"
+      ]
+    },
+    {
+      "id": "trial-triple-and-pair",
+      "name": "a triple outranks a simultaneous pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "ranks": [
+          7,
+          7,
+          7,
+          9,
+          9
+        ],
+        "suits": [
+          "a",
+          "b",
+          "c",
+          "a",
+          "b"
+        ]
+      },
+      "expected": "Three of a Kind",
+      "tags": [
+        "priority"
+      ]
+    },
+    {
+      "id": "trial-flush-over-triple",
+      "name": "a flush outranks repeated ranks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "ranks": [
+          6,
+          6,
+          6,
+          8,
+          9
+        ],
+        "suits": [
+          "a",
+          "a",
+          "a",
+          "a",
+          "a"
+        ]
+      },
+      "expected": "Flush",
+      "tags": [
+        "priority"
+      ]
+    },
+    {
+      "id": "trial-two-pairs",
+      "name": "two separate pairs still classify as pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "ranks": [
+          2,
+          2,
+          5,
+          5,
+          8
+        ],
+        "suits": [
+          "a",
+          "b",
+          "a",
+          "b",
+          "c"
+        ]
+      },
+      "expected": "Pair",
+      "tags": [
+        "two-pairs"
+      ]
+    }
   ]
 }

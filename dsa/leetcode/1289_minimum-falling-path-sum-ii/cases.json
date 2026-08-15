@@ -127,10 +127,10 @@
       ]
     },
     {
-      "id": "hidden-mixed",
-      "name": "hidden: mixed positive and negative values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed",
+      "name": "mixed positive and negative values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -152,15 +152,14 @@
       },
       "expected": -10,
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
     {
-      "id": "hidden-four",
-      "name": "hidden: four rows with changing best column",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-four",
+      "name": "four rows with changing best column",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -191,7 +190,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "four-rows"
       ]
     }

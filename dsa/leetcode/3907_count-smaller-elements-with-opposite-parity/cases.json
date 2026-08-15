@@ -240,10 +240,10 @@
       ]
     },
     {
-      "id": "hidden-minimum-pair",
-      "name": "hidden: an even value counts the smaller minimum odd",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-minimum-pair",
+      "name": "an even value counts the smaller minimum odd",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -255,16 +255,15 @@
         0
       ],
       "tags": [
-        "hidden",
         "two-elements",
         "lower-bound"
       ]
     },
     {
-      "id": "hidden-equal-pattern",
-      "name": "hidden: equal same-parity values remain independent suffix entries",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-equal-pattern",
+      "name": "equal same-parity values remain independent suffix entries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -280,16 +279,15 @@
         0
       ],
       "tags": [
-        "hidden",
         "duplicates",
         "index-counting"
       ]
     },
     {
-      "id": "hidden-billion-bound",
-      "name": "hidden: maximum values preserve parity and numeric order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-billion-bound",
+      "name": "maximum values preserve parity and numeric order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -305,16 +303,15 @@
         0
       ],
       "tags": [
-        "hidden",
         "maximum-value",
         "alternating-parity"
       ]
     },
     {
-      "id": "hidden-large-gaps",
-      "name": "hidden: coordinate gaps do not change rank comparisons",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-gaps",
+      "name": "coordinate gaps do not change rank comparisons",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -330,16 +327,15 @@
         0
       ],
       "tags": [
-        "hidden",
         "coordinate-compression",
         "large-gaps"
       ]
     },
     {
-      "id": "hidden-irregular-ten",
-      "name": "hidden: irregular suffixes combine greater and smaller values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-irregular-ten",
+      "name": "irregular suffixes combine greater and smaller values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10,
@@ -367,7 +363,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "irregular-order",
         "suffix-counts"
       ]

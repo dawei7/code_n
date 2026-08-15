@@ -204,10 +204,10 @@
       ]
     },
     {
-      "id": "real-unsorted-valid",
-      "name": "real: separated value clusters arrive unsorted",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unsorted-valid",
+      "name": "separated value clusters arrive unsorted",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10,
@@ -240,15 +240,14 @@
         ]
       ],
       "tags": [
-        "hidden",
         "clusters"
       ]
     },
     {
-      "id": "real-first-group-fails",
-      "name": "real: smallest three already span too far",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-first-group-fails",
+      "name": "smallest three already span too far",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -262,15 +261,14 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "early-failure"
       ]
     },
     {
-      "id": "real-maximum-values",
-      "name": "real: values near the upper bound",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-values",
+      "name": "values near the upper bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000,
@@ -295,7 +293,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     }

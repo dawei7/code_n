@@ -1,12 +1,231 @@
-{"schema_version":1,"challenge_id":"lc_2706","cases":[
-{"id":"sample-exact-budget","name":"sample: exact money leaves zero","kind":"sample","visible":true,"input":{"prices":[1,2,2],"money":3},"expected":0,"tags":["sample","exact-budget"]},
-{"id":"sample-unaffordable","name":"sample: cheapest pair is unaffordable","kind":"sample","visible":true,"input":{"prices":[3,2,3],"money":3},"expected":3,"tags":["sample","unaffordable"]},
-{"id":"trial-leftover","name":"trial: cheapest pair leaves money","kind":"trial","visible":true,"input":{"prices":[6,4,1,2],"money":10},"expected":7,"tags":["leftover"]},
-{"id":"trial-duplicate-minimum","name":"trial: duplicate cheapest prices are distinct chocolates","kind":"trial","visible":true,"input":{"prices":[5,5,10,1,1],"money":7},"expected":5,"tags":["duplicates"]},
-{"id":"real-two-affordable","name":"hidden: exactly two affordable chocolates","kind":"real","visible":false,"input":{"prices":[4,6],"money":10},"expected":0,"tags":["hidden","two-elements"]},
-{"id":"real-two-expensive","name":"hidden: exactly two chocolates are too expensive","kind":"real","visible":false,"input":{"prices":[8,9],"money":10},"expected":10,"tags":["hidden","two-elements","unaffordable"]},
-{"id":"real-minima-at-end","name":"hidden: both minima occur at the end","kind":"real","visible":false,"input":{"prices":[100,90,80,2,1],"money":20},"expected":17,"tags":["hidden","order"]},
-{"id":"real-descending","name":"hidden: descending prices repeatedly replace minima","kind":"real","visible":false,"input":{"prices":[9,8,7,6,5],"money":20},"expected":9,"tags":["hidden","descending"]},
-{"id":"real-all-equal","name":"hidden: equal prices fill both minimum slots","kind":"real","visible":false,"input":{"prices":[4,4,4,4],"money":9},"expected":1,"tags":["hidden","duplicates"]},
-{"id":"real-budget-one","name":"hidden: minimum budget cannot afford positive pair","kind":"real","visible":false,"input":{"prices":[1,1],"money":1},"expected":1,"tags":["hidden","budget-boundary"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2706",
+  "cases": [
+    {
+      "id": "sample-exact-budget",
+      "name": "sample: exact money leaves zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "prices": [
+          1,
+          2,
+          2
+        ],
+        "money": 3
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "exact-budget"
+      ]
+    },
+    {
+      "id": "sample-unaffordable",
+      "name": "sample: cheapest pair is unaffordable",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "prices": [
+          3,
+          2,
+          3
+        ],
+        "money": 3
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "unaffordable"
+      ]
+    },
+    {
+      "id": "trial-leftover",
+      "name": "trial: cheapest pair leaves money",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          6,
+          4,
+          1,
+          2
+        ],
+        "money": 10
+      },
+      "expected": 7,
+      "tags": [
+        "leftover"
+      ]
+    },
+    {
+      "id": "trial-duplicate-minimum",
+      "name": "trial: duplicate cheapest prices are distinct chocolates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          5,
+          5,
+          10,
+          1,
+          1
+        ],
+        "money": 7
+      },
+      "expected": 5,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-two-affordable",
+      "name": "exactly two affordable chocolates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          4,
+          6
+        ],
+        "money": 10
+      },
+      "expected": 0,
+      "tags": [
+        "two-elements"
+      ]
+    },
+    {
+      "id": "trial-two-expensive",
+      "name": "exactly two chocolates are too expensive",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          8,
+          9
+        ],
+        "money": 10
+      },
+      "expected": 10,
+      "tags": [
+        "two-elements",
+        "unaffordable"
+      ]
+    },
+    {
+      "id": "trial-minima-at-end",
+      "name": "both minima occur at the end",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          100,
+          90,
+          80,
+          2,
+          1
+        ],
+        "money": 20
+      },
+      "expected": 17,
+      "tags": [
+        "order"
+      ]
+    },
+    {
+      "id": "trial-descending",
+      "name": "descending prices repeatedly replace minima",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          9,
+          8,
+          7,
+          6,
+          5
+        ],
+        "money": 20
+      },
+      "expected": 9,
+      "tags": [
+        "descending"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "equal prices fill both minimum slots",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          4,
+          4,
+          4,
+          4
+        ],
+        "money": 9
+      },
+      "expected": 1,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-budget-one",
+      "name": "minimum budget cannot afford positive pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          1,
+          1
+        ],
+        "money": 1
+      },
+      "expected": 1,
+      "tags": [
+        "budget-boundary"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in prices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          1,
+          1
+        ],
+        "money": 3
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "minimal value money=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          1,
+          2,
+          2
+        ],
+        "money": 1
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    }
+  ]
+}

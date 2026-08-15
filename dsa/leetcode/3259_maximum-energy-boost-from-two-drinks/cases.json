@@ -1,17 +1,372 @@
 {
   "challenge_id": "lc_3259",
   "cases": [
-    {"id":"sample-stay-one-drink","name":"sample: staying on either drink reaches five","kind":"sample","visible":true,"input":{"energyDrinkA":[1,3,1],"energyDrinkB":[3,1,1]},"expected":5,"tags":["sample","no-switch"]},
-    {"id":"sample-switch-with-cleanse","name":"sample: one skipped hour enables a better drink","kind":"sample","visible":true,"input":{"energyDrinkA":[4,1,1],"energyDrinkB":[1,1,3]},"expected":7,"tags":["sample","switch"]},
-    {"id":"sample-a-dominates","name":"sample: drink A is best every hour","kind":"sample","visible":true,"input":{"energyDrinkA":[5,5,5],"energyDrinkB":[1,1,1]},"expected":15,"tags":["sample","no-switch"]},
-    {"id":"trial-b-dominates","name":"trial: drink B is best every hour","kind":"trial","visible":true,"input":{"energyDrinkA":[1,1,1],"energyDrinkB":[5,5,5]},"expected":15,"tags":["no-switch"]},
-    {"id":"trial-equal-drinks","name":"trial: equal arrays make switching unnecessary","kind":"trial","visible":true,"input":{"energyDrinkA":[3,3,3],"energyDrinkB":[3,3,3]},"expected":9,"tags":["equal"]},
-    {"id":"trial-alternating-highs","name":"trial: cooldown prevents collecting every local maximum","kind":"trial","visible":true,"input":{"energyDrinkA":[10,1,10,1,10],"energyDrinkB":[1,9,1,9,1]},"expected":32,"tags":["alternating","cooldown"]},
-    {"id":"trial-one-late-switch","name":"trial: switch from early A values to late B values","kind":"trial","visible":true,"input":{"energyDrinkA":[10,10,1,1,1],"energyDrinkB":[1,1,1,10,10]},"expected":40,"tags":["one-switch"]},
-    {"id":"real-repeated-segments","name":"real: separated drink-favored segments","kind":"real","visible":false,"input":{"energyDrinkA":[8,1,1,8,1,1,8],"energyDrinkB":[1,8,1,1,8,1,1]},"expected":28,"tags":["segments","multiple-switches"]},
-    {"id":"real-maximum-values","name":"real: maximum boosts require a wide total","kind":"real","visible":false,"input":{"energyDrinkA":[100000,100000,100000],"energyDrinkB":[99999,99999,99999]},"expected":300000,"tags":["maximum-value"]},
-    {"id":"real-opposite-peaks","name":"real: alternating hundred-point peaks","kind":"real","visible":false,"input":{"energyDrinkA":[1,100,1,100,1,100],"energyDrinkB":[100,1,100,1,100,1]},"expected":303,"tags":["alternating","cooldown"]},
-    {"id":"real-long-profile","name":"real: long profile with several favorable blocks","kind":"real","visible":false,"input":{"energyDrinkA":[5,6,1,1,20,1,1,8,9,2,2],"energyDrinkB":[1,1,10,10,1,7,7,1,1,12,12]},"expected":69,"tags":["longer","multiple-switches"]},
-    {"id":"real-cleanse-pattern","name":"real: repeated pairs reward planned cleansing","kind":"real","visible":false,"input":{"energyDrinkA":[9,1,1,9,1,1,9,1,1,9],"energyDrinkB":[1,8,8,1,8,8,1,8,8,1]},"expected":52,"tags":["pattern","multiple-switches"]}
+    {
+      "id": "sample-stay-one-drink",
+      "name": "sample: staying on either drink reaches five",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "energyDrinkA": [
+          1,
+          3,
+          1
+        ],
+        "energyDrinkB": [
+          3,
+          1,
+          1
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "no-switch"
+      ]
+    },
+    {
+      "id": "sample-switch-with-cleanse",
+      "name": "sample: one skipped hour enables a better drink",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "energyDrinkA": [
+          4,
+          1,
+          1
+        ],
+        "energyDrinkB": [
+          1,
+          1,
+          3
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "switch"
+      ]
+    },
+    {
+      "id": "sample-a-dominates",
+      "name": "sample: drink A is best every hour",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "energyDrinkA": [
+          5,
+          5,
+          5
+        ],
+        "energyDrinkB": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "sample",
+        "no-switch"
+      ]
+    },
+    {
+      "id": "trial-b-dominates",
+      "name": "trial: drink B is best every hour",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "energyDrinkA": [
+          1,
+          1,
+          1
+        ],
+        "energyDrinkB": [
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "no-switch"
+      ]
+    },
+    {
+      "id": "trial-equal-drinks",
+      "name": "trial: equal arrays make switching unnecessary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "energyDrinkA": [
+          3,
+          3,
+          3
+        ],
+        "energyDrinkB": [
+          3,
+          3,
+          3
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "equal"
+      ]
+    },
+    {
+      "id": "trial-alternating-highs",
+      "name": "trial: cooldown prevents collecting every local maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "energyDrinkA": [
+          10,
+          1,
+          10,
+          1,
+          10
+        ],
+        "energyDrinkB": [
+          1,
+          9,
+          1,
+          9,
+          1
+        ]
+      },
+      "expected": 32,
+      "tags": [
+        "alternating",
+        "cooldown"
+      ]
+    },
+    {
+      "id": "trial-one-late-switch",
+      "name": "trial: switch from early A values to late B values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "energyDrinkA": [
+          10,
+          10,
+          1,
+          1,
+          1
+        ],
+        "energyDrinkB": [
+          1,
+          1,
+          1,
+          10,
+          10
+        ]
+      },
+      "expected": 40,
+      "tags": [
+        "one-switch"
+      ]
+    },
+    {
+      "id": "trial-repeated-segments",
+      "name": "separated drink-favored segments",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "energyDrinkA": [
+          8,
+          1,
+          1,
+          8,
+          1,
+          1,
+          8
+        ],
+        "energyDrinkB": [
+          1,
+          8,
+          1,
+          1,
+          8,
+          1,
+          1
+        ]
+      },
+      "expected": 28,
+      "tags": [
+        "segments",
+        "multiple-switches"
+      ]
+    },
+    {
+      "id": "trial-maximum-values",
+      "name": "maximum boosts require a wide total",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "energyDrinkA": [
+          100000,
+          100000,
+          100000
+        ],
+        "energyDrinkB": [
+          99999,
+          99999,
+          99999
+        ]
+      },
+      "expected": 300000,
+      "tags": [
+        "maximum-value"
+      ]
+    },
+    {
+      "id": "trial-opposite-peaks",
+      "name": "alternating hundred-point peaks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "energyDrinkA": [
+          1,
+          100,
+          1,
+          100,
+          1,
+          100
+        ],
+        "energyDrinkB": [
+          100,
+          1,
+          100,
+          1,
+          100,
+          1
+        ]
+      },
+      "expected": 303,
+      "tags": [
+        "alternating",
+        "cooldown"
+      ]
+    },
+    {
+      "id": "trial-long-profile",
+      "name": "long profile with several favorable blocks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "energyDrinkA": [
+          5,
+          6,
+          1,
+          1,
+          20,
+          1,
+          1,
+          8,
+          9,
+          2,
+          2
+        ],
+        "energyDrinkB": [
+          1,
+          1,
+          10,
+          10,
+          1,
+          7,
+          7,
+          1,
+          1,
+          12,
+          12
+        ]
+      },
+      "expected": 69,
+      "tags": [
+        "longer",
+        "multiple-switches"
+      ]
+    },
+    {
+      "id": "trial-cleanse-pattern",
+      "name": "repeated pairs reward planned cleansing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "energyDrinkA": [
+          9,
+          1,
+          1,
+          9,
+          1,
+          1,
+          9,
+          1,
+          1,
+          9
+        ],
+        "energyDrinkB": [
+          1,
+          8,
+          8,
+          1,
+          8,
+          8,
+          1,
+          8,
+          8,
+          1
+        ]
+      },
+      "expected": 52,
+      "tags": [
+        "pattern",
+        "multiple-switches"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in energyDrinkA",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "energyDrinkA": [
+          1
+        ],
+        "energyDrinkB": [
+          3,
+          1,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in energyDrinkA",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "energyDrinkA": [
+          1,
+          1
+        ],
+        "energyDrinkB": [
+          3,
+          1,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    }
   ]
 }

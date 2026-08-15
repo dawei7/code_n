@@ -2,13 +2,136 @@
   "schema_version": 1,
   "challenge_id": "lc_2409",
   "cases": [
-    {"id":"sample-overlap","name":"sample: partially overlapping August stays","kind":"sample","visible":true,"input":{"arriveAlice":"08-15","leaveAlice":"08-18","arriveBob":"08-16","leaveBob":"08-19"},"expected":3,"tags":["sample","overlap"]},
-    {"id":"sample-disjoint","name":"sample: consecutive disjoint months","kind":"sample","visible":true,"input":{"arriveAlice":"10-01","leaveAlice":"10-31","arriveBob":"11-01","leaveBob":"12-31"},"expected":0,"tags":["sample","disjoint"]},
-    {"id":"trial-same-day","name":"both stays are the same single day","kind":"trial","visible":true,"input":{"arriveAlice":"01-01","leaveAlice":"01-01","arriveBob":"01-01","leaveBob":"01-01"},"expected":1,"tags":["inclusive","boundary"]},
-    {"id":"trial-cross-month","name":"overlap crosses February into March","kind":"trial","visible":true,"input":{"arriveAlice":"02-27","leaveAlice":"03-02","arriveBob":"02-28","leaveBob":"03-01"},"expected":2,"tags":["month-boundary"]},
-    {"id":"trial-contained","name":"one stay lies completely inside the other","kind":"trial","visible":true,"input":{"arriveAlice":"04-01","leaveAlice":"04-30","arriveBob":"04-10","leaveBob":"04-20"},"expected":11,"tags":["containment"]},
-    {"id":"real-shared-endpoint","name":"hidden: intervals meet at one endpoint","kind":"real","visible":false,"input":{"arriveAlice":"06-01","leaveAlice":"06-15","arriveBob":"06-15","leaveBob":"06-30"},"expected":1,"tags":["hidden","inclusive"]},
-    {"id":"real-adjacent","name":"hidden: adjacent stays do not overlap","kind":"real","visible":false,"input":{"arriveAlice":"02-28","leaveAlice":"02-28","arriveBob":"03-01","leaveBob":"03-01"},"expected":0,"tags":["hidden","non-leap"]},
-    {"id":"real-whole-year","name":"hidden: full-year stay contains a year-end visit","kind":"real","visible":false,"input":{"arriveAlice":"01-01","leaveAlice":"12-31","arriveBob":"12-30","leaveBob":"12-31"},"expected":2,"tags":["hidden","year-boundary"]}
+    {
+      "id": "sample-overlap",
+      "name": "sample: partially overlapping August stays",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arriveAlice": "08-15",
+        "leaveAlice": "08-18",
+        "arriveBob": "08-16",
+        "leaveBob": "08-19"
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "overlap"
+      ]
+    },
+    {
+      "id": "sample-disjoint",
+      "name": "sample: consecutive disjoint months",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arriveAlice": "10-01",
+        "leaveAlice": "10-31",
+        "arriveBob": "11-01",
+        "leaveBob": "12-31"
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "disjoint"
+      ]
+    },
+    {
+      "id": "trial-same-day",
+      "name": "both stays are the same single day",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arriveAlice": "01-01",
+        "leaveAlice": "01-01",
+        "arriveBob": "01-01",
+        "leaveBob": "01-01"
+      },
+      "expected": 1,
+      "tags": [
+        "inclusive",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-cross-month",
+      "name": "overlap crosses February into March",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arriveAlice": "02-27",
+        "leaveAlice": "03-02",
+        "arriveBob": "02-28",
+        "leaveBob": "03-01"
+      },
+      "expected": 2,
+      "tags": [
+        "month-boundary"
+      ]
+    },
+    {
+      "id": "trial-contained",
+      "name": "one stay lies completely inside the other",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arriveAlice": "04-01",
+        "leaveAlice": "04-30",
+        "arriveBob": "04-10",
+        "leaveBob": "04-20"
+      },
+      "expected": 11,
+      "tags": [
+        "containment"
+      ]
+    },
+    {
+      "id": "trial-shared-endpoint",
+      "name": "intervals meet at one endpoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arriveAlice": "06-01",
+        "leaveAlice": "06-15",
+        "arriveBob": "06-15",
+        "leaveBob": "06-30"
+      },
+      "expected": 1,
+      "tags": [
+        "inclusive"
+      ]
+    },
+    {
+      "id": "trial-adjacent",
+      "name": "adjacent stays do not overlap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arriveAlice": "02-28",
+        "leaveAlice": "02-28",
+        "arriveBob": "03-01",
+        "leaveBob": "03-01"
+      },
+      "expected": 0,
+      "tags": [
+        "non-leap"
+      ]
+    },
+    {
+      "id": "trial-whole-year",
+      "name": "full-year stay contains a year-end visit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arriveAlice": "01-01",
+        "leaveAlice": "12-31",
+        "arriveBob": "12-30",
+        "leaveBob": "12-31"
+      },
+      "expected": 2,
+      "tags": [
+        "year-boundary"
+      ]
+    }
   ]
 }

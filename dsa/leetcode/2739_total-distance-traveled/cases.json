@@ -1,1 +1,151 @@
-{"schema_version":1,"challenge_id":"lc_2739","cases":[{"id":"sample-main-five","name":"sample: one transfer after five liters","kind":"sample","visible":true,"input":{"mainTank":5,"additionalTank":10},"expected":60,"tags":["sample","first-transfer"]},{"id":"sample-no-transfer","name":"sample: main tank empties before transfer","kind":"sample","visible":true,"input":{"mainTank":1,"additionalTank":2},"expected":10,"tags":["sample","no-transfer"]},{"id":"trial-chained-transfers","name":"trial: transfer enables another milestone","kind":"trial","visible":true,"input":{"mainTank":9,"additionalTank":2},"expected":110,"tags":["trial","chained-transfer"]},{"id":"real-reserve-limited","name":"hidden: reserve limits transfers","kind":"real","visible":false,"input":{"mainTank":100,"additionalTank":1},"expected":1010,"tags":["hidden","reserve-boundary"]},{"id":"real-main-below-trigger","name":"hidden: abundant reserve cannot trigger transfer","kind":"real","visible":false,"input":{"mainTank":4,"additionalTank":100},"expected":40,"tags":["hidden","below-threshold"]},{"id":"real-both-maximum","name":"hidden: both inputs at maximum","kind":"real","visible":false,"input":{"mainTank":100,"additionalTank":100},"expected":1240,"tags":["hidden","maximum"]},{"id":"real-one-before-next-trigger","name":"hidden: one liter short of second trigger","kind":"real","visible":false,"input":{"mainTank":8,"additionalTank":100},"expected":90,"tags":["hidden","threshold"]},{"id":"real-exact-second-trigger","name":"hidden: exact second transfer threshold","kind":"real","visible":false,"input":{"mainTank":9,"additionalTank":100},"expected":110,"tags":["hidden","threshold"]}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2739",
+  "cases": [
+    {
+      "id": "sample-main-five",
+      "name": "sample: one transfer after five liters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mainTank": 5,
+        "additionalTank": 10
+      },
+      "expected": 60,
+      "tags": [
+        "sample",
+        "first-transfer"
+      ]
+    },
+    {
+      "id": "sample-no-transfer",
+      "name": "sample: main tank empties before transfer",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mainTank": 1,
+        "additionalTank": 2
+      },
+      "expected": 10,
+      "tags": [
+        "sample",
+        "no-transfer"
+      ]
+    },
+    {
+      "id": "trial-chained-transfers",
+      "name": "trial: transfer enables another milestone",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mainTank": 9,
+        "additionalTank": 2
+      },
+      "expected": 110,
+      "tags": [
+        "trial",
+        "chained-transfer"
+      ]
+    },
+    {
+      "id": "trial-reserve-limited",
+      "name": "reserve limits transfers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mainTank": 100,
+        "additionalTank": 1
+      },
+      "expected": 1010,
+      "tags": [
+        "reserve-boundary"
+      ]
+    },
+    {
+      "id": "trial-main-below-trigger",
+      "name": "abundant reserve cannot trigger transfer",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mainTank": 4,
+        "additionalTank": 100
+      },
+      "expected": 40,
+      "tags": [
+        "below-threshold"
+      ]
+    },
+    {
+      "id": "trial-both-maximum",
+      "name": "both inputs at maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mainTank": 100,
+        "additionalTank": 100
+      },
+      "expected": 1240,
+      "tags": [
+        "maximum"
+      ]
+    },
+    {
+      "id": "trial-one-before-next-trigger",
+      "name": "one liter short of second trigger",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mainTank": 8,
+        "additionalTank": 100
+      },
+      "expected": 90,
+      "tags": [
+        "threshold"
+      ]
+    },
+    {
+      "id": "trial-exact-second-trigger",
+      "name": "exact second transfer threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mainTank": 9,
+        "additionalTank": 100
+      },
+      "expected": 110,
+      "tags": [
+        "threshold"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value mainTank=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mainTank": 1,
+        "additionalTank": 10
+      },
+      "expected": 10,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value additionalTank=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mainTank": 5,
+        "additionalTank": 1
+      },
+      "expected": 60,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    }
+  ]
+}

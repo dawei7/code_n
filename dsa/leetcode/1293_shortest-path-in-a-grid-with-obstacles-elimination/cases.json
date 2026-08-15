@@ -149,10 +149,10 @@
       ]
     },
     {
-      "id": "hidden-open-route",
-      "name": "hidden: obstacles do not need removal",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-open-route",
+      "name": "obstacles do not need removal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -175,15 +175,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "open-route"
       ]
     },
     {
-      "id": "hidden-budget-choice",
-      "name": "hidden: preserve elimination for a later obstacle",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-budget-choice",
+      "name": "preserve elimination for a later obstacle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -215,7 +214,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "dominance"
       ]
     }

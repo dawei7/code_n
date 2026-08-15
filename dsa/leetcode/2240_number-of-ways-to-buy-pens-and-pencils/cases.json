@@ -2,13 +2,162 @@
   "schema_version": 1,
   "challenge_id": "lc_2240",
   "cases": [
-    {"id":"sample-nine-ways","name":"sample: several quantities of both items","kind":"sample","visible":true,"input":{"total":20,"cost1":10,"cost2":5},"expected":9,"tags":["sample","mixed"]},
-    {"id":"sample-both-unaffordable","name":"sample: buying nothing is the only choice","kind":"sample","visible":true,"input":{"total":5,"cost1":10,"cost2":10},"expected":1,"tags":["sample","zero-quantities"]},
-    {"id":"trial-coprime-costs","name":"different costs include exact and partial spending","kind":"trial","visible":true,"input":{"total":6,"cost1":2,"cost2":3},"expected":7,"tags":["exact-budget","coprime"]},
-    {"id":"trial-one-cheap","name":"one item costs one unit","kind":"trial","visible":true,"input":{"total":5,"cost1":1,"cost2":10},"expected":6,"tags":["unit-cost","unaffordable"]},
-    {"id":"trial-equal-costs","name":"equal costs count quantity compositions","kind":"trial","visible":true,"input":{"total":4,"cost1":2,"cost2":2},"expected":6,"tags":["equal-costs"]},
-    {"id":"real-cost-order","name":"hidden: swapping cost order preserves count","kind":"real","visible":false,"input":{"total":20,"cost1":5,"cost2":10},"expected":9,"tags":["hidden","cost-order"]},
-    {"id":"real-one-way","name":"hidden: minimum budget below both prices","kind":"real","visible":false,"input":{"total":1,"cost1":2,"cost2":3},"expected":1,"tags":["hidden","minimum"]},
-    {"id":"real-large-cost-gap","name":"hidden: large cost imbalance uses short outer range","kind":"real","visible":false,"input":{"total":1000000,"cost1":1000000,"cost2":1},"expected":1000002,"tags":["hidden","upper-bound","cost-gap"]}
+    {
+      "id": "sample-nine-ways",
+      "name": "sample: several quantities of both items",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "total": 20,
+        "cost1": 10,
+        "cost2": 5
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-both-unaffordable",
+      "name": "sample: buying nothing is the only choice",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "total": 5,
+        "cost1": 10,
+        "cost2": 10
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "zero-quantities"
+      ]
+    },
+    {
+      "id": "trial-coprime-costs",
+      "name": "different costs include exact and partial spending",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "total": 6,
+        "cost1": 2,
+        "cost2": 3
+      },
+      "expected": 7,
+      "tags": [
+        "exact-budget",
+        "coprime"
+      ]
+    },
+    {
+      "id": "trial-one-cheap",
+      "name": "one item costs one unit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "total": 5,
+        "cost1": 1,
+        "cost2": 10
+      },
+      "expected": 6,
+      "tags": [
+        "unit-cost",
+        "unaffordable"
+      ]
+    },
+    {
+      "id": "trial-equal-costs",
+      "name": "equal costs count quantity compositions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "total": 4,
+        "cost1": 2,
+        "cost2": 2
+      },
+      "expected": 6,
+      "tags": [
+        "equal-costs"
+      ]
+    },
+    {
+      "id": "trial-cost-order",
+      "name": "swapping cost order preserves count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "total": 20,
+        "cost1": 5,
+        "cost2": 10
+      },
+      "expected": 9,
+      "tags": [
+        "cost-order"
+      ]
+    },
+    {
+      "id": "trial-one-way",
+      "name": "minimum budget below both prices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "total": 1,
+        "cost1": 2,
+        "cost2": 3
+      },
+      "expected": 1,
+      "tags": [
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-large-cost-gap",
+      "name": "large cost imbalance uses short outer range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "total": 1000000,
+        "cost1": 1000000,
+        "cost2": 1
+      },
+      "expected": 1000002,
+      "tags": [
+        "upper-bound",
+        "cost-gap"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value total=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "total": 1,
+        "cost1": 10,
+        "cost2": 5
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value cost1=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "total": 20,
+        "cost1": 1,
+        "cost2": 5
+      },
+      "expected": 55,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    }
   ]
 }

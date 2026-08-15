@@ -129,10 +129,10 @@
       ]
     },
     {
-      "id": "real-one-cheap-helper",
-      "name": "hidden: one low-index helper repairs a lone conflict",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-cheap-helper",
+      "name": "one low-index helper repairs a lone conflict",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           1,
@@ -147,15 +147,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "single-helper"
       ]
     },
     {
-      "id": "real-discussion-imbalance",
-      "name": "hidden: one helper repairs a repeated conflicting value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-discussion-imbalance",
+      "name": "one helper repairs a repeated conflicting value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           1,
@@ -172,16 +171,15 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "dominant-value",
         "helper"
       ]
     },
     {
-      "id": "real-several-helpers",
-      "name": "hidden: several safe helpers are all required",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-several-helpers",
+      "name": "several safe helpers are all required",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           1,
@@ -202,16 +200,15 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "multiple-helpers",
         "boundary-balance"
       ]
     },
     {
-      "id": "real-all-same-impossible",
-      "name": "hidden: identical constant arrays cannot be separated",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-same-impossible",
+      "name": "identical constant arrays cannot be separated",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           1,
@@ -228,7 +225,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "impossible",
         "constant"
       ]

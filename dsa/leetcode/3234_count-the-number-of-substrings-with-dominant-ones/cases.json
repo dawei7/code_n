@@ -83,10 +83,10 @@
       ]
     },
     {
-      "id": "real-equality-two-chars",
-      "name": "real: equality with one zero and one one",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-equality-two-chars",
+      "name": "equality with one zero and one one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "01"
       },
@@ -96,10 +96,10 @@
       ]
     },
     {
-      "id": "real-two-leading-zeros",
-      "name": "real: two leading zeroes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-leading-zeros",
+      "name": "two leading zeroes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "001"
       },
@@ -109,10 +109,10 @@
       ]
     },
     {
-      "id": "real-one-zero-three-ones",
-      "name": "real: one zero before an all-one run",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-zero-three-ones",
+      "name": "one zero before an all-one run",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "0111"
       },
@@ -122,10 +122,10 @@
       ]
     },
     {
-      "id": "real-alternating",
-      "name": "real: alternating bits",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alternating",
+      "name": "alternating bits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "0101"
       },
@@ -135,10 +135,10 @@
       ]
     },
     {
-      "id": "real-two-zero-block",
-      "name": "real: centered zero block",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-zero-block",
+      "name": "centered zero block",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "110011"
       },
@@ -148,10 +148,10 @@
       ]
     },
     {
-      "id": "real-dense-one-block",
-      "name": "real: dense ones between zero runs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-dense-one-block",
+      "name": "dense ones between zero runs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "0001111000"
       },

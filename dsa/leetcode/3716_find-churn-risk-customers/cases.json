@@ -484,10 +484,10 @@
       ]
     },
     {
-      "id": "real-latest-active-upgrade",
-      "name": "hidden: a latest upgrade can qualify when an earlier downgrade exists",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-latest-active-upgrade",
+      "name": "a latest upgrade can qualify when an earlier downgrade exists",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "subscription_events": [
@@ -540,16 +540,15 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "complete-history",
         "latest-event"
       ]
     },
     {
-      "id": "real-ordering",
-      "name": "hidden: duration descends and equal durations use ascending user identifiers",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ordering",
+      "name": "duration descends and equal durations use ascending user identifiers",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "subscription_events": [
@@ -640,16 +639,15 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "ordering",
         "tie-break"
       ]
     },
     {
-      "id": "real-historical-maximum",
-      "name": "hidden: the maximum may occur before several later plan changes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-historical-maximum",
+      "name": "the maximum may occur before several later plan changes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "subscription_events": [
@@ -710,16 +708,15 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "historical-maximum",
         "multiple-events"
       ]
     },
     {
-      "id": "real-current-active-but-too-high",
-      "name": "hidden: an active downgraded user is excluded when current revenue is not below half",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-current-active-but-too-high",
+      "name": "an active downgraded user is excluded when current revenue is not below half",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "subscription_events": [
@@ -764,11 +761,9 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "percentage-threshold",
         "empty-result"
       ]
     }
   ]
 }
-

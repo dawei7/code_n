@@ -186,10 +186,10 @@
       ]
     },
     {
-      "id": "real-zero-neutral",
-      "name": "hidden: zero does not improve the best positive singleton",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zero-neutral",
+      "name": "zero does not improve the best positive singleton",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           0,
@@ -202,16 +202,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zero",
         "negative"
       ]
     },
     {
-      "id": "real-duplicate-chain-restart",
-      "name": "hidden: a path can restart beyond a duplicate ancestor",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicate-chain-restart",
+      "name": "a path can restart beyond a duplicate ancestor",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           5,
@@ -227,16 +226,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicate-chain",
         "root-excluded"
       ]
     },
     {
-      "id": "real-all-equal",
-      "name": "hidden: an all-equal tree permits only singleton paths",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-equal",
+      "name": "an all-equal tree permits only singleton paths",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           7,
@@ -251,16 +249,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-equal",
         "duplicate-values"
       ]
     },
     {
-      "id": "real-value-boundaries",
-      "name": "hidden: extreme negative root makes the positive endpoint best",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-value-boundaries",
+      "name": "extreme negative root makes the positive endpoint best",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           -1000,
@@ -273,16 +270,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundaries",
         "negative-root"
       ]
     },
     {
-      "id": "real-large-positive-crossing",
-      "name": "hidden: three distinct high values form the best cross path",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-positive-crossing",
+      "name": "three distinct high values form the best cross path",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1000,
@@ -295,16 +291,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundaries",
         "cross-branch"
       ]
     },
     {
-      "id": "real-off-path-duplicate",
-      "name": "hidden: a duplicate outside the chosen route is harmless",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-off-path-duplicate",
+      "name": "a duplicate outside the chosen route is harmless",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           10,
@@ -321,16 +316,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "off-path-duplicate",
         "branching"
       ]
     },
     {
-      "id": "real-mixed-sign-crossing",
-      "name": "hidden: a mixed-sign path crosses the root",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-sign-crossing",
+      "name": "a mixed-sign path crosses the root",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           0,
@@ -347,7 +341,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "mixed-sign",
         "cross-branch"
       ]

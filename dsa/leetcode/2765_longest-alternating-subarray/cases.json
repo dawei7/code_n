@@ -75,10 +75,10 @@
       ]
     },
     {
-      "id": "real-falling-pair",
-      "name": "hidden: a falling pair cannot start a run",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-falling-pair",
+      "name": "a falling pair cannot start a run",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -87,15 +87,14 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "start-direction"
       ]
     },
     {
-      "id": "real-restart-on-rise",
-      "name": "hidden: a new rise restarts after a mismatch",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-restart-on-rise",
+      "name": "a new rise restarts after a mismatch",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -108,15 +107,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "restart"
       ]
     },
     {
-      "id": "real-consecutive-rises",
-      "name": "hidden: consecutive rises only form pairs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-consecutive-rises",
+      "name": "consecutive rises only form pairs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -127,15 +125,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "repeated-rise"
       ]
     },
     {
-      "id": "real-duplicate-break",
-      "name": "hidden: a duplicate breaks the pattern",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicate-break",
+      "name": "a duplicate breaks the pattern",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -148,16 +145,15 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "duplicate",
         "restart"
       ]
     },
     {
-      "id": "real-upper-values",
-      "name": "hidden: values near the upper bound",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-upper-values",
+      "name": "values near the upper bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9999,
@@ -168,15 +164,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
     {
-      "id": "real-full-pattern",
-      "name": "hidden: the entire array alternates",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-full-pattern",
+      "name": "the entire array alternates",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -189,8 +184,40 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "full-array"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

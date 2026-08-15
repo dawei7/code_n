@@ -130,10 +130,10 @@
       ]
     },
     {
-      "id": "real-alternating-zigzag",
-      "name": "real: every edge alternates direction",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alternating-zigzag",
+      "name": "every edge alternates direction",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -151,10 +151,10 @@
       ]
     },
     {
-      "id": "real-multiple-runs",
-      "name": "real: several runs separated by large gaps",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-runs",
+      "name": "several runs separated by large gaps",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -174,10 +174,10 @@
       ]
     },
     {
-      "id": "real-upper-values",
-      "name": "real: values near the upper bound",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-upper-values",
+      "name": "values near the upper bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           99997,
@@ -193,10 +193,10 @@
       ]
     },
     {
-      "id": "real-short-overlaps",
-      "name": "real: qualifying pairs overlap at one singleton",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-short-overlaps",
+      "name": "qualifying pairs overlap at one singleton",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10,
@@ -214,10 +214,10 @@
       ]
     },
     {
-      "id": "real-modular-long-run",
-      "name": "real: large-valued run requires modular accumulation",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-modular-long-run",
+      "name": "large-valued run requires modular accumulation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           99851,

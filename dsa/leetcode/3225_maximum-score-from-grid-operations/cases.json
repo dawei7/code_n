@@ -191,10 +191,10 @@
       ]
     },
     {
-      "id": "real-center-value",
-      "name": "real: expose a valuable center-column cell",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-center-value",
+      "name": "expose a valuable center-column cell",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -220,10 +220,10 @@
       ]
     },
     {
-      "id": "real-boundary-values",
-      "name": "real: expose values in both boundary columns",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-boundary-values",
+      "name": "expose values in both boundary columns",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -249,10 +249,10 @@
       ]
     },
     {
-      "id": "real-diagonal",
-      "name": "real: diagonal values need different heights",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-diagonal",
+      "name": "diagonal values need different heights",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -287,10 +287,10 @@
       ]
     },
     {
-      "id": "real-all-ones-four",
-      "name": "real: uniform four-by-four grid",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-ones-four",
+      "name": "uniform four-by-four grid",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -325,10 +325,10 @@
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "real: large cell values require wide totals",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-values",
+      "name": "large cell values require wide totals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -347,10 +347,10 @@
       ]
     },
     {
-      "id": "real-mixed-four",
-      "name": "real: mixed four-by-four values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-four",
+      "name": "mixed four-by-four values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [

@@ -190,10 +190,10 @@
       ]
     },
     {
-      "id": "hidden-row-matrix",
-      "name": "hidden: one-row matrix clips vertically",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-row-matrix",
+      "name": "one-row matrix clips vertically",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [
@@ -216,15 +216,14 @@
         ]
       ],
       "tags": [
-        "hidden",
         "single-row"
       ]
     },
     {
-      "id": "hidden-column-matrix",
-      "name": "hidden: one-column matrix clips horizontally",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-column-matrix",
+      "name": "one-column matrix clips horizontally",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [
@@ -257,7 +256,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "single-column"
       ]
     }

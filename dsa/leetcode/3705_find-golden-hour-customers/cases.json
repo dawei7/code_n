@@ -607,10 +607,10 @@
       ]
     },
     {
-      "id": "real-below-half-rated",
-      "name": "hidden: two ratings out of five are insufficient",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-below-half-rated",
+      "name": "two ratings out of five are insufficient",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "restaurant_orders": [
@@ -670,16 +670,15 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "completion-threshold",
         "null-ratings"
       ]
     },
     {
-      "id": "real-whole-percent-rounding",
-      "name": "hidden: two peak orders out of three are displayed as 67 percent",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-whole-percent-rounding",
+      "name": "two peak orders out of three are displayed as 67 percent",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "restaurant_orders": [
@@ -730,16 +729,15 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "percentage-rounding",
         "null-ratings"
       ]
     },
     {
-      "id": "real-descending-id-tie",
-      "name": "hidden: equal averages use descending customer identifier",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-descending-id-tie",
+      "name": "equal averages use descending customer identifier",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "restaurant_orders": [
@@ -820,16 +818,15 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "ordering",
         "tie-break"
       ]
     },
     {
-      "id": "real-all-unrated",
-      "name": "hidden: a customer with no ratings fails completion and average",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-unrated",
+      "name": "a customer with no ratings fails completion and average",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "restaurant_orders": [
@@ -873,7 +870,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "all-unrated",
         "empty-result"
       ]

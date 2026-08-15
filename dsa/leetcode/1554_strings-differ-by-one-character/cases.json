@@ -115,10 +115,10 @@
       ]
     },
     {
-      "id": "real-final-character",
-      "name": "hidden: difference at final index",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-final-character",
+      "name": "difference at final index",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "dict": [
           "abcde",
@@ -134,10 +134,10 @@
       ]
     },
     {
-      "id": "real-two-differences",
-      "name": "hidden: exactly two mismatches are rejected",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-differences",
+      "name": "exactly two mismatches are rejected",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "dict": [
           "aaaa",
@@ -153,10 +153,10 @@
       ]
     },
     {
-      "id": "real-shared-wildcards",
-      "name": "hidden: many masked patterns share partial text",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-shared-wildcards",
+      "name": "many masked patterns share partial text",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "dict": [
           "cat",
@@ -173,10 +173,10 @@
       ]
     },
     {
-      "id": "real-long-words",
-      "name": "hidden: long equal prefix and suffix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-long-words",
+      "name": "long equal prefix and suffix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "dict": [
           "abcdefghijklmnopqrst",
@@ -192,10 +192,10 @@
       ]
     },
     {
-      "id": "real-no-pair-five",
-      "name": "hidden: several words remain separated",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-no-pair-five",
+      "name": "several words remain separated",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "dict": [
           "aaaaa",
@@ -213,10 +213,10 @@
       ]
     },
     {
-      "id": "real-late-qualifier",
-      "name": "hidden: qualifying pair appears last",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-late-qualifier",
+      "name": "qualifying pair appears last",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "dict": [
           "abcd",
@@ -232,6 +232,39 @@
         "real",
         "hamming-one",
         "late-qualifier"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in dict",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "dict": [
+          "abcd"
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in dict",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "dict": [
+          "abcd",
+          "abcd"
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

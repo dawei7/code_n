@@ -171,10 +171,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: unequal box counts",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "unequal box counts",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "aliceSizes": [
           5,
@@ -196,15 +196,14 @@
         "kind": "fair_candy_swap"
       },
       "tags": [
-        "hidden",
         "unequal-lengths"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: partner occurs in the middle",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "partner occurs in the middle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "aliceSizes": [
           1,
@@ -225,14 +224,14 @@
         "kind": "fair_candy_swap"
       },
       "tags": [
-        "hidden"
+        "trial"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: sizes near the maximum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "sizes near the maximum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "aliceSizes": [
           100000,
@@ -251,15 +250,14 @@
         "kind": "fair_candy_swap"
       },
       "tags": [
-        "hidden",
         "maximum-size"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: Alice has more candy across equal lengths",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "Alice has more candy across equal lengths",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "aliceSizes": [
           2,
@@ -280,15 +278,14 @@
         "kind": "fair_candy_swap"
       },
       "tags": [
-        "hidden",
         "alice-larger"
       ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: multiple distinct valid value pairs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-5",
+      "name": "multiple distinct valid value pairs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "aliceSizes": [
           1,
@@ -311,8 +308,47 @@
         "kind": "fair_candy_swap"
       },
       "tags": [
-        "hidden",
         "multiple-answers"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single element in aliceSizes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "aliceSizes": [
+          1
+        ],
+        "bobSizes": [
+          2,
+          2
+        ]
+      },
+      "expected": null,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in bobSizes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "aliceSizes": [
+          1,
+          1
+        ],
+        "bobSizes": [
+          2
+        ]
+      },
+      "expected": null,
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

@@ -2,13 +2,407 @@
   "schema_version": 1,
   "challenge_id": "lc_2241",
   "cases": [
-    {"id":"sample-greedy-rollback","name":"sample: failed greedy withdrawal preserves inventory","kind":"sample","visible":true,"input":{"operations":["ATM","deposit","withdraw","deposit","withdraw","withdraw"],"arguments":[[],[[0,0,1,2,1]],[600],[[0,1,0,1,1]],[600],[550]]},"expected":[null,null,[0,0,1,0,1],null,[-1],[0,1,0,0,1]],"tags":["sample","rollback","greedy"]},
-    {"id":"trial-all-denominations","name":"one note of every denomination is withdrawn","kind":"trial","visible":true,"input":{"operations":["ATM","deposit","withdraw"],"arguments":[[],[[1,1,1,1,1]],[870]]},"expected":[null,null,[1,1,1,1,1]],"tags":["all-denominations"]},
-    {"id":"trial-forbidden-alternative","name":"larger-note priority rejects an otherwise representable amount","kind":"trial","visible":true,"input":{"operations":["ATM","deposit","withdraw","withdraw"],"arguments":[[],[[0,0,0,3,1]],[600],[500]]},"expected":[null,null,[-1],[0,0,0,0,1]],"tags":["greedy-priority","rollback"]},
-    {"id":"trial-smallest-notes","name":"withdrawal uses only twenty-dollar notes","kind":"trial","visible":true,"input":{"operations":["ATM","deposit","withdraw"],"arguments":[[],[[5,0,0,0,0]],[80]]},"expected":[null,null,[4,0,0,0,0]],"tags":["smallest-denomination"]},
-    {"id":"trial-repeat-deposit","name":"successive deposits accumulate inventory","kind":"trial","visible":true,"input":{"operations":["ATM","deposit","deposit","withdraw"],"arguments":[[],[[0,1,0,0,0]],[[1,1,0,0,0]],[120]]},"expected":[null,null,null,[1,2,0,0,0]],"tags":["accumulation"]},
-    {"id":"real-nonmultiple","name":"hidden: amount not divisible by available denominations fails","kind":"real","visible":false,"input":{"operations":["ATM","deposit","withdraw","withdraw"],"arguments":[[],[[10,10,10,10,10]],[30],[20]]},"expected":[null,null,[-1],[1,0,0,0,0]],"tags":["hidden","rollback","nonmultiple"]},
-    {"id":"real-exact-large","name":"hidden: exact amount favors highest notes","kind":"real","visible":false,"input":{"operations":["ATM","deposit","withdraw"],"arguments":[[],[[10,10,10,10,10]],[1500]]},"expected":[null,null,[0,0,0,0,3]],"tags":["hidden","largest-first"]},
-    {"id":"real-depletion","name":"hidden: successful withdrawal changes later availability","kind":"real","visible":false,"input":{"operations":["ATM","deposit","withdraw","withdraw"],"arguments":[[],[[0,0,1,0,1]],[600],[600]]},"expected":[null,null,[0,0,1,0,1],[-1]],"tags":["hidden","state","depletion"]}
+    {
+      "id": "sample-greedy-rollback",
+      "name": "sample: failed greedy withdrawal preserves inventory",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          "ATM",
+          "deposit",
+          "withdraw",
+          "deposit",
+          "withdraw",
+          "withdraw"
+        ],
+        "arguments": [
+          [],
+          [
+            [
+              0,
+              0,
+              1,
+              2,
+              1
+            ]
+          ],
+          [
+            600
+          ],
+          [
+            [
+              0,
+              1,
+              0,
+              1,
+              1
+            ]
+          ],
+          [
+            600
+          ],
+          [
+            550
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        [
+          0,
+          0,
+          1,
+          0,
+          1
+        ],
+        null,
+        [
+          -1
+        ],
+        [
+          0,
+          1,
+          0,
+          0,
+          1
+        ]
+      ],
+      "tags": [
+        "sample",
+        "rollback",
+        "greedy"
+      ]
+    },
+    {
+      "id": "trial-all-denominations",
+      "name": "one note of every denomination is withdrawn",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "ATM",
+          "deposit",
+          "withdraw"
+        ],
+        "arguments": [
+          [],
+          [
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          ],
+          [
+            870
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        [
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "tags": [
+        "all-denominations"
+      ]
+    },
+    {
+      "id": "trial-forbidden-alternative",
+      "name": "larger-note priority rejects an otherwise representable amount",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "ATM",
+          "deposit",
+          "withdraw",
+          "withdraw"
+        ],
+        "arguments": [
+          [],
+          [
+            [
+              0,
+              0,
+              0,
+              3,
+              1
+            ]
+          ],
+          [
+            600
+          ],
+          [
+            500
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        [
+          -1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "tags": [
+        "greedy-priority",
+        "rollback"
+      ]
+    },
+    {
+      "id": "trial-smallest-notes",
+      "name": "withdrawal uses only twenty-dollar notes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "ATM",
+          "deposit",
+          "withdraw"
+        ],
+        "arguments": [
+          [],
+          [
+            [
+              5,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          [
+            80
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        [
+          4,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "tags": [
+        "smallest-denomination"
+      ]
+    },
+    {
+      "id": "trial-repeat-deposit",
+      "name": "successive deposits accumulate inventory",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "ATM",
+          "deposit",
+          "deposit",
+          "withdraw"
+        ],
+        "arguments": [
+          [],
+          [
+            [
+              0,
+              1,
+              0,
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              1,
+              1,
+              0,
+              0,
+              0
+            ]
+          ],
+          [
+            120
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        [
+          1,
+          2,
+          0,
+          0,
+          0
+        ]
+      ],
+      "tags": [
+        "accumulation"
+      ]
+    },
+    {
+      "id": "trial-nonmultiple",
+      "name": "amount not divisible by available denominations fails",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "ATM",
+          "deposit",
+          "withdraw",
+          "withdraw"
+        ],
+        "arguments": [
+          [],
+          [
+            [
+              10,
+              10,
+              10,
+              10,
+              10
+            ]
+          ],
+          [
+            30
+          ],
+          [
+            20
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        [
+          -1
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "tags": [
+        "rollback",
+        "nonmultiple"
+      ]
+    },
+    {
+      "id": "trial-exact-large",
+      "name": "exact amount favors highest notes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "ATM",
+          "deposit",
+          "withdraw"
+        ],
+        "arguments": [
+          [],
+          [
+            [
+              10,
+              10,
+              10,
+              10,
+              10
+            ]
+          ],
+          [
+            1500
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        [
+          0,
+          0,
+          0,
+          0,
+          3
+        ]
+      ],
+      "tags": [
+        "largest-first"
+      ]
+    },
+    {
+      "id": "trial-depletion",
+      "name": "successful withdrawal changes later availability",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "ATM",
+          "deposit",
+          "withdraw",
+          "withdraw"
+        ],
+        "arguments": [
+          [],
+          [
+            [
+              0,
+              0,
+              1,
+              0,
+              1
+            ]
+          ],
+          [
+            600
+          ],
+          [
+            600
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        [
+          0,
+          0,
+          1,
+          0,
+          1
+        ],
+        [
+          -1
+        ]
+      ],
+      "tags": [
+        "state",
+        "depletion"
+      ]
+    }
   ]
 }

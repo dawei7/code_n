@@ -1,1 +1,160 @@
-{"challenge_id":"lc_2731","cases":[{"id":"sample-collisions","name":"sample: multiple collisions","kind":"sample","visible":true,"input":{"nums":[-2,0,2],"s":"RLL","d":3},"expected":8,"tags":["sample","collisions"]},{"id":"sample-two-robots","name":"sample: two robots separate","kind":"sample","visible":true,"input":{"nums":[1,0],"s":"RL","d":2},"expected":5,"tags":["sample","two-robots"]},{"id":"trial-zero-time","name":"trial: no elapsed time","kind":"trial","visible":true,"input":{"nums":[-5,0,7],"s":"LRL","d":0},"expected":24,"tags":["trial","zero-time"]},{"id":"trial-all-right","name":"trial: common translation preserves distances","kind":"trial","visible":true,"input":{"nums":[0,10,20],"s":"RRR","d":100},"expected":40,"tags":["trial","same-direction"]},{"id":"real-cross-between-coordinates","name":"hidden: robots cross between integer coordinates","kind":"real","visible":false,"input":{"nums":[0,1],"s":"RL","d":1},"expected":1,"tags":["hidden","half-step-collision"]},{"id":"real-multiple-directions","name":"hidden: mixed directions and reordered endpoints","kind":"real","visible":false,"input":{"nums":[-10,-3,4,20],"s":"RLRL","d":7},"expected":83,"tags":["hidden","mixed"]},{"id":"real-unsorted-input","name":"hidden: initial coordinates are not sorted","kind":"real","visible":false,"input":{"nums":[8,-4,1],"s":"LRR","d":3},"expected":12,"tags":["hidden","unsorted"]},{"id":"real-coordinate-boundaries","name":"hidden: maximum coordinates and time require modulo","kind":"real","visible":false,"input":{"nums":[-2000000000,2000000000],"s":"LR","d":1000000000},"expected":999999965,"tags":["hidden","boundary","modulo"]}]}
+{
+  "challenge_id": "lc_2731",
+  "cases": [
+    {
+      "id": "sample-collisions",
+      "name": "sample: multiple collisions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -2,
+          0,
+          2
+        ],
+        "s": "RLL",
+        "d": 3
+      },
+      "expected": 8,
+      "tags": [
+        "sample",
+        "collisions"
+      ]
+    },
+    {
+      "id": "sample-two-robots",
+      "name": "sample: two robots separate",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          0
+        ],
+        "s": "RL",
+        "d": 2
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "two-robots"
+      ]
+    },
+    {
+      "id": "trial-zero-time",
+      "name": "trial: no elapsed time",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -5,
+          0,
+          7
+        ],
+        "s": "LRL",
+        "d": 0
+      },
+      "expected": 24,
+      "tags": [
+        "trial",
+        "zero-time"
+      ]
+    },
+    {
+      "id": "trial-all-right",
+      "name": "trial: common translation preserves distances",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          10,
+          20
+        ],
+        "s": "RRR",
+        "d": 100
+      },
+      "expected": 40,
+      "tags": [
+        "trial",
+        "same-direction"
+      ]
+    },
+    {
+      "id": "trial-cross-between-coordinates",
+      "name": "robots cross between integer coordinates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1
+        ],
+        "s": "RL",
+        "d": 1
+      },
+      "expected": 1,
+      "tags": [
+        "half-step-collision"
+      ]
+    },
+    {
+      "id": "trial-multiple-directions",
+      "name": "mixed directions and reordered endpoints",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -10,
+          -3,
+          4,
+          20
+        ],
+        "s": "RLRL",
+        "d": 7
+      },
+      "expected": 83,
+      "tags": [
+        "mixed"
+      ]
+    },
+    {
+      "id": "trial-unsorted-input",
+      "name": "initial coordinates are not sorted",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          -4,
+          1
+        ],
+        "s": "LRR",
+        "d": 3
+      },
+      "expected": 12,
+      "tags": [
+        "unsorted"
+      ]
+    },
+    {
+      "id": "trial-coordinate-boundaries",
+      "name": "maximum coordinates and time require modulo",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -2000000000,
+          2000000000
+        ],
+        "s": "LR",
+        "d": 1000000000
+      },
+      "expected": 999999965,
+      "tags": [
+        "boundary",
+        "modulo"
+      ]
+    }
+  ]
+}

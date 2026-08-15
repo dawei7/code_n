@@ -103,7 +103,7 @@
       "id": "trial-none",
       "name": "trial: no palindrome pairs",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "words": [
           "abc",
@@ -123,7 +123,7 @@
       "id": "trial-empty-long",
       "name": "trial: empty string with longer palindrome",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "words": [
           "",
@@ -150,10 +150,10 @@
       ]
     },
     {
-      "id": "hidden-many-directions",
-      "name": "hidden: every distinct pair is palindromic",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-directions",
+      "name": "every distinct pair is palindromic",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "a",
@@ -191,15 +191,14 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "many-output"
       ]
     },
     {
-      "id": "hidden-prefix-complements",
-      "name": "hidden: several prefix and suffix complements",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-prefix-complements",
+      "name": "several prefix and suffix complements",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "race",
@@ -225,15 +224,14 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "unequal-length"
       ]
     },
     {
-      "id": "hidden-reverse-and-short",
-      "name": "hidden: complete reverse plus shorter word",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-reverse-and-short",
+      "name": "complete reverse plus shorter word",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "abc",
@@ -259,8 +257,40 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abcd"
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abcd",
+          "abcd"
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

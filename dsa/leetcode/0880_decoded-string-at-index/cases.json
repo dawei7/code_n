@@ -93,77 +93,72 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: boundary between repeated five-letter blocks",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "boundary between repeated five-letter blocks",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "ab2c3",
         "k": 10
       },
       "expected": "c",
       "tags": [
-        "hidden",
         "copy-boundary"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: first position of the second copy",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "first position of the second copy",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abc2",
         "k": 4
       },
       "expected": "a",
       "tags": [
-        "hidden",
         "copy-start"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: final position of the second copy",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "final position of the second copy",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abc2",
         "k": 6
       },
       "expected": "c",
       "tags": [
-        "hidden",
         "copy-end"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: nested repetitions with appended letters",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "nested repetitions with appended letters",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "a2b3c4d5",
         "k": 100
       },
       "expected": "a",
       "tags": [
-        "hidden",
         "nested"
       ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: repeated multi-letter prefix and suffix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-5",
+      "name": "repeated multi-letter prefix and suffix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "xy3z2",
         "k": 8
       },
       "expected": "x",
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

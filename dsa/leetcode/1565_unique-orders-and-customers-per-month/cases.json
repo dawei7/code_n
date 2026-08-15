@@ -323,10 +323,10 @@
       ]
     },
     {
-      "id": "real-unsorted-months",
-      "name": "hidden: insertion order does not control grouping",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unsorted-months",
+      "name": "insertion order does not control grouping",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Orders": [
@@ -383,10 +383,10 @@
       ]
     },
     {
-      "id": "real-customer-repeats-across-months",
-      "name": "hidden: customer is distinct within each month",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-customer-repeats-across-months",
+      "name": "customer is distinct within each month",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Orders": [
@@ -443,10 +443,10 @@
       ]
     },
     {
-      "id": "real-only-qualified-months",
-      "name": "hidden: nonqualifying-only month is absent",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-only-qualified-months",
+      "name": "nonqualifying-only month is absent",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Orders": [
@@ -492,10 +492,10 @@
       ]
     },
     {
-      "id": "real-many-orders-two-customers",
-      "name": "hidden: order and customer counts diverge",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-orders-two-customers",
+      "name": "order and customer counts diverge",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Orders": [

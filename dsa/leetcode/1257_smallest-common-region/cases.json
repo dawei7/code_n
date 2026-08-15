@@ -375,6 +375,88 @@
         "case-sensitive",
         "ancestor-answer"
       ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single character in region1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "regions": [
+          [
+            "Earth",
+            "North America",
+            "South America"
+          ],
+          [
+            "North America",
+            "United States",
+            "Canada"
+          ],
+          [
+            "United States",
+            "New York",
+            "Boston"
+          ],
+          [
+            "Canada",
+            "Ontario",
+            "Quebec"
+          ],
+          [
+            "South America",
+            "Brazil"
+          ]
+        ],
+        "region1": "Q",
+        "region2": "New York"
+      },
+      "expected": "Earth",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "repeated character in region1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "regions": [
+          [
+            "Earth",
+            "North America",
+            "South America"
+          ],
+          [
+            "North America",
+            "United States",
+            "Canada"
+          ],
+          [
+            "United States",
+            "New York",
+            "Boston"
+          ],
+          [
+            "Canada",
+            "Ontario",
+            "Quebec"
+          ],
+          [
+            "South America",
+            "Brazil"
+          ]
+        ],
+        "region1": "QQQ",
+        "region2": "New York"
+      },
+      "expected": "Earth",
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
     }
   ]
 }

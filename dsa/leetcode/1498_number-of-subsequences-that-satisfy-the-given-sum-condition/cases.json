@@ -106,10 +106,10 @@
       ]
     },
     {
-      "id": "real-single-invalid",
-      "name": "hidden: one invalid singleton",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-invalid",
+      "name": "one invalid singleton",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2
@@ -118,16 +118,15 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "single",
         "invalid"
       ]
     },
     {
-      "id": "real-all-valid-duplicates",
-      "name": "hidden: every duplicate-index subset is valid",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-valid-duplicates",
+      "name": "every duplicate-index subset is valid",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -139,16 +138,15 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "duplicates",
         "all-valid"
       ]
     },
     {
-      "id": "real-none-valid",
-      "name": "hidden: smallest singleton already exceeds target",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-none-valid",
+      "name": "smallest singleton already exceeds target",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -159,15 +157,14 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "none-valid"
       ]
     },
     {
-      "id": "real-value-boundary",
-      "name": "hidden: only the small boundary singleton is valid",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-value-boundary",
+      "name": "only the small boundary singleton is valid",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000,
@@ -177,16 +174,15 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "maximum-value",
         "boundary"
       ]
     },
     {
-      "id": "real-modulo",
-      "name": "hidden: large all-valid count is reduced modulo the modulus",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-modulo",
+      "name": "large all-valid count is reduced modulo the modulus",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -1194,7 +1190,6 @@
       },
       "expected": 688423209,
       "tags": [
-        "hidden",
         "modulo",
         "all-valid"
       ]

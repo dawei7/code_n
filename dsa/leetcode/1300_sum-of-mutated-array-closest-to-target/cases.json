@@ -98,10 +98,10 @@
       ]
     },
     {
-      "id": "hidden-zero-tie",
-      "name": "hidden: zero wins a tie",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zero-tie",
+      "name": "zero wins a tie",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           5,
@@ -111,16 +111,15 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "zero",
         "tie"
       ]
     },
     {
-      "id": "hidden-unlisted-cap",
-      "name": "hidden: optimal cap is not in the array",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unlisted-cap",
+      "name": "optimal cap is not in the array",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           10,
@@ -131,7 +130,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "unlisted"
       ]
     }

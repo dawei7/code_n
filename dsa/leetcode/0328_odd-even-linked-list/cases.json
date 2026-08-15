@@ -76,7 +76,7 @@
       "id": "trial-single",
       "name": "trial: one node",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "head": [
           9
@@ -94,7 +94,7 @@
       "id": "trial-two",
       "name": "trial: two nodes",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "head": [
           1,
@@ -111,10 +111,10 @@
       ]
     },
     {
-      "id": "hidden-even",
-      "name": "hidden: even list length",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-even",
+      "name": "even list length",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "head": [
           1,
@@ -130,15 +130,14 @@
         4
       ],
       "tags": [
-        "hidden",
         "even-length"
       ]
     },
     {
-      "id": "hidden-duplicates",
-      "name": "hidden: parity is independent of values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicates",
+      "name": "parity is independent of values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "head": [
           1,
@@ -156,15 +155,14 @@
         2
       ],
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "hidden-negative",
-      "name": "hidden: negative node values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-negative",
+      "name": "negative node values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "head": [
           -1,
@@ -184,7 +182,6 @@
         -6
       ],
       "tags": [
-        "hidden",
         "negative"
       ]
     }

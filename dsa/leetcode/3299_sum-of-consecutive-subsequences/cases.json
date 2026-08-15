@@ -1,15 +1,193 @@
 {
   "challenge_id": "lc_3299",
   "cases": [
-    {"id":"sample-two-values","name":"sample: two increasing values","kind":"sample","visible":true,"input":{"nums":[1,2]},"expected":6,"tags":["sample","increasing"]},
-    {"id":"sample-mixed-order","name":"sample: increasing and decreasing choices coexist","kind":"sample","visible":true,"input":{"nums":[1,4,2,3]},"expected":31,"tags":["sample","mixed"]},
-    {"id":"trial-single","name":"trial: singleton contributes its own value","kind":"trial","visible":true,"input":{"nums":[5]},"expected":5,"tags":["minimum"]},
-    {"id":"trial-duplicates","name":"trial: equal values cannot extend each other","kind":"trial","visible":true,"input":{"nums":[2,2]},"expected":4,"tags":["duplicates"]},
-    {"id":"trial-decreasing","name":"trial: complete decreasing chain","kind":"trial","visible":true,"input":{"nums":[3,2,1]},"expected":20,"tags":["decreasing"]},
-    {"id":"trial-direction-change","name":"trial: a direction change splits subsequences","kind":"trial","visible":true,"input":{"nums":[1,2,1]},"expected":10,"tags":["direction"]},
-    {"id":"real-gap","name":"real: a value gap permits only singletons","kind":"real","visible":false,"input":{"nums":[1,3]},"expected":4,"tags":["gap"]},
-    {"id":"real-duplicate-middle","name":"real: duplicate middle values create distinct index choices","kind":"real","visible":false,"input":{"nums":[1,2,2,3]},"expected":36,"tags":["duplicates","combinations"]},
-    {"id":"real-value-boundary","name":"real: maximum neighboring values form a decreasing pair","kind":"real","visible":false,"input":{"nums":[100000,99999]},"expected":399998,"tags":["boundary","decreasing"]},
-    {"id":"real-alternating","name":"real: alternating values create many short directional choices","kind":"real","visible":false,"input":{"nums":[1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2]},"expected":330,"tags":["alternating","modulo"]}
+    {
+      "id": "sample-two-values",
+      "name": "sample: two increasing values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "increasing"
+      ]
+    },
+    {
+      "id": "sample-mixed-order",
+      "name": "sample: increasing and decreasing choices coexist",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          2,
+          3
+        ]
+      },
+      "expected": 31,
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: singleton contributes its own value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "trial: equal values cannot extend each other",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-decreasing",
+      "name": "trial: complete decreasing chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 20,
+      "tags": [
+        "decreasing"
+      ]
+    },
+    {
+      "id": "trial-direction-change",
+      "name": "trial: a direction change splits subsequences",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "direction"
+      ]
+    },
+    {
+      "id": "trial-gap",
+      "name": "a value gap permits only singletons",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "gap"
+      ]
+    },
+    {
+      "id": "trial-duplicate-middle",
+      "name": "duplicate middle values create distinct index choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2,
+          3
+        ]
+      },
+      "expected": 36,
+      "tags": [
+        "duplicates",
+        "combinations"
+      ]
+    },
+    {
+      "id": "trial-value-boundary",
+      "name": "maximum neighboring values form a decreasing pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100000,
+          99999
+        ]
+      },
+      "expected": 399998,
+      "tags": [
+        "boundary",
+        "decreasing"
+      ]
+    },
+    {
+      "id": "trial-alternating",
+      "name": "alternating values create many short directional choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          1,
+          2
+        ]
+      },
+      "expected": 330,
+      "tags": [
+        "alternating",
+        "modulo"
+      ]
+    }
   ]
 }

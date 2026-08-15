@@ -170,10 +170,10 @@
       ]
     },
     {
-      "id": "real-single-column",
-      "name": "hidden: one column equals the row margins",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-column",
+      "name": "one column equals the row margins",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rowSum": [
           0,
@@ -208,10 +208,10 @@
       ]
     },
     {
-      "id": "real-rectangular-wide",
-      "name": "hidden: more columns than rows",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-rectangular-wide",
+      "name": "more columns than rows",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rowSum": [
           6,
@@ -250,10 +250,10 @@
       ]
     },
     {
-      "id": "real-rectangular-tall",
-      "name": "hidden: more rows than columns",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-rectangular-tall",
+      "name": "more rows than columns",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rowSum": [
           1,
@@ -298,10 +298,10 @@
       ]
     },
     {
-      "id": "real-equal-advances-both",
-      "name": "hidden: equal active margins finish together",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-equal-advances-both",
+      "name": "equal active margins finish together",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rowSum": [
           4,
@@ -340,10 +340,10 @@
       ]
     },
     {
-      "id": "real-zero-prefixes",
-      "name": "hidden: leading and interior zero margins",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zero-prefixes",
+      "name": "leading and interior zero margins",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rowSum": [
           0,
@@ -398,10 +398,10 @@
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "hidden: large allowed margin values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-values",
+      "name": "large allowed margin values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rowSum": [
           100000000,
@@ -433,10 +433,10 @@
       ]
     },
     {
-      "id": "real-many-valid",
-      "name": "hidden: balanced margins admit many arrangements",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-valid",
+      "name": "balanced margins admit many arrangements",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rowSum": [
           7,
@@ -473,7 +473,61 @@
         "multiple-answers",
         "semantic-validator"
       ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in rowSum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "rowSum": [
+          3
+        ],
+        "colSum": [
+          4,
+          7
+        ]
+      },
+      "expected": [
+        [
+          3,
+          0
+        ]
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in rowSum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "rowSum": [
+          3,
+          3
+        ],
+        "colSum": [
+          4,
+          7
+        ]
+      },
+      "expected": [
+        [
+          3,
+          0
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }
-

@@ -2,12 +2,171 @@
   "schema_version": 1,
   "challenge_id": "lc_2138",
   "cases": [
-    {"id": "sample-exact-groups", "name": "sample: no padding is required", "kind": "sample", "visible": true, "input": {"s": "abcdefghi", "k": 3, "fill": "x"}, "expected": ["abc","def","ghi"], "tags": ["sample", "exact"]},
-    {"id": "sample-padded-final", "name": "sample: final group receives two fill characters", "kind": "sample", "visible": true, "input": {"s": "abcdefghij", "k": 3, "fill": "x"}, "expected": ["abc","def","ghi","jxx"], "tags": ["sample", "padding"]},
-    {"id": "trial-unit-groups", "name": "group size one preserves each character separately", "kind": "trial", "visible": true, "input": {"s": "abc", "k": 1, "fill": "z"}, "expected": ["a","b","c"], "tags": ["unit-size"]},
-    {"id": "trial-group-larger-than-string", "name": "one short group is padded to the requested size", "kind": "trial", "visible": true, "input": {"s": "ab", "k": 5, "fill": "q"}, "expected": ["abqqq"], "tags": ["oversized-group"]},
-    {"id": "real-one-character", "name": "hidden: one character is padded", "kind": "real", "visible": false, "input": {"s": "m", "k": 4, "fill": "n"}, "expected": ["mnnn"], "tags": ["hidden", "minimum-length"]},
-    {"id": "real-one-fill-needed", "name": "hidden: exactly one fill character completes the result", "kind": "real", "visible": false, "input": {"s": "abcdef", "k": 4, "fill": "x"}, "expected": ["abcd","efxx"], "tags": ["hidden", "padding"]},
-    {"id": "real-fill-occurs-in-source", "name": "hidden: original fill characters are not removed", "kind": "real", "visible": false, "input": {"s": "xxxxa", "k": 3, "fill": "x"}, "expected": ["xxx","xax"], "tags": ["hidden", "fill-collision"]}
+    {
+      "id": "sample-exact-groups",
+      "name": "sample: no padding is required",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcdefghi",
+        "k": 3,
+        "fill": "x"
+      },
+      "expected": [
+        "abc",
+        "def",
+        "ghi"
+      ],
+      "tags": [
+        "sample",
+        "exact"
+      ]
+    },
+    {
+      "id": "sample-padded-final",
+      "name": "sample: final group receives two fill characters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcdefghij",
+        "k": 3,
+        "fill": "x"
+      },
+      "expected": [
+        "abc",
+        "def",
+        "ghi",
+        "jxx"
+      ],
+      "tags": [
+        "sample",
+        "padding"
+      ]
+    },
+    {
+      "id": "trial-unit-groups",
+      "name": "group size one preserves each character separately",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "k": 1,
+        "fill": "z"
+      },
+      "expected": [
+        "a",
+        "b",
+        "c"
+      ],
+      "tags": [
+        "unit-size"
+      ]
+    },
+    {
+      "id": "trial-group-larger-than-string",
+      "name": "one short group is padded to the requested size",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ab",
+        "k": 5,
+        "fill": "q"
+      },
+      "expected": [
+        "abqqq"
+      ],
+      "tags": [
+        "oversized-group"
+      ]
+    },
+    {
+      "id": "trial-one-character",
+      "name": "one character is padded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "m",
+        "k": 4,
+        "fill": "n"
+      },
+      "expected": [
+        "mnnn"
+      ],
+      "tags": [
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-one-fill-needed",
+      "name": "exactly one fill character completes the result",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdef",
+        "k": 4,
+        "fill": "x"
+      },
+      "expected": [
+        "abcd",
+        "efxx"
+      ],
+      "tags": [
+        "padding"
+      ]
+    },
+    {
+      "id": "trial-fill-occurs-in-source",
+      "name": "original fill characters are not removed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "xxxxa",
+        "k": 3,
+        "fill": "x"
+      },
+      "expected": [
+        "xxx",
+        "xax"
+      ],
+      "tags": [
+        "fill-collision"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "k": 3,
+        "fill": "x"
+      },
+      "expected": [
+        "axx"
+      ],
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa",
+        "k": 3,
+        "fill": "x"
+      },
+      "expected": [
+        "aaa"
+      ],
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
+    }
   ]
 }

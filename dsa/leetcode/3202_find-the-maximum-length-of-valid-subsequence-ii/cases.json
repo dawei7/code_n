@@ -123,10 +123,10 @@
       ]
     },
     {
-      "id": "real-three-remainder-noise",
-      "name": "real: noise is skipped around a two-remainder pattern",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-remainder-noise",
+      "name": "noise is skipped around a two-remainder pattern",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -148,10 +148,10 @@
       ]
     },
     {
-      "id": "real-k-larger-than-values",
-      "name": "real: a large modulus preserves distinct small values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-k-larger-than-values",
+      "name": "a large modulus preserves distinct small values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -170,10 +170,10 @@
       ]
     },
     {
-      "id": "real-maximum-values",
-      "name": "real: maximum values reduce to bounded remainders",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-values",
+      "name": "maximum values reduce to bounded remainders",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10000000,
@@ -190,10 +190,10 @@
       ]
     },
     {
-      "id": "real-repeated-blocks",
-      "name": "real: repeated runs require ordered selections",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-blocks",
+      "name": "repeated runs require ordered selections",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -215,10 +215,10 @@
       ]
     },
     {
-      "id": "real-single-remainder-dominates",
-      "name": "real: one remainder class beats shorter alternations",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-remainder-dominates",
+      "name": "one remainder class beats shorter alternations",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -238,10 +238,10 @@
       ]
     },
     {
-      "id": "real-k-five-mixed",
-      "name": "real: mixed residues choose the best endpoint pair",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-k-five-mixed",
+      "name": "mixed residues choose the best endpoint pair",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -261,6 +261,41 @@
       "expected": 3,
       "tags": [
         "mixed-remainders"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

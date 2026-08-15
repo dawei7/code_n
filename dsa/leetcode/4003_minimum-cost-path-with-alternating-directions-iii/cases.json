@@ -7,180 +7,666 @@
       "name": "sample: down then a penalized even-second right move",
       "kind": "sample",
       "visible": true,
-      "input": {"m": 2, "n": 2, "penalty": [[5, 3], [1, 4]]},
+      "input": {
+        "m": 2,
+        "n": 2,
+        "penalty": [
+          [
+            5,
+            3
+          ],
+          [
+            1,
+            4
+          ]
+        ]
+      },
       "expected": 8,
-      "tags": ["sample", "direction-penalty"]
+      "tags": [
+        "sample",
+        "direction-penalty"
+      ]
     },
     {
       "id": "sample-zero-cost-wait",
       "name": "sample: a zero-cost wait aligns the following moves",
       "kind": "sample",
       "visible": true,
-      "input": {"m": 2, "n": 2, "penalty": [[0, 7], [3, 2]]},
+      "input": {
+        "m": 2,
+        "n": 2,
+        "penalty": [
+          [
+            0,
+            7
+          ],
+          [
+            3,
+            2
+          ]
+        ]
+      },
       "expected": 7,
-      "tags": ["sample", "wait"]
+      "tags": [
+        "sample",
+        "wait"
+      ]
     },
     {
       "id": "sample-zero-penalty-violation",
       "name": "sample: an even-second right move has zero extra cost",
       "kind": "sample",
       "visible": true,
-      "input": {"m": 2, "n": 3, "penalty": [[8, 0, 9], [7, 4, 1]]},
+      "input": {
+        "m": 2,
+        "n": 3,
+        "penalty": [
+          [
+            8,
+            0,
+            9
+          ],
+          [
+            7,
+            4,
+            1
+          ]
+        ]
+      },
       "expected": 12,
-      "tags": ["sample", "rectangular"]
+      "tags": [
+        "sample",
+        "rectangular"
+      ]
     },
     {
       "id": "trial-single-row-minimum",
       "name": "trial: minimum two-cell row",
       "kind": "trial",
       "visible": true,
-      "input": {"m": 1, "n": 2, "penalty": [[0, 0]]},
+      "input": {
+        "m": 1,
+        "n": 2,
+        "penalty": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
       "expected": 3,
-      "tags": ["trial", "single-row", "minimum"]
+      "tags": [
+        "trial",
+        "single-row",
+        "minimum"
+      ]
     },
     {
       "id": "trial-single-column-minimum",
       "name": "trial: minimum two-cell column",
       "kind": "trial",
       "visible": true,
-      "input": {"m": 2, "n": 1, "penalty": [[0], [0]]},
+      "input": {
+        "m": 2,
+        "n": 1,
+        "penalty": [
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ]
+      },
       "expected": 3,
-      "tags": ["trial", "single-column", "minimum"]
+      "tags": [
+        "trial",
+        "single-column",
+        "minimum"
+      ]
     },
     {
       "id": "trial-row-second-move-penalty",
       "name": "trial: a one-row path pays its middle-cell penalty",
       "kind": "trial",
       "visible": true,
-      "input": {"m": 1, "n": 3, "penalty": [[5, 7, 0]]},
+      "input": {
+        "m": 1,
+        "n": 3,
+        "penalty": [
+          [
+            5,
+            7,
+            0
+          ]
+        ]
+      },
       "expected": 13,
-      "tags": ["trial", "single-row", "parity"]
+      "tags": [
+        "trial",
+        "single-row",
+        "parity"
+      ]
     },
     {
       "id": "trial-column-second-move-penalty",
       "name": "trial: a one-column path pays its middle-cell penalty",
       "kind": "trial",
       "visible": true,
-      "input": {"m": 3, "n": 1, "penalty": [[4], [9], [0]]},
+      "input": {
+        "m": 3,
+        "n": 1,
+        "penalty": [
+          [
+            4
+          ],
+          [
+            9
+          ],
+          [
+            0
+          ]
+        ]
+      },
       "expected": 14,
-      "tags": ["trial", "single-column", "parity"]
+      "tags": [
+        "trial",
+        "single-column",
+        "parity"
+      ]
     },
     {
       "id": "trial-zero-penalty-square",
       "name": "trial: all direction violations are free",
       "kind": "trial",
       "visible": true,
-      "input": {"m": 2, "n": 2, "penalty": [[0, 0], [0, 0]]},
+      "input": {
+        "m": 2,
+        "n": 2,
+        "penalty": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
       "expected": 7,
-      "tags": ["trial", "zero-penalty"]
+      "tags": [
+        "trial",
+        "zero-penalty"
+      ]
     },
     {
       "id": "trial-maximum-penalty-square",
       "name": "trial: the maximum penalty dominates route timing",
       "kind": "trial",
       "visible": true,
-      "input": {"m": 2, "n": 2, "penalty": [[100000, 100000], [100000, 100000]]},
+      "input": {
+        "m": 2,
+        "n": 2,
+        "penalty": [
+          [
+            100000,
+            100000
+          ],
+          [
+            100000,
+            100000
+          ]
+        ]
+      },
       "expected": 100007,
-      "tags": ["trial", "maximum-penalty"]
+      "tags": [
+        "trial",
+        "maximum-penalty"
+      ]
     },
     {
       "id": "trial-wait-improves-route",
       "name": "trial: waiting is strictly better than every no-wait route",
       "kind": "trial",
       "visible": true,
-      "input": {"m": 2, "n": 3, "penalty": [[1, 8, 1], [3, 13, 13]]},
+      "input": {
+        "m": 2,
+        "n": 3,
+        "penalty": [
+          [
+            1,
+            8,
+            1
+          ],
+          [
+            3,
+            13,
+            13
+          ]
+        ]
+      },
       "expected": 15,
-      "tags": ["trial", "wait", "state-parity"]
+      "tags": [
+        "trial",
+        "wait",
+        "state-parity"
+      ]
     },
     {
-      "id": "real-backward-move-improves-route",
-      "name": "hidden: an optimal route includes a left move",
-      "kind": "real",
-      "visible": false,
-      "input": {"m": 3, "n": 3, "penalty": [[64, 57, 82], [65, 87, 93], [2, 93, 43]]},
+      "id": "trial-backward-move-improves-route",
+      "name": "an optimal route includes a left move",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 3,
+        "n": 3,
+        "penalty": [
+          [
+            64,
+            57,
+            82
+          ],
+          [
+            65,
+            87,
+            93
+          ],
+          [
+            2,
+            93,
+            43
+          ]
+        ]
+      },
       "expected": 86,
-      "tags": ["hidden", "backtracking", "state-parity"]
+      "tags": [
+        "backtracking",
+        "state-parity"
+      ]
     },
     {
-      "id": "real-zero-penalty-wide-grid",
-      "name": "hidden: zero penalties on a wide rectangle",
-      "kind": "real",
-      "visible": false,
-      "input": {"m": 2, "n": 3, "penalty": [[0, 0, 0], [0, 0, 0]]},
+      "id": "trial-zero-penalty-wide-grid",
+      "name": "zero penalties on a wide rectangle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 2,
+        "n": 3,
+        "penalty": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
       "expected": 12,
-      "tags": ["hidden", "rectangular", "zero-penalty"]
+      "tags": [
+        "rectangular",
+        "zero-penalty"
+      ]
     },
     {
-      "id": "real-zero-penalty-tall-grid",
-      "name": "hidden: zero penalties on a tall rectangle",
-      "kind": "real",
-      "visible": false,
-      "input": {"m": 3, "n": 2, "penalty": [[0, 0], [0, 0], [0, 0]]},
+      "id": "trial-zero-penalty-tall-grid",
+      "name": "zero penalties on a tall rectangle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 3,
+        "n": 2,
+        "penalty": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
       "expected": 12,
-      "tags": ["hidden", "rectangular", "zero-penalty"]
+      "tags": [
+        "rectangular",
+        "zero-penalty"
+      ]
     },
     {
-      "id": "real-checkerboard-extremes",
-      "name": "hidden: alternating zero and maximum penalties",
-      "kind": "real",
-      "visible": false,
-      "input": {"m": 3, "n": 3, "penalty": [[0, 100000, 0], [100000, 0, 100000], [0, 100000, 0]]},
+      "id": "trial-checkerboard-extremes",
+      "name": "alternating zero and maximum penalties",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 3,
+        "n": 3,
+        "penalty": [
+          [
+            0,
+            100000,
+            0
+          ],
+          [
+            100000,
+            0,
+            100000
+          ],
+          [
+            0,
+            100000,
+            0
+          ]
+        ]
+      },
       "expected": 21,
-      "tags": ["hidden", "checkerboard", "maximum-penalty"]
+      "tags": [
+        "checkerboard",
+        "maximum-penalty"
+      ]
     },
     {
-      "id": "real-increasing-penalties",
-      "name": "hidden: increasing penalties across a square",
-      "kind": "real",
-      "visible": false,
-      "input": {"m": 3, "n": 3, "penalty": [[1, 2, 3], [4, 5, 6], [7, 8, 9]]},
+      "id": "trial-increasing-penalties",
+      "name": "increasing penalties across a square",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 3,
+        "n": 3,
+        "penalty": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            7,
+            8,
+            9
+          ]
+        ]
+      },
       "expected": 26,
-      "tags": ["hidden", "mixed-penalty"]
+      "tags": [
+        "mixed-penalty"
+      ]
     },
     {
-      "id": "real-long-zero-row",
-      "name": "hidden: ten-cell row with free violations",
-      "kind": "real",
-      "visible": false,
-      "input": {"m": 1, "n": 10, "penalty": [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]},
+      "id": "trial-long-zero-row",
+      "name": "ten-cell row with free violations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 1,
+        "n": 10,
+        "penalty": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
       "expected": 55,
-      "tags": ["hidden", "single-row", "zero-penalty"]
+      "tags": [
+        "single-row",
+        "zero-penalty"
+      ]
     },
     {
-      "id": "real-increasing-row",
-      "name": "hidden: ten-cell row with increasing penalties",
-      "kind": "real",
-      "visible": false,
-      "input": {"m": 1, "n": 10, "penalty": [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]]},
+      "id": "trial-increasing-row",
+      "name": "ten-cell row with increasing penalties",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 1,
+        "n": 10,
+        "penalty": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        ]
+      },
       "expected": 71,
-      "tags": ["hidden", "single-row", "mixed-penalty"]
+      "tags": [
+        "single-row",
+        "mixed-penalty"
+      ]
     },
     {
-      "id": "real-increasing-column",
-      "name": "hidden: ten-cell column with increasing penalties",
-      "kind": "real",
-      "visible": false,
-      "input": {"m": 10, "n": 1, "penalty": [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9]]},
+      "id": "trial-increasing-column",
+      "name": "ten-cell column with increasing penalties",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 10,
+        "n": 1,
+        "penalty": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ],
+          [
+            5
+          ],
+          [
+            6
+          ],
+          [
+            7
+          ],
+          [
+            8
+          ],
+          [
+            9
+          ]
+        ]
+      },
       "expected": 71,
-      "tags": ["hidden", "single-column", "mixed-penalty"]
+      "tags": [
+        "single-column",
+        "mixed-penalty"
+      ]
     },
     {
-      "id": "real-four-by-four-mixed",
-      "name": "hidden: mixed penalties in a larger square",
-      "kind": "real",
-      "visible": false,
-      "input": {"m": 4, "n": 4, "penalty": [[9, 1, 8, 2], [3, 7, 4, 6], [5, 0, 10, 11], [12, 13, 14, 15]]},
+      "id": "trial-four-by-four-mixed",
+      "name": "mixed penalties in a larger square",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 4,
+        "n": 4,
+        "penalty": [
+          [
+            9,
+            1,
+            8,
+            2
+          ],
+          [
+            3,
+            7,
+            4,
+            6
+          ],
+          [
+            5,
+            0,
+            10,
+            11
+          ],
+          [
+            12,
+            13,
+            14,
+            15
+          ]
+        ]
+      },
       "expected": 55,
-      "tags": ["hidden", "mixed-penalty", "square"]
+      "tags": [
+        "mixed-penalty",
+        "square"
+      ]
     },
     {
-      "id": "real-ninety-nine-cell-row",
-      "name": "hidden: long row alternating maximum and zero penalties",
-      "kind": "real",
-      "visible": false,
-      "input": {"m": 1, "n": 99, "penalty": [[0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0]]},
+      "id": "trial-ninety-nine-cell-row",
+      "name": "long row alternating maximum and zero penalties",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 1,
+        "n": 99,
+        "penalty": [
+          [
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0,
+            100000,
+            0
+          ]
+        ]
+      },
       "expected": 4950,
-      "tags": ["hidden", "long-row", "maximum-penalty"]
+      "tags": [
+        "long-row",
+        "maximum-penalty"
+      ]
     }
   ]
 }

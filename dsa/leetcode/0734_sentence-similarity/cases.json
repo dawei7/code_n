@@ -7,108 +7,440 @@
       "name": "sample: source aligned direct pairs",
       "kind": "sample",
       "visible": true,
-      "input": {"sentence1": ["great","acting","skills"], "sentence2": ["fine","drama","talent"], "similarPairs": [["great","fine"],["drama","acting"],["skills","talent"]]},
+      "input": {
+        "sentence1": [
+          "great",
+          "acting",
+          "skills"
+        ],
+        "sentence2": [
+          "fine",
+          "drama",
+          "talent"
+        ],
+        "similarPairs": [
+          [
+            "great",
+            "fine"
+          ],
+          [
+            "drama",
+            "acting"
+          ],
+          [
+            "skills",
+            "talent"
+          ]
+        ]
+      },
       "expected": true,
-      "tags": ["sample", "source-example", "direct-pairs", "symmetric"]
+      "tags": [
+        "sample",
+        "source-example",
+        "direct-pairs",
+        "symmetric"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: source identical word",
       "kind": "sample",
       "visible": true,
-      "input": {"sentence1": ["great"], "sentence2": ["great"], "similarPairs": []},
+      "input": {
+        "sentence1": [
+          "great"
+        ],
+        "sentence2": [
+          "great"
+        ],
+        "similarPairs": []
+      },
       "expected": true,
-      "tags": ["sample", "source-example", "reflexive", "empty-pairs"]
+      "tags": [
+        "sample",
+        "source-example",
+        "reflexive",
+        "empty-pairs"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: source different sentence lengths",
       "kind": "sample",
       "visible": true,
-      "input": {"sentence1": ["great"], "sentence2": ["doubleplus","good"], "similarPairs": [["great","doubleplus"]]},
+      "input": {
+        "sentence1": [
+          "great"
+        ],
+        "sentence2": [
+          "doubleplus",
+          "good"
+        ],
+        "similarPairs": [
+          [
+            "great",
+            "doubleplus"
+          ]
+        ]
+      },
       "expected": false,
-      "tags": ["sample", "source-example", "length-mismatch"]
+      "tags": [
+        "sample",
+        "source-example",
+        "length-mismatch"
+      ]
     },
     {
       "id": "trial-non-transitive-chain",
       "name": "similarity does not follow a two-edge chain",
       "kind": "trial",
       "visible": true,
-      "input": {"sentence1": ["great"], "sentence2": ["fine"], "similarPairs": [["great","good"],["good","fine"]]},
+      "input": {
+        "sentence1": [
+          "great"
+        ],
+        "sentence2": [
+          "fine"
+        ],
+        "similarPairs": [
+          [
+            "great",
+            "good"
+          ],
+          [
+            "good",
+            "fine"
+          ]
+        ]
+      },
       "expected": false,
-      "tags": ["trial", "non-transitive", "direct-pairs-only"]
+      "tags": [
+        "trial",
+        "non-transitive",
+        "direct-pairs-only"
+      ]
     },
     {
       "id": "trial-reversed-pair-orientation",
       "name": "declared pairs are symmetric",
       "kind": "trial",
       "visible": true,
-      "input": {"sentence1": ["calm","sea"], "sentence2": ["quiet","ocean"], "similarPairs": [["quiet","calm"],["ocean","sea"]]},
+      "input": {
+        "sentence1": [
+          "calm",
+          "sea"
+        ],
+        "sentence2": [
+          "quiet",
+          "ocean"
+        ],
+        "similarPairs": [
+          [
+            "quiet",
+            "calm"
+          ],
+          [
+            "ocean",
+            "sea"
+          ]
+        ]
+      },
       "expected": true,
-      "tags": ["trial", "symmetric", "reversed-pairs"]
+      "tags": [
+        "trial",
+        "symmetric",
+        "reversed-pairs"
+      ]
     },
     {
       "id": "trial-unlisted-alignment",
       "name": "one unlisted aligned pair makes the sentences dissimilar",
       "kind": "trial",
       "visible": true,
-      "input": {"sentence1": ["fast","red","car"], "sentence2": ["quick","red","vehicle"], "similarPairs": [["fast","quick"],["car","auto"]]},
+      "input": {
+        "sentence1": [
+          "fast",
+          "red",
+          "car"
+        ],
+        "sentence2": [
+          "quick",
+          "red",
+          "vehicle"
+        ],
+        "similarPairs": [
+          [
+            "fast",
+            "quick"
+          ],
+          [
+            "car",
+            "auto"
+          ]
+        ]
+      },
       "expected": false,
-      "tags": ["trial", "missing-pair", "early-failure"]
+      "tags": [
+        "trial",
+        "missing-pair",
+        "early-failure"
+      ]
     },
     {
       "id": "trial-repeated-words-and-unused-pairs",
       "name": "repeated alignments coexist with unused distinct pairs",
       "kind": "trial",
       "visible": true,
-      "input": {"sentence1": ["a","same","a","c"], "sentence2": ["b","same","b","d"], "similarPairs": [["a","b"],["d","c"],["unused","pair"]]},
+      "input": {
+        "sentence1": [
+          "a",
+          "same",
+          "a",
+          "c"
+        ],
+        "sentence2": [
+          "b",
+          "same",
+          "b",
+          "d"
+        ],
+        "similarPairs": [
+          [
+            "a",
+            "b"
+          ],
+          [
+            "d",
+            "c"
+          ],
+          [
+            "unused",
+            "pair"
+          ]
+        ]
+      },
       "expected": true,
-      "tags": ["trial", "repeated-words", "unused-pairs", "distinct-pairs"]
+      "tags": [
+        "trial",
+        "repeated-words",
+        "unused-pairs",
+        "distinct-pairs"
+      ]
     },
     {
       "id": "trial-reverse-pair-at-every-position",
       "name": "every alignment uses the reverse declared orientation",
       "kind": "trial",
       "visible": true,
-      "input": {"sentence1": ["north","south","east","west"], "sentence2": ["up","down","right","left"], "similarPairs": [["up","north"],["down","south"],["right","east"],["left","west"]]},
+      "input": {
+        "sentence1": [
+          "north",
+          "south",
+          "east",
+          "west"
+        ],
+        "sentence2": [
+          "up",
+          "down",
+          "right",
+          "left"
+        ],
+        "similarPairs": [
+          [
+            "up",
+            "north"
+          ],
+          [
+            "down",
+            "south"
+          ],
+          [
+            "right",
+            "east"
+          ],
+          [
+            "left",
+            "west"
+          ]
+        ]
+      },
       "expected": true,
-      "tags": ["trial", "reversed-pairs", "all-positions"]
+      "tags": [
+        "trial",
+        "reversed-pairs",
+        "all-positions"
+      ]
     },
     {
       "id": "trial-case-sensitive-words",
       "name": "word equality and direct pairs are case-sensitive",
       "kind": "trial",
       "visible": true,
-      "input": {"sentence1": ["Word"], "sentence2": ["word"], "similarPairs": []},
+      "input": {
+        "sentence1": [
+          "Word"
+        ],
+        "sentence2": [
+          "word"
+        ],
+        "similarPairs": []
+      },
       "expected": false,
-      "tags": ["trial", "case-sensitive", "empty-pairs"]
+      "tags": [
+        "trial",
+        "case-sensitive",
+        "empty-pairs"
+      ]
     },
     {
       "id": "trial-one-word-many-direct-neighbors",
       "name": "one word can be directly similar to several words",
       "kind": "trial",
       "visible": true,
-      "input": {"sentence1": ["great","great"], "sentence2": ["fine","good"], "similarPairs": [["great","fine"],["great","good"]]},
+      "input": {
+        "sentence1": [
+          "great",
+          "great"
+        ],
+        "sentence2": [
+          "fine",
+          "good"
+        ],
+        "similarPairs": [
+          [
+            "great",
+            "fine"
+          ],
+          [
+            "great",
+            "good"
+          ]
+        ]
+      },
       "expected": true,
-      "tags": ["trial", "one-to-many", "direct-pairs"]
+      "tags": [
+        "trial",
+        "one-to-many",
+        "direct-pairs"
+      ]
     },
     {
       "id": "trial-empty-pairs-nonidentical",
       "name": "empty pair list cannot relate different words",
       "kind": "trial",
       "visible": true,
-      "input": {"sentence1": ["one"], "sentence2": ["two"], "similarPairs": []},
+      "input": {
+        "sentence1": [
+          "one"
+        ],
+        "sentence2": [
+          "two"
+        ],
+        "similarPairs": []
+      },
       "expected": false,
-      "tags": ["trial", "empty-pairs", "missing-pair"]
+      "tags": [
+        "trial",
+        "empty-pairs",
+        "missing-pair"
+      ]
     },
     {
       "id": "trial-maximum-word-length",
       "name": "sentence and pair words reach twenty characters",
       "kind": "trial",
       "visible": true,
-      "input": {"sentence1": ["ABCDEFGHIJKLMNOPQRST"], "sentence2": ["zyxwvutsrqponmlkjihg"], "similarPairs": [["ABCDEFGHIJKLMNOPQRST","zyxwvutsrqponmlkjihg"]]},
+      "input": {
+        "sentence1": [
+          "ABCDEFGHIJKLMNOPQRST"
+        ],
+        "sentence2": [
+          "zyxwvutsrqponmlkjihg"
+        ],
+        "similarPairs": [
+          [
+            "ABCDEFGHIJKLMNOPQRST",
+            "zyxwvutsrqponmlkjihg"
+          ]
+        ]
+      },
       "expected": true,
-      "tags": ["trial", "maximum-word-length", "mixed-case"]
+      "tags": [
+        "trial",
+        "maximum-word-length",
+        "mixed-case"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in sentence1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentence1": [
+          "great"
+        ],
+        "sentence2": [
+          "fine",
+          "drama",
+          "talent"
+        ],
+        "similarPairs": [
+          [
+            "great",
+            "fine"
+          ],
+          [
+            "drama",
+            "acting"
+          ],
+          [
+            "skills",
+            "talent"
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in sentence1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentence1": [
+          "great",
+          "great"
+        ],
+        "sentence2": [
+          "fine",
+          "drama",
+          "talent"
+        ],
+        "similarPairs": [
+          [
+            "great",
+            "fine"
+          ],
+          [
+            "drama",
+            "acting"
+          ],
+          [
+            "skills",
+            "talent"
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

@@ -7,10 +7,19 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "preorder": [5, 2, 1, 3, 6]
+        "preorder": [
+          5,
+          2,
+          1,
+          3,
+          6
+        ]
       },
       "expected": true,
-      "tags": ["sample", "valid"]
+      "tags": [
+        "sample",
+        "valid"
+      ]
     },
     {
       "id": "sample-invalid",
@@ -18,10 +27,20 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "preorder": [5, 2, 6, 1, 3]
+        "preorder": [
+          5,
+          2,
+          6,
+          1,
+          3
+        ]
       },
       "expected": false,
-      "tags": ["sample", "invalid", "lower-bound"]
+      "tags": [
+        "sample",
+        "invalid",
+        "lower-bound"
+      ]
     },
     {
       "id": "trial-single-minimum-value",
@@ -29,10 +48,15 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "preorder": [1]
+        "preorder": [
+          1
+        ]
       },
       "expected": true,
-      "tags": ["minimum-length", "minimum-value"]
+      "tags": [
+        "minimum-length",
+        "minimum-value"
+      ]
     },
     {
       "id": "trial-both-value-limits",
@@ -40,10 +64,16 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "preorder": [10000, 1]
+        "preorder": [
+          10000,
+          1
+        ]
       },
       "expected": true,
-      "tags": ["minimum-value", "maximum-value"]
+      "tags": [
+        "minimum-value",
+        "maximum-value"
+      ]
     },
     {
       "id": "trial-increasing",
@@ -51,10 +81,18 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "preorder": [1, 2, 3, 4]
+        "preorder": [
+          1,
+          2,
+          3,
+          4
+        ]
       },
       "expected": true,
-      "tags": ["right-spine", "monotone"]
+      "tags": [
+        "right-spine",
+        "monotone"
+      ]
     },
     {
       "id": "trial-decreasing",
@@ -62,10 +100,18 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "preorder": [4, 3, 2, 1]
+        "preorder": [
+          4,
+          3,
+          2,
+          1
+        ]
       },
       "expected": true,
-      "tags": ["left-spine", "monotone"]
+      "tags": [
+        "left-spine",
+        "monotone"
+      ]
     },
     {
       "id": "trial-valid-multiple-subtrees",
@@ -73,10 +119,23 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "preorder": [10, 5, 1, 7, 6, 8, 40, 30, 50]
+        "preorder": [
+          10,
+          5,
+          1,
+          7,
+          6,
+          8,
+          40,
+          30,
+          50
+        ]
       },
       "expected": true,
-      "tags": ["branching", "multiple-pops"]
+      "tags": [
+        "branching",
+        "multiple-pops"
+      ]
     },
     {
       "id": "trial-late-root-bound-violation",
@@ -84,10 +143,21 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "preorder": [8, 5, 1, 7, 10, 12, 9]
+        "preorder": [
+          8,
+          5,
+          1,
+          7,
+          10,
+          12,
+          9
+        ]
       },
       "expected": false,
-      "tags": ["late-violation", "root-bound"]
+      "tags": [
+        "late-violation",
+        "root-bound"
+      ]
     },
     {
       "id": "trial-nested-right-bound-violation",
@@ -95,10 +165,54 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "preorder": [10, 5, 1, 7, 40, 50, 30]
+        "preorder": [
+          10,
+          5,
+          1,
+          7,
+          40,
+          50,
+          30
+        ]
       },
       "expected": false,
-      "tags": ["late-violation", "nested-bound"]
+      "tags": [
+        "late-violation",
+        "nested-bound"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in preorder",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "preorder": [
+          5
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in preorder",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "preorder": [
+          5,
+          5
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

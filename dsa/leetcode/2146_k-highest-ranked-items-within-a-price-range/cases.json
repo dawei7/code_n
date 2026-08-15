@@ -2,13 +2,370 @@
   "schema_version": 1,
   "challenge_id": "lc_2146",
   "cases": [
-    {"id": "sample-distance-order", "name": "sample: distance determines all returned ranks", "kind": "sample", "visible": true, "input": {"grid": [[1,2,0,1],[1,3,0,1],[0,2,5,1]], "pricing": [2,5], "start": [0,0], "k": 3}, "expected": [[0,1],[1,1],[2,1]], "tags": ["sample", "distance"]},
-    {"id": "sample-price-tie-break", "name": "sample: price breaks an equal-distance tie", "kind": "sample", "visible": true, "input": {"grid": [[1,2,0,1],[1,3,3,1],[0,2,5,1]], "pricing": [2,3], "start": [2,3], "k": 2}, "expected": [[2,1],[1,2]], "tags": ["sample", "price-tie-break"]},
-    {"id": "sample-fewer-than-k", "name": "sample: return all reachable eligible items", "kind": "sample", "visible": true, "input": {"grid": [[1,1,1],[0,0,1],[2,3,4]], "pricing": [2,3], "start": [0,0], "k": 3}, "expected": [[2,1],[2,0]], "tags": ["sample", "fewer-than-k"]},
-    {"id": "trial-start-is-item", "name": "the starting cell can be the highest-ranked item", "kind": "trial", "visible": true, "input": {"grid": [[2]], "pricing": [2,2], "start": [0,0], "k": 1}, "expected": [[0,0]], "tags": ["start-item", "distance-zero"]},
-    {"id": "trial-unreachable-item", "name": "walls exclude an otherwise eligible item", "kind": "trial", "visible": true, "input": {"grid": [[1,0,2],[1,0,0],[3,1,1]], "pricing": [2,3], "start": [0,0], "k": 2}, "expected": [[2,0]], "tags": ["walls", "unreachable"]},
-    {"id": "real-row-column-ties", "name": "hidden: row and column break equal distance and price ties", "kind": "real", "visible": false, "input": {"grid": [[2,1,2],[1,1,1],[2,1,2]], "pricing": [2,2], "start": [1,1], "k": 4}, "expected": [[0,0],[0,2],[2,0],[2,2]], "tags": ["hidden", "row-column-ties"]},
-    {"id": "real-price-filter", "name": "hidden: traversable out-of-range items are not returned", "kind": "real", "visible": false, "input": {"grid": [[1,9,2],[1,8,3]], "pricing": [2,3], "start": [0,0], "k": 4}, "expected": [[0,2],[1,2]], "tags": ["hidden", "price-filter"]},
-    {"id": "real-k-truncation", "name": "hidden: ranking truncates before later eligible cells", "kind": "real", "visible": false, "input": {"grid": [[1,4,2,3]], "pricing": [2,4], "start": [0,0], "k": 2}, "expected": [[0,1],[0,2]], "tags": ["hidden", "k-truncation"]}
+    {
+      "id": "sample-distance-order",
+      "name": "sample: distance determines all returned ranks",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            0,
+            1
+          ],
+          [
+            1,
+            3,
+            0,
+            1
+          ],
+          [
+            0,
+            2,
+            5,
+            1
+          ]
+        ],
+        "pricing": [
+          2,
+          5
+        ],
+        "start": [
+          0,
+          0
+        ],
+        "k": 3
+      },
+      "expected": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "tags": [
+        "sample",
+        "distance"
+      ]
+    },
+    {
+      "id": "sample-price-tie-break",
+      "name": "sample: price breaks an equal-distance tie",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            0,
+            1
+          ],
+          [
+            1,
+            3,
+            3,
+            1
+          ],
+          [
+            0,
+            2,
+            5,
+            1
+          ]
+        ],
+        "pricing": [
+          2,
+          3
+        ],
+        "start": [
+          2,
+          3
+        ],
+        "k": 2
+      },
+      "expected": [
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "tags": [
+        "sample",
+        "price-tie-break"
+      ]
+    },
+    {
+      "id": "sample-fewer-than-k",
+      "name": "sample: return all reachable eligible items",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            2,
+            3,
+            4
+          ]
+        ],
+        "pricing": [
+          2,
+          3
+        ],
+        "start": [
+          0,
+          0
+        ],
+        "k": 3
+      },
+      "expected": [
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "tags": [
+        "sample",
+        "fewer-than-k"
+      ]
+    },
+    {
+      "id": "trial-start-is-item",
+      "name": "the starting cell can be the highest-ranked item",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            2
+          ]
+        ],
+        "pricing": [
+          2,
+          2
+        ],
+        "start": [
+          0,
+          0
+        ],
+        "k": 1
+      },
+      "expected": [
+        [
+          0,
+          0
+        ]
+      ],
+      "tags": [
+        "start-item",
+        "distance-zero"
+      ]
+    },
+    {
+      "id": "trial-unreachable-item",
+      "name": "walls exclude an otherwise eligible item",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            3,
+            1,
+            1
+          ]
+        ],
+        "pricing": [
+          2,
+          3
+        ],
+        "start": [
+          0,
+          0
+        ],
+        "k": 2
+      },
+      "expected": [
+        [
+          2,
+          0
+        ]
+      ],
+      "tags": [
+        "walls",
+        "unreachable"
+      ]
+    },
+    {
+      "id": "trial-row-column-ties",
+      "name": "row and column break equal distance and price ties",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            2,
+            1,
+            2
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            2,
+            1,
+            2
+          ]
+        ],
+        "pricing": [
+          2,
+          2
+        ],
+        "start": [
+          1,
+          1
+        ],
+        "k": 4
+      },
+      "expected": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "tags": [
+        "row-column-ties"
+      ]
+    },
+    {
+      "id": "trial-price-filter",
+      "name": "traversable out-of-range items are not returned",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            9,
+            2
+          ],
+          [
+            1,
+            8,
+            3
+          ]
+        ],
+        "pricing": [
+          2,
+          3
+        ],
+        "start": [
+          0,
+          0
+        ],
+        "k": 4
+      },
+      "expected": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "tags": [
+        "price-filter"
+      ]
+    },
+    {
+      "id": "trial-k-truncation",
+      "name": "ranking truncates before later eligible cells",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            4,
+            2,
+            3
+          ]
+        ],
+        "pricing": [
+          2,
+          4
+        ],
+        "start": [
+          0,
+          0
+        ],
+        "k": 2
+      },
+      "expected": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "tags": [
+        "k-truncation"
+      ]
+    }
   ]
 }

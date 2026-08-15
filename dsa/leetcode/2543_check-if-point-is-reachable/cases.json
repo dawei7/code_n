@@ -62,47 +62,44 @@
       ]
     },
     {
-      "id": "real-gcd-two",
-      "name": "hidden: even coordinates with gcd two",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-gcd-two",
+      "name": "even coordinates with gcd two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "targetX": 6,
         "targetY": 10
       },
       "expected": true,
       "tags": [
-        "hidden",
         "gcd-two"
       ]
     },
     {
-      "id": "real-even-nonpower",
-      "name": "hidden: even gcd still contains an odd factor",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-even-nonpower",
+      "name": "even gcd still contains an odd factor",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "targetX": 12,
         "targetY": 18
       },
       "expected": false,
       "tags": [
-        "hidden",
         "odd-factor"
       ]
     },
     {
-      "id": "real-equal-power",
-      "name": "hidden: equal power-of-two coordinates",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-equal-power",
+      "name": "equal power-of-two coordinates",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "targetX": 536870912,
         "targetY": 536870912
       },
       "expected": true,
       "tags": [
-        "hidden",
         "equal",
         "large"
       ]

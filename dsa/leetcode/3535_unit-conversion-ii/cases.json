@@ -2,12 +2,326 @@
   "schema_version": 1,
   "challenge_id": "lc_3535",
   "cases": [
-    {"id":"sample-two-branches","name":"sample: ratios across two root branches","kind":"sample","visible":true,"input":{"conversions":[[0,1,2],[0,2,6]],"queries":[[1,2],[1,0]]},"expected":[3,500000004],"tags":["sample","modular-inverse"]},
-    {"id":"sample-larger-tree","name":"sample: conversion queries across a larger tree","kind":"sample","visible":true,"input":{"conversions":[[0,1,2],[0,2,6],[0,3,8],[2,4,2],[2,5,4],[3,6,3]],"queries":[[1,2],[0,4],[6,5],[4,6],[6,1]]},"expected":[3,12,1,2,83333334],"tags":["sample","branching-tree"]},
-    {"id":"trial-single-edge","name":"trial: direct, reverse, and self conversions","kind":"trial","visible":true,"input":{"conversions":[[0,1,7]],"queries":[[0,1],[1,0],[0,0],[1,1]]},"expected":[7,142857144,1,1],"tags":["trial","self-query"]},
-    {"id":"trial-reversed-root-edge","name":"trial: stated edge points toward the root","kind":"trial","visible":true,"input":{"conversions":[[1,0,2]],"queries":[[0,1],[1,0]]},"expected":[500000004,2],"tags":["trial","reverse-orientation"]},
-    {"id":"real-long-chain","name":"real: ratios in both directions along a chain","kind":"real","visible":false,"input":{"conversions":[[0,1,2],[1,2,3],[2,3,5]],"queries":[[0,3],[3,0],[1,3],[3,1]]},"expected":[30,233333335,15,466666670],"tags":["real","chain"]},
-    {"id":"real-unit-factors","name":"real: unit factors preserve every ratio","kind":"real","visible":false,"input":{"conversions":[[0,1,1],[2,1,1],[2,3,1]],"queries":[[0,3],[3,0],[2,1]]},"expected":[1,1,1],"tags":["real","factor-one"]},
-    {"id":"real-largest-factor","name":"real: the largest legal factor remains invertible","kind":"real","visible":false,"input":{"conversions":[[0,1,1000000000]],"queries":[[0,1],[1,0]]},"expected":[1000000000,857142863],"tags":["real","large-factor"]}
+    {
+      "id": "sample-two-branches",
+      "name": "sample: ratios across two root branches",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "conversions": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            2,
+            6
+          ]
+        ],
+        "queries": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        3,
+        500000004
+      ],
+      "tags": [
+        "sample",
+        "modular-inverse"
+      ]
+    },
+    {
+      "id": "sample-larger-tree",
+      "name": "sample: conversion queries across a larger tree",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "conversions": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            2,
+            6
+          ],
+          [
+            0,
+            3,
+            8
+          ],
+          [
+            2,
+            4,
+            2
+          ],
+          [
+            2,
+            5,
+            4
+          ],
+          [
+            3,
+            6,
+            3
+          ]
+        ],
+        "queries": [
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            6,
+            5
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            6,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        3,
+        12,
+        1,
+        2,
+        83333334
+      ],
+      "tags": [
+        "sample",
+        "branching-tree"
+      ]
+    },
+    {
+      "id": "trial-single-edge",
+      "name": "trial: direct, reverse, and self conversions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "conversions": [
+          [
+            0,
+            1,
+            7
+          ]
+        ],
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        7,
+        142857144,
+        1,
+        1
+      ],
+      "tags": [
+        "trial",
+        "self-query"
+      ]
+    },
+    {
+      "id": "trial-reversed-root-edge",
+      "name": "trial: stated edge points toward the root",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "conversions": [
+          [
+            1,
+            0,
+            2
+          ]
+        ],
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        500000004,
+        2
+      ],
+      "tags": [
+        "trial",
+        "reverse-orientation"
+      ]
+    },
+    {
+      "id": "trial-long-chain",
+      "name": "ratios in both directions along a chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "conversions": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            5
+          ]
+        ],
+        "queries": [
+          [
+            0,
+            3
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        30,
+        233333335,
+        15,
+        466666670
+      ],
+      "tags": [
+        "real",
+        "chain"
+      ]
+    },
+    {
+      "id": "trial-unit-factors",
+      "name": "unit factors preserve every ratio",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "conversions": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            2,
+            1,
+            1
+          ],
+          [
+            2,
+            3,
+            1
+          ]
+        ],
+        "queries": [
+          [
+            0,
+            3
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "real",
+        "factor-one"
+      ]
+    },
+    {
+      "id": "trial-largest-factor",
+      "name": "the largest legal factor remains invertible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "conversions": [
+          [
+            0,
+            1,
+            1000000000
+          ]
+        ],
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        1000000000,
+        857142863
+      ],
+      "tags": [
+        "real",
+        "large-factor"
+      ]
+    }
   ]
 }

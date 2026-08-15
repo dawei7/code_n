@@ -6,54 +6,82 @@
       "name": "sample: promise resolves after one hundred milliseconds",
       "kind": "sample",
       "visible": true,
-      "input": {"millis": 100},
+      "input": {
+        "millis": 100
+      },
       "expected": 100,
-      "tags": ["sample", "timer"]
+      "tags": [
+        "sample",
+        "timer"
+      ]
     },
     {
       "id": "sample-two-hundred-ms",
       "name": "sample: promise resolves after two hundred milliseconds",
       "kind": "sample",
       "visible": true,
-      "input": {"millis": 200},
+      "input": {
+        "millis": 200
+      },
       "expected": 200,
-      "tags": ["sample", "timer"]
+      "tags": [
+        "sample",
+        "timer"
+      ]
     },
     {
       "id": "trial-minimum-delay",
       "name": "trial: minimum legal delay remains asynchronous",
       "kind": "trial",
       "visible": true,
-      "input": {"millis": 1},
+      "input": {
+        "millis": 1
+      },
       "expected": 1,
-      "tags": ["trial", "minimum"]
+      "tags": [
+        "trial",
+        "minimum"
+      ]
     },
     {
       "id": "trial-short-delay",
       "name": "trial: short timer resolves with adapter value",
       "kind": "trial",
       "visible": true,
-      "input": {"millis": 10},
+      "input": {
+        "millis": 10
+      },
       "expected": 10,
-      "tags": ["trial", "short-delay"]
+      "tags": [
+        "trial",
+        "short-delay"
+      ]
     },
     {
-      "id": "real-odd-delay",
-      "name": "hidden: odd duration is passed through unchanged",
-      "kind": "real",
-      "visible": false,
-      "input": {"millis": 37},
+      "id": "trial-odd-delay",
+      "name": "odd duration is passed through unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "millis": 37
+      },
       "expected": 37,
-      "tags": ["hidden", "odd-duration"]
+      "tags": [
+        "odd-duration"
+      ]
     },
     {
-      "id": "real-maximum-delay",
-      "name": "hidden: maximum legal delay resolves successfully",
-      "kind": "real",
-      "visible": false,
-      "input": {"millis": 1000},
+      "id": "trial-maximum-delay",
+      "name": "maximum legal delay resolves successfully",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "millis": 1000
+      },
       "expected": 1000,
-      "tags": ["hidden", "maximum"]
+      "tags": [
+        "maximum"
+      ]
     }
   ]
 }

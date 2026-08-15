@@ -63,7 +63,7 @@
       "id": "trial-short",
       "name": "trial: three segments cannot self-cross",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "distance": [
           1,
@@ -81,7 +81,7 @@
       "id": "trial-fourth-back",
       "name": "trial: fifth segment touches first",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "distance": [
           1,
@@ -98,10 +98,10 @@
       ]
     },
     {
-      "id": "hidden-fifth-back",
-      "name": "hidden: sixth segment transition crossing",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-fifth-back",
+      "name": "sixth segment transition crossing",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "distance": [
           1,
@@ -114,15 +114,14 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "fifth-back"
       ]
     },
     {
-      "id": "hidden-long-expansion",
-      "name": "hidden: longer expanding spiral",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-long-expansion",
+      "name": "longer expanding spiral",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "distance": [
           1,
@@ -135,15 +134,14 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "expanding"
       ]
     },
     {
-      "id": "hidden-late-cross",
-      "name": "hidden: crossing after several outward moves",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-late-cross",
+      "name": "crossing after several outward moves",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "distance": [
           1,
@@ -156,7 +154,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "late-crossing"
       ]
     }

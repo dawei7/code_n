@@ -87,61 +87,56 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: all ones",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "all ones",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "111111"
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "all-ones"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: equal opposing blocks",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "equal opposing blocks",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "111000"
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "opposing-blocks"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: leading one before zeros",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "leading one before zeros",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "1000001"
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "leading-one"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: alternating bits",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "alternating bits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "101010"
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "alternating"
       ]
     }
   ]
 }
-

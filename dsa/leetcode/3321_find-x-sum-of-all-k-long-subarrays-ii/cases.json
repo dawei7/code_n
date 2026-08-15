@@ -116,10 +116,10 @@
       ]
     },
     {
-      "id": "real-tie-heavy-ii",
-      "name": "real: hidden tie-heavy windows II",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-tie-heavy-ii",
+      "name": "hidden tie-heavy windows II",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10,

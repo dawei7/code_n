@@ -135,10 +135,10 @@
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "real: large values and repeated endpoints",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-values",
+      "name": "large values and repeated endpoints",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -153,15 +153,14 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
     {
-      "id": "real-late-best",
-      "name": "real: longest window occurs at the end",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-late-best",
+      "name": "longest window occurs at the end",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -176,15 +175,14 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "late-best"
       ]
     },
     {
-      "id": "real-k-equals-length",
-      "name": "real: k equals array length",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-k-equals-length",
+      "name": "k equals array length",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -196,7 +194,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "k-boundary"
       ]
     }

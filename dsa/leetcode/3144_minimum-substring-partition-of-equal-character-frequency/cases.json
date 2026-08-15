@@ -6,108 +6,168 @@
       "name": "sample: three balanced parts",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "fabccddg"},
+      "input": {
+        "s": "fabccddg"
+      },
       "expected": 3,
-      "tags": ["sample", "partition"]
+      "tags": [
+        "sample",
+        "partition"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: two balanced parts",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "abababaccddb"},
+      "input": {
+        "s": "abababaccddb"
+      },
       "expected": 2,
-      "tags": ["sample", "partition"]
+      "tags": [
+        "sample",
+        "partition"
+      ]
     },
     {
       "id": "trial-single-character",
       "name": "trial: one character",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "z"},
+      "input": {
+        "s": "z"
+      },
       "expected": 1,
-      "tags": ["singleton", "balanced"]
+      "tags": [
+        "singleton",
+        "balanced"
+      ]
     },
     {
       "id": "trial-one-repeated-character",
       "name": "trial: one distinct character repeated",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "aaaaaa"},
+      "input": {
+        "s": "aaaaaa"
+      },
       "expected": 1,
-      "tags": ["single-distinct", "balanced"]
+      "tags": [
+        "single-distinct",
+        "balanced"
+      ]
     },
     {
       "id": "trial-all-distinct",
       "name": "trial: every character occurs once",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "qwerty"},
+      "input": {
+        "s": "qwerty"
+      },
       "expected": 1,
-      "tags": ["all-distinct", "balanced"]
+      "tags": [
+        "all-distinct",
+        "balanced"
+      ]
     },
     {
       "id": "trial-equal-repeated-frequencies",
       "name": "trial: three characters each occur twice",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "aabbcc"},
+      "input": {
+        "s": "aabbcc"
+      },
       "expected": 1,
-      "tags": ["balanced", "frequency"]
+      "tags": [
+        "balanced",
+        "frequency"
+      ]
     },
     {
       "id": "trial-short-unbalanced",
       "name": "trial: one short cut is required",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "aab"},
+      "input": {
+        "s": "aab"
+      },
       "expected": 2,
-      "tags": ["unbalanced", "minimum-cut"]
+      "tags": [
+        "unbalanced",
+        "minimum-cut"
+      ]
     },
     {
-      "id": "real-alternating-prefix",
-      "name": "real: balanced alternating prefix plus singleton",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "ababa"},
+      "id": "trial-alternating-prefix",
+      "name": "balanced alternating prefix plus singleton",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ababa"
+      },
       "expected": 2,
-      "tags": ["alternating", "prefix"]
+      "tags": [
+        "alternating",
+        "prefix"
+      ]
     },
     {
-      "id": "real-two-frequency-blocks",
-      "name": "real: two uniform-frequency blocks",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aaabbbcc"},
+      "id": "trial-two-frequency-blocks",
+      "name": "two uniform-frequency blocks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaabbbcc"
+      },
       "expected": 2,
-      "tags": ["blocks", "minimum-cut"]
+      "tags": [
+        "blocks",
+        "minimum-cut"
+      ]
     },
     {
-      "id": "real-balanced-prefix-and-tail",
-      "name": "real: distinct prefix and repeated tail",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcdd"},
+      "id": "trial-balanced-prefix-and-tail",
+      "name": "distinct prefix and repeated tail",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdd"
+      },
       "expected": 2,
-      "tags": ["prefix", "tail"]
+      "tags": [
+        "prefix",
+        "tail"
+      ]
     },
     {
-      "id": "real-three-growing-runs",
-      "name": "real: three runs require three parts",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abbccc"},
+      "id": "trial-three-growing-runs",
+      "name": "three runs require three parts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abbccc"
+      },
       "expected": 3,
-      "tags": ["runs", "multiple-cuts"]
+      "tags": [
+        "runs",
+        "multiple-cuts"
+      ]
     },
     {
-      "id": "real-whole-string-balanced-out-of-order",
-      "name": "real: equal totals despite interleaving",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "zzxyyx"},
+      "id": "trial-whole-string-balanced-out-of-order",
+      "name": "equal totals despite interleaving",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "zzxyyx"
+      },
       "expected": 1,
-      "tags": ["balanced", "interleaved"]
+      "tags": [
+        "balanced",
+        "interleaved"
+      ]
     }
   ]
 }

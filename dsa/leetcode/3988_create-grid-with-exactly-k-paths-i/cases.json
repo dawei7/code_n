@@ -7,200 +7,577 @@
       "name": "sample: two paths in a two by three grid",
       "kind": "sample",
       "visible": true,
-      "input": {"m": 2, "n": 3, "k": 2},
-      "expected": ["...", "#.."],
-      "validator": {"kind": "exact_monotone_path_grid", "rows_param": "m", "columns_param": "n", "paths_param": "k"},
-      "tags": ["sample", "non-unique-output", "two-path-block"]
+      "input": {
+        "m": 2,
+        "n": 3,
+        "k": 2
+      },
+      "expected": [
+        "...",
+        "#.."
+      ],
+      "validator": {
+        "kind": "exact_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n",
+        "paths_param": "k"
+      },
+      "tags": [
+        "sample",
+        "non-unique-output",
+        "two-path-block"
+      ]
     },
     {
       "id": "sample-four-paths",
       "name": "sample: four paths in a three by three grid",
       "kind": "sample",
       "visible": true,
-      "input": {"m": 3, "n": 3, "k": 4},
-      "expected": ["..#", "...", "#.."],
-      "validator": {"kind": "exact_monotone_path_grid", "rows_param": "m", "columns_param": "n", "paths_param": "k"},
-      "tags": ["sample", "four-path-block", "blocked-corners"]
+      "input": {
+        "m": 3,
+        "n": 3,
+        "k": 4
+      },
+      "expected": [
+        "..#",
+        "...",
+        "#.."
+      ],
+      "validator": {
+        "kind": "exact_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n",
+        "paths_param": "k"
+      },
+      "tags": [
+        "sample",
+        "four-path-block",
+        "blocked-corners"
+      ]
     },
     {
       "id": "sample-impossible-single-row",
       "name": "sample: two paths are impossible in one row",
       "kind": "sample",
       "visible": true,
-      "input": {"m": 1, "n": 4, "k": 2},
+      "input": {
+        "m": 1,
+        "n": 4,
+        "k": 2
+      },
       "expected": [],
-      "validator": {"kind": "exact_monotone_path_grid", "rows_param": "m", "columns_param": "n", "paths_param": "k"},
-      "tags": ["sample", "impossible", "single-row"]
+      "validator": {
+        "kind": "exact_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n",
+        "paths_param": "k"
+      },
+      "tags": [
+        "sample",
+        "impossible",
+        "single-row"
+      ]
     },
     {
       "id": "trial-single-cell-one-path",
       "name": "trial: the single cell is the unique path",
       "kind": "trial",
       "visible": true,
-      "input": {"m": 1, "n": 1, "k": 1},
-      "expected": ["."],
-      "validator": {"kind": "exact_monotone_path_grid", "rows_param": "m", "columns_param": "n", "paths_param": "k"},
-      "tags": ["trial", "minimum-dimensions", "one-path"]
+      "input": {
+        "m": 1,
+        "n": 1,
+        "k": 1
+      },
+      "expected": [
+        "."
+      ],
+      "validator": {
+        "kind": "exact_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n",
+        "paths_param": "k"
+      },
+      "tags": [
+        "trial",
+        "minimum-dimensions",
+        "one-path"
+      ]
     },
     {
       "id": "trial-long-single-row",
       "name": "trial: a long single row has one forced path",
       "kind": "trial",
       "visible": true,
-      "input": {"m": 1, "n": 10, "k": 1},
-      "expected": [".........."],
-      "validator": {"kind": "exact_monotone_path_grid", "rows_param": "m", "columns_param": "n", "paths_param": "k"},
-      "tags": ["trial", "single-row", "maximum-column-count"]
+      "input": {
+        "m": 1,
+        "n": 10,
+        "k": 1
+      },
+      "expected": [
+        ".........."
+      ],
+      "validator": {
+        "kind": "exact_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n",
+        "paths_param": "k"
+      },
+      "tags": [
+        "trial",
+        "single-row",
+        "maximum-column-count"
+      ]
     },
     {
       "id": "trial-long-single-column",
       "name": "trial: a long single column has one forced path",
       "kind": "trial",
       "visible": true,
-      "input": {"m": 10, "n": 1, "k": 1},
-      "expected": [".", ".", ".", ".", ".", ".", ".", ".", ".", "."],
-      "validator": {"kind": "exact_monotone_path_grid", "rows_param": "m", "columns_param": "n", "paths_param": "k"},
-      "tags": ["trial", "single-column", "maximum-row-count"]
+      "input": {
+        "m": 10,
+        "n": 1,
+        "k": 1
+      },
+      "expected": [
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        "."
+      ],
+      "validator": {
+        "kind": "exact_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n",
+        "paths_param": "k"
+      },
+      "tags": [
+        "trial",
+        "single-column",
+        "maximum-row-count"
+      ]
     },
     {
       "id": "trial-two-by-two-two-paths",
       "name": "trial: the smallest two-path rectangle",
       "kind": "trial",
       "visible": true,
-      "input": {"m": 2, "n": 2, "k": 2},
-      "expected": ["..", ".."],
-      "validator": {"kind": "exact_monotone_path_grid", "rows_param": "m", "columns_param": "n", "paths_param": "k"},
-      "tags": ["trial", "two-path-block", "minimum-fit"]
+      "input": {
+        "m": 2,
+        "n": 2,
+        "k": 2
+      },
+      "expected": [
+        "..",
+        ".."
+      ],
+      "validator": {
+        "kind": "exact_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n",
+        "paths_param": "k"
+      },
+      "tags": [
+        "trial",
+        "two-path-block",
+        "minimum-fit"
+      ]
     },
     {
       "id": "trial-two-by-three-three-paths",
       "name": "trial: horizontal three-path block",
       "kind": "trial",
       "visible": true,
-      "input": {"m": 2, "n": 3, "k": 3},
-      "expected": ["...", "..."],
-      "validator": {"kind": "exact_monotone_path_grid", "rows_param": "m", "columns_param": "n", "paths_param": "k"},
-      "tags": ["trial", "three-path-block", "horizontal"]
+      "input": {
+        "m": 2,
+        "n": 3,
+        "k": 3
+      },
+      "expected": [
+        "...",
+        "..."
+      ],
+      "validator": {
+        "kind": "exact_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n",
+        "paths_param": "k"
+      },
+      "tags": [
+        "trial",
+        "three-path-block",
+        "horizontal"
+      ]
     },
     {
       "id": "trial-three-by-two-three-paths",
       "name": "trial: vertical three-path block",
       "kind": "trial",
       "visible": true,
-      "input": {"m": 3, "n": 2, "k": 3},
-      "expected": ["..", "..", ".."],
-      "validator": {"kind": "exact_monotone_path_grid", "rows_param": "m", "columns_param": "n", "paths_param": "k"},
-      "tags": ["trial", "three-path-block", "vertical"]
+      "input": {
+        "m": 3,
+        "n": 2,
+        "k": 3
+      },
+      "expected": [
+        "..",
+        "..",
+        ".."
+      ],
+      "validator": {
+        "kind": "exact_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n",
+        "paths_param": "k"
+      },
+      "tags": [
+        "trial",
+        "three-path-block",
+        "vertical"
+      ]
     },
     {
       "id": "trial-two-by-two-three-impossible",
       "name": "trial: three paths exceed a two by two grid",
       "kind": "trial",
       "visible": true,
-      "input": {"m": 2, "n": 2, "k": 3},
+      "input": {
+        "m": 2,
+        "n": 2,
+        "k": 3
+      },
       "expected": [],
-      "validator": {"kind": "exact_monotone_path_grid", "rows_param": "m", "columns_param": "n", "paths_param": "k"},
-      "tags": ["trial", "impossible", "maximum-path-count"]
+      "validator": {
+        "kind": "exact_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n",
+        "paths_param": "k"
+      },
+      "tags": [
+        "trial",
+        "impossible",
+        "maximum-path-count"
+      ]
     },
     {
       "id": "trial-two-by-four-four-paths",
       "name": "trial: horizontal four-path block",
       "kind": "trial",
       "visible": true,
-      "input": {"m": 2, "n": 4, "k": 4},
-      "expected": ["....", "...."],
-      "validator": {"kind": "exact_monotone_path_grid", "rows_param": "m", "columns_param": "n", "paths_param": "k"},
-      "tags": ["trial", "four-path-block", "horizontal"]
+      "input": {
+        "m": 2,
+        "n": 4,
+        "k": 4
+      },
+      "expected": [
+        "....",
+        "...."
+      ],
+      "validator": {
+        "kind": "exact_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n",
+        "paths_param": "k"
+      },
+      "tags": [
+        "trial",
+        "four-path-block",
+        "horizontal"
+      ]
     },
     {
       "id": "trial-four-by-two-four-paths",
       "name": "trial: vertical four-path block",
       "kind": "trial",
       "visible": true,
-      "input": {"m": 4, "n": 2, "k": 4},
-      "expected": ["..", "..", "..", ".."],
-      "validator": {"kind": "exact_monotone_path_grid", "rows_param": "m", "columns_param": "n", "paths_param": "k"},
-      "tags": ["trial", "four-path-block", "vertical"]
+      "input": {
+        "m": 4,
+        "n": 2,
+        "k": 4
+      },
+      "expected": [
+        "..",
+        "..",
+        "..",
+        ".."
+      ],
+      "validator": {
+        "kind": "exact_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n",
+        "paths_param": "k"
+      },
+      "tags": [
+        "trial",
+        "four-path-block",
+        "vertical"
+      ]
     },
     {
-      "id": "real-max-square-one-path",
-      "name": "hidden: one forced path across the maximum square",
-      "kind": "real",
-      "visible": false,
-      "input": {"m": 10, "n": 10, "k": 1},
-      "expected": ["..........", "#########.", "#########.", "#########.", "#########.", "#########.", "#########.", "#########.", "#########.", "#########."],
-      "validator": {"kind": "exact_monotone_path_grid", "rows_param": "m", "columns_param": "n", "paths_param": "k"},
-      "tags": ["hidden", "maximum-dimensions", "one-path", "corridor"]
+      "id": "trial-max-square-one-path",
+      "name": "one forced path across the maximum square",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 10,
+        "n": 10,
+        "k": 1
+      },
+      "expected": [
+        "..........",
+        "#########.",
+        "#########.",
+        "#########.",
+        "#########.",
+        "#########.",
+        "#########.",
+        "#########.",
+        "#########.",
+        "#########."
+      ],
+      "validator": {
+        "kind": "exact_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n",
+        "paths_param": "k"
+      },
+      "tags": [
+        "maximum-dimensions",
+        "one-path",
+        "corridor"
+      ]
     },
     {
-      "id": "real-max-square-two-paths",
-      "name": "hidden: two paths merge before a long corridor",
-      "kind": "real",
-      "visible": false,
-      "input": {"m": 10, "n": 10, "k": 2},
-      "expected": ["..########", "..........", "#########.", "#########.", "#########.", "#########.", "#########.", "#########.", "#########.", "#########."],
-      "validator": {"kind": "exact_monotone_path_grid", "rows_param": "m", "columns_param": "n", "paths_param": "k"},
-      "tags": ["hidden", "maximum-dimensions", "two-path-block", "corridor"]
+      "id": "trial-max-square-two-paths",
+      "name": "two paths merge before a long corridor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 10,
+        "n": 10,
+        "k": 2
+      },
+      "expected": [
+        "..########",
+        "..........",
+        "#########.",
+        "#########.",
+        "#########.",
+        "#########.",
+        "#########.",
+        "#########.",
+        "#########.",
+        "#########."
+      ],
+      "validator": {
+        "kind": "exact_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n",
+        "paths_param": "k"
+      },
+      "tags": [
+        "maximum-dimensions",
+        "two-path-block",
+        "corridor"
+      ]
     },
     {
-      "id": "real-square-three-paths",
-      "name": "hidden: three paths merge into a square-grid corridor",
-      "kind": "real",
-      "visible": false,
-      "input": {"m": 5, "n": 5, "k": 3},
-      "expected": ["...##", ".....", "####.", "####.", "####."],
-      "validator": {"kind": "exact_monotone_path_grid", "rows_param": "m", "columns_param": "n", "paths_param": "k"},
-      "tags": ["hidden", "three-path-block", "corridor"]
+      "id": "trial-square-three-paths",
+      "name": "three paths merge into a square-grid corridor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 5,
+        "n": 5,
+        "k": 3
+      },
+      "expected": [
+        "...##",
+        ".....",
+        "####.",
+        "####.",
+        "####."
+      ],
+      "validator": {
+        "kind": "exact_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n",
+        "paths_param": "k"
+      },
+      "tags": [
+        "three-path-block",
+        "corridor"
+      ]
     },
     {
-      "id": "real-three-by-two-four-impossible",
-      "name": "hidden: four paths do not fit in three by two",
-      "kind": "real",
-      "visible": false,
-      "input": {"m": 3, "n": 2, "k": 4},
+      "id": "trial-three-by-two-four-impossible",
+      "name": "four paths do not fit in three by two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 3,
+        "n": 2,
+        "k": 4
+      },
       "expected": [],
-      "validator": {"kind": "exact_monotone_path_grid", "rows_param": "m", "columns_param": "n", "paths_param": "k"},
-      "tags": ["hidden", "impossible", "vertical"]
+      "validator": {
+        "kind": "exact_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n",
+        "paths_param": "k"
+      },
+      "tags": [
+        "impossible",
+        "vertical"
+      ]
     },
     {
-      "id": "real-two-by-three-four-impossible",
-      "name": "hidden: four paths do not fit in two by three",
-      "kind": "real",
-      "visible": false,
-      "input": {"m": 2, "n": 3, "k": 4},
+      "id": "trial-two-by-three-four-impossible",
+      "name": "four paths do not fit in two by three",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 2,
+        "n": 3,
+        "k": 4
+      },
       "expected": [],
-      "validator": {"kind": "exact_monotone_path_grid", "rows_param": "m", "columns_param": "n", "paths_param": "k"},
-      "tags": ["hidden", "impossible", "horizontal"]
+      "validator": {
+        "kind": "exact_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n",
+        "paths_param": "k"
+      },
+      "tags": [
+        "impossible",
+        "horizontal"
+      ]
     },
     {
-      "id": "real-three-by-four-four-paths",
-      "name": "hidden: horizontal four-path block with one corridor row",
-      "kind": "real",
-      "visible": false,
-      "input": {"m": 3, "n": 4, "k": 4},
-      "expected": ["....", "....", "###."],
-      "validator": {"kind": "exact_monotone_path_grid", "rows_param": "m", "columns_param": "n", "paths_param": "k"},
-      "tags": ["hidden", "four-path-block", "horizontal", "corridor"]
+      "id": "trial-three-by-four-four-paths",
+      "name": "horizontal four-path block with one corridor row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 3,
+        "n": 4,
+        "k": 4
+      },
+      "expected": [
+        "....",
+        "....",
+        "###."
+      ],
+      "validator": {
+        "kind": "exact_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n",
+        "paths_param": "k"
+      },
+      "tags": [
+        "four-path-block",
+        "horizontal",
+        "corridor"
+      ]
     },
     {
-      "id": "real-four-by-three-four-paths",
-      "name": "hidden: vertical four-path block with one corridor column",
-      "kind": "real",
-      "visible": false,
-      "input": {"m": 4, "n": 3, "k": 4},
-      "expected": ["..#", "..#", "..#", "..."],
-      "validator": {"kind": "exact_monotone_path_grid", "rows_param": "m", "columns_param": "n", "paths_param": "k"},
-      "tags": ["hidden", "four-path-block", "vertical", "corridor"]
+      "id": "trial-four-by-three-four-paths",
+      "name": "vertical four-path block with one corridor column",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 4,
+        "n": 3,
+        "k": 4
+      },
+      "expected": [
+        "..#",
+        "..#",
+        "..#",
+        "..."
+      ],
+      "validator": {
+        "kind": "exact_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n",
+        "paths_param": "k"
+      },
+      "tags": [
+        "four-path-block",
+        "vertical",
+        "corridor"
+      ]
     },
     {
-      "id": "real-max-square-four-paths",
-      "name": "hidden: four paths across the maximum square",
-      "kind": "real",
-      "visible": false,
-      "input": {"m": 10, "n": 10, "k": 4},
-      "expected": ["....######", "..........", "#########.", "#########.", "#########.", "#########.", "#########.", "#########.", "#########.", "#########."],
-      "validator": {"kind": "exact_monotone_path_grid", "rows_param": "m", "columns_param": "n", "paths_param": "k"},
-      "tags": ["hidden", "maximum-dimensions", "four-path-block", "corridor"]
+      "id": "trial-max-square-four-paths",
+      "name": "four paths across the maximum square",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 10,
+        "n": 10,
+        "k": 4
+      },
+      "expected": [
+        "....######",
+        "..........",
+        "#########.",
+        "#########.",
+        "#########.",
+        "#########.",
+        "#########.",
+        "#########.",
+        "#########.",
+        "#########."
+      ],
+      "validator": {
+        "kind": "exact_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n",
+        "paths_param": "k"
+      },
+      "tags": [
+        "maximum-dimensions",
+        "four-path-block",
+        "corridor"
+      ]
+    },
+    {
+      "id": "trial-boundary-21",
+      "name": "minimal value m=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 1,
+        "n": 3,
+        "k": 2
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-22",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 2,
+        "n": 1,
+        "k": 2
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
     }
   ]
 }

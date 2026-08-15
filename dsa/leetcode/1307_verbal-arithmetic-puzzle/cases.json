@@ -97,10 +97,10 @@
       ]
     },
     {
-      "id": "hidden-repeated-addend",
-      "name": "hidden: repeated addend letter keeps one digit",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-addend",
+      "name": "repeated addend letter keeps one digit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "A",
@@ -110,15 +110,14 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "repeated-letter"
       ]
     },
     {
-      "id": "hidden-ten-letter-solution",
-      "name": "hidden: all ten digits participate",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ten-letter-solution",
+      "name": "all ten digits participate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "DONALD",
@@ -128,16 +127,15 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "ten-letters",
         "boundary"
       ]
     },
     {
-      "id": "hidden-result-too-short",
-      "name": "hidden: result cannot hold the addend magnitude",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-result-too-short",
+      "name": "result cannot hold the addend magnitude",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "AB"
@@ -146,7 +144,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "leading-zero",
         "length"
       ]

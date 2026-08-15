@@ -190,10 +190,10 @@
       ]
     },
     {
-      "id": "real-single-high",
-      "name": "hidden: one high ID yields a long prefix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-high",
+      "name": "one high ID yields a long prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Customers": [
@@ -244,10 +244,10 @@
       ]
     },
     {
-      "id": "real-alternating",
-      "name": "hidden: every odd ID is absent",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alternating",
+      "name": "every odd ID is absent",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Customers": [
@@ -302,10 +302,10 @@
       ]
     },
     {
-      "id": "real-one-interior",
-      "name": "hidden: exactly one middle ID is absent",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-interior",
+      "name": "exactly one middle ID is absent",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Customers": [
@@ -347,10 +347,10 @@
       ]
     },
     {
-      "id": "real-unsorted-rows",
-      "name": "hidden: table order does not affect numeric output",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unsorted-rows",
+      "name": "table order does not affect numeric output",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Customers": [
@@ -401,10 +401,10 @@
       ]
     },
     {
-      "id": "real-large-consecutive-tail",
-      "name": "hidden: multiple gaps precede a consecutive tail",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-consecutive-tail",
+      "name": "multiple gaps precede a consecutive tail",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Customers": [
@@ -469,4 +469,3 @@
     }
   ]
 }
-

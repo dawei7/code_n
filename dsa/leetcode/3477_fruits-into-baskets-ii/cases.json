@@ -89,10 +89,10 @@
       ]
     },
     {
-      "id": "real-all-unplaced",
-      "name": "hidden: every basket is too small",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-unplaced",
+      "name": "every basket is too small",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           5,
@@ -107,15 +107,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "all-unplaced"
       ]
     },
     {
-      "id": "real-no-reuse",
-      "name": "hidden: a sufficient basket cannot be reused",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-no-reuse",
+      "name": "a sufficient basket cannot be reused",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           2,
@@ -128,15 +127,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "basket-uniqueness"
       ]
     },
     {
-      "id": "real-skip-insufficient-prefix",
-      "name": "hidden: scan past several small available baskets",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-skip-insufficient-prefix",
+      "name": "scan past several small available baskets",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           8,
@@ -151,15 +149,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "prefix-scan"
       ]
     },
     {
-      "id": "real-fruit-order-matters",
-      "name": "hidden: fruit processing order is preserved",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-fruit-order-matters",
+      "name": "fruit processing order is preserved",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           2,
@@ -172,15 +169,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "fruit-order"
       ]
     },
     {
-      "id": "real-duplicate-values",
-      "name": "hidden: duplicate quantities and capacities are distinct positions",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicate-values",
+      "name": "duplicate quantities and capacities are distinct positions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           3,
@@ -197,15 +193,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "real-single-fit",
-      "name": "hidden: minimum length with an exact fit",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-fit",
+      "name": "minimum length with an exact fit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           1
@@ -216,15 +211,14 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
     {
-      "id": "real-single-unfit",
-      "name": "hidden: minimum length with no fit",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-unfit",
+      "name": "minimum length with no fit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           2
@@ -235,15 +229,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
     {
-      "id": "real-maximum-values",
-      "name": "hidden: legal maximum quantity and capacity",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-values",
+      "name": "legal maximum quantity and capacity",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           1000,
@@ -258,7 +251,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "maximum-values"
       ]
     }

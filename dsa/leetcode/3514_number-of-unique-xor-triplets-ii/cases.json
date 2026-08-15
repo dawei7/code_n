@@ -6,90 +6,219 @@
       "name": "sample: two values remain the only results",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 3]},
+      "input": {
+        "nums": [
+          1,
+          3
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "repeated-indices"]
+      "tags": [
+        "sample",
+        "repeated-indices"
+      ]
     },
     {
       "id": "sample-four-consecutive-values",
       "name": "sample: four high consecutive values",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [6, 7, 8, 9]},
+      "input": {
+        "nums": [
+          6,
+          7,
+          8,
+          9
+        ]
+      },
       "expected": 4,
-      "tags": ["sample", "consecutive-values"]
+      "tags": [
+        "sample",
+        "consecutive-values"
+      ]
     },
     {
       "id": "trial-singleton",
       "name": "trial: one value",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [7]},
+      "input": {
+        "nums": [
+          7
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "minimum-length"]
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-all-duplicates",
       "name": "trial: duplicate occurrences add no support",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5, 5, 5]},
+      "input": {
+        "nums": [
+          5,
+          5,
+          5
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "duplicates", "support-only"]
+      "tags": [
+        "trial",
+        "duplicates",
+        "support-only"
+      ]
     },
     {
       "id": "trial-three-consecutive-values",
       "name": "trial: zero becomes attainable",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 3]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
       "expected": 4,
-      "tags": ["trial", "zero-xor", "full-support"]
+      "tags": [
+        "trial",
+        "zero-xor",
+        "full-support"
+      ]
     },
     {
-      "id": "real-partial-duplicates",
-      "name": "real: duplicate one does not change two-value support",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 1, 2]},
+      "id": "trial-partial-duplicates",
+      "name": "duplicate one does not change two-value support",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2
+        ]
+      },
       "expected": 2,
-      "tags": ["real", "duplicates", "index-reuse"]
+      "tags": [
+        "real",
+        "duplicates",
+        "index-reuse"
+      ]
     },
     {
-      "id": "real-three-bit-basis",
-      "name": "real: three independent bits add their combined XOR",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 4]},
+      "id": "trial-three-bit-basis",
+      "name": "three independent bits add their combined XOR",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4
+        ]
+      },
       "expected": 4,
-      "tags": ["real", "bit-basis", "sparse-support"]
+      "tags": [
+        "real",
+        "bit-basis",
+        "sparse-support"
+      ]
     },
     {
-      "id": "real-four-bit-basis",
-      "name": "real: four powers of two produce eight values",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 4, 8]},
+      "id": "trial-four-bit-basis",
+      "name": "four powers of two produce eight values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          8
+        ]
+      },
       "expected": 8,
-      "tags": ["real", "bit-basis", "larger-width"]
+      "tags": [
+        "real",
+        "bit-basis",
+        "larger-width"
+      ]
     },
     {
-      "id": "real-maximum-values",
-      "name": "real: values near the upper bound",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1500, 1499, 1]},
+      "id": "trial-maximum-values",
+      "name": "values near the upper bound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1500,
+          1499,
+          1
+        ]
+      },
       "expected": 4,
-      "tags": ["real", "value-boundary", "width-2048"]
+      "tags": [
+        "real",
+        "value-boundary",
+        "width-2048"
+      ]
     },
     {
-      "id": "real-nonconsecutive-values",
-      "name": "real: arbitrary gaps in the value set",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2, 5, 9]},
+      "id": "trial-nonconsecutive-values",
+      "name": "arbitrary gaps in the value set",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          5,
+          9
+        ]
+      },
       "expected": 4,
-      "tags": ["real", "nonconsecutive", "sparse-support"]
+      "tags": [
+        "real",
+        "nonconsecutive",
+        "sparse-support"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

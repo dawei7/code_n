@@ -1,14 +1,254 @@
-{"schema_version":1,"challenge_id":"lc_3797","cases":[
-{"id":"sample-1","name":"sample: unit distance permits two routes","kind":"sample","visible":true,"input":{"grid":["..","#."],"d":1},"expected":2,"validator":{"kind":"exact"},"tags":["sample","distance-boundary"]},
-{"id":"sample-2","name":"sample: distance two permits diagonal climbs","kind":"sample","visible":true,"input":{"grid":["..","#."],"d":2},"expected":4,"validator":{"kind":"exact"},"tags":["sample","diagonal-move"]},
-{"id":"sample-3","name":"sample: blocked single cell has no route","kind":"sample","visible":true,"input":{"grid":["#"],"d":750},"expected":0,"validator":{"kind":"exact"},"tags":["sample","blocked-start"]},
-{"id":"sample-4","name":"sample: one row has four routes","kind":"sample","visible":true,"input":{"grid":[".."],"d":1},"expected":4,"validator":{"kind":"exact"},"tags":["sample","single-row","same-row-move"]},
-{"id":"trial-single-open-cell","name":"trial: one open cell is one complete route","kind":"trial","visible":true,"input":{"grid":["."],"d":1},"expected":1,"validator":{"kind":"exact"},"tags":["trial","single-row","minimum"]},
-{"id":"trial-three-cells-unit-distance","name":"trial: adjacent same-row moves only","kind":"trial","visible":true,"input":{"grid":["..."],"d":1},"expected":7,"validator":{"kind":"exact"},"tags":["trial","horizontal-radius"]},
-{"id":"trial-three-cells-distance-two","name":"trial: every one-row ordered pair is reachable","kind":"trial","visible":true,"input":{"grid":["..."],"d":2},"expected":9,"validator":{"kind":"exact"},"tags":["trial","horizontal-radius"]},
-{"id":"real-blocked-top","name":"hidden: an open bottom cannot reach a blocked top","kind":"real","visible":false,"input":{"grid":["#","."],"d":1},"expected":0,"validator":{"kind":"exact"},"tags":["hidden","blocked-finish"]},
-{"id":"real-two-open-rows","name":"hidden: optional horizontal moves on both rows","kind":"real","visible":false,"input":{"grid":["..",".."],"d":1},"expected":8,"validator":{"kind":"exact"},"tags":["hidden","same-row-state"]},
-{"id":"real-middle-obstacle","name":"hidden: three rows with a blocked middle cell","kind":"real","visible":false,"input":{"grid":["...",".#.","..."],"d":2},"expected":144,"validator":{"kind":"exact"},"tags":["hidden","three-rows","obstacle"]},
-{"id":"real-blocked-bottom","name":"hidden: no available bottom-row start","kind":"real","visible":false,"input":{"grid":["...","###"],"d":3},"expected":0,"validator":{"kind":"exact"},"tags":["hidden","blocked-start"]},
-{"id":"real-narrow-unit-climb","name":"hidden: unit distance forces vertical columns","kind":"real","visible":false,"input":{"grid":[".#","..",".."],"d":1},"expected":4,"validator":{"kind":"exact"},"tags":["hidden","three-rows","unit-distance"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3797",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: unit distance permits two routes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          "..",
+          "#."
+        ],
+        "d": 1
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "distance-boundary"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: distance two permits diagonal climbs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          "..",
+          "#."
+        ],
+        "d": 2
+      },
+      "expected": 4,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "diagonal-move"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: blocked single cell has no route",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          "#"
+        ],
+        "d": 750
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "blocked-start"
+      ]
+    },
+    {
+      "id": "sample-4",
+      "name": "sample: one row has four routes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          ".."
+        ],
+        "d": 1
+      },
+      "expected": 4,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "single-row",
+        "same-row-move"
+      ]
+    },
+    {
+      "id": "trial-single-open-cell",
+      "name": "trial: one open cell is one complete route",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          "."
+        ],
+        "d": 1
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-row",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-three-cells-unit-distance",
+      "name": "trial: adjacent same-row moves only",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          "..."
+        ],
+        "d": 1
+      },
+      "expected": 7,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "horizontal-radius"
+      ]
+    },
+    {
+      "id": "trial-three-cells-distance-two",
+      "name": "trial: every one-row ordered pair is reachable",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          "..."
+        ],
+        "d": 2
+      },
+      "expected": 9,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "horizontal-radius"
+      ]
+    },
+    {
+      "id": "trial-blocked-top",
+      "name": "an open bottom cannot reach a blocked top",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          "#",
+          "."
+        ],
+        "d": 1
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "blocked-finish"
+      ]
+    },
+    {
+      "id": "trial-two-open-rows",
+      "name": "optional horizontal moves on both rows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          "..",
+          ".."
+        ],
+        "d": 1
+      },
+      "expected": 8,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "same-row-state"
+      ]
+    },
+    {
+      "id": "trial-middle-obstacle",
+      "name": "three rows with a blocked middle cell",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          "...",
+          ".#.",
+          "..."
+        ],
+        "d": 2
+      },
+      "expected": 144,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "three-rows",
+        "obstacle"
+      ]
+    },
+    {
+      "id": "trial-blocked-bottom",
+      "name": "no available bottom-row start",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          "...",
+          "###"
+        ],
+        "d": 3
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "blocked-start"
+      ]
+    },
+    {
+      "id": "trial-narrow-unit-climb",
+      "name": "unit distance forces vertical columns",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          ".#",
+          "..",
+          ".."
+        ],
+        "d": 1
+      },
+      "expected": 4,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "three-rows",
+        "unit-distance"
+      ]
+    }
+  ]
+}

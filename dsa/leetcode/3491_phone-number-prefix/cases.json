@@ -6,81 +6,202 @@
       "name": "sample: every phone number starts differently",
       "kind": "sample",
       "visible": true,
-      "input": {"numbers": ["1", "2", "4", "3"]},
+      "input": {
+        "numbers": [
+          "1",
+          "2",
+          "4",
+          "3"
+        ]
+      },
       "expected": true,
-      "tags": ["sample", "prefix-free"]
+      "tags": [
+        "sample",
+        "prefix-free"
+      ]
     },
     {
       "id": "sample-leading-zero-prefix",
       "name": "sample: a leading-zero number prefixes a longer number",
       "kind": "sample",
       "visible": true,
-      "input": {"numbers": ["001", "007", "15", "00153"]},
+      "input": {
+        "numbers": [
+          "001",
+          "007",
+          "15",
+          "00153"
+        ]
+      },
       "expected": false,
-      "tags": ["sample", "leading-zero", "prefix"]
+      "tags": [
+        "sample",
+        "leading-zero",
+        "prefix"
+      ]
     },
     {
       "id": "trial-duplicate-numbers",
       "name": "trial: duplicate entries prefix each other",
       "kind": "trial",
       "visible": true,
-      "input": {"numbers": ["12", "12"]},
+      "input": {
+        "numbers": [
+          "12",
+          "12"
+        ]
+      },
       "expected": false,
-      "tags": ["trial", "duplicate"]
+      "tags": [
+        "trial",
+        "duplicate"
+      ]
     },
     {
       "id": "trial-longer-inserted-first",
       "name": "trial: shorter prefix arrives after its extension",
       "kind": "trial",
       "visible": true,
-      "input": {"numbers": ["987654", "987"]},
+      "input": {
+        "numbers": [
+          "987654",
+          "987"
+        ]
+      },
       "expected": false,
-      "tags": ["trial", "insertion-order", "prefix"]
+      "tags": [
+        "trial",
+        "insertion-order",
+        "prefix"
+      ]
     },
     {
       "id": "trial-shared-partial-prefix",
       "name": "trial: common opening characters are not a full prefix",
       "kind": "trial",
       "visible": true,
-      "input": {"numbers": ["1234", "1235", "1236"]},
+      "input": {
+        "numbers": [
+          "1234",
+          "1235",
+          "1236"
+        ]
+      },
       "expected": true,
-      "tags": ["trial", "shared-prefix", "prefix-free"]
+      "tags": [
+        "trial",
+        "shared-prefix",
+        "prefix-free"
+      ]
     },
     {
-      "id": "real-shorter-inserted-first",
-      "name": "real: existing terminal node blocks a longer number",
-      "kind": "real",
-      "visible": false,
-      "input": {"numbers": ["555", "5550", "8"]},
+      "id": "trial-shorter-inserted-first",
+      "name": "existing terminal node blocks a longer number",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "numbers": [
+          "555",
+          "5550",
+          "8"
+        ]
+      },
       "expected": false,
-      "tags": ["real", "terminal-prefix"]
+      "tags": [
+        "real",
+        "terminal-prefix"
+      ]
     },
     {
-      "id": "real-leading-zeros-remain-distinct",
-      "name": "real: leading-zero strings are compared as characters",
-      "kind": "real",
-      "visible": false,
-      "input": {"numbers": ["0012", "012", "12", "00012"]},
+      "id": "trial-leading-zeros-remain-distinct",
+      "name": "leading-zero strings are compared as characters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "numbers": [
+          "0012",
+          "012",
+          "12",
+          "00012"
+        ]
+      },
       "expected": true,
-      "tags": ["real", "leading-zero", "prefix-free"]
+      "tags": [
+        "real",
+        "leading-zero",
+        "prefix-free"
+      ]
     },
     {
-      "id": "real-single-character-prefix",
-      "name": "real: one-character number prefixes a later entry",
-      "kind": "real",
-      "visible": false,
-      "input": {"numbers": ["86", "7", "701", "99"]},
+      "id": "trial-single-character-prefix",
+      "name": "one-character number prefixes a later entry",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "numbers": [
+          "86",
+          "7",
+          "701",
+          "99"
+        ]
+      },
       "expected": false,
-      "tags": ["real", "single-character", "prefix"]
+      "tags": [
+        "real",
+        "single-character",
+        "prefix"
+      ]
     },
     {
-      "id": "real-maximum-length-pair",
-      "name": "real: two maximum-length numbers differ only at the end",
-      "kind": "real",
-      "visible": false,
-      "input": {"numbers": ["00000000000000000000000000000000000000000000000001", "00000000000000000000000000000000000000000000000002"]},
+      "id": "trial-maximum-length-pair",
+      "name": "two maximum-length numbers differ only at the end",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "numbers": [
+          "00000000000000000000000000000000000000000000000001",
+          "00000000000000000000000000000000000000000000000002"
+        ]
+      },
       "expected": true,
-      "tags": ["real", "maximum-length", "late-difference"]
+      "tags": [
+        "real",
+        "maximum-length",
+        "late-difference"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in numbers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "numbers": [
+          "1"
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in numbers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "numbers": [
+          "1",
+          "1"
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

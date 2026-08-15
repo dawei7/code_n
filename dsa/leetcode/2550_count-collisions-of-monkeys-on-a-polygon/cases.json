@@ -56,31 +56,43 @@
       ]
     },
     {
-      "id": "real-modulus-crossing",
-      "name": "hidden: power requires modular reduction",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-modulus-crossing",
+      "name": "power requires modular reduction",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 100
       },
       "expected": 976371283,
       "tags": [
-        "hidden",
         "modulus"
       ]
     },
     {
-      "id": "real-larger-exponent",
-      "name": "hidden: binary powering beyond small examples",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-larger-exponent",
+      "name": "binary powering beyond small examples",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000
       },
       "expected": 688423208,
       "tags": [
-        "hidden",
         "larger"
+      ]
+    },
+    {
+      "id": "trial-boundary-7",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

@@ -8,12 +8,71 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "operations": ["AuctionSystem", "addBid", "addBid", "getHighestBidder", "updateBid", "getHighestBidder", "removeBid", "getHighestBidder", "getHighestBidder"],
-        "arguments": [[], [1, 7, 5], [2, 7, 6], [7], [1, 7, 8], [7], [2, 7], [7], [3]]
+        "operations": [
+          "AuctionSystem",
+          "addBid",
+          "addBid",
+          "getHighestBidder",
+          "updateBid",
+          "getHighestBidder",
+          "removeBid",
+          "getHighestBidder",
+          "getHighestBidder"
+        ],
+        "arguments": [
+          [],
+          [
+            1,
+            7,
+            5
+          ],
+          [
+            2,
+            7,
+            6
+          ],
+          [
+            7
+          ],
+          [
+            1,
+            7,
+            8
+          ],
+          [
+            7
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            7
+          ],
+          [
+            3
+          ]
+        ]
       },
-      "expected": [null, null, null, 2, null, 1, null, 1, -1],
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "stateful-trace", "empty-item"]
+      "expected": [
+        null,
+        null,
+        null,
+        2,
+        null,
+        1,
+        null,
+        1,
+        -1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "stateful-trace",
+        "empty-item"
+      ]
     },
     {
       "id": "trial-user-id-tiebreak",
@@ -21,12 +80,43 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "operations": ["AuctionSystem", "addBid", "addBid", "getHighestBidder"],
-        "arguments": [[], [1, 5, 10], [3, 5, 10], [5]]
+        "operations": [
+          "AuctionSystem",
+          "addBid",
+          "addBid",
+          "getHighestBidder"
+        ],
+        "arguments": [
+          [],
+          [
+            1,
+            5,
+            10
+          ],
+          [
+            3,
+            5,
+            10
+          ],
+          [
+            5
+          ]
+        ]
       },
-      "expected": [null, null, null, 3],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "amount-tie", "user-id-tiebreak"]
+      "expected": [
+        null,
+        null,
+        null,
+        3
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "amount-tie",
+        "user-id-tiebreak"
+      ]
     },
     {
       "id": "trial-add-replaces-lower",
@@ -34,12 +124,50 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "operations": ["AuctionSystem", "addBid", "addBid", "addBid", "getHighestBidder"],
-        "arguments": [[], [5, 1, 100], [2, 1, 90], [5, 1, 80], [1]]
+        "operations": [
+          "AuctionSystem",
+          "addBid",
+          "addBid",
+          "addBid",
+          "getHighestBidder"
+        ],
+        "arguments": [
+          [],
+          [
+            5,
+            1,
+            100
+          ],
+          [
+            2,
+            1,
+            90
+          ],
+          [
+            5,
+            1,
+            80
+          ],
+          [
+            1
+          ]
+        ]
       },
-      "expected": [null, null, null, null, 2],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "replacement", "stale-larger-bid"]
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        2
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "replacement",
+        "stale-larger-bid"
+      ]
     },
     {
       "id": "trial-update-up-and-down",
@@ -47,12 +175,62 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "operations": ["AuctionSystem", "addBid", "addBid", "updateBid", "getHighestBidder", "updateBid", "getHighestBidder"],
-        "arguments": [[], [1, 2, 5], [2, 2, 7], [1, 2, 9], [2], [1, 2, 4], [2]]
+        "operations": [
+          "AuctionSystem",
+          "addBid",
+          "addBid",
+          "updateBid",
+          "getHighestBidder",
+          "updateBid",
+          "getHighestBidder"
+        ],
+        "arguments": [
+          [],
+          [
+            1,
+            2,
+            5
+          ],
+          [
+            2,
+            2,
+            7
+          ],
+          [
+            1,
+            2,
+            9
+          ],
+          [
+            2
+          ],
+          [
+            1,
+            2,
+            4
+          ],
+          [
+            2
+          ]
+        ]
       },
-      "expected": [null, null, null, null, 1, null, 2],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "update", "stale-heap-entries"]
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        2
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "update",
+        "stale-heap-entries"
+      ]
     },
     {
       "id": "trial-remove-highest",
@@ -60,12 +238,49 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "operations": ["AuctionSystem", "addBid", "addBid", "removeBid", "getHighestBidder"],
-        "arguments": [[], [1, 4, 7], [2, 4, 6], [1, 4], [4]]
+        "operations": [
+          "AuctionSystem",
+          "addBid",
+          "addBid",
+          "removeBid",
+          "getHighestBidder"
+        ],
+        "arguments": [
+          [],
+          [
+            1,
+            4,
+            7
+          ],
+          [
+            2,
+            4,
+            6
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            4
+          ]
+        ]
       },
-      "expected": [null, null, null, null, 2],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "remove-highest", "next-bidder"]
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        2
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "remove-highest",
+        "next-bidder"
+      ]
     },
     {
       "id": "trial-remove-only-bid",
@@ -73,90 +288,400 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "operations": ["AuctionSystem", "addBid", "removeBid", "getHighestBidder"],
-        "arguments": [[], [8, 6, 11], [8, 6], [6]]
+        "operations": [
+          "AuctionSystem",
+          "addBid",
+          "removeBid",
+          "getHighestBidder"
+        ],
+        "arguments": [
+          [],
+          [
+            8,
+            6,
+            11
+          ],
+          [
+            8,
+            6
+          ],
+          [
+            6
+          ]
+        ]
       },
-      "expected": [null, null, null, -1],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "remove-only", "empty-item"]
+      "expected": [
+        null,
+        null,
+        null,
+        -1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "remove-only",
+        "empty-item"
+      ]
     },
     {
-      "id": "real-independent-items",
-      "name": "hidden: item states remain independent",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-independent-items",
+      "name": "item states remain independent",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["AuctionSystem", "addBid", "addBid", "getHighestBidder", "getHighestBidder", "getHighestBidder"],
-        "arguments": [[], [1, 1, 5], [2, 2, 9], [1], [2], [3]]
+        "operations": [
+          "AuctionSystem",
+          "addBid",
+          "addBid",
+          "getHighestBidder",
+          "getHighestBidder",
+          "getHighestBidder"
+        ],
+        "arguments": [
+          [],
+          [
+            1,
+            1,
+            5
+          ],
+          [
+            2,
+            2,
+            9
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ]
       },
-      "expected": [null, null, null, 1, 2, -1],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "multiple-items", "isolation"]
+      "expected": [
+        null,
+        null,
+        null,
+        1,
+        2,
+        -1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "multiple-items",
+        "isolation"
+      ]
     },
     {
-      "id": "real-update-creates-and-breaks-tie",
-      "name": "hidden: an update creates then breaks an amount tie",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-update-creates-and-breaks-tie",
+      "name": "an update creates then breaks an amount tie",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["AuctionSystem", "addBid", "addBid", "updateBid", "getHighestBidder", "updateBid", "getHighestBidder"],
-        "arguments": [[], [1, 3, 10], [4, 3, 8], [4, 3, 10], [3], [4, 3, 7], [3]]
+        "operations": [
+          "AuctionSystem",
+          "addBid",
+          "addBid",
+          "updateBid",
+          "getHighestBidder",
+          "updateBid",
+          "getHighestBidder"
+        ],
+        "arguments": [
+          [],
+          [
+            1,
+            3,
+            10
+          ],
+          [
+            4,
+            3,
+            8
+          ],
+          [
+            4,
+            3,
+            10
+          ],
+          [
+            3
+          ],
+          [
+            4,
+            3,
+            7
+          ],
+          [
+            3
+          ]
+        ]
       },
-      "expected": [null, null, null, null, 4, null, 1],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "tie-transition", "update-lower"]
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        4,
+        null,
+        1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "tie-transition",
+        "update-lower"
+      ]
     },
     {
-      "id": "real-remove-and-readd",
-      "name": "hidden: a removed bidder can later return with a new amount",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-remove-and-readd",
+      "name": "a removed bidder can later return with a new amount",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["AuctionSystem", "addBid", "addBid", "getHighestBidder", "removeBid", "getHighestBidder", "addBid", "getHighestBidder"],
-        "arguments": [[], [3, 9, 12], [5, 9, 12], [9], [5, 9], [9], [5, 9, 11], [9]]
+        "operations": [
+          "AuctionSystem",
+          "addBid",
+          "addBid",
+          "getHighestBidder",
+          "removeBid",
+          "getHighestBidder",
+          "addBid",
+          "getHighestBidder"
+        ],
+        "arguments": [
+          [],
+          [
+            3,
+            9,
+            12
+          ],
+          [
+            5,
+            9,
+            12
+          ],
+          [
+            9
+          ],
+          [
+            5,
+            9
+          ],
+          [
+            9
+          ],
+          [
+            5,
+            9,
+            11
+          ],
+          [
+            9
+          ]
+        ]
       },
-      "expected": [null, null, null, 5, null, 3, null, 3],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "remove", "readd", "stale-history"]
+      "expected": [
+        null,
+        null,
+        null,
+        5,
+        null,
+        3,
+        null,
+        3
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "remove",
+        "readd",
+        "stale-history"
+      ]
     },
     {
-      "id": "real-maximum-values",
-      "name": "hidden: maximum user, item, and amount remain valid",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-values",
+      "name": "maximum user, item, and amount remain valid",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["AuctionSystem", "addBid", "getHighestBidder"],
-        "arguments": [[], [50000, 50000, 1000000000], [50000]]
+        "operations": [
+          "AuctionSystem",
+          "addBid",
+          "getHighestBidder"
+        ],
+        "arguments": [
+          [],
+          [
+            50000,
+            50000,
+            1000000000
+          ],
+          [
+            50000
+          ]
+        ]
       },
-      "expected": [null, null, 50000],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "value-boundaries"]
+      "expected": [
+        null,
+        null,
+        50000
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "value-boundaries"
+      ]
     },
     {
-      "id": "real-add-replaces-only-bid",
-      "name": "hidden: replacing the only bid keeps the same user active",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-add-replaces-only-bid",
+      "name": "replacing the only bid keeps the same user active",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["AuctionSystem", "addBid", "addBid", "getHighestBidder"],
-        "arguments": [[], [7, 8, 20], [7, 8, 1], [8]]
+        "operations": [
+          "AuctionSystem",
+          "addBid",
+          "addBid",
+          "getHighestBidder"
+        ],
+        "arguments": [
+          [],
+          [
+            7,
+            8,
+            20
+          ],
+          [
+            7,
+            8,
+            1
+          ],
+          [
+            8
+          ]
+        ]
       },
-      "expected": [null, null, null, 7],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "replacement", "single-bidder"]
+      "expected": [
+        null,
+        null,
+        null,
+        7
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "replacement",
+        "single-bidder"
+      ]
     },
     {
-      "id": "real-many-stale-versions",
-      "name": "hidden: repeated replacements and removals clean stale leaders",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-stale-versions",
+      "name": "repeated replacements and removals clean stale leaders",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["AuctionSystem", "addBid", "addBid", "addBid", "addBid", "addBid", "getHighestBidder", "updateBid", "getHighestBidder", "removeBid", "getHighestBidder", "removeBid", "getHighestBidder"],
-        "arguments": [[], [1, 1, 1], [1, 1, 5], [1, 1, 2], [1, 1, 8], [2, 1, 7], [1], [1, 1, 6], [1], [2, 1], [1], [1, 1], [1]]
+        "operations": [
+          "AuctionSystem",
+          "addBid",
+          "addBid",
+          "addBid",
+          "addBid",
+          "addBid",
+          "getHighestBidder",
+          "updateBid",
+          "getHighestBidder",
+          "removeBid",
+          "getHighestBidder",
+          "removeBid",
+          "getHighestBidder"
+        ],
+        "arguments": [
+          [],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            5
+          ],
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            1,
+            1,
+            8
+          ],
+          [
+            2,
+            1,
+            7
+          ],
+          [
+            1
+          ],
+          [
+            1,
+            1,
+            6
+          ],
+          [
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1
+          ]
+        ]
       },
-      "expected": [null, null, null, null, null, null, 1, null, 2, null, 1, null, -1],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "lazy-deletion", "many-stale-entries"]
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        2,
+        null,
+        1,
+        null,
+        -1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "lazy-deletion",
+        "many-stale-entries"
+      ]
     }
   ]
 }

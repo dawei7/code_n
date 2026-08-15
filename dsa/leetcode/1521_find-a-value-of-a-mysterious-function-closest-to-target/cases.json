@@ -122,10 +122,10 @@
       ]
     },
     {
-      "id": "real-target-above",
-      "name": "hidden: target exceeds every reachable value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-target-above",
+      "name": "target exceeds every reachable value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           5,
@@ -142,10 +142,10 @@
       ]
     },
     {
-      "id": "real-no-zero",
-      "name": "hidden: positive common bits prevent zero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-no-zero",
+      "name": "positive common bits prevent zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           7,
@@ -163,10 +163,10 @@
       ]
     },
     {
-      "id": "real-bit-transitions",
-      "name": "hidden: several distinct AND states survive",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-bit-transitions",
+      "name": "several distinct AND states survive",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1023,
@@ -185,10 +185,10 @@
       ]
     },
     {
-      "id": "real-alternating",
-      "name": "hidden: alternating masks create duplicates and collapses",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alternating",
+      "name": "alternating masks create duplicates and collapses",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           43690,
@@ -204,6 +204,41 @@
         "real",
         "alternating",
         "deduplication"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in arr",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          9
+        ],
+        "target": 5
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in arr",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          9,
+          9
+        ],
+        "target": 5
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

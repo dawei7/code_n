@@ -88,10 +88,10 @@
       ]
     },
     {
-      "id": "real-single-zero",
-      "name": "hidden: one zero digit",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-zero",
+      "name": "one zero digit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "0",
         "m": 1000000000
@@ -100,16 +100,15 @@
         1
       ],
       "tags": [
-        "hidden",
         "zero",
         "maximum-divisor"
       ]
     },
     {
-      "id": "real-large-divisor-hit",
-      "name": "hidden: the final prefix equals the maximum divisor",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-divisor-hit",
+      "name": "the final prefix equals the maximum divisor",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "1000000000",
         "m": 1000000000
@@ -127,15 +126,14 @@
         1
       ],
       "tags": [
-        "hidden",
         "maximum-divisor"
       ]
     },
     {
-      "id": "real-repeated-ones",
-      "name": "hidden: periodic divisibility by three",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-ones",
+      "name": "periodic divisibility by three",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "111111",
         "m": 3
@@ -149,15 +147,14 @@
         1
       ],
       "tags": [
-        "hidden",
         "periodic"
       ]
     },
     {
-      "id": "real-no-divisible-prefix",
-      "name": "hidden: no prefix has zero remainder",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-no-divisible-prefix",
+      "name": "no prefix has zero remainder",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "12345",
         "m": 97
@@ -170,15 +167,14 @@
         0
       ],
       "tags": [
-        "hidden",
         "no-hit"
       ]
     },
     {
-      "id": "real-overflow-length",
-      "name": "hidden: long numeric value is handled as remainders",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-overflow-length",
+      "name": "long numeric value is handled as remainders",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "987654321012345678909876543210",
         "m": 999999937
@@ -216,8 +212,43 @@
         0
       ],
       "tags": [
-        "hidden",
         "overflow-avoidance"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single character in word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "9",
+        "m": 3
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "999",
+        "m": 3
+      },
+      "expected": [
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

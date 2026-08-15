@@ -176,10 +176,10 @@
       ]
     },
     {
-      "id": "real-separated-duplicates",
-      "name": "hidden: repeated values separated by neighbors never merge",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-separated-duplicates",
+      "name": "repeated values separated by neighbors never merge",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -200,16 +200,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "separated-duplicates",
         "no-merge"
       ]
     },
     {
-      "id": "real-independent-pairs",
-      "name": "hidden: two non-cascading pairs merge independently",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-independent-pairs",
+      "name": "two non-cascading pairs merge independently",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -226,15 +225,14 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "independent-pairs"
       ]
     },
     {
-      "id": "real-odd-equal-run",
-      "name": "hidden: an odd equal run leaves one original value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-odd-equal-run",
+      "name": "an odd equal run leaves one original value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -250,16 +248,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "odd-run",
         "leftmost-order"
       ]
     },
     {
-      "id": "real-maximum-values",
-      "name": "hidden: maximum inputs produce a value above the input bound",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-values",
+      "name": "maximum inputs produce a value above the input bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000,
@@ -273,16 +270,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value",
         "output-growth"
       ]
     },
     {
-      "id": "real-multi-stage-order",
-      "name": "hidden: several stages preserve the deterministic merge order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multi-stage-order",
+      "name": "several stages preserve the deterministic merge order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -300,11 +296,46 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "multi-stage-cascade",
         "leftmost-order"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ]
+      },
+      "expected": [
+        3
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ]
+      },
+      "expected": [
+        6
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]
 }
-

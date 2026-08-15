@@ -104,10 +104,10 @@
       ]
     },
     {
-      "id": "real-reverse-wrap-too-small",
-      "name": "hidden: a to z needs twenty-five steps",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-reverse-wrap-too-small",
+      "name": "a to z needs twenty-five steps",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "a",
         "t": "z",
@@ -121,10 +121,10 @@
       ]
     },
     {
-      "id": "real-distinct-residues",
-      "name": "hidden: different residues may use adjacent moves",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-distinct-residues",
+      "name": "different residues may use adjacent moves",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aa",
         "t": "bc",
@@ -138,10 +138,10 @@
       ]
     },
     {
-      "id": "real-second-cycle-too-late",
-      "name": "hidden: second equal residue first fits at move twenty-seven",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-second-cycle-too-late",
+      "name": "second equal residue first fits at move twenty-seven",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aa",
         "t": "bb",
@@ -155,10 +155,10 @@
       ]
     },
     {
-      "id": "real-third-cycle-too-late",
-      "name": "hidden: third equal residue first fits at move fifty-three",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-third-cycle-too-late",
+      "name": "third equal residue first fits at move fifty-three",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaa",
         "t": "bbb",
@@ -169,6 +169,38 @@
         "real",
         "repeated-shift",
         "third-cycle"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "i",
+        "t": "ouput",
+        "k": 9
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "iii",
+        "t": "ouput",
+        "k": 9
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

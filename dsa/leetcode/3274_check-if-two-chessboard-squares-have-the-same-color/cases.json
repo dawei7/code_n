@@ -6,108 +6,180 @@
       "name": "sample: two black squares",
       "kind": "sample",
       "visible": true,
-      "input": {"coordinate1": "a1", "coordinate2": "c3"},
+      "input": {
+        "coordinate1": "a1",
+        "coordinate2": "c3"
+      },
       "expected": true,
-      "tags": ["sample", "same-color"]
+      "tags": [
+        "sample",
+        "same-color"
+      ]
     },
     {
       "id": "sample-black-and-white",
       "name": "sample: black and white squares",
       "kind": "sample",
       "visible": true,
-      "input": {"coordinate1": "a1", "coordinate2": "h3"},
+      "input": {
+        "coordinate1": "a1",
+        "coordinate2": "h3"
+      },
       "expected": false,
-      "tags": ["sample", "different-colors"]
+      "tags": [
+        "sample",
+        "different-colors"
+      ]
     },
     {
       "id": "trial-identical-square",
       "name": "trial: identical coordinates",
       "kind": "trial",
       "visible": true,
-      "input": {"coordinate1": "d5", "coordinate2": "d5"},
+      "input": {
+        "coordinate1": "d5",
+        "coordinate2": "d5"
+      },
       "expected": true,
-      "tags": ["identical", "same-color"]
+      "tags": [
+        "identical",
+        "same-color"
+      ]
     },
     {
       "id": "trial-horizontal-neighbors",
       "name": "trial: horizontal neighbors",
       "kind": "trial",
       "visible": true,
-      "input": {"coordinate1": "d5", "coordinate2": "e5"},
+      "input": {
+        "coordinate1": "d5",
+        "coordinate2": "e5"
+      },
       "expected": false,
-      "tags": ["adjacent", "different-colors"]
+      "tags": [
+        "adjacent",
+        "different-colors"
+      ]
     },
     {
       "id": "trial-vertical-neighbors",
       "name": "trial: vertical neighbors",
       "kind": "trial",
       "visible": true,
-      "input": {"coordinate1": "g7", "coordinate2": "g8"},
+      "input": {
+        "coordinate1": "g7",
+        "coordinate2": "g8"
+      },
       "expected": false,
-      "tags": ["adjacent", "different-colors"]
+      "tags": [
+        "adjacent",
+        "different-colors"
+      ]
     },
     {
       "id": "trial-diagonal-neighbors",
       "name": "trial: diagonal neighbors",
       "kind": "trial",
       "visible": true,
-      "input": {"coordinate1": "b2", "coordinate2": "c3"},
+      "input": {
+        "coordinate1": "b2",
+        "coordinate2": "c3"
+      },
       "expected": true,
-      "tags": ["diagonal", "same-color"]
+      "tags": [
+        "diagonal",
+        "same-color"
+      ]
     },
     {
       "id": "trial-opposite-corners",
       "name": "trial: opposite corners",
       "kind": "trial",
       "visible": true,
-      "input": {"coordinate1": "a1", "coordinate2": "h8"},
+      "input": {
+        "coordinate1": "a1",
+        "coordinate2": "h8"
+      },
       "expected": true,
-      "tags": ["corners", "same-color"]
+      "tags": [
+        "corners",
+        "same-color"
+      ]
     },
     {
-      "id": "real-top-corners",
-      "name": "real: top corners differ",
-      "kind": "real",
-      "visible": false,
-      "input": {"coordinate1": "a8", "coordinate2": "h8"},
+      "id": "trial-top-corners",
+      "name": "top corners differ",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coordinate1": "a8",
+        "coordinate2": "h8"
+      },
       "expected": false,
-      "tags": ["corners", "different-colors"]
+      "tags": [
+        "corners",
+        "different-colors"
+      ]
     },
     {
-      "id": "real-bottom-corners",
-      "name": "real: bottom corners differ",
-      "kind": "real",
-      "visible": false,
-      "input": {"coordinate1": "a1", "coordinate2": "h1"},
+      "id": "trial-bottom-corners",
+      "name": "bottom corners differ",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coordinate1": "a1",
+        "coordinate2": "h1"
+      },
       "expected": false,
-      "tags": ["corners", "different-colors"]
+      "tags": [
+        "corners",
+        "different-colors"
+      ]
     },
     {
-      "id": "real-even-row-offset",
-      "name": "real: even row offset preserves color",
-      "kind": "real",
-      "visible": false,
-      "input": {"coordinate1": "f2", "coordinate2": "f8"},
+      "id": "trial-even-row-offset",
+      "name": "even row offset preserves color",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coordinate1": "f2",
+        "coordinate2": "f8"
+      },
       "expected": true,
-      "tags": ["same-file", "same-color"]
+      "tags": [
+        "same-file",
+        "same-color"
+      ]
     },
     {
-      "id": "real-even-column-offset",
-      "name": "real: even column offset preserves color",
-      "kind": "real",
-      "visible": false,
-      "input": {"coordinate1": "b4", "coordinate2": "h4"},
+      "id": "trial-even-column-offset",
+      "name": "even column offset preserves color",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coordinate1": "b4",
+        "coordinate2": "h4"
+      },
       "expected": true,
-      "tags": ["same-rank", "same-color"]
+      "tags": [
+        "same-rank",
+        "same-color"
+      ]
     },
     {
-      "id": "real-mixed-offsets",
-      "name": "real: mixed offsets change color",
-      "kind": "real",
-      "visible": false,
-      "input": {"coordinate1": "c2", "coordinate2": "h6"},
+      "id": "trial-mixed-offsets",
+      "name": "mixed offsets change color",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coordinate1": "c2",
+        "coordinate2": "h6"
+      },
       "expected": false,
-      "tags": ["mixed", "different-colors"]
+      "tags": [
+        "mixed",
+        "different-colors"
+      ]
     }
   ]
 }

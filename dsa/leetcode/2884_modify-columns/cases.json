@@ -6,36 +6,184 @@
       "name": "sample: double four employee salaries",
       "kind": "sample",
       "visible": true,
-      "input": {"tables": {"employees": [{"name": "Jack", "salary": 19666}, {"name": "Piper", "salary": 74754}, {"name": "Mia", "salary": 62509}, {"name": "Ulysses", "salary": 54866}]}},
-      "expected": {"columns": ["name", "salary"], "rows": [["Jack", 39332], ["Piper", 149508], ["Mia", 125018], ["Ulysses", 109732]]},
-      "tags": ["sample", "column-update"]
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "name": "Jack",
+              "salary": 19666
+            },
+            {
+              "name": "Piper",
+              "salary": 74754
+            },
+            {
+              "name": "Mia",
+              "salary": 62509
+            },
+            {
+              "name": "Ulysses",
+              "salary": 54866
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "salary"
+        ],
+        "rows": [
+          [
+            "Jack",
+            39332
+          ],
+          [
+            "Piper",
+            149508
+          ],
+          [
+            "Mia",
+            125018
+          ],
+          [
+            "Ulysses",
+            109732
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "column-update"
+      ]
     },
     {
       "id": "trial-single-employee",
       "name": "single employee with minimum salary",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"employees": [{"name": "Ada", "salary": 1}]}},
-      "expected": {"columns": ["name", "salary"], "rows": [["Ada", 2]]},
-      "tags": ["boundary", "single-row"]
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "name": "Ada",
+              "salary": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "salary"
+        ],
+        "rows": [
+          [
+            "Ada",
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "boundary",
+        "single-row"
+      ]
     },
     {
       "id": "trial-equal-salaries",
       "name": "different employees have equal salaries",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"employees": [{"name": "Lin", "salary": 3200}, {"name": "Sam", "salary": 3200}]}},
-      "expected": {"columns": ["name", "salary"], "rows": [["Lin", 6400], ["Sam", 6400]]},
-      "tags": ["equal-values", "row-independence"]
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "name": "Lin",
+              "salary": 3200
+            },
+            {
+              "name": "Sam",
+              "salary": 3200
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "salary"
+        ],
+        "rows": [
+          [
+            "Lin",
+            6400
+          ],
+          [
+            "Sam",
+            6400
+          ]
+        ]
+      },
+      "tags": [
+        "equal-values",
+        "row-independence"
+      ]
     },
     {
-      "id": "real-varied-magnitudes",
-      "name": "hidden: varied salary magnitudes preserve order",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"employees": [{"name": "Iris", "salary": 47}, {"name": "Bo", "salary": 99999}, {"name": "Mina", "salary": 12500}, {"name": "Omar", "salary": 808}]}},
-      "expected": {"columns": ["name", "salary"], "rows": [["Iris", 94], ["Bo", 199998], ["Mina", 25000], ["Omar", 1616]]},
-      "tags": ["hidden", "magnitude", "order"]
+      "id": "trial-varied-magnitudes",
+      "name": "varied salary magnitudes preserve order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "name": "Iris",
+              "salary": 47
+            },
+            {
+              "name": "Bo",
+              "salary": 99999
+            },
+            {
+              "name": "Mina",
+              "salary": 12500
+            },
+            {
+              "name": "Omar",
+              "salary": 808
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "salary"
+        ],
+        "rows": [
+          [
+            "Iris",
+            94
+          ],
+          [
+            "Bo",
+            199998
+          ],
+          [
+            "Mina",
+            25000
+          ],
+          [
+            "Omar",
+            1616
+          ]
+        ]
+      },
+      "tags": [
+        "magnitude",
+        "order"
+      ]
     }
   ]
 }

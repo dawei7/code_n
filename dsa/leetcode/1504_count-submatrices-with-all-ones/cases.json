@@ -6,81 +6,257 @@
       "name": "sample: mixed three-by-three matrix",
       "kind": "sample",
       "visible": true,
-      "input": {"mat": [[1,0,1],[1,1,0],[1,1,0]]},
+      "input": {
+        "mat": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ]
+      },
       "expected": 13,
-      "tags": ["sample", "mixed-shapes"]
+      "tags": [
+        "sample",
+        "mixed-shapes"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: overlapping blocks of ones",
       "kind": "sample",
       "visible": true,
-      "input": {"mat": [[0,1,1,0],[0,1,1,1],[1,1,1,0]]},
+      "input": {
+        "mat": [
+          [
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            0
+          ]
+        ]
+      },
       "expected": 24,
-      "tags": ["sample", "overlap"]
+      "tags": [
+        "sample",
+        "overlap"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: all-one rectangular matrix",
       "kind": "sample",
       "visible": true,
-      "input": {"mat": [[1,1,1],[1,1,1]]},
+      "input": {
+        "mat": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
       "expected": 18,
-      "tags": ["sample", "all-ones", "rectangular"]
+      "tags": [
+        "sample",
+        "all-ones",
+        "rectangular"
+      ]
     },
     {
       "id": "trial-single-one",
       "name": "trial: one cell contributes one rectangle",
       "kind": "trial",
       "visible": true,
-      "input": {"mat": [[1]]},
+      "input": {
+        "mat": [
+          [
+            1
+          ]
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "single-cell"]
+      "tags": [
+        "trial",
+        "single-cell"
+      ]
     },
     {
       "id": "trial-all-zero",
       "name": "trial: no rectangle survives in an all-zero matrix",
       "kind": "trial",
       "visible": true,
-      "input": {"mat": [[0,0,0],[0,0,0]]},
+      "input": {
+        "mat": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "all-zero"]
+      "tags": [
+        "trial",
+        "all-zero"
+      ]
     },
     {
-      "id": "real-single-row-runs",
-      "name": "hidden: zeros separate horizontal runs",
-      "kind": "real",
-      "visible": false,
-      "input": {"mat": [[1,1,0,1,1,1,0,1]]},
+      "id": "trial-single-row-runs",
+      "name": "zeros separate horizontal runs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            0,
+            1
+          ]
+        ]
+      },
       "expected": 10,
-      "tags": ["hidden", "single-row", "triangular-runs"]
+      "tags": [
+        "single-row",
+        "triangular-runs"
+      ]
     },
     {
-      "id": "real-single-column-run",
-      "name": "hidden: vertical run uses the same interval count",
-      "kind": "real",
-      "visible": false,
-      "input": {"mat": [[1],[1],[1],[0],[1],[1]]},
+      "id": "trial-single-column-run",
+      "name": "vertical run uses the same interval count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            1
+          ],
+          [
+            1
+          ],
+          [
+            1
+          ],
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ]
+      },
       "expected": 9,
-      "tags": ["hidden", "single-column"]
+      "tags": [
+        "single-column"
+      ]
     },
     {
-      "id": "real-diagonal-isolated",
-      "name": "hidden: diagonal ones do not combine into rectangles",
-      "kind": "real",
-      "visible": false,
-      "input": {"mat": [[1,0,0],[0,1,0],[0,0,1]]},
+      "id": "trial-diagonal-isolated",
+      "name": "diagonal ones do not combine into rectangles",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      },
       "expected": 3,
-      "tags": ["hidden", "isolated-ones"]
+      "tags": [
+        "isolated-ones"
+      ]
     },
     {
-      "id": "real-four-by-four-all-ones",
-      "name": "hidden: closed-form dense count",
-      "kind": "real",
-      "visible": false,
-      "input": {"mat": [[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]]},
+      "id": "trial-four-by-four-all-ones",
+      "name": "closed-form dense count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
       "expected": 100,
-      "tags": ["hidden", "all-ones", "closed-form"]
+      "tags": [
+        "all-ones",
+        "closed-form"
+      ]
     }
   ]
 }

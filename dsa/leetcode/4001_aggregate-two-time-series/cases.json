@@ -487,10 +487,10 @@
       ]
     },
     {
-      "id": "real-shared-middle",
-      "name": "hidden: one timestamp shared amid distinct entries",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-shared-middle",
+      "name": "one timestamp shared amid distinct entries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "series1": [
           [
@@ -544,15 +544,14 @@
         ]
       ],
       "tags": [
-        "hidden",
         "shared-timestamp"
       ]
     },
     {
-      "id": "real-huge-gaps",
-      "name": "hidden: values carry across very large gaps",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-huge-gaps",
+      "name": "values carry across very large gaps",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "series1": [
           [
@@ -586,16 +585,15 @@
         ]
       ],
       "tags": [
-        "hidden",
         "large-gap",
         "bounds"
       ]
     },
     {
-      "id": "real-maximum-shared-timestamp",
-      "name": "hidden: both singletons use the maximum timestamp",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-shared-timestamp",
+      "name": "both singletons use the maximum timestamp",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "series1": [
           [
@@ -617,15 +615,14 @@
         ]
       ],
       "tags": [
-        "hidden",
         "timestamp-bound"
       ]
     },
     {
-      "id": "real-maximum-value-sum",
-      "name": "hidden: two maximum input values sum without truncation",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-value-sum",
+      "name": "two maximum input values sum without truncation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "series1": [
           [
@@ -647,15 +644,14 @@
         ]
       ],
       "tags": [
-        "hidden",
         "value-bound"
       ]
     },
     {
-      "id": "real-singletons-different-order",
-      "name": "hidden: earlier singleton uses the later series value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-singletons-different-order",
+      "name": "earlier singleton uses the later series value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "series1": [
           [
@@ -681,15 +677,14 @@
         ]
       ],
       "tags": [
-        "hidden",
         "singletons"
       ]
     },
     {
-      "id": "real-values-rise-and-fall",
-      "name": "hidden: maintained values are not monotone",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-values-rise-and-fall",
+      "name": "maintained values are not monotone",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "series1": [
           [
@@ -747,15 +742,14 @@
         ]
       ],
       "tags": [
-        "hidden",
         "nonmonotone-values"
       ]
     },
     {
-      "id": "real-overlapping-last-timestamp",
-      "name": "hidden: shared maximum timestamp updates both values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-overlapping-last-timestamp",
+      "name": "shared maximum timestamp updates both values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "series1": [
           [
@@ -793,16 +787,15 @@
         ]
       ],
       "tags": [
-        "hidden",
         "shared-timestamp",
         "series-end"
       ]
     },
     {
-      "id": "real-shared-endpoints",
-      "name": "hidden: both endpoints are shared with a middle gap",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-shared-endpoints",
+      "name": "both endpoints are shared with a middle gap",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "series1": [
           [
@@ -844,15 +837,14 @@
         ]
       ],
       "tags": [
-        "hidden",
         "shared-timestamps"
       ]
     },
     {
-      "id": "real-unit-values",
-      "name": "hidden: every union timestamp aggregates unit values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unit-values",
+      "name": "every union timestamp aggregates unit values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "series1": [
           [
@@ -910,15 +902,14 @@
         ]
       ],
       "tags": [
-        "hidden",
         "interleaved"
       ]
     },
     {
-      "id": "real-longer-mixed-merge",
-      "name": "hidden: ten union timestamps with overlaps and gaps",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-longer-mixed-merge",
+      "name": "ten union timestamps with overlaps and gaps",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "series1": [
           [
@@ -1000,7 +991,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "mixed",
         "longer"
       ]

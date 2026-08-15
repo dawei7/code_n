@@ -114,10 +114,10 @@
       ]
     },
     {
-      "id": "real-distant-maximum-survives",
-      "name": "real: a far duplicate pair survives most removals",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-distant-maximum-survives",
+      "name": "a far duplicate pair survives most removals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "aaa",
@@ -141,10 +141,10 @@
       ]
     },
     {
-      "id": "real-tied-maxima",
-      "name": "real: one of two equal maxima survives",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-tied-maxima",
+      "name": "one of two equal maxima survives",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "prefixa",
@@ -167,10 +167,10 @@
       ]
     },
     {
-      "id": "real-prefix-is-shorter-word",
-      "name": "real: an entire shorter word is the prefix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-prefix-is-shorter-word",
+      "name": "an entire shorter word is the prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "ab",
@@ -192,10 +192,10 @@
       ]
     },
     {
-      "id": "real-multiple-bridge-depths",
-      "name": "real: bridge improvements vary by removal",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-bridge-depths",
+      "name": "bridge improvements vary by removal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "f",
@@ -231,10 +231,10 @@
       ]
     },
     {
-      "id": "real-long-common-prefix",
-      "name": "real: long strings exercise the character bound",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-long-common-prefix",
+      "name": "long strings exercise the character bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",

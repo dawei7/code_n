@@ -189,10 +189,10 @@
       ]
     },
     {
-      "id": "real-overlap-chain",
-      "name": "hidden: a chain's middle hubs overlap only their neighbors",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-overlap-chain",
+      "name": "a chain's middle hubs overlap only their neighbors",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "startTime": [
           1,
@@ -209,16 +209,15 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "overlap-chain",
         "partial-team"
       ]
     },
     {
-      "id": "real-nested-intervals",
-      "name": "hidden: nested intervals all overlap every possible hub",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-nested-intervals",
+      "name": "nested intervals all overlap every possible hub",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "startTime": [
           1,
@@ -235,16 +234,15 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "nested",
         "all-employees"
       ]
     },
     {
-      "id": "real-many-touch-one-endpoint",
-      "name": "hidden: four intervals meeting at one endpoint form a full team",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-touch-one-endpoint",
+      "name": "four intervals meeting at one endpoint form a full team",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "startTime": [
           1,
@@ -261,16 +259,15 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "endpoint-contact",
         "duplicates"
       ]
     },
     {
-      "id": "real-unsorted-input",
-      "name": "hidden: employee order does not affect interval counting",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unsorted-input",
+      "name": "employee order does not affect interval counting",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "startTime": [
           10,
@@ -287,16 +284,15 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "unsorted",
         "disjoint-groups"
       ]
     },
     {
-      "id": "real-long-hub-last",
-      "name": "hidden: the final input employee overlaps every earlier interval",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-long-hub-last",
+      "name": "the final input employee overlaps every earlier interval",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "startTime": [
           2,
@@ -313,16 +309,15 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "hub-last",
         "non-clique-team"
       ]
     },
     {
-      "id": "real-time-boundaries",
-      "name": "hidden: maximum time endpoints still obey inclusive overlap",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-time-boundaries",
+      "name": "maximum time endpoints still obey inclusive overlap",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "startTime": [
           1,
@@ -337,16 +332,15 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "constraint-boundary",
         "endpoint-contact"
       ]
     },
     {
-      "id": "real-two-components",
-      "name": "hidden: the larger of two interval components determines the answer",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-components",
+      "name": "the larger of two interval components determines the answer",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "startTime": [
           1,
@@ -365,7 +359,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "components",
         "maximum-team"
       ]

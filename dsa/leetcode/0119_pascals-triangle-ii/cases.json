@@ -53,10 +53,10 @@
       ]
     },
     {
-      "id": "real-row-five",
-      "name": "hidden: row five",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-row-five",
+      "name": "row five",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rowIndex": 5
       },
@@ -69,7 +69,7 @@
         1
       ],
       "tags": [
-        "hidden"
+        "trial"
       ]
     }
   ]

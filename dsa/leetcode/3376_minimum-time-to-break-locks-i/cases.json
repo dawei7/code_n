@@ -94,10 +94,10 @@
       ]
     },
     {
-      "id": "real-seven-locks",
-      "name": "hidden: seven-lock subset state space",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-seven-locks",
+      "name": "seven-lock subset state space",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "strength": [
           9,
@@ -112,15 +112,14 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "bitmask-dp"
       ]
     },
     {
-      "id": "real-large-strengths",
-      "name": "hidden: maximum-scale strengths and rapid factor growth",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-strengths",
+      "name": "maximum-scale strengths and rapid factor growth",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "strength": [
           1000000,
@@ -131,16 +130,15 @@
       },
       "expected": 138530,
       "tags": [
-        "hidden",
         "upper-bound",
         "ceiling"
       ]
     },
     {
-      "id": "real-unsorted-mixed",
-      "name": "hidden: mixed strengths defeat a fixed input-order assumption",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unsorted-mixed",
+      "name": "mixed strengths defeat a fixed input-order assumption",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "strength": [
           18,
@@ -154,7 +152,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "ordering"
       ]
     }

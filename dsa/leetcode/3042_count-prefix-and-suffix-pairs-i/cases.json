@@ -7,81 +7,160 @@
       "name": "sample: nested prefix-suffix words",
       "kind": "sample",
       "visible": true,
-      "input": {"words": ["a", "aba", "ababa", "aa"]},
+      "input": {
+        "words": [
+          "a",
+          "aba",
+          "ababa",
+          "aa"
+        ]
+      },
       "expected": 4,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-two-independent-pairs",
       "name": "sample: two independent pairs",
       "kind": "sample",
       "visible": true,
-      "input": {"words": ["pa", "papa", "ma", "mama"]},
+      "input": {
+        "words": [
+          "pa",
+          "papa",
+          "ma",
+          "mama"
+        ]
+      },
       "expected": 2,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-earlier-word-longer",
       "name": "sample: earlier word is longer",
       "kind": "sample",
       "visible": true,
-      "input": {"words": ["abab", "ab"]},
+      "input": {
+        "words": [
+          "abab",
+          "ab"
+        ]
+      },
       "expected": 0,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "trial-single-word",
       "name": "trial: one word has no pair",
       "kind": "trial",
       "visible": true,
-      "input": {"words": ["a"]},
+      "input": {
+        "words": [
+          "a"
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "boundary"]
+      "tags": [
+        "trial",
+        "boundary"
+      ]
     },
     {
       "id": "trial-repeated-word",
       "name": "trial: repeated identical words count by order",
       "kind": "trial",
       "visible": true,
-      "input": {"words": ["x", "x", "xx", "xxx"]},
+      "input": {
+        "words": [
+          "x",
+          "x",
+          "xx",
+          "xxx"
+        ]
+      },
       "expected": 6,
-      "tags": ["trial", "duplicates"]
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
     },
     {
-      "id": "real-earlier-longer",
-      "name": "real: longer earlier word cannot match shorter later word",
-      "kind": "real",
-      "visible": false,
-      "input": {"words": ["abcd", "ab", "abcab"]},
+      "id": "trial-earlier-longer",
+      "name": "longer earlier word cannot match shorter later word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abcd",
+          "ab",
+          "abcab"
+        ]
+      },
       "expected": 1,
-      "tags": ["real", "length-order"]
+      "tags": [
+        "real",
+        "length-order"
+      ]
     },
     {
-      "id": "real-overlapping",
-      "name": "real: overlapping prefix-suffix relationships",
-      "kind": "real",
-      "visible": false,
-      "input": {"words": ["a", "aa", "aaa", "aaaa", "baba", "ba"]},
+      "id": "trial-overlapping",
+      "name": "overlapping prefix-suffix relationships",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "aa",
+          "aaa",
+          "aaaa",
+          "baba",
+          "ba"
+        ]
+      },
       "expected": 6,
-      "tags": ["real", "overlap"]
+      "tags": [
+        "real",
+        "overlap"
+      ]
     },
     {
-      "id": "real-prefix-only",
-      "name": "real: prefix without suffix does not count",
-      "kind": "real",
-      "visible": false,
-      "input": {"words": ["ab", "aba"]},
+      "id": "trial-prefix-only",
+      "name": "prefix without suffix does not count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "ab",
+          "aba"
+        ]
+      },
       "expected": 0,
-      "tags": ["real", "prefix-only"]
+      "tags": [
+        "real",
+        "prefix-only"
+      ]
     },
     {
-      "id": "real-suffix-only",
-      "name": "real: suffix without prefix does not count",
-      "kind": "real",
-      "visible": false,
-      "input": {"words": ["ab", "zab"]},
+      "id": "trial-suffix-only",
+      "name": "suffix without prefix does not count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "ab",
+          "zab"
+        ]
+      },
       "expected": 0,
-      "tags": ["real", "suffix-only"]
+      "tags": [
+        "real",
+        "suffix-only"
+      ]
     }
   ]
 }

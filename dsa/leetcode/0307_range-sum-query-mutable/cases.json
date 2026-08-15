@@ -218,10 +218,10 @@
       ]
     },
     {
-      "id": "real-interleaved",
-      "name": "hidden: interleaved boundary updates and sums",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-interleaved",
+      "name": "interleaved boundary updates and sums",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           3,
@@ -272,7 +272,6 @@
         10
       ],
       "tags": [
-        "hidden",
         "boundaries"
       ]
     }

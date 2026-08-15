@@ -107,10 +107,10 @@
       ]
     },
     {
-      "id": "real-repeated-collapse",
-      "name": "real: repeated values accumulate frequencies",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-collapse",
+      "name": "repeated values accumulate frequencies",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           12,
@@ -126,10 +126,10 @@
       ]
     },
     {
-      "id": "real-progressive-bit-clearing",
-      "name": "real: extensions successively clear target bits",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-progressive-bit-clearing",
+      "name": "extensions successively clear target bits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           15,
@@ -146,10 +146,10 @@
       ]
     },
     {
-      "id": "real-multiple-state-merges",
-      "name": "real: different prior AND values merge at one endpoint",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-state-merges",
+      "name": "different prior AND values merge at one endpoint",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -167,10 +167,10 @@
       ]
     },
     {
-      "id": "real-impossible-target-bit",
-      "name": "real: a target bit absent from all numbers cannot appear",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-impossible-target-bit",
+      "name": "a target bit absent from all numbers cannot appear",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -186,10 +186,10 @@
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "real: high legal bits are handled without truncation",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-values",
+      "name": "high legal bits are handled without truncation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -204,10 +204,10 @@
       ]
     },
     {
-      "id": "real-many-zero-ands",
-      "name": "real: zero AND frequencies persist across later endpoints",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-zero-ands",
+      "name": "zero AND frequencies persist across later endpoints",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

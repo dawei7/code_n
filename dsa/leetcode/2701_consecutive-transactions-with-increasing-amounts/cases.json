@@ -1,10 +1,496 @@
-{"schema_version":1,"challenge_id":"lc_2701","cases":[
-{"id":"sample-multiple-runs","name":"sample: qualifying customers and separated runs","kind":"sample","visible":true,"input":{"tables":{"Transactions":[{"transaction_id":1,"customer_id":101,"transaction_date":"2023-05-01","amount":100},{"transaction_id":2,"customer_id":101,"transaction_date":"2023-05-02","amount":150},{"transaction_id":3,"customer_id":101,"transaction_date":"2023-05-03","amount":200},{"transaction_id":4,"customer_id":102,"transaction_date":"2023-05-01","amount":50},{"transaction_id":5,"customer_id":102,"transaction_date":"2023-05-03","amount":100},{"transaction_id":6,"customer_id":102,"transaction_date":"2023-05-04","amount":200},{"transaction_id":7,"customer_id":105,"transaction_date":"2023-05-01","amount":100},{"transaction_id":8,"customer_id":105,"transaction_date":"2023-05-02","amount":150},{"transaction_id":9,"customer_id":105,"transaction_date":"2023-05-03","amount":200},{"transaction_id":10,"customer_id":105,"transaction_date":"2023-05-04","amount":300},{"transaction_id":11,"customer_id":105,"transaction_date":"2023-05-12","amount":250},{"transaction_id":12,"customer_id":105,"transaction_date":"2023-05-13","amount":260},{"transaction_id":13,"customer_id":105,"transaction_date":"2023-05-14","amount":270}]}} ,"expected":{"columns":["customer_id","consecutive_start","consecutive_end"],"rows":[[101,"2023-05-01","2023-05-03"],[105,"2023-05-01","2023-05-04"],[105,"2023-05-12","2023-05-14"]]},"validator":{"kind":"ordered_table"},"tags":["sample","multiple-runs"]},
-{"id":"trial-exactly-three","name":"trial: exactly three increasing days qualify","kind":"trial","visible":true,"input":{"tables":{"Transactions":[{"transaction_id":3,"customer_id":1,"transaction_date":"2024-01-03","amount":30},{"transaction_id":1,"customer_id":1,"transaction_date":"2024-01-01","amount":10},{"transaction_id":2,"customer_id":1,"transaction_date":"2024-01-02","amount":20}]}},"expected":{"columns":["customer_id","consecutive_start","consecutive_end"],"rows":[[1,"2024-01-01","2024-01-03"]]},"validator":{"kind":"ordered_table"},"tags":["boundary","date-order"]},
-{"id":"trial-equal-breaks","name":"trial: equal amount breaks the run","kind":"trial","visible":true,"input":{"tables":{"Transactions":[{"transaction_id":1,"customer_id":2,"transaction_date":"2024-02-01","amount":10},{"transaction_id":2,"customer_id":2,"transaction_date":"2024-02-02","amount":20},{"transaction_id":3,"customer_id":2,"transaction_date":"2024-02-03","amount":20},{"transaction_id":4,"customer_id":2,"transaction_date":"2024-02-04","amount":30}]}},"expected":{"columns":["customer_id","consecutive_start","consecutive_end"],"rows":[]},"validator":{"kind":"ordered_table"},"tags":["strict-increase"]},
-{"id":"trial-gap-breaks","name":"trial: a missing calendar day breaks the run","kind":"trial","visible":true,"input":{"tables":{"Transactions":[{"transaction_id":1,"customer_id":3,"transaction_date":"2024-03-01","amount":10},{"transaction_id":2,"customer_id":3,"transaction_date":"2024-03-02","amount":20},{"transaction_id":3,"customer_id":3,"transaction_date":"2024-03-04","amount":30}]}},"expected":{"columns":["customer_id","consecutive_start","consecutive_end"],"rows":[]},"validator":{"kind":"ordered_table"},"tags":["date-gap"]},
-{"id":"real-decrease-then-run","name":"hidden: decrease starts a later qualifying run","kind":"real","visible":false,"input":{"tables":{"Transactions":[{"transaction_id":1,"customer_id":4,"transaction_date":"2024-04-01","amount":50},{"transaction_id":2,"customer_id":4,"transaction_date":"2024-04-02","amount":40},{"transaction_id":3,"customer_id":4,"transaction_date":"2024-04-03","amount":41},{"transaction_id":4,"customer_id":4,"transaction_date":"2024-04-04","amount":42}]}},"expected":{"columns":["customer_id","consecutive_start","consecutive_end"],"rows":[[4,"2024-04-02","2024-04-04"]]},"validator":{"kind":"ordered_table"},"tags":["hidden","decrease"]},
-{"id":"real-maximal-run","name":"hidden: long run emits only its maximal interval","kind":"real","visible":false,"input":{"tables":{"Transactions":[{"transaction_id":1,"customer_id":5,"transaction_date":"2024-05-01","amount":1},{"transaction_id":2,"customer_id":5,"transaction_date":"2024-05-02","amount":2},{"transaction_id":3,"customer_id":5,"transaction_date":"2024-05-03","amount":3},{"transaction_id":4,"customer_id":5,"transaction_date":"2024-05-04","amount":4},{"transaction_id":5,"customer_id":5,"transaction_date":"2024-05-05","amount":5}]}},"expected":{"columns":["customer_id","consecutive_start","consecutive_end"],"rows":[[5,"2024-05-01","2024-05-05"]]},"validator":{"kind":"ordered_table"},"tags":["hidden","maximal"]},
-{"id":"real-customer-isolation-order","name":"hidden: customers remain isolated and output is ordered","kind":"real","visible":false,"input":{"tables":{"Transactions":[{"transaction_id":9,"customer_id":9,"transaction_date":"2024-07-03","amount":3},{"transaction_id":8,"customer_id":8,"transaction_date":"2024-06-03","amount":30},{"transaction_id":7,"customer_id":9,"transaction_date":"2024-07-01","amount":1},{"transaction_id":6,"customer_id":8,"transaction_date":"2024-06-01","amount":10},{"transaction_id":5,"customer_id":9,"transaction_date":"2024-07-02","amount":2},{"transaction_id":4,"customer_id":8,"transaction_date":"2024-06-02","amount":20}]}},"expected":{"columns":["customer_id","consecutive_start","consecutive_end"],"rows":[[8,"2024-06-01","2024-06-03"],[9,"2024-07-01","2024-07-03"]]},"validator":{"kind":"ordered_table"},"tags":["hidden","partition","ordering"]},
-{"id":"real-one-row","name":"hidden: a single transaction cannot qualify","kind":"real","visible":false,"input":{"tables":{"Transactions":[{"transaction_id":1,"customer_id":10,"transaction_date":"2024-08-01","amount":100}]}},"expected":{"columns":["customer_id","consecutive_start","consecutive_end"],"rows":[]},"validator":{"kind":"ordered_table"},"tags":["hidden","minimum-length"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2701",
+  "cases": [
+    {
+      "id": "sample-multiple-runs",
+      "name": "sample: qualifying customers and separated runs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Transactions": [
+            {
+              "transaction_id": 1,
+              "customer_id": 101,
+              "transaction_date": "2023-05-01",
+              "amount": 100
+            },
+            {
+              "transaction_id": 2,
+              "customer_id": 101,
+              "transaction_date": "2023-05-02",
+              "amount": 150
+            },
+            {
+              "transaction_id": 3,
+              "customer_id": 101,
+              "transaction_date": "2023-05-03",
+              "amount": 200
+            },
+            {
+              "transaction_id": 4,
+              "customer_id": 102,
+              "transaction_date": "2023-05-01",
+              "amount": 50
+            },
+            {
+              "transaction_id": 5,
+              "customer_id": 102,
+              "transaction_date": "2023-05-03",
+              "amount": 100
+            },
+            {
+              "transaction_id": 6,
+              "customer_id": 102,
+              "transaction_date": "2023-05-04",
+              "amount": 200
+            },
+            {
+              "transaction_id": 7,
+              "customer_id": 105,
+              "transaction_date": "2023-05-01",
+              "amount": 100
+            },
+            {
+              "transaction_id": 8,
+              "customer_id": 105,
+              "transaction_date": "2023-05-02",
+              "amount": 150
+            },
+            {
+              "transaction_id": 9,
+              "customer_id": 105,
+              "transaction_date": "2023-05-03",
+              "amount": 200
+            },
+            {
+              "transaction_id": 10,
+              "customer_id": 105,
+              "transaction_date": "2023-05-04",
+              "amount": 300
+            },
+            {
+              "transaction_id": 11,
+              "customer_id": 105,
+              "transaction_date": "2023-05-12",
+              "amount": 250
+            },
+            {
+              "transaction_id": 12,
+              "customer_id": 105,
+              "transaction_date": "2023-05-13",
+              "amount": 260
+            },
+            {
+              "transaction_id": 13,
+              "customer_id": 105,
+              "transaction_date": "2023-05-14",
+              "amount": 270
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "consecutive_start",
+          "consecutive_end"
+        ],
+        "rows": [
+          [
+            101,
+            "2023-05-01",
+            "2023-05-03"
+          ],
+          [
+            105,
+            "2023-05-01",
+            "2023-05-04"
+          ],
+          [
+            105,
+            "2023-05-12",
+            "2023-05-14"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "multiple-runs"
+      ]
+    },
+    {
+      "id": "trial-exactly-three",
+      "name": "trial: exactly three increasing days qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Transactions": [
+            {
+              "transaction_id": 3,
+              "customer_id": 1,
+              "transaction_date": "2024-01-03",
+              "amount": 30
+            },
+            {
+              "transaction_id": 1,
+              "customer_id": 1,
+              "transaction_date": "2024-01-01",
+              "amount": 10
+            },
+            {
+              "transaction_id": 2,
+              "customer_id": 1,
+              "transaction_date": "2024-01-02",
+              "amount": 20
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "consecutive_start",
+          "consecutive_end"
+        ],
+        "rows": [
+          [
+            1,
+            "2024-01-01",
+            "2024-01-03"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "boundary",
+        "date-order"
+      ]
+    },
+    {
+      "id": "trial-equal-breaks",
+      "name": "trial: equal amount breaks the run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Transactions": [
+            {
+              "transaction_id": 1,
+              "customer_id": 2,
+              "transaction_date": "2024-02-01",
+              "amount": 10
+            },
+            {
+              "transaction_id": 2,
+              "customer_id": 2,
+              "transaction_date": "2024-02-02",
+              "amount": 20
+            },
+            {
+              "transaction_id": 3,
+              "customer_id": 2,
+              "transaction_date": "2024-02-03",
+              "amount": 20
+            },
+            {
+              "transaction_id": 4,
+              "customer_id": 2,
+              "transaction_date": "2024-02-04",
+              "amount": 30
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "consecutive_start",
+          "consecutive_end"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "strict-increase"
+      ]
+    },
+    {
+      "id": "trial-gap-breaks",
+      "name": "trial: a missing calendar day breaks the run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Transactions": [
+            {
+              "transaction_id": 1,
+              "customer_id": 3,
+              "transaction_date": "2024-03-01",
+              "amount": 10
+            },
+            {
+              "transaction_id": 2,
+              "customer_id": 3,
+              "transaction_date": "2024-03-02",
+              "amount": 20
+            },
+            {
+              "transaction_id": 3,
+              "customer_id": 3,
+              "transaction_date": "2024-03-04",
+              "amount": 30
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "consecutive_start",
+          "consecutive_end"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "date-gap"
+      ]
+    },
+    {
+      "id": "trial-decrease-then-run",
+      "name": "decrease starts a later qualifying run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Transactions": [
+            {
+              "transaction_id": 1,
+              "customer_id": 4,
+              "transaction_date": "2024-04-01",
+              "amount": 50
+            },
+            {
+              "transaction_id": 2,
+              "customer_id": 4,
+              "transaction_date": "2024-04-02",
+              "amount": 40
+            },
+            {
+              "transaction_id": 3,
+              "customer_id": 4,
+              "transaction_date": "2024-04-03",
+              "amount": 41
+            },
+            {
+              "transaction_id": 4,
+              "customer_id": 4,
+              "transaction_date": "2024-04-04",
+              "amount": 42
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "consecutive_start",
+          "consecutive_end"
+        ],
+        "rows": [
+          [
+            4,
+            "2024-04-02",
+            "2024-04-04"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "decrease"
+      ]
+    },
+    {
+      "id": "trial-maximal-run",
+      "name": "long run emits only its maximal interval",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Transactions": [
+            {
+              "transaction_id": 1,
+              "customer_id": 5,
+              "transaction_date": "2024-05-01",
+              "amount": 1
+            },
+            {
+              "transaction_id": 2,
+              "customer_id": 5,
+              "transaction_date": "2024-05-02",
+              "amount": 2
+            },
+            {
+              "transaction_id": 3,
+              "customer_id": 5,
+              "transaction_date": "2024-05-03",
+              "amount": 3
+            },
+            {
+              "transaction_id": 4,
+              "customer_id": 5,
+              "transaction_date": "2024-05-04",
+              "amount": 4
+            },
+            {
+              "transaction_id": 5,
+              "customer_id": 5,
+              "transaction_date": "2024-05-05",
+              "amount": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "consecutive_start",
+          "consecutive_end"
+        ],
+        "rows": [
+          [
+            5,
+            "2024-05-01",
+            "2024-05-05"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "maximal"
+      ]
+    },
+    {
+      "id": "trial-customer-isolation-order",
+      "name": "customers remain isolated and output is ordered",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Transactions": [
+            {
+              "transaction_id": 9,
+              "customer_id": 9,
+              "transaction_date": "2024-07-03",
+              "amount": 3
+            },
+            {
+              "transaction_id": 8,
+              "customer_id": 8,
+              "transaction_date": "2024-06-03",
+              "amount": 30
+            },
+            {
+              "transaction_id": 7,
+              "customer_id": 9,
+              "transaction_date": "2024-07-01",
+              "amount": 1
+            },
+            {
+              "transaction_id": 6,
+              "customer_id": 8,
+              "transaction_date": "2024-06-01",
+              "amount": 10
+            },
+            {
+              "transaction_id": 5,
+              "customer_id": 9,
+              "transaction_date": "2024-07-02",
+              "amount": 2
+            },
+            {
+              "transaction_id": 4,
+              "customer_id": 8,
+              "transaction_date": "2024-06-02",
+              "amount": 20
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "consecutive_start",
+          "consecutive_end"
+        ],
+        "rows": [
+          [
+            8,
+            "2024-06-01",
+            "2024-06-03"
+          ],
+          [
+            9,
+            "2024-07-01",
+            "2024-07-03"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "partition",
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-one-row",
+      "name": "a single transaction cannot qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Transactions": [
+            {
+              "transaction_id": 1,
+              "customer_id": 10,
+              "transaction_date": "2024-08-01",
+              "amount": 100
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "consecutive_start",
+          "consecutive_end"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "minimum-length"
+      ]
+    }
+  ]
+}

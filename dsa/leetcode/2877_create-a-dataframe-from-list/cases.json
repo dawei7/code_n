@@ -137,10 +137,10 @@
       ]
     },
     {
-      "id": "real-repeated-ages",
-      "name": "hidden: repeated ages remain separate records",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-ages",
+      "name": "repeated ages remain separate records",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "args": {
           "student_data": [
@@ -180,10 +180,8 @@
         ]
       },
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }
   ]
 }
-

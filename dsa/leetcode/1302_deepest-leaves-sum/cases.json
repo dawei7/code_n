@@ -121,10 +121,10 @@
       ]
     },
     {
-      "id": "hidden-right-chain",
-      "name": "hidden: right-skewed tree",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-right-chain",
+      "name": "right-skewed tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -138,15 +138,14 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "skewed"
       ]
     },
     {
-      "id": "hidden-uneven-branches",
-      "name": "hidden: only one subtree reaches the final level",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-uneven-branches",
+      "name": "only one subtree reaches the final level",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           5,
@@ -166,7 +165,6 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "uneven"
       ]
     }

@@ -7,130 +7,327 @@
       "name": "sample: exact fit is the minimum eligible capacity",
       "kind": "sample",
       "visible": true,
-      "input": {"capacity": [1,5,3,7], "itemSize": 3},
+      "input": {
+        "capacity": [
+          1,
+          5,
+          3,
+          7
+        ],
+        "itemSize": 3
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "exact-fit", "minimum-capacity"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "exact-fit",
+        "minimum-capacity"
+      ]
     },
     {
       "id": "sample-earliest-tie",
       "name": "sample: equal minimum capacities keep the earliest index",
       "kind": "sample",
       "visible": true,
-      "input": {"capacity": [3,5,4,3], "itemSize": 2},
+      "input": {
+        "capacity": [
+          3,
+          5,
+          4,
+          3
+        ],
+        "itemSize": 2
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "tie", "earliest-index"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "tie",
+        "earliest-index"
+      ]
     },
     {
       "id": "sample-no-box",
       "name": "sample: the only box is too small",
       "kind": "sample",
       "visible": true,
-      "input": {"capacity": [4], "itemSize": 5},
+      "input": {
+        "capacity": [
+          4
+        ],
+        "itemSize": 5
+      },
       "expected": -1,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "no-eligible-box", "negative-one"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "no-eligible-box",
+        "negative-one"
+      ]
     },
     {
       "id": "trial-later-smaller-fit",
       "name": "trial: a later eligible box has lower capacity",
       "kind": "trial",
       "visible": true,
-      "input": {"capacity": [10,4,6], "itemSize": 5},
+      "input": {
+        "capacity": [
+          10,
+          4,
+          6
+        ],
+        "itemSize": 5
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "first-fit-trap", "later-index"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "first-fit-trap",
+        "later-index"
+      ]
     },
     {
       "id": "trial-exact-fit-tie",
       "name": "trial: the first repeated exact fit wins",
       "kind": "trial",
       "visible": true,
-      "input": {"capacity": [5,2,2], "itemSize": 2},
+      "input": {
+        "capacity": [
+          5,
+          2,
+          2
+        ],
+        "itemSize": 2
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "exact-fit", "tie"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "exact-fit",
+        "tie"
+      ]
     },
     {
       "id": "trial-one-large-box",
       "name": "trial: one oversized box remains eligible",
       "kind": "trial",
       "visible": true,
-      "input": {"capacity": [100], "itemSize": 1},
+      "input": {
+        "capacity": [
+          100
+        ],
+        "itemSize": 1
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "single-box", "boundary-value"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-box",
+        "boundary-value"
+      ]
     },
     {
-      "id": "real-decreasing-capacities",
-      "name": "hidden: minimum eligible capacity occurs last",
-      "kind": "real",
-      "visible": false,
-      "input": {"capacity": [9,8,7,6], "itemSize": 5},
+      "id": "trial-decreasing-capacities",
+      "name": "minimum eligible capacity occurs last",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "capacity": [
+          9,
+          8,
+          7,
+          6
+        ],
+        "itemSize": 5
+      },
       "expected": 3,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "decreasing", "last-index"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "decreasing",
+        "last-index"
+      ]
     },
     {
-      "id": "real-repeated-minimum",
-      "name": "hidden: strict improvement preserves the first minimum",
-      "kind": "real",
-      "visible": false,
-      "input": {"capacity": [7,5,5,6], "itemSize": 5},
+      "id": "trial-repeated-minimum",
+      "name": "strict improvement preserves the first minimum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "capacity": [
+          7,
+          5,
+          5,
+          6
+        ],
+        "itemSize": 5
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "repeated-minimum", "strict-update"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "repeated-minimum",
+        "strict-update"
+      ]
     },
     {
-      "id": "real-smallest-item",
-      "name": "hidden: all boxes fit the minimum item size",
-      "kind": "real",
-      "visible": false,
-      "input": {"capacity": [100,1,50], "itemSize": 1},
+      "id": "trial-smallest-item",
+      "name": "all boxes fit the minimum item size",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "capacity": [
+          100,
+          1,
+          50
+        ],
+        "itemSize": 1
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "minimum-item", "all-eligible"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "minimum-item",
+        "all-eligible"
+      ]
     },
     {
-      "id": "real-largest-item",
-      "name": "hidden: only maximum-capacity boxes can fit",
-      "kind": "real",
-      "visible": false,
-      "input": {"capacity": [99,100,100], "itemSize": 100},
+      "id": "trial-largest-item",
+      "name": "only maximum-capacity boxes can fit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "capacity": [
+          99,
+          100,
+          100
+        ],
+        "itemSize": 100
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "maximum-item", "earliest-tie"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "maximum-item",
+        "earliest-tie"
+      ]
     },
     {
-      "id": "real-last-exact-fit",
-      "name": "hidden: the sole exact fit appears at the end",
-      "kind": "real",
-      "visible": false,
-      "input": {"capacity": [1,2,3], "itemSize": 3},
+      "id": "trial-last-exact-fit",
+      "name": "the sole exact fit appears at the end",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "capacity": [
+          1,
+          2,
+          3
+        ],
+        "itemSize": 3
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "last-index", "exact-fit"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "last-index",
+        "exact-fit"
+      ]
     },
     {
-      "id": "real-capacity-before-index",
-      "name": "hidden: minimum capacity outranks an earlier index",
-      "kind": "real",
-      "visible": false,
-      "input": {"capacity": [3,100,2], "itemSize": 2},
+      "id": "trial-capacity-before-index",
+      "name": "minimum capacity outranks an earlier index",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "capacity": [
+          3,
+          100,
+          2
+        ],
+        "itemSize": 2
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "priority-order", "semantic-trap"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "priority-order",
+        "semantic-trap"
+      ]
     },
     {
-      "id": "real-all-below-item",
-      "name": "hidden: no repeated undersized box is eligible",
-      "kind": "real",
-      "visible": false,
-      "input": {"capacity": [1,1,1], "itemSize": 2},
+      "id": "trial-all-below-item",
+      "name": "no repeated undersized box is eligible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "capacity": [
+          1,
+          1,
+          1
+        ],
+        "itemSize": 2
+      },
       "expected": -1,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "no-eligible-box", "negative-one"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "no-eligible-box",
+        "negative-one"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "single element in capacity",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "capacity": [
+          1
+        ],
+        "itemSize": 3
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "identical elements in capacity",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "capacity": [
+          1,
+          1
+        ],
+        "itemSize": 3
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

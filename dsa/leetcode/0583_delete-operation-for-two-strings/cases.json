@@ -78,32 +78,30 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: no common characters",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "no common characters",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word1": "abc",
         "word2": "xyz"
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "disjoint"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: crossing character order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "crossing character order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word1": "abcde",
         "word2": "acebd"
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "ordering"
       ]
     }

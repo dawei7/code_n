@@ -121,10 +121,10 @@
       ]
     },
     {
-      "id": "hidden-two-values",
-      "name": "hidden: two-element boundary",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-values",
+      "name": "two-element boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           2,
@@ -136,15 +136,14 @@
         -1
       ],
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
     {
-      "id": "hidden-far-right-maximum",
-      "name": "hidden: maximum remains at far right",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-far-right-maximum",
+      "name": "maximum remains at far right",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           4,
@@ -162,7 +161,6 @@
         -1
       ],
       "tags": [
-        "hidden",
         "suffix"
       ]
     }

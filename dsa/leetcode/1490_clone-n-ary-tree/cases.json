@@ -398,10 +398,10 @@
       }
     },
     {
-      "id": "real-deep-chain",
-      "name": "hidden: one child per level",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-deep-chain",
+      "name": "one child per level",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -492,10 +492,10 @@
       }
     },
     {
-      "id": "real-mixed-empty-children",
-      "name": "hidden: leaves interspersed with branches",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-empty-children",
+      "name": "leaves interspersed with branches",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           10,

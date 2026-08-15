@@ -142,10 +142,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: complete three-level tree",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "complete three-level tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           4,
@@ -173,15 +173,14 @@
         7
       ],
       "tags": [
-        "hidden",
         "complete"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: sparse mixed-depth tree",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "sparse mixed-depth tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           8,
@@ -218,15 +217,14 @@
         14
       ],
       "tags": [
-        "hidden",
         "sparse"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: zero-valued singleton",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "zero-valued singleton",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           0
@@ -236,15 +234,14 @@
         0
       ],
       "tags": [
-        "hidden",
         "zero"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: values near upper boundary",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "values near upper boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1000,
@@ -264,15 +261,14 @@
         1000
       ],
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: uneven four-level tree",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-5",
+      "name": "uneven four-level tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           10,
@@ -310,7 +306,6 @@
         20
       ],
       "tags": [
-        "hidden",
         "uneven"
       ]
     }

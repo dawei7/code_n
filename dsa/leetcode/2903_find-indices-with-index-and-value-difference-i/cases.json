@@ -134,10 +134,10 @@
       ]
     },
     {
-      "id": "real-earlier-maximum",
-      "name": "hidden: the earlier maximum detects the qualifying direction",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-earlier-maximum",
+      "name": "the earlier maximum detects the qualifying direction",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           50,
@@ -156,15 +156,14 @@
         "kind": "index_value_pair"
       },
       "tags": [
-        "hidden",
         "prefix-maximum"
       ]
     },
     {
-      "id": "real-maximum-length",
-      "name": "hidden: the only valid pair spans the maximum-length array",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-length",
+      "name": "the only valid pair spans the maximum-length array",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           25,
@@ -279,7 +278,6 @@
         "kind": "index_value_pair"
       },
       "tags": [
-        "hidden",
         "maximum-length",
         "boundary"
       ]

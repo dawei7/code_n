@@ -1,10 +1,112 @@
-{"schema_version":1,"challenge_id":"lc_2710","cases":[
-{"id":"sample-two-zeros","name":"sample: remove two trailing zeros","kind":"sample","visible":true,"input":{"num":"51230100"},"expected":"512301","tags":["sample","trailing-suffix"]},
-{"id":"sample-no-zeros","name":"sample: no trailing zero changes nothing","kind":"sample","visible":true,"input":{"num":"123"},"expected":"123","tags":["sample","unchanged"]},
-{"id":"trial-one-followed-by-zeros","name":"trial: retain the only nonzero digit","kind":"trial","visible":true,"input":{"num":"1000"},"expected":"1","tags":["many-zeros"]},
-{"id":"trial-single-digit","name":"trial: one nonzero digit","kind":"trial","visible":true,"input":{"num":"7"},"expected":"7","tags":["single-character"]},
-{"id":"real-interior-zeros","name":"hidden: preserve all interior zeros","kind":"real","visible":false,"input":{"num":"1002003000"},"expected":"1002003","tags":["hidden","interior-zeros"]},
-{"id":"real-one-trailing-zero","name":"hidden: remove exactly one zero","kind":"real","visible":false,"input":{"num":"90"},"expected":"9","tags":["hidden","single-zero"]},
-{"id":"real-repeated-nines","name":"hidden: long string without zeros remains unchanged","kind":"real","visible":false,"input":{"num":"9999999999"},"expected":"9999999999","tags":["hidden","unchanged"]},
-{"id":"real-mixed-end","name":"hidden: stop at the final nonzero digit","kind":"real","visible":false,"input":{"num":"10101050000"},"expected":"1010105","tags":["hidden","boundary"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2710",
+  "cases": [
+    {
+      "id": "sample-two-zeros",
+      "name": "sample: remove two trailing zeros",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": "51230100"
+      },
+      "expected": "512301",
+      "tags": [
+        "sample",
+        "trailing-suffix"
+      ]
+    },
+    {
+      "id": "sample-no-zeros",
+      "name": "sample: no trailing zero changes nothing",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": "123"
+      },
+      "expected": "123",
+      "tags": [
+        "sample",
+        "unchanged"
+      ]
+    },
+    {
+      "id": "trial-one-followed-by-zeros",
+      "name": "trial: retain the only nonzero digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "1000"
+      },
+      "expected": "1",
+      "tags": [
+        "many-zeros"
+      ]
+    },
+    {
+      "id": "trial-single-digit",
+      "name": "trial: one nonzero digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "7"
+      },
+      "expected": "7",
+      "tags": [
+        "single-character"
+      ]
+    },
+    {
+      "id": "trial-interior-zeros",
+      "name": "preserve all interior zeros",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "1002003000"
+      },
+      "expected": "1002003",
+      "tags": [
+        "interior-zeros"
+      ]
+    },
+    {
+      "id": "trial-one-trailing-zero",
+      "name": "remove exactly one zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "90"
+      },
+      "expected": "9",
+      "tags": [
+        "single-zero"
+      ]
+    },
+    {
+      "id": "trial-repeated-nines",
+      "name": "long string without zeros remains unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "9999999999"
+      },
+      "expected": "9999999999",
+      "tags": [
+        "unchanged"
+      ]
+    },
+    {
+      "id": "trial-mixed-end",
+      "name": "stop at the final nonzero digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "10101050000"
+      },
+      "expected": "1010105",
+      "tags": [
+        "boundary"
+      ]
+    }
+  ]
+}

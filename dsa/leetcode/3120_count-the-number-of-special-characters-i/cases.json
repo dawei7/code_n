@@ -2,17 +2,174 @@
   "schema_version": 1,
   "challenge_id": "lc_3120",
   "cases": [
-    { "id": "sample-1", "name": "sample: three special letters", "kind": "sample", "visible": true, "input": { "word": "aaAbcBC" }, "expected": 3, "tags": ["sample", "multiple-letters"] },
-    { "id": "sample-2", "name": "sample: lowercase only", "kind": "sample", "visible": true, "input": { "word": "abc" }, "expected": 0, "tags": ["sample", "one-case-only"] },
-    { "id": "sample-3", "name": "sample: one special letter", "kind": "sample", "visible": true, "input": { "word": "abBCab" }, "expected": 1, "tags": ["sample", "one-special"] },
-    { "id": "trial-single-lowercase", "name": "trial: a single lowercase character", "kind": "trial", "visible": true, "input": { "word": "z" }, "expected": 0, "tags": ["boundary", "minimum-length"] },
-    { "id": "trial-single-pair", "name": "trial: one exact case pair", "kind": "trial", "visible": true, "input": { "word": "Zz" }, "expected": 1, "tags": ["boundary", "case-pair"] },
-    { "id": "trial-repeated-pair", "name": "trial: repetitions do not multiply the count", "kind": "trial", "visible": true, "input": { "word": "aaaaAAAAaaAA" }, "expected": 1, "tags": ["duplicates", "distinct-count"] },
-    { "id": "trial-disjoint-cases", "name": "trial: lowercase and uppercase letters do not match", "kind": "trial", "visible": true, "input": { "word": "abcXYZ" }, "expected": 0, "tags": ["case-sensitive", "disjoint"] },
-    { "id": "real-alternating-pairs", "name": "hidden: several interleaved pairs", "kind": "real", "visible": false, "input": { "word": "aAbBcCdDeE" }, "expected": 5, "tags": ["real", "multiple-pairs"] },
-    { "id": "real-partial-overlap", "name": "hidden: only part of the alphabets overlap", "kind": "real", "visible": false, "input": { "word": "abcdefghijklMNOPQRSTUVWXabcd" }, "expected": 0, "tags": ["real", "partial-overlap"] },
-    { "id": "real-mixed-boundaries", "name": "hidden: alphabet endpoints and middle letters", "kind": "real", "visible": false, "input": { "word": "zZaAmMnNoO" }, "expected": 5, "tags": ["real", "alphabet-boundaries"] },
-    { "id": "real-uppercase-only", "name": "hidden: uppercase repetitions only", "kind": "real", "visible": false, "input": { "word": "AAAAAAAAAABBBBBBBBBBCCCCCCCCCC" }, "expected": 0, "tags": ["real", "uppercase-only"] },
-    { "id": "real-maximum-length", "name": "hidden: maximum length with 25 special letters", "kind": "real", "visible": false, "input": { "word": "abcdefghijklmnopqrstuvwxyABCDEFGHIJKLMNOPQRSTUVWXY" }, "expected": 25, "tags": ["real", "maximum-length", "many-pairs"] }
+    {
+      "id": "sample-1",
+      "name": "sample: three special letters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "aaAbcBC"
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "multiple-letters"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: lowercase only",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "abc"
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "one-case-only"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one special letter",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "abBCab"
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "one-special"
+      ]
+    },
+    {
+      "id": "trial-single-lowercase",
+      "name": "trial: a single lowercase character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "z"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-single-pair",
+      "name": "trial: one exact case pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "Zz"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "case-pair"
+      ]
+    },
+    {
+      "id": "trial-repeated-pair",
+      "name": "trial: repetitions do not multiply the count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aaaaAAAAaaAA"
+      },
+      "expected": 1,
+      "tags": [
+        "duplicates",
+        "distinct-count"
+      ]
+    },
+    {
+      "id": "trial-disjoint-cases",
+      "name": "trial: lowercase and uppercase letters do not match",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "abcXYZ"
+      },
+      "expected": 0,
+      "tags": [
+        "case-sensitive",
+        "disjoint"
+      ]
+    },
+    {
+      "id": "trial-alternating-pairs",
+      "name": "several interleaved pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aAbBcCdDeE"
+      },
+      "expected": 5,
+      "tags": [
+        "real",
+        "multiple-pairs"
+      ]
+    },
+    {
+      "id": "trial-partial-overlap",
+      "name": "only part of the alphabets overlap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "abcdefghijklMNOPQRSTUVWXabcd"
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "partial-overlap"
+      ]
+    },
+    {
+      "id": "trial-mixed-boundaries",
+      "name": "alphabet endpoints and middle letters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "zZaAmMnNoO"
+      },
+      "expected": 5,
+      "tags": [
+        "real",
+        "alphabet-boundaries"
+      ]
+    },
+    {
+      "id": "trial-uppercase-only",
+      "name": "uppercase repetitions only",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "AAAAAAAAAABBBBBBBBBBCCCCCCCCCC"
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "uppercase-only"
+      ]
+    },
+    {
+      "id": "trial-maximum-length",
+      "name": "maximum length with 25 special letters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "abcdefghijklmnopqrstuvwxyABCDEFGHIJKLMNOPQRSTUVWXY"
+      },
+      "expected": 25,
+      "tags": [
+        "real",
+        "maximum-length",
+        "many-pairs"
+      ]
+    }
   ]
 }

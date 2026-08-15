@@ -263,10 +263,10 @@
       ]
     },
     {
-      "id": "real-reuse-after-multiple-branches",
-      "name": "hidden: stale physical cells never become reachable",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-reuse-after-multiple-branches",
+      "name": "stale physical cells never become reachable",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "homepage": "h.com",
         "operations": [
@@ -345,15 +345,14 @@
         "e.com"
       ],
       "tags": [
-        "hidden",
         "multiple-branches"
       ]
     },
     {
-      "id": "real-navigation-around-latest",
-      "name": "hidden: latest position clamps repeatedly",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-navigation-around-latest",
+      "name": "latest position clamps repeatedly",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "homepage": "start.com",
         "operations": [
@@ -418,15 +417,14 @@
         "a.com"
       ],
       "tags": [
-        "hidden",
         "clamping"
       ]
     },
     {
-      "id": "real-maximum-step",
-      "name": "hidden: maximum step requests in both directions",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-step",
+      "name": "maximum step requests in both directions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "homepage": "zero.com",
         "operations": [
@@ -477,7 +475,6 @@
         "one.com"
       ],
       "tags": [
-        "hidden",
         "step-bound"
       ]
     }

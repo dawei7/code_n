@@ -355,10 +355,10 @@
       ]
     },
     {
-      "id": "real-independent-counters",
-      "name": "hidden: tables assign ids independently",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-independent-counters",
+      "name": "tables assign ids independently",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "SQL",
@@ -435,15 +435,14 @@
         ]
       ],
       "tags": [
-        "hidden",
         "multiple-tables"
       ]
     },
     {
-      "id": "real-failed-insert-keeps-counter",
-      "name": "hidden: malformed insertion does not consume an id",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-failed-insert-keeps-counter",
+      "name": "malformed insertion does not consume an id",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "SQL",
@@ -497,15 +496,14 @@
         ]
       ],
       "tags": [
-        "hidden",
         "counter"
       ]
     },
     {
-      "id": "real-no-op-removals",
-      "name": "hidden: absent removals preserve live rows",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-no-op-removals",
+      "name": "absent removals preserve live rows",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "SQL",
@@ -559,7 +557,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "no-op"
       ]
     }

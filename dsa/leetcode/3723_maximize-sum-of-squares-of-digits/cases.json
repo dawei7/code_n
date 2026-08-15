@@ -133,10 +133,10 @@
       ]
     },
     {
-      "id": "real-one-remainder",
-      "name": "hidden: one remainder follows all nines",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-remainder",
+      "name": "one remainder follows all nines",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 4,
         "sum": 19
@@ -146,15 +146,14 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "remainder"
       ]
     },
     {
-      "id": "real-zero-padding",
-      "name": "hidden: several zero digits preserve the requested length",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zero-padding",
+      "name": "several zero digits preserve the requested length",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 8,
         "sum": 10
@@ -164,16 +163,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "trailing-zeros",
         "exact-length"
       ]
     },
     {
-      "id": "real-just-above-capacity",
-      "name": "hidden: one above capacity is impossible",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-just-above-capacity",
+      "name": "one above capacity is impossible",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 3,
         "sum": 28
@@ -183,16 +181,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "infeasible",
         "capacity-boundary"
       ]
     },
     {
-      "id": "real-large-feasible",
-      "name": "hidden: a larger feasible result follows the same digit concentration",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-feasible",
+      "name": "a larger feasible result follows the same digit concentration",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 100,
         "sum": 451
@@ -202,15 +199,14 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "large-output"
       ]
     },
     {
-      "id": "real-maximum-inputs-infeasible",
-      "name": "hidden: maximum source inputs fail feasibility immediately",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-inputs-infeasible",
+      "name": "maximum source inputs fail feasibility immediately",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 200000,
         "sum": 2000000
@@ -220,11 +216,9 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-inputs",
         "infeasible"
       ]
     }
   ]
 }
-

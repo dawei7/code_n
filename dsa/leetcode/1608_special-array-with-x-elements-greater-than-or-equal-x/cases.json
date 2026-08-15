@@ -89,10 +89,10 @@
       ]
     },
     {
-      "id": "real-equalities-count",
-      "name": "hidden: values equal to x are included",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-equalities-count",
+      "name": "values equal to x are included",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -107,10 +107,10 @@
       ]
     },
     {
-      "id": "real-too-many-at-threshold",
-      "name": "hidden: candidate fails when one extra value qualifies",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-too-many-at-threshold",
+      "name": "candidate fails when one extra value qualifies",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -125,10 +125,10 @@
       ]
     },
     {
-      "id": "real-unsorted-boundary",
-      "name": "hidden: qualifying suffix is hidden by input order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unsorted-boundary",
+      "name": "qualifying suffix is hidden by input order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -146,10 +146,10 @@
       ]
     },
     {
-      "id": "real-answer-length",
-      "name": "hidden: every value reaches the full length",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-answer-length",
+      "name": "every value reaches the full length",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -164,10 +164,10 @@
       ]
     },
     {
-      "id": "real-gap-answer",
-      "name": "hidden: candidate lies in a value gap",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-gap-answer",
+      "name": "candidate lies in a value gap",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -185,10 +185,10 @@
       ]
     },
     {
-      "id": "real-duplicates-around-boundary",
-      "name": "hidden: duplicates straddle candidate boundaries",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicates-around-boundary",
+      "name": "duplicates straddle candidate boundaries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -206,10 +206,10 @@
       ]
     },
     {
-      "id": "real-large-no-solution",
-      "name": "hidden: large and zero values still have no candidate",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-no-solution",
+      "name": "large and zero values still have no candidate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -226,4 +226,3 @@
     }
   ]
 }
-

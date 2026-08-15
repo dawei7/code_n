@@ -233,10 +233,10 @@
       ]
     },
     {
-      "id": "real-star-root-replacement",
-      "name": "hidden: a root update affects paths between every pair of branches",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-star-root-replacement",
+      "name": "a root update affects paths between every pair of branches",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 5,
         "edges": [
@@ -276,16 +276,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "root-update",
         "star-tree"
       ]
     },
     {
-      "id": "real-balanced-lca-paths",
-      "name": "hidden: balanced-tree paths use the root as lowest common ancestor",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-balanced-lca-paths",
+      "name": "balanced-tree paths use the root as lowest common ancestor",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 7,
         "edges": [
@@ -333,16 +332,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "balanced-tree",
         "root-lca"
       ]
     },
     {
-      "id": "real-chain-successive-updates",
-      "name": "hidden: successive updates toggle full and internal chain paths",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-chain-successive-updates",
+      "name": "successive updates toggle full and internal chain paths",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 6,
         "edges": [
@@ -389,16 +387,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "chain",
         "successive-updates"
       ]
     },
     {
-      "id": "real-no-op-then-change",
-      "name": "hidden: no-op assignment does not alter a later answer",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-no-op-then-change",
+      "name": "no-op assignment does not alter a later answer",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 3,
         "edges": [
@@ -429,16 +426,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "no-op-update",
         "effective-update"
       ]
     },
     {
-      "id": "real-subtree-boundaries",
-      "name": "hidden: updates affect descendant root masks but not unrelated paths",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-subtree-boundaries",
+      "name": "updates affect descendant root masks but not unrelated paths",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 5,
         "edges": [
@@ -479,16 +475,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "subtree-update",
         "separate-branch"
       ]
     },
     {
-      "id": "real-full-alphabet",
-      "name": "hidden: all letter bits and endpoint-inclusive paths",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-full-alphabet",
+      "name": "all letter bits and endpoint-inclusive paths",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 26,
         "edges": [
@@ -614,9 +609,71 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "full-alphabet",
         "bit-boundaries"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "s": "aaa",
+        "queries": [
+          "query 0 2",
+          "update 1 b",
+          "query 0 2"
+        ]
+      },
+      "expected": [
+        true,
+        true
+      ],
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "single element in queries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "s": "aac",
+        "queries": [
+          "query 0 2"
+        ]
+      },
+      "expected": [
+        true
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

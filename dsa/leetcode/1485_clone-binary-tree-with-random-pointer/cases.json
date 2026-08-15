@@ -38,7 +38,9 @@
           0
         ]
       ],
-      "validator": {"kind": "random_binary_tree_copy"},
+      "validator": {
+        "kind": "random_binary_tree_copy"
+      },
       "tags": [
         "sample",
         "sparse",
@@ -92,7 +94,9 @@
           5
         ]
       ],
-      "validator": {"kind": "random_binary_tree_copy"},
+      "validator": {
+        "kind": "random_binary_tree_copy"
+      },
       "tags": [
         "sample",
         "duplicate-values",
@@ -166,7 +170,9 @@
           0
         ]
       ],
-      "validator": {"kind": "random_binary_tree_copy"},
+      "validator": {
+        "kind": "random_binary_tree_copy"
+      },
       "tags": [
         "sample",
         "cross-subtree",
@@ -192,7 +198,9 @@
           0
         ]
       ],
-      "validator": {"kind": "random_binary_tree_copy"},
+      "validator": {
+        "kind": "random_binary_tree_copy"
+      },
       "tags": [
         "trial",
         "single-node",
@@ -200,26 +208,27 @@
       ]
     },
     {
-      "id": "real-empty",
-      "name": "hidden: empty tree",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-empty",
+      "name": "empty tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": []
       },
       "expected": [],
-      "validator": {"kind": "random_binary_tree_copy"},
+      "validator": {
+        "kind": "random_binary_tree_copy"
+      },
       "tags": [
-        "hidden",
         "boundary",
         "empty"
       ]
     },
     {
-      "id": "real-sparse-cross-links",
-      "name": "hidden: sparse tree with cross-level random links",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-sparse-cross-links",
+      "name": "sparse tree with cross-level random links",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           [
@@ -260,18 +269,19 @@
           4
         ]
       ],
-      "validator": {"kind": "random_binary_tree_copy"},
+      "validator": {
+        "kind": "random_binary_tree_copy"
+      },
       "tags": [
-        "hidden",
         "sparse",
         "cross-level"
       ]
     },
     {
-      "id": "real-duplicate-identities",
-      "name": "hidden: equal values retain distinct identities",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicate-identities",
+      "name": "equal values retain distinct identities",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           [
@@ -302,18 +312,19 @@
           2
         ]
       ],
-      "validator": {"kind": "random_binary_tree_copy"},
+      "validator": {
+        "kind": "random_binary_tree_copy"
+      },
       "tags": [
-        "hidden",
         "duplicate-values",
         "identity"
       ]
     },
     {
-      "id": "real-all-null-random",
-      "name": "hidden: complete tree without random edges",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-null-random",
+      "name": "complete tree without random edges",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           [
@@ -376,18 +387,19 @@
           null
         ]
       ],
-      "validator": {"kind": "random_binary_tree_copy"},
+      "validator": {
+        "kind": "random_binary_tree_copy"
+      },
       "tags": [
-        "hidden",
         "null-random",
         "complete-tree"
       ]
     },
     {
-      "id": "real-random-cycle",
-      "name": "hidden: random-only cycle across branches",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-random-cycle",
+      "name": "random-only cycle across branches",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           [
@@ -428,9 +440,10 @@
           0
         ]
       ],
-      "validator": {"kind": "random_binary_tree_copy"},
+      "validator": {
+        "kind": "random_binary_tree_copy"
+      },
       "tags": [
-        "hidden",
         "cycle",
         "cross-subtree"
       ]

@@ -140,10 +140,10 @@
       ]
     },
     {
-      "id": "real-last-arrival-replaces",
-      "name": "hidden: only the final arrival is better",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-last-arrival-replaces",
+      "name": "only the final arrival is better",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "ranks": [
           10,
@@ -155,16 +155,15 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "last-replacement",
         "tie"
       ]
     },
     {
-      "id": "real-best-rank-early",
-      "name": "hidden: rank one prevents all future replacements",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-best-rank-early",
+      "name": "rank one prevents all future replacements",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "ranks": [
           100,
@@ -177,16 +176,15 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "minimum-rank",
         "tie"
       ]
     },
     {
-      "id": "real-maximum-values",
-      "name": "hidden: maximum legal values and one improvement",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-values",
+      "name": "maximum legal values and one improvement",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "ranks": [
           100000,
@@ -197,15 +195,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "maximum-value"
       ]
     },
     {
-      "id": "real-nonconsecutive-records",
-      "name": "hidden: record lows occur after several worse arrivals",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-nonconsecutive-records",
+      "name": "record lows occur after several worse arrivals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "ranks": [
           50,
@@ -219,15 +216,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "record-minimum"
       ]
     },
     {
-      "id": "real-all-equal",
-      "name": "hidden: equal ranks never replace",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-equal",
+      "name": "equal ranks never replace",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "ranks": [
           42,
@@ -239,16 +235,15 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "all-equal",
         "no-replacement"
       ]
     },
     {
-      "id": "real-maximum-length-equal",
-      "name": "hidden: maximum input length with no replacements",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-length-equal",
+      "name": "maximum input length with no replacements",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "ranks": [
           77777,
@@ -100255,9 +100250,41 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "maximum-input",
         "all-equal"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "single element in ranks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "ranks": [
+          4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "identical elements in ranks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "ranks": [
+          4,
+          4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

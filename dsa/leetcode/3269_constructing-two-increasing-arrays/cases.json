@@ -145,10 +145,10 @@
       ]
     },
     {
-      "id": "real-all-zeroes",
-      "name": "real: two runs of even requirements",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-zeroes",
+      "name": "two runs of even requirements",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           0,
@@ -169,10 +169,10 @@
       ]
     },
     {
-      "id": "real-all-ones",
-      "name": "real: two runs of odd requirements",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-ones",
+      "name": "two runs of odd requirements",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           1,
@@ -193,10 +193,10 @@
       ]
     },
     {
-      "id": "real-alternating",
-      "name": "real: opposing alternating patterns",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alternating",
+      "name": "opposing alternating patterns",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           0,
@@ -222,10 +222,10 @@
       ]
     },
     {
-      "id": "real-blocks",
-      "name": "real: parity blocks create interleaving choices",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-blocks",
+      "name": "parity blocks create interleaving choices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           0,
@@ -251,10 +251,10 @@
       ]
     },
     {
-      "id": "real-mixed-twelve",
-      "name": "real: twelve mixed positions",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-twelve",
+      "name": "twelve mixed positions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           0,
@@ -277,6 +277,24 @@
       "tags": [
         "mixed",
         "balanced"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in nums2",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [],
+        "nums2": [
+          1,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

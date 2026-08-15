@@ -7,108 +7,207 @@
       "name": "sample: choosing the right pair preserves the smaller prefix",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "abc"},
+      "input": {
+        "s": "abc"
+      },
       "expected": "a",
-      "tags": ["sample", "choice-order", "lexicographic"]
+      "tags": [
+        "sample",
+        "choice-order",
+        "lexicographic"
+      ]
     },
     {
       "id": "sample-cascade-to-empty",
       "name": "sample: one removal exposes another pair",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "bcda"},
+      "input": {
+        "s": "bcda"
+      },
       "expected": "",
-      "tags": ["sample", "cascade", "empty"]
+      "tags": [
+        "sample",
+        "cascade",
+        "empty"
+      ]
     },
     {
       "id": "sample-zero-operations-best",
       "name": "sample: the unchanged string is lexicographically smallest",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "zdce"},
+      "input": {
+        "s": "zdce"
+      },
       "expected": "zdce",
-      "tags": ["sample", "zero-operations", "semantic-trap"]
+      "tags": [
+        "sample",
+        "zero-operations",
+        "semantic-trap"
+      ]
     },
     {
       "id": "trial-single-character",
       "name": "trial: one character is already optimal",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "m"},
+      "input": {
+        "s": "m"
+      },
       "expected": "m",
-      "tags": ["trial", "minimum-length"]
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-circular-pair",
       "name": "trial: circular neighbors can both be removed",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "az"},
+      "input": {
+        "s": "az"
+      },
       "expected": "",
-      "tags": ["trial", "circular-alphabet", "empty"]
+      "tags": [
+        "trial",
+        "circular-alphabet",
+        "empty"
+      ]
     },
     {
       "id": "trial-stable-string",
       "name": "trial: no adjacent pair is removable",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "aceg"},
+      "input": {
+        "s": "aceg"
+      },
       "expected": "aceg",
-      "tags": ["trial", "stable", "zero-operations"]
+      "tags": [
+        "trial",
+        "stable",
+        "zero-operations"
+      ]
     },
     {
-      "id": "real-competing-middle-pairs",
-      "name": "real: competing removals yield different suffixes",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abca"},
+      "id": "trial-competing-middle-pairs",
+      "name": "competing removals yield different suffixes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abca"
+      },
       "expected": "aa",
-      "tags": ["real", "nonconfluent", "lexicographic"]
+      "tags": [
+        "real",
+        "nonconfluent",
+        "lexicographic"
+      ]
     },
     {
-      "id": "real-circular-versus-ordinary",
-      "name": "real: circular and ordinary pairs compete",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "zab"},
+      "id": "trial-circular-versus-ordinary",
+      "name": "circular and ordinary pairs compete",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "zab"
+      },
       "expected": "b",
-      "tags": ["real", "circular-alphabet", "choice-order"]
+      "tags": [
+        "real",
+        "circular-alphabet",
+        "choice-order"
+      ]
     },
     {
-      "id": "real-two-stage-circular-cascade",
-      "name": "real: separate removals eliminate the whole string",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abza"},
+      "id": "trial-two-stage-circular-cascade",
+      "name": "separate removals eliminate the whole string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abza"
+      },
       "expected": "",
-      "tags": ["real", "cascade", "circular-alphabet"]
+      "tags": [
+        "real",
+        "cascade",
+        "circular-alphabet"
+      ]
     },
     {
-      "id": "real-odd-alphabet-chain",
-      "name": "real: an odd consecutive chain retains its smallest letter",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcde"},
+      "id": "trial-odd-alphabet-chain",
+      "name": "an odd consecutive chain retains its smallest letter",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcde"
+      },
       "expected": "a",
-      "tags": ["real", "odd-length", "chain"]
+      "tags": [
+        "real",
+        "odd-length",
+        "chain"
+      ]
     },
     {
-      "id": "real-even-alphabet-chain",
-      "name": "real: an even consecutive chain can be removed completely",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcdefghij"},
+      "id": "trial-even-alphabet-chain",
+      "name": "an even consecutive chain can be removed completely",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdefghij"
+      },
       "expected": "",
-      "tags": ["real", "long-chain", "empty"]
+      "tags": [
+        "real",
+        "long-chain",
+        "empty"
+      ]
     },
     {
-      "id": "real-equal-letters-stable",
-      "name": "real: equal letters are not alphabetically consecutive",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aaaaaaaa"},
+      "id": "trial-equal-letters-stable",
+      "name": "equal letters are not alphabetically consecutive",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaaaaaa"
+      },
       "expected": "aaaaaaaa",
-      "tags": ["real", "equal-letters", "stable"]
+      "tags": [
+        "real",
+        "equal-letters",
+        "stable"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": "a",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": "aaa",
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
     }
   ]
 }

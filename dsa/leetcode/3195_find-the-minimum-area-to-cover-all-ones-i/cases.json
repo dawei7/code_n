@@ -6,108 +6,386 @@
       "name": "sample: ones span both rows and every column",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[0, 1, 0], [1, 0, 1]]},
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ]
+      },
       "expected": 6,
-      "tags": ["sample", "bounding-box"]
+      "tags": [
+        "sample",
+        "bounding-box"
+      ]
     },
     {
       "id": "sample-single-one",
       "name": "sample: one occupied cell",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[1, 0], [0, 0]]},
+      "input": {
+        "grid": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
       "expected": 1,
-      "tags": ["sample", "single-one"]
+      "tags": [
+        "sample",
+        "single-one"
+      ]
     },
     {
       "id": "trial-one-cell-grid",
       "name": "trial: minimum matrix dimensions",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[1]]},
+      "input": {
+        "grid": [
+          [
+            1
+          ]
+        ]
+      },
       "expected": 1,
-      "tags": ["minimum-dimensions", "single-one"]
+      "tags": [
+        "minimum-dimensions",
+        "single-one"
+      ]
     },
     {
       "id": "trial-single-row",
       "name": "trial: bounding interval in one row",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[0, 1, 0, 0, 1, 0]]},
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            0,
+            0,
+            1,
+            0
+          ]
+        ]
+      },
       "expected": 4,
-      "tags": ["single-row", "horizontal-span"]
+      "tags": [
+        "single-row",
+        "horizontal-span"
+      ]
     },
     {
       "id": "trial-single-column",
       "name": "trial: bounding interval in one column",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[0], [1], [0], [1], [0]]},
+      "input": {
+        "grid": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            0
+          ]
+        ]
+      },
       "expected": 3,
-      "tags": ["single-column", "vertical-span"]
+      "tags": [
+        "single-column",
+        "vertical-span"
+      ]
     },
     {
       "id": "trial-opposite-corners",
       "name": "trial: opposite corners force the full grid",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[1, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 1]]},
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ]
+      },
       "expected": 12,
-      "tags": ["corners", "full-grid"]
+      "tags": [
+        "corners",
+        "full-grid"
+      ]
     },
     {
       "id": "trial-inner-box",
       "name": "trial: zeros surround the bounding box",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[0, 0, 0, 0], [0, 1, 1, 0], [0, 1, 0, 0], [0, 0, 0, 0]]},
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
       "expected": 4,
-      "tags": ["interior", "zero-border"]
+      "tags": [
+        "interior",
+        "zero-border"
+      ]
     },
     {
-      "id": "real-all-ones",
-      "name": "real: every cell is occupied",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[1, 1, 1], [1, 1, 1], [1, 1, 1]]},
+      "id": "trial-all-ones",
+      "name": "every cell is occupied",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
       "expected": 9,
-      "tags": ["real", "dense"]
+      "tags": [
+        "real",
+        "dense"
+      ]
     },
     {
-      "id": "real-bottom-right-only",
-      "name": "real: lone one at the bottom-right corner",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[0, 0, 0], [0, 0, 0], [0, 0, 1]]},
+      "id": "trial-bottom-right-only",
+      "name": "lone one at the bottom-right corner",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      },
       "expected": 1,
-      "tags": ["real", "single-one", "corner"]
+      "tags": [
+        "real",
+        "single-one",
+        "corner"
+      ]
     },
     {
-      "id": "real-disconnected-clusters",
-      "name": "real: disconnected clusters share one rectangle",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[0, 1, 1, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 1, 0], [0, 1, 0, 0, 0]]},
+      "id": "trial-disconnected-clusters",
+      "name": "disconnected clusters share one rectangle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
       "expected": 12,
-      "tags": ["real", "disconnected", "sparse"]
+      "tags": [
+        "real",
+        "disconnected",
+        "sparse"
+      ]
     },
     {
-      "id": "real-tall-sparse-grid",
-      "name": "real: sparse values span a tall grid",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[0, 0, 1], [0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 0], [0, 0, 1]]},
+      "id": "trial-tall-sparse-grid",
+      "name": "sparse values span a tall grid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      },
       "expected": 18,
-      "tags": ["real", "tall", "sparse"]
+      "tags": [
+        "real",
+        "tall",
+        "sparse"
+      ]
     },
     {
-      "id": "real-middle-row-only",
-      "name": "real: all ones share an interior row",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [1, 0, 1, 0, 1], [0, 0, 0, 0, 0]]},
+      "id": "trial-middle-row-only",
+      "name": "all ones share an interior row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
       "expected": 5,
-      "tags": ["real", "single-row", "interior"]
+      "tags": [
+        "real",
+        "single-row",
+        "interior"
+      ]
     }
   ]
 }

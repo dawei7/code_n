@@ -108,10 +108,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: six values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "six values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 6
       },
@@ -127,15 +127,14 @@
         "kind": "beautiful_array"
       },
       "tags": [
-        "hidden",
         "even-length"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: seven values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "seven values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 7
       },
@@ -152,15 +151,14 @@
         "kind": "beautiful_array"
       },
       "tags": [
-        "hidden",
         "odd-length"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: power of two",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "power of two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 16
       },
@@ -186,15 +184,14 @@
         "kind": "beautiful_array"
       },
       "tags": [
-        "hidden",
         "power-of-two"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: below a power of two",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "below a power of two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 31
       },
@@ -235,7 +232,6 @@
         "kind": "beautiful_array"
       },
       "tags": [
-        "hidden",
         "truncation"
       ]
     }

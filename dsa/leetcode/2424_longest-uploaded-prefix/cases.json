@@ -8,10 +8,51 @@
       "visible": true,
       "input": {
         "n": 4,
-        "operations": [["upload", [3]], ["longest", []], ["upload", [1]], ["longest", []], ["upload", [2]], ["longest", []]]
+        "operations": [
+          [
+            "upload",
+            [
+              3
+            ]
+          ],
+          [
+            "longest",
+            []
+          ],
+          [
+            "upload",
+            [
+              1
+            ]
+          ],
+          [
+            "longest",
+            []
+          ],
+          [
+            "upload",
+            [
+              2
+            ]
+          ],
+          [
+            "longest",
+            []
+          ]
+        ]
       },
-      "expected": [null, 0, null, 1, null, 3],
-      "tags": ["sample", "gap-closure"]
+      "expected": [
+        null,
+        0,
+        null,
+        1,
+        null,
+        3
+      ],
+      "tags": [
+        "sample",
+        "gap-closure"
+      ]
     },
     {
       "id": "sample-2",
@@ -20,10 +61,46 @@
       "visible": true,
       "input": {
         "n": 5,
-        "operations": [["upload", [1]], ["upload", [2]], ["longest", []], ["upload", [4]], ["longest", []]]
+        "operations": [
+          [
+            "upload",
+            [
+              1
+            ]
+          ],
+          [
+            "upload",
+            [
+              2
+            ]
+          ],
+          [
+            "longest",
+            []
+          ],
+          [
+            "upload",
+            [
+              4
+            ]
+          ],
+          [
+            "longest",
+            []
+          ]
+        ]
       },
-      "expected": [null, null, 2, null, 2],
-      "tags": ["sample", "gap"]
+      "expected": [
+        null,
+        null,
+        2,
+        null,
+        2
+      ],
+      "tags": [
+        "sample",
+        "gap"
+      ]
     },
     {
       "id": "trial-single-video",
@@ -32,10 +109,32 @@
       "visible": true,
       "input": {
         "n": 1,
-        "operations": [["longest", []], ["upload", [1]], ["longest", []]]
+        "operations": [
+          [
+            "longest",
+            []
+          ],
+          [
+            "upload",
+            [
+              1
+            ]
+          ],
+          [
+            "longest",
+            []
+          ]
+        ]
       },
-      "expected": [0, null, 1],
-      "tags": ["trial", "singleton"]
+      "expected": [
+        0,
+        null,
+        1
+      ],
+      "tags": [
+        "trial",
+        "singleton"
+      ]
     },
     {
       "id": "trial-in-order",
@@ -44,46 +143,247 @@
       "visible": true,
       "input": {
         "n": 4,
-        "operations": [["upload", [1]], ["longest", []], ["upload", [2]], ["longest", []], ["upload", [3]], ["longest", []]]
+        "operations": [
+          [
+            "upload",
+            [
+              1
+            ]
+          ],
+          [
+            "longest",
+            []
+          ],
+          [
+            "upload",
+            [
+              2
+            ]
+          ],
+          [
+            "longest",
+            []
+          ],
+          [
+            "upload",
+            [
+              3
+            ]
+          ],
+          [
+            "longest",
+            []
+          ]
+        ]
       },
-      "expected": [null, 1, null, 2, null, 3],
-      "tags": ["trial", "ordered"]
+      "expected": [
+        null,
+        1,
+        null,
+        2,
+        null,
+        3
+      ],
+      "tags": [
+        "trial",
+        "ordered"
+      ]
     },
     {
-      "id": "real-reverse-order-jump",
-      "name": "hidden: reverse uploads trigger one final jump",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-reverse-order-jump",
+      "name": "reverse uploads trigger one final jump",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 5,
-        "operations": [["upload", [5]], ["upload", [4]], ["upload", [3]], ["upload", [2]], ["longest", []], ["upload", [1]], ["longest", []]]
+        "operations": [
+          [
+            "upload",
+            [
+              5
+            ]
+          ],
+          [
+            "upload",
+            [
+              4
+            ]
+          ],
+          [
+            "upload",
+            [
+              3
+            ]
+          ],
+          [
+            "upload",
+            [
+              2
+            ]
+          ],
+          [
+            "longest",
+            []
+          ],
+          [
+            "upload",
+            [
+              1
+            ]
+          ],
+          [
+            "longest",
+            []
+          ]
+        ]
       },
-      "expected": [null, null, null, null, 0, null, 5],
-      "tags": ["hidden", "reverse"]
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        0,
+        null,
+        5
+      ],
+      "tags": [
+        "reverse"
+      ]
     },
     {
-      "id": "real-large-recorded-run",
-      "name": "hidden: closing the first gap crosses a recorded run",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-recorded-run",
+      "name": "closing the first gap crosses a recorded run",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 7,
-        "operations": [["upload", [2]], ["upload", [3]], ["upload", [4]], ["upload", [6]], ["longest", []], ["upload", [1]], ["longest", []], ["upload", [5]], ["longest", []]]
+        "operations": [
+          [
+            "upload",
+            [
+              2
+            ]
+          ],
+          [
+            "upload",
+            [
+              3
+            ]
+          ],
+          [
+            "upload",
+            [
+              4
+            ]
+          ],
+          [
+            "upload",
+            [
+              6
+            ]
+          ],
+          [
+            "longest",
+            []
+          ],
+          [
+            "upload",
+            [
+              1
+            ]
+          ],
+          [
+            "longest",
+            []
+          ],
+          [
+            "upload",
+            [
+              5
+            ]
+          ],
+          [
+            "longest",
+            []
+          ]
+        ]
       },
-      "expected": [null, null, null, null, 0, null, 4, null, 6],
-      "tags": ["hidden", "multiple-gaps"]
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        0,
+        null,
+        4,
+        null,
+        6
+      ],
+      "tags": [
+        "multiple-gaps"
+      ]
     },
     {
-      "id": "real-repeated-queries",
-      "name": "hidden: repeated longest calls preserve state",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-queries",
+      "name": "repeated longest calls preserve state",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 3,
-        "operations": [["upload", [1]], ["longest", []], ["longest", []], ["upload", [3]], ["longest", []], ["upload", [2]], ["longest", []], ["longest", []]]
+        "operations": [
+          [
+            "upload",
+            [
+              1
+            ]
+          ],
+          [
+            "longest",
+            []
+          ],
+          [
+            "longest",
+            []
+          ],
+          [
+            "upload",
+            [
+              3
+            ]
+          ],
+          [
+            "longest",
+            []
+          ],
+          [
+            "upload",
+            [
+              2
+            ]
+          ],
+          [
+            "longest",
+            []
+          ],
+          [
+            "longest",
+            []
+          ]
+        ]
       },
-      "expected": [null, 1, 1, null, 1, null, 3, 3],
-      "tags": ["hidden", "repeated-query"]
+      "expected": [
+        null,
+        1,
+        1,
+        null,
+        1,
+        null,
+        3,
+        3
+      ],
+      "tags": [
+        "repeated-query"
+      ]
     }
   ]
 }

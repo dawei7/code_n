@@ -2,13 +2,151 @@
   "schema_version": 1,
   "challenge_id": "lc_2195",
   "cases": [
-    {"id":"sample-gaps","name":"sample: two values come from the first interior gap","kind":"sample","visible":true,"input":{"nums":[1,4,25,10,25],"k":2},"expected":5,"tags":["sample","duplicates","gap"]},
-    {"id":"sample-skip-five-six","name":"sample: six choices skip two consecutive exclusions","kind":"sample","visible":true,"input":{"nums":[5,6],"k":6},"expected":25,"tags":["sample","multiple-gaps"]},
-    {"id":"trial-one-missing","name":"one is excluded so the only choice is two","kind":"trial","visible":true,"input":{"nums":[1],"k":1},"expected":2,"tags":["single-choice"]},
-    {"id":"trial-duplicates","name":"duplicate exclusions do not consume extra positions","kind":"trial","visible":true,"input":{"nums":[1,1,2],"k":3},"expected":12,"tags":["duplicates"]},
-    {"id":"trial-distant-exclusion","name":"distant exclusion leaves the first four positives","kind":"trial","visible":true,"input":{"nums":[100],"k":4},"expected":10,"tags":["large-gap"]},
-    {"id":"real-prefix-excluded","name":"hidden: excluded positive prefix shifts the interval","kind":"real","visible":false,"input":{"nums":[1,2,3],"k":2},"expected":9,"tags":["hidden","excluded-prefix"]},
-    {"id":"real-unsorted-duplicates","name":"hidden: sorting and deduplication expose several gaps","kind":"real","visible":false,"input":{"nums":[8,3,3,1,10],"k":5},"expected":24,"tags":["hidden","unsorted","duplicates"]},
-    {"id":"real-large-k","name":"hidden: a distant maximum value leaves one thousand early choices","kind":"real","visible":false,"input":{"nums":[1000000000],"k":1000},"expected":500500,"tags":["hidden","large-k","large-value"]}
+    {
+      "id": "sample-gaps",
+      "name": "sample: two values come from the first interior gap",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          25,
+          10,
+          25
+        ],
+        "k": 2
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "duplicates",
+        "gap"
+      ]
+    },
+    {
+      "id": "sample-skip-five-six",
+      "name": "sample: six choices skip two consecutive exclusions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          6
+        ],
+        "k": 6
+      },
+      "expected": 25,
+      "tags": [
+        "sample",
+        "multiple-gaps"
+      ]
+    },
+    {
+      "id": "trial-one-missing",
+      "name": "one is excluded so the only choice is two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "single-choice"
+      ]
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "duplicate exclusions do not consume extra positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2
+        ],
+        "k": 3
+      },
+      "expected": 12,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-distant-exclusion",
+      "name": "distant exclusion leaves the first four positives",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100
+        ],
+        "k": 4
+      },
+      "expected": 10,
+      "tags": [
+        "large-gap"
+      ]
+    },
+    {
+      "id": "trial-prefix-excluded",
+      "name": "excluded positive prefix shifts the interval",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 2
+      },
+      "expected": 9,
+      "tags": [
+        "excluded-prefix"
+      ]
+    },
+    {
+      "id": "trial-unsorted-duplicates",
+      "name": "sorting and deduplication expose several gaps",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          3,
+          3,
+          1,
+          10
+        ],
+        "k": 5
+      },
+      "expected": 24,
+      "tags": [
+        "unsorted",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-large-k",
+      "name": "a distant maximum value leaves one thousand early choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000
+        ],
+        "k": 1000
+      },
+      "expected": 500500,
+      "tags": [
+        "large-k",
+        "large-value"
+      ]
+    }
   ]
 }

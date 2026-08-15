@@ -81,10 +81,10 @@
       ]
     },
     {
-      "id": "real-one-open-loose",
-      "name": "hidden: one marker with a loose bound",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-open-loose",
+      "name": "one marker with a loose bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "street": [
           0,
@@ -99,15 +99,14 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "one-open"
       ]
     },
     {
-      "id": "real-alternating",
-      "name": "hidden: alternating door states",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alternating",
+      "name": "alternating door states",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "street": [
           1,
@@ -123,16 +122,15 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "alternating",
         "tight-bound"
       ]
     },
     {
-      "id": "real-open-at-end",
-      "name": "hidden: only the final indexed door is open",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-open-at-end",
+      "name": "only the final indexed door is open",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "street": [
           0,
@@ -149,15 +147,14 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "latest-first-marker"
       ]
     },
     {
-      "id": "real-irregular-loose",
-      "name": "hidden: irregular states with several reset laps available",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-irregular-loose",
+      "name": "irregular states with several reset laps available",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "street": [
           0,
@@ -178,10 +175,8 @@
       },
       "expected": 13,
       "tags": [
-        "hidden",
         "loose-bound"
       ]
     }
   ]
 }
-

@@ -78,48 +78,75 @@
       ]
     },
     {
-      "id": "hidden-repeated-true",
-      "name": "hidden: repeated characters use separate positions",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-true",
+      "name": "repeated characters use separate positions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaa",
         "t": "baacada"
       },
       "expected": true,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "hidden-repeated-false",
-      "name": "hidden: insufficient repeated positions",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-false",
+      "name": "insufficient repeated positions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaaa",
         "t": "baacada"
       },
       "expected": false,
       "tags": [
-        "hidden",
         "multiplicity"
       ]
     },
     {
-      "id": "hidden-order",
-      "name": "hidden: all characters exist in wrong order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-order",
+      "name": "all characters exist in wrong order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "ace",
         "t": "aec"
       },
       "expected": false,
       "tags": [
-        "hidden",
         "order"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "t": "ahbgdc"
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa",
+        "t": "ahbgdc"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

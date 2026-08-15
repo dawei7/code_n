@@ -73,30 +73,28 @@
       ]
     },
     {
-      "id": "hidden-all-distinct",
-      "name": "hidden: every character differs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-distinct",
+      "name": "every character differs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abcdef"
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "worst-structure"
       ]
     },
     {
-      "id": "hidden-inner-palindrome",
-      "name": "hidden: preserve a long inner palindrome",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-inner-palindrome",
+      "name": "preserve a long inner palindrome",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aebcbda"
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "subsequence"
       ]
     }

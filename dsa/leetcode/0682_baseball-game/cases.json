@@ -100,10 +100,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: cancel a derived score",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "cancel a derived score",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "10",
@@ -115,15 +115,14 @@
       },
       "expected": 70,
       "tags": [
-        "hidden",
         "cancel-derived"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: negative derived values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "negative derived values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "-5",
@@ -134,15 +133,14 @@
       },
       "expected": -32,
       "tags": [
-        "hidden",
         "negative-derived"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: multiple cancellations",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-3",
+      "name": "multiple cancellations",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "1",
@@ -155,8 +153,40 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "multiple-cancels"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in operations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "5"
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in operations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "5",
+          "5"
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -1,17 +1,214 @@
 {
   "challenge_id": "lc_2588",
   "cases": [
-    {"id":"sample-1","name":"sample: two beautiful subarrays","kind":"sample","visible":true,"input":{"nums":[4,3,1,2,4]},"expected":2,"tags":["sample","mixed-bits"]},
-    {"id":"sample-2","name":"sample: no zero-XOR subarray","kind":"sample","visible":true,"input":{"nums":[1,10,4]},"expected":0,"tags":["sample","none"]},
-    {"id":"trial-all-zeros","name":"trial: every subarray of three zeros is beautiful","kind":"trial","visible":true,"input":{"nums":[0,0,0]},"expected":6,"tags":["trial","zeros"]},
-    {"id":"trial-single-zero","name":"trial: one zero needs no operation","kind":"trial","visible":true,"input":{"nums":[0]},"expected":1,"tags":["trial","minimum"]},
-    {"id":"real-single-nonzero","name":"hidden: one nonzero value cannot pair its bits","kind":"real","visible":false,"input":{"nums":[7]},"expected":0,"tags":["hidden","minimum"]},
-    {"id":"real-equal-pair","name":"hidden: equal values cancel under XOR","kind":"real","visible":false,"input":{"nums":[1,1]},"expected":1,"tags":["hidden","equal-pair"]},
-    {"id":"real-whole-only","name":"hidden: only the complete triple has zero XOR","kind":"real","visible":false,"input":{"nums":[1,2,3]},"expected":1,"tags":["hidden","whole-array"]},
-    {"id":"real-zero-between-pair","name":"hidden: an internal zero and the complete range qualify","kind":"real","visible":false,"input":{"nums":[1,0,1]},"expected":2,"tags":["hidden","zero","equal-prefix"]},
-    {"id":"real-four-zeros","name":"hidden: all ten nonempty zero subarrays qualify","kind":"real","visible":false,"input":{"nums":[0,0,0,0]},"expected":10,"tags":["hidden","zeros","combinatorics"]},
-    {"id":"real-three-equal","name":"hidden: adjacent equal pairs qualify separately","kind":"real","visible":false,"input":{"nums":[5,5,5]},"expected":2,"tags":["hidden","overlapping-subarrays"]},
-    {"id":"real-maximum-value-pair","name":"hidden: equal values at the legal maximum qualify","kind":"real","visible":false,"input":{"nums":[1000000,1000000]},"expected":1,"tags":["hidden","maximum-value"]},
-    {"id":"real-multiple-bit-parities","name":"hidden: two pairs and their union have even bit counts","kind":"real","visible":false,"input":{"nums":[2,2,1,1]},"expected":3,"tags":["hidden","bit-parity","nested"]}
+    {
+      "id": "sample-1",
+      "name": "sample: two beautiful subarrays",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          3,
+          1,
+          2,
+          4
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "mixed-bits"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no zero-XOR subarray",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          10,
+          4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "none"
+      ]
+    },
+    {
+      "id": "trial-all-zeros",
+      "name": "trial: every subarray of three zeros is beautiful",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "zeros"
+      ]
+    },
+    {
+      "id": "trial-single-zero",
+      "name": "trial: one zero needs no operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-single-nonzero",
+      "name": "one nonzero value cannot pair its bits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-equal-pair",
+      "name": "equal values cancel under XOR",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "equal-pair"
+      ]
+    },
+    {
+      "id": "trial-whole-only",
+      "name": "only the complete triple has zero XOR",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "whole-array"
+      ]
+    },
+    {
+      "id": "trial-zero-between-pair",
+      "name": "an internal zero and the complete range qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          0,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "zero",
+        "equal-prefix"
+      ]
+    },
+    {
+      "id": "trial-four-zeros",
+      "name": "all ten nonempty zero subarrays qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "zeros",
+        "combinatorics"
+      ]
+    },
+    {
+      "id": "trial-three-equal",
+      "name": "adjacent equal pairs qualify separately",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "overlapping-subarrays"
+      ]
+    },
+    {
+      "id": "trial-maximum-value-pair",
+      "name": "equal values at the legal maximum qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000,
+          1000000
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "maximum-value"
+      ]
+    },
+    {
+      "id": "trial-multiple-bit-parities",
+      "name": "two pairs and their union have even bit counts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          1,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "bit-parity",
+        "nested"
+      ]
+    }
   ]
 }

@@ -6,135 +6,336 @@
       "name": "sample: multiply the best positive run",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, -2, 3, 4, -5], "k": 2},
+      "input": {
+        "nums": [
+          1,
+          -2,
+          3,
+          4,
+          -5
+        ],
+        "k": 2
+      },
       "expected": 14,
-      "tags": ["sample", "multiplication", "positive-run"]
+      "tags": [
+        "sample",
+        "multiplication",
+        "positive-run"
+      ]
     },
     {
       "id": "sample-divide-least-negative",
       "name": "sample: division rounds a negative quotient toward zero",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [-5, -4, -3], "k": 2},
+      "input": {
+        "nums": [
+          -5,
+          -4,
+          -3
+        ],
+        "k": 2
+      },
       "expected": -1,
-      "tags": ["sample", "division", "all-negative"]
+      "tags": [
+        "sample",
+        "division",
+        "all-negative"
+      ]
     },
     {
       "id": "trial-single-positive",
       "name": "trial: multiply the only positive value",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5], "k": 2},
+      "input": {
+        "nums": [
+          5
+        ],
+        "k": 2
+      },
       "expected": 10,
-      "tags": ["trial", "minimum-length", "multiplication"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "multiplication"
+      ]
     },
     {
       "id": "trial-single-negative",
       "name": "trial: divide the only negative value",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [-5], "k": 2},
+      "input": {
+        "nums": [
+          -5
+        ],
+        "k": 2
+      },
       "expected": -2,
-      "tags": ["trial", "minimum-length", "truncation"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "truncation"
+      ]
     },
     {
       "id": "trial-single-zero",
       "name": "trial: either exact operation preserves zero",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0], "k": 100000},
+      "input": {
+        "nums": [
+          0
+        ],
+        "k": 100000
+      },
       "expected": 0,
-      "tags": ["trial", "zero", "large-k"]
+      "tags": [
+        "trial",
+        "zero",
+        "large-k"
+      ]
     },
     {
       "id": "trial-unit-multiplier",
       "name": "trial: k equal to one reduces to ordinary Kadane",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, -2, 3], "k": 1},
+      "input": {
+        "nums": [
+          1,
+          -2,
+          3
+        ],
+        "k": 1
+      },
       "expected": 3,
-      "tags": ["trial", "unit-multiplier", "unchanged-array"]
+      "tags": [
+        "trial",
+        "unit-multiplier",
+        "unchanged-array"
+      ]
     },
     {
       "id": "trial-operation-range-differs",
       "name": "trial: divided operation range is only part of the final sum range",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, -1, -1, 2, -1, -1, 2], "k": 2},
+      "input": {
+        "nums": [
+          2,
+          -1,
+          -1,
+          2,
+          -1,
+          -1,
+          2
+        ],
+        "k": 2
+      },
       "expected": 5,
-      "tags": ["trial", "partial-overlap", "division"]
+      "tags": [
+        "trial",
+        "partial-overlap",
+        "division"
+      ]
     },
     {
       "id": "trial-negative-becomes-zero",
       "name": "trial: truncation can turn the best negative value into zero",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [-20, -3, -10], "k": 4},
+      "input": {
+        "nums": [
+          -20,
+          -3,
+          -10
+        ],
+        "k": 4
+      },
       "expected": 0,
-      "tags": ["trial", "all-negative", "zero-result"]
+      "tags": [
+        "trial",
+        "all-negative",
+        "zero-result"
+      ]
     },
     {
-      "id": "real-interior-positive-run",
-      "name": "hidden: multiplication starts after a discarded prefix",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, -5, 4, 3, -2], "k": 3},
+      "id": "trial-interior-positive-run",
+      "name": "multiplication starts after a discarded prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          -5,
+          4,
+          3,
+          -2
+        ],
+        "k": 3
+      },
       "expected": 21,
-      "tags": ["hidden", "restart", "multiplication"]
+      "tags": [
+        "restart",
+        "multiplication"
+      ]
     },
     {
-      "id": "real-separated-best-run",
-      "name": "hidden: large negative gaps isolate the best operation range",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [8, -20, 7, 7, -20, 8], "k": 3},
+      "id": "trial-separated-best-run",
+      "name": "large negative gaps isolate the best operation range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          -20,
+          7,
+          7,
+          -20,
+          8
+        ],
+        "k": 3
+      },
       "expected": 42,
-      "tags": ["hidden", "negative-gap", "positive-run"]
+      "tags": [
+        "negative-gap",
+        "positive-run"
+      ]
     },
     {
-      "id": "real-multiply-through-negative",
-      "name": "hidden: the optimal multiplied range contains a negative value",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [4, -1, 4], "k": 2},
+      "id": "trial-multiply-through-negative",
+      "name": "the optimal multiplied range contains a negative value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          -1,
+          4
+        ],
+        "k": 2
+      },
       "expected": 14,
-      "tags": ["hidden", "mixed-sign", "contiguous-operation"]
+      "tags": [
+        "mixed-sign",
+        "contiguous-operation"
+      ]
     },
     {
-      "id": "real-positive-between-negatives",
-      "name": "hidden: multiplication selects the only positive singleton",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-9, 1, -9], "k": 2},
+      "id": "trial-positive-between-negatives",
+      "name": "multiplication selects the only positive singleton",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -9,
+          1,
+          -9
+        ],
+        "k": 2
+      },
       "expected": 2,
-      "tags": ["hidden", "singleton-operation", "negative-boundaries"]
+      "tags": [
+        "singleton-operation",
+        "negative-boundaries"
+      ]
     },
     {
-      "id": "real-wide-transformed-value",
-      "name": "hidden: maximum values require 64-bit arithmetic",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100000, -100000, 100000], "k": 100000},
+      "id": "trial-wide-transformed-value",
+      "name": "maximum values require 64-bit arithmetic",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100000,
+          -100000,
+          100000
+        ],
+        "k": 100000
+      },
       "expected": 10000000000,
-      "tags": ["hidden", "maximum-values", "wide-integer"]
+      "tags": [
+        "maximum-values",
+        "wide-integer"
+      ]
     },
     {
-      "id": "real-phase-transitions",
-      "name": "hidden: several restarts compete across all operation phases",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [3, -8, 2, -1, 6, -7, 4], "k": 3},
+      "id": "trial-phase-transitions",
+      "name": "several restarts compete across all operation phases",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          -8,
+          2,
+          -1,
+          6,
+          -7,
+          4
+        ],
+        "k": 3
+      },
       "expected": 21,
-      "tags": ["hidden", "state-transition", "mixed-sign"]
+      "tags": [
+        "state-transition",
+        "mixed-sign"
+      ]
     },
     {
-      "id": "real-negative-ceiling",
-      "name": "hidden: negative division uses ceiling rather than floor",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-5, -4], "k": 3},
+      "id": "trial-negative-ceiling",
+      "name": "negative division uses ceiling rather than floor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -5,
+          -4
+        ],
+        "k": 3
+      },
       "expected": -1,
-      "tags": ["hidden", "truncation", "all-negative"]
+      "tags": [
+        "truncation",
+        "all-negative"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 2
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-17",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

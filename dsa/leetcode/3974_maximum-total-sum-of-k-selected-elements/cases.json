@@ -6,135 +6,357 @@
       "name": "sample: one profitable multiplication before ordinary additions",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [6, 1, 2, 9], "k": 3, "mul": 2},
+      "input": {
+        "nums": [
+          6,
+          1,
+          2,
+          9
+        ],
+        "k": 3,
+        "mul": 2
+      },
       "expected": 26,
-      "tags": ["sample", "selection", "multiplier-decrease"]
+      "tags": [
+        "sample",
+        "selection",
+        "multiplier-decrease"
+      ]
     },
     {
       "id": "sample-two-profitable-products",
       "name": "sample: largest values pair with multipliers four and three",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [3, 7, 5, 2], "k": 2, "mul": 4},
+      "input": {
+        "nums": [
+          3,
+          7,
+          5,
+          2
+        ],
+        "k": 2,
+        "mul": 4
+      },
       "expected": 43,
-      "tags": ["sample", "ordering", "all-multiplied"]
+      "tags": [
+        "sample",
+        "ordering",
+        "all-multiplied"
+      ]
     },
     {
       "id": "sample-unit-multiplier",
       "name": "sample: multiplication by one ties ordinary addition",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [4, 4], "k": 1, "mul": 1},
+      "input": {
+        "nums": [
+          4,
+          4
+        ],
+        "k": 1,
+        "mul": 1
+      },
       "expected": 4,
-      "tags": ["sample", "unit-multiplier", "duplicates"]
+      "tags": [
+        "sample",
+        "unit-multiplier",
+        "duplicates"
+      ]
     },
     {
       "id": "trial-single-element",
       "name": "trial: minimum array and selection sizes",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [7], "k": 1, "mul": 1},
+      "input": {
+        "nums": [
+          7
+        ],
+        "k": 1,
+        "mul": 1
+      },
       "expected": 7,
-      "tags": ["trial", "minimum-length", "unit-multiplier"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "unit-multiplier"
+      ]
     },
     {
       "id": "trial-unit-multiplier-top-three",
       "name": "trial: unit multiplier reduces the task to top-k addition",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5, 1, 9, 3], "k": 3, "mul": 1},
+      "input": {
+        "nums": [
+          5,
+          1,
+          9,
+          3
+        ],
+        "k": 3,
+        "mul": 1
+      },
       "expected": 17,
-      "tags": ["trial", "selection", "ordinary-addition"]
+      "tags": [
+        "trial",
+        "selection",
+        "ordinary-addition"
+      ]
     },
     {
       "id": "trial-one-selection-large-multiplier",
       "name": "trial: one selection uses the full initial multiplier",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 10, 7], "k": 1, "mul": 5},
+      "input": {
+        "nums": [
+          2,
+          10,
+          7
+        ],
+        "k": 1,
+        "mul": 5
+      },
       "expected": 50,
-      "tags": ["trial", "single-selection", "largest-value"]
+      "tags": [
+        "trial",
+        "single-selection",
+        "largest-value"
+      ]
     },
     {
       "id": "trial-only-first-product-profitable",
       "name": "trial: factor one and lower positions use ordinary value",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [8, 7, 6], "k": 3, "mul": 2},
+      "input": {
+        "nums": [
+          8,
+          7,
+          6
+        ],
+        "k": 3,
+        "mul": 2
+      },
       "expected": 29,
-      "tags": ["trial", "multiplier-boundary", "all-selected"]
+      "tags": [
+        "trial",
+        "multiplier-boundary",
+        "all-selected"
+      ]
     },
     {
       "id": "trial-every-selection-multiplied",
       "name": "trial: fewer selections than profitable factors",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 9, 5, 3], "k": 2, "mul": 10},
+      "input": {
+        "nums": [
+          1,
+          9,
+          5,
+          3
+        ],
+        "k": 2,
+        "mul": 10
+      },
       "expected": 135,
-      "tags": ["trial", "all-multiplied", "large-multiplier"]
+      "tags": [
+        "trial",
+        "all-multiplied",
+        "large-multiplier"
+      ]
     },
     {
-      "id": "real-duplicate-selected-values",
-      "name": "hidden: equal values remain separate selectable elements",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [4, 4, 4, 4], "k": 3, "mul": 4},
+      "id": "trial-duplicate-selected-values",
+      "name": "equal values remain separate selectable elements",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4,
+          4,
+          4
+        ],
+        "k": 3,
+        "mul": 4
+      },
       "expected": 36,
-      "tags": ["hidden", "duplicates", "all-multiplied"]
+      "tags": [
+        "duplicates",
+        "all-multiplied"
+      ]
     },
     {
-      "id": "real-selection-exchange",
-      "name": "hidden: the two largest values must both be selected",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100, 99, 1, 1], "k": 2, "mul": 2},
+      "id": "trial-selection-exchange",
+      "name": "the two largest values must both be selected",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100,
+          99,
+          1,
+          1
+        ],
+        "k": 2,
+        "mul": 2
+      },
       "expected": 299,
-      "tags": ["hidden", "selection", "exchange-argument"]
+      "tags": [
+        "selection",
+        "exchange-argument"
+      ]
     },
     {
-      "id": "real-processing-order",
-      "name": "hidden: the largest value needs the largest factor",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2, 9, 8], "k": 3, "mul": 3},
+      "id": "trial-processing-order",
+      "name": "the largest value needs the largest factor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          9,
+          8
+        ],
+        "k": 3,
+        "mul": 3
+      },
       "expected": 45,
-      "tags": ["hidden", "ordering", "rearrangement"]
+      "tags": [
+        "ordering",
+        "rearrangement"
+      ]
     },
     {
-      "id": "real-multiplier-becomes-negative",
-      "name": "hidden: processing continues after the multiplier is nonpositive",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [10, 9, 8, 7, 6], "k": 5, "mul": 2},
+      "id": "trial-multiplier-becomes-negative",
+      "name": "processing continues after the multiplier is nonpositive",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          9,
+          8,
+          7,
+          6
+        ],
+        "k": 5,
+        "mul": 2
+      },
       "expected": 50,
-      "tags": ["hidden", "negative-multiplier", "exactly-k"]
+      "tags": [
+        "negative-multiplier",
+        "exactly-k"
+      ]
     },
     {
-      "id": "real-all-elements-unsorted",
-      "name": "hidden: selecting every element still requires optimal ordering",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, 2, 11, 3], "k": 4, "mul": 4},
+      "id": "trial-all-elements-unsorted",
+      "name": "selecting every element still requires optimal ordering",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          2,
+          11,
+          3
+        ],
+        "k": 4,
+        "mul": 4
+      },
       "expected": 67,
-      "tags": ["hidden", "all-selected", "ordering"]
+      "tags": [
+        "all-selected",
+        "ordering"
+      ]
     },
     {
-      "id": "real-wide-integer-total",
-      "name": "hidden: maximum values exceed 32-bit arithmetic",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100000, 100000, 100000], "k": 3, "mul": 100000},
+      "id": "trial-wide-integer-total",
+      "name": "maximum values exceed 32-bit arithmetic",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100000,
+          100000,
+          100000
+        ],
+        "k": 3,
+        "mul": 100000
+      },
       "expected": 29999700000,
-      "tags": ["hidden", "large-values", "wide-integer"]
+      "tags": [
+        "large-values",
+        "wide-integer"
+      ]
     },
     {
-      "id": "real-mixed-selection-and-factors",
-      "name": "hidden: four selected values span profitable and unit factors",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [12, 1, 20, 7, 18, 3], "k": 4, "mul": 3},
+      "id": "trial-mixed-selection-and-factors",
+      "name": "four selected values span profitable and unit factors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          12,
+          1,
+          20,
+          7,
+          18,
+          3
+        ],
+        "k": 4,
+        "mul": 3
+      },
       "expected": 115,
-      "tags": ["hidden", "selection", "mixed-factors"]
+      "tags": [
+        "selection",
+        "mixed-factors"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          6
+        ],
+        "k": 3,
+        "mul": 2
+      },
+      "expected": 24,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-17",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          1,
+          2,
+          9
+        ],
+        "k": 1,
+        "mul": 2
+      },
+      "expected": 18,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
     }
   ]
 }

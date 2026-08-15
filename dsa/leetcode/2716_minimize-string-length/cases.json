@@ -1,1 +1,168 @@
-{"challenge_id":"lc_2716","cases":[{"id":"sample-1","name":"sample: repeated leading character","kind":"sample","visible":true,"input":{"s":"aaabc"},"expected":3,"tags":["sample","duplicates"]},{"id":"sample-2","name":"sample: one duplicated middle character","kind":"sample","visible":true,"input":{"s":"cbbd"},"expected":3,"tags":["sample","middle"]},{"id":"sample-3","name":"sample: several duplicated characters","kind":"sample","visible":true,"input":{"s":"baadccab"},"expected":4,"tags":["sample","mixed"]},{"id":"trial-single-character","name":"trial: one character","kind":"trial","visible":true,"input":{"s":"z"},"expected":1,"tags":["trial","minimum"]},{"id":"trial-all-distinct","name":"trial: every lowercase letter once","kind":"trial","visible":true,"input":{"s":"abcdefghijklmnopqrstuvwxyz"},"expected":26,"tags":["trial","alphabet"]},{"id":"real-all-equal","name":"hidden: all copies can reduce to one","kind":"real","visible":false,"input":{"s":"xxxxxxxxxx"},"expected":1,"tags":["hidden","uniform"]},{"id":"real-repeated-block","name":"hidden: repeated alphabet block","kind":"real","visible":false,"input":{"s":"abcabc"},"expected":3,"tags":["hidden","blocks"]},{"id":"real-mississippi","name":"hidden: uneven multiplicities","kind":"real","visible":false,"input":{"s":"mississippi"},"expected":4,"tags":["hidden","multiplicity"]},{"id":"real-leetcode","name":"hidden: separated duplicate letters","kind":"real","visible":false,"input":{"s":"leetcode"},"expected":6,"tags":["hidden","separated"]},{"id":"real-two-distinct-runs","name":"hidden: two long character runs","kind":"real","visible":false,"input":{"s":"aaaaabbbbb"},"expected":2,"tags":["hidden","runs"]}]}
+{
+  "challenge_id": "lc_2716",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: repeated leading character",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aaabc"
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one duplicated middle character",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "cbbd"
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "middle"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: several duplicated characters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "baadccab"
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "trial: one character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "z"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-all-distinct",
+      "name": "trial: every lowercase letter once",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyz"
+      },
+      "expected": 26,
+      "tags": [
+        "trial",
+        "alphabet"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "all copies can reduce to one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "xxxxxxxxxx"
+      },
+      "expected": 1,
+      "tags": [
+        "uniform"
+      ]
+    },
+    {
+      "id": "trial-repeated-block",
+      "name": "repeated alphabet block",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcabc"
+      },
+      "expected": 3,
+      "tags": [
+        "blocks"
+      ]
+    },
+    {
+      "id": "trial-mississippi",
+      "name": "uneven multiplicities",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "mississippi"
+      },
+      "expected": 4,
+      "tags": [
+        "multiplicity"
+      ]
+    },
+    {
+      "id": "trial-leetcode",
+      "name": "separated duplicate letters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "leetcode"
+      },
+      "expected": 6,
+      "tags": [
+        "separated"
+      ]
+    },
+    {
+      "id": "trial-two-distinct-runs",
+      "name": "two long character runs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaaabbbbb"
+      },
+      "expected": 2,
+      "tags": [
+        "runs"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
+    }
+  ]
+}

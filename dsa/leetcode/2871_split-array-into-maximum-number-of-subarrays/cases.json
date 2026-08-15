@@ -74,10 +74,10 @@
       "expected": 1
     },
     {
-      "id": "real-all-zeros",
-      "name": "hidden: every zero can form its own segment",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-zeros",
+      "name": "every zero can form its own segment",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -87,16 +87,15 @@
         ]
       },
       "tags": [
-        "hidden",
         "maximum-splits"
       ],
       "expected": 4
     },
     {
-      "id": "real-positive-global-and",
-      "name": "hidden: repeated positive segment scores cannot match the minimum sum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-positive-global-and",
+      "name": "repeated positive segment scores cannot match the minimum sum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -106,16 +105,15 @@
         ]
       },
       "tags": [
-        "hidden",
         "positive-and"
       ],
       "expected": 1
     },
     {
-      "id": "real-one-late-reset",
-      "name": "hidden: the first zero AND appears only at the end",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-late-reset",
+      "name": "the first zero AND appears only at the end",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -125,16 +123,15 @@
         ]
       },
       "tags": [
-        "hidden",
         "late-reset"
       ],
       "expected": 1
     },
     {
-      "id": "real-leftover-after-last-reset",
-      "name": "hidden: a nonzero suffix joins the final zero segment",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-leftover-after-last-reset",
+      "name": "a nonzero suffix joins the final zero segment",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -150,10 +147,42 @@
         ]
       },
       "tags": [
-        "hidden",
         "leftover-suffix"
       ],
       "expected": 3
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

@@ -77,48 +77,75 @@
       ]
     },
     {
-      "id": "real-different-one-counts",
-      "name": "hidden: one counts need not match",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-different-one-counts",
+      "name": "one counts need not match",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "00000001",
         "target": "11111111"
       },
       "expected": true,
       "tags": [
-        "hidden",
         "count-change"
       ]
     },
     {
-      "id": "real-identical-nonzero",
-      "name": "hidden: identical nonzero strings need no operations",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-identical-nonzero",
+      "name": "identical nonzero strings need no operations",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "010101",
         "target": "010101"
       },
       "expected": true,
       "tags": [
-        "hidden",
         "zero-operations"
       ]
     },
     {
-      "id": "real-minimum-length",
-      "name": "hidden: minimum-length mismatch classes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-minimum-length",
+      "name": "minimum-length mismatch classes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "00",
         "target": "10"
       },
       "expected": false,
       "tags": [
-        "hidden",
         "minimum"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1",
+        "target": "0110"
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "111",
+        "target": "0110"
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

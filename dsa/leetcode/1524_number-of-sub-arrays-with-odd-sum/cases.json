@@ -113,10 +113,10 @@
       ]
     },
     {
-      "id": "real-even-padding",
-      "name": "hidden: even values preserve prefix parity",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-even-padding",
+      "name": "even values preserve prefix parity",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           2,
@@ -134,10 +134,10 @@
       ]
     },
     {
-      "id": "real-long-odd-run",
-      "name": "hidden: long run of odd values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-long-odd-run",
+      "name": "long run of odd values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -158,10 +158,10 @@
       ]
     },
     {
-      "id": "real-mixed-repeats",
-      "name": "hidden: repeated mixed values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-repeats",
+      "name": "repeated mixed values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           10,
@@ -183,10 +183,10 @@
       ]
     },
     {
-      "id": "real-boundary-values",
-      "name": "hidden: minimum and maximum values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-boundary-values",
+      "name": "minimum and maximum values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,

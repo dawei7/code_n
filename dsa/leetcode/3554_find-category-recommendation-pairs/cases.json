@@ -7,84 +7,589 @@
       "name": "sample: four reportable category pairs",
       "kind": "sample",
       "visible": true,
-      "input": {"tables": {
-        "ProductPurchases": [
-          {"user_id":1,"product_id":101,"quantity":2},{"user_id":1,"product_id":102,"quantity":1},{"user_id":1,"product_id":201,"quantity":3},{"user_id":1,"product_id":301,"quantity":1},
-          {"user_id":2,"product_id":101,"quantity":1},{"user_id":2,"product_id":102,"quantity":2},{"user_id":2,"product_id":103,"quantity":1},{"user_id":2,"product_id":201,"quantity":5},
-          {"user_id":3,"product_id":101,"quantity":2},{"user_id":3,"product_id":103,"quantity":1},{"user_id":3,"product_id":301,"quantity":4},{"user_id":3,"product_id":401,"quantity":2},
-          {"user_id":4,"product_id":101,"quantity":1},{"user_id":4,"product_id":201,"quantity":3},{"user_id":4,"product_id":301,"quantity":1},{"user_id":4,"product_id":401,"quantity":2},
-          {"user_id":5,"product_id":102,"quantity":2},{"user_id":5,"product_id":103,"quantity":1},{"user_id":5,"product_id":201,"quantity":2},{"user_id":5,"product_id":202,"quantity":3}
+      "input": {
+        "tables": {
+          "ProductPurchases": [
+            {
+              "user_id": 1,
+              "product_id": 101,
+              "quantity": 2
+            },
+            {
+              "user_id": 1,
+              "product_id": 102,
+              "quantity": 1
+            },
+            {
+              "user_id": 1,
+              "product_id": 201,
+              "quantity": 3
+            },
+            {
+              "user_id": 1,
+              "product_id": 301,
+              "quantity": 1
+            },
+            {
+              "user_id": 2,
+              "product_id": 101,
+              "quantity": 1
+            },
+            {
+              "user_id": 2,
+              "product_id": 102,
+              "quantity": 2
+            },
+            {
+              "user_id": 2,
+              "product_id": 103,
+              "quantity": 1
+            },
+            {
+              "user_id": 2,
+              "product_id": 201,
+              "quantity": 5
+            },
+            {
+              "user_id": 3,
+              "product_id": 101,
+              "quantity": 2
+            },
+            {
+              "user_id": 3,
+              "product_id": 103,
+              "quantity": 1
+            },
+            {
+              "user_id": 3,
+              "product_id": 301,
+              "quantity": 4
+            },
+            {
+              "user_id": 3,
+              "product_id": 401,
+              "quantity": 2
+            },
+            {
+              "user_id": 4,
+              "product_id": 101,
+              "quantity": 1
+            },
+            {
+              "user_id": 4,
+              "product_id": 201,
+              "quantity": 3
+            },
+            {
+              "user_id": 4,
+              "product_id": 301,
+              "quantity": 1
+            },
+            {
+              "user_id": 4,
+              "product_id": 401,
+              "quantity": 2
+            },
+            {
+              "user_id": 5,
+              "product_id": 102,
+              "quantity": 2
+            },
+            {
+              "user_id": 5,
+              "product_id": 103,
+              "quantity": 1
+            },
+            {
+              "user_id": 5,
+              "product_id": 201,
+              "quantity": 2
+            },
+            {
+              "user_id": 5,
+              "product_id": 202,
+              "quantity": 3
+            }
+          ],
+          "ProductInfo": [
+            {
+              "product_id": 101,
+              "category": "Electronics",
+              "price": 100
+            },
+            {
+              "product_id": 102,
+              "category": "Books",
+              "price": 20
+            },
+            {
+              "product_id": 103,
+              "category": "Books",
+              "price": 35
+            },
+            {
+              "product_id": 201,
+              "category": "Clothing",
+              "price": 45
+            },
+            {
+              "product_id": 202,
+              "category": "Clothing",
+              "price": 60
+            },
+            {
+              "product_id": 301,
+              "category": "Sports",
+              "price": 75
+            },
+            {
+              "product_id": 401,
+              "category": "Kitchen",
+              "price": 50
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "category1",
+          "category2",
+          "customer_count"
         ],
-        "ProductInfo": [
-          {"product_id":101,"category":"Electronics","price":100},{"product_id":102,"category":"Books","price":20},{"product_id":103,"category":"Books","price":35},{"product_id":201,"category":"Clothing","price":45},{"product_id":202,"category":"Clothing","price":60},{"product_id":301,"category":"Sports","price":75},{"product_id":401,"category":"Kitchen","price":50}
+        "rows": [
+          [
+            "Books",
+            "Clothing",
+            3
+          ],
+          [
+            "Books",
+            "Electronics",
+            3
+          ],
+          [
+            "Clothing",
+            "Electronics",
+            3
+          ],
+          [
+            "Electronics",
+            "Sports",
+            3
+          ]
         ]
-      }},
-      "expected": {"columns":["category1","category2","customer_count"],"rows":[["Books","Clothing",3],["Books","Electronics",3],["Clothing","Electronics",3],["Electronics","Sports",3]]},
-      "tags": ["sample","deduplication","ordering"]
+      },
+      "tags": [
+        "sample",
+        "deduplication",
+        "ordering"
+      ]
     },
     {
       "id": "trial-multiple-products-one-category",
       "name": "trial: duplicate products do not duplicate customers",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {
-        "ProductPurchases": [
-          {"user_id":1,"product_id":10,"quantity":1},{"user_id":1,"product_id":11,"quantity":9},{"user_id":1,"product_id":20,"quantity":1},
-          {"user_id":2,"product_id":10,"quantity":2},{"user_id":2,"product_id":11,"quantity":8},{"user_id":2,"product_id":20,"quantity":2},
-          {"user_id":3,"product_id":10,"quantity":3},{"user_id":3,"product_id":11,"quantity":7},{"user_id":3,"product_id":20,"quantity":3}
+      "input": {
+        "tables": {
+          "ProductPurchases": [
+            {
+              "user_id": 1,
+              "product_id": 10,
+              "quantity": 1
+            },
+            {
+              "user_id": 1,
+              "product_id": 11,
+              "quantity": 9
+            },
+            {
+              "user_id": 1,
+              "product_id": 20,
+              "quantity": 1
+            },
+            {
+              "user_id": 2,
+              "product_id": 10,
+              "quantity": 2
+            },
+            {
+              "user_id": 2,
+              "product_id": 11,
+              "quantity": 8
+            },
+            {
+              "user_id": 2,
+              "product_id": 20,
+              "quantity": 2
+            },
+            {
+              "user_id": 3,
+              "product_id": 10,
+              "quantity": 3
+            },
+            {
+              "user_id": 3,
+              "product_id": 11,
+              "quantity": 7
+            },
+            {
+              "user_id": 3,
+              "product_id": 20,
+              "quantity": 3
+            }
+          ],
+          "ProductInfo": [
+            {
+              "product_id": 10,
+              "category": "Books",
+              "price": 10
+            },
+            {
+              "product_id": 11,
+              "category": "Books",
+              "price": 20
+            },
+            {
+              "product_id": 20,
+              "category": "Clothing",
+              "price": 30
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "category1",
+          "category2",
+          "customer_count"
         ],
-        "ProductInfo": [{"product_id":10,"category":"Books","price":10},{"product_id":11,"category":"Books","price":20},{"product_id":20,"category":"Clothing","price":30}]
-      }},
-      "expected": {"columns":["category1","category2","customer_count"],"rows":[["Books","Clothing",3]]},
-      "tags": ["trial","membership-deduplication","quantity"]
+        "rows": [
+          [
+            "Books",
+            "Clothing",
+            3
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "membership-deduplication",
+        "quantity"
+      ]
     },
     {
       "id": "trial-below-threshold",
       "name": "trial: two shared customers are not reportable",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {
-        "ProductPurchases": [{"user_id":1,"product_id":1,"quantity":5},{"user_id":1,"product_id":2,"quantity":5},{"user_id":2,"product_id":1,"quantity":5},{"user_id":2,"product_id":2,"quantity":5}],
-        "ProductInfo": [{"product_id":1,"category":"A","price":1},{"product_id":2,"category":"B","price":2}]
-      }},
-      "expected": {"columns":["category1","category2","customer_count"],"rows":[]},
-      "tags": ["trial","below-threshold","empty-result"]
+      "input": {
+        "tables": {
+          "ProductPurchases": [
+            {
+              "user_id": 1,
+              "product_id": 1,
+              "quantity": 5
+            },
+            {
+              "user_id": 1,
+              "product_id": 2,
+              "quantity": 5
+            },
+            {
+              "user_id": 2,
+              "product_id": 1,
+              "quantity": 5
+            },
+            {
+              "user_id": 2,
+              "product_id": 2,
+              "quantity": 5
+            }
+          ],
+          "ProductInfo": [
+            {
+              "product_id": 1,
+              "category": "A",
+              "price": 1
+            },
+            {
+              "product_id": 2,
+              "category": "B",
+              "price": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "category1",
+          "category2",
+          "customer_count"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "trial",
+        "below-threshold",
+        "empty-result"
+      ]
     },
     {
-      "id": "real-count-and-lexical-order",
-      "name": "real: descending count and lexical tie-breakers",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {
-        "ProductPurchases": [
-          {"user_id":1,"product_id":1,"quantity":1},{"user_id":1,"product_id":2,"quantity":1},{"user_id":1,"product_id":3,"quantity":1},
-          {"user_id":2,"product_id":1,"quantity":1},{"user_id":2,"product_id":2,"quantity":1},{"user_id":2,"product_id":3,"quantity":1},
-          {"user_id":3,"product_id":1,"quantity":1},{"user_id":3,"product_id":2,"quantity":1},{"user_id":3,"product_id":3,"quantity":1},
-          {"user_id":4,"product_id":1,"quantity":1},{"user_id":4,"product_id":2,"quantity":1},
-          {"user_id":5,"product_id":3,"quantity":1},{"user_id":5,"product_id":4,"quantity":1},
-          {"user_id":6,"product_id":3,"quantity":1},{"user_id":6,"product_id":4,"quantity":1},
-          {"user_id":7,"product_id":3,"quantity":1},{"user_id":7,"product_id":4,"quantity":1}
+      "id": "trial-count-and-lexical-order",
+      "name": "descending count and lexical tie-breakers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "ProductPurchases": [
+            {
+              "user_id": 1,
+              "product_id": 1,
+              "quantity": 1
+            },
+            {
+              "user_id": 1,
+              "product_id": 2,
+              "quantity": 1
+            },
+            {
+              "user_id": 1,
+              "product_id": 3,
+              "quantity": 1
+            },
+            {
+              "user_id": 2,
+              "product_id": 1,
+              "quantity": 1
+            },
+            {
+              "user_id": 2,
+              "product_id": 2,
+              "quantity": 1
+            },
+            {
+              "user_id": 2,
+              "product_id": 3,
+              "quantity": 1
+            },
+            {
+              "user_id": 3,
+              "product_id": 1,
+              "quantity": 1
+            },
+            {
+              "user_id": 3,
+              "product_id": 2,
+              "quantity": 1
+            },
+            {
+              "user_id": 3,
+              "product_id": 3,
+              "quantity": 1
+            },
+            {
+              "user_id": 4,
+              "product_id": 1,
+              "quantity": 1
+            },
+            {
+              "user_id": 4,
+              "product_id": 2,
+              "quantity": 1
+            },
+            {
+              "user_id": 5,
+              "product_id": 3,
+              "quantity": 1
+            },
+            {
+              "user_id": 5,
+              "product_id": 4,
+              "quantity": 1
+            },
+            {
+              "user_id": 6,
+              "product_id": 3,
+              "quantity": 1
+            },
+            {
+              "user_id": 6,
+              "product_id": 4,
+              "quantity": 1
+            },
+            {
+              "user_id": 7,
+              "product_id": 3,
+              "quantity": 1
+            },
+            {
+              "user_id": 7,
+              "product_id": 4,
+              "quantity": 1
+            }
+          ],
+          "ProductInfo": [
+            {
+              "product_id": 1,
+              "category": "Alpha",
+              "price": 1
+            },
+            {
+              "product_id": 2,
+              "category": "Beta",
+              "price": 2
+            },
+            {
+              "product_id": 3,
+              "category": "Gamma",
+              "price": 3
+            },
+            {
+              "product_id": 4,
+              "category": "Omega",
+              "price": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "category1",
+          "category2",
+          "customer_count"
         ],
-        "ProductInfo": [{"product_id":1,"category":"Alpha","price":1},{"product_id":2,"category":"Beta","price":2},{"product_id":3,"category":"Gamma","price":3},{"product_id":4,"category":"Omega","price":4}]
-      }},
-      "expected": {"columns":["category1","category2","customer_count"],"rows":[["Alpha","Beta",4],["Alpha","Gamma",3],["Beta","Gamma",3],["Gamma","Omega",3]]},
-      "tags": ["real","ordering","different-counts"]
+        "rows": [
+          [
+            "Alpha",
+            "Beta",
+            4
+          ],
+          [
+            "Alpha",
+            "Gamma",
+            3
+          ],
+          [
+            "Beta",
+            "Gamma",
+            3
+          ],
+          [
+            "Gamma",
+            "Omega",
+            3
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "ordering",
+        "different-counts"
+      ]
     },
     {
-      "id": "real-one-user-many-categories",
-      "name": "real: all category combinations are generated",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {
-        "ProductPurchases": [
-          {"user_id":1,"product_id":1,"quantity":1},{"user_id":1,"product_id":2,"quantity":1},{"user_id":1,"product_id":3,"quantity":1},
-          {"user_id":2,"product_id":1,"quantity":1},{"user_id":2,"product_id":2,"quantity":1},{"user_id":2,"product_id":3,"quantity":1},
-          {"user_id":3,"product_id":1,"quantity":1},{"user_id":3,"product_id":2,"quantity":1},{"user_id":3,"product_id":3,"quantity":1}
+      "id": "trial-one-user-many-categories",
+      "name": "all category combinations are generated",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "ProductPurchases": [
+            {
+              "user_id": 1,
+              "product_id": 1,
+              "quantity": 1
+            },
+            {
+              "user_id": 1,
+              "product_id": 2,
+              "quantity": 1
+            },
+            {
+              "user_id": 1,
+              "product_id": 3,
+              "quantity": 1
+            },
+            {
+              "user_id": 2,
+              "product_id": 1,
+              "quantity": 1
+            },
+            {
+              "user_id": 2,
+              "product_id": 2,
+              "quantity": 1
+            },
+            {
+              "user_id": 2,
+              "product_id": 3,
+              "quantity": 1
+            },
+            {
+              "user_id": 3,
+              "product_id": 1,
+              "quantity": 1
+            },
+            {
+              "user_id": 3,
+              "product_id": 2,
+              "quantity": 1
+            },
+            {
+              "user_id": 3,
+              "product_id": 3,
+              "quantity": 1
+            }
+          ],
+          "ProductInfo": [
+            {
+              "product_id": 1,
+              "category": "C",
+              "price": 1
+            },
+            {
+              "product_id": 2,
+              "category": "A",
+              "price": 2
+            },
+            {
+              "product_id": 3,
+              "category": "B",
+              "price": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "category1",
+          "category2",
+          "customer_count"
         ],
-        "ProductInfo": [{"product_id":1,"category":"C","price":1},{"product_id":2,"category":"A","price":2},{"product_id":3,"category":"B","price":3}]
-      }},
-      "expected": {"columns":["category1","category2","customer_count"],"rows":[["A","B",3],["A","C",3],["B","C",3]]},
-      "tags": ["real","many-categories","lexical-normalization"]
+        "rows": [
+          [
+            "A",
+            "B",
+            3
+          ],
+          [
+            "A",
+            "C",
+            3
+          ],
+          [
+            "B",
+            "C",
+            3
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "many-categories",
+        "lexical-normalization"
+      ]
     }
   ]
 }

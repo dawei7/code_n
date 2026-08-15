@@ -57,45 +57,70 @@
       ]
     },
     {
-      "id": "real-consecutive-stars",
-      "name": "hidden: one run removes the entire prefix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-consecutive-stars",
+      "name": "one run removes the entire prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abc***"
       },
       "expected": "",
       "tags": [
-        "hidden",
         "consecutive-stars"
       ]
     },
     {
-      "id": "real-retained-suffix",
-      "name": "hidden: suffix remains after consecutive removals",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-retained-suffix",
+      "name": "suffix remains after consecutive removals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "ab**c"
       },
       "expected": "c",
       "tags": [
-        "hidden",
         "suffix"
       ]
     },
     {
-      "id": "real-multiple-runs",
-      "name": "hidden: separate star runs alter the surviving prefix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-runs",
+      "name": "separate star runs alter the surviving prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abc*d**e"
       },
       "expected": "ae",
       "tags": [
-        "hidden",
         "multiple-runs"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "l"
+      },
+      "expected": "l",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "lll"
+      },
+      "expected": "lll",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

@@ -6,108 +6,206 @@
       "name": "sample: swap the first two characters",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "abc", "t": "bac"},
+      "input": {
+        "s": "abc",
+        "t": "bac"
+      },
       "expected": 2,
-      "tags": ["sample", "swap"]
+      "tags": [
+        "sample",
+        "swap"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: mixed five-character permutation",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "abcde", "t": "edbac"},
+      "input": {
+        "s": "abcde",
+        "t": "edbac"
+      },
       "expected": 12,
-      "tags": ["sample", "permutation"]
+      "tags": [
+        "sample",
+        "permutation"
+      ]
     },
     {
       "id": "trial-single-character",
       "name": "trial: one character cannot move",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "a", "t": "a"},
+      "input": {
+        "s": "a",
+        "t": "a"
+      },
       "expected": 0,
-      "tags": ["singleton", "zero"]
+      "tags": [
+        "singleton",
+        "zero"
+      ]
     },
     {
       "id": "trial-identical",
       "name": "trial: identical strings",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "abcdef", "t": "abcdef"},
+      "input": {
+        "s": "abcdef",
+        "t": "abcdef"
+      },
       "expected": 0,
-      "tags": ["identity", "zero"]
+      "tags": [
+        "identity",
+        "zero"
+      ]
     },
     {
       "id": "trial-adjacent-tail-swap",
       "name": "trial: adjacent characters swap at the tail",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "abc", "t": "acb"},
+      "input": {
+        "s": "abc",
+        "t": "acb"
+      },
       "expected": 2,
-      "tags": ["adjacent-swap"]
+      "tags": [
+        "adjacent-swap"
+      ]
     },
     {
       "id": "trial-reversed-four",
       "name": "trial: reverse four characters",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "abcd", "t": "dcba"},
+      "input": {
+        "s": "abcd",
+        "t": "dcba"
+      },
       "expected": 8,
-      "tags": ["reverse"]
+      "tags": [
+        "reverse"
+      ]
     },
     {
       "id": "trial-left-rotation",
       "name": "trial: rotate every character left",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "abcde", "t": "bcdea"},
+      "input": {
+        "s": "abcde",
+        "t": "bcdea"
+      },
       "expected": 8,
-      "tags": ["rotation"]
+      "tags": [
+        "rotation"
+      ]
     },
     {
-      "id": "real-endpoint-swap",
-      "name": "real: swap only the endpoints",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcdef", "t": "fbcdea"},
+      "id": "trial-endpoint-swap",
+      "name": "swap only the endpoints",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdef",
+        "t": "fbcdea"
+      },
       "expected": 10,
-      "tags": ["endpoint-swap", "large-displacement"]
+      "tags": [
+        "endpoint-swap",
+        "large-displacement"
+      ]
     },
     {
-      "id": "real-two-block-rotation",
-      "name": "real: exchange two equal blocks",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "azby", "t": "byaz"},
+      "id": "trial-two-block-rotation",
+      "name": "exchange two equal blocks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "azby",
+        "t": "byaz"
+      },
       "expected": 8,
-      "tags": ["block-swap"]
+      "tags": [
+        "block-swap"
+      ]
     },
     {
-      "id": "real-reversed-six",
-      "name": "real: reverse six scattered letters",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "qwerty", "t": "ytrewq"},
+      "id": "trial-reversed-six",
+      "name": "reverse six scattered letters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "qwerty",
+        "t": "ytrewq"
+      },
       "expected": 18,
-      "tags": ["reverse", "scattered-letters"]
+      "tags": [
+        "reverse",
+        "scattered-letters"
+      ]
     },
     {
-      "id": "real-reversed-ten",
-      "name": "real: reverse ten characters",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcdefghij", "t": "jihgfedcba"},
+      "id": "trial-reversed-ten",
+      "name": "reverse ten characters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdefghij",
+        "t": "jihgfedcba"
+      },
       "expected": 50,
-      "tags": ["reverse", "longer"]
+      "tags": [
+        "reverse",
+        "longer"
+      ]
     },
     {
-      "id": "real-maximum-length-reverse",
-      "name": "real: reverse the complete lowercase alphabet",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcdefghijklmnopqrstuvwxyz", "t": "zyxwvutsrqponmlkjihgfedcba"},
+      "id": "trial-maximum-length-reverse",
+      "name": "reverse the complete lowercase alphabet",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyz",
+        "t": "zyxwvutsrqponmlkjihgfedcba"
+      },
       "expected": 338,
-      "tags": ["maximum-length", "reverse"]
+      "tags": [
+        "maximum-length",
+        "reverse"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in t",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "t": "b"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in t",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "t": "bbb"
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
     }
   ]
 }

@@ -328,10 +328,10 @@
       ]
     },
     {
-      "id": "hidden-seven",
-      "name": "hidden: high feasible count",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-seven",
+      "name": "high feasible count",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "turnedOn": 7
       },
@@ -389,15 +389,14 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "high"
       ]
     },
     {
-      "id": "hidden-eight",
-      "name": "hidden: maximum feasible count",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-eight",
+      "name": "maximum feasible count",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "turnedOn": 8
       },
@@ -415,15 +414,14 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "maximum"
       ]
     },
     {
-      "id": "hidden-ten",
-      "name": "hidden: every physical LED requested",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ten",
+      "name": "every physical LED requested",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "turnedOn": 10
       },
@@ -432,7 +430,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "invalid"
       ]
     }

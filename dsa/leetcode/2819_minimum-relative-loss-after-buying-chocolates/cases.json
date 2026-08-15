@@ -188,10 +188,10 @@
       ]
     },
     {
-      "id": "real-low-threshold",
-      "name": "hidden: expensive chocolates create negative losses",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-low-threshold",
+      "name": "expensive chocolates create negative losses",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           1,
@@ -209,15 +209,14 @@
         -197
       ],
       "tags": [
-        "hidden",
         "negative-loss"
       ]
     },
     {
-      "id": "real-high-threshold",
-      "name": "hidden: all prices are fully paid",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-high-threshold",
+      "name": "all prices are fully paid",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           2,
@@ -235,15 +234,14 @@
         6
       ],
       "tags": [
-        "hidden",
         "all-affordable"
       ]
     },
     {
-      "id": "real-value-boundary",
-      "name": "hidden: maximum price creates the minimum loss",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-value-boundary",
+      "name": "maximum price creates the minimum loss",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           1,
@@ -265,15 +263,14 @@
         1
       ],
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
     {
-      "id": "real-convex-splits",
-      "name": "hidden: optima use interior prefix-suffix splits",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-convex-splits",
+      "name": "optima use interior prefix-suffix splits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           2,
@@ -304,7 +301,6 @@
         -19
       ],
       "tags": [
-        "hidden",
         "interior-split"
       ]
     }

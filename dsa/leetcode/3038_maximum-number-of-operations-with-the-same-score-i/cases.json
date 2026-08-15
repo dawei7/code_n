@@ -103,10 +103,10 @@
       ]
     },
     {
-      "id": "real-immediate-break",
-      "name": "real: later matching pair is unreachable after a break",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-immediate-break",
+      "name": "later matching pair is unreachable after a break",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -124,10 +124,10 @@
       ]
     },
     {
-      "id": "real-break-late",
-      "name": "real: several operations precede a late break",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-break-late",
+      "name": "several operations precede a late break",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -149,10 +149,10 @@
       ]
     },
     {
-      "id": "real-boundary-values",
-      "name": "real: boundary values form equal scores",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-boundary-values",
+      "name": "boundary values form equal scores",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

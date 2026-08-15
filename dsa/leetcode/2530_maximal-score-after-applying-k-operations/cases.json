@@ -1,13 +1,150 @@
 {
   "challenge_id": "lc_2530",
   "cases": [
-    {"id": "sample-1", "name": "sample: select each equal maximum once", "kind": "sample", "visible": true, "input": {"nums": [10, 10, 10, 10, 10], "k": 5}, "expected": 50, "tags": ["sample", "ties"]},
-    {"id": "sample-2", "name": "sample: reuse the largest replacement", "kind": "sample", "visible": true, "input": {"nums": [1, 10, 3, 3, 3], "k": 3}, "expected": 17, "tags": ["sample", "repeated-index"]},
-    {"id": "trial-stable-one", "name": "trial: ceiling division keeps one unchanged", "kind": "trial", "visible": true, "input": {"nums": [1], "k": 5}, "expected": 5, "tags": ["trial", "fixed-point"]},
-    {"id": "trial-single-chain", "name": "trial: follow one replacement chain", "kind": "trial", "visible": true, "input": {"nums": [10], "k": 3}, "expected": 16, "tags": ["trial", "ceiling"]},
-    {"id": "real-replacement-vs-others", "name": "hidden: replacement remains above small alternatives", "kind": "real", "visible": false, "input": {"nums": [8, 1, 1], "k": 2}, "expected": 11, "tags": ["hidden", "heap-order"]},
-    {"id": "real-tied-chains", "name": "hidden: equal large values produce competing chains", "kind": "real", "visible": false, "input": {"nums": [9, 9, 1], "k": 3}, "expected": 21, "tags": ["hidden", "ties"]},
-    {"id": "real-large-value", "name": "hidden: integer ceiling near upper bound", "kind": "real", "visible": false, "input": {"nums": [1000000000], "k": 2}, "expected": 1333333334, "tags": ["hidden", "upper-bound"]},
-    {"id": "real-beyond-two-chains", "name": "hidden: operations continue after values reach one", "kind": "real", "visible": false, "input": {"nums": [2, 2], "k": 5}, "expected": 7, "tags": ["hidden", "long-k"]}
+    {
+      "id": "sample-1",
+      "name": "sample: select each equal maximum once",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          10,
+          10,
+          10,
+          10
+        ],
+        "k": 5
+      },
+      "expected": 50,
+      "tags": [
+        "sample",
+        "ties"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: reuse the largest replacement",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          10,
+          3,
+          3,
+          3
+        ],
+        "k": 3
+      },
+      "expected": 17,
+      "tags": [
+        "sample",
+        "repeated-index"
+      ]
+    },
+    {
+      "id": "trial-stable-one",
+      "name": "trial: ceiling division keeps one unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 5
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "fixed-point"
+      ]
+    },
+    {
+      "id": "trial-single-chain",
+      "name": "trial: follow one replacement chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10
+        ],
+        "k": 3
+      },
+      "expected": 16,
+      "tags": [
+        "trial",
+        "ceiling"
+      ]
+    },
+    {
+      "id": "trial-replacement-vs-others",
+      "name": "replacement remains above small alternatives",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          1,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 11,
+      "tags": [
+        "heap-order"
+      ]
+    },
+    {
+      "id": "trial-tied-chains",
+      "name": "equal large values produce competing chains",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          9,
+          1
+        ],
+        "k": 3
+      },
+      "expected": 21,
+      "tags": [
+        "ties"
+      ]
+    },
+    {
+      "id": "trial-large-value",
+      "name": "integer ceiling near upper bound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000
+        ],
+        "k": 2
+      },
+      "expected": 1333333334,
+      "tags": [
+        "upper-bound"
+      ]
+    },
+    {
+      "id": "trial-beyond-two-chains",
+      "name": "operations continue after values reach one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ],
+        "k": 5
+      },
+      "expected": 7,
+      "tags": [
+        "long-k"
+      ]
+    }
   ]
 }

@@ -157,10 +157,10 @@
       ]
     },
     {
-      "id": "real-contracted-parallel",
-      "name": "hidden: parallel edges after cheaper contraction",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-contracted-parallel",
+      "name": "parallel edges after cheaper contraction",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "edges": [
@@ -200,16 +200,15 @@
         "kind": "ordered_groups_unordered_items"
       },
       "tags": [
-        "hidden",
         "contracted-parallel",
         "equal-weight"
       ]
     },
     {
-      "id": "real-heavy-unused",
-      "name": "hidden: heavier cycle edge belongs to no MST",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-heavy-unused",
+      "name": "heavier cycle edge belongs to no MST",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 3,
         "edges": [
@@ -241,16 +240,15 @@
         "kind": "ordered_groups_unordered_items"
       },
       "tags": [
-        "hidden",
         "unused-heavy",
         "unique-mst"
       ]
     },
     {
-      "id": "real-cycle-with-bridges",
-      "name": "hidden: pseudo cycle attached through critical bridges",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-cycle-with-bridges",
+      "name": "pseudo cycle attached through critical bridges",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 5,
         "edges": [
@@ -296,16 +294,15 @@
         "kind": "ordered_groups_unordered_items"
       },
       "tags": [
-        "hidden",
         "bridge",
         "cycle"
       ]
     },
     {
-      "id": "real-complete-equal-k4",
-      "name": "hidden: every equal edge can enter an MST",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-complete-equal-k4",
+      "name": "every equal edge can enter an MST",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "edges": [
@@ -356,16 +353,15 @@
         "kind": "ordered_groups_unordered_items"
       },
       "tags": [
-        "hidden",
         "dense",
         "all-pseudo"
       ]
     },
     {
-      "id": "real-multiple-weight-cycles",
-      "name": "hidden: alternatives in separate weight groups",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-weight-cycles",
+      "name": "alternatives in separate weight groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 6,
         "edges": [
@@ -428,7 +424,6 @@
         "kind": "ordered_groups_unordered_items"
       },
       "tags": [
-        "hidden",
         "multiple-groups",
         "unused-heavy"
       ]

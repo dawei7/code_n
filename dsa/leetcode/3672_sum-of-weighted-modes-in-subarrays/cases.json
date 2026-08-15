@@ -123,10 +123,10 @@
       ]
     },
     {
-      "id": "real-outgoing-mode",
-      "name": "hidden: removing the mode changes the winner",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-outgoing-mode",
+      "name": "removing the mode changes the winner",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -139,16 +139,15 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "outgoing-mode",
         "tie-break"
       ]
     },
     {
-      "id": "real-value-boundary",
-      "name": "hidden: tied maximum-domain values choose the smaller",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-value-boundary",
+      "name": "tied maximum-domain values choose the smaller",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000,
@@ -159,15 +158,14 @@
       },
       "expected": 199998,
       "tags": [
-        "hidden",
         "maximum-value"
       ]
     },
     {
-      "id": "real-many-ties",
-      "name": "hidden: increasing distinct windows use their first value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-ties",
+      "name": "increasing distinct windows use their first value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -181,7 +179,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "all-distinct",
         "sliding"
       ]

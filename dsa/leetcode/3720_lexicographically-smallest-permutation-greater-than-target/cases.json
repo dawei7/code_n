@@ -134,10 +134,10 @@
       ]
     },
     {
-      "id": "real-duplicate-backtrack",
-      "name": "hidden: duplicate letters are restored while moving the first difference left",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicate-backtrack",
+      "name": "duplicate letters are restored while moving the first difference left",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aabc",
         "target": "abca"
@@ -147,16 +147,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicates",
         "backtracking"
       ]
     },
     {
-      "id": "real-duplicate-next",
-      "name": "hidden: repeated letters still produce the next distinct permutation",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicate-next",
+      "name": "repeated letters still produce the next distinct permutation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aabb",
         "target": "abab"
@@ -166,16 +165,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicates",
         "next-permutation"
       ]
     },
     {
-      "id": "real-missing-target-letter",
-      "name": "hidden: an unavailable equal letter triggers an increase at that position",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-missing-target-letter",
+      "name": "an unavailable equal letter triggers an increase at that position",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abdz",
         "target": "abcz"
@@ -185,15 +183,14 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "unavailable-match"
       ]
     },
     {
-      "id": "real-target-above-maximum",
-      "name": "hidden: a target above the maximum permutation has no answer",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-target-above-maximum",
+      "name": "a target above the maximum permutation has no answer",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abcd",
         "target": "zzzz"
@@ -203,15 +200,14 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "empty-result"
       ]
     },
     {
-      "id": "real-maximum-length",
-      "name": "hidden: maximum-length input remains linear",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-length",
+      "name": "maximum-length input remains linear",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
         "target": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
@@ -221,10 +217,38 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-length"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "target": "bba"
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa",
+        "target": "bba"
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]
 }
-

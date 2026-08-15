@@ -213,10 +213,10 @@
       ]
     },
     {
-      "id": "real-count-and-state-order",
-      "name": "real: count priority followed by alphabetical state tie",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-count-and-state-order",
+      "name": "count priority followed by alphabetical state tie",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "cities": [
@@ -289,10 +289,10 @@
       ]
     },
     {
-      "id": "real-retain-nonmatching-cities",
-      "name": "real: nonmatching cities remain in concatenated output",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-retain-nonmatching-cities",
+      "name": "nonmatching cities remain in concatenated output",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "cities": [

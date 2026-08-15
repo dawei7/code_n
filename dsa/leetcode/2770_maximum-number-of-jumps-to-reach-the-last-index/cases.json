@@ -7,8 +7,21 @@
       "name": "sample: longest route uses selected indices",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 3, 6, 4, 1, 2], "target": 2},
-      "tags": ["sample", "longest-path"],
+      "input": {
+        "nums": [
+          1,
+          3,
+          6,
+          4,
+          1,
+          2
+        ],
+        "target": 2
+      },
+      "tags": [
+        "sample",
+        "longest-path"
+      ],
       "expected": 3
     },
     {
@@ -16,8 +29,21 @@
       "name": "sample: every consecutive jump is valid",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 3, 6, 4, 1, 2], "target": 3},
-      "tags": ["sample", "all-indices"],
+      "input": {
+        "nums": [
+          1,
+          3,
+          6,
+          4,
+          1,
+          2
+        ],
+        "target": 3
+      },
+      "tags": [
+        "sample",
+        "all-indices"
+      ],
       "expected": 5
     },
     {
@@ -25,8 +51,21 @@
       "name": "sample: destination is unreachable",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 3, 6, 4, 1, 2], "target": 0},
-      "tags": ["sample", "unreachable"],
+      "input": {
+        "nums": [
+          1,
+          3,
+          6,
+          4,
+          1,
+          2
+        ],
+        "target": 0
+      },
+      "tags": [
+        "sample",
+        "unreachable"
+      ],
       "expected": -1
     },
     {
@@ -34,8 +73,20 @@
       "name": "trial: negative and positive values form one chain",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [-3, -1, 0, 2, 1], "target": 2},
-      "tags": ["trial", "negative"],
+      "input": {
+        "nums": [
+          -3,
+          -1,
+          0,
+          2,
+          1
+        ],
+        "target": 2
+      },
+      "tags": [
+        "trial",
+        "negative"
+      ],
       "expected": 4
     },
     {
@@ -43,8 +94,17 @@
       "name": "trial: jump difference equals the threshold",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0, 5], "target": 5},
-      "tags": ["trial", "inclusive-boundary"],
+      "input": {
+        "nums": [
+          0,
+          5
+        ],
+        "target": 5
+      },
+      "tags": [
+        "trial",
+        "inclusive-boundary"
+      ],
       "expected": 1
     },
     {
@@ -52,53 +112,119 @@
       "name": "trial: zero target permits only equal values",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [7, 7, 8, 7, 7], "target": 0},
-      "tags": ["trial", "zero-target", "skip"],
+      "input": {
+        "nums": [
+          7,
+          7,
+          8,
+          7,
+          7
+        ],
+        "target": 0
+      },
+      "tags": [
+        "trial",
+        "zero-target",
+        "skip"
+      ],
       "expected": 3
     },
     {
-      "id": "real-requires-skip",
-      "name": "hidden: longest route skips invalid values",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 5, 1, 2, 8, 3, 4], "target": 2},
-      "tags": ["hidden", "skip"],
+      "id": "trial-requires-skip",
+      "name": "longest route skips invalid values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          5,
+          1,
+          2,
+          8,
+          3,
+          4
+        ],
+        "target": 2
+      },
+      "tags": [
+        "skip"
+      ],
       "expected": 4
     },
     {
-      "id": "real-two-index-unreachable",
-      "name": "hidden: only possible jump exceeds the threshold",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 6], "target": 5},
-      "tags": ["hidden", "unreachable", "boundary"],
+      "id": "trial-two-index-unreachable",
+      "name": "only possible jump exceeds the threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          6
+        ],
+        "target": 5
+      },
+      "tags": [
+        "unreachable",
+        "boundary"
+      ],
       "expected": -1
     },
     {
-      "id": "real-all-values-reachable",
-      "name": "hidden: a large threshold permits every index",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [4, -10, 8, 0, 3], "target": 20},
-      "tags": ["hidden", "all-indices"],
+      "id": "trial-all-values-reachable",
+      "name": "a large threshold permits every index",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          -10,
+          8,
+          0,
+          3
+        ],
+        "target": 20
+      },
+      "tags": [
+        "all-indices"
+      ],
       "expected": 4
     },
     {
-      "id": "real-extreme-values",
-      "name": "hidden: extreme values with a narrow valid chain",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-1000000000, 1000000000, -999999999, -999999998], "target": 1},
-      "tags": ["hidden", "extreme-values"],
+      "id": "trial-extreme-values",
+      "name": "extreme values with a narrow valid chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1000000000,
+          1000000000,
+          -999999999,
+          -999999998
+        ],
+        "target": 1
+      },
+      "tags": [
+        "extreme-values"
+      ],
       "expected": 2
     },
     {
-      "id": "real-unreachable-predecessors",
-      "name": "hidden: mutually connected indices remain unreachable",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 100, 101, 1], "target": 1},
-      "tags": ["hidden", "reachability"],
+      "id": "trial-unreachable-predecessors",
+      "name": "mutually connected indices remain unreachable",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          100,
+          101,
+          1
+        ],
+        "target": 1
+      },
+      "tags": [
+        "reachability"
+      ],
       "expected": 1
     }
   ]

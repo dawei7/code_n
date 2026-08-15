@@ -82,10 +82,10 @@
       ]
     },
     {
-      "id": "real-power-of-two",
-      "name": "real: exact power-of-two target",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-power-of-two",
+      "name": "exact power-of-two target",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "k": 8
       },
@@ -95,10 +95,10 @@
       ]
     },
     {
-      "id": "real-unreachable-after-power",
-      "name": "real: target immediately above a power is unreachable",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unreachable-after-power",
+      "name": "target immediately above a power is unreachable",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "k": 9
       },
@@ -108,10 +108,10 @@
       ]
     },
     {
-      "id": "real-before-power",
-      "name": "real: target immediately below sixteen",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-before-power",
+      "name": "target immediately below sixteen",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "k": 15
       },
@@ -121,10 +121,10 @@
       ]
     },
     {
-      "id": "real-sixteen",
-      "name": "real: reach sixteen with only upward moves",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-sixteen",
+      "name": "reach sixteen with only upward moves",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "k": 16
       },
@@ -134,10 +134,10 @@
       ]
     },
     {
-      "id": "real-before-thirty-two",
-      "name": "real: six placements reach thirty-one",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-before-thirty-two",
+      "name": "six placements reach thirty-one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "k": 31
       },
@@ -147,10 +147,10 @@
       ]
     },
     {
-      "id": "real-maximum-target",
-      "name": "real: maximum allowed target",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-target",
+      "name": "maximum allowed target",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "k": 1000000000
       },

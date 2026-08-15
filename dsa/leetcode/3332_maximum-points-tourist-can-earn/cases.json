@@ -190,8 +190,8 @@
     {
       "id": "changing-stay-favorites",
       "name": "moving can sacrifice one day to reach a later high-value stay",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 3,
         "k": 4,
@@ -244,8 +244,8 @@
     {
       "id": "four-city-mixed-route",
       "name": "mixed stay and travel route across four cities",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "k": 4,

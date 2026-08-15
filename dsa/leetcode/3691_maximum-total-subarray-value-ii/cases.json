@@ -7,63 +7,132 @@
       "name": "sample: two distinct intervals each have range two",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 3, 2], "k": 2},
+      "input": {
+        "nums": [
+          1,
+          3,
+          2
+        ],
+        "k": 2
+      },
       "expected": 4,
-      "tags": ["sample", "distinct-intervals"]
+      "tags": [
+        "sample",
+        "distinct-intervals"
+      ]
     },
     {
       "id": "sample-three-global-ranges",
       "name": "sample: three intervals each span the global extrema",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [4, 2, 5, 1], "k": 3},
+      "input": {
+        "nums": [
+          4,
+          2,
+          5,
+          1
+        ],
+        "k": 3
+      },
       "expected": 12,
-      "tags": ["sample", "global-extrema"]
+      "tags": [
+        "sample",
+        "global-extrema"
+      ]
     },
     {
       "id": "trial-singleton",
       "name": "trial: the only singleton has zero range",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [7], "k": 1},
+      "input": {
+        "nums": [
+          7
+        ],
+        "k": 1
+      },
       "expected": 0,
-      "tags": ["trial", "singleton"]
+      "tags": [
+        "trial",
+        "singleton"
+      ]
     },
     {
       "id": "trial-select-all-subarrays",
       "name": "trial: include all six intervals of length three array",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 3], "k": 6},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 6
+      },
       "expected": 4,
-      "tags": ["trial", "maximum-k"]
+      "tags": [
+        "trial",
+        "maximum-k"
+      ]
     },
     {
-      "id": "real-all-equal",
-      "name": "hidden: every distinct interval has zero range",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, 5, 5], "k": 4},
+      "id": "trial-all-equal",
+      "name": "every distinct interval has zero range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5
+        ],
+        "k": 4
+      },
       "expected": 0,
-      "tags": ["hidden", "duplicates", "zero-range"]
+      "tags": [
+        "duplicates",
+        "zero-range"
+      ]
     },
     {
-      "id": "real-ranked-overlapping-ranges",
-      "name": "hidden: take the five greatest overlapping interval ranges",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 10, 1, 9], "k": 5},
+      "id": "trial-ranked-overlapping-ranges",
+      "name": "take the five greatest overlapping interval ranges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          10,
+          1,
+          9
+        ],
+        "k": 5
+      },
       "expected": 48,
-      "tags": ["hidden", "overlap", "ranking"]
+      "tags": [
+        "overlap",
+        "ranking"
+      ]
     },
     {
-      "id": "real-zero-values-after-best",
-      "name": "hidden: selecting every interval includes singleton zeros",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 1000000000], "k": 3},
+      "id": "trial-zero-values-after-best",
+      "name": "selecting every interval includes singleton zeros",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1000000000
+        ],
+        "k": 3
+      },
       "expected": 1000000000,
-      "tags": ["hidden", "wide-value", "maximum-k"]
+      "tags": [
+        "wide-value",
+        "maximum-k"
+      ]
     }
   ]
 }

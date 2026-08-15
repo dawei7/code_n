@@ -1,1 +1,189 @@
-{"challenge_id":"lc_3316","cases":[{"id":"sample-overlapping-b","name":"sample: choose either removable b","kind":"sample","visible":true,"input":{"source":"abbaa","pattern":"aba","targetIndices":[0,1,2]},"expected":1,"tags":["sample","choice"]},{"id":"sample-unused-endpoints","name":"sample: remove unused endpoints","kind":"sample","visible":true,"input":{"source":"bcda","pattern":"d","targetIndices":[0,3]},"expected":2,"tags":["sample"]},{"id":"sample-pattern-equals-source","name":"sample: every character is required","kind":"sample","visible":true,"input":{"source":"dda","pattern":"dda","targetIndices":[0,1,2]},"expected":0,"tags":["sample","boundary"]},{"id":"sample-interleaved-choice","name":"sample: interleaved removable positions","kind":"sample","visible":true,"input":{"source":"yeyeykyded","pattern":"yeyyd","targetIndices":[0,2,3,4]},"expected":2,"tags":["sample","dp"]},{"id":"trial-two-complete-copies","name":"trial: retain one of two copies","kind":"trial","visible":true,"input":{"source":"abcabc","pattern":"abc","targetIndices":[0,1,2,3,4,5]},"expected":3,"tags":["duplicates"]},{"id":"trial-sparse-removals","name":"trial: sparse eligible positions","kind":"trial","visible":true,"input":{"source":"abcabc","pattern":"abc","targetIndices":[1,3,4]},"expected":2,"tags":["sparse"]},{"id":"trial-nonremovable-support","name":"trial: non-removable positions support pattern","kind":"trial","visible":true,"input":{"source":"aaaaa","pattern":"aaa","targetIndices":[1,3]},"expected":2,"tags":["repeated","free-match"]},{"id":"real-overlapping-subsequence","name":"real: hidden overlapping subsequence choices","kind":"real","visible":false,"input":{"source":"cababcabca","pattern":"abca","targetIndices":[0,2,3,5,7,8]},"expected":5,"tags":["overlap"]},{"id":"real-forced-removable-character","name":"real: several eligible characters must remain","kind":"real","visible":false,"input":{"source":"axbxcxd","pattern":"abcd","targetIndices":[1,2,3,4,5,6]},"expected":3,"tags":["forced","sparse"]}]}
+{
+  "challenge_id": "lc_3316",
+  "cases": [
+    {
+      "id": "sample-overlapping-b",
+      "name": "sample: choose either removable b",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "source": "abbaa",
+        "pattern": "aba",
+        "targetIndices": [
+          0,
+          1,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "choice"
+      ]
+    },
+    {
+      "id": "sample-unused-endpoints",
+      "name": "sample: remove unused endpoints",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "source": "bcda",
+        "pattern": "d",
+        "targetIndices": [
+          0,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-pattern-equals-source",
+      "name": "sample: every character is required",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "source": "dda",
+        "pattern": "dda",
+        "targetIndices": [
+          0,
+          1,
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "sample-interleaved-choice",
+      "name": "sample: interleaved removable positions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "source": "yeyeykyded",
+        "pattern": "yeyyd",
+        "targetIndices": [
+          0,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "dp"
+      ]
+    },
+    {
+      "id": "trial-two-complete-copies",
+      "name": "trial: retain one of two copies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "source": "abcabc",
+        "pattern": "abc",
+        "targetIndices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-sparse-removals",
+      "name": "trial: sparse eligible positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "source": "abcabc",
+        "pattern": "abc",
+        "targetIndices": [
+          1,
+          3,
+          4
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sparse"
+      ]
+    },
+    {
+      "id": "trial-nonremovable-support",
+      "name": "trial: non-removable positions support pattern",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "source": "aaaaa",
+        "pattern": "aaa",
+        "targetIndices": [
+          1,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "repeated",
+        "free-match"
+      ]
+    },
+    {
+      "id": "trial-overlapping-subsequence",
+      "name": "hidden overlapping subsequence choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "source": "cababcabca",
+        "pattern": "abca",
+        "targetIndices": [
+          0,
+          2,
+          3,
+          5,
+          7,
+          8
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-forced-removable-character",
+      "name": "several eligible characters must remain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "source": "axbxcxd",
+        "pattern": "abcd",
+        "targetIndices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "forced",
+        "sparse"
+      ]
+    }
+  ]
+}

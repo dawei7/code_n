@@ -83,10 +83,10 @@
       ]
     },
     {
-      "id": "real-overlapping-groups",
-      "name": "hidden: alternating values create overlapping good ranges",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-overlapping-groups",
+      "name": "alternating values create overlapping good ranges",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -99,15 +99,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "overlap"
       ]
     },
     {
-      "id": "real-identical-threshold",
-      "name": "hidden: identical values cross a combinatorial threshold",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-identical-threshold",
+      "name": "identical values cross a combinatorial threshold",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -119,7 +118,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "all-equal",
         "threshold"
       ]

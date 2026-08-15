@@ -1,11 +1,176 @@
-{"schema_version":1,"challenge_id":"lc_1000","cases":[
-{"id":"sample-1","name":"sample: pairwise merging","kind":"sample","visible":true,"input":{"stones":[3,2,4,1],"k":2},"expected":20,"tags":["sample"]},
-{"id":"sample-2","name":"sample: impossible pile count","kind":"sample","visible":true,"input":{"stones":[3,2,4,1],"k":3},"expected":-1,"tags":["sample"]},
-{"id":"sample-3","name":"sample: two three-pile merges","kind":"sample","visible":true,"input":{"stones":[3,5,1,2,6],"k":3},"expected":25,"tags":["sample"]},
-{"id":"trial-1","name":"trial: already one pile","kind":"trial","visible":true,"input":{"stones":[7],"k":2},"expected":0,"tags":["trial","minimum"]},
-{"id":"trial-2","name":"trial: merge two piles once","kind":"trial","visible":true,"input":{"stones":[1,2],"k":2},"expected":3,"tags":["trial","single-merge"]},
-{"id":"trial-3","name":"trial: choose cheaper adjacent pair first","kind":"trial","visible":true,"input":{"stones":[1,2,3],"k":2},"expected":9,"tags":["trial","order"]},
-{"id":"hidden-1","name":"hidden: merge entire row","kind":"real","visible":false,"input":{"stones":[1,2,3,4],"k":4},"expected":10,"tags":["hidden","full-row"]},
-{"id":"hidden-2","name":"hidden: symmetric pairwise costs","kind":"real","visible":false,"input":{"stones":[6,4,4,6],"k":2},"expected":40,"tags":["hidden","pairwise"]},
-{"id":"hidden-3","name":"hidden: repeated three-way merges","kind":"real","visible":false,"input":{"stones":[1,1,1,1,1],"k":3},"expected":8,"tags":["hidden","three-way"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1000",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: pairwise merging",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stones": [
+          3,
+          2,
+          4,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 20,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: impossible pile count",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stones": [
+          3,
+          2,
+          4,
+          1
+        ],
+        "k": 3
+      },
+      "expected": -1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: two three-pile merges",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stones": [
+          3,
+          5,
+          1,
+          2,
+          6
+        ],
+        "k": 3
+      },
+      "expected": 25,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: already one pile",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "stones": [
+          7
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: merge two piles once",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "stones": [
+          1,
+          2
+        ],
+        "k": 2
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "single-merge"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: choose cheaper adjacent pair first",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "stones": [
+          1,
+          2,
+          3
+        ],
+        "k": 2
+      },
+      "expected": 9,
+      "tags": [
+        "trial",
+        "order"
+      ]
+    },
+    {
+      "id": "trial-ext-1",
+      "name": "merge entire row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "stones": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "k": 4
+      },
+      "expected": 10,
+      "tags": [
+        "full-row"
+      ]
+    },
+    {
+      "id": "trial-ext-2",
+      "name": "symmetric pairwise costs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "stones": [
+          6,
+          4,
+          4,
+          6
+        ],
+        "k": 2
+      },
+      "expected": 40,
+      "tags": [
+        "pairwise"
+      ]
+    },
+    {
+      "id": "trial-ext-3",
+      "name": "repeated three-way merges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "stones": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 3
+      },
+      "expected": 8,
+      "tags": [
+        "three-way"
+      ]
+    }
+  ]
+}

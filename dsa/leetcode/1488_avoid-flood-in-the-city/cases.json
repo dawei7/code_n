@@ -115,10 +115,10 @@
       ]
     },
     {
-      "id": "real-single-repeat",
-      "name": "hidden: one lake dried between rains",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-repeat",
+      "name": "one lake dried between rains",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rains": [
           5,
@@ -135,15 +135,14 @@
         "kind": "avoid_flood"
       },
       "tags": [
-        "hidden",
         "single-lake"
       ]
     },
     {
-      "id": "real-dry-too-early",
-      "name": "hidden: early dry day cannot prevent later repeat",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-dry-too-early",
+      "name": "early dry day cannot prevent later repeat",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rains": [
           0,
@@ -156,16 +155,15 @@
         "kind": "avoid_flood"
       },
       "tags": [
-        "hidden",
         "impossible",
         "dry-too-early"
       ]
     },
     {
-      "id": "real-all-dry",
-      "name": "hidden: every day is unconstrained drying",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-dry",
+      "name": "every day is unconstrained drying",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rains": [
           0,
@@ -184,16 +182,15 @@
         "kind": "avoid_flood"
       },
       "tags": [
-        "hidden",
         "all-zero",
         "arbitrary"
       ]
     },
     {
-      "id": "real-refill-stale-deadline",
-      "name": "hidden: lake is dried refilled and scheduled again",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-refill-stale-deadline",
+      "name": "lake is dried refilled and scheduled again",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rains": [
           1,
@@ -220,16 +217,15 @@
         "kind": "avoid_flood"
       },
       "tags": [
-        "hidden",
         "refill",
         "stale-heap"
       ]
     },
     {
-      "id": "real-large-identifiers",
-      "name": "hidden: large sparse lake identifiers",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-identifiers",
+      "name": "large sparse lake identifiers",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rains": [
           1000000000,
@@ -252,16 +248,15 @@
         "kind": "avoid_flood"
       },
       "tags": [
-        "hidden",
         "maximum-lake",
         "sparse-ids"
       ]
     },
     {
-      "id": "real-adjacent-repeat",
-      "name": "hidden: consecutive rain on same lake floods",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-adjacent-repeat",
+      "name": "consecutive rain on same lake floods",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rains": [
           9,
@@ -273,7 +268,6 @@
         "kind": "avoid_flood"
       },
       "tags": [
-        "hidden",
         "impossible",
         "adjacent-repeat"
       ]

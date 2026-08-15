@@ -7,114 +7,459 @@
       "name": "sample: determine the winner in every season",
       "kind": "sample",
       "visible": true,
-      "input": {"tables": {
-        "sales": [
-          {"sale_id":1,"product_id":1,"sale_date":"2023-01-15","quantity":5,"price":10.00},
-          {"sale_id":2,"product_id":2,"sale_date":"2023-01-20","quantity":4,"price":15.00},
-          {"sale_id":3,"product_id":3,"sale_date":"2023-03-10","quantity":3,"price":18.00},
-          {"sale_id":4,"product_id":4,"sale_date":"2023-04-05","quantity":1,"price":20.00},
-          {"sale_id":5,"product_id":1,"sale_date":"2023-05-20","quantity":2,"price":10.00},
-          {"sale_id":6,"product_id":2,"sale_date":"2023-06-12","quantity":4,"price":15.00},
-          {"sale_id":7,"product_id":5,"sale_date":"2023-06-15","quantity":5,"price":12.00},
-          {"sale_id":8,"product_id":3,"sale_date":"2023-07-24","quantity":2,"price":18.00},
-          {"sale_id":9,"product_id":4,"sale_date":"2023-08-01","quantity":5,"price":20.00},
-          {"sale_id":10,"product_id":5,"sale_date":"2023-09-03","quantity":3,"price":12.00},
-          {"sale_id":11,"product_id":1,"sale_date":"2023-09-25","quantity":6,"price":10.00},
-          {"sale_id":12,"product_id":2,"sale_date":"2023-11-10","quantity":4,"price":15.00},
-          {"sale_id":13,"product_id":3,"sale_date":"2023-12-05","quantity":6,"price":18.00},
-          {"sale_id":14,"product_id":4,"sale_date":"2023-12-22","quantity":3,"price":20.00},
-          {"sale_id":15,"product_id":5,"sale_date":"2024-02-14","quantity":2,"price":12.00}
+      "input": {
+        "tables": {
+          "sales": [
+            {
+              "sale_id": 1,
+              "product_id": 1,
+              "sale_date": "2023-01-15",
+              "quantity": 5,
+              "price": 10.0
+            },
+            {
+              "sale_id": 2,
+              "product_id": 2,
+              "sale_date": "2023-01-20",
+              "quantity": 4,
+              "price": 15.0
+            },
+            {
+              "sale_id": 3,
+              "product_id": 3,
+              "sale_date": "2023-03-10",
+              "quantity": 3,
+              "price": 18.0
+            },
+            {
+              "sale_id": 4,
+              "product_id": 4,
+              "sale_date": "2023-04-05",
+              "quantity": 1,
+              "price": 20.0
+            },
+            {
+              "sale_id": 5,
+              "product_id": 1,
+              "sale_date": "2023-05-20",
+              "quantity": 2,
+              "price": 10.0
+            },
+            {
+              "sale_id": 6,
+              "product_id": 2,
+              "sale_date": "2023-06-12",
+              "quantity": 4,
+              "price": 15.0
+            },
+            {
+              "sale_id": 7,
+              "product_id": 5,
+              "sale_date": "2023-06-15",
+              "quantity": 5,
+              "price": 12.0
+            },
+            {
+              "sale_id": 8,
+              "product_id": 3,
+              "sale_date": "2023-07-24",
+              "quantity": 2,
+              "price": 18.0
+            },
+            {
+              "sale_id": 9,
+              "product_id": 4,
+              "sale_date": "2023-08-01",
+              "quantity": 5,
+              "price": 20.0
+            },
+            {
+              "sale_id": 10,
+              "product_id": 5,
+              "sale_date": "2023-09-03",
+              "quantity": 3,
+              "price": 12.0
+            },
+            {
+              "sale_id": 11,
+              "product_id": 1,
+              "sale_date": "2023-09-25",
+              "quantity": 6,
+              "price": 10.0
+            },
+            {
+              "sale_id": 12,
+              "product_id": 2,
+              "sale_date": "2023-11-10",
+              "quantity": 4,
+              "price": 15.0
+            },
+            {
+              "sale_id": 13,
+              "product_id": 3,
+              "sale_date": "2023-12-05",
+              "quantity": 6,
+              "price": 18.0
+            },
+            {
+              "sale_id": 14,
+              "product_id": 4,
+              "sale_date": "2023-12-22",
+              "quantity": 3,
+              "price": 20.0
+            },
+            {
+              "sale_id": 15,
+              "product_id": 5,
+              "sale_date": "2024-02-14",
+              "quantity": 2,
+              "price": 12.0
+            }
+          ],
+          "products": [
+            {
+              "product_id": 1,
+              "product_name": "Warm Jacket",
+              "category": "Apparel"
+            },
+            {
+              "product_id": 2,
+              "product_name": "Designer Jeans",
+              "category": "Apparel"
+            },
+            {
+              "product_id": 3,
+              "product_name": "Cutting Board",
+              "category": "Kitchen"
+            },
+            {
+              "product_id": 4,
+              "product_name": "Smart Speaker",
+              "category": "Tech"
+            },
+            {
+              "product_id": 5,
+              "product_name": "Yoga Mat",
+              "category": "Fitness"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "season",
+          "category",
+          "total_quantity",
+          "total_revenue"
         ],
-        "products": [
-          {"product_id":1,"product_name":"Warm Jacket","category":"Apparel"},
-          {"product_id":2,"product_name":"Designer Jeans","category":"Apparel"},
-          {"product_id":3,"product_name":"Cutting Board","category":"Kitchen"},
-          {"product_id":4,"product_name":"Smart Speaker","category":"Tech"},
-          {"product_id":5,"product_name":"Yoga Mat","category":"Fitness"}
+        "rows": [
+          [
+            "Fall",
+            "Apparel",
+            10,
+            120.0
+          ],
+          [
+            "Spring",
+            "Kitchen",
+            3,
+            54.0
+          ],
+          [
+            "Summer",
+            "Tech",
+            5,
+            100.0
+          ],
+          [
+            "Winter",
+            "Apparel",
+            9,
+            110.0
+          ]
         ]
-      }},
-      "expected": {"columns":["season","category","total_quantity","total_revenue"],"rows":[["Fall","Apparel",10,120.0],["Spring","Kitchen",3,54.0],["Summer","Tech",5,100.0],["Winter","Apparel",9,110.0]]},
-      "validator": {"kind":"ordered_table"},
-      "tags": ["sample","all-seasons","revenue-tie-break"]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "all-seasons",
+        "revenue-tie-break"
+      ]
     },
     {
       "id": "trial-winter-wraparound",
       "name": "trial: December through February share Winter",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {
-        "sales": [
-          {"sale_id":1,"product_id":1,"sale_date":"2022-12-31","quantity":2,"price":10.0},
-          {"sale_id":2,"product_id":2,"sale_date":"2023-01-01","quantity":2,"price":20.0},
-          {"sale_id":3,"product_id":1,"sale_date":"2024-02-29","quantity":1,"price":10.0}
+      "input": {
+        "tables": {
+          "sales": [
+            {
+              "sale_id": 1,
+              "product_id": 1,
+              "sale_date": "2022-12-31",
+              "quantity": 2,
+              "price": 10.0
+            },
+            {
+              "sale_id": 2,
+              "product_id": 2,
+              "sale_date": "2023-01-01",
+              "quantity": 2,
+              "price": 20.0
+            },
+            {
+              "sale_id": 3,
+              "product_id": 1,
+              "sale_date": "2024-02-29",
+              "quantity": 1,
+              "price": 10.0
+            }
+          ],
+          "products": [
+            {
+              "product_id": 1,
+              "product_name": "Coat",
+              "category": "Alpha"
+            },
+            {
+              "product_id": 2,
+              "product_name": "Heater",
+              "category": "Beta"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "season",
+          "category",
+          "total_quantity",
+          "total_revenue"
         ],
-        "products": [
-          {"product_id":1,"product_name":"Coat","category":"Alpha"},
-          {"product_id":2,"product_name":"Heater","category":"Beta"}
+        "rows": [
+          [
+            "Winter",
+            "Alpha",
+            3,
+            30.0
+          ]
         ]
-      }},
-      "expected": {"columns":["season","category","total_quantity","total_revenue"],"rows":[["Winter","Alpha",3,30.0]]},
-      "validator": {"kind":"ordered_table"},
-      "tags": ["trial","december-boundary","cross-year"]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "december-boundary",
+        "cross-year"
+      ]
     },
     {
       "id": "trial-revenue-breaks-quantity-tie",
       "name": "trial: revenue breaks an equal-quantity tie",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {
-        "sales": [
-          {"sale_id":1,"product_id":1,"sale_date":"2025-06-10","quantity":5,"price":10.0},
-          {"sale_id":2,"product_id":2,"sale_date":"2025-08-20","quantity":5,"price":20.0}
+      "input": {
+        "tables": {
+          "sales": [
+            {
+              "sale_id": 1,
+              "product_id": 1,
+              "sale_date": "2025-06-10",
+              "quantity": 5,
+              "price": 10.0
+            },
+            {
+              "sale_id": 2,
+              "product_id": 2,
+              "sale_date": "2025-08-20",
+              "quantity": 5,
+              "price": 20.0
+            }
+          ],
+          "products": [
+            {
+              "product_id": 1,
+              "product_name": "Basic",
+              "category": "Alpha"
+            },
+            {
+              "product_id": 2,
+              "product_name": "Premium",
+              "category": "Zulu"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "season",
+          "category",
+          "total_quantity",
+          "total_revenue"
         ],
-        "products": [
-          {"product_id":1,"product_name":"Basic","category":"Alpha"},
-          {"product_id":2,"product_name":"Premium","category":"Zulu"}
+        "rows": [
+          [
+            "Summer",
+            "Zulu",
+            5,
+            100.0
+          ]
         ]
-      }},
-      "expected": {"columns":["season","category","total_quantity","total_revenue"],"rows":[["Summer","Zulu",5,100.0]]},
-      "validator": {"kind":"ordered_table"},
-      "tags": ["trial","quantity-tie","revenue"]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "quantity-tie",
+        "revenue"
+      ]
     },
     {
-      "id": "real-category-breaks-complete-tie",
-      "name": "real: category name breaks a complete aggregate tie",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {
-        "sales": [
-          {"sale_id":1,"product_id":1,"sale_date":"2025-03-01","quantity":1,"price":10.0},
-          {"sale_id":2,"product_id":2,"sale_date":"2025-04-01","quantity":3,"price":10.0},
-          {"sale_id":3,"product_id":3,"sale_date":"2025-05-01","quantity":4,"price":10.0}
+      "id": "trial-category-breaks-complete-tie",
+      "name": "category name breaks a complete aggregate tie",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "sales": [
+            {
+              "sale_id": 1,
+              "product_id": 1,
+              "sale_date": "2025-03-01",
+              "quantity": 1,
+              "price": 10.0
+            },
+            {
+              "sale_id": 2,
+              "product_id": 2,
+              "sale_date": "2025-04-01",
+              "quantity": 3,
+              "price": 10.0
+            },
+            {
+              "sale_id": 3,
+              "product_id": 3,
+              "sale_date": "2025-05-01",
+              "quantity": 4,
+              "price": 10.0
+            }
+          ],
+          "products": [
+            {
+              "product_id": 1,
+              "product_name": "A1",
+              "category": "Alpha"
+            },
+            {
+              "product_id": 2,
+              "product_name": "A2",
+              "category": "Alpha"
+            },
+            {
+              "product_id": 3,
+              "product_name": "B1",
+              "category": "Beta"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "season",
+          "category",
+          "total_quantity",
+          "total_revenue"
         ],
-        "products": [
-          {"product_id":1,"product_name":"A1","category":"Alpha"},
-          {"product_id":2,"product_name":"A2","category":"Alpha"},
-          {"product_id":3,"product_name":"B1","category":"Beta"}
+        "rows": [
+          [
+            "Spring",
+            "Alpha",
+            4,
+            40.0
+          ]
         ]
-      }},
-      "expected": {"columns":["season","category","total_quantity","total_revenue"],"rows":[["Spring","Alpha",4,40.0]]},
-      "validator": {"kind":"ordered_table"},
-      "tags": ["real","lexical-tie-break","multiple-products"]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "real",
+        "lexical-tie-break",
+        "multiple-products"
+      ]
     },
     {
-      "id": "real-only-represented-seasons",
-      "name": "real: omit absent seasons and sort represented seasons",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {
-        "sales": [
-          {"sale_id":1,"product_id":1,"sale_date":"2025-12-10","quantity":2,"price":7.5},
-          {"sale_id":2,"product_id":2,"sale_date":"2025-09-10","quantity":3,"price":4.0}
+      "id": "trial-only-represented-seasons",
+      "name": "omit absent seasons and sort represented seasons",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "sales": [
+            {
+              "sale_id": 1,
+              "product_id": 1,
+              "sale_date": "2025-12-10",
+              "quantity": 2,
+              "price": 7.5
+            },
+            {
+              "sale_id": 2,
+              "product_id": 2,
+              "sale_date": "2025-09-10",
+              "quantity": 3,
+              "price": 4.0
+            }
+          ],
+          "products": [
+            {
+              "product_id": 1,
+              "product_name": "Snow",
+              "category": "Winterware"
+            },
+            {
+              "product_id": 2,
+              "product_name": "Leaf",
+              "category": "Garden"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "season",
+          "category",
+          "total_quantity",
+          "total_revenue"
         ],
-        "products": [
-          {"product_id":1,"product_name":"Snow","category":"Winterware"},
-          {"product_id":2,"product_name":"Leaf","category":"Garden"}
+        "rows": [
+          [
+            "Fall",
+            "Garden",
+            3,
+            12.0
+          ],
+          [
+            "Winter",
+            "Winterware",
+            2,
+            15.0
+          ]
         ]
-      }},
-      "expected": {"columns":["season","category","total_quantity","total_revenue"],"rows":[["Fall","Garden",3,12.0],["Winter","Winterware",2,15.0]]},
-      "validator": {"kind":"ordered_table"},
-      "tags": ["real","missing-seasons","output-order"]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "real",
+        "missing-seasons",
+        "output-order"
+      ]
     }
   ]
 }

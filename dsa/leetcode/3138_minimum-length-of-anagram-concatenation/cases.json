@@ -1,18 +1,187 @@
 {
   "challenge_id": "lc_3138",
   "cases": [
-    {"id":"sample-1","name":"sample: two reversed blocks","kind":"sample","visible":true,"input":{"s":"abba"},"expected":2,"tags":["sample","anagram"]},
-    {"id":"sample-2","name":"sample: only the whole string works","kind":"sample","visible":true,"input":{"s":"cdef"},"expected":4,"tags":["sample","boundary"]},
-    {"id":"sample-3","name":"sample: five length-three anagrams","kind":"sample","visible":true,"input":{"s":"abcbcacabbaccba"},"expected":3,"tags":["sample","anagram"]},
-    {"id":"trial-single-character","name":"trial: one character","kind":"trial","visible":true,"input":{"s":"z"},"expected":1,"tags":["edge","minimum"]},
-    {"id":"trial-all-equal","name":"trial: every one-character block matches","kind":"trial","visible":true,"input":{"s":"aaaaaa"},"expected":1,"tags":["edge","repetition"]},
-    {"id":"trial-reordered-triplets","name":"trial: reordered three-character blocks","kind":"trial","visible":true,"input":{"s":"abcbacacb"},"expected":3,"tags":["anagram","alignment"]},
-    {"id":"trial-global-counts-not-enough","name":"trial: equal global counts do not fix aligned blocks","kind":"trial","visible":true,"input":{"s":"aabb"},"expected":4,"tags":["semantic-trap","alignment"]},
-    {"id":"real-repeated-pair","name":"real: identical two-character blocks","kind":"real","visible":false,"input":{"s":"abababab"},"expected":2,"tags":["real","repetition"]},
-    {"id":"real-permuted-pairs","name":"real: alternating pair permutations","kind":"real","visible":false,"input":{"s":"abbabaab"},"expected":2,"tags":["real","anagram"]},
-    {"id":"real-late-mismatch","name":"real: a late mismatch forces the full length","kind":"real","visible":false,"input":{"s":"aaaaaaab"},"expected":8,"tags":["real","late-mismatch"]},
-    {"id":"real-four-letter-blocks","name":"real: four differently ordered blocks","kind":"real","visible":false,"input":{"s":"abcdcadbbadcdbca"},"expected":4,"tags":["real","anagram"]},
-    {"id":"real-divisor-skipped","name":"real: valid length must divide the total","kind":"real","visible":false,"input":{"s":"abcabcabc"},"expected":3,"tags":["real","divisor"]},
-    {"id":"real-two-halves-differ","name":"real: similar halves with different multiplicities","kind":"real","visible":false,"input":{"s":"abcabcabcabd"},"expected":12,"tags":["real","multiplicity"]}
+    {
+      "id": "sample-1",
+      "name": "sample: two reversed blocks",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abba"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "anagram"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: only the whole string works",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "cdef"
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: five length-three anagrams",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcbcacabbaccba"
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "anagram"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "trial: one character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "z"
+      },
+      "expected": 1,
+      "tags": [
+        "edge",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "trial: every one-character block matches",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaaaa"
+      },
+      "expected": 1,
+      "tags": [
+        "edge",
+        "repetition"
+      ]
+    },
+    {
+      "id": "trial-reordered-triplets",
+      "name": "trial: reordered three-character blocks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcbacacb"
+      },
+      "expected": 3,
+      "tags": [
+        "anagram",
+        "alignment"
+      ]
+    },
+    {
+      "id": "trial-global-counts-not-enough",
+      "name": "trial: equal global counts do not fix aligned blocks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aabb"
+      },
+      "expected": 4,
+      "tags": [
+        "semantic-trap",
+        "alignment"
+      ]
+    },
+    {
+      "id": "trial-repeated-pair",
+      "name": "identical two-character blocks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abababab"
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "repetition"
+      ]
+    },
+    {
+      "id": "trial-permuted-pairs",
+      "name": "alternating pair permutations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abbabaab"
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "anagram"
+      ]
+    },
+    {
+      "id": "trial-late-mismatch",
+      "name": "a late mismatch forces the full length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaaaaab"
+      },
+      "expected": 8,
+      "tags": [
+        "real",
+        "late-mismatch"
+      ]
+    },
+    {
+      "id": "trial-four-letter-blocks",
+      "name": "four differently ordered blocks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdcadbbadcdbca"
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "anagram"
+      ]
+    },
+    {
+      "id": "trial-divisor-skipped",
+      "name": "valid length must divide the total",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcabcabc"
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "divisor"
+      ]
+    },
+    {
+      "id": "trial-two-halves-differ",
+      "name": "similar halves with different multiplicities",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcabcabcabd"
+      },
+      "expected": 12,
+      "tags": [
+        "real",
+        "multiplicity"
+      ]
+    }
   ]
 }

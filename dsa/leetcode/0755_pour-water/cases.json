@@ -7,108 +7,378 @@
       "name": "sample: fill both sides of a ridge",
       "kind": "sample",
       "visible": true,
-      "input": {"heights": [2, 1, 1, 2, 1, 2, 2], "volume": 4, "k": 3},
-      "expected": [2, 2, 2, 3, 2, 2, 2],
-      "tags": ["sample", "both-sides", "left-priority"]
+      "input": {
+        "heights": [
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "volume": 4,
+        "k": 3
+      },
+      "expected": [
+        2,
+        2,
+        2,
+        3,
+        2,
+        2,
+        2
+      ],
+      "tags": [
+        "sample",
+        "both-sides",
+        "left-priority"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: descend entirely to the left",
       "kind": "sample",
       "visible": true,
-      "input": {"heights": [1, 2, 3, 4], "volume": 2, "k": 2},
-      "expected": [2, 3, 3, 4],
-      "tags": ["sample", "left-flow"]
+      "input": {
+        "heights": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "volume": 2,
+        "k": 2
+      },
+      "expected": [
+        2,
+        3,
+        3,
+        4
+      ],
+      "tags": [
+        "sample",
+        "left-flow"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: level a three-column basin",
       "kind": "sample",
       "visible": true,
-      "input": {"heights": [3, 1, 3], "volume": 5, "k": 1},
-      "expected": [4, 4, 4],
-      "tags": ["sample", "basin", "sequential-droplets"]
+      "input": {
+        "heights": [
+          3,
+          1,
+          3
+        ],
+        "volume": 5,
+        "k": 1
+      },
+      "expected": [
+        4,
+        4,
+        4
+      ],
+      "tags": [
+        "sample",
+        "basin",
+        "sequential-droplets"
+      ]
     },
     {
       "id": "trial-1",
       "name": "trial: zero volume preserves minimum and maximum terrain heights",
       "kind": "trial",
       "visible": true,
-      "input": {"heights": [0, 99, 0], "volume": 0, "k": 1},
-      "expected": [0, 99, 0],
-      "tags": ["trial", "zero-volume", "height-boundaries"]
+      "input": {
+        "heights": [
+          0,
+          99,
+          0
+        ],
+        "volume": 0,
+        "k": 1
+      },
+      "expected": [
+        0,
+        99,
+        0
+      ],
+      "tags": [
+        "trial",
+        "zero-volume",
+        "height-boundaries"
+      ]
     },
     {
       "id": "trial-2",
       "name": "trial: maximum volume on a single column",
       "kind": "trial",
       "visible": true,
-      "input": {"heights": [99], "volume": 2000, "k": 0},
-      "expected": [2099],
-      "tags": ["trial", "single-position", "maximum-volume"]
+      "input": {
+        "heights": [
+          99
+        ],
+        "volume": 2000,
+        "k": 0
+      },
+      "expected": [
+        2099
+      ],
+      "tags": [
+        "trial",
+        "single-position",
+        "maximum-volume"
+      ]
     },
     {
       "id": "trial-3",
       "name": "trial: flat zero-height terrain fills around the pour point",
       "kind": "trial",
       "visible": true,
-      "input": {"heights": [0, 0, 0, 0], "volume": 5, "k": 2},
-      "expected": [1, 1, 2, 1],
-      "tags": ["trial", "flat", "zero-height", "sequential-droplets"]
+      "input": {
+        "heights": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "volume": 5,
+        "k": 2
+      },
+      "expected": [
+        1,
+        1,
+        2,
+        1
+      ],
+      "tags": [
+        "trial",
+        "flat",
+        "zero-height",
+        "sequential-droplets"
+      ]
     },
     {
       "id": "trial-4",
       "name": "trial: a reachable left descent wins over a right descent",
       "kind": "trial",
       "visible": true,
-      "input": {"heights": [1, 2, 2, 1], "volume": 1, "k": 2},
-      "expected": [2, 2, 2, 1],
-      "tags": ["trial", "left-priority", "equal-level-travel"]
+      "input": {
+        "heights": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "volume": 1,
+        "k": 2
+      },
+      "expected": [
+        2,
+        2,
+        2,
+        1
+      ],
+      "tags": [
+        "trial",
+        "left-priority",
+        "equal-level-travel"
+      ]
     },
     {
       "id": "trial-5",
       "name": "trial: use the right only when the left cannot fall",
       "kind": "trial",
       "visible": true,
-      "input": {"heights": [2, 2, 1, 0], "volume": 1, "k": 1},
-      "expected": [2, 2, 1, 1],
-      "tags": ["trial", "right-fallback", "eventual-fall"]
+      "input": {
+        "heights": [
+          2,
+          2,
+          1,
+          0
+        ],
+        "volume": 1,
+        "k": 1
+      },
+      "expected": [
+        2,
+        2,
+        1,
+        1
+      ],
+      "tags": [
+        "trial",
+        "right-fallback",
+        "eventual-fall"
+      ]
     },
     {
       "id": "trial-6",
       "name": "trial: continue across equal levels to a deeper reachable column",
       "kind": "trial",
       "visible": true,
-      "input": {"heights": [0, 1, 1, 2], "volume": 1, "k": 3},
-      "expected": [1, 1, 1, 2],
-      "tags": ["trial", "eventual-fall", "equal-level-travel"]
+      "input": {
+        "heights": [
+          0,
+          1,
+          1,
+          2
+        ],
+        "volume": 1,
+        "k": 3
+      },
+      "expected": [
+        1,
+        1,
+        1,
+        2
+      ],
+      "tags": [
+        "trial",
+        "eventual-fall",
+        "equal-level-travel"
+      ]
     },
     {
       "id": "trial-7",
       "name": "trial: choose the nearest column on a minimum plateau",
       "kind": "trial",
       "visible": true,
-      "input": {"heights": [1, 1, 2], "volume": 1, "k": 2},
-      "expected": [1, 2, 2],
-      "tags": ["trial", "nearest-minimum", "plateau"]
+      "input": {
+        "heights": [
+          1,
+          1,
+          2
+        ],
+        "volume": 1,
+        "k": 2
+      },
+      "expected": [
+        1,
+        2,
+        2
+      ],
+      "tags": [
+        "trial",
+        "nearest-minimum",
+        "plateau"
+      ]
     },
     {
       "id": "trial-8",
       "name": "trial: a taller barrier blocks traversal",
       "kind": "trial",
       "visible": true,
-      "input": {"heights": [5, 1, 2], "volume": 1, "k": 2},
-      "expected": [5, 2, 2],
-      "tags": ["trial", "barrier", "blocked-left"]
+      "input": {
+        "heights": [
+          5,
+          1,
+          2
+        ],
+        "volume": 1,
+        "k": 2
+      },
+      "expected": [
+        5,
+        2,
+        2
+      ],
+      "tags": [
+        "trial",
+        "barrier",
+        "blocked-left"
+      ]
     },
     {
       "id": "trial-9",
       "name": "trial: stay at the pour point when neither side can fall",
       "kind": "trial",
       "visible": true,
-      "input": {"heights": [1, 3, 2], "volume": 1, "k": 2},
-      "expected": [1, 3, 3],
-      "tags": ["trial", "fallback-at-k", "right-endpoint"]
+      "input": {
+        "heights": [
+          1,
+          3,
+          2
+        ],
+        "volume": 1,
+        "k": 2
+      },
+      "expected": [
+        1,
+        3,
+        3
+      ],
+      "tags": [
+        "trial",
+        "fallback-at-k",
+        "right-endpoint"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value volume=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "heights": [
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "volume": 1,
+        "k": 3
+      },
+      "expected": [
+        2,
+        1,
+        2,
+        2,
+        1,
+        2,
+        2
+      ],
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "heights": [
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "volume": 4,
+        "k": 1
+      },
+      "expected": [
+        3,
+        3,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
     }
   ]
 }

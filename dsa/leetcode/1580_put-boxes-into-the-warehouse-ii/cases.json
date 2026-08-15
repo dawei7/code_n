@@ -145,10 +145,10 @@
       ]
     },
     {
-      "id": "real-reachable-from-right",
-      "name": "hidden: a box reaches the final room only from the right",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-reachable-from-right",
+      "name": "a box reaches the final room only from the right",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "boxes": [
           4
@@ -167,10 +167,10 @@
       ]
     },
     {
-      "id": "real-two-tall-ends",
-      "name": "hidden: tall boxes occupy rooms on both sides",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-tall-ends",
+      "name": "tall boxes occupy rooms on both sides",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "boxes": [
           5,
@@ -190,10 +190,10 @@
       ]
     },
     {
-      "id": "real-low-entrances",
-      "name": "hidden: a tall middle room is unreachable",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-low-entrances",
+      "name": "a tall middle room is unreachable",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "boxes": [
           2,
@@ -215,10 +215,10 @@
       ]
     },
     {
-      "id": "real-both-sides-fit",
-      "name": "hidden: two boxes fit around a low center",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-both-sides-fit",
+      "name": "two boxes fit around a low center",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "boxes": [
           2,
@@ -237,10 +237,10 @@
       ]
     },
     {
-      "id": "real-decreasing-warehouse",
-      "name": "hidden: descending rooms accept all boxes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-decreasing-warehouse",
+      "name": "descending rooms accept all boxes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "boxes": [
           3,
@@ -261,10 +261,10 @@
       ]
     },
     {
-      "id": "real-more-boxes",
-      "name": "hidden: room count limits duplicate boxes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-more-boxes",
+      "name": "room count limits duplicate boxes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "boxes": [
           1,
@@ -284,10 +284,10 @@
       ]
     },
     {
-      "id": "real-upper-bound",
-      "name": "hidden: maximum-height box exactly fits",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-upper-bound",
+      "name": "maximum-height box exactly fits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "boxes": [
           1000000000
@@ -302,6 +302,51 @@
         "real",
         "upper-bound",
         "exact-fit"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "single element in boxes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "boxes": [
+          1
+        ],
+        "warehouse": [
+          3,
+          4,
+          1,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "identical elements in boxes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "boxes": [
+          1,
+          1
+        ],
+        "warehouse": [
+          3,
+          4,
+          1,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

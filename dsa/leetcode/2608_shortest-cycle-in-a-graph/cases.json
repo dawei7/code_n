@@ -142,10 +142,10 @@
       ]
     },
     {
-      "id": "real-separate-tree-and-cycle",
-      "name": "hidden: ignore an acyclic component",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-separate-tree-and-cycle",
+      "name": "ignore an acyclic component",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 9,
         "edges": [
@@ -185,15 +185,14 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "components"
       ]
     },
     {
-      "id": "real-overlapping-cycles",
-      "name": "hidden: overlapping cycles have different lengths",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-overlapping-cycles",
+      "name": "overlapping cycles have different lengths",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 8,
         "edges": [
@@ -241,7 +240,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "overlapping-cycles"
       ]
     }

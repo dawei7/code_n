@@ -740,10 +740,10 @@
       ]
     },
     {
-      "id": "real-future-drivers",
-      "name": "hidden: future drivers never become active during 2020",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-future-drivers",
+      "name": "future drivers never become active during 2020",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Drivers": [
@@ -852,10 +852,10 @@
       ]
     },
     {
-      "id": "real-outside-year-rides",
-      "name": "hidden: accepted rides outside 2020 are excluded",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-outside-year-rides",
+      "name": "accepted rides outside 2020 are excluded",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Drivers": [
@@ -978,10 +978,10 @@
       ]
     },
     {
-      "id": "real-request-date-month",
-      "name": "hidden: request date determines the reported accepted month",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-request-date-month",
+      "name": "request date determines the reported accepted month",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Drivers": [

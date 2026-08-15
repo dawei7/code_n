@@ -73,47 +73,57 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: several repeated suffix digits",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "several repeated suffix digits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 12443322
       },
       "expected": 13222344,
       "tags": [
-        "hidden",
         "edge-case"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: single digit",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "single digit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 7
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "edge-case"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: next permutation overflows",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-3",
+      "name": "next permutation overflows",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1999999999
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "overflow"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]
 }
-

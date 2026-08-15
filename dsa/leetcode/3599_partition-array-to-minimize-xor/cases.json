@@ -101,10 +101,10 @@
       ]
     },
     {
-      "id": "real-singletons",
-      "name": "real: every element must be its own part",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-singletons",
+      "name": "every element must be its own part",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -122,10 +122,10 @@
       ]
     },
     {
-      "id": "real-all-equal",
-      "name": "real: repeated values create several zero XOR choices",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-equal",
+      "name": "repeated values create several zero XOR choices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9,
@@ -145,10 +145,10 @@
       ]
     },
     {
-      "id": "real-non-greedy-cuts",
-      "name": "real: the best cut is not determined by segment length",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-non-greedy-cuts",
+      "name": "the best cut is not determined by segment length",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -168,10 +168,10 @@
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "real: large values exercise the full XOR range",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-values",
+      "name": "large values exercise the full XOR range",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -188,10 +188,10 @@
       ]
     },
     {
-      "id": "real-many-parts",
-      "name": "real: several part counts compete across prefixes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-parts",
+      "name": "several part counts compete across prefixes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           31,
@@ -210,6 +210,24 @@
         "real",
         "many-parts",
         "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

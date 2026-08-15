@@ -2,12 +2,163 @@
   "schema_version": 1,
   "challenge_id": "lc_2334",
   "cases": [
-    {"id":"sample-unique-length","name":"sample: the middle three cells form the only valid size","kind":"sample","visible":true,"input":{"nums":[1,3,4,3,1],"threshold":6},"expected":3,"validator":{"kind":"valid_subarray_size"},"tags":["sample","unique"]},
-    {"id":"sample-many-lengths","name":"sample: several lengths are acceptable","kind":"sample","visible":true,"input":{"nums":[6,5,6,5,8],"threshold":7},"expected":1,"validator":{"kind":"valid_subarray_size"},"tags":["sample","multiple-answers"]},
-    {"id":"trial-no-solution","name":"no subarray exceeds the threshold ratio","kind":"trial","visible":true,"input":{"nums":[1,2,3],"threshold":10},"expected":-1,"validator":{"kind":"valid_subarray_size"},"tags":["no-solution"]},
-    {"id":"trial-single-valid","name":"one value alone exceeds the threshold","kind":"trial","visible":true,"input":{"nums":[11],"threshold":10},"expected":1,"validator":{"kind":"valid_subarray_size"},"tags":["boundary","single"]},
-    {"id":"trial-strict-equality-fails","name":"equality does not satisfy the strict condition","kind":"trial","visible":true,"input":{"nums":[2,2,2],"threshold":6},"expected":-1,"validator":{"kind":"valid_subarray_size"},"tags":["strictness","duplicates"]},
-    {"id":"real-full-only","name":"hidden: only the complete array is long enough","kind":"real","visible":false,"input":{"nums":[1,1,1,1,1,1],"threshold":5},"expected":6,"validator":{"kind":"valid_subarray_size"},"tags":["hidden","full-array"]},
-    {"id":"real-duplicate-plateau","name":"hidden: a duplicate plateau supplies a valid interval","kind":"real","visible":false,"input":{"nums":[1,4,4,4,1],"threshold":10},"expected":3,"validator":{"kind":"valid_subarray_size"},"tags":["hidden","duplicates"]}
+    {
+      "id": "sample-unique-length",
+      "name": "sample: the middle three cells form the only valid size",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          4,
+          3,
+          1
+        ],
+        "threshold": 6
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "valid_subarray_size"
+      },
+      "tags": [
+        "sample",
+        "unique"
+      ]
+    },
+    {
+      "id": "sample-many-lengths",
+      "name": "sample: several lengths are acceptable",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          5,
+          6,
+          5,
+          8
+        ],
+        "threshold": 7
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "valid_subarray_size"
+      },
+      "tags": [
+        "sample",
+        "multiple-answers"
+      ]
+    },
+    {
+      "id": "trial-no-solution",
+      "name": "no subarray exceeds the threshold ratio",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "threshold": 10
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "valid_subarray_size"
+      },
+      "tags": [
+        "no-solution"
+      ]
+    },
+    {
+      "id": "trial-single-valid",
+      "name": "one value alone exceeds the threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          11
+        ],
+        "threshold": 10
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "valid_subarray_size"
+      },
+      "tags": [
+        "boundary",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-strict-equality-fails",
+      "name": "equality does not satisfy the strict condition",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2
+        ],
+        "threshold": 6
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "valid_subarray_size"
+      },
+      "tags": [
+        "strictness",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-full-only",
+      "name": "only the complete array is long enough",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "threshold": 5
+      },
+      "expected": 6,
+      "validator": {
+        "kind": "valid_subarray_size"
+      },
+      "tags": [
+        "full-array"
+      ]
+    },
+    {
+      "id": "trial-duplicate-plateau",
+      "name": "a duplicate plateau supplies a valid interval",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          4,
+          4,
+          1
+        ],
+        "threshold": 10
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "valid_subarray_size"
+      },
+      "tags": [
+        "duplicates"
+      ]
+    }
   ]
 }

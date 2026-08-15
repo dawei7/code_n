@@ -73,31 +73,57 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: CDATA cannot be top-level",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "CDATA cannot be top-level",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "code": "<![CDATA[text]]>"
       },
       "expected": false,
       "tags": [
-        "hidden",
         "cdata-scope"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: append text and multiple CDATA sections",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "append text and multiple CDATA sections",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "code": "<ROOT>x<![CDATA[</ROOT>]]><C></C><![CDATA[<C>]]>y</ROOT>"
       },
       "expected": true,
       "tags": [
-        "hidden",
         "mixed-content"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in code",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "code": "<"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in code",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "code": "<<<"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

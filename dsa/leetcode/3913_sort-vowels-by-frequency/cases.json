@@ -184,61 +184,57 @@
       ]
     },
     {
-      "id": "hidden-frequency-order-overrides-first",
-      "name": "hidden: descending counts override first-occurrence order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-frequency-order-overrides-first",
+      "name": "descending counts override first-occurrence order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaeeeeiiiu"
       },
       "expected": "eeeeiiiaau",
       "tags": [
-        "hidden",
         "distinct-frequencies",
         "all-vowels"
       ]
     },
     {
-      "id": "hidden-natural-language-pattern",
-      "name": "hidden: mixed word has several frequency groups",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-natural-language-pattern",
+      "name": "mixed word has several frequency groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "onomatopoeia"
       },
       "expected": "onomotopaaei",
       "tags": [
-        "hidden",
         "mixed-string",
         "multiple-groups"
       ]
     },
     {
-      "id": "hidden-tie-with-consonants",
-      "name": "hidden: tied types use first occurrence while consonants stay fixed",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-tie-with-consonants",
+      "name": "tied types use first occurrence while consonants stay fixed",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "zazezaze"
       },
       "expected": "zazazeze",
       "tags": [
-        "hidden",
         "frequency-tie",
         "consonant-positions"
       ]
     },
     {
-      "id": "hidden-long-equal-cycle",
-      "name": "hidden: long equal-frequency cycle groups all five types",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-long-equal-cycle",
+      "name": "long equal-frequency cycle groups all five types",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiou"
       },
       "expected": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiioooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu",
       "tags": [
-        "hidden",
         "long-string",
         "five-way-tie",
         "all-vowels"
@@ -246,4 +242,3 @@
     }
   ]
 }
-

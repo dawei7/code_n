@@ -93,10 +93,10 @@
       ]
     },
     {
-      "id": "hidden-unsorted",
-      "name": "hidden: input order does not affect count",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unsorted",
+      "name": "input order does not affect count",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -107,15 +107,14 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "unsorted"
       ]
     },
     {
-      "id": "hidden-larger",
-      "name": "hidden: several reused values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-larger",
+      "name": "several reused values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -126,15 +125,14 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "reuse"
       ]
     },
     {
-      "id": "hidden-all-too-large",
-      "name": "hidden: every value exceeds target",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-too-large",
+      "name": "every value exceeds target",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -144,10 +142,8 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "impossible"
       ]
     }
   ]
 }
-

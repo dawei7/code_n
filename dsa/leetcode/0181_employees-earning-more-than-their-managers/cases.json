@@ -122,10 +122,10 @@
       }
     },
     {
-      "id": "real-several",
-      "name": "hidden: several manager relationships",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-several",
+      "name": "several manager relationships",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Employee": [
@@ -170,7 +170,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "multiple"
       ],
       "validator": {

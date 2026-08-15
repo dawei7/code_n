@@ -7,90 +7,138 @@
       "name": "sample: three boxes all touch the floor",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 3},
+      "input": {
+        "n": 3
+      },
       "expected": 3,
-      "tags": ["sample", "small-stack"]
+      "tags": [
+        "sample",
+        "small-stack"
+      ]
     },
     {
       "id": "sample-official-two",
       "name": "sample: complete height-two stack",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 4},
+      "input": {
+        "n": 4
+      },
       "expected": 3,
-      "tags": ["sample", "tetrahedral-boundary"]
+      "tags": [
+        "sample",
+        "tetrahedral-boundary"
+      ]
     },
     {
       "id": "sample-official-three",
       "name": "sample: complete height-three stack",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 10},
+      "input": {
+        "n": 10
+      },
       "expected": 6,
-      "tags": ["sample", "tetrahedral-boundary"]
+      "tags": [
+        "sample",
+        "tetrahedral-boundary"
+      ]
     },
     {
       "id": "trial-single-box",
       "name": "trial: minimum input",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1},
+      "input": {
+        "n": 1
+      },
       "expected": 1,
-      "tags": ["boundary", "minimum"]
+      "tags": [
+        "boundary",
+        "minimum"
+      ]
     },
     {
       "id": "trial-first-partial-stack",
       "name": "trial: one box beyond height one",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 2},
+      "input": {
+        "n": 2
+      },
       "expected": 2,
-      "tags": ["partial-layer"]
+      "tags": [
+        "partial-layer"
+      ]
     },
     {
-      "id": "real-one-beyond-tetrahedral",
-      "name": "hidden: one box beyond a complete stack",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 11},
+      "id": "trial-one-beyond-tetrahedral",
+      "name": "one box beyond a complete stack",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 11
+      },
       "expected": 7,
-      "tags": ["boundary", "remainder-one"]
+      "tags": [
+        "boundary",
+        "remainder-one"
+      ]
     },
     {
-      "id": "real-partial-staircase",
-      "name": "hidden: remainder needs three staircase boxes",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 15},
+      "id": "trial-partial-staircase",
+      "name": "remainder needs three staircase boxes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 15
+      },
       "expected": 9,
-      "tags": ["partial-layer", "triangular-ceiling"]
+      "tags": [
+        "partial-layer",
+        "triangular-ceiling"
+      ]
     },
     {
-      "id": "real-complete-height-four",
-      "name": "hidden: complete height-four stack",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 20},
+      "id": "trial-complete-height-four",
+      "name": "complete height-four stack",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 20
+      },
       "expected": 10,
-      "tags": ["tetrahedral-boundary"]
+      "tags": [
+        "tetrahedral-boundary"
+      ]
     },
     {
-      "id": "real-just-below-height-ten",
-      "name": "hidden: final box before a complete height-ten stack",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 219},
+      "id": "trial-just-below-height-ten",
+      "name": "final box before a complete height-ten stack",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 219
+      },
       "expected": 55,
-      "tags": ["boundary", "near-tetrahedral"]
+      "tags": [
+        "boundary",
+        "near-tetrahedral"
+      ]
     },
     {
-      "id": "real-maximum",
-      "name": "hidden: maximum input",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 1000000000},
+      "id": "trial-maximum",
+      "name": "maximum input",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000000000
+      },
       "expected": 1650467,
-      "tags": ["boundary", "maximum"]
+      "tags": [
+        "boundary",
+        "maximum"
+      ]
     }
   ]
 }

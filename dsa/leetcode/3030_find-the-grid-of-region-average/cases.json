@@ -1,13 +1,486 @@
 {
   "challenge_id": "lc_3030",
   "cases": [
-    {"id":"sample-rounded-overlap","name":"sample: overlapping regions use their rounded averages","kind":"sample","visible":true,"input":{"image":[[5,6,7,10],[8,9,10,10],[11,12,13,10]],"threshold":3},"expected":[[9,9,9,9],[9,9,9,9],[9,9,9,9]],"tags":["sample","overlap","rounding"]},
-    {"id":"sample-two-row-windows","name":"sample: pixels shared by vertically overlapping regions","kind":"sample","visible":true,"input":{"image":[[10,20,30],[15,25,35],[20,30,40],[25,35,45]],"threshold":12},"expected":[[25,25,25],[27,27,27],[27,27,27],[30,30,30]],"tags":["sample","overlap"]},
-    {"id":"sample-invalid-region","name":"sample: an invalid sole window leaves every pixel unchanged","kind":"sample","visible":true,"input":{"image":[[5,6,7],[8,9,10],[11,12,13]],"threshold":1},"expected":[[5,6,7],[8,9,10],[11,12,13]],"tags":["sample","no-region"]},
-    {"id":"trial-threshold-equality","name":"adjacent differences equal to the threshold are allowed","kind":"trial","visible":true,"input":{"image":[[0,5,10],[5,10,15],[10,15,20]],"threshold":5},"expected":[[10,10,10],[10,10,10],[10,10,10]],"tags":["inclusive-threshold","single-region"]},
-    {"id":"trial-extreme-intensities","name":"maximum threshold accepts extreme neighboring intensities","kind":"trial","visible":true,"input":{"image":[[0,255,0],[255,0,255],[0,255,0]],"threshold":255},"expected":[[113,113,113],[113,113,113],[113,113,113]],"tags":["intensity-boundaries","floor-average"]},
-    {"id":"real-partial-coverage","name":"hidden: pixels outside the only valid region retain their values","kind":"real","visible":false,"input":{"image":[[1,2,3,100,100],[2,3,4,100,100],[3,4,5,100,100],[100,100,100,100,100]],"threshold":2},"expected":[[3,3,3,100,100],[3,3,3,100,100],[3,3,3,100,100],[100,100,100,100,100]],"tags":["hidden","partial-coverage"]},
-    {"id":"real-zero-threshold","name":"hidden: zero threshold requires equality along every region edge","kind":"real","visible":false,"input":{"image":[[7,7,7,8],[7,7,7,8],[7,7,7,8]],"threshold":0},"expected":[[7,7,7,8],[7,7,7,8],[7,7,7,8]],"tags":["hidden","zero-threshold"]},
-    {"id":"real-second-floor","name":"hidden: overlapping region averages are floored before aggregation","kind":"real","visible":false,"input":{"image":[[0,0,0,1],[0,0,0,1],[0,0,0,1]],"threshold":1},"expected":[[0,0,0,0],[0,0,0,0],[0,0,0,0]],"tags":["hidden","two-stage-rounding"]}
+    {
+      "id": "sample-rounded-overlap",
+      "name": "sample: overlapping regions use their rounded averages",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "image": [
+          [
+            5,
+            6,
+            7,
+            10
+          ],
+          [
+            8,
+            9,
+            10,
+            10
+          ],
+          [
+            11,
+            12,
+            13,
+            10
+          ]
+        ],
+        "threshold": 3
+      },
+      "expected": [
+        [
+          9,
+          9,
+          9,
+          9
+        ],
+        [
+          9,
+          9,
+          9,
+          9
+        ],
+        [
+          9,
+          9,
+          9,
+          9
+        ]
+      ],
+      "tags": [
+        "sample",
+        "overlap",
+        "rounding"
+      ]
+    },
+    {
+      "id": "sample-two-row-windows",
+      "name": "sample: pixels shared by vertically overlapping regions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "image": [
+          [
+            10,
+            20,
+            30
+          ],
+          [
+            15,
+            25,
+            35
+          ],
+          [
+            20,
+            30,
+            40
+          ],
+          [
+            25,
+            35,
+            45
+          ]
+        ],
+        "threshold": 12
+      },
+      "expected": [
+        [
+          25,
+          25,
+          25
+        ],
+        [
+          27,
+          27,
+          27
+        ],
+        [
+          27,
+          27,
+          27
+        ],
+        [
+          30,
+          30,
+          30
+        ]
+      ],
+      "tags": [
+        "sample",
+        "overlap"
+      ]
+    },
+    {
+      "id": "sample-invalid-region",
+      "name": "sample: an invalid sole window leaves every pixel unchanged",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "image": [
+          [
+            5,
+            6,
+            7
+          ],
+          [
+            8,
+            9,
+            10
+          ],
+          [
+            11,
+            12,
+            13
+          ]
+        ],
+        "threshold": 1
+      },
+      "expected": [
+        [
+          5,
+          6,
+          7
+        ],
+        [
+          8,
+          9,
+          10
+        ],
+        [
+          11,
+          12,
+          13
+        ]
+      ],
+      "tags": [
+        "sample",
+        "no-region"
+      ]
+    },
+    {
+      "id": "trial-threshold-equality",
+      "name": "adjacent differences equal to the threshold are allowed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "image": [
+          [
+            0,
+            5,
+            10
+          ],
+          [
+            5,
+            10,
+            15
+          ],
+          [
+            10,
+            15,
+            20
+          ]
+        ],
+        "threshold": 5
+      },
+      "expected": [
+        [
+          10,
+          10,
+          10
+        ],
+        [
+          10,
+          10,
+          10
+        ],
+        [
+          10,
+          10,
+          10
+        ]
+      ],
+      "tags": [
+        "inclusive-threshold",
+        "single-region"
+      ]
+    },
+    {
+      "id": "trial-extreme-intensities",
+      "name": "maximum threshold accepts extreme neighboring intensities",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "image": [
+          [
+            0,
+            255,
+            0
+          ],
+          [
+            255,
+            0,
+            255
+          ],
+          [
+            0,
+            255,
+            0
+          ]
+        ],
+        "threshold": 255
+      },
+      "expected": [
+        [
+          113,
+          113,
+          113
+        ],
+        [
+          113,
+          113,
+          113
+        ],
+        [
+          113,
+          113,
+          113
+        ]
+      ],
+      "tags": [
+        "intensity-boundaries",
+        "floor-average"
+      ]
+    },
+    {
+      "id": "trial-partial-coverage",
+      "name": "pixels outside the only valid region retain their values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "image": [
+          [
+            1,
+            2,
+            3,
+            100,
+            100
+          ],
+          [
+            2,
+            3,
+            4,
+            100,
+            100
+          ],
+          [
+            3,
+            4,
+            5,
+            100,
+            100
+          ],
+          [
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        ],
+        "threshold": 2
+      },
+      "expected": [
+        [
+          3,
+          3,
+          3,
+          100,
+          100
+        ],
+        [
+          3,
+          3,
+          3,
+          100,
+          100
+        ],
+        [
+          3,
+          3,
+          3,
+          100,
+          100
+        ],
+        [
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      ],
+      "tags": [
+        "partial-coverage"
+      ]
+    },
+    {
+      "id": "trial-zero-threshold",
+      "name": "zero threshold requires equality along every region edge",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "image": [
+          [
+            7,
+            7,
+            7,
+            8
+          ],
+          [
+            7,
+            7,
+            7,
+            8
+          ],
+          [
+            7,
+            7,
+            7,
+            8
+          ]
+        ],
+        "threshold": 0
+      },
+      "expected": [
+        [
+          7,
+          7,
+          7,
+          8
+        ],
+        [
+          7,
+          7,
+          7,
+          8
+        ],
+        [
+          7,
+          7,
+          7,
+          8
+        ]
+      ],
+      "tags": [
+        "zero-threshold"
+      ]
+    },
+    {
+      "id": "trial-second-floor",
+      "name": "overlapping region averages are floored before aggregation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "image": [
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "threshold": 1
+      },
+      "expected": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "tags": [
+        "two-stage-rounding"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value threshold=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "image": [
+          [
+            5,
+            6,
+            7,
+            10
+          ],
+          [
+            8,
+            9,
+            10,
+            10
+          ],
+          [
+            11,
+            12,
+            13,
+            10
+          ]
+        ],
+        "threshold": 1
+      },
+      "expected": [
+        [
+          5,
+          6,
+          7,
+          10
+        ],
+        [
+          8,
+          9,
+          10,
+          10
+        ],
+        [
+          11,
+          12,
+          13,
+          10
+        ]
+      ],
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    }
   ]
 }

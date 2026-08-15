@@ -450,10 +450,10 @@
       ]
     },
     {
-      "id": "real-score-beats-id",
-      "name": "real: higher score beats lower candidate id",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-score-beats-id",
+      "name": "higher score beats lower candidate id",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Candidates": [
@@ -512,10 +512,10 @@
       ]
     },
     {
-      "id": "real-single-requirement",
-      "name": "real: one required skill",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-requirement",
+      "name": "one required skill",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Candidates": [
@@ -564,10 +564,10 @@
       ]
     },
     {
-      "id": "real-unmatched-project-among-matches",
-      "name": "real: unmatched project is omitted among valid projects",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unmatched-project-among-matches",
+      "name": "unmatched project is omitted among valid projects",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Candidates": [
@@ -626,10 +626,10 @@
       ]
     },
     {
-      "id": "real-complete-beats-partial",
-      "name": "real: complete lower-proficiency candidate beats partial expert",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-complete-beats-partial",
+      "name": "complete lower-proficiency candidate beats partial expert",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Candidates": [
@@ -683,10 +683,10 @@
       ]
     },
     {
-      "id": "real-negative-adjustments",
-      "name": "real: several deficiencies reduce the base score",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-negative-adjustments",
+      "name": "several deficiencies reduce the base score",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Candidates": [

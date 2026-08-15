@@ -311,10 +311,10 @@
       ]
     },
     {
-      "id": "hidden-restrictive-distance",
-      "name": "hidden: a restrictive gap changes the best combination",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-restrictive-distance",
+      "name": "a restrictive gap changes the best combination",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9,
@@ -328,16 +328,15 @@
       },
       "expected": 17,
       "tags": [
-        "hidden",
         "distance",
         "starts-down"
       ]
     },
     {
-      "id": "hidden-duplicate-valleys",
-      "name": "hidden: equal valleys require skipping one duplicate",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicate-valleys",
+      "name": "equal valleys require skipping one duplicate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10,
@@ -351,16 +350,15 @@
       },
       "expected": 30,
       "tags": [
-        "hidden",
         "duplicates",
         "strictness"
       ]
     },
     {
-      "id": "hidden-large-alternating-score",
-      "name": "hidden: one hundred alternating values require a 64-bit-capable sum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-alternating-score",
+      "name": "one hundred alternating values require a 64-bit-capable sum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -468,17 +466,16 @@
       },
       "expected": 5000050,
       "tags": [
-        "hidden",
         "long-array",
         "whole-array",
         "large-score"
       ]
     },
     {
-      "id": "hidden-large-k-singleton",
-      "name": "hidden: a large k leaves only the largest singleton",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-k-singleton",
+      "name": "a large k leaves only the largest singleton",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -494,11 +491,44 @@
       },
       "expected": 100,
       "tags": [
-        "hidden",
         "k-equals-n",
         "singleton"
+      ]
+    },
+    {
+      "id": "trial-boundary-20",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ],
+        "k": 2
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-21",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5
+        ],
+        "k": 2
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]
 }
-

@@ -90,10 +90,10 @@
       ]
     },
     {
-      "id": "real-left-cascade",
-      "name": "hidden: cancellation exposes pair to the left",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-left-cascade",
+      "name": "cancellation exposes pair to the left",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aAbB"
       },
@@ -104,10 +104,10 @@
       ]
     },
     {
-      "id": "real-partial-cascade",
-      "name": "hidden: nested middle cancellation leaves outer text",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-partial-cascade",
+      "name": "nested middle cancellation leaves outer text",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "zabBAy"
       },
@@ -119,10 +119,10 @@
       ]
     },
     {
-      "id": "real-alternating-survivors",
-      "name": "hidden: alternating unrelated cases survive",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alternating-survivors",
+      "name": "alternating unrelated cases survive",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aBcDeF"
       },
@@ -133,10 +133,10 @@
       ]
     },
     {
-      "id": "real-multiple-regimes",
-      "name": "hidden: separated cancellation runs reduce independently",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-regimes",
+      "name": "separated cancellation runs reduce independently",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "xYyXmnNMq"
       },
@@ -148,4 +148,3 @@
     }
   ]
 }
-

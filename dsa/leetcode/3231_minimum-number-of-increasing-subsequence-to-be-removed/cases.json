@@ -134,10 +134,10 @@
       ]
     },
     {
-      "id": "real-leading-maximum",
-      "name": "real: leading maximum before an increasing suffix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-leading-maximum",
+      "name": "leading maximum before an increasing suffix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -154,10 +154,10 @@
       ]
     },
     {
-      "id": "real-mountain",
-      "name": "real: mountain shape",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mountain",
+      "name": "mountain shape",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -173,10 +173,10 @@
       ]
     },
     {
-      "id": "real-descending-plateaus",
-      "name": "real: non-increasing plateaus",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-descending-plateaus",
+      "name": "non-increasing plateaus",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -192,10 +192,10 @@
       ]
     },
     {
-      "id": "real-boundary-values",
-      "name": "real: alternating constraint boundaries",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-boundary-values",
+      "name": "alternating constraint boundaries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000,
@@ -211,10 +211,10 @@
       ]
     },
     {
-      "id": "real-multiple-drops",
-      "name": "real: several overlapping non-increasing choices",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-drops",
+      "name": "several overlapping non-increasing choices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,

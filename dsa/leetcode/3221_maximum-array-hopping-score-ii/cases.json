@@ -2,17 +2,257 @@
   "schema_version": 1,
   "challenge_id": "lc_3221",
   "cases": [
-    {"id":"sample-direct-hop","name":"sample: direct hop to the maximum suffix value","kind":"sample","visible":true,"input":{"nums":[1,5,8]},"expected":16,"tags":["sample"]},
-    {"id":"sample-two-hops","name":"sample: use an interior peak before the last index","kind":"sample","visible":true,"input":{"nums":[4,5,2,8,9,1,3]},"expected":42,"tags":["sample"]},
-    {"id":"trial-two-elements","name":"trial: minimum length has one hop","kind":"trial","visible":true,"input":{"nums":[100,1]},"expected":1,"tags":["minimum-length"]},
-    {"id":"trial-decreasing","name":"trial: decreasing values favor unit hops","kind":"trial","visible":true,"input":{"nums":[9,8,7,6]},"expected":21,"tags":["decreasing"]},
-    {"id":"trial-increasing","name":"trial: increasing values favor one direct hop","kind":"trial","visible":true,"input":{"nums":[1,2,3,4]},"expected":12,"tags":["increasing"]},
-    {"id":"trial-equal","name":"trial: equal values make all paths tie","kind":"trial","visible":true,"input":{"nums":[5,5,5,5]},"expected":15,"tags":["equal-values"]},
-    {"id":"real-early-peak","name":"real: early peak covers only its preceding boundary","kind":"real","visible":false,"input":{"nums":[1,10,1,1]},"expected":12,"tags":["suffix-maximum"]},
-    {"id":"real-maximum-value","name":"real: maximum value at the final index","kind":"real","visible":false,"input":{"nums":[100000,1,100000]},"expected":200000,"tags":["value-boundary"]},
-    {"id":"real-two-peaks","name":"real: two suffix peaks divide the boundaries","kind":"real","visible":false,"input":{"nums":[3,9,2,8,1]},"expected":26,"tags":["multiple-peaks"]},
-    {"id":"real-late-peak","name":"real: late peak controls several boundaries","kind":"real","visible":false,"input":{"nums":[2,1,5,1,4]},"expected":18,"tags":["suffix-maximum"]},
-    {"id":"real-near-decreasing","name":"real: high decreasing suffix uses unit hops","kind":"real","visible":false,"input":{"nums":[1,100,99,98]},"expected":297,"tags":["decreasing"]},
-    {"id":"real-separated-peaks","name":"real: separated peak and tail values","kind":"real","visible":false,"input":{"nums":[5,1,1,10,1,1]},"expected":32,"tags":["multiple-peaks"]}
+    {
+      "id": "sample-direct-hop",
+      "name": "sample: direct hop to the maximum suffix value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          5,
+          8
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-two-hops",
+      "name": "sample: use an interior peak before the last index",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          5,
+          2,
+          8,
+          9,
+          1,
+          3
+        ]
+      },
+      "expected": 42,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-two-elements",
+      "name": "trial: minimum length has one hop",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-decreasing",
+      "name": "trial: decreasing values favor unit hops",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          8,
+          7,
+          6
+        ]
+      },
+      "expected": 21,
+      "tags": [
+        "decreasing"
+      ]
+    },
+    {
+      "id": "trial-increasing",
+      "name": "trial: increasing values favor one direct hop",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "increasing"
+      ]
+    },
+    {
+      "id": "trial-equal",
+      "name": "trial: equal values make all paths tie",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "equal-values"
+      ]
+    },
+    {
+      "id": "trial-early-peak",
+      "name": "early peak covers only its preceding boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          10,
+          1,
+          1
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "suffix-maximum"
+      ]
+    },
+    {
+      "id": "trial-maximum-value",
+      "name": "maximum value at the final index",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100000,
+          1,
+          100000
+        ]
+      },
+      "expected": 200000,
+      "tags": [
+        "value-boundary"
+      ]
+    },
+    {
+      "id": "trial-two-peaks",
+      "name": "two suffix peaks divide the boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          9,
+          2,
+          8,
+          1
+        ]
+      },
+      "expected": 26,
+      "tags": [
+        "multiple-peaks"
+      ]
+    },
+    {
+      "id": "trial-late-peak",
+      "name": "late peak controls several boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          5,
+          1,
+          4
+        ]
+      },
+      "expected": 18,
+      "tags": [
+        "suffix-maximum"
+      ]
+    },
+    {
+      "id": "trial-near-decreasing",
+      "name": "high decreasing suffix uses unit hops",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          100,
+          99,
+          98
+        ]
+      },
+      "expected": 297,
+      "tags": [
+        "decreasing"
+      ]
+    },
+    {
+      "id": "trial-separated-peaks",
+      "name": "separated peak and tail values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          1,
+          10,
+          1,
+          1
+        ]
+      },
+      "expected": 32,
+      "tags": [
+        "multiple-peaks"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    }
   ]
 }

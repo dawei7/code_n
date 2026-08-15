@@ -121,10 +121,10 @@
       ]
     },
     {
-      "id": "hidden-no-exact-limit",
-      "name": "hidden: optimum stays below limit",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-no-exact-limit",
+      "name": "optimum stays below limit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [
@@ -147,15 +147,14 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
     {
-      "id": "hidden-repeated-prefix",
-      "name": "hidden: repeated prefix sums",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-prefix",
+      "name": "repeated prefix sums",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [
@@ -175,15 +174,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "hidden-single-column",
-      "name": "hidden: constrained vertical interval",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-column",
+      "name": "constrained vertical interval",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [
@@ -203,10 +201,8 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "orientation"
       ]
     }
   ]
 }
-

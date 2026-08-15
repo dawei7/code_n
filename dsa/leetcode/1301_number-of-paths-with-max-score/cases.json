@@ -106,10 +106,10 @@
       ]
     },
     {
-      "id": "hidden-around-center",
-      "name": "hidden: equal-score routes around an obstacle",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-around-center",
+      "name": "equal-score routes around an obstacle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "board": [
           "E11",
@@ -122,15 +122,14 @@
         2
       ],
       "tags": [
-        "hidden",
         "ties"
       ]
     },
     {
-      "id": "hidden-weighted-route",
-      "name": "hidden: one side has the unique maximum score",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-weighted-route",
+      "name": "one side has the unique maximum score",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "board": [
           "E99",
@@ -143,15 +142,14 @@
         1
       ],
       "tags": [
-        "hidden",
         "weighted"
       ]
     },
     {
-      "id": "hidden-modulo-zero-path-count",
-      "name": "hidden: reachable optimum has zero count after modulo reduction",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-modulo-zero-path-count",
+      "name": "reachable optimum has zero count after modulo reduction",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "board": [
           "E111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111",
@@ -261,7 +259,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "modulo",
         "remote-regression"
       ]

@@ -2,12 +2,178 @@
   "schema_version": 1,
   "challenge_id": "lc_2126",
   "cases": [
-    {"id": "sample-all-destroyed", "name": "sample: smaller gains unlock every asteroid", "kind": "sample", "visible": true, "input": {"mass": 10, "asteroids": [3, 9, 19, 5, 21]}, "expected": true, "tags": ["sample", "success"]},
-    {"id": "sample-unreachable-largest", "name": "sample: total accessible mass remains too small", "kind": "sample", "visible": true, "input": {"mass": 5, "asteroids": [4, 9, 23, 4]}, "expected": false, "tags": ["sample", "failure"]},
-    {"id": "trial-equal-mass", "name": "equality is sufficient to destroy an asteroid", "kind": "trial", "visible": true, "input": {"mass": 7, "asteroids": [7]}, "expected": true, "tags": ["equality", "single-asteroid"]},
-    {"id": "trial-input-order-misleading", "name": "a heavy first input value can be postponed", "kind": "trial", "visible": true, "input": {"mass": 2, "asteroids": [8, 1, 1, 4]}, "expected": true, "tags": ["reordering", "growth-chain"]},
-    {"id": "real-first-too-heavy", "name": "hidden: no asteroid can start the process", "kind": "real", "visible": false, "input": {"mass": 3, "asteroids": [4, 5, 6]}, "expected": false, "tags": ["hidden", "immediate-failure"]},
-    {"id": "real-duplicates", "name": "hidden: repeated equal masses compound growth", "kind": "real", "visible": false, "input": {"mass": 1, "asteroids": [1, 2, 2, 4, 8]}, "expected": true, "tags": ["hidden", "duplicates"]},
-    {"id": "real-large-accumulation", "name": "hidden: accumulated mass exceeds fixed-width input values", "kind": "real", "visible": false, "input": {"mass": 100000, "asteroids": [100000, 100000, 100000, 100000]}, "expected": true, "tags": ["hidden", "large-values"]}
+    {
+      "id": "sample-all-destroyed",
+      "name": "sample: smaller gains unlock every asteroid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mass": 10,
+        "asteroids": [
+          3,
+          9,
+          19,
+          5,
+          21
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "success"
+      ]
+    },
+    {
+      "id": "sample-unreachable-largest",
+      "name": "sample: total accessible mass remains too small",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mass": 5,
+        "asteroids": [
+          4,
+          9,
+          23,
+          4
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "failure"
+      ]
+    },
+    {
+      "id": "trial-equal-mass",
+      "name": "equality is sufficient to destroy an asteroid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mass": 7,
+        "asteroids": [
+          7
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "equality",
+        "single-asteroid"
+      ]
+    },
+    {
+      "id": "trial-input-order-misleading",
+      "name": "a heavy first input value can be postponed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mass": 2,
+        "asteroids": [
+          8,
+          1,
+          1,
+          4
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "reordering",
+        "growth-chain"
+      ]
+    },
+    {
+      "id": "trial-first-too-heavy",
+      "name": "no asteroid can start the process",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mass": 3,
+        "asteroids": [
+          4,
+          5,
+          6
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "immediate-failure"
+      ]
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "repeated equal masses compound growth",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mass": 1,
+        "asteroids": [
+          1,
+          2,
+          2,
+          4,
+          8
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-large-accumulation",
+      "name": "accumulated mass exceeds fixed-width input values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mass": 100000,
+        "asteroids": [
+          100000,
+          100000,
+          100000,
+          100000
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "large-values"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "minimal value mass=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mass": 1,
+        "asteroids": [
+          3,
+          9,
+          19,
+          5,
+          21
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in asteroids",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mass": 10,
+        "asteroids": [
+          3
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    }
   ]
 }

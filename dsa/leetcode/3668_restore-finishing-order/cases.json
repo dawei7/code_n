@@ -134,10 +134,10 @@
       ]
     },
     {
-      "id": "real-boundary-ids",
-      "name": "hidden: minimum and maximum IDs finish consecutively",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-boundary-ids",
+      "name": "minimum and maximum IDs finish consecutively",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "order": [
           4,
@@ -157,15 +157,14 @@
         6
       ],
       "tags": [
-        "hidden",
         "id-boundaries"
       ]
     },
     {
-      "id": "real-interleaved-nonfriends",
-      "name": "hidden: many non-friends separate retained IDs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-interleaved-nonfriends",
+      "name": "many non-friends separate retained IDs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "order": [
           8,
@@ -191,15 +190,14 @@
         4
       ],
       "tags": [
-        "hidden",
         "interleaving"
       ]
     },
     {
-      "id": "real-maximum-length",
-      "name": "hidden: reverse order at maximum length",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-length",
+      "name": "reverse order at maximum length",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "order": [
           100,
@@ -319,9 +317,60 @@
         1
       ],
       "tags": [
-        "hidden",
         "maximum-length",
         "reverse"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in friends",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "order": [
+          3,
+          1,
+          2,
+          5,
+          4
+        ],
+        "friends": [
+          1
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in friends",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "order": [
+          3,
+          1,
+          2,
+          5,
+          4
+        ],
+        "friends": [
+          1,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        1
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

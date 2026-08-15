@@ -110,10 +110,10 @@
       ]
     },
     {
-      "id": "real-dense-small-values",
-      "name": "real: dense consecutive rewards require skipping",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-dense-small-values",
+      "name": "dense consecutive rewards require skipping",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rewardValues": [
           1,
@@ -130,10 +130,10 @@
       ]
     },
     {
-      "id": "real-unsorted-gaps",
-      "name": "real: unsorted rewards with gaps",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unsorted-gaps",
+      "name": "unsorted rewards with gaps",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rewardValues": [
           9,
@@ -151,10 +151,10 @@
       ]
     },
     {
-      "id": "real-duplicates-before-large",
-      "name": "real: duplicates precede a large final reward",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicates-before-large",
+      "name": "duplicates precede a large final reward",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rewardValues": [
           2,
@@ -170,10 +170,10 @@
       ]
     },
     {
-      "id": "real-duplicate-doubling-levels",
-      "name": "real: duplicates across doubling levels",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicate-doubling-levels",
+      "name": "duplicates across doubling levels",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rewardValues": [
           1,
@@ -192,10 +192,10 @@
       ]
     },
     {
-      "id": "real-maximum-after-half",
-      "name": "real: maximum reward follows an exact half-sized total",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-after-half",
+      "name": "maximum reward follows an exact half-sized total",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rewardValues": [
           1000,
@@ -209,10 +209,10 @@
       ]
     },
     {
-      "id": "real-near-maximum-total",
-      "name": "real: two largest rewards reach the global total bound",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-near-maximum-total",
+      "name": "two largest rewards reach the global total bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rewardValues": [
           1999,

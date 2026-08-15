@@ -80,49 +80,46 @@
       ]
     },
     {
-      "id": "real-interleaved",
-      "name": "hidden: retained occurrences preserve interleaving",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-interleaved",
+      "name": "retained occurrences preserve interleaving",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abacabad",
         "k": 3
       },
       "expected": "bcbd",
       "tags": [
-        "hidden",
         "stable-order",
         "mixed-frequencies"
       ]
     },
     {
-      "id": "real-maximum-length",
-      "name": "hidden: maximum length separates counts around k",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-length",
+      "name": "maximum length separates counts around k",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccccccccccccccccc",
         "k": 31
       },
       "expected": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccccccccccccccccc",
       "tags": [
-        "hidden",
         "maximum-length",
         "threshold-boundary"
       ]
     },
     {
-      "id": "real-one-qualifying-letter",
-      "name": "hidden: only one letter type remains",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-qualifying-letter",
+      "name": "only one letter type remains",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "zzzyyyx",
         "k": 3
       },
       "expected": "x",
       "tags": [
-        "hidden",
         "one-qualifier"
       ]
     }

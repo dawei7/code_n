@@ -1,13 +1,241 @@
 {
   "challenge_id": "lc_2660",
   "cases": [
-    {"id":"sample-player-one","name":"sample: player one wins through a strike","kind":"sample","visible":true,"input":{"player1":[5,10,3,2],"player2":[6,5,7,3]},"expected":1,"tags":["sample","strike"]},
-    {"id":"sample-player-two","name":"sample: player two has consecutive strikes","kind":"sample","visible":true,"input":{"player1":[3,5,7,6],"player2":[8,10,10,2]},"expected":2,"tags":["sample","consecutive-strikes"]},
-    {"id":"sample-draw","name":"sample: equal ordinary totals","kind":"sample","visible":true,"input":{"player1":[2,3],"player2":[4,1]},"expected":0,"tags":["sample","draw"]},
-    {"id":"sample-long","name":"sample: strike windows expire","kind":"sample","visible":true,"input":{"player1":[1,1,1,10,10,10,10],"player2":[10,10,10,10,1,1,1]},"expected":2,"tags":["sample","expiry"]},
-    {"id":"trial-single-strike","name":"trial: a first-turn strike is not self-doubled","kind":"trial","visible":true,"input":{"player1":[10],"player2":[10]},"expected":0,"tags":["single-turn","draw"]},
-    {"id":"real-two-following","name":"hidden: one strike doubles exactly two turns","kind":"real","visible":false,"input":{"player1":[10,1,1,9],"player2":[9,9,0,0]},"expected":1,"tags":["hidden","two-turn-window"]},
-    {"id":"real-expired","name":"hidden: strike no longer affects the third later turn","kind":"real","visible":false,"input":{"player1":[10,0,0,5],"player2":[4,4,4,4]},"expected":2,"tags":["hidden","expired-bonus"]},
-    {"id":"real-late-strike","name":"hidden: strike occurs near the end","kind":"real","visible":false,"input":{"player1":[2,10,4],"player2":[7,7,5]},"expected":1,"tags":["hidden","late-strike"]}
+    {
+      "id": "sample-player-one",
+      "name": "sample: player one wins through a strike",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "player1": [
+          5,
+          10,
+          3,
+          2
+        ],
+        "player2": [
+          6,
+          5,
+          7,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "strike"
+      ]
+    },
+    {
+      "id": "sample-player-two",
+      "name": "sample: player two has consecutive strikes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "player1": [
+          3,
+          5,
+          7,
+          6
+        ],
+        "player2": [
+          8,
+          10,
+          10,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "consecutive-strikes"
+      ]
+    },
+    {
+      "id": "sample-draw",
+      "name": "sample: equal ordinary totals",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "player1": [
+          2,
+          3
+        ],
+        "player2": [
+          4,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "draw"
+      ]
+    },
+    {
+      "id": "sample-long",
+      "name": "sample: strike windows expire",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "player1": [
+          1,
+          1,
+          1,
+          10,
+          10,
+          10,
+          10
+        ],
+        "player2": [
+          10,
+          10,
+          10,
+          10,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "expiry"
+      ]
+    },
+    {
+      "id": "trial-single-strike",
+      "name": "trial: a first-turn strike is not self-doubled",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "player1": [
+          10
+        ],
+        "player2": [
+          10
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "single-turn",
+        "draw"
+      ]
+    },
+    {
+      "id": "trial-two-following",
+      "name": "one strike doubles exactly two turns",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "player1": [
+          10,
+          1,
+          1,
+          9
+        ],
+        "player2": [
+          9,
+          9,
+          0,
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "two-turn-window"
+      ]
+    },
+    {
+      "id": "trial-expired",
+      "name": "strike no longer affects the third later turn",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "player1": [
+          10,
+          0,
+          0,
+          5
+        ],
+        "player2": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "expired-bonus"
+      ]
+    },
+    {
+      "id": "trial-late-strike",
+      "name": "strike occurs near the end",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "player1": [
+          2,
+          10,
+          4
+        ],
+        "player2": [
+          7,
+          7,
+          5
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "late-strike"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in player1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "player1": [
+          5
+        ],
+        "player2": [
+          6,
+          5,
+          7,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in player1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "player1": [
+          5,
+          5
+        ],
+        "player2": [
+          6,
+          5,
+          7,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    }
   ]
 }

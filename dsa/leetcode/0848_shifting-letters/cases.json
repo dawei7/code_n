@@ -115,10 +115,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: maximum shift value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "maximum shift value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "s",
         "shifts": [
@@ -127,15 +127,14 @@
       },
       "expected": "e",
       "tags": [
-        "hidden",
         "large"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: mixed large and small shifts",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "mixed large and small shifts",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "code",
         "shifts": [
@@ -147,15 +146,14 @@
       },
       "expected": "oodf",
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: descending suffix totals",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "descending suffix totals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "zzzz",
         "shifts": [
@@ -167,15 +165,14 @@
       },
       "expected": "jigd",
       "tags": [
-        "hidden",
         "suffix"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: only final operation is nonzero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "only final operation is nonzero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaaa",
         "shifts": [
@@ -188,15 +185,14 @@
       },
       "expected": "ccccc",
       "tags": [
-        "hidden",
         "full-prefix"
       ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: only first operation is nonzero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-5",
+      "name": "only first operation is nonzero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaaa",
         "shifts": [
@@ -209,15 +205,14 @@
       },
       "expected": "caaaa",
       "tags": [
-        "hidden",
         "first-prefix"
       ]
     },
     {
-      "id": "hidden-6",
-      "name": "hidden: exact alphabet cycles",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-6",
+      "name": "exact alphabet cycles",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "leetcode",
         "shifts": [
@@ -233,7 +228,6 @@
       },
       "expected": "leetcode",
       "tags": [
-        "hidden",
         "cycles"
       ]
     }

@@ -186,10 +186,10 @@
       ]
     },
     {
-      "id": "real-single-student",
-      "name": "hidden: one student remains unchanged",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-student",
+      "name": "one student remains unchanged",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "score": [
           [
@@ -204,15 +204,14 @@
         ]
       ],
       "tags": [
-        "hidden",
         "minimum"
       ]
     },
     {
-      "id": "real-reverse-order",
-      "name": "hidden: every row must move",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-reverse-order",
+      "name": "every row must move",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "score": [
           [
@@ -253,15 +252,14 @@
         ]
       ],
       "tags": [
-        "hidden",
         "reverse-order"
       ]
     },
     {
-      "id": "real-preserve-whole-rows",
-      "name": "hidden: ranking retains non-key scores",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-preserve-whole-rows",
+      "name": "ranking retains non-key scores",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "score": [
           [
@@ -300,8 +298,60 @@
         ]
       ],
       "tags": [
-        "hidden",
         "row-integrity"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "score": [
+          [
+            10,
+            6,
+            9,
+            1
+          ],
+          [
+            7,
+            5,
+            11,
+            2
+          ],
+          [
+            4,
+            8,
+            3,
+            15
+          ]
+        ],
+        "k": 1
+      },
+      "expected": [
+        [
+          4,
+          8,
+          3,
+          15
+        ],
+        [
+          10,
+          6,
+          9,
+          1
+        ],
+        [
+          7,
+          5,
+          11,
+          2
+        ]
+      ],
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

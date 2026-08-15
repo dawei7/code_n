@@ -89,10 +89,10 @@
       ]
     },
     {
-      "id": "real-odd-distinct",
-      "name": "hidden: odd number of unique letters cannot balance",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-odd-distinct",
+      "name": "odd number of unique letters cannot balance",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abcde"
       },
@@ -104,10 +104,10 @@
       ]
     },
     {
-      "id": "real-skewed-frequency",
-      "name": "hidden: frequencies differ while distinct counts balance",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-skewed-frequency",
+      "name": "frequencies differ while distinct counts balance",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaabcbc"
       },
@@ -118,10 +118,10 @@
       ]
     },
     {
-      "id": "real-returning-letter",
-      "name": "hidden: a letter disappears from the suffix late",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-returning-letter",
+      "name": "a letter disappears from the suffix late",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abcaacbd"
       },
@@ -133,10 +133,10 @@
       ]
     },
     {
-      "id": "real-many-boundaries",
-      "name": "hidden: several repeated blocks create good splits",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-boundaries",
+      "name": "several repeated blocks create good splits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aabbccddeeff"
       },

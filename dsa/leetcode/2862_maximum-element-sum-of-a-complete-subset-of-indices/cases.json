@@ -6,72 +6,224 @@
       "name": "sample: square-free kernel two wins",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [8, 7, 3, 5, 7, 2, 4, 9]},
+      "input": {
+        "nums": [
+          8,
+          7,
+          3,
+          5,
+          7,
+          2,
+          4,
+          9
+        ]
+      },
       "expected": 16,
-      "tags": ["sample", "square-free-kernel"]
+      "tags": [
+        "sample",
+        "square-free-kernel"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: perfect-square indices form the best group",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [8, 10, 3, 8, 1, 13, 7, 9, 4]},
+      "input": {
+        "nums": [
+          8,
+          10,
+          3,
+          8,
+          1,
+          13,
+          7,
+          9,
+          4
+        ]
+      },
       "expected": 20,
-      "tags": ["sample", "perfect-squares"]
+      "tags": [
+        "sample",
+        "perfect-squares"
+      ]
     },
     {
       "id": "trial-first-ten-values",
       "name": "trial: first ten values split among kernels",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
       "expected": 14,
-      "tags": ["trial", "multiple-groups"]
+      "tags": [
+        "trial",
+        "multiple-groups"
+      ]
     },
     {
       "id": "trial-single-element",
       "name": "trial: one index is always complete",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [42]},
+      "input": {
+        "nums": [
+          42
+        ]
+      },
       "expected": 42,
-      "tags": ["trial", "minimum-length"]
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-kernel-two-group",
       "name": "trial: indices two and eight dominate",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 10, 1, 1, 1, 1, 1, 20]},
+      "input": {
+        "nums": [
+          1,
+          10,
+          1,
+          1,
+          1,
+          1,
+          1,
+          20
+        ]
+      },
       "expected": 30,
-      "tags": ["trial", "nontrivial-kernel"]
+      "tags": [
+        "trial",
+        "nontrivial-kernel"
+      ]
     },
     {
-      "id": "real-heavy-square-index-class",
-      "name": "hidden: values favor all square indices",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [3, 1, 1, 8, 1, 1, 1, 1, 13, 1, 1, 1, 1, 1, 1, 21]},
+      "id": "trial-heavy-square-index-class",
+      "name": "values favor all square indices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          1,
+          8,
+          1,
+          1,
+          1,
+          1,
+          13,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          21
+        ]
+      },
       "expected": 45,
-      "tags": ["hidden", "square-class"]
+      "tags": [
+        "square-class"
+      ]
     },
     {
-      "id": "real-large-singleton-value",
-      "name": "hidden: a singleton kernel can be optimal",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 1, 1, 1, 1, 1, 100, 1, 1, 1, 1, 1]},
+      "id": "trial-large-singleton-value",
+      "name": "a singleton kernel can be optimal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          100,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
       "expected": 100,
-      "tags": ["hidden", "singleton-group"]
+      "tags": [
+        "singleton-group"
+      ]
     },
     {
-      "id": "real-sum-exceeds-32-bit",
-      "name": "hidden: the complete-subset sum exceeds 32-bit range",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000000000, 1000000000, 1000000000, 1000000000, 1000000000, 1000000000, 1000000000, 1000000000, 1000000000]},
+      "id": "trial-sum-exceeds-32-bit",
+      "name": "the complete-subset sum exceeds 32-bit range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000
+        ]
+      },
       "expected": 3000000000,
-      "tags": ["hidden", "large-sum", "integer-range"]
+      "tags": [
+        "large-sum",
+        "integer-range"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          8
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

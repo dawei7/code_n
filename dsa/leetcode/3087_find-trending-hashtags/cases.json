@@ -7,88 +7,338 @@
       "name": "sample: rank the four February hashtag groups",
       "kind": "sample",
       "visible": true,
-      "input": {"tables": {"Tweets": [
-        {"user_id": 135, "tweet_id": 13, "tweet": "Enjoying a great start to the day! #HappyDay", "tweet_date": "2024-02-01"},
-        {"user_id": 136, "tweet_id": 14, "tweet": "Another #HappyDay with good vibes!", "tweet_date": "2024-02-03"},
-        {"user_id": 137, "tweet_id": 15, "tweet": "Productivity peaks! #WorkLife", "tweet_date": "2024-02-04"},
-        {"user_id": 138, "tweet_id": 16, "tweet": "Exploring new tech frontiers. #TechLife", "tweet_date": "2024-02-04"},
-        {"user_id": 139, "tweet_id": 17, "tweet": "Gratitude for today's moments. #HappyDay", "tweet_date": "2024-02-05"},
-        {"user_id": 140, "tweet_id": 18, "tweet": "Innovation drives us. #TechLife", "tweet_date": "2024-02-07"},
-        {"user_id": 141, "tweet_id": 19, "tweet": "Connecting with nature's serenity. #Nature", "tweet_date": "2024-02-09"}
-      ]}},
-      "expected": {"columns": ["hashtag", "hashtag_count"], "rows": [["#HappyDay", 3], ["#TechLife", 2], ["#WorkLife", 1]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["sample", "top-three", "tie-break"]
+      "input": {
+        "tables": {
+          "Tweets": [
+            {
+              "user_id": 135,
+              "tweet_id": 13,
+              "tweet": "Enjoying a great start to the day! #HappyDay",
+              "tweet_date": "2024-02-01"
+            },
+            {
+              "user_id": 136,
+              "tweet_id": 14,
+              "tweet": "Another #HappyDay with good vibes!",
+              "tweet_date": "2024-02-03"
+            },
+            {
+              "user_id": 137,
+              "tweet_id": 15,
+              "tweet": "Productivity peaks! #WorkLife",
+              "tweet_date": "2024-02-04"
+            },
+            {
+              "user_id": 138,
+              "tweet_id": 16,
+              "tweet": "Exploring new tech frontiers. #TechLife",
+              "tweet_date": "2024-02-04"
+            },
+            {
+              "user_id": 139,
+              "tweet_id": 17,
+              "tweet": "Gratitude for today's moments. #HappyDay",
+              "tweet_date": "2024-02-05"
+            },
+            {
+              "user_id": 140,
+              "tweet_id": 18,
+              "tweet": "Innovation drives us. #TechLife",
+              "tweet_date": "2024-02-07"
+            },
+            {
+              "user_id": 141,
+              "tweet_id": 19,
+              "tweet": "Connecting with nature's serenity. #Nature",
+              "tweet_date": "2024-02-09"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "hashtag",
+          "hashtag_count"
+        ],
+        "rows": [
+          [
+            "#HappyDay",
+            3
+          ],
+          [
+            "#TechLife",
+            2
+          ],
+          [
+            "#WorkLife",
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "top-three",
+        "tie-break"
+      ]
     },
     {
       "id": "trial-middle-and-end",
       "name": "trial: extract hashtags both before words and at text end",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"Tweets": [
-        {"user_id": 1, "tweet_id": 1, "tweet_date": "2024-02-10", "tweet": "New #SQL tips today"},
-        {"user_id": 2, "tweet_id": 2, "tweet_date": "2024-02-11", "tweet": "Practice #SQL"},
-        {"user_id": 3, "tweet_id": 3, "tweet_date": "2024-02-12", "tweet": "Learn #Python together"}
-      ]}},
-      "expected": {"columns": ["hashtag", "hashtag_count"], "rows": [["#SQL", 2], ["#Python", 1]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["trial", "token-boundary"]
+      "input": {
+        "tables": {
+          "Tweets": [
+            {
+              "user_id": 1,
+              "tweet_id": 1,
+              "tweet_date": "2024-02-10",
+              "tweet": "New #SQL tips today"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 2,
+              "tweet_date": "2024-02-11",
+              "tweet": "Practice #SQL"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 3,
+              "tweet_date": "2024-02-12",
+              "tweet": "Learn #Python together"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "hashtag",
+          "hashtag_count"
+        ],
+        "rows": [
+          [
+            "#SQL",
+            2
+          ],
+          [
+            "#Python",
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "token-boundary"
+      ]
     },
     {
       "id": "trial-fewer-than-three",
       "name": "trial: one distinct hashtag returns one row",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"Tweets": [
-        {"user_id": 1, "tweet_id": 10, "tweet_date": "2024-02-20", "tweet": "Only #Solo"}
-      ]}},
-      "expected": {"columns": ["hashtag", "hashtag_count"], "rows": [["#Solo", 1]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["trial", "fewer-than-three"]
+      "input": {
+        "tables": {
+          "Tweets": [
+            {
+              "user_id": 1,
+              "tweet_id": 10,
+              "tweet_date": "2024-02-20",
+              "tweet": "Only #Solo"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "hashtag",
+          "hashtag_count"
+        ],
+        "rows": [
+          [
+            "#Solo",
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "fewer-than-three"
+      ]
     },
     {
-      "id": "real-date-boundaries",
-      "name": "hidden: include leap day and exclude adjacent months",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"Tweets": [
-        {"user_id": 1, "tweet_id": 20, "tweet_date": "2024-01-31", "tweet": "Old #Outside"},
-        {"user_id": 2, "tweet_id": 21, "tweet_date": "2024-02-01", "tweet": "First #Leap"},
-        {"user_id": 3, "tweet_id": 22, "tweet_date": "2024-02-29", "tweet": "Last #Leap"},
-        {"user_id": 4, "tweet_id": 23, "tweet_date": "2024-03-01", "tweet": "New #Outside"}
-      ]}},
-      "expected": {"columns": ["hashtag", "hashtag_count"], "rows": [["#Leap", 2]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["date-range", "leap-day"]
+      "id": "trial-date-boundaries",
+      "name": "include leap day and exclude adjacent months",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tweets": [
+            {
+              "user_id": 1,
+              "tweet_id": 20,
+              "tweet_date": "2024-01-31",
+              "tweet": "Old #Outside"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 21,
+              "tweet_date": "2024-02-01",
+              "tweet": "First #Leap"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 22,
+              "tweet_date": "2024-02-29",
+              "tweet": "Last #Leap"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 23,
+              "tweet_date": "2024-03-01",
+              "tweet": "New #Outside"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "hashtag",
+          "hashtag_count"
+        ],
+        "rows": [
+          [
+            "#Leap",
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "date-range",
+        "leap-day"
+      ]
     },
     {
-      "id": "real-descending-tie",
-      "name": "hidden: equal counts use descending hashtag order",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"Tweets": [
-        {"user_id": 1, "tweet_id": 30, "tweet_date": "2024-02-02", "tweet": "One #Alpha"},
-        {"user_id": 2, "tweet_id": 31, "tweet_date": "2024-02-03", "tweet": "Two #Gamma"},
-        {"user_id": 3, "tweet_id": 32, "tweet_date": "2024-02-04", "tweet": "Three #Beta"},
-        {"user_id": 4, "tweet_id": 33, "tweet_date": "2024-02-05", "tweet": "Four #Delta"}
-      ]}},
-      "expected": {"columns": ["hashtag", "hashtag_count"], "rows": [["#Gamma", 1], ["#Delta", 1], ["#Beta", 1]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["tie-break", "limit-three"]
+      "id": "trial-descending-tie",
+      "name": "equal counts use descending hashtag order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tweets": [
+            {
+              "user_id": 1,
+              "tweet_id": 30,
+              "tweet_date": "2024-02-02",
+              "tweet": "One #Alpha"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 31,
+              "tweet_date": "2024-02-03",
+              "tweet": "Two #Gamma"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 32,
+              "tweet_date": "2024-02-04",
+              "tweet": "Three #Beta"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 33,
+              "tweet_date": "2024-02-05",
+              "tweet": "Four #Delta"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "hashtag",
+          "hashtag_count"
+        ],
+        "rows": [
+          [
+            "#Gamma",
+            1
+          ],
+          [
+            "#Delta",
+            1
+          ],
+          [
+            "#Beta",
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "tie-break",
+        "limit-three"
+      ]
     },
     {
-      "id": "real-year-filter",
-      "name": "hidden: February from another year is excluded",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"Tweets": [
-        {"user_id": 1, "tweet_id": 40, "tweet_date": "2023-02-10", "tweet": "Past #Old"},
-        {"user_id": 2, "tweet_id": 41, "tweet_date": "2023-02-11", "tweet": "Past again #Old"},
-        {"user_id": 3, "tweet_id": 42, "tweet_date": "2024-02-10", "tweet": "Current #Now"}
-      ]}},
-      "expected": {"columns": ["hashtag", "hashtag_count"], "rows": [["#Now", 1]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["year-filter"]
+      "id": "trial-year-filter",
+      "name": "February from another year is excluded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tweets": [
+            {
+              "user_id": 1,
+              "tweet_id": 40,
+              "tweet_date": "2023-02-10",
+              "tweet": "Past #Old"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 41,
+              "tweet_date": "2023-02-11",
+              "tweet": "Past again #Old"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 42,
+              "tweet_date": "2024-02-10",
+              "tweet": "Current #Now"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "hashtag",
+          "hashtag_count"
+        ],
+        "rows": [
+          [
+            "#Now",
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "year-filter"
+      ]
     }
   ]
 }

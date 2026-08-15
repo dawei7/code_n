@@ -144,10 +144,10 @@
       ]
     },
     {
-      "id": "real-second-step",
-      "name": "hidden: activation occurs after two replacements",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-second-step",
+      "name": "activation occurs after two replacements",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abcdef",
         "order": [
@@ -162,15 +162,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "multiple-stars"
       ]
     },
     {
-      "id": "real-adjacent-stars",
-      "name": "hidden: adjacent activations avoid double counting",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-adjacent-stars",
+      "name": "adjacent activations avoid double counting",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abcdef",
         "order": [
@@ -185,15 +184,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "overlap"
       ]
     },
     {
-      "id": "real-separated-stars",
-      "name": "hidden: separated activations split inactive runs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-separated-stars",
+      "name": "separated activations split inactive runs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abcdefg",
         "order": [
@@ -209,15 +207,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "inactive-runs"
       ]
     },
     {
-      "id": "real-full-count",
-      "name": "hidden: every position is needed for every substring",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-full-count",
+      "name": "every position is needed for every substring",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "hello",
         "order": [
@@ -231,15 +228,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "full-activation"
       ]
     },
     {
-      "id": "real-letters-irrelevant",
-      "name": "hidden: original character values do not affect counts",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-letters-irrelevant",
+      "name": "original character values do not affect counts",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "zzxyzz",
         "order": [
@@ -254,15 +250,14 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "string-content"
       ]
     },
     {
-      "id": "real-large-impossible",
-      "name": "hidden: k may exceed the quadratic substring total",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-impossible",
+      "name": "k may exceed the quadratic substring total",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abc",
         "order": [
@@ -274,9 +269,48 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "impossible",
         "large-k"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "order": [
+          1,
+          0,
+          2
+        ],
+        "k": 2
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa",
+        "order": [
+          1,
+          0,
+          2
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

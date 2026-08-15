@@ -6,36 +6,217 @@
       "name": "sample: add bonuses for six employees",
       "kind": "sample",
       "visible": true,
-      "input": {"tables": {"employees": [{"name": "Piper", "salary": 4548}, {"name": "Grace", "salary": 28150}, {"name": "Georgia", "salary": 1103}, {"name": "Willow", "salary": 6593}, {"name": "Finn", "salary": 74576}, {"name": "Thomas", "salary": 24433}]}},
-      "expected": {"columns": ["name", "salary", "bonus"], "rows": [["Piper", 4548, 9096], ["Grace", 28150, 56300], ["Georgia", 1103, 2206], ["Willow", 6593, 13186], ["Finn", 74576, 149152], ["Thomas", 24433, 48866]]},
-      "tags": ["sample", "column-assignment"]
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "name": "Piper",
+              "salary": 4548
+            },
+            {
+              "name": "Grace",
+              "salary": 28150
+            },
+            {
+              "name": "Georgia",
+              "salary": 1103
+            },
+            {
+              "name": "Willow",
+              "salary": 6593
+            },
+            {
+              "name": "Finn",
+              "salary": 74576
+            },
+            {
+              "name": "Thomas",
+              "salary": 24433
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "salary",
+          "bonus"
+        ],
+        "rows": [
+          [
+            "Piper",
+            4548,
+            9096
+          ],
+          [
+            "Grace",
+            28150,
+            56300
+          ],
+          [
+            "Georgia",
+            1103,
+            2206
+          ],
+          [
+            "Willow",
+            6593,
+            13186
+          ],
+          [
+            "Finn",
+            74576,
+            149152
+          ],
+          [
+            "Thomas",
+            24433,
+            48866
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "column-assignment"
+      ]
     },
     {
       "id": "trial-single-row",
       "name": "single employee",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"employees": [{"name": "Ada", "salary": 6000}]}},
-      "expected": {"columns": ["name", "salary", "bonus"], "rows": [["Ada", 6000, 12000]]},
-      "tags": ["boundary", "single-row"]
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "name": "Ada",
+              "salary": 6000
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "salary",
+          "bonus"
+        ],
+        "rows": [
+          [
+            "Ada",
+            6000,
+            12000
+          ]
+        ]
+      },
+      "tags": [
+        "boundary",
+        "single-row"
+      ]
     },
     {
       "id": "trial-repeated-salary",
       "name": "different employees share a salary",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"employees": [{"name": "Lin", "salary": 3200}, {"name": "Sam", "salary": 3200}]}},
-      "expected": {"columns": ["name", "salary", "bonus"], "rows": [["Lin", 3200, 6400], ["Sam", 3200, 6400]]},
-      "tags": ["repeated-value", "row-independence"]
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "name": "Lin",
+              "salary": 3200
+            },
+            {
+              "name": "Sam",
+              "salary": 3200
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "salary",
+          "bonus"
+        ],
+        "rows": [
+          [
+            "Lin",
+            3200,
+            6400
+          ],
+          [
+            "Sam",
+            3200,
+            6400
+          ]
+        ]
+      },
+      "tags": [
+        "repeated-value",
+        "row-independence"
+      ]
     },
     {
-      "id": "real-varied-values",
-      "name": "hidden: varied salary magnitudes preserve order",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"employees": [{"name": "Iris", "salary": 1}, {"name": "Bo", "salary": 99999}, {"name": "Mina", "salary": 47}, {"name": "Omar", "salary": 12500}]}},
-      "expected": {"columns": ["name", "salary", "bonus"], "rows": [["Iris", 1, 2], ["Bo", 99999, 199998], ["Mina", 47, 94], ["Omar", 12500, 25000]]},
-      "tags": ["hidden", "order", "magnitude"]
+      "id": "trial-varied-values",
+      "name": "varied salary magnitudes preserve order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "name": "Iris",
+              "salary": 1
+            },
+            {
+              "name": "Bo",
+              "salary": 99999
+            },
+            {
+              "name": "Mina",
+              "salary": 47
+            },
+            {
+              "name": "Omar",
+              "salary": 12500
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "salary",
+          "bonus"
+        ],
+        "rows": [
+          [
+            "Iris",
+            1,
+            2
+          ],
+          [
+            "Bo",
+            99999,
+            199998
+          ],
+          [
+            "Mina",
+            47,
+            94
+          ],
+          [
+            "Omar",
+            12500,
+            25000
+          ]
+        ]
+      },
+      "tags": [
+        "order",
+        "magnitude"
+      ]
     }
   ]
 }

@@ -1,12 +1,386 @@
-{"schema_version":1,"challenge_id":"lc_3748","cases":[
-{"id":"sample-three-queries","name":"sample: queries cover a decrease and an increasing suffix","kind":"sample","visible":true,"input":{"nums":[3,1,2],"queries":[[0,1],[1,2],[0,2]]},"expected":[2,3,4],"validator":{"kind":"exact"},"tags":["sample","multiple-runs"]},
-{"id":"sample-equal-pair","name":"sample: equal values remain stable","kind":"sample","visible":true,"input":{"nums":[2,2],"queries":[[0,1],[0,0]]},"expected":[3,1],"validator":{"kind":"exact"},"tags":["sample","equal-values"]},
-{"id":"trial-single","name":"trial: one element and one query","kind":"trial","visible":true,"input":{"nums":[5],"queries":[[0,0]]},"expected":[1],"validator":{"kind":"exact"},"tags":["trial","minimum-size"]},
-{"id":"trial-increasing","name":"trial: every subarray in each query is stable","kind":"trial","visible":true,"input":{"nums":[1,2,3,4],"queries":[[0,3],[1,3],[2,2]]},"expected":[10,6,1],"validator":{"kind":"exact"},"tags":["trial","single-run"]},
-{"id":"trial-decreasing","name":"trial: only singleton subarrays are stable","kind":"trial","visible":true,"input":{"nums":[4,3,2,1],"queries":[[0,3],[1,3]]},"expected":[4,3],"validator":{"kind":"exact"},"tags":["trial","all-breaks"]},
-{"id":"real-mixed-runs","name":"hidden: queries truncate and cross several runs","kind":"real","visible":false,"input":{"nums":[1,3,2,2,4,1],"queries":[[0,5],[1,4],[2,5],[3,5]]},"expected":[10,7,7,4],"validator":{"kind":"exact"},"tags":["hidden","multiple-runs"]},
-{"id":"real-all-equal","name":"hidden: all equal values form one run","kind":"real","visible":false,"input":{"nums":[7,7,7,7,7],"queries":[[0,4],[1,3],[4,4]]},"expected":[15,6,1],"validator":{"kind":"exact"},"tags":["hidden","equal-values"]},
-{"id":"real-prefix-after-break","name":"hidden: query begins immediately after a decrease","kind":"real","visible":false,"input":{"nums":[5,1,2,3],"queries":[[1,3],[0,3]]},"expected":[6,7],"validator":{"kind":"exact"},"tags":["hidden","run-boundary"]},
-{"id":"real-query-before-break","name":"hidden: query ends immediately before a decrease","kind":"real","visible":false,"input":{"nums":[1,2,3,0,1],"queries":[[0,2],[0,3],[2,4]]},"expected":[6,7,4],"validator":{"kind":"exact"},"tags":["hidden","run-boundary"]},
-{"id":"real-nested-queries","name":"hidden: nested ranges use different first-run truncations","kind":"real","visible":false,"input":{"nums":[2,4,6,1,3,5],"queries":[[0,5],[1,5],[2,5],[3,5]]},"expected":[12,9,7,6],"validator":{"kind":"exact"},"tags":["hidden","nested-queries"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3748",
+  "cases": [
+    {
+      "id": "sample-three-queries",
+      "name": "sample: queries cover a decrease and an increasing suffix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          2
+        ],
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        3,
+        4
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "multiple-runs"
+      ]
+    },
+    {
+      "id": "sample-equal-pair",
+      "name": "sample: equal values remain stable",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ],
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        3,
+        1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "equal-values"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one element and one query",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ],
+        "queries": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-size"
+      ]
+    },
+    {
+      "id": "trial-increasing",
+      "name": "trial: every subarray in each query is stable",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "queries": [
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        10,
+        6,
+        1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-run"
+      ]
+    },
+    {
+      "id": "trial-decreasing",
+      "name": "trial: only singleton subarrays are stable",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          3,
+          2,
+          1
+        ],
+        "queries": [
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        4,
+        3
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "all-breaks"
+      ]
+    },
+    {
+      "id": "trial-mixed-runs",
+      "name": "queries truncate and cross several runs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          2,
+          2,
+          4,
+          1
+        ],
+        "queries": [
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        10,
+        7,
+        7,
+        4
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "multiple-runs"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "all equal values form one run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "queries": [
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            4,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        15,
+        6,
+        1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "equal-values"
+      ]
+    },
+    {
+      "id": "trial-prefix-after-break",
+      "name": "query begins immediately after a decrease",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          2,
+          3
+        ],
+        "queries": [
+          [
+            1,
+            3
+          ],
+          [
+            0,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        6,
+        7
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "run-boundary"
+      ]
+    },
+    {
+      "id": "trial-query-before-break",
+      "name": "query ends immediately before a decrease",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          0,
+          1
+        ],
+        "queries": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            2,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        6,
+        7,
+        4
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "run-boundary"
+      ]
+    },
+    {
+      "id": "trial-nested-queries",
+      "name": "nested ranges use different first-run truncations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          6,
+          1,
+          3,
+          5
+        ],
+        "queries": [
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        12,
+        9,
+        7,
+        6
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "nested-queries"
+      ]
+    }
+  ]
+}

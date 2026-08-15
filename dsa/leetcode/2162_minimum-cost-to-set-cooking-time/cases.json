@@ -2,13 +2,173 @@
   "schema_version": 1,
   "challenge_id": "lc_2162",
   "cases": [
-    {"id": "sample-ten-minutes", "name": "sample: four presses beat the alternate seconds field", "kind": "sample", "visible": true, "input": {"startAt": 1, "moveCost": 2, "pushCost": 1, "targetSeconds": 600}, "expected": 6, "tags": ["sample", "multiple-representations"]},
-    {"id": "sample-seventy-six-seconds", "name": "sample: omit padded leading zeros", "kind": "sample", "visible": true, "input": {"startAt": 0, "moveCost": 1, "pushCost": 2, "targetSeconds": 76}, "expected": 6, "tags": ["sample", "leading-zero"]},
-    {"id": "trial-one-second", "name": "smallest duration from a different starting digit", "kind": "trial", "visible": true, "input": {"startAt": 5, "moveCost": 3, "pushCost": 4, "targetSeconds": 1}, "expected": 7, "tags": ["lower-bound", "single-digit"]},
-    {"id": "trial-expensive-move", "name": "movement dominates the one-second entry", "kind": "trial", "visible": true, "input": {"startAt": 0, "moveCost": 100000, "pushCost": 1, "targetSeconds": 1}, "expected": 100001, "tags": ["cost-boundary", "movement"]},
-    {"id": "trial-exact-minute", "name": "sixty seconds can be entered directly", "kind": "trial", "visible": true, "input": {"startAt": 6, "moveCost": 10, "pushCost": 1, "targetSeconds": 60}, "expected": 12, "tags": ["exact-minute", "seconds-field"]},
-    {"id": "trial-hour", "name": "one hour uses a non-clock minute field", "kind": "trial", "visible": true, "input": {"startAt": 8, "moveCost": 7, "pushCost": 3, "targetSeconds": 3600}, "expected": 26, "tags": ["non-clock-minutes"]},
-    {"id": "real-largest-duration", "name": "hidden: maximum duration with no movement", "kind": "real", "visible": false, "input": {"startAt": 9, "moveCost": 1, "pushCost": 100000, "targetSeconds": 6039}, "expected": 400000, "tags": ["hidden", "upper-bound"]},
-    {"id": "real-expensive-costs", "name": "hidden: choose between two legal field decompositions", "kind": "real", "visible": false, "input": {"startAt": 9, "moveCost": 100000, "pushCost": 100000, "targetSeconds": 5999}, "expected": 600000, "tags": ["hidden", "multiple-representations", "cost-boundary"]}
+    {
+      "id": "sample-ten-minutes",
+      "name": "sample: four presses beat the alternate seconds field",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "startAt": 1,
+        "moveCost": 2,
+        "pushCost": 1,
+        "targetSeconds": 600
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "multiple-representations"
+      ]
+    },
+    {
+      "id": "sample-seventy-six-seconds",
+      "name": "sample: omit padded leading zeros",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "startAt": 0,
+        "moveCost": 1,
+        "pushCost": 2,
+        "targetSeconds": 76
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "leading-zero"
+      ]
+    },
+    {
+      "id": "trial-one-second",
+      "name": "smallest duration from a different starting digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "startAt": 5,
+        "moveCost": 3,
+        "pushCost": 4,
+        "targetSeconds": 1
+      },
+      "expected": 7,
+      "tags": [
+        "lower-bound",
+        "single-digit"
+      ]
+    },
+    {
+      "id": "trial-expensive-move",
+      "name": "movement dominates the one-second entry",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "startAt": 0,
+        "moveCost": 100000,
+        "pushCost": 1,
+        "targetSeconds": 1
+      },
+      "expected": 100001,
+      "tags": [
+        "cost-boundary",
+        "movement"
+      ]
+    },
+    {
+      "id": "trial-exact-minute",
+      "name": "sixty seconds can be entered directly",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "startAt": 6,
+        "moveCost": 10,
+        "pushCost": 1,
+        "targetSeconds": 60
+      },
+      "expected": 12,
+      "tags": [
+        "exact-minute",
+        "seconds-field"
+      ]
+    },
+    {
+      "id": "trial-hour",
+      "name": "one hour uses a non-clock minute field",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "startAt": 8,
+        "moveCost": 7,
+        "pushCost": 3,
+        "targetSeconds": 3600
+      },
+      "expected": 26,
+      "tags": [
+        "non-clock-minutes"
+      ]
+    },
+    {
+      "id": "trial-largest-duration",
+      "name": "maximum duration with no movement",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "startAt": 9,
+        "moveCost": 1,
+        "pushCost": 100000,
+        "targetSeconds": 6039
+      },
+      "expected": 400000,
+      "tags": [
+        "upper-bound"
+      ]
+    },
+    {
+      "id": "trial-expensive-costs",
+      "name": "choose between two legal field decompositions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "startAt": 9,
+        "moveCost": 100000,
+        "pushCost": 100000,
+        "targetSeconds": 5999
+      },
+      "expected": 600000,
+      "tags": [
+        "multiple-representations",
+        "cost-boundary"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value moveCost=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "startAt": 1,
+        "moveCost": 1,
+        "pushCost": 1,
+        "targetSeconds": 600
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value targetSeconds=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "startAt": 1,
+        "moveCost": 2,
+        "pushCost": 1,
+        "targetSeconds": 1
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    }
   ]
 }

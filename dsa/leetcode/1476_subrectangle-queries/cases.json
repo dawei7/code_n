@@ -300,10 +300,10 @@
       ]
     },
     {
-      "id": "real-disjoint-updates",
-      "name": "hidden: disjoint cells retain independent values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-disjoint-updates",
+      "name": "disjoint cells retain independent values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rectangle": [
           [
@@ -369,15 +369,14 @@
         9
       ],
       "tags": [
-        "hidden",
         "disjoint"
       ]
     },
     {
-      "id": "real-nested-overwrites",
-      "name": "hidden: latest nested assignment wins",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-nested-overwrites",
+      "name": "latest nested assignment wins",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rectangle": [
           [
@@ -467,16 +466,15 @@
         4
       ],
       "tags": [
-        "hidden",
         "nested",
         "overlap"
       ]
     },
     {
-      "id": "real-value-bound",
-      "name": "hidden: maximum assigned value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-value-bound",
+      "name": "maximum assigned value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rectangle": [
           [
@@ -517,7 +515,6 @@
         1000000000
       ],
       "tags": [
-        "hidden",
         "bounds"
       ]
     }

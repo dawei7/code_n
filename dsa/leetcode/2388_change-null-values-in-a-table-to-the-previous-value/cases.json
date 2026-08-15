@@ -178,10 +178,10 @@
       ]
     },
     {
-      "id": "real-alternating",
-      "name": "hidden: each named drink fills the following row",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alternating",
+      "name": "each named drink fills the following row",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "CoffeeShop": [
@@ -237,15 +237,14 @@
         ]
       },
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
     {
-      "id": "real-repeated-name",
-      "name": "hidden: repeated drink names remain separate updates",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-name",
+      "name": "repeated drink names remain separate updates",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "CoffeeShop": [
@@ -293,15 +292,14 @@
         ]
       },
       "tags": [
-        "hidden",
         "repeated-value"
       ]
     },
     {
-      "id": "real-nonnumeric-order",
-      "name": "hidden: identifier order does not define previous row",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-nonnumeric-order",
+      "name": "identifier order does not define previous row",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "CoffeeShop": [
@@ -349,7 +347,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "input-order"
       ]
     }

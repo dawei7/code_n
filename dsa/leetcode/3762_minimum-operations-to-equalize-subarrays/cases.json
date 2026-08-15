@@ -1,10 +1,310 @@
-{"schema_version":1,"challenge_id":"lc_3762","cases":[
-{"id":"sample-two-compatible-ranges","name":"sample: both ranges equalize around existing medians","kind":"sample","visible":true,"input":{"nums":[1,4,7],"k":3,"queries":[[0,1],[0,2]]},"expected":[1,2],"validator":{"kind":"exact"},"tags":["sample","compatible"]},
-{"id":"sample-mixed-possibility","name":"sample: impossible, singleton, and possible queries coexist","kind":"sample","visible":true,"input":{"nums":[1,2,4],"k":2,"queries":[[0,2],[0,0],[1,2]]},"expected":[-1,0,1],"validator":{"kind":"exact"},"tags":["sample","mixed"]},
-{"id":"trial-singleton","name":"trial: a singleton requires no operation","kind":"trial","visible":true,"input":{"nums":[8],"k":7,"queries":[[0,0]]},"expected":[0],"validator":{"kind":"exact"},"tags":["trial","singleton"]},
-{"id":"trial-even-median","name":"trial: either middle target gives the same cost","kind":"trial","visible":true,"input":{"nums":[1,5,9,13],"k":4,"queries":[[0,3],[1,2]]},"expected":[4,1],"validator":{"kind":"exact"},"tags":["trial","even-length"]},
-{"id":"trial-remainder-boundary","name":"trial: remainder change blocks only ranges crossing it","kind":"trial","visible":true,"input":{"nums":[2,6,10,7],"k":4,"queries":[[0,2],[0,3],[3,3]]},"expected":[2,-1,0],"validator":{"kind":"exact"},"tags":["trial","remainders"]},
-{"id":"real-large-step","name":"hidden: values at the numeric boundary differ by one operation","kind":"real","visible":false,"input":{"nums":[1,1000000000],"k":999999999,"queries":[[0,1]]},"expected":[1],"validator":{"kind":"exact"},"tags":["hidden","value-boundary"]},
-{"id":"real-already-equal","name":"hidden: repeated values need zero operations","kind":"real","visible":false,"input":{"nums":[5,5,5],"k":3,"queries":[[0,2],[1,2]]},"expected":[0,0],"validator":{"kind":"exact"},"tags":["hidden","duplicates"]},
-{"id":"real-uneven-distances","name":"hidden: median minimizes an uneven compatible range","kind":"real","visible":false,"input":{"nums":[3,7,11,19],"k":4,"queries":[[0,3]]},"expected":[5],"validator":{"kind":"exact"},"tags":["hidden","median"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3762",
+  "cases": [
+    {
+      "id": "sample-two-compatible-ranges",
+      "name": "sample: both ranges equalize around existing medians",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          7
+        ],
+        "k": 3,
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "compatible"
+      ]
+    },
+    {
+      "id": "sample-mixed-possibility",
+      "name": "sample: impossible, singleton, and possible queries coexist",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4
+        ],
+        "k": 2,
+        "queries": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        -1,
+        0,
+        1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "trial-singleton",
+      "name": "trial: a singleton requires no operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8
+        ],
+        "k": 7,
+        "queries": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-even-median",
+      "name": "trial: either middle target gives the same cost",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          5,
+          9,
+          13
+        ],
+        "k": 4,
+        "queries": [
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        4,
+        1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "even-length"
+      ]
+    },
+    {
+      "id": "trial-remainder-boundary",
+      "name": "trial: remainder change blocks only ranges crossing it",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          6,
+          10,
+          7
+        ],
+        "k": 4,
+        "queries": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        -1,
+        0
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "remainders"
+      ]
+    },
+    {
+      "id": "trial-large-step",
+      "name": "values at the numeric boundary differ by one operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1000000000
+        ],
+        "k": 999999999,
+        "queries": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "value-boundary"
+      ]
+    },
+    {
+      "id": "trial-already-equal",
+      "name": "repeated values need zero operations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5
+        ],
+        "k": 3,
+        "queries": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-uneven-distances",
+      "name": "median minimizes an uneven compatible range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          7,
+          11,
+          19
+        ],
+        "k": 4,
+        "queries": [
+          [
+            0,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        5
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "median"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          7
+        ],
+        "k": 1,
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        3,
+        6
+      ],
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    }
+  ]
+}

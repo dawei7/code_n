@@ -60,7 +60,7 @@
       "id": "trial-empty",
       "name": "trial: empty input",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "nums": [],
         "n": 7
@@ -75,7 +75,7 @@
       "id": "trial-missing-one",
       "name": "trial: first value starts above one",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "nums": [
           2
@@ -89,10 +89,10 @@
       ]
     },
     {
-      "id": "hidden-large-gap",
-      "name": "hidden: several gaps between inputs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-gap",
+      "name": "several gaps between inputs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -104,15 +104,14 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "large-gap"
       ]
     },
     {
-      "id": "hidden-binary-coverage",
-      "name": "hidden: powers already cover target",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-binary-coverage",
+      "name": "powers already cover target",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -124,23 +123,56 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "no-patch"
       ]
     },
     {
-      "id": "hidden-maximum-empty",
-      "name": "hidden: maximum target without inputs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-empty",
+      "name": "maximum target without inputs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [],
         "n": 2147483647
       },
       "expected": 31,
       "tags": [
-        "hidden",
         "large"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "n": 6
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "n": 6
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

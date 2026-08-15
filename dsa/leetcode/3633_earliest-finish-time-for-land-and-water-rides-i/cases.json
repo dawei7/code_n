@@ -159,10 +159,10 @@
       ]
     },
     {
-      "id": "real-choose-second-water",
-      "name": "hidden: a later water option has shorter duration",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-choose-second-water",
+      "name": "a later water option has shorter duration",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "landStartTime": [
           2
@@ -181,15 +181,14 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "ride-selection"
       ]
     },
     {
-      "id": "real-choose-second-land",
-      "name": "hidden: a later land option has shorter duration",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-choose-second-land",
+      "name": "a later land option has shorter duration",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "landStartTime": [
           1,
@@ -208,15 +207,14 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "ride-selection"
       ]
     },
     {
-      "id": "real-water-first-by-duration",
-      "name": "hidden: water-first order avoids a long second ride",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-water-first-by-duration",
+      "name": "water-first order avoids a long second ride",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "landStartTime": [
           5,
@@ -237,15 +235,14 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "order-choice"
       ]
     },
     {
-      "id": "real-land-first-by-duration",
-      "name": "hidden: land-first order avoids a long second ride",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-land-first-by-duration",
+      "name": "land-first order avoids a long second ride",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "landStartTime": [
           1,
@@ -266,15 +263,14 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "order-choice"
       ]
     },
     {
-      "id": "real-many-options",
-      "name": "hidden: compare several openings and durations",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-options",
+      "name": "compare several openings and durations",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "landStartTime": [
           4,
@@ -299,15 +295,14 @@
       },
       "expected": 13,
       "tags": [
-        "hidden",
         "mixed-options"
       ]
     },
     {
-      "id": "real-upper-values",
-      "name": "hidden: opening times and durations at the upper bound",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-upper-values",
+      "name": "opening times and durations at the upper bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "landStartTime": [
           1000,
@@ -328,8 +323,60 @@
       },
       "expected": 1001,
       "tags": [
-        "hidden",
         "upper-bound"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in landStartTime",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "landStartTime": [
+          2
+        ],
+        "landDuration": [
+          4,
+          1
+        ],
+        "waterStartTime": [
+          6
+        ],
+        "waterDuration": [
+          3
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in landStartTime",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "landStartTime": [
+          2,
+          2
+        ],
+        "landDuration": [
+          4,
+          1
+        ],
+        "waterStartTime": [
+          6
+        ],
+        "waterDuration": [
+          3
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

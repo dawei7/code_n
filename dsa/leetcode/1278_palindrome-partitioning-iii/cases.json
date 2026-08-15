@@ -2,12 +2,138 @@
   "schema_version": 1,
   "challenge_id": "lc_1278",
   "cases": [
-    {"id": "sample-one-change", "name": "sample: one change across two pieces", "kind": "sample", "visible": true, "input": {"s": "abc", "k": 2}, "expected": 1, "tags": ["sample", "one-change"]},
-    {"id": "sample-already-split", "name": "sample: three existing palindromes", "kind": "sample", "visible": true, "input": {"s": "aabbc", "k": 3}, "expected": 0, "tags": ["sample", "zero-change"]},
-    {"id": "sample-singletons", "name": "sample: every character is its own piece", "kind": "sample", "visible": true, "input": {"s": "leetcode", "k": 8}, "expected": 0, "tags": ["sample", "maximum-parts"]},
-    {"id": "trial-whole-string", "name": "trial: make the whole string palindromic", "kind": "trial", "visible": true, "input": {"s": "abcde", "k": 1}, "expected": 2, "tags": ["trial", "single-part"]},
-    {"id": "trial-single-character", "name": "trial: one character and one part", "kind": "trial", "visible": true, "input": {"s": "z", "k": 1}, "expected": 0, "tags": ["trial", "singleton"]},
-    {"id": "hidden-two-pieces", "name": "hidden: choose the best of several boundaries", "kind": "real", "visible": false, "input": {"s": "abcdef", "k": 2}, "expected": 2, "tags": ["hidden", "boundary-choice"]},
-    {"id": "hidden-palindromic-words", "name": "hidden: concatenated palindromes", "kind": "real", "visible": false, "input": {"s": "racecarannakayak", "k": 3}, "expected": 0, "tags": ["hidden", "long-palindromes"]}
+    {
+      "id": "sample-one-change",
+      "name": "sample: one change across two pieces",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "one-change"
+      ]
+    },
+    {
+      "id": "sample-already-split",
+      "name": "sample: three existing palindromes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aabbc",
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "zero-change"
+      ]
+    },
+    {
+      "id": "sample-singletons",
+      "name": "sample: every character is its own piece",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "leetcode",
+        "k": 8
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "maximum-parts"
+      ]
+    },
+    {
+      "id": "trial-whole-string",
+      "name": "trial: make the whole string palindromic",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcde",
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "single-part"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "trial: one character and one part",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "z",
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-two-pieces",
+      "name": "choose the best of several boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdef",
+        "k": 2
+      },
+      "expected": 2,
+      "tags": [
+        "boundary-choice"
+      ]
+    },
+    {
+      "id": "trial-palindromic-words",
+      "name": "concatenated palindromes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "racecarannakayak",
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "long-palindromes"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa",
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
+    }
   ]
 }

@@ -327,10 +327,10 @@
       ]
     },
     {
-      "id": "real-refund-extends-activity",
-      "name": "hidden: a refund can establish the latest activity date",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-refund-extends-activity",
+      "name": "a refund can establish the latest activity date",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "customer_transactions": [
@@ -393,16 +393,15 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "all-transactions-activity",
         "refund-under-twenty"
       ]
     },
     {
-      "id": "real-one-day-short",
-      "name": "hidden: twenty-nine active days is excluded",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-day-short",
+      "name": "twenty-nine active days is excluded",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "customer_transactions": [
@@ -440,16 +439,15 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "activity-boundary",
         "empty-result"
       ]
     },
     {
-      "id": "real-mixed-customer-order",
-      "name": "hidden: filters are independent and result is sorted",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-customer-order",
+      "name": "filters are independent and result is sorted",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "customer_transactions": [
@@ -543,7 +541,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "ordering",
         "mixed-filters"
       ]

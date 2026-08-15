@@ -2,14 +2,147 @@
   "schema_version": 1,
   "challenge_id": "lc_3536",
   "cases": [
-    {"id":"sample-two-distinct","name":"sample: two distinct digits","kind":"sample","visible":true,"input":{"n":31},"expected":3,"tags":["sample","two-digits"]},
-    {"id":"sample-repeated","name":"sample: repeated maximum digit","kind":"sample","visible":true,"input":{"n":22},"expected":4,"tags":["sample","duplicate"]},
-    {"id":"sample-three-digits","name":"sample: largest pair among three digits","kind":"sample","visible":true,"input":{"n":124},"expected":8,"tags":["sample","three-digits"]},
-    {"id":"trial-zero-product","name":"trial: zero is the second-largest digit","kind":"trial","visible":true,"input":{"n":10},"expected":0,"tags":["trial","zero"]},
-    {"id":"trial-separated-duplicates","name":"trial: equal maxima occur in separate positions","kind":"trial","visible":true,"input":{"n":909},"expected":81,"tags":["trial","duplicate-maximum"]},
-    {"id":"real-second-largest-middle","name":"real: second-largest digit is not adjacent to maximum","kind":"real","visible":false,"input":{"n":98368},"expected":72,"tags":["real","position-independent"]},
-    {"id":"real-many-digits","name":"real: increasing sequence uses the final two maxima","kind":"real","visible":false,"input":{"n":123456789},"expected":72,"tags":["real","nine-digits"]},
-    {"id":"real-maximum-input","name":"real: maximum legal input has one nonzero digit","kind":"real","visible":false,"input":{"n":1000000000},"expected":0,"tags":["real","upper-bound","ten-digits"]},
-    {"id":"real-zero-between-ones","name":"real: repeated nonzero digit around zero","kind":"real","visible":false,"input":{"n":101},"expected":1,"tags":["real","zeros","duplicate"]}
+    {
+      "id": "sample-two-distinct",
+      "name": "sample: two distinct digits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 31
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "two-digits"
+      ]
+    },
+    {
+      "id": "sample-repeated",
+      "name": "sample: repeated maximum digit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 22
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "duplicate"
+      ]
+    },
+    {
+      "id": "sample-three-digits",
+      "name": "sample: largest pair among three digits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 124
+      },
+      "expected": 8,
+      "tags": [
+        "sample",
+        "three-digits"
+      ]
+    },
+    {
+      "id": "trial-zero-product",
+      "name": "trial: zero is the second-largest digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 10
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-separated-duplicates",
+      "name": "trial: equal maxima occur in separate positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 909
+      },
+      "expected": 81,
+      "tags": [
+        "trial",
+        "duplicate-maximum"
+      ]
+    },
+    {
+      "id": "trial-second-largest-middle",
+      "name": "second-largest digit is not adjacent to maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 98368
+      },
+      "expected": 72,
+      "tags": [
+        "real",
+        "position-independent"
+      ]
+    },
+    {
+      "id": "trial-many-digits",
+      "name": "increasing sequence uses the final two maxima",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 123456789
+      },
+      "expected": 72,
+      "tags": [
+        "real",
+        "nine-digits"
+      ]
+    },
+    {
+      "id": "trial-maximum-input",
+      "name": "maximum legal input has one nonzero digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000000000
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "upper-bound",
+        "ten-digits"
+      ]
+    },
+    {
+      "id": "trial-zero-between-ones",
+      "name": "repeated nonzero digit around zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 101
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "zeros",
+        "duplicate"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    }
   ]
 }

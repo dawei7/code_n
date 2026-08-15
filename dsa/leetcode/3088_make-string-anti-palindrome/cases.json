@@ -7,90 +7,166 @@
       "name": "sample: rearrange two copies of the smallest letter",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "abca"},
+      "input": {
+        "s": "abca"
+      },
       "expected": "aabc",
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-balanced",
       "name": "sample: place two equal groups in opposite halves",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "abba"},
+      "input": {
+        "s": "abba"
+      },
       "expected": "aabb",
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-impossible",
       "name": "sample: one character exceeds half the length",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "cccd"},
+      "input": {
+        "s": "cccd"
+      },
       "expected": "-1",
-      "tags": ["sample", "impossible"]
+      "tags": [
+        "sample",
+        "impossible"
+      ]
     },
     {
       "id": "trial-two-distinct",
       "name": "trial: two distinct characters are already minimal",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "ba"},
+      "input": {
+        "s": "ba"
+      },
       "expected": "ab",
-      "tags": ["trial", "minimum-length"]
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-two-equal",
       "name": "trial: equal length-two characters are impossible",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "aa"},
+      "input": {
+        "s": "aa"
+      },
       "expected": "-1",
-      "tags": ["trial", "minimum-length", "impossible"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "impossible"
+      ]
     },
     {
       "id": "trial-valid-not-minimal",
       "name": "trial: an existing anti-palindrome is not lexicographically minimal",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "llnm"},
+      "input": {
+        "s": "llnm"
+      },
       "expected": "llmn",
-      "tags": ["trial", "lexicographic"]
+      "tags": [
+        "trial",
+        "lexicographic"
+      ]
     },
     {
-      "id": "real-sorted-conflict",
-      "name": "hidden: sorted order has a conflicting middle mirror pair",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcabc"},
+      "id": "trial-sorted-conflict",
+      "name": "sorted order has a conflicting middle mirror pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcabc"
+      },
       "expected": "aabcbc",
-      "tags": ["middle-conflict", "forced-choice"]
+      "tags": [
+        "middle-conflict",
+        "forced-choice"
+      ]
     },
     {
-      "id": "real-forced-future-letter",
-      "name": "hidden: preserve enough slots for the remaining repeated letter",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aaabbbcc"},
+      "id": "trial-forced-future-letter",
+      "name": "preserve enough slots for the remaining repeated letter",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaabbbcc"
+      },
       "expected": "aaabcbbc",
-      "tags": ["forced-choice", "future-feasibility"]
+      "tags": [
+        "forced-choice",
+        "future-feasibility"
+      ]
     },
     {
-      "id": "real-half-frequency",
-      "name": "hidden: maximum frequency equal to half remains feasible",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aaaabbbb"},
+      "id": "trial-half-frequency",
+      "name": "maximum frequency equal to half remains feasible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaabbbb"
+      },
       "expected": "aaaabbbb",
-      "tags": ["boundary-frequency"]
+      "tags": [
+        "boundary-frequency"
+      ]
     },
     {
-      "id": "real-four-groups",
-      "name": "hidden: four equal groups remain globally sorted",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "zzxxyyww"},
+      "id": "trial-four-groups",
+      "name": "four equal groups remain globally sorted",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "zzxxyyww"
+      },
       "expected": "wwxxyyzz",
-      "tags": ["four-letters", "lexicographic"]
+      "tags": [
+        "four-letters",
+        "lexicographic"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": "-1",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": "-1",
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
     }
   ]
 }

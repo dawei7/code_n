@@ -2,13 +2,247 @@
   "schema_version": 1,
   "challenge_id": "lc_2402",
   "cases": [
-    {"id":"sample-1","name":"sample: two rooms tie after delayed meetings","kind":"sample","visible":true,"input":{"n":2,"meetings":[[0,10],[1,5],[2,7],[3,4]]},"expected":0,"tags":["sample","delay","tie"]},
-    {"id":"sample-2","name":"sample: rooms one and two tie for most meetings","kind":"sample","visible":true,"input":{"n":3,"meetings":[[1,20],[2,10],[3,5],[4,9],[6,8]]},"expected":1,"tags":["sample","delay"]},
-    {"id":"trial-single-room-unsorted","name":"trial: one room and unsorted input","kind":"trial","visible":true,"input":{"n":1,"meetings":[[5,8],[0,2],[3,4]]},"expected":0,"tags":["single-room","unsorted"]},
-    {"id":"trial-half-open-release","name":"trial: room ending at start time is immediately reusable","kind":"trial","visible":true,"input":{"n":2,"meetings":[[5,6],[0,5],[1,4]]},"expected":0,"tags":["half-open","release"]},
-    {"id":"trial-simultaneous-finish","name":"trial: lower room wins simultaneous earliest finish","kind":"trial","visible":true,"input":{"n":2,"meetings":[[0,4],[1,4],[2,3],[3,5]]},"expected":0,"tags":["simultaneous-finish","tie"]},
-    {"id":"real-equal-usage","name":"hidden: all rooms tie after delayed assignments","kind":"real","visible":false,"input":{"n":3,"meetings":[[0,10],[1,10],[2,10],[3,4],[4,5],[5,6]]},"expected":0,"tags":["hidden","count-tie"]},
-    {"id":"real-two-independent-meetings","name":"hidden: smallest free room is reused later","kind":"real","visible":false,"input":{"n":4,"meetings":[[0,2],[10,12]]},"expected":0,"tags":["hidden","idle-rooms"]},
-    {"id":"real-input-order","name":"hidden: sorting by original start determines assignments","kind":"real","visible":false,"input":{"n":3,"meetings":[[8,13],[3,11]]},"expected":0,"tags":["hidden","unsorted"]}
+    {
+      "id": "sample-1",
+      "name": "sample: two rooms tie after delayed meetings",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "meetings": [
+          [
+            0,
+            10
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "delay",
+        "tie"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: rooms one and two tie for most meetings",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "meetings": [
+          [
+            1,
+            20
+          ],
+          [
+            2,
+            10
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            9
+          ],
+          [
+            6,
+            8
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "delay"
+      ]
+    },
+    {
+      "id": "trial-single-room-unsorted",
+      "name": "trial: one room and unsorted input",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "meetings": [
+          [
+            5,
+            8
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "single-room",
+        "unsorted"
+      ]
+    },
+    {
+      "id": "trial-half-open-release",
+      "name": "trial: room ending at start time is immediately reusable",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "meetings": [
+          [
+            5,
+            6
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            4
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "half-open",
+        "release"
+      ]
+    },
+    {
+      "id": "trial-simultaneous-finish",
+      "name": "trial: lower room wins simultaneous earliest finish",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "meetings": [
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            5
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "simultaneous-finish",
+        "tie"
+      ]
+    },
+    {
+      "id": "trial-equal-usage",
+      "name": "all rooms tie after delayed assignments",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "meetings": [
+          [
+            0,
+            10
+          ],
+          [
+            1,
+            10
+          ],
+          [
+            2,
+            10
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "count-tie"
+      ]
+    },
+    {
+      "id": "trial-two-independent-meetings",
+      "name": "smallest free room is reused later",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "meetings": [
+          [
+            0,
+            2
+          ],
+          [
+            10,
+            12
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "idle-rooms"
+      ]
+    },
+    {
+      "id": "trial-input-order",
+      "name": "sorting by original start determines assignments",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "meetings": [
+          [
+            8,
+            13
+          ],
+          [
+            3,
+            11
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "unsorted"
+      ]
+    }
   ]
 }

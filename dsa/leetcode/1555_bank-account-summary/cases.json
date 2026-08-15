@@ -427,10 +427,10 @@
       ]
     },
     {
-      "id": "real-multiple-same-direction",
-      "name": "hidden: repeated transfers all count",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-same-direction",
+      "name": "repeated transfers all count",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Users": [
@@ -499,10 +499,10 @@
       ]
     },
     {
-      "id": "real-cycle-conservation",
-      "name": "hidden: transfer cycle preserves each equal balance",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-cycle-conservation",
+      "name": "transfer cycle preserves each equal balance",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Users": [
@@ -582,10 +582,10 @@
       ]
     },
     {
-      "id": "real-duplicate-names",
-      "name": "hidden: duplicate names remain separate users",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicate-names",
+      "name": "duplicate names remain separate users",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Users": [
@@ -640,10 +640,10 @@
       ]
     },
     {
-      "id": "real-dates-irrelevant",
-      "name": "hidden: chronology does not alter total",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-dates-irrelevant",
+      "name": "chronology does not alter total",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Users": [

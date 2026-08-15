@@ -121,10 +121,10 @@
       ]
     },
     {
-      "id": "real-stale-maximums",
-      "name": "hidden: several obsolete heap maxima require cleanup",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-stale-maximums",
+      "name": "several obsolete heap maxima require cleanup",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -154,10 +154,10 @@
       ]
     },
     {
-      "id": "real-large-deltas",
-      "name": "hidden: apply large changes as whole deltas",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-deltas",
+      "name": "apply large changes as whole deltas",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000,
@@ -181,10 +181,10 @@
       ]
     },
     {
-      "id": "real-nonleader-removal",
-      "name": "hidden: reducing a nonleader leaves the maximum unchanged",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-nonleader-removal",
+      "name": "reducing a nonleader leaves the maximum unchanged",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -210,10 +210,10 @@
       ]
     },
     {
-      "id": "real-leader-switches",
-      "name": "hidden: leadership moves among three IDs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-leader-switches",
+      "name": "leadership moves among three IDs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

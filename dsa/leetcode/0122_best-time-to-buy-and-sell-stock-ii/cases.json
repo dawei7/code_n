@@ -79,10 +79,10 @@
       ]
     },
     {
-      "id": "real-separated-climbs",
-      "name": "hidden: separated climbs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-separated-climbs",
+      "name": "separated climbs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           2,
@@ -95,7 +95,7 @@
       },
       "expected": 4,
       "tags": [
-        "hidden"
+        "trial"
       ]
     }
   ]

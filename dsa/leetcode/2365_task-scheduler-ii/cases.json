@@ -1,10 +1,158 @@
-{"schema_version":1,"challenge_id":"lc_2365","cases":[
-{"id":"sample-interleaved","name":"sample: interleaved repeats require breaks","kind":"sample","visible":true,"input":{"tasks":[1,2,1,2,3,1],"space":3},"expected":9,"tags":["sample","breaks"]},
-{"id":"sample-adjacent-repeat","name":"sample: adjacent equal tasks force two breaks","kind":"sample","visible":true,"input":{"tasks":[5,8,8,5],"space":2},"expected":6,"tags":["sample","repeat"]},
-{"id":"trial-single","name":"one task finishes on day one","kind":"trial","visible":true,"input":{"tasks":[7],"space":1},"expected":1,"tags":["single"]},
-{"id":"trial-all-distinct","name":"distinct tasks need no breaks","kind":"trial","visible":true,"input":{"tasks":[1,2,3,4],"space":4},"expected":4,"tags":["distinct"]},
-{"id":"trial-all-equal","name":"equal tasks use every cooldown","kind":"trial","visible":true,"input":{"tasks":[2,2,2],"space":2},"expected":7,"tags":["repeat"]},
-{"id":"real-gap-already-large","name":"hidden: intervening tasks satisfy the spacing","kind":"real","visible":false,"input":{"tasks":[1,2,3,1],"space":2},"expected":4,"tags":["hidden","no-break"]},
-{"id":"real-multiple-types","name":"hidden: each type retains its own last day","kind":"real","visible":false,"input":{"tasks":[1,1,2,2,1],"space":2},"expected":9,"tags":["hidden","multiple-types"]},
-{"id":"real-large-identifiers","name":"hidden: task identifiers are sparse","kind":"real","visible":false,"input":{"tasks":[1000000000,1,1000000000],"space":3},"expected":5,"tags":["hidden","boundary"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2365",
+  "cases": [
+    {
+      "id": "sample-interleaved",
+      "name": "sample: interleaved repeats require breaks",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tasks": [
+          1,
+          2,
+          1,
+          2,
+          3,
+          1
+        ],
+        "space": 3
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "breaks"
+      ]
+    },
+    {
+      "id": "sample-adjacent-repeat",
+      "name": "sample: adjacent equal tasks force two breaks",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tasks": [
+          5,
+          8,
+          8,
+          5
+        ],
+        "space": 2
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "repeat"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "one task finishes on day one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tasks": [
+          7
+        ],
+        "space": 1
+      },
+      "expected": 1,
+      "tags": [
+        "single"
+      ]
+    },
+    {
+      "id": "trial-all-distinct",
+      "name": "distinct tasks need no breaks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tasks": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "space": 4
+      },
+      "expected": 4,
+      "tags": [
+        "distinct"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "equal tasks use every cooldown",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tasks": [
+          2,
+          2,
+          2
+        ],
+        "space": 2
+      },
+      "expected": 7,
+      "tags": [
+        "repeat"
+      ]
+    },
+    {
+      "id": "trial-gap-already-large",
+      "name": "intervening tasks satisfy the spacing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tasks": [
+          1,
+          2,
+          3,
+          1
+        ],
+        "space": 2
+      },
+      "expected": 4,
+      "tags": [
+        "no-break"
+      ]
+    },
+    {
+      "id": "trial-multiple-types",
+      "name": "each type retains its own last day",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tasks": [
+          1,
+          1,
+          2,
+          2,
+          1
+        ],
+        "space": 2
+      },
+      "expected": 9,
+      "tags": [
+        "multiple-types"
+      ]
+    },
+    {
+      "id": "trial-large-identifiers",
+      "name": "task identifiers are sparse",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tasks": [
+          1000000000,
+          1,
+          1000000000
+        ],
+        "space": 3
+      },
+      "expected": 5,
+      "tags": [
+        "boundary"
+      ]
+    }
+  ]
+}

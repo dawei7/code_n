@@ -7,63 +7,248 @@
       "name": "sample: one water cell in a square map",
       "kind": "sample",
       "visible": true,
-      "input": {"isWater": [[0,1],[0,0]]},
-      "expected": [[1,0],[2,1]],
-      "tags": ["sample", "single-source"]
+      "input": {
+        "isWater": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "tags": [
+        "sample",
+        "single-source"
+      ]
     },
     {
       "id": "sample-two-water-cells",
       "name": "sample: two sources shape the distance layers",
       "kind": "sample",
       "visible": true,
-      "input": {"isWater": [[0,0,1],[1,0,0],[0,0,0]]},
-      "expected": [[1,1,0],[0,1,1],[1,2,2]],
-      "tags": ["sample", "multiple-sources"]
+      "input": {
+        "isWater": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          2,
+          2
+        ]
+      ],
+      "tags": [
+        "sample",
+        "multiple-sources"
+      ]
     },
     {
       "id": "trial-only-cell-water",
       "name": "trial: the only cell is water",
       "kind": "trial",
       "visible": true,
-      "input": {"isWater": [[1]]},
-      "expected": [[0]],
-      "tags": ["minimum-grid", "water"]
+      "input": {
+        "isWater": [
+          [
+            1
+          ]
+        ]
+      },
+      "expected": [
+        [
+          0
+        ]
+      ],
+      "tags": [
+        "minimum-grid",
+        "water"
+      ]
     },
     {
       "id": "trial-all-water",
       "name": "trial: every cell remains at zero",
       "kind": "trial",
       "visible": true,
-      "input": {"isWater": [[1,1,1],[1,1,1]]},
-      "expected": [[0,0,0],[0,0,0]],
-      "tags": ["all-water", "rectangular"]
+      "input": {
+        "isWater": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "tags": [
+        "all-water",
+        "rectangular"
+      ]
     },
     {
-      "id": "real-center-source",
-      "name": "hidden: concentric distance layers around the center",
-      "kind": "real",
-      "visible": false,
-      "input": {"isWater": [[0,0,0],[0,1,0],[0,0,0]]},
-      "expected": [[2,1,2],[1,0,1],[2,1,2]],
-      "tags": ["distance-layers", "center"]
+      "id": "trial-center-source",
+      "name": "concentric distance layers around the center",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "isWater": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        [
+          2,
+          1,
+          2
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          2,
+          1,
+          2
+        ]
+      ],
+      "tags": [
+        "distance-layers",
+        "center"
+      ]
     },
     {
-      "id": "real-one-row",
-      "name": "hidden: two water sources on a one-row map",
-      "kind": "real",
-      "visible": false,
-      "input": {"isWater": [[1,0,0,0,1]]},
-      "expected": [[0,1,2,1,0]],
-      "tags": ["one-row", "two-sources"]
+      "id": "trial-one-row",
+      "name": "two water sources on a one-row map",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "isWater": [
+          [
+            1,
+            0,
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        [
+          0,
+          1,
+          2,
+          1,
+          0
+        ]
+      ],
+      "tags": [
+        "one-row",
+        "two-sources"
+      ]
     },
     {
-      "id": "real-corner-source",
-      "name": "hidden: distances from a rectangular corner",
-      "kind": "real",
-      "visible": false,
-      "input": {"isWater": [[0,0,0],[0,0,1]]},
-      "expected": [[3,2,1],[2,1,0]],
-      "tags": ["corner", "rectangular"]
+      "id": "trial-corner-source",
+      "name": "distances from a rectangular corner",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "isWater": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        [
+          3,
+          2,
+          1
+        ],
+        [
+          2,
+          1,
+          0
+        ]
+      ],
+      "tags": [
+        "corner",
+        "rectangular"
+      ]
     }
   ]
 }

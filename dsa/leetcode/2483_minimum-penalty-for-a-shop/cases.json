@@ -73,48 +73,58 @@
       ]
     },
     {
-      "id": "real-nonadjacent-tie",
-      "name": "hidden: earliest of separated minima",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-nonadjacent-tie",
+      "name": "earliest of separated minima",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "customers": "NY"
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "tie"
       ]
     },
     {
-      "id": "real-alternating",
-      "name": "hidden: repeated local minima",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alternating",
+      "name": "repeated local minima",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "customers": "YNYN"
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "alternating",
         "tie"
       ]
     },
     {
-      "id": "real-interior",
-      "name": "hidden: unique interior minimum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-interior",
+      "name": "unique interior minimum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "customers": "NYYN"
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "interior"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in customers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "customers": "YYY"
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]
 }
-

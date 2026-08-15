@@ -114,10 +114,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: one-unit remaining gap",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "one-unit remaining gap",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -127,15 +127,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "gap"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: maximum input and adjustment",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "maximum input and adjustment",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -145,15 +144,14 @@
       },
       "expected": 10000,
       "tags": [
-        "hidden",
         "bounds"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: unsorted interior values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "unsorted interior values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -165,15 +163,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "unsorted"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: duplicate extrema",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "duplicate extrema",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -185,15 +182,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: crossing changed groups",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-5",
+      "name": "crossing changed groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -204,7 +200,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "crossing"
       ]
     }

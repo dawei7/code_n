@@ -124,10 +124,10 @@
       ]
     },
     {
-      "id": "real-full-window",
-      "name": "real: pattern spans the complete array",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-full-window",
+      "name": "pattern spans the complete array",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -150,10 +150,10 @@
       ]
     },
     {
-      "id": "real-no-match",
-      "name": "real: no increasing pair",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-no-match",
+      "name": "no increasing pair",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -172,10 +172,10 @@
       ]
     },
     {
-      "id": "real-prefix-fallback",
-      "name": "real: mismatch falls back to a pattern border",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-prefix-fallback",
+      "name": "mismatch falls back to a pattern border",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -200,10 +200,10 @@
       ]
     },
     {
-      "id": "real-value-limits",
-      "name": "real: extreme values and overlapping matches",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-value-limits",
+      "name": "extreme values and overlapping matches",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

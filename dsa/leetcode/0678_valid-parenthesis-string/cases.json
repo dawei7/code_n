@@ -73,61 +73,84 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: all wildcards disappear",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "all wildcards disappear",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "***"
       },
       "expected": true,
       "tags": [
-        "hidden",
         "all-wildcards"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: too many openings remain",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "too many openings remain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "(((*)"
       },
       "expected": false,
       "tags": [
-        "hidden",
         "unmatched-openings"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: nested wildcard choices",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-3",
+      "name": "nested wildcard choices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "(*()**)"
       },
       "expected": true,
       "tags": [
-        "hidden",
         "mixed-choices"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: irrecoverable closing suffix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "irrecoverable closing suffix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "(()*)))"
       },
       "expected": false,
       "tags": [
-        "hidden",
         "too-many-closes"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "("
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "((("
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]
 }
-

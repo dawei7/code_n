@@ -1,16 +1,484 @@
 {
   "challenge_id": "lc_2585",
   "cases": [
-    {"id":"sample-1","name":"sample: seven selections reach six points","kind":"sample","visible":true,"input":{"target":6,"types":[[6,1],[3,2],[2,3]]},"expected":7,"tags":["sample","mixed-types"]},
-    {"id":"sample-2","name":"sample: four selections reach five points","kind":"sample","visible":true,"input":{"target":5,"types":[[50,1],[50,2],[50,5]]},"expected":4,"tags":["sample","large-counts"]},
-    {"id":"sample-3","name":"sample: every available question is required","kind":"sample","visible":true,"input":{"target":18,"types":[[6,1],[3,2],[2,3]]},"expected":1,"tags":["sample","full-capacity"]},
-    {"id":"trial-minimum","name":"trial: one one-point question","kind":"trial","visible":true,"input":{"target":1,"types":[[1,1]]},"expected":1,"tags":["trial","minimum"]},
-    {"id":"trial-unreachable","name":"trial: bounded counts cannot make the target","kind":"trial","visible":true,"input":{"target":7,"types":[[2,2],[1,4]]},"expected":0,"tags":["trial","unreachable"]},
-    {"id":"real-distinct-equal-marks","name":"hidden: equal-mark rows are distinct types","kind":"real","visible":false,"input":{"target":1,"types":[[1,1],[1,1]]},"expected":2,"tags":["hidden","type-identity"]},
-    {"id":"real-exact-count","name":"hidden: exact available count reaches target","kind":"real","visible":false,"input":{"target":6,"types":[[2,3]]},"expected":1,"tags":["hidden","count-bound"]},
-    {"id":"real-insufficient-count","name":"hidden: one type runs out before target","kind":"real","visible":false,"input":{"target":9,"types":[[2,3]]},"expected":0,"tags":["hidden","count-bound"]},
-    {"id":"real-mark-above-target","name":"hidden: an unusable type does not affect the answer","kind":"real","visible":false,"input":{"target":5,"types":[[10,6],[1,5]]},"expected":1,"tags":["hidden","large-mark"]},
-    {"id":"real-two-combinations","name":"hidden: two bounded combinations reach four","kind":"real","visible":false,"input":{"target":4,"types":[[2,1],[2,2]]},"expected":2,"tags":["hidden","multiple-combinations"]},
-    {"id":"real-modulus","name":"hidden: a large count is reduced modulo the required modulus","kind":"real","visible":false,"input":{"target":10,"types":[[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1],[50,1]]},"expected":828355871,"tags":["hidden","modulus","maximum-types"]}
+    {
+      "id": "sample-1",
+      "name": "sample: seven selections reach six points",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "target": 6,
+        "types": [
+          [
+            6,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "mixed-types"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: four selections reach five points",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "target": 5,
+        "types": [
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            2
+          ],
+          [
+            50,
+            5
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "large-counts"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: every available question is required",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "target": 18,
+        "types": [
+          [
+            6,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "full-capacity"
+      ]
+    },
+    {
+      "id": "trial-minimum",
+      "name": "trial: one one-point question",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": 1,
+        "types": [
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-unreachable",
+      "name": "trial: bounded counts cannot make the target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": 7,
+        "types": [
+          [
+            2,
+            2
+          ],
+          [
+            1,
+            4
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "unreachable"
+      ]
+    },
+    {
+      "id": "trial-distinct-equal-marks",
+      "name": "equal-mark rows are distinct types",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": 1,
+        "types": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "type-identity"
+      ]
+    },
+    {
+      "id": "trial-exact-count",
+      "name": "exact available count reaches target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": 6,
+        "types": [
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "count-bound"
+      ]
+    },
+    {
+      "id": "trial-insufficient-count",
+      "name": "one type runs out before target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": 9,
+        "types": [
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "count-bound"
+      ]
+    },
+    {
+      "id": "trial-mark-above-target",
+      "name": "an unusable type does not affect the answer",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": 5,
+        "types": [
+          [
+            10,
+            6
+          ],
+          [
+            1,
+            5
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "large-mark"
+      ]
+    },
+    {
+      "id": "trial-two-combinations",
+      "name": "two bounded combinations reach four",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": 4,
+        "types": [
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "multiple-combinations"
+      ]
+    },
+    {
+      "id": "trial-modulus",
+      "name": "a large count is reduced modulo the required modulus",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": 10,
+        "types": [
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            1
+          ]
+        ]
+      },
+      "expected": 828355871,
+      "tags": [
+        "modulus",
+        "maximum-types"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "minimal value target=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": 1,
+        "types": [
+          [
+            6,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    }
   ]
 }

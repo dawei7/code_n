@@ -6,81 +6,174 @@
       "name": "sample: exactly one increasing triplet",
       "kind": "sample",
       "visible": true,
-      "input": { "nums": [5, 6, 9] },
+      "input": {
+        "nums": [
+          5,
+          6,
+          9
+        ]
+      },
       "expected": 8,
-      "tags": ["sample", "minimum"]
+      "tags": [
+        "sample",
+        "minimum"
+      ]
     },
     {
       "id": "sample-two-triplets",
       "name": "sample: choose the better middle value",
       "kind": "sample",
       "visible": true,
-      "input": { "nums": [1, 5, 3, 6] },
+      "input": {
+        "nums": [
+          1,
+          5,
+          3,
+          6
+        ]
+      },
       "expected": 4,
-      "tags": ["sample", "multiple-candidates"]
+      "tags": [
+        "sample",
+        "multiple-candidates"
+      ]
     },
     {
       "id": "trial-minimum-length",
       "name": "trial: minimum-length increasing array",
       "kind": "trial",
       "visible": true,
-      "input": { "nums": [1, 2, 3] },
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
       "expected": 2,
-      "tags": ["trial", "minimum"]
+      "tags": [
+        "trial",
+        "minimum"
+      ]
     },
     {
       "id": "trial-delayed-start",
       "name": "trial: valid triplet begins after index zero",
       "kind": "trial",
       "visible": true,
-      "input": { "nums": [3, 1, 2, 4] },
+      "input": {
+        "nums": [
+          3,
+          1,
+          2,
+          4
+        ]
+      },
       "expected": 3,
-      "tags": ["trial", "index-order"]
+      "tags": [
+        "trial",
+        "index-order"
+      ]
     },
     {
       "id": "trial-duplicates",
       "name": "trial: duplicate values do not satisfy strict ordering",
       "kind": "trial",
       "visible": true,
-      "input": { "nums": [2, 2, 3, 4] },
+      "input": {
+        "nums": [
+          2,
+          2,
+          3,
+          4
+        ]
+      },
       "expected": 3,
-      "tags": ["trial", "duplicates", "strict-order"]
+      "tags": [
+        "trial",
+        "duplicates",
+        "strict-order"
+      ]
     },
     {
-      "id": "real-late-maximum",
-      "name": "real: late suffix maximum dominates",
-      "kind": "real",
-      "visible": false,
-      "input": { "nums": [1, 4, 2, 3, 10] },
+      "id": "trial-late-maximum",
+      "name": "late suffix maximum dominates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          2,
+          3,
+          10
+        ]
+      },
       "expected": 9,
-      "tags": ["real", "suffix-maximum"]
+      "tags": [
+        "real",
+        "suffix-maximum"
+      ]
     },
     {
-      "id": "real-mixed-order",
-      "name": "real: mixed rises and falls",
-      "kind": "real",
-      "visible": false,
-      "input": { "nums": [8, 1, 7, 2, 6, 3, 9] },
+      "id": "trial-mixed-order",
+      "name": "mixed rises and falls",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          1,
+          7,
+          2,
+          6,
+          3,
+          9
+        ]
+      },
       "expected": 8,
-      "tags": ["real", "ordered-set"]
+      "tags": [
+        "real",
+        "ordered-set"
+      ]
     },
     {
-      "id": "real-greatest-left-predecessor",
-      "name": "real: greatest smaller left value is optimal",
-      "kind": "real",
-      "visible": false,
-      "input": { "nums": [1, 3, 5, 4, 10] },
+      "id": "trial-greatest-left-predecessor",
+      "name": "greatest smaller left value is optimal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          5,
+          4,
+          10
+        ]
+      },
       "expected": 9,
-      "tags": ["real", "predecessor-query"]
+      "tags": [
+        "real",
+        "predecessor-query"
+      ]
     },
     {
-      "id": "real-value-bounds",
-      "name": "real: values at the upper bound",
-      "kind": "real",
-      "visible": false,
-      "input": { "nums": [1, 999999999, 1000000000] },
+      "id": "trial-value-bounds",
+      "name": "values at the upper bound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          999999999,
+          1000000000
+        ]
+      },
       "expected": 2,
-      "tags": ["real", "bounds"]
+      "tags": [
+        "real",
+        "bounds"
+      ]
     }
   ]
 }

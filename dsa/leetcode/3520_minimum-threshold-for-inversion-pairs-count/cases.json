@@ -6,99 +6,270 @@
       "name": "sample: seventh qualifying inversion",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 3, 4, 3, 2, 1], "k": 7},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          3,
+          2,
+          1
+        ],
+        "k": 7
+      },
       "expected": 2,
-      "tags": ["sample", "duplicates", "mixed-order"]
+      "tags": [
+        "sample",
+        "duplicates",
+        "mixed-order"
+      ]
     },
     {
       "id": "sample-duplicate-nines",
       "name": "sample: duplicate larger values",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [10, 9, 9, 9, 1], "k": 4},
+      "input": {
+        "nums": [
+          10,
+          9,
+          9,
+          9,
+          1
+        ],
+        "k": 4
+      },
       "expected": 8,
-      "tags": ["sample", "duplicates", "threshold-jump"]
+      "tags": [
+        "sample",
+        "duplicates",
+        "threshold-jump"
+      ]
     },
     {
       "id": "trial-single-inversion",
       "name": "trial: one inversion pair",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 1], "k": 1},
+      "input": {
+        "nums": [
+          2,
+          1
+        ],
+        "k": 1
+      },
       "expected": 1,
-      "tags": ["trial", "minimum-size", "single-pair"]
+      "tags": [
+        "trial",
+        "minimum-size",
+        "single-pair"
+      ]
     },
     {
       "id": "trial-no-inversion",
       "name": "trial: ascending array has no inversion",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 3, 4], "k": 1},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "k": 1
+      },
       "expected": -1,
-      "tags": ["trial", "ascending", "impossible"]
+      "tags": [
+        "trial",
+        "ascending",
+        "impossible"
+      ]
     },
     {
       "id": "trial-equal-values",
       "name": "trial: equal values are not inversions",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [7, 7, 7, 7], "k": 1},
+      "input": {
+        "nums": [
+          7,
+          7,
+          7,
+          7
+        ],
+        "k": 1
+      },
       "expected": -1,
-      "tags": ["trial", "duplicates", "strict-inequality"]
+      "tags": [
+        "trial",
+        "duplicates",
+        "strict-inequality"
+      ]
     },
     {
       "id": "trial-duplicate-blocks",
       "name": "trial: four equal-difference inversions",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [4, 4, 1, 1], "k": 4},
+      "input": {
+        "nums": [
+          4,
+          4,
+          1,
+          1
+        ],
+        "k": 4
+      },
       "expected": 3,
-      "tags": ["trial", "duplicates", "same-difference"]
+      "tags": [
+        "trial",
+        "duplicates",
+        "same-difference"
+      ]
     },
     {
-      "id": "real-kth-difference",
-      "name": "real: threshold selects the fifth difference",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, 1, 4, 2, 3], "k": 5},
+      "id": "trial-kth-difference",
+      "name": "threshold selects the fifth difference",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          4,
+          2,
+          3
+        ],
+        "k": 5
+      },
       "expected": 3,
-      "tags": ["real", "mixed-order", "kth-difference"]
+      "tags": [
+        "real",
+        "mixed-order",
+        "kth-difference"
+      ]
     },
     {
-      "id": "real-descending",
-      "name": "real: descending array with repeated differences",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, 4, 3, 2, 1], "k": 8},
+      "id": "trial-descending",
+      "name": "descending array with repeated differences",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ],
+        "k": 8
+      },
       "expected": 3,
-      "tags": ["real", "descending", "repeated-differences"]
+      "tags": [
+        "real",
+        "descending",
+        "repeated-differences"
+      ]
     },
     {
-      "id": "real-value-limits",
-      "name": "real: value range reaches one billion",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000000000, 1, 999999999, 2], "k": 4},
+      "id": "trial-value-limits",
+      "name": "value range reaches one billion",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          1,
+          999999999,
+          2
+        ],
+        "k": 4
+      },
       "expected": 999999999,
-      "tags": ["real", "maximum-value", "wide-search-range"]
+      "tags": [
+        "real",
+        "maximum-value",
+        "wide-search-range"
+      ]
     },
     {
-      "id": "real-k-exceeds-pairs",
-      "name": "real: requested count exceeds all inversions",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [3, 1, 3, 1, 3, 1], "k": 8},
+      "id": "trial-k-exceeds-pairs",
+      "name": "requested count exceeds all inversions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          3,
+          1,
+          3,
+          1
+        ],
+        "k": 8
+      },
       "expected": -1,
-      "tags": ["real", "duplicates", "impossible"]
+      "tags": [
+        "real",
+        "duplicates",
+        "impossible"
+      ]
     },
     {
-      "id": "real-large-k",
-      "name": "real: contractual maximum k remains impossible",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [9, 1], "k": 1000000000},
+      "id": "trial-large-k",
+      "name": "contractual maximum k remains impossible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          1
+        ],
+        "k": 1000000000
+      },
       "expected": -1,
-      "tags": ["real", "maximum-k", "impossible"]
+      "tags": [
+        "real",
+        "maximum-k",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 7
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 7
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

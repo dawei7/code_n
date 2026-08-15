@@ -2,14 +2,199 @@
   "schema_version": 1,
   "challenge_id": "lc_804",
   "cases": [
-    {"id": "sample-1", "name": "sample: two collision groups", "kind": "sample", "visible": true, "input": {"words": ["gin", "zen", "gig", "msg"]}, "expected": 2, "tags": ["sample", "collisions"]},
-    {"id": "sample-2", "name": "sample: collision across letter boundaries", "kind": "sample", "visible": true, "input": {"words": ["a", "et"]}, "expected": 1, "tags": ["sample", "boundary-collision"]},
-    {"id": "sample-3", "name": "sample: three distinct transformations", "kind": "sample", "visible": true, "input": {"words": ["abc", "def", "ghi"]}, "expected": 3, "tags": ["sample", "all-distinct"]},
-    {"id": "trial-1", "name": "trial: one word", "kind": "trial", "visible": true, "input": {"words": ["morse"]}, "expected": 1, "tags": ["trial", "singleton"]},
-    {"id": "trial-2", "name": "trial: duplicate words", "kind": "trial", "visible": true, "input": {"words": ["sos", "sos"]}, "expected": 1, "tags": ["trial", "duplicates"]},
-    {"id": "trial-3", "name": "trial: distinct one-letter codes", "kind": "trial", "visible": true, "input": {"words": ["e", "t", "i", "a"]}, "expected": 4, "tags": ["trial", "all-distinct"]},
-    {"id": "hidden-1", "name": "hidden: two independent collision groups", "kind": "real", "visible": false, "input": {"words": ["gin", "zen", "a", "et"]}, "expected": 2, "tags": ["hidden", "collisions"]},
-    {"id": "hidden-2", "name": "hidden: repeated collision members", "kind": "real", "visible": false, "input": {"words": ["a", "et", "a", "et"]}, "expected": 1, "tags": ["hidden", "duplicates", "boundary-collision"]},
-    {"id": "hidden-3", "name": "hidden: alphabet endpoints", "kind": "real", "visible": false, "input": {"words": ["a", "z", "az", "za"]}, "expected": 4, "tags": ["hidden", "all-distinct"]}
+    {
+      "id": "sample-1",
+      "name": "sample: two collision groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "gin",
+          "zen",
+          "gig",
+          "msg"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "collisions"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: collision across letter boundaries",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "et"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "boundary-collision"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: three distinct transformations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "def",
+          "ghi"
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "all-distinct"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "morse"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: duplicate words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "sos",
+          "sos"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: distinct one-letter codes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "e",
+          "t",
+          "i",
+          "a"
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "all-distinct"
+      ]
+    },
+    {
+      "id": "trial-ext-1",
+      "name": "two independent collision groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "gin",
+          "zen",
+          "a",
+          "et"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "collisions"
+      ]
+    },
+    {
+      "id": "trial-ext-2",
+      "name": "repeated collision members",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "et",
+          "a",
+          "et"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "duplicates",
+        "boundary-collision"
+      ]
+    },
+    {
+      "id": "trial-ext-3",
+      "name": "alphabet endpoints",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "z",
+          "az",
+          "za"
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "all-distinct"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "gin"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "gin",
+          "gin"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    }
   ]
 }

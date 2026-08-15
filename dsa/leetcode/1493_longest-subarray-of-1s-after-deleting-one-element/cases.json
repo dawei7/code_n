@@ -119,10 +119,10 @@
       ]
     },
     {
-      "id": "real-all-zeros",
-      "name": "hidden: no run can be created",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-zeros",
+      "name": "no run can be created",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -139,10 +139,10 @@
       ]
     },
     {
-      "id": "real-equal-merges",
-      "name": "hidden: equal choices around two zeros",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-equal-merges",
+      "name": "equal choices around two zeros",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -160,10 +160,10 @@
       ]
     },
     {
-      "id": "real-shrink-past-old-zero",
-      "name": "hidden: later window is longer",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-shrink-past-old-zero",
+      "name": "later window is longer",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -187,10 +187,10 @@
       ]
     },
     {
-      "id": "real-trailing-zero",
-      "name": "hidden: deleting trailing zero preserves run",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-trailing-zero",
+      "name": "deleting trailing zero preserves run",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -206,6 +206,23 @@
         "real",
         "boundary-zero",
         "trailing"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

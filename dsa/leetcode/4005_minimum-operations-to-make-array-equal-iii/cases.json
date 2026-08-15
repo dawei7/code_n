@@ -7,180 +7,390 @@
       "name": "sample: one value needs a division and multiplication",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [6, 12, 8]},
+      "input": {
+        "nums": [
+          6,
+          12,
+          8
+        ]
+      },
       "expected": 3,
-      "tags": ["sample", "two-step"]
+      "tags": [
+        "sample",
+        "two-step"
+      ]
     },
     {
       "id": "sample-common-divisor",
       "name": "sample: both larger values divide directly to five",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [5, 15, 20]},
+      "input": {
+        "nums": [
+          5,
+          15,
+          20
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "division"]
+      "tags": [
+        "sample",
+        "division"
+      ]
     },
     {
       "id": "sample-already-equal",
       "name": "sample: equal values require no operations",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [7, 7, 7]},
+      "input": {
+        "nums": [
+          7,
+          7,
+          7
+        ]
+      },
       "expected": 0,
-      "tags": ["sample", "already-equal"]
+      "tags": [
+        "sample",
+        "already-equal"
+      ]
     },
     {
       "id": "trial-single-one",
       "name": "trial: a singleton one is already equal",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1]},
+      "input": {
+        "nums": [
+          1
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "singleton", "one"]
+      "tags": [
+        "trial",
+        "singleton",
+        "one"
+      ]
     },
     {
       "id": "trial-single-non-one",
       "name": "trial: any singleton needs no operation",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2]},
+      "input": {
+        "nums": [
+          2
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "singleton"]
+      "tags": [
+        "trial",
+        "singleton"
+      ]
     },
     {
       "id": "trial-all-ones",
       "name": "trial: repeated ones are already equal",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 1]},
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "one", "already-equal"]
+      "tags": [
+        "trial",
+        "one",
+        "already-equal"
+      ]
     },
     {
       "id": "trial-one-multiplies",
       "name": "trial: one multiplies directly to the other value",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2]},
+      "input": {
+        "nums": [
+          1,
+          2
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "one", "multiplication"]
+      "tags": [
+        "trial",
+        "one",
+        "multiplication"
+      ]
     },
     {
       "id": "trial-unrelated-primes",
       "name": "trial: an absent common multiple beats either present target",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 3]},
+      "input": {
+        "nums": [
+          2,
+          3
+        ]
+      },
       "expected": 2,
-      "tags": ["trial", "absent-target", "primes"]
+      "tags": [
+        "trial",
+        "absent-target",
+        "primes"
+      ]
     },
     {
       "id": "trial-divisibility-chain",
       "name": "trial: a three-value divisibility chain",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 4, 8]},
+      "input": {
+        "nums": [
+          2,
+          4,
+          8
+        ]
+      },
       "expected": 2,
-      "tags": ["trial", "divisibility-chain"]
+      "tags": [
+        "trial",
+        "divisibility-chain"
+      ]
     },
     {
       "id": "trial-no-present-comparable-target",
       "name": "trial: pairwise incomparable composite values",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [6, 10, 15]},
+      "input": {
+        "nums": [
+          6,
+          10,
+          15
+        ]
+      },
       "expected": 3,
-      "tags": ["trial", "absent-target"]
+      "tags": [
+        "trial",
+        "absent-target"
+      ]
     },
     {
-      "id": "real-common-multiple-present",
-      "name": "hidden: twelve is divisible by both other values",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [4, 6, 12]},
+      "id": "trial-common-multiple-present",
+      "name": "twelve is divisible by both other values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          6,
+          12
+        ]
+      },
       "expected": 2,
-      "tags": ["hidden", "common-multiple"]
+      "tags": [
+        "common-multiple"
+      ]
     },
     {
-      "id": "real-pairwise-incomparable",
-      "name": "hidden: every present target costs at least the absent bound",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [8, 12, 18]},
+      "id": "trial-pairwise-incomparable",
+      "name": "every present target costs at least the absent bound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          12,
+          18
+        ]
+      },
       "expected": 3,
-      "tags": ["hidden", "absent-target"]
+      "tags": [
+        "absent-target"
+      ]
     },
     {
-      "id": "real-frequency-weight",
-      "name": "hidden: duplicate frequency changes the best score",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2, 2, 3]},
+      "id": "trial-frequency-weight",
+      "name": "duplicate frequency changes the best score",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          3
+        ]
+      },
       "expected": 2,
-      "tags": ["hidden", "duplicates", "frequency"]
+      "tags": [
+        "duplicates",
+        "frequency"
+      ]
     },
     {
-      "id": "real-two-ones",
-      "name": "hidden: two ones multiply to the existing target",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 1, 6]},
+      "id": "trial-two-ones",
+      "name": "two ones multiply to the existing target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          6
+        ]
+      },
       "expected": 2,
-      "tags": ["hidden", "one", "duplicates"]
+      "tags": [
+        "one",
+        "duplicates"
+      ]
     },
     {
-      "id": "real-one-divisor-and-one-multiple",
-      "name": "hidden: target six has a divisor and a multiple",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 6, 12]},
+      "id": "trial-one-divisor-and-one-multiple",
+      "name": "target six has a divisor and a multiple",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          6,
+          12
+        ]
+      },
       "expected": 2,
-      "tags": ["hidden", "both-directions"]
+      "tags": [
+        "both-directions"
+      ]
     },
     {
-      "id": "real-maximum-divisibility-chain",
-      "name": "hidden: maximum value in a three-level divisibility chain",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000000000, 500000000, 250000000]},
+      "id": "trial-maximum-divisibility-chain",
+      "name": "maximum value in a three-level divisibility chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          500000000,
+          250000000
+        ]
+      },
       "expected": 2,
-      "tags": ["hidden", "maximum-value", "divisibility-chain"]
+      "tags": [
+        "maximum-value",
+        "divisibility-chain"
+      ]
     },
     {
-      "id": "real-large-distinct-primes",
-      "name": "hidden: large primes have no divisibility relationship",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [999999937, 999999929, 999999893]},
+      "id": "trial-large-distinct-primes",
+      "name": "large primes have no divisibility relationship",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          999999937,
+          999999929,
+          999999893
+        ]
+      },
       "expected": 3,
-      "tags": ["hidden", "large-primes", "absent-target"]
+      "tags": [
+        "large-primes",
+        "absent-target"
+      ]
     },
     {
-      "id": "real-mixed-divisors",
-      "name": "hidden: several divisors compete for the target",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [36, 6, 9, 18]},
+      "id": "trial-mixed-divisors",
+      "name": "several divisors compete for the target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          36,
+          6,
+          9,
+          18
+        ]
+      },
       "expected": 3,
-      "tags": ["hidden", "divisors"]
+      "tags": [
+        "divisors"
+      ]
     },
     {
-      "id": "real-one-and-divisor-lattice",
-      "name": "hidden: one participates in a divisor lattice",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 3, 6]},
+      "id": "trial-one-and-divisor-lattice",
+      "name": "one participates in a divisor lattice",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          6
+        ]
+      },
       "expected": 3,
-      "tags": ["hidden", "one", "divisors"]
+      "tags": [
+        "one",
+        "divisors"
+      ]
     },
     {
-      "id": "real-five-composites",
-      "name": "hidden: overlapping composite divisibility relations",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [16, 24, 36, 72, 144]},
+      "id": "trial-five-composites",
+      "name": "overlapping composite divisibility relations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          16,
+          24,
+          36,
+          72,
+          144
+        ]
+      },
       "expected": 4,
-      "tags": ["hidden", "composites", "divisors"]
+      "tags": [
+        "composites",
+        "divisors"
+      ]
+    },
+    {
+      "id": "trial-boundary-21",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-22",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          6
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

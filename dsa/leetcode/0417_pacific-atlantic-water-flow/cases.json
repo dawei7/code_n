@@ -235,10 +235,10 @@
       ]
     },
     {
-      "id": "hidden-increasing",
-      "name": "hidden: elevations increase toward Atlantic corner",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-increasing",
+      "name": "elevations increase toward Atlantic corner",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "heights": [
           [
@@ -284,15 +284,14 @@
         "kind": "unordered_nested_list"
       },
       "tags": [
-        "hidden",
         "increasing"
       ]
     },
     {
-      "id": "hidden-decreasing",
-      "name": "hidden: elevations decrease toward Atlantic corner",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-decreasing",
+      "name": "elevations decrease toward Atlantic corner",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "heights": [
           [
@@ -338,15 +337,14 @@
         "kind": "unordered_nested_list"
       },
       "tags": [
-        "hidden",
         "decreasing"
       ]
     },
     {
-      "id": "hidden-ridges",
-      "name": "hidden: separated high ridges",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ridges",
+      "name": "separated high ridges",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "heights": [
           [
@@ -384,7 +382,6 @@
         "kind": "unordered_nested_list"
       },
       "tags": [
-        "hidden",
         "ridges"
       ]
     }

@@ -2,17 +2,205 @@
   "schema_version": 1,
   "challenge_id": "lc_3782",
   "cases": [
-    {"id":"sample-1","name":"sample: eight integers require three alternating sweeps","kind":"sample","visible":true,"input":{"n":8},"expected":3,"validator":{"kind":"exact"},"tags":["sample","even-length"]},
-    {"id":"sample-2","name":"sample: odd first length changes the right sweep parity","kind":"sample","visible":true,"input":{"n":5},"expected":1,"validator":{"kind":"exact"},"tags":["sample","odd-length"]},
-    {"id":"sample-3","name":"sample: a singleton needs no deletion","kind":"sample","visible":true,"input":{"n":1},"expected":1,"validator":{"kind":"exact"},"tags":["sample","minimum"]},
-    {"id":"trial-two","name":"trial: one left sweep over two integers","kind":"trial","visible":true,"input":{"n":2},"expected":1,"validator":{"kind":"exact"},"tags":["trial","single-sweep"]},
-    {"id":"trial-three","name":"trial: right endpoint survives two sweeps","kind":"trial","visible":true,"input":{"n":3},"expected":3,"validator":{"kind":"exact"},"tags":["trial","odd-length"]},
-    {"id":"trial-nine","name":"trial: survivor can be the largest initial integer","kind":"trial","visible":true,"input":{"n":9},"expected":9,"validator":{"kind":"exact"},"tags":["trial","endpoint"]},
-    {"id":"real-six","name":"hidden: even length followed by odd reduced length","kind":"real","visible":false,"input":{"n":6},"expected":1,"validator":{"kind":"exact"},"tags":["hidden","parity"]},
-    {"id":"real-seven","name":"hidden: consecutive odd reduced lengths","kind":"real","visible":false,"input":{"n":7},"expected":3,"validator":{"kind":"exact"},"tags":["hidden","parity"]},
-    {"id":"real-power-two","name":"hidden: exact power of two","kind":"real","visible":false,"input":{"n":16},"expected":11,"validator":{"kind":"exact"},"tags":["hidden","power-of-two"]},
-    {"id":"real-above-power-two","name":"hidden: immediately above a power of two","kind":"real","visible":false,"input":{"n":17},"expected":1,"validator":{"kind":"exact"},"tags":["hidden","power-boundary"]},
-    {"id":"real-below-power-two","name":"hidden: immediately below a power of two","kind":"real","visible":false,"input":{"n":31},"expected":11,"validator":{"kind":"exact"},"tags":["hidden","power-boundary","odd"]},
-    {"id":"real-above-larger-power-two","name":"hidden: survivor resets at a larger power boundary","kind":"real","visible":false,"input":{"n":33},"expected":33,"validator":{"kind":"exact"},"tags":["hidden","power-boundary","odd"]}
+    {
+      "id": "sample-1",
+      "name": "sample: eight integers require three alternating sweeps",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 8
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "even-length"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: odd first length changes the right sweep parity",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 5
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "odd-length"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: a singleton needs no deletion",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-two",
+      "name": "trial: one left sweep over two integers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-sweep"
+      ]
+    },
+    {
+      "id": "trial-three",
+      "name": "trial: right endpoint survives two sweeps",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "odd-length"
+      ]
+    },
+    {
+      "id": "trial-nine",
+      "name": "trial: survivor can be the largest initial integer",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 9
+      },
+      "expected": 9,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "endpoint"
+      ]
+    },
+    {
+      "id": "trial-six",
+      "name": "even length followed by odd reduced length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "parity"
+      ]
+    },
+    {
+      "id": "trial-seven",
+      "name": "consecutive odd reduced lengths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 7
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "parity"
+      ]
+    },
+    {
+      "id": "trial-power-two",
+      "name": "exact power of two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 16
+      },
+      "expected": 11,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "power-of-two"
+      ]
+    },
+    {
+      "id": "trial-above-power-two",
+      "name": "immediately above a power of two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 17
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "power-boundary"
+      ]
+    },
+    {
+      "id": "trial-below-power-two",
+      "name": "immediately below a power of two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 31
+      },
+      "expected": 11,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "power-boundary",
+        "odd"
+      ]
+    },
+    {
+      "id": "trial-above-larger-power-two",
+      "name": "survivor resets at a larger power boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 33
+      },
+      "expected": 33,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "power-boundary",
+        "odd"
+      ]
+    }
   ]
 }

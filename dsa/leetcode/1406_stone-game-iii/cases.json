@@ -1,12 +1,130 @@
 {
   "challenge_id": "lc_1406",
   "cases": [
-    {"id": "sample-bob", "name": "sample: Bob wins after optimal responses", "kind": "sample", "visible": true, "input": {"stoneValue": [1, 2, 3, 7]}, "expected": "Bob", "tags": ["sample", "bob"]},
-    {"id": "sample-alice", "name": "sample: negative final stone changes strategy", "kind": "sample", "visible": true, "input": {"stoneValue": [1, 2, 3, -9]}, "expected": "Alice", "tags": ["sample", "alice"]},
-    {"id": "sample-tie", "name": "sample: optimal scores are equal", "kind": "sample", "visible": true, "input": {"stoneValue": [1, 2, 3, 6]}, "expected": "Tie", "tags": ["sample", "tie"]},
-    {"id": "trial-single", "name": "one stone belongs to Alice", "kind": "trial", "visible": true, "input": {"stoneValue": [2]}, "expected": "Alice", "tags": ["trial", "boundary"]},
-    {"id": "trial-take-both", "name": "Alice takes both mixed-value stones", "kind": "trial", "visible": true, "input": {"stoneValue": [-6, 8]}, "expected": "Alice", "tags": ["trial", "negative"]},
-    {"id": "real-all-negative", "name": "hidden: choose how many negative stones to take", "kind": "real", "visible": false, "input": {"stoneValue": [-1, -2, -3]}, "expected": "Tie", "tags": ["hidden", "negative"]},
-    {"id": "real-future-response", "name": "hidden: immediate large stone is not the whole decision", "kind": "real", "visible": false, "input": {"stoneValue": [10, -100, 10, 10]}, "expected": "Alice", "tags": ["hidden", "lookahead"]}
+    {
+      "id": "sample-bob",
+      "name": "sample: Bob wins after optimal responses",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stoneValue": [
+          1,
+          2,
+          3,
+          7
+        ]
+      },
+      "expected": "Bob",
+      "tags": [
+        "sample",
+        "bob"
+      ]
+    },
+    {
+      "id": "sample-alice",
+      "name": "sample: negative final stone changes strategy",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stoneValue": [
+          1,
+          2,
+          3,
+          -9
+        ]
+      },
+      "expected": "Alice",
+      "tags": [
+        "sample",
+        "alice"
+      ]
+    },
+    {
+      "id": "sample-tie",
+      "name": "sample: optimal scores are equal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stoneValue": [
+          1,
+          2,
+          3,
+          6
+        ]
+      },
+      "expected": "Tie",
+      "tags": [
+        "sample",
+        "tie"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "one stone belongs to Alice",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "stoneValue": [
+          2
+        ]
+      },
+      "expected": "Alice",
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-take-both",
+      "name": "Alice takes both mixed-value stones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "stoneValue": [
+          -6,
+          8
+        ]
+      },
+      "expected": "Alice",
+      "tags": [
+        "trial",
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-all-negative",
+      "name": "choose how many negative stones to take",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "stoneValue": [
+          -1,
+          -2,
+          -3
+        ]
+      },
+      "expected": "Tie",
+      "tags": [
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-future-response",
+      "name": "immediate large stone is not the whole decision",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "stoneValue": [
+          10,
+          -100,
+          10,
+          10
+        ]
+      },
+      "expected": "Alice",
+      "tags": [
+        "lookahead"
+      ]
+    }
   ]
 }

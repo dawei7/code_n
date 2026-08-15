@@ -79,10 +79,10 @@
       ]
     },
     {
-      "id": "real-small-three-span",
-      "name": "hidden: asymmetric three-stone positions",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-small-three-span",
+      "name": "asymmetric three-stone positions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "stones": [
           0,
@@ -92,15 +92,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "three-stones"
       ]
     },
     {
-      "id": "real-equal-two-spans",
-      "name": "hidden: uneven adjacent gaps produce equal skip spans",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-equal-two-spans",
+      "name": "uneven adjacent gaps produce equal skip spans",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "stones": [
           0,
@@ -112,15 +111,14 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "uneven-gaps"
       ]
     },
     {
-      "id": "real-largest-span-near-end",
-      "name": "hidden: decisive skipped-stone jump is near the end",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-largest-span-near-end",
+      "name": "decisive skipped-stone jump is near the end",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "stones": [
           0,
@@ -132,15 +130,14 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "late-maximum"
       ]
     },
     {
-      "id": "real-irregular",
-      "name": "hidden: several competing two-index spans",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-irregular",
+      "name": "several competing two-index spans",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "stones": [
           0,
@@ -153,15 +150,14 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "irregular-gaps"
       ]
     },
     {
-      "id": "real-maximum-coordinate",
-      "name": "hidden: endpoint reaches the coordinate limit",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-coordinate",
+      "name": "endpoint reaches the coordinate limit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "stones": [
           0,
@@ -170,7 +166,6 @@
       },
       "expected": 1000000000,
       "tags": [
-        "hidden",
         "boundary",
         "large-coordinate"
       ]

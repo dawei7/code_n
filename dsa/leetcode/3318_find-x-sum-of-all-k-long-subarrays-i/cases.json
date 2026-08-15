@@ -1,1 +1,239 @@
-{"challenge_id":"lc_3318","cases":[{"id":"sample-frequency-ties","name":"sample: frequency and value tie ordering","kind":"sample","visible":true,"input":{"nums":[1,1,2,2,3,4,2,3],"k":6,"x":2},"expected":[6,10,12],"tags":["sample","tie"]},{"id":"sample-window-size-two","name":"sample: x covers every window value","kind":"sample","visible":true,"input":{"nums":[3,8,7,8,7,5],"k":2,"x":2},"expected":[11,15,15,15,12],"tags":["sample","full-sum"]},{"id":"trial-single-dominant","name":"trial: one repeated dominant value","kind":"trial","visible":true,"input":{"nums":[1,1,1,1],"k":2,"x":1},"expected":[2,2,2],"tags":["repeated"]},{"id":"trial-fewer-distinct-than-x","name":"trial: fewer distinct values than x","kind":"trial","visible":true,"input":{"nums":[5,5,6],"k":3,"x":3},"expected":[16],"tags":["distinct","full-sum"]},{"id":"trial-all-frequency-ties","name":"trial: larger values win all ties","kind":"trial","visible":true,"input":{"nums":[1,2,3,4],"k":4,"x":2},"expected":[7],"tags":["tie"]},{"id":"trial-unit-windows","name":"trial: each value is its own window","kind":"trial","visible":true,"input":{"nums":[4,1,7],"k":1,"x":1},"expected":[4,1,7],"tags":["minimum-window"]},{"id":"real-moving-dominance","name":"real: dominant values change by window","kind":"real","visible":false,"input":{"nums":[4,4,5,5,6,6,7,7],"k":5,"x":2},"expected":[18,22,22,26],"tags":["sliding","tie"]},{"id":"real-duplicates-and-ties","name":"real: multiplicity beats large singleton","kind":"real","visible":false,"input":{"nums":[9,1,1,8,2,2,7],"k":4,"x":1},"expected":[2,2,4,4],"tags":["frequency"]},{"id":"real-maximum-values","name":"real: values at upper boundary","kind":"real","visible":false,"input":{"nums":[50,49,50,48,49,50],"k":4,"x":2},"expected":[149,148,149],"tags":["boundary","tie"]}]}
+{
+  "challenge_id": "lc_3318",
+  "cases": [
+    {
+      "id": "sample-frequency-ties",
+      "name": "sample: frequency and value tie ordering",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          4,
+          2,
+          3
+        ],
+        "k": 6,
+        "x": 2
+      },
+      "expected": [
+        6,
+        10,
+        12
+      ],
+      "tags": [
+        "sample",
+        "tie"
+      ]
+    },
+    {
+      "id": "sample-window-size-two",
+      "name": "sample: x covers every window value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          8,
+          7,
+          8,
+          7,
+          5
+        ],
+        "k": 2,
+        "x": 2
+      },
+      "expected": [
+        11,
+        15,
+        15,
+        15,
+        12
+      ],
+      "tags": [
+        "sample",
+        "full-sum"
+      ]
+    },
+    {
+      "id": "trial-single-dominant",
+      "name": "trial: one repeated dominant value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 2,
+        "x": 1
+      },
+      "expected": [
+        2,
+        2,
+        2
+      ],
+      "tags": [
+        "repeated"
+      ]
+    },
+    {
+      "id": "trial-fewer-distinct-than-x",
+      "name": "trial: fewer distinct values than x",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          6
+        ],
+        "k": 3,
+        "x": 3
+      },
+      "expected": [
+        16
+      ],
+      "tags": [
+        "distinct",
+        "full-sum"
+      ]
+    },
+    {
+      "id": "trial-all-frequency-ties",
+      "name": "trial: larger values win all ties",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "k": 4,
+        "x": 2
+      },
+      "expected": [
+        7
+      ],
+      "tags": [
+        "tie"
+      ]
+    },
+    {
+      "id": "trial-unit-windows",
+      "name": "trial: each value is its own window",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          1,
+          7
+        ],
+        "k": 1,
+        "x": 1
+      },
+      "expected": [
+        4,
+        1,
+        7
+      ],
+      "tags": [
+        "minimum-window"
+      ]
+    },
+    {
+      "id": "trial-moving-dominance",
+      "name": "dominant values change by window",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4,
+          5,
+          5,
+          6,
+          6,
+          7,
+          7
+        ],
+        "k": 5,
+        "x": 2
+      },
+      "expected": [
+        18,
+        22,
+        22,
+        26
+      ],
+      "tags": [
+        "sliding",
+        "tie"
+      ]
+    },
+    {
+      "id": "trial-duplicates-and-ties",
+      "name": "multiplicity beats large singleton",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          1,
+          1,
+          8,
+          2,
+          2,
+          7
+        ],
+        "k": 4,
+        "x": 1
+      },
+      "expected": [
+        2,
+        2,
+        4,
+        4
+      ],
+      "tags": [
+        "frequency"
+      ]
+    },
+    {
+      "id": "trial-maximum-values",
+      "name": "values at upper boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          50,
+          49,
+          50,
+          48,
+          49,
+          50
+        ],
+        "k": 4,
+        "x": 2
+      },
+      "expected": [
+        149,
+        148,
+        149
+      ],
+      "tags": [
+        "boundary",
+        "tie"
+      ]
+    }
+  ]
+}

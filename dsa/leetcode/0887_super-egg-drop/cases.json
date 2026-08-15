@@ -93,77 +93,72 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: triangular coverage with two eggs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "triangular coverage with two eggs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "k": 2,
         "n": 100
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "two-eggs"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: exact three-egg coverage boundary",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "exact three-egg coverage boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "k": 3,
         "n": 25
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "exact-coverage"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: four eggs across five hundred floors",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "four eggs across five hundred floors",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "k": 4,
         "n": 500
       },
       "expected": 11,
       "tags": [
-        "hidden",
         "four-eggs"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: maximum eggs and floors",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "maximum eggs and floors",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "k": 100,
         "n": 10000
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "maximum"
       ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: extra egg on one floor",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-5",
+      "name": "extra egg on one floor",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "k": 2,
         "n": 1
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "single-floor"
       ]
     }

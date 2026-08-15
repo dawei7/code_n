@@ -88,10 +88,10 @@
       ]
     },
     {
-      "id": "real-upper-bound-value",
-      "name": "hidden: maximum legal value has remainder two",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-upper-bound-value",
+      "name": "maximum legal value has remainder two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           50
@@ -99,15 +99,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
     {
-      "id": "real-all-multiples",
-      "name": "hidden: every legal multiple of three",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-multiples",
+      "name": "every legal multiple of three",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -130,15 +129,14 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "all-divisible"
       ]
     },
     {
-      "id": "real-all-remainder-one",
-      "name": "hidden: every legal remainder-one value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-remainder-one",
+      "name": "every legal remainder-one value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -162,15 +160,14 @@
       },
       "expected": 17,
       "tags": [
-        "hidden",
         "remainder-one"
       ]
     },
     {
-      "id": "real-all-remainder-two",
-      "name": "hidden: every legal remainder-two value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-remainder-two",
+      "name": "every legal remainder-two value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -194,15 +191,14 @@
       },
       "expected": 17,
       "tags": [
-        "hidden",
         "remainder-two"
       ]
     },
     {
-      "id": "real-duplicate-remainders",
-      "name": "hidden: duplicate values contribute independently",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicate-remainders",
+      "name": "duplicate values contribute independently",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -217,15 +213,14 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "real-complete-value-range",
-      "name": "hidden: every value from one through fifty",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-complete-value-range",
+      "name": "every value from one through fifty",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -282,16 +277,15 @@
       },
       "expected": 34,
       "tags": [
-        "hidden",
         "maximum-n",
         "value-range"
       ]
     },
     {
-      "id": "real-maximum-all-change",
-      "name": "hidden: fifty maximum values all need one operation",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-all-change",
+      "name": "fifty maximum values all need one operation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           50,
@@ -348,8 +342,24 @@
       },
       "expected": 50,
       "tags": [
-        "hidden",
         "maximum-n",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
         "duplicates"
       ]
     }

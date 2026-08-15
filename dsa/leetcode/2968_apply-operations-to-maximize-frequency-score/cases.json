@@ -96,10 +96,10 @@
       ]
     },
     {
-      "id": "real-insufficient-for-pair",
-      "name": "real: every pair exceeds the budget",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-insufficient-for-pair",
+      "name": "every pair exceeds the budget",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -110,15 +110,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "small-budget"
       ]
     },
     {
-      "id": "real-large-budget",
-      "name": "real: maximum-scale budget joins distant endpoints",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-budget",
+      "name": "maximum-scale budget joins distant endpoints",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -128,15 +127,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "budget-boundary"
       ]
     },
     {
-      "id": "real-even-window",
-      "name": "real: even window may target either middle value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-even-window",
+      "name": "even window may target either middle value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -148,15 +146,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "even-window"
       ]
     },
     {
-      "id": "real-best-subset-in-middle",
-      "name": "real: optimal values form a middle sorted block",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-best-subset-in-middle",
+      "name": "optimal values form a middle sorted block",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -169,7 +166,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "middle-window"
       ]
     }

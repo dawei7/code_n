@@ -98,10 +98,10 @@
       ]
     },
     {
-      "id": "real-two-disjoint-ranges",
-      "name": "hidden: two independent singleton components",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-disjoint-ranges",
+      "name": "two independent singleton components",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "ranges": [
           [
@@ -116,15 +116,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "disjoint"
       ]
     },
     {
-      "id": "real-nested-ranges",
-      "name": "hidden: nested intervals form one component",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-nested-ranges",
+      "name": "nested intervals form one component",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "ranges": [
           [
@@ -147,15 +146,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "nested"
       ]
     },
     {
-      "id": "real-duplicate-ranges",
-      "name": "hidden: duplicate point ranges overlap",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicate-ranges",
+      "name": "duplicate point ranges overlap",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "ranges": [
           [
@@ -174,16 +172,15 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "duplicates",
         "point-ranges"
       ]
     },
     {
-      "id": "real-unsorted-components",
-      "name": "hidden: unsorted input forms three components",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unsorted-components",
+      "name": "unsorted input forms three components",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "ranges": [
           [
@@ -210,16 +207,15 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "unsorted",
         "three-components"
       ]
     },
     {
-      "id": "real-maximum-coordinate",
-      "name": "hidden: overlap at the maximum coordinate",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-coordinate",
+      "name": "overlap at the maximum coordinate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "ranges": [
           [
@@ -238,15 +234,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "maximum-coordinate"
       ]
     },
     {
-      "id": "real-modulo-many-components",
-      "name": "hidden: many components require modular exponentiation",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-modulo-many-components",
+      "name": "many components require modular exponentiation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "ranges": [
           [
@@ -393,7 +388,6 @@
       },
       "expected": 359738130,
       "tags": [
-        "hidden",
         "modulo",
         "many-components"
       ]

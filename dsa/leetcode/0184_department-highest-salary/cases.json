@@ -183,10 +183,10 @@
       }
     },
     {
-      "id": "real-negative-salaries",
-      "name": "hidden: maximum can be negative",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-negative-salaries",
+      "name": "maximum can be negative",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Employee": [
@@ -226,7 +226,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "ordering"
       ],
       "validator": {

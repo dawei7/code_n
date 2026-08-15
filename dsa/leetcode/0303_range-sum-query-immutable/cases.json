@@ -174,10 +174,10 @@
       ]
     },
     {
-      "id": "real-boundaries",
-      "name": "hidden: repeated boundary-spanning queries",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-boundaries",
+      "name": "repeated boundary-spanning queries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -217,7 +217,6 @@
         6
       ],
       "tags": [
-        "hidden",
         "boundaries"
       ]
     }

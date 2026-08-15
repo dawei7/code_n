@@ -7,72 +7,108 @@
       "name": "sample: repeated prefix letters",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "bcabc"},
+      "input": {
+        "s": "bcabc"
+      },
       "expected": "abc",
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: blocked stack pop",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "cbacdcbc"},
+      "input": {
+        "s": "cbacdcbc"
+      },
       "expected": "acdb",
-      "tags": ["sample", "greedy"]
+      "tags": [
+        "sample",
+        "greedy"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: one letter",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "a"},
+      "input": {
+        "s": "a"
+      },
       "expected": "a",
-      "tags": ["sample", "boundary"]
+      "tags": [
+        "sample",
+        "boundary"
+      ]
     },
     {
       "id": "trial-reverse-unique",
       "name": "trial: unique letters cannot be reordered",
       "kind": "trial",
-      "visible": false,
-      "input": {"s": "zyx"},
+      "visible": true,
+      "input": {
+        "s": "zyx"
+      },
       "expected": "zyx",
-      "tags": ["trial", "subsequence-order"]
+      "tags": [
+        "trial",
+        "subsequence-order"
+      ]
     },
     {
       "id": "trial-one-distinct",
       "name": "trial: many copies of one letter",
       "kind": "trial",
-      "visible": false,
-      "input": {"s": "aaaaaa"},
+      "visible": true,
+      "input": {
+        "s": "aaaaaa"
+      },
       "expected": "a",
-      "tags": ["trial", "duplicates"]
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
     },
     {
-      "id": "hidden-greedy-trap",
-      "name": "hidden: smallest letter cannot lead",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "bbcaac"},
+      "id": "trial-greedy-trap",
+      "name": "smallest letter cannot lead",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "bbcaac"
+      },
       "expected": "bac",
-      "tags": ["hidden", "last-occurrence"]
+      "tags": [
+        "last-occurrence"
+      ]
     },
     {
-      "id": "hidden-several-replacements",
-      "name": "hidden: several safe replacements",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "cdadabcc"},
+      "id": "trial-several-replacements",
+      "name": "several safe replacements",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "cdadabcc"
+      },
       "expected": "adbc",
-      "tags": ["hidden", "monotonic-stack"]
+      "tags": [
+        "monotonic-stack"
+      ]
     },
     {
-      "id": "hidden-unrecoverable-prefix",
-      "name": "hidden: early letter must be preserved",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "ecbacba"},
+      "id": "trial-unrecoverable-prefix",
+      "name": "early letter must be preserved",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ecbacba"
+      },
       "expected": "eacb",
-      "tags": ["hidden", "last-occurrence"]
+      "tags": [
+        "last-occurrence"
+      ]
     }
   ]
 }

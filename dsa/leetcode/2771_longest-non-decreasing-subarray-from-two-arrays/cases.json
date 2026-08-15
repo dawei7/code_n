@@ -2,16 +2,312 @@
   "schema_version": 1,
   "challenge_id": "lc_2771",
   "cases": [
-    {"id": "sample-1", "name": "sample: optimal run ends before the array", "kind": "sample", "visible": true, "input": {"nums1": [2, 3, 1], "nums2": [1, 2, 1]}, "tags": ["sample", "prefix"], "expected": 2},
-    {"id": "sample-2", "name": "sample: choices make the whole array non-decreasing", "kind": "sample", "visible": true, "input": {"nums1": [1, 3, 2, 1], "nums2": [2, 2, 3, 4]}, "tags": ["sample", "full-length"], "expected": 4},
-    {"id": "sample-3", "name": "sample: either constant source works", "kind": "sample", "visible": true, "input": {"nums1": [1, 1], "nums2": [2, 2]}, "tags": ["sample", "equal-values"], "expected": 2},
-    {"id": "trial-one-index", "name": "trial: one position is a non-empty subarray", "kind": "trial", "visible": true, "input": {"nums1": [5], "nums2": [1]}, "tags": ["trial", "minimum-length"], "expected": 1},
-    {"id": "trial-cross-array-extensions", "name": "trial: a full run switches between sources", "kind": "trial", "visible": true, "input": {"nums1": [5, 1, 5, 1, 5], "nums2": [1, 2, 3, 4, 5]}, "tags": ["trial", "cross-source"], "expected": 5},
-    {"id": "trial-restart-away-from-zero", "name": "trial: the best subarray begins after index zero", "kind": "trial", "visible": true, "input": {"nums1": [8, 7, 4], "nums2": [13, 4, 4]}, "tags": ["trial", "restart"], "expected": 2},
-    {"id": "real-equal-values", "name": "hidden: equality preserves a full run", "kind": "real", "visible": false, "input": {"nums1": [3, 3, 2, 4, 4, 5], "nums2": [2, 3, 3, 3, 6, 6]}, "tags": ["hidden", "equal-values"], "expected": 6},
-    {"id": "real-both-decreasing", "name": "hidden: cross-array choices only form short runs", "kind": "real", "visible": false, "input": {"nums1": [5, 4, 3, 2], "nums2": [9, 8, 7, 6]}, "tags": ["hidden", "decreasing"], "expected": 2},
-    {"id": "real-extreme-values", "name": "hidden: extreme values still permit one transition", "kind": "real", "visible": false, "input": {"nums1": [1000000000, 1], "nums2": [1, 1000000000]}, "tags": ["hidden", "extreme-values"], "expected": 2},
-    {"id": "real-identical-arrays", "name": "hidden: identical non-decreasing arrays", "kind": "real", "visible": false, "input": {"nums1": [1, 2, 2, 5], "nums2": [1, 2, 2, 5]}, "tags": ["hidden", "identical", "full-length"], "expected": 4},
-    {"id": "real-alternating-options", "name": "hidden: alternating choices sustain a long interior run", "kind": "real", "visible": false, "input": {"nums1": [1, 10, 2, 9, 3, 8], "nums2": [8, 3, 9, 2, 10, 1]}, "tags": ["hidden", "alternating", "cross-source"], "expected": 5}
+    {
+      "id": "sample-1",
+      "name": "sample: optimal run ends before the array",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2,
+          3,
+          1
+        ],
+        "nums2": [
+          1,
+          2,
+          1
+        ]
+      },
+      "tags": [
+        "sample",
+        "prefix"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: choices make the whole array non-decreasing",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          3,
+          2,
+          1
+        ],
+        "nums2": [
+          2,
+          2,
+          3,
+          4
+        ]
+      },
+      "tags": [
+        "sample",
+        "full-length"
+      ],
+      "expected": 4
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: either constant source works",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          1
+        ],
+        "nums2": [
+          2,
+          2
+        ]
+      },
+      "tags": [
+        "sample",
+        "equal-values"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "trial-one-index",
+      "name": "trial: one position is a non-empty subarray",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          5
+        ],
+        "nums2": [
+          1
+        ]
+      },
+      "tags": [
+        "trial",
+        "minimum-length"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "trial-cross-array-extensions",
+      "name": "trial: a full run switches between sources",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          5,
+          1,
+          5,
+          1,
+          5
+        ],
+        "nums2": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "tags": [
+        "trial",
+        "cross-source"
+      ],
+      "expected": 5
+    },
+    {
+      "id": "trial-restart-away-from-zero",
+      "name": "trial: the best subarray begins after index zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          8,
+          7,
+          4
+        ],
+        "nums2": [
+          13,
+          4,
+          4
+        ]
+      },
+      "tags": [
+        "trial",
+        "restart"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "trial-equal-values",
+      "name": "equality preserves a full run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          3,
+          3,
+          2,
+          4,
+          4,
+          5
+        ],
+        "nums2": [
+          2,
+          3,
+          3,
+          3,
+          6,
+          6
+        ]
+      },
+      "tags": [
+        "equal-values"
+      ],
+      "expected": 6
+    },
+    {
+      "id": "trial-both-decreasing",
+      "name": "cross-array choices only form short runs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          5,
+          4,
+          3,
+          2
+        ],
+        "nums2": [
+          9,
+          8,
+          7,
+          6
+        ]
+      },
+      "tags": [
+        "decreasing"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "trial-extreme-values",
+      "name": "extreme values still permit one transition",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1000000000,
+          1
+        ],
+        "nums2": [
+          1,
+          1000000000
+        ]
+      },
+      "tags": [
+        "extreme-values"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "trial-identical-arrays",
+      "name": "identical non-decreasing arrays",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          2,
+          5
+        ],
+        "nums2": [
+          1,
+          2,
+          2,
+          5
+        ]
+      },
+      "tags": [
+        "identical",
+        "full-length"
+      ],
+      "expected": 4
+    },
+    {
+      "id": "trial-alternating-options",
+      "name": "alternating choices sustain a long interior run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          10,
+          2,
+          9,
+          3,
+          8
+        ],
+        "nums2": [
+          8,
+          3,
+          9,
+          2,
+          10,
+          1
+        ]
+      },
+      "tags": [
+        "alternating",
+        "cross-source"
+      ],
+      "expected": 5
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single element in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2
+        ],
+        "nums2": [
+          1,
+          2,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2,
+          2
+        ],
+        "nums2": [
+          1,
+          2,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    }
   ]
 }

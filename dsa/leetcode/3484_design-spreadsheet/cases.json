@@ -7,11 +7,59 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "operations": ["Spreadsheet", "getValue", "setCell", "getValue", "setCell", "getValue", "resetCell", "getValue"],
-        "arguments": [[3], ["=5+7"], ["A1", 10], ["=A1+6"], ["B2", 15], ["=A1+B2"], ["A1"], ["=A1+B2"]]
+        "operations": [
+          "Spreadsheet",
+          "getValue",
+          "setCell",
+          "getValue",
+          "setCell",
+          "getValue",
+          "resetCell",
+          "getValue"
+        ],
+        "arguments": [
+          [
+            3
+          ],
+          [
+            "=5+7"
+          ],
+          [
+            "A1",
+            10
+          ],
+          [
+            "=A1+6"
+          ],
+          [
+            "B2",
+            15
+          ],
+          [
+            "=A1+B2"
+          ],
+          [
+            "A1"
+          ],
+          [
+            "=A1+B2"
+          ]
+        ]
       },
-      "expected": [null, 12, null, 16, null, 25, null, 15],
-      "tags": ["sample", "design"]
+      "expected": [
+        null,
+        12,
+        null,
+        16,
+        null,
+        25,
+        null,
+        15
+      ],
+      "tags": [
+        "sample",
+        "design"
+      ]
     },
     {
       "id": "trial-unset-boundary-cells",
@@ -19,11 +67,33 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "operations": ["Spreadsheet", "getValue", "getValue"],
-        "arguments": [[1000], ["=A1+Z1000"], ["=Z1000+100000"]]
+        "operations": [
+          "Spreadsheet",
+          "getValue",
+          "getValue"
+        ],
+        "arguments": [
+          [
+            1000
+          ],
+          [
+            "=A1+Z1000"
+          ],
+          [
+            "=Z1000+100000"
+          ]
+        ]
       },
-      "expected": [null, 0, 100000],
-      "tags": ["trial", "unset", "boundaries"]
+      "expected": [
+        null,
+        0,
+        100000
+      ],
+      "tags": [
+        "trial",
+        "unset",
+        "boundaries"
+      ]
     },
     {
       "id": "trial-two-literals",
@@ -31,95 +101,394 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "operations": ["Spreadsheet", "getValue", "getValue", "getValue"],
-        "arguments": [[1], ["=0+0"], ["=123+456"], ["=100000+100000"]]
+        "operations": [
+          "Spreadsheet",
+          "getValue",
+          "getValue",
+          "getValue"
+        ],
+        "arguments": [
+          [
+            1
+          ],
+          [
+            "=0+0"
+          ],
+          [
+            "=123+456"
+          ],
+          [
+            "=100000+100000"
+          ]
+        ]
       },
-      "expected": [null, 0, 579, 200000],
-      "tags": ["trial", "literals", "boundaries"]
+      "expected": [
+        null,
+        0,
+        579,
+        200000
+      ],
+      "tags": [
+        "trial",
+        "literals",
+        "boundaries"
+      ]
     },
     {
-      "id": "real-overwrite-cell",
-      "name": "real: later assignments replace earlier values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-overwrite-cell",
+      "name": "later assignments replace earlier values",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["Spreadsheet", "setCell", "getValue", "setCell", "getValue", "setCell", "getValue"],
-        "arguments": [[20], ["M12", 7], ["=M12+1"], ["M12", 99999], ["=M12+1"], ["M12", 0], ["=M12+1"]]
+        "operations": [
+          "Spreadsheet",
+          "setCell",
+          "getValue",
+          "setCell",
+          "getValue",
+          "setCell",
+          "getValue"
+        ],
+        "arguments": [
+          [
+            20
+          ],
+          [
+            "M12",
+            7
+          ],
+          [
+            "=M12+1"
+          ],
+          [
+            "M12",
+            99999
+          ],
+          [
+            "=M12+1"
+          ],
+          [
+            "M12",
+            0
+          ],
+          [
+            "=M12+1"
+          ]
+        ]
       },
-      "expected": [null, null, 8, null, 100000, null, 1],
-      "tags": ["real", "overwrite", "zero"]
+      "expected": [
+        null,
+        null,
+        8,
+        null,
+        100000,
+        null,
+        1
+      ],
+      "tags": [
+        "real",
+        "overwrite",
+        "zero"
+      ]
     },
     {
-      "id": "real-reset-idempotent",
-      "name": "real: reset clears both assigned and already-zero cells",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-reset-idempotent",
+      "name": "reset clears both assigned and already-zero cells",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["Spreadsheet", "resetCell", "setCell", "resetCell", "resetCell", "getValue"],
-        "arguments": [[5], ["C3"], ["C3", 81], ["C3"], ["C3"], ["=C3+C3"]]
+        "operations": [
+          "Spreadsheet",
+          "resetCell",
+          "setCell",
+          "resetCell",
+          "resetCell",
+          "getValue"
+        ],
+        "arguments": [
+          [
+            5
+          ],
+          [
+            "C3"
+          ],
+          [
+            "C3",
+            81
+          ],
+          [
+            "C3"
+          ],
+          [
+            "C3"
+          ],
+          [
+            "=C3+C3"
+          ]
+        ]
       },
-      "expected": [null, null, null, null, null, 0],
-      "tags": ["real", "reset", "idempotent"]
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        0
+      ],
+      "tags": [
+        "real",
+        "reset",
+        "idempotent"
+      ]
     },
     {
-      "id": "real-same-cell-twice",
-      "name": "real: the same cell may be both operands",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-same-cell-twice",
+      "name": "the same cell may be both operands",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["Spreadsheet", "setCell", "getValue", "resetCell", "getValue"],
-        "arguments": [[10], ["Q9", 54321], ["=Q9+Q9"], ["Q9"], ["=Q9+Q9"]]
+        "operations": [
+          "Spreadsheet",
+          "setCell",
+          "getValue",
+          "resetCell",
+          "getValue"
+        ],
+        "arguments": [
+          [
+            10
+          ],
+          [
+            "Q9",
+            54321
+          ],
+          [
+            "=Q9+Q9"
+          ],
+          [
+            "Q9"
+          ],
+          [
+            "=Q9+Q9"
+          ]
+        ]
       },
-      "expected": [null, null, 108642, null, 0],
-      "tags": ["real", "same-cell", "reset"]
+      "expected": [
+        null,
+        null,
+        108642,
+        null,
+        0
+      ],
+      "tags": [
+        "real",
+        "same-cell",
+        "reset"
+      ]
     },
     {
-      "id": "real-literal-order",
-      "name": "real: literals work on either side",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-literal-order",
+      "name": "literals work on either side",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["Spreadsheet", "setCell", "getValue", "getValue"],
-        "arguments": [[2], ["B2", 37], ["=B2+63"], ["=63+B2"]]
+        "operations": [
+          "Spreadsheet",
+          "setCell",
+          "getValue",
+          "getValue"
+        ],
+        "arguments": [
+          [
+            2
+          ],
+          [
+            "B2",
+            37
+          ],
+          [
+            "=B2+63"
+          ],
+          [
+            "=63+B2"
+          ]
+        ]
       },
-      "expected": [null, null, 100, 100],
-      "tags": ["real", "operand-order"]
+      "expected": [
+        null,
+        null,
+        100,
+        100
+      ],
+      "tags": [
+        "real",
+        "operand-order"
+      ]
     },
     {
-      "id": "real-distinct-multidigit-rows",
-      "name": "real: multi-digit rows remain distinct",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-distinct-multidigit-rows",
+      "name": "multi-digit rows remain distinct",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["Spreadsheet", "setCell", "setCell", "setCell", "getValue", "getValue"],
-        "arguments": [[100], ["A1", 1], ["A10", 10], ["A100", 100], ["=A1+A10"], ["=A10+A100"]]
+        "operations": [
+          "Spreadsheet",
+          "setCell",
+          "setCell",
+          "setCell",
+          "getValue",
+          "getValue"
+        ],
+        "arguments": [
+          [
+            100
+          ],
+          [
+            "A1",
+            1
+          ],
+          [
+            "A10",
+            10
+          ],
+          [
+            "A100",
+            100
+          ],
+          [
+            "=A1+A10"
+          ],
+          [
+            "=A10+A100"
+          ]
+        ]
       },
-      "expected": [null, null, null, null, 11, 110],
-      "tags": ["real", "cell-parsing", "rows"]
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        11,
+        110
+      ],
+      "tags": [
+        "real",
+        "cell-parsing",
+        "rows"
+      ]
     },
     {
-      "id": "real-column-independence",
-      "name": "real: columns and updates are independent",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-column-independence",
+      "name": "columns and updates are independent",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["Spreadsheet", "setCell", "setCell", "setCell", "getValue", "resetCell", "getValue", "getValue"],
-        "arguments": [[4], ["A4", 5], ["B4", 6], ["Z4", 7], ["=A4+Z4"], ["B4"], ["=A4+B4"], ["=B4+Z4"]]
+        "operations": [
+          "Spreadsheet",
+          "setCell",
+          "setCell",
+          "setCell",
+          "getValue",
+          "resetCell",
+          "getValue",
+          "getValue"
+        ],
+        "arguments": [
+          [
+            4
+          ],
+          [
+            "A4",
+            5
+          ],
+          [
+            "B4",
+            6
+          ],
+          [
+            "Z4",
+            7
+          ],
+          [
+            "=A4+Z4"
+          ],
+          [
+            "B4"
+          ],
+          [
+            "=A4+B4"
+          ],
+          [
+            "=B4+Z4"
+          ]
+        ]
       },
-      "expected": [null, null, null, null, 12, null, 5, 7],
-      "tags": ["real", "columns", "independence"]
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        12,
+        null,
+        5,
+        7
+      ],
+      "tags": [
+        "real",
+        "columns",
+        "independence"
+      ]
     },
     {
-      "id": "real-repeated-queries-have-no-side-effects",
-      "name": "real: evaluating formulas does not store dependencies",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-queries-have-no-side-effects",
+      "name": "evaluating formulas does not store dependencies",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["Spreadsheet", "setCell", "getValue", "getValue", "setCell", "getValue"],
-        "arguments": [[3], ["A1", 4], ["=A1+5"], ["=A1+5"], ["A1", 20], ["=A1+5"]]
+        "operations": [
+          "Spreadsheet",
+          "setCell",
+          "getValue",
+          "getValue",
+          "setCell",
+          "getValue"
+        ],
+        "arguments": [
+          [
+            3
+          ],
+          [
+            "A1",
+            4
+          ],
+          [
+            "=A1+5"
+          ],
+          [
+            "=A1+5"
+          ],
+          [
+            "A1",
+            20
+          ],
+          [
+            "=A1+5"
+          ]
+        ]
       },
-      "expected": [null, null, 9, 9, null, 25],
-      "tags": ["real", "queries", "updates"]
+      "expected": [
+        null,
+        null,
+        9,
+        9,
+        null,
+        25
+      ],
+      "tags": [
+        "real",
+        "queries",
+        "updates"
+      ]
     }
   ]
 }

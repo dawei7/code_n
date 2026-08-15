@@ -1,1 +1,175 @@
-{"challenge_id":"lc_3317","cases":[{"id":"sample-one-performer","name":"sample: one performer","kind":"sample","visible":true,"input":{"n":1,"x":2,"y":3},"expected":6,"tags":["sample"]},{"id":"sample-two-stages-one-score","name":"sample: every stage assignment","kind":"sample","visible":true,"input":{"n":5,"x":2,"y":1},"expected":32,"tags":["sample","single-score"]},{"id":"sample-three-by-three","name":"sample: several band counts","kind":"sample","visible":true,"input":{"n":3,"x":3,"y":4},"expected":684,"tags":["sample","combinatorics"]},{"id":"trial-single-everything","name":"trial: minimum bounds","kind":"trial","visible":true,"input":{"n":1,"x":1,"y":1},"expected":1,"tags":["minimum"]},{"id":"trial-one-stage","name":"trial: one nonempty band","kind":"trial","visible":true,"input":{"n":2,"x":1,"y":5},"expected":5,"tags":["one-stage"]},{"id":"trial-two-stages-one-score","name":"trial: score contributes no multiplicity","kind":"trial","visible":true,"input":{"n":2,"x":2,"y":1},"expected":4,"tags":["single-score"]},{"id":"trial-two-stages-two-scores","name":"trial: one-band and two-band terms","kind":"trial","visible":true,"input":{"n":2,"x":2,"y":2},"expected":12,"tags":["band-counts"]},{"id":"real-more-performers-than-stages","name":"real: stages cap the band count","kind":"real","visible":false,"input":{"n":4,"x":2,"y":3},"expected":132,"tags":["stage-limit"]},{"id":"real-multiple-modular-terms","name":"real: modular combinatorial sum","kind":"real","visible":false,"input":{"n":10,"x":4,"y":5},"expected":539718320,"tags":["modulo","band-counts"]}]}
+{
+  "challenge_id": "lc_3317",
+  "cases": [
+    {
+      "id": "sample-one-performer",
+      "name": "sample: one performer",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "x": 2,
+        "y": 3
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-two-stages-one-score",
+      "name": "sample: every stage assignment",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "x": 2,
+        "y": 1
+      },
+      "expected": 32,
+      "tags": [
+        "sample",
+        "single-score"
+      ]
+    },
+    {
+      "id": "sample-three-by-three",
+      "name": "sample: several band counts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "x": 3,
+        "y": 4
+      },
+      "expected": 684,
+      "tags": [
+        "sample",
+        "combinatorics"
+      ]
+    },
+    {
+      "id": "trial-single-everything",
+      "name": "trial: minimum bounds",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "x": 1,
+        "y": 1
+      },
+      "expected": 1,
+      "tags": [
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-one-stage",
+      "name": "trial: one nonempty band",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "x": 1,
+        "y": 5
+      },
+      "expected": 5,
+      "tags": [
+        "one-stage"
+      ]
+    },
+    {
+      "id": "trial-two-stages-one-score",
+      "name": "trial: score contributes no multiplicity",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "x": 2,
+        "y": 1
+      },
+      "expected": 4,
+      "tags": [
+        "single-score"
+      ]
+    },
+    {
+      "id": "trial-two-stages-two-scores",
+      "name": "trial: one-band and two-band terms",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "x": 2,
+        "y": 2
+      },
+      "expected": 12,
+      "tags": [
+        "band-counts"
+      ]
+    },
+    {
+      "id": "trial-more-performers-than-stages",
+      "name": "stages cap the band count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "x": 2,
+        "y": 3
+      },
+      "expected": 132,
+      "tags": [
+        "stage-limit"
+      ]
+    },
+    {
+      "id": "trial-multiple-modular-terms",
+      "name": "modular combinatorial sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 10,
+        "x": 4,
+        "y": 5
+      },
+      "expected": 539718320,
+      "tags": [
+        "modulo",
+        "band-counts"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value x=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "x": 1,
+        "y": 3
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value y=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "x": 2,
+        "y": 1
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    }
+  ]
+}

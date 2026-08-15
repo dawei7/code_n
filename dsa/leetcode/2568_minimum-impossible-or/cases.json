@@ -73,10 +73,10 @@
       ]
     },
     {
-      "id": "real-no-one",
-      "name": "hidden: a lone non-power cannot form one",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-no-one",
+      "name": "a lone non-power cannot form one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7
@@ -84,15 +84,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "minimum-length"
       ]
     },
     {
-      "id": "real-duplicates-and-gap",
-      "name": "hidden: duplicate powers do not fill a missing bit",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicates-and-gap",
+      "name": "duplicate powers do not fill a missing bit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -105,15 +104,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "real-extra-bits-do-not-help",
-      "name": "hidden: multi-bit values cannot isolate missing two",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-extra-bits-do-not-help",
+      "name": "multi-bit values cannot isolate missing two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -125,15 +123,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "non-powers"
       ]
     },
     {
-      "id": "real-unsorted-powers",
-      "name": "hidden: input order does not affect expressibility",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unsorted-powers",
+      "name": "input order does not affect expressibility",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           16,
@@ -146,15 +143,14 @@
       },
       "expected": 32,
       "tags": [
-        "hidden",
         "unsorted"
       ]
     },
     {
-      "id": "real-all-legal-powers",
-      "name": "hidden: answer may exceed the element bound",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-legal-powers",
+      "name": "answer may exceed the element bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -191,7 +187,6 @@
       },
       "expected": 1073741824,
       "tags": [
-        "hidden",
         "maximum-bit",
         "boundary"
       ]

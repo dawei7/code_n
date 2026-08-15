@@ -91,10 +91,10 @@
       ]
     },
     {
-      "id": "hidden-alternating",
-      "name": "hidden: alternating bits",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alternating",
+      "name": "alternating bits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "head": [
           1,
@@ -121,15 +121,14 @@
       },
       "expected": 699050,
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
     {
-      "id": "hidden-thirty-ones",
-      "name": "hidden: maximum-length all-one list",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-thirty-ones",
+      "name": "maximum-length all-one list",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "head": [
           1,
@@ -166,7 +165,6 @@
       },
       "expected": 1073741823,
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

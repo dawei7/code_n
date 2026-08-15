@@ -135,10 +135,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: blocked start",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "blocked start",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "forest": [
           [
@@ -153,15 +153,14 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "blocked-start"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: detour around obstacles",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "detour around obstacles",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "forest": [
           [
@@ -183,15 +182,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "detour"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: single starting tree",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-3",
+      "name": "single starting tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "forest": [
           [
@@ -201,7 +199,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "tree-at-start"
       ]
     }

@@ -120,10 +120,10 @@
       ]
     },
     {
-      "id": "real-large-level-sums",
-      "name": "real: level sums exceed 32-bit arithmetic",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-level-sums",
+      "name": "level sums exceed 32-bit arithmetic",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1000000000,
@@ -142,10 +142,10 @@
       ]
     },
     {
-      "id": "real-sparse-minimum",
-      "name": "real: missing children still share one level",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-sparse-minimum",
+      "name": "missing children still share one level",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           20,
@@ -163,10 +163,10 @@
       ]
     },
     {
-      "id": "real-right-skewed",
-      "name": "real: minimum lies at the end of a right chain",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-right-skewed",
+      "name": "minimum lies at the end of a right chain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           9,
@@ -185,10 +185,10 @@
       ]
     },
     {
-      "id": "real-left-skewed",
-      "name": "real: minimum lies at the end of a left chain",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-left-skewed",
+      "name": "minimum lies at the end of a left chain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           4,
@@ -204,10 +204,10 @@
       ]
     },
     {
-      "id": "real-middle-minimum",
-      "name": "real: middle level is below both neighbors",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-middle-minimum",
+      "name": "middle level is below both neighbors",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           100,
@@ -225,10 +225,10 @@
       ]
     },
     {
-      "id": "real-nonadjacent-tie",
-      "name": "real: root ties a deeper minimum level",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-nonadjacent-tie",
+      "name": "root ties a deeper minimum level",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           5,
@@ -248,4 +248,3 @@
     }
   ]
 }
-

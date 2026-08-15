@@ -7,72 +7,152 @@
       "name": "sample: two disjoint closed intervals",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "abcdbaefab", "k": 2},
+      "input": {
+        "s": "abcdbaefab",
+        "k": 2
+      },
       "expected": true,
-      "tags": ["sample", "disjoint"]
+      "tags": [
+        "sample",
+        "disjoint"
+      ]
     },
     {
       "id": "sample-not-enough-substrings",
       "name": "sample: requested count exceeds maximum",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "cdefdc", "k": 3},
+      "input": {
+        "s": "cdefdc",
+        "k": 3
+      },
       "expected": false,
-      "tags": ["sample", "insufficient"]
+      "tags": [
+        "sample",
+        "insufficient"
+      ]
     },
     {
       "id": "sample-zero-request",
       "name": "sample: zero substrings are always selectable",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "abeabe", "k": 0},
+      "input": {
+        "s": "abeabe",
+        "k": 0
+      },
       "expected": true,
-      "tags": ["sample", "zero"]
+      "tags": [
+        "sample",
+        "zero"
+      ]
     },
     {
       "id": "trial-whole-string-excluded",
       "name": "trial: only closed interval is the whole string",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "aa", "k": 1},
+      "input": {
+        "s": "aa",
+        "k": 1
+      },
       "expected": false,
-      "tags": ["trial", "whole-string"]
+      "tags": [
+        "trial",
+        "whole-string"
+      ]
     },
     {
       "id": "trial-two-singletons",
       "name": "trial: both distinct characters form singletons",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "ab", "k": 2},
+      "input": {
+        "s": "ab",
+        "k": 2
+      },
       "expected": true,
-      "tags": ["trial", "singletons"]
+      "tags": [
+        "trial",
+        "singletons"
+      ]
     },
     {
-      "id": "real-nested-intervals",
-      "name": "real: choose inner intervals instead of their container",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abbaccd", "k": 3},
+      "id": "trial-nested-intervals",
+      "name": "choose inner intervals instead of their container",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abbaccd",
+        "k": 3
+      },
       "expected": true,
-      "tags": ["real", "nested", "greedy"]
+      "tags": [
+        "real",
+        "nested",
+        "greedy"
+      ]
     },
     {
-      "id": "real-overlap-limits-count",
-      "name": "real: overlapping choices limit the maximum count",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abac", "k": 3},
+      "id": "trial-overlap-limits-count",
+      "name": "overlapping choices limit the maximum count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abac",
+        "k": 3
+      },
       "expected": false,
-      "tags": ["real", "overlap"]
+      "tags": [
+        "real",
+        "overlap"
+      ]
     },
     {
-      "id": "real-all-letters-distinct",
-      "name": "real: every alphabet letter is an independent singleton",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcdefghijklmnopqrstuvwxyz", "k": 26},
+      "id": "trial-all-letters-distinct",
+      "name": "every alphabet letter is an independent singleton",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyz",
+        "k": 26
+      },
       "expected": true,
-      "tags": ["real", "maximum-k", "singletons"]
+      "tags": [
+        "real",
+        "maximum-k",
+        "singletons"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "k": 2
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa",
+        "k": 2
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
     }
   ]
 }

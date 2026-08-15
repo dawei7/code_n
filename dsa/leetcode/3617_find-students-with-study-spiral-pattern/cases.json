@@ -610,10 +610,10 @@
       ]
     },
     {
-      "id": "real-same-date-order",
-      "name": "hidden: session id orders sessions sharing dates",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-same-date-order",
+      "name": "session id orders sessions sharing dates",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "students": [
@@ -691,16 +691,15 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "same-date",
         "session-order"
       ]
     },
     {
-      "id": "real-result-ordering",
-      "name": "hidden: cycle length precedes total hours in ordering",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-result-ordering",
+      "name": "cycle length precedes total hours in ordering",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "students": [
@@ -900,16 +899,15 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "output-order",
         "tie-break"
       ]
     },
     {
-      "id": "real-late-subject-and-missing",
-      "name": "hidden: late distinct subject breaks the modulo pattern",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-late-subject-and-missing",
+      "name": "late distinct subject breaks the modulo pattern",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "students": [
@@ -998,7 +996,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "invalid-pattern",
         "no-sessions"
       ]

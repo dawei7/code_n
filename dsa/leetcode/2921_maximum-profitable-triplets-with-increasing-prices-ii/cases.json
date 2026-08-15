@@ -131,10 +131,10 @@
       "expected": 212
     },
     {
-      "id": "real-profitable-index-trap",
-      "name": "hidden: an early high-profit price cannot serve as a valid left item",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-profitable-index-trap",
+      "name": "an early high-profit price cannot serve as a valid left item",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           3,
@@ -150,16 +150,15 @@
         ]
       },
       "tags": [
-        "hidden",
         "index-order"
       ],
       "expected": 111
     },
     {
-      "id": "real-minimum-length",
-      "name": "hidden: exactly three increasing items",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-minimum-length",
+      "name": "exactly three increasing items",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           1,
@@ -173,16 +172,15 @@
         ]
       },
       "tags": [
-        "hidden",
         "minimum-size"
       ],
       "expected": 31
     },
     {
-      "id": "real-maximum-boundaries",
-      "name": "hidden: maximum prices and profits preserve the full sum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-boundaries",
+      "name": "maximum prices and profits preserve the full sum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           4998,
@@ -196,7 +194,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "boundary"
       ],
       "expected": 2999997

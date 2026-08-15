@@ -1,11 +1,133 @@
-{"challenge_id":"lc_2998","cases":[
-{"id":"sample-divide-by-five","name":"sample: adjust then divide by five twice","kind":"sample","visible":true,"input":{"x":26,"y":1},"expected":3,"tags":["sample"]},
-{"id":"sample-round-up","name":"sample: round upward before division","kind":"sample","visible":true,"input":{"x":54,"y":2},"expected":4,"tags":["sample","round-up"]},
-{"id":"sample-target-larger","name":"sample: target is larger","kind":"sample","visible":true,"input":{"x":25,"y":30},"expected":5,"tags":["sample","increments"]},
-{"id":"trial-already-equal","name":"trial: values already equal","kind":"trial","visible":true,"input":{"x":73,"y":73},"expected":0,"tags":["equal"]},
-{"id":"trial-exact-eleven","name":"trial: divide by eleven once","kind":"trial","visible":true,"input":{"x":11,"y":1},"expected":1,"tags":["division"]},
-{"id":"trial-combined-route","name":"trial: combine adjustment and division","kind":"trial","visible":true,"input":{"x":37,"y":3},"expected":5,"tags":["mixed"]},
-{"id":"real-upper-start","name":"real: upper-bound starting value","kind":"real","visible":false,"input":{"x":10000,"y":1},"expected":8,"tags":["hidden","boundary"]},
-{"id":"real-upper-target","name":"real: upper-bound target above start","kind":"real","visible":false,"input":{"x":9999,"y":10000},"expected":1,"tags":["hidden","boundary"]},
-{"id":"real-five-then-unit","name":"real: divide then decrement","kind":"real","visible":false,"input":{"x":10,"y":1},"expected":2,"tags":["hidden","division"]}
-]}
+{
+  "challenge_id": "lc_2998",
+  "cases": [
+    {
+      "id": "sample-divide-by-five",
+      "name": "sample: adjust then divide by five twice",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "x": 26,
+        "y": 1
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-round-up",
+      "name": "sample: round upward before division",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "x": 54,
+        "y": 2
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "round-up"
+      ]
+    },
+    {
+      "id": "sample-target-larger",
+      "name": "sample: target is larger",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "x": 25,
+        "y": 30
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "increments"
+      ]
+    },
+    {
+      "id": "trial-already-equal",
+      "name": "trial: values already equal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": 73,
+        "y": 73
+      },
+      "expected": 0,
+      "tags": [
+        "equal"
+      ]
+    },
+    {
+      "id": "trial-exact-eleven",
+      "name": "trial: divide by eleven once",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": 11,
+        "y": 1
+      },
+      "expected": 1,
+      "tags": [
+        "division"
+      ]
+    },
+    {
+      "id": "trial-combined-route",
+      "name": "trial: combine adjustment and division",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": 37,
+        "y": 3
+      },
+      "expected": 5,
+      "tags": [
+        "mixed"
+      ]
+    },
+    {
+      "id": "trial-upper-start",
+      "name": "upper-bound starting value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": 10000,
+        "y": 1
+      },
+      "expected": 8,
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-upper-target",
+      "name": "upper-bound target above start",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": 9999,
+        "y": 10000
+      },
+      "expected": 1,
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-five-then-unit",
+      "name": "divide then decrement",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": 10,
+        "y": 1
+      },
+      "expected": 2,
+      "tags": [
+        "division"
+      ]
+    }
+  ]
+}

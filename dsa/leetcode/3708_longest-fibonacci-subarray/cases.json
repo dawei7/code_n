@@ -7,108 +7,282 @@
       "name": "sample: the longest Fibonacci run lies inside the array",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 1, 1, 1, 2, 3, 5, 1]},
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          3,
+          5,
+          1
+        ]
+      },
       "expected": 5,
-      "tags": ["sample", "interior-run"]
+      "tags": [
+        "sample",
+        "interior-run"
+      ]
     },
     {
       "id": "sample-full-array",
       "name": "sample: the complete array follows the recurrence",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [5, 2, 7, 9, 16]},
+      "input": {
+        "nums": [
+          5,
+          2,
+          7,
+          9,
+          16
+        ]
+      },
       "expected": 5,
-      "tags": ["sample", "full-array"]
+      "tags": [
+        "sample",
+        "full-array"
+      ]
     },
     {
       "id": "sample-large-no-triple",
       "name": "sample: equal maximum values fail the third-term equation",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1000000000, 1000000000, 1000000000]},
+      "input": {
+        "nums": [
+          1000000000,
+          1000000000,
+          1000000000
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "value-boundary", "length-two"]
+      "tags": [
+        "sample",
+        "value-boundary",
+        "length-two"
+      ]
     },
     {
       "id": "trial-minimum-valid",
       "name": "trial: a three-value array satisfies one recurrence",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 1, 2]},
+      "input": {
+        "nums": [
+          1,
+          1,
+          2
+        ]
+      },
       "expected": 3,
-      "tags": ["trial", "minimum-length", "valid-triple"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "valid-triple"
+      ]
     },
     {
       "id": "trial-minimum-invalid",
       "name": "trial: a failed three-value array still contains valid pairs",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 1, 1]},
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ]
+      },
       "expected": 2,
-      "tags": ["trial", "minimum-length", "length-two"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "length-two"
+      ]
     },
     {
       "id": "trial-classic-sequence",
       "name": "trial: a standard Fibonacci progression uses the full array",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 3, 5, 8, 13, 21]},
+      "input": {
+        "nums": [
+          2,
+          3,
+          5,
+          8,
+          13,
+          21
+        ]
+      },
       "expected": 6,
-      "tags": ["trial", "full-array"]
+      "tags": [
+        "trial",
+        "full-array"
+      ]
     },
     {
-      "id": "real-restart-overlap",
-      "name": "hidden: the pair surrounding a failure begins a longer run",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 3, 4, 7, 11, 18]},
+      "id": "trial-restart-overlap",
+      "name": "the pair surrounding a failure begins a longer run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          7,
+          11,
+          18
+        ]
+      },
       "expected": 5,
-      "tags": ["hidden", "reset", "overlapping-runs"]
+      "tags": [
+        "reset",
+        "overlapping-runs"
+      ]
     },
     {
-      "id": "real-equal-best-runs",
-      "name": "hidden: two separate runs share the maximum length",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 3, 9, 4, 13]},
+      "id": "trial-equal-best-runs",
+      "name": "two separate runs share the maximum length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          9,
+          4,
+          13
+        ]
+      },
       "expected": 3,
-      "tags": ["hidden", "multiple-runs"]
+      "tags": [
+        "multiple-runs"
+      ]
     },
     {
-      "id": "real-upper-bound-valid-sum",
-      "name": "hidden: two half-billion values produce the maximum legal next value",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [500000000, 500000000, 1000000000]},
+      "id": "trial-upper-bound-valid-sum",
+      "name": "two half-billion values produce the maximum legal next value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          500000000,
+          500000000,
+          1000000000
+        ]
+      },
       "expected": 3,
-      "tags": ["hidden", "value-boundary", "valid-triple"]
+      "tags": [
+        "value-boundary",
+        "valid-triple"
+      ]
     },
     {
-      "id": "real-sum-exceeds-bound",
-      "name": "hidden: a sum above the element bound cannot match the next value",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [600000000, 600000000, 1000000000, 1]},
+      "id": "trial-sum-exceeds-bound",
+      "name": "a sum above the element bound cannot match the next value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          600000000,
+          600000000,
+          1000000000,
+          1
+        ]
+      },
       "expected": 2,
-      "tags": ["hidden", "large-sum", "length-two"]
+      "tags": [
+        "large-sum",
+        "length-two"
+      ]
     },
     {
-      "id": "real-run-at-end",
-      "name": "hidden: the longest recurrence begins after several failures",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [9, 9, 4, 6, 10, 16, 26, 42]},
+      "id": "trial-run-at-end",
+      "name": "the longest recurrence begins after several failures",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          9,
+          4,
+          6,
+          10,
+          16,
+          26,
+          42
+        ]
+      },
       "expected": 6,
-      "tags": ["hidden", "suffix-run"]
+      "tags": [
+        "suffix-run"
+      ]
     },
     {
-      "id": "real-all-ones",
-      "name": "hidden: repeated ones never form a valid third term",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]},
+      "id": "trial-all-ones",
+      "name": "repeated ones never form a valid third term",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
       "expected": 2,
-      "tags": ["hidden", "repeated-values", "full-scan"]
+      "tags": [
+        "repeated-values",
+        "full-scan"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

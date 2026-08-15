@@ -59,91 +59,84 @@
       ]
     },
     {
-      "id": "real-paired-zeroes",
-      "name": "hidden: zeroes lead both constructed numbers",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-paired-zeroes",
+      "name": "zeroes lead both constructed numbers",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 1001
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "leading-zeroes"
       ]
     },
     {
-      "id": "real-duplicate-middle-digits",
-      "name": "hidden: duplicate digits are distributed evenly",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicate-middle-digits",
+      "name": "duplicate digits are distributed evenly",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 2932
       },
       "expected": 52,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "real-nine-repeated-digits",
-      "name": "hidden: longest ordinary all-nine input",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-nine-repeated-digits",
+      "name": "longest ordinary all-nine input",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 999999999
       },
       "expected": 109998,
       "tags": [
-        "hidden",
         "nine-digits"
       ]
     },
     {
-      "id": "real-maximum-input",
-      "name": "hidden: maximum input places nine zeroes first",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-input",
+      "name": "maximum input places nine zeroes first",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 1000000000
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "maximum-input",
         "ten-digits"
       ]
     },
     {
-      "id": "real-all-distinct-nonzero",
-      "name": "hidden: ascending place-value assignment",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-distinct-nonzero",
+      "name": "ascending place-value assignment",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 123456789
       },
       "expected": 16047,
       "tags": [
-        "hidden",
         "distinct-digits"
       ]
     },
     {
-      "id": "real-many-zeroes",
-      "name": "hidden: zeroes consume most positions",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-zeroes",
+      "name": "zeroes consume most positions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 100000
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "leading-zeroes",
         "even-digit-count"
       ]
     }
   ]
 }
-

@@ -328,6 +328,42 @@
         "maximum-dictionary-size",
         "unique-words"
       ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "words": [
+          "abc",
+          "123"
+        ]
+      },
+      "expected": "a",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa",
+        "words": [
+          "abc",
+          "123"
+        ]
+      },
+      "expected": "aaa",
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
     }
   ]
 }

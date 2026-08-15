@@ -71,10 +71,10 @@
       ]
     },
     {
-      "id": "real-enter-leave-z",
-      "name": "hidden: enter and leave z repeatedly",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-enter-leave-z",
+      "name": "enter and leave z repeatedly",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": "yzyz"
       },
@@ -85,10 +85,10 @@
       ]
     },
     {
-      "id": "real-alphabet",
-      "name": "hidden: increasing board traversal",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alphabet",
+      "name": "increasing board traversal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": "abcdefghijklmnopqrstuvwxyz"
       },
@@ -99,10 +99,10 @@
       ]
     },
     {
-      "id": "real-zebra",
-      "name": "hidden: varied long movements",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zebra",
+      "name": "varied long movements",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": "zebra"
       },
@@ -110,6 +110,34 @@
       "tags": [
         "real",
         "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": "l"
+      },
+      "expected": "RDD!",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": "lll"
+      },
+      "expected": "RDD!!!",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

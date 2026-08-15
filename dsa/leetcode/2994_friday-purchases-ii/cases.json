@@ -1,8 +1,383 @@
-{"challenge_id":"lc_2994","cases":[
-{"id":"sample-zero-filled-fridays","name":"sample: missing Fridays receive zero","kind":"sample","visible":true,"input":{"tables":{"Purchases":[{"user_id":11,"purchase_date":"2023-11-07","amount_spend":1126},{"user_id":15,"purchase_date":"2023-11-30","amount_spend":7473},{"user_id":17,"purchase_date":"2023-11-14","amount_spend":2414},{"user_id":12,"purchase_date":"2023-11-24","amount_spend":9692},{"user_id":8,"purchase_date":"2023-11-03","amount_spend":5117},{"user_id":1,"purchase_date":"2023-11-16","amount_spend":5241},{"user_id":10,"purchase_date":"2023-11-12","amount_spend":8266},{"user_id":13,"purchase_date":"2023-11-24","amount_spend":12000}]}},"expected":{"columns":["week_of_month","purchase_date","total_amount"],"rows":[[1,"2023-11-03",5117],[2,"2023-11-10",0],[3,"2023-11-17",0],[4,"2023-11-24",21692]]},"validator":{"kind":"ordered_table"},"tags":["sample","zero-fill"]},
-{"id":"trial-no-friday-purchases","name":"trial: every Friday is zero","kind":"trial","visible":true,"input":{"tables":{"Purchases":[{"user_id":1,"purchase_date":"2023-11-01","amount_spend":10},{"user_id":2,"purchase_date":"2023-11-30","amount_spend":20}]}},"expected":{"columns":["week_of_month","purchase_date","total_amount"],"rows":[[1,"2023-11-03",0],[2,"2023-11-10",0],[3,"2023-11-17",0],[4,"2023-11-24",0]]},"validator":{"kind":"ordered_table"},"tags":["zero-fill"]},
-{"id":"trial-all-fridays","name":"trial: all four Friday totals","kind":"trial","visible":true,"input":{"tables":{"Purchases":[{"user_id":1,"purchase_date":"2023-11-03","amount_spend":1},{"user_id":1,"purchase_date":"2023-11-10","amount_spend":2},{"user_id":1,"purchase_date":"2023-11-17","amount_spend":3},{"user_id":1,"purchase_date":"2023-11-24","amount_spend":4}]}},"expected":{"columns":["week_of_month","purchase_date","total_amount"],"rows":[[1,"2023-11-03",1],[2,"2023-11-10",2],[3,"2023-11-17",3],[4,"2023-11-24",4]]},"validator":{"kind":"ordered_table"},"tags":["all-weeks"]},
-{"id":"trial-same-date-sum","name":"trial: aggregate several purchases on one Friday","kind":"trial","visible":true,"input":{"tables":{"Purchases":[{"user_id":1,"purchase_date":"2023-11-10","amount_spend":5},{"user_id":2,"purchase_date":"2023-11-10","amount_spend":7}]}},"expected":{"columns":["week_of_month","purchase_date","total_amount"],"rows":[[1,"2023-11-03",0],[2,"2023-11-10",12],[3,"2023-11-17",0],[4,"2023-11-24",0]]},"validator":{"kind":"ordered_table"},"tags":["aggregation"]},
-{"id":"real-nonfriday-excluded","name":"real: weekday amount does not affect Friday","kind":"real","visible":false,"input":{"tables":{"Purchases":[{"user_id":1,"purchase_date":"2023-11-17","amount_spend":100},{"user_id":2,"purchase_date":"2023-11-16","amount_spend":1000}]}},"expected":{"columns":["week_of_month","purchase_date","total_amount"],"rows":[[1,"2023-11-03",0],[2,"2023-11-10",0],[3,"2023-11-17",100],[4,"2023-11-24",0]]},"validator":{"kind":"ordered_table"},"tags":["hidden","weekday-filter"]},
-{"id":"real-zero-purchase","name":"real: explicit zero purchase retains calendar row","kind":"real","visible":false,"input":{"tables":{"Purchases":[{"user_id":1,"purchase_date":"2023-11-24","amount_spend":0}]}},"expected":{"columns":["week_of_month","purchase_date","total_amount"],"rows":[[1,"2023-11-03",0],[2,"2023-11-10",0],[3,"2023-11-17",0],[4,"2023-11-24",0]]},"validator":{"kind":"ordered_table"},"tags":["hidden","zero"]}
-]}
+{
+  "challenge_id": "lc_2994",
+  "cases": [
+    {
+      "id": "sample-zero-filled-fridays",
+      "name": "sample: missing Fridays receive zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Purchases": [
+            {
+              "user_id": 11,
+              "purchase_date": "2023-11-07",
+              "amount_spend": 1126
+            },
+            {
+              "user_id": 15,
+              "purchase_date": "2023-11-30",
+              "amount_spend": 7473
+            },
+            {
+              "user_id": 17,
+              "purchase_date": "2023-11-14",
+              "amount_spend": 2414
+            },
+            {
+              "user_id": 12,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 9692
+            },
+            {
+              "user_id": 8,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5117
+            },
+            {
+              "user_id": 1,
+              "purchase_date": "2023-11-16",
+              "amount_spend": 5241
+            },
+            {
+              "user_id": 10,
+              "purchase_date": "2023-11-12",
+              "amount_spend": 8266
+            },
+            {
+              "user_id": 13,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 12000
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "week_of_month",
+          "purchase_date",
+          "total_amount"
+        ],
+        "rows": [
+          [
+            1,
+            "2023-11-03",
+            5117
+          ],
+          [
+            2,
+            "2023-11-10",
+            0
+          ],
+          [
+            3,
+            "2023-11-17",
+            0
+          ],
+          [
+            4,
+            "2023-11-24",
+            21692
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "zero-fill"
+      ]
+    },
+    {
+      "id": "trial-no-friday-purchases",
+      "name": "trial: every Friday is zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Purchases": [
+            {
+              "user_id": 1,
+              "purchase_date": "2023-11-01",
+              "amount_spend": 10
+            },
+            {
+              "user_id": 2,
+              "purchase_date": "2023-11-30",
+              "amount_spend": 20
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "week_of_month",
+          "purchase_date",
+          "total_amount"
+        ],
+        "rows": [
+          [
+            1,
+            "2023-11-03",
+            0
+          ],
+          [
+            2,
+            "2023-11-10",
+            0
+          ],
+          [
+            3,
+            "2023-11-17",
+            0
+          ],
+          [
+            4,
+            "2023-11-24",
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "zero-fill"
+      ]
+    },
+    {
+      "id": "trial-all-fridays",
+      "name": "trial: all four Friday totals",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Purchases": [
+            {
+              "user_id": 1,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 1,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 1,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 1,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "week_of_month",
+          "purchase_date",
+          "total_amount"
+        ],
+        "rows": [
+          [
+            1,
+            "2023-11-03",
+            1
+          ],
+          [
+            2,
+            "2023-11-10",
+            2
+          ],
+          [
+            3,
+            "2023-11-17",
+            3
+          ],
+          [
+            4,
+            "2023-11-24",
+            4
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "all-weeks"
+      ]
+    },
+    {
+      "id": "trial-same-date-sum",
+      "name": "trial: aggregate several purchases on one Friday",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Purchases": [
+            {
+              "user_id": 1,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 2,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 7
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "week_of_month",
+          "purchase_date",
+          "total_amount"
+        ],
+        "rows": [
+          [
+            1,
+            "2023-11-03",
+            0
+          ],
+          [
+            2,
+            "2023-11-10",
+            12
+          ],
+          [
+            3,
+            "2023-11-17",
+            0
+          ],
+          [
+            4,
+            "2023-11-24",
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "aggregation"
+      ]
+    },
+    {
+      "id": "trial-nonfriday-excluded",
+      "name": "weekday amount does not affect Friday",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Purchases": [
+            {
+              "user_id": 1,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 100
+            },
+            {
+              "user_id": 2,
+              "purchase_date": "2023-11-16",
+              "amount_spend": 1000
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "week_of_month",
+          "purchase_date",
+          "total_amount"
+        ],
+        "rows": [
+          [
+            1,
+            "2023-11-03",
+            0
+          ],
+          [
+            2,
+            "2023-11-10",
+            0
+          ],
+          [
+            3,
+            "2023-11-17",
+            100
+          ],
+          [
+            4,
+            "2023-11-24",
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "weekday-filter"
+      ]
+    },
+    {
+      "id": "trial-zero-purchase",
+      "name": "explicit zero purchase retains calendar row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Purchases": [
+            {
+              "user_id": 1,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "week_of_month",
+          "purchase_date",
+          "total_amount"
+        ],
+        "rows": [
+          [
+            1,
+            "2023-11-03",
+            0
+          ],
+          [
+            2,
+            "2023-11-10",
+            0
+          ],
+          [
+            3,
+            "2023-11-17",
+            0
+          ],
+          [
+            4,
+            "2023-11-24",
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "zero"
+      ]
+    }
+  ]
+}

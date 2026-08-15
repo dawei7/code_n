@@ -1,10 +1,151 @@
-{"challenge_id":"lc_3008","cases":[
-{"id":"sample-two-beautiful","name":"sample: two nearby pattern pairs","kind":"sample","visible":true,"input":{"s":"isawsquirrelnearmysquirrelhouseohmy","a":"my","b":"squirrel","k":15},"expected":[16,33],"tags":["sample"]},
-{"id":"sample-same-pattern","name":"sample: one occurrence witnesses both patterns","kind":"sample","visible":true,"input":{"s":"abcd","a":"a","b":"a","k":4},"expected":[0],"tags":["sample","same-pattern"]},
-{"id":"trial-overlapping","name":"trial: overlapping KMP matches","kind":"trial","visible":true,"input":{"s":"aaaaa","a":"aa","b":"aaa","k":1},"expected":[0,1,2,3],"tags":["overlap"]},
-{"id":"trial-pattern-longer","name":"trial: second pattern is longer than text","kind":"trial","visible":true,"input":{"s":"abc","a":"a","b":"abcd","k":3},"expected":[],"tags":["length-boundary"]},
-{"id":"trial-inclusive-distance","name":"trial: witness lies exactly k positions away","kind":"trial","visible":true,"input":{"s":"abxxxxcd","a":"ab","b":"cd","k":6},"expected":[0],"tags":["distance-boundary"]},
-{"id":"real-repetitive-no-match","name":"real: long shared prefix never completes","kind":"real","visible":false,"input":{"s":"aaaaaaaaaaaaaaaaaaaa","a":"aa","b":"aaaaab","k":20},"expected":[],"tags":["hidden","failure-links"]},
-{"id":"real-both-sides","name":"real: witnesses appear before and after","kind":"real","visible":false,"input":{"s":"bxxaxxbxxa","a":"a","b":"b","k":3},"expected":[3,9],"tags":["hidden","merge"]},
-{"id":"real-end-boundary","name":"real: long pattern ends at text boundary","kind":"real","visible":false,"input":{"s":"prefixmiddleending","a":"ending","b":"middle","k":6},"expected":[12],"tags":["hidden","boundary"]}
-]}
+{
+  "challenge_id": "lc_3008",
+  "cases": [
+    {
+      "id": "sample-two-beautiful",
+      "name": "sample: two nearby pattern pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "isawsquirrelnearmysquirrelhouseohmy",
+        "a": "my",
+        "b": "squirrel",
+        "k": 15
+      },
+      "expected": [
+        16,
+        33
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-same-pattern",
+      "name": "sample: one occurrence witnesses both patterns",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcd",
+        "a": "a",
+        "b": "a",
+        "k": 4
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "sample",
+        "same-pattern"
+      ]
+    },
+    {
+      "id": "trial-overlapping",
+      "name": "trial: overlapping KMP matches",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaaa",
+        "a": "aa",
+        "b": "aaa",
+        "k": 1
+      },
+      "expected": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "tags": [
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-pattern-longer",
+      "name": "trial: second pattern is longer than text",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "a": "a",
+        "b": "abcd",
+        "k": 3
+      },
+      "expected": [],
+      "tags": [
+        "length-boundary"
+      ]
+    },
+    {
+      "id": "trial-inclusive-distance",
+      "name": "trial: witness lies exactly k positions away",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abxxxxcd",
+        "a": "ab",
+        "b": "cd",
+        "k": 6
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "distance-boundary"
+      ]
+    },
+    {
+      "id": "trial-repetitive-no-match",
+      "name": "long shared prefix never completes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaa",
+        "a": "aa",
+        "b": "aaaaab",
+        "k": 20
+      },
+      "expected": [],
+      "tags": [
+        "failure-links"
+      ]
+    },
+    {
+      "id": "trial-both-sides",
+      "name": "witnesses appear before and after",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "bxxaxxbxxa",
+        "a": "a",
+        "b": "b",
+        "k": 3
+      },
+      "expected": [
+        3,
+        9
+      ],
+      "tags": [
+        "merge"
+      ]
+    },
+    {
+      "id": "trial-end-boundary",
+      "name": "long pattern ends at text boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "prefixmiddleending",
+        "a": "ending",
+        "b": "middle",
+        "k": 6
+      },
+      "expected": [
+        12
+      ],
+      "tags": [
+        "boundary"
+      ]
+    }
+  ]
+}

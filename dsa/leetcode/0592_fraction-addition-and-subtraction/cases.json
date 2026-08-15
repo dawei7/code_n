@@ -73,30 +73,28 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: negative improper intermediate",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "negative improper intermediate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "expression": "-7/4+3/2"
       },
       "expected": "-1/4",
       "tags": [
-        "hidden",
         "negative"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: improper positive result",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "improper positive result",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "expression": "1/2+1/2+1/2"
       },
       "expected": "3/2",
       "tags": [
-        "hidden",
         "improper"
       ]
     }

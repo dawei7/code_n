@@ -1,13 +1,152 @@
 {
   "challenge_id": "lc_3028",
   "cases": [
-    {"id":"sample-one-return","name":"sample: the final movement returns to the boundary","kind":"sample","visible":true,"input":{"nums":[2,3,-5]},"expected":1,"tags":["sample"]},
-    {"id":"sample-crossing-only","name":"sample: crossing without stopping does not count","kind":"sample","visible":true,"input":{"nums":[3,2,-3,-4]},"expected":0,"tags":["sample","crossing"]},
-    {"id":"trial-alternating","name":"every pair of opposite unit movements returns","kind":"trial","visible":true,"input":{"nums":[1,-1,1,-1,1,-1]},"expected":3,"tags":["repeated-returns"]},
-    {"id":"trial-never-returns","name":"strictly positive movements never return","kind":"trial","visible":true,"input":{"nums":[1,4,10]},"expected":0,"tags":["no-return"]},
-    {"id":"real-single","name":"hidden: one nonzero movement cannot return","kind":"real","visible":false,"input":{"nums":[-10]},"expected":0,"tags":["hidden","minimum-length"]},
-    {"id":"real-crosses-twice","name":"hidden: multiple crossings finish away from zero","kind":"real","visible":false,"input":{"nums":[5,-8,10,-9]},"expected":0,"tags":["hidden","crossing"]},
-    {"id":"real-irregular-returns","name":"hidden: irregular movements return at several prefixes","kind":"real","visible":false,"input":{"nums":[4,-1,-3,-2,2,7,-7]},"expected":3,"tags":["hidden","prefix-sum"]},
-    {"id":"real-extreme-steps","name":"hidden: maximum magnitudes cancel repeatedly","kind":"real","visible":false,"input":{"nums":[10,-10,-10,10,10,-10]},"expected":3,"tags":["hidden","boundary-values"]}
+    {
+      "id": "sample-one-return",
+      "name": "sample: the final movement returns to the boundary",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          -5
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-crossing-only",
+      "name": "sample: crossing without stopping does not count",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          2,
+          -3,
+          -4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "crossing"
+      ]
+    },
+    {
+      "id": "trial-alternating",
+      "name": "every pair of opposite unit movements returns",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          -1,
+          1,
+          -1,
+          1,
+          -1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "repeated-returns"
+      ]
+    },
+    {
+      "id": "trial-never-returns",
+      "name": "strictly positive movements never return",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          10
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "no-return"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "one nonzero movement cannot return",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -10
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-crosses-twice",
+      "name": "multiple crossings finish away from zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          -8,
+          10,
+          -9
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "crossing"
+      ]
+    },
+    {
+      "id": "trial-irregular-returns",
+      "name": "irregular movements return at several prefixes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          -1,
+          -3,
+          -2,
+          2,
+          7,
+          -7
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "prefix-sum"
+      ]
+    },
+    {
+      "id": "trial-extreme-steps",
+      "name": "maximum magnitudes cancel repeatedly",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          -10,
+          -10,
+          10,
+          10,
+          -10
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary-values"
+      ]
+    }
   ]
 }

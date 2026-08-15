@@ -1,13 +1,146 @@
 {
   "challenge_id": "lc_2523",
   "cases": [
-    {"id": "sample-1", "name": "sample: tied minimum gaps", "kind": "sample", "visible": true, "input": {"left": 10, "right": 19}, "expected": [11, 13], "tags": ["sample", "tie-breaking"]},
-    {"id": "sample-2", "name": "sample: only one prime", "kind": "sample", "visible": true, "input": {"left": 4, "right": 6}, "expected": [-1, -1], "tags": ["sample", "insufficient-primes"]},
-    {"id": "trial-smallest-primes", "name": "trial: interval includes one and the smallest primes", "kind": "trial", "visible": true, "input": {"left": 1, "right": 3}, "expected": [2, 3], "tags": ["trial", "lower-bound", "gap-one"]},
-    {"id": "trial-single-value", "name": "trial: singleton prime interval", "kind": "trial", "visible": true, "input": {"left": 17, "right": 17}, "expected": [-1, -1], "tags": ["trial", "singleton"]},
-    {"id": "real-many-tied-gaps", "name": "hidden: earliest of several equal gaps", "kind": "real", "visible": false, "input": {"left": 5, "right": 19}, "expected": [5, 7], "tags": ["hidden", "tie-breaking"]},
-    {"id": "real-no-primes", "name": "hidden: interval without primes", "kind": "real", "visible": false, "input": {"left": 14, "right": 16}, "expected": [-1, -1], "tags": ["hidden", "no-primes"]},
-    {"id": "real-moderate-range", "name": "hidden: closest pair after lower endpoint", "kind": "real", "visible": false, "input": {"left": 100, "right": 140}, "expected": [101, 103], "tags": ["hidden", "range-scan"]},
-    {"id": "real-upper-bound", "name": "hidden: range ending at maximum endpoint", "kind": "real", "visible": false, "input": {"left": 999900, "right": 1000000}, "expected": [999959, 999961], "tags": ["hidden", "upper-bound"]}
+    {
+      "id": "sample-1",
+      "name": "sample: tied minimum gaps",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "left": 10,
+        "right": 19
+      },
+      "expected": [
+        11,
+        13
+      ],
+      "tags": [
+        "sample",
+        "tie-breaking"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: only one prime",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "left": 4,
+        "right": 6
+      },
+      "expected": [
+        -1,
+        -1
+      ],
+      "tags": [
+        "sample",
+        "insufficient-primes"
+      ]
+    },
+    {
+      "id": "trial-smallest-primes",
+      "name": "trial: interval includes one and the smallest primes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "left": 1,
+        "right": 3
+      },
+      "expected": [
+        2,
+        3
+      ],
+      "tags": [
+        "trial",
+        "lower-bound",
+        "gap-one"
+      ]
+    },
+    {
+      "id": "trial-single-value",
+      "name": "trial: singleton prime interval",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "left": 17,
+        "right": 17
+      },
+      "expected": [
+        -1,
+        -1
+      ],
+      "tags": [
+        "trial",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-many-tied-gaps",
+      "name": "earliest of several equal gaps",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "left": 5,
+        "right": 19
+      },
+      "expected": [
+        5,
+        7
+      ],
+      "tags": [
+        "tie-breaking"
+      ]
+    },
+    {
+      "id": "trial-no-primes",
+      "name": "interval without primes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "left": 14,
+        "right": 16
+      },
+      "expected": [
+        -1,
+        -1
+      ],
+      "tags": [
+        "no-primes"
+      ]
+    },
+    {
+      "id": "trial-moderate-range",
+      "name": "closest pair after lower endpoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "left": 100,
+        "right": 140
+      },
+      "expected": [
+        101,
+        103
+      ],
+      "tags": [
+        "range-scan"
+      ]
+    },
+    {
+      "id": "trial-upper-bound",
+      "name": "range ending at maximum endpoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "left": 999900,
+        "right": 1000000
+      },
+      "expected": [
+        999959,
+        999961
+      ],
+      "tags": [
+        "upper-bound"
+      ]
+    }
   ]
 }

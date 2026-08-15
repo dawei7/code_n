@@ -1,15 +1,159 @@
 {
   "challenge_id": "lc_3499",
   "cases": [
-    {"id":"sample-no-trade","name":"sample: no surrounded active block","kind":"sample","visible":true,"input":{"s":"01"},"expected":1,"tags":["sample","no-trade"]},
-    {"id":"sample-activate-all-short","name":"sample: merge boundary zero runs","kind":"sample","visible":true,"input":{"s":"0100"},"expected":4,"tags":["sample","boundary-zero-runs"]},
-    {"id":"sample-activate-all-long","name":"sample: preserve leading active section","kind":"sample","visible":true,"input":{"s":"1000100"},"expected":7,"tags":["sample","activate-all"]},
-    {"id":"sample-alternating","name":"sample: choose between tied trades","kind":"sample","visible":true,"input":{"s":"01010"},"expected":4,"tags":["sample","alternating"]},
-    {"id":"trial-all-active","name":"trial: every section already active","kind":"trial","visible":true,"input":{"s":"111"},"expected":3,"tags":["trial","no-trade"]},
-    {"id":"trial-all-inactive","name":"trial: no active block to remove","kind":"trial","visible":true,"input":{"s":"000"},"expected":0,"tags":["trial","no-trade"]},
-    {"id":"real-one-internal-run","name":"real: one internal active run","kind":"real","visible":false,"input":{"s":"0011100"},"expected":7,"tags":["real","activate-all"]},
-    {"id":"real-only-boundary-ones","name":"real: active runs touch augmented boundaries","kind":"real","visible":false,"input":{"s":"110011"},"expected":4,"tags":["real","boundary-semantics"]},
-    {"id":"real-unequal-zero-runs","name":"real: select the best adjacent zero-run pair","kind":"real","visible":false,"input":{"s":"0100010"},"expected":6,"tags":["real","best-trade"]},
-    {"id":"real-three-zero-runs","name":"real: middle zero run participates in either trade","kind":"real","visible":false,"input":{"s":"0010100"},"expected":5,"tags":["real","multiple-candidates"]}
+    {
+      "id": "sample-no-trade",
+      "name": "sample: no surrounded active block",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "01"
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "no-trade"
+      ]
+    },
+    {
+      "id": "sample-activate-all-short",
+      "name": "sample: merge boundary zero runs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "0100"
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "boundary-zero-runs"
+      ]
+    },
+    {
+      "id": "sample-activate-all-long",
+      "name": "sample: preserve leading active section",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "1000100"
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "activate-all"
+      ]
+    },
+    {
+      "id": "sample-alternating",
+      "name": "sample: choose between tied trades",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "01010"
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "alternating"
+      ]
+    },
+    {
+      "id": "trial-all-active",
+      "name": "trial: every section already active",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "111"
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "no-trade"
+      ]
+    },
+    {
+      "id": "trial-all-inactive",
+      "name": "trial: no active block to remove",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "000"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "no-trade"
+      ]
+    },
+    {
+      "id": "trial-one-internal-run",
+      "name": "one internal active run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0011100"
+      },
+      "expected": 7,
+      "tags": [
+        "real",
+        "activate-all"
+      ]
+    },
+    {
+      "id": "trial-only-boundary-ones",
+      "name": "active runs touch augmented boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "110011"
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "boundary-semantics"
+      ]
+    },
+    {
+      "id": "trial-unequal-zero-runs",
+      "name": "select the best adjacent zero-run pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0100010"
+      },
+      "expected": 6,
+      "tags": [
+        "real",
+        "best-trade"
+      ]
+    },
+    {
+      "id": "trial-three-zero-runs",
+      "name": "middle zero run participates in either trade",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0010100"
+      },
+      "expected": 5,
+      "tags": [
+        "real",
+        "multiple-candidates"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    }
   ]
 }

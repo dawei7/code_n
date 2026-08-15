@@ -8,12 +8,28 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "fruits": [[2, 8], [6, 3], [8, 6]],
+        "fruits": [
+          [
+            2,
+            8
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            8,
+            6
+          ]
+        ],
         "startPos": 5,
         "k": 4
       },
       "expected": 9,
-      "tags": ["sample", "one-direction"]
+      "tags": [
+        "sample",
+        "one-direction"
+      ]
     },
     {
       "id": "sample-turn-once",
@@ -21,12 +37,41 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "fruits": [[0, 9], [4, 1], [5, 7], [6, 2], [7, 4], [10, 9]],
+        "fruits": [
+          [
+            0,
+            9
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            7,
+            4
+          ],
+          [
+            10,
+            9
+          ]
+        ],
         "startPos": 5,
         "k": 4
       },
       "expected": 14,
-      "tags": ["sample", "direction-change", "fruit-at-start"]
+      "tags": [
+        "sample",
+        "direction-change",
+        "fruit-at-start"
+      ]
     },
     {
       "id": "sample-unreachable",
@@ -34,12 +79,28 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "fruits": [[0, 3], [6, 4], [8, 5]],
+        "fruits": [
+          [
+            0,
+            3
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            8,
+            5
+          ]
+        ],
         "startPos": 3,
         "k": 2
       },
       "expected": 0,
-      "tags": ["sample", "unreachable"]
+      "tags": [
+        "sample",
+        "unreachable"
+      ]
     },
     {
       "id": "trial-zero-steps",
@@ -47,12 +108,28 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "fruits": [[4, 10], [5, 7], [6, 20]],
+        "fruits": [
+          [
+            4,
+            10
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            6,
+            20
+          ]
+        ],
         "startPos": 5,
         "k": 0
       },
       "expected": 7,
-      "tags": ["zero-budget", "fruit-at-start"]
+      "tags": [
+        "zero-budget",
+        "fruit-at-start"
+      ]
     },
     {
       "id": "trial-left-only",
@@ -60,38 +137,144 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "fruits": [[1, 4], [3, 5], [10, 100]],
+        "fruits": [
+          [
+            1,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            10,
+            100
+          ]
+        ],
         "startPos": 5,
         "k": 4
       },
       "expected": 9,
-      "tags": ["one-direction", "left"]
+      "tags": [
+        "one-direction",
+        "left"
+      ]
     },
     {
-      "id": "real-turn-cost-choice",
-      "name": "hidden: choose the cheaper turn order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-turn-cost-choice",
+      "name": "choose the cheaper turn order",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "fruits": [[2, 20], [4, 1], [7, 20]],
+        "fruits": [
+          [
+            2,
+            20
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            7,
+            20
+          ]
+        ],
         "startPos": 5,
         "k": 7
       },
       "expected": 41,
-      "tags": ["hidden", "direction-change", "route-cost"]
+      "tags": [
+        "direction-change",
+        "route-cost"
+      ]
     },
     {
-      "id": "real-distant-high-value",
-      "name": "hidden: unreachable high value must not enter the window",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-distant-high-value",
+      "name": "unreachable high value must not enter the window",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "fruits": [[10, 5], [11, 6], [30, 1000]],
+        "fruits": [
+          [
+            10,
+            5
+          ],
+          [
+            11,
+            6
+          ],
+          [
+            30,
+            1000
+          ]
+        ],
         "startPos": 10,
         "k": 2
       },
       "expected": 11,
-      "tags": ["hidden", "unreachable", "fruit-at-start"]
+      "tags": [
+        "unreachable",
+        "fruit-at-start"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "minimal value startPos=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "fruits": [
+          [
+            2,
+            8
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            8,
+            6
+          ]
+        ],
+        "startPos": 1,
+        "k": 4
+      },
+      "expected": 8,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "fruits": [
+          [
+            2,
+            8
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            8,
+            6
+          ]
+        ],
+        "startPos": 5,
+        "k": 1
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
     }
   ]
 }

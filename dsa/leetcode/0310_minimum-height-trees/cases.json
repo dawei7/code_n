@@ -152,10 +152,10 @@
       ]
     },
     {
-      "id": "real-lopsided",
-      "name": "hidden: lopsided branches share one center",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-lopsided",
+      "name": "lopsided branches share one center",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 6,
         "edges": [
@@ -185,7 +185,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "diameter"
       ]
     }

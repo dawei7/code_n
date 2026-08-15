@@ -81,10 +81,10 @@
       ]
     },
     {
-      "id": "real-mixed-subtrees",
-      "name": "hidden: mixed left and right subtrees",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-subtrees",
+      "name": "mixed left and right subtrees",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "inorder": [
           4,
@@ -113,7 +113,7 @@
         6
       ],
       "tags": [
-        "hidden"
+        "trial"
       ]
     }
   ]

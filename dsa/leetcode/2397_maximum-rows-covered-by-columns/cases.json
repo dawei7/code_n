@@ -2,13 +2,278 @@
   "schema_version": 1,
   "challenge_id": "lc_2397",
   "cases": [
-    {"id":"sample-1","name":"sample: choose two of three columns","kind":"sample","visible":true,"input":{"matrix":[[0,0,0],[1,0,1],[0,1,1],[0,0,1]],"numSelect":2},"expected":3,"tags":["sample","zero-row"]},
-    {"id":"sample-2","name":"sample: selecting the only column covers all rows","kind":"sample","visible":true,"input":{"matrix":[[1],[0]],"numSelect":1},"expected":2,"tags":["sample","single-column"]},
-    {"id":"trial-all-zero","name":"trial: every all-zero row is covered","kind":"trial","visible":true,"input":{"matrix":[[0,0,0],[0,0,0],[0,0,0]],"numSelect":1},"expected":3,"tags":["zero-rows"]},
-    {"id":"trial-select-all","name":"trial: selecting every column covers every row","kind":"trial","visible":true,"input":{"matrix":[[1,0,1],[0,1,0],[1,1,1]],"numSelect":3},"expected":3,"tags":["all-columns"]},
-    {"id":"trial-too-wide-row","name":"trial: row requiring too many columns remains uncovered","kind":"trial","visible":true,"input":{"matrix":[[1,1,1],[0,0,0],[1,0,0]],"numSelect":1},"expected":2,"tags":["wide-row","zero-row"]},
-    {"id":"real-duplicate-rows","name":"hidden: duplicate rows count independently","kind":"real","visible":false,"input":{"matrix":[[1,0,1,0],[1,0,1,0],[0,1,0,0],[0,0,0,0]],"numSelect":2},"expected":3,"tags":["hidden","duplicates"]},
-    {"id":"real-competing-pairs","name":"hidden: choose the pair covering the largest family","kind":"real","visible":false,"input":{"matrix":[[1,1,0,0],[1,0,1,0],[0,1,1,0],[1,0,0,0],[0,0,0,1]],"numSelect":2},"expected":3,"tags":["hidden","competing"]},
-    {"id":"real-single-selection","name":"hidden: one column covers its singleton rows and zero row","kind":"real","visible":false,"input":{"matrix":[[1,0,0],[0,1,0],[0,1,0],[0,0,1],[0,0,0]],"numSelect":1},"expected":3,"tags":["hidden","single-column"]}
+    {
+      "id": "sample-1",
+      "name": "sample: choose two of three columns",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "numSelect": 2
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "zero-row"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: selecting the only column covers all rows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "matrix": [
+          [
+            1
+          ],
+          [
+            0
+          ]
+        ],
+        "numSelect": 1
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "single-column"
+      ]
+    },
+    {
+      "id": "trial-all-zero",
+      "name": "trial: every all-zero row is covered",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "numSelect": 1
+      },
+      "expected": 3,
+      "tags": [
+        "zero-rows"
+      ]
+    },
+    {
+      "id": "trial-select-all",
+      "name": "trial: selecting every column covers every row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "matrix": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ],
+        "numSelect": 3
+      },
+      "expected": 3,
+      "tags": [
+        "all-columns"
+      ]
+    },
+    {
+      "id": "trial-too-wide-row",
+      "name": "trial: row requiring too many columns remains uncovered",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "matrix": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ]
+        ],
+        "numSelect": 1
+      },
+      "expected": 2,
+      "tags": [
+        "wide-row",
+        "zero-row"
+      ]
+    },
+    {
+      "id": "trial-duplicate-rows",
+      "name": "duplicate rows count independently",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "matrix": [
+          [
+            1,
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "numSelect": 2
+      },
+      "expected": 3,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-competing-pairs",
+      "name": "choose the pair covering the largest family",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "matrix": [
+          [
+            1,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "numSelect": 2
+      },
+      "expected": 3,
+      "tags": [
+        "competing"
+      ]
+    },
+    {
+      "id": "trial-single-selection",
+      "name": "one column covers its singleton rows and zero row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "matrix": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "numSelect": 1
+      },
+      "expected": 3,
+      "tags": [
+        "single-column"
+      ]
+    }
   ]
 }

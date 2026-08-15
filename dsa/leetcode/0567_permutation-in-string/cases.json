@@ -78,50 +78,46 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: repeated target letters",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "repeated target letters",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s1": "aabc",
         "s2": "eidbaacboo"
       },
       "expected": true,
       "tags": [
-        "hidden",
         "frequency"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: near match with wrong multiplicities",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "near match with wrong multiplicities",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s1": "hello",
         "s2": "ooolleoooleh"
       },
       "expected": false,
       "tags": [
-        "hidden",
         "frequency"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: reversed target near the end",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-3",
+      "name": "reversed target near the end",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s1": "xyz",
         "s2": "afdgzyxksldfm"
       },
       "expected": true,
       "tags": [
-        "hidden",
         "frequency"
       ]
     }
   ]
 }
-

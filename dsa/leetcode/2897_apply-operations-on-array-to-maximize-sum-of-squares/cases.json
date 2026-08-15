@@ -6,54 +6,112 @@
       "name": "sample: operations concentrate bits into two selected values",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 6, 5, 8], "k": 2},
+      "input": {
+        "nums": [
+          2,
+          6,
+          5,
+          8
+        ],
+        "k": 2
+      },
       "expected": 261,
-      "tags": ["sample", "bit-concentration"]
+      "tags": [
+        "sample",
+        "bit-concentration"
+      ]
     },
     {
       "id": "sample-no-operation-needed",
       "name": "sample: the original values already attain the optimum",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [4, 5, 4, 7], "k": 3},
+      "input": {
+        "nums": [
+          4,
+          5,
+          4,
+          7
+        ],
+        "k": 3
+      },
       "expected": 90,
-      "tags": ["sample", "unchanged-optimum"]
+      "tags": [
+        "sample",
+        "unchanged-optimum"
+      ]
     },
     {
       "id": "trial-single-element",
       "name": "one value is selected without redistribution",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1], "k": 1},
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 1
+      },
       "expected": 1,
-      "tags": ["boundary", "single-element"]
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
     },
     {
       "id": "trial-disjoint-bits-combine",
       "name": "disjoint bits combine into one selected value",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2], "k": 1},
+      "input": {
+        "nums": [
+          1,
+          2
+        ],
+        "k": 1
+      },
       "expected": 9,
-      "tags": ["and-or-operation", "single-selection"]
+      "tags": [
+        "and-or-operation",
+        "single-selection"
+      ]
     },
     {
       "id": "trial-two-dense-values",
       "name": "each bit occurring twice forms two identical dense values",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [3, 5, 6], "k": 2},
+      "input": {
+        "nums": [
+          3,
+          5,
+          6
+        ],
+        "k": 2
+      },
       "expected": 98,
-      "tags": ["repeated-bit-counts", "convexity"]
+      "tags": [
+        "repeated-bit-counts",
+        "convexity"
+      ]
     },
     {
-      "id": "real-modulo-large-squares",
-      "name": "hidden: large squares are reduced modulo the required modulus",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000000000, 1000000000], "k": 2},
+      "id": "trial-modulo-large-squares",
+      "name": "large squares are reduced modulo the required modulus",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          1000000000
+        ],
+        "k": 2
+      },
       "expected": 98,
-      "tags": ["hidden", "modulo", "maximum-values"]
+      "tags": [
+        "modulo",
+        "maximum-values"
+      ]
     }
   ]
 }

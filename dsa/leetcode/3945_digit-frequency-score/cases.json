@@ -7,150 +7,257 @@
       "name": "sample: repeated digit contributes once per occurrence",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 122},
+      "input": {
+        "n": 122
+      },
       "expected": 5,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "repeated-digit"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "repeated-digit"
+      ]
     },
     {
       "id": "sample-internal-zero",
       "name": "sample: zero digit contributes nothing",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 101},
+      "input": {
+        "n": 101
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "zero-digit"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "zero-digit"
+      ]
     },
     {
       "id": "trial-smallest-value",
       "name": "trial: the smallest legal input has one digit",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1},
+      "input": {
+        "n": 1
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "boundary", "single-digit"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "boundary",
+        "single-digit"
+      ]
     },
     {
       "id": "trial-largest-single-digit",
       "name": "trial: the largest one-digit input scores itself",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 9},
+      "input": {
+        "n": 9
+      },
       "expected": 9,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "single-digit"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-digit"
+      ]
     },
     {
       "id": "trial-trailing-zero",
       "name": "trial: a trailing zero does not change the score",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 10},
+      "input": {
+        "n": 10
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "zero-digit"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "zero-digit"
+      ]
     },
     {
       "id": "trial-multiple-zeroes",
       "name": "trial: several internal zeroes contribute zero",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1001},
+      "input": {
+        "n": 1001
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "zero-digit", "repeated-digit"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "zero-digit",
+        "repeated-digit"
+      ]
     },
     {
       "id": "trial-alternating-nine-zero",
       "name": "trial: alternating zeroes preserve all nonzero occurrences",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 909090},
+      "input": {
+        "n": 909090
+      },
       "expected": 27,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "zero-digit", "repeated-digit"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "zero-digit",
+        "repeated-digit"
+      ]
     },
     {
       "id": "trial-all-distinct-nonzero",
       "name": "trial: every nonzero digit appears once",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 123456789},
+      "input": {
+        "n": 123456789
+      },
       "expected": 45,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "distinct-digits"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "distinct-digits"
+      ]
     },
     {
-      "id": "real-nine-nines",
-      "name": "hidden: nine copies of the largest digit",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 999999999},
+      "id": "trial-nine-nines",
+      "name": "nine copies of the largest digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 999999999
+      },
       "expected": 81,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "repeated-digit", "maximum-score"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "repeated-digit",
+        "maximum-score"
+      ]
     },
     {
-      "id": "real-maximum-value",
-      "name": "hidden: the ten-digit upper boundary contains nine zeroes",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 1000000000},
+      "id": "trial-maximum-value",
+      "name": "the ten-digit upper boundary contains nine zeroes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000000000
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "boundary", "maximum-value", "zero-digit"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "boundary",
+        "maximum-value",
+        "zero-digit"
+      ]
     },
     {
-      "id": "real-descending-digits",
-      "name": "hidden: descending distinct digits have the same total",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 987654321},
+      "id": "trial-descending-digits",
+      "name": "descending distinct digits have the same total",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 987654321
+      },
       "expected": 45,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "distinct-digits"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "distinct-digits"
+      ]
     },
     {
-      "id": "real-nine-ones",
-      "name": "hidden: frequency multiplies a repeated low digit",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 111111111},
+      "id": "trial-nine-ones",
+      "name": "frequency multiplies a repeated low digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 111111111
+      },
       "expected": 9,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "repeated-digit"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "repeated-digit"
+      ]
     },
     {
-      "id": "real-sparse-nonzero-digits",
-      "name": "hidden: zeroes separate two nonzero contributions",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 200000009},
+      "id": "trial-sparse-nonzero-digits",
+      "name": "zeroes separate two nonzero contributions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 200000009
+      },
       "expected": 11,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "zero-digit", "sparse-nonzero"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "zero-digit",
+        "sparse-nonzero"
+      ]
     },
     {
-      "id": "real-alternating-eight-zero",
-      "name": "hidden: five occurrences of eight are all counted",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 808080808},
+      "id": "trial-alternating-eight-zero",
+      "name": "five occurrences of eight are all counted",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 808080808
+      },
       "expected": 40,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "zero-digit", "repeated-digit"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "zero-digit",
+        "repeated-digit"
+      ]
     },
     {
-      "id": "real-separated-fours",
-      "name": "hidden: repeated fours remain countable across zeroes",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 444040444},
+      "id": "trial-separated-fours",
+      "name": "repeated fours remain countable across zeroes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 444040444
+      },
       "expected": 28,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "zero-digit", "repeated-digit"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "zero-digit",
+        "repeated-digit"
+      ]
     }
   ]
 }

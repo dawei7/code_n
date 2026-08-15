@@ -110,10 +110,10 @@
       ]
     },
     {
-      "id": "real-star-tree",
-      "name": "hidden: star leaves have only one ancestor",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-star-tree",
+      "name": "star leaves have only one ancestor",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 6,
         "parent": [
@@ -154,16 +154,15 @@
         -1
       ],
       "tags": [
-        "hidden",
         "star",
         "root"
       ]
     },
     {
-      "id": "real-balanced-tree",
-      "name": "hidden: composed jumps in balanced tree",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-balanced-tree",
+      "name": "composed jumps in balanced tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 15,
         "parent": [
@@ -221,16 +220,15 @@
         1
       ],
       "tags": [
-        "hidden",
         "balanced",
         "composed-jumps"
       ]
     },
     {
-      "id": "real-single-node",
-      "name": "hidden: single-node tree",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-node",
+      "name": "single-node tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1,
         "parent": [
@@ -250,16 +248,15 @@
         -1
       ],
       "tags": [
-        "hidden",
         "boundary",
         "single-node"
       ]
     },
     {
-      "id": "real-power-of-two-jumps",
-      "name": "hidden: exact power-of-two ancestors",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-power-of-two-jumps",
+      "name": "exact power-of-two ancestors",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 9,
         "parent": [
@@ -311,16 +308,15 @@
         -1
       ],
       "tags": [
-        "hidden",
         "chain",
         "power-of-two"
       ]
     },
     {
-      "id": "real-repeated-independent-queries",
-      "name": "hidden: queries do not mutate tree state",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-independent-queries",
+      "name": "queries do not mutate tree state",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "parent": [
@@ -367,7 +363,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "repeated",
         "state"
       ]

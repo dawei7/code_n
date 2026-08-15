@@ -1,10 +1,151 @@
-{"schema_version":1,"challenge_id":"lc_1016","cases":[
-{"id":"sample-1","name":"sample: representations through three","kind":"sample","visible":true,"input":{"s":"0110","n":3},"expected":true,"tags":["sample"]},
-{"id":"sample-2","name":"sample: representation four missing","kind":"sample","visible":true,"input":{"s":"0110","n":4},"expected":false,"tags":["sample"]},
-{"id":"trial-1","name":"trial: one required value present","kind":"trial","visible":true,"input":{"s":"1","n":1},"expected":true,"tags":["trial","minimum"]},
-{"id":"trial-2","name":"trial: one required value absent","kind":"trial","visible":true,"input":{"s":"0","n":1},"expected":false,"tags":["trial","minimum"]},
-{"id":"trial-3","name":"trial: custom coverage through five","kind":"trial","visible":true,"input":{"s":"1111000101","n":5},"expected":true,"tags":["trial","overlap"]},
-{"id":"hidden-1","name":"hidden: leading zeroes do not hurt","kind":"real","visible":false,"input":{"s":"000110100","n":4},"expected":true,"tags":["hidden","leading-zeroes"]},
-{"id":"hidden-2","name":"hidden: one middle representation missing","kind":"real","visible":false,"input":{"s":"111011","n":6},"expected":false,"tags":["hidden","missing"]},
-{"id":"hidden-3","name":"hidden: enormous range in short string","kind":"real","visible":false,"input":{"s":"1010101010","n":1000000000},"expected":false,"tags":["hidden","large-n"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1016",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: representations through three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "0110",
+        "n": 3
+      },
+      "expected": true,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: representation four missing",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "0110",
+        "n": 4
+      },
+      "expected": false,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one required value present",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1",
+        "n": 1
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: one required value absent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0",
+        "n": 1
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: custom coverage through five",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1111000101",
+        "n": 5
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-ext-1",
+      "name": "leading zeroes do not hurt",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "000110100",
+        "n": 4
+      },
+      "expected": true,
+      "tags": [
+        "leading-zeroes"
+      ]
+    },
+    {
+      "id": "trial-ext-2",
+      "name": "one middle representation missing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "111011",
+        "n": 6
+      },
+      "expected": false,
+      "tags": [
+        "missing"
+      ]
+    },
+    {
+      "id": "trial-ext-3",
+      "name": "enormous range in short string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1010101010",
+        "n": 1000000000
+      },
+      "expected": false,
+      "tags": [
+        "large-n"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0",
+        "n": 3
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "000",
+        "n": 3
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
+    }
+  ]
+}

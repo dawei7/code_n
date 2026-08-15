@@ -123,10 +123,10 @@
       ]
     },
     {
-      "id": "real-balanced-masks",
-      "name": "hidden: balanced tree repeats several prefix masks",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-balanced-masks",
+      "name": "balanced tree repeats several prefix masks",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "parent": [
           -1,
@@ -141,15 +141,14 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "balanced"
       ]
     },
     {
-      "id": "real-full-alphabet-star",
-      "name": "hidden: every alphabet letter labels one root edge",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-full-alphabet-star",
+      "name": "every alphabet letter labels one root edge",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "parent": [
           -1,
@@ -184,15 +183,14 @@
       },
       "expected": 26,
       "tags": [
-        "hidden",
         "alphabet"
       ]
     },
     {
-      "id": "real-palindromic-label-chain",
-      "name": "hidden: symmetric labels create seven valid pairs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-palindromic-label-chain",
+      "name": "symmetric labels create seven valid pairs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "parent": [
           -1,
@@ -206,15 +204,14 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "parity"
       ]
     },
     {
-      "id": "real-all-same-chain",
-      "name": "hidden: every pair in a same-letter chain is valid",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-same-chain",
+      "name": "every pair in a same-letter chain is valid",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "parent": [
           -1,
@@ -228,7 +225,6 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "all-valid"
       ]
     }

@@ -125,10 +125,10 @@
       ]
     },
     {
-      "id": "real-duplicates",
-      "name": "real: duplicate weights remain distinct items",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-duplicates",
+      "name": "duplicate weights remain distinct items",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "weights": [
           4,
@@ -147,10 +147,10 @@
       ]
     },
     {
-      "id": "real-skip-disruptive-item",
-      "name": "real: skipping an item improves combined fill",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-skip-disruptive-item",
+      "name": "skipping an item improves combined fill",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "weights": [
           9,
@@ -168,10 +168,10 @@
       ]
     },
     {
-      "id": "real-unused-capacity",
-      "name": "real: optimum leaves unavoidable capacity unused",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-unused-capacity",
+      "name": "optimum leaves unavoidable capacity unused",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "weights": [
           6,
@@ -188,10 +188,10 @@
       ]
     },
     {
-      "id": "real-many-small-items",
-      "name": "real: many small items distribute across both bags",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-small-items",
+      "name": "many small items distribute across both bags",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "weights": [
           1,
@@ -211,6 +211,43 @@
       "tags": [
         "real",
         "many-items"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in weights",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "weights": [
+          1
+        ],
+        "w1": 5,
+        "w2": 4
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in weights",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "weights": [
+          1,
+          1
+        ],
+        "w1": 5,
+        "w2": 4
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

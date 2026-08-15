@@ -7,120 +7,211 @@
       "name": "sample: both one-bit representations qualify",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 1},
+      "input": {
+        "n": 1
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "one-bit", "inclusive-range"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "one-bit",
+        "inclusive-range"
+      ]
     },
     {
       "id": "sample-four",
       "name": "sample: only zero one and three qualify",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 4},
+      "input": {
+        "n": 4
+      },
       "expected": 3,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "mixed-binary-patterns", "inclusive-range"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "mixed-binary-patterns",
+        "inclusive-range"
+      ]
     },
     {
       "id": "trial-zero",
       "name": "trial: zero is Monobit",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 0},
+      "input": {
+        "n": 0
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "minimum-input", "zero"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-input",
+        "zero"
+      ]
     },
     {
       "id": "trial-before-three",
       "name": "trial: two does not add a Monobit value",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 2},
+      "input": {
+        "n": 2
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "non-monobit-boundary", "binary-10"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "non-monobit-boundary",
+        "binary-10"
+      ]
     },
     {
       "id": "trial-three",
       "name": "trial: binary eleven adds a new value",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 3},
+      "input": {
+        "n": 3
+      },
       "expected": 3,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "all-ones-boundary", "binary-11"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "all-ones-boundary",
+        "binary-11"
+      ]
     },
     {
       "id": "trial-before-seven",
       "name": "trial: count stays fixed before the next all-one value",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 6},
+      "input": {
+        "n": 6
+      },
       "expected": 3,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "before-boundary", "three-bit"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "before-boundary",
+        "three-bit"
+      ]
     },
     {
       "id": "trial-seven",
       "name": "trial: binary one hundred eleven is included",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 7},
+      "input": {
+        "n": 7
+      },
       "expected": 4,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "all-ones-boundary", "binary-111"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "all-ones-boundary",
+        "binary-111"
+      ]
     },
     {
-      "id": "real-after-seven",
-      "name": "hidden: a power of two does not increase the count",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 8},
+      "id": "trial-after-seven",
+      "name": "a power of two does not increase the count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 8
+      },
       "expected": 4,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "after-boundary", "power-of-two"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "after-boundary",
+        "power-of-two"
+      ]
     },
     {
-      "id": "real-fifteen",
-      "name": "hidden: four one bits add the fifth value including zero",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 15},
+      "id": "trial-fifteen",
+      "name": "four one bits add the fifth value including zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 15
+      },
       "expected": 5,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "all-ones-boundary", "four-bit"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "all-ones-boundary",
+        "four-bit"
+      ]
     },
     {
-      "id": "real-after-fifteen",
-      "name": "hidden: the following power of two leaves the count unchanged",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 16},
+      "id": "trial-after-fifteen",
+      "name": "the following power of two leaves the count unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 16
+      },
       "expected": 5,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "after-boundary", "five-bit"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "after-boundary",
+        "five-bit"
+      ]
     },
     {
-      "id": "real-nine-one-bits",
-      "name": "hidden: the largest nine-bit all-one value is included",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 511},
+      "id": "trial-nine-one-bits",
+      "name": "the largest nine-bit all-one value is included",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 511
+      },
       "expected": 10,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "all-ones-boundary", "nine-bit"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "all-ones-boundary",
+        "nine-bit"
+      ]
     },
     {
-      "id": "real-maximum-input",
-      "name": "hidden: no ten-bit all-one value fits under the maximum",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 1000},
+      "id": "trial-maximum-input",
+      "name": "no ten-bit all-one value fits under the maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000
+      },
       "expected": 10,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "maximum-input", "upper-bound"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "maximum-input",
+        "upper-bound"
+      ]
     }
   ]
 }

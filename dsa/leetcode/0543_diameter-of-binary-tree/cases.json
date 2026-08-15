@@ -99,10 +99,10 @@
       ]
     },
     {
-      "id": "hidden-below-root",
-      "name": "hidden: diameter lies entirely below the root",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-below-root",
+      "name": "diameter lies entirely below the root",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -118,15 +118,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "below-root"
       ]
     },
     {
-      "id": "hidden-negative-values",
-      "name": "hidden: values do not affect the path length",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-negative-values",
+      "name": "values do not affect the path length",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           0,
@@ -140,15 +139,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "values-irrelevant"
       ]
     },
     {
-      "id": "hidden-uneven-branches",
-      "name": "hidden: deepest branches meet at the root",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-uneven-branches",
+      "name": "deepest branches meet at the root",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -163,10 +161,8 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "uneven"
       ]
     }
   ]
 }
-

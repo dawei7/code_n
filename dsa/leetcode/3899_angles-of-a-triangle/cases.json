@@ -7,120 +7,304 @@
       "name": "sample: a 3-4-5 triangle has one right angle",
       "kind": "sample",
       "visible": true,
-      "input": {"sides": [3, 4, 5]},
-      "expected": [36.86989764584402, 53.13010235415598, 90.0],
-      "validator": {"kind": "float_list_close", "tolerance": 1e-5},
-      "tags": ["sample", "right-triangle", "scalene"]
+      "input": {
+        "sides": [
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": [
+        36.86989764584402,
+        53.13010235415598,
+        90.0
+      ],
+      "validator": {
+        "kind": "float_list_close",
+        "tolerance": 1e-05
+      },
+      "tags": [
+        "sample",
+        "right-triangle",
+        "scalene"
+      ]
     },
     {
       "id": "sample-degenerate-isosceles",
       "name": "sample: equality in the triangle inequality has zero area",
       "kind": "sample",
       "visible": true,
-      "input": {"sides": [2, 4, 2]},
+      "input": {
+        "sides": [
+          2,
+          4,
+          2
+        ]
+      },
       "expected": [],
-      "validator": {"kind": "float_list_close", "tolerance": 1e-5},
-      "tags": ["sample", "degenerate", "empty-result"]
+      "validator": {
+        "kind": "float_list_close",
+        "tolerance": 1e-05
+      },
+      "tags": [
+        "sample",
+        "degenerate",
+        "empty-result"
+      ]
     },
     {
       "id": "trial-equilateral-minimum",
       "name": "trial: the minimum equilateral triangle has three equal angles",
       "kind": "trial",
       "visible": true,
-      "input": {"sides": [1, 1, 1]},
-      "expected": [60.0, 60.0, 60.0],
-      "validator": {"kind": "float_list_close", "tolerance": 1e-5},
-      "tags": ["trial", "equilateral", "minimum-values"]
+      "input": {
+        "sides": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": [
+        60.0,
+        60.0,
+        60.0
+      ],
+      "validator": {
+        "kind": "float_list_close",
+        "tolerance": 1e-05
+      },
+      "tags": [
+        "trial",
+        "equilateral",
+        "minimum-values"
+      ]
     },
     {
       "id": "trial-unsorted-right-triangle",
       "name": "trial: input order does not control output order",
       "kind": "trial",
       "visible": true,
-      "input": {"sides": [5, 3, 4]},
-      "expected": [36.86989764584402, 53.13010235415598, 90.0],
-      "validator": {"kind": "float_list_close", "tolerance": 1e-5},
-      "tags": ["trial", "permutation", "sorted-output"]
+      "input": {
+        "sides": [
+          5,
+          3,
+          4
+        ]
+      },
+      "expected": [
+        36.86989764584402,
+        53.13010235415598,
+        90.0
+      ],
+      "validator": {
+        "kind": "float_list_close",
+        "tolerance": 1e-05
+      },
+      "tags": [
+        "trial",
+        "permutation",
+        "sorted-output"
+      ]
     },
     {
       "id": "trial-obtuse-scalene",
       "name": "trial: a scalene triangle may have an obtuse largest angle",
       "kind": "trial",
       "visible": true,
-      "input": {"sides": [2, 3, 4]},
-      "expected": [28.95502437185985, 46.56746344221023, 104.47751218592994],
-      "validator": {"kind": "float_list_close", "tolerance": 1e-5},
-      "tags": ["trial", "obtuse", "scalene"]
+      "input": {
+        "sides": [
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": [
+        28.95502437185985,
+        46.56746344221023,
+        104.47751218592994
+      ],
+      "validator": {
+        "kind": "float_list_close",
+        "tolerance": 1e-05
+      },
+      "tags": [
+        "trial",
+        "obtuse",
+        "scalene"
+      ]
     },
     {
       "id": "trial-isosceles-valid",
       "name": "trial: equal sides produce equal opposite angles",
       "kind": "trial",
       "visible": true,
-      "input": {"sides": [5, 5, 6]},
-      "expected": [53.13010235415598, 53.13010235415598, 73.73979529168804],
-      "validator": {"kind": "float_list_close", "tolerance": 1e-5},
-      "tags": ["trial", "isosceles", "acute"]
+      "input": {
+        "sides": [
+          5,
+          5,
+          6
+        ]
+      },
+      "expected": [
+        53.13010235415598,
+        53.13010235415598,
+        73.73979529168804
+      ],
+      "validator": {
+        "kind": "float_list_close",
+        "tolerance": 1e-05
+      },
+      "tags": [
+        "trial",
+        "isosceles",
+        "acute"
+      ]
     },
     {
-      "id": "hidden-exact-degenerate-minimum",
-      "name": "hidden: the smallest exact degeneracy is rejected",
-      "kind": "real",
-      "visible": false,
-      "input": {"sides": [1, 1, 2]},
+      "id": "trial-exact-degenerate-minimum",
+      "name": "the smallest exact degeneracy is rejected",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sides": [
+          1,
+          1,
+          2
+        ]
+      },
       "expected": [],
-      "validator": {"kind": "float_list_close", "tolerance": 1e-5},
-      "tags": ["hidden", "degenerate", "strict-inequality"]
+      "validator": {
+        "kind": "float_list_close",
+        "tolerance": 1e-05
+      },
+      "tags": [
+        "degenerate",
+        "strict-inequality"
+      ]
     },
     {
-      "id": "hidden-clearly-impossible",
-      "name": "hidden: a dominant longest side cannot close",
-      "kind": "real",
-      "visible": false,
-      "input": {"sides": [1, 2, 1000]},
+      "id": "trial-clearly-impossible",
+      "name": "a dominant longest side cannot close",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sides": [
+          1,
+          2,
+          1000
+        ]
+      },
       "expected": [],
-      "validator": {"kind": "float_list_close", "tolerance": 1e-5},
-      "tags": ["hidden", "invalid", "upper-bound"]
+      "validator": {
+        "kind": "float_list_close",
+        "tolerance": 1e-05
+      },
+      "tags": [
+        "invalid",
+        "upper-bound"
+      ]
     },
     {
-      "id": "hidden-maximum-equilateral",
-      "name": "hidden: maximum equal side lengths remain equilateral",
-      "kind": "real",
-      "visible": false,
-      "input": {"sides": [1000, 1000, 1000]},
-      "expected": [60.0, 60.0, 60.0],
-      "validator": {"kind": "float_list_close", "tolerance": 1e-5},
-      "tags": ["hidden", "equilateral", "maximum-values"]
+      "id": "trial-maximum-equilateral",
+      "name": "maximum equal side lengths remain equilateral",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sides": [
+          1000,
+          1000,
+          1000
+        ]
+      },
+      "expected": [
+        60.0,
+        60.0,
+        60.0
+      ],
+      "validator": {
+        "kind": "float_list_close",
+        "tolerance": 1e-05
+      },
+      "tags": [
+        "equilateral",
+        "maximum-values"
+      ]
     },
     {
-      "id": "hidden-thin-valid",
-      "name": "hidden: a very thin positive-area triangle remains valid",
-      "kind": "real",
-      "visible": false,
-      "input": {"sides": [1, 1000, 1000]},
-      "expected": [0.05729578190040674, 89.9713521090498, 89.9713521090498],
-      "validator": {"kind": "float_list_close", "tolerance": 1e-5},
-      "tags": ["hidden", "near-degenerate", "floating-point"]
+      "id": "trial-thin-valid",
+      "name": "a very thin positive-area triangle remains valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sides": [
+          1,
+          1000,
+          1000
+        ]
+      },
+      "expected": [
+        0.05729578190040674,
+        89.9713521090498,
+        89.9713521090498
+      ],
+      "validator": {
+        "kind": "float_list_close",
+        "tolerance": 1e-05
+      },
+      "tags": [
+        "near-degenerate",
+        "floating-point"
+      ]
     },
     {
-      "id": "hidden-upper-bound-degenerate",
-      "name": "hidden: equality near the upper bound is still invalid",
-      "kind": "real",
-      "visible": false,
-      "input": {"sides": [999, 1000, 1]},
+      "id": "trial-upper-bound-degenerate",
+      "name": "equality near the upper bound is still invalid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sides": [
+          999,
+          1000,
+          1
+        ]
+      },
       "expected": [],
-      "validator": {"kind": "float_list_close", "tolerance": 1e-5},
-      "tags": ["hidden", "degenerate", "permutation", "upper-bound"]
+      "validator": {
+        "kind": "float_list_close",
+        "tolerance": 1e-05
+      },
+      "tags": [
+        "degenerate",
+        "permutation",
+        "upper-bound"
+      ]
     },
     {
-      "id": "hidden-nearly-equilateral",
-      "name": "hidden: large nearly equal sides preserve angle ordering",
-      "kind": "real",
-      "visible": false,
-      "input": {"sides": [999, 999, 1000]},
-      "expected": [59.966881625407304, 59.966881625407304, 60.066236749185414],
-      "validator": {"kind": "float_list_close", "tolerance": 1e-5},
-      "tags": ["hidden", "near-equilateral", "upper-bound", "sorted-output"]
+      "id": "trial-nearly-equilateral",
+      "name": "large nearly equal sides preserve angle ordering",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sides": [
+          999,
+          999,
+          1000
+        ]
+      },
+      "expected": [
+        59.966881625407304,
+        59.966881625407304,
+        60.066236749185414
+      ],
+      "validator": {
+        "kind": "float_list_close",
+        "tolerance": 1e-05
+      },
+      "tags": [
+        "near-equilateral",
+        "upper-bound",
+        "sorted-output"
+      ]
     }
   ]
 }

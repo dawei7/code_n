@@ -87,61 +87,84 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: symbols at both ends",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "symbols at both ends",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "!a-bC?"
       },
       "expected": "!C-ba?",
       "tags": [
-        "hidden",
         "anchored-ends"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: case travels with letters",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "case travels with letters",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "A1b2C3d"
       },
       "expected": "d1C2b3A",
       "tags": [
-        "hidden",
         "case"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: adjacent punctuation",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "adjacent punctuation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "ab!!CD--e"
       },
       "expected": "eD!!Cb--a",
       "tags": [
-        "hidden",
         "repeated-symbols"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: ASCII boundary punctuation",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "ASCII boundary punctuation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "!aZz~"
       },
       "expected": "!zZa~",
       "tags": [
-        "hidden",
         "ascii-bounds"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": "a",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": "aaa",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]
 }
-

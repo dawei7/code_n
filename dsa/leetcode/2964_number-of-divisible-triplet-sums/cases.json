@@ -121,10 +121,10 @@
       ]
     },
     {
-      "id": "real-equal-values",
-      "name": "real: all equal values produce every index choice",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-equal-values",
+      "name": "all equal values produce every index choice",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -137,15 +137,14 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "real: maximum-scale values use their remainders",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-values",
+      "name": "maximum-scale values use their remainders",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -157,15 +156,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
     {
-      "id": "real-index-multiplicity",
-      "name": "real: duplicate remainders count distinct indices",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-index-multiplicity",
+      "name": "duplicate remainders count distinct indices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -178,7 +176,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "remainder-duplicates"
       ]
     }

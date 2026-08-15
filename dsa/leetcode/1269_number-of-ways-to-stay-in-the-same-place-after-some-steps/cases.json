@@ -7,72 +7,120 @@
       "name": "sample: four returning walks in a two-position array",
       "kind": "sample",
       "visible": true,
-      "input": {"steps": 3, "arrLen": 2},
+      "input": {
+        "steps": 3,
+        "arrLen": 2
+      },
       "expected": 4,
-      "tags": ["sample", "stay-and-move"]
+      "tags": [
+        "sample",
+        "stay-and-move"
+      ]
     },
     {
       "id": "sample-two-steps-long-array",
       "name": "sample: distant positions are unreachable",
       "kind": "sample",
       "visible": true,
-      "input": {"steps": 2, "arrLen": 4},
+      "input": {
+        "steps": 2,
+        "arrLen": 4
+      },
       "expected": 2,
-      "tags": ["sample", "reachable-prefix"]
+      "tags": [
+        "sample",
+        "reachable-prefix"
+      ]
     },
     {
       "id": "sample-four-steps-two-positions",
       "name": "sample: repeated boundary interactions",
       "kind": "sample",
       "visible": true,
-      "input": {"steps": 4, "arrLen": 2},
+      "input": {
+        "steps": 4,
+        "arrLen": 2
+      },
       "expected": 8,
-      "tags": ["sample", "right-boundary"]
+      "tags": [
+        "sample",
+        "right-boundary"
+      ]
     },
     {
       "id": "trial-single-position",
       "name": "trial: every move must stay",
       "kind": "trial",
       "visible": true,
-      "input": {"steps": 500, "arrLen": 1},
+      "input": {
+        "steps": 500,
+        "arrLen": 1
+      },
       "expected": 1,
-      "tags": ["trial", "single-position", "maximum-steps"]
+      "tags": [
+        "trial",
+        "single-position",
+        "maximum-steps"
+      ]
     },
     {
       "id": "trial-one-step",
       "name": "trial: one step can only stay to return",
       "kind": "trial",
       "visible": true,
-      "input": {"steps": 1, "arrLen": 100},
+      "input": {
+        "steps": 1,
+        "arrLen": 100
+      },
       "expected": 1,
-      "tags": ["trial", "minimum-steps"]
+      "tags": [
+        "trial",
+        "minimum-steps"
+      ]
     },
     {
-      "id": "real-third-position-matters",
-      "name": "hidden: the reachable prefix includes index two",
-      "kind": "real",
-      "visible": false,
-      "input": {"steps": 4, "arrLen": 3},
+      "id": "trial-third-position-matters",
+      "name": "the reachable prefix includes index two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "steps": 4,
+        "arrLen": 3
+      },
       "expected": 9,
-      "tags": ["hidden", "reachable-boundary"]
+      "tags": [
+        "reachable-boundary"
+      ]
     },
     {
-      "id": "real-four-position-array",
-      "name": "hidden: all positions are potentially reachable",
-      "kind": "real",
-      "visible": false,
-      "input": {"steps": 6, "arrLen": 4},
+      "id": "trial-four-position-array",
+      "name": "all positions are potentially reachable",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "steps": 6,
+        "arrLen": 4
+      },
       "expected": 51,
-      "tags": ["hidden", "full-reachable-prefix"]
+      "tags": [
+        "full-reachable-prefix"
+      ]
     },
     {
-      "id": "real-modulo-growth",
-      "name": "hidden: a long walk exercises repeated modular transitions",
-      "kind": "real",
-      "visible": false,
-      "input": {"steps": 100, "arrLen": 997},
+      "id": "trial-modulo-growth",
+      "name": "a long walk exercises repeated modular transitions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "steps": 100,
+        "arrLen": 997
+      },
       "expected": 345787718,
-      "tags": ["hidden", "modulo", "long-walk", "irrelevant-tail"]
+      "tags": [
+        "modulo",
+        "long-walk",
+        "irrelevant-tail"
+      ]
     }
   ]
 }

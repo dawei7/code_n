@@ -357,10 +357,10 @@
       ]
     },
     {
-      "id": "real-repeated-index-updates",
-      "name": "hidden: repeatedly reclassify the same index",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-index-updates",
+      "name": "repeatedly reclassify the same index",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -409,15 +409,14 @@
         3
       ],
       "tags": [
-        "hidden",
         "repeated-updates"
       ]
     },
     {
-      "id": "real-max-value",
-      "name": "hidden: classify and replace the maximum legal value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-max-value",
+      "name": "classify and replace the maximum legal value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000000000,
@@ -455,16 +454,15 @@
         1
       ],
       "tags": [
-        "hidden",
         "maximum-value",
         "depth-four"
       ]
     },
     {
-      "id": "real-overlapping-ranges",
-      "name": "hidden: overlapping ranges count different classes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-overlapping-ranges",
+      "name": "overlapping ranges count different classes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -509,15 +507,14 @@
         0
       ],
       "tags": [
-        "hidden",
         "overlapping-ranges"
       ]
     },
     {
-      "id": "real-updates-at-boundaries",
-      "name": "hidden: update both ends of the array",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-updates-at-boundaries",
+      "name": "update both ends of the array",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -562,16 +559,15 @@
         1
       ],
       "tags": [
-        "hidden",
         "boundary-indices",
         "updates"
       ]
     },
     {
-      "id": "real-query-does-not-mutate",
-      "name": "hidden: repeated queries observe unchanged state",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-query-does-not-mutate",
+      "name": "repeated queries observe unchanged state",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -613,15 +609,14 @@
         1
       ],
       "tags": [
-        "hidden",
         "repeated-query"
       ]
     },
     {
-      "id": "real-depth-five-after-updates",
-      "name": "hidden: unattainable depth remains empty after changes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-depth-five-after-updates",
+      "name": "unattainable depth remains empty after changes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -658,9 +653,47 @@
         0
       ],
       "tags": [
-        "hidden",
         "depth-five",
         "updates"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ],
+        "queries": [
+          [
+            1,
+            0,
+            1,
+            1
+          ],
+          [
+            2,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        1
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

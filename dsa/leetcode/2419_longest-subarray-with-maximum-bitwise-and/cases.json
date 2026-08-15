@@ -97,10 +97,10 @@
       ]
     },
     {
-      "id": "real-leading-run",
-      "name": "hidden: longest maximum run occurs first",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-leading-run",
+      "name": "longest maximum run occurs first",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9,
@@ -112,15 +112,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "leading"
       ]
     },
     {
-      "id": "real-trailing-run",
-      "name": "hidden: longest maximum run occurs last",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-trailing-run",
+      "name": "longest maximum run occurs last",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -132,15 +131,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "trailing"
       ]
     },
     {
-      "id": "real-maximum-value",
-      "name": "hidden: legal maximum integer repeats",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-value",
+      "name": "legal maximum integer repeats",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000,
@@ -150,7 +148,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

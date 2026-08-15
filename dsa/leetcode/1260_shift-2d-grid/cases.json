@@ -221,10 +221,10 @@
       ]
     },
     {
-      "id": "real-single-column",
-      "name": "hidden: single column",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-column",
+      "name": "single column",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -261,10 +261,10 @@
       ]
     },
     {
-      "id": "real-many-cycles",
-      "name": "hidden: shift exceeds cell count",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-cycles",
+      "name": "shift exceeds cell count",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [

@@ -131,10 +131,10 @@
       ]
     },
     {
-      "id": "real-single-characters",
-      "name": "hidden: preserve order of single-character words",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-characters",
+      "name": "preserve order of single-character words",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "z",
@@ -149,15 +149,14 @@
         "m"
       ],
       "tags": [
-        "hidden",
         "order"
       ]
     },
     {
-      "id": "real-all-empty",
-      "name": "hidden: several delimiter-only words flatten to empty",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-empty",
+      "name": "several delimiter-only words flatten to empty",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "###",
@@ -168,15 +167,14 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "empty-result"
       ]
     },
     {
-      "id": "real-maximum-word-length",
-      "name": "hidden: maximum-length word has no separator",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-word-length",
+      "name": "maximum-length word has no separator",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "abcdefghijklmnopqrst"
@@ -187,15 +185,14 @@
         "abcdefghijklmnopqrst"
       ],
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
     {
-      "id": "real-mixed-density",
-      "name": "hidden: combine unsplit and densely separated words",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-density",
+      "name": "combine unsplit and densely separated words",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "a@b",
@@ -214,7 +211,6 @@
         "e"
       ],
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

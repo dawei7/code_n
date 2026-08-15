@@ -77,47 +77,44 @@
       ]
     },
     {
-      "id": "real-full-palindrome",
-      "name": "hidden: divisor one repairs a nearly palindromic whole string",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-full-palindrome",
+      "name": "divisor one repairs a nearly palindromic whole string",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abca",
         "k": 1
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "divisor-one"
       ]
     },
     {
-      "id": "real-forced-pairs",
-      "name": "hidden: maximum k forces three length-two parts",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-forced-pairs",
+      "name": "maximum k forces three length-two parts",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abcabc",
         "k": 3
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "maximum-parts"
       ]
     },
     {
-      "id": "real-uniform-string",
-      "name": "hidden: every legal partition of a uniform string costs zero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-uniform-string",
+      "name": "every legal partition of a uniform string costs zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaaaaaa",
         "k": 3
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "uniform"
       ]
     }

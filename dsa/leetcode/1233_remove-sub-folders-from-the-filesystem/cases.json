@@ -122,10 +122,10 @@
       ]
     },
     {
-      "id": "real-prefix-trap",
-      "name": "hidden: textual prefixes without slash boundaries remain",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-prefix-trap",
+      "name": "textual prefixes without slash boundaries remain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "folder": [
           "/a",
@@ -144,15 +144,14 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "prefix-boundary"
       ]
     },
     {
-      "id": "real-interleaved-roots",
-      "name": "hidden: unordered descendants under several roots",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-interleaved-roots",
+      "name": "unordered descendants under several roots",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "folder": [
           "/m/n/o",
@@ -174,8 +173,45 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "multiple-roots"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in folder",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "folder": [
+          "/a"
+        ]
+      },
+      "expected": [
+        "/a"
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in folder",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "folder": [
+          "/a",
+          "/a"
+        ]
+      },
+      "expected": [
+        "/a",
+        "/a"
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

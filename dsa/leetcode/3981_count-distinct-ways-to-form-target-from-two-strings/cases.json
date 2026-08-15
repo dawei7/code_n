@@ -6,135 +6,281 @@
       "name": "sample: five distinct mixed selections form abc",
       "kind": "sample",
       "visible": true,
-      "input": {"word1": "abc", "word2": "bac", "target": "abc"},
+      "input": {
+        "word1": "abc",
+        "word2": "bac",
+        "target": "abc"
+      },
       "expected": 5,
-      "tags": ["sample", "mixed-sources", "distinct-indices"]
+      "tags": [
+        "sample",
+        "mixed-sources",
+        "distinct-indices"
+      ]
     },
     {
       "id": "sample-repeated-leading-character",
       "name": "sample: repeated leading character must use both words",
       "kind": "sample",
       "visible": true,
-      "input": {"word1": "cd", "word2": "cd", "target": "ccd"},
+      "input": {
+        "word1": "cd",
+        "word2": "cd",
+        "target": "ccd"
+      },
       "expected": 4,
-      "tags": ["sample", "repeated-character", "both-sources"]
+      "tags": [
+        "sample",
+        "repeated-character",
+        "both-sources"
+      ]
     },
     {
       "id": "sample-two-block-orders",
       "name": "sample: either word may provide the first xy block",
       "kind": "sample",
       "visible": true,
-      "input": {"word1": "xy", "word2": "xy", "target": "xyxy"},
+      "input": {
+        "word1": "xy",
+        "word2": "xy",
+        "target": "xyxy"
+      },
       "expected": 2,
-      "tags": ["sample", "source-order", "full-word-blocks"]
+      "tags": [
+        "sample",
+        "source-order",
+        "full-word-blocks"
+      ]
     },
     {
       "id": "sample-unique-cross-word-selection",
       "name": "sample: one unique selection crosses from word1 to word2",
       "kind": "sample",
       "visible": true,
-      "input": {"word1": "ab", "word2": "cde", "target": "ace"},
+      "input": {
+        "word1": "ab",
+        "word2": "cde",
+        "target": "ace"
+      },
       "expected": 1,
-      "tags": ["sample", "unique-way", "different-lengths"]
+      "tags": [
+        "sample",
+        "unique-way",
+        "different-lengths"
+      ]
     },
     {
       "id": "trial-one-target-cannot-use-both",
       "name": "trial: a one-character target cannot use both words",
       "kind": "trial",
       "visible": true,
-      "input": {"word1": "a", "word2": "a", "target": "a"},
+      "input": {
+        "word1": "a",
+        "word2": "a",
+        "target": "a"
+      },
       "expected": 0,
-      "tags": ["trial", "minimum-length", "both-sources-required"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "both-sources-required"
+      ]
     },
     {
       "id": "trial-one-from-each-forward",
       "name": "trial: one character from each word in word1-first order",
       "kind": "trial",
       "visible": true,
-      "input": {"word1": "a", "word2": "b", "target": "ab"},
+      "input": {
+        "word1": "a",
+        "word2": "b",
+        "target": "ab"
+      },
       "expected": 1,
-      "tags": ["trial", "one-from-each", "word1-first"]
+      "tags": [
+        "trial",
+        "one-from-each",
+        "word1-first"
+      ]
     },
     {
       "id": "trial-one-from-each-reverse",
       "name": "trial: independent index orders permit word2-first selection",
       "kind": "trial",
       "visible": true,
-      "input": {"word1": "a", "word2": "b", "target": "ba"},
+      "input": {
+        "word1": "a",
+        "word2": "b",
+        "target": "ba"
+      },
       "expected": 1,
-      "tags": ["trial", "one-from-each", "word2-first"]
+      "tags": [
+        "trial",
+        "one-from-each",
+        "word2-first"
+      ]
     },
     {
       "id": "trial-only-one-word-matches",
       "name": "trial: a target formable from only one word is excluded",
       "kind": "trial",
       "visible": true,
-      "input": {"word1": "abc", "word2": "z", "target": "abc"},
+      "input": {
+        "word1": "abc",
+        "word2": "z",
+        "target": "abc"
+      },
       "expected": 0,
-      "tags": ["trial", "single-source-only", "both-sources-required"]
+      "tags": [
+        "trial",
+        "single-source-only",
+        "both-sources-required"
+      ]
     },
     {
       "id": "trial-repeated-index-choices",
       "name": "trial: repeated characters create four distinct index choices",
       "kind": "trial",
       "visible": true,
-      "input": {"word1": "aa", "word2": "a", "target": "aa"},
+      "input": {
+        "word1": "aa",
+        "word2": "a",
+        "target": "aa"
+      },
       "expected": 4,
-      "tags": ["trial", "repeated-character", "distinct-indices"]
+      "tags": [
+        "trial",
+        "repeated-character",
+        "distinct-indices"
+      ]
     },
     {
-      "id": "real-three-from-two-equal-words",
-      "name": "hidden: three equal target characters split across both words",
-      "kind": "real",
-      "visible": false,
-      "input": {"word1": "aa", "word2": "aa", "target": "aaa"},
+      "id": "trial-three-from-two-equal-words",
+      "name": "three equal target characters split across both words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "aa",
+        "word2": "aa",
+        "target": "aaa"
+      },
       "expected": 12,
-      "tags": ["hidden", "equal-words", "multiple-switches"]
+      "tags": [
+        "equal-words",
+        "multiple-switches"
+      ]
     },
     {
-      "id": "real-absent-character",
-      "name": "hidden: an absent target character gives zero ways",
-      "kind": "real",
-      "visible": false,
-      "input": {"word1": "abc", "word2": "def", "target": "g"},
+      "id": "trial-absent-character",
+      "name": "an absent target character gives zero ways",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "abc",
+        "word2": "def",
+        "target": "g"
+      },
       "expected": 0,
-      "tags": ["hidden", "absent-character", "impossible"]
+      "tags": [
+        "absent-character",
+        "impossible"
+      ]
     },
     {
-      "id": "real-target-longer-than-combined",
-      "name": "hidden: target longer than both sources combined is impossible",
-      "kind": "real",
-      "visible": false,
-      "input": {"word1": "a", "word2": "a", "target": "aaa"},
+      "id": "trial-target-longer-than-combined",
+      "name": "target longer than both sources combined is impossible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "a",
+        "word2": "a",
+        "target": "aaa"
+      },
       "expected": 0,
-      "tags": ["hidden", "length-bound", "impossible"]
+      "tags": [
+        "length-bound",
+        "impossible"
+      ]
     },
     {
-      "id": "real-two-of-five-equal-characters",
-      "name": "hidden: two target characters choose indices from both words",
-      "kind": "real",
-      "visible": false,
-      "input": {"word1": "aaa", "word2": "aa", "target": "aa"},
+      "id": "trial-two-of-five-equal-characters",
+      "name": "two target characters choose indices from both words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "aaa",
+        "word2": "aa",
+        "target": "aa"
+      },
       "expected": 12,
-      "tags": ["hidden", "combinatorial-count", "both-source-orders"]
+      "tags": [
+        "combinatorial-count",
+        "both-source-orders"
+      ]
     },
     {
-      "id": "real-crossing-source-switches",
-      "name": "hidden: source switches preserve independent index orders",
-      "kind": "real",
-      "visible": false,
-      "input": {"word1": "ab", "word2": "ba", "target": "abba"},
+      "id": "trial-crossing-source-switches",
+      "name": "source switches preserve independent index orders",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "ab",
+        "word2": "ba",
+        "target": "abba"
+      },
       "expected": 2,
-      "tags": ["hidden", "source-switches", "independent-orders"]
+      "tags": [
+        "source-switches",
+        "independent-orders"
+      ]
     },
     {
-      "id": "real-identical-words-all-source-patterns",
-      "name": "hidden: six mixed source patterns form abc",
-      "kind": "real",
-      "visible": false,
-      "input": {"word1": "abc", "word2": "abc", "target": "abc"},
+      "id": "trial-identical-words-all-source-patterns",
+      "name": "six mixed source patterns form abc",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "abc",
+        "word2": "abc",
+        "target": "abc"
+      },
       "expected": 6,
-      "tags": ["hidden", "identical-words", "source-patterns"]
+      "tags": [
+        "identical-words",
+        "source-patterns"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "single character in word1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "a",
+        "word2": "bac",
+        "target": "abc"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-17",
+      "name": "repeated character in word1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "aaa",
+        "word2": "bac",
+        "target": "abc"
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
     }
   ]
 }

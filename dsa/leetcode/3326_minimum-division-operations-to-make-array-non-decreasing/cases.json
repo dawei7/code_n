@@ -93,10 +93,10 @@
       ]
     },
     {
-      "id": "real-prime-above-one",
-      "name": "real: prime cannot be lowered to one",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-prime-above-one",
+      "name": "prime cannot be lowered to one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -110,10 +110,10 @@
       ]
     },
     {
-      "id": "real-large-square",
-      "name": "real: maximum-scale prime square reduces once",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-square",
+      "name": "maximum-scale prime square reduces once",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           982081,
@@ -124,6 +124,39 @@
       "tags": [
         "large-value",
         "prime-square"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          25
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          25,
+          25
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

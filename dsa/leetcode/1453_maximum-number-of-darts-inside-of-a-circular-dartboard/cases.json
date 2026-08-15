@@ -149,10 +149,10 @@
       ]
     },
     {
-      "id": "real-collinear",
-      "name": "hidden: best board covers three collinear darts",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-collinear",
+      "name": "best board covers three collinear darts",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "darts": [
           [
@@ -176,15 +176,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "collinear"
       ]
     },
     {
-      "id": "real-mutually-far",
-      "name": "hidden: no two darts share a board",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mutually-far",
+      "name": "no two darts share a board",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "darts": [
           [
@@ -204,15 +203,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "separated"
       ]
     },
     {
-      "id": "real-square",
-      "name": "hidden: square fits inside an offset circle",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-square",
+      "name": "square fits inside an offset circle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "darts": [
           [
@@ -236,15 +234,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "interior"
       ]
     },
     {
-      "id": "real-negative-cluster",
-      "name": "hidden: translated negative-coordinate cluster",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-negative-cluster",
+      "name": "translated negative-coordinate cluster",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "darts": [
           [
@@ -272,7 +269,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "negative",
         "translation"
       ]

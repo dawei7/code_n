@@ -243,10 +243,10 @@
       ]
     },
     {
-      "id": "real-numeric-order",
-      "name": "hidden: numeric table sorting",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-numeric-order",
+      "name": "numeric table sorting",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "orders": [
           [
@@ -299,15 +299,14 @@
         ]
       ],
       "tags": [
-        "hidden",
         "numeric-order"
       ]
     },
     {
-      "id": "real-missing-cells",
-      "name": "hidden: missing combinations become zero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-missing-cells",
+      "name": "missing combinations become zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "orders": [
           [
@@ -340,7 +339,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "zero-cells"
       ]
     }

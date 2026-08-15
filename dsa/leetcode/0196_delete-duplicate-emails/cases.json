@@ -133,10 +133,10 @@
       }
     },
     {
-      "id": "real-multiple-groups",
-      "name": "hidden: several duplicate groups",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-groups",
+      "name": "several duplicate groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Person": [
@@ -184,7 +184,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "groups"
       ],
       "validator": {

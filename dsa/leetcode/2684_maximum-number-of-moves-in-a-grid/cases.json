@@ -1,9 +1,227 @@
-{"challenge_id":"lc_2684","cases":[
-{"id":"sample-full-path","name":"sample: path reaches the last column","kind":"sample","visible":true,"input":{"grid":[[2,4,3,5],[5,4,9,3],[3,4,2,11],[10,9,13,15]]},"expected":3,"tags":["sample","path"]},
-{"id":"sample-no-move","name":"sample: no first move is possible","kind":"sample","visible":true,"input":{"grid":[[3,2,4],[2,1,9],[1,1,7]]},"expected":0,"tags":["sample","blocked"]},
-{"id":"trial-straight","name":"trial: increasing rows allow every column","kind":"trial","visible":true,"input":{"grid":[[1,2,3,4],[10,11,12,13]]},"expected":3,"tags":["straight"]},
-{"id":"trial-zigzag","name":"trial: only diagonal changes remain increasing","kind":"trial","visible":true,"input":{"grid":[[1,100,3,200],[50,2,150,4],[1,100,3,200]]},"expected":3,"tags":["diagonal"]},
-{"id":"trial-strict","name":"trial: equal values cannot be entered","kind":"trial","visible":true,"input":{"grid":[[5,5],[5,6]]},"expected":1,"tags":["strict"]},
-{"id":"real-middle-stop","name":"hidden: all paths stop before the last column","kind":"real","visible":false,"input":{"grid":[[1,4,7,2,9],[3,5,8,1,10],[2,6,9,3,11]]},"expected":2,"tags":["hidden","early-stop"]},
-{"id":"real-boundaries","name":"hidden: top and bottom row boundaries","kind":"real","visible":false,"input":{"grid":[[4,9,2,20],[1,5,10,15],[3,8,12,13],[2,7,11,14]]},"expected":3,"tags":["hidden","boundaries"]}
-]}
+{
+  "challenge_id": "lc_2684",
+  "cases": [
+    {
+      "id": "sample-full-path",
+      "name": "sample: path reaches the last column",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            2,
+            4,
+            3,
+            5
+          ],
+          [
+            5,
+            4,
+            9,
+            3
+          ],
+          [
+            3,
+            4,
+            2,
+            11
+          ],
+          [
+            10,
+            9,
+            13,
+            15
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "path"
+      ]
+    },
+    {
+      "id": "sample-no-move",
+      "name": "sample: no first move is possible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            3,
+            2,
+            4
+          ],
+          [
+            2,
+            1,
+            9
+          ],
+          [
+            1,
+            1,
+            7
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "blocked"
+      ]
+    },
+    {
+      "id": "trial-straight",
+      "name": "trial: increasing rows allow every column",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            3,
+            4
+          ],
+          [
+            10,
+            11,
+            12,
+            13
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "straight"
+      ]
+    },
+    {
+      "id": "trial-zigzag",
+      "name": "trial: only diagonal changes remain increasing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            100,
+            3,
+            200
+          ],
+          [
+            50,
+            2,
+            150,
+            4
+          ],
+          [
+            1,
+            100,
+            3,
+            200
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "diagonal"
+      ]
+    },
+    {
+      "id": "trial-strict",
+      "name": "trial: equal values cannot be entered",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            5,
+            5
+          ],
+          [
+            5,
+            6
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "strict"
+      ]
+    },
+    {
+      "id": "trial-middle-stop",
+      "name": "all paths stop before the last column",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            4,
+            7,
+            2,
+            9
+          ],
+          [
+            3,
+            5,
+            8,
+            1,
+            10
+          ],
+          [
+            2,
+            6,
+            9,
+            3,
+            11
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "early-stop"
+      ]
+    },
+    {
+      "id": "trial-boundaries",
+      "name": "top and bottom row boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            4,
+            9,
+            2,
+            20
+          ],
+          [
+            1,
+            5,
+            10,
+            15
+          ],
+          [
+            3,
+            8,
+            12,
+            13
+          ],
+          [
+            2,
+            7,
+            11,
+            14
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundaries"
+      ]
+    }
+  ]
+}

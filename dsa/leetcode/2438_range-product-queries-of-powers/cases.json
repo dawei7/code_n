@@ -7,63 +7,198 @@
       "name": "sample: several ranges over all low bits",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 15, "queries": [[0, 1], [2, 2], [0, 3]]},
-      "expected": [2, 4, 64],
-      "tags": ["sample", "inclusive-range"]
+      "input": {
+        "n": 15,
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            0,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        4,
+        64
+      ],
+      "tags": [
+        "sample",
+        "inclusive-range"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: one set bit",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 2, "queries": [[0, 0]]},
-      "expected": [2],
-      "tags": ["sample", "single-power"]
+      "input": {
+        "n": 2,
+        "queries": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        2
+      ],
+      "tags": [
+        "sample",
+        "single-power"
+      ]
     },
     {
       "id": "trial-unit-power",
       "name": "trial: bit zero contributes one",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1, "queries": [[0, 0]]},
-      "expected": [1],
-      "tags": ["trial", "bit-zero"]
+      "input": {
+        "n": 1,
+        "queries": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "trial",
+        "bit-zero"
+      ]
     },
     {
       "id": "trial-sparse-bits",
       "name": "trial: sparse binary decomposition",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 37, "queries": [[0, 0], [1, 2], [0, 2]]},
-      "expected": [1, 128, 128],
-      "tags": ["trial", "sparse-bits"]
+      "input": {
+        "n": 37,
+        "queries": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        128,
+        128
+      ],
+      "tags": [
+        "trial",
+        "sparse-bits"
+      ]
     },
     {
-      "id": "real-two-set-bits",
-      "name": "hidden: full and singleton ranges",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 10, "queries": [[0, 1], [1, 1], [0, 0]]},
-      "expected": [16, 8, 2],
-      "tags": ["hidden", "range-boundaries"]
+      "id": "trial-two-set-bits",
+      "name": "full and singleton ranges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 10,
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        16,
+        8,
+        2
+      ],
+      "tags": [
+        "range-boundaries"
+      ]
     },
     {
-      "id": "real-high-single-power",
-      "name": "hidden: highest permitted single bit",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 536870912, "queries": [[0, 0], [0, 0]]},
-      "expected": [536870912, 536870912],
-      "tags": ["hidden", "upper-bit", "repeated-query"]
+      "id": "trial-high-single-power",
+      "name": "highest permitted single bit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 536870912,
+        "queries": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        536870912,
+        536870912
+      ],
+      "tags": [
+        "upper-bit",
+        "repeated-query"
+      ]
     },
     {
-      "id": "real-modulo-wrap",
-      "name": "hidden: long product wraps modulo",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 536870911, "queries": [[0, 28], [10, 28], [28, 28]]},
-      "expected": [733922348, 57836472, 268435456],
-      "tags": ["hidden", "modulo", "dense-bits"]
+      "id": "trial-modulo-wrap",
+      "name": "long product wraps modulo",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 536870911,
+        "queries": [
+          [
+            0,
+            28
+          ],
+          [
+            10,
+            28
+          ],
+          [
+            28,
+            28
+          ]
+        ]
+      },
+      "expected": [
+        733922348,
+        57836472,
+        268435456
+      ],
+      "tags": [
+        "modulo",
+        "dense-bits"
+      ]
     }
   ]
 }

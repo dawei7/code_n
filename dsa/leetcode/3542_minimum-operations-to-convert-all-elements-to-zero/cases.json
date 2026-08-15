@@ -7,81 +7,211 @@
       "name": "sample: an existing zero separates the positive value",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [0, 2]},
+      "input": {
+        "nums": [
+          0,
+          2
+        ]
+      },
       "expected": 1,
-      "tags": ["sample", "zero"]
+      "tags": [
+        "sample",
+        "zero"
+      ]
     },
     {
       "id": "sample-shared-minimum",
       "name": "sample: equal minima share one operation",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [3, 1, 2, 1]},
+      "input": {
+        "nums": [
+          3,
+          1,
+          2,
+          1
+        ]
+      },
       "expected": 3,
-      "tags": ["sample", "shared-minimum"]
+      "tags": [
+        "sample",
+        "shared-minimum"
+      ]
     },
     {
       "id": "sample-separated-twos",
       "name": "sample: removed minima separate larger values",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 1, 2, 1, 2]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          2
+        ]
+      },
       "expected": 4,
-      "tags": ["sample", "separated-components"]
+      "tags": [
+        "sample",
+        "separated-components"
+      ]
     },
     {
       "id": "trial-all-zero",
       "name": "trial: array already contains only zeros",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0, 0, 0]},
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "already-zero"]
+      "tags": [
+        "trial",
+        "already-zero"
+      ]
     },
     {
       "id": "trial-flat-plateau",
       "name": "trial: one operation removes an equal plateau",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5, 5, 5]},
+      "input": {
+        "nums": [
+          5,
+          5,
+          5
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "equal-values"]
+      "tags": [
+        "trial",
+        "equal-values"
+      ]
     },
     {
-      "id": "real-nested-levels",
-      "name": "real: lower values merge equal higher-level context",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 3, 2, 3, 1]},
+      "id": "trial-nested-levels",
+      "name": "lower values merge equal higher-level context",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          2,
+          3,
+          1
+        ]
+      },
       "expected": 4,
-      "tags": ["real", "nested-levels"]
+      "tags": [
+        "real",
+        "nested-levels"
+      ]
     },
     {
-      "id": "real-zero-separated",
-      "name": "real: zero forces independent positive regions",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2, 1, 2, 0, 2, 1, 2]},
+      "id": "trial-zero-separated",
+      "name": "zero forces independent positive regions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          2,
+          0,
+          2,
+          1,
+          2
+        ]
+      },
       "expected": 6,
-      "tags": ["real", "zero-separator"]
+      "tags": [
+        "real",
+        "zero-separator"
+      ]
     },
     {
-      "id": "real-descending",
-      "name": "real: every descending value starts a new level",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100000, 99999, 50000, 2, 1]},
+      "id": "trial-descending",
+      "name": "every descending value starts a new level",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100000,
+          99999,
+          50000,
+          2,
+          1
+        ]
+      },
       "expected": 5,
-      "tags": ["real", "descending", "maximum-value"]
+      "tags": [
+        "real",
+        "descending",
+        "maximum-value"
+      ]
     },
     {
-      "id": "real-equality-after-higher-values",
-      "name": "real: equal active level survives intervening peaks",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2, 5, 5, 3, 5, 2]},
+      "id": "trial-equality-after-higher-values",
+      "name": "equal active level survives intervening peaks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          5,
+          5,
+          3,
+          5,
+          2
+        ]
+      },
       "expected": 4,
-      "tags": ["real", "equality", "monotonic-stack"]
+      "tags": [
+        "real",
+        "equality",
+        "monotonic-stack"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

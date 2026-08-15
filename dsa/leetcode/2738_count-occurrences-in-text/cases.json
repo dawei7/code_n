@@ -1,1 +1,352 @@
-{"schema_version":1,"challenge_id":"lc_2738","cases":[{"id":"sample-1","name":"sample: three market drafts","kind":"sample","visible":true,"input":{"tables":{"Files":[{"file_name":"draft1.txt","content":"The stock exchange predicts a bull market which would make many investors happy."},{"file_name":"draft2.txt","content":"The stock exchange predicts a bull market, and analysts say we are awaiting a bear market."},{"file_name":"draft3.txt","content":"The stock exchange predicts a bull market, while analysts expect a bear market. As always, uncertainty remains."}]}},"expected":{"columns":["word","count"],"rows":[["bull",3],["bear",2]]},"validator":{"kind":"unordered_table"},"tags":["sample","both-words"]},{"id":"trial-one-file-both","name":"trial: repeated targets count one file","kind":"trial","visible":true,"input":{"tables":{"Files":[{"file_name":"one.txt","content":" a bull bull bear bear z "}]}},"expected":{"columns":["word","count"],"rows":[["bull",1],["bear",1]]},"validator":{"kind":"unordered_table"},"tags":["trial","repetition"]},{"id":"real-invalid-boundaries","name":"hidden: boundaries and punctuation are invalid","kind":"real","visible":false,"input":{"tables":{"Files":[{"file_name":"edges.txt","content":"bull starts while bears and bull. fail bear"}]}},"expected":{"columns":["word","count"],"rows":[["bull",0],["bear",0]]},"validator":{"kind":"unordered_table"},"tags":["hidden","boundaries"]},{"id":"real-separate-files","name":"hidden: targets occur in separate files","kind":"real","visible":false,"input":{"tables":{"Files":[{"file_name":"bull.txt","content":"x bull y"},{"file_name":"bear.txt","content":"x bear y"},{"file_name":"none.txt","content":"x bullish bearish y"}]}},"expected":{"columns":["word","count"],"rows":[["bull",1],["bear",1]]},"validator":{"kind":"unordered_table"},"tags":["hidden","separate-files"]},{"id":"real-one-zero","name":"hidden: one target has no matching file","kind":"real","visible":false,"input":{"tables":{"Files":[{"file_name":"a.txt","content":"x bull y"},{"file_name":"b.txt","content":"x bull z"},{"file_name":"c.txt","content":"bear at boundary"}]}},"expected":{"columns":["word","count"],"rows":[["bull",2],["bear",0]]},"validator":{"kind":"unordered_table"},"tags":["hidden","zero-count"]},{"id":"real-multiple-occurrences","name":"hidden: several occurrences still count once","kind":"real","visible":false,"input":{"tables":{"Files":[{"file_name":"many.txt","content":"x bull y bull z bull q"},{"file_name":"single.txt","content":"x bull y"}]}},"expected":{"columns":["word","count"],"rows":[["bull",2],["bear",0]]},"validator":{"kind":"unordered_table"},"tags":["hidden","file-count"]},{"id":"real-overlap","name":"hidden: one file contributes to both labels","kind":"real","visible":false,"input":{"tables":{"Files":[{"file_name":"both.txt","content":"x bear y bull z"},{"file_name":"bear.txt","content":"x bear y"},{"file_name":"noise.txt","content":"x bullet bears y"}]}},"expected":{"columns":["word","count"],"rows":[["bull",1],["bear",2]]},"validator":{"kind":"unordered_table"},"tags":["hidden","overlap"]},{"id":"real-literal-spaces","name":"hidden: tabs and newlines are not spaces","kind":"real","visible":false,"input":{"tables":{"Files":[{"file_name":"whitespace.txt","content":"x\tbull\ty x\nbear\ny"},{"file_name":"spaces.txt","content":"x bull y bear z"}]}},"expected":{"columns":["word","count"],"rows":[["bull",1],["bear",1]]},"validator":{"kind":"unordered_table"},"tags":["hidden","literal-space"]}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2738",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three market drafts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Files": [
+            {
+              "file_name": "draft1.txt",
+              "content": "The stock exchange predicts a bull market which would make many investors happy."
+            },
+            {
+              "file_name": "draft2.txt",
+              "content": "The stock exchange predicts a bull market, and analysts say we are awaiting a bear market."
+            },
+            {
+              "file_name": "draft3.txt",
+              "content": "The stock exchange predicts a bull market, while analysts expect a bear market. As always, uncertainty remains."
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "word",
+          "count"
+        ],
+        "rows": [
+          [
+            "bull",
+            3
+          ],
+          [
+            "bear",
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "sample",
+        "both-words"
+      ]
+    },
+    {
+      "id": "trial-one-file-both",
+      "name": "trial: repeated targets count one file",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Files": [
+            {
+              "file_name": "one.txt",
+              "content": " a bull bull bear bear z "
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "word",
+          "count"
+        ],
+        "rows": [
+          [
+            "bull",
+            1
+          ],
+          [
+            "bear",
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "trial",
+        "repetition"
+      ]
+    },
+    {
+      "id": "trial-invalid-boundaries",
+      "name": "boundaries and punctuation are invalid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Files": [
+            {
+              "file_name": "edges.txt",
+              "content": "bull starts while bears and bull. fail bear"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "word",
+          "count"
+        ],
+        "rows": [
+          [
+            "bull",
+            0
+          ],
+          [
+            "bear",
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "boundaries"
+      ]
+    },
+    {
+      "id": "trial-separate-files",
+      "name": "targets occur in separate files",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Files": [
+            {
+              "file_name": "bull.txt",
+              "content": "x bull y"
+            },
+            {
+              "file_name": "bear.txt",
+              "content": "x bear y"
+            },
+            {
+              "file_name": "none.txt",
+              "content": "x bullish bearish y"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "word",
+          "count"
+        ],
+        "rows": [
+          [
+            "bull",
+            1
+          ],
+          [
+            "bear",
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "separate-files"
+      ]
+    },
+    {
+      "id": "trial-one-zero",
+      "name": "one target has no matching file",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Files": [
+            {
+              "file_name": "a.txt",
+              "content": "x bull y"
+            },
+            {
+              "file_name": "b.txt",
+              "content": "x bull z"
+            },
+            {
+              "file_name": "c.txt",
+              "content": "bear at boundary"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "word",
+          "count"
+        ],
+        "rows": [
+          [
+            "bull",
+            2
+          ],
+          [
+            "bear",
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "zero-count"
+      ]
+    },
+    {
+      "id": "trial-multiple-occurrences",
+      "name": "several occurrences still count once",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Files": [
+            {
+              "file_name": "many.txt",
+              "content": "x bull y bull z bull q"
+            },
+            {
+              "file_name": "single.txt",
+              "content": "x bull y"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "word",
+          "count"
+        ],
+        "rows": [
+          [
+            "bull",
+            2
+          ],
+          [
+            "bear",
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "file-count"
+      ]
+    },
+    {
+      "id": "trial-overlap",
+      "name": "one file contributes to both labels",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Files": [
+            {
+              "file_name": "both.txt",
+              "content": "x bear y bull z"
+            },
+            {
+              "file_name": "bear.txt",
+              "content": "x bear y"
+            },
+            {
+              "file_name": "noise.txt",
+              "content": "x bullet bears y"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "word",
+          "count"
+        ],
+        "rows": [
+          [
+            "bull",
+            1
+          ],
+          [
+            "bear",
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-literal-spaces",
+      "name": "tabs and newlines are not spaces",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Files": [
+            {
+              "file_name": "whitespace.txt",
+              "content": "x\tbull\ty x\nbear\ny"
+            },
+            {
+              "file_name": "spaces.txt",
+              "content": "x bull y bear z"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "word",
+          "count"
+        ],
+        "rows": [
+          [
+            "bull",
+            1
+          ],
+          [
+            "bear",
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "literal-space"
+      ]
+    }
+  ]
+}

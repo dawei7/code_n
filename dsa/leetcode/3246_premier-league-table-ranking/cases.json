@@ -490,10 +490,10 @@
       ]
     },
     {
-      "id": "real-alphabetical-tie",
-      "name": "real: identifiers do not order tied names",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alphabetical-tie",
+      "name": "identifiers do not order tied names",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "TeamStats": [
@@ -558,10 +558,10 @@
       ]
     },
     {
-      "id": "real-several-levels",
-      "name": "real: several point levels and ties",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-several-levels",
+      "name": "several point levels and ties",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "TeamStats": [
@@ -668,10 +668,10 @@
       ]
     },
     {
-      "id": "real-draw-heavy",
-      "name": "real: draw-heavy records",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-draw-heavy",
+      "name": "draw-heavy records",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "TeamStats": [
@@ -750,10 +750,10 @@
       ]
     },
     {
-      "id": "real-zero-and-positive",
-      "name": "real: zero-point tail follows positive ties",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zero-and-positive",
+      "name": "zero-point tail follows positive ties",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "TeamStats": [
@@ -846,10 +846,10 @@
       ]
     },
     {
-      "id": "real-wide-table",
-      "name": "real: larger league with repeated totals",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-wide-table",
+      "name": "larger league with repeated totals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "TeamStats": [

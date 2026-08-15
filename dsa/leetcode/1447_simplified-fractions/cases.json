@@ -109,10 +109,10 @@
       ]
     },
     {
-      "id": "real-six",
-      "name": "hidden: composite denominator filters common factors",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-six",
+      "name": "composite denominator filters common factors",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 6
       },
@@ -133,15 +133,14 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "composite"
       ]
     },
     {
-      "id": "real-ten",
-      "name": "hidden: several prime and composite denominators",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ten",
+      "name": "several prime and composite denominators",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 10
       },
@@ -182,7 +181,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "mixed-denominators"
       ]
     }

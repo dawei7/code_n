@@ -108,10 +108,10 @@
       ]
     },
     {
-      "id": "real-all-single-use",
-      "name": "hidden: six single uses meet three triangular levels",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-single-use",
+      "name": "six single uses meet three triangular levels",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "usageLimits": [
           1,
@@ -124,15 +124,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "triangular"
       ]
     },
     {
-      "id": "real-uniform-middle-limit",
-      "name": "hidden: six equal limits stop before the sixth group",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-uniform-middle-limit",
+      "name": "six equal limits stop before the sixth group",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "usageLimits": [
           3,
@@ -145,15 +144,14 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "capacity"
       ]
     },
     {
-      "id": "real-mixed-complete",
-      "name": "hidden: shuffled capacities support every group",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-complete",
+      "name": "shuffled capacities support every group",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "usageLimits": [
           4,
@@ -167,15 +165,14 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
     {
-      "id": "real-all-maximum",
-      "name": "hidden: every oversized limit is safely clamped",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-maximum",
+      "name": "every oversized limit is safely clamped",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "usageLimits": [
           1000000000,
@@ -187,8 +184,23 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "maximum"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in usageLimits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "usageLimits": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

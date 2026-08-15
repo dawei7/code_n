@@ -98,10 +98,10 @@
       ]
     },
     {
-      "id": "real-one-global-maximum",
-      "name": "real: every subarray containing the sole maximum qualifies",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-global-maximum",
+      "name": "every subarray containing the sole maximum qualifies",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -114,15 +114,14 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "single-maximum"
       ]
     },
     {
-      "id": "real-maximum-at-ends",
-      "name": "real: qualifying ranges must cover both endpoints",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-at-ends",
+      "name": "qualifying ranges must cover both endpoints",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000,
@@ -135,15 +134,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
     {
-      "id": "real-k-exceeds-occurrences",
-      "name": "real: k exceeds total maximum frequency",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-k-exceeds-occurrences",
+      "name": "k exceeds total maximum frequency",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -155,15 +153,14 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "insufficient-frequency"
       ]
     },
     {
-      "id": "real-three-of-four-maxima",
-      "name": "real: several windows contain three maxima",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-of-four-maxima",
+      "name": "several windows contain three maxima",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -177,7 +174,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "multiple-windows"
       ]
     }

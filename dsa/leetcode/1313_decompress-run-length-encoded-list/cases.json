@@ -117,10 +117,10 @@
       ]
     },
     {
-      "id": "hidden-maximum-frequency",
-      "name": "hidden: maximum legal frequency",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-frequency",
+      "name": "maximum legal frequency",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100,
@@ -230,15 +230,14 @@
         1
       ],
       "tags": [
-        "hidden",
         "maximum-frequency"
       ]
     },
     {
-      "id": "hidden-many-runs",
-      "name": "hidden: preserve order across several runs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-runs",
+      "name": "preserve order across several runs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -262,7 +261,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "multiple-runs"
       ]
     }

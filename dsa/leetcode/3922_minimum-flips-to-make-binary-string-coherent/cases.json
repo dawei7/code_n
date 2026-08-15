@@ -213,63 +213,73 @@
       ]
     },
     {
-      "id": "hidden-endpoint-ones",
-      "name": "hidden: two endpoint ones with zero interior are coherent",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-endpoint-ones",
+      "name": "two endpoint ones with zero interior are coherent",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "1000001"
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "endpoint-pattern",
         "already-coherent"
       ]
     },
     {
-      "id": "hidden-alternating",
-      "name": "hidden: alternating bits favor retaining one existing one",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alternating",
+      "name": "alternating bits favor retaining one existing one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "010101"
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "alternating",
         "at-most-one-one"
       ]
     },
     {
-      "id": "hidden-ones-heavy",
-      "name": "hidden: flipping two endpoint zeros produces all ones",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ones-heavy",
+      "name": "flipping two endpoint zeros produces all ones",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "011110"
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "all-one-target",
         "endpoint-zeros"
       ]
     },
     {
-      "id": "hidden-grouped-middle-ones",
-      "name": "hidden: grouped middle ones favor retaining one one",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-grouped-middle-ones",
+      "name": "grouped middle ones favor retaining one one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "000111000"
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "grouped-ones",
         "at-most-one-one"
+      ]
+    },
+    {
+      "id": "trial-boundary-19",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "111"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

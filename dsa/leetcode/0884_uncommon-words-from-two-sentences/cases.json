@@ -104,10 +104,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: shared middle words",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "shared middle words",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s1": "a b c",
         "s2": "b c d"
@@ -120,15 +120,14 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "shared"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: separate duplicate groups",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "separate duplicate groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s1": "a a b",
         "s2": "c c d"
@@ -141,15 +140,14 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: no frequency equals one",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "no frequency equals one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s1": "x y x y",
         "s2": "z z"
@@ -159,15 +157,14 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "empty-result"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: longer words with one shared word",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "longer words with one shared word",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s1": "longword tiny",
         "s2": "tiny another"
@@ -180,15 +177,14 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "word-length"
       ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: the only word is shared",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-5",
+      "name": "the only word is shared",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s1": "a",
         "s2": "a"
@@ -198,7 +194,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "single-word"
       ]
     }

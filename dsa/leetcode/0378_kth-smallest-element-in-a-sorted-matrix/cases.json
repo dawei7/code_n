@@ -125,10 +125,10 @@
       ]
     },
     {
-      "id": "hidden-all-equal",
-      "name": "hidden: every rank has same value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-equal",
+      "name": "every rank has same value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [
@@ -144,15 +144,14 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "hidden-negative-mixed",
-      "name": "hidden: sorted negative and positive values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-negative-mixed",
+      "name": "sorted negative and positive values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [
@@ -175,15 +174,14 @@
       },
       "expected": -2,
       "tags": [
-        "hidden",
         "negative"
       ]
     },
     {
-      "id": "hidden-middle",
-      "name": "hidden: middle rank in four-by-four matrix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-middle",
+      "name": "middle rank in four-by-four matrix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [
@@ -215,10 +213,8 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "middle"
       ]
     }
   ]
 }
-

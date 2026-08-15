@@ -142,10 +142,10 @@
       ]
     },
     {
-      "id": "real-same-index-repeated",
-      "name": "real: repeated multiplications use current value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-same-index-repeated",
+      "name": "repeated multiplications use current value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10,
@@ -180,10 +180,10 @@
       ]
     },
     {
-      "id": "real-modular-reduction",
-      "name": "real: products wrap modulo the required prime",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-modular-reduction",
+      "name": "products wrap modulo the required prime",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -211,10 +211,10 @@
       ]
     },
     {
-      "id": "real-disjoint-progressions",
-      "name": "real: residue progressions update disjoint indices",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-disjoint-progressions",
+      "name": "residue progressions update disjoint indices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -246,10 +246,10 @@
       ]
     },
     {
-      "id": "real-query-order",
-      "name": "real: several overlapping modular multiplications",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-query-order",
+      "name": "several overlapping modular multiplications",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           123456789,
@@ -284,10 +284,10 @@
       ]
     },
     {
-      "id": "real-single-index-xor-cancellation",
-      "name": "real: equal updated values cancel in XOR pairs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-index-xor-cancellation",
+      "name": "equal updated values cancel in XOR pairs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -311,10 +311,10 @@
       ]
     },
     {
-      "id": "real-maximum-multiplier",
-      "name": "real: maximum multiplier on sparse indices",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-multiplier",
+      "name": "maximum multiplier on sparse indices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,

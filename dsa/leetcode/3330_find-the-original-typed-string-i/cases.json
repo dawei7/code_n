@@ -72,10 +72,10 @@
       ]
     },
     {
-      "id": "real-separated-repeat",
-      "name": "real: equal letters separated by other characters",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-separated-repeat",
+      "name": "equal letters separated by other characters",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "abca"
       },
@@ -86,17 +86,16 @@
       ]
     },
     {
-      "id": "real-mixed-run-lengths",
-      "name": "real: several different run lengths",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-run-lengths",
+      "name": "several different run lengths",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "aaabbaa"
       },
       "expected": 5,
       "tags": [
-        "mixed-lengths",
-        "hidden"
+        "mixed-lengths"
       ]
     }
   ]

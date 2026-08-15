@@ -1,14 +1,452 @@
-{"schema_version":1,"challenge_id":"lc_3787","cases":[
-{"id":"sample-1","name":"sample: endpoints of a three-node path","kind":"sample","visible":true,"input":{"n":3,"edges":[[0,1],[1,2]]},"expected":"101","validator":{"kind":"exact"},"tags":["sample","path"]},
-{"id":"sample-2","name":"sample: four endpoints across two branch pairs","kind":"sample","visible":true,"input":{"n":7,"edges":[[0,1],[1,2],[2,3],[3,4],[3,5],[1,6]]},"expected":"1000111","validator":{"kind":"exact"},"tags":["sample","multiple-diameters"]},
-{"id":"sample-3","name":"sample: both nodes of one edge","kind":"sample","visible":true,"input":{"n":2,"edges":[[0,1]]},"expected":"11","validator":{"kind":"exact"},"tags":["sample","minimum"]},
-{"id":"trial-star","name":"trial: every leaf of a star is peripheral","kind":"trial","visible":true,"input":{"n":5,"edges":[[0,1],[0,2],[0,3],[0,4]]},"expected":"01111","validator":{"kind":"exact"},"tags":["trial","star"]},
-{"id":"trial-four-path","name":"trial: only path endpoints are special","kind":"trial","visible":true,"input":{"n":4,"edges":[[0,1],[1,2],[2,3]]},"expected":"1001","validator":{"kind":"exact"},"tags":["trial","path"]},
-{"id":"trial-balanced","name":"trial: all deepest leaves in a balanced tree","kind":"trial","visible":true,"input":{"n":7,"edges":[[0,1],[0,2],[1,3],[1,4],[2,5],[2,6]]},"expected":"0001111","validator":{"kind":"exact"},"tags":["trial","balanced"]},
-{"id":"real-asymmetric","name":"hidden: endpoints occur at unequal root depths","kind":"real","visible":false,"input":{"n":6,"edges":[[0,1],[1,2],[2,3],[1,4],[4,5]]},"expected":"000101","validator":{"kind":"exact"},"tags":["hidden","branches"]},
-{"id":"real-broom","name":"hidden: several leaves share one diameter side","kind":"real","visible":false,"input":{"n":7,"edges":[[0,1],[1,2],[2,3],[3,4],[3,5],[3,6]]},"expected":"1000111","validator":{"kind":"exact"},"tags":["hidden","multiple-diameters"]},
-{"id":"real-center-leaf","name":"hidden: short branch is not peripheral","kind":"real","visible":false,"input":{"n":6,"edges":[[0,1],[1,2],[2,3],[3,4],[2,5]]},"expected":"100010","validator":{"kind":"exact"},"tags":["hidden","non-special-leaf"]},
-{"id":"real-double-star","name":"hidden: leaves on either side are all special","kind":"real","visible":false,"input":{"n":8,"edges":[[0,1],[0,2],[0,3],[0,4],[4,5],[4,6],[4,7]]},"expected":"01110111","validator":{"kind":"exact"},"tags":["hidden","multiple-diameters"]},
-{"id":"real-renumbered-path","name":"hidden: node numbers do not follow path order","kind":"real","visible":false,"input":{"n":5,"edges":[[3,1],[1,4],[4,0],[0,2]]},"expected":"00110","validator":{"kind":"exact"},"tags":["hidden","renumbered"]},
-{"id":"real-three-arm","name":"hidden: only the two longest arms supply endpoints","kind":"real","visible":false,"input":{"n":8,"edges":[[0,1],[1,2],[2,3],[0,4],[4,5],[5,6],[0,7]]},"expected":"00010010","validator":{"kind":"exact"},"tags":["hidden","unequal-arms"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3787",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: endpoints of a three-node path",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": "101",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "path"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: four endpoints across two branch pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 7,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            1,
+            6
+          ]
+        ]
+      },
+      "expected": "1000111",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "multiple-diameters"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: both nodes of one edge",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "edges": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": "11",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-star",
+      "name": "trial: every leaf of a star is peripheral",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ]
+        ]
+      },
+      "expected": "01111",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "star"
+      ]
+    },
+    {
+      "id": "trial-four-path",
+      "name": "trial: only path endpoints are special",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": "1001",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "path"
+      ]
+    },
+    {
+      "id": "trial-balanced",
+      "name": "trial: all deepest leaves in a balanced tree",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 7,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            6
+          ]
+        ]
+      },
+      "expected": "0001111",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "balanced"
+      ]
+    },
+    {
+      "id": "trial-asymmetric",
+      "name": "endpoints occur at unequal root depths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ]
+      },
+      "expected": "000101",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "branches"
+      ]
+    },
+    {
+      "id": "trial-broom",
+      "name": "several leaves share one diameter side",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 7,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            3,
+            6
+          ]
+        ]
+      },
+      "expected": "1000111",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "multiple-diameters"
+      ]
+    },
+    {
+      "id": "trial-center-leaf",
+      "name": "short branch is not peripheral",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            2,
+            5
+          ]
+        ]
+      },
+      "expected": "100010",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "non-special-leaf"
+      ]
+    },
+    {
+      "id": "trial-double-star",
+      "name": "leaves on either side are all special",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 8,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            4,
+            7
+          ]
+        ]
+      },
+      "expected": "01110111",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "multiple-diameters"
+      ]
+    },
+    {
+      "id": "trial-renumbered-path",
+      "name": "node numbers do not follow path order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            3,
+            1
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": "00110",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "renumbered"
+      ]
+    },
+    {
+      "id": "trial-three-arm",
+      "name": "only the two longest arms supply endpoints",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 8,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            0,
+            7
+          ]
+        ]
+      },
+      "expected": "00010010",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "unequal-arms"
+      ]
+    }
+  ]
+}

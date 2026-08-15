@@ -194,10 +194,10 @@
       ]
     },
     {
-      "id": "hidden-same-value-swap",
-      "name": "hidden: moved occurrence equals removed value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-same-value-swap",
+      "name": "moved occurrence equals removed value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           [
@@ -238,15 +238,14 @@
         "operations_param": "operations"
       },
       "tags": [
-        "hidden",
         "swap"
       ]
     },
     {
-      "id": "hidden-middle-swap",
-      "name": "hidden: moved different value updates index set",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-middle-swap",
+      "name": "moved different value updates index set",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           [
@@ -287,15 +286,14 @@
         "operations_param": "operations"
       },
       "tags": [
-        "hidden",
         "swap"
       ]
     },
     {
-      "id": "hidden-random-members",
-      "name": "hidden: random result follows remaining counts",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-random-members",
+      "name": "random result follows remaining counts",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           [
@@ -335,10 +333,8 @@
         "operations_param": "operations"
       },
       "tags": [
-        "hidden",
         "random"
       ]
     }
   ]
 }
-

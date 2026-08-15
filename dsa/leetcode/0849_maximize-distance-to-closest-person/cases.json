@@ -114,10 +114,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: even interior zero run",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "even interior zero run",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "seats": [
           1,
@@ -130,15 +130,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "even-run"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: trailing boundary beats other runs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "trailing boundary beats other runs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "seats": [
           0,
@@ -156,15 +155,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: interior run beats boundaries",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "interior run beats boundaries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "seats": [
           0,
@@ -178,15 +176,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "interior"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: alternating row",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "alternating row",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "seats": [
           1,
@@ -199,15 +196,14 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: single person near center",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-5",
+      "name": "single person near center",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "seats": [
           0,
@@ -220,15 +216,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "one-person"
       ]
     },
     {
-      "id": "hidden-6",
-      "name": "hidden: adjacent people and asymmetric ends",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-6",
+      "name": "adjacent people and asymmetric ends",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "seats": [
           0,
@@ -240,7 +235,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "adjacent"
       ]
     }

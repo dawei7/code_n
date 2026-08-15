@@ -183,10 +183,10 @@
       ]
     },
     {
-      "id": "real-four-one-visible",
-      "name": "hidden: choose one of three visible people",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-four-one-visible",
+      "name": "choose one of three visible people",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "pos": 1,
@@ -197,16 +197,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "one-visible",
         "binomial"
       ]
     },
     {
-      "id": "real-four-two-visible",
-      "name": "hidden: complementary choice has equal count",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-four-two-visible",
+      "name": "complementary choice has equal count",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "pos": 2,
@@ -217,16 +216,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "two-visible",
         "symmetry"
       ]
     },
     {
-      "id": "real-ten-four-visible",
-      "name": "hidden: interior binomial coefficient",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ten-four-visible",
+      "name": "interior binomial coefficient",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 10,
         "pos": 4,
@@ -237,16 +235,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "interior-k",
         "binomial"
       ]
     },
     {
-      "id": "real-ten-eight-visible",
-      "name": "hidden: complement symmetry reduces the product",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ten-eight-visible",
+      "name": "complement symmetry reduces the product",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 10,
         "pos": 7,
@@ -257,16 +254,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "large-k",
         "symmetry"
       ]
     },
     {
-      "id": "real-twenty-middle",
-      "name": "hidden: larger central coefficient remains exact",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-twenty-middle",
+      "name": "larger central coefficient remains exact",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 20,
         "pos": 10,
@@ -277,16 +273,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "central-k",
         "larger-count"
       ]
     },
     {
-      "id": "real-modular-result",
-      "name": "hidden: large coefficient requires modular reduction",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-modular-result",
+      "name": "large coefficient requires modular reduction",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 100,
         "pos": 37,
@@ -297,9 +292,24 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "modulo",
         "large-coefficient"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "pos": 1,
+        "k": 0
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

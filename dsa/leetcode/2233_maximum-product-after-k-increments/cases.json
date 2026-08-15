@@ -2,13 +2,145 @@
   "schema_version": 1,
   "challenge_id": "lc_2233",
   "cases": [
-    {"id":"sample-fill-zero","name":"sample: all increments go to the zero factor","kind":"sample","visible":true,"input":{"nums":[0,4],"k":5},"expected":20,"tags":["sample","zero"]},
-    {"id":"sample-balance-minima","name":"sample: increments balance the smallest values","kind":"sample","visible":true,"input":{"nums":[6,3,3,2],"k":2},"expected":216,"tags":["sample","balance"]},
-    {"id":"trial-single-value","name":"one factor receives every increment","kind":"trial","visible":true,"input":{"nums":[1],"k":3},"expected":4,"tags":["single-element"]},
-    {"id":"trial-one-zero-remains","name":"one operation cannot fill two zeros","kind":"trial","visible":true,"input":{"nums":[0,0],"k":1},"expected":0,"tags":["zeros","zero-product"]},
-    {"id":"trial-fill-both-zeros","name":"two operations make both zero factors positive","kind":"trial","visible":true,"input":{"nums":[0,0],"k":2},"expected":1,"tags":["zeros"]},
-    {"id":"real-uneven-remainder","name":"hidden: a remainder increment breaks an equal tie","kind":"real","visible":false,"input":{"nums":[1,1,1],"k":4},"expected":12,"tags":["hidden","remainder"]},
-    {"id":"real-modulo","name":"hidden: the final product is reduced modulo the constant","kind":"real","visible":false,"input":{"nums":[1000000,1000000],"k":1},"expected":993000,"tags":["hidden","modulo"]},
-    {"id":"real-large-k-single","name":"hidden: a large operation budget on one factor","kind":"real","visible":false,"input":{"nums":[0],"k":4096},"expected":4096,"tags":["hidden","large-k"]}
+    {
+      "id": "sample-fill-zero",
+      "name": "sample: all increments go to the zero factor",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          4
+        ],
+        "k": 5
+      },
+      "expected": 20,
+      "tags": [
+        "sample",
+        "zero"
+      ]
+    },
+    {
+      "id": "sample-balance-minima",
+      "name": "sample: increments balance the smallest values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          3,
+          3,
+          2
+        ],
+        "k": 2
+      },
+      "expected": 216,
+      "tags": [
+        "sample",
+        "balance"
+      ]
+    },
+    {
+      "id": "trial-single-value",
+      "name": "one factor receives every increment",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 3
+      },
+      "expected": 4,
+      "tags": [
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-one-zero-remains",
+      "name": "one operation cannot fill two zeros",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "zeros",
+        "zero-product"
+      ]
+    },
+    {
+      "id": "trial-fill-both-zeros",
+      "name": "two operations make both zero factors positive",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0
+        ],
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "zeros"
+      ]
+    },
+    {
+      "id": "trial-uneven-remainder",
+      "name": "a remainder increment breaks an equal tie",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "k": 4
+      },
+      "expected": 12,
+      "tags": [
+        "remainder"
+      ]
+    },
+    {
+      "id": "trial-modulo",
+      "name": "the final product is reduced modulo the constant",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000,
+          1000000
+        ],
+        "k": 1
+      },
+      "expected": 993000,
+      "tags": [
+        "modulo"
+      ]
+    },
+    {
+      "id": "trial-large-k-single",
+      "name": "a large operation budget on one factor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0
+        ],
+        "k": 4096
+      },
+      "expected": 4096,
+      "tags": [
+        "large-k"
+      ]
+    }
   ]
 }

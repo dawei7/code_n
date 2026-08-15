@@ -73,47 +73,43 @@
       ]
     },
     {
-      "id": "hidden-three-late",
-      "name": "hidden: minimum prohibited late streak",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-late",
+      "name": "minimum prohibited late streak",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "LLL"
       },
       "expected": false,
       "tags": [
-        "hidden",
         "minimum-violation"
       ]
     },
     {
-      "id": "hidden-separated-late",
-      "name": "hidden: separated late streaks reset",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-separated-late",
+      "name": "separated late streaks reset",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "LLPLLALL"
       },
       "expected": true,
       "tags": [
-        "hidden",
         "reset"
       ]
     },
     {
-      "id": "hidden-separated-absences",
-      "name": "hidden: separated absences still accumulate",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-separated-absences",
+      "name": "separated absences still accumulate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "PALPAL"
       },
       "expected": false,
       "tags": [
-        "hidden",
         "global-count"
       ]
     }
   ]
 }
-

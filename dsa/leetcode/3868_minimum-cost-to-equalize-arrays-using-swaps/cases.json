@@ -198,10 +198,10 @@
       ]
     },
     {
-      "id": "real-one-value",
-      "name": "hidden: one repeated value is already balanced",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-value",
+      "name": "one repeated value is already balanced",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           7,
@@ -221,16 +221,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "one-value",
         "zero-cost"
       ]
     },
     {
-      "id": "real-maximum-value",
-      "name": "hidden: the maximum legal value crosses once",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-value",
+      "name": "the maximum legal value crosses once",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           80000,
@@ -246,16 +245,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value",
         "one-swap"
       ]
     },
     {
-      "id": "real-mixed-imbalances",
-      "name": "hidden: unequal surplus sizes still pair into two swaps",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-imbalances",
+      "name": "unequal surplus sizes still pair into two swaps",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           1,
@@ -283,16 +281,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "mixed-imbalances",
         "multiple-values"
       ]
     },
     {
-      "id": "real-two-odd-totals",
-      "name": "hidden: two odd combined counts are still impossible",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-odd-totals",
+      "name": "two odd combined counts are still impossible",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           1,
@@ -312,16 +309,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "odd-frequency",
         "impossible"
       ]
     },
     {
-      "id": "real-balanced-and-disjoint-groups",
-      "name": "hidden: balanced shared groups coexist with two paid swaps",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-balanced-and-disjoint-groups",
+      "name": "balanced shared groups coexist with two paid swaps",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           1,
@@ -349,16 +345,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "balanced-groups",
         "disjoint-groups"
       ]
     },
     {
-      "id": "real-all-values-shared",
-      "name": "hidden: all values are shared but their counts differ",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-values-shared",
+      "name": "all values are shared but their counts differ",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           2,
@@ -386,16 +381,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "shared-values",
         "frequency-imbalance"
       ]
     },
     {
-      "id": "real-late-odd-frequency",
-      "name": "hidden: a late singleton invalidates otherwise even totals",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-late-odd-frequency",
+      "name": "a late singleton invalidates otherwise even totals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           5,
@@ -419,7 +413,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "late-odd-frequency",
         "impossible"
       ]

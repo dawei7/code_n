@@ -94,10 +94,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: all equal",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "all equal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           2,
@@ -107,15 +107,14 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: adjacent equal minima",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "adjacent equal minima",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           3,
@@ -126,15 +125,14 @@
       },
       "expected": 13,
       "tags": [
-        "hidden",
         "tie-breaking"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: repeated separated minima",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "repeated separated minima",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           2,
@@ -146,15 +144,14 @@
       },
       "expected": 18,
       "tags": [
-        "hidden",
         "repeated-minima"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: maximum single value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "maximum single value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           30000
@@ -162,15 +159,14 @@
       },
       "expected": 30000,
       "tags": [
-        "hidden",
         "value-bound"
       ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: maximum values around minimum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-5",
+      "name": "maximum values around minimum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           30000,
@@ -180,16 +176,15 @@
       },
       "expected": 60004,
       "tags": [
-        "hidden",
         "value-bound",
         "valley"
       ]
     },
     {
-      "id": "hidden-6",
-      "name": "hidden: alternating plateaus",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-6",
+      "name": "alternating plateaus",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           5,
@@ -201,7 +196,6 @@
       },
       "expected": 63,
       "tags": [
-        "hidden",
         "plateau"
       ]
     }

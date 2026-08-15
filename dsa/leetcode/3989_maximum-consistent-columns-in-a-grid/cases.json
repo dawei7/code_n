@@ -242,10 +242,10 @@
       ]
     },
     {
-      "id": "real-two-equal-best-chains",
-      "name": "hidden: two disjoint compatible chains tie",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-equal-best-chains",
+      "name": "two disjoint compatible chains tie",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -261,15 +261,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "multiple-optima"
       ]
     },
     {
-      "id": "real-value-boundaries",
-      "name": "hidden: extreme values connect through the midpoint",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-value-boundaries",
+      "name": "extreme values connect through the midpoint",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -282,17 +281,16 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "value-boundaries",
         "maximum-limit",
         "adjacent-only"
       ]
     },
     {
-      "id": "real-zero-limit-all-rows",
-      "name": "hidden: identical columns satisfy zero limit in every row",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zero-limit-all-rows",
+      "name": "identical columns satisfy zero limit in every row",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -310,17 +308,16 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "zero-limit",
         "multiple-rows",
         "retain-all"
       ]
     },
     {
-      "id": "real-only-final-pair",
-      "name": "hidden: widely separated prefix leaves one final compatible edge",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-only-final-pair",
+      "name": "widely separated prefix leaves one final compatible edge",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -334,15 +331,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "late-pair"
       ]
     },
     {
-      "id": "real-interleaved-chains",
-      "name": "hidden: interleaved value bands preserve two index-ordered chains",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-interleaved-chains",
+      "name": "interleaved value bands preserve two index-ordered chains",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -358,16 +354,15 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "interleaved",
         "multiple-optima"
       ]
     },
     {
-      "id": "real-decreasing-values",
-      "name": "hidden: decreasing values remain valid in index order",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-decreasing-values",
+      "name": "decreasing values remain valid in index order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -380,16 +375,15 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "decreasing-values",
         "order-semantics"
       ]
     },
     {
-      "id": "real-extreme-return",
-      "name": "hidden: skip an incompatible extreme jump at maximum limit",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-extreme-return",
+      "name": "skip an incompatible extreme jump at maximum limit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -403,16 +397,15 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "value-boundaries",
         "skipped-column"
       ]
     },
     {
-      "id": "real-maximum-columns",
-      "name": "hidden: a wide grid has only incompatible columns",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-columns",
+      "name": "a wide grid has only incompatible columns",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -550,17 +543,16 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "wide-columns",
         "zero-limit",
         "single-column-answer"
       ]
     },
     {
-      "id": "real-maximum-rows",
-      "name": "hidden: one pair must satisfy all 250 rows",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-rows",
+      "name": "one pair must satisfy all 250 rows",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -1568,17 +1560,16 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "maximum-rows",
         "zero-limit",
         "retain-all"
       ]
     },
     {
-      "id": "real-multirow-outlier-column",
-      "name": "hidden: a five-column chain skips one outlier in every row",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multirow-outlier-column",
+      "name": "a five-column chain skips one outlier in every row",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -1610,10 +1601,30 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "multiple-rows",
         "outlier-column",
         "long-chain"
+      ]
+    },
+    {
+      "id": "trial-boundary-21",
+      "name": "minimal value limit=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            -2,
+            0,
+            3
+          ]
+        ],
+        "limit": 1
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

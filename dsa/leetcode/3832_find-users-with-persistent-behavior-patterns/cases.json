@@ -338,10 +338,10 @@
       ]
     },
     {
-      "id": "real-calendar-gap",
-      "name": "hidden: a missing calendar date separates same-action records",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-calendar-gap",
+      "name": "a missing calendar date separates same-action records",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "activity": [
@@ -415,16 +415,15 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "calendar-gap",
         "maximum-run"
       ]
     },
     {
-      "id": "real-multi-action-break",
-      "name": "hidden: a multi-action date invalidates that date and breaks a run",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multi-action-break",
+      "name": "a multi-action date invalidates that date and breaks a run",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "activity": [
@@ -480,17 +479,16 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "exactly-one-action",
         "composite-primary-key",
         "empty-result"
       ]
     },
     {
-      "id": "real-multi-action-boundary",
-      "name": "hidden: excluding a multi-action first date leaves a valid five-day run",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multi-action-boundary",
+      "name": "excluding a multi-action first date leaves a valid five-day run",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "activity": [
@@ -554,16 +552,15 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "exactly-one-action",
         "boundary-date"
       ]
     },
     {
-      "id": "real-return-to-action",
-      "name": "hidden: returning to an earlier action starts a separate island",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-return-to-action",
+      "name": "returning to an earlier action starts a separate island",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "activity": [
@@ -637,16 +634,15 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "action-return",
         "separate-islands"
       ]
     },
     {
-      "id": "real-output-order",
-      "name": "hidden: length descends before the ascending user tie-break",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-output-order",
+      "name": "length descends before the ascending user tie-break",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "activity": [
@@ -769,16 +765,15 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "ordering",
         "user-id-tie-break"
       ]
     },
     {
-      "id": "real-year-boundary",
-      "name": "hidden: consecutive dates can cross a month and year boundary",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-year-boundary",
+      "name": "consecutive dates can cross a month and year boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "activity": [
@@ -832,16 +827,15 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "calendar-boundary",
         "date-arithmetic"
       ]
     },
     {
-      "id": "real-only-multi-action-date",
-      "name": "hidden: a user with only one multi-action date has no eligible day",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-only-multi-action-date",
+      "name": "a user with only one multi-action date has no eligible day",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "activity": [
@@ -872,16 +866,15 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "multi-action",
         "empty-result"
       ]
     },
     {
-      "id": "real-single-row",
-      "name": "hidden: one activity row cannot form a qualifying run",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-row",
+      "name": "one activity row cannot form a qualifying run",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "activity": [
@@ -907,7 +900,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "singleton",
         "empty-result"
       ]

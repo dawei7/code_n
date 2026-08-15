@@ -87,74 +87,83 @@
       ]
     },
     {
-      "id": "real-balanced-with-flexible",
-      "name": "hidden: flexible moves decide direction after balanced fixed moves",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-balanced-with-flexible",
+      "name": "flexible moves decide direction after balanced fixed moves",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "moves": "LLRR__"
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "balanced"
       ]
     },
     {
-      "id": "real-left-imbalance",
-      "name": "hidden: all flexible moves reinforce a left imbalance",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-left-imbalance",
+      "name": "all flexible moves reinforce a left imbalance",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "moves": "R_L_L"
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "leftward"
       ]
     },
     {
-      "id": "real-balanced-many-flexible",
-      "name": "hidden: equal forced counts leave only flexible distance",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-balanced-many-flexible",
+      "name": "equal forced counts leave only flexible distance",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "moves": "RRL___LL"
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "balanced"
       ]
     },
     {
-      "id": "real-no-flexible-right",
-      "name": "hidden: forced right moves need no choices",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-no-flexible-right",
+      "name": "forced right moves need no choices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "moves": "RRRRR"
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "no-flexible"
       ]
     },
     {
-      "id": "real-maximum-length",
-      "name": "hidden: every maximum-length move is flexible",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-length",
+      "name": "every maximum-length move is flexible",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "moves": "__________________________________________________"
       },
       "expected": 50,
       "tags": [
-        "hidden",
         "maximum-length",
         "all-flexible"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in moves",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "moves": "LLL"
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

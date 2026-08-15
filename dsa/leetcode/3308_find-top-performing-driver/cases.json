@@ -6,78 +6,520 @@
       "name": "sample: winners for gasoline and electric",
       "kind": "sample",
       "visible": true,
-      "input": {"tables": {
-        "Drivers": [{"driver_id":1,"name":"Alice","age":34,"experience":10,"accidents":1},{"driver_id":2,"name":"Bob","age":45,"experience":20,"accidents":3},{"driver_id":3,"name":"Charlie","age":28,"experience":5,"accidents":0}],
-        "Vehicles": [{"vehicle_id":100,"driver_id":1,"model":"Sedan","fuel_type":"Gasoline","mileage":20000},{"vehicle_id":101,"driver_id":2,"model":"SUV","fuel_type":"Electric","mileage":30000},{"vehicle_id":102,"driver_id":3,"model":"Coupe","fuel_type":"Gasoline","mileage":15000}],
-        "Trips": [{"trip_id":201,"vehicle_id":100,"distance":50,"duration":30,"rating":5},{"trip_id":202,"vehicle_id":100,"distance":30,"duration":20,"rating":4},{"trip_id":203,"vehicle_id":101,"distance":100,"duration":60,"rating":4},{"trip_id":204,"vehicle_id":101,"distance":80,"duration":50,"rating":5},{"trip_id":205,"vehicle_id":102,"distance":40,"duration":30,"rating":5},{"trip_id":206,"vehicle_id":102,"distance":60,"duration":40,"rating":5}]
-      }},
-      "expected": {"columns":["fuel_type","driver_id","rating","distance"],"rows":[["Electric",2,4.5,180],["Gasoline",3,5.0,100]]},
-      "tags": ["sample","partitions"]
+      "input": {
+        "tables": {
+          "Drivers": [
+            {
+              "driver_id": 1,
+              "name": "Alice",
+              "age": 34,
+              "experience": 10,
+              "accidents": 1
+            },
+            {
+              "driver_id": 2,
+              "name": "Bob",
+              "age": 45,
+              "experience": 20,
+              "accidents": 3
+            },
+            {
+              "driver_id": 3,
+              "name": "Charlie",
+              "age": 28,
+              "experience": 5,
+              "accidents": 0
+            }
+          ],
+          "Vehicles": [
+            {
+              "vehicle_id": 100,
+              "driver_id": 1,
+              "model": "Sedan",
+              "fuel_type": "Gasoline",
+              "mileage": 20000
+            },
+            {
+              "vehicle_id": 101,
+              "driver_id": 2,
+              "model": "SUV",
+              "fuel_type": "Electric",
+              "mileage": 30000
+            },
+            {
+              "vehicle_id": 102,
+              "driver_id": 3,
+              "model": "Coupe",
+              "fuel_type": "Gasoline",
+              "mileage": 15000
+            }
+          ],
+          "Trips": [
+            {
+              "trip_id": 201,
+              "vehicle_id": 100,
+              "distance": 50,
+              "duration": 30,
+              "rating": 5
+            },
+            {
+              "trip_id": 202,
+              "vehicle_id": 100,
+              "distance": 30,
+              "duration": 20,
+              "rating": 4
+            },
+            {
+              "trip_id": 203,
+              "vehicle_id": 101,
+              "distance": 100,
+              "duration": 60,
+              "rating": 4
+            },
+            {
+              "trip_id": 204,
+              "vehicle_id": 101,
+              "distance": 80,
+              "duration": 50,
+              "rating": 5
+            },
+            {
+              "trip_id": 205,
+              "vehicle_id": 102,
+              "distance": 40,
+              "duration": 30,
+              "rating": 5
+            },
+            {
+              "trip_id": 206,
+              "vehicle_id": 102,
+              "distance": 60,
+              "duration": 40,
+              "rating": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "fuel_type",
+          "driver_id",
+          "rating",
+          "distance"
+        ],
+        "rows": [
+          [
+            "Electric",
+            2,
+            4.5,
+            180
+          ],
+          [
+            "Gasoline",
+            3,
+            5.0,
+            100
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "partitions"
+      ]
     },
     {
       "id": "trial-rating-priority",
       "name": "trial: rating outranks distance and accidents",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {
-        "Drivers": [{"driver_id":1,"name":"A","age":30,"experience":5,"accidents":0},{"driver_id":2,"name":"B","age":30,"experience":5,"accidents":5}],
-        "Vehicles": [{"vehicle_id":10,"driver_id":1,"model":"A","fuel_type":"Gas","mileage":1},{"vehicle_id":20,"driver_id":2,"model":"B","fuel_type":"Gas","mileage":1}],
-        "Trips": [{"trip_id":1,"vehicle_id":10,"distance":500,"duration":10,"rating":4},{"trip_id":2,"vehicle_id":20,"distance":1,"duration":10,"rating":5}]
-      }},
-      "expected": {"columns":["fuel_type","driver_id","rating","distance"],"rows":[["Gas",2,5.0,1]]},
-      "tags": ["rating-priority"]
+      "input": {
+        "tables": {
+          "Drivers": [
+            {
+              "driver_id": 1,
+              "name": "A",
+              "age": 30,
+              "experience": 5,
+              "accidents": 0
+            },
+            {
+              "driver_id": 2,
+              "name": "B",
+              "age": 30,
+              "experience": 5,
+              "accidents": 5
+            }
+          ],
+          "Vehicles": [
+            {
+              "vehicle_id": 10,
+              "driver_id": 1,
+              "model": "A",
+              "fuel_type": "Gas",
+              "mileage": 1
+            },
+            {
+              "vehicle_id": 20,
+              "driver_id": 2,
+              "model": "B",
+              "fuel_type": "Gas",
+              "mileage": 1
+            }
+          ],
+          "Trips": [
+            {
+              "trip_id": 1,
+              "vehicle_id": 10,
+              "distance": 500,
+              "duration": 10,
+              "rating": 4
+            },
+            {
+              "trip_id": 2,
+              "vehicle_id": 20,
+              "distance": 1,
+              "duration": 10,
+              "rating": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "fuel_type",
+          "driver_id",
+          "rating",
+          "distance"
+        ],
+        "rows": [
+          [
+            "Gas",
+            2,
+            5.0,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "rating-priority"
+      ]
     },
     {
       "id": "trial-distance-tiebreak",
       "name": "trial: longer distance breaks rating tie",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {
-        "Drivers": [{"driver_id":1,"name":"A","age":30,"experience":5,"accidents":4},{"driver_id":2,"name":"B","age":30,"experience":5,"accidents":0}],
-        "Vehicles": [{"vehicle_id":10,"driver_id":1,"model":"A","fuel_type":"Diesel","mileage":1},{"vehicle_id":20,"driver_id":2,"model":"B","fuel_type":"Diesel","mileage":1}],
-        "Trips": [{"trip_id":1,"vehicle_id":10,"distance":100,"duration":10,"rating":5},{"trip_id":2,"vehicle_id":20,"distance":80,"duration":10,"rating":5}]
-      }},
-      "expected": {"columns":["fuel_type","driver_id","rating","distance"],"rows":[["Diesel",1,5.0,100]]},
-      "tags": ["distance-tie"]
+      "input": {
+        "tables": {
+          "Drivers": [
+            {
+              "driver_id": 1,
+              "name": "A",
+              "age": 30,
+              "experience": 5,
+              "accidents": 4
+            },
+            {
+              "driver_id": 2,
+              "name": "B",
+              "age": 30,
+              "experience": 5,
+              "accidents": 0
+            }
+          ],
+          "Vehicles": [
+            {
+              "vehicle_id": 10,
+              "driver_id": 1,
+              "model": "A",
+              "fuel_type": "Diesel",
+              "mileage": 1
+            },
+            {
+              "vehicle_id": 20,
+              "driver_id": 2,
+              "model": "B",
+              "fuel_type": "Diesel",
+              "mileage": 1
+            }
+          ],
+          "Trips": [
+            {
+              "trip_id": 1,
+              "vehicle_id": 10,
+              "distance": 100,
+              "duration": 10,
+              "rating": 5
+            },
+            {
+              "trip_id": 2,
+              "vehicle_id": 20,
+              "distance": 80,
+              "duration": 10,
+              "rating": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "fuel_type",
+          "driver_id",
+          "rating",
+          "distance"
+        ],
+        "rows": [
+          [
+            "Diesel",
+            1,
+            5.0,
+            100
+          ]
+        ]
+      },
+      "tags": [
+        "distance-tie"
+      ]
     },
     {
       "id": "trial-accident-tiebreak",
       "name": "trial: fewer accidents breaks remaining tie",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {
-        "Drivers": [{"driver_id":1,"name":"A","age":30,"experience":5,"accidents":3},{"driver_id":2,"name":"B","age":30,"experience":5,"accidents":1}],
-        "Vehicles": [{"vehicle_id":10,"driver_id":1,"model":"A","fuel_type":"Hybrid","mileage":1},{"vehicle_id":20,"driver_id":2,"model":"B","fuel_type":"Hybrid","mileage":1}],
-        "Trips": [{"trip_id":1,"vehicle_id":10,"distance":100,"duration":10,"rating":5},{"trip_id":2,"vehicle_id":20,"distance":100,"duration":10,"rating":5}]
-      }},
-      "expected": {"columns":["fuel_type","driver_id","rating","distance"],"rows":[["Hybrid",2,5.0,100]]},
-      "tags": ["accident-tie"]
+      "input": {
+        "tables": {
+          "Drivers": [
+            {
+              "driver_id": 1,
+              "name": "A",
+              "age": 30,
+              "experience": 5,
+              "accidents": 3
+            },
+            {
+              "driver_id": 2,
+              "name": "B",
+              "age": 30,
+              "experience": 5,
+              "accidents": 1
+            }
+          ],
+          "Vehicles": [
+            {
+              "vehicle_id": 10,
+              "driver_id": 1,
+              "model": "A",
+              "fuel_type": "Hybrid",
+              "mileage": 1
+            },
+            {
+              "vehicle_id": 20,
+              "driver_id": 2,
+              "model": "B",
+              "fuel_type": "Hybrid",
+              "mileage": 1
+            }
+          ],
+          "Trips": [
+            {
+              "trip_id": 1,
+              "vehicle_id": 10,
+              "distance": 100,
+              "duration": 10,
+              "rating": 5
+            },
+            {
+              "trip_id": 2,
+              "vehicle_id": 20,
+              "distance": 100,
+              "duration": 10,
+              "rating": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "fuel_type",
+          "driver_id",
+          "rating",
+          "distance"
+        ],
+        "rows": [
+          [
+            "Hybrid",
+            2,
+            5.0,
+            100
+          ]
+        ]
+      },
+      "tags": [
+        "accident-tie"
+      ]
     },
     {
-      "id": "real-multiple-vehicles",
-      "name": "real: aggregate a driver's vehicles within one fuel",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {
-        "Drivers": [{"driver_id":1,"name":"A","age":30,"experience":5,"accidents":0},{"driver_id":2,"name":"B","age":30,"experience":5,"accidents":0}],
-        "Vehicles": [{"vehicle_id":10,"driver_id":1,"model":"A","fuel_type":"Electric","mileage":1},{"vehicle_id":11,"driver_id":1,"model":"B","fuel_type":"Electric","mileage":1},{"vehicle_id":20,"driver_id":2,"model":"C","fuel_type":"Electric","mileage":1}],
-        "Trips": [{"trip_id":1,"vehicle_id":10,"distance":20,"duration":10,"rating":4},{"trip_id":2,"vehicle_id":11,"distance":30,"duration":10,"rating":5},{"trip_id":3,"vehicle_id":20,"distance":100,"duration":10,"rating":4}]
-      }},
-      "expected": {"columns":["fuel_type","driver_id","rating","distance"],"rows":[["Electric",1,4.5,50]]},
-      "tags": ["aggregation","multiple-vehicles"]
+      "id": "trial-multiple-vehicles",
+      "name": "aggregate a driver's vehicles within one fuel",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Drivers": [
+            {
+              "driver_id": 1,
+              "name": "A",
+              "age": 30,
+              "experience": 5,
+              "accidents": 0
+            },
+            {
+              "driver_id": 2,
+              "name": "B",
+              "age": 30,
+              "experience": 5,
+              "accidents": 0
+            }
+          ],
+          "Vehicles": [
+            {
+              "vehicle_id": 10,
+              "driver_id": 1,
+              "model": "A",
+              "fuel_type": "Electric",
+              "mileage": 1
+            },
+            {
+              "vehicle_id": 11,
+              "driver_id": 1,
+              "model": "B",
+              "fuel_type": "Electric",
+              "mileage": 1
+            },
+            {
+              "vehicle_id": 20,
+              "driver_id": 2,
+              "model": "C",
+              "fuel_type": "Electric",
+              "mileage": 1
+            }
+          ],
+          "Trips": [
+            {
+              "trip_id": 1,
+              "vehicle_id": 10,
+              "distance": 20,
+              "duration": 10,
+              "rating": 4
+            },
+            {
+              "trip_id": 2,
+              "vehicle_id": 11,
+              "distance": 30,
+              "duration": 10,
+              "rating": 5
+            },
+            {
+              "trip_id": 3,
+              "vehicle_id": 20,
+              "distance": 100,
+              "duration": 10,
+              "rating": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "fuel_type",
+          "driver_id",
+          "rating",
+          "distance"
+        ],
+        "rows": [
+          [
+            "Electric",
+            1,
+            4.5,
+            50
+          ]
+        ]
+      },
+      "tags": [
+        "aggregation",
+        "multiple-vehicles"
+      ]
     },
     {
-      "id": "real-no-trip-driver",
-      "name": "real: vehicles without trips do not create a result",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {
-        "Drivers": [{"driver_id":1,"name":"A","age":30,"experience":5,"accidents":0},{"driver_id":2,"name":"B","age":30,"experience":5,"accidents":0}],
-        "Vehicles": [{"vehicle_id":10,"driver_id":1,"model":"A","fuel_type":"Gas","mileage":1},{"vehicle_id":20,"driver_id":2,"model":"B","fuel_type":"Electric","mileage":1}],
-        "Trips": [{"trip_id":1,"vehicle_id":20,"distance":25,"duration":10,"rating":3}]
-      }},
-      "expected": {"columns":["fuel_type","driver_id","rating","distance"],"rows":[["Electric",2,3.0,25]]},
-      "tags": ["inner-join","no-trips"]
+      "id": "trial-no-trip-driver",
+      "name": "vehicles without trips do not create a result",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Drivers": [
+            {
+              "driver_id": 1,
+              "name": "A",
+              "age": 30,
+              "experience": 5,
+              "accidents": 0
+            },
+            {
+              "driver_id": 2,
+              "name": "B",
+              "age": 30,
+              "experience": 5,
+              "accidents": 0
+            }
+          ],
+          "Vehicles": [
+            {
+              "vehicle_id": 10,
+              "driver_id": 1,
+              "model": "A",
+              "fuel_type": "Gas",
+              "mileage": 1
+            },
+            {
+              "vehicle_id": 20,
+              "driver_id": 2,
+              "model": "B",
+              "fuel_type": "Electric",
+              "mileage": 1
+            }
+          ],
+          "Trips": [
+            {
+              "trip_id": 1,
+              "vehicle_id": 20,
+              "distance": 25,
+              "duration": 10,
+              "rating": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "fuel_type",
+          "driver_id",
+          "rating",
+          "distance"
+        ],
+        "rows": [
+          [
+            "Electric",
+            2,
+            3.0,
+            25
+          ]
+        ]
+      },
+      "tags": [
+        "inner-join",
+        "no-trips"
+      ]
     }
   ]
 }

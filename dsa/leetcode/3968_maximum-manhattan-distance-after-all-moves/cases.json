@@ -6,135 +6,243 @@
       "name": "sample: two wildcards extend both negative coordinates",
       "kind": "sample",
       "visible": true,
-      "input": {"moves": "L_D_"},
+      "input": {
+        "moves": "L_D_"
+      },
       "expected": 4,
-      "tags": ["sample", "mixed-directions"]
+      "tags": [
+        "sample",
+        "mixed-directions"
+      ]
     },
     {
       "id": "sample-up-right",
       "name": "sample: wildcard extends the upward displacement",
       "kind": "sample",
       "visible": true,
-      "input": {"moves": "U_R"},
+      "input": {
+        "moves": "U_R"
+      },
       "expected": 3,
-      "tags": ["sample", "mixed-directions"]
+      "tags": [
+        "sample",
+        "mixed-directions"
+      ]
     },
     {
       "id": "trial-single-fixed",
       "name": "trial: one fixed move",
       "kind": "trial",
       "visible": true,
-      "input": {"moves": "U"},
+      "input": {
+        "moves": "U"
+      },
       "expected": 1,
-      "tags": ["trial", "minimum-length", "no-wildcards"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "no-wildcards"
+      ]
     },
     {
       "id": "trial-single-wildcard",
       "name": "trial: one wildcard from the origin",
       "kind": "trial",
       "visible": true,
-      "input": {"moves": "_"},
+      "input": {
+        "moves": "_"
+      },
       "expected": 1,
-      "tags": ["trial", "minimum-length", "wildcard"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "wildcard"
+      ]
     },
     {
       "id": "trial-fixed-cancellation",
       "name": "trial: fixed moves return to the origin",
       "kind": "trial",
       "visible": true,
-      "input": {"moves": "UDLR"},
+      "input": {
+        "moves": "UDLR"
+      },
       "expected": 0,
-      "tags": ["trial", "cancellation", "no-wildcards"]
+      "tags": [
+        "trial",
+        "cancellation",
+        "no-wildcards"
+      ]
     },
     {
       "id": "trial-cancel-plus-wildcard",
       "name": "trial: a wildcard follows horizontal cancellation",
       "kind": "trial",
       "visible": true,
-      "input": {"moves": "LR_"},
+      "input": {
+        "moves": "LR_"
+      },
       "expected": 1,
-      "tags": ["trial", "cancellation", "wildcard"]
+      "tags": [
+        "trial",
+        "cancellation",
+        "wildcard"
+      ]
     },
     {
       "id": "trial-all-wildcards",
       "name": "trial: every move is assignable",
       "kind": "trial",
       "visible": true,
-      "input": {"moves": "_____"},
+      "input": {
+        "moves": "_____"
+      },
       "expected": 5,
-      "tags": ["trial", "all-wildcards"]
+      "tags": [
+        "trial",
+        "all-wildcards"
+      ]
     },
     {
       "id": "trial-fixed-diagonal",
       "name": "trial: fixed moves form a diagonal endpoint",
       "kind": "trial",
       "visible": true,
-      "input": {"moves": "UUURR"},
+      "input": {
+        "moves": "UUURR"
+      },
       "expected": 5,
-      "tags": ["trial", "no-wildcards", "two-axes"]
+      "tags": [
+        "trial",
+        "no-wildcards",
+        "two-axes"
+      ]
     },
     {
-      "id": "real-interleaved-balanced",
-      "name": "hidden: interleaved fixed moves cancel around wildcards",
-      "kind": "real",
-      "visible": false,
-      "input": {"moves": "_U_D_R_L"},
+      "id": "trial-interleaved-balanced",
+      "name": "interleaved fixed moves cancel around wildcards",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "moves": "_U_D_R_L"
+      },
       "expected": 4,
-      "tags": ["hidden", "interleaved", "cancellation"]
+      "tags": [
+        "interleaved",
+        "cancellation"
+      ]
     },
     {
-      "id": "real-unbalanced-fixed",
-      "name": "hidden: both fixed coordinates remain positive",
-      "kind": "real",
-      "visible": false,
-      "input": {"moves": "DLLRRRUU"},
+      "id": "trial-unbalanced-fixed",
+      "name": "both fixed coordinates remain positive",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "moves": "DLLRRRUU"
+      },
       "expected": 2,
-      "tags": ["hidden", "no-wildcards", "two-axes"]
+      "tags": [
+        "no-wildcards",
+        "two-axes"
+      ]
     },
     {
-      "id": "real-negative-extension",
-      "name": "hidden: wildcards extend two negative coordinates",
-      "kind": "real",
-      "visible": false,
-      "input": {"moves": "LLLLDD___"},
+      "id": "trial-negative-extension",
+      "name": "wildcards extend two negative coordinates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "moves": "LLLLDD___"
+      },
       "expected": 9,
-      "tags": ["hidden", "negative-endpoint", "wildcards"]
+      "tags": [
+        "negative-endpoint",
+        "wildcards"
+      ]
     },
     {
-      "id": "real-balanced-axis-with-wildcards",
-      "name": "hidden: vertical fixed moves cancel completely",
-      "kind": "real",
-      "visible": false,
-      "input": {"moves": "UUUUDDDD____"},
+      "id": "trial-balanced-axis-with-wildcards",
+      "name": "vertical fixed moves cancel completely",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "moves": "UUUUDDDD____"
+      },
       "expected": 4,
-      "tags": ["hidden", "cancellation", "wildcards"]
+      "tags": [
+        "cancellation",
+        "wildcards"
+      ]
     },
     {
-      "id": "real-large-horizontal-gap",
-      "name": "hidden: wildcards extend a large horizontal imbalance",
-      "kind": "real",
-      "visible": false,
-      "input": {"moves": "RRRRRRRRRRLLLL______"},
+      "id": "trial-large-horizontal-gap",
+      "name": "wildcards extend a large horizontal imbalance",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "moves": "RRRRRRRRRRLLLL______"
+      },
       "expected": 12,
-      "tags": ["hidden", "horizontal", "wildcards"]
+      "tags": [
+        "horizontal",
+        "wildcards"
+      ]
     },
     {
-      "id": "real-order-independent",
-      "name": "hidden: separated opposite moves leave only wildcard distance",
-      "kind": "real",
-      "visible": false,
-      "input": {"moves": "U_R_D_L__"},
+      "id": "trial-order-independent",
+      "name": "separated opposite moves leave only wildcard distance",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "moves": "U_R_D_L__"
+      },
       "expected": 5,
-      "tags": ["hidden", "order", "cancellation"]
+      "tags": [
+        "order",
+        "cancellation"
+      ]
     },
     {
-      "id": "real-repeated-balanced-blocks",
-      "name": "hidden: repeated balanced blocks contribute one wildcard each",
-      "kind": "real",
-      "visible": false,
-      "input": {"moves": "UDLR_UDLR_UDLR_UDLR_UDLR_UDLR_UDLR_UDLR_"},
+      "id": "trial-repeated-balanced-blocks",
+      "name": "repeated balanced blocks contribute one wildcard each",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "moves": "UDLR_UDLR_UDLR_UDLR_UDLR_UDLR_UDLR_UDLR_"
+      },
       "expected": 8,
-      "tags": ["hidden", "repetition", "balanced-blocks"]
+      "tags": [
+        "repetition",
+        "balanced-blocks"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "single character in moves",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "moves": "L"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-17",
+      "name": "repeated character in moves",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "moves": "LLL"
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
     }
   ]
 }

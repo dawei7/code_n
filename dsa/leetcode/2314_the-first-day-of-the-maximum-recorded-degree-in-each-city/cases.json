@@ -2,11 +2,314 @@
   "schema_version": 1,
   "challenge_id": "lc_2314",
   "cases": [
-    {"id":"sample-cities","name":"sample: maximums include a tied city","kind":"sample","visible":true,"input":{"tables":{"Weather":[{"city_id":1,"day":"2022-01-07","degree":-12},{"city_id":1,"day":"2022-03-07","degree":5},{"city_id":1,"day":"2022-07-07","degree":24},{"city_id":2,"day":"2022-08-07","degree":37},{"city_id":2,"day":"2022-08-17","degree":37},{"city_id":3,"day":"2022-02-07","degree":-7},{"city_id":3,"day":"2022-12-07","degree":-6}]}},"expected":{"columns":["city_id","day","degree"],"rows":[[1,"2022-07-07",24],[2,"2022-08-07",37],[3,"2022-12-07",-6]]},"validator":{"kind":"ordered_table"},"tags":["sample","tie"]},
-    {"id":"trial-single-record","name":"one city with one record","kind":"trial","visible":true,"input":{"tables":{"Weather":[{"city_id":9,"day":"2022-05-01","degree":18}]}},"expected":{"columns":["city_id","day","degree"],"rows":[[9,"2022-05-01",18]]},"validator":{"kind":"ordered_table"},"tags":["single-row"]},
-    {"id":"trial-earliest-max","name":"the earliest occurrence wins a three-way maximum tie","kind":"trial","visible":true,"input":{"tables":{"Weather":[{"city_id":4,"day":"2022-12-30","degree":20},{"city_id":4,"day":"2022-01-02","degree":20},{"city_id":4,"day":"2022-06-15","degree":20}]}},"expected":{"columns":["city_id","day","degree"],"rows":[[4,"2022-01-02",20]]},"validator":{"kind":"ordered_table"},"tags":["tie","earliest-day"]},
-    {"id":"real-negative","name":"hidden: all-negative degrees still have a maximum","kind":"real","visible":false,"input":{"tables":{"Weather":[{"city_id":2,"day":"2022-01-01","degree":-30},{"city_id":2,"day":"2022-02-01","degree":-4},{"city_id":2,"day":"2022-03-01","degree":-12}]}},"expected":{"columns":["city_id","day","degree"],"rows":[[2,"2022-02-01",-4]]},"validator":{"kind":"ordered_table"},"tags":["hidden","negative"]},
-    {"id":"real-city-order","name":"hidden: result order follows city ID rather than input order","kind":"real","visible":false,"input":{"tables":{"Weather":[{"city_id":30,"day":"2022-04-01","degree":5},{"city_id":10,"day":"2022-03-01","degree":7},{"city_id":20,"day":"2022-02-01","degree":9}]}},"expected":{"columns":["city_id","day","degree"],"rows":[[10,"2022-03-01",7],[20,"2022-02-01",9],[30,"2022-04-01",5]]},"validator":{"kind":"ordered_table"},"tags":["hidden","output-order"]},
-    {"id":"real-degree-before-day","name":"hidden: a later higher degree beats an earlier lower degree","kind":"real","visible":false,"input":{"tables":{"Weather":[{"city_id":1,"day":"2022-01-01","degree":10},{"city_id":1,"day":"2022-12-31","degree":11}]}},"expected":{"columns":["city_id","day","degree"],"rows":[[1,"2022-12-31",11]]},"validator":{"kind":"ordered_table"},"tags":["hidden","priority"]}
+    {
+      "id": "sample-cities",
+      "name": "sample: maximums include a tied city",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Weather": [
+            {
+              "city_id": 1,
+              "day": "2022-01-07",
+              "degree": -12
+            },
+            {
+              "city_id": 1,
+              "day": "2022-03-07",
+              "degree": 5
+            },
+            {
+              "city_id": 1,
+              "day": "2022-07-07",
+              "degree": 24
+            },
+            {
+              "city_id": 2,
+              "day": "2022-08-07",
+              "degree": 37
+            },
+            {
+              "city_id": 2,
+              "day": "2022-08-17",
+              "degree": 37
+            },
+            {
+              "city_id": 3,
+              "day": "2022-02-07",
+              "degree": -7
+            },
+            {
+              "city_id": 3,
+              "day": "2022-12-07",
+              "degree": -6
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "city_id",
+          "day",
+          "degree"
+        ],
+        "rows": [
+          [
+            1,
+            "2022-07-07",
+            24
+          ],
+          [
+            2,
+            "2022-08-07",
+            37
+          ],
+          [
+            3,
+            "2022-12-07",
+            -6
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "tie"
+      ]
+    },
+    {
+      "id": "trial-single-record",
+      "name": "one city with one record",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Weather": [
+            {
+              "city_id": 9,
+              "day": "2022-05-01",
+              "degree": 18
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "city_id",
+          "day",
+          "degree"
+        ],
+        "rows": [
+          [
+            9,
+            "2022-05-01",
+            18
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "single-row"
+      ]
+    },
+    {
+      "id": "trial-earliest-max",
+      "name": "the earliest occurrence wins a three-way maximum tie",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Weather": [
+            {
+              "city_id": 4,
+              "day": "2022-12-30",
+              "degree": 20
+            },
+            {
+              "city_id": 4,
+              "day": "2022-01-02",
+              "degree": 20
+            },
+            {
+              "city_id": 4,
+              "day": "2022-06-15",
+              "degree": 20
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "city_id",
+          "day",
+          "degree"
+        ],
+        "rows": [
+          [
+            4,
+            "2022-01-02",
+            20
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "tie",
+        "earliest-day"
+      ]
+    },
+    {
+      "id": "trial-negative",
+      "name": "all-negative degrees still have a maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Weather": [
+            {
+              "city_id": 2,
+              "day": "2022-01-01",
+              "degree": -30
+            },
+            {
+              "city_id": 2,
+              "day": "2022-02-01",
+              "degree": -4
+            },
+            {
+              "city_id": 2,
+              "day": "2022-03-01",
+              "degree": -12
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "city_id",
+          "day",
+          "degree"
+        ],
+        "rows": [
+          [
+            2,
+            "2022-02-01",
+            -4
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-city-order",
+      "name": "result order follows city ID rather than input order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Weather": [
+            {
+              "city_id": 30,
+              "day": "2022-04-01",
+              "degree": 5
+            },
+            {
+              "city_id": 10,
+              "day": "2022-03-01",
+              "degree": 7
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-01",
+              "degree": 9
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "city_id",
+          "day",
+          "degree"
+        ],
+        "rows": [
+          [
+            10,
+            "2022-03-01",
+            7
+          ],
+          [
+            20,
+            "2022-02-01",
+            9
+          ],
+          [
+            30,
+            "2022-04-01",
+            5
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "output-order"
+      ]
+    },
+    {
+      "id": "trial-degree-before-day",
+      "name": "a later higher degree beats an earlier lower degree",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Weather": [
+            {
+              "city_id": 1,
+              "day": "2022-01-01",
+              "degree": 10
+            },
+            {
+              "city_id": 1,
+              "day": "2022-12-31",
+              "degree": 11
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "city_id",
+          "day",
+          "degree"
+        ],
+        "rows": [
+          [
+            1,
+            "2022-12-31",
+            11
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "priority"
+      ]
+    }
   ]
 }

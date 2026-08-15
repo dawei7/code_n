@@ -82,10 +82,10 @@
       ]
     },
     {
-      "id": "real-length-one",
-      "name": "hidden: every value works at length one",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-length-one",
+      "name": "every value works at length one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1,
         "m": 50,
@@ -93,15 +93,14 @@
       },
       "expected": 50,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
     {
-      "id": "real-large-cost-one",
-      "name": "hidden: maximum dimensions with cost one",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-cost-one",
+      "name": "maximum dimensions with cost one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 50,
         "m": 50,
@@ -109,7 +108,6 @@
       },
       "expected": 736779264,
       "tags": [
-        "hidden",
         "maximum"
       ]
     }

@@ -2,25 +2,541 @@
   "schema_version": 1,
   "challenge_id": "lc_3998",
   "cases": [
-    {"id":"sample-three-patterns","name":"sample: direct match, full sort, and impossible count","kind":"sample","visible":true,"input":{"s":"101","strs":["1?1","0?1","0?0"]},"expected":[true,true,false],"tags":["sample","wildcards"]},
-    {"id":"sample-four-characters","name":"sample: full and partial subsequence sorts","kind":"sample","visible":true,"input":{"s":"1100","strs":["0011","11?1","1?1?"]},"expected":[true,false,true],"tags":["sample","prefix-condition"]},
-    {"id":"sample-selected-indices","name":"sample: non-contiguous selected indices","kind":"sample","visible":true,"input":{"s":"1010","strs":["0011"]},"expected":[true],"tags":["sample","subsequence"]},
-    {"id":"trial-single-zero","name":"trial: one-character zero source","kind":"trial","visible":true,"input":{"s":"0","strs":["0","?","1"]},"expected":[true,true,false],"tags":["trial","minimum-length","zero"]},
-    {"id":"trial-single-one","name":"trial: one-character one source","kind":"trial","visible":true,"input":{"s":"1","strs":["1","?","0"]},"expected":[true,true,false],"tags":["trial","minimum-length","one"]},
-    {"id":"trial-already-sorted","name":"trial: sorted source has minimal prefix-one counts","kind":"trial","visible":true,"input":{"s":"0011","strs":["0011","0??1","????","1100"]},"expected":[true,true,true,false],"tags":["trial","sorted-source"]},
-    {"id":"trial-descending-source","name":"trial: descending source reaches every equal-count ordering","kind":"trial","visible":true,"input":{"s":"1100","strs":["1100","1010","1001","0110","0101","0011"]},"expected":[true,true,true,true,true,true],"tags":["trial","descending-source"]},
-    {"id":"trial-ascending-source","name":"trial: forced early ones violate minimal prefixes","kind":"trial","visible":true,"input":{"s":"0011","strs":["0011","0101","1001","??11"]},"expected":[true,false,false,true],"tags":["trial","prefix-violation"]},
-    {"id":"trial-all-zero-source","name":"trial: total count forces all wildcards to zero","kind":"trial","visible":true,"input":{"s":"0000","strs":["????","0000","?0?0","0001"]},"expected":[true,true,true,false],"tags":["trial","all-zero"]},
-    {"id":"trial-all-one-source","name":"trial: total count forces all wildcards to one","kind":"trial","visible":true,"input":{"s":"1111","strs":["????","1111","1?1?","1110"]},"expected":[true,true,true,false],"tags":["trial","all-one"]},
-    {"id":"real-mixed-question-positions","name":"hidden: wildcard positions alter prefix feasibility","kind":"real","visible":false,"input":{"s":"1010","strs":["?01?","1??0","?1?0","??00"]},"expected":[true,true,true,false],"tags":["hidden","wildcard-placement"]},
-    {"id":"real-too-many-fixed-ones","name":"hidden: fixed-one count can exceed the source total","kind":"real","visible":false,"input":{"s":"010","strs":["111","11?","?1?"]},"expected":[false,false,true],"tags":["hidden","total-count"]},
-    {"id":"real-insufficient-wildcards","name":"hidden: question marks cannot always supply the total","kind":"real","visible":false,"input":{"s":"1110","strs":["1??0","????","000?"]},"expected":[true,true,false],"tags":["hidden","wildcard-capacity"]},
-    {"id":"real-rightmost-ones","name":"hidden: rightmost wildcard one minimizes every prefix","kind":"real","visible":false,"input":{"s":"1000","strs":["?00?","0??0","??00"]},"expected":[true,true,true],"tags":["hidden","greedy"]},
-    {"id":"real-forced-early-one","name":"hidden: one fixed early position is impossible","kind":"real","visible":false,"input":{"s":"0100","strs":["1???","?1??","??1?","???1"]},"expected":[false,true,true,true],"tags":["hidden","prefix-violation"]},
-    {"id":"real-equal-count-prefixes","name":"hidden: equal total ones do not guarantee reachability","kind":"real","visible":false,"input":{"s":"0101","strs":["1001","0110","0011","0101"]},"expected":[false,false,true,true],"tags":["hidden","prefix-condition"]},
-    {"id":"real-five-character-mix","name":"hidden: fixed and wildcard feasibility mix","kind":"real","visible":false,"input":{"s":"10101","strs":["?????","1?0?1","0?1?1","11???","00000","11111"]},"expected":[true,true,true,false,false,false],"tags":["hidden","mixed"]},
-    {"id":"real-six-character-mix","name":"hidden: several valid minimum-prefix completions","kind":"real","visible":false,"input":{"s":"110010","strs":["??00??","0?0?1?","1?0??0","001111","000011","??????"]},"expected":[true,true,true,false,false,true],"tags":["hidden","mixed"]},
-    {"id":"real-seven-character-mix","name":"hidden: later ones remain reachable from sparse prefixes","kind":"real","visible":false,"input":{"s":"0010101","strs":["???????","001?1?1","?0?0?0?","0101010","0000111","1110000"]},"expected":[true,true,true,false,true,false],"tags":["hidden","mixed","longer"]},
-    {"id":"real-eight-character-mix","name":"hidden: dense source prefix and wildcard suffixes","kind":"real","visible":false,"input":{"s":"11100000","strs":["????????","1?1?0?0?","01110000","00000111","11110000","????0000"]},"expected":[true,true,true,true,false,true],"tags":["hidden","mixed","longer"]}
+    {
+      "id": "sample-three-patterns",
+      "name": "sample: direct match, full sort, and impossible count",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "101",
+        "strs": [
+          "1?1",
+          "0?1",
+          "0?0"
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        false
+      ],
+      "tags": [
+        "sample",
+        "wildcards"
+      ]
+    },
+    {
+      "id": "sample-four-characters",
+      "name": "sample: full and partial subsequence sorts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "1100",
+        "strs": [
+          "0011",
+          "11?1",
+          "1?1?"
+        ]
+      },
+      "expected": [
+        true,
+        false,
+        true
+      ],
+      "tags": [
+        "sample",
+        "prefix-condition"
+      ]
+    },
+    {
+      "id": "sample-selected-indices",
+      "name": "sample: non-contiguous selected indices",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "1010",
+        "strs": [
+          "0011"
+        ]
+      },
+      "expected": [
+        true
+      ],
+      "tags": [
+        "sample",
+        "subsequence"
+      ]
+    },
+    {
+      "id": "trial-single-zero",
+      "name": "trial: one-character zero source",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0",
+        "strs": [
+          "0",
+          "?",
+          "1"
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        false
+      ],
+      "tags": [
+        "trial",
+        "minimum-length",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-single-one",
+      "name": "trial: one-character one source",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1",
+        "strs": [
+          "1",
+          "?",
+          "0"
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        false
+      ],
+      "tags": [
+        "trial",
+        "minimum-length",
+        "one"
+      ]
+    },
+    {
+      "id": "trial-already-sorted",
+      "name": "trial: sorted source has minimal prefix-one counts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0011",
+        "strs": [
+          "0011",
+          "0??1",
+          "????",
+          "1100"
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "tags": [
+        "trial",
+        "sorted-source"
+      ]
+    },
+    {
+      "id": "trial-descending-source",
+      "name": "trial: descending source reaches every equal-count ordering",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1100",
+        "strs": [
+          "1100",
+          "1010",
+          "1001",
+          "0110",
+          "0101",
+          "0011"
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "tags": [
+        "trial",
+        "descending-source"
+      ]
+    },
+    {
+      "id": "trial-ascending-source",
+      "name": "trial: forced early ones violate minimal prefixes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0011",
+        "strs": [
+          "0011",
+          "0101",
+          "1001",
+          "??11"
+        ]
+      },
+      "expected": [
+        true,
+        false,
+        false,
+        true
+      ],
+      "tags": [
+        "trial",
+        "prefix-violation"
+      ]
+    },
+    {
+      "id": "trial-all-zero-source",
+      "name": "trial: total count forces all wildcards to zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0000",
+        "strs": [
+          "????",
+          "0000",
+          "?0?0",
+          "0001"
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "tags": [
+        "trial",
+        "all-zero"
+      ]
+    },
+    {
+      "id": "trial-all-one-source",
+      "name": "trial: total count forces all wildcards to one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1111",
+        "strs": [
+          "????",
+          "1111",
+          "1?1?",
+          "1110"
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "tags": [
+        "trial",
+        "all-one"
+      ]
+    },
+    {
+      "id": "trial-mixed-question-positions",
+      "name": "wildcard positions alter prefix feasibility",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1010",
+        "strs": [
+          "?01?",
+          "1??0",
+          "?1?0",
+          "??00"
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "tags": [
+        "wildcard-placement"
+      ]
+    },
+    {
+      "id": "trial-too-many-fixed-ones",
+      "name": "fixed-one count can exceed the source total",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "010",
+        "strs": [
+          "111",
+          "11?",
+          "?1?"
+        ]
+      },
+      "expected": [
+        false,
+        false,
+        true
+      ],
+      "tags": [
+        "total-count"
+      ]
+    },
+    {
+      "id": "trial-insufficient-wildcards",
+      "name": "question marks cannot always supply the total",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1110",
+        "strs": [
+          "1??0",
+          "????",
+          "000?"
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        false
+      ],
+      "tags": [
+        "wildcard-capacity"
+      ]
+    },
+    {
+      "id": "trial-rightmost-ones",
+      "name": "rightmost wildcard one minimizes every prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1000",
+        "strs": [
+          "?00?",
+          "0??0",
+          "??00"
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        true
+      ],
+      "tags": [
+        "greedy"
+      ]
+    },
+    {
+      "id": "trial-forced-early-one",
+      "name": "one fixed early position is impossible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0100",
+        "strs": [
+          "1???",
+          "?1??",
+          "??1?",
+          "???1"
+        ]
+      },
+      "expected": [
+        false,
+        true,
+        true,
+        true
+      ],
+      "tags": [
+        "prefix-violation"
+      ]
+    },
+    {
+      "id": "trial-equal-count-prefixes",
+      "name": "equal total ones do not guarantee reachability",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0101",
+        "strs": [
+          "1001",
+          "0110",
+          "0011",
+          "0101"
+        ]
+      },
+      "expected": [
+        false,
+        false,
+        true,
+        true
+      ],
+      "tags": [
+        "prefix-condition"
+      ]
+    },
+    {
+      "id": "trial-five-character-mix",
+      "name": "fixed and wildcard feasibility mix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "10101",
+        "strs": [
+          "?????",
+          "1?0?1",
+          "0?1?1",
+          "11???",
+          "00000",
+          "11111"
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        true,
+        false,
+        false,
+        false
+      ],
+      "tags": [
+        "mixed"
+      ]
+    },
+    {
+      "id": "trial-six-character-mix",
+      "name": "several valid minimum-prefix completions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "110010",
+        "strs": [
+          "??00??",
+          "0?0?1?",
+          "1?0??0",
+          "001111",
+          "000011",
+          "??????"
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        true,
+        false,
+        false,
+        true
+      ],
+      "tags": [
+        "mixed"
+      ]
+    },
+    {
+      "id": "trial-seven-character-mix",
+      "name": "later ones remain reachable from sparse prefixes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0010101",
+        "strs": [
+          "???????",
+          "001?1?1",
+          "?0?0?0?",
+          "0101010",
+          "0000111",
+          "1110000"
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        true,
+        false,
+        true,
+        false
+      ],
+      "tags": [
+        "mixed",
+        "longer"
+      ]
+    },
+    {
+      "id": "trial-eight-character-mix",
+      "name": "dense source prefix and wildcard suffixes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "11100000",
+        "strs": [
+          "????????",
+          "1?1?0?0?",
+          "01110000",
+          "00000111",
+          "11110000",
+          "????0000"
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        true,
+        true,
+        false,
+        true
+      ],
+      "tags": [
+        "mixed",
+        "longer"
+      ]
+    },
+    {
+      "id": "trial-boundary-21",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "111",
+        "strs": [
+          "1?1",
+          "0?1",
+          "0?0"
+        ]
+      },
+      "expected": [
+        true,
+        false,
+        false
+      ],
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
+    },
+    {
+      "id": "trial-boundary-22",
+      "name": "single element in strs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "101",
+        "strs": [
+          "1?1"
+        ]
+      },
+      "expected": [
+        true
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    }
   ]
 }

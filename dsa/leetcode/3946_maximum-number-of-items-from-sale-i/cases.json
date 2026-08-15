@@ -249,10 +249,10 @@
       ]
     },
     {
-      "id": "real-divisibility-chain",
-      "name": "hidden: nested factors create overlapping activation rewards",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-divisibility-chain",
+      "name": "nested factors create overlapping activation rewards",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "items": [
           [
@@ -279,16 +279,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "divisibility-chain",
         "overlapping-rewards"
       ]
     },
     {
-      "id": "real-three-duplicate-factors",
-      "name": "hidden: three indexed types share one factor",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-duplicate-factors",
+      "name": "three indexed types share one factor",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "items": [
           [
@@ -311,16 +310,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicate-factor",
         "additional-copy"
       ]
     },
     {
-      "id": "real-pairwise-nondivisible",
-      "name": "hidden: no activation produces a free copy",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-pairwise-nondivisible",
+      "name": "no activation produces a free copy",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "items": [
           [
@@ -343,16 +341,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "no-free-copies",
         "additional-copy"
       ]
     },
     {
-      "id": "real-three-sources-one-target",
-      "name": "hidden: one indexed target is awarded three times",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-sources-one-target",
+      "name": "one indexed target is awarded three times",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "items": [
           [
@@ -379,16 +376,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "repeated-free-target",
         "multiple-activations"
       ]
     },
     {
-      "id": "real-maximum-factor-and-budget",
-      "name": "hidden: one maximum-priced maximum-factor item is affordable",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-factor-and-budget",
+      "name": "one maximum-priced maximum-factor item is affordable",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "items": [
           [
@@ -403,7 +399,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "boundary",
         "maximum-factor",
         "maximum-price",
@@ -411,10 +406,10 @@
       ]
     },
     {
-      "id": "real-maximum-item-count",
-      "name": "hidden: one of one thousand equal-factor types can be activated",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-item-count",
+      "name": "one of one thousand equal-factor types can be activated",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "items": [
           [
@@ -4425,17 +4420,16 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "boundary",
         "maximum-length",
         "duplicate-factor"
       ]
     },
     {
-      "id": "real-mixed-thirty-types",
-      "name": "hidden: mixed prices and factors require the complete DP",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-thirty-types",
+      "name": "mixed prices and factors require the complete DP",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "items": [
           [
@@ -4566,7 +4560,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "mixed-factors",
         "mixed-prices"
       ]

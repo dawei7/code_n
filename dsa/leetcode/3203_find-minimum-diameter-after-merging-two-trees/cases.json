@@ -231,10 +231,10 @@
       ]
     },
     {
-      "id": "real-original-diameter-dominates",
-      "name": "real: a long path remains the merged diameter",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-original-diameter-dominates",
+      "name": "a long path remains the merged diameter",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges1": [
           [
@@ -267,10 +267,10 @@
       ]
     },
     {
-      "id": "real-even-diameter-and-edge",
-      "name": "real: a five-node path joined to an edge",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-even-diameter-and-edge",
+      "name": "a five-node path joined to an edge",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges1": [
           [
@@ -304,10 +304,10 @@
       ]
     },
     {
-      "id": "real-balanced-and-short",
-      "name": "real: a balanced binary tree joined to a short path",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-balanced-and-short",
+      "name": "a balanced binary tree joined to a short path",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges1": [
           [
@@ -352,10 +352,10 @@
       ]
     },
     {
-      "id": "real-asymmetric-branches",
-      "name": "real: asymmetric branches expose the true diameter endpoints",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-asymmetric-branches",
+      "name": "asymmetric branches expose the true diameter endpoints",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges1": [
           [
@@ -401,10 +401,10 @@
       ]
     },
     {
-      "id": "real-independent-label-spaces",
-      "name": "real: matching numeric labels remain in separate trees",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-independent-label-spaces",
+      "name": "matching numeric labels remain in separate trees",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges1": [
           [
@@ -446,10 +446,10 @@
       ]
     },
     {
-      "id": "real-two-long-paths",
-      "name": "real: two seven-node paths are connected at their centers",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-two-long-paths",
+      "name": "two seven-node paths are connected at their centers",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges1": [
           [
@@ -512,4 +512,3 @@
     }
   ]
 }
-

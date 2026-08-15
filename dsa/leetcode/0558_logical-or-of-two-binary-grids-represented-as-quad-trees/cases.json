@@ -257,10 +257,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: separated true quadrants",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "separated true quadrants",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "quadTree1": {
           "leaf": false,
@@ -330,15 +330,14 @@
         "kind": "quad_tree"
       },
       "tags": [
-        "hidden",
         "quadrants"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: false preserves asymmetric tree",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "false preserves asymmetric tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "quadTree1": {
           "leaf": false,
@@ -391,10 +390,8 @@
         "kind": "quad_tree"
       },
       "tags": [
-        "hidden",
         "quadrants"
       ]
     }
   ]
 }
-

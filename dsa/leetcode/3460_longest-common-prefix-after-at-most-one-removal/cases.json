@@ -7,90 +7,180 @@
       "name": "sample: remove a middle mismatch",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "madxa", "t": "madam"},
+      "input": {
+        "s": "madxa",
+        "t": "madam"
+      },
       "expected": 4,
-      "tags": ["sample", "middle-removal"]
+      "tags": [
+        "sample",
+        "middle-removal"
+      ]
     },
     {
       "id": "sample-remove-first",
       "name": "sample: remove the first character",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "leetcode", "t": "eetcode"},
+      "input": {
+        "s": "leetcode",
+        "t": "eetcode"
+      },
       "expected": 7,
-      "tags": ["sample", "first-removal"]
+      "tags": [
+        "sample",
+        "first-removal"
+      ]
     },
     {
       "id": "sample-no-removal",
       "name": "sample: complete match without removal",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "one", "t": "one"},
+      "input": {
+        "s": "one",
+        "t": "one"
+      },
       "expected": 3,
-      "tags": ["sample", "no-removal"]
+      "tags": [
+        "sample",
+        "no-removal"
+      ]
     },
     {
       "id": "sample-no-common-prefix",
       "name": "sample: one-character mismatch",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "a", "t": "b"},
+      "input": {
+        "s": "a",
+        "t": "b"
+      },
       "expected": 0,
-      "tags": ["sample", "zero"]
+      "tags": [
+        "sample",
+        "zero"
+      ]
     },
     {
       "id": "trial-remove-leading-extra",
       "name": "trial: leading deletion exposes full target",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "xabc", "t": "abc"},
+      "input": {
+        "s": "xabc",
+        "t": "abc"
+      },
       "expected": 3,
-      "tags": ["trial", "leading-extra"]
+      "tags": [
+        "trial",
+        "leading-extra"
+      ]
     },
     {
       "id": "trial-remove-interior-extra",
       "name": "trial: interior deletion extends the match",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "abxcd", "t": "abcdz"},
+      "input": {
+        "s": "abxcd",
+        "t": "abcdz"
+      },
       "expected": 4,
-      "tags": ["trial", "interior-extra"]
+      "tags": [
+        "trial",
+        "interior-extra"
+      ]
     },
     {
-      "id": "real-second-mismatch",
-      "name": "real: a second mismatch ends the prefix",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abxcd", "t": "abycd"},
+      "id": "trial-second-mismatch",
+      "name": "a second mismatch ends the prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abxcd",
+        "t": "abycd"
+      },
       "expected": 2,
-      "tags": ["real", "second-mismatch"]
+      "tags": [
+        "real",
+        "second-mismatch"
+      ]
     },
     {
-      "id": "real-target-shorter",
-      "name": "real: target ends first",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcdef", "t": "abc"},
+      "id": "trial-target-shorter",
+      "name": "target ends first",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdef",
+        "t": "abc"
+      },
       "expected": 3,
-      "tags": ["real", "target-shorter"]
+      "tags": [
+        "real",
+        "target-shorter"
+      ]
     },
     {
-      "id": "real-source-shorter",
-      "name": "real: source ends first",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abc", "t": "abcd"},
+      "id": "trial-source-shorter",
+      "name": "source ends first",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "t": "abcd"
+      },
       "expected": 3,
-      "tags": ["real", "source-shorter"]
+      "tags": [
+        "real",
+        "source-shorter"
+      ]
     },
     {
-      "id": "real-remove-final-character",
-      "name": "real: deleting the final mismatch cannot add a match",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcx", "t": "abcd"},
+      "id": "trial-remove-final-character",
+      "name": "deleting the final mismatch cannot add a match",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcx",
+        "t": "abcd"
+      },
       "expected": 3,
-      "tags": ["real", "final-removal"]
+      "tags": [
+        "real",
+        "final-removal"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "m",
+        "t": "madam"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "mmm",
+        "t": "madam"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
     }
   ]
 }

@@ -73,44 +73,41 @@
       ]
     },
     {
-      "id": "hidden-many-odds",
-      "name": "hidden: several odd counts share one center",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-odds",
+      "name": "several odd counts share one center",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaabbbccc"
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "odd-counts"
       ]
     },
     {
-      "id": "hidden-one-uppercase-pair",
-      "name": "hidden: only uppercase values pair",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-uppercase-pair",
+      "name": "only uppercase values pair",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abAAcd"
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "uppercase"
       ]
     },
     {
-      "id": "hidden-all-same",
-      "name": "hidden: repeated single character kind",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-same",
+      "name": "repeated single character kind",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "zzzzzzz"
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "all-same"
       ]
     }

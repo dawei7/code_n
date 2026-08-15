@@ -1,10 +1,268 @@
-{"schema_version":1,"challenge_id":"lc_3756","cases":[
-{"id":"sample-three-ranges","name":"sample: three ranges retain different digits","kind":"sample","visible":true,"input":{"s":"10203004","queries":[[0,7],[1,3],[4,6]]},"expected":[12340,4,9],"validator":{"kind":"exact"},"tags":["sample","multiple-queries"]},
-{"id":"sample-all-zero-range","name":"sample: one query contains only zero","kind":"sample","visible":true,"input":{"s":"1000","queries":[[0,3],[1,1]]},"expected":[1,0],"validator":{"kind":"exact"},"tags":["sample","all-zero"]},
-{"id":"sample-modulo","name":"sample: large product requires modular reduction","kind":"sample","visible":true,"input":{"s":"9876543210","queries":[[0,9]]},"expected":[444444137],"validator":{"kind":"exact"},"tags":["sample","modulo"]},
-{"id":"trial-zero-gaps","name":"trial: zeros occupy different positions in overlapping ranges","kind":"trial","visible":true,"input":{"s":"10501","queries":[[0,4],[1,3],[2,4]]},"expected":[1057,25,306],"validator":{"kind":"exact"},"tags":["trial","overlap"]},
-{"id":"trial-no-zeros","name":"trial: endpoints and middle range contain no zeros","kind":"trial","visible":true,"input":{"s":"12345","queries":[[0,0],[4,4],[1,3]]},"expected":[1,25,2106],"validator":{"kind":"exact"},"tags":["trial","singletons"]},
-{"id":"real-all-zeros","name":"hidden: every retained sequence is empty","kind":"real","visible":false,"input":{"s":"00000","queries":[[0,4],[2,3]]},"expected":[0,0],"validator":{"kind":"exact"},"tags":["hidden","all-zero"]},
-{"id":"real-repeated-nines","name":"hidden: repeated nonzero digits across zero gaps","kind":"real","visible":false,"input":{"s":"909090909","queries":[[0,8],[1,7],[2,2]]},"expected":[4499955,26973,81],"validator":{"kind":"exact"},"tags":["hidden","zero-gaps"]},
-{"id":"real-boundary-mapping","name":"hidden: inclusive endpoints map to compressed boundaries","kind":"real","visible":false,"input":{"s":"1200304056","queries":[[0,9],[2,8],[3,5],[6,9]]},"expected":[2592576,4140,9,6840],"validator":{"kind":"exact"},"tags":["hidden","boundaries"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3756",
+  "cases": [
+    {
+      "id": "sample-three-ranges",
+      "name": "sample: three ranges retain different digits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "10203004",
+        "queries": [
+          [
+            0,
+            7
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            4,
+            6
+          ]
+        ]
+      },
+      "expected": [
+        12340,
+        4,
+        9
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "multiple-queries"
+      ]
+    },
+    {
+      "id": "sample-all-zero-range",
+      "name": "sample: one query contains only zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "1000",
+        "queries": [
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        0
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "all-zero"
+      ]
+    },
+    {
+      "id": "sample-modulo",
+      "name": "sample: large product requires modular reduction",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "9876543210",
+        "queries": [
+          [
+            0,
+            9
+          ]
+        ]
+      },
+      "expected": [
+        444444137
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "modulo"
+      ]
+    },
+    {
+      "id": "trial-zero-gaps",
+      "name": "trial: zeros occupy different positions in overlapping ranges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "10501",
+        "queries": [
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        1057,
+        25,
+        306
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-no-zeros",
+      "name": "trial: endpoints and middle range contain no zeros",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "12345",
+        "queries": [
+          [
+            0,
+            0
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        25,
+        2106
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "singletons"
+      ]
+    },
+    {
+      "id": "trial-all-zeros",
+      "name": "every retained sequence is empty",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "00000",
+        "queries": [
+          [
+            0,
+            4
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "all-zero"
+      ]
+    },
+    {
+      "id": "trial-repeated-nines",
+      "name": "repeated nonzero digits across zero gaps",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "909090909",
+        "queries": [
+          [
+            0,
+            8
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        4499955,
+        26973,
+        81
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "zero-gaps"
+      ]
+    },
+    {
+      "id": "trial-boundary-mapping",
+      "name": "inclusive endpoints map to compressed boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1200304056",
+        "queries": [
+          [
+            0,
+            9
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            6,
+            9
+          ]
+        ]
+      },
+      "expected": [
+        2592576,
+        4140,
+        9,
+        6840
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "boundaries"
+      ]
+    }
+  ]
+}

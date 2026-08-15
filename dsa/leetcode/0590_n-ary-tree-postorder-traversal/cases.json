@@ -159,10 +159,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: several nested sibling subtrees",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "several nested sibling subtrees",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           0,
@@ -212,15 +212,14 @@
         0
       ],
       "tags": [
-        "hidden",
         "subtrees"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: repeated values are separate nodes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "repeated values are separate nodes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           5,
@@ -248,7 +247,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }

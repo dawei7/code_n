@@ -204,10 +204,10 @@
       ]
     },
     {
-      "id": "real-zero-rectangle",
-      "name": "hidden: all-zero rectangle has minimum zero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zero-rectangle",
+      "name": "all-zero rectangle has minimum zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -227,16 +227,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zeros",
         "rectangle"
       ]
     },
     {
-      "id": "real-maximum-two-by-two",
-      "name": "hidden: odd path length preserves maximum value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-two-by-two",
+      "name": "odd path length preserves maximum value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -254,16 +253,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value",
         "odd-path-length"
       ]
     },
     {
-      "id": "real-maximum-two-by-three",
-      "name": "hidden: even path length cancels repeated values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-two-by-three",
+      "name": "even path length cancels repeated values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -283,16 +281,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value",
         "even-path-length"
       ]
     },
     {
-      "id": "real-distinct-powers",
-      "name": "hidden: compare three distinct-value routes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-distinct-powers",
+      "name": "compare three distinct-value routes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -312,16 +309,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "powers-of-two",
         "multiple-paths"
       ]
     },
     {
-      "id": "real-three-by-three",
-      "name": "hidden: several intermediate XOR states compete",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-by-three",
+      "name": "several intermediate XOR states compete",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -346,16 +342,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "three-by-three",
         "state-competition"
       ]
     },
     {
-      "id": "real-single-row-boundaries",
-      "name": "hidden: boundary values on one forced path",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-row-boundaries",
+      "name": "boundary values on one forced path",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -372,16 +367,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "single-row",
         "value-boundaries"
       ]
     },
     {
-      "id": "real-four-by-four-zero-minimum",
-      "name": "hidden: one of many paths reaches XOR zero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-four-by-four-zero-minimum",
+      "name": "one of many paths reaches XOR zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -415,7 +409,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "four-by-four",
         "zero-minimum"
       ]

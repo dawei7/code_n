@@ -6,99 +6,167 @@
       "name": "sample: two changes produce length three",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "abced", "k": 2},
+      "input": {
+        "s": "abced",
+        "k": 2
+      },
       "expected": 3,
-      "tags": ["sample", "budget"]
+      "tags": [
+        "sample",
+        "budget"
+      ]
     },
     {
       "id": "sample-whole-string",
       "name": "sample: transform the whole string into a palindrome",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "aaazzz", "k": 4},
+      "input": {
+        "s": "aaazzz",
+        "k": 4
+      },
       "expected": 6,
-      "tags": ["sample", "whole-string"]
+      "tags": [
+        "sample",
+        "whole-string"
+      ]
     },
     {
       "id": "trial-alphabet-wrap",
       "name": "trial: adjacent letters across the alphabet boundary",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "az", "k": 1},
+      "input": {
+        "s": "az",
+        "k": 1
+      },
       "expected": 2,
-      "tags": ["trial", "cyclic-distance"]
+      "tags": [
+        "trial",
+        "cyclic-distance"
+      ]
     },
     {
       "id": "trial-insufficient-budget",
       "name": "trial: one operation cannot match distance two",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "ac", "k": 1},
+      "input": {
+        "s": "ac",
+        "k": 1
+      },
       "expected": 1,
-      "tags": ["trial", "budget-boundary"]
+      "tags": [
+        "trial",
+        "budget-boundary"
+      ]
     },
     {
       "id": "trial-odd-center",
       "name": "trial: unmatched middle character costs nothing",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "abc", "k": 2},
+      "input": {
+        "s": "abc",
+        "k": 2
+      },
       "expected": 3,
-      "tags": ["trial", "odd-length"]
+      "tags": [
+        "trial",
+        "odd-length"
+      ]
     },
     {
-      "id": "real-single-character",
-      "name": "real: maximum budget on one character",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "a", "k": 200},
+      "id": "trial-single-character",
+      "name": "maximum budget on one character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "k": 200
+      },
       "expected": 1,
-      "tags": ["real", "single-character", "max-budget"]
+      "tags": [
+        "real",
+        "single-character",
+        "max-budget"
+      ]
     },
     {
-      "id": "real-budget-one",
-      "name": "real: one change improves a three-character string",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abc", "k": 1},
+      "id": "trial-budget-one",
+      "name": "one change improves a three-character string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "k": 1
+      },
       "expected": 2,
-      "tags": ["real", "budget-boundary"]
+      "tags": [
+        "real",
+        "budget-boundary"
+      ]
     },
     {
-      "id": "real-select-subsequence",
-      "name": "real: optimal result omits incompatible positions",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "wehzr", "k": 3},
+      "id": "trial-select-subsequence",
+      "name": "optimal result omits incompatible positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "wehzr",
+        "k": 3
+      },
       "expected": 3,
-      "tags": ["real", "subsequence"]
+      "tags": [
+        "real",
+        "subsequence"
+      ]
     },
     {
-      "id": "real-competing-pairs",
-      "name": "real: budget cannot pay for every endpoint pair",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "azby", "k": 2},
+      "id": "trial-competing-pairs",
+      "name": "budget cannot pay for every endpoint pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "azby",
+        "k": 2
+      },
       "expected": 3,
-      "tags": ["real", "pair-cost"]
+      "tags": [
+        "real",
+        "pair-cost"
+      ]
     },
     {
-      "id": "real-existing-palindrome",
-      "name": "real: an existing palindrome needs no changes",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "racecar", "k": 1},
+      "id": "trial-existing-palindrome",
+      "name": "an existing palindrome needs no changes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "racecar",
+        "k": 1
+      },
       "expected": 7,
-      "tags": ["real", "zero-cost"]
+      "tags": [
+        "real",
+        "zero-cost"
+      ]
     },
     {
-      "id": "real-large-budget",
-      "name": "real: large budget can transform the entire string",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "algorithm", "k": 200},
+      "id": "trial-large-budget",
+      "name": "large budget can transform the entire string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "algorithm",
+        "k": 200
+      },
       "expected": 9,
-      "tags": ["real", "whole-string", "max-budget"]
+      "tags": [
+        "real",
+        "whole-string",
+        "max-budget"
+      ]
     }
   ]
 }

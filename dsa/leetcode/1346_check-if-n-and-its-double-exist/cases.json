@@ -2,13 +2,183 @@
   "schema_version": 1,
   "challenge_id": "lc_1346",
   "cases": [
-    {"id":"sample-double-exists","name":"sample: larger value appears first","kind":"sample","visible":true,"input":{"arr":[10,2,5,3]},"expected":true,"tags":["sample","double"]},
-    {"id":"sample-no-double","name":"sample: no qualifying pair","kind":"sample","visible":true,"input":{"arr":[3,1,7,11]},"expected":false,"tags":["sample","none"]},
-    {"id":"sample-two-zeroes","name":"sample: distinct zero indices","kind":"sample","visible":true,"input":{"arr":[0,0]},"expected":true,"tags":["sample","zero"]},
-    {"id":"trial-smaller-first","name":"trial: smaller value appears first","kind":"trial","visible":true,"input":{"arr":[5,10]},"expected":true,"tags":["trial","order"]},
-    {"id":"trial-one-zero","name":"trial: one zero cannot match itself","kind":"trial","visible":true,"input":{"arr":[0,3,7]},"expected":false,"tags":["trial","distinct-indices"]},
-    {"id":"trial-negative-pair","name":"trial: negative double pair","kind":"trial","visible":true,"input":{"arr":[-3,-6,5]},"expected":true,"tags":["trial","negative"]},
-    {"id":"hidden-equal-nonzero","name":"hidden: equal nonzero values are not doubles","kind":"real","visible":false,"input":{"arr":[5,5]},"expected":false,"tags":["hidden","duplicates"]},
-    {"id":"hidden-negative-none","name":"hidden: mixed signs without a pair","kind":"real","visible":false,"input":{"arr":[-2,0,10,-19,4,6,-8]},"expected":false,"tags":["hidden","none"]}
+    {
+      "id": "sample-double-exists",
+      "name": "sample: larger value appears first",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          10,
+          2,
+          5,
+          3
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "double"
+      ]
+    },
+    {
+      "id": "sample-no-double",
+      "name": "sample: no qualifying pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          3,
+          1,
+          7,
+          11
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "none"
+      ]
+    },
+    {
+      "id": "sample-two-zeroes",
+      "name": "sample: distinct zero indices",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          0,
+          0
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-smaller-first",
+      "name": "trial: smaller value appears first",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          5,
+          10
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "order"
+      ]
+    },
+    {
+      "id": "trial-one-zero",
+      "name": "trial: one zero cannot match itself",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          0,
+          3,
+          7
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "distinct-indices"
+      ]
+    },
+    {
+      "id": "trial-negative-pair",
+      "name": "trial: negative double pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          -3,
+          -6,
+          5
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-equal-nonzero",
+      "name": "equal nonzero values are not doubles",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          5,
+          5
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-negative-none",
+      "name": "mixed signs without a pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          -2,
+          0,
+          10,
+          -19,
+          4,
+          6,
+          -8
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "none"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in arr",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          10
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in arr",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          10,
+          10
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    }
   ]
 }

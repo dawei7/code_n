@@ -21,7 +21,7 @@
       "expected": 12.75,
       "validator": {
         "kind": "float_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       },
       "tags": [
         "sample",
@@ -43,7 +43,7 @@
       "expected": 5,
       "validator": {
         "kind": "float_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       },
       "tags": [
         "sample",
@@ -69,7 +69,7 @@
       "expected": 2,
       "validator": {
         "kind": "float_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       },
       "tags": [
         "trial",
@@ -92,7 +92,7 @@
       "expected": -1.5,
       "validator": {
         "kind": "float_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       },
       "tags": [
         "trial",
@@ -116,7 +116,7 @@
       "expected": 3.5,
       "validator": {
         "kind": "float_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       },
       "tags": [
         "trial",
@@ -139,7 +139,7 @@
       "expected": 2,
       "validator": {
         "kind": "float_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       },
       "tags": [
         "trial",
@@ -162,7 +162,7 @@
       "expected": 0.5,
       "validator": {
         "kind": "float_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       },
       "tags": [
         "trial",
@@ -185,7 +185,7 @@
       "expected": 7,
       "validator": {
         "kind": "float_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       },
       "tags": [
         "trial",
@@ -208,7 +208,7 @@
       "expected": 0,
       "validator": {
         "kind": "float_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       },
       "tags": [
         "trial",
@@ -10230,7 +10230,7 @@
       "expected": 0,
       "validator": {
         "kind": "float_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       },
       "tags": [
         "trial",
@@ -10238,6 +10238,41 @@
         "k-equals-length",
         "minimum-value",
         "maximum-value"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 4
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 4
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

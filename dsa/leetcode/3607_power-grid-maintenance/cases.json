@@ -179,10 +179,10 @@
       ]
     },
     {
-      "id": "real-smallest-not-nearest",
-      "name": "real: an offline target uses the smallest identifier, not the nearest",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-smallest-not-nearest",
+      "name": "an offline target uses the smallest identifier, not the nearest",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "c": 5,
         "connections": [
@@ -224,10 +224,10 @@
       ]
     },
     {
-      "id": "real-offline-bridge-remains",
-      "name": "real: taking a bridge station offline does not split the grid",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-offline-bridge-remains",
+      "name": "taking a bridge station offline does not split the grid",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "c": 3,
         "connections": [
@@ -270,10 +270,10 @@
       ]
     },
     {
-      "id": "real-repeated-outage",
-      "name": "real: repeated outages are idempotent",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeated-outage",
+      "name": "repeated outages are idempotent",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "c": 1,
         "connections": [],
@@ -306,10 +306,10 @@
       ]
     },
     {
-      "id": "real-cycle-component",
-      "name": "real: cycles still form one permanent component",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-cycle-component",
+      "name": "cycles still form one permanent component",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "c": 4,
         "connections": [
@@ -364,10 +364,10 @@
       ]
     },
     {
-      "id": "real-exhaust-one-component",
-      "name": "real: only the exhausted component returns minus one",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-exhaust-one-component",
+      "name": "only the exhausted component returns minus one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "c": 4,
         "connections": [
@@ -410,10 +410,10 @@
       ]
     },
     {
-      "id": "real-no-maintenance-check",
-      "name": "real: an outage-only query stream produces no results",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-no-maintenance-check",
+      "name": "an outage-only query stream produces no results",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "c": 3,
         "connections": [

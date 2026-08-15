@@ -354,10 +354,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: six reports plus unrelated employee",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "six reports plus unrelated employee",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Employee": [
@@ -423,15 +423,14 @@
         ]
       },
       "tags": [
-        "hidden",
         "threshold"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: no report relationships",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "no report relationships",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Employee": [
@@ -451,10 +450,8 @@
         "rows": []
       },
       "tags": [
-        "hidden",
         "threshold"
       ]
     }
   ]
 }
-

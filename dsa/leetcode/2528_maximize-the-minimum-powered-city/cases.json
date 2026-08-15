@@ -1,13 +1,169 @@
 {
   "challenge_id": "lc_2528",
   "cases": [
-    {"id": "sample-1", "name": "sample: reinforce two edge minima", "kind": "sample", "visible": true, "input": {"stations": [1, 2, 4, 5, 0], "r": 1, "k": 2}, "expected": 5, "tags": ["sample", "greedy-placement"]},
-    {"id": "sample-2", "name": "sample: range zero cannot raise every city", "kind": "sample", "visible": true, "input": {"stations": [4, 4, 4, 4], "r": 0, "k": 3}, "expected": 4, "tags": ["sample", "range-zero"]},
-    {"id": "trial-single-city", "name": "trial: every addition reaches the only city", "kind": "trial", "visible": true, "input": {"stations": [0], "r": 0, "k": 5}, "expected": 5, "tags": ["trial", "single-city"]},
-    {"id": "trial-full-range", "name": "trial: every station covers every city", "kind": "trial", "visible": true, "input": {"stations": [1, 0, 2], "r": 2, "k": 3}, "expected": 6, "tags": ["trial", "full-range"]},
-    {"id": "real-independent-cities", "name": "hidden: distribute additions with range zero", "kind": "real", "visible": false, "input": {"stations": [1, 2, 3], "r": 0, "k": 3}, "expected": 3, "tags": ["hidden", "allocation"]},
-    {"id": "real-zero-baseline", "name": "hidden: create coverage from no existing stations", "kind": "real", "visible": false, "input": {"stations": [0, 0, 0, 0, 0], "r": 1, "k": 2}, "expected": 1, "tags": ["hidden", "zero-baseline"]},
-    {"id": "real-edge-heavy", "name": "hidden: strong edges leave the center limiting", "kind": "real", "visible": false, "input": {"stations": [5, 0, 0, 0, 5], "r": 1, "k": 4}, "expected": 4, "tags": ["hidden", "edge-coverage"]},
-    {"id": "real-separated-clusters", "name": "hidden: additions bridge separated powered regions", "kind": "real", "visible": false, "input": {"stations": [0, 3, 0, 0, 3, 0], "r": 1, "k": 3}, "expected": 4, "tags": ["hidden", "overlap"]}
+    {
+      "id": "sample-1",
+      "name": "sample: reinforce two edge minima",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stations": [
+          1,
+          2,
+          4,
+          5,
+          0
+        ],
+        "r": 1,
+        "k": 2
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "greedy-placement"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: range zero cannot raise every city",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stations": [
+          4,
+          4,
+          4,
+          4
+        ],
+        "r": 0,
+        "k": 3
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "range-zero"
+      ]
+    },
+    {
+      "id": "trial-single-city",
+      "name": "trial: every addition reaches the only city",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "stations": [
+          0
+        ],
+        "r": 0,
+        "k": 5
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "single-city"
+      ]
+    },
+    {
+      "id": "trial-full-range",
+      "name": "trial: every station covers every city",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "stations": [
+          1,
+          0,
+          2
+        ],
+        "r": 2,
+        "k": 3
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "full-range"
+      ]
+    },
+    {
+      "id": "trial-independent-cities",
+      "name": "distribute additions with range zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "stations": [
+          1,
+          2,
+          3
+        ],
+        "r": 0,
+        "k": 3
+      },
+      "expected": 3,
+      "tags": [
+        "allocation"
+      ]
+    },
+    {
+      "id": "trial-zero-baseline",
+      "name": "create coverage from no existing stations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "stations": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "r": 1,
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "zero-baseline"
+      ]
+    },
+    {
+      "id": "trial-edge-heavy",
+      "name": "strong edges leave the center limiting",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "stations": [
+          5,
+          0,
+          0,
+          0,
+          5
+        ],
+        "r": 1,
+        "k": 4
+      },
+      "expected": 4,
+      "tags": [
+        "edge-coverage"
+      ]
+    },
+    {
+      "id": "trial-separated-clusters",
+      "name": "additions bridge separated powered regions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "stations": [
+          0,
+          3,
+          0,
+          0,
+          3,
+          0
+        ],
+        "r": 1,
+        "k": 3
+      },
+      "expected": 4,
+      "tags": [
+        "overlap"
+      ]
+    }
   ]
 }

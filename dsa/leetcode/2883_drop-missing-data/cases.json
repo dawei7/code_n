@@ -6,36 +6,199 @@
       "name": "sample: remove the student without a name",
       "kind": "sample",
       "visible": true,
-      "input": {"tables": {"students": [{"student_id": 32, "name": "Piper", "age": 5}, {"student_id": 217, "name": null, "age": 19}, {"student_id": 779, "name": "Georgia", "age": 20}, {"student_id": 849, "name": "Willow", "age": 14}]}},
-      "expected": {"columns": ["student_id", "name", "age"], "rows": [[32, "Piper", 5], [779, "Georgia", 20], [849, "Willow", 14]]},
-      "tags": ["sample", "missing-name"]
+      "input": {
+        "tables": {
+          "students": [
+            {
+              "student_id": 32,
+              "name": "Piper",
+              "age": 5
+            },
+            {
+              "student_id": 217,
+              "name": null,
+              "age": 19
+            },
+            {
+              "student_id": 779,
+              "name": "Georgia",
+              "age": 20
+            },
+            {
+              "student_id": 849,
+              "name": "Willow",
+              "age": 14
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "name",
+          "age"
+        ],
+        "rows": [
+          [
+            32,
+            "Piper",
+            5
+          ],
+          [
+            779,
+            "Georgia",
+            20
+          ],
+          [
+            849,
+            "Willow",
+            14
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "missing-name"
+      ]
     },
     {
       "id": "trial-no-missing-names",
       "name": "all student names are present",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"students": [{"student_id": 1, "name": "Ada", "age": 18}, {"student_id": 2, "name": "Bo", "age": 20}]}},
-      "expected": {"columns": ["student_id", "name", "age"], "rows": [[1, "Ada", 18], [2, "Bo", 20]]},
-      "tags": ["no-missing-values"]
+      "input": {
+        "tables": {
+          "students": [
+            {
+              "student_id": 1,
+              "name": "Ada",
+              "age": 18
+            },
+            {
+              "student_id": 2,
+              "name": "Bo",
+              "age": 20
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "name",
+          "age"
+        ],
+        "rows": [
+          [
+            1,
+            "Ada",
+            18
+          ],
+          [
+            2,
+            "Bo",
+            20
+          ]
+        ]
+      },
+      "tags": [
+        "no-missing-values"
+      ]
     },
     {
       "id": "trial-multiple-missing-names",
       "name": "missing names occur at both boundaries",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"students": [{"student_id": 10, "name": null, "age": 16}, {"student_id": 11, "name": "Dee", "age": 17}, {"student_id": 12, "name": "Eli", "age": 18}, {"student_id": 13, "name": null, "age": 19}]}},
-      "expected": {"columns": ["student_id", "name", "age"], "rows": [[11, "Dee", 17], [12, "Eli", 18]]},
-      "tags": ["multiple-missing", "boundaries", "order"]
+      "input": {
+        "tables": {
+          "students": [
+            {
+              "student_id": 10,
+              "name": null,
+              "age": 16
+            },
+            {
+              "student_id": 11,
+              "name": "Dee",
+              "age": 17
+            },
+            {
+              "student_id": 12,
+              "name": "Eli",
+              "age": 18
+            },
+            {
+              "student_id": 13,
+              "name": null,
+              "age": 19
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "name",
+          "age"
+        ],
+        "rows": [
+          [
+            11,
+            "Dee",
+            17
+          ],
+          [
+            12,
+            "Eli",
+            18
+          ]
+        ]
+      },
+      "tags": [
+        "multiple-missing",
+        "boundaries",
+        "order"
+      ]
     },
     {
-      "id": "real-all-names-missing",
-      "name": "hidden: every student name is missing",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"students": [{"student_id": 21, "name": null, "age": 18}, {"student_id": 22, "name": null, "age": 20}, {"student_id": 23, "name": null, "age": 22}]}},
-      "expected": {"columns": ["student_id", "name", "age"], "rows": []},
-      "tags": ["hidden", "all-removed", "empty-result"]
+      "id": "trial-all-names-missing",
+      "name": "every student name is missing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "students": [
+            {
+              "student_id": 21,
+              "name": null,
+              "age": 18
+            },
+            {
+              "student_id": 22,
+              "name": null,
+              "age": 20
+            },
+            {
+              "student_id": 23,
+              "name": null,
+              "age": 22
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "name",
+          "age"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "all-removed",
+        "empty-result"
+      ]
     }
   ]
 }

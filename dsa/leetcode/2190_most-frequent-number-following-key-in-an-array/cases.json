@@ -2,13 +2,176 @@
   "schema_version": 1,
   "challenge_id": "lc_2190",
   "cases": [
-    {"id":"sample-separated-key","name":"sample: one hundred follows both separated keys","kind":"sample","visible":true,"input":{"nums":[1,100,200,1,100],"key":1},"expected":100,"tags":["sample","separated-occurrences"]},
-    {"id":"sample-self-follower","name":"sample: key most often follows itself","kind":"sample","visible":true,"input":{"nums":[2,2,2,2,3],"key":2},"expected":2,"tags":["sample","overlapping-pairs"]},
-    {"id":"trial-final-key","name":"final key occurrence has no follower","kind":"trial","visible":true,"input":{"nums":[3,4,5,3],"key":3},"expected":4,"tags":["final-key","single-observation"]},
-    {"id":"trial-two-elements","name":"smallest array contributes its only follower","kind":"trial","visible":true,"input":{"nums":[7,9],"key":7},"expected":9,"tags":["minimum-length"]},
-    {"id":"trial-unrelated-frequency","name":"frequent values away from key do not count","kind":"trial","visible":true,"input":{"nums":[8,4,4,4,8,5,8,5],"key":8},"expected":5,"tags":["adjacency","irrelevant-values"]},
-    {"id":"real-alternating-targets","name":"hidden: one target wins across alternating observations","kind":"real","visible":false,"input":{"nums":[1,2,1,3,1,2,1,2],"key":1},"expected":2,"tags":["hidden","multiple-targets"]},
-    {"id":"real-maximum-value","name":"hidden: maximum legal value is both key and target","kind":"real","visible":false,"input":{"nums":[1000,1000,1000,4,1000,1000],"key":1000},"expected":1000,"tags":["hidden","maximum-value","self-follower"]},
-    {"id":"real-nonkey-tail","name":"hidden: non-key tail does not affect counted followers","kind":"real","visible":false,"input":{"nums":[6,7,8,6,7,9,9,9],"key":6},"expected":7,"tags":["hidden","nonkey-tail"]}
+    {
+      "id": "sample-separated-key",
+      "name": "sample: one hundred follows both separated keys",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          100,
+          200,
+          1,
+          100
+        ],
+        "key": 1
+      },
+      "expected": 100,
+      "tags": [
+        "sample",
+        "separated-occurrences"
+      ]
+    },
+    {
+      "id": "sample-self-follower",
+      "name": "sample: key most often follows itself",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          2,
+          3
+        ],
+        "key": 2
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "overlapping-pairs"
+      ]
+    },
+    {
+      "id": "trial-final-key",
+      "name": "final key occurrence has no follower",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          4,
+          5,
+          3
+        ],
+        "key": 3
+      },
+      "expected": 4,
+      "tags": [
+        "final-key",
+        "single-observation"
+      ]
+    },
+    {
+      "id": "trial-two-elements",
+      "name": "smallest array contributes its only follower",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          9
+        ],
+        "key": 7
+      },
+      "expected": 9,
+      "tags": [
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-unrelated-frequency",
+      "name": "frequent values away from key do not count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          4,
+          4,
+          4,
+          8,
+          5,
+          8,
+          5
+        ],
+        "key": 8
+      },
+      "expected": 5,
+      "tags": [
+        "adjacency",
+        "irrelevant-values"
+      ]
+    },
+    {
+      "id": "trial-alternating-targets",
+      "name": "one target wins across alternating observations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          3,
+          1,
+          2,
+          1,
+          2
+        ],
+        "key": 1
+      },
+      "expected": 2,
+      "tags": [
+        "multiple-targets"
+      ]
+    },
+    {
+      "id": "trial-maximum-value",
+      "name": "maximum legal value is both key and target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000,
+          1000,
+          1000,
+          4,
+          1000,
+          1000
+        ],
+        "key": 1000
+      },
+      "expected": 1000,
+      "tags": [
+        "maximum-value",
+        "self-follower"
+      ]
+    },
+    {
+      "id": "trial-nonkey-tail",
+      "name": "non-key tail does not affect counted followers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          7,
+          8,
+          6,
+          7,
+          9,
+          9,
+          9
+        ],
+        "key": 6
+      },
+      "expected": 7,
+      "tags": [
+        "nonkey-tail"
+      ]
+    }
   ]
 }

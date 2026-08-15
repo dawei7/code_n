@@ -185,10 +185,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: two removable components",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "two removable components",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "stones": [
           [
@@ -215,15 +215,14 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "two-components"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: all share a column",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "all share a column",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "stones": [
           [
@@ -250,15 +249,14 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "shared-column"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: upper coordinate bound",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "upper coordinate bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "stones": [
           [
@@ -277,7 +275,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     }

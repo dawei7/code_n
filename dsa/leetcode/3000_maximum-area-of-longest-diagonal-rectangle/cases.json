@@ -1,9 +1,169 @@
-{"challenge_id":"lc_3000","cases":[
-{"id":"sample-longer-diagonal","name":"sample: second rectangle has longer diagonal","kind":"sample","visible":true,"input":{"dimensions":[[9,3],[8,6]]},"expected":48,"tags":["sample"]},
-{"id":"sample-equal-diagonal","name":"sample: equal diagonal and area","kind":"sample","visible":true,"input":{"dimensions":[[3,4],[4,3]]},"expected":12,"tags":["sample","tie"]},
-{"id":"trial-area-tie-break","name":"trial: area breaks a diagonal tie","kind":"trial","visible":true,"input":{"dimensions":[[1,7],[5,5]]},"expected":25,"tags":["tie-break"]},
-{"id":"trial-single","name":"trial: one rectangle","kind":"trial","visible":true,"input":{"dimensions":[[100,1]]},"expected":100,"tags":["single","boundary"]},
-{"id":"real-slightly-longer","name":"real: slightly longer diagonal beats larger area","kind":"real","visible":false,"input":{"dimensions":[[6,8],[10,1]]},"expected":10,"tags":["hidden","priority"]},
-{"id":"real-many-ties","name":"real: repeated equal diagonals","kind":"real","visible":false,"input":{"dimensions":[[7,1],[5,5],[1,7],[5,5]]},"expected":25,"tags":["hidden","tie"]},
-{"id":"real-upper-square","name":"real: upper-bound square","kind":"real","visible":false,"input":{"dimensions":[[99,100],[100,100],[100,99]]},"expected":10000,"tags":["hidden","boundary"]}
-]}
+{
+  "challenge_id": "lc_3000",
+  "cases": [
+    {
+      "id": "sample-longer-diagonal",
+      "name": "sample: second rectangle has longer diagonal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "dimensions": [
+          [
+            9,
+            3
+          ],
+          [
+            8,
+            6
+          ]
+        ]
+      },
+      "expected": 48,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-equal-diagonal",
+      "name": "sample: equal diagonal and area",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "dimensions": [
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            3
+          ]
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "sample",
+        "tie"
+      ]
+    },
+    {
+      "id": "trial-area-tie-break",
+      "name": "trial: area breaks a diagonal tie",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "dimensions": [
+          [
+            1,
+            7
+          ],
+          [
+            5,
+            5
+          ]
+        ]
+      },
+      "expected": 25,
+      "tags": [
+        "tie-break"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one rectangle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "dimensions": [
+          [
+            100,
+            1
+          ]
+        ]
+      },
+      "expected": 100,
+      "tags": [
+        "single",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-slightly-longer",
+      "name": "slightly longer diagonal beats larger area",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "dimensions": [
+          [
+            6,
+            8
+          ],
+          [
+            10,
+            1
+          ]
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "priority"
+      ]
+    },
+    {
+      "id": "trial-many-ties",
+      "name": "repeated equal diagonals",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "dimensions": [
+          [
+            7,
+            1
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            5,
+            5
+          ]
+        ]
+      },
+      "expected": 25,
+      "tags": [
+        "tie"
+      ]
+    },
+    {
+      "id": "trial-upper-square",
+      "name": "upper-bound square",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "dimensions": [
+          [
+            99,
+            100
+          ],
+          [
+            100,
+            100
+          ],
+          [
+            100,
+            99
+          ]
+        ]
+      },
+      "expected": 10000,
+      "tags": [
+        "boundary"
+      ]
+    }
+  ]
+}

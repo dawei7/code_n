@@ -83,10 +83,10 @@
       ]
     },
     {
-      "id": "real-one-dimensional-row",
-      "name": "real: one-row grid reduces to column bands",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-dimensional-row",
+      "name": "one-row grid reduces to column bands",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1,
         "m": 20,
@@ -99,10 +99,10 @@
       ]
     },
     {
-      "id": "real-one-dimensional-column",
-      "name": "real: one-column grid reduces to row bands",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-dimensional-column",
+      "name": "one-column grid reduces to row bands",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 20,
         "m": 1,
@@ -115,10 +115,10 @@
       ]
     },
     {
-      "id": "real-partial-final-bands",
-      "name": "real: both dimensions end with partial bands",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-partial-final-bands",
+      "name": "both dimensions end with partial bands",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 12,
         "m": 18,
@@ -131,10 +131,10 @@
       ]
     },
     {
-      "id": "real-rectangular",
-      "name": "real: rectangular dimensions need different counts",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-rectangular",
+      "name": "rectangular dimensions need different counts",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 100,
         "m": 37,
@@ -147,10 +147,10 @@
       ]
     },
     {
-      "id": "real-maximum-grid-zero-radius",
-      "name": "real: maximum grid with zero radius",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-grid-zero-radius",
+      "name": "maximum grid with zero radius",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000,
         "m": 1000,
@@ -164,10 +164,10 @@
       ]
     },
     {
-      "id": "real-maximum-radius",
-      "name": "real: maximum radius covers maximum grid",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-radius",
+      "name": "maximum radius covers maximum grid",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000,
         "m": 1000,
@@ -177,6 +177,38 @@
       "tags": [
         "real",
         "maximum-radius"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "m": 5,
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value m=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "m": 1,
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

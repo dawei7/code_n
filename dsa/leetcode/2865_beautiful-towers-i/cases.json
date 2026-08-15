@@ -6,81 +6,174 @@
       "name": "sample: peak at the left endpoint",
       "kind": "sample",
       "visible": true,
-      "input": {"heights": [5, 3, 4, 1, 1]},
+      "input": {
+        "heights": [
+          5,
+          3,
+          4,
+          1,
+          1
+        ]
+      },
       "expected": 13,
-      "tags": ["sample", "endpoint-peak"]
+      "tags": [
+        "sample",
+        "endpoint-peak"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: tall interior peak",
       "kind": "sample",
       "visible": true,
-      "input": {"heights": [6, 5, 3, 9, 2, 7]},
+      "input": {
+        "heights": [
+          6,
+          5,
+          3,
+          9,
+          2,
+          7
+        ]
+      },
       "expected": 22,
-      "tags": ["sample", "interior-peak"]
+      "tags": [
+        "sample",
+        "interior-peak"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: plateau at the peak",
       "kind": "sample",
       "visible": true,
-      "input": {"heights": [3, 2, 5, 5, 2, 3]},
+      "input": {
+        "heights": [
+          3,
+          2,
+          5,
+          5,
+          2,
+          3
+        ]
+      },
       "expected": 18,
-      "tags": ["sample", "plateau"]
+      "tags": [
+        "sample",
+        "plateau"
+      ]
     },
     {
       "id": "trial-single-tower",
       "name": "trial: one tower",
       "kind": "trial",
       "visible": true,
-      "input": {"heights": [7]},
+      "input": {
+        "heights": [
+          7
+        ]
+      },
       "expected": 7,
-      "tags": ["trial", "minimum-length"]
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-increasing",
       "name": "trial: already increasing",
       "kind": "trial",
       "visible": true,
-      "input": {"heights": [1, 2, 3, 4, 5]},
+      "input": {
+        "heights": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
       "expected": 15,
-      "tags": ["trial", "right-endpoint-peak"]
+      "tags": [
+        "trial",
+        "right-endpoint-peak"
+      ]
     },
     {
       "id": "trial-decreasing",
       "name": "trial: already decreasing",
       "kind": "trial",
       "visible": true,
-      "input": {"heights": [5, 4, 3, 2, 1]},
+      "input": {
+        "heights": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
       "expected": 15,
-      "tags": ["trial", "left-endpoint-peak"]
+      "tags": [
+        "trial",
+        "left-endpoint-peak"
+      ]
     },
     {
-      "id": "real-equal-plateau",
-      "name": "hidden: every tower belongs to the peak plateau",
-      "kind": "real",
-      "visible": false,
-      "input": {"heights": [4, 4, 4, 4]},
+      "id": "trial-equal-plateau",
+      "name": "every tower belongs to the peak plateau",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "heights": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
       "expected": 16,
-      "tags": ["hidden", "plateau"]
+      "tags": [
+        "plateau"
+      ]
     },
     {
-      "id": "real-deep-valley",
-      "name": "hidden: a deep valley separates tall regions",
-      "kind": "real",
-      "visible": false,
-      "input": {"heights": [9, 8, 1, 8, 9, 7, 6]},
+      "id": "trial-deep-valley",
+      "name": "a deep valley separates tall regions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "heights": [
+          9,
+          8,
+          1,
+          8,
+          9,
+          7,
+          6
+        ]
+      },
       "expected": 33,
-      "tags": ["hidden", "valley"]
+      "tags": [
+        "valley"
+      ]
     },
     {
-      "id": "real-large-values",
-      "name": "hidden: large values require a wide integer sum",
-      "kind": "real",
-      "visible": false,
-      "input": {"heights": [1000000000, 1, 1000000000]},
+      "id": "trial-large-values",
+      "name": "large values require a wide integer sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "heights": [
+          1000000000,
+          1,
+          1000000000
+        ]
+      },
       "expected": 1000000002,
-      "tags": ["hidden", "large-values"]
+      "tags": [
+        "large-values"
+      ]
     }
   ]
 }

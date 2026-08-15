@@ -6,90 +6,350 @@
       "name": "sample: remove the light edge at an overfull node",
       "kind": "sample",
       "visible": true,
-      "input": {"edges": [[0,1,4],[0,2,2],[2,3,12],[2,4,6]], "k": 2},
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            4
+          ],
+          [
+            0,
+            2,
+            2
+          ],
+          [
+            2,
+            3,
+            12
+          ],
+          [
+            2,
+            4,
+            6
+          ]
+        ],
+        "k": 2
+      },
       "expected": 22,
-      "tags": ["sample", "degree-limit"]
+      "tags": [
+        "sample",
+        "degree-limit"
+      ]
     },
     {
       "id": "sample-keep-every-edge",
       "name": "sample: original degrees already fit",
       "kind": "sample",
       "visible": true,
-      "input": {"edges": [[0,1,5],[1,2,10],[0,3,15],[3,4,20],[3,5,5],[0,6,10]], "k": 3},
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            5
+          ],
+          [
+            1,
+            2,
+            10
+          ],
+          [
+            0,
+            3,
+            15
+          ],
+          [
+            3,
+            4,
+            20
+          ],
+          [
+            3,
+            5,
+            5
+          ],
+          [
+            0,
+            6,
+            10
+          ]
+        ],
+        "k": 3
+      },
       "expected": 65,
-      "tags": ["sample", "no-removal"]
+      "tags": [
+        "sample",
+        "no-removal"
+      ]
     },
     {
       "id": "trial-single-edge",
       "name": "trial: the only edge is retained",
       "kind": "trial",
       "visible": true,
-      "input": {"edges": [[0,1,7]], "k": 1},
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            7
+          ]
+        ],
+        "k": 1
+      },
       "expected": 7,
-      "tags": ["edge", "minimum-tree"]
+      "tags": [
+        "edge",
+        "minimum-tree"
+      ]
     },
     {
       "id": "trial-star-one-slot",
       "name": "trial: a star keeps only its heaviest edge",
       "kind": "trial",
       "visible": true,
-      "input": {"edges": [[0,1,5],[0,2,9],[0,3,1]], "k": 1},
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            5
+          ],
+          [
+            0,
+            2,
+            9
+          ],
+          [
+            0,
+            3,
+            1
+          ]
+        ],
+        "k": 1
+      },
       "expected": 9,
-      "tags": ["edge", "star"]
+      "tags": [
+        "edge",
+        "star"
+      ]
     },
     {
       "id": "trial-path-matching",
       "name": "trial: degree one turns a path into weighted matching",
       "kind": "trial",
       "visible": true,
-      "input": {"edges": [[0,1,5],[1,2,100],[2,3,6]], "k": 1},
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            5
+          ],
+          [
+            1,
+            2,
+            100
+          ],
+          [
+            2,
+            3,
+            6
+          ]
+        ],
+        "k": 1
+      },
       "expected": 100,
-      "tags": ["edge", "parent-state"]
+      "tags": [
+        "edge",
+        "parent-state"
+      ]
     },
     {
-      "id": "real-path-no-removal",
-      "name": "real: degree two retains an entire path",
-      "kind": "real",
-      "visible": false,
-      "input": {"edges": [[0,1,5],[1,2,100],[2,3,6]], "k": 2},
+      "id": "trial-path-no-removal",
+      "name": "degree two retains an entire path",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            5
+          ],
+          [
+            1,
+            2,
+            100
+          ],
+          [
+            2,
+            3,
+            6
+          ]
+        ],
+        "k": 2
+      },
       "expected": 111,
-      "tags": ["real", "path"]
+      "tags": [
+        "real",
+        "path"
+      ]
     },
     {
-      "id": "real-negative-parent-gains",
-      "name": "real: child edges outweigh both parent connections",
-      "kind": "real",
-      "visible": false,
-      "input": {"edges": [[0,1,8],[0,2,7],[1,3,20],[1,4,19],[2,5,18],[2,6,17]], "k": 2},
+      "id": "trial-negative-parent-gains",
+      "name": "child edges outweigh both parent connections",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            8
+          ],
+          [
+            0,
+            2,
+            7
+          ],
+          [
+            1,
+            3,
+            20
+          ],
+          [
+            1,
+            4,
+            19
+          ],
+          [
+            2,
+            5,
+            18
+          ],
+          [
+            2,
+            6,
+            17
+          ]
+        ],
+        "k": 2
+      },
       "expected": 74,
-      "tags": ["real", "negative-gain"]
+      "tags": [
+        "real",
+        "negative-gain"
+      ]
     },
     {
-      "id": "real-nonmonotone-labels",
-      "name": "real: rooting is independent of node labels",
-      "kind": "real",
-      "visible": false,
-      "input": {"edges": [[2,0,1000000],[2,1,999999],[1,3,999998]], "k": 1},
+      "id": "trial-nonmonotone-labels",
+      "name": "rooting is independent of node labels",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            2,
+            0,
+            1000000
+          ],
+          [
+            2,
+            1,
+            999999
+          ],
+          [
+            1,
+            3,
+            999998
+          ]
+        ],
+        "k": 1
+      },
       "expected": 1999998,
-      "tags": ["real", "maximum-weight"]
+      "tags": [
+        "real",
+        "maximum-weight"
+      ]
     },
     {
-      "id": "real-unrestricted-star",
-      "name": "real: maximum k keeps every star edge",
-      "kind": "real",
-      "visible": false,
-      "input": {"edges": [[0,1,3],[0,2,4],[0,3,5],[0,4,6]], "k": 4},
+      "id": "trial-unrestricted-star",
+      "name": "maximum k keeps every star edge",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            3
+          ],
+          [
+            0,
+            2,
+            4
+          ],
+          [
+            0,
+            3,
+            5
+          ],
+          [
+            0,
+            4,
+            6
+          ]
+        ],
+        "k": 4
+      },
       "expected": 18,
-      "tags": ["real", "maximum-k"]
+      "tags": [
+        "real",
+        "maximum-k"
+      ]
     },
     {
-      "id": "real-competing-subtrees",
-      "name": "real: parent slots compete with descendants",
-      "kind": "real",
-      "visible": false,
-      "input": {"edges": [[0,1,100],[0,2,90],[1,3,80],[1,4,70],[2,5,60]], "k": 2},
+      "id": "trial-competing-subtrees",
+      "name": "parent slots compete with descendants",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            100
+          ],
+          [
+            0,
+            2,
+            90
+          ],
+          [
+            1,
+            3,
+            80
+          ],
+          [
+            1,
+            4,
+            70
+          ],
+          [
+            2,
+            5,
+            60
+          ]
+        ],
+        "k": 2
+      },
       "expected": 330,
-      "tags": ["real", "tree-dp"]
+      "tags": [
+        "real",
+        "tree-dp"
+      ]
     }
   ]
 }

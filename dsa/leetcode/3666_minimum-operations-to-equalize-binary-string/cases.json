@@ -96,65 +96,61 @@
       ]
     },
     {
-      "id": "real-three-odd-operations",
-      "name": "hidden: one zero with a large odd k",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-three-odd-operations",
+      "name": "one zero with a large odd k",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "0111",
         "k": 3
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "odd-branch",
         "three-operations"
       ]
     },
     {
-      "id": "real-even-multi-operation",
-      "name": "hidden: complement capacity controls even branch",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-even-multi-operation",
+      "name": "complement capacity controls even branch",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "000011",
         "k": 5
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "even-branch",
         "capacity-bound"
       ]
     },
     {
-      "id": "real-all-zeros-three-operations",
-      "name": "hidden: partition all zeros across repeated flips",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-zeros-three-operations",
+      "name": "partition all zeros across repeated flips",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "000000",
         "k": 2
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "all-zeros",
         "three-operations"
       ]
     },
     {
-      "id": "real-arrangement-irrelevant",
-      "name": "hidden: interleaved zeros share the same count state",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-arrangement-irrelevant",
+      "name": "interleaved zeros share the same count state",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "01010101",
         "k": 4
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "symmetry",
         "one-operation"
       ]

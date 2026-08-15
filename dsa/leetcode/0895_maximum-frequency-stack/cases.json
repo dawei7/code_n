@@ -265,10 +265,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: interleaved pushes and pops",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "interleaved pushes and pops",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           [
@@ -312,15 +312,14 @@
         5
       ],
       "tags": [
-        "hidden",
         "interleaved"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: empty then reuse",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "empty then reuse",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           [
@@ -355,15 +354,14 @@
         4
       ],
       "tags": [
-        "hidden",
         "reuse"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: three-way recency tie",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "three-way recency tie",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           [
@@ -413,15 +411,14 @@
         1
       ],
       "tags": [
-        "hidden",
         "three-way-tie"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: descending frequency cascade",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "descending frequency cascade",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           [
@@ -489,7 +486,6 @@
         8
       ],
       "tags": [
-        "hidden",
         "frequency-cascade"
       ]
     }

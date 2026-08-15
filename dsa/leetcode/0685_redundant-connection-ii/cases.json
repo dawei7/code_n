@@ -169,10 +169,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: later parent is the cycle edge",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "later parent is the cycle edge",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -202,15 +202,14 @@
         2
       ],
       "tags": [
-        "hidden",
         "later-cycle-parent"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: earlier parent must be removed",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "earlier parent must be removed",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -240,15 +239,14 @@
         1
       ],
       "tags": [
-        "hidden",
         "earlier-cycle-parent"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: cycle edge appears last",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-3",
+      "name": "cycle edge appears last",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -278,10 +276,8 @@
         3
       ],
       "tags": [
-        "hidden",
         "late-cycle"
       ]
     }
   ]
 }
-

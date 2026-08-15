@@ -119,10 +119,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: repeated violations",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "repeated violations",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10,
@@ -136,15 +136,14 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "boundary-repair"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: large boundary values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "large boundary values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000,
@@ -154,15 +153,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "value-bounds"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: equality after a low value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "equality after a low value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -174,15 +172,14 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "equal-left-max"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: multiple later minima",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "multiple later minima",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -196,10 +193,41 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "repeated-extension"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]
 }
-

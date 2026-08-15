@@ -1,17 +1,292 @@
 {
   "challenge_id": "lc_3141",
   "cases": [
-    {"id":"sample-1","name":"sample: repeated value among four-bit numbers","kind":"sample","visible":true,"input":{"nums":[9,12,9,11],"m":4},"expected":[2,3,2,3],"tags":["sample","duplicates"]},
-    {"id":"sample-2","name":"sample: four distinct four-bit numbers","kind":"sample","visible":true,"input":{"nums":[3,4,6,10],"m":4},"expected":[3,3,2,3],"tags":["sample","distinct"]},
-    {"id":"trial-one-bit-complements","name":"trial: the complete one-bit domain","kind":"trial","visible":true,"input":{"nums":[0,1],"m":1},"expected":[1,1],"tags":["edge","minimum-bit-width"]},
-    {"id":"trial-only-duplicates","name":"trial: only equal values are available","kind":"trial","visible":true,"input":{"nums":[5,5],"m":3},"expected":[0,0],"tags":["edge","duplicates"]},
-    {"id":"trial-leading-zeroes","name":"trial: leading zeroes count toward the width","kind":"trial","visible":true,"input":{"nums":[0,1],"m":3},"expected":[1,1],"tags":["semantic-trap","leading-zeroes"]},
-    {"id":"trial-complement-present","name":"trial: exact complements attain the full width","kind":"trial","visible":true,"input":{"nums":[0,7,3],"m":3},"expected":[3,3,2],"tags":["complement","full-distance"]},
-    {"id":"real-repeated-complement","name":"real: duplicate sources do not change distances","kind":"real","visible":false,"input":{"nums":[2,2,13,7],"m":4},"expected":[4,4,4,2],"tags":["real","duplicates","complement"]},
-    {"id":"real-single-bit-neighborhood","name":"real: sparse values share nearby farthest choices","kind":"real","visible":false,"input":{"nums":[1,2,4,8],"m":4},"expected":[2,2,2,2],"tags":["real","sparse"]},
-    {"id":"real-high-bit-leading-zero","name":"real: high bit differs from a low-width value","kind":"real","visible":false,"input":{"nums":[0,16,31,7],"m":5},"expected":[5,4,5,4],"tags":["real","leading-zeroes","boundary"]},
-    {"id":"real-complete-two-bit-domain","name":"real: every two-bit value is present","kind":"real","visible":false,"input":{"nums":[0,1,2,3],"m":2},"expected":[2,2,2,2],"tags":["real","complete-domain"]},
-    {"id":"real-no-exact-complement","name":"real: nearest complement source is one step away","kind":"real","visible":false,"input":{"nums":[0,1,3,7],"m":4},"expected":[3,2,2,3],"tags":["real","nearest-source"]},
-    {"id":"real-higher-bit-width","name":"real: complements at a higher bit width","kind":"real","visible":false,"input":{"nums":[0,1023,512],"m":10},"expected":[10,10,9],"tags":["real","higher-bit-width","complement"]}
+    {
+      "id": "sample-1",
+      "name": "sample: repeated value among four-bit numbers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          12,
+          9,
+          11
+        ],
+        "m": 4
+      },
+      "expected": [
+        2,
+        3,
+        2,
+        3
+      ],
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: four distinct four-bit numbers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          4,
+          6,
+          10
+        ],
+        "m": 4
+      },
+      "expected": [
+        3,
+        3,
+        2,
+        3
+      ],
+      "tags": [
+        "sample",
+        "distinct"
+      ]
+    },
+    {
+      "id": "trial-one-bit-complements",
+      "name": "trial: the complete one-bit domain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1
+        ],
+        "m": 1
+      },
+      "expected": [
+        1,
+        1
+      ],
+      "tags": [
+        "edge",
+        "minimum-bit-width"
+      ]
+    },
+    {
+      "id": "trial-only-duplicates",
+      "name": "trial: only equal values are available",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5
+        ],
+        "m": 3
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "tags": [
+        "edge",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-leading-zeroes",
+      "name": "trial: leading zeroes count toward the width",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1
+        ],
+        "m": 3
+      },
+      "expected": [
+        1,
+        1
+      ],
+      "tags": [
+        "semantic-trap",
+        "leading-zeroes"
+      ]
+    },
+    {
+      "id": "trial-complement-present",
+      "name": "trial: exact complements attain the full width",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          7,
+          3
+        ],
+        "m": 3
+      },
+      "expected": [
+        3,
+        3,
+        2
+      ],
+      "tags": [
+        "complement",
+        "full-distance"
+      ]
+    },
+    {
+      "id": "trial-repeated-complement",
+      "name": "duplicate sources do not change distances",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          13,
+          7
+        ],
+        "m": 4
+      },
+      "expected": [
+        4,
+        4,
+        4,
+        2
+      ],
+      "tags": [
+        "real",
+        "duplicates",
+        "complement"
+      ]
+    },
+    {
+      "id": "trial-single-bit-neighborhood",
+      "name": "sparse values share nearby farthest choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          8
+        ],
+        "m": 4
+      },
+      "expected": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "tags": [
+        "real",
+        "sparse"
+      ]
+    },
+    {
+      "id": "trial-high-bit-leading-zero",
+      "name": "high bit differs from a low-width value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          16,
+          31,
+          7
+        ],
+        "m": 5
+      },
+      "expected": [
+        5,
+        4,
+        5,
+        4
+      ],
+      "tags": [
+        "real",
+        "leading-zeroes",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-complete-two-bit-domain",
+      "name": "every two-bit value is present",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "m": 2
+      },
+      "expected": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "tags": [
+        "real",
+        "complete-domain"
+      ]
+    },
+    {
+      "id": "trial-no-exact-complement",
+      "name": "nearest complement source is one step away",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          3,
+          7
+        ],
+        "m": 4
+      },
+      "expected": [
+        3,
+        2,
+        2,
+        3
+      ],
+      "tags": [
+        "real",
+        "nearest-source"
+      ]
+    },
+    {
+      "id": "trial-higher-bit-width",
+      "name": "complements at a higher bit width",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1023,
+          512
+        ],
+        "m": 10
+      },
+      "expected": [
+        10,
+        10,
+        9
+      ],
+      "tags": [
+        "real",
+        "higher-bit-width",
+        "complement"
+      ]
+    }
   ]
 }

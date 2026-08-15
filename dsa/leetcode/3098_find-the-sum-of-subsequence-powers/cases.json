@@ -6,90 +6,203 @@
       "name": "sample: four length-three subsequences",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 3, 4], "k": 3},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "k": 3
+      },
       "expected": 4,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-equal-pair",
       "name": "sample: an equal pair has zero power",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 2], "k": 2},
+      "input": {
+        "nums": [
+          2,
+          2
+        ],
+        "k": 2
+      },
       "expected": 0,
-      "tags": ["sample", "duplicates"]
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
     },
     {
       "id": "sample-negative-value",
       "name": "sample: pair powers across a negative value",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [4, 3, -1], "k": 2},
+      "input": {
+        "nums": [
+          4,
+          3,
+          -1
+        ],
+        "k": 2
+      },
       "expected": 10,
-      "tags": ["sample", "negative"]
+      "tags": [
+        "sample",
+        "negative"
+      ]
     },
     {
       "id": "trial-all-pairs",
       "name": "trial: sum every pair difference",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [8, 4, 2], "k": 2},
+      "input": {
+        "nums": [
+          8,
+          4,
+          2
+        ],
+        "k": 2
+      },
       "expected": 12,
-      "tags": ["trial", "pairs"]
+      "tags": [
+        "trial",
+        "pairs"
+      ]
     },
     {
       "id": "trial-entire-negative-array",
       "name": "trial: the entire negative array is selected",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [-6, -4, -7], "k": 3},
+      "input": {
+        "nums": [
+          -6,
+          -4,
+          -7
+        ],
+        "k": 3
+      },
       "expected": 1,
-      "tags": ["trial", "negative", "whole-array"]
+      "tags": [
+        "trial",
+        "negative",
+        "whole-array"
+      ]
     },
     {
       "id": "trial-selected-duplicate",
       "name": "trial: selecting every value includes a duplicate",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 2, 4, 1], "k": 4},
+      "input": {
+        "nums": [
+          2,
+          2,
+          4,
+          1
+        ],
+        "k": 4
+      },
       "expected": 0,
-      "tags": ["trial", "duplicates", "whole-array"]
+      "tags": [
+        "trial",
+        "duplicates",
+        "whole-array"
+      ]
     },
     {
-      "id": "real-duplicate-index-choices",
-      "name": "real: equal values create distinct index choices",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-2, -2, 1, 4], "k": 3},
+      "id": "trial-duplicate-index-choices",
+      "name": "equal values create distinct index choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -2,
+          -2,
+          1,
+          4
+        ],
+        "k": 3
+      },
       "expected": 6,
-      "tags": ["real", "duplicates", "combinatorics"]
+      "tags": [
+        "real",
+        "duplicates",
+        "combinatorics"
+      ]
     },
     {
-      "id": "real-uneven-gaps",
-      "name": "real: different subsequences have different minimum gaps",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 1, 4, 10], "k": 3},
+      "id": "trial-uneven-gaps",
+      "name": "different subsequences have different minimum gaps",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          4,
+          10
+        ],
+        "k": 3
+      },
       "expected": 9,
-      "tags": ["real", "gaps"]
+      "tags": [
+        "real",
+        "gaps"
+      ]
     },
     {
-      "id": "real-extreme-pair",
-      "name": "real: the maximum legal absolute difference",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-100000000, 100000000], "k": 2},
+      "id": "trial-extreme-pair",
+      "name": "the maximum legal absolute difference",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -100000000,
+          100000000
+        ],
+        "k": 2
+      },
       "expected": 200000000,
-      "tags": ["real", "boundary"]
+      "tags": [
+        "real",
+        "boundary"
+      ]
     },
     {
-      "id": "real-modulo-reduction",
-      "name": "real: many extreme pairs require modulo reduction",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-100000000, -100000000, -100000000, -100000000, -100000000, 100000000, 100000000, 100000000, 100000000, 100000000], "k": 2},
+      "id": "trial-modulo-reduction",
+      "name": "many extreme pairs require modulo reduction",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -100000000,
+          -100000000,
+          -100000000,
+          -100000000,
+          -100000000,
+          100000000,
+          100000000,
+          100000000,
+          100000000,
+          100000000
+        ],
+        "k": 2
+      },
       "expected": 999999972,
-      "tags": ["real", "boundary", "modulo", "duplicates"]
+      "tags": [
+        "real",
+        "boundary",
+        "modulo",
+        "duplicates"
+      ]
     }
   ]
 }

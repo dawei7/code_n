@@ -6,72 +6,216 @@
       "name": "sample: one column grows by digits",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[1], [22], [333]]},
-      "expected": [3],
-      "tags": ["sample", "single-column"]
+      "input": {
+        "grid": [
+          [
+            1
+          ],
+          [
+            22
+          ],
+          [
+            333
+          ]
+        ]
+      },
+      "expected": [
+        3
+      ],
+      "tags": [
+        "sample",
+        "single-column"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: signs and widths vary by column",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[-15, 1, 3], [15, 7, 12], [5, 6, -2]]},
-      "expected": [3, 1, 2],
-      "tags": ["sample", "negative"]
+      "input": {
+        "grid": [
+          [
+            -15,
+            1,
+            3
+          ],
+          [
+            15,
+            7,
+            12
+          ],
+          [
+            5,
+            6,
+            -2
+          ]
+        ]
+      },
+      "expected": [
+        3,
+        1,
+        2
+      ],
+      "tags": [
+        "sample",
+        "negative"
+      ]
     },
     {
       "id": "trial-single-zero",
       "name": "trial: zero has one digit",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[0]]},
-      "expected": [1],
-      "tags": ["trial", "zero"]
+      "input": {
+        "grid": [
+          [
+            0
+          ]
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "trial",
+        "zero"
+      ]
     },
     {
       "id": "trial-negative-sign",
       "name": "trial: minus signs increase width",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[-1, -22], [-333, 4]]},
-      "expected": [4, 3],
-      "tags": ["trial", "negative"]
+      "input": {
+        "grid": [
+          [
+            -1,
+            -22
+          ],
+          [
+            -333,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        4,
+        3
+      ],
+      "tags": [
+        "trial",
+        "negative"
+      ]
     },
     {
       "id": "trial-mixed-zero-and-signs",
       "name": "trial: mixed zero positive and negative values",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[0, -1, 10], [-9, 99, -100]]},
-      "expected": [2, 2, 4],
-      "tags": ["trial", "mixed"]
+      "input": {
+        "grid": [
+          [
+            0,
+            -1,
+            10
+          ],
+          [
+            -9,
+            99,
+            -100
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        2,
+        4
+      ],
+      "tags": [
+        "trial",
+        "mixed"
+      ]
     },
     {
-      "id": "real-numeric-boundaries",
-      "name": "hidden: positive and negative numeric limits",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[-1000000000, 1000000000]]},
-      "expected": [11, 10],
-      "tags": ["hidden", "boundary"]
+      "id": "trial-numeric-boundaries",
+      "name": "positive and negative numeric limits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            -1000000000,
+            1000000000
+          ]
+        ]
+      },
+      "expected": [
+        11,
+        10
+      ],
+      "tags": [
+        "boundary"
+      ]
     },
     {
-      "id": "real-different-winning-rows",
-      "name": "hidden: each column width comes from a different row",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[1, -222, 33], [-4444, 5, 666], [777, 8888, -9]]},
-      "expected": [5, 4, 3],
-      "tags": ["hidden", "rectangular"]
+      "id": "trial-different-winning-rows",
+      "name": "each column width comes from a different row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            -222,
+            33
+          ],
+          [
+            -4444,
+            5,
+            666
+          ],
+          [
+            777,
+            8888,
+            -9
+          ]
+        ]
+      },
+      "expected": [
+        5,
+        4,
+        3
+      ],
+      "tags": [
+        "rectangular"
+      ]
     },
     {
-      "id": "real-single-row",
-      "name": "hidden: a single row with varied widths",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[-10, 0, 9, 10, 1000000000]]},
-      "expected": [3, 1, 1, 2, 10],
-      "tags": ["hidden", "single-row"]
+      "id": "trial-single-row",
+      "name": "a single row with varied widths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            -10,
+            0,
+            9,
+            10,
+            1000000000
+          ]
+        ]
+      },
+      "expected": [
+        3,
+        1,
+        1,
+        2,
+        10
+      ],
+      "tags": [
+        "single-row"
+      ]
     }
   ]
 }

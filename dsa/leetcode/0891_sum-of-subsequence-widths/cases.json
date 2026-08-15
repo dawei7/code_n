@@ -91,10 +91,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: arithmetic progression",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "arithmetic progression",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -104,15 +104,14 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "distinct"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: four unsorted values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "four unsorted values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -123,15 +122,14 @@
       },
       "expected": 46,
       "tags": [
-        "hidden",
         "unsorted"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: duplicate groups",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "duplicate groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -143,15 +141,14 @@
       },
       "expected": 87,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: values near the maximum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "values near the maximum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000,
@@ -162,15 +159,14 @@
       },
       "expected": 699995,
       "tags": [
-        "hidden",
         "maximum-value"
       ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: descending sequence",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-5",
+      "name": "descending sequence",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9,
@@ -186,7 +182,6 @@
       },
       "expected": 3084,
       "tags": [
-        "hidden",
         "descending"
       ]
     }

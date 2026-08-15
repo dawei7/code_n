@@ -6,90 +6,293 @@
       "name": "sample: two queries supply both endpoints",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 0, 2], "queries": [[0, 2, 1], [0, 2, 1], [1, 1, 3]]},
+      "input": {
+        "nums": [
+          2,
+          0,
+          2
+        ],
+        "queries": [
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            1,
+            1,
+            3
+          ]
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "minimum-prefix"]
+      "tags": [
+        "sample",
+        "minimum-prefix"
+      ]
     },
     {
       "id": "sample-impossible-left",
       "name": "sample: complete query list leaves a deficit",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [4, 3, 2, 1], "queries": [[1, 3, 2], [0, 2, 1]]},
+      "input": {
+        "nums": [
+          4,
+          3,
+          2,
+          1
+        ],
+        "queries": [
+          [
+            1,
+            3,
+            2
+          ],
+          [
+            0,
+            2,
+            1
+          ]
+        ]
+      },
       "expected": -1,
-      "tags": ["sample", "impossible"]
+      "tags": [
+        "sample",
+        "impossible"
+      ]
     },
     {
       "id": "trial-already-zero",
       "name": "trial: no query is needed for a zero array",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0, 0], "queries": [[0, 1, 5]]},
+      "input": {
+        "nums": [
+          0,
+          0
+        ],
+        "queries": [
+          [
+            0,
+            1,
+            5
+          ]
+        ]
+      },
       "expected": 0,
-      "tags": ["zero-array", "empty-prefix"]
+      "tags": [
+        "zero-array",
+        "empty-prefix"
+      ]
     },
     {
       "id": "trial-single-exact",
       "name": "trial: two singleton values meet the demand",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5], "queries": [[0, 0, 2], [0, 0, 3], [0, 0, 5]]},
+      "input": {
+        "nums": [
+          5
+        ],
+        "queries": [
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            5
+          ]
+        ]
+      },
       "expected": 2,
-      "tags": ["single-index", "exact-capacity"]
+      "tags": [
+        "single-index",
+        "exact-capacity"
+      ]
     },
     {
-      "id": "real-single-impossible",
-      "name": "real: singleton remains one unit short",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [6], "queries": [[0, 0, 5]]},
+      "id": "trial-single-impossible",
+      "name": "singleton remains one unit short",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6
+        ],
+        "queries": [
+          [
+            0,
+            0,
+            5
+          ]
+        ]
+      },
       "expected": -1,
-      "tags": ["single-index", "impossible"]
+      "tags": [
+        "single-index",
+        "impossible"
+      ]
     },
     {
-      "id": "real-consume-future-query",
-      "name": "real: an early irrelevant query still belongs to the prefix",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2, 0], "queries": [[1, 1, 5], [0, 0, 2]]},
+      "id": "trial-consume-future-query",
+      "name": "an early irrelevant query still belongs to the prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          0
+        ],
+        "queries": [
+          [
+            1,
+            1,
+            5
+          ],
+          [
+            0,
+            0,
+            2
+          ]
+        ]
+      },
       "expected": 2,
-      "tags": ["query-order", "future-range"]
+      "tags": [
+        "query-order",
+        "future-range"
+      ]
     },
     {
-      "id": "real-disjoint-sequence",
-      "name": "real: later index requires the second query",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 1], "queries": [[0, 0, 1], [1, 1, 1]]},
+      "id": "trial-disjoint-sequence",
+      "name": "later index requires the second query",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "queries": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
       "expected": 2,
-      "tags": ["disjoint-ranges", "query-order"]
+      "tags": [
+        "disjoint-ranges",
+        "query-order"
+      ]
     },
     {
-      "id": "real-independent-amounts",
-      "name": "real: covered indices choose different amounts",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [3, 1, 2], "queries": [[0, 2, 2], [0, 0, 1]]},
+      "id": "trial-independent-amounts",
+      "name": "covered indices choose different amounts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          2
+        ],
+        "queries": [
+          [
+            0,
+            2,
+            2
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      },
       "expected": 2,
-      "tags": ["independent-decrements", "range-capacity"]
+      "tags": [
+        "independent-decrements",
+        "range-capacity"
+      ]
     },
     {
-      "id": "real-one-query",
-      "name": "real: one query covers the only positive value",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 3], "queries": [[0, 1, 3], [1, 1, 1]]},
+      "id": "trial-one-query",
+      "name": "one query covers the only positive value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          3
+        ],
+        "queries": [
+          [
+            0,
+            1,
+            3
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
       "expected": 1,
-      "tags": ["minimum-prefix", "leading-zero"]
+      "tags": [
+        "minimum-prefix",
+        "leading-zero"
+      ]
     },
     {
-      "id": "real-interior-hole",
-      "name": "real: ranges miss a positive interior index",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 1, 1], "queries": [[0, 0, 5], [2, 2, 5]]},
+      "id": "trial-interior-hole",
+      "name": "ranges miss a positive interior index",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "queries": [
+          [
+            0,
+            0,
+            5
+          ],
+          [
+            2,
+            2,
+            5
+          ]
+        ]
+      },
       "expected": -1,
-      "tags": ["uncovered-index", "impossible"]
+      "tags": [
+        "uncovered-index",
+        "impossible"
+      ]
     }
   ]
 }

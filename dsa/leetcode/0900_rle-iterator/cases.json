@@ -196,10 +196,10 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: several zero runs",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "several zero runs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "encoding": [
           0,
@@ -234,15 +234,14 @@
         9
       ],
       "tags": [
-        "hidden",
         "zero-runs"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: repeated calls after exhaustion",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "repeated calls after exhaustion",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "encoding": [
           2,
@@ -269,15 +268,14 @@
         -1
       ],
       "tags": [
-        "hidden",
         "exhausted"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: moderately large count",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "moderately large count",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "encoding": [
           1000,
@@ -306,15 +304,14 @@
         13
       ],
       "tags": [
-        "hidden",
         "large-count"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: cross multiple run boundaries",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "cross multiple run boundaries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "encoding": [
           1,
@@ -352,7 +349,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "multiple-boundaries"
       ]
     }

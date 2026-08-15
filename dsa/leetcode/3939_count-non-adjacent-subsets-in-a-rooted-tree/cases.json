@@ -225,10 +225,10 @@
       ]
     },
     {
-      "id": "real-balanced-mixed-residues",
-      "name": "hidden: a balanced tree combines residue distributions from both sides",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-balanced-mixed-residues",
+      "name": "a balanced tree combines residue distributions from both sides",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "parent": [
           -1,
@@ -255,16 +255,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "balanced-tree",
         "mixed-residues"
       ]
     },
     {
-      "id": "real-no-divisible-subset",
-      "name": "hidden: every independent sum stays below a large divisor",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-no-divisible-subset",
+      "name": "every independent sum stays below a large divisor",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "parent": [
           -1,
@@ -283,16 +282,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-modulus",
         "zero-answer"
       ]
     },
     {
-      "id": "real-mixed-five-node-tree",
-      "name": "hidden: repeated child merges preserve modular counts",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-five-node-tree",
+      "name": "repeated child merges preserve modular counts",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "parent": [
           -1,
@@ -315,16 +313,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "multiple-children",
         "residue-wrap"
       ]
     },
     {
-      "id": "real-parity-residues",
-      "name": "hidden: parity residues include several independent combinations",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-parity-residues",
+      "name": "parity residues include several independent combinations",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "parent": [
           -1,
@@ -349,16 +346,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "modulus-two",
         "mixed-tree"
       ]
     },
     {
-      "id": "real-maximum-values",
-      "name": "hidden: maximum node values reduce cleanly modulo one hundred",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-values",
+      "name": "maximum node values reduce cleanly modulo one hundred",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "parent": [
           -1,
@@ -385,16 +381,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value",
         "balanced-tree"
       ]
     },
     {
-      "id": "real-deep-chain-residues",
-      "name": "hidden: reverse label order completes a deeper chain",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-deep-chain-residues",
+      "name": "reverse label order completes a deeper chain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "parent": [
           -1,
@@ -427,16 +422,15 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "chain",
         "postorder"
       ]
     },
     {
-      "id": "real-larger-star-modulus-one",
-      "name": "hidden: a larger star counts every leaf subset plus the root choice",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-larger-star-modulus-one",
+      "name": "a larger star counts every leaf subset plus the root choice",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "parent": [
           -1,
@@ -473,11 +467,54 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "star",
         "modulus-one"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          1
+        ],
+        "nums": [
+          1
+        ],
+        "k": 3
+      },
+      "expected": 1000000006,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-17",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          1
+        ],
+        "nums": [
+          1,
+          1
+        ],
+        "k": 3
+      },
+      "expected": 1000000006,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]
 }
-

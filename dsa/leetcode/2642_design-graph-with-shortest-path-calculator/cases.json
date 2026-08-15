@@ -212,10 +212,10 @@
       ]
     },
     {
-      "id": "real-cycle",
-      "name": "hidden: positive cycle is safely ignored",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-cycle",
+      "name": "positive cycle is safely ignored",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "Graph",
@@ -264,15 +264,14 @@
         -1
       ],
       "tags": [
-        "hidden",
         "cycle"
       ]
     },
     {
-      "id": "real-parallel-directions",
-      "name": "hidden: opposite directions are independent",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-parallel-directions",
+      "name": "opposite directions are independent",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "Graph",
@@ -311,15 +310,14 @@
         9
       ],
       "tags": [
-        "hidden",
         "directions"
       ]
     },
     {
-      "id": "real-large-cost",
-      "name": "hidden: path total exceeds one edge limit",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-cost",
+      "name": "path total exceeds one edge limit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "Graph",
@@ -357,7 +355,6 @@
         3000000
       ],
       "tags": [
-        "hidden",
         "large-cost"
       ]
     }

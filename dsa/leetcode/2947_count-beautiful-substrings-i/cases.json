@@ -101,48 +101,75 @@
       ]
     },
     {
-      "id": "real-square-divisor",
-      "name": "hidden: four letters satisfy a square divisor",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-square-divisor",
+      "name": "four letters satisfy a square divisor",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abab",
         "k": 4
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "square"
       ]
     },
     {
-      "id": "real-all-vowels",
-      "name": "hidden: all vowels never balance",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-vowels",
+      "name": "all vowels never balance",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aeiou",
         "k": 1
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "no-consonants"
       ]
     },
     {
-      "id": "real-mixed-periods",
-      "name": "hidden: several balanced lengths meet different periods",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mixed-periods",
+      "name": "several balanced lengths meet different periods",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "leetcodeisgreat",
         "k": 3
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "b",
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "bbb",
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

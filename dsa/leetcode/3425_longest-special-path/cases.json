@@ -158,10 +158,10 @@
       ]
     },
     {
-      "id": "real-branching-duplicates",
-      "name": "real: branching tree with repeated values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-branching-duplicates",
+      "name": "branching tree with repeated values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -221,10 +221,10 @@
       ]
     },
     {
-      "id": "real-sibling-restoration",
-      "name": "real: sibling branches restore value history",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-sibling-restoration",
+      "name": "sibling branches restore value history",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -266,10 +266,10 @@
       ]
     },
     {
-      "id": "real-weighted-tie",
-      "name": "real: equal length favors fewer nodes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-weighted-tie",
+      "name": "equal length favors fewer nodes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -305,10 +305,10 @@
       ]
     },
     {
-      "id": "real-repeat-root",
-      "name": "real: repeated root value excludes root from suffix",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeat-root",
+      "name": "repeated root value excludes root from suffix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -338,10 +338,10 @@
       ]
     },
     {
-      "id": "real-all-equal",
-      "name": "real: all node values equal",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-equal",
+      "name": "all node values equal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -377,10 +377,10 @@
       ]
     },
     {
-      "id": "real-zero-values",
-      "name": "real: zero is an ordinary repeatable value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-zero-values",
+      "name": "zero is an ordinary repeatable value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -422,10 +422,10 @@
       ]
     },
     {
-      "id": "real-reversed-edge-order",
-      "name": "real: edge endpoints do not define direction",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-reversed-edge-order",
+      "name": "edge endpoints do not define direction",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -461,10 +461,10 @@
       ]
     },
     {
-      "id": "real-late-heavy-edge",
-      "name": "real: longest weighted path begins below root",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-late-heavy-edge",
+      "name": "longest weighted path begins below root",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [

@@ -1,11 +1,291 @@
 {
   "challenge_id": "lc_2526",
   "cases": [
-    {"id": "sample-1", "name": "sample: reach threshold then reset", "kind": "sample", "visible": true, "input": {"commands": ["DataStream", "consec", "consec", "consec", "consec"], "inputs": [[4, 3], [4], [4], [4], [3]]}, "expected": [null, false, false, true, false], "tags": ["sample", "stateful"]},
-    {"id": "trial-rebuild-run", "name": "trial: rebuild a full run after mismatch", "kind": "trial", "visible": true, "input": {"commands": ["DataStream", "consec", "consec", "consec", "consec", "consec", "consec", "consec"], "inputs": [[4, 3], [4], [4], [4], [3], [4], [4], [4]]}, "expected": [null, false, false, true, false, false, false, true], "tags": ["trial", "reset"]},
-    {"id": "trial-k-one", "name": "trial: threshold of one", "kind": "trial", "visible": true, "input": {"commands": ["DataStream", "consec", "consec", "consec"], "inputs": [[7, 1], [7], [6], [7]]}, "expected": [null, true, false, true], "tags": ["trial", "minimum-k"]},
-    {"id": "real-long-run", "name": "hidden: results stay true beyond threshold", "kind": "real", "visible": false, "input": {"commands": ["DataStream", "consec", "consec", "consec", "consec", "consec"], "inputs": [[2, 2], [2], [2], [2], [2], [1]]}, "expected": [null, false, true, true, true, false], "tags": ["hidden", "long-run"]},
-    {"id": "real-interleaved-mismatches", "name": "hidden: isolated targets never accumulate", "kind": "real", "visible": false, "input": {"commands": ["DataStream", "consec", "consec", "consec", "consec", "consec", "consec"], "inputs": [[9, 3], [9], [8], [9], [8], [9], [8]]}, "expected": [null, false, false, false, false, false, false], "tags": ["hidden", "mismatch"]},
-    {"id": "real-large-values", "name": "hidden: maximum target value", "kind": "real", "visible": false, "input": {"commands": ["DataStream", "consec", "consec", "consec", "consec"], "inputs": [[1000000000, 3], [1000000000], [999999999], [1000000000], [1000000000]]}, "expected": [null, false, false, false, false], "tags": ["hidden", "value-boundary"]}
+    {
+      "id": "sample-1",
+      "name": "sample: reach threshold then reset",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "commands": [
+          "DataStream",
+          "consec",
+          "consec",
+          "consec",
+          "consec"
+        ],
+        "inputs": [
+          [
+            4,
+            3
+          ],
+          [
+            4
+          ],
+          [
+            4
+          ],
+          [
+            4
+          ],
+          [
+            3
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        false,
+        false,
+        true,
+        false
+      ],
+      "tags": [
+        "sample",
+        "stateful"
+      ]
+    },
+    {
+      "id": "trial-rebuild-run",
+      "name": "trial: rebuild a full run after mismatch",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "commands": [
+          "DataStream",
+          "consec",
+          "consec",
+          "consec",
+          "consec",
+          "consec",
+          "consec",
+          "consec"
+        ],
+        "inputs": [
+          [
+            4,
+            3
+          ],
+          [
+            4
+          ],
+          [
+            4
+          ],
+          [
+            4
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ],
+          [
+            4
+          ],
+          [
+            4
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false,
+        true
+      ],
+      "tags": [
+        "trial",
+        "reset"
+      ]
+    },
+    {
+      "id": "trial-k-one",
+      "name": "trial: threshold of one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "commands": [
+          "DataStream",
+          "consec",
+          "consec",
+          "consec"
+        ],
+        "inputs": [
+          [
+            7,
+            1
+          ],
+          [
+            7
+          ],
+          [
+            6
+          ],
+          [
+            7
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        true,
+        false,
+        true
+      ],
+      "tags": [
+        "trial",
+        "minimum-k"
+      ]
+    },
+    {
+      "id": "trial-long-run",
+      "name": "results stay true beyond threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "commands": [
+          "DataStream",
+          "consec",
+          "consec",
+          "consec",
+          "consec",
+          "consec"
+        ],
+        "inputs": [
+          [
+            2,
+            2
+          ],
+          [
+            2
+          ],
+          [
+            2
+          ],
+          [
+            2
+          ],
+          [
+            2
+          ],
+          [
+            1
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        false,
+        true,
+        true,
+        true,
+        false
+      ],
+      "tags": [
+        "long-run"
+      ]
+    },
+    {
+      "id": "trial-interleaved-mismatches",
+      "name": "isolated targets never accumulate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "commands": [
+          "DataStream",
+          "consec",
+          "consec",
+          "consec",
+          "consec",
+          "consec",
+          "consec"
+        ],
+        "inputs": [
+          [
+            9,
+            3
+          ],
+          [
+            9
+          ],
+          [
+            8
+          ],
+          [
+            9
+          ],
+          [
+            8
+          ],
+          [
+            9
+          ],
+          [
+            8
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "tags": [
+        "mismatch"
+      ]
+    },
+    {
+      "id": "trial-large-values",
+      "name": "maximum target value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "commands": [
+          "DataStream",
+          "consec",
+          "consec",
+          "consec",
+          "consec"
+        ],
+        "inputs": [
+          [
+            1000000000,
+            3
+          ],
+          [
+            1000000000
+          ],
+          [
+            999999999
+          ],
+          [
+            1000000000
+          ],
+          [
+            1000000000
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        false,
+        false,
+        false,
+        false
+      ],
+      "tags": [
+        "value-boundary"
+      ]
+    }
   ]
 }

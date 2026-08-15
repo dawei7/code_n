@@ -6,139 +6,751 @@
       "name": "sample: middle task is the optimal root",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 3, "edges": [[0,1],[1,2]], "baseTime": [9,1,5]},
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "baseTime": [
+          9,
+          1,
+          5
+        ]
+      },
       "expected": 14,
-      "tags": ["sample", "chain"]
+      "tags": [
+        "sample",
+        "chain"
+      ]
     },
     {
       "id": "sample-three-task-star",
       "name": "sample: existing center is the optimal root",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 3, "edges": [[0,1],[0,2]], "baseTime": [4,7,6]},
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        "baseTime": [
+          4,
+          7,
+          6
+        ]
+      },
       "expected": 12,
-      "tags": ["sample", "branching"]
+      "tags": [
+        "sample",
+        "branching"
+      ]
     },
     {
       "id": "sample-four-task-tree",
       "name": "sample: leaf becomes the optimal root",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 4, "edges": [[0,1],[0,2],[2,3]], "baseTime": [5,8,2,1]},
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "baseTime": [
+          5,
+          8,
+          2,
+          1
+        ]
+      },
       "expected": 16,
-      "tags": ["sample", "reroot"]
+      "tags": [
+        "sample",
+        "reroot"
+      ]
     },
     {
       "id": "trial-single-task",
       "name": "trial: one task is both root and leaf",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1, "edges": [], "baseTime": [7]},
+      "input": {
+        "n": 1,
+        "edges": [],
+        "baseTime": [
+          7
+        ]
+      },
       "expected": 7,
-      "tags": ["trial", "single-node"]
+      "tags": [
+        "trial",
+        "single-node"
+      ]
     },
     {
       "id": "trial-two-tasks",
       "name": "trial: either endpoint gives the same finish time",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 2, "edges": [[0,1]], "baseTime": [3,5]},
+      "input": {
+        "n": 2,
+        "edges": [
+          [
+            0,
+            1
+          ]
+        ],
+        "baseTime": [
+          3,
+          5
+        ]
+      },
       "expected": 8,
-      "tags": ["trial", "two-nodes"]
+      "tags": [
+        "trial",
+        "two-nodes"
+      ]
     },
     {
       "id": "trial-equal-leaf-star",
       "name": "trial: equal incoming component values",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 4, "edges": [[0,1],[0,2],[0,3]], "baseTime": [1,5,5,5]},
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ]
+        ],
+        "baseTime": [
+          1,
+          5,
+          5,
+          5
+        ]
+      },
       "expected": 6,
-      "tags": ["trial", "duplicate-extrema", "star"]
+      "tags": [
+        "trial",
+        "duplicate-extrema",
+        "star"
+      ]
     },
     {
       "id": "trial-varied-leaf-star",
       "name": "trial: a leaf beats the original center",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 4, "edges": [[0,1],[0,2],[0,3]], "baseTime": [1,2,5,9]},
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ]
+        ],
+        "baseTime": [
+          1,
+          2,
+          5,
+          9
+        ]
+      },
       "expected": 16,
-      "tags": ["trial", "reroot", "star"]
+      "tags": [
+        "trial",
+        "reroot",
+        "star"
+      ]
     },
     {
       "id": "trial-increasing-chain",
       "name": "trial: increasing base times along a chain",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 5, "edges": [[0,1],[1,2],[2,3],[3,4]], "baseTime": [1,2,3,4,5]},
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "baseTime": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
       "expected": 11,
-      "tags": ["trial", "chain"]
+      "tags": [
+        "trial",
+        "chain"
+      ]
     },
     {
-      "id": "real-shuffled-chain",
-      "name": "hidden: shuffled edges and labels do not define the root",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 6, "edges": [[4,5],[1,2],[3,4],[0,1],[2,3]], "baseTime": [9,1,8,2,7,3]},
+      "id": "trial-shuffled-chain",
+      "name": "shuffled edges and labels do not define the root",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            4,
+            5
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "baseTime": [
+          9,
+          1,
+          8,
+          2,
+          7,
+          3
+        ]
+      },
       "expected": 22,
-      "tags": ["hidden", "edge-order", "chain"]
+      "tags": [
+        "edge-order",
+        "chain"
+      ]
     },
     {
-      "id": "real-balanced-seven",
-      "name": "hidden: balanced tree has varied component values",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 7, "edges": [[0,1],[0,2],[1,3],[1,4],[2,5],[2,6]], "baseTime": [5,1,7,2,9,4,6]},
+      "id": "trial-balanced-seven",
+      "name": "balanced tree has varied component values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 7,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            6
+          ]
+        ],
+        "baseTime": [
+          5,
+          1,
+          7,
+          2,
+          9,
+          4,
+          6
+        ]
+      },
       "expected": 24,
-      "tags": ["hidden", "balanced", "branching"]
+      "tags": [
+        "balanced",
+        "branching"
+      ]
     },
     {
-      "id": "real-broom-tree",
-      "name": "hidden: high-degree node joins a deeper branch",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 8, "edges": [[3,0],[3,1],[3,2],[3,4],[4,5],[5,6],[5,7]], "baseTime": [4,8,3,2,7,1,9,5]},
+      "id": "trial-broom-tree",
+      "name": "high-degree node joins a deeper branch",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 8,
+        "edges": [
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            5,
+            7
+          ]
+        ],
+        "baseTime": [
+          4,
+          8,
+          3,
+          2,
+          7,
+          1,
+          9,
+          5
+        ]
+      },
       "expected": 23,
-      "tags": ["hidden", "broom", "reroot"]
+      "tags": [
+        "broom",
+        "reroot"
+      ]
     },
     {
-      "id": "real-maximum-base-star",
-      "name": "hidden: maximum base values and duplicate extrema",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 4, "edges": [[0,1],[0,2],[0,3]], "baseTime": [100000,100000,100000,100000]},
+      "id": "trial-maximum-base-star",
+      "name": "maximum base values and duplicate extrema",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ]
+        ],
+        "baseTime": [
+          100000,
+          100000,
+          100000,
+          100000
+        ]
+      },
       "expected": 200000,
-      "tags": ["hidden", "maximum-values", "duplicate-extrema"]
+      "tags": [
+        "maximum-values",
+        "duplicate-extrema"
+      ]
     },
     {
-      "id": "real-odd-uniform-chain",
-      "name": "hidden: center of an odd uniform chain",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 15, "edges": [[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9],[9,10],[10,11],[11,12],[12,13],[13,14]], "baseTime": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},
+      "id": "trial-odd-uniform-chain",
+      "name": "center of an odd uniform chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 15,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            9,
+            10
+          ],
+          [
+            10,
+            11
+          ],
+          [
+            11,
+            12
+          ],
+          [
+            12,
+            13
+          ],
+          [
+            13,
+            14
+          ]
+        ],
+        "baseTime": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
       "expected": 8,
-      "tags": ["hidden", "chain", "odd-length"]
+      "tags": [
+        "chain",
+        "odd-length"
+      ]
     },
     {
-      "id": "real-multi-branch-depth",
-      "name": "hidden: several branch depths share internal nodes",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 10, "edges": [[0,1],[1,2],[1,3],[3,4],[3,5],[5,6],[5,7],[7,8],[7,9]], "baseTime": [2,9,1,8,3,7,4,6,5,10]},
+      "id": "trial-multi-branch-depth",
+      "name": "several branch depths share internal nodes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 10,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            7,
+            9
+          ]
+        ],
+        "baseTime": [
+          2,
+          9,
+          1,
+          8,
+          3,
+          7,
+          4,
+          6,
+          5,
+          10
+        ]
+      },
       "expected": 48,
-      "tags": ["hidden", "branching", "depth"]
+      "tags": [
+        "branching",
+        "depth"
+      ]
     },
     {
-      "id": "real-long-varied-chain",
-      "name": "hidden: long chain exercises both reroot passes",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-long-varied-chain",
+      "name": "long chain exercises both reroot passes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 32,
-        "edges": [[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9],[9,10],[10,11],[11,12],[12,13],[13,14],[14,15],[15,16],[16,17],[17,18],[18,19],[19,20],[20,21],[21,22],[22,23],[23,24],[24,25],[25,26],[26,27],[27,28],[28,29],[29,30],[30,31]],
-        "baseTime": [1,2,3,4,5,6,7,1,2,3,4,5,6,7,1,2,3,4,5,6,7,1,2,3,4,5,6,7,1,2,3,4]
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            9,
+            10
+          ],
+          [
+            10,
+            11
+          ],
+          [
+            11,
+            12
+          ],
+          [
+            12,
+            13
+          ],
+          [
+            13,
+            14
+          ],
+          [
+            14,
+            15
+          ],
+          [
+            15,
+            16
+          ],
+          [
+            16,
+            17
+          ],
+          [
+            17,
+            18
+          ],
+          [
+            18,
+            19
+          ],
+          [
+            19,
+            20
+          ],
+          [
+            20,
+            21
+          ],
+          [
+            21,
+            22
+          ],
+          [
+            22,
+            23
+          ],
+          [
+            23,
+            24
+          ],
+          [
+            24,
+            25
+          ],
+          [
+            25,
+            26
+          ],
+          [
+            26,
+            27
+          ],
+          [
+            27,
+            28
+          ],
+          [
+            28,
+            29
+          ],
+          [
+            29,
+            30
+          ],
+          [
+            30,
+            31
+          ]
+        ],
+        "baseTime": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          1,
+          2,
+          3,
+          4
+        ]
       },
       "expected": 64,
-      "tags": ["hidden", "long-chain", "edge-order"]
+      "tags": [
+        "long-chain",
+        "edge-order"
+      ]
     }
   ]
 }

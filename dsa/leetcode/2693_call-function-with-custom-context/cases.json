@@ -1,9 +1,159 @@
-{"schema_version":1,"challenge_id":"lc_2693","cases":[
-{"id":"sample-add","name":"sample: context property participates in addition","kind":"sample","visible":true,"input":{"behavior":"add","context":{"a":5},"args":[7]},"expected":12,"tags":["sample","context"]},
-{"id":"sample-tax","name":"sample: multiple arguments and context format a string","kind":"sample","visible":true,"input":{"behavior":"tax","context":{"item":"burger"},"args":[10,1.1]},"expected":"The cost of the burger is 11","tags":["sample","multiple-arguments"]},
-{"id":"trial-no-arguments","name":"trial: context works without additional arguments","kind":"trial","visible":true,"input":{"behavior":"readValue","context":{"value":{"ok":true}},"args":[]},"expected":{"ok":true},"tags":["zero-arguments","object-return"]},
-{"id":"trial-mutate-context","name":"trial: the function can update its context","kind":"trial","visible":true,"input":{"behavior":"increment","context":{"count":41},"args":[]},"expected":42,"tags":["mutation","context"]},
-{"id":"real-order","name":"hidden: argument order is preserved","kind":"real","visible":false,"input":{"behavior":"join","context":{"prefix":"<","separator":"|","suffix":">"},"args":["a","b","c"]},"expected":"<a|b|c>","tags":["hidden","argument-order"]},
-{"id":"real-nested","name":"hidden: nested context data remains reachable","kind":"real","visible":false,"input":{"behavior":"lookup","context":{"data":{"answer":42}},"args":["answer"]},"expected":42,"tags":["hidden","nested-context"]},
-{"id":"real-many-arguments","name":"hidden: many numeric arguments are forwarded","kind":"real","visible":false,"input":{"behavior":"sum","context":{"start":10},"args":[1,2,3,4,5,6,7,8,9,10]},"expected":65,"tags":["hidden","many-arguments"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2693",
+  "cases": [
+    {
+      "id": "sample-add",
+      "name": "sample: context property participates in addition",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "behavior": "add",
+        "context": {
+          "a": 5
+        },
+        "args": [
+          7
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "sample",
+        "context"
+      ]
+    },
+    {
+      "id": "sample-tax",
+      "name": "sample: multiple arguments and context format a string",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "behavior": "tax",
+        "context": {
+          "item": "burger"
+        },
+        "args": [
+          10,
+          1.1
+        ]
+      },
+      "expected": "The cost of the burger is 11",
+      "tags": [
+        "sample",
+        "multiple-arguments"
+      ]
+    },
+    {
+      "id": "trial-no-arguments",
+      "name": "trial: context works without additional arguments",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "behavior": "readValue",
+        "context": {
+          "value": {
+            "ok": true
+          }
+        },
+        "args": []
+      },
+      "expected": {
+        "ok": true
+      },
+      "tags": [
+        "zero-arguments",
+        "object-return"
+      ]
+    },
+    {
+      "id": "trial-mutate-context",
+      "name": "trial: the function can update its context",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "behavior": "increment",
+        "context": {
+          "count": 41
+        },
+        "args": []
+      },
+      "expected": 42,
+      "tags": [
+        "mutation",
+        "context"
+      ]
+    },
+    {
+      "id": "trial-order",
+      "name": "argument order is preserved",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "behavior": "join",
+        "context": {
+          "prefix": "<",
+          "separator": "|",
+          "suffix": ">"
+        },
+        "args": [
+          "a",
+          "b",
+          "c"
+        ]
+      },
+      "expected": "<a|b|c>",
+      "tags": [
+        "argument-order"
+      ]
+    },
+    {
+      "id": "trial-nested",
+      "name": "nested context data remains reachable",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "behavior": "lookup",
+        "context": {
+          "data": {
+            "answer": 42
+          }
+        },
+        "args": [
+          "answer"
+        ]
+      },
+      "expected": 42,
+      "tags": [
+        "nested-context"
+      ]
+    },
+    {
+      "id": "trial-many-arguments",
+      "name": "many numeric arguments are forwarded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "behavior": "sum",
+        "context": {
+          "start": 10
+        },
+        "args": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "expected": 65,
+      "tags": [
+        "many-arguments"
+      ]
+    }
+  ]
+}

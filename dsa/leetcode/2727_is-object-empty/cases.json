@@ -1,1 +1,129 @@
-{"challenge_id":"lc_2727","cases":[{"id":"sample-object","name":"sample: object with two properties","kind":"sample","visible":true,"input":{"obj":{"x":5,"y":42}},"expected":false,"tags":["sample","object"]},{"id":"sample-empty-object","name":"sample: empty object","kind":"sample","visible":true,"input":{"obj":{}},"expected":true,"tags":["sample","empty-object"]},{"id":"sample-array","name":"sample: falsy array elements still count","kind":"sample","visible":true,"input":{"obj":[null,false,0]},"expected":false,"tags":["sample","array","falsy"]},{"id":"trial-empty-array","name":"trial: empty array","kind":"trial","visible":true,"input":{"obj":[]},"expected":true,"tags":["trial","empty-array"]},{"id":"real-null-property","name":"hidden: null property value still counts","kind":"real","visible":false,"input":{"obj":{"value":null}},"expected":false,"tags":["hidden","null"]},{"id":"real-nested-empty","name":"hidden: nested empty object is still a property","kind":"real","visible":false,"input":{"obj":{"nested":{}}},"expected":false,"tags":["hidden","nested"]},{"id":"real-single-null-element","name":"hidden: one null array element","kind":"real","visible":false,"input":{"obj":[null]},"expected":false,"tags":["hidden","array"]},{"id":"real-empty-string-key","name":"hidden: empty-string key counts as a property","kind":"real","visible":false,"input":{"obj":{"":0}},"expected":false,"tags":["hidden","empty-key"]}]}
+{
+  "challenge_id": "lc_2727",
+  "cases": [
+    {
+      "id": "sample-object",
+      "name": "sample: object with two properties",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "obj": {
+          "x": 5,
+          "y": 42
+        }
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "object"
+      ]
+    },
+    {
+      "id": "sample-empty-object",
+      "name": "sample: empty object",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "obj": {}
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "empty-object"
+      ]
+    },
+    {
+      "id": "sample-array",
+      "name": "sample: falsy array elements still count",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "obj": [
+          null,
+          false,
+          0
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "array",
+        "falsy"
+      ]
+    },
+    {
+      "id": "trial-empty-array",
+      "name": "trial: empty array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "obj": []
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "empty-array"
+      ]
+    },
+    {
+      "id": "trial-null-property",
+      "name": "null property value still counts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "obj": {
+          "value": null
+        }
+      },
+      "expected": false,
+      "tags": [
+        "null"
+      ]
+    },
+    {
+      "id": "trial-nested-empty",
+      "name": "nested empty object is still a property",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "obj": {
+          "nested": {}
+        }
+      },
+      "expected": false,
+      "tags": [
+        "nested"
+      ]
+    },
+    {
+      "id": "trial-single-null-element",
+      "name": "one null array element",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "obj": [
+          null
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "array"
+      ]
+    },
+    {
+      "id": "trial-empty-string-key",
+      "name": "empty-string key counts as a property",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "obj": {
+          "": 0
+        }
+      },
+      "expected": false,
+      "tags": [
+        "empty-key"
+      ]
+    }
+  ]
+}

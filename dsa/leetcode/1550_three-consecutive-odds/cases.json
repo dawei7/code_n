@@ -123,10 +123,10 @@
       ]
     },
     {
-      "id": "real-run-at-start",
-      "name": "hidden: qualifying block begins at zero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-run-at-start",
+      "name": "qualifying block begins at zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           9,
@@ -144,10 +144,10 @@
       ]
     },
     {
-      "id": "real-run-at-end",
-      "name": "hidden: qualifying block ends at final position",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-run-at-end",
+      "name": "qualifying block ends at final position",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           2,
@@ -166,10 +166,10 @@
       ]
     },
     {
-      "id": "real-four-odds",
-      "name": "hidden: longer odd run qualifies",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-four-odds",
+      "name": "longer odd run qualifies",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           2,
@@ -188,10 +188,10 @@
       ]
     },
     {
-      "id": "real-alternating",
-      "name": "hidden: alternating parity never reaches three",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-alternating",
+      "name": "alternating parity never reaches three",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -211,10 +211,10 @@
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "hidden: parity of upper-range values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-large-values",
+      "name": "parity of upper-range values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           999,
@@ -231,10 +231,10 @@
       ]
     },
     {
-      "id": "real-many-pairs",
-      "name": "hidden: repeated runs of exactly two",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-many-pairs",
+      "name": "repeated runs of exactly two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -253,6 +253,39 @@
         "real",
         "parity-run",
         "many-pairs"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in arr",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          2
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in arr",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          2,
+          2
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

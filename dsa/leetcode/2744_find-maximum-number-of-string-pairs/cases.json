@@ -1,1 +1,159 @@
-{"schema_version":1,"challenge_id":"lc_2744","cases":[{"id":"sample-two-pairs","name":"sample: two reversed string pairs","kind":"sample","visible":true,"input":{"words":["cd","ac","dc","ca","zz"]},"expected":2,"tags":["sample","pairs"]},{"id":"sample-one-pair","name":"sample: one reversed string pair","kind":"sample","visible":true,"input":{"words":["ab","ba","cc"]},"expected":1,"tags":["sample","pair"]},{"id":"sample-none","name":"sample: no reversed pair","kind":"sample","visible":true,"input":{"words":["aa","ab"]},"expected":0,"tags":["sample","none"]},{"id":"trial-three-pairs","name":"trial: three independent reverse pairs","kind":"trial","visible":true,"input":{"words":["ab","ba","xy","yx","mn","nm","qq"]},"expected":3,"tags":["trial","several"]},{"id":"real-single","name":"hidden: single palindromic word","kind":"real","visible":false,"input":{"words":["zz"]},"expected":0,"tags":["hidden","length-boundary"]},{"id":"real-palindromes-and-pairs","name":"hidden: palindromes remain unmatched","kind":"real","visible":false,"input":{"words":["aa","bc","cb","de","ed","ff"]},"expected":2,"tags":["hidden","palindrome"]},{"id":"real-partners-late","name":"hidden: partners appear after unrelated words","kind":"real","visible":false,"input":{"words":["ab","cd","ef","gh","ba","dc"]},"expected":2,"tags":["hidden","order"]},{"id":"real-noise","name":"hidden: one pair among unrelated words","kind":"real","visible":false,"input":{"words":["az","bc","de","fg","hi","za","jk"]},"expected":1,"tags":["hidden","noise"]}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2744",
+  "cases": [
+    {
+      "id": "sample-two-pairs",
+      "name": "sample: two reversed string pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "cd",
+          "ac",
+          "dc",
+          "ca",
+          "zz"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "pairs"
+      ]
+    },
+    {
+      "id": "sample-one-pair",
+      "name": "sample: one reversed string pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "ab",
+          "ba",
+          "cc"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "pair"
+      ]
+    },
+    {
+      "id": "sample-none",
+      "name": "sample: no reversed pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "aa",
+          "ab"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "none"
+      ]
+    },
+    {
+      "id": "trial-three-pairs",
+      "name": "trial: three independent reverse pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "ab",
+          "ba",
+          "xy",
+          "yx",
+          "mn",
+          "nm",
+          "qq"
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "several"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "single palindromic word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "zz"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "length-boundary"
+      ]
+    },
+    {
+      "id": "trial-palindromes-and-pairs",
+      "name": "palindromes remain unmatched",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "aa",
+          "bc",
+          "cb",
+          "de",
+          "ed",
+          "ff"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "palindrome"
+      ]
+    },
+    {
+      "id": "trial-partners-late",
+      "name": "partners appear after unrelated words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "ab",
+          "cd",
+          "ef",
+          "gh",
+          "ba",
+          "dc"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "order"
+      ]
+    },
+    {
+      "id": "trial-noise",
+      "name": "one pair among unrelated words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "az",
+          "bc",
+          "de",
+          "fg",
+          "hi",
+          "za",
+          "jk"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "noise"
+      ]
+    }
+  ]
+}

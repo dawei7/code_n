@@ -87,87 +87,109 @@
       ]
     },
     {
-      "id": "hidden-1",
-      "name": "hidden: wrapped pair plus primitive",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-1",
+      "name": "wrapped pair plus primitive",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "(())()"
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "concatenation"
       ]
     },
     {
-      "id": "hidden-2",
-      "name": "hidden: two primitives in one wrapper",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-2",
+      "name": "two primitives in one wrapper",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "(()())"
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "wrapper"
       ]
     },
     {
-      "id": "hidden-3",
-      "name": "hidden: three structures concatenated",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-ext-3",
+      "name": "three structures concatenated",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "()(())(()())"
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
     {
-      "id": "hidden-4",
-      "name": "hidden: nested mixed inner expression",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-4",
+      "name": "nested mixed inner expression",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "((())())"
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "nested"
       ]
     },
     {
-      "id": "hidden-5",
-      "name": "hidden: wrapped concatenation plus wrapped pair",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-5",
+      "name": "wrapped concatenation plus wrapped pair",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "(()())(())"
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "multiple"
       ]
     },
     {
-      "id": "hidden-6",
-      "name": "hidden: five top-level primitives",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-6",
+      "name": "five top-level primitives",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "()()()()()"
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "flat"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "("
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "((("
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

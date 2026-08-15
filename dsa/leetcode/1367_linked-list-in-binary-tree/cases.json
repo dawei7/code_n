@@ -136,10 +136,10 @@
       ]
     },
     {
-      "id": "hidden-overlap-fallback",
-      "name": "hidden: overlapping prefix restarts in chain",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-overlap-fallback",
+      "name": "overlapping prefix restarts in chain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "head": [
           1,
@@ -166,15 +166,14 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "overlap"
       ]
     },
     {
-      "id": "hidden-direction-mismatch",
-      "name": "hidden: value order exists but not downward",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-direction-mismatch",
+      "name": "value order exists but not downward",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "head": [
           3,
@@ -188,7 +187,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "direction"
       ]
     }

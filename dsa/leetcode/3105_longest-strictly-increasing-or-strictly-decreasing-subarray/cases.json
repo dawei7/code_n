@@ -6,108 +6,239 @@
       "name": "sample: direction changes and equality limit every run",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 4, 3, 3, 2]},
+      "input": {
+        "nums": [
+          1,
+          4,
+          3,
+          3,
+          2
+        ]
+      },
       "expected": 2,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-all-equal",
       "name": "sample: equal values permit only singleton runs",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [3, 3, 3, 3]},
+      "input": {
+        "nums": [
+          3,
+          3,
+          3,
+          3
+        ]
+      },
       "expected": 1,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-decreasing",
       "name": "sample: the whole array is strictly decreasing",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [3, 2, 1]},
+      "input": {
+        "nums": [
+          3,
+          2,
+          1
+        ]
+      },
       "expected": 3,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "trial-singleton",
       "name": "trial: a one-element array is monotonic",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [7]},
+      "input": {
+        "nums": [
+          7
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "boundary"]
+      "tags": [
+        "trial",
+        "boundary"
+      ]
     },
     {
       "id": "trial-increasing",
       "name": "trial: the whole array is strictly increasing",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 3, 4, 5]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
       "expected": 5,
-      "tags": ["trial", "increasing"]
+      "tags": [
+        "trial",
+        "increasing"
+      ]
     },
     {
       "id": "trial-mountain",
       "name": "trial: equal-length increasing and decreasing sides",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 3, 2, 1]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          2,
+          1
+        ]
+      },
       "expected": 3,
-      "tags": ["trial", "direction-change"]
+      "tags": [
+        "trial",
+        "direction-change"
+      ]
     },
     {
       "id": "trial-equality-split",
       "name": "trial: equality starts a new increasing run",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 2, 3, 4]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          2,
+          3,
+          4
+        ]
+      },
       "expected": 3,
-      "tags": ["trial", "equality"]
+      "tags": [
+        "trial",
+        "equality"
+      ]
     },
     {
-      "id": "real-alternating",
-      "name": "real: every comparison changes direction",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 3, 2, 4, 1]},
+      "id": "trial-alternating",
+      "name": "every comparison changes direction",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          2,
+          4,
+          1
+        ]
+      },
       "expected": 2,
-      "tags": ["real", "alternating"]
+      "tags": [
+        "real",
+        "alternating"
+      ]
     },
     {
-      "id": "real-equality-before-descent",
-      "name": "real: equality separates a long decreasing suffix",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, 4, 4, 3, 2, 1]},
+      "id": "trial-equality-before-descent",
+      "name": "equality separates a long decreasing suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          4,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
       "expected": 4,
-      "tags": ["real", "decreasing", "equality"]
+      "tags": [
+        "real",
+        "decreasing",
+        "equality"
+      ]
     },
     {
-      "id": "real-two-plateaus",
-      "name": "real: plateaus bound runs in both directions",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 1, 2, 3, 3, 2, 1]},
+      "id": "trial-two-plateaus",
+      "name": "plateaus bound runs in both directions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          3,
+          3,
+          2,
+          1
+        ]
+      },
       "expected": 3,
-      "tags": ["real", "plateau"]
+      "tags": [
+        "real",
+        "plateau"
+      ]
     },
     {
-      "id": "real-tied-long-runs",
-      "name": "real: decreasing and increasing runs tie at the maximum",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [50, 49, 48, 1, 2, 3, 4]},
+      "id": "trial-tied-long-runs",
+      "name": "decreasing and increasing runs tie at the maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          50,
+          49,
+          48,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
       "expected": 4,
-      "tags": ["real", "direction-change"]
+      "tags": [
+        "real",
+        "direction-change"
+      ]
     },
     {
-      "id": "real-value-boundaries",
-      "name": "real: repeated minimum and maximum values split strict runs",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 50, 50, 1, 2, 3, 50]},
+      "id": "trial-value-boundaries",
+      "name": "repeated minimum and maximum values split strict runs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          50,
+          50,
+          1,
+          2,
+          3,
+          50
+        ]
+      },
       "expected": 4,
-      "tags": ["real", "boundary", "equality"]
+      "tags": [
+        "real",
+        "boundary",
+        "equality"
+      ]
     }
   ]
 }

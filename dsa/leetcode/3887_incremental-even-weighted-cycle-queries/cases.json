@@ -232,10 +232,10 @@
       ]
     },
     {
-      "id": "real-rejection-does-not-mutate",
-      "name": "hidden: a rejected triangle edge cannot affect later proposals",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-rejection-does-not-mutate",
+      "name": "a rejected triangle edge cannot affect later proposals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "edges": [
@@ -268,16 +268,15 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "rejected-edge",
         "later-queries"
       ]
     },
     {
-      "id": "real-merge-components-and-reject-chord",
-      "name": "hidden: several components merge before an inconsistent chord",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-merge-components-and-reject-chord",
+      "name": "several components merge before an inconsistent chord",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 6,
         "edges": [
@@ -320,16 +319,15 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "component-merge",
         "inconsistent-chord"
       ]
     },
     {
-      "id": "real-multiple-consistent-chords",
-      "name": "hidden: several redundant edges agree with one potential assignment",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-consistent-chords",
+      "name": "several redundant edges agree with one potential assignment",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 5,
         "edges": [
@@ -372,16 +370,15 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "consistent-chords",
         "multiple-cycles"
       ]
     },
     {
-      "id": "real-all-one-odd-cycle",
-      "name": "hidden: an odd-length all-one cycle rejects its closing edge",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-one-odd-cycle",
+      "name": "an odd-length all-one cycle rejects its closing edge",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 5,
         "edges": [
@@ -414,16 +411,15 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "odd-cycle",
         "all-one"
       ]
     },
     {
-      "id": "real-all-one-even-cycle",
-      "name": "hidden: an even-length all-one cycle accepts its closing edge",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-one-even-cycle",
+      "name": "an even-length all-one cycle accepts its closing edge",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 6,
         "edges": [
@@ -461,16 +457,15 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "even-cycle",
         "all-one"
       ]
     },
     {
-      "id": "real-multiple-inconsistent-chords",
-      "name": "hidden: multiple bad chords are rejected while a later good chord remains valid",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-multiple-inconsistent-chords",
+      "name": "multiple bad chords are rejected while a later good chord remains valid",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "edges": [
@@ -508,16 +503,15 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "multiple-rejections",
         "consistent-chord"
       ]
     },
     {
-      "id": "real-maximum-vertex-labels",
-      "name": "hidden: parity relations work at the maximum vertex labels",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-maximum-vertex-labels",
+      "name": "parity relations work at the maximum vertex labels",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 50000,
         "edges": [
@@ -545,16 +539,15 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "vertex-boundary",
         "component-merge"
       ]
     },
     {
-      "id": "real-disconnected-mixed-cycles",
-      "name": "hidden: even and odd cycles are evaluated independently across components",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-disconnected-mixed-cycles",
+      "name": "even and odd cycles are evaluated independently across components",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 8,
         "edges": [
@@ -597,7 +590,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "disconnected",
         "mixed-cycles"
       ]
